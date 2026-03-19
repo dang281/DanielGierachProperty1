@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Obsidian Surface Hierarchy ── */
-  --color-base:        #0e0e0e;
-  --color-surface-0:   #0e0e0e;
-  --color-surface-1:   #131313;
-  --color-surface-2:   #191a1a;
-  --color-surface-3:   #1c1c1e;
-  --color-surface-4:   #252626;
-  --color-surface-5:   #2c2c2e;
+  /* ── Linen Surface Hierarchy ── */
+  --color-base:        #f7f5f0;
+  --color-surface-0:   #f7f5f0;
+  --color-surface-1:   #f2efe9;
+  --color-surface-2:   #edeae3;
+  --color-surface-3:   #ffffff;
+  --color-surface-4:   #f5f2eb;
+  --color-surface-5:   #ece9e1;
 
-  /* ── Champagne Gold ── */
-  --color-gold:        #ffdd79;
-  --color-gold-dim:    #e9c176;
-  --color-gold-muted:  rgba(255,221,121,0.12);
+  /* ── Amber Gold (accessible on cream) ── */
+  --color-gold:        #c4912a;
+  --color-gold-dim:    #b07e22;
+  --color-gold-muted:  rgba(196,145,42,0.1);
 
   /* ── Text ── */
-  --color-text-primary:   #c8c6c8;
-  --color-text-secondary: #a1a1a1;
-  --color-text-muted:     #484848;
-  --color-ghost:          rgba(72,72,72,0.3);
+  --color-text-primary:   #1c1917;
+  --color-text-secondary: #44403c;
+  --color-text-muted:     #78716c;
+  --color-ghost:          rgba(68,64,60,0.18);
 
   /* ── Fonts ── */
   --font-serif: "Noto Serif", Georgia, serif;
@@ -54,7 +54,7 @@
   }
 
   ::selection {
-    background: rgba(255,221,121,0.25);
+    background: rgba(196,145,42,0.2);
     color: var(--color-gold);
   }
 
@@ -182,8 +182,8 @@
     align-items: center;
     gap: 0.5rem;
     background: transparent;
-    border: 1px solid rgba(200,198,200,0.25);
-    color: var(--color-text-primary);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #f7f5f0;
     font-family: var(--font-sans);
     font-size: 0.7rem;
     font-weight: 600;
@@ -194,15 +194,16 @@
     transition: border-color 0.2s, background 0.2s;
   }
   .btn-ghost-light:hover {
-    border-color: rgba(200,198,200,0.5);
-    background: rgba(200,198,200,0.06);
+    border-color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.08);
   }
 
   /* Nav */
   .glass-nav {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background: rgba(25,26,26,0.75);
+    background: rgba(247,245,240,0.94);
+    border-bottom: 1px solid rgba(28,25,23,0.08);
   }
 
   .nav-link-mono {
@@ -254,7 +255,7 @@
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
-    color: rgba(161,161,161,0.5);
+    color: rgba(68,64,60,0.4);
     cursor: pointer;
     margin-bottom: -1px;
     transition: color 0.2s, border-color 0.2s;
@@ -273,7 +274,7 @@
     height: 52px;
     padding: 0 1rem;
     background: var(--color-surface-4);
-    border: 1px solid rgba(72,72,72,0.2);
+    border: 1px solid rgba(28,25,23,0.18);
     color: var(--color-text-primary);
     font-family: var(--font-sans);
     font-size: 0.85rem;
@@ -281,13 +282,13 @@
     transition: border-color 0.2s;
   }
   .obs-input::placeholder { color: var(--color-text-muted); }
-  .obs-input:focus { border-color: rgba(255,221,121,0.4); }
+  .obs-input:focus { border-color: rgba(196,145,42,0.5); }
 
   .obs-select {
     height: 52px;
     padding: 0 1rem;
     background: var(--color-surface-4);
-    border: 1px solid rgba(72,72,72,0.2);
+    border: 1px solid rgba(28,25,23,0.18);
     color: var(--color-text-secondary);
     font-family: var(--font-sans);
     font-size: 0.8rem;
@@ -295,7 +296,7 @@
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23484848' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2378716c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     padding-right: 2.5rem;

@@ -31,7 +31,7 @@ const navLinks = [
       <div class="hidden lg:flex items-center gap-6">
         <a href="/contact" class="nav-link-mono">Contact</a>
         <a href="/appraisal" class="btn-gold" style="padding:0.7rem 1.5rem;">
-          Free Appraisal
+          Request Appraisal
         </a>
       </div>
 
@@ -48,15 +48,15 @@ const navLinks = [
   <div
     id="mobile-menu"
     class="lg:hidden overflow-hidden transition-all duration-300"
-    style="max-height:0;background:rgba(19,19,19,0.98);backdrop-filter:blur(20px);"
+    style="max-height:0;background:rgba(242,239,233,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(28,25,23,0.08);"
   >
     <div class="max-w-[1400px] mx-auto px-8 py-6 flex flex-col gap-5">
       {navLinks.map((link) => (
         <a href={link.href} class="nav-link-mono">{link.label}</a>
       ))}
-      <div class="pt-4 flex flex-col gap-3" style="border-top:1px solid rgba(72,72,72,0.2);">
+      <div class="pt-4 flex flex-col gap-3" style="border-top:1px solid rgba(28,25,23,0.12);">
         <a href="/contact" class="nav-link-mono">Contact</a>
-        <a href="/appraisal" class="btn-gold self-start">Free Appraisal</a>
+        <a href="/appraisal" class="btn-gold self-start">Request Appraisal</a>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@ const navLinks = [
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       header.classList.add('glass-nav');
-      header.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+      header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
     } else {
       header.classList.remove('glass-nav');
       header.style.boxShadow = 'none';
