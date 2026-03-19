@@ -4,7 +4,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <ToolLayout
   title="Instant Valuation"
-  description="Get an indicative value for your Sydney property in minutes based on recent comparable sales."
+  description="Get an indicative value for your Brisbane property in minutes based on recent comparable sales in Daniel's key markets."
   tool="Instant Valuation"
   phase="Seller Tools"
 >
@@ -33,14 +33,27 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
             <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Suburb</label>
             <select id="suburb" class="obs-select" style="width:100%;">
               <option value="">Select a suburb...</option>
-              <option value="mosman">Mosman</option>
-              <option value="double-bay">Double Bay</option>
-              <option value="vaucluse">Vaucluse</option>
-              <option value="cremorne">Cremorne</option>
-              <option value="neutral-bay">Neutral Bay</option>
-              <option value="paddington">Paddington</option>
-              <option value="surry-hills">Surry Hills</option>
-              <option value="balmain">Balmain</option>
+              <option value="bulimba">Bulimba</option>
+              <option value="balmoral">Balmoral</option>
+              <option value="hawthorne">Hawthorne</option>
+              <option value="morningside">Morningside</option>
+              <option value="cannon-hill">Cannon Hill</option>
+              <option value="east-brisbane">East Brisbane</option>
+              <option value="norman-park">Norman Park</option>
+              <option value="kangaroo-point">Kangaroo Point</option>
+              <option value="seven-hills">Seven Hills</option>
+              <option value="murarrie">Murarrie</option>
+              <option value="coorparoo">Coorparoo</option>
+              <option value="camp-hill">Camp Hill</option>
+              <option value="tingalpa">Tingalpa</option>
+              <option value="carina">Carina</option>
+              <option value="carina-heights">Carina Heights</option>
+              <option value="carindale">Carindale</option>
+              <option value="mt-gravatt">Mt Gravatt</option>
+              <option value="mt-gravatt-east">Mt Gravatt East</option>
+              <option value="holland-park-west">Holland Park West</option>
+              <option value="greenslopes">Greenslopes</option>
+              <option value="woolloongabba">Woolloongabba</option>
             </select>
           </div>
 
@@ -181,14 +194,27 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <script>
   const MEDIAN: Record<string, { house: number; unit: number; terrace: number }> = {
-    'mosman':      { house: 6200000, unit: 1850000, terrace: 4500000 },
-    'double-bay':  { house: 5400000, unit: 2100000, terrace: 3800000 },
-    'vaucluse':    { house: 7800000, unit: 2400000, terrace: 5500000 },
-    'cremorne':    { house: 3900000, unit: 1250000, terrace: 2800000 },
-    'neutral-bay': { house: 3200000, unit: 1050000, terrace: 2400000 },
-    'paddington':  { house: 3100000, unit: 1200000, terrace: 2600000 },
-    'surry-hills': { house: 1850000, unit:  980000, terrace: 1600000 },
-    'balmain':     { house: 2400000, unit: 1050000, terrace: 2000000 },
+    'bulimba':          { house: 1750000, unit: 685000,  terrace: 1400000 },
+    'balmoral':         { house: 1900000, unit: 720000,  terrace: 1550000 },
+    'hawthorne':        { house: 1620000, unit: 660000,  terrace: 1300000 },
+    'morningside':      { house: 1280000, unit: 620000,  terrace: 1050000 },
+    'cannon-hill':      { house: 1150000, unit: 580000,  terrace: 950000  },
+    'east-brisbane':    { house: 1450000, unit: 650000,  terrace: 1200000 },
+    'norman-park':      { house: 1350000, unit: 600000,  terrace: 1100000 },
+    'kangaroo-point':   { house: 1520000, unit: 710000,  terrace: 1300000 },
+    'seven-hills':      { house: 1200000, unit: 560000,  terrace: 1000000 },
+    'murarrie':         { house: 950000,  unit: 520000,  terrace: 800000  },
+    'coorparoo':        { house: 1320000, unit: 610000,  terrace: 1100000 },
+    'camp-hill':        { house: 1380000, unit: 630000,  terrace: 1150000 },
+    'tingalpa':         { house: 850000,  unit: 490000,  terrace: 720000  },
+    'carina':           { house: 920000,  unit: 510000,  terrace: 780000  },
+    'carina-heights':   { house: 870000,  unit: 480000,  terrace: 740000  },
+    'carindale':        { house: 910000,  unit: 500000,  terrace: 760000  },
+    'mt-gravatt':       { house: 970000,  unit: 530000,  terrace: 820000  },
+    'mt-gravatt-east':  { house: 920000,  unit: 510000,  terrace: 780000  },
+    'holland-park-west':{ house: 980000,  unit: 530000,  terrace: 830000  },
+    'greenslopes':      { house: 1100000, unit: 560000,  terrace: 920000  },
+    'woolloongabba':    { house: 1250000, unit: 620000,  terrace: 1050000 },
   };
 
   function goToStep(n: number) {

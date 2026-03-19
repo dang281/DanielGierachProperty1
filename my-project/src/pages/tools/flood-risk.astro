@@ -78,12 +78,12 @@ import { suburbs } from '../../data/suburbs';
         <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.25rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">Buyer Checklist</h3>
         <div class="flex flex-col gap-2">
           {[
-            'Request Section 10.7 Planning Certificate from council',
-            'Check NSW Flood Data (SEED platform)',
-            'Review strata report flood history (if applicable)',
-            'Get flood-specific insurance quotes before exchange',
-            'Check if property has been raised or flood-proofed',
-            'Ask about historical flood events from neighbours',
+            'Request a Brisbane City Council (BCC) Flood Overlay Certificate',
+            'Check the BCC Online Flood Check tool at floodcheck.brisbane.qld.gov.au',
+            'Review Body Corporate records for past flood events (if applicable)',
+            'Obtain flood-specific insurance quotes before exchange — premiums vary significantly',
+            'Check if property has been raised or flood-proofed (a plus, but verify engineering)',
+            'Ask the agent and neighbours about 2011 and 2022 flood event impacts',
           ].map((item, i) => (
             <div style="display:flex;gap:0.75rem;align-items:flex-start;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.1);">
               <span style="font-size:0.7rem;font-weight:700;color:var(--color-gold);flex-shrink:0;margin-top:0.1rem;">{String(i+1).padStart(2,'0')}</span>
@@ -174,14 +174,28 @@ import { suburbs } from '../../data/suburbs';
   };
 
   const SUBURB_DATA: Record<string, { name: string; risk: string; notes: string }> = {
-    'mosman':      { name: 'Mosman',      risk: 'Low',    notes: 'Elevated topography throughout most of the suburb. Some lower-lying pockets near Balmoral and harbour foreshore have minor risk.' },
-    'double-bay':  { name: 'Double Bay',  risk: 'Low',    notes: 'Generally low flood risk. Some properties near Double Bay harbour foreshore may have minor coastal inundation risk in extreme weather events.' },
-    'vaucluse':    { name: 'Vaucluse',    risk: 'Low',    notes: 'Elevated headland position with very low flood risk. Ocean-facing properties carry coastal erosion risk rather than flood risk.' },
-    'cremorne':    { name: 'Cremorne',    risk: 'Low',    notes: 'Most of Cremorne is elevated. Some foreshore properties near Cremorne Point have minor harbour inundation risk during extreme weather.' },
-    'neutral-bay': { name: 'Neutral Bay', risk: 'Low',    notes: 'Well-elevated suburb with low overall flood risk. Small portions near creek lines and the harbour foreshore may have minor localised risk.' },
-    'paddington':  { name: 'Paddington',  risk: 'Low',    notes: 'Hilly terrain provides natural drainage. Low flood risk across most of the suburb. Some lower Oxford Street areas can experience minor stormwater issues.' },
-    'surry-hills': { name: 'Surry Hills', risk: 'Medium', notes: 'Some areas adjacent to the old South Sydney drain network have recorded stormwater overflow events. Specific streets near Crown Street low points warrant investigation.' },
-    'balmain':     { name: 'Balmain',     risk: 'Low',    notes: 'Peninsula position with good harbour drainage. Very low flood risk for most properties. Foreshore properties carry minor coastal weather risk.' },
+    'bulimba':          { name: 'Bulimba',          risk: 'Medium', notes: 'Parts of Bulimba near the Brisbane River foreshore and lower-lying streets carry medium flood risk. Oxford Street ridge is generally low risk. Always check specific property flood overlays via Brisbane City Council.' },
+    'balmoral':         { name: 'Balmoral',         risk: 'Low',    notes: 'Elevated position above the river provides Balmoral with low overall flood risk. Most properties sit above key flood levels, though foreshore pockets should be individually assessed.' },
+    'hawthorne':        { name: 'Hawthorne',        risk: 'Low',    notes: 'Generally low flood risk. Some lower-lying streets near the river precinct may carry localised risk. Elevated properties throughout most of the suburb are not flood-affected.' },
+    'morningside':      { name: 'Morningside',      risk: 'Medium', notes: 'Morningside has recorded flood events in lower-lying areas, particularly near Murarrie Creek and the Bulimba Creek corridor. Higher areas near the suburb\'s ridge are generally low risk.' },
+    'cannon-hill':      { name: 'Cannon Hill',      risk: 'Low',    notes: 'Cannon Hill sits on elevated ground away from major waterways, resulting in low overall flood risk. The suburb was largely spared in the 2011 and 2022 Brisbane flood events.' },
+    'east-brisbane':    { name: 'East Brisbane',    risk: 'Medium', notes: 'Parts of East Brisbane near the river and low-lying areas were impacted in historical flood events. Elevated sections above river level are generally unaffected. Individual property assessment is important.' },
+    'norman-park':      { name: 'Norman Park',      risk: 'Low',    notes: 'Norman Park is predominantly elevated with low flood risk. Streets near Enoggera Creek tributaries may carry minor overland flow risk in extreme rainfall events.' },
+    'kangaroo-point':   { name: 'Kangaroo Point',   risk: 'Medium', notes: 'Lower-lying foreshore areas of Kangaroo Point carry flood risk from the Brisbane River. The elevated cliff-top areas are significantly less impacted. Check BCC flood maps for your specific property.' },
+    'seven-hills':      { name: 'Seven Hills',      risk: 'Low',    notes: 'Seven Hills is one of the inner east\'s most flood-resilient suburbs, with an elevated position protected by Seven Hills Bushland Reserve. Very low risk across most of the suburb.' },
+    'murarrie':         { name: 'Murarrie',         risk: 'High',   notes: 'Murarrie has significant flood risk in lower-lying areas near Bulimba Creek and the river corridor. Several streets were heavily impacted in 2011 and 2022. Always obtain a BCC flood overlay and Section 10.7 certificate before purchasing.' },
+    'coorparoo':        { name: 'Coorparoo',        risk: 'Low',    notes: 'Coorparoo is elevated and well-drained with low overall flood risk. Some lower pockets near creek lines may carry minor localised stormwater risk in extreme events.' },
+    'camp-hill':        { name: 'Camp Hill',        risk: 'Low',    notes: 'Camp Hill sits on elevated ridgeline terrain with excellent natural drainage. Extremely low flood risk — the suburb was virtually unaffected in major historical Brisbane flood events.' },
+    'tingalpa':         { name: 'Tingalpa',         risk: 'Medium', notes: 'Parts of Tingalpa near Tingalpa Creek carry medium flood risk, particularly in lower-lying areas. Higher parts of the suburb are generally unaffected. Check BCC flood mapping for your specific address.' },
+    'carina':           { name: 'Carina',           risk: 'Low',    notes: 'Carina is generally well-elevated with low flood risk. Some streets near drainage corridors may experience minor stormwater overland flow in extreme rainfall but are not typically subject to river flooding.' },
+    'carina-heights':   { name: 'Carina Heights',   risk: 'Low',    notes: 'An elevated suburb with very low flood risk throughout. Nature reserve boundaries provide excellent natural drainage. One of the more flood-resilient suburbs in the inner south east.' },
+    'carindale':        { name: 'Carindale',        risk: 'Low',    notes: 'Carindale has low overall flood risk with good natural drainage across most of the suburb. Some localised low points near shopping centre infrastructure may carry minor stormwater risk.' },
+    'mt-gravatt':       { name: 'Mt Gravatt',       risk: 'Low',    notes: 'Elevated terrain throughout Mt Gravatt provides very low flood risk. The suburb\'s hillside position offers natural drainage and was largely unaffected in the 2011 and 2022 Brisbane flood events.' },
+    'mt-gravatt-east':  { name: 'Mt Gravatt East',  risk: 'Low',    notes: 'Low flood risk suburb with good elevation throughout. Some valley pockets near creek lines may carry minor localised risk but the vast majority of the suburb is well above flood levels.' },
+    'holland-park-west':{ name: 'Holland Park West', risk: 'Low',   notes: 'Holland Park West sits on elevated ground with very low flood risk. Wide street drainage infrastructure and elevated terrain provide excellent protection against major flood events.' },
+    'greenslopes':      { name: 'Greenslopes',      risk: 'Low',    notes: 'Generally low flood risk. The suburb\'s elevated position relative to the river corridor provides good natural protection. Some minor stormwater overland flow may occur near drainage infrastructure in extreme rain.' },
+    'woolloongabba':    { name: 'Woolloongabba',    risk: 'Low',    notes: 'Most of Woolloongabba sits above key flood levels. The suburb was largely spared in 2011 and 2022. Some lower-lying pockets near the boundary with East Brisbane should be individually assessed.' },
+    'brisbane-cbd':     { name: 'Brisbane CBD',     risk: 'Medium', notes: 'Sections of the CBD near the river were impacted in 2011 and 2022. Ground-floor commercial and some residential precincts carry flood risk. Upper-floor apartments above 4m AHD are generally unaffected. Always check specific building flood certificates.' },
   };
 
   document.getElementById('suburb-select')!.addEventListener('change', (e) => {

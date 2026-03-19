@@ -5,7 +5,7 @@ import { suburbs, formatPrice } from '../../data/suburbs';
 
 <ToolLayout
   title="Price Heatmap"
-  description="Visual suburb-by-suburb median price and growth map across Sydney's premium markets."
+  description="Visual suburb-by-suburb median price and growth map across Brisbane's inner east and south markets."
   tool="Price Heatmap"
   phase="Market Tools"
 >
@@ -90,14 +90,27 @@ import { suburbs, formatPrice } from '../../data/suburbs';
 
   // Inline suburb data
   const suburbData = [
-    { slug:'mosman',      name:'Mosman',      region:'Lower North Shore', medianHousePrice:6200000, medianUnitPrice:1850000, priceGrowth1yr:8.2, priceGrowth5yr:42.1, rentalYield:2.1, medianDaysOnMarket:24, clearanceRate:74, weeklyRent:2800 },
-    { slug:'double-bay',  name:'Double Bay',  region:'Eastern Suburbs',   medianHousePrice:5400000, medianUnitPrice:2100000, priceGrowth1yr:9.4, priceGrowth5yr:47.3, rentalYield:2.4, medianDaysOnMarket:28, clearanceRate:71, weeklyRent:2600 },
-    { slug:'vaucluse',    name:'Vaucluse',    region:'Eastern Suburbs',   medianHousePrice:7800000, medianUnitPrice:2400000, priceGrowth1yr:6.8, priceGrowth5yr:38.5, rentalYield:1.9, medianDaysOnMarket:35, clearanceRate:68, weeklyRent:4200 },
-    { slug:'cremorne',    name:'Cremorne',    region:'Lower North Shore', medianHousePrice:3900000, medianUnitPrice:1250000, priceGrowth1yr:10.1,priceGrowth5yr:49.8, rentalYield:2.6, medianDaysOnMarket:22, clearanceRate:76, weeklyRent:1850 },
-    { slug:'neutral-bay', name:'Neutral Bay', region:'Lower North Shore', medianHousePrice:3200000, medianUnitPrice:1050000, priceGrowth1yr:11.2,priceGrowth5yr:52.3, rentalYield:2.9, medianDaysOnMarket:21, clearanceRate:77, weeklyRent:1600 },
-    { slug:'paddington',  name:'Paddington',  region:'Inner East',        medianHousePrice:3100000, medianUnitPrice:1200000, priceGrowth1yr:12.4,priceGrowth5yr:56.7, rentalYield:2.8, medianDaysOnMarket:19, clearanceRate:79, weeklyRent:1700 },
-    { slug:'surry-hills', name:'Surry Hills', region:'Inner City',        medianHousePrice:1850000, medianUnitPrice:980000,  priceGrowth1yr:13.8,priceGrowth5yr:58.2, rentalYield:3.4, medianDaysOnMarket:16, clearanceRate:82, weeklyRent:1200 },
-    { slug:'balmain',     name:'Balmain',     region:'Inner West',        medianHousePrice:2400000, medianUnitPrice:1050000, priceGrowth1yr:9.6, priceGrowth5yr:45.8, rentalYield:2.9, medianDaysOnMarket:20, clearanceRate:76, weeklyRent:1450 },
+    { slug:'bulimba',          name:'Bulimba',          region:'Inner East',       medianHousePrice:1750000, medianUnitPrice:685000,  priceGrowth1yr:14.2, priceGrowth5yr:72.1,  rentalYield:3.1, medianDaysOnMarket:22, clearanceRate:78, weeklyRent:1050 },
+    { slug:'balmoral',         name:'Balmoral',          region:'Inner East',       medianHousePrice:1900000, medianUnitPrice:720000,  priceGrowth1yr:15.8, priceGrowth5yr:78.3,  rentalYield:2.9, medianDaysOnMarket:18, clearanceRate:81, weeklyRent:1100 },
+    { slug:'hawthorne',        name:'Hawthorne',         region:'Inner East',       medianHousePrice:1620000, medianUnitPrice:660000,  priceGrowth1yr:13.5, priceGrowth5yr:68.4,  rentalYield:3.2, medianDaysOnMarket:19, clearanceRate:79, weeklyRent:1000 },
+    { slug:'morningside',      name:'Morningside',       region:'Inner East',       medianHousePrice:1280000, medianUnitPrice:620000,  priceGrowth1yr:16.2, priceGrowth5yr:79.8,  rentalYield:3.5, medianDaysOnMarket:21, clearanceRate:76, weeklyRent:850  },
+    { slug:'cannon-hill',      name:'Cannon Hill',       region:'Inner East',       medianHousePrice:1150000, medianUnitPrice:580000,  priceGrowth1yr:17.4, priceGrowth5yr:82.1,  rentalYield:3.8, medianDaysOnMarket:24, clearanceRate:74, weeklyRent:800  },
+    { slug:'east-brisbane',    name:'East Brisbane',     region:'Inner City',       medianHousePrice:1450000, medianUnitPrice:650000,  priceGrowth1yr:18.6, priceGrowth5yr:88.5,  rentalYield:3.6, medianDaysOnMarket:16, clearanceRate:82, weeklyRent:950  },
+    { slug:'norman-park',      name:'Norman Park',       region:'Inner East',       medianHousePrice:1350000, medianUnitPrice:600000,  priceGrowth1yr:15.9, priceGrowth5yr:75.3,  rentalYield:3.4, medianDaysOnMarket:20, clearanceRate:77, weeklyRent:870  },
+    { slug:'kangaroo-point',   name:'Kangaroo Point',    region:'Inner City',       medianHousePrice:1520000, medianUnitPrice:710000,  priceGrowth1yr:19.2, priceGrowth5yr:91.2,  rentalYield:3.7, medianDaysOnMarket:17, clearanceRate:83, weeklyRent:980  },
+    { slug:'seven-hills',      name:'Seven Hills',       region:'Inner East',       medianHousePrice:1200000, medianUnitPrice:560000,  priceGrowth1yr:16.8, priceGrowth5yr:80.6,  rentalYield:3.6, medianDaysOnMarket:22, clearanceRate:75, weeklyRent:800  },
+    { slug:'murarrie',         name:'Murarrie',          region:'Inner East',       medianHousePrice:950000,  medianUnitPrice:520000,  priceGrowth1yr:18.5, priceGrowth5yr:85.8,  rentalYield:4.1, medianDaysOnMarket:28, clearanceRate:70, weeklyRent:720  },
+    { slug:'coorparoo',        name:'Coorparoo',         region:'Inner South',      medianHousePrice:1320000, medianUnitPrice:610000,  priceGrowth1yr:16.5, priceGrowth5yr:79.2,  rentalYield:3.4, medianDaysOnMarket:19, clearanceRate:78, weeklyRent:860  },
+    { slug:'camp-hill',        name:'Camp Hill',         region:'Inner South',      medianHousePrice:1380000, medianUnitPrice:630000,  priceGrowth1yr:17.2, priceGrowth5yr:83.7,  rentalYield:3.3, medianDaysOnMarket:18, clearanceRate:80, weeklyRent:890  },
+    { slug:'tingalpa',         name:'Tingalpa',          region:'Inner East',       medianHousePrice:850000,  medianUnitPrice:490000,  priceGrowth1yr:20.1, priceGrowth5yr:94.6,  rentalYield:4.3, medianDaysOnMarket:30, clearanceRate:68, weeklyRent:680  },
+    { slug:'carina',           name:'Carina',            region:'Inner South East', medianHousePrice:920000,  medianUnitPrice:510000,  priceGrowth1yr:19.8, priceGrowth5yr:92.3,  rentalYield:4.1, medianDaysOnMarket:25, clearanceRate:73, weeklyRent:710  },
+    { slug:'carina-heights',   name:'Carina Heights',    region:'Inner South East', medianHousePrice:870000,  medianUnitPrice:480000,  priceGrowth1yr:20.5, priceGrowth5yr:95.8,  rentalYield:4.2, medianDaysOnMarket:27, clearanceRate:72, weeklyRent:695  },
+    { slug:'carindale',        name:'Carindale',         region:'Inner South East', medianHousePrice:910000,  medianUnitPrice:500000,  priceGrowth1yr:19.2, priceGrowth5yr:90.1,  rentalYield:4.0, medianDaysOnMarket:26, clearanceRate:72, weeklyRent:700  },
+    { slug:'mt-gravatt',       name:'Mt Gravatt',        region:'South Brisbane',   medianHousePrice:970000,  medianUnitPrice:530000,  priceGrowth1yr:18.8, priceGrowth5yr:87.9,  rentalYield:4.0, medianDaysOnMarket:24, clearanceRate:74, weeklyRent:730  },
+    { slug:'mt-gravatt-east',  name:'Mt Gravatt East',   region:'South Brisbane',   medianHousePrice:920000,  medianUnitPrice:510000,  priceGrowth1yr:19.5, priceGrowth5yr:91.5,  rentalYield:4.1, medianDaysOnMarket:25, clearanceRate:73, weeklyRent:720  },
+    { slug:'holland-park-west',name:'Holland Park West', region:'Inner South',      medianHousePrice:980000,  medianUnitPrice:530000,  priceGrowth1yr:18.2, priceGrowth5yr:87.3,  rentalYield:3.9, medianDaysOnMarket:22, clearanceRate:76, weeklyRent:740  },
+    { slug:'greenslopes',      name:'Greenslopes',       region:'Inner South',      medianHousePrice:1100000, medianUnitPrice:560000,  priceGrowth1yr:17.6, priceGrowth5yr:84.8,  rentalYield:3.7, medianDaysOnMarket:20, clearanceRate:77, weeklyRent:780  },
+    { slug:'woolloongabba',    name:'Woolloongabba',     region:'Inner South',      medianHousePrice:1250000, medianUnitPrice:620000,  priceGrowth1yr:22.4, priceGrowth5yr:105.2, rentalYield:4.0, medianDaysOnMarket:18, clearanceRate:80, weeklyRent:850  },
   ];
 
   type MetricKey = 'medianHousePrice'|'medianUnitPrice'|'priceGrowth1yr'|'priceGrowth5yr'|'rentalYield';

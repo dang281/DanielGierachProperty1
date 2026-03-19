@@ -4,7 +4,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <ToolLayout
   title="Suburb Match Quiz"
-  description="Answer 8 questions to discover your ideal Sydney suburb based on lifestyle, budget, and priorities."
+  description="Answer 8 questions to discover your ideal Brisbane inner east or south suburb based on lifestyle, budget, and priorities."
   tool="Suburb Match"
   phase="Buyer Tools"
 >
@@ -52,98 +52,112 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       id: 'budget',
       text: 'What is your maximum purchase budget?',
       options: [
-        { label: 'Under $800K',     value: 'budget-low',    tags: ['surry-hills','neutral-bay','paddington'] },
-        { label: '$800K – $1.5M',   value: 'budget-mid',    tags: ['cremorne','neutral-bay','balmain','paddington'] },
-        { label: '$1.5M – $3M',     value: 'budget-high',   tags: ['mosman','cremorne','balmain','paddington'] },
-        { label: '$3M+',            value: 'budget-luxury',  tags: ['mosman','double-bay','vaucluse'] },
+        { label: 'Under $700K',     value: 'budget-low',    tags: ['tingalpa','murarrie','carina','carina-heights'] },
+        { label: '$700K – $1.1M',   value: 'budget-mid',    tags: ['morningside','cannon-hill','coorparoo','greenslopes','mt-gravatt','carindale'] },
+        { label: '$1.1M – $1.5M',   value: 'budget-high',   tags: ['bulimba','hawthorne','norman-park','seven-hills','camp-hill','woolloongabba'] },
+        { label: '$1.5M+',          value: 'budget-luxury', tags: ['balmoral','bulimba','seven-hills','hawthorne'] },
       ],
     },
     {
       id: 'lifestyle',
       text: 'Which lifestyle best describes you?',
       options: [
-        { label: 'Café & restaurant culture',  value: 'cafe',      tags: ['paddington','surry-hills','neutral-bay','cremorne','double-bay'] },
-        { label: 'Harbourside & water views',  value: 'harbour',   tags: ['mosman','cremorne','double-bay','vaucluse','neutral-bay'] },
-        { label: 'Village community feel',     value: 'village',   tags: ['balmain','paddington','mosman','cremorne'] },
-        { label: 'Urban, inner-city energy',   value: 'urban',     tags: ['surry-hills','paddington','neutral-bay'] },
+        { label: 'Café & restaurant culture',   value: 'cafe',    tags: ['bulimba','hawthorne','morningside','woolloongabba','east-brisbane'] },
+        { label: 'Quiet leafy streets',          value: 'leafy',   tags: ['balmoral','camp-hill','seven-hills','norman-park','holland-park-west'] },
+        { label: 'Inner-city energy',            value: 'urban',   tags: ['kangaroo-point','east-brisbane','woolloongabba','brisbane-cbd'] },
+        { label: 'Family community & reserves',  value: 'family',  tags: ['seven-hills','cannon-hill','carina','carindale','morningside'] },
       ],
     },
     {
       id: 'commute',
       text: 'How do you prefer to commute?',
       options: [
-        { label: 'Ferry to CBD',   value: 'ferry',   tags: ['mosman','cremorne','neutral-bay','balmain'] },
-        { label: 'Train',          value: 'train',   tags: ['surry-hills','paddington','neutral-bay'] },
-        { label: 'Drive / car',    value: 'car',     tags: ['vaucluse','double-bay','mosman'] },
-        { label: 'Walk / cycle',   value: 'walk',    tags: ['surry-hills','paddington','neutral-bay','double-bay'] },
+        { label: 'Ferry to CBD',   value: 'ferry',  tags: ['bulimba','hawthorne','kangaroo-point','east-brisbane'] },
+        { label: 'Train / bus',    value: 'train',  tags: ['morningside','coorparoo','greenslopes','woolloongabba','cannon-hill','norman-park'] },
+        { label: 'Drive / car',    value: 'car',    tags: ['balmoral','seven-hills','carindale','carina','tingalpa','mt-gravatt'] },
+        { label: 'Walk / cycle',   value: 'walk',   tags: ['kangaroo-point','east-brisbane','woolloongabba','brisbane-cbd'] },
       ],
     },
     {
       id: 'type',
       text: 'What property type are you looking for?',
       options: [
-        { label: 'Freestanding house',   value: 'house',  tags: ['mosman','vaucluse','cremorne','balmain','paddington'] },
-        { label: 'Apartment / unit',     value: 'apt',    tags: ['neutral-bay','cremorne','surry-hills','double-bay'] },
-        { label: 'Terrace / townhouse',  value: 'terrace',tags: ['paddington','surry-hills','balmain','cremorne'] },
-        { label: 'Whatever suits',       value: 'any',    tags: ['mosman','cremorne','neutral-bay','paddington','surry-hills','balmain','double-bay','vaucluse'] },
+        { label: 'Freestanding house',   value: 'house',   tags: ['balmoral','seven-hills','camp-hill','norman-park','carina','morningside'] },
+        { label: 'Apartment / unit',     value: 'apt',     tags: ['kangaroo-point','east-brisbane','brisbane-cbd','woolloongabba','greenslopes'] },
+        { label: 'Queenslander / character', value: 'qlder', tags: ['bulimba','hawthorne','morningside','norman-park','balmoral'] },
+        { label: 'Whatever suits',       value: 'any',     tags: ['bulimba','morningside','coorparoo','cannon-hill','camp-hill','woolloongabba'] },
       ],
     },
     {
       id: 'priority',
       text: 'What is your top priority?',
       options: [
-        { label: 'Schools & family amenities',  value: 'schools',   tags: ['mosman','paddington','cremorne'] },
-        { label: 'Capital growth potential',    value: 'growth',    tags: ['neutral-bay','cremorne','surry-hills','paddington'] },
-        { label: 'Rental yield (investment)',   value: 'yield',     tags: ['surry-hills','neutral-bay','cremorne'] },
-        { label: 'Prestige & exclusivity',      value: 'prestige',  tags: ['mosman','vaucluse','double-bay'] },
+        { label: 'Schools & family amenities',  value: 'schools',  tags: ['balmoral','seven-hills','norman-park','camp-hill','cannon-hill'] },
+        { label: 'Capital growth potential',    value: 'growth',   tags: ['woolloongabba','morningside','cannon-hill','murarrie','tingalpa'] },
+        { label: 'Rental yield (investment)',   value: 'yield',    tags: ['brisbane-cbd','kangaroo-point','morningside','tingalpa','murarrie'] },
+        { label: 'Lifestyle & prestige',        value: 'prestige', tags: ['balmoral','bulimba','hawthorne','seven-hills'] },
       ],
     },
     {
       id: 'character',
       text: 'What architectural style appeals to you?',
       options: [
-        { label: 'Modern / contemporary',  value: 'modern',  tags: ['double-bay','neutral-bay','surry-hills'] },
-        { label: 'Heritage / character',   value: 'heritage',tags: ['paddington','balmain','cremorne','mosman'] },
-        { label: 'Classic prestige',       value: 'classic', tags: ['mosman','vaucluse','double-bay'] },
-        { label: 'No preference',          value: 'any',     tags: ['mosman','cremorne','neutral-bay','paddington','surry-hills','balmain','double-bay','vaucluse'] },
+        { label: 'Modern / contemporary',     value: 'modern',   tags: ['kangaroo-point','east-brisbane','brisbane-cbd','woolloongabba'] },
+        { label: 'Classic Queenslander',      value: 'qlder',    tags: ['bulimba','balmoral','hawthorne','morningside','norman-park'] },
+        { label: 'Renovated character home',  value: 'reno',     tags: ['norman-park','seven-hills','coorparoo','camp-hill'] },
+        { label: 'No preference',             value: 'any',      tags: ['bulimba','morningside','coorparoo','cannon-hill','camp-hill','greenslopes'] },
       ],
     },
     {
       id: 'vibe',
-      text: 'Which best describes your social vibe?',
+      text: 'Which best describes your lifestyle stage?',
       options: [
-        { label: 'Young professionals & singles',  value: 'young',    tags: ['surry-hills','neutral-bay','paddington','double-bay'] },
-        { label: 'Young families',                 value: 'family',   tags: ['mosman','cremorne','balmain','paddington'] },
-        { label: 'Established & private',          value: 'estab',    tags: ['vaucluse','mosman','double-bay'] },
-        { label: 'Creative & artistic',            value: 'creative', tags: ['paddington','surry-hills','balmain'] },
+        { label: 'Young professionals',      value: 'young',   tags: ['kangaroo-point','east-brisbane','morningside','woolloongabba','greenslopes'] },
+        { label: 'Growing family',           value: 'family',  tags: ['balmoral','seven-hills','camp-hill','cannon-hill','carina','morningside'] },
+        { label: 'Downsizing / established', value: 'estab',   tags: ['balmoral','bulimba','hawthorne','camp-hill'] },
+        { label: 'Investor',                 value: 'invest',  tags: ['woolloongabba','morningside','cannon-hill','murarrie','tingalpa','brisbane-cbd'] },
       ],
     },
     {
       id: 'dealbreaker',
       text: 'What would be a dealbreaker?',
       options: [
-        { label: 'Far from the CBD',         value: 'far',     tags: ['surry-hills','paddington','neutral-bay','cremorne','double-bay'] },
-        { label: 'No water / harbour views', value: 'nowater', tags: ['mosman','cremorne','double-bay','vaucluse','neutral-bay'] },
-        { label: 'Poor school catchments',   value: 'schools', tags: ['mosman','paddington','cremorne'] },
-        { label: 'High density / apartments',value: 'density', tags: ['mosman','vaucluse','balmain','paddington'] },
+        { label: 'Far from the CBD',           value: 'far',     tags: ['bulimba','hawthorne','morningside','east-brisbane','kangaroo-point','coorparoo'] },
+        { label: 'Flood risk',                 value: 'flood',   tags: ['balmoral','seven-hills','camp-hill','mt-gravatt','holland-park-west'] },
+        { label: 'Poor school catchments',     value: 'schools', tags: ['balmoral','seven-hills','norman-park','camp-hill','cannon-hill'] },
+        { label: 'High density / apartments',  value: 'density', tags: ['balmoral','seven-hills','camp-hill','carina','carindale'] },
       ],
     },
   ];
 
   const SUBURBS: Record<string, { name: string; region: string; desc: string; medianHouse: string; medianUnit: string }> = {
-    'mosman':      { name: 'Mosman',      region: 'Lower North Shore', desc: 'Prestigious harbourside suburb with blue-chip appeal, excellent schools, and a charming village atmosphere.', medianHouse: '$6.2M', medianUnit: '$1.85M' },
-    'double-bay':  { name: 'Double Bay',  region: 'Eastern Suburbs',   desc: 'Sydney\'s most glamorous village — boutique shopping, world-class dining, and a sophisticated waterside lifestyle.', medianHouse: '$5.4M', medianUnit: '$2.1M' },
-    'vaucluse':    { name: 'Vaucluse',    region: 'Eastern Suburbs',   desc: 'One of Australia\'s most exclusive addresses, wrapping around South Head with spectacular harbour and ocean views.', medianHouse: '$7.8M', medianUnit: '$2.4M' },
-    'cremorne':    { name: 'Cremorne',    region: 'Lower North Shore', desc: 'Best-value entry to the lower north shore — exceptional café strip, ferry access, and a youthful energy.', medianHouse: '$3.9M', medianUnit: '$1.25M' },
-    'neutral-bay': { name: 'Neutral Bay', region: 'Lower North Shore', desc: 'Most accessible lower north shore suburb — vibrant restaurant and bar scene with excellent ferry and bus connections.', medianHouse: '$3.2M', medianUnit: '$1.05M' },
-    'paddington':  { name: 'Paddington',  region: 'Inner East',        desc: 'Iconic Victorian terrace streetscapes, Oxford Street galleries, and one of Sydney\'s best Saturday markets.', medianHouse: '$3.1M', medianUnit: '$1.2M' },
-    'surry-hills': { name: 'Surry Hills', region: 'Inner City',        desc: 'Sydney\'s creative epicentre — best restaurant row on Crown Street, thriving arts community, walking distance to CBD.', medianHouse: '$1.85M', medianUnit: '$980K' },
-    'balmain':     { name: 'Balmain',     region: 'Inner West',        desc: 'Peninsula suburb with ferry access, authentic Victorian streetscapes, and a strong community character.', medianHouse: '$2.4M', medianUnit: '$1.05M' },
+    'bulimba':         { name: 'Bulimba',         region: 'Inner East', desc: 'Oxford Street café culture, ferry access to CBD, and some of Brisbane\'s most loved Queenslander streetscapes.', medianHouse: '$1.75M', medianUnit: '$685K' },
+    'balmoral':        { name: 'Balmoral',         region: 'Inner East', desc: 'Brisbane\'s most prestigious inner-east suburb — elevated, leafy, and dominated by blue-chip family homes.', medianHouse: '$1.9M', medianUnit: '$720K' },
+    'hawthorne':       { name: 'Hawthorne',        region: 'Inner East', desc: 'Charming village feel, excellent café options, and a strong community culture with great ferry access.', medianHouse: '$1.62M', medianUnit: '$660K' },
+    'morningside':     { name: 'Morningside',      region: 'Inner East', desc: 'Brisbane\'s fastest-growing inner-east suburb — young professionals, a thriving café scene, and direct Airport Link access.', medianHouse: '$1.28M', medianUnit: '$620K' },
+    'cannon-hill':     { name: 'Cannon Hill',      region: 'Inner East', desc: 'Family-friendly suburb anchored by Cannon Hill Anglican College with consistent above-average price growth.', medianHouse: '$1.15M', medianUnit: '$580K' },
+    'east-brisbane':   { name: 'East Brisbane',    region: 'Inner City', desc: 'Just 2km from the CBD — Mowbray Park, excellent cafés, ferry access, and an outstanding growth trajectory.', medianHouse: '$1.45M', medianUnit: '$650K' },
+    'norman-park':     { name: 'Norman Park',      region: 'Inner East', desc: 'Beautiful Queenslander streetscapes, Seven Hills Bushland access, and proximity to elite private schools.', medianHouse: '$1.35M', medianUnit: '$600K' },
+    'kangaroo-point':  { name: 'Kangaroo Point',   region: 'Inner City', desc: 'Iconic cliff-top suburb walking distance to CBD — Story Bridge walks, restaurants, and stunning river views.', medianHouse: '$1.52M', medianUnit: '$710K' },
+    'brisbane-cbd':    { name: 'Brisbane CBD',      region: 'City',       desc: 'The city\'s most urban address — Olympic transformation underway with some of Australia\'s best investment yields.', medianHouse: 'N/A', medianUnit: '$650K' },
+    'seven-hills':     { name: 'Seven Hills',      region: 'Inner East', desc: 'One of Brisbane\'s most tightly held family suburbs — bushland reserve backing, privacy, and top school access.', medianHouse: '$1.2M', medianUnit: '$560K' },
+    'murarrie':        { name: 'Murarrie',          region: 'Inner East', desc: 'Brisbane\'s best-value inner-east suburb — strong growth trajectory and improving lifestyle amenity.', medianHouse: '$950K', medianUnit: '$520K' },
+    'coorparoo':       { name: 'Coorparoo',         region: 'Inner South', desc: 'Dynamic inner-south suburb anchored by Coorparoo Square with excellent transport and growing café scene.', medianHouse: '$1.32M', medianUnit: '$610K' },
+    'camp-hill':       { name: 'Camp Hill',         region: 'Inner South', desc: 'Prestigious leafy suburb with Camp Hill Marketplace, wide streets, and larger-than-average blocks.', medianHouse: '$1.38M', medianUnit: '$630K' },
+    'tingalpa':        { name: 'Tingalpa',          region: 'Inner East', desc: 'Best-value family suburb in the inner east — strong growth, easy highway access, and sub-$1m entry.', medianHouse: '$850K', medianUnit: '$490K' },
+    'carina':          { name: 'Carina',            region: 'Inner South East', desc: 'Well-established family suburb with excellent sporting facilities and strong community culture.', medianHouse: '$920K', medianUnit: '$510K' },
+    'carina-heights':  { name: 'Carina Heights',    region: 'Inner South East', desc: 'Quiet elevated suburb with nature reserves and exceptional freeway access — outstanding growth performer.', medianHouse: '$870K', medianUnit: '$480K' },
+    'carindale':       { name: 'Carindale',         region: 'Inner South East', desc: 'Anchored by Westfield Carindale with large family blocks, parklands, and excellent private school access.', medianHouse: '$910K', medianUnit: '$500K' },
+    'mt-gravatt':      { name: 'Mt Gravatt',        region: 'South Brisbane', desc: 'Major education and transport hub — Griffith University, strong investment fundamentals, and growing amenity.', medianHouse: '$970K', medianUnit: '$530K' },
+    'mt-gravatt-east': { name: 'Mt Gravatt East',   region: 'South Brisbane', desc: 'Quieter village feel with a charming local strip, parklands, and excellent value relative to Camp Hill.', medianHouse: '$920K', medianUnit: '$510K' },
+    'holland-park-west':{ name: 'Holland Park West', region: 'Inner South', desc: 'Wide leafy streets offering Camp Hill lifestyle at a more accessible entry point — outstanding growth.', medianHouse: '$980K', medianUnit: '$530K' },
+    'greenslopes':     { name: 'Greenslopes',       region: 'Inner South', desc: 'Gateway between inner city and inner south — hospital precinct, café strip, and strong Olympic spill-over demand.', medianHouse: '$1.1M', medianUnit: '$560K' },
+    'woolloongabba':   { name: 'Woolloongabba',     region: 'Inner South', desc: 'Brisbane\'s most exciting investment story — 2032 Olympic transformation driving extraordinary growth around The Gabba.', medianHouse: '$1.25M', medianUnit: '$620K' },
   };
 
   let currentQ = 0;
   const scores: Record<string, number> = {};
-  Object.keys(SUBURBS).forEach(s => scores[s] = 0);
+  Object.keys(SUBURBS).forEach((s: string) => { scores[s] = 0; });
 
   function renderQuestion() {
     const q = QUESTIONS[currentQ];

@@ -4,12 +4,12 @@ import Layout from '../../layouts/Layout.astro';
 const tools = [
   { href: '/tools/valuation',      icon: 'home',      label: 'Instant Valuation',       desc: 'Get an indicative value for your property in minutes.',             phase: 'Seller', cta: 'Estimate My Home' },
   { href: '/tools/selling-costs',  icon: 'dollar',    label: 'Selling Cost Calculator', desc: 'See your estimated net proceeds after all selling costs.',           phase: 'Seller', cta: 'Calculate Costs' },
-  { href: '/tools/stamp-duty',     icon: 'receipt',   label: 'Stamp Duty Calculator',   desc: 'NSW stamp duty, first home buyer concessions & upfront costs.',     phase: 'Buyer',  cta: 'Calculate Duty' },
+  { href: '/tools/stamp-duty',     icon: 'receipt',   label: 'Stamp Duty Calculator',   desc: 'QLD transfer duty, first home buyer concessions & full upfront costs.',  phase: 'Buyer',  cta: 'Calculate Duty' },
   { href: '/tools/mortgage',       icon: 'chart',     label: 'Mortgage Calculator',     desc: 'Weekly, fortnightly or monthly repayments + amortisation chart.',   phase: 'Buyer',  cta: 'Calculate Repayments' },
   { href: '/tools/investment-yield', icon: 'yield',   label: 'Investment Yield',        desc: 'Gross & net yield, cash flow, 10-year capital growth projection.',   phase: 'Investor', cta: 'Calculate Yield' },
   { href: '/tools/renovation-roi', icon: 'hammer',    label: 'Renovation ROI',          desc: 'Which renovations add the most value before you sell?',             phase: 'Seller', cta: 'Check ROI' },
-  { href: '/tools/suburb-match',   icon: 'quiz',      label: 'Suburb Match Quiz',       desc: 'Answer 8 questions to find your ideal Sydney suburb.',              phase: 'Buyer',  cta: 'Find My Suburb' },
-  { href: '/tools/flood-risk',     icon: 'flood',     label: 'Flood Risk Checker',      desc: 'Understand flood risk, BCC zones and insurance implications.',      phase: 'Buyer',  cta: 'Check Risk' },
+  { href: '/tools/suburb-match',   icon: 'quiz',      label: 'Suburb Match Quiz',       desc: 'Answer 8 questions to find your ideal Brisbane inner east suburb.',  phase: 'Buyer',  cta: 'Find My Suburb' },
+  { href: '/tools/flood-risk',     icon: 'flood',     label: 'Flood Risk Checker',      desc: 'Understand BCC flood zones, 2011/2022 event risk & insurance implications.', phase: 'Buyer', cta: 'Check Risk' },
   { href: '/tools/property-compare', icon: 'compare', label: 'Property Comparison',     desc: 'Compare up to 4 properties side-by-side on all key metrics.',       phase: 'Buyer',  cta: 'Compare Properties' },
   { href: '/tools/heatmap',        icon: 'map',       label: 'Price Heatmap',           desc: 'Visual suburb-by-suburb median price and growth map.',              phase: 'Market', cta: 'Explore Map' },
 ];
@@ -22,7 +22,7 @@ const phaseColors: Record<string, string> = {
 };
 ---
 
-<Layout title="Property Tools & Calculators | Dan's Website">
+<Layout title="Property Tools & Calculators | Daniel Gierach Property">
 
   <div style="background:var(--color-surface-1);padding-top:8rem;padding-bottom:3rem;border-bottom:1px solid rgba(72,72,72,0.15);">
     <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -31,7 +31,7 @@ const phaseColors: Record<string, string> = {
         Property Tools & Calculators
       </h1>
       <p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:52ch;line-height:1.75;">
-        Free tools to help you buy, sell, or invest smarter in the Sydney property market.
+        Free tools to help you buy, sell, or invest smarter in Brisbane's inner east and south.
       </p>
     </div>
   </div>
