@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import PageHero from '../../components/PageHero.astro';
+import Footer from '../../components/Footer.astro';
+
+const roles = [
+  { title: 'Business Analyst', junior: '$90k–$110k', mid: '$110k–$135k', senior: '$135k–$160k', contract: '$750–$950/day' },
+  { title: 'Project Manager', junior: '$100k–$120k', mid: '$120k–$150k', senior: '$150k–$185k', contract: '$800–$1,100/day' },
+  { title: 'Software Developer', junior: '$85k–$105k', mid: '$105k–$135k', senior: '$135k–$175k', contract: '$700–$1,000/day' },
+  { title: 'Data Engineer', junior: '$90k–$115k', mid: '$115k–$145k', senior: '$145k–$180k', contract: '$800–$1,100/day' },
+  { title: 'Cyber Security Analyst', junior: '$90k–$115k', mid: '$115k–$145k', senior: '$145k–$185k', contract: '$850–$1,150/day' },
+  { title: 'Solutions Architect', junior: '$120k–$145k', mid: '$145k–$175k', senior: '$175k–$220k', contract: '$950–$1,400/day' },
+  { title: 'Cloud Engineer', junior: '$95k–$120k', mid: '$120k–$150k', senior: '$150k–$190k', contract: '$850–$1,200/day' },
+  { title: 'Programme Manager', junior: '$130k–$155k', mid: '$155k–$185k', senior: '$185k–$230k', contract: '$1,000–$1,500/day' },
+  { title: 'UX / Product Designer', junior: '$80k–$100k', mid: '$100k–$130k', senior: '$130k–$160k', contract: '$650–$950/day' },
+  { title: 'Network Engineer', junior: '$85k–$105k', mid: '$105k–$130k', senior: '$130k–$165k', contract: '$700–$950/day' },
+];
+---
+
+<Layout title="IT Salary Calculator | Cirqle Group" description="Queensland IT salary benchmarks for technology roles across permanent and contract employment. Updated 2025.">
+  <Navbar />
+  <PageHero
+    badge="Salary Guide"
+    title="Queensland IT"
+    titleHighlight="Salary Benchmarks"
+    subtitle="Up-to-date salary ranges for technology professionals across Queensland — covering permanent and contract rates for 2025."
+  />
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 bg-[#E5F3FA] rounded-2xl p-5 flex items-start gap-4">
+        <i class="fa-solid fa-circle-info text-[#26A8FF] text-xl flex-shrink-0 mt-0.5"></i>
+        <p class="text-[#383E4F] text-sm">
+          Salary ranges are indicative benchmarks for Queensland-based roles, based on market data as of 2025. Actual packages vary by organisation, sector, and individual experience. <a href="/contact-us/" class="text-[#26A8FF] hover:underline font-medium">Contact us</a> for a personalised assessment.
+        </p>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-2xl border border-gray-100 shadow-sm">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-[#1F2848] text-white">
+              <th class="text-left px-6 py-4 font-semibold rounded-tl-2xl">Role</th>
+              <th class="text-left px-6 py-4 font-semibold">Junior</th>
+              <th class="text-left px-6 py-4 font-semibold">Mid-Level</th>
+              <th class="text-left px-6 py-4 font-semibold">Senior</th>
+              <th class="text-left px-6 py-4 font-semibold rounded-tr-2xl">Contract Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roles.map((role, i) => (
+              <tr class={`border-b border-gray-50 hover:bg-[#E5F3FA]/50 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+                <td class="px-6 py-4 font-semibold text-[#1F2848]">{role.title}</td>
+                <td class="px-6 py-4 text-[#383E4F]">{role.junior}</td>
+                <td class="px-6 py-4 text-[#383E4F]">{role.mid}</td>
+                <td class="px-6 py-4 text-[#383E4F]">{role.senior}</td>
+                <td class="px-6 py-4 text-[#26A8FF] font-medium">{role.contract}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-[#1F2848] rounded-2xl p-8 text-white">
+          <h3 class="text-xl font-bold mb-3">Are You Paying Market Rate?</h3>
+          <p class="text-white/70 mb-5">Talk to our team about benchmarking your tech roles and structuring competitive packages to attract top talent.</p>
+          <a href="/contact-us/" class="inline-flex items-center gap-2 bg-[#26A8FF] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#0090e8] transition-colors text-sm">
+            Employer Enquiry <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="bg-[#E5F3FA] rounded-2xl p-8">
+          <h3 class="text-xl font-bold text-[#1F2848] mb-3">Wondering What You Should Earn?</h3>
+          <p class="text-[#383E4F] mb-5">Register your profile and we'll give you honest, personalised guidance on your market value and current opportunities.</p>
+          <a href="/candidates/register/" class="inline-flex items-center gap-2 bg-[#1F2848] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#26A8FF] transition-colors text-sm">
+            Register as Candidate <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

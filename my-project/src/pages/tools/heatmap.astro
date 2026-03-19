@@ -1,0 +1,219 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import { suburbs, formatPrice } from '../../data/suburbs';
+---
+
+<ToolLayout
+  title="Price Heatmap"
+  description="Visual suburb-by-suburb median price and growth map across Sydney's premium markets."
+  tool="Price Heatmap"
+  phase="Market Tools"
+>
+  <div class="pt-8">
+
+    <!-- Controls -->
+    <div style="background:var(--color-surface-3);padding:1.5rem 2rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
+      <div>
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">View By</label>
+        <div class="flex gap-2">
+          {[
+            { value: 'medianHousePrice', label: 'House Price' },
+            { value: 'medianUnitPrice',  label: 'Unit Price' },
+            { value: 'priceGrowth1yr',   label: '1yr Growth' },
+            { value: 'priceGrowth5yr',   label: '5yr Growth' },
+            { value: 'rentalYield',      label: 'Rental Yield' },
+          ].map((opt, i) => (
+            <label style="cursor:pointer;">
+              <input type="radio" name="metric" value={opt.value} checked={i === 0} style="display:none;" />
+              <div class="metric-label" style={`padding:0.5rem 0.875rem;background:var(--color-surface-4);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);border:2px solid ${i === 0 ? 'var(--color-gold)' : 'transparent'};transition:all 0.2s;cursor:pointer;white-space:nowrap;`}>
+                {opt.label}
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:1rem;">
+        <div id="legend" style="display:flex;align-items:center;gap:0.5rem;">
+          <span style="font-size:0.6rem;color:var(--color-text-muted);" id="legend-low"></span>
+          <div style="width:120px;height:8px;background:linear-gradient(to right, var(--color-surface-4), var(--color-gold));"></div>
+          <span style="font-size:0.6rem;color:var(--color-text-muted);" id="legend-high"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heatmap grid -->
+    <div id="heatmap-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Detail panel -->
+    <div id="detail-panel" style="display:none;background:var(--color-surface-3);padding:2rem;margin-bottom:2rem;">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="detail-content"></div>
+    </div>
+
+    <!-- Data table -->
+    <div style="background:var(--color-surface-3);overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;min-width:700px;">
+        <thead>
+          <tr style="border-bottom:2px solid rgba(255,221,121,0.3);">
+            {['Suburb', 'Median House', 'Median Unit', '1yr Growth', '5yr Growth', 'Yield', 'Days on Market'].map(h => (
+              <th style="text-align:left;padding:1rem 1.25rem;font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {suburbs.map((s, i) => (
+            <tr style={`border-bottom:1px solid rgba(72,72,72,0.12);${i % 2 === 0 ? 'background:rgba(255,255,255,0.015);' : ''}`}>
+              <td style="padding:0.85rem 1.25rem;">
+                <p style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">{s.name}</p>
+                <p style="font-size:0.68rem;color:var(--color-text-muted);">{s.region}</p>
+              </td>
+              <td style="padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:var(--color-gold);">{formatPrice(s.medianHousePrice)}</td>
+              <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{formatPrice(s.medianUnitPrice)}</td>
+              <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth1yr >= 10 ? '#a8e6a3' : s.priceGrowth1yr >= 5 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>+{s.priceGrowth1yr}%</td>
+              <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth5yr >= 50 ? '#a8e6a3' : s.priceGrowth5yr >= 40 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>+{s.priceGrowth5yr}%</td>
+              <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{s.rentalYield}%</td>
+              <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{s.medianDaysOnMarket} days</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const SUBURBS = {
+    data: JSON.parse(document.getElementById('suburb-data')?.textContent || '[]')
+  };
+
+  // Inline suburb data
+  const suburbData = [
+    { slug:'mosman',      name:'Mosman',      region:'Lower North Shore', medianHousePrice:6200000, medianUnitPrice:1850000, priceGrowth1yr:8.2, priceGrowth5yr:42.1, rentalYield:2.1, medianDaysOnMarket:24, clearanceRate:74, weeklyRent:2800 },
+    { slug:'double-bay',  name:'Double Bay',  region:'Eastern Suburbs',   medianHousePrice:5400000, medianUnitPrice:2100000, priceGrowth1yr:9.4, priceGrowth5yr:47.3, rentalYield:2.4, medianDaysOnMarket:28, clearanceRate:71, weeklyRent:2600 },
+    { slug:'vaucluse',    name:'Vaucluse',    region:'Eastern Suburbs',   medianHousePrice:7800000, medianUnitPrice:2400000, priceGrowth1yr:6.8, priceGrowth5yr:38.5, rentalYield:1.9, medianDaysOnMarket:35, clearanceRate:68, weeklyRent:4200 },
+    { slug:'cremorne',    name:'Cremorne',    region:'Lower North Shore', medianHousePrice:3900000, medianUnitPrice:1250000, priceGrowth1yr:10.1,priceGrowth5yr:49.8, rentalYield:2.6, medianDaysOnMarket:22, clearanceRate:76, weeklyRent:1850 },
+    { slug:'neutral-bay', name:'Neutral Bay', region:'Lower North Shore', medianHousePrice:3200000, medianUnitPrice:1050000, priceGrowth1yr:11.2,priceGrowth5yr:52.3, rentalYield:2.9, medianDaysOnMarket:21, clearanceRate:77, weeklyRent:1600 },
+    { slug:'paddington',  name:'Paddington',  region:'Inner East',        medianHousePrice:3100000, medianUnitPrice:1200000, priceGrowth1yr:12.4,priceGrowth5yr:56.7, rentalYield:2.8, medianDaysOnMarket:19, clearanceRate:79, weeklyRent:1700 },
+    { slug:'surry-hills', name:'Surry Hills', region:'Inner City',        medianHousePrice:1850000, medianUnitPrice:980000,  priceGrowth1yr:13.8,priceGrowth5yr:58.2, rentalYield:3.4, medianDaysOnMarket:16, clearanceRate:82, weeklyRent:1200 },
+    { slug:'balmain',     name:'Balmain',     region:'Inner West',        medianHousePrice:2400000, medianUnitPrice:1050000, priceGrowth1yr:9.6, priceGrowth5yr:45.8, rentalYield:2.9, medianDaysOnMarket:20, clearanceRate:76, weeklyRent:1450 },
+  ];
+
+  type MetricKey = 'medianHousePrice'|'medianUnitPrice'|'priceGrowth1yr'|'priceGrowth5yr'|'rentalYield';
+
+  const METRIC_CONFIG: Record<MetricKey, { label: string; format: (v: number) => string }> = {
+    medianHousePrice: { label: 'Median House Price', format: v => v >= 1000000 ? `$${(v/1000000).toFixed(1)}M` : `$${(v/1000).toFixed(0)}K` },
+    medianUnitPrice:  { label: 'Median Unit Price',  format: v => v >= 1000000 ? `$${(v/1000000).toFixed(1)}M` : `$${(v/1000).toFixed(0)}K` },
+    priceGrowth1yr:   { label: '1-Year Growth',      format: v => `+${v.toFixed(1)}%` },
+    priceGrowth5yr:   { label: '5-Year Growth',      format: v => `+${v.toFixed(1)}%` },
+    rentalYield:      { label: 'Rental Yield',        format: v => `${v.toFixed(1)}%` },
+  };
+
+  let activeMetric: MetricKey = 'medianHousePrice';
+  let selectedSlug: string | null = null;
+
+  function getIntensity(value: number, min: number, max: number): number {
+    return (value - min) / (max - min);
+  }
+
+  function intensityToColor(t: number): string {
+    // Dark surface → gold
+    const r = Math.round(28  + (255 - 28)  * t);
+    const g = Math.round(28  + (221 - 28)  * t);
+    const b = Math.round(30  + (121 - 30)  * t * 0.5);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function render() {
+    const values = suburbData.map(s => s[activeMetric]);
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+
+    const cfg = METRIC_CONFIG[activeMetric];
+    document.getElementById('legend-low')!.textContent = cfg.format(min);
+    document.getElementById('legend-high')!.textContent = cfg.format(max);
+
+    const grid = document.getElementById('heatmap-grid')!;
+    grid.innerHTML = suburbData.map(s => {
+      const val = s[activeMetric];
+      const t = getIntensity(val, min, max);
+      const bg = intensityToColor(t);
+      const textColor = t > 0.5 ? '#0e0e0e' : 'var(--color-text-primary)';
+      const isSelected = s.slug === selectedSlug;
+
+      return `
+        <div class="heatmap-card" data-slug="${s.slug}" style="
+          background:${bg};
+          padding:1.5rem;
+          cursor:pointer;
+          transition:transform 0.2s,box-shadow 0.2s;
+          position:relative;
+          border:2px solid ${isSelected ? 'var(--color-gold)' : 'transparent'};
+        ">
+          <p style="font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${t > 0.5 ? 'rgba(0,0,0,0.6)' : 'var(--color-text-muted)'};margin-bottom:0.35rem;">${s.region}</p>
+          <p style="font-size:0.95rem;font-weight:700;color:${textColor};margin-bottom:0.75rem;">${s.name}</p>
+          <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:${textColor};line-height:1;">${cfg.format(val)}</p>
+          <p style="font-size:0.6rem;color:${t > 0.5 ? 'rgba(0,0,0,0.5)' : 'var(--color-text-muted)'};margin-top:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">${cfg.label}</p>
+        </div>
+      `;
+    }).join('');
+
+    grid.querySelectorAll('.heatmap-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const slug = (card as HTMLElement).dataset.slug!;
+        selectedSlug = selectedSlug === slug ? null : slug;
+        if (selectedSlug) showDetail(selectedSlug);
+        else (document.getElementById('detail-panel') as HTMLElement).style.display = 'none';
+        render();
+      });
+    });
+  }
+
+  function showDetail(slug: string) {
+    const s = suburbData.find(x => x.slug === slug)!;
+    const panel = document.getElementById('detail-panel')!;
+    panel.style.display = 'block';
+
+    const metrics = [
+      { label: 'Median House', value: s.medianHousePrice >= 1000000 ? `$${(s.medianHousePrice/1000000).toFixed(2)}M` : `$${(s.medianHousePrice/1000).toFixed(0)}K` },
+      { label: 'Median Unit',  value: s.medianUnitPrice  >= 1000000 ? `$${(s.medianUnitPrice/1000000).toFixed(2)}M`  : `$${(s.medianUnitPrice/1000).toFixed(0)}K` },
+      { label: '1yr Growth',   value: `+${s.priceGrowth1yr}%` },
+      { label: '5yr Growth',   value: `+${s.priceGrowth5yr}%` },
+      { label: 'Rental Yield', value: `${s.rentalYield}%` },
+      { label: 'Weekly Rent',  value: `$${s.weeklyRent.toLocaleString()}` },
+      { label: 'Clearance Rate', value: `${s.clearanceRate}%` },
+      { label: 'Days on Market', value: `${s.medianDaysOnMarket} days` },
+    ];
+
+    document.getElementById('detail-content')!.innerHTML = `
+      <div style="grid-column:1/-1;margin-bottom:0.5rem;">
+        <h3 style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-text-primary);">${s.name} <span style="font-size:0.7rem;font-weight:400;color:var(--color-text-muted);font-family:var(--font-sans);">— ${s.region}</span></h3>
+      </div>
+      ${metrics.map(m => `
+        <div style="padding:1rem;background:var(--color-surface-4);">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">${m.label}</p>
+          <p style="font-size:1.1rem;font-weight:700;color:var(--color-gold);">${m.value}</p>
+        </div>
+      `).join('')}
+    `;
+
+    // Re-insert the suburb name row properly
+    const content = document.getElementById('detail-content')!;
+    const firstChild = content.firstElementChild as HTMLElement;
+    if (firstChild) firstChild.style.gridColumn = '1 / -1';
+  }
+
+  // Metric radio style
+  document.querySelectorAll('input[name="metric"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.metric-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
+      const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.metric-label') as HTMLElement;
+      if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+      activeMetric = (r as HTMLInputElement).value as MetricKey;
+      render();
+    });
+  });
+
+  render();
+</script>

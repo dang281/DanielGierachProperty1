@@ -1,0 +1,45 @@
+---
+interface Props {
+  badge?: string;
+  title: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  cta?: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+}
+
+const { badge, title, titleHighlight, subtitle, cta, ctaSecondary } = Astro.props;
+---
+
+<section class="relative bg-[#060E23] pt-36 pb-20 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-[#060E23] via-[#1F2848] to-[#203B63] opacity-95"></div>
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#26A8FF]/5 blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    {badge && (
+      <div class="inline-flex items-center gap-2 bg-[#26A8FF]/15 border border-[#26A8FF]/30 text-[#26A8FF] text-sm font-medium px-4 py-1.5 rounded-full mb-5">
+        {badge}
+      </div>
+    )}
+    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight">
+      {title}{titleHighlight && <><br /><span class="text-[#26A8FF]">{titleHighlight}</span></>}
+    </h1>
+    {subtitle && (
+      <p class="text-lg text-white/70 max-w-2xl mx-auto mb-8">{subtitle}</p>
+    )}
+    {(cta || ctaSecondary) && (
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        {cta && (
+          <a href={cta.href} class="inline-flex items-center justify-center gap-2 bg-[#26A8FF] text-white font-semibold px-7 py-3.5 rounded-md hover:bg-[#0090e8] transition-colors">
+            {cta.label} <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        )}
+        {ctaSecondary && (
+          <a href={ctaSecondary.href} class="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-md hover:border-white/60 hover:bg-white/5 transition-colors">
+            {ctaSecondary.label}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</section>

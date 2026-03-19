@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Cirqle Group | IT Recruitment & Project Services',
+  description = 'Transform your tech future with the right talent. Cirqle Group provides specialist IT recruitment and project delivery services in Queensland — as a social enterprise investing in a better future.'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body class="antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[#26A8FF] focus:text-white focus:font-semibold focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+    <slot />
+  </body>
+
+  <script>
+    // Scroll reveal
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReduced) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = (entry.target as HTMLElement).dataset.revealDelay || '0';
+            setTimeout(() => entry.target.classList.add('revealed'), Number(delay));
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    } else {
+      // Immediately show all reveal elements when motion is reduced
+      document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+    }
+  </script>
+</html>

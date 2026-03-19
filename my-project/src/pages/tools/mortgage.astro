@@ -1,0 +1,270 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Mortgage Calculator"
+  description="Calculate weekly, fortnightly or monthly repayments and see a full amortisation schedule."
+  tool="Mortgage"
+  phase="Buyer Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Loan amount -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Loan Amount</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="loan-display">$800,000</span>
+        </div>
+        <input type="range" id="loan-amount" min="100000" max="5000000" step="10000" value="800000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$100K</span><span>$5M</span>
+        </div>
+      </div>
+
+      <!-- Interest rate -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Interest Rate (p.a.)</label>
+        <div class="flex items-center gap-3">
+          <input type="range" id="interest-rate" min="2" max="10" step="0.05" value="6.2"
+            style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4.5rem;text-align:center;">
+            <span id="rate-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">6.20%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loan term -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Loan Term</label>
+        <div class="grid grid-cols-4 gap-2">
+          {[10, 20, 25, 30].map(yr => (
+            <label style="cursor:pointer;text-align:center;">
+              <input type="radio" name="loan-term" value={yr} checked={yr === 30} style="display:none;" />
+              <div class="term-label" style={`padding:0.75rem 0.5rem;background:var(--color-surface-4);font-size:0.8rem;font-weight:700;color:var(--color-text-primary);transition:all 0.2s;border:2px solid ${yr === 30 ? 'var(--color-gold)' : 'transparent'};`}>
+                {yr}yr
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- Repayment frequency -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Repayment Frequency</label>
+        <div class="grid grid-cols-3 gap-2">
+          {['Weekly', 'Fortnightly', 'Monthly'].map((f, i) => (
+            <label style="cursor:pointer;text-align:center;">
+              <input type="radio" name="frequency" value={f.toLowerCase()} checked={i === 2} style="display:none;" />
+              <div class="freq-label" style={`padding:0.75rem 0.5rem;background:var(--color-surface-4);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-primary);transition:all 0.2s;border:2px solid ${i === 2 ? 'var(--color-gold)' : 'transparent'};`}>
+                {f}
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- Offset account -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Offset Account Balance</label>
+        <div class="flex items-center gap-3">
+          <input type="checkbox" id="offset-toggle" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+          <input type="number" id="offset-amount" value="50000" class="obs-input" style="flex:1;font-size:1rem;" placeholder="0" disabled />
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Repayment Summary
+        </h2>
+
+        <div style="margin-bottom:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p id="freq-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Monthly Repayment</p>
+          <p id="repayment" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+        </div>
+
+        <div class="flex flex-col gap-0">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Loan Amount</span>
+            <span id="r-loan" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Total Interest</span>
+            <span id="r-interest" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Total Repaid</span>
+            <span id="r-total" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div id="offset-saving-row" style="display:none;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Offset Saving</span>
+            <span id="r-offset" style="font-size:0.875rem;font-weight:600;color:#a8e6a3;"></span>
+          </div>
+        </div>
+
+        <!-- Chart -->
+        <div style="margin-top:1.5rem;">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">Principal vs Interest</p>
+          <canvas id="amort-chart" height="140"></canvas>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Estimate only. Does not include fees, insurance or rate changes. Speak to a broker.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Book a Free Appraisal
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script>
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
+  let chart: any = null;
+
+  function calc() {
+    const loanFull   = Number((document.getElementById('loan-amount') as HTMLInputElement).value);
+    const annualRate = Number((document.getElementById('interest-rate') as HTMLInputElement).value) / 100;
+    const termYrs    = Number((document.querySelector('input[name="loan-term"]:checked') as HTMLInputElement).value);
+    const freq       = (document.querySelector('input[name="frequency"]:checked') as HTMLInputElement).value;
+    const offsetOn   = (document.getElementById('offset-toggle') as HTMLInputElement).checked;
+    const offsetAmt  = offsetOn ? Number((document.getElementById('offset-amount') as HTMLInputElement).value) || 0 : 0;
+
+    const loan = Math.max(0, loanFull - offsetAmt);
+
+    // Periods per year
+    const ppy = freq === 'weekly' ? 52 : freq === 'fortnightly' ? 26 : 12;
+    const r   = annualRate / ppy;
+    const n   = termYrs * ppy;
+
+    const payment = r === 0 ? loan / n : (loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalRepaid  = payment * n;
+    const totalInterest= totalRepaid - loan;
+
+    // Without offset
+    const loanFull2 = loanFull;
+    const paymentFull = r === 0 ? loanFull2 / n : (loanFull2 * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalInterestFull = paymentFull * n - loanFull2;
+    const offsetSaving = offsetOn ? totalInterestFull - totalInterest : 0;
+
+    // Update UI
+    const freqLabel = { weekly: 'Weekly', fortnightly: 'Fortnightly', monthly: 'Monthly' }[freq]!;
+    document.getElementById('freq-label')!.textContent = `${freqLabel} Repayment`;
+    document.getElementById('repayment')!.textContent = fmt(payment);
+    document.getElementById('r-loan')!.textContent = fmt(loanFull);
+    document.getElementById('r-interest')!.textContent = fmt(totalInterest);
+    document.getElementById('r-total')!.textContent = fmt(totalRepaid);
+
+    const offsetRow = document.getElementById('offset-saving-row')!;
+    if (offsetOn && offsetSaving > 0) {
+      offsetRow.style.display = 'flex';
+      document.getElementById('r-offset')!.textContent = `-${fmt(offsetSaving)}`;
+    } else {
+      offsetRow.style.display = 'none';
+    }
+
+    // Build amortisation data (yearly buckets)
+    const labels: string[] = [];
+    const principalData: number[] = [];
+    const interestData: number[] = [];
+    let balance = loan;
+    let cumPrincipal = 0;
+    let cumInterest  = 0;
+    for (let p = 1; p <= n; p++) {
+      const int  = balance * r;
+      const prin = payment - int;
+      balance -= prin;
+      cumPrincipal += prin;
+      cumInterest  += int;
+      if (p % ppy === 0 || p === n) {
+        const yr = Math.ceil(p / ppy);
+        labels.push(`Yr ${yr}`);
+        principalData.push(Math.round(cumPrincipal));
+        interestData.push(Math.round(cumInterest));
+      }
+    }
+
+    // Chart
+    const ctx = (document.getElementById('amort-chart') as HTMLCanvasElement).getContext('2d')!;
+    if (chart) chart.destroy();
+    chart = new (window as any).Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Principal', data: principalData, backgroundColor: 'rgba(255,221,121,0.7)', borderWidth: 0 },
+          { label: 'Interest',  data: interestData,  backgroundColor: 'rgba(192,57,43,0.5)',   borderWidth: 0 },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: '#a1a1a1', font: { size: 10 }, boxWidth: 12 } },
+          tooltip: {
+            callbacks: {
+              label: (ctx: any) => ` ${ctx.dataset.label}: $${ctx.raw.toLocaleString()}`
+            }
+          }
+        },
+        scales: {
+          x: { stacked: true, ticks: { color: '#666', font: { size: 9 } }, grid: { color: 'rgba(72,72,72,0.1)' } },
+          y: { stacked: true, ticks: { color: '#666', font: { size: 9 }, callback: (v: any) => `$${(v/1000).toFixed(0)}K` }, grid: { color: 'rgba(72,72,72,0.1)' } },
+        },
+      },
+    });
+  }
+
+  // Offset toggle
+  (document.getElementById('offset-toggle') as HTMLInputElement).addEventListener('change', (e) => {
+    const input = document.getElementById('offset-amount') as HTMLInputElement;
+    input.disabled = !(e.target as HTMLInputElement).checked;
+    document.getElementById('offset-saving-row')!.style.display = 'none';
+    calc();
+  });
+
+  // Term radio style
+  document.querySelectorAll('input[name="loan-term"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.term-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
+      const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.term-label') as HTMLElement;
+      if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+      calc();
+    });
+  });
+
+  // Freq radio style
+  document.querySelectorAll('input[name="frequency"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.freq-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
+      const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.freq-label') as HTMLElement;
+      if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+      calc();
+    });
+  });
+
+  // Loan + rate sliders
+  (document.getElementById('loan-amount') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('loan-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+  (document.getElementById('interest-rate') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('rate-display')!.textContent = `${Number((e.target as HTMLInputElement).value).toFixed(2)}%`;
+    calc();
+  });
+
+  document.querySelectorAll('input[type="number"]').forEach(el => el.addEventListener('input', calc));
+
+  // Wait for Chart.js to load
+  window.addEventListener('load', calc);
+</script>

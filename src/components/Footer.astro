@@ -1,0 +1,84 @@
+---
+const currentYear = new Date().getFullYear();
+
+const links = {
+  Services: [
+    { label: 'For Employers', href: '/employers/' },
+    { label: 'IT Recruitment', href: '/employers/#recruitment' },
+    { label: 'Project Consulting', href: '/employers/#consulting' },
+    { label: 'Profit for Purpose', href: '/profit-for-purpose/' },
+  ],
+  'For Job Seekers': [
+    { label: 'Browse Jobs', href: '/candidates/browse-jobs/' },
+    { label: 'Register', href: '/candidates/register/' },
+    { label: 'Salary Calculator', href: '/candidates/salary-calculator/' },
+  ],
+  Company: [
+    { label: 'News & Insights', href: '/news-updates/' },
+    { label: 'Chasing Good Podcast', href: '/chasing-good/' },
+    { label: 'Tech Job Library', href: '/technology-job-library/' },
+    { label: 'Contact Us', href: '/contact-us/' },
+  ],
+};
+---
+
+<footer class="bg-[#060E23] text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <a href="/" class="inline-block mb-4">
+          <img src="/images/logo-footer.svg" alt="Cirqle Group" class="h-10 w-auto" />
+        </a>
+        <p class="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
+          Queensland's specialist IT recruitment and project services partner — committed to excellence and channelling all profits toward a better future.
+        </p>
+        <div class="flex gap-3">
+          <a href="https://www.linkedin.com/company/cirqlegroup" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#26A8FF] flex items-center justify-center transition-colors">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#26A8FF] flex items-center justify-center transition-colors">
+            <i class="fa-brands fa-facebook-f text-sm"></i>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#26A8FF] flex items-center justify-center transition-colors">
+            <i class="fa-brands fa-instagram text-sm"></i>
+          </a>
+          <a href="https://www.youtube.com/@cirqlegroup" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-9 h-9 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center transition-colors">
+            <i class="fa-brands fa-youtube text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      {Object.entries(links).map(([heading, items]) => (
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">{heading}</h4>
+          <ul class="space-y-3">
+            {items.map(item => (
+              <li>
+                <a href={item.href} class="text-white/60 hover:text-[#26A8FF] text-sm transition-colors">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white/40 text-xs">
+        © {currentYear} Cirqle Group. All rights reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="text-white/40 hover:text-white/70 text-xs transition-colors">Privacy Policy</a>
+        <a href="/terms" class="text-white/40 hover:text-white/70 text-xs transition-colors">Terms of Use</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-white/30 text-xs">Social Enterprise</span>
+        <i class="fa-solid fa-leaf text-[#26A8FF] text-xs"></i>
+      </div>
+    </div>
+  </div>
+</footer>

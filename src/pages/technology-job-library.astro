@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+
+const jobCategories = [
+  {
+    category: 'Architecture',
+    icon: 'fa-solid fa-sitemap',
+    roles: ['Solutions Architect', 'Enterprise Architect', 'Cloud Architect', 'Data Architect', 'Integration Architect', 'Security Architect'],
+  },
+  {
+    category: 'Business Analysis',
+    icon: 'fa-solid fa-chart-line',
+    roles: ['Business Analyst', 'Senior Business Analyst', 'Lead BA', 'Systems Analyst', 'Requirements Analyst', 'Process Analyst'],
+  },
+  {
+    category: 'Consulting',
+    icon: 'fa-solid fa-user-tie',
+    roles: ['BI Consultant', 'CRM Consultant', 'ERP Consultant', 'Pre-Sales Consultant', 'Technology Consultant', 'Digital Transformation Consultant'],
+  },
+  {
+    category: 'Software Development',
+    icon: 'fa-solid fa-code',
+    roles: ['Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'Mobile Developer', 'DevOps Engineer', 'Platform Engineer', 'Site Reliability Engineer'],
+  },
+  {
+    category: 'Data & Analytics',
+    icon: 'fa-solid fa-database',
+    roles: ['Data Engineer', 'Data Analyst', 'BI Developer', 'ML Engineer', 'AI Engineer', 'Data Scientist', 'Analytics Engineer'],
+  },
+  {
+    category: 'Cyber Security',
+    icon: 'fa-solid fa-shield-halved',
+    roles: ['Security Analyst', 'Penetration Tester', 'SOC Analyst', 'Security Engineer', 'CISO', 'IAM Specialist', 'GRC Analyst'],
+  },
+  {
+    category: 'Cloud & Infrastructure',
+    icon: 'fa-solid fa-cloud',
+    roles: ['Cloud Engineer', 'Infrastructure Engineer', 'Systems Administrator', 'Azure Engineer', 'AWS Engineer', 'GCP Engineer', 'Linux Administrator'],
+  },
+  {
+    category: 'Project & Programme Management',
+    icon: 'fa-solid fa-diagram-project',
+    roles: ['Project Manager', 'Programme Manager', 'Scrum Master', 'Agile Coach', 'PMO Manager', 'Delivery Manager', 'Change Manager'],
+  },
+  {
+    category: 'Testing & QA',
+    icon: 'fa-solid fa-bug-slash',
+    roles: ['QA Engineer', 'Test Analyst', 'Performance Tester', 'Automation Tester', 'QA Lead', 'Test Manager'],
+  },
+  {
+    category: 'Network',
+    icon: 'fa-solid fa-network-wired',
+    roles: ['Network Engineer', 'Network Administrator', 'Network Architect', 'WAN Engineer', 'VoIP Engineer'],
+  },
+  {
+    category: 'Product Management',
+    icon: 'fa-solid fa-bullseye',
+    roles: ['Product Manager', 'Product Owner', 'Technical Product Manager', 'Product Analyst', 'UX Designer', 'UX Researcher'],
+  },
+  {
+    category: 'Support & Operations',
+    icon: 'fa-solid fa-headset',
+    roles: ['L1 Support', 'L2 Support', 'L3 Support', 'Service Desk Analyst', 'IT Operations Manager', 'Application Support'],
+  },
+];
+---
+
+<Layout title="Technology Job Library | Cirqle Group" description="A comprehensive library of IT and technology job roles across disciplines — from architecture to security, development to project management.">
+  <Navbar />
+  <PageHero
+    badge="Job Library"
+    title="Technology"
+    titleHighlight="Job Library"
+    subtitle="A comprehensive reference of IT and technology roles we recruit across Queensland — covering every discipline from architecture to QA."
+    cta={{ label: 'Browse Current Jobs', href: '/candidates/browse-jobs/' }}
+  />
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {jobCategories.map(cat => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-[#E5F3FA] flex items-center justify-center flex-shrink-0">
+                <i class={`${cat.icon} text-[#26A8FF] text-sm`}></i>
+              </div>
+              <h3 class="font-bold text-[#1F2848]">{cat.category}</h3>
+            </div>
+            <ul class="space-y-2">
+              {cat.roles.map(role => (
+                <li class="flex items-center gap-2 text-sm text-[#383E4F]">
+                  <i class="fa-solid fa-check text-[#26A8FF] text-xs flex-shrink-0"></i>
+                  {role}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 bg-gradient-to-br from-[#1F2848] to-[#060E23] rounded-2xl p-10 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Looking to Hire in These Disciplines?</h2>
+        <p class="text-white/70 mb-8 max-w-xl mx-auto">We recruit across all of these specialisms for enterprise and government clients in Queensland. Let's talk about your requirements.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact-us/" class="inline-flex items-center gap-2 bg-[#26A8FF] text-white font-semibold px-8 py-4 rounded-md hover:bg-[#0090e8] transition-colors">
+            Employer Enquiry <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="/candidates/browse-jobs/" class="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-8 py-4 rounded-md hover:border-white/60 hover:bg-white/5 transition-colors">
+            Browse Current Jobs
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Obsidian Surface Hierarchy ── */
+  --color-base:        #0e0e0e;
+  --color-surface-0:   #0e0e0e;
+  --color-surface-1:   #131313;
+  --color-surface-2:   #191a1a;
+  --color-surface-3:   #1c1c1e;
+  --color-surface-4:   #252626;
+  --color-surface-5:   #2c2c2e;
+
+  /* ── Champagne Gold ── */
+  --color-gold:        #ffdd79;
+  --color-gold-dim:    #e9c176;
+  --color-gold-muted:  rgba(255,221,121,0.12);
+
+  /* ── Text ── */
+  --color-text-primary:   #c8c6c8;
+  --color-text-secondary: #a1a1a1;
+  --color-text-muted:     #484848;
+  --color-ghost:          rgba(72,72,72,0.3);
+
+  /* ── Fonts ── */
+  --font-serif: "Noto Serif", Georgia, serif;
+  --font-sans:  "Manrope", system-ui, sans-serif;
+}
+
+/* ─────────────────────────────────────────
+   BASE
+───────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-radius: 0 !important;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-base);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-base);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-text-primary);
+  }
+
+  ::selection {
+    background: rgba(255,221,121,0.25);
+    color: var(--color-gold);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL ANIMATIONS
+───────────────────────────────────────── */
+@layer base {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ─────────────────────────────────────────
+   MARQUEE RIBBON
+───────────────────────────────────────── */
+@layer base {
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+}
+
+/* ─────────────────────────────────────────
+   COMPONENTS
+───────────────────────────────────────── */
+@layer components {
+
+  /* Buttons */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-gold);
+    color: #1a1c1c;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+  }
+  .btn-gold:hover { opacity: 0.88; }
+  .btn-gold:active { transform: scale(0.98); }
+
+  .btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .btn-outline-gold:hover {
+    background: var(--color-gold);
+    color: #1a1c1c;
+  }
+
+  .btn-ghost-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid rgba(200,198,200,0.25);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost-light:hover {
+    border-color: rgba(200,198,200,0.5);
+    background: rgba(200,198,200,0.06);
+  }
+
+  /* Nav */
+  .glass-nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(25,26,26,0.75);
+  }
+
+  .nav-link-mono {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-link-mono:hover { color: var(--color-gold); }
+  .nav-link-mono.active {
+    color: var(--color-gold);
+    border-bottom: 1px solid var(--color-gold);
+    padding-bottom: 2px;
+  }
+
+  /* Property cards */
+  .prop-card {
+    cursor: pointer;
+    background: var(--color-surface-3);
+  }
+  .prop-card .img-wrap {
+    overflow: hidden;
+  }
+  .prop-card .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1),
+                filter 0.5s ease;
+  }
+  .prop-card:hover .img-wrap img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+  }
+
+  /* Search tabs */
+  .s-tab {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: rgba(161,161,161,0.5);
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .s-tab.active {
+    color: var(--color-gold);
+    border-bottom-color: var(--color-gold);
+  }
+  .s-tab:hover:not(.active) {
+    color: var(--color-text-secondary);
+  }
+
+  /* Inputs */
+  .obs-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 1rem;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(72,72,72,0.2);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .obs-input::placeholder { color: var(--color-text-muted); }
+  .obs-input:focus { border-color: rgba(255,221,121,0.4); }
+
+  .obs-select {
+    height: 52px;
+    padding: 0 1rem;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(72,72,72,0.2);
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23484848' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  /* Label pill */
+  .gold-pill {
+    display: inline-block;
+    background: var(--color-gold);
+    color: #1a1c1c;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+  }
+
+  /* Eyebrow */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    display: block;
+  }
+
+  /* Gold line divider */
+  .gold-line {
+    width: 4rem;
+    height: 1px;
+    background: var(--color-gold);
+    opacity: 0.6;
+  }
+}

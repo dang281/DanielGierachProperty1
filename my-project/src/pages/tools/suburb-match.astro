@@ -1,0 +1,247 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Suburb Match Quiz"
+  description="Answer 8 questions to discover your ideal Sydney suburb based on lifestyle, budget, and priorities."
+  tool="Suburb Match"
+  phase="Buyer Tools"
+>
+  <div class="max-w-2xl mx-auto pt-8">
+
+    <!-- Progress -->
+    <div style="margin-bottom:2rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+        <span id="progress-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Question 1 of 8</span>
+        <span id="progress-pct" style="font-size:0.65rem;color:var(--color-gold);">0%</span>
+      </div>
+      <div style="height:2px;background:var(--color-surface-4);width:100%;">
+        <div id="progress-bar" style="height:2px;background:var(--color-gold);width:0%;transition:width 0.4s ease;"></div>
+      </div>
+    </div>
+
+    <!-- Questions container -->
+    <div id="quiz-container"></div>
+
+    <!-- Results -->
+    <div id="results" style="display:none;">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <span class="eyebrow" style="display:block;margin-bottom:0.75rem;">Your Results</span>
+        <h2 style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-text-primary);">Your Top Suburb Matches</h2>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-top:0.5rem;">Based on your lifestyle preferences and budget.</p>
+      </div>
+      <div id="results-grid" class="flex flex-col gap-4 mb-8"></div>
+      <div style="text-align:center;">
+        <button id="restart-btn" class="btn-outline-gold" style="margin-right:1rem;">Retake Quiz</button>
+        <a href="/appraisal" class="btn-gold">Talk to Dan →</a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  interface Question {
+    id: string;
+    text: string;
+    options: { label: string; value: string; tags: string[] }[];
+  }
+
+  const QUESTIONS: Question[] = [
+    {
+      id: 'budget',
+      text: 'What is your maximum purchase budget?',
+      options: [
+        { label: 'Under $800K',     value: 'budget-low',    tags: ['surry-hills','neutral-bay','paddington'] },
+        { label: '$800K – $1.5M',   value: 'budget-mid',    tags: ['cremorne','neutral-bay','balmain','paddington'] },
+        { label: '$1.5M – $3M',     value: 'budget-high',   tags: ['mosman','cremorne','balmain','paddington'] },
+        { label: '$3M+',            value: 'budget-luxury',  tags: ['mosman','double-bay','vaucluse'] },
+      ],
+    },
+    {
+      id: 'lifestyle',
+      text: 'Which lifestyle best describes you?',
+      options: [
+        { label: 'Café & restaurant culture',  value: 'cafe',      tags: ['paddington','surry-hills','neutral-bay','cremorne','double-bay'] },
+        { label: 'Harbourside & water views',  value: 'harbour',   tags: ['mosman','cremorne','double-bay','vaucluse','neutral-bay'] },
+        { label: 'Village community feel',     value: 'village',   tags: ['balmain','paddington','mosman','cremorne'] },
+        { label: 'Urban, inner-city energy',   value: 'urban',     tags: ['surry-hills','paddington','neutral-bay'] },
+      ],
+    },
+    {
+      id: 'commute',
+      text: 'How do you prefer to commute?',
+      options: [
+        { label: 'Ferry to CBD',   value: 'ferry',   tags: ['mosman','cremorne','neutral-bay','balmain'] },
+        { label: 'Train',          value: 'train',   tags: ['surry-hills','paddington','neutral-bay'] },
+        { label: 'Drive / car',    value: 'car',     tags: ['vaucluse','double-bay','mosman'] },
+        { label: 'Walk / cycle',   value: 'walk',    tags: ['surry-hills','paddington','neutral-bay','double-bay'] },
+      ],
+    },
+    {
+      id: 'type',
+      text: 'What property type are you looking for?',
+      options: [
+        { label: 'Freestanding house',   value: 'house',  tags: ['mosman','vaucluse','cremorne','balmain','paddington'] },
+        { label: 'Apartment / unit',     value: 'apt',    tags: ['neutral-bay','cremorne','surry-hills','double-bay'] },
+        { label: 'Terrace / townhouse',  value: 'terrace',tags: ['paddington','surry-hills','balmain','cremorne'] },
+        { label: 'Whatever suits',       value: 'any',    tags: ['mosman','cremorne','neutral-bay','paddington','surry-hills','balmain','double-bay','vaucluse'] },
+      ],
+    },
+    {
+      id: 'priority',
+      text: 'What is your top priority?',
+      options: [
+        { label: 'Schools & family amenities',  value: 'schools',   tags: ['mosman','paddington','cremorne'] },
+        { label: 'Capital growth potential',    value: 'growth',    tags: ['neutral-bay','cremorne','surry-hills','paddington'] },
+        { label: 'Rental yield (investment)',   value: 'yield',     tags: ['surry-hills','neutral-bay','cremorne'] },
+        { label: 'Prestige & exclusivity',      value: 'prestige',  tags: ['mosman','vaucluse','double-bay'] },
+      ],
+    },
+    {
+      id: 'character',
+      text: 'What architectural style appeals to you?',
+      options: [
+        { label: 'Modern / contemporary',  value: 'modern',  tags: ['double-bay','neutral-bay','surry-hills'] },
+        { label: 'Heritage / character',   value: 'heritage',tags: ['paddington','balmain','cremorne','mosman'] },
+        { label: 'Classic prestige',       value: 'classic', tags: ['mosman','vaucluse','double-bay'] },
+        { label: 'No preference',          value: 'any',     tags: ['mosman','cremorne','neutral-bay','paddington','surry-hills','balmain','double-bay','vaucluse'] },
+      ],
+    },
+    {
+      id: 'vibe',
+      text: 'Which best describes your social vibe?',
+      options: [
+        { label: 'Young professionals & singles',  value: 'young',    tags: ['surry-hills','neutral-bay','paddington','double-bay'] },
+        { label: 'Young families',                 value: 'family',   tags: ['mosman','cremorne','balmain','paddington'] },
+        { label: 'Established & private',          value: 'estab',    tags: ['vaucluse','mosman','double-bay'] },
+        { label: 'Creative & artistic',            value: 'creative', tags: ['paddington','surry-hills','balmain'] },
+      ],
+    },
+    {
+      id: 'dealbreaker',
+      text: 'What would be a dealbreaker?',
+      options: [
+        { label: 'Far from the CBD',         value: 'far',     tags: ['surry-hills','paddington','neutral-bay','cremorne','double-bay'] },
+        { label: 'No water / harbour views', value: 'nowater', tags: ['mosman','cremorne','double-bay','vaucluse','neutral-bay'] },
+        { label: 'Poor school catchments',   value: 'schools', tags: ['mosman','paddington','cremorne'] },
+        { label: 'High density / apartments',value: 'density', tags: ['mosman','vaucluse','balmain','paddington'] },
+      ],
+    },
+  ];
+
+  const SUBURBS: Record<string, { name: string; region: string; desc: string; medianHouse: string; medianUnit: string }> = {
+    'mosman':      { name: 'Mosman',      region: 'Lower North Shore', desc: 'Prestigious harbourside suburb with blue-chip appeal, excellent schools, and a charming village atmosphere.', medianHouse: '$6.2M', medianUnit: '$1.85M' },
+    'double-bay':  { name: 'Double Bay',  region: 'Eastern Suburbs',   desc: 'Sydney\'s most glamorous village — boutique shopping, world-class dining, and a sophisticated waterside lifestyle.', medianHouse: '$5.4M', medianUnit: '$2.1M' },
+    'vaucluse':    { name: 'Vaucluse',    region: 'Eastern Suburbs',   desc: 'One of Australia\'s most exclusive addresses, wrapping around South Head with spectacular harbour and ocean views.', medianHouse: '$7.8M', medianUnit: '$2.4M' },
+    'cremorne':    { name: 'Cremorne',    region: 'Lower North Shore', desc: 'Best-value entry to the lower north shore — exceptional café strip, ferry access, and a youthful energy.', medianHouse: '$3.9M', medianUnit: '$1.25M' },
+    'neutral-bay': { name: 'Neutral Bay', region: 'Lower North Shore', desc: 'Most accessible lower north shore suburb — vibrant restaurant and bar scene with excellent ferry and bus connections.', medianHouse: '$3.2M', medianUnit: '$1.05M' },
+    'paddington':  { name: 'Paddington',  region: 'Inner East',        desc: 'Iconic Victorian terrace streetscapes, Oxford Street galleries, and one of Sydney\'s best Saturday markets.', medianHouse: '$3.1M', medianUnit: '$1.2M' },
+    'surry-hills': { name: 'Surry Hills', region: 'Inner City',        desc: 'Sydney\'s creative epicentre — best restaurant row on Crown Street, thriving arts community, walking distance to CBD.', medianHouse: '$1.85M', medianUnit: '$980K' },
+    'balmain':     { name: 'Balmain',     region: 'Inner West',        desc: 'Peninsula suburb with ferry access, authentic Victorian streetscapes, and a strong community character.', medianHouse: '$2.4M', medianUnit: '$1.05M' },
+  };
+
+  let currentQ = 0;
+  const scores: Record<string, number> = {};
+  Object.keys(SUBURBS).forEach(s => scores[s] = 0);
+
+  function renderQuestion() {
+    const q = QUESTIONS[currentQ];
+    const container = document.getElementById('quiz-container')!;
+
+    container.innerHTML = `
+      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+        <p style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;line-height:1.4;">${q.text}</p>
+        <div class="flex flex-col gap-3">
+          ${q.options.map((opt, i) => `
+            <button class="quiz-option" data-index="${i}" data-tags='${JSON.stringify(opt.tags)}'
+              style="text-align:left;padding:1rem 1.25rem;background:var(--color-surface-4);border:2px solid transparent;font-size:0.9rem;color:var(--color-text-secondary);cursor:pointer;transition:all 0.2s;width:100%;">
+              ${opt.label}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    container.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tags: string[] = JSON.parse((btn as HTMLElement).dataset.tags || '[]');
+        tags.forEach(tag => { if (scores[tag] !== undefined) scores[tag] += 1; });
+        nextQuestion();
+      });
+    });
+
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const pct = Math.round((currentQ / QUESTIONS.length) * 100);
+    document.getElementById('progress-bar')!.style.width = `${pct}%`;
+    document.getElementById('progress-label')!.textContent = `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+    document.getElementById('progress-pct')!.textContent = `${pct}%`;
+  }
+
+  function nextQuestion() {
+    currentQ++;
+    if (currentQ >= QUESTIONS.length) {
+      showResults();
+    } else {
+      renderQuestion();
+    }
+  }
+
+  function showResults() {
+    document.getElementById('quiz-container')!.innerHTML = '';
+    document.getElementById('progress-bar')!.style.width = '100%';
+    document.getElementById('progress-label')!.textContent = 'Complete';
+    document.getElementById('progress-pct')!.textContent = '100%';
+    document.getElementById('results')!.style.display = 'block';
+
+    const sorted = Object.entries(scores)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3);
+
+    const medals = ['#ffdd79', '#c8c6c8', '#cd7f32'];
+
+    document.getElementById('results-grid')!.innerHTML = sorted.map(([slug, score], i) => {
+      const s = SUBURBS[slug];
+      const maxScore = sorted[0][1];
+      const pct = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+      return `
+        <div style="background:var(--color-surface-3);padding:2rem;border-left:4px solid ${medals[i]};">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.75rem;">
+            <div>
+              <p style="font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:${medals[i]};margin-bottom:0.3rem;">${['Best Match', 'Strong Match', 'Good Match'][i]}</p>
+              <h3 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--color-text-primary);">${s.name}</h3>
+              <p style="font-size:0.7rem;color:var(--color-text-muted);">${s.region}</p>
+            </div>
+            <div style="text-align:right;">
+              <p style="font-family:var(--font-serif);font-size:1.8rem;color:${medals[i]};">${pct}%</p>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);">match</p>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:1rem;">${s.desc}</p>
+          <div style="display:flex;gap:2rem;">
+            <div>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Median House</p>
+              <p style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">${s.medianHouse}</p>
+            </div>
+            <div>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Median Unit</p>
+              <p style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">${s.medianUnit}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('restart-btn')?.addEventListener('click', () => {
+    currentQ = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    document.getElementById('results')!.style.display = 'none';
+    renderQuestion();
+  });
+
+  renderQuestion();
+</script>

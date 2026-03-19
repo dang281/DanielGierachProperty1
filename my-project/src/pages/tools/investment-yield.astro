@@ -1,0 +1,218 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Investment Yield Calculator"
+  description="Calculate gross & net rental yield, cash flow position, and 10-year capital growth projection."
+  tool="Investment Yield"
+  phase="Investor Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Purchase price -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Purchase Price</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="price-display">$1,000,000</span>
+        </div>
+        <input type="range" id="purchase-price" min="200000" max="5000000" step="10000" value="1000000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$200K</span><span>$5M</span>
+        </div>
+      </div>
+
+      <!-- Weekly rent -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Weekly Rent</label>
+        <div class="flex items-center gap-3">
+          <input type="range" id="weekly-rent" min="200" max="5000" step="25" value="750"
+            style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:5rem;text-align:center;">
+            <span id="rent-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">$750</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Annual costs -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Annual Costs</label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Strata / Body Corp</label>
+            <input type="number" id="strata" value="4000" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Council Rates</label>
+            <input type="number" id="council" value="1800" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Water Rates</label>
+            <input type="number" id="water" value="900" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Insurance</label>
+            <input type="number" id="insurance" value="1500" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Management Fee %</label>
+            <input type="number" id="mgmt-pct" value="8.5" step="0.5" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Maintenance (annual)</label>
+            <input type="number" id="maintenance" value="2000" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Financing -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Financing</label>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Deposit %</label>
+            <input type="number" id="deposit-pct" value="20" min="5" max="100" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Interest Rate %</label>
+            <input type="number" id="interest-rate" value="6.2" step="0.05" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Growth Rate % p.a.</label>
+            <input type="number" id="growth-rate" value="6" step="0.5" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Investment Summary
+        </h2>
+
+        <!-- Yield cards -->
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div style="padding:1rem;background:rgba(255,221,121,0.06);border-left:3px solid var(--color-gold);">
+            <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Gross Yield</p>
+            <p id="gross-yield" style="font-family:var(--font-serif);font-size:1.6rem;color:var(--color-gold);margin-top:0.25rem;"></p>
+          </div>
+          <div style="padding:1rem;background:rgba(168,230,163,0.06);border-left:3px solid #a8e6a3;">
+            <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a8e6a3;">Net Yield</p>
+            <p id="net-yield" style="font-family:var(--font-serif);font-size:1.6rem;color:#a8e6a3;margin-top:0.25rem;"></p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-0 mb-4">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual Rent</span>
+            <span id="r-rent" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual Costs</span>
+            <span id="r-costs" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Loan Repayments (I/O)</span>
+            <span id="r-loan" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Net Cash Flow / mo</span>
+            <span id="r-cashflow" style="font-size:0.875rem;font-weight:600;"></span>
+          </div>
+        </div>
+
+        <!-- 10yr projection -->
+        <div style="padding:1rem;background:var(--color-surface-4);margin-bottom:1rem;">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">10-Year Capital Growth</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Est. Value</p>
+              <p id="proj-value" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);"></p>
+            </div>
+            <div>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Capital Gain</p>
+              <p id="proj-gain" style="font-size:1rem;font-weight:700;color:#a8e6a3;"></p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.5rem;line-height:1.6;">
+          Estimate only. Does not account for tax, depreciation, vacancy, or market changes. Seek financial advice.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Discuss Investment Strategy
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const fmt  = (n: number) => `$${Math.round(Math.abs(n)).toLocaleString()}`;
+  const fmtM = (n: number) => n >= 1000000 ? `$${(n/1000000).toFixed(2)}M` : `$${Math.round(n).toLocaleString()}`;
+
+  function calc() {
+    const price    = Number((document.getElementById('purchase-price') as HTMLInputElement).value);
+    const rent     = Number((document.getElementById('weekly-rent') as HTMLInputElement).value);
+    const strata   = Number((document.getElementById('strata') as HTMLInputElement).value) || 0;
+    const council  = Number((document.getElementById('council') as HTMLInputElement).value) || 0;
+    const water    = Number((document.getElementById('water') as HTMLInputElement).value) || 0;
+    const insurance= Number((document.getElementById('insurance') as HTMLInputElement).value) || 0;
+    const mgmtPct  = Number((document.getElementById('mgmt-pct') as HTMLInputElement).value) || 0;
+    const maint    = Number((document.getElementById('maintenance') as HTMLInputElement).value) || 0;
+    const deposit  = Number((document.getElementById('deposit-pct') as HTMLInputElement).value) || 20;
+    const rate     = Number((document.getElementById('interest-rate') as HTMLInputElement).value) || 6.2;
+    const growth   = Number((document.getElementById('growth-rate') as HTMLInputElement).value) || 6;
+
+    const annualRent  = rent * 52;
+    const mgmtFee     = annualRent * mgmtPct / 100;
+    const totalCosts  = strata + council + water + insurance + mgmtFee + maint;
+    const netRent     = annualRent - totalCosts;
+
+    const loanAmt     = price * (1 - deposit / 100);
+    const annualInterest = loanAmt * rate / 100;
+    const netCashflow = (netRent - annualInterest) / 12;
+
+    const grossYield  = (annualRent / price) * 100;
+    const netYield    = (netRent / price) * 100;
+
+    const projValue = price * Math.pow(1 + growth / 100, 10);
+    const capitalGain = projValue - price;
+
+    document.getElementById('price-display')!.textContent = `$${price.toLocaleString()}`;
+    document.getElementById('rent-display')!.textContent = `$${rent.toLocaleString()}`;
+
+    document.getElementById('gross-yield')!.textContent = `${grossYield.toFixed(2)}%`;
+    document.getElementById('net-yield')!.textContent   = `${netYield.toFixed(2)}%`;
+
+    document.getElementById('r-rent')!.textContent   = fmt(annualRent);
+    document.getElementById('r-costs')!.textContent  = `-${fmt(totalCosts)}`;
+    document.getElementById('r-loan')!.textContent   = `-${fmt(annualInterest)}`;
+
+    const cfEl = document.getElementById('r-cashflow')!;
+    cfEl.textContent = `${netCashflow >= 0 ? '+' : '-'}${fmt(netCashflow)}/mo`;
+    cfEl.style.color = netCashflow >= 0 ? '#a8e6a3' : 'rgba(192,57,43,0.9)';
+
+    document.getElementById('proj-value')!.textContent = fmtM(projValue);
+    document.getElementById('proj-gain')!.textContent  = `+${fmtM(capitalGain)}`;
+  }
+
+  (document.getElementById('purchase-price') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('price-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+  (document.getElementById('weekly-rent') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('rent-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+
+  document.querySelectorAll('input[type="number"]').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

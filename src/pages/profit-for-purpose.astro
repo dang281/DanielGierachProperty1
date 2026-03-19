@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+
+const partners = [
+  {
+    icon: 'fa-solid fa-heart',
+    name: 'Lovewell Foundation',
+    tagline: 'Supporting domestic violence survivors',
+    description: 'Lovewell provides wraparound services and safe pathways for women and families escaping domestic violence — offering community, empathy, and the practical support needed to rebuild lives.',
+    color: 'text-rose-500',
+    bg: 'bg-rose-50',
+  },
+  {
+    icon: 'fa-solid fa-water',
+    name: 'Disabled Surfers Association',
+    tagline: 'Ocean experiences for everyone',
+    description: 'The Disabled Surfers Association creates life-changing ocean experiences for people of all abilities — building community, confidence, and connection through the surf.',
+    color: 'text-blue-500',
+    bg: 'bg-blue-50',
+  },
+  {
+    icon: 'fa-solid fa-fish',
+    name: 'Reef Restoration Foundation',
+    tagline: 'Restoring the Great Barrier Reef',
+    description: "The Reef Restoration Foundation runs coral nurseries and restoration projects across the Great Barrier Reef — working to reverse coral decline and protect one of the world's greatest natural wonders.",
+    color: 'text-teal-500',
+    bg: 'bg-teal-50',
+  },
+  {
+    icon: 'fa-solid fa-moon',
+    name: "Our Moon's Mission",
+    tagline: 'Empowering young people',
+    description: "Our Moon's Mission empowers young Australians through mentorship, community connection, and programs designed to foster resilience, purpose, and belonging.",
+    color: 'text-purple-500',
+    bg: 'bg-purple-50',
+  },
+];
+---
+
+<Layout title="Profit for Purpose | Cirqle Group" description="Cirqle Group is a social enterprise — 100% of business dividends fund environmental and social causes across Queensland.">
+  <Navbar />
+  <PageHero
+    badge="Social Enterprise"
+    title="Championing a"
+    titleHighlight="Better Future Together"
+    subtitle="Cirqle Group is a profit-for-purpose business. Every engagement you make with us contributes directly to environmental restoration and social causes that matter."
+    cta={{ label: 'Partner With Us', href: '/contact-us/' }}
+  />
+
+  <!-- Mission -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-[#E5F3FA] text-[#26A8FF] text-sm font-medium px-4 py-1.5 rounded-full mb-6">Our Model</div>
+          <h2 class="section-title mb-6">IT Expertise That Makes an Impact</h2>
+          <p class="text-[#383E4F] leading-relaxed mb-5">
+            Cirqle Group was founded on a simple belief: that a technology business can be commercially excellent and genuinely purposeful at the same time. We prove it every day.
+          </p>
+          <p class="text-[#383E4F] leading-relaxed mb-5">
+            100% of our business dividends are channelled into our partner organisations — environmental projects, disability support, domestic violence recovery, and youth empowerment.
+          </p>
+          <p class="text-[#383E4F] leading-relaxed mb-8">
+            When you engage Cirqle Group for IT recruitment or project consulting, you're not just getting great talent — you're funding meaningful change in Queensland communities.
+          </p>
+          <a href="/contact-us/" class="btn-primary">Work With Purpose <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          {[
+            { stat: '100%', label: 'of dividends to social causes' },
+            { stat: '4', label: 'partner organisations' },
+            { stat: 'QLD', label: 'focus on Queensland communities' },
+            { stat: 'SME', label: 'certified social enterprise' },
+          ].map(item => (
+            <div class="bg-[#E5F3FA] rounded-2xl p-6 text-center">
+              <div class="text-3xl font-bold text-[#26A8FF] mb-2">{item.stat}</div>
+              <div class="text-[#383E4F] text-sm">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="py-24 bg-[#E5F3FA]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-white text-[#26A8FF] text-sm font-medium px-4 py-1.5 rounded-full mb-4 border border-[#26A8FF]/20">Our Partners</div>
+        <h2 class="section-title">The Organisations We Back</h2>
+        <p class="section-subtitle mx-auto text-center mt-4">Four organisations doing incredible work across environmental restoration, disability, domestic violence, and youth empowerment.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {partners.map(p => (
+          <div class="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+            <div class={`w-12 h-12 rounded-xl ${p.bg} flex items-center justify-center mb-5`}>
+              <i class={`${p.icon} ${p.color} text-xl`}></i>
+            </div>
+            <div class="text-xs font-semibold text-[#26A8FF] uppercase tracking-wide mb-1">{p.tagline}</div>
+            <h3 class="text-xl font-bold text-[#1F2848] mb-3">{p.name}</h3>
+            <p class="text-[#383E4F] leading-relaxed">{p.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Procurement CTA -->
+  <section class="py-20 bg-[#1F2848]">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 bg-[#26A8FF]/15 border border-[#26A8FF]/30 text-[#26A8FF] text-sm font-medium px-4 py-1.5 rounded-full mb-6">For Procurement Teams</div>
+      <h2 class="text-3xl font-bold text-white mb-5">Meet Your Social Enterprise Procurement Commitments</h2>
+      <p class="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+        Government and enterprise clients can satisfy social enterprise spend requirements by engaging Cirqle Group for IT recruitment and project services — while getting excellent outcomes.
+      </p>
+      <a href="/contact-us/" class="inline-flex items-center gap-2 bg-[#26A8FF] text-white font-semibold px-8 py-4 rounded-md hover:bg-[#0090e8] transition-colors">
+        Enquire About Procurement <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

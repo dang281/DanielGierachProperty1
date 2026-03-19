@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-darkest: #060E23;
+  --color-navy-dark: #1F2848;
+  --color-navy-mid: #203B63;
+  --color-brand-blue: #26A8FF;
+  --color-brand-blue-hover: #0090e8;
+  --color-blue-light: #E5F3FA;
+  --color-body-text: #383E4F;
+  --color-gray-muted: #6c757d;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-body-text);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-navy-dark);
+  }
+
+  /* Visible focus rings for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer base {
+  /* Scroll reveal */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  }
+
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-[#26A8FF] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#0090e8] transition-colors duration-200;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-[#26A8FF] text-[#26A8FF] font-semibold px-6 py-3 rounded-md hover:bg-[#26A8FF] hover:text-white transition-colors duration-200;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 bg-[#060E23] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#1F2848] transition-colors duration-200;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-[#1F2848] leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-[#383E4F] mt-3 max-w-2xl;
+  }
+}

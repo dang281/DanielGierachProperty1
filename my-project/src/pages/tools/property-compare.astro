@@ -1,0 +1,280 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Property Comparison"
+  description="Compare up to 4 properties side-by-side across price, yield, costs, and key metrics."
+  tool="Property Comparison"
+  phase="Buyer Tools"
+>
+  <div class="pt-8">
+
+    <!-- Add property button -->
+    <div class="flex items-center justify-between mb-6">
+      <p style="font-size:0.8rem;color:var(--color-text-muted);">Add up to 4 properties to compare</p>
+      <button id="add-property" class="btn-outline-gold" style="font-size:0.65rem;padding:0.6rem 1.25rem;">+ Add Property</button>
+    </div>
+
+    <!-- Properties grid -->
+    <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Comparison table -->
+    <div id="comparison-table" style="display:none;background:var(--color-surface-3);overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;min-width:600px;">
+        <thead>
+          <tr style="border-bottom:2px solid rgba(255,221,121,0.3);">
+            <th style="text-align:left;padding:1rem 1.25rem;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);width:160px;">Metric</th>
+            <th id="th-0" style="padding:1rem;font-size:0.8rem;font-weight:600;color:var(--color-text-primary);text-align:center;display:none;"></th>
+            <th id="th-1" style="padding:1rem;font-size:0.8rem;font-weight:600;color:var(--color-text-primary);text-align:center;display:none;"></th>
+            <th id="th-2" style="padding:1rem;font-size:0.8rem;font-weight:600;color:var(--color-text-primary);text-align:center;display:none;"></th>
+            <th id="th-3" style="padding:1rem;font-size:0.8rem;font-weight:600;color:var(--color-text-primary);text-align:center;display:none;"></th>
+          </tr>
+        </thead>
+        <tbody id="compare-body"></tbody>
+      </table>
+    </div>
+
+    <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1.5rem;line-height:1.6;">
+      Estimates only. Stamp duty calculated at NSW standard rates. Rental yield based on inputs provided.
+    </p>
+  </div>
+
+  <!-- Add/Edit modal -->
+  <div id="prop-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;overflow-y:auto;">
+    <div style="max-width:560px;margin:4rem auto;background:var(--color-surface-2);padding:2.5rem;position:relative;">
+      <button id="close-modal" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--color-text-muted);font-size:1.25rem;cursor:pointer;">✕</button>
+      <h3 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;" id="modal-title">Add Property</h3>
+
+      <div class="flex flex-col gap-4">
+        <div>
+          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Property Name / Address</label>
+          <input type="text" id="m-name" placeholder="e.g. 12 Ocean Ave, Mosman" class="obs-input" style="width:100%;" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Price ($)</label>
+            <input type="number" id="m-price" placeholder="1500000" class="obs-input" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Weekly Rent ($)</label>
+            <input type="number" id="m-rent" placeholder="700" class="obs-input" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Bedrooms</label>
+            <select id="m-beds" class="obs-select" style="width:100%;">
+              {[1,2,3,4,5].map(n => <option value={n}>{n}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Bathrooms</label>
+            <select id="m-baths" class="obs-select" style="width:100%;">
+              {[1,2,3,4].map(n => <option value={n}>{n}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Car Spaces</label>
+            <select id="m-cars" class="obs-select" style="width:100%;">
+              {[0,1,2,3].map(n => <option value={n}>{n}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Strata (annual $)</label>
+            <input type="number" id="m-strata" placeholder="0" class="obs-input" style="width:100%;" />
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Notable Features</label>
+          <div class="grid grid-cols-2 gap-2">
+            {['Water views', 'Pool', 'Large land', 'North facing', 'New / renovated', 'Walk to shops'].map(f => (
+              <label style="cursor:pointer;display:flex;align-items:center;gap:0.6rem;">
+                <input type="checkbox" data-feat={f} style="accent-color:var(--color-gold);cursor:pointer;" />
+                <span style="font-size:0.78rem;color:var(--color-text-secondary);">{f}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+        <button id="save-property" class="btn-gold" style="width:100%;justify-content:center;margin-top:0.5rem;">Save Property →</button>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  interface Property {
+    id: number;
+    name: string;
+    price: number;
+    rent: number;
+    beds: number;
+    baths: number;
+    cars: number;
+    strata: number;
+    features: string[];
+  }
+
+  let properties: Property[] = [];
+  let editingId: number | null = null;
+  let nextId = 1;
+
+  const fmt  = (n: number) => `$${Math.round(n).toLocaleString()}`;
+  const fmtM = (n: number) => n >= 1000000 ? `$${(n/1000000).toFixed(2)}M` : fmt(n);
+
+  function stampDuty(price: number): number {
+    if (price <= 16000)   return price * 0.0125;
+    if (price <= 35000)   return 200  + (price - 16000)  * 0.015;
+    if (price <= 93000)   return 485  + (price - 35000)  * 0.0175;
+    if (price <= 351000)  return 1500 + (price - 93000)  * 0.035;
+    if (price <= 1168000) return 10530+ (price - 351000) * 0.045;
+    return 47295 + (price - 1168000) * 0.055;
+  }
+
+  function openModal(prop?: Property) {
+    editingId = prop ? prop.id : null;
+    (document.getElementById('modal-title') as HTMLElement).textContent = prop ? 'Edit Property' : 'Add Property';
+    (document.getElementById('m-name') as HTMLInputElement).value   = prop?.name  || '';
+    (document.getElementById('m-price') as HTMLInputElement).value  = prop ? String(prop.price) : '';
+    (document.getElementById('m-rent') as HTMLInputElement).value   = prop ? String(prop.rent)  : '';
+    (document.getElementById('m-beds') as HTMLSelectElement).value  = String(prop?.beds  || 3);
+    (document.getElementById('m-baths') as HTMLSelectElement).value = String(prop?.baths || 2);
+    (document.getElementById('m-cars') as HTMLSelectElement).value  = String(prop?.cars  || 1);
+    (document.getElementById('m-strata') as HTMLInputElement).value = prop ? String(prop.strata) : '';
+    document.querySelectorAll('[data-feat]').forEach(cb => {
+      (cb as HTMLInputElement).checked = prop?.features.includes((cb as HTMLInputElement).dataset.feat || '') || false;
+    });
+    (document.getElementById('prop-modal') as HTMLElement).style.display = 'block';
+  }
+
+  function closeModal() {
+    (document.getElementById('prop-modal') as HTMLElement).style.display = 'none';
+  }
+
+  document.getElementById('add-property')!.addEventListener('click', () => {
+    if (properties.length >= 4) { alert('Maximum 4 properties.'); return; }
+    openModal();
+  });
+  document.getElementById('close-modal')!.addEventListener('click', closeModal);
+  document.getElementById('prop-modal')!.addEventListener('click', (e) => {
+    if (e.target === document.getElementById('prop-modal')) closeModal();
+  });
+
+  document.getElementById('save-property')!.addEventListener('click', () => {
+    const name  = (document.getElementById('m-name') as HTMLInputElement).value.trim();
+    const price = Number((document.getElementById('m-price') as HTMLInputElement).value) || 0;
+    if (!name || !price) { alert('Please enter a name and price.'); return; }
+
+    const features: string[] = [];
+    document.querySelectorAll('[data-feat]:checked').forEach(cb => features.push((cb as HTMLInputElement).dataset.feat!));
+
+    const prop: Property = {
+      id: editingId ?? nextId++,
+      name,
+      price,
+      rent:   Number((document.getElementById('m-rent') as HTMLInputElement).value)   || 0,
+      beds:   Number((document.getElementById('m-beds') as HTMLSelectElement).value),
+      baths:  Number((document.getElementById('m-baths') as HTMLSelectElement).value),
+      cars:   Number((document.getElementById('m-cars') as HTMLSelectElement).value),
+      strata: Number((document.getElementById('m-strata') as HTMLInputElement).value) || 0,
+      features,
+    };
+
+    if (editingId !== null) {
+      properties = properties.map(p => p.id === editingId ? prop : p);
+    } else {
+      properties.push(prop);
+    }
+
+    closeModal();
+    render();
+  });
+
+  function render() {
+    const grid = document.getElementById('properties-grid')!;
+    grid.innerHTML = properties.map(p => `
+      <div style="background:var(--color-surface-3);padding:1.5rem;position:relative;">
+        <button class="edit-btn" data-id="${p.id}" style="position:absolute;top:1rem;right:2.5rem;background:none;border:none;color:var(--color-text-muted);cursor:pointer;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Edit</button>
+        <button class="remove-btn" data-id="${p.id}" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:rgba(192,57,43,0.7);cursor:pointer;font-size:0.8rem;">✕</button>
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Property ${properties.indexOf(p)+1}</p>
+        <p style="font-size:0.95rem;font-weight:600;color:var(--color-text-primary);margin-bottom:0.25rem;line-height:1.3;">${p.name}</p>
+        <p style="font-family:var(--font-serif);font-size:1.5rem;color:var(--color-gold);margin-top:0.75rem;">${fmtM(p.price)}</p>
+        <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.25rem;">${p.beds}bd · ${p.baths}ba · ${p.cars}car</p>
+      </div>
+    `).join('');
+
+    // Add placeholder
+    if (properties.length < 4) {
+      grid.innerHTML += `
+        <div style="background:var(--color-surface-3);padding:1.5rem;border:2px dashed rgba(72,72,72,0.3);display:flex;align-items:center;justify-content:center;cursor:pointer;min-height:140px;" id="add-placeholder">
+          <p style="font-size:0.75rem;color:var(--color-text-muted);text-align:center;">+ Add property</p>
+        </div>
+      `;
+      document.getElementById('add-placeholder')?.addEventListener('click', () => {
+        if (properties.length >= 4) return;
+        openModal();
+      });
+    }
+
+    grid.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = Number((btn as HTMLElement).dataset.id);
+        openModal(properties.find(p => p.id === id));
+      });
+    });
+    grid.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = Number((btn as HTMLElement).dataset.id);
+        properties = properties.filter(p => p.id !== id);
+        render();
+      });
+    });
+
+    renderTable();
+  }
+
+  function renderTable() {
+    const table = document.getElementById('comparison-table')!;
+    if (properties.length < 2) { table.style.display = 'none'; return; }
+    table.style.display = 'block';
+
+    properties.forEach((p, i) => {
+      const th = document.getElementById(`th-${i}`)!;
+      th.textContent = p.name.length > 24 ? p.name.slice(0, 22) + '…' : p.name;
+      th.style.display = 'table-cell';
+    });
+    // Hide unused headers
+    for (let i = properties.length; i < 4; i++) {
+      (document.getElementById(`th-${i}`) as HTMLElement).style.display = 'none';
+    }
+
+    interface Row { label: string; values: (p: Property) => string; highlight?: boolean }
+    const rows: Row[] = [
+      { label: 'Price',          values: p => fmtM(p.price),                                      highlight: true },
+      { label: 'Bedrooms',       values: p => String(p.beds) },
+      { label: 'Bathrooms',      values: p => String(p.baths) },
+      { label: 'Car Spaces',     values: p => String(p.cars) },
+      { label: 'Stamp Duty',     values: p => fmt(stampDuty(p.price)) },
+      { label: 'Upfront Costs',  values: p => fmt(stampDuty(p.price) + 2000 + 700 + 160) },
+      { label: 'Weekly Rent',    values: p => p.rent ? `$${p.rent}/wk` : '—' },
+      { label: 'Gross Yield',    values: p => p.rent ? `${((p.rent * 52 / p.price) * 100).toFixed(2)}%` : '—' },
+      { label: 'Annual Strata',  values: p => p.strata ? fmt(p.strata) : '—' },
+      { label: 'Features',       values: p => p.features.length ? p.features.join(', ') : '—' },
+    ];
+
+    const body = document.getElementById('compare-body')!;
+    body.innerHTML = rows.map((row, ri) => `
+      <tr style="border-bottom:1px solid rgba(72,72,72,0.12);${ri % 2 === 0 ? 'background:rgba(255,255,255,0.015);' : ''}">
+        <td style="padding:0.85rem 1.25rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">${row.label}</td>
+        ${properties.map(p => `
+          <td style="padding:0.85rem 1rem;font-size:${row.highlight ? '0.95rem' : '0.82rem'};font-weight:${row.highlight ? '600' : '400'};color:${row.highlight ? 'var(--color-gold)' : 'var(--color-text-secondary)'};text-align:center;">
+            ${row.values(p)}
+          </td>
+        `).join('')}
+        ${properties.length < 4 ? Array(4 - properties.length).fill('<td></td>').join('') : ''}
+      </tr>
+    `).join('');
+  }
+
+  render();
+</script>

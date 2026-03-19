@@ -1,0 +1,214 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Renovation ROI Calculator"
+  description="Discover which renovations add the most value before you sell and see your projected return on investment."
+  tool="Renovation ROI"
+  phase="Seller Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Current value -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Current Property Value</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="value-display">$1,500,000</span>
+        </div>
+        <input type="range" id="current-value" min="400000" max="8000000" step="50000" value="1500000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$400K</span><span>$8M</span>
+        </div>
+      </div>
+
+      <!-- Renovation items -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1.25rem;">Select Renovations</label>
+
+        <div id="reno-list" class="flex flex-col gap-3">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Custom reno -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Custom Renovation</label>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Description</label>
+            <input type="text" id="custom-label" placeholder="e.g. Pool" class="obs-input" style="font-size:0.9rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Cost ($)</label>
+            <input type="number" id="custom-cost" placeholder="0" class="obs-input" style="font-size:0.9rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Value Added ($)</label>
+            <input type="number" id="custom-value" placeholder="0" class="obs-input" style="font-size:0.9rem;" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button id="add-custom" class="btn-outline-gold" style="width:100%;font-size:0.65rem;padding:0.7rem 1rem;">Add →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Renovation Returns
+        </h2>
+
+        <div class="flex flex-col gap-0 mb-4" id="breakdown"></div>
+
+        <div style="margin-top:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">After Renovation</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);">Est. Value</p>
+              <p id="new-value" style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-gold);"></p>
+            </div>
+            <div>
+              <p style="font-size:0.6rem;color:var(--color-text-muted);">Total ROI</p>
+              <p id="total-roi" style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-gold);"></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="empty-state" style="text-align:center;padding:2rem 1rem;display:none;">
+          <p style="font-size:0.8rem;color:var(--color-text-muted);">Select renovations above to see your projected returns.</p>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Value additions are estimates based on Sydney market averages. Results vary by suburb, condition, and presentation.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Get a Pre-Sale Appraisal
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => `$${Math.round(Math.abs(n)).toLocaleString()}`;
+
+  interface Reno {
+    id: string;
+    label: string;
+    costLow: number;
+    costHigh: number;
+    returnPct: number; // % of current value added
+    icon: string;
+    checked?: boolean;
+  }
+
+  const RENOS: Reno[] = [
+    { id: 'kitchen',    label: 'Kitchen Renovation',         costLow: 25000,  costHigh: 60000,  returnPct: 4.5, icon: '🍳' },
+    { id: 'bathroom',   label: 'Bathroom Renovation',        costLow: 15000,  costHigh: 35000,  returnPct: 3.2, icon: '🚿' },
+    { id: 'paint',      label: 'Internal Paint',             costLow: 5000,   costHigh: 12000,  returnPct: 1.8, icon: '🎨' },
+    { id: 'landscaping',label: 'Landscaping / Outdoor',      costLow: 10000,  costHigh: 40000,  returnPct: 2.5, icon: '🌿' },
+    { id: 'flooring',   label: 'New Flooring',               costLow: 8000,   costHigh: 25000,  returnPct: 2.0, icon: '🪵' },
+    { id: 'extension',  label: 'Room Extension / Addition',  costLow: 80000,  costHigh: 200000, returnPct: 8.0, icon: '🏗️' },
+    { id: 'deck',       label: 'Deck / Alfresco',            costLow: 15000,  costHigh: 50000,  returnPct: 2.8, icon: '☀️' },
+    { id: 'garage',     label: 'Garage / Carport',           costLow: 20000,  costHigh: 50000,  returnPct: 2.2, icon: '🚗' },
+    { id: 'aircon',     label: 'Ducted Air Conditioning',    costLow: 8000,   costHigh: 20000,  returnPct: 1.5, icon: '❄️' },
+    { id: 'styling',    label: 'Professional Styling',       costLow: 3000,   costHigh: 8000,   returnPct: 1.2, icon: '✨' },
+  ];
+
+  let customRenos: { id: string; label: string; cost: number; valueAdded: number }[] = [];
+
+  function renderRenoList() {
+    const list = document.getElementById('reno-list')!;
+    list.innerHTML = RENOS.map(r => `
+      <label style="cursor:pointer;display:flex;align-items:flex-start;gap:1rem;padding:1rem;background:var(--color-surface-4);transition:background 0.2s;" class="reno-card">
+        <input type="checkbox" data-id="${r.id}" style="accent-color:var(--color-gold);width:16px;height:16px;margin-top:0.15rem;cursor:pointer;flex-shrink:0;" />
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
+            <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${r.label}</span>
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">+${r.returnPct}%</span>
+          </div>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.2rem;">Est. cost: $${(r.costLow/1000).toFixed(0)}K – $${(r.costHigh/1000).toFixed(0)}K</p>
+        </div>
+      </label>
+    `).join('');
+
+    list.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener('change', calc));
+  }
+
+  function calc() {
+    const price = Number((document.getElementById('current-value') as HTMLInputElement).value);
+    document.getElementById('value-display')!.textContent = `$${price.toLocaleString()}`;
+
+    const selectedRenos: { label: string; cost: number; valueAdded: number; roi: number }[] = [];
+
+    document.querySelectorAll('#reno-list input[type="checkbox"]:checked').forEach(cb => {
+      const id = (cb as HTMLInputElement).dataset.id!;
+      const reno = RENOS.find(r => r.id === id)!;
+      const midCost = (reno.costLow + reno.costHigh) / 2;
+      const valueAdded = price * reno.returnPct / 100;
+      const roi = ((valueAdded - midCost) / midCost) * 100;
+      selectedRenos.push({ label: reno.label, cost: midCost, valueAdded, roi });
+    });
+
+    customRenos.forEach(cr => {
+      const roi = cr.cost > 0 ? ((cr.valueAdded - cr.cost) / cr.cost) * 100 : 0;
+      selectedRenos.push({ label: cr.label, cost: cr.cost, valueAdded: cr.valueAdded, roi });
+    });
+
+    const totalCost     = selectedRenos.reduce((s, r) => s + r.cost, 0);
+    const totalValueAdd = selectedRenos.reduce((s, r) => s + r.valueAdded, 0);
+    const newValue      = price + totalValueAdd;
+    const overallROI    = totalCost > 0 ? ((totalValueAdd - totalCost) / totalCost) * 100 : 0;
+
+    const breakdown = document.getElementById('breakdown')!;
+    if (selectedRenos.length === 0) {
+      breakdown.innerHTML = '<p style="font-size:0.8rem;color:var(--color-text-muted);padding:1rem 0;text-align:center;">No renovations selected.</p>';
+      document.getElementById('new-value')!.textContent = `$${price.toLocaleString()}`;
+      document.getElementById('total-roi')!.textContent = '—';
+    } else {
+      breakdown.innerHTML = selectedRenos.map(r => `
+        <div style="padding:0.75rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">${r.label}</span>
+            <span style="font-size:0.75rem;font-weight:700;color:${r.roi >= 0 ? '#a8e6a3' : 'rgba(192,57,43,0.9)'};">${r.roi >= 0 ? '+' : ''}${r.roi.toFixed(0)}% ROI</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:0.25rem;">
+            <span style="font-size:0.7rem;color:var(--color-text-muted);">Cost: ${fmt(r.cost)}</span>
+            <span style="font-size:0.7rem;color:var(--color-gold);">+${fmt(r.valueAdded)} value</span>
+          </div>
+        </div>
+      `).join('');
+
+      const fmtM = (n: number) => n >= 1000000 ? `$${(n/1000000).toFixed(2)}M` : `$${Math.round(n).toLocaleString()}`;
+      document.getElementById('new-value')!.textContent = fmtM(newValue);
+      document.getElementById('total-roi')!.textContent = `${overallROI >= 0 ? '+' : ''}${overallROI.toFixed(0)}%`;
+    }
+  }
+
+  // Custom reno add
+  document.getElementById('add-custom')!.addEventListener('click', () => {
+    const label = (document.getElementById('custom-label') as HTMLInputElement).value.trim();
+    const cost  = Number((document.getElementById('custom-cost') as HTMLInputElement).value) || 0;
+    const val   = Number((document.getElementById('custom-value') as HTMLInputElement).value) || 0;
+    if (!label || cost === 0) return;
+
+    customRenos.push({ id: `custom-${Date.now()}`, label, cost, valueAdded: val });
+    (document.getElementById('custom-label') as HTMLInputElement).value = '';
+    (document.getElementById('custom-cost') as HTMLInputElement).value = '';
+    (document.getElementById('custom-value') as HTMLInputElement).value = '';
+    calc();
+  });
+
+  (document.getElementById('current-value') as HTMLInputElement).addEventListener('input', calc);
+
+  renderRenoList();
+  calc();
+</script>

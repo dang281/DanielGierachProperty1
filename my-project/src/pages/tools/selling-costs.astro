@@ -1,0 +1,158 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Selling Cost Calculator"
+  description="Understand your true net proceeds before you sell. Adjust every variable to model your exact situation."
+  tool="Selling Costs"
+  phase="Seller Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Sale price -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Estimated Sale Price</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="sale-display">$2,000,000</span>
+        </div>
+        <input type="range" id="sale-price" min="400000" max="10000000" step="10000" value="2000000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$400K</span><span>$10M</span>
+        </div>
+      </div>
+
+      <!-- Commission -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Agent Commission Rate</label>
+        <div class="flex items-center gap-3">
+          <input type="range" id="commission-rate" min="1.5" max="3.5" step="0.1" value="2.5"
+            style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4rem;text-align:center;">
+            <span id="commission-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">2.5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Marketing Budget</label>
+        <select id="marketing" class="obs-select" style="width:100%;">
+          <option value="2000">Basic — $2,000</option>
+          <option value="4500" selected>Standard — $4,500</option>
+          <option value="8000">Premium — $8,000</option>
+          <option value="15000">Prestige — $15,000</option>
+        </select>
+      </div>
+
+      <!-- Other costs row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div style="background:var(--color-surface-3);padding:1.5rem;">
+          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Legal / Conveyancing</label>
+          <input type="number" id="legal" value="1800" class="obs-input" style="font-size:1rem;" />
+        </div>
+        <div style="background:var(--color-surface-3);padding:1.5rem;">
+          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Styling / Staging</label>
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="staging-toggle" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+            <input type="number" id="staging" value="3500" class="obs-input" style="flex:1;font-size:1rem;" />
+          </div>
+        </div>
+        <div style="background:var(--color-surface-3);padding:1.5rem;">
+          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Repairs Budget</label>
+          <input type="number" id="repairs" value="0" class="obs-input" style="font-size:1rem;" placeholder="0" />
+        </div>
+        <div style="background:var(--color-surface-3);padding:1.5rem;">
+          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Mortgage Payout</label>
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="mortgage-toggle" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+            <input type="number" id="mortgage-payout" value="0" class="obs-input" style="flex:1;font-size:1rem;" placeholder="0" disabled />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Net Proceeds Estimate
+        </h2>
+
+        <div id="breakdown" class="flex flex-col gap-0">
+          <!-- Populated by JS -->
+        </div>
+
+        <div style="margin-top:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Estimated Net Proceeds</p>
+          <p id="net-proceeds" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Estimate only. CGT, break costs and other fees not included. Confirm with your solicitor.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Book a Free Appraisal
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => n < 0
+    ? `-$${Math.abs(Math.round(n)).toLocaleString()}`
+    : `$${Math.round(n).toLocaleString()}`;
+
+  function calc() {
+    const sale       = Number((document.getElementById('sale-price') as HTMLInputElement).value);
+    const commRate   = Number((document.getElementById('commission-rate') as HTMLInputElement).value) / 100;
+    const marketing  = Number((document.getElementById('marketing') as HTMLSelectElement).value);
+    const legal      = Number((document.getElementById('legal') as HTMLInputElement).value) || 0;
+    const stagingOn  = (document.getElementById('staging-toggle') as HTMLInputElement).checked;
+    const staging    = stagingOn ? Number((document.getElementById('staging') as HTMLInputElement).value) || 0 : 0;
+    const repairs    = Number((document.getElementById('repairs') as HTMLInputElement).value) || 0;
+    const mortOn     = (document.getElementById('mortgage-toggle') as HTMLInputElement).checked;
+    const mortgage   = mortOn ? Number((document.getElementById('mortgage-payout') as HTMLInputElement).value) || 0 : 0;
+
+    const commission = sale * commRate;
+    const total      = commission + marketing + legal + staging + repairs + mortgage;
+    const net        = sale - total;
+
+    const rows = [
+      { label: 'Gross Sale Price',    value: sale,       plus: true },
+      { label: `Commission (${(commRate*100).toFixed(1)}%)`, value: -commission },
+      { label: 'Marketing',           value: -marketing },
+      { label: 'Legal / Conveyancing', value: -legal },
+      ...(stagingOn ? [{ label: 'Styling / Staging', value: -staging }] : []),
+      ...(repairs    ? [{ label: 'Repairs',           value: -repairs }] : []),
+      ...(mortOn && mortgage ? [{ label: 'Mortgage Payout', value: -mortgage }] : []),
+    ];
+
+    const breakdown = document.getElementById('breakdown')!;
+    breakdown.innerHTML = rows.map(r => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.8rem;color:var(--color-text-muted);">${r.label}</span>
+        <span style="font-size:0.875rem;font-weight:600;color:${r.plus ? 'var(--color-text-primary)' : 'rgba(192,57,43,0.9)'};">${fmt(r.value)}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('net-proceeds')!.textContent = fmt(net);
+    document.getElementById('sale-display')!.textContent = `$${sale.toLocaleString()}`;
+    document.getElementById('commission-display')!.textContent = `${((commRate)*100).toFixed(1)}%`;
+  }
+
+  // Mortgage toggle
+  (document.getElementById('mortgage-toggle') as HTMLInputElement).addEventListener('change', (e) => {
+    const input = document.getElementById('mortgage-payout') as HTMLInputElement;
+    input.disabled = !(e.target as HTMLInputElement).checked;
+  });
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

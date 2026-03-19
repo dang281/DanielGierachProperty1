@@ -1,0 +1,727 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const listings = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85',
+    suburb: 'Mosman',
+    address: 'The Quartz Pavilion',
+    street: '14 Clifton Gardens Drive',
+    price: 'Auction Sep 27',
+    beds: 5, baths: 4, cars: 3,
+    tag: 'New Release',
+    size: 'large', // col-span-8, 16/9
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=85',
+    suburb: 'Double Bay',
+    address: 'Azure Penthouse',
+    street: '8/22 Bay Street',
+    price: '$3.4M Range',
+    beds: 3, baths: 2, cars: 2,
+    tag: 'For Sale',
+    size: 'tall', // col-span-4, 4/5
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85',
+    suburb: 'Vaucluse',
+    address: 'Riverpoint Sanctuary',
+    street: '3 Marine Parade',
+    price: 'Contact Agent',
+    beds: 6, baths: 5, cars: 4,
+    tag: 'Off Market',
+    size: 'square', // col-span-4, 1/1
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=85',
+    suburb: 'Cremorne',
+    address: 'The Monolith House',
+    street: '27 Milson Road',
+    price: 'Private Sale',
+    beds: 4, baths: 3, cars: 2,
+    tag: 'For Sale',
+    size: 'square',
+  },
+];
+
+const prestige = [
+  {
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=90',
+    suburb: 'Point Piper',
+    address: '18 Wolseley Road',
+    price: 'Expressions of Interest',
+    beds: 7, baths: 6, cars: 4,
+    desc: 'An architectural masterpiece commanding panoramic harbour views from every principal room.',
+    tag: 'Secret Listing',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90',
+    suburb: 'Bellevue Hill',
+    address: '6 Ginahgulla Road',
+    price: 'Contact Agent',
+    beds: 6, baths: 5, cars: 3,
+    desc: 'A grand estate of timeless elegance, set on over 2,000sqm with a north-facing pool and guest house.',
+    tag: 'Off Market',
+  },
+];
+
+const stats = [
+  { value: 2.4, suffix: 'B+', prefix: '$', label: 'In Sales' },
+  { value: 18,  suffix: '',   prefix: '',  label: 'Years Experience' },
+  { value: 4200, suffix: '+', prefix: '',  label: 'Properties Sold' },
+  { value: 1,   suffix: '',   prefix: '#', label: 'Ranked Agency' },
+];
+
+const reasons = [
+  { n: '01', title: 'Hyper-Local Intelligence', body: 'Deep market knowledge across Sydney\'s most prestigious suburbs, delivering street-level insights that broad-market agencies simply can\'t access.' },
+  { n: '02', title: 'The Concierge Approach', body: 'From professional photography to private viewings, we handle every detail with absolute precision and discretion.' },
+  { n: '03', title: 'Data-Driven Strategy', body: 'Proprietary market analysis ensures every listing is priced and positioned to achieve maximum results in any market.' },
+];
+
+const toolPhaseColors: Record<string, string> = { Seller: '#ffdd79', Buyer: '#7ec8e3', Investor: '#a8e6a3', Market: '#c8c6c8' };
+
+const showcaseTools = [
+  { href: '/tools/selling-costs',    phase: 'Seller',   label: 'Selling Cost Calculator', desc: 'See your true net proceeds after all selling costs.' },
+  { href: '/tools/stamp-duty',       phase: 'Buyer',    label: 'Stamp Duty Calculator',   desc: 'NSW stamp duty, FHB concessions & upfront costs.' },
+  { href: '/tools/mortgage',         phase: 'Buyer',    label: 'Mortgage Calculator',     desc: 'Weekly or monthly repayments + amortisation chart.' },
+  { href: '/tools/investment-yield', phase: 'Investor', label: 'Investment Yield',        desc: 'Net yield, cash flow & 10-year capital projection.' },
+  { href: '/tools/renovation-roi',   phase: 'Seller',   label: 'Renovation ROI',          desc: 'Which upgrades add the most value before you sell.' },
+  { href: '/tools/suburb-match',     phase: 'Buyer',    label: 'Suburb Match Quiz',       desc: 'Answer 8 questions to find your ideal Sydney suburb.' },
+  { href: '/tools/valuation',        phase: 'Seller',   label: 'Instant Valuation',       desc: 'Get an indicative property value in minutes.' },
+  { href: '/tools/heatmap',          phase: 'Market',   label: 'Price Heatmap',           desc: 'Visual median price & growth map across Sydney.' },
+];
+---
+
+<Layout>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="relative min-h-dvh flex items-center overflow-hidden" style="background:var(--color-base);">
+
+  <!-- Parallax bg -->
+  <div class="absolute inset-0 z-0" id="hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=90"
+      alt="Luxury Sydney property"
+      class="w-full h-full object-cover"
+      style="filter:grayscale(30%) brightness(0.38);"
+      fetchpriority="high"
+      width="1920" height="1080"
+    />
+    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(14,14,14,0.7) 0%,rgba(14,14,14,0.3) 100%);"></div>
+  </div>
+
+  <!-- Glass card -->
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-28 pb-20">
+    <div class="max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
+
+      <span class="eyebrow mb-5 reveal" data-delay="0">Premium Real Estate · Sydney</span>
+
+      <h1 class="reveal" data-delay="80"
+        style="font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:var(--color-text-primary);margin-bottom:1.5rem;">
+        Realise the Full<br />
+        <em style="font-style:italic;color:var(--color-gold);">Potential</em> of<br />Your Home
+      </h1>
+
+      <p class="reveal" data-delay="160"
+        style="font-size:1rem;color:var(--color-text-secondary);line-height:1.8;max-width:42ch;margin-bottom:2.5rem;">
+        Sydney's most trusted prestige agency. From Mosman to Point Piper, we deliver results that define the market.
+      </p>
+
+      <div class="flex flex-wrap gap-4 reveal" data-delay="240">
+        <a href="/listings" class="btn-gold">
+          View Collection
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/appraisal" class="btn-ghost-light">Free Appraisal</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 pt-8 reveal" data-delay="320"
+        style="border-top:1px solid rgba(72,72,72,0.25);">
+        {stats.map((s) => (
+          <div>
+            <p class="stat-counter" data-value={s.value} data-suffix={s.suffix} data-prefix={s.prefix}
+              style="font-family:var(--font-serif);font-size:1.8rem;font-weight:400;color:var(--color-text-primary);line-height:1;letter-spacing:-0.02em;">
+              {s.prefix}{s.value}{s.suffix}
+            </p>
+            <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);margin-top:0.4rem;">
+              {s.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll nudge -->
+  <div class="absolute bottom-8 right-12 hidden lg:flex flex-col items-center gap-2">
+    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(161,161,161,0.4);writing-mode:vertical-rl;">Scroll</span>
+    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,221,121,0.4),transparent);"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     MARQUEE RIBBON
+════════════════════════════════════════════ -->
+<div style="background:var(--color-surface-2);border-top:1px solid rgba(72,72,72,0.12);border-bottom:1px solid rgba(72,72,72,0.12);padding:1.1rem 0;overflow:hidden;">
+  <div class="marquee-track">
+    {[
+      'Riverfront Properties',
+      'Luxury Penthouses',
+      'Heritage Estates',
+      'Off-Market Exclusives',
+      'Private Collection',
+      'Auction Results',
+      'Riverfront Properties',
+      'Luxury Penthouses',
+      'Heritage Estates',
+      'Off-Market Exclusives',
+      'Private Collection',
+      'Auction Results',
+    ].map((item, i) => (
+      <span class="flex items-center gap-5 flex-shrink-0 px-10" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);">
+        {item}
+        <span style={`display:inline-block;width:4px;height:4px;background:${i % 2 === 0 ? 'var(--color-gold)' : 'rgba(72,72,72,0.5)'};`}></span>
+      </span>
+    ))}
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SEARCH WIDGET
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-1);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <!-- Tabs -->
+    <div class="flex" style="border-bottom:1px solid rgba(72,72,72,0.18);">
+      {[
+        { id: 'buy',      label: 'Buy' },
+        { id: 'rent',     label: 'Rent' },
+        { id: 'sold',     label: 'Sold' },
+        { id: 'estimate', label: 'Estimate' },
+      ].map((tab, i) => (
+        <button class={`s-tab${i === 0 ? ' active' : ''}`} data-tab={tab.id}>{tab.label}</button>
+      ))}
+    </div>
+
+    <!-- Buy panel -->
+    <div id="panel-buy" class="search-panel py-6">
+      <div class="flex flex-col lg:flex-row gap-3">
+        <div class="flex-1 relative">
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Search by suburb, street or postcode..." class="obs-input" style="padding-left:2.75rem;" />
+        </div>
+        <select class="obs-select" style="min-width:150px;">
+          <option value="">Any Type</option>
+          <option>House</option><option>Apartment</option><option>Townhouse</option><option>Land</option>
+        </select>
+        <select class="obs-select" style="min-width:130px;">
+          <option value="">Any Beds</option>
+          <option>1+</option><option>2+</option><option>3+</option><option>4+</option><option>5+</option>
+        </select>
+        <select class="obs-select" style="min-width:150px;">
+          <option value="">Any Price</option>
+          <option>Under $2M</option><option>$2M – $5M</option><option>$5M – $10M</option><option>$10M+</option>
+        </select>
+        <button class="btn-gold" style="white-space:nowrap;flex-shrink:0;">Search Properties</button>
+      </div>
+    </div>
+
+    <!-- Rent panel -->
+    <div id="panel-rent" class="search-panel py-6" style="display:none;">
+      <div class="flex flex-col lg:flex-row gap-3">
+        <div class="flex-1 relative">
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Search suburb or postcode..." class="obs-input" style="padding-left:2.75rem;" />
+        </div>
+        <select class="obs-select" style="min-width:150px;">
+          <option value="">Any Type</option>
+          <option>House</option><option>Apartment</option><option>Townhouse</option>
+        </select>
+        <select class="obs-select" style="min-width:150px;">
+          <option value="">Max Rent / wk</option>
+          <option>$500</option><option>$750</option><option>$1,000</option><option>$1,500</option><option>$2,000+</option>
+        </select>
+        <button class="btn-gold" style="white-space:nowrap;flex-shrink:0;">Find Rentals</button>
+      </div>
+    </div>
+
+    <!-- Sold panel -->
+    <div id="panel-sold" class="search-panel py-6" style="display:none;">
+      <div class="flex flex-col lg:flex-row gap-3">
+        <div class="flex-1 relative">
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Search recently sold by suburb..." class="obs-input" style="padding-left:2.75rem;" />
+        </div>
+        <select class="obs-select" style="min-width:170px;">
+          <option>Last 12 months</option>
+          <option>Last 3 months</option><option>Last 6 months</option><option>Last 2 years</option>
+        </select>
+        <button class="btn-gold" style="white-space:nowrap;flex-shrink:0;">View Sold Results</button>
+      </div>
+    </div>
+
+    <!-- Estimate panel -->
+    <div id="panel-estimate" class="search-panel py-7" style="display:none;">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <p style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;font-style:italic;color:var(--color-text-primary);margin-bottom:0.4rem;">
+            What is your property worth?
+          </p>
+          <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.6;max-width:44ch;">
+            Get an instant digital property report — powered by Ray White, no obligation.
+          </p>
+        </div>
+        <a
+          href="https://raywhitecollective.com.au/property-report/my-property-value?da_email_id=DanielGierach"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-gold"
+          style="flex-shrink:0;"
+        >
+          Get My Free Property Report
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     CURATED LISTINGS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:6rem 0 7rem;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
+      <div class="reveal">
+        <span class="eyebrow mb-4">Available Now</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
+          Curated Listings
+        </h2>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:46ch;line-height:1.75;">
+          A handpicked selection of Sydney's most exceptional residences available for private viewing.
+        </p>
+      </div>
+      <a href="/listings" class="reveal" data-delay="100"
+        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);border-bottom:1px solid var(--color-gold);padding-bottom:2px;white-space:nowrap;transition:opacity 0.2s;flex-shrink:0;align-self:flex-end;">
+        Explore All Properties
+      </a>
+    </div>
+
+    <!-- Asymmetric grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+      <!-- Large card col-8 -->
+      <article class="prop-card md:col-span-8 reveal" data-delay="0">
+        <div class="img-wrap" style="aspect-ratio:16/9;">
+          <img src={listings[0].image} alt={listings[0].address} width="1200" height="675" loading="eager" />
+          <div class="absolute top-5 left-5"><span class="gold-pill">{listings[0].tag}</span></div>
+        </div>
+        <div style="padding:1.5rem 0 0;">
+          <div class="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);">{listings[0].suburb}</span>
+              <h3 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--color-text-primary);margin-top:0.2rem;">{listings[0].address}</h3>
+              <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.2rem;">{listings[0].street}</p>
+            </div>
+            <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);margin-top:0.5rem;white-space:nowrap;">
+              {listings[0].price}
+            </span>
+          </div>
+          <div style="display:flex;gap:1.25rem;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{listings[0].beds} Bed</span>
+            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{listings[0].baths} Bath</span>
+            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{listings[0].cars} Car</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tall card col-4 -->
+      <article class="prop-card md:col-span-4 reveal" data-delay="100">
+        <div class="img-wrap" style="aspect-ratio:4/5;">
+          <img src={listings[1].image} alt={listings[1].address} width="800" height="1000" loading="lazy" />
+          <div class="absolute top-5 left-5"><span class="gold-pill">{listings[1].tag}</span></div>
+        </div>
+        <div style="padding:1.25rem 0 0;">
+          <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);">{listings[1].suburb}</span>
+          <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-top:0.2rem;">{listings[1].address}</h3>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;">
+            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{listings[1].beds} Bed</span>
+            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{listings[1].baths} Bath</span>
+            <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);">{listings[1].price}</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Square cards -->
+      {listings.slice(2).map((p, i) => (
+        <article class="prop-card md:col-span-4 reveal" data-delay={`${(i+1)*80}`}>
+          <div class="img-wrap" style="aspect-ratio:1/1;">
+            <img src={p.image} alt={p.address} width="600" height="600" loading="lazy" />
+            <div class="absolute top-5 left-5"><span class="gold-pill">{p.tag}</span></div>
+          </div>
+          <div style="padding:1rem 0 0;">
+            <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);">{p.suburb}</span>
+            <h3 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:var(--color-text-primary);margin-top:0.2rem;">{p.address}</h3>
+            <p style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);margin-top:0.4rem;">{p.price}</p>
+          </div>
+        </article>
+      ))}
+
+      <!-- Off-market portal tile -->
+      <div class="md:col-span-4 reveal" data-delay="240"
+        style="background:var(--color-surface-3);border:1px solid rgba(72,72,72,0.18);display:flex;align-items:center;justify-content:center;padding:3rem 2.5rem;text-align:center;min-height:300px;">
+        <div>
+          <div style="width:3rem;height:3rem;background:var(--color-gold-muted);border:1px solid rgba(255,221,121,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="0"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.75rem;">Off-Market Portal</h3>
+          <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:1.5rem;max-width:22ch;margin-left:auto;margin-right:auto;">
+            Access Sydney's most discreet listings before they reach the market.
+          </p>
+          <a href="/register" class="btn-gold" style="font-size:0.65rem;">Request Access</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PRESTIGE COLLECTION
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-2);padding:6rem 0 7rem;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
+      <div class="reveal">
+        <span class="eyebrow mb-4">Exclusive Access</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
+          Prestige Collection
+        </h2>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:48ch;line-height:1.75;">
+          Off-market and secret listings available exclusively to our registered buyers.
+        </p>
+      </div>
+      <a href="/prestige" class="btn-outline-gold reveal self-end" data-delay="100">Register for Access</a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {prestige.map((p, i) => (
+        <article class={`prop-card reveal${i === 1 ? '-right' : '-left'}`} data-delay={`${i * 80}`}
+          style="background:var(--color-surface-0);">
+          <div class="img-wrap relative" style="aspect-ratio:3/2;">
+            <img src={p.image} alt={p.address} width="1200" height="800" loading="lazy"
+              style="filter:grayscale(25%) brightness(0.75);" />
+            <div class="absolute top-5 left-5"><span class="gold-pill">{p.tag}</span></div>
+            <div class="absolute inset-0 pointer-events-none"
+              style="background:linear-gradient(to top,rgba(14,14,14,0.92) 0%,transparent 55%);"></div>
+          </div>
+          <div style="padding:1.75rem;">
+            <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.4rem;">{p.suburb}</span>
+            <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.6rem;">{p.address}</h3>
+            <p style="font-size:0.825rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:1.25rem;max-width:52ch;">{p.desc}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(72,72,72,0.2);">
+              <div style="display:flex;gap:1.25rem;">
+                <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.beds} Bed</span>
+                <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.baths} Bath</span>
+                <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.cars} Car</span>
+              </div>
+              <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);">{p.price}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Register CTA -->
+    <div class="reveal mt-6 p-10 lg:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+      style="background:var(--color-gold-muted);border:1px solid rgba(255,221,121,0.15);" data-delay="100">
+      <div>
+        <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;font-style:italic;">
+          Access Secret Listings Before They Hit the Market
+        </h3>
+        <p style="font-size:0.85rem;color:var(--color-text-muted);max-width:52ch;line-height:1.75;">
+          Register as a buyer to receive exclusive off-market properties before public listing.
+        </p>
+      </div>
+      <a href="/register" class="btn-gold" style="flex-shrink:0;">
+        Register Now
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-1);padding:7rem 0;overflow:hidden;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+      <!-- Portrait + quote card -->
+      <div class="relative reveal-left">
+        <div style="aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(72,72,72,0.15);">
+          <img
+            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=85"
+            alt="Dan Gierach"
+            class="w-full h-full object-cover"
+            style="filter:grayscale(100%);opacity:0.8;"
+            loading="lazy" width="900" height="1200"
+          />
+        </div>
+        <!-- Overlapping quote -->
+        <div class="hidden lg:block absolute -bottom-10 -right-10 max-w-xs p-8"
+          style="background:var(--color-base);border:1px solid rgba(72,72,72,0.25);box-shadow:0 20px 40px rgba(0,0,0,0.4);">
+          <p style="font-family:var(--font-serif);font-size:1.05rem;font-style:italic;color:var(--color-text-primary);line-height:1.65;margin-bottom:1rem;">
+            "Sydney isn't just a market; it's a curated lifestyle choice."
+          </p>
+          <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);">
+            Daniel Gierach, Principal
+          </span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="reveal-right">
+        <span class="eyebrow mb-5">The Curator's Edge</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;margin-bottom:2.5rem;">
+          Unmatched Expertise<br /><em style="font-style:italic;">in Every Market</em>
+        </h2>
+
+        <div class="flex flex-col gap-10">
+          {reasons.map((r, i) => (
+            <div class="flex gap-6 reveal" data-delay={`${i * 100}`}>
+              <span style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);opacity:0.35;flex-shrink:0;line-height:1;margin-top:0.2rem;">
+                {r.n}
+              </span>
+              <div>
+                <h4 style="font-family:var(--font-sans);font-size:0.8rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:0.6rem;">
+                  {r.title}
+                </h4>
+                <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;">
+                  {r.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 reveal" data-delay="300">
+          <a href="/about" class="btn-outline-gold">Learn More About Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:6rem 0 7rem;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="text-center mb-14 reveal">
+      <span class="eyebrow mb-4" style="justify-content:center;display:block;">Refined Endorsements</span>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;">
+        What Our Clients Say
+      </h2>
+      <div class="gold-line mx-auto mt-5"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {[
+        { quote: "Dan's team achieved a result 18% above our reserve — in a challenging market. Their strategy and buyer network is genuinely unmatched.", author: "Sarah & James M.", suburb: "Mosman", result: "Sold $7.2M" },
+        { quote: "Communication was exceptional from day one. We always knew exactly where we stood, and they delivered beyond our expectations.", author: "David K.", suburb: "Double Bay", result: "Sold $4.1M" },
+        { quote: "They introduced us to our dream home before it was listed publicly. That access to off-market properties is worth everything.", author: "The Williams Family", suburb: "Vaucluse", result: "Purchased $9.5M" },
+      ].map((t, i) => (
+        <div class="reveal" data-delay={`${i * 80}`}
+          style="background:var(--color-surface-3);padding:2rem;border-top:2px solid var(--color-gold);">
+          <div class="flex gap-1 mb-6">
+            {[1,2,3,4,5].map(() => (
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-gold)" stroke="none">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+          <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--color-text-secondary);line-height:1.8;margin-bottom:1.75rem;">
+            "{t.quote}"
+          </p>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(72,72,72,0.18);">
+            <div>
+              <p style="font-size:0.72rem;font-weight:700;color:var(--color-text-primary);letter-spacing:0.06em;">{t.author}</p>
+              <p style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-top:0.2rem;">{t.suburb}</p>
+            </div>
+            <span style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#1a1c1c;background:var(--color-gold);padding:0.3rem 0.65rem;">{t.result}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     APPRAISAL CTA
+════════════════════════════════════════════ -->
+<section class="relative overflow-hidden" style="padding:7rem 0;">
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80"
+      alt="Premium property"
+      class="w-full h-full object-cover"
+      style="filter:grayscale(40%) brightness(0.28);"
+      loading="lazy" width="1920" height="1080"
+    />
+    <div class="absolute inset-0" style="background:rgba(14,14,14,0.6);"></div>
+  </div>
+
+  <div class="relative max-w-[1400px] mx-auto px-8 lg:px-12 text-center">
+    <span class="eyebrow mb-5 reveal" style="display:block;text-align:center;">What's Your Home Worth?</span>
+    <h2 class="reveal" data-delay="80"
+      style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
+      Get Your Free Property Appraisal
+    </h2>
+    <p class="reveal" data-delay="160"
+      style="font-size:0.9375rem;color:var(--color-text-secondary);max-width:44ch;margin:0 auto 2.5rem;line-height:1.8;">
+      Our experts will assess your property's true market value with no obligation and no pressure.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center reveal" data-delay="240">
+      <a href="/appraisal" class="btn-gold">
+        Book a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/contact" class="btn-ghost-light">Talk to Dan</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TOOLS SHOWCASE
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(72,72,72,0.15);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-12">
+      <div>
+        <span class="eyebrow mb-4 reveal" style="display:block;">Resources</span>
+        <h2 class="reveal" data-delay="80"
+          style="font-family:var(--font-serif);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
+          Free Property Tools<br />& Calculators
+        </h2>
+      </div>
+      <div>
+        <p class="reveal" data-delay="120" style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;max-width:46ch;">
+          Make smarter decisions at every stage of your property journey. Our suite of free tools covers buying, selling, and investing in the Sydney market.
+        </p>
+        <a href="/tools" class="btn-outline-gold reveal" data-delay="200" style="display:inline-flex;margin-top:1.5rem;">
+          View All Tools →
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {showcaseTools.map((tool, i) => (
+        <a href={tool.href}
+          class="reveal"
+          data-delay={String((i % 4) * 60)}
+          style="background:var(--color-surface-3);padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;"
+          onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-4px)'"
+          onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
+        >
+          <span style={`font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${toolPhaseColors[tool.phase] || '#ffdd79'};`}>
+            {tool.phase}
+          </span>
+          <h3 style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:var(--color-text-primary);">{tool.label}</h3>
+          <p style="font-size:0.75rem;color:var(--color-text-muted);line-height:1.65;flex:1;">{tool.desc}</p>
+          <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Use Tool →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+<script>
+  // ── Tab switching ──
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.s-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.search-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.dataset.tab!;
+      panels.forEach(p => (p.style.display = 'none'));
+      const active = document.getElementById(`panel-${target}`);
+      if (active) active.style.display = 'block';
+    });
+  });
+
+  // ── Hero parallax ──
+  const heroBg = document.getElementById('hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      heroBg.style.transform = `translateY(${y * 0.3}px)`;
+    }, { passive: true });
+  }
+
+  // ── Stat counters ──
+  const counters = document.querySelectorAll<HTMLElement>('.stat-counter');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseFloat(el.dataset.value!);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const isDecimal = String(target).includes('.');
+      const duration = 1800;
+      const start = performance.now();
+
+      const tick = (now: number) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
+        el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.round(current).toLocaleString()) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => countObserver.observe(el));
+</script>
+
+</Layout>

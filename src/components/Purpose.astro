@@ -1,0 +1,63 @@
+---
+const partners = [
+  {
+    name: 'Lovewell Foundation',
+    description: 'Supporting survivors of domestic violence with wraparound services and safe pathways.',
+    icon: 'fa-solid fa-heart',
+  },
+  {
+    name: 'Disabled Surfers Association',
+    description: 'Creating ocean experiences and community for people of all abilities.',
+    icon: 'fa-solid fa-water',
+  },
+  {
+    name: 'Reef Restoration Foundation',
+    description: 'Coral restoration and reef recovery projects on the Great Barrier Reef.',
+    icon: 'fa-solid fa-fish',
+  },
+  {
+    name: "Our Moon's Mission",
+    description: 'Empowering young people through mentorship and community connection.',
+    icon: 'fa-solid fa-moon',
+  },
+];
+---
+
+<section id="purpose" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: copy -->
+      <div data-reveal>
+        <div class="inline-flex items-center gap-2 bg-[#E5F3FA] text-[#26A8FF] text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+          <i class="fa-solid fa-seedling text-xs"></i>
+          Social Enterprise
+        </div>
+        <h2 class="section-title mb-6">
+          IT Expertise That<br />Makes an Impact
+        </h2>
+        <p class="text-[#383E4F] leading-relaxed mb-6">
+          Cirqle Group is a profit-for-purpose business. We channel all profits toward environmental restoration and social causes — so when you engage with us, you're not just getting great tech talent, you're funding a better future.
+        </p>
+        <p class="text-[#383E4F] leading-relaxed mb-8">
+          Our social enterprise model means clients can meet their procurement commitments while backing organisations doing meaningful work in Queensland and beyond.
+        </p>
+        <a href="#enquire" class="btn-primary">
+          Work With Purpose <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Right: partner cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-reveal data-reveal-delay="150">
+        {partners.map(partner => (
+          <div class="bg-[#E5F3FA] rounded-2xl p-5 flex flex-col gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#26A8FF] flex items-center justify-center">
+              <i class={`${partner.icon} text-white text-sm`}></i>
+            </div>
+            <h3 class="font-bold text-[#1F2848] text-sm">{partner.name}</h3>
+            <p class="text-[#383E4F] text-xs leading-relaxed">{partner.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,270 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Instant Valuation"
+  description="Get an indicative value for your Sydney property in minutes based on recent comparable sales."
+  tool="Instant Valuation"
+  phase="Seller Tools"
+>
+  <div class="max-w-2xl mx-auto pt-8">
+
+    <!-- Step indicator -->
+    <div class="flex items-center gap-0 mb-8" id="step-indicator">
+      {[1,2,3].map((s, i) => (
+        <div class="flex items-center flex-1">
+          <div class={`step-dot`} data-step={s} style={`width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;letter-spacing:0.05em;border:2px solid ${s === 1 ? 'var(--color-gold)' : 'rgba(72,72,72,0.3)'};color:${s === 1 ? 'var(--color-gold)' : 'var(--color-text-muted)'};flex-shrink:0;transition:all 0.3s;`}>
+            {s}
+          </div>
+          {i < 2 && <div class="step-line" data-line={s} style={`flex:1;height:2px;background:${s < 1 ? 'var(--color-gold)' : 'rgba(72,72,72,0.2)'};transition:background 0.3s;`}></div>}
+        </div>
+      ))}
+    </div>
+
+    <!-- Step 1: Property details -->
+    <div id="step-1">
+      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+        <span class="eyebrow" style="display:block;margin-bottom:1rem;">Step 1</span>
+        <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;">Tell us about your property</h2>
+
+        <div class="flex flex-col gap-4">
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Suburb</label>
+            <select id="suburb" class="obs-select" style="width:100%;">
+              <option value="">Select a suburb...</option>
+              <option value="mosman">Mosman</option>
+              <option value="double-bay">Double Bay</option>
+              <option value="vaucluse">Vaucluse</option>
+              <option value="cremorne">Cremorne</option>
+              <option value="neutral-bay">Neutral Bay</option>
+              <option value="paddington">Paddington</option>
+              <option value="surry-hills">Surry Hills</option>
+              <option value="balmain">Balmain</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Property Type</label>
+            <div class="grid grid-cols-3 gap-2">
+              {['House', 'Unit / Apt', 'Terrace'].map((t, i) => (
+                <label style="cursor:pointer;text-align:center;">
+                  <input type="radio" name="prop-type" value={t.toLowerCase().replace(' / ', '-')} checked={i === 0} style="display:none;" />
+                  <div class={`ptype-label`} style={`padding:0.75rem;background:var(--color-surface-4);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-primary);border:2px solid ${i === 0 ? 'var(--color-gold)' : 'transparent'};transition:all 0.2s;`}>
+                    {t}
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Bedrooms</label>
+              <select id="bedrooms" class="obs-select">
+                {[1,2,3,4,5].map(n => <option value={n} selected={n === 3}>{n}{n === 5 ? '+' : ''}</option>)}
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Bathrooms</label>
+              <select id="bathrooms" class="obs-select">
+                {[1,2,3,4].map(n => <option value={n} selected={n === 2}>{n}{n === 4 ? '+' : ''}</option>)}
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Car Spaces</label>
+              <select id="carspaces" class="obs-select">
+                {[0,1,2,3].map(n => <option value={n} selected={n === 1}>{n}{n === 3 ? '+' : ''}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <button id="next-1" class="btn-gold" style="width:100%;justify-content:center;margin-top:0.5rem;">
+            Continue →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Property condition -->
+    <div id="step-2" style="display:none;">
+      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+        <span class="eyebrow" style="display:block;margin-bottom:1rem;">Step 2</span>
+        <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;">Property condition & features</h2>
+
+        <div class="flex flex-col gap-5">
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Condition</label>
+            <div class="flex flex-col gap-2">
+              {['As-is / needs work', 'Average / liveable', 'Well-maintained', 'Renovated / updated', 'Brand new / prestige finish'].map((c, i) => (
+                <label style="cursor:pointer;display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:var(--color-surface-4);">
+                  <input type="radio" name="condition" value={i} checked={i === 2} style="accent-color:var(--color-gold);cursor:pointer;" />
+                  <span style="font-size:0.85rem;color:var(--color-text-secondary);">{c}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Premium Features</label>
+            <div class="grid grid-cols-2 gap-2">
+              {['Harbour / water views', 'North-facing aspect', 'Swimming pool', 'Large land / garden', 'Recent renovation', 'Double lock-up garage'].map(f => (
+                <label style="cursor:pointer;display:flex;align-items:center;gap:0.6rem;padding:0.65rem 0.75rem;background:var(--color-surface-4);">
+                  <input type="checkbox" data-feature={f} style="accent-color:var(--color-gold);cursor:pointer;" />
+                  <span style="font-size:0.75rem;color:var(--color-text-secondary);">{f}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button id="back-1" class="btn-outline-gold" style="flex:1;justify-content:center;">← Back</button>
+            <button id="next-2" class="btn-gold" style="flex:2;justify-content:center;">Continue →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Lead gate + result -->
+    <div id="step-3" style="display:none;">
+      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+        <span class="eyebrow" style="display:block;margin-bottom:1rem;">Step 3</span>
+        <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">Almost there</h2>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.7;">Enter your details to receive your estimated property value and a tailored market report.</p>
+
+        <div class="flex flex-col gap-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">First Name</label>
+              <input type="text" id="fname" placeholder="Jane" class="obs-input" style="width:100%;" />
+            </div>
+            <div>
+              <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Last Name</label>
+              <input type="text" id="lname" placeholder="Smith" class="obs-input" style="width:100%;" />
+            </div>
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Email</label>
+            <input type="email" id="email" placeholder="jane@example.com" class="obs-input" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Phone</label>
+            <input type="tel" id="phone" placeholder="04xx xxx xxx" class="obs-input" style="width:100%;" />
+          </div>
+
+          <div class="flex gap-3">
+            <button id="back-2" class="btn-outline-gold" style="flex:1;justify-content:center;">← Back</button>
+            <button id="get-valuation" class="btn-gold" style="flex:2;justify-content:center;">Get My Valuation →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="result" style="display:none;">
+      <div style="background:var(--color-surface-3);padding:2.5rem;text-align:center;margin-bottom:1.5rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">Estimated Value Range</p>
+        <p id="val-low-high" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);line-height:1.1;margin-bottom:0.75rem;"></p>
+        <p id="val-mid" style="font-size:1rem;color:var(--color-text-secondary);margin-bottom:0.5rem;"></p>
+        <p id="val-suburb" style="font-size:0.8rem;color:var(--color-text-muted);">Based on recent comparable sales in your suburb.</p>
+      </div>
+
+      <div style="background:rgba(255,221,121,0.06);border:1px solid rgba(255,221,121,0.2);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Want a precise appraisal?</p>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.7;">This is an automated estimate. For an accurate, obligation-free appraisal from Dan with a full comparable sales report — book below.</p>
+        <a href="/appraisal" class="btn-gold" style="justify-content:center;display:inline-flex;">Book a Free Appraisal →</a>
+      </div>
+    </div>
+
+  </div>
+</ToolLayout>
+
+<script>
+  const MEDIAN: Record<string, { house: number; unit: number; terrace: number }> = {
+    'mosman':      { house: 6200000, unit: 1850000, terrace: 4500000 },
+    'double-bay':  { house: 5400000, unit: 2100000, terrace: 3800000 },
+    'vaucluse':    { house: 7800000, unit: 2400000, terrace: 5500000 },
+    'cremorne':    { house: 3900000, unit: 1250000, terrace: 2800000 },
+    'neutral-bay': { house: 3200000, unit: 1050000, terrace: 2400000 },
+    'paddington':  { house: 3100000, unit: 1200000, terrace: 2600000 },
+    'surry-hills': { house: 1850000, unit:  980000, terrace: 1600000 },
+    'balmain':     { house: 2400000, unit: 1050000, terrace: 2000000 },
+  };
+
+  function goToStep(n: number) {
+    [1,2,3].forEach(s => {
+      (document.getElementById(`step-${s}`) as HTMLElement).style.display = s === n ? 'block' : 'none';
+    });
+
+    // Update step indicators
+    document.querySelectorAll('.step-dot').forEach(dot => {
+      const s = Number((dot as HTMLElement).dataset.step);
+      (dot as HTMLElement).style.borderColor = s <= n ? 'var(--color-gold)' : 'rgba(72,72,72,0.3)';
+      (dot as HTMLElement).style.color       = s <= n ? 'var(--color-gold)' : 'var(--color-text-muted)';
+    });
+    document.querySelectorAll('.step-line').forEach(line => {
+      const s = Number((line as HTMLElement).dataset.line);
+      (line as HTMLElement).style.background = s < n ? 'var(--color-gold)' : 'rgba(72,72,72,0.2)';
+    });
+  }
+
+  document.getElementById('next-1')!.addEventListener('click', () => {
+    if (!(document.getElementById('suburb') as HTMLSelectElement).value) {
+      alert('Please select a suburb.');
+      return;
+    }
+    goToStep(2);
+  });
+
+  document.getElementById('back-1')!.addEventListener('click', () => goToStep(1));
+  document.getElementById('next-2')!.addEventListener('click', () => goToStep(3));
+  document.getElementById('back-2')!.addEventListener('click', () => goToStep(2));
+
+  document.getElementById('get-valuation')!.addEventListener('click', () => {
+    const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+    if (!email) { alert('Please enter your email.'); return; }
+
+    const suburb   = (document.getElementById('suburb') as HTMLSelectElement).value;
+    const propType = (document.querySelector('input[name="prop-type"]:checked') as HTMLInputElement).value;
+    const beds     = Number((document.getElementById('bedrooms') as HTMLSelectElement).value);
+    const condition= Number((document.querySelector('input[name="condition"]:checked') as HTMLInputElement).value);
+    const features = document.querySelectorAll('input[data-feature]:checked').length;
+
+    const medians = MEDIAN[suburb] || { house: 2000000, unit: 900000, terrace: 1500000 };
+    let base = propType.includes('unit') ? medians.unit : propType.includes('terrace') ? medians.terrace : medians.house;
+
+    // Adjust for beds
+    const bedAdj = (beds - 3) * 0.08;
+    base *= (1 + bedAdj);
+
+    // Condition multiplier (0-4 → -10% to +20%)
+    const condMult = [0.90, 0.95, 1.00, 1.10, 1.20][condition];
+    base *= condMult;
+
+    // Premium features (+3% each)
+    base *= (1 + features * 0.03);
+
+    const low  = Math.round(base * 0.92 / 10000) * 10000;
+    const high = Math.round(base * 1.08 / 10000) * 10000;
+    const mid  = Math.round(base / 10000) * 10000;
+
+    const fmt = (n: number) => n >= 1000000 ? `$${(n/1000000).toFixed(2)}M` : `$${(n/1000).toFixed(0)}K`;
+
+    document.getElementById('val-low-high')!.textContent = `${fmt(low)} – ${fmt(high)}`;
+    document.getElementById('val-mid')!.textContent = `Mid-point estimate: ${fmt(mid)}`;
+    document.getElementById('val-suburb')!.textContent = `Based on recent comparable sales in ${suburb.charAt(0).toUpperCase() + suburb.slice(1).replace('-', ' ')}.`;
+
+    // Hide step 3, show result
+    (document.getElementById('step-3') as HTMLElement).style.display = 'none';
+    (document.getElementById('result') as HTMLElement).style.display = 'block';
+  });
+
+  // Property type radio style
+  document.querySelectorAll('input[name="prop-type"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.ptype-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
+      const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.ptype-label') as HTMLElement;
+      if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+    });
+  });
+</script>

@@ -1,0 +1,88 @@
+---
+const navLinks = [
+  { label: 'Listings', href: '/listings' },
+  { label: 'Services', href: '/services' },
+  { label: 'Prestige', href: '/prestige' },
+  { label: 'About', href: '/about' },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="flex items-center justify-between h-[76px]">
+
+      <!-- Logo -->
+      <a href="/" class="flex flex-col leading-none group">
+        <span style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;font-style:italic;color:var(--color-text-primary);letter-spacing:0.04em;transition:color 0.2s;" class="group-hover:text-gold">
+          Dan's
+        </span>
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--color-gold);">
+          Website
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-10">
+        {navLinks.map((link) => (
+          <a href={link.href} class="nav-link-mono">{link.label}</a>
+        ))}
+      </nav>
+
+      <!-- CTA -->
+      <div class="hidden lg:flex items-center gap-6">
+        <a href="/contact" class="nav-link-mono">Contact</a>
+        <a href="/appraisal" class="btn-gold" style="padding:0.7rem 1.5rem;">
+          Free Appraisal
+        </a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button id="mobile-toggle" class="lg:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+        <span id="bar1" class="block w-6 h-px transition-all duration-300" style="background:var(--color-text-secondary);"></span>
+        <span id="bar2" class="block w-6 h-px transition-all duration-300" style="background:var(--color-text-secondary);"></span>
+        <span id="bar3" class="block w-4 h-px transition-all duration-300 self-end" style="background:var(--color-text-secondary);"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden overflow-hidden transition-all duration-300"
+    style="max-height:0;background:rgba(19,19,19,0.98);backdrop-filter:blur(20px);"
+  >
+    <div class="max-w-[1400px] mx-auto px-8 py-6 flex flex-col gap-5">
+      {navLinks.map((link) => (
+        <a href={link.href} class="nav-link-mono">{link.label}</a>
+      ))}
+      <div class="pt-4 flex flex-col gap-3" style="border-top:1px solid rgba(72,72,72,0.2);">
+        <a href="/contact" class="nav-link-mono">Contact</a>
+        <a href="/appraisal" class="btn-gold self-start">Free Appraisal</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const mobileToggle = document.getElementById('mobile-toggle')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  const bar3 = document.getElementById('bar3')!;
+  let menuOpen = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('glass-nav');
+      header.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+    } else {
+      header.classList.remove('glass-nav');
+      header.style.boxShadow = 'none';
+    }
+  });
+
+  mobileToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.style.maxHeight = menuOpen ? '400px' : '0';
+    bar3.style.width = menuOpen ? '1.5rem' : '1rem';
+  });
+</script>

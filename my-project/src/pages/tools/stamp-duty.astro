@@ -1,0 +1,241 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Stamp Duty Calculator"
+  description="Calculate NSW stamp duty, first home buyer concessions, and upfront purchase costs for your property."
+  tool="Stamp Duty"
+  phase="Buyer Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Purchase price -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Purchase Price</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="price-display">$1,200,000</span>
+        </div>
+        <input type="range" id="purchase-price" min="100000" max="10000000" step="10000" value="1200000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$100K</span><span>$10M</span>
+        </div>
+      </div>
+
+      <!-- Buyer type -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Buyer Type</label>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <label class="buyer-type-option" style="cursor:pointer;">
+            <input type="radio" name="buyer-type" value="standard" checked style="display:none;" />
+            <div class="buyer-label" style="padding:1rem;background:var(--color-surface-4);text-align:center;transition:all 0.2s;border:2px solid var(--color-gold);">
+              <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);">Standard</p>
+              <p style="font-size:0.65rem;color:var(--color-text-muted);margin-top:0.25rem;">Owner occupier</p>
+            </div>
+          </label>
+          <label class="buyer-type-option" style="cursor:pointer;">
+            <input type="radio" name="buyer-type" value="fhb" style="display:none;" />
+            <div class="buyer-label" style="padding:1rem;background:var(--color-surface-4);text-align:center;transition:all 0.2s;border:2px solid transparent;">
+              <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);">First Home</p>
+              <p style="font-size:0.65rem;color:var(--color-text-muted);margin-top:0.25rem;">FHB concessions</p>
+            </div>
+          </label>
+          <label class="buyer-type-option" style="cursor:pointer;">
+            <input type="radio" name="buyer-type" value="investor" style="display:none;" />
+            <div class="buyer-label" style="padding:1rem;background:var(--color-surface-4);text-align:center;transition:all 0.2s;border:2px solid transparent;">
+              <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);">Investor</p>
+              <p style="font-size:0.65rem;color:var(--color-text-muted);margin-top:0.25rem;">Investment property</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Property type -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Property Type</label>
+        <select id="property-type" class="obs-select" style="width:100%;">
+          <option value="established">Established Home</option>
+          <option value="new">New Home / Off-the-Plan</option>
+          <option value="vacant">Vacant Land</option>
+        </select>
+      </div>
+
+      <!-- Additional costs -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Include Additional Costs</label>
+        <div class="flex flex-col gap-3">
+          <label class="flex items-center gap-3" style="cursor:pointer;">
+            <input type="checkbox" id="incl-legal" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Legal / Conveyancing <span style="color:var(--color-text-muted);">(est. $2,000)</span></span>
+          </label>
+          <label class="flex items-center gap-3" style="cursor:pointer;">
+            <input type="checkbox" id="incl-inspection" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Building & Pest Inspection <span style="color:var(--color-text-muted);">(est. $700)</span></span>
+          </label>
+          <label class="flex items-center gap-3" style="cursor:pointer;">
+            <input type="checkbox" id="incl-mortgage-reg" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Mortgage Registration <span style="color:var(--color-text-muted);">(est. $160)</span></span>
+          </label>
+          <label class="flex items-center gap-3" style="cursor:pointer;">
+            <input type="checkbox" id="incl-lenders" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Lender's Mortgage Insurance <span style="color:var(--color-text-muted);">(&lt;20% deposit)</span></span>
+          </label>
+          <div id="lmi-row" style="display:none;padding-left:1.75rem;">
+            <label style="font-size:0.65rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;">Deposit %</label>
+            <input type="range" id="deposit-pct" min="5" max="19" step="1" value="10"
+              style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+              <span>5%</span><span id="deposit-display">10%</span><span>19%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Purchase Cost Breakdown
+        </h2>
+
+        <div id="breakdown" class="flex flex-col gap-0"></div>
+
+        <!-- FHB grant notice -->
+        <div id="fhb-grant" style="display:none;margin-top:1rem;padding:1rem;background:rgba(168,230,163,0.08);border-left:3px solid #a8e6a3;">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a8e6a3;margin-bottom:0.3rem;">First Home Owner Grant</p>
+          <p style="font-size:0.8rem;color:var(--color-text-secondary);">You may be eligible for the $10,000 NSW FHOG on new homes under $600K.</p>
+        </div>
+
+        <div style="margin-top:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Total Upfront Costs</p>
+          <p id="total-costs" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+          <p id="total-pct" style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.4rem;"></p>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Estimate only. NSW rates current as of 2024. Confirm with your solicitor and the NSW Revenue Office.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Book a Free Appraisal
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
+  // NSW Stamp Duty rates 2024
+  function calcStampDuty(price: number, buyerType: string, propType: string): { duty: number; label: string } {
+    // First Home Buyer exemptions
+    if (buyerType === 'fhb') {
+      if (price <= 800000) return { duty: 0, label: 'FHB Exempt' };
+      if (price <= 1000000) {
+        // Partial concession — linear taper
+        const fullDuty = calcBaseDuty(price);
+        const concession = fullDuty * (1 - (price - 800000) / 200000);
+        return { duty: fullDuty - concession, label: 'FHB Concessional' };
+      }
+    }
+    return { duty: calcBaseDuty(price), label: 'Standard Rate' };
+  }
+
+  function calcBaseDuty(price: number): number {
+    // NSW transfer duty thresholds (residential, 2024)
+    if (price <= 16000)   return price * 0.0125;
+    if (price <= 35000)   return 200  + (price - 16000)  * 0.015;
+    if (price <= 93000)   return 485  + (price - 35000)  * 0.0175;
+    if (price <= 351000)  return 1500 + (price - 93000)  * 0.035;
+    if (price <= 1168000) return 10530+ (price - 351000) * 0.045;
+    return 47295 + (price - 1168000) * 0.055;
+  }
+
+  function calcLMI(price: number, depositPct: number): number {
+    const lvr = 1 - depositPct / 100;
+    const loan = price * lvr;
+    // Rough LMI estimate table
+    if (depositPct >= 20) return 0;
+    if (depositPct >= 15) return loan * 0.006;
+    if (depositPct >= 10) return loan * 0.012;
+    return loan * 0.025;
+  }
+
+  function calc() {
+    const price      = Number((document.getElementById('purchase-price') as HTMLInputElement).value);
+    const buyerType  = (document.querySelector('input[name="buyer-type"]:checked') as HTMLInputElement).value;
+    const propType   = (document.getElementById('property-type') as HTMLSelectElement).value;
+    const inclLegal  = (document.getElementById('incl-legal') as HTMLInputElement).checked;
+    const inclInsp   = (document.getElementById('incl-inspection') as HTMLInputElement).checked;
+    const inclMortReg= (document.getElementById('incl-mortgage-reg') as HTMLInputElement).checked;
+    const inclLMI    = (document.getElementById('incl-lenders') as HTMLInputElement).checked;
+    const depositPct = Number((document.getElementById('deposit-pct') as HTMLInputElement).value);
+
+    document.getElementById('price-display')!.textContent = `$${price.toLocaleString()}`;
+
+    const { duty, label } = calcStampDuty(price, buyerType, propType);
+    const legal     = inclLegal   ? 2000 : 0;
+    const inspection= inclInsp    ? 700  : 0;
+    const mortReg   = inclMortReg ? 160  : 0;
+    const lmi       = inclLMI     ? calcLMI(price, depositPct) : 0;
+
+    const total = duty + legal + inspection + mortReg + lmi;
+
+    const rows = [
+      { label: `Stamp Duty (${label})`, value: duty },
+      ...(inclLegal   ? [{ label: 'Legal / Conveyancing',     value: legal }] : []),
+      ...(inclInsp    ? [{ label: 'Building & Pest Inspection',value: inspection }] : []),
+      ...(inclMortReg ? [{ label: 'Mortgage Registration',     value: mortReg }] : []),
+      ...(inclLMI     ? [{ label: `LMI (${100-depositPct}% LVR)`, value: lmi }] : []),
+    ];
+
+    const breakdown = document.getElementById('breakdown')!;
+    breakdown.innerHTML = rows.map(r => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.8rem;color:var(--color-text-muted);">${r.label}</span>
+        <span style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);">${fmt(r.value)}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('total-costs')!.textContent = fmt(total);
+    document.getElementById('total-pct')!.textContent = `${((total / price) * 100).toFixed(1)}% of purchase price`;
+
+    // FHB grant notice
+    const fhbGrant = document.getElementById('fhb-grant')!;
+    fhbGrant.style.display = (buyerType === 'fhb' && propType === 'new' && price <= 600000) ? 'block' : 'none';
+  }
+
+  // LMI toggle
+  (document.getElementById('incl-lenders') as HTMLInputElement).addEventListener('change', (e) => {
+    const row = document.getElementById('lmi-row')!;
+    row.style.display = (e.target as HTMLInputElement).checked ? 'block' : 'none';
+    calc();
+  });
+
+  // Deposit slider
+  (document.getElementById('deposit-pct') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('deposit-display')!.textContent = `${(e.target as HTMLInputElement).value}%`;
+    calc();
+  });
+
+  // Buyer type radio style
+  document.querySelectorAll('input[name="buyer-type"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.buyer-label').forEach(l => {
+        (l as HTMLElement).style.borderColor = 'transparent';
+      });
+      const label = (radio as HTMLInputElement).closest('label')?.querySelector('.buyer-label') as HTMLElement;
+      if (label) label.style.borderColor = 'var(--color-gold)';
+      calc();
+    });
+  });
+
+  document.querySelectorAll('input:not([name="buyer-type"]), select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>
