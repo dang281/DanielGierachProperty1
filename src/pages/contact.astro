@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Daniel Gierach Property" description="Speak directly with Daniel Gierach, Brisbane Inner-East Property Sales Specialist. Get a free appraisal or access off-market opportunities.">
+
+<!-- ════════════════════════════════════════════
+     FULL-VIEWPORT SPLIT LAYOUT
+     Left: dark hero  |  Right: form
+════════════════════════════════════════════ -->
+<section style="display:grid;grid-template-columns:1fr 1fr;min-height:100dvh;" class="contact-split">
+
+  <!-- ── LEFT: dark hero panel ── -->
+  <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;">
+
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1920&q=85"
+        alt="Brisbane inner-east property"
+        class="w-full h-full object-cover"
+        style="filter:grayscale(8%) brightness(0.55);"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0" style="background:linear-gradient(150deg,rgba(10,8,6,0.55) 0%,rgba(10,8,6,0.25) 100%);"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <span class="eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Get In Touch</span>
+
+      <h1 class="reveal" data-delay="60"
+        style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
+        Your Next Move<br/>
+        <em style="font-style:italic;color:#f5d07a;">Starts Here.</em>
+      </h1>
+
+      <p class="reveal" data-delay="120"
+        style="font-size:0.88rem;color:rgba(240,236,228,0.6);line-height:1.85;max-width:38ch;margin-bottom:2.5rem;">
+        Whether you're selling, buying, or exploring off-market, a direct, no-pressure conversation is the best place to start.
+      </p>
+
+      <!-- Contact details -->
+      <div class="reveal" data-delay="180" style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.65);margin-bottom:0.3rem;">Phone</p>
+          <a href="tel:+61412523821"
+            style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='#f0ece4'">0412 523 821</a>
+          <p style="font-size:0.6rem;color:rgba(240,236,228,0.6);margin-top:0.15rem;letter-spacing:0.06em;">Available 7 days</p>
+        </div>
+
+        <div style="width:2.5rem;height:1px;background:rgba(255,255,255,0.12);"></div>
+
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.65);margin-bottom:0.3rem;">Email</p>
+          <a href="mailto:daniel.gierach@raywhite.com"
+            style="font-family:var(--font-sans);font-size:0.82rem;font-weight:500;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='#f0ece4'">daniel.gierach@raywhite.com</a>
+        </div>
+
+        <div style="width:2.5rem;height:1px;background:rgba(255,255,255,0.12);"></div>
+
+        <div style="display:flex;gap:0.85rem;align-items:center;">
+          <a href="https://www.instagram.com/dgierach/" target="_blank" rel="noopener" aria-label="Instagram"
+            style="color:rgba(240,236,228,0.45);transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='rgba(240,236,228,0.45)'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/danielgierach" target="_blank" rel="noopener" aria-label="LinkedIn"
+            style="color:rgba(240,236,228,0.45);transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='rgba(240,236,228,0.45)'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT: form panel ── -->
+  <div class="flex flex-col justify-center overflow-y-auto" style="background:var(--color-surface-1);padding:8rem 4rem 4rem;">
+
+    <div class="reveal" data-delay="80" style="max-width:480px;width:100%;">
+
+      <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Send a Message</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:1.75rem;">
+        Daniel will respond <em style="font-style:italic;">promptly.</em>
+      </h2>
+
+      <form name="contact" method="POST" style="display:flex;flex-direction:column;gap:1rem;">
+
+        <!-- Intent selector -->
+        <div>
+          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.5rem;">
+            I'm looking to…
+          </label>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;" id="intent-group">
+            {['Sell', 'Buy', 'A Market Update'].map((opt) => (
+              <button type="button" class="intent-btn"
+                data-value={opt.toLowerCase()}
+                style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.65rem 0.3rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);color:#44403c;cursor:pointer;transition:all 0.18s;">
+                {opt === 'A Market Update' ? 'A Market Update' : opt === 'Sell' ? 'Sell' : 'Buy / Rent'}
+              </button>
+            ))}
+          </div>
+          <input type="hidden" name="intent" id="intent-value" />
+        </div>
+
+        <!-- First Name + Last Name -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div>
+            <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+              First Name <span style="color:#c4912a;">*</span>
+            </label>
+            <input type="text" name="first_name" required placeholder="Daniel"
+              class="obs-input"
+              onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
+              onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+            />
+          </div>
+          <div>
+            <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+              Last Name <span style="color:#c4912a;">*</span>
+            </label>
+            <input type="text" name="last_name" required placeholder="Gierach"
+              class="obs-input"
+              onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
+              onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+            />
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+            Phone <span style="color:#c4912a;">*</span>
+          </label>
+          <input type="tel" name="phone" required placeholder="04xx xxx xxx"
+            class="obs-input"
+            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
+            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+            Email <span style="color:#c4912a;">*</span>
+          </label>
+          <input type="email" name="email" required placeholder="your@email.com"
+            class="obs-input"
+            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
+            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+          />
+        </div>
+
+        <!-- Property Address -->
+        <div>
+          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+            Property Address
+            <span style="font-weight:400;text-transform:none;color:#78716c;font-size:0.58rem;letter-spacing:0.04em;"> (optional)</span>
+          </label>
+          <input type="text" name="property_address" placeholder="37 Example Road, Seven Hills 4170"
+            class="obs-input"
+            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
+            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+          />
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+            Message
+            <span style="font-weight:400;text-transform:none;color:#78716c;font-size:0.58rem;letter-spacing:0.04em;"> (optional)</span>
+          </label>
+          <textarea name="message" rows="2"
+            placeholder="Timeline, budget, questions…"
+            class="obs-input"
+            style="height:auto;padding-top:0.65rem;padding-bottom:0.65rem;resize:none;"
+            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
+            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="submit-btn" class="btn-gold"
+          style="width:100%;justify-content:center;padding:1rem;"
+        >
+          <span id="submit-label">Send My Enquiry</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .contact-split {
+      grid-template-columns: 1fr !important;
+    }
+    .contact-split > div:first-child {
+      min-height: 50vh;
+      padding: 7rem 2rem 3rem !important;
+    }
+    .contact-split > div:last-child {
+      padding: 3rem 2rem 4rem !important;
+    }
+  }
+  input::placeholder, textarea::placeholder { color: var(--color-text-muted); }
+  input:-webkit-autofill, textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-surface-4) inset;
+    -webkit-text-fill-color: #1c1917;
+  }
+  .intent-btn.active {
+    background: rgba(196,145,42,0.1) !important;
+    border-color: #c4912a !important;
+    color: #c4912a !important;
+  }
+</style>
+
+<style is:global>
+  /* Force nav into cream/glass state on the contact page.
+     Must be global so it reaches the Nav component outside this page's scope.
+     !important beats the Nav's inline style overrides set by the scroll handler. */
+  body.contact-page #site-header {
+    background: rgba(247,245,240,0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(28,25,23,0.08) !important;
+    box-shadow: 0 4px 24px rgba(28,25,23,0.08) !important;
+  }
+  body.contact-page #logo-name {
+    color: var(--color-text-primary) !important;
+  }
+  body.contact-page #nav-links .nav-link-mono,
+  body.contact-page #nav-cta .nav-link-mono {
+    color: var(--color-text-secondary) !important;
+  }
+</style>
+
+<script>
+  // Mark body so global CSS above can target the nav on this page only
+  document.body.classList.add('contact-page');
+
+  const header = document.getElementById('site-header')!;
+  const logoName = document.getElementById('logo-name')!;
+  const navLinkEls = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
+
+  // Apply glass state immediately
+  header.classList.add('glass-nav');
+  logoName.style.color = 'var(--color-text-primary)';
+  navLinkEls.forEach(el => el.style.color = '');
+
+  // Re-apply after every scroll event (runs after Nav's handler via setTimeout)
+  window.addEventListener('scroll', () => {
+    setTimeout(() => {
+      header.classList.add('glass-nav');
+      header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
+      logoName.style.color = 'var(--color-text-primary)';
+      navLinkEls.forEach(el => el.style.color = '');
+    }, 0);
+  });
+
+  const btns = document.querySelectorAll<HTMLButtonElement>('.intent-btn');
+  const intentInput = document.getElementById('intent-value') as HTMLInputElement;
+  const submitLabel = document.getElementById('submit-label')!;
+
+  const ctaMap: Record<string, string> = {
+    sell: 'Request My Appraisal',
+    buy: 'Get In Touch',
+    'a market update': 'Get A Market Update',
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const val = btn.dataset.value!;
+      intentInput.value = val;
+      submitLabel.textContent = ctaMap[val] ?? 'Send My Enquiry';
+    });
+  });
+</script>
+
+</Layout>
