@@ -197,7 +197,7 @@ const faqSchema = {
               style="font-family:var(--font-serif);font-size:1.8rem;font-weight:400;color:#f0ece4;line-height:1;letter-spacing:-0.02em;">
               {s.prefix}0{s.suffix}
             </p>
-            <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.45);margin-top:0.4rem;">
+            <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.7);margin-top:0.4rem;">
               {s.label}
             </p>
           </div>
@@ -208,7 +208,7 @@ const faqSchema = {
 
   <!-- Scroll nudge -->
   <div class="absolute bottom-8 right-12 hidden lg:flex flex-col items-center gap-2">
-    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(161,161,161,0.4);writing-mode:vertical-rl;">Scroll</span>
+    <span aria-hidden="true" style="font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(161,161,161,0.7);writing-mode:vertical-rl;">Scroll</span>
     <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,221,121,0.4),transparent);"></div>
   </div>
 </section>
@@ -422,9 +422,9 @@ const faqSchema = {
                 {r.n}
               </span>
               <div>
-                <h4 style="font-family:var(--font-sans);font-size:0.8rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:0.6rem;">
+                <h3 style="font-family:var(--font-sans);font-size:0.8rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:0.6rem;">
                   {r.title}
-                </h4>
+                </h3>
                 <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;">
                   {r.body}
                 </p>
