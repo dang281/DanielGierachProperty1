@@ -606,6 +606,35 @@ const showcaseTools = [
   }, { threshold: 0.5 });
 
   counters.forEach(el => countObserver.observe(el));
+
+  // Track hero CTA click
+  document.querySelector('.hero-cta')?.addEventListener('click', function() {
+    gtag('event', 'hero_cta_click', {
+      event_category: 'engagement',
+      event_label: 'Find out how we do this'
+    });
+  });
+
+  // Track listing card clicks
+  document.querySelectorAll('.listing-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      const address = card.querySelector('h3')?.textContent || 'unknown';
+      gtag('event', 'listing_click', {
+        event_category: 'listings',
+        event_label: address
+      });
+    });
+  });
+
+  // Track tool card clicks
+  document.querySelectorAll('a[href^="/tools/"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      gtag('event', 'tool_click', {
+        event_category: 'tools',
+        event_label: link.getAttribute('href') || 'unknown'
+      });
+    });
+  });
 </script>
 
 <style>

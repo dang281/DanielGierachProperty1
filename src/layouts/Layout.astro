@@ -146,6 +146,41 @@ const globalSchema = {
       gtag('js', new Date());
       gtag('config', 'G-K1P37GL73K');
     </script>
+    <!-- GA4 Enhanced Event Tracking -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track all link clicks
+        document.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            const href = link.getAttribute('href') || '';
+
+            // Phone clicks
+            if (href.startsWith('tel:')) {
+              gtag('event', 'phone_click', {
+                event_category: 'contact',
+                event_label: href.replace('tel:', '')
+              });
+            }
+
+            // Email clicks
+            if (href.startsWith('mailto:')) {
+              gtag('event', 'email_click', {
+                event_category: 'contact',
+                event_label: href.replace('mailto:', '')
+              });
+            }
+
+            // Outbound links
+            if (href.startsWith('http') && !href.includes('danielgierach.com')) {
+              gtag('event', 'outbound_click', {
+                event_category: 'outbound',
+                event_label: href
+              });
+            }
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <Nav />
@@ -156,13 +191,13 @@ const globalSchema = {
 
     <!-- Mobile sticky call bar -->
     <div class="mobile-call-bar">
-      <a href="tel:+61412523821" class="mobile-call-btn">
+      <a href="tel:+61412523821" class="mobile-call-btn" onclick="gtag('event', 'mobile_call_click', { event_category: 'contact', event_label: 'Mobile Call Bar' })">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/>
         </svg>
         Call Daniel
       </a>
-      <a href="/appraisal" class="mobile-appraisal-btn">
+      <a href="/appraisal" class="mobile-appraisal-btn" onclick="gtag('event', 'mobile_appraisal_click', { event_category: 'lead', event_label: 'Mobile Call Bar' })">
         Request an Appraisal
       </a>
     </div>

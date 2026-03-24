@@ -388,6 +388,15 @@ import Layout from '../layouts/Layout.astro';
       tick.classList.remove('show');
     });
   });
+
+  // Track contact form submission
+  document.querySelector('form')?.addEventListener('submit', function() {
+    const intent = (document.getElementById('intent-value') as HTMLInputElement)?.value || 'unknown';
+    gtag('event', 'contact_form_submit', {
+      event_category: 'lead',
+      event_label: intent
+    });
+  });
 </script>
 
 </Layout>

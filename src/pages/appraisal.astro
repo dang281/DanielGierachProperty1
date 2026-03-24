@@ -159,6 +159,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Submit -->
         <button type="submit" class="btn-gold"
           style="width:100%;justify-content:center;padding:1rem;margin-top:0.5rem;"
+          onclick="gtag('event', 'appraisal_cta_click', { event_category: 'lead', event_label: 'Request My Appraisal' })"
         >
           Request My Appraisal
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -261,6 +262,14 @@ import Layout from '../layouts/Layout.astro';
       logoName.style.color = 'var(--color-text-primary)';
       navLinkEls.forEach(el => el.style.color = '');
     }, 0);
+  });
+
+  // Track appraisal form submission
+  document.querySelector('form[name="appraisal"], form[action*="formspree"]')?.addEventListener('submit', function() {
+    gtag('event', 'appraisal_form_submit', {
+      event_category: 'lead',
+      event_label: 'Appraisal Request'
+    });
   });
 </script>
 
