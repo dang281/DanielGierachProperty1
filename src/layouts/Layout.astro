@@ -17,6 +17,8 @@ const {
   preloadImage,
 } = Astro.props;
 
+const canonicalURL = new URL(Astro.url.pathname, 'https://www.danielgierach.com').href;
+
 const globalSchema = {
   "@context": "https://schema.org",
   "@type": ["RealEstateAgent", "LocalBusiness"],
@@ -113,6 +115,7 @@ const globalSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     {preloadImage && <link rel="preload" as="image" href={preloadImage} imagesrcset={`${preloadImage.replace(/w=\d+/, 'w=640')} 640w, ${preloadImage.replace(/w=\d+/, 'w=1200')} 1200w, ${preloadImage.replace(/w=\d+/, 'w=1440')} 1440w`} imagesizes="100vw" fetchpriority="high" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -131,7 +134,7 @@ const globalSchema = {
     <meta property="og:site_name" content="Daniel Gierach Property" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://www.danielgierach.com" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
