@@ -19,10 +19,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <div class="flex items-center gap-4 mb-3">
           <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="sale-display">$2,000,000</span>
         </div>
-        <input type="range" id="sale-price" min="400000" max="10000000" step="10000" value="2000000"
+        <input type="range" id="sale-price" min="400000" max="30000000" step="25000" value="2000000"
           style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
         <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
-          <span>$400K</span><span>$10M</span>
+          <span>$400K</span><span>$30M</span>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div style="background:var(--color-surface-3);padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Agent Commission Rate</label>
         <div class="flex items-center gap-3">
-          <input type="range" id="commission-rate" min="1.5" max="3.5" step="0.1" value="2.5"
+          <input type="range" id="commission-rate" min="2" max="3.5" step="0.1" value="2.5"
             style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
           <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4rem;text-align:center;">
             <span id="commission-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">2.5%</span>
