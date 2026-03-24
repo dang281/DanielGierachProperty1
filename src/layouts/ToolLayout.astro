@@ -12,6 +12,26 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
 ---
 
 <Layout title={`${title} | Dan's Website`} description={description}>
+<script>
+  // Tool pages have a light background from the top — force nav into its scrolled state immediately
+  (function () {
+    function applyLightNav() {
+      const header = document.getElementById('site-header');
+      const logoName = document.getElementById('logo-name');
+      const navLinks = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
+      if (!header) return;
+      header.classList.add('glass-nav');
+      header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
+      if (logoName) logoName.style.color = 'var(--color-text-primary)';
+      navLinks.forEach(el => el.style.color = '');
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyLightNav);
+    } else {
+      applyLightNav();
+    }
+  })();
+</script>
 
   <!-- Tool header -->
   <div style="background:var(--color-surface-1);padding-top:8rem;padding-bottom:3rem;border-bottom:1px solid rgba(72,72,72,0.15);">

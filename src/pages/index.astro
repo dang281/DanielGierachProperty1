@@ -112,12 +112,12 @@ const showcaseTools = [
 ];
 ---
 
-<Layout>
+<Layout title="Daniel Gierach Property | Ray White Bulimba" description="Brisbane inner-east real estate agent. Daniel Gierach specialises in selling homes across Camp Hill, Norman Park, Hawthorne, Balmoral and surrounds. Ray White Bulimba. Call 0412 523 821.">
 
 <!-- ════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════ -->
-<section class="relative min-h-dvh flex items-center overflow-hidden" style="background:var(--color-base);">
+<section class="relative min-h-dvh sm:min-h-dvh flex items-center overflow-hidden hero-section" style="background:var(--color-base);">
 
   <!-- Parallax bg -->
   <div class="absolute inset-0 z-0" id="hero-bg">
@@ -133,42 +133,43 @@ const showcaseTools = [
   </div>
 
   <!-- Glass card -->
-  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-28 pb-20">
-    <div class="max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-16 sm:pb-20">
+    <div class="hero-card max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
 
-      <span class="eyebrow mb-5 reveal" data-delay="0" style="color:#f5d07a;">Brisbane Property Sales Specialist</span>
+      <span class="eyebrow mb-5 reveal" data-delay="200" style="color:#f5d07a;">Brisbane Property Sales Specialist</span>
 
-      <h1 class="reveal" data-delay="80"
+      <h1 class="hero-h1 reveal" data-delay="380"
         style="font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;">
         A More Strategic Way<br />
         <em style="font-style:italic;color:var(--color-gold);">to Sell Your Property in Brisbane.</em>
       </h1>
 
-      <p class="reveal" data-delay="140"
-        style="font-size:1rem;color:rgba(240,236,228,0.72);line-height:1.8;max-width:46ch;margin-bottom:1rem;">
+      <p class="reveal" data-delay="560"
+        style="font-size:1rem;color:rgba(240,236,228,0.72);line-height:1.8;max-width:46ch;margin-bottom:2.5rem;">
         Most properties don't underperform because of the market. They underperform because of how they're positioned.
       </p>
 
-      <p class="reveal" data-delay="180"
+      <p class="hero-p2 reveal" data-delay="680"
         style="font-size:1rem;color:rgba(240,236,228,0.72);line-height:1.8;max-width:46ch;margin-bottom:2.5rem;">
         We use real buyer data, targeted marketing, and structured negotiation to create competition and drive stronger results.
       </p>
 
-      <div class="flex flex-wrap gap-4 reveal" data-delay="260">
-        <a href="/appraisal" class="btn-gold">
-          Get Your Strategic Property Assessment
+      <div class="flex flex-wrap gap-4 reveal" data-delay="820">
+        <a href="/appraisal" class="btn-gold hero-cta">
+          Find out how we do this
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
+        <p class="hero-trust" style="font-size:0.65rem;color:rgba(240,236,228,0.45);letter-spacing:0.12em;text-transform:uppercase;font-family:var(--font-sans);align-self:center;">Trusted by 50+ Brisbane families</p>
       </div>
 
       <!-- Stats -->
-      <div class="flex justify-between mt-10 pt-8 reveal" data-delay="320"
+      <div class="flex justify-between mt-10 pt-8 reveal" data-delay="980"
         style="border-top:1px solid rgba(255,255,255,0.12);">
         {stats.map((s) => (
           <div class="flex-1 text-center">
             <p class="stat-counter" data-value={s.value} data-suffix={s.suffix} data-prefix={s.prefix}
               style="font-family:var(--font-serif);font-size:1.8rem;font-weight:400;color:#f0ece4;line-height:1;letter-spacing:-0.02em;">
-              {s.prefix}{s.value}{s.suffix}
+              {s.prefix}0{s.suffix}
             </p>
             <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.45);margin-top:0.4rem;">
               {s.label}
@@ -190,7 +191,7 @@ const showcaseTools = [
 <!-- ════════════════════════════════════════════
      MARQUEE RIBBON
 ════════════════════════════════════════════ -->
-<div style="background:var(--color-surface-2);border-top:1px solid rgba(72,72,72,0.12);border-bottom:1px solid rgba(72,72,72,0.12);padding:1.1rem 0;overflow:hidden;">
+<div style="background:#1c1917;padding:1.1rem 0;overflow:hidden;">
   <div class="marquee-track">
     {[
       'Family Homes',
@@ -208,47 +209,15 @@ const showcaseTools = [
       'Land & Development Sites',
       'Off-Market Access',
     ].map((item, i) => (
-      <span class="flex items-center gap-5 flex-shrink-0 px-10" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);">
+      <span class="flex items-center gap-5 flex-shrink-0 px-10" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;">
         {item}
-        <span style={`display:inline-block;width:4px;height:4px;background:${i % 2 === 0 ? 'var(--color-gold)' : 'rgba(72,72,72,0.5)'};`}></span>
+        <span style="display:inline-block;width:4px;height:4px;background:rgba(196,145,42,0.35);border-radius:50%;"></span>
       </span>
     ))}
   </div>
 </div>
 
 
-<!-- ════════════════════════════════════════════
-     SEARCH WIDGET
-════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-1);">
-  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-
-    <!-- Estimate panel -->
-    <div id="panel-estimate" class="search-panel py-7">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-        <div>
-          <p style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;font-style:italic;color:var(--color-text-primary);margin-bottom:0.4rem;">
-            What is your property worth?
-          </p>
-          <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.6;max-width:44ch;">
-            Get an instant digital property report, powered by Ray White, no obligation.
-          </p>
-        </div>
-        <a
-          href="https://raywhitecollective.com.au/property-report/my-property-value?da_email_id=DanielGierach"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-gold"
-          style="flex-shrink:0;"
-        >
-          Get My Free Property Report
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 
 <!-- ════════════════════════════════════════════
@@ -278,18 +247,14 @@ const showcaseTools = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
       {listings.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener noreferrer"
-          class="reveal" data-delay={i * 80}
-          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
-          onmouseover="this.style.background='#edeae3'"
-          onmouseout="this.style.background='#ffffff'"
+          class="card-reveal listing-card" data-delay={i * 130}
+          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;"
         >
           <!-- Image -->
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
             <img src={p.image} alt={p.address} width="800" height="600"
               loading={i === 0 ? 'eager' : 'lazy'}
-              style={`width:100%;height:100%;object-fit:cover;transition:transform 0.4s;${p.tag === 'Sold' ? 'filter:grayscale(30%);' : ''}`}
-              onmouseover="this.style.transform='scale(1.04)'"
-              onmouseout="this.style.transform='scale(1)'"
+              style={`width:100%;height:100%;object-fit:cover;${p.tag === 'Sold' ? 'filter:grayscale(30%);' : ''}`}
             />
             <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;background:${p.tag === 'Sold' ? '#44403c' : p.tag === 'Pre-Market' ? '#a8e6a3' : p.tag === 'Auction' ? '#7ec8e3' : '#f5d07a'};color:${p.tag === 'Sold' ? '#f0ece4' : '#0a0806'};padding:0.3rem 0.65rem;`}>
               {p.tag}
@@ -453,6 +418,55 @@ const showcaseTools = [
 
 
 <!-- ════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="testimonial-header" style="text-align:center;margin-bottom:3.5rem;">
+      <span class="eyebrow reveal" style="display:block;margin-bottom:0.75rem;">Client Feedback</span>
+      <h2 class="reveal" data-delay="60" style="font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:400;color:var(--color-text-primary);line-height:1.15;letter-spacing:-0.01em;">
+        What clients say
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-px reveal" style="background:rgba(28,25,23,0.08);">
+
+      <div style="background:var(--color-surface-0);padding:2.75rem 3rem;">
+        <div style="display:flex;gap:0.25rem;margin-bottom:1.5rem;">
+          {[1,2,3,4,5].map(() => (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ))}
+        </div>
+        <p style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.75rem;font-style:italic;">
+          "Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. His advice was honest and transparent, and the whole process felt organised and stress-free. The result went well above and beyond expectations, and I would not hesitate to recommend Daniel to anyone seeking a professional and genuine agent."
+        </p>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:2rem;height:1px;background:var(--color-gold);"></div>
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);">Seller · Brisbane Inner East</span>
+        </div>
+      </div>
+
+      <div style="background:var(--color-surface-0);padding:2.75rem 3rem;">
+        <div style="display:flex;gap:0.25rem;margin-bottom:1.5rem;">
+          {[1,2,3,4,5].map(() => (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ))}
+        </div>
+        <p style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.75rem;font-style:italic;">
+          "We had a great experience working with Daniel through our buying process. He was super honest, never pushy, and made the whole process way less stressful than we had previously experienced. He explained everything clearly and made us feel comfortable every step of the way. Daniel is a genuinely solid, trustworthy person. Highly recommend."
+        </p>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:2rem;height:1px;background:var(--color-gold);"></div>
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);">Buyer · Brisbane Inner East</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
      APPRAISAL CTA
 ════════════════════════════════════════════ -->
 <section class="relative overflow-hidden" style="padding:7rem 0;">
@@ -512,20 +526,24 @@ const showcaseTools = [
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {showcaseTools.map((tool, i) => (
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {[
+        { href: '/tools/selling-costs',  phase: 'Seller', label: 'Selling Cost Calculator', desc: 'See your true net proceeds after all selling costs, agent fees and marketing.' },
+        { href: '/tools/stamp-duty',     phase: 'Buyer',  label: 'Stamp Duty Calculator',   desc: 'QLD stamp duty, first home buyer concessions and total upfront costs.' },
+        { href: '/tools/mortgage',       phase: 'Buyer',  label: 'Mortgage Calculator',     desc: 'Weekly or monthly repayments plus a full amortisation chart.' },
+      ].map((tool, i) => (
         <a href={tool.href}
           class="reveal"
-          data-delay={String((i % 4) * 60)}
-          style="background:var(--color-surface-3);padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;"
+          data-delay={String(i * 80)}
+          style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;"
           onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-4px)'"
           onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
         >
           <span style={`font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${toolPhaseColors[tool.phase] || '#ffdd79'};`}>
             {tool.phase}
           </span>
-          <h3 style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:var(--color-text-primary);">{tool.label}</h3>
-          <p style="font-size:0.75rem;color:var(--color-text-muted);line-height:1.65;flex:1;">{tool.desc}</p>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">{tool.label}</h3>
+          <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.7;flex:1;">{tool.desc}</p>
           <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Use Tool →</span>
         </a>
       ))}
@@ -590,5 +608,32 @@ const showcaseTools = [
 
   counters.forEach(el => countObserver.observe(el));
 </script>
+
+<style>
+  @media (max-width: 640px) {
+    .testimonial-header { margin-bottom: 1.5rem !important; }
+
+    /* Remove full-height constraint — let content dictate height */
+    .hero-section { min-height: 0 !important; padding-top: 5rem; padding-bottom: 3rem; }
+
+    /* Smaller headline */
+    .hero-h1 { font-size: 2rem !important; line-height: 1.12 !important; }
+
+    /* Hide second paragraph — one is enough on mobile */
+    .hero-p2 { display: none !important; }
+
+    /* Tighter card padding */
+    .hero-card { padding: 1.75rem !important; }
+
+    /* Stats: smaller numbers, tighter labels */
+    .stat-counter { font-size: 1.3rem !important; }
+
+    /* Full-width CTA with generous tap target */
+    .hero-cta { width: 100%; justify-content: center; min-height: 56px; }
+
+    /* Hide trust signal on mobile — too much noise */
+    .hero-trust { display: none; }
+  }
+</style>
 
 </Layout>

@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const values = [
+  {
+    title: "Clear, honest guidance.",
+    body: "You'll get a realistic assessment of your property and the market, not a number designed to win your listing.",
+  },
+  {
+    title: "Preparation before promotion.",
+    body: "Most results are shaped before a property goes live. I focus heavily on positioning, presentation and buyer targeting upfront.",
+  },
+  {
+    title: "Focused representation.",
+    body: "I work with a limited number of clients to ensure your campaign receives the attention, strategy and negotiation it deserves.",
+  },
+];
+
+const howIWork = [
+  {
+    label: "Positioning",
+    text: "Establishing the right price, presentation and market narrative before launch. How a property enters the market shapes everything that follows.",
+  },
+  {
+    label: "Creating competition",
+    text: "Targeting qualified buyers early and structuring the campaign to generate genuine urgency. Strong results come from multiple motivated parties, not one.",
+  },
+  {
+    label: "Protecting the result",
+    text: "Negotiating with commercial discipline at the critical moment. The preparation is only as valuable as the outcome it produces.",
+  },
+];
+---
+
+<Layout title="About Daniel Gierach | Ray White Bulimba" description="Daniel Gierach - Brisbane inner-east real estate specialist at Ray White Bulimba. Bachelor in Property Economics, 10+ years experience. Selling homes across Camp Hill, Norman Park and Hawthorne.">
+
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="relative min-h-[70vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=90"
+      alt="Brisbane inner-east property"
+      class="w-full h-full object-cover"
+      style="filter:grayscale(8%) brightness(0.58);"
+      fetchpriority="high"
+      width="1920" height="1080"
+    />
+    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.55) 0%,rgba(10,8,6,0.15) 100%);"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-28 pb-20">
+    <div class="max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
+      <span class="eyebrow mb-5 reveal" style="color:#f5d07a;">About</span>
+      <h1 class="reveal" data-delay="80"
+        style="font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:0.75rem;">
+        Daniel<br/>
+        <em style="font-style:italic;color:#f5d07a;">Gierach.</em>
+      </h1>
+      <p class="reveal" data-delay="160"
+        style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:rgba(240,236,228,0.6);line-height:1.8;max-width:42ch;">
+        "The gap between a good result and a great one is rarely luck. It's strategy, preparation and knowing your buyers before they walk through the door."
+      </p>
+    </div>
+  </div>
+  <div class="absolute bottom-8 right-12 hidden lg:flex flex-col items-center gap-2">
+    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(161,161,161,0.4);writing-mode:vertical-rl;">Scroll</span>
+    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,221,121,0.4),transparent);"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     WHO I AM  — photo + bio side by side
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0" style="border:1px solid rgba(28,25,23,0.1);">
+
+      <!-- Photo -->
+      <div class="reveal" style="overflow:hidden;min-height:480px;position:relative;">
+        <img
+          src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
+          alt="Daniel Gierach"
+          style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Bio -->
+      <div class="reveal" data-delay="80" style="padding:3.5rem;border-left:1px solid rgba(28,25,23,0.1);display:flex;flex-direction:column;justify-content:center;gap:1.25rem;">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;">Who I Am</p>
+
+        <p style="font-family:var(--font-serif);font-size:1.1rem;color:#1c1917;line-height:1.75;">
+          Selling results come down to positioning and buyer management. Brisbane's inner east is where I grew up, and where I've spent a decade understanding what buyers will pay to live here.
+        </p>
+
+        <p style="font-size:0.88rem;color:#44403c;line-height:1.85;">
+          Backed by a background in Property Economics and experience across sales, construction and marketing, I approach your sale with structure, strategy and a clear understanding of what drives value.
+        </p>
+
+        <p style="font-size:0.88rem;color:#44403c;line-height:1.85;">
+          I specialise across Brisbane's inner east. These are streets I know well, with buyer profiles and market dynamics built from years of active presence in the area.
+        </p>
+
+        <div style="padding-top:1.5rem;margin-top:1rem;border-top:1px solid rgba(28,25,23,0.1);display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+          <div style="display:flex;flex-direction:column;gap:0.2rem;">
+            <p style="font-family:var(--font-sans);font-size:0.82rem;font-weight:700;color:#1c1917;letter-spacing:0.04em;">Daniel Gierach</p>
+            <p style="font-family:var(--font-sans);font-size:0.72rem;color:#c4912a;letter-spacing:0.08em;">Ray White Bulimba</p>
+            <a href="tel:+61412523821"
+              style="margin-top:0.35rem;font-family:var(--font-sans);font-size:0.75rem;font-weight:600;color:#78716c;text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;width:fit-content;"
+              onmouseover="this.style.color='#c4912a'"
+              onmouseout="this.style.color='#78716c'">
+              0412 523 821
+            </a>
+          </div>
+          <a href="/contact" class="btn-gold" style="flex-shrink:0;">
+            Contact Me
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     WHAT YOU CAN EXPECT — 3 cards
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <p class="reveal" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:2.5rem;">What You Can Expect</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
+      {values.map((v, i) => (
+        <div class="reveal" data-delay={i * 80} style="background:var(--color-surface-0);padding:2.25rem 2rem;">
+          <div style="width:24px;height:2px;background:#c4912a;margin-bottom:1.5rem;"></div>
+          <p style="font-family:var(--font-serif);font-size:0.98rem;font-style:italic;color:#1c1917;margin-bottom:0.65rem;line-height:1.4;">{v.title}</p>
+          <p style="font-size:0.84rem;color:#78716c;line-height:1.8;">{v.body}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     HOW I WORK — numbered steps
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+      <div class="lg:col-span-4 reveal">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">How I Work</p>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;color:#1c1917;line-height:1.3;letter-spacing:-0.01em;margin-bottom:1rem;">
+          A structured process,<br/>
+          <em style="font-style:italic;color:#c4912a;">start to finish.</em>
+        </h2>
+        <p style="font-size:0.85rem;color:#78716c;line-height:1.8;">
+          Most of the outcome is determined before a property hits the market.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 reveal" data-delay="80">
+        {howIWork.map((item, i) => (
+          <div style={`padding:1.5rem 0;border-top:1px solid rgba(28,25,23,0.1);display:flex;gap:2rem;align-items:baseline;${i === howIWork.length - 1 ? 'border-bottom:1px solid rgba(28,25,23,0.1);' : ''}`}>
+            <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;color:#c4912a;flex-shrink:0;padding-top:0.1rem;">0{i + 1}</span>
+            <div>
+              <p style="font-family:var(--font-serif);font-size:0.98rem;font-style:italic;color:#1c1917;margin-bottom:0.4rem;">{item.label}</p>
+              <p style="font-size:0.85rem;color:#78716c;line-height:1.8;">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     NETWORK + PROOF — compact two-col
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <div class="reveal">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">The Network</p>
+        <p style="font-size:0.9rem;color:#44403c;line-height:1.85;margin-bottom:0.85rem;">
+          Ray White Bulimba is one of the most active offices in Brisbane's inner east, providing access to a wide, qualified buyer network and the resources to run a well-structured campaign.
+        </p>
+        <p style="font-size:0.9rem;color:#44403c;line-height:1.85;">
+          I keep my portfolio selective by choice. You're not a listing in a queue. You have my full attention from the first conversation through to settlement.
+        </p>
+      </div>
+
+      <div class="reveal" data-delay="80">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">At a Glance</p>
+        <div style="border-top:1px solid rgba(28,25,23,0.1);">
+          {[
+            "Inner-east Brisbane specialist",
+            "Bachelor in Property Economics",
+            "10+ years across sales, construction and marketing",
+            "Ray White Bulimba, one of the area's most active offices",
+          ].map(item => (
+            <div style="display:flex;align-items:center;gap:1rem;padding:0.9rem 0;border-bottom:1px solid rgba(28,25,23,0.1);">
+              <div style="width:3px;height:3px;border-radius:50%;background:#c4912a;flex-shrink:0;"></div>
+              <p style="font-size:0.85rem;color:#44403c;line-height:1.5;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     CTA — dark, high contrast
+════════════════════════════════════════════ -->
+<section style="background:#1c1917;padding:5rem 0;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <div class="reveal">
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.6rem);font-weight:400;color:#f0ece4;line-height:1.2;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+          Thinking of selling?
+        </h2>
+        <p style="font-size:0.9rem;color:rgba(240,236,228,0.6);line-height:1.85;max-width:42ch;">
+          If you're considering selling, I'm happy to walk you through how I would position your property and what buyers are currently paying in your area.
+        </p>
+      </div>
+
+      <div class="reveal" data-delay="80" style="display:flex;flex-direction:column;gap:2rem;">
+        <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Phone</p>
+            <a href="tel:+61412523821"
+              style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+              onmouseover="this.style.color='#f5d07a'"
+              onmouseout="this.style.color='#f0ece4'">0412 523 821</a>
+            <p style="font-size:0.62rem;color:rgba(240,236,228,0.35);margin-top:0.25rem;letter-spacing:0.06em;">Available 7 days</p>
+          </div>
+          <div style="width:1px;height:44px;background:rgba(240,236,228,0.12);"></div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Email</p>
+            <a href="mailto:daniel.gierach@raywhite.com"
+              style="font-family:var(--font-sans);font-size:0.83rem;font-weight:500;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+              onmouseover="this.style.color='#f5d07a'"
+              onmouseout="this.style.color='#f0ece4'">daniel.gierach@raywhite.com</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="/contact" class="btn-outline-gold">Send a Message</a>
+          <a href="/appraisal" class="btn-gold">
+            Request an Appraisal
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>

@@ -1,0 +1,152 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Home Equity Calculator"
+  description="See how much equity you have in your property and how much you could access."
+  tool="Home Equity"
+  phase="Seller Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Property value -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Estimated Property Value</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="value-display">$900,000</span>
+        </div>
+        <input type="range" id="prop-value" min="200000" max="5000000" step="10000" value="900000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$200K</span><span>$5M</span>
+        </div>
+      </div>
+
+      <!-- Loan balance -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Remaining Loan Balance</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="loan-display">$400,000</span>
+        </div>
+        <input type="range" id="loan-balance" min="0" max="4000000" step="10000" value="400000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$0</span><span>$4M</span>
+        </div>
+      </div>
+
+      <!-- Purpose -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">What are you planning to do?</label>
+        <div class="grid grid-cols-1 gap-2">
+          {[
+            { val: 'sell',    label: 'Sell the property' },
+            { val: 'access',  label: 'Access equity (refinance / top-up)' },
+            { val: 'upgrade', label: 'Upgrade to a larger home' },
+          ].map((opt, i) => (
+            <label style="cursor:pointer;">
+              <input type="radio" name="purpose" value={opt.val} checked={i === 0} style="display:none;" />
+              <div class="purpose-label" style={`padding:0.9rem 1.25rem;background:var(--color-surface-4);font-size:0.82rem;font-weight:600;color:var(--color-text-primary);transition:all 0.2s;border:2px solid ${i === 0 ? 'var(--color-gold)' : 'transparent'};`}>
+                {opt.label}
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Equity Summary
+        </h2>
+
+        <div style="margin-bottom:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Total Equity</p>
+          <p id="equity-result" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+        </div>
+
+        <div class="flex flex-col gap-0">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Property Value</span>
+            <span id="r-value" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Loan Balance</span>
+            <span id="r-loan" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">LVR</span>
+            <span id="r-lvr" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Usable Equity (80% LVR)</span>
+            <span id="r-usable" style="font-size:0.875rem;font-weight:600;color:#a8e6a3;"></span>
+          </div>
+        </div>
+
+        <div id="purpose-note" style="margin-top:1.25rem;padding:1rem;background:rgba(255,221,121,0.05);border-left:2px solid rgba(196,145,42,0.3);font-size:0.78rem;color:var(--color-text-muted);line-height:1.65;"></div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Estimate only. Actual usable equity depends on your lender's policies, credit profile, and current market valuation.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Get a Free Property Appraisal
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
+  const purposeNotes: Record<string, string> = {
+    sell:    'If you sell, your net proceeds after paying out the loan would be your total equity, less selling costs (typically 2–3% of sale price).',
+    access:  'Lenders generally allow you to borrow up to 80% of your property value. Your usable equity is the difference between that limit and your current loan balance.',
+    upgrade: 'Your equity can be used as a deposit on your next property. Combined with your borrowing power, this determines your next purchase budget.',
+  };
+
+  function calc() {
+    const value   = Number((document.getElementById('prop-value') as HTMLInputElement).value);
+    const loan    = Number((document.getElementById('loan-balance') as HTMLInputElement).value);
+    const purpose = (document.querySelector('input[name="purpose"]:checked') as HTMLInputElement).value;
+
+    const equity   = value - loan;
+    const lvr      = value > 0 ? (loan / value) * 100 : 0;
+    const usable   = Math.max(0, value * 0.8 - loan);
+
+    document.getElementById('equity-result')!.textContent = fmt(Math.max(0, equity));
+    document.getElementById('r-value')!.textContent       = fmt(value);
+    document.getElementById('r-loan')!.textContent        = fmt(loan);
+    document.getElementById('r-lvr')!.textContent         = `${lvr.toFixed(1)}%`;
+    document.getElementById('r-usable')!.textContent      = fmt(usable);
+    document.getElementById('purpose-note')!.textContent  = purposeNotes[purpose] || '';
+  }
+
+  (document.getElementById('prop-value') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('value-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+  (document.getElementById('loan-balance') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('loan-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+
+  document.querySelectorAll('input[name="purpose"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.purpose-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
+      const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.purpose-label') as HTMLElement;
+      if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+      calc();
+    });
+  });
+
+  window.addEventListener('load', calc);
+</script>

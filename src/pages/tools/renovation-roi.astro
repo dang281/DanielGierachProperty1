@@ -172,7 +172,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (selectedRenos.length === 0) {
       breakdown.innerHTML = '<p style="font-size:0.8rem;color:var(--color-text-muted);padding:1rem 0;text-align:center;">No renovations selected.</p>';
       document.getElementById('new-value')!.textContent = `$${price.toLocaleString()}`;
-      document.getElementById('total-roi')!.textContent = '—';
+      document.getElementById('total-roi')!.textContent = 'N/A';
     } else {
       breakdown.innerHTML = selectedRenos.map(r => `
         <div style="padding:0.75rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">

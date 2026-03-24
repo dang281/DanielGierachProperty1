@@ -1,0 +1,260 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const forSale = [
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/025d-H3473905-192570098__1773729572-112408-SatinwoodCt11-1.jpg',
+    suburb: 'Bardon',
+    address: '11 Satinwood Court',
+    street: 'Bardon QLD 4065',
+    price: 'Best Offers by 16 April',
+    beds: 5, baths: 6, cars: 4,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/bardon-4065/house/3473905',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8929-H3473633-192806009__1773800859-70111-0.png',
+    suburb: 'Seven Hills',
+    address: '20A Marshall Avenue',
+    street: 'Seven Hills QLD 4170',
+    price: 'Price By Negotiation',
+    beds: 4, baths: 3, cars: 2,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/seven-hills-4170/house/3473633',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1a0c-H3474693-192972192__1773876548-26815-Photo-2-Web.jpg',
+    suburb: 'Norman Park',
+    address: '154 Morehead Avenue',
+    street: 'Norman Park QLD 4170',
+    price: 'Best Offers by 22 April',
+    beds: 3, baths: 1, cars: 2,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/norman-park-4170/house/3474693',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/772d-H3473513-192064272__1773457507-13356-28VincentStreetAuchenflowerInternet01.jpg',
+    suburb: 'Auchenflower',
+    address: '28 Vincent Street',
+    street: 'Auchenflower QLD 4066',
+    price: 'Pre-Market Opportunity',
+    beds: 3, baths: 2, cars: 2,
+    tag: 'Pre-Market',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/auchenflower-4066/house/3473513',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/b485-H3473001-192442478__1773707732-39332-6-print-70-longland-st-203.jpg',
+    suburb: 'Newstead',
+    address: '203/70 Longland Street',
+    street: 'Newstead QLD 4006',
+    price: 'Auction 18 April at The Calile Hotel',
+    beds: 2, baths: 2, cars: 1,
+    tag: 'Forthcoming Auction',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/newstead-4006/apartment/3473001',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/e543-H3474534-192843678__1773807208-74050-IMG2700p.jpg',
+    suburb: 'Bridgeman Downs',
+    address: '5 Neville Road',
+    street: 'Bridgeman Downs QLD 4035',
+    price: 'For Sale by Negotiation',
+    beds: 3, baths: 2, cars: 6,
+    tag: 'Blue-Chip Land',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/bridgeman-downs-4035/house/3474534',
+  },
+];
+
+const sold = [
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/e35e-H3441109-183920196__1769155755-98382-IMG3522.jpeg',
+    suburb: 'Bulimba',
+    address: '79 Jamieson Street',
+    street: 'Bulimba QLD 4171',
+    price: '$3,405,000',
+    beds: 5, baths: 3, cars: 4,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/3441109',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/361f-H3453945-187052872__1771044772-272430-Photo-33-Web.jpg',
+    suburb: 'Norman Park',
+    address: '127 Agnew Street',
+    street: 'Norman Park QLD 4170',
+    price: '$2,050,000',
+    beds: 4, baths: 2, cars: 3,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/3453945',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/cef5-H3458768-188202451__1771658833-308448-Photo-20-High-Res.jpg',
+    suburb: 'Morningside',
+    address: '100A Kates Street',
+    street: 'Morningside QLD 4170',
+    price: '$1,388,000',
+    beds: 3, baths: 2, cars: 2,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/3458768',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  'For Sale': '#f5d07a',
+  'Pre-Market': '#a8e6a3',
+  'Forthcoming Auction': '#7ec8e3',
+  'Blue-Chip Land': '#c8c6c8',
+  'Sold': 'rgba(240,236,228,0.35)',
+};
+---
+
+<Layout title="Listings | Daniel Gierach Property" description="Current property listings and recently sold homes in Brisbane's inner east. View Daniel Gierach's sales results across Camp Hill, Norman Park, Hawthorne and Balmoral.">
+
+<!-- Hero -->
+<section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=90"
+      alt="Brisbane property"
+      class="w-full h-full object-cover"
+      style="filter:grayscale(8%) brightness(0.4);"
+    />
+    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.3) 100%);"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-32 pb-16">
+    <span class="eyebrow mb-4 reveal" style="display:block;color:#f5d07a;">Daniel Gierach · Ray White Bulimba</span>
+    <h1 class="reveal" data-delay="80"
+      style="font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
+      Current Listings<br/><em style="font-style:italic;color:#f5d07a;">&amp; Recent Sales.</em>
+    </h1>
+    <p class="reveal" data-delay="160"
+      style="font-size:0.95rem;color:rgba(240,236,228,0.6);max-width:44ch;line-height:1.8;">
+      Looking for off-market access? <a href="/contact" style="color:#f5d07a;text-decoration:none;font-weight:600;">Get in touch directly.</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- For Sale -->
+<section style="background:var(--color-base);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
+      <div class="reveal">
+        <span class="eyebrow mb-3" style="display:block;">For Sale by The Collective</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#1c1917;letter-spacing:-0.01em;">
+          For Sale
+        </h2>
+      </div>
+      <a href="https://raywhitebulimba.com.au/agents/daniel-gierach" target="_blank" rel="noopener"
+        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;text-decoration:none;transition:color 0.2s;"
+        onmouseover="this.style.color='#c4912a'"
+        onmouseout="this.style.color='#78716c'">
+        View All on Ray White →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
+      {forSale.map((p, i) => (
+        <a href={p.href} target="_blank" rel="noopener"
+          class="reveal" data-delay={i * 60}
+          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
+          onmouseover="this.style.background='#edeae3'"
+          onmouseout="this.style.background='#ffffff'"
+        >
+          <!-- Image -->
+          <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
+            <img src={p.image} alt={p.address} class="w-full h-full object-cover"
+              style="transition:transform 0.4s;"
+              onmouseover="this.style.transform='scale(1.04)'"
+              onmouseout="this.style.transform='scale(1)'"
+              loading="lazy"
+            />
+            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#0a0806;background:${tagColors[p.tag] || '#f5d07a'};padding:0.3rem 0.65rem;`}>
+              {p.tag}
+            </span>
+          </div>
+          <!-- Details -->
+          <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">{p.suburb}</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.2;">{p.address}</h3>
+            <p style="font-size:0.78rem;color:#78716c;">{p.street}</p>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#44403c;margin-top:0.25rem;">{p.price}</p>
+            <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
+              <span style="font-size:0.72rem;color:#78716c;">{p.beds} bed</span>
+              <span style="font-size:0.72rem;color:#78716c;">{p.baths} bath</span>
+              <span style="font-size:0.72rem;color:#78716c;">{p.cars} car</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- Recently Sold -->
+<section id="sold" style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Recently Sold by The Collective</p>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#1c1917;letter-spacing:-0.01em;">
+          Recently Sold
+        </h2>
+      </div>
+      <a href="https://raywhitebulimba.com.au/agents/daniel-gierach" target="_blank" rel="noopener"
+        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;text-decoration:none;transition:color 0.2s;"
+        onmouseover="this.style.color='#c4912a'"
+        onmouseout="this.style.color='#78716c'">
+        Full Sales History →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
+      {sold.map((p, i) => (
+        <a href={p.href} target="_blank" rel="noopener"
+          class="reveal" data-delay={i * 60}
+          style="background:#f2efe9;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
+          onmouseover="this.style.background='#edeae3'"
+          onmouseout="this.style.background='#f2efe9'"
+        >
+          <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
+            <img src={p.image} alt={p.address} class="w-full h-full object-cover"
+              style="filter:grayscale(30%);transition:filter 0.3s,transform 0.4s;"
+              onmouseover="this.style.filter='grayscale(10%)';this.style.transform='scale(1.04)'"
+              onmouseout="this.style.filter='grayscale(30%)';this.style.transform='scale(1)'"
+              loading="lazy"
+            />
+            <span style="position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.9);background:rgba(28,25,23,0.65);padding:0.3rem 0.65rem;">
+              Sold
+            </span>
+          </div>
+          <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">{p.suburb}</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.2;">{p.address}</h3>
+            <p style="font-size:0.78rem;color:#78716c;">{p.street}</p>
+            <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
+              <span style="font-size:0.72rem;color:#78716c;">{p.beds} bed</span>
+              <span style="font-size:0.72rem;color:#78716c;">{p.baths} bath</span>
+              <span style="font-size:0.72rem;color:#78716c;">{p.cars} car</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Property Report CTA -->
+<section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="reveal" style="padding:2.5rem;background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
+      <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#1c1917;">What is your property worth?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
+      <a href="/appraisal" class="btn-gold">
+        Get My Free Property Report
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</Layout>

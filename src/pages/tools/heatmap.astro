@@ -71,7 +71,7 @@ import { suburbs, formatPrice } from '../../data/suburbs';
               </td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:var(--color-gold);">{formatPrice(s.medianHousePrice)}</td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{formatPrice(s.medianUnitPrice)}</td>
-              <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth1yr >= 10 ? '#a8e6a3' : s.priceGrowth1yr >= 5 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>+{s.priceGrowth1yr}%</td>
+              <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth1yr < 0 ? '#f87171' : s.priceGrowth1yr >= 10 ? '#a8e6a3' : s.priceGrowth1yr >= 5 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>{s.priceGrowth1yr > 0 ? '+' : ''}{s.priceGrowth1yr}%</td>
               <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth5yr >= 50 ? '#a8e6a3' : s.priceGrowth5yr >= 40 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>+{s.priceGrowth5yr}%</td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{s.rentalYield}%</td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{s.medianDaysOnMarket} days</td>
@@ -90,27 +90,27 @@ import { suburbs, formatPrice } from '../../data/suburbs';
 
   // Inline suburb data
   const suburbData = [
-    { slug:'bulimba',          name:'Bulimba',          region:'Inner East',       medianHousePrice:1750000, medianUnitPrice:685000,  priceGrowth1yr:14.2, priceGrowth5yr:72.1,  rentalYield:3.1, medianDaysOnMarket:22, clearanceRate:78, weeklyRent:1050 },
-    { slug:'balmoral',         name:'Balmoral',          region:'Inner East',       medianHousePrice:1900000, medianUnitPrice:720000,  priceGrowth1yr:15.8, priceGrowth5yr:78.3,  rentalYield:2.9, medianDaysOnMarket:18, clearanceRate:81, weeklyRent:1100 },
-    { slug:'hawthorne',        name:'Hawthorne',         region:'Inner East',       medianHousePrice:1620000, medianUnitPrice:660000,  priceGrowth1yr:13.5, priceGrowth5yr:68.4,  rentalYield:3.2, medianDaysOnMarket:19, clearanceRate:79, weeklyRent:1000 },
-    { slug:'morningside',      name:'Morningside',       region:'Inner East',       medianHousePrice:1280000, medianUnitPrice:620000,  priceGrowth1yr:16.2, priceGrowth5yr:79.8,  rentalYield:3.5, medianDaysOnMarket:21, clearanceRate:76, weeklyRent:850  },
-    { slug:'cannon-hill',      name:'Cannon Hill',       region:'Inner East',       medianHousePrice:1150000, medianUnitPrice:580000,  priceGrowth1yr:17.4, priceGrowth5yr:82.1,  rentalYield:3.8, medianDaysOnMarket:24, clearanceRate:74, weeklyRent:800  },
-    { slug:'east-brisbane',    name:'East Brisbane',     region:'Inner City',       medianHousePrice:1450000, medianUnitPrice:650000,  priceGrowth1yr:18.6, priceGrowth5yr:88.5,  rentalYield:3.6, medianDaysOnMarket:16, clearanceRate:82, weeklyRent:950  },
-    { slug:'norman-park',      name:'Norman Park',       region:'Inner East',       medianHousePrice:1350000, medianUnitPrice:600000,  priceGrowth1yr:15.9, priceGrowth5yr:75.3,  rentalYield:3.4, medianDaysOnMarket:20, clearanceRate:77, weeklyRent:870  },
-    { slug:'kangaroo-point',   name:'Kangaroo Point',    region:'Inner City',       medianHousePrice:1520000, medianUnitPrice:710000,  priceGrowth1yr:19.2, priceGrowth5yr:91.2,  rentalYield:3.7, medianDaysOnMarket:17, clearanceRate:83, weeklyRent:980  },
-    { slug:'seven-hills',      name:'Seven Hills',       region:'Inner East',       medianHousePrice:1200000, medianUnitPrice:560000,  priceGrowth1yr:16.8, priceGrowth5yr:80.6,  rentalYield:3.6, medianDaysOnMarket:22, clearanceRate:75, weeklyRent:800  },
-    { slug:'murarrie',         name:'Murarrie',          region:'Inner East',       medianHousePrice:950000,  medianUnitPrice:520000,  priceGrowth1yr:18.5, priceGrowth5yr:85.8,  rentalYield:4.1, medianDaysOnMarket:28, clearanceRate:70, weeklyRent:720  },
-    { slug:'coorparoo',        name:'Coorparoo',         region:'Inner South',      medianHousePrice:1320000, medianUnitPrice:610000,  priceGrowth1yr:16.5, priceGrowth5yr:79.2,  rentalYield:3.4, medianDaysOnMarket:19, clearanceRate:78, weeklyRent:860  },
-    { slug:'camp-hill',        name:'Camp Hill',         region:'Inner South',      medianHousePrice:1380000, medianUnitPrice:630000,  priceGrowth1yr:17.2, priceGrowth5yr:83.7,  rentalYield:3.3, medianDaysOnMarket:18, clearanceRate:80, weeklyRent:890  },
-    { slug:'tingalpa',         name:'Tingalpa',          region:'Inner East',       medianHousePrice:850000,  medianUnitPrice:490000,  priceGrowth1yr:20.1, priceGrowth5yr:94.6,  rentalYield:4.3, medianDaysOnMarket:30, clearanceRate:68, weeklyRent:680  },
-    { slug:'carina',           name:'Carina',            region:'Inner South East', medianHousePrice:920000,  medianUnitPrice:510000,  priceGrowth1yr:19.8, priceGrowth5yr:92.3,  rentalYield:4.1, medianDaysOnMarket:25, clearanceRate:73, weeklyRent:710  },
-    { slug:'carina-heights',   name:'Carina Heights',    region:'Inner South East', medianHousePrice:870000,  medianUnitPrice:480000,  priceGrowth1yr:20.5, priceGrowth5yr:95.8,  rentalYield:4.2, medianDaysOnMarket:27, clearanceRate:72, weeklyRent:695  },
-    { slug:'carindale',        name:'Carindale',         region:'Inner South East', medianHousePrice:910000,  medianUnitPrice:500000,  priceGrowth1yr:19.2, priceGrowth5yr:90.1,  rentalYield:4.0, medianDaysOnMarket:26, clearanceRate:72, weeklyRent:700  },
-    { slug:'mt-gravatt',       name:'Mt Gravatt',        region:'South Brisbane',   medianHousePrice:970000,  medianUnitPrice:530000,  priceGrowth1yr:18.8, priceGrowth5yr:87.9,  rentalYield:4.0, medianDaysOnMarket:24, clearanceRate:74, weeklyRent:730  },
-    { slug:'mt-gravatt-east',  name:'Mt Gravatt East',   region:'South Brisbane',   medianHousePrice:920000,  medianUnitPrice:510000,  priceGrowth1yr:19.5, priceGrowth5yr:91.5,  rentalYield:4.1, medianDaysOnMarket:25, clearanceRate:73, weeklyRent:720  },
-    { slug:'holland-park-west',name:'Holland Park West', region:'Inner South',      medianHousePrice:980000,  medianUnitPrice:530000,  priceGrowth1yr:18.2, priceGrowth5yr:87.3,  rentalYield:3.9, medianDaysOnMarket:22, clearanceRate:76, weeklyRent:740  },
-    { slug:'greenslopes',      name:'Greenslopes',       region:'Inner South',      medianHousePrice:1100000, medianUnitPrice:560000,  priceGrowth1yr:17.6, priceGrowth5yr:84.8,  rentalYield:3.7, medianDaysOnMarket:20, clearanceRate:77, weeklyRent:780  },
-    { slug:'woolloongabba',    name:'Woolloongabba',     region:'Inner South',      medianHousePrice:1250000, medianUnitPrice:620000,  priceGrowth1yr:22.4, priceGrowth5yr:105.2, rentalYield:4.0, medianDaysOnMarket:18, clearanceRate:80, weeklyRent:850  },
+    { slug:'bulimba',          name:'Bulimba',          region:'Inner East',       medianHousePrice:2220000, medianUnitPrice:1075000, priceGrowth1yr:14.3, priceGrowth5yr:76.2,  rentalYield:2.62, medianDaysOnMarket:29, clearanceRate:78, weeklyRent:850  },
+    { slug:'balmoral',         name:'Balmoral',         region:'Inner East',       medianHousePrice:1850000, medianUnitPrice:870000,  priceGrowth1yr:-2.1, priceGrowth5yr:64.2,  rentalYield:2.74, medianDaysOnMarket:28, clearanceRate:75, weeklyRent:800  },
+    { slug:'hawthorne',        name:'Hawthorne',        region:'Inner East',       medianHousePrice:2300000, medianUnitPrice:860000,  priceGrowth1yr:8.2,  priceGrowth5yr:100.4, rentalYield:2.43, medianDaysOnMarket:42, clearanceRate:77, weeklyRent:900  },
+    { slug:'morningside',      name:'Morningside',      region:'Inner East',       medianHousePrice:1345000, medianUnitPrice:870000,  priceGrowth1yr:3.2,  priceGrowth5yr:67.2,  rentalYield:3.11, medianDaysOnMarket:20, clearanceRate:76, weeklyRent:730  },
+    { slug:'cannon-hill',      name:'Cannon Hill',      region:'Inner East',       medianHousePrice:1550000, medianUnitPrice:799500,  priceGrowth1yr:6.4,  priceGrowth5yr:91.8,  rentalYield:3.17, medianDaysOnMarket:23, clearanceRate:74, weeklyRent:842  },
+    { slug:'east-brisbane',    name:'East Brisbane',    region:'Inner City',       medianHousePrice:1590000, medianUnitPrice:718650,  priceGrowth1yr:11.6, priceGrowth5yr:77.0,  rentalYield:2.88, medianDaysOnMarket:24, clearanceRate:80, weeklyRent:750  },
+    { slug:'norman-park',      name:'Norman Park',      region:'Inner East',       medianHousePrice:1720000, medianUnitPrice:820000,  priceGrowth1yr:14.7, priceGrowth5yr:72.4,  rentalYield:2.83, medianDaysOnMarket:27, clearanceRate:77, weeklyRent:790  },
+    { slug:'kangaroo-point',   name:'Kangaroo Point',   region:'Inner City',       medianHousePrice:1267500, medianUnitPrice:800000,  priceGrowth1yr:1.4,  priceGrowth5yr:18.3,  rentalYield:2.69, medianDaysOnMarket:24, clearanceRate:75, weeklyRent:720  },
+    { slug:'seven-hills',      name:'Seven Hills',      region:'Inner East',       medianHousePrice:1800000, medianUnitPrice:935000,  priceGrowth1yr:0.3,  priceGrowth5yr:80.3,  rentalYield:2.74, medianDaysOnMarket:54, clearanceRate:73, weeklyRent:790  },
+    { slug:'murarrie',         name:'Murarrie',         region:'Inner East',       medianHousePrice:1250000, medianUnitPrice:960000,  priceGrowth1yr:8.7,  priceGrowth5yr:78.7,  rentalYield:3.31, medianDaysOnMarket:14, clearanceRate:71, weeklyRent:740  },
+    { slug:'coorparoo',        name:'Coorparoo',        region:'Inner South',      medianHousePrice:1700000, medianUnitPrice:771875,  priceGrowth1yr:13.3, priceGrowth5yr:82.9,  rentalYield:2.62, medianDaysOnMarket:28, clearanceRate:78, weeklyRent:795  },
+    { slug:'camp-hill',        name:'Camp Hill',        region:'Inner South',      medianHousePrice:1850785, medianUnitPrice:1095000, priceGrowth1yr:7.9,  priceGrowth5yr:95.1,  rentalYield:2.68, medianDaysOnMarket:34, clearanceRate:79, weeklyRent:800  },
+    { slug:'tingalpa',         name:'Tingalpa',         region:'Inner East',       medianHousePrice:1145000, medianUnitPrice:771500,  priceGrowth1yr:11.7, priceGrowth5yr:93.5,  rentalYield:3.57, medianDaysOnMarket:15, clearanceRate:70, weeklyRent:700  },
+    { slug:'carina',           name:'Carina',           region:'Inner South East', medianHousePrice:1287500, medianUnitPrice:940000,  priceGrowth1yr:7.3,  priceGrowth5yr:86.5,  rentalYield:3.37, medianDaysOnMarket:20, clearanceRate:73, weeklyRent:750  },
+    { slug:'carina-heights',   name:'Carina Heights',   region:'Inner South East', medianHousePrice:1465000, medianUnitPrice:857250,  priceGrowth1yr:12.7, priceGrowth5yr:93.1,  rentalYield:3.09, medianDaysOnMarket:22, clearanceRate:72, weeklyRent:720  },
+    { slug:'carindale',        name:'Carindale',        region:'Inner South East', medianHousePrice:1750000, medianUnitPrice:921444,  priceGrowth1yr:9.4,  priceGrowth5yr:91.1,  rentalYield:2.96, medianDaysOnMarket:30, clearanceRate:72, weeklyRent:880  },
+    { slug:'mt-gravatt',       name:'Mt Gravatt',       region:'South Brisbane',   medianHousePrice:1305000, medianUnitPrice:712500,  priceGrowth1yr:20.8, priceGrowth5yr:95.2,  rentalYield:2.99, medianDaysOnMarket:19, clearanceRate:74, weeklyRent:680  },
+    { slug:'mt-gravatt-east',  name:'Mt Gravatt East',  region:'South Brisbane',   medianHousePrice:1345000, medianUnitPrice:806000,  priceGrowth1yr:12.5, priceGrowth5yr:95.9,  rentalYield:3.00, medianDaysOnMarket:19, clearanceRate:73, weeklyRent:698  },
+    { slug:'holland-park-west',name:'Holland Park West',region:'Inner South',      medianHousePrice:1455000, medianUnitPrice:843500,  priceGrowth1yr:13.7, priceGrowth5yr:93.0,  rentalYield:2.84, medianDaysOnMarket:21, clearanceRate:76, weeklyRent:710  },
+    { slug:'greenslopes',      name:'Greenslopes',      region:'Inner South',      medianHousePrice:1350000, medianUnitPrice:770000,  priceGrowth1yr:-5.6, priceGrowth5yr:65.7,  rentalYield:2.93, medianDaysOnMarket:25, clearanceRate:77, weeklyRent:675  },
+    { slug:'woolloongabba',    name:'Woolloongabba',    region:'Inner South',      medianHousePrice:1400000, medianUnitPrice:730000,  priceGrowth1yr:16.7, priceGrowth5yr:62.7,  rentalYield:3.09, medianDaysOnMarket:24, clearanceRate:80, weeklyRent:725  },
   ];
 
   type MetricKey = 'medianHousePrice'|'medianUnitPrice'|'priceGrowth1yr'|'priceGrowth5yr'|'rentalYield';
@@ -118,7 +118,7 @@ import { suburbs, formatPrice } from '../../data/suburbs';
   const METRIC_CONFIG: Record<MetricKey, { label: string; format: (v: number) => string }> = {
     medianHousePrice: { label: 'Median House Price', format: v => v >= 1000000 ? `$${(v/1000000).toFixed(1)}M` : `$${(v/1000).toFixed(0)}K` },
     medianUnitPrice:  { label: 'Median Unit Price',  format: v => v >= 1000000 ? `$${(v/1000000).toFixed(1)}M` : `$${(v/1000).toFixed(0)}K` },
-    priceGrowth1yr:   { label: '1-Year Growth',      format: v => `+${v.toFixed(1)}%` },
+    priceGrowth1yr:   { label: '1-Year Growth',      format: v => `${v > 0 ? '+' : ''}${v.toFixed(1)}%` },
     priceGrowth5yr:   { label: '5-Year Growth',      format: v => `+${v.toFixed(1)}%` },
     rentalYield:      { label: 'Rental Yield',        format: v => `${v.toFixed(1)}%` },
   };
@@ -152,7 +152,9 @@ import { suburbs, formatPrice } from '../../data/suburbs';
       const val = s[activeMetric];
       const t = getIntensity(val, min, max);
       const bg = intensityToColor(t);
-      const textColor = t > 0.5 ? '#0e0e0e' : 'var(--color-text-primary)';
+      const light = t > 0.42;
+      const textColor = light ? '#1a1209' : '#ffffff';
+      const subColor = light ? 'rgba(0,0,0,0.55)' : 'rgba(255,255,255,0.55)';
       const isSelected = s.slug === selectedSlug;
 
       return `
@@ -164,10 +166,10 @@ import { suburbs, formatPrice } from '../../data/suburbs';
           position:relative;
           border:2px solid ${isSelected ? 'var(--color-gold)' : 'transparent'};
         ">
-          <p style="font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${t > 0.5 ? 'rgba(0,0,0,0.6)' : 'var(--color-text-muted)'};margin-bottom:0.35rem;">${s.region}</p>
+          <p style="font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${subColor};margin-bottom:0.35rem;">${s.region}</p>
           <p style="font-size:0.95rem;font-weight:700;color:${textColor};margin-bottom:0.75rem;">${s.name}</p>
           <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:${textColor};line-height:1;">${cfg.format(val)}</p>
-          <p style="font-size:0.6rem;color:${t > 0.5 ? 'rgba(0,0,0,0.5)' : 'var(--color-text-muted)'};margin-top:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">${cfg.label}</p>
+          <p style="font-size:0.6rem;color:${subColor};margin-top:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">${cfg.label}</p>
         </div>
       `;
     }).join('');
@@ -191,7 +193,7 @@ import { suburbs, formatPrice } from '../../data/suburbs';
     const metrics = [
       { label: 'Median House', value: s.medianHousePrice >= 1000000 ? `$${(s.medianHousePrice/1000000).toFixed(2)}M` : `$${(s.medianHousePrice/1000).toFixed(0)}K` },
       { label: 'Median Unit',  value: s.medianUnitPrice  >= 1000000 ? `$${(s.medianUnitPrice/1000000).toFixed(2)}M`  : `$${(s.medianUnitPrice/1000).toFixed(0)}K` },
-      { label: '1yr Growth',   value: `+${s.priceGrowth1yr}%` },
+      { label: '1yr Growth',   value: `${s.priceGrowth1yr > 0 ? '+' : ''}${s.priceGrowth1yr}%` },
       { label: '5yr Growth',   value: `+${s.priceGrowth5yr}%` },
       { label: 'Rental Yield', value: `${s.rentalYield}%` },
       { label: 'Weekly Rent',  value: `$${s.weeklyRent.toLocaleString()}` },
@@ -201,7 +203,7 @@ import { suburbs, formatPrice } from '../../data/suburbs';
 
     document.getElementById('detail-content')!.innerHTML = `
       <div style="grid-column:1/-1;margin-bottom:0.5rem;">
-        <h3 style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-text-primary);">${s.name} <span style="font-size:0.7rem;font-weight:400;color:var(--color-text-muted);font-family:var(--font-sans);">— ${s.region}</span></h3>
+        <h3 style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-text-primary);">${s.name} <span style="font-size:0.7rem;font-weight:400;color:var(--color-text-muted);font-family:var(--font-sans);">(${s.region})</span></h3>
       </div>
       ${metrics.map(m => `
         <div style="padding:1rem;background:var(--color-surface-4);">

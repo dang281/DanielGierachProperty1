@@ -1,0 +1,185 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Borrowing Power Calculator"
+  description="Estimate how much you can borrow based on your income, expenses, and dependants."
+  tool="Borrowing Power"
+  phase="Buyer Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- Inputs -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Income -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Gross Annual Income</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="income-display">$120,000</span>
+        </div>
+        <input type="range" id="income" min="30000" max="500000" step="5000" value="120000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$30K</span><span>$500K</span>
+        </div>
+      </div>
+
+      <!-- Partner income -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Partner / Second Income (optional)</label>
+        <div class="flex items-center gap-3">
+          <input type="checkbox" id="partner-toggle" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
+          <input type="number" id="partner-income" value="80000" class="obs-input" style="flex:1;font-size:1rem;" placeholder="0" disabled />
+        </div>
+      </div>
+
+      <!-- Monthly expenses -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Monthly Living Expenses</label>
+        <div class="flex items-center gap-4 mb-3">
+          <span style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-text-primary);" id="expenses-display">$3,500</span>
+        </div>
+        <input type="range" id="expenses" min="1000" max="15000" step="250" value="3500"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$1K</span><span>$15K</span>
+        </div>
+      </div>
+
+      <!-- Dependants -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Dependants</label>
+        <div class="grid grid-cols-5 gap-2">
+          {[0,1,2,3,'4+'].map((n, i) => (
+            <label style="cursor:pointer;text-align:center;">
+              <input type="radio" name="dependants" value={i === 4 ? 4 : n} checked={n === 0} style="display:none;" />
+              <div class="dep-label" style={`padding:0.75rem 0.5rem;background:var(--color-surface-4);font-size:0.85rem;font-weight:700;color:var(--color-text-primary);transition:all 0.2s;border:2px solid ${n === 0 ? 'var(--color-gold)' : 'transparent'};`}>
+                {n}
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- Interest rate -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Assessment Rate (p.a.)</label>
+        <div class="flex items-center gap-3">
+          <input type="range" id="assess-rate" min="5" max="12" step="0.05" value="9.0"
+            style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4.5rem;text-align:center;">
+            <span id="rate-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">9.00%</span>
+          </div>
+        </div>
+        <p style="font-size:0.65rem;color:var(--color-text-muted);margin-top:0.5rem;">Lenders assess at a buffer above the actual rate. 9% is a typical benchmark.</p>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Estimated Borrowing Power
+        </h2>
+
+        <div style="margin-bottom:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">You may be able to borrow up to</p>
+          <p id="borrow-result" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+        </div>
+
+        <div class="flex flex-col gap-0">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Total Income (annual)</span>
+            <span id="r-income" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual Expenses</span>
+            <span id="r-expenses" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Net Surplus (annual)</span>
+            <span id="r-surplus" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Dependant Reduction</span>
+            <span id="r-dep" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Estimate only. Actual borrowing capacity varies by lender, credit history, existing debts, and property type. Speak to a mortgage broker for a formal assessment.
+        </p>
+
+        <a href="/contact" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+          Talk to Daniel About Buying
+        </a>
+      </div>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
+  function calc() {
+    const income      = Number((document.getElementById('income') as HTMLInputElement).value);
+    const partnerOn   = (document.getElementById('partner-toggle') as HTMLInputElement).checked;
+    const partnerInc  = partnerOn ? Number((document.getElementById('partner-income') as HTMLInputElement).value) || 0 : 0;
+    const expenses    = Number((document.getElementById('expenses') as HTMLInputElement).value);
+    const deps        = Number((document.querySelector('input[name="dependants"]:checked') as HTMLInputElement).value);
+    const assessRate  = Number((document.getElementById('assess-rate') as HTMLInputElement).value) / 100;
+
+    const totalIncome   = income + partnerInc;
+    const annualExpense = expenses * 12;
+    const depReduction  = deps * 8000;
+    const netSurplus    = totalIncome - annualExpense - depReduction;
+
+    // Simple DSR-based estimate: lenders allow ~30-35% of gross for debt service
+    const maxAnnualRepayment = Math.max(0, netSurplus * 0.85);
+    const n = 30 * 12;
+    const r = assessRate / 12;
+    const borrowing = r === 0 ? maxAnnualRepayment / assessRate : (maxAnnualRepayment / 12) * ((1 - Math.pow(1 + r, -n)) / r);
+
+    document.getElementById('borrow-result')!.textContent = fmt(Math.max(0, borrowing));
+    document.getElementById('r-income')!.textContent      = fmt(totalIncome);
+    document.getElementById('r-expenses')!.textContent    = fmt(annualExpense);
+    document.getElementById('r-surplus')!.textContent     = fmt(Math.max(0, totalIncome - annualExpense));
+    document.getElementById('r-dep')!.textContent         = deps > 0 ? `-${fmt(depReduction)}` : '$0';
+  }
+
+  // Partner toggle
+  (document.getElementById('partner-toggle') as HTMLInputElement).addEventListener('change', (e) => {
+    const input = document.getElementById('partner-income') as HTMLInputElement;
+    input.disabled = !(e.target as HTMLInputElement).checked;
+    calc();
+  });
+
+  // Sliders
+  (document.getElementById('income') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('income-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+  (document.getElementById('expenses') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('expenses-display')!.textContent = `$${Number((e.target as HTMLInputElement).value).toLocaleString()}`;
+    calc();
+  });
+  (document.getElementById('assess-rate') as HTMLInputElement).addEventListener('input', (e) => {
+    document.getElementById('rate-display')!.textContent = `${Number((e.target as HTMLInputElement).value).toFixed(2)}%`;
+    calc();
+  });
+
+  // Dependants radios
+  document.querySelectorAll('input[name="dependants"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.dep-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
+      const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.dep-label') as HTMLElement;
+      if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+      calc();
+    });
+  });
+
+  document.querySelectorAll('input[type="number"]').forEach(el => el.addEventListener('input', calc));
+  window.addEventListener('load', calc);
+</script>

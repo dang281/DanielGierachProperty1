@@ -6,12 +6,101 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  schema?: any;
 }
 
 const {
   title = "Daniel Gierach Property | Ray White Bulimba",
   description = 'Data-driven campaigns and exceptional outcomes across Brisbane\'s inner east and south. Serving Bulimba, Balmoral, Hawthorne, Norman Park, Morningside and surrounds.',
+  schema,
 } = Astro.props;
+
+const globalSchema = {
+  "@context": "https://schema.org",
+  "@type": ["RealEstateAgent", "LocalBusiness"],
+  "name": "Daniel Gierach",
+  "description": "Brisbane inner-east real estate specialist at Ray White Bulimba. Expert in property sales across Camp Hill, Norman Park, Hawthorne, Balmoral, Seven Hills and surrounds.",
+  "url": "https://www.danielgierach.com",
+  "telephone": "+61412523821",
+  "email": "daniel.gierach@raywhite.com",
+  "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Unit 6, 57-59 Oxford Street",
+    "addressLocality": "Bulimba",
+    "addressRegion": "QLD",
+    "postalCode": "4171",
+    "addressCountry": "AU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -27.4568,
+    "longitude": 153.0523
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Brisbane" },
+    { "@type": "Suburb", "name": "Balmoral" },
+    { "@type": "Suburb", "name": "Belmont" },
+    { "@type": "Suburb", "name": "Brisbane CBD" },
+    { "@type": "Suburb", "name": "Bulimba" },
+    { "@type": "Suburb", "name": "Camp Hill" },
+    { "@type": "Suburb", "name": "Cannon Hill" },
+    { "@type": "Suburb", "name": "Carina" },
+    { "@type": "Suburb", "name": "Carina Heights" },
+    { "@type": "Suburb", "name": "Carindale" },
+    { "@type": "Suburb", "name": "Coorparoo" },
+    { "@type": "Suburb", "name": "East Brisbane" },
+    { "@type": "Suburb", "name": "Fortitude Valley" },
+    { "@type": "Suburb", "name": "Greenslopes" },
+    { "@type": "Suburb", "name": "Hawthorne" },
+    { "@type": "Suburb", "name": "Hemmant" },
+    { "@type": "Suburb", "name": "Holland Park" },
+    { "@type": "Suburb", "name": "Holland Park West" },
+    { "@type": "Suburb", "name": "Kangaroo Point" },
+    { "@type": "Suburb", "name": "Morningside" },
+    { "@type": "Suburb", "name": "Mount Gravatt" },
+    { "@type": "Suburb", "name": "Mount Gravatt East" },
+    { "@type": "Suburb", "name": "Murarrie" },
+    { "@type": "Suburb", "name": "New Farm" },
+    { "@type": "Suburb", "name": "Norman Park" },
+    { "@type": "Suburb", "name": "Seven Hills" },
+    { "@type": "Suburb", "name": "Tarragindi" },
+    { "@type": "Suburb", "name": "Teneriffe" },
+    { "@type": "Suburb", "name": "Tingalpa" },
+    { "@type": "Suburb", "name": "Upper Mount Gravatt" },
+    { "@type": "Suburb", "name": "Woolloongabba" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "2",
+    "bestRating": "5"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Seller" },
+      "reviewBody": "Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. The result went well above and beyond expectations."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Buyer" },
+      "reviewBody": "We had a great experience working with Daniel through our buying process. He was super honest, never pushy, and made the whole process way less stressful. Daniel is a genuinely solid, trustworthy person. Highly recommend."
+    }
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "07:00",
+    "closes": "20:00"
+  },
+  "sameAs": [
+    "https://www.raywhite.com/agents/agent/daniel-gierach-88889915"
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -19,7 +108,9 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +118,34 @@ const {
       href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@300;400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Daniel Gierach Property" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://www.danielgierach.com" />
+    <meta property="og:image" content="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <!-- Geo -->
+    <meta name="geo.region" content="AU-QLD" />
+    <meta name="geo.placename" content="Brisbane" />
+    <meta name="geo.position" content="-27.4568;153.0523" />
+    <meta name="ICBM" content="-27.4568, 153.0523" />
+    <!-- Global JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
+    <!-- Page-level JSON-LD (optional) -->
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K1P37GL73K');
+    </script>
   </head>
   <body>
     <Nav />
@@ -34,6 +153,19 @@ const {
       <slot />
     </main>
     <Footer />
+
+    <!-- Mobile sticky call bar -->
+    <div class="mobile-call-bar">
+      <a href="tel:+61412523821" class="mobile-call-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/>
+        </svg>
+        Call Daniel
+      </a>
+      <a href="/appraisal" class="mobile-appraisal-btn">
+        Request an Appraisal
+      </a>
+    </div>
 
     <!-- Global scroll reveal -->
     <script>
@@ -49,10 +181,21 @@ const {
         { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
       );
 
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach((el, i) => {
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .card-reveal').forEach((el, i) => {
         const delay = el.getAttribute('data-delay') || '0';
         (el as HTMLElement).style.transitionDelay = `${delay}ms`;
         observer.observe(el);
+      });
+
+      // ── FAQ details/summary toggle icon ──
+      document.querySelectorAll('details').forEach(details => {
+        const summary = details.querySelector('summary');
+        const icon = summary?.querySelector('span:last-child');
+        if (!icon) return;
+        details.addEventListener('toggle', () => {
+          icon.textContent = details.open ? '×' : '+';
+          (icon as HTMLElement).style.transform = details.open ? 'rotate(0deg)' : '';
+        });
       });
     </script>
   </body>

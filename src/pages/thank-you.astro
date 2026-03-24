@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Thank You | Daniel Gierach Property" description="Thank you for getting in touch. Daniel will be in touch within 2 hours.">
+
+<style is:global>
+  body.thankyou-page #site-header {
+    background: rgba(247,245,240,0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(28,25,23,0.08) !important;
+    box-shadow: 0 4px 24px rgba(28,25,23,0.08) !important;
+  }
+  body.thankyou-page #logo-name { color: var(--color-text-primary) !important; }
+  body.thankyou-page #nav-links .nav-link-mono,
+  body.thankyou-page #nav-cta .nav-link-mono { color: var(--color-text-secondary) !important; }
+</style>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section style="background:#1c1917;min-height:60vh;display:flex;align-items:center;padding:8rem 2rem 6rem;">
+  <div style="max-width:700px;margin:0 auto;text-align:center;">
+    <div style="width:3rem;height:3rem;border-radius:50%;background:rgba(245,208,122,0.12);border:1px solid rgba(245,208,122,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5d07a" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#f5d07a;display:block;margin-bottom:1.25rem;">Message Received</span>
+    <h1 style="font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,3.5rem);font-weight:400;color:#f0ece4;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+      Thank you for<br/><em style="font-style:italic;color:#f5d07a;">getting in touch.</em>
+    </h1>
+    <p style="font-size:1rem;color:rgba(240,236,228,0.65);line-height:1.85;max-width:44ch;margin:0 auto;">
+      Daniel will personally review your enquiry and be in touch within 2 hours during business hours. If you need to speak with him sooner, call directly on
+      <a href="tel:+61412523821" style="color:#f5d07a;font-weight:600;text-decoration:none;">0412 523 821</a>.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     WHAT HAPPENS NEXT
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);padding:6rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;text-align:center;margin-bottom:0.75rem;">What Happens Next</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:#1c1917;text-align:center;margin-bottom:3.5rem;line-height:1.2;">You're in good hands.</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(28,25,23,0.08);">
+
+      <div style="background:var(--color-base);padding:2rem 1.75rem;">
+        <span style="font-family:var(--font-serif);font-size:2rem;font-weight:300;color:#c4912a;opacity:0.5;display:block;margin-bottom:1rem;line-height:1;">1</span>
+        <p style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;margin-bottom:0.5rem;">Daniel reviews your enquiry</p>
+        <p style="font-size:0.82rem;color:#78716c;line-height:1.7;">Every message is read personally. No auto-responses, no call centres.</p>
+      </div>
+
+      <div style="background:var(--color-base);padding:2rem 1.75rem;">
+        <span style="font-family:var(--font-serif);font-size:2rem;font-weight:300;color:#c4912a;opacity:0.5;display:block;margin-bottom:1rem;line-height:1;">2</span>
+        <p style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;margin-bottom:0.5rem;">He'll be in touch within 2 hours</p>
+        <p style="font-size:0.82rem;color:#78716c;line-height:1.7;">Available 7 days. If it's urgent, call 0412 523 821 directly.</p>
+      </div>
+
+      <div style="background:var(--color-base);padding:2rem 1.75rem;">
+        <span style="font-family:var(--font-serif);font-size:2rem;font-weight:300;color:#c4912a;opacity:0.5;display:block;margin-bottom:1rem;line-height:1;">3</span>
+        <p style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;margin-bottom:0.5rem;">A genuine, no-pressure conversation</p>
+        <p style="font-size:0.82rem;color:#78716c;line-height:1.7;">No obligation. Just honest advice about your property and what it could achieve.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     NEXT STEPS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:5rem 2rem;border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:900px;margin:0 auto;">
+    <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;text-align:center;margin-bottom:0.75rem;">While You Wait</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#1c1917;text-align:center;margin-bottom:3rem;line-height:1.2;">Explore the site</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+
+      <a href="/insights" style="background:#fff;padding:1.75rem;text-decoration:none;display:block;border:1px solid rgba(28,25,23,0.08);transition:border-color 0.2s;"
+        onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.08)'">
+        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Insights</p>
+        <p style="font-family:var(--font-serif);font-size:1rem;color:#1c1917;margin-bottom:0.4rem;">Read the Articles</p>
+        <p style="font-size:0.78rem;color:#78716c;line-height:1.6;">Practical property knowledge for buyers and sellers.</p>
+      </a>
+
+      <a href="/listings" style="background:#fff;padding:1.75rem;text-decoration:none;display:block;border:1px solid rgba(28,25,23,0.08);transition:border-color 0.2s;"
+        onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.08)'">
+        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Listings</p>
+        <p style="font-family:var(--font-serif);font-size:1rem;color:#1c1917;margin-bottom:0.4rem;">View Current Properties</p>
+        <p style="font-size:0.78rem;color:#78716c;line-height:1.6;">Properties currently for sale and recently sold.</p>
+      </a>
+
+      <a href="/tools" style="background:#fff;padding:1.75rem;text-decoration:none;display:block;border:1px solid rgba(28,25,23,0.08);transition:border-color 0.2s;"
+        onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.08)'">
+        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Tools</p>
+        <p style="font-family:var(--font-serif);font-size:1rem;color:#1c1917;margin-bottom:0.4rem;">Free Property Calculators</p>
+        <p style="font-size:0.78rem;color:#78716c;line-height:1.6;">Selling costs, stamp duty, mortgage and more.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.body.classList.add('thankyou-page');
+  const header = document.getElementById('site-header')!;
+  const logoName = document.getElementById('logo-name')!;
+  const navLinkEls = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
+  header.classList.add('glass-nav');
+  logoName.style.color = 'var(--color-text-primary)';
+  navLinkEls.forEach(el => el.style.color = '');
+</script>
+
+</Layout>

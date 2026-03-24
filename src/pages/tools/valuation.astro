@@ -33,26 +33,35 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
             <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Suburb</label>
             <select id="suburb" class="obs-select" style="width:100%;">
               <option value="">Select a suburb...</option>
-              <option value="bulimba">Bulimba</option>
               <option value="balmoral">Balmoral</option>
-              <option value="hawthorne">Hawthorne</option>
-              <option value="morningside">Morningside</option>
-              <option value="cannon-hill">Cannon Hill</option>
-              <option value="east-brisbane">East Brisbane</option>
-              <option value="norman-park">Norman Park</option>
-              <option value="kangaroo-point">Kangaroo Point</option>
-              <option value="seven-hills">Seven Hills</option>
-              <option value="murarrie">Murarrie</option>
-              <option value="coorparoo">Coorparoo</option>
+              <option value="belmont">Belmont</option>
+              <option value="brisbane-cbd">Brisbane CBD</option>
+              <option value="bulimba">Bulimba</option>
               <option value="camp-hill">Camp Hill</option>
-              <option value="tingalpa">Tingalpa</option>
+              <option value="cannon-hill">Cannon Hill</option>
               <option value="carina">Carina</option>
               <option value="carina-heights">Carina Heights</option>
               <option value="carindale">Carindale</option>
+              <option value="coorparoo">Coorparoo</option>
+              <option value="east-brisbane">East Brisbane</option>
+              <option value="fortitude-valley">Fortitude Valley</option>
+              <option value="greenslopes">Greenslopes</option>
+              <option value="hawthorne">Hawthorne</option>
+              <option value="hemmant">Hemmant</option>
+              <option value="holland-park">Holland Park</option>
+              <option value="holland-park-west">Holland Park West</option>
+              <option value="kangaroo-point">Kangaroo Point</option>
+              <option value="morningside">Morningside</option>
               <option value="mt-gravatt">Mt Gravatt</option>
               <option value="mt-gravatt-east">Mt Gravatt East</option>
-              <option value="holland-park-west">Holland Park West</option>
-              <option value="greenslopes">Greenslopes</option>
+              <option value="murarrie">Murarrie</option>
+              <option value="new-farm">New Farm</option>
+              <option value="norman-park">Norman Park</option>
+              <option value="seven-hills">Seven Hills</option>
+              <option value="tarragindi">Tarragindi</option>
+              <option value="teneriffe">Teneriffe</option>
+              <option value="tingalpa">Tingalpa</option>
+              <option value="upper-mount-gravatt">Upper Mount Gravatt</option>
               <option value="woolloongabba">Woolloongabba</option>
             </select>
           </div>
@@ -145,31 +154,33 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">Almost there</h2>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.7;">Enter your details to receive your estimated property value and a tailored market report.</p>
 
-        <div class="flex flex-col gap-4">
+        <form method="POST" action="https://formspree.io/f/xnjgedwp" class="flex flex-col gap-4">
+          <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you" />
+          <input type="hidden" name="_subject" value="New valuation request — danielgierach.com" />
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">First Name</label>
-              <input type="text" id="fname" placeholder="Jane" class="obs-input" style="width:100%;" />
+              <input type="text" id="fname" name="first_name" placeholder="First Name" class="obs-input form-field" style="width:100%;" />
             </div>
             <div>
               <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Last Name</label>
-              <input type="text" id="lname" placeholder="Smith" class="obs-input" style="width:100%;" />
+              <input type="text" id="lname" name="last_name" placeholder="Last Name" class="obs-input form-field" style="width:100%;" />
             </div>
           </div>
           <div>
             <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Email</label>
-            <input type="email" id="email" placeholder="jane@example.com" class="obs-input" style="width:100%;" />
+            <input type="email" id="email" name="email" placeholder="jane@example.com" class="obs-input form-field" style="width:100%;" />
           </div>
           <div>
             <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.5rem;">Phone</label>
-            <input type="tel" id="phone" placeholder="04xx xxx xxx" class="obs-input" style="width:100%;" />
+            <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" class="obs-input form-field" style="width:100%;" />
           </div>
 
           <div class="flex gap-3">
-            <button id="back-2" class="btn-outline-gold" style="flex:1;justify-content:center;">← Back</button>
-            <button id="get-valuation" class="btn-gold" style="flex:2;justify-content:center;">Get My Valuation →</button>
+            <button type="button" id="back-2" class="btn-outline-gold" style="flex:1;justify-content:center;">← Back</button>
+            <button type="button" id="get-valuation" class="btn-gold" style="flex:2;justify-content:center;">Get My Valuation →</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
 
@@ -184,7 +195,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
       <div style="background:rgba(255,221,121,0.06);border:1px solid rgba(255,221,121,0.2);padding:2rem;">
         <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Want a precise appraisal?</p>
-        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.7;">This is an automated estimate. For an accurate, obligation-free appraisal from Dan with a full comparable sales report — book below.</p>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.7;">This is an automated estimate. For an accurate, obligation-free appraisal from Dan with a full comparable sales report, book below.</p>
         <a href="/appraisal" class="btn-gold" style="justify-content:center;display:inline-flex;">Book a Free Appraisal →</a>
       </div>
     </div>
@@ -194,27 +205,36 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <script>
   const MEDIAN: Record<string, { house: number; unit: number; terrace: number }> = {
-    'bulimba':          { house: 1750000, unit: 685000,  terrace: 1400000 },
-    'balmoral':         { house: 1900000, unit: 720000,  terrace: 1550000 },
-    'hawthorne':        { house: 1620000, unit: 660000,  terrace: 1300000 },
-    'morningside':      { house: 1280000, unit: 620000,  terrace: 1050000 },
-    'cannon-hill':      { house: 1150000, unit: 580000,  terrace: 950000  },
-    'east-brisbane':    { house: 1450000, unit: 650000,  terrace: 1200000 },
-    'norman-park':      { house: 1350000, unit: 600000,  terrace: 1100000 },
-    'kangaroo-point':   { house: 1520000, unit: 710000,  terrace: 1300000 },
-    'seven-hills':      { house: 1200000, unit: 560000,  terrace: 1000000 },
-    'murarrie':         { house: 950000,  unit: 520000,  terrace: 800000  },
-    'coorparoo':        { house: 1320000, unit: 610000,  terrace: 1100000 },
-    'camp-hill':        { house: 1380000, unit: 630000,  terrace: 1150000 },
-    'tingalpa':         { house: 850000,  unit: 490000,  terrace: 720000  },
-    'carina':           { house: 920000,  unit: 510000,  terrace: 780000  },
-    'carina-heights':   { house: 870000,  unit: 480000,  terrace: 740000  },
-    'carindale':        { house: 910000,  unit: 500000,  terrace: 760000  },
-    'mt-gravatt':       { house: 970000,  unit: 530000,  terrace: 820000  },
-    'mt-gravatt-east':  { house: 920000,  unit: 510000,  terrace: 780000  },
-    'holland-park-west':{ house: 980000,  unit: 530000,  terrace: 830000  },
-    'greenslopes':      { house: 1100000, unit: 560000,  terrace: 920000  },
-    'woolloongabba':    { house: 1250000, unit: 620000,  terrace: 1050000 },
+    'balmoral':          { house: 1900000, unit: 720000,  terrace: 1550000 },
+    'belmont':           { house: 870000,  unit: 480000,  terrace: 740000  },
+    'brisbane-cbd':      { house: 1800000, unit: 750000,  terrace: 1500000 },
+    'bulimba':           { house: 1750000, unit: 685000,  terrace: 1400000 },
+    'camp-hill':         { house: 1380000, unit: 630000,  terrace: 1150000 },
+    'cannon-hill':       { house: 1150000, unit: 580000,  terrace: 950000  },
+    'carina':            { house: 920000,  unit: 510000,  terrace: 780000  },
+    'carina-heights':    { house: 870000,  unit: 480000,  terrace: 740000  },
+    'carindale':         { house: 910000,  unit: 500000,  terrace: 760000  },
+    'coorparoo':         { house: 1320000, unit: 610000,  terrace: 1100000 },
+    'east-brisbane':     { house: 1450000, unit: 650000,  terrace: 1200000 },
+    'fortitude-valley':  { house: 1600000, unit: 690000,  terrace: 1350000 },
+    'greenslopes':       { house: 1100000, unit: 560000,  terrace: 920000  },
+    'hawthorne':         { house: 1620000, unit: 660000,  terrace: 1300000 },
+    'hemmant':           { house: 820000,  unit: 460000,  terrace: 700000  },
+    'holland-park':      { house: 1000000, unit: 540000,  terrace: 850000  },
+    'holland-park-west': { house: 980000,  unit: 530000,  terrace: 830000  },
+    'kangaroo-point':    { house: 1520000, unit: 710000,  terrace: 1300000 },
+    'morningside':       { house: 1280000, unit: 620000,  terrace: 1050000 },
+    'mt-gravatt':        { house: 970000,  unit: 530000,  terrace: 820000  },
+    'mt-gravatt-east':   { house: 920000,  unit: 510000,  terrace: 780000  },
+    'murarrie':          { house: 950000,  unit: 520000,  terrace: 800000  },
+    'new-farm':          { house: 2100000, unit: 780000,  terrace: 1700000 },
+    'norman-park':       { house: 1350000, unit: 600000,  terrace: 1100000 },
+    'seven-hills':       { house: 1200000, unit: 560000,  terrace: 1000000 },
+    'tarragindi':        { house: 980000,  unit: 530000,  terrace: 840000  },
+    'teneriffe':         { house: 2200000, unit: 800000,  terrace: 1750000 },
+    'tingalpa':          { house: 850000,  unit: 490000,  terrace: 720000  },
+    'upper-mount-gravatt':{ house: 950000, unit: 520000,  terrace: 810000  },
+    'woolloongabba':     { house: 1250000, unit: 620000,  terrace: 1050000 },
   };
 
   function goToStep(n: number) {
@@ -291,6 +311,33 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       document.querySelectorAll('.ptype-label').forEach(l => (l as HTMLElement).style.borderColor = 'transparent');
       const lbl = (r as HTMLInputElement).closest('label')?.querySelector('.ptype-label') as HTMLElement;
       if (lbl) lbl.style.borderColor = 'var(--color-gold)';
+    });
+  });
+
+  // Green tick validation
+  document.querySelectorAll<HTMLInputElement>('.form-field').forEach(input => {
+    const wrap = document.createElement('div');
+    wrap.className = 'field-wrap';
+    input.parentNode!.insertBefore(wrap, input);
+    wrap.appendChild(input);
+
+    const tick = document.createElement('span');
+    tick.className = 'field-tick';
+    tick.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    wrap.appendChild(tick);
+
+    input.addEventListener('blur', () => {
+      if (input.value.trim() && input.checkValidity()) {
+        input.classList.add('valid');
+        tick.classList.add('show');
+      } else {
+        input.classList.remove('valid');
+        tick.classList.remove('show');
+      }
+    });
+    input.addEventListener('focus', () => {
+      input.classList.remove('valid');
+      tick.classList.remove('show');
     });
   });
 </script>

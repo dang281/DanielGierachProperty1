@@ -1,8 +1,22 @@
 ---
 const navLinks = [
   { label: 'Listings', href: '/listings' },
-  { label: 'Tools', href: '/tools' },
+  { label: 'Property Tools', href: '/tools' },
+  { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
+];
+
+const suburbs = [
+  { label: 'Brisbane Inner East', href: '/brisbane-inner-east' },
+  { label: 'Seven Hills',         href: '/suburbs/seven-hills' },
+  { label: 'Carina',              href: '/suburbs/carina' },
+  { label: 'Morningside',         href: '/suburbs/morningside' },
+  { label: 'Cannon Hill',         href: '/suburbs/cannon-hill' },
+  { label: 'Carina Heights',      href: '/suburbs/carina-heights' },
+  { label: 'East Brisbane',       href: '/suburbs/east-brisbane' },
+  { label: 'Coorparoo',           href: '/suburbs/coorparoo' },
+  { label: 'Tingalpa',            href: '/suburbs/tingalpa' },
+  { label: 'Murarrie',            href: '/suburbs/murarrie' },
 ];
 ---
 
@@ -11,35 +25,37 @@ const navLinks = [
     <div class="flex items-center justify-between h-[76px]">
 
       <!-- Logo -->
-      <a href="/" class="flex flex-col leading-none group">
-        <span style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;font-style:italic;color:var(--color-text-primary);letter-spacing:0.04em;transition:color 0.2s;" class="group-hover:text-gold">
+      <a href="/" class="flex flex-col leading-none group" style="gap:0.3rem;">
+        <span id="logo-name" style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;font-style:italic;color:#f0ece4;letter-spacing:0.02em;transition:color 0.3s;">
           Daniel Gierach
         </span>
-        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--color-gold);">
-          Property
+        <span style="display:flex;align-items:center;gap:0.5rem;">
+          <span style="display:block;height:1px;width:1.25rem;background:var(--color-gold);opacity:0.8;"></span>
+          <span style="font-family:var(--font-sans);font-size:0.625rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);opacity:0.85;">Ray White · The Collective</span>
         </span>
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-10">
+      <nav class="hidden lg:flex items-center gap-10" id="nav-links">
         {navLinks.map((link) => (
-          <a href={link.href} class="nav-link-mono">{link.label}</a>
+          <a href={link.href} class="nav-link-mono" style="color:#f0ece4;">{link.label}</a>
         ))}
+
       </nav>
 
       <!-- CTA -->
-      <div class="hidden lg:flex items-center gap-6">
-        <a href="/contact" class="nav-link-mono">Contact</a>
+      <div class="hidden lg:flex items-center gap-6" id="nav-cta">
+        <a href="/contact" class="nav-link-mono" style="color:#f0ece4;">Contact</a>
         <a href="/appraisal" class="btn-gold" style="padding:0.7rem 1.5rem;">
-          Request Appraisal
+          Request An Appraisal
         </a>
       </div>
 
       <!-- Mobile toggle -->
-      <button id="mobile-toggle" class="lg:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
-        <span id="bar1" class="block w-6 h-px transition-all duration-300" style="background:var(--color-text-secondary);"></span>
-        <span id="bar2" class="block w-6 h-px transition-all duration-300" style="background:var(--color-text-secondary);"></span>
-        <span id="bar3" class="block w-4 h-px transition-all duration-300 self-end" style="background:var(--color-text-secondary);"></span>
+      <button id="mobile-toggle" class="lg:hidden flex flex-col gap-[5px] p-2" aria-label="Menu">
+        <span id="bar1" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
+        <span id="bar2" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
+        <span id="bar3" class="block w-4 transition-all duration-300 self-end" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
       </button>
     </div>
   </div>
@@ -52,36 +68,66 @@ const navLinks = [
   >
     <div class="max-w-[1400px] mx-auto px-8 py-6 flex flex-col gap-5">
       {navLinks.map((link) => (
-        <a href={link.href} class="nav-link-mono">{link.label}</a>
+        <a href={link.href} class="nav-link-mono mobile-nav-link">{link.label}</a>
       ))}
+
+
       <div class="pt-4 flex flex-col gap-3" style="border-top:1px solid rgba(28,25,23,0.12);">
         <a href="/contact" class="nav-link-mono">Contact</a>
-        <a href="/appraisal" class="btn-gold self-start">Request Appraisal</a>
+        <a href="/appraisal" class="btn-gold self-start">Request An Appraisal</a>
       </div>
     </div>
   </div>
 </header>
 
 <script>
-  const header = document.getElementById('site-header')!;
+  const header       = document.getElementById('site-header')!;
   const mobileToggle = document.getElementById('mobile-toggle')!;
-  const mobileMenu = document.getElementById('mobile-menu')!;
-  const bar3 = document.getElementById('bar3')!;
+  const mobileMenu   = document.getElementById('mobile-menu')!;
+  const bar1         = document.getElementById('bar1')!;
+  const bar2         = document.getElementById('bar2')!;
+  const bar3         = document.getElementById('bar3')!;
+  const logoName     = document.getElementById('logo-name')!;
+  const navLinkEls   = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
+  const bars         = [bar1, bar2, bar3];
   let menuOpen = false;
 
+  // Highlight active mobile nav link
+  const currentPath = window.location.pathname;
+  document.querySelectorAll<HTMLAnchorElement>('.mobile-nav-link').forEach(link => {
+    if (link.getAttribute('href') === currentPath || currentPath.startsWith(link.getAttribute('href') + '/')) {
+      link.style.color = 'var(--color-gold)';
+      link.style.borderLeft = '2px solid var(--color-gold)';
+      link.style.paddingLeft = '0.6rem';
+    }
+  });
+
+  // Scroll behaviour
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       header.classList.add('glass-nav');
       header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
+      logoName.style.color = 'var(--color-text-primary)';
+      navLinkEls.forEach(el => el.style.color = '');
+      bars.forEach(b => b.style.background = '#1c1917');
+      const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
+      if (trigger) trigger.style.color = '';
     } else {
       header.classList.remove('glass-nav');
       header.style.boxShadow = 'none';
+      logoName.style.color = '#f0ece4';
+      navLinkEls.forEach(el => el.style.color = '#f0ece4');
+      bars.forEach(b => b.style.background = '#f0ece4');
+      const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
+      if (trigger) trigger.style.color = '#f0ece4';
     }
   });
 
+  // Mobile menu toggle
   mobileToggle.addEventListener('click', () => {
     menuOpen = !menuOpen;
-    mobileMenu.style.maxHeight = menuOpen ? '400px' : '0';
+    mobileMenu.style.maxHeight = menuOpen ? '600px' : '0';
     bar3.style.width = menuOpen ? '1.5rem' : '1rem';
   });
+
 </script>

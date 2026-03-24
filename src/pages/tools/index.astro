@@ -2,71 +2,103 @@
 import Layout from '../../layouts/Layout.astro';
 
 const tools = [
-  { href: '/tools/valuation',      icon: 'home',      label: 'Instant Valuation',       desc: 'Get an indicative value for your property in minutes.',             phase: 'Seller', cta: 'Estimate My Home' },
-  { href: '/tools/selling-costs',  icon: 'dollar',    label: 'Selling Cost Calculator', desc: 'See your estimated net proceeds after all selling costs.',           phase: 'Seller', cta: 'Calculate Costs' },
-  { href: '/tools/stamp-duty',     icon: 'receipt',   label: 'Stamp Duty Calculator',   desc: 'QLD transfer duty, first home buyer concessions & full upfront costs.',  phase: 'Buyer',  cta: 'Calculate Duty' },
-  { href: '/tools/mortgage',       icon: 'chart',     label: 'Mortgage Calculator',     desc: 'Weekly, fortnightly or monthly repayments + amortisation chart.',   phase: 'Buyer',  cta: 'Calculate Repayments' },
-  { href: '/tools/investment-yield', icon: 'yield',   label: 'Investment Yield',        desc: 'Gross & net yield, cash flow, 10-year capital growth projection.',   phase: 'Investor', cta: 'Calculate Yield' },
-  { href: '/tools/renovation-roi', icon: 'hammer',    label: 'Renovation ROI',          desc: 'Which renovations add the most value before you sell?',             phase: 'Seller', cta: 'Check ROI' },
-  { href: '/tools/suburb-match',   icon: 'quiz',      label: 'Suburb Match Quiz',       desc: 'Answer 8 questions to find your ideal Brisbane inner east suburb.',  phase: 'Buyer',  cta: 'Find My Suburb' },
-  { href: '/tools/flood-risk',     icon: 'flood',     label: 'Flood Risk Checker',      desc: 'Understand BCC flood zones, 2011/2022 event risk & insurance implications.', phase: 'Buyer', cta: 'Check Risk' },
-  { href: '/tools/property-compare', icon: 'compare', label: 'Property Comparison',     desc: 'Compare up to 4 properties side-by-side on all key metrics.',       phase: 'Buyer',  cta: 'Compare Properties' },
-  { href: '/tools/heatmap',        icon: 'map',       label: 'Price Heatmap',           desc: 'Visual suburb-by-suburb median price and growth map.',              phase: 'Market', cta: 'Explore Map' },
+  { href: '/tools/valuation',        label: 'Instant Valuation',       desc: 'Get an indicative value for your property in minutes.',                              phase: 'Seller',   cta: 'Estimate My Home' },
+  { href: '/tools/selling-costs',    label: 'Selling Cost Calculator',  desc: 'See your estimated net proceeds after all selling costs.',                           phase: 'Seller',   cta: 'Calculate Costs' },
+  { href: '/tools/stamp-duty',       label: 'Stamp Duty Calculator',    desc: 'QLD transfer duty, first home buyer concessions & full upfront costs.',              phase: 'Buyer',    cta: 'Calculate Duty' },
+  { href: '/tools/mortgage',         label: 'Mortgage Calculator',      desc: 'Weekly, fortnightly or monthly repayments + amortisation chart.',                   phase: 'Buyer',    cta: 'Calculate Repayments' },
+  { href: '/tools/investment-yield', label: 'Investment Yield',         desc: 'Gross & net yield, cash flow, 10-year capital growth projection.',                  phase: 'Investor', cta: 'Calculate Yield' },
+  { href: '/tools/renovation-roi',   label: 'Renovation ROI',           desc: 'Which renovations add the most value before you sell?',                             phase: 'Seller',   cta: 'Check ROI' },
+  { href: '/tools/suburb-match',     label: 'Suburb Match Quiz',        desc: 'Answer 8 questions to find your ideal Brisbane inner east suburb.',                 phase: 'Buyer',    cta: 'Find My Suburb' },
+  { href: '/tools/flood-risk',       label: 'Flood Risk Checker',       desc: 'Understand BCC flood zones, 2011/2022 event risk & insurance implications.',       phase: 'Buyer',    cta: 'Check Risk' },
+  { href: '/tools/property-compare', label: 'Property Comparison',      desc: 'Compare up to 4 properties side-by-side on all key metrics.',                      phase: 'Buyer',    cta: 'Compare Properties' },
+  { href: '/tools/heatmap',          label: 'Price Heatmap',            desc: 'Visual suburb-by-suburb median price and growth map.',                              phase: 'Market',   cta: 'Explore Map' },
+  { href: '/tools/borrowing-power',  label: 'Borrowing Power Calculator', desc: 'Estimate how much you can borrow based on income, expenses, and dependants.',       phase: 'Buyer',    cta: 'Calculate Power' },
+  { href: '/tools/equity-calculator', label: 'Home Equity Calculator',   desc: 'See how much equity you hold and how much you could access or take to your next purchase.', phase: 'Seller', cta: 'Calculate Equity' },
 ];
 
 const phaseColors: Record<string, string> = {
-  Seller: '#ffdd79',
-  Buyer: '#7ec8e3',
+  Seller:   '#f5d07a',
+  Buyer:    '#7ec8e3',
   Investor: '#a8e6a3',
-  Market: '#c8c6c8',
+  Market:   '#c8c6c8',
 };
 ---
 
-<Layout title="Property Tools & Calculators | Daniel Gierach Property">
+<Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage calculator, stamp duty, selling costs, borrowing power and more - inner-east Brisbane.">
 
-  <div style="background:var(--color-surface-1);padding-top:8rem;padding-bottom:3rem;border-bottom:1px solid rgba(72,72,72,0.15);">
-    <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-      <span class="eyebrow mb-4" style="display:block;">Resources</span>
-      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
-        Property Tools & Calculators
-      </h1>
-      <p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:52ch;line-height:1.75;">
-        Free tools to help you buy, sell, or invest smarter in Brisbane's inner east and south.
-      </p>
-    </div>
+<!-- Hero -->
+<section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=90"
+      alt="Brisbane property"
+      class="w-full h-full object-cover"
+      style="filter:grayscale(8%) brightness(0.4);"
+    />
+    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.3) 100%);"></div>
   </div>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-32 pb-16">
+    <span class="eyebrow mb-4 reveal" style="display:block;color:#f5d07a;">Resources</span>
+    <h1 class="reveal" data-delay="80"
+      style="font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
+      Property Tools<br/><em style="font-style:italic;color:#f5d07a;">&amp; Calculators.</em>
+    </h1>
+    <p class="reveal" data-delay="160"
+      style="font-size:0.95rem;color:rgba(240,236,228,0.6);max-width:48ch;line-height:1.8;">
+      Free tools to help you buy, sell, or invest smarter across Brisbane's inner east.
+    </p>
+  </div>
+</section>
 
-  <div style="background:var(--color-base);padding:4rem 0 6rem;">
-    <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {tools.map((tool) => (
-          <a href={tool.href}
-            style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:background 0.25s,transform 0.25s;text-decoration:none;"
-            onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-3px)'"
-            onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
-          >
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;">
-              <span style={`font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:${phaseColors[tool.phase] || '#ffdd79'};background:rgba(255,221,121,0.08);padding:0.25rem 0.6rem;flex-shrink:0;`}>
-                {tool.phase}
-              </span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
-            <div>
-              <h2 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">
-                {tool.label}
-              </h2>
-              <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.7;">
-                {tool.desc}
-              </p>
-            </div>
-            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);margin-top:auto;">
-              {tool.cta} →
+<!-- Tools Grid -->
+<section style="background:var(--color-base);padding:5rem 0 7rem;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {tools.map((tool, i) => (
+        <a href={tool.href}
+          class="reveal" data-delay={i * 40}
+          style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem 2rem 1.75rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;position:relative;overflow:hidden;"
+          onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.35)';this.style.transform='translateY(-2px)'"
+          onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)'"
+        >
+          <div style={`position:absolute;top:0;left:0;right:0;height:2px;background:${phaseColors[tool.phase]};opacity:0.8;`}></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
+            <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:${phaseColors[tool.phase]};`}>
+              {tool.phase}
             </span>
-          </a>
-        ))}
-      </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,25,23,0.35)" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+          <div>
+            <h2 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:#1c1917;margin-bottom:0.5rem;line-height:1.2;">
+              {tool.label}
+            </h2>
+            <p style="font-size:0.8rem;color:#78716c;line-height:1.75;">
+              {tool.desc}
+            </p>
+          </div>
+          <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">
+            {tool.cta} →
+          </span>
+        </a>
+      ))}
     </div>
   </div>
+</section>
+
+<!-- Property Report CTA -->
+<section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="reveal" style="padding:2.5rem;background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
+      <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#1c1917;">What is your property worth?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
+      <a href="/appraisal" class="btn-gold">
+        Get My Free Property Report
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 </Layout>

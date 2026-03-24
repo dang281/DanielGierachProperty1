@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact | Daniel Gierach Property" description="Speak directly with Daniel Gierach, Brisbane Inner-East Property Sales Specialist. Get a free appraisal or access off-market opportunities.">
+<Layout title="Contact | Daniel Gierach Property" description="Contact Daniel Gierach, Brisbane inner-east real estate agent at Ray White Bulimba. Call 0412 523 821 or send a message to discuss your property.">
 
 <!-- ════════════════════════════════════════════
      FULL-VIEWPORT SPLIT LAYOUT
@@ -19,56 +19,56 @@ import Layout from '../layouts/Layout.astro';
         src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1920&q=85"
         alt="Brisbane inner-east property"
         class="w-full h-full object-cover"
-        style="filter:grayscale(8%) brightness(0.55);"
+        style="filter:grayscale(8%) brightness(0.45);"
         fetchpriority="high"
       />
-      <div class="absolute inset-0" style="background:linear-gradient(150deg,rgba(10,8,6,0.55) 0%,rgba(10,8,6,0.25) 100%);"></div>
+      <!-- Left-heavy gradient so text always sits on dark -->
+      <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(10,8,6,0.82) 0%,rgba(10,8,6,0.6) 55%,rgba(10,8,6,0.25) 100%);"></div>
     </div>
 
     <!-- Content -->
     <div class="relative z-10">
-      <span class="eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Get In Touch</span>
+      <span class="eyebrow mb-5 reveal" style="display:block;color:#f5d07a;font-size:0.7rem;letter-spacing:0.22em;">Get In Touch</span>
 
       <h1 class="reveal" data-delay="60"
-        style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
+        style="font-family:var(--font-serif);font-size:clamp(2.6rem,4.5vw,4.2rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;">
         Your Next Move<br/>
         <em style="font-style:italic;color:#f5d07a;">Starts Here.</em>
       </h1>
 
-      <p class="reveal" data-delay="120"
-        style="font-size:0.88rem;color:rgba(240,236,228,0.6);line-height:1.85;max-width:38ch;margin-bottom:2.5rem;">
+      <p class="contact-hero-desc reveal" data-delay="120"
+        style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
         Whether you're selling, buying, or exploring off-market, a direct, no-pressure conversation is the best place to start.
       </p>
 
       <!-- Contact details -->
-      <div class="reveal" data-delay="180" style="display:flex;flex-direction:column;gap:1.25rem;">
+      <div class="contact-hero-contacts reveal" data-delay="180" style="display:flex;flex-direction:column;gap:1.5rem;">
         <div>
-          <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.65);margin-bottom:0.3rem;">Phone</p>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Phone</p>
           <a href="tel:+61412523821"
-            style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
             onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='#f0ece4'">0412 523 821</a>
-          <p style="font-size:0.6rem;color:rgba(240,236,228,0.6);margin-top:0.15rem;letter-spacing:0.06em;">Available 7 days</p>
+            onmouseout="this.style.color='#ffffff'">0412 523 821</a>
         </div>
 
-        <div style="width:2.5rem;height:1px;background:rgba(255,255,255,0.12);"></div>
+        <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
 
         <div>
-          <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.65);margin-bottom:0.3rem;">Email</p>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Email</p>
           <a href="mailto:daniel.gierach@raywhite.com"
-            style="font-family:var(--font-sans);font-size:0.82rem;font-weight:500;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
             onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='#f0ece4'">daniel.gierach@raywhite.com</a>
+            onmouseout="this.style.color='#ffffff'">daniel.gierach@raywhite.com</a>
         </div>
 
-        <div style="width:2.5rem;height:1px;background:rgba(255,255,255,0.12);"></div>
+        <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
 
         <div style="display:flex;gap:0.85rem;align-items:center;">
           <a href="https://www.instagram.com/dgierach/" target="_blank" rel="noopener" aria-label="Instagram"
             style="color:rgba(240,236,228,0.45);transition:color 0.2s;"
             onmouseover="this.style.color='#f5d07a'"
             onmouseout="this.style.color='rgba(240,236,228,0.45)'">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/>
               <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
             </svg>
@@ -77,8 +77,25 @@ import Layout from '../layouts/Layout.astro';
             style="color:rgba(240,236,228,0.45);transition:color 0.2s;"
             onmouseover="this.style.color='#f5d07a'"
             onmouseout="this.style.color='rgba(240,236,228,0.45)'">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://www.realestate.com.au/agent/daniel-gierach-3819232" target="_blank" rel="noopener" aria-label="realestate.com.au"
+            style="opacity:0.45;transition:opacity 0.2s;"
+            onmouseover="this.style.opacity='1'"
+            onmouseout="this.style.opacity='0.45'">
+            <img src="https://www.realestate.com.au/favicon.ico" width="24" height="24" alt="realestate.com.au" style="display:block;" />
+          </a>
+          <a href="https://share.google/WipmgyJnjC5nkhGwx" target="_blank" rel="noopener" aria-label="Google Business Profile"
+            style="color:rgba(240,236,228,0.45);transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='rgba(240,236,228,0.45)'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
           </a>
         </div>
@@ -96,7 +113,9 @@ import Layout from '../layouts/Layout.astro';
         Daniel will respond <em style="font-style:italic;">promptly.</em>
       </h2>
 
-      <form name="contact" method="POST" style="display:flex;flex-direction:column;gap:1rem;">
+      <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex;flex-direction:column;gap:1rem;">
+  <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you" />
+  <input type="hidden" name="_subject" value="New contact enquiry — danielgierach.com" />
 
         <!-- Intent selector -->
         <div>
@@ -104,11 +123,11 @@ import Layout from '../layouts/Layout.astro';
             I'm looking to…
           </label>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;" id="intent-group">
-            {['Sell', 'Buy', 'A Market Update'].map((opt) => (
+            {['Sell', 'Buy', 'Understand the Market'].map((opt) => (
               <button type="button" class="intent-btn"
                 data-value={opt.toLowerCase()}
-                style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.65rem 0.3rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);color:#44403c;cursor:pointer;transition:all 0.18s;">
-                {opt === 'A Market Update' ? 'A Market Update' : opt === 'Sell' ? 'Sell' : 'Buy / Rent'}
+                style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0;height:2.75rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;">
+                {opt === 'Sell' ? 'Sell' : opt === 'Buy' ? 'Buy / Rent' : 'Understand the Market'}
               </button>
             ))}
           </div>
@@ -121,20 +140,16 @@ import Layout from '../layouts/Layout.astro';
             <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
               First Name <span style="color:#c4912a;">*</span>
             </label>
-            <input type="text" name="first_name" required placeholder="Daniel"
-              class="obs-input"
-              onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
-              onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+            <input type="text" name="first_name" required placeholder="First Name"
+              class="obs-input form-field" autocomplete="given-name"
             />
           </div>
           <div>
             <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
               Last Name <span style="color:#c4912a;">*</span>
             </label>
-            <input type="text" name="last_name" required placeholder="Gierach"
-              class="obs-input"
-              onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
-              onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+            <input type="text" name="last_name" required placeholder="Last Name"
+              class="obs-input form-field" autocomplete="family-name"
             />
           </div>
         </div>
@@ -145,9 +160,7 @@ import Layout from '../layouts/Layout.astro';
             Phone <span style="color:#c4912a;">*</span>
           </label>
           <input type="tel" name="phone" required placeholder="04xx xxx xxx"
-            class="obs-input"
-            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
-            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+            class="obs-input form-field" autocomplete="tel"
           />
         </div>
 
@@ -157,9 +170,7 @@ import Layout from '../layouts/Layout.astro';
             Email <span style="color:#c4912a;">*</span>
           </label>
           <input type="email" name="email" required placeholder="your@email.com"
-            class="obs-input"
-            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
-            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+            class="obs-input form-field" autocomplete="email"
           />
         </div>
 
@@ -169,10 +180,8 @@ import Layout from '../layouts/Layout.astro';
             Property Address
             <span style="font-weight:400;text-transform:none;color:#78716c;font-size:0.58rem;letter-spacing:0.04em;"> (optional)</span>
           </label>
-          <input type="text" name="property_address" placeholder="37 Example Road, Seven Hills 4170"
-            class="obs-input"
-            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
-            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
+          <input type="text" name="property_address" placeholder="e.g. 12 River Street, Bulimba 4171"
+            class="obs-input form-field" autocomplete="street-address"
           />
         </div>
 
@@ -184,10 +193,8 @@ import Layout from '../layouts/Layout.astro';
           </label>
           <textarea name="message" rows="2"
             placeholder="Timeline, budget, questions…"
-            class="obs-input"
+            class="obs-input form-field"
             style="height:auto;padding-top:0.65rem;padding-bottom:0.65rem;resize:none;"
-            onfocus="this.style.borderColor='rgba(196,145,42,0.5)'"
-            onblur="this.style.borderColor='rgba(28,25,23,0.18)'"
           ></textarea>
         </div>
 
@@ -205,18 +212,77 @@ import Layout from '../layouts/Layout.astro';
 
 </section>
 
+<!-- ════════════════════════════════════════════
+     GOOGLE MAPS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="grid grid-cols-1 lg:grid-cols-2" style="min-height:380px;">
+
+    <!-- Map -->
+    <div style="position:relative;min-height:380px;overflow:hidden;">
+      <iframe
+        title="Ray White Bulimba, Daniel Gierach"
+        src="https://maps.google.com/maps?q=Ray+White+Bulimba+57+Oxford+Street+Bulimba+QLD+4171&output=embed&z=15"
+        width="100%"
+        height="100%"
+        style="position:absolute;inset:0;width:100%;height:100%;border:none;filter:grayscale(20%);"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Office details -->
+    <div style="padding:3.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem;border-left:1px solid rgba(28,25,23,0.08);">
+      <div>
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Find Us</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;color:#1c1917;line-height:1.5;margin-bottom:0.5rem;">Ray White Bulimba</p>
+        <p style="font-size:0.88rem;color:#44403c;line-height:1.8;">Unit 6, 57-59 Oxford Street<br/>Bulimba QLD 4171</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0.5rem;padding-top:1.25rem;border-top:1px solid rgba(28,25,23,0.1);">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16z"/></svg>
+          <a href="tel:+61732541022" style="font-size:0.85rem;color:#44403c;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c4912a'" onmouseout="this.style.color='#44403c'">(07) 3254 1022</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <p style="font-size:0.85rem;color:#44403c;">Mon-Sun, 7am-8pm</p>
+        </div>
+      </div>
+
+      <a href="https://share.google/WipmgyJnjC5nkhGwx" target="_blank" rel="noopener"
+        style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.7rem 1.25rem;border:1px solid rgba(28,25,23,0.15);font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;transition:all 0.2s;width:fit-content;"
+        onmouseover="this.style.borderColor='#c4912a';this.style.color='#c4912a';"
+        onmouseout="this.style.borderColor='rgba(28,25,23,0.15)';this.style.color='#44403c';">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        View on Google Maps
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <style>
   @media (max-width: 768px) {
     .contact-split {
       grid-template-columns: 1fr !important;
     }
     .contact-split > div:first-child {
-      min-height: 50vh;
-      padding: 7rem 2rem 3rem !important;
+      min-height: 0;
+      padding: 5rem 1.75rem 2.5rem !important;
     }
     .contact-split > div:last-child {
       padding: 3rem 2rem 4rem !important;
     }
+    /* Hide description + contact details on mobile — keep eyebrow + headline only */
+    .contact-hero-desc,
+    .contact-hero-contacts { display: none !important; }
   }
   input::placeholder, textarea::placeholder { color: var(--color-text-muted); }
   input:-webkit-autofill, textarea:-webkit-autofill {
@@ -280,7 +346,7 @@ import Layout from '../layouts/Layout.astro';
   const ctaMap: Record<string, string> = {
     sell: 'Request My Appraisal',
     buy: 'Get In Touch',
-    'a market update': 'Get A Market Update',
+    'understand the market': 'Get In Touch',
   };
 
   btns.forEach(btn => {
@@ -290,6 +356,36 @@ import Layout from '../layouts/Layout.astro';
       const val = btn.dataset.value!;
       intentInput.value = val;
       submitLabel.textContent = ctaMap[val] ?? 'Send My Enquiry';
+    });
+  });
+
+  // Field validation animation
+  document.querySelectorAll<HTMLElement>('.form-field').forEach(field => {
+    const wrap = document.createElement('div');
+    wrap.className = 'field-wrap';
+    field.parentNode!.insertBefore(wrap, field);
+    wrap.appendChild(field);
+
+    const tick = document.createElement('span');
+    tick.className = 'field-tick';
+    tick.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    wrap.appendChild(tick);
+
+    field.addEventListener('blur', () => {
+      const isValid = (field as HTMLInputElement).value.trim() !== '' &&
+        (!(field as HTMLInputElement).checkValidity || (field as HTMLInputElement).checkValidity());
+      if (isValid) {
+        field.classList.add('valid');
+        tick.classList.add('show');
+      } else {
+        field.classList.remove('valid');
+        tick.classList.remove('show');
+      }
+    });
+
+    field.addEventListener('focus', () => {
+      field.classList.remove('valid');
+      tick.classList.remove('show');
     });
   });
 </script>

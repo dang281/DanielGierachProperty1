@@ -133,7 +133,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
 
   // QLD Transfer Duty rates 2024
-  // QLD Transfer Duty — standard (investor) rates
+  // QLD Transfer Duty: standard (investor) rates
   function calcBaseDuty(price: number): number {
     if (price <= 5000)    return 0;
     if (price <= 75000)   return (price - 5000)   * 0.015;
@@ -142,7 +142,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return 38025 + (price - 1000000) * 0.0575;
   }
 
-  // QLD Transfer Duty — home concession rates (owner-occupier)
+  // QLD Transfer Duty: home concession rates (owner-occupier)
   function calcHomeDuty(price: number): number {
     if (price <= 350000)  return price * 0.01;
     if (price <= 540000)  return 3500  + (price - 350000) * 0.035;

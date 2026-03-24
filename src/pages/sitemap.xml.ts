@@ -1,0 +1,99 @@
+import type { APIRoute } from 'astro';
+
+const SITE_URL = 'https://www.danielgierach.com';
+
+const pages = [
+  // Core pages — highest priority
+  { path: '/',          changefreq: 'weekly',  priority: '1.0' },
+  { path: '/listings',  changefreq: 'daily',   priority: '0.95' },
+  { path: '/appraisal', changefreq: 'monthly', priority: '0.9' },
+  { path: '/about',               changefreq: 'monthly', priority: '0.8' },
+  { path: '/brisbane-inner-east', changefreq: 'monthly', priority: '0.9' },
+  { path: '/suburbs/seven-hills',    changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/carina',         changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/morningside',    changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/cannon-hill',    changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/carina-heights', changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/east-brisbane',  changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/coorparoo',      changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/tingalpa',       changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/murarrie',       changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/brisbane-cbd',        changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/fortitude-valley',    changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/new-farm',            changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/teneriffe',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/kangaroo-point',      changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/woolloongabba',       changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/bulimba',             changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/hawthorne',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/balmoral',            changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/norman-park',         changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/camp-hill',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/hemmant',             changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/carindale',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/belmont',             changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/greenslopes',         changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/holland-park',        changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/holland-park-west',   changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/mount-gravatt',       changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/mount-gravatt-east',  changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/upper-mount-gravatt', changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/tarragindi',          changefreq: 'monthly', priority: '0.85' },
+  { path: '/contact',             changefreq: 'monthly', priority: '0.8' },
+
+  // Tools index + individual tools (long-tail keyword traffic)
+  { path: '/tools',                       changefreq: 'monthly', priority: '0.8' },
+  { path: '/tools/valuation',             changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/mortgage',              changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/stamp-duty',            changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/selling-costs',         changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/borrowing-power',       changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/investment-yield',      changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/equity-calculator',     changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/renovation-roi',        changefreq: 'monthly', priority: '0.7' },
+  { path: '/tools/suburb-match',          changefreq: 'monthly', priority: '0.7' },
+  { path: '/tools/property-compare',      changefreq: 'monthly', priority: '0.7' },
+  { path: '/tools/heatmap',              changefreq: 'weekly',  priority: '0.75' },
+  { path: '/tools/flood-risk',           changefreq: 'monthly', priority: '0.7' },
+
+  // Insights index + articles (content marketing / organic search)
+  { path: '/insights',                              changefreq: 'weekly',  priority: '0.8' },
+  { path: '/insights/auction-strategy',             changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/building-pest-report',         changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/buyers-agent',                 changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/engage-right-builder',         changefreq: 'monthly', priority: '0.65' },
+  { path: '/insights/flood-mapping',                changefreq: 'monthly', priority: '0.65' },
+  { path: '/insights/mortgage-broker',              changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/prepare-home-for-sale',        changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/stamp-duty-queensland',        changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/unconditional-offer',          changefreq: 'monthly', priority: '0.65' },
+  { path: '/insights/understanding-the-contract',   changefreq: 'monthly', priority: '0.65' },
+  { path: '/insights/what-happens-at-settlement',   changefreq: 'monthly', priority: '0.65' },
+  { path: '/insights/when-to-sell',                 changefreq: 'monthly', priority: '0.7' },
+
+  // Legal — low priority
+  { path: '/privacy',    changefreq: 'yearly', priority: '0.2' },
+  { path: '/terms',      changefreq: 'yearly', priority: '0.2' },
+  { path: '/thank-you',  changefreq: 'yearly', priority: '0.1' },
+];
+
+const today = new Date().toISOString().split('T')[0];
+
+export const GET: APIRoute = () => {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(p => `  <url>
+    <loc>${SITE_URL}${p.path}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+  return new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=86400',
+    },
+  });
+};

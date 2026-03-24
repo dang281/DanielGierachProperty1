@@ -256,10 +256,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       { label: 'Car Spaces',     values: p => String(p.cars) },
       { label: 'Stamp Duty',     values: p => fmt(stampDuty(p.price)) },
       { label: 'Upfront Costs',  values: p => fmt(stampDuty(p.price) + 2000 + 700 + 160) },
-      { label: 'Weekly Rent',    values: p => p.rent ? `$${p.rent}/wk` : '—' },
-      { label: 'Gross Yield',    values: p => p.rent ? `${((p.rent * 52 / p.price) * 100).toFixed(2)}%` : '—' },
-      { label: 'Annual Strata',  values: p => p.strata ? fmt(p.strata) : '—' },
-      { label: 'Features',       values: p => p.features.length ? p.features.join(', ') : '—' },
+      { label: 'Weekly Rent',    values: p => p.rent ? `$${p.rent}/wk` : 'N/A' },
+      { label: 'Gross Yield',    values: p => p.rent ? `${((p.rent * 52 / p.price) * 100).toFixed(2)}%` : 'N/A' },
+      { label: 'Annual Strata',  values: p => p.strata ? fmt(p.strata) : 'N/A' },
+      { label: 'Features',       values: p => p.features.length ? p.features.join(', ') : 'N/A' },
     ];
 
     const body = document.getElementById('compare-body')!;
