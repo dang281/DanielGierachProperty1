@@ -112,7 +112,7 @@ const suburbs = [
       bars.forEach(b => b.style.background = '#1c1917');
       const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
       if (trigger) trigger.style.color = '';
-    } else {
+    } else if (!document.body.dataset.lightNav) {
       header.classList.remove('glass-nav');
       header.style.boxShadow = 'none';
       logoName.style.color = '#f0ece4';

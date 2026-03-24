@@ -20,6 +20,8 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
       const logoName = document.getElementById('logo-name');
       const navLinks = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
       if (!header) return;
+      // Flag tells Nav scroll handler never to revert to white text on this page
+      document.body.dataset.lightNav = 'true';
       header.classList.add('glass-nav');
       header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
       if (logoName) logoName.style.color = 'var(--color-text-primary)';
