@@ -1,0 +1,474 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="School Catchment Map"
+  tool="School Catchment Map"
+  phase="Buyer Tools"
+  description="Find state and private schools near any Brisbane address. Check primary and high school catchment areas for properties across Brisbane's inner east."
+>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+  #catchment-search {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: var(--color-surface-4);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #catchment-search:focus { border-color: var(--color-gold); }
+  #catchment-search::placeholder { color: var(--color-text-muted); }
+
+  #map {
+    height: 480px;
+    width: 100%;
+    border: 1px solid rgba(28,25,23,0.1);
+    z-index: 1;
+  }
+
+  .school-card {
+    background: var(--color-surface-3);
+    border: 1px solid rgba(28,25,23,0.08);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .school-card:hover { border-color: var(--color-gold); }
+
+  .school-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  .type-state-primary   { background: rgba(126,200,227,0.15); color: #2a7fa0; }
+  .type-state-high      { background: rgba(245,208,122,0.15); color: #a07a2a; }
+  .type-catholic        { background: rgba(168,150,220,0.15); color: #5a4a9a; }
+  .type-private         { background: rgba(168,230,163,0.15); color: #3a7a35; }
+  .type-other           { background: rgba(200,200,200,0.15); color: #666; }
+
+  .dot-state-primary  { background: #2a7fa0; }
+  .dot-state-high     { background: #c4912a; }
+  .dot-catholic       { background: #6a5acd; }
+  .dot-private        { background: #3a7a35; }
+  .dot-other          { background: #888; }
+
+  #status-msg {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .filter-btn {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(28,25,23,0.15);
+    background: var(--color-surface-3);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    background: rgba(197,160,60,0.06);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>
+
+<div class="max-w-[1400px] mx-auto px-4 lg:px-8 py-10">
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- Left: controls + results -->
+    <div class="lg:col-span-2 flex flex-col gap-6">
+
+      <!-- Search -->
+      <div style="background:var(--color-surface-3);padding:1.75rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
+          Property Address
+        </label>
+        <div style="display:flex;gap:0.5rem;">
+          <input
+            type="text"
+            id="catchment-search"
+            placeholder="e.g. 12 Oxford St, Bulimba"
+            autocomplete="off"
+          />
+          <button id="search-btn"
+            style="padding:0.9rem 1.25rem;background:var(--color-gold);color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;"
+            onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='var(--color-gold)'">
+            Search
+          </button>
+        </div>
+        <p id="status-msg" style="margin-top:0.75rem;">Enter an address to find nearby schools.</p>
+      </div>
+
+      <!-- Radius -->
+      <div style="background:var(--color-surface-3);padding:1.75rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
+          Search Radius: <span id="radius-label">2 km</span>
+        </label>
+        <input type="range" id="radius-slider" min="500" max="5000" step="500" value="2000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>500m</span><span>5 km</span>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div style="background:var(--color-surface-3);padding:1.75rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
+          Filter by Type
+        </label>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+          <button class="filter-btn active" data-filter="all">All Schools</button>
+          <button class="filter-btn" data-filter="state-primary">State Primary</button>
+          <button class="filter-btn" data-filter="state-high">State High</button>
+          <button class="filter-btn" data-filter="catholic">Catholic</button>
+          <button class="filter-btn" data-filter="private">Private</button>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">Legend</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div class="legend-item"><div class="legend-dot dot-state-primary"></div> State Primary School</div>
+          <div class="legend-item"><div class="legend-dot dot-state-high"></div> State High School</div>
+          <div class="legend-item"><div class="legend-dot dot-catholic"></div> Catholic School</div>
+          <div class="legend-item"><div class="legend-dot dot-private"></div> Private / Independent</div>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div style="border:1px solid rgba(197,160,60,0.25);background:rgba(197,160,60,0.04);padding:1.25rem 1.5rem;">
+        <p style="font-size:0.75rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:0.75rem;">
+          <strong style="color:var(--color-text-primary);">Indicative only.</strong> School catchment boundaries are defined by the Queensland Department of Education and can change. A property's street address — not its suburb — determines eligibility.
+        </p>
+        <a href="https://schoolreviews.eq.edu.au/SRC/FindASchool"
+          target="_blank" rel="noopener"
+          style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
+          Verify on QLD Dept of Education →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right: map + results -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Map -->
+      <div id="map"></div>
+
+      <!-- Results -->
+      <div id="results-section" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);">
+            Schools Found: <span id="result-count">0</span>
+          </p>
+          <p style="font-size:0.72rem;color:var(--color-text-muted);">Sorted by distance</p>
+        </div>
+        <div id="school-list" style="display:flex;flex-direction:column;gap:0.5rem;"></div>
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" style="text-align:center;padding:4rem 2rem;border:1px dashed rgba(28,25,23,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(28,25,23,0.25)" stroke-width="1.5" style="margin:0 auto 1rem;">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-muted);">Enter an address above to find nearby schools</p>
+        <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.5rem;line-height:1.7;">Schools are sourced from OpenStreetMap and Queensland Department of Education data.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="margin-top:4rem;background:#1c1917;padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:400;color:#f0ece4;line-height:1.25;">
+      School zones can add — or subtract — significant value from a property.
+    </p>
+    <p style="font-size:0.875rem;color:rgba(240,236,228,0.6);max-width:52ch;line-height:1.8;">
+      Daniel knows which streets in Camp Hill, Norman Park and Balmoral fall inside the most sought-after catchments — and how much that's worth in the current market.
+    </p>
+    <a href="/contact"
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.75rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      Ask Daniel
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+(function () {
+  // ── State ──────────────────────────────────────────────────────────
+  let map, markerLayer, circleLayer, currentLat, currentLon;
+  let allSchools = [];
+  let activeFilter = 'all';
+  let currentRadius = 2000;
+
+  // ── Colour mapping ──────────────────────────────────────────────────
+  function classifySchool(tags) {
+    const name = (tags.name || '').toLowerCase();
+    const op   = (tags.operator || '').toLowerCase();
+    const opType = (tags['operator:type'] || '').toLowerCase();
+    const denom  = (tags.denomination || tags.religion || '').toLowerCase();
+    const schoolType = (tags['school:type'] || tags['isced:level'] || '').toLowerCase();
+
+    const isCatholic = denom.includes('catholic') || name.includes('catholic') || name.includes('st ') || name.includes('holy') || name.includes('mary') || name.includes('joseph') || op.includes('catholic');
+    const isGovt     = opType === 'government' || op.includes('department of education') || op.includes('queensland') || name.includes(' state school') || name.includes(' state high') || name.includes(' shs') || name.includes(' ss');
+    const isHigh     = schoolType.includes('secondar') || name.includes(' high') || name.includes(' secondary') || name.includes(' college') || name.includes(' shs');
+    const isPrimary  = !isHigh && (schoolType.includes('primar') || name.includes(' primary') || name.includes(' state school'));
+
+    if (isCatholic) return 'catholic';
+    if (isGovt && isHigh) return 'state-high';
+    if (isGovt && isPrimary) return 'state-primary';
+    if (isGovt) return 'state-primary'; // default govt to primary if ambiguous
+    return 'private';
+  }
+
+  const TYPE_CONFIG = {
+    'state-primary': { label: 'State Primary',  color: '#2a7fa0', dot: 'dot-state-primary', badge: 'type-state-primary' },
+    'state-high':    { label: 'State High',      color: '#c4912a', dot: 'dot-state-high',    badge: 'type-state-high'    },
+    'catholic':      { label: 'Catholic',         color: '#6a5acd', dot: 'dot-catholic',      badge: 'type-catholic'      },
+    'private':       { label: 'Private',          color: '#3a7a35', dot: 'dot-private',       badge: 'type-private'       },
+  };
+
+  // ── Init map ────────────────────────────────────────────────────────
+  function initMap() {
+    map = L.map('map', { zoomControl: true }).setView([-27.46, 153.04], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+    markerLayer = L.layerGroup().addTo(map);
+    circleLayer = L.layerGroup().addTo(map);
+  }
+
+  // ── Distance helper ─────────────────────────────────────────────────
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  // ── Geocode address ─────────────────────────────────────────────────
+  async function geocode(address) {
+    const q = encodeURIComponent(address + ', Brisbane, Australia');
+    const url = `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=au`;
+    const res = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
+    const data = await res.json();
+    if (!data.length) throw new Error('Address not found');
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), display: data[0].display_name };
+  }
+
+  // ── Fetch schools from Overpass ─────────────────────────────────────
+  async function fetchSchools(lat, lon, radius) {
+    const overpass = `[out:json][timeout:30];
+(
+  node["amenity"="school"](around:${radius},${lat},${lon});
+  way["amenity"="school"](around:${radius},${lat},${lon});
+  relation["amenity"="school"](around:${radius},${lat},${lon});
+);
+out center tags;`;
+    const res = await fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      body: 'data=' + encodeURIComponent(overpass),
+    });
+    const data = await res.json();
+    return data.elements.map(el => {
+      const elLat = el.lat ?? el.center?.lat;
+      const elLon = el.lon ?? el.center?.lon;
+      return {
+        id: el.id,
+        name: el.tags?.name || 'Unknown School',
+        lat: elLat,
+        lon: elLon,
+        tags: el.tags || {},
+        type: classifySchool(el.tags || {}),
+        distance: haversine(lat, lon, elLat, elLon),
+      };
+    }).filter(s => s.name !== 'Unknown School' && s.lat && s.lon)
+      .sort((a, b) => a.distance - b.distance);
+  }
+
+  // ── Render markers ──────────────────────────────────────────────────
+  function renderMarkers(schools) {
+    markerLayer.clearLayers();
+    schools.forEach(school => {
+      if (activeFilter !== 'all' && school.type !== activeFilter) return;
+      const cfg = TYPE_CONFIG[school.type] || TYPE_CONFIG['private'];
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="width:14px;height:14px;border-radius:50%;background:${cfg.color};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      });
+      const marker = L.marker([school.lat, school.lon], { icon })
+        .bindPopup(`<strong style="font-size:0.85rem;">${school.name}</strong><br/><span style="font-size:0.75rem;color:#888;">${cfg.label} &nbsp;·&nbsp; ${(school.distance/1000).toFixed(1)} km away</span>`);
+      markerLayer.addLayer(marker);
+    });
+  }
+
+  // ── Render school list ──────────────────────────────────────────────
+  function renderList(schools) {
+    const list = document.getElementById('school-list');
+    const count = document.getElementById('result-count');
+    const filtered = activeFilter === 'all' ? schools : schools.filter(s => s.type === activeFilter);
+    count.textContent = filtered.length.toString();
+    list.innerHTML = '';
+    if (!filtered.length) {
+      list.innerHTML = '<p style="font-size:0.82rem;color:var(--color-text-muted);text-align:center;padding:2rem 0;">No schools found for this filter.</p>';
+      return;
+    }
+    filtered.forEach(school => {
+      const cfg = TYPE_CONFIG[school.type] || TYPE_CONFIG['private'];
+      const distText = school.distance < 1000
+        ? `${Math.round(school.distance)} m`
+        : `${(school.distance / 1000).toFixed(1)} km`;
+      const card = document.createElement('div');
+      card.className = 'school-card';
+      card.innerHTML = `
+        <div class="school-dot ${cfg.dot}"></div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.4rem;">
+            <p style="font-family:var(--font-serif);font-size:0.95rem;font-weight:400;color:var(--color-text-primary);line-height:1.3;">${school.name}</p>
+            <span style="font-size:0.72rem;color:var(--color-text-muted);white-space:nowrap;padding-top:2px;">${distText}</span>
+          </div>
+          <span class="badge ${cfg.badge}">${cfg.label}</span>
+        </div>`;
+      card.addEventListener('click', () => {
+        map.setView([school.lat, school.lon], 16);
+        markerLayer.eachLayer(m => {
+          if (m.getLatLng && Math.abs(m.getLatLng().lat - school.lat) < 0.0001) m.openPopup();
+        });
+      });
+      list.appendChild(card);
+    });
+  }
+
+  // ── Main search ─────────────────────────────────────────────────────
+  async function doSearch() {
+    const input = document.getElementById('catchment-search').value.trim();
+    if (!input) return;
+    const status = document.getElementById('status-msg');
+    const empty  = document.getElementById('empty-state');
+    const results = document.getElementById('results-section');
+
+    status.textContent = 'Locating address…';
+    document.getElementById('search-btn').disabled = true;
+
+    try {
+      const { lat, lon } = await geocode(input);
+      currentLat = lat;
+      currentLon = lon;
+
+      status.textContent = 'Fetching schools…';
+
+      // Address pin
+      circleLayer.clearLayers();
+      const pinIcon = L.divIcon({
+        className: '',
+        html: `<div style="width:16px;height:16px;border-radius:50%;background:#c5a03c;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>`,
+        iconSize: [16, 16],
+        iconAnchor: [8, 8],
+      });
+      L.marker([lat, lon], { icon: pinIcon }).bindPopup('<strong>Your address</strong>').addTo(circleLayer);
+      L.circle([lat, lon], { radius: currentRadius, color: '#c5a03c', fillColor: '#c5a03c', fillOpacity: 0.05, weight: 1.5, dashArray: '6,4' }).addTo(circleLayer);
+
+      allSchools = await fetchSchools(lat, lon, currentRadius);
+      renderMarkers(allSchools);
+      renderList(allSchools);
+
+      map.setView([lat, lon], 14);
+      empty.style.display = 'none';
+      results.style.display = 'block';
+      status.textContent = `Found ${allSchools.length} school${allSchools.length !== 1 ? 's' : ''} within ${currentRadius >= 1000 ? (currentRadius/1000) + ' km' : currentRadius + 'm'}.`;
+    } catch (err) {
+      status.textContent = 'Address not found. Try including the suburb (e.g. 12 Main St, Camp Hill).';
+    }
+
+    document.getElementById('search-btn').disabled = false;
+  }
+
+  // ── Wire up ─────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    initMap();
+
+    document.getElementById('search-btn').addEventListener('click', doSearch);
+    document.getElementById('catchment-search').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // Radius slider
+    document.getElementById('radius-slider').addEventListener('input', function () {
+      currentRadius = parseInt(this.value);
+      const label = currentRadius >= 1000 ? (currentRadius / 1000) + ' km' : currentRadius + ' m';
+      document.getElementById('radius-label').textContent = label;
+    });
+    document.getElementById('radius-slider').addEventListener('change', function () {
+      if (currentLat) doSearch();
+    });
+
+    // Filters
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        activeFilter = this.dataset.filter;
+        renderMarkers(allSchools);
+        renderList(allSchools);
+      });
+    });
+  });
+})();
+</script>
+
+</ToolLayout>
