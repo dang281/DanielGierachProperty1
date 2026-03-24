@@ -237,37 +237,5 @@ const globalSchema = {
         });
       });
     </script>
-
-    <!-- ── Cookie Consent ── -->
-    <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:#1c1917;border-top:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;">
-      <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
-        <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(240,236,228,0.72);line-height:1.6;margin:0;max-width:60ch;">
-          This site uses cookies and Google Analytics to understand how visitors use it.
-          <a href="/privacy" style="color:#f5d07a;text-decoration:underline;">Privacy Policy</a>
-        </p>
-        <div style="display:flex;gap:0.75rem;flex-shrink:0;">
-          <button id="cookie-decline" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.55rem 1.1rem;background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(240,236,228,0.6);cursor:pointer;">Decline</button>
-          <button id="cookie-accept" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.55rem 1.25rem;background:#c4912a;border:none;color:#1c1917;cursor:pointer;">Accept All</button>
-        </div>
-      </div>
-    </div>
-    <script>
-      (function() {
-        const banner = document.getElementById('cookie-banner');
-        if (!localStorage.getItem('dg-cookie-consent') && banner) {
-          banner.style.display = 'block';
-        }
-        document.getElementById('cookie-accept')?.addEventListener('click', function() {
-          localStorage.setItem('dg-cookie-consent', 'accepted');
-          const b = document.getElementById('cookie-banner');
-          if (b) b.style.display = 'none';
-        });
-        document.getElementById('cookie-decline')?.addEventListener('click', function() {
-          localStorage.setItem('dg-cookie-consent', 'declined');
-          const b = document.getElementById('cookie-banner');
-          if (b) b.style.display = 'none';
-        });
-      })();
-    </script>
   </body>
 </html>
