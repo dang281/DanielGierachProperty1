@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   schema?: any;
+  preloadImage?: string;
 }
 
 const {
   title = "Daniel Gierach Property | Ray White Bulimba",
   description = 'Data-driven campaigns and exceptional outcomes across Brisbane\'s inner east and south. Serving Bulimba, Balmoral, Hawthorne, Norman Park, Morningside and surrounds.',
   schema,
+  preloadImage,
 } = Astro.props;
 
 const globalSchema = {
@@ -112,12 +114,18 @@ const globalSchema = {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <title>{title}</title>
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@300;400;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    </noscript>
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Daniel Gierach Property" />
