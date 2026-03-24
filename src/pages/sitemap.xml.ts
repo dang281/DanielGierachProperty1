@@ -51,6 +51,7 @@ const pages = [
   { path: '/tools/investment-yield',      changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/equity-calculator',     changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/school-catchment',     changefreq: 'monthly', priority: '0.8' },
+  { path: '/tools/zoning-map',           changefreq: 'monthly', priority: '0.8' },
   { path: '/tools/renovation-roi',        changefreq: 'monthly', priority: '0.7' },
   { path: '/tools/suburb-match',          changefreq: 'monthly', priority: '0.7' },
   { path: '/tools/property-compare',      changefreq: 'monthly', priority: '0.7' },

@@ -1,0 +1,501 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Brisbane Zoning Map"
+  tool="Zoning Map"
+  phase="Buyer Tools"
+  description="Look up Brisbane City Plan 2014 zoning for any address. Understand Character, LMR, MDR and other zones across Brisbane's inner east."
+>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+  #zone-search {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: var(--color-surface-4);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #zone-search:focus { border-color: var(--color-gold); }
+  #zone-search::placeholder { color: var(--color-text-muted); }
+
+  #zone-map { height: 500px; width: 100%; border: 1px solid rgba(28,25,23,0.1); z-index: 1; }
+
+  #search-wrap { position: relative; flex: 1; }
+  #autocomplete-list {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.18); border-top: none;
+    z-index: 1000; max-height: 220px; overflow-y: auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  .ac-item {
+    padding: 0.65rem 1rem; font-size: 0.85rem;
+    color: var(--color-text-primary); cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4; transition: background 0.15s;
+  }
+  .ac-item:last-child { border-bottom: none; }
+  .ac-item:hover, .ac-item.highlighted { background: rgba(197,160,60,0.08); }
+
+  #zone-result {
+    border-left: 3px solid var(--color-gold);
+    background: rgba(197,160,60,0.05);
+    padding: 1.25rem 1.5rem;
+  }
+  #zone-result.zone-cr  { border-color: #6a8f5a; background: rgba(106,143,90,0.07); }
+  #zone-result.zone-ldr { border-color: #b8a84a; background: rgba(184,168,74,0.07); }
+  #zone-result.zone-lmr { border-color: #d4843c; background: rgba(212,132,60,0.07); }
+  #zone-result.zone-mdr { border-color: #c05a2a; background: rgba(192,90,42,0.07); }
+  #zone-result.zone-hdr { border-color: #9a2a1a; background: rgba(154,42,26,0.07); }
+  #zone-result.zone-mu  { border-color: #7a5acd; background: rgba(122,90,205,0.07); }
+  #zone-result.zone-nc  { border-color: #5a7acd; background: rgba(90,122,205,0.07); }
+  #zone-result.zone-lc  { border-color: #3a5aad; background: rgba(58,90,173,0.07); }
+  #zone-result.zone-dc  { border-color: #2a3a8d; background: rgba(42,58,141,0.07); }
+  #zone-result.zone-os  { border-color: #3a9a5a; background: rgba(58,154,90,0.07); }
+  #zone-result.zone-sp  { border-color: #888; background: rgba(136,136,136,0.07); }
+
+  .zone-swatch {
+    width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; margin-top: 3px;
+  }
+  .legend-row {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .legend-row:last-child { border-bottom: none; }
+  .legend-row:hover { background: rgba(197,160,60,0.05); }
+  .legend-row.active { background: rgba(197,160,60,0.08); }
+
+  #status-msg { font-size: 0.82rem; color: var(--color-text-muted); font-style: italic; }
+
+  .opacity-slider { width: 100%; accent-color: var(--color-gold); cursor: pointer; height: 3px; }
+
+  @media (max-width: 768px) {
+    #zone-map { height: 360px; }
+  }
+</style>
+
+<!-- Zone data — Brisbane CityPlan 2014 -->
+<script>
+window.ZONES = {
+  'CR':  { name: 'Character Residential',       short: 'CR',  color: '#6a8f5a', cls: 'zone-cr',
+    height: 'Up to 8.5m (2 storeys)',
+    summary: 'Protects traditional character housing in heritage areas. Typically single detached dwellings. Demolition and significant alterations require council assessment to preserve streetscape character.',
+    forBuyers: 'Strong demand from buyers seeking streetscape charm. Restrictions on new development generally protect long-term values.' },
+  'LDR': { name: 'Low Density Residential',     short: 'LDR', color: '#b8a84a', cls: 'zone-ldr',
+    height: 'Up to 9.5m (2 storeys)',
+    summary: 'Standard suburban residential zone for single detached houses and small dual occupancy. Limited higher-density development.',
+    forBuyers: 'Standard family neighbourhood. Good land banking potential as infill gradually increases nearby.' },
+  'LMR': { name: 'Low-Medium Density Residential', short: 'LMR', color: '#d4843c', cls: 'zone-lmr',
+    height: 'Up to 3 storeys (approx 9.5–15m)',
+    summary: 'Allows townhouses, dual occupancy and small apartment buildings. Common in inner-ring suburbs experiencing densification.',
+    forBuyers: 'Strong developer interest. Existing houses may have subdivision or townhouse potential, which is often reflected in land values.' },
+  'MDR': { name: 'Medium Density Residential',  short: 'MDR', color: '#c05a2a', cls: 'zone-mdr',
+    height: 'Up to 5 storeys (approx 15m)',
+    summary: 'Apartment buildings, larger townhouse complexes and medium-rise residential. Common near centres and transport corridors.',
+    forBuyers: 'High development activity. Unit and apartment markets are active. Land value often exceeds improvement value for older homes.' },
+  'HDR': { name: 'High Density Residential',    short: 'HDR', color: '#9a2a1a', cls: 'zone-hdr',
+    height: '10+ storeys (site-specific)',
+    summary: 'High-rise apartment buildings and intensive residential development. Generally close to major centres or the CBD.',
+    forBuyers: 'Investment-focused market. Apartment resale and rental yield are key considerations. Amenity and views carry significant premium.' },
+  'MU':  { name: 'Mixed Use',                   short: 'MU',  color: '#7a5acd', cls: 'zone-mu',
+    height: 'Up to 5 storeys typical',
+    summary: 'Combines commercial (ground floor) with residential above. Allows cafes, offices, retail and services alongside apartments.',
+    forBuyers: 'Live/work potential and strong walkability. Popular with professionals and downsizers. Ground-floor tenancies add complexity to strata.' },
+  'NC':  { name: 'Neighbourhood Centre',         short: 'NC',  color: '#5a7acd', cls: 'zone-nc',
+    height: 'Up to 3–4 storeys',
+    summary: 'Small local convenience centres: corner shops, cafes, medical. Maintains human-scale neighbourhood services.',
+    forBuyers: 'Proximity premium for nearby residential. Zoning allows future commercial use of corner or main road lots.' },
+  'LC':  { name: 'Local Centre',                short: 'LC',  color: '#3a5aad', cls: 'zone-lc',
+    height: 'Up to 4–5 storeys',
+    summary: 'Established local shopping strips, supermarkets, restaurants, services and above-shop residential.',
+    forBuyers: 'High foot traffic, strong retail tenancy demand. Residential above retail is popular in inner suburbs.' },
+  'DC':  { name: 'District Centre',             short: 'DC',  color: '#2a3a8d', cls: 'zone-dc',
+    height: 'Up to 8+ storeys',
+    summary: 'Major suburban hubs serving a broader catchment. Think Coorparoo Square, Carindale, Cannon Hill.',
+    forBuyers: 'Commercial and residential investment opportunities. Often earmarked for significant future growth.' },
+  'PC':  { name: 'Principal Centre',            short: 'PC',  color: '#1a1a6d', cls: 'zone-pc',
+    height: 'Unrestricted / site-specific',
+    summary: 'The Brisbane CBD and major metropolitan centres. Highest intensity mixed use, commercial, residential and civic uses.',
+    forBuyers: 'CBD and inner-city apartment and commercial market. High infrastructure investment by council ongoing.' },
+  'OS':  { name: 'Open Space',                  short: 'OS',  color: '#3a9a5a', cls: 'zone-os',
+    height: 'Low structures only',
+    summary: 'Public parks, recreational land, waterways, ovals and community open space. Protected from residential development.',
+    forBuyers: 'Proximity to open space adds significant premium to adjoining residential properties.' },
+  'CN':  { name: 'Conservation',                short: 'CN',  color: '#1a6a3a', cls: 'zone-cn',
+    height: 'Minimal',
+    summary: 'Environmentally sensitive land, remnant vegetation, waterway corridors and koala habitat. Development heavily restricted.',
+    forBuyers: 'Creates natural buffers and green outlook for nearby properties, typically supporting residential values.' },
+  'SP':  { name: 'Special Purpose',             short: 'SP',  color: '#888888', cls: 'zone-sp',
+    height: 'Site-specific',
+    summary: 'Schools, hospitals, utilities, transport infrastructure, cemeteries and other community facilities.',
+    forBuyers: 'Neighbourhood anchors. Schools and hospitals drive catchment demand in surrounding residential streets.' },
+  'LII': { name: 'Low Impact Industry',         short: 'LII', color: '#7a9ab8', cls: 'zone-sp',
+    height: 'Up to 9.5m',
+    summary: 'Light industrial, warehousing, trade services, car yards and limited retail. Located away from residential.',
+    forBuyers: 'Generally not residential. Adjacent residential may experience some amenity impact. Watch for rezoning opportunities.' },
+  'RU':  { name: 'Rural',                       short: 'RU',  color: '#b8a07a', cls: 'zone-ldr',
+    height: 'Low',
+    summary: 'Agricultural and rural land on Brisbane\'s fringe. Large lot sizes, rural uses, acreage lifestyle.',
+    forBuyers: 'Lifestyle acreage market. Watch for future urban expansion in areas like Karawatha and outer south.' },
+};
+</script>
+
+<div class="max-w-[1400px] mx-auto px-4 lg:px-8 py-10">
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- Left column -->
+    <div class="lg:col-span-2 flex flex-col gap-5">
+
+      <!-- Search -->
+      <div style="background:var(--color-surface-3);padding:1.75rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
+          Property Address
+        </label>
+        <div style="display:flex;gap:0.5rem;">
+          <div id="search-wrap">
+            <input type="text" id="zone-search" placeholder="e.g. 12 Oxford St, Bulimba" autocomplete="off" />
+            <div id="autocomplete-list" style="display:none;"></div>
+          </div>
+          <button id="search-btn"
+            style="padding:0.9rem 1.25rem;background:var(--color-gold);color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;"
+            onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='var(--color-gold)'">
+            Search
+          </button>
+        </div>
+        <p id="status-msg" style="margin-top:0.75rem;">Enter an address or click the map to identify a zone.</p>
+      </div>
+
+      <!-- Zone result panel -->
+      <div id="zone-result" style="display:none;">
+        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.5rem;">Zone Identified</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+          <div id="result-swatch" style="width:18px;height:18px;border-radius:3px;flex-shrink:0;"></div>
+          <p id="result-name" style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:var(--color-text-primary);line-height:1.2;"></p>
+        </div>
+        <p id="result-height" style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;color:var(--color-gold);margin-bottom:0.75rem;"></p>
+        <p id="result-summary" style="font-size:0.82rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:0.75rem;"></p>
+        <p id="result-buyers" style="font-size:0.78rem;color:var(--color-text-muted);line-height:1.7;font-style:italic;border-top:1px solid rgba(28,25,23,0.08);padding-top:0.75rem;"></p>
+        <a id="bcc-link" href="#" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
+          Verify on BCC CityPlan
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
+      <!-- Layer opacity -->
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
+          Zone Overlay Opacity: <span id="opacity-label">65%</span>
+        </label>
+        <input type="range" class="opacity-slider" id="opacity-slider" min="0" max="100" step="5" value="65" />
+      </div>
+
+      <!-- Disclaimer -->
+      <div style="border:1px solid rgba(197,160,60,0.25);background:rgba(197,160,60,0.04);padding:1.25rem 1.5rem;">
+        <p style="font-size:0.75rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:0.75rem;">
+          <strong style="color:var(--color-text-primary);">Indicative only.</strong> Zone data is sourced from Brisbane City Council's CityPlan 2014. Always verify with BCC before making planning decisions. Overlays (flood, character, heritage) apply in addition to the base zone.
+        </p>
+        <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener"
+          style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
+          Open BCC CityPlan Official Tool →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right: map + legend -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- Map -->
+      <div id="zone-map"></div>
+
+      <!-- Legend -->
+      <div style="background:var(--color-surface-3);">
+        <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(28,25,23,0.08);">
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);">
+            Zone Legend
+            <span style="font-weight:400;margin-left:0.5rem;text-transform:none;letter-spacing:0;">— click any zone to learn more</span>
+          </p>
+        </div>
+        <div id="legend-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="margin-top:4rem;background:#1c1917;padding:3rem 2.5rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:400;color:#f0ece4;line-height:1.25;margin-bottom:1rem;">
+      Zoning directly affects what a property is worth, and what it could become.
+    </p>
+    <p style="font-size:0.875rem;color:rgba(240,236,228,0.6);max-width:52ch;margin:0 auto 1.5rem;line-height:1.8;">
+      Daniel can tell you whether a property sits in an LMR zone with development potential, or a Character zone that protects its heritage value.
+    </p>
+    <a href="/contact"
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.75rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      Ask Daniel
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+
+<script>
+(function () {
+  const ZONES = window.ZONES;
+  let map, pinLayer, zoningLayer;
+  let currentLat, currentLon;
+  let acDebounce, acHighlight = -1;
+
+  // ── Zone key lookup (partial name match from ArcGIS) ──────────────────
+  function matchZone(raw) {
+    if (!raw) return null;
+    const u = raw.toUpperCase();
+    for (const [key, z] of Object.entries(ZONES)) {
+      if (u.includes(key) || u.includes(z.name.toUpperCase())) return key;
+    }
+    // Partial matches
+    if (u.includes('CHARACTER'))          return 'CR';
+    if (u.includes('LOW-MEDIUM') || u.includes('LOW MEDIUM')) return 'LMR';
+    if (u.includes('LOW DENSITY'))        return 'LDR';
+    if (u.includes('MEDIUM DENSITY'))     return u.includes('HIGH') ? 'HDR' : 'MDR';
+    if (u.includes('MIXED USE'))          return 'MU';
+    if (u.includes('NEIGHBOURHOOD'))      return 'NC';
+    if (u.includes('LOCAL CENTRE'))       return 'LC';
+    if (u.includes('DISTRICT'))           return 'DC';
+    if (u.includes('PRINCIPAL'))          return 'PC';
+    if (u.includes('OPEN SPACE'))         return 'OS';
+    if (u.includes('CONSERVATION'))       return 'CN';
+    if (u.includes('RURAL'))              return 'RU';
+    if (u.includes('INDUSTRY') || u.includes('INDUSTRIAL')) return 'LII';
+    if (u.includes('SPECIAL'))            return 'SP';
+    return null;
+  }
+
+  // ── Show zone result panel ────────────────────────────────────────────
+  function showZone(zoneKey, rawName) {
+    const panel = document.getElementById('zone-result');
+    const z = ZONES[zoneKey];
+    const displayName = z ? `${z.short} — ${z.name}` : (rawName || 'Unknown Zone');
+    const color = z ? z.color : '#888';
+    panel.style.display = 'block';
+    panel.className = z ? `zone-${zoneKey.toLowerCase().replace(/\s/g,'-')}` : '';
+    panel.style.borderLeftColor = color;
+    panel.style.background = `${color}10`;
+    document.getElementById('result-swatch').style.background = color;
+    document.getElementById('result-name').textContent = displayName;
+    document.getElementById('result-height').textContent = z ? z.height : '';
+    document.getElementById('result-summary').textContent = z ? z.summary : (rawName || '');
+    document.getElementById('result-buyers').textContent = z ? z.forBuyers : '';
+    // Update legend highlight
+    document.querySelectorAll('.legend-row').forEach(r => r.classList.toggle('active', r.dataset.zone === zoneKey));
+  }
+
+  // ── Build legend ──────────────────────────────────────────────────────
+  function buildLegend() {
+    const list = document.getElementById('legend-list');
+    Object.entries(ZONES).forEach(([key, z]) => {
+      const row = document.createElement('div');
+      row.className = 'legend-row';
+      row.dataset.zone = key;
+      row.innerHTML = `
+        <div class="zone-swatch" style="background:${z.color};margin-top:4px;"></div>
+        <div style="flex:1;min-width:0;">
+          <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;color:var(--color-text-primary);margin-bottom:0.1rem;">
+            <span style="color:${z.color};">${z.short}</span> &nbsp;${z.name}
+          </p>
+          <p style="font-size:0.72rem;color:var(--color-text-muted);line-height:1.5;">${z.height}</p>
+        </div>`;
+      row.addEventListener('click', () => showZone(key));
+      list.appendChild(row);
+    });
+  }
+
+  // ── Init map ──────────────────────────────────────────────────────────
+  function initMap() {
+    map = L.map('zone-map', { zoomControl: true }).setView([-27.46, 153.04], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+
+    pinLayer = L.layerGroup().addTo(map);
+
+    // BCC CityPlan 2014 zoning overlay via public ArcGIS service
+    try {
+      zoningLayer = L.esri.dynamicMapLayer({
+        url: 'https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer',
+        opacity: 0.65,
+        f: 'image',
+      });
+      zoningLayer.on('load', () => {
+        document.getElementById('status-msg').textContent = 'Zone overlay loaded. Enter an address or click the map.';
+      });
+      zoningLayer.on('requesterror', () => {
+        document.getElementById('status-msg').textContent = 'Enter an address — click "Verify on BCC CityPlan" for the official zone map.';
+      });
+      zoningLayer.addTo(map);
+    } catch(e) {}
+
+    // Click map to identify zone
+    map.on('click', function(e) {
+      identifyZone(e.latlng.lat, e.latlng.lng);
+    });
+  }
+
+  // ── Identify zone at lat/lon via BCC ArcGIS ───────────────────────────
+  function identifyZone(lat, lon) {
+    document.getElementById('status-msg').textContent = 'Identifying zone…';
+    const bounds = map.getBounds();
+    const size   = map.getSize();
+    const extent = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
+    const url = `https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer/identify`
+      + `?geometry=${lon},${lat}&geometryType=esriGeometryPoint&layers=all`
+      + `&tolerance=3&mapExtent=${extent}&imageDisplay=${size.x},${size.y},96`
+      + `&returnGeometry=false&f=json`;
+
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        if (data.results && data.results.length > 0) {
+          const r = data.results[0];
+          const rawZone = r.attributes?.zone_code || r.attributes?.Zone_Code || r.attributes?.ZONE_CODE
+                       || r.attributes?.zone || r.attributes?.Zone || r.attributes?.ZONE
+                       || r.attributes?.planning_zone || r.layerName || '';
+          const zoneKey = matchZone(rawZone);
+          showZone(zoneKey || 'SP', rawZone);
+          document.getElementById('status-msg').textContent = 'Zone identified.';
+        } else {
+          document.getElementById('status-msg').textContent = 'No zone data at this point. Try clicking on a residential area.';
+        }
+        updateBCCLink(lat, lon);
+      })
+      .catch(() => {
+        document.getElementById('status-msg').textContent = 'Could not load zone data. Use the BCC CityPlan link below.';
+        updateBCCLink(lat, lon);
+      });
+  }
+
+  function updateBCCLink(lat, lon) {
+    const link = document.getElementById('bcc-link');
+    if (link) link.href = `https://cityplan.brisbane.qld.gov.au/#@${lon},${lat},16z`;
+  }
+
+  // ── Geocode ───────────────────────────────────────────────────────────
+  async function geocode(address) {
+    const q = encodeURIComponent(address + ', Brisbane, Australia');
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=au`, {
+      headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' }
+    });
+    const data = await res.json();
+    if (!data.length) throw new Error('Not found');
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+  }
+
+  // ── Main search ───────────────────────────────────────────────────────
+  async function doSearch() {
+    const val = document.getElementById('zone-search').value.trim();
+    if (!val) return;
+    document.getElementById('status-msg').textContent = 'Locating address…';
+    document.getElementById('search-btn').disabled = true;
+    closeAC();
+    try {
+      const { lat, lon } = await geocode(val);
+      currentLat = lat; currentLon = lon;
+      pinLayer.clearLayers();
+      const pinIcon = L.divIcon({
+        className: '',
+        html: `<div style="width:16px;height:16px;border-radius:50%;background:#c5a03c;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>`,
+        iconSize: [16,16], iconAnchor: [8,8],
+      });
+      L.marker([lat, lon], { icon: pinIcon }).bindPopup('<strong>Your address</strong>').addTo(pinLayer);
+      map.setView([lat, lon], 16);
+      identifyZone(lat, lon);
+      updateBCCLink(lat, lon);
+      document.getElementById('zone-result').style.display = 'block';
+    } catch(e) {
+      document.getElementById('status-msg').textContent = 'Address not found. Try including the suburb (e.g. 12 Main St, Camp Hill).';
+    }
+    document.getElementById('search-btn').disabled = false;
+  }
+
+  // ── Autocomplete ──────────────────────────────────────────────────────
+  async function fetchSuggestions(q) {
+    if (q.length < 4) { closeAC(); return; }
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Brisbane, Australia')}&format=json&limit=5&countrycodes=au`;
+    try {
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
+      const data = await res.json();
+      renderAC(data);
+    } catch(_) { closeAC(); }
+  }
+  function renderAC(items) {
+    acHighlight = -1;
+    const list = document.getElementById('autocomplete-list');
+    if (!items.length) { list.style.display = 'none'; return; }
+    list.innerHTML = '';
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'ac-item';
+      const parts = item.display_name.split(', ');
+      div.textContent = parts.slice(0, 4).join(', ');
+      div.addEventListener('mousedown', e => {
+        e.preventDefault();
+        document.getElementById('zone-search').value = parts.slice(0, 4).join(', ');
+        list.style.display = 'none';
+        doSearch();
+      });
+      list.appendChild(div);
+    });
+    list.style.display = 'block';
+  }
+  function closeAC() {
+    document.getElementById('autocomplete-list').style.display = 'none';
+    acHighlight = -1;
+  }
+
+  // ── Boot ──────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    initMap();
+    buildLegend();
+
+    const input = document.getElementById('zone-search');
+    input.addEventListener('input', function() {
+      clearTimeout(acDebounce);
+      acDebounce = setTimeout(() => fetchSuggestions(this.value.trim()), 320);
+    });
+    input.addEventListener('keydown', function(e) {
+      const items = document.querySelectorAll('#autocomplete-list .ac-item');
+      if (e.key === 'ArrowDown') { e.preventDefault(); acHighlight = Math.min(acHighlight+1, items.length-1); items.forEach((el,i) => el.classList.toggle('highlighted', i===acHighlight)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); acHighlight = Math.max(acHighlight-1, -1); items.forEach((el,i) => el.classList.toggle('highlighted', i===acHighlight)); }
+      else if (e.key === 'Enter') { if (acHighlight >= 0 && items[acHighlight]) { items[acHighlight].dispatchEvent(new MouseEvent('mousedown')); } else { closeAC(); doSearch(); } }
+      else if (e.key === 'Escape') closeAC();
+    });
+    document.addEventListener('click', e => { if (!document.getElementById('search-wrap').contains(e.target)) closeAC(); });
+
+    document.getElementById('search-btn').addEventListener('click', () => { closeAC(); doSearch(); });
+
+    // Opacity slider
+    document.getElementById('opacity-slider').addEventListener('input', function() {
+      const val = parseInt(this.value);
+      document.getElementById('opacity-label').textContent = val + '%';
+      if (zoningLayer) zoningLayer.setOpacity(val / 100);
+    });
+  });
+})();
+</script>
+
+</ToolLayout>
