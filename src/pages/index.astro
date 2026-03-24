@@ -110,9 +110,41 @@ const showcaseTools = [
   { href: '/tools/borrowing-power',  phase: 'Buyer',    label: 'Borrowing Power',         desc: 'Estimate how much you can borrow based on income and expenses.' },
   { href: '/tools/equity-calculator', phase: 'Seller',  label: 'Home Equity Calculator',  desc: 'See your equity position and how much you could access or take forward.' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to sell my home in Brisbane?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Typical selling costs include agent commission (generally 2–2.5% of the sale price), marketing ($3,000–$8,000 depending on the campaign), and conveyancing fees (approximately $1,200–$2,000). Use Daniel's free Selling Cost Calculator at danielgierach.com/tools/selling-costs to get a precise estimate." }
+    },
+    {
+      "@type": "Question",
+      "name": "What suburbs does Daniel Gierach service?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Daniel specialises in Brisbane's inner east and south — Bulimba, Hawthorne, Balmoral, Norman Park, Camp Hill, Seven Hills, Morningside, Cannon Hill, Carina, Coorparoo, East Brisbane and surrounding suburbs via Ray White Bulimba and the Ray White Collective network." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a property in Brisbane's inner east?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Daniel's median days on market is 28 days. Well-positioned homes in Brisbane's inner east typically sell within 2–4 weeks when priced accurately and supported by a targeted buyer campaign." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I sell my Brisbane home by auction or private treaty?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The best method depends on your property type, price point and local demand. Auction creates urgency and genuine competition; private treaty suits homes where buyers need more time. Daniel will recommend the right approach based on your specific property and current market conditions." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a free property appraisal with Daniel?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fill in the appraisal request form at danielgierach.com/appraisal or call Daniel directly on 0412 523 821. There is no obligation and Daniel will typically be in touch within 24 hours to arrange a time that suits you." }
+    }
+  ]
+};
 ---
 
-<Layout title="Daniel Gierach Property | Ray White Bulimba" description="Brisbane inner-east real estate agent. Daniel Gierach specialises in selling homes across Camp Hill, Norman Park, Hawthorne, Balmoral and surrounds. Ray White Bulimba. Call 0412 523 821.">
+<Layout title="Daniel Gierach Property | Ray White Bulimba" description="Brisbane inner-east real estate agent. Daniel Gierach specialises in selling homes across Camp Hill, Norman Park, Hawthorne, Balmoral and surrounds. Ray White Bulimba. Call 0412 523 821." schema={faqSchema}>
 
 <!-- ════════════════════════════════════════════
      HERO
@@ -546,6 +578,113 @@ const showcaseTools = [
           <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Use Tool →</span>
         </a>
       ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     MARKET UPDATES — EMAIL CAPTURE
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-2);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[700px] mx-auto px-8 text-center">
+    <span class="eyebrow mb-4 reveal" style="display:block;">Stay Informed</span>
+    <h2 class="reveal" data-delay="60"
+      style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.25rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;margin-bottom:0.75rem;">
+      Brisbane Inner East<br/><em style="font-style:italic;">Market Updates</em>
+    </h2>
+    <p class="reveal" data-delay="120"
+      style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-bottom:2rem;">
+      Monthly insights on property trends, sales results and what's moving the market across Brisbane's inner east. No spam, unsubscribe anytime.
+    </p>
+    <form class="reveal" data-delay="180"
+      method="POST" action="https://formspree.io/f/xnjgedwp"
+      style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+      <input type="hidden" name="_subject" value="Market update signup — danielgierach.com" />
+      <input type="hidden" name="form_type" value="market_update_signup" />
+      <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you" />
+      <input type="email" name="email" required placeholder="Your email address" autocomplete="email"
+        style="flex:1;min-width:220px;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(28,25,23,0.2);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;"
+      />
+      <button type="submit" class="btn-gold"
+        style="white-space:nowrap;"
+        onclick="gtag('event', 'email_signup_click', { event_category: 'lead', event_label: 'Market Updates' })"
+      >
+        Get Updates
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+    <p class="reveal" data-delay="220" style="font-size:0.72rem;color:var(--color-text-muted);margin-top:1rem;">
+      No spam. Unsubscribe at any time. <a href="/privacy" style="color:var(--color-gold);text-decoration:underline;">Privacy Policy</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[860px] mx-auto px-8 lg:px-12">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span class="eyebrow mb-4 reveal" style="display:block;">Quick Answers</span>
+      <h2 class="reveal" data-delay="60"
+        style="font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
+        Common Questions
+      </h2>
+    </div>
+    <div style="display:flex;flex-direction:column;" class="reveal" data-delay="80">
+
+      <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          How much does it cost to sell my home in Brisbane?
+          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
+          Typical selling costs include agent commission (generally 2–2.5% of the sale price), marketing ($3,000–$8,000 depending on the campaign), and conveyancing fees (approximately $1,200–$2,000). Use Daniel's free <a href="/tools/selling-costs" style="color:var(--color-gold);text-decoration:underline;">Selling Cost Calculator</a> to get a precise estimate.
+        </p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          What suburbs does Daniel service?
+          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
+          Daniel specialises in Brisbane's inner east and south — Bulimba, Hawthorne, Balmoral, Norman Park, Camp Hill, Seven Hills, Morningside, Cannon Hill, Carina, Coorparoo, East Brisbane and surrounding suburbs. He operates through Ray White Bulimba and the Ray White Collective network.
+        </p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          How long does it take to sell in Brisbane's inner east?
+          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
+          Daniel's median days on market is 28 days. Well-positioned homes typically sell within 2–4 weeks when priced accurately and supported by a targeted buyer campaign.
+        </p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          Should I sell by auction or private treaty?
+          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
+          The best method depends on your property type, price point and buyer demand. Auction creates urgency and competition; private treaty suits homes where buyers need more consideration time. Daniel will recommend the right approach at your appraisal.
+        </p>
+      </details>
+
+      <details style="padding:1.35rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          How do I get a free property appraisal with Daniel?
+          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
+          Fill in the <a href="/appraisal" style="color:var(--color-gold);text-decoration:underline;">appraisal request form</a> or call Daniel directly on <a href="tel:+61412523821" style="color:var(--color-gold);text-decoration:underline;">0412 523 821</a>. There's no obligation and Daniel will typically be in touch within 24 hours to arrange a time that suits you.
+        </p>
+      </details>
+
     </div>
   </div>
 </section>
