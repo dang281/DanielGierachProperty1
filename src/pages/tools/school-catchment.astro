@@ -83,6 +83,32 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     font-style: italic;
   }
 
+  #autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.18);
+    border-top: none;
+    z-index: 1000;
+    max-height: 220px;
+    overflow-y: auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  .ac-item {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    line-height: 1.4;
+    transition: background 0.15s;
+  }
+  .ac-item:last-child { border-bottom: none; }
+  .ac-item:hover, .ac-item.highlighted { background: rgba(197,160,60,0.08); }
+  #search-wrap { position: relative; flex: 1; }
+
   .filter-btn {
     font-family: var(--font-sans);
     font-size: 0.62rem;
@@ -129,12 +155,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           Property Address
         </label>
         <div style="display:flex;gap:0.5rem;">
-          <input
-            type="text"
-            id="catchment-search"
-            placeholder="e.g. 12 Oxford St, Bulimba"
-            autocomplete="off"
-          />
+          <div id="search-wrap">
+            <input
+              type="text"
+              id="catchment-search"
+              placeholder="e.g. 12 Oxford St, Bulimba"
+              autocomplete="off"
+            />
+            <div id="autocomplete-list" style="display:none;"></div>
+          </div>
           <button id="search-btn"
             style="padding:0.9rem 1.25rem;background:var(--color-gold);color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;"
             onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='var(--color-gold)'">
@@ -439,14 +468,88 @@ out center tags;`;
   }
 
   // ── Wire up ─────────────────────────────────────────────────────────
+  // ── Autocomplete ────────────────────────────────────────────────────
+  let acDebounce, acHighlight = -1, acResults = [];
+
+  function renderAC(items) {
+    acResults = items;
+    acHighlight = -1;
+    const list = document.getElementById('autocomplete-list');
+    if (!items.length) { list.style.display = 'none'; return; }
+    list.innerHTML = '';
+    items.forEach(function(item, i) {
+      const div = document.createElement('div');
+      div.className = 'ac-item';
+      // Show just the first two parts of the display name for readability
+      const parts = item.display_name.split(', ');
+      div.textContent = parts.slice(0, 4).join(', ');
+      div.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        document.getElementById('catchment-search').value = parts.slice(0, 4).join(', ');
+        list.style.display = 'none';
+        doSearch();
+      });
+      list.appendChild(div);
+    });
+    list.style.display = 'block';
+  }
+
+  function closeAC() {
+    document.getElementById('autocomplete-list').style.display = 'none';
+    acHighlight = -1;
+  }
+
+  async function fetchSuggestions(q) {
+    if (q.length < 4) { closeAC(); return; }
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Brisbane, Australia')}&format=json&limit=5&countrycodes=au&addressdetails=0`;
+    try {
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
+      const data = await res.json();
+      renderAC(data);
+    } catch (_) { closeAC(); }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initMap();
 
-    document.getElementById('search-btn').addEventListener('click', doSearch);
-    document.getElementById('catchment-search').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') doSearch();
+    const input = document.getElementById('catchment-search');
+    const list  = document.getElementById('autocomplete-list');
+
+    // Autocomplete on input
+    input.addEventListener('input', function() {
+      clearTimeout(acDebounce);
+      acDebounce = setTimeout(() => fetchSuggestions(this.value.trim()), 320);
     });
 
+    // Keyboard nav through suggestions
+    input.addEventListener('keydown', function(e) {
+      const items = list.querySelectorAll('.ac-item');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        acHighlight = Math.min(acHighlight + 1, items.length - 1);
+        items.forEach((el, i) => el.classList.toggle('highlighted', i === acHighlight));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        acHighlight = Math.max(acHighlight - 1, -1);
+        items.forEach((el, i) => el.classList.toggle('highlighted', i === acHighlight));
+      } else if (e.key === 'Enter') {
+        if (acHighlight >= 0 && items[acHighlight]) {
+          items[acHighlight].dispatchEvent(new MouseEvent('mousedown'));
+        } else {
+          closeAC();
+          doSearch();
+        }
+      } else if (e.key === 'Escape') {
+        closeAC();
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (!document.getElementById('search-wrap').contains(e.target)) closeAC();
+    });
+
+    document.getElementById('search-btn').addEventListener('click', function() { closeAC(); doSearch(); });
     // Radius slider
     document.getElementById('radius-slider').addEventListener('input', function () {
       currentRadius = parseInt(this.value);
