@@ -192,6 +192,23 @@ const globalSchema = {
         });
       });
     </script>
+    <!-- Formspree → /thank-you redirect (bypasses _next domain whitelisting requirement) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('form[action*="formspree.io"]').forEach(function(form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            }).finally(function() {
+              window.location.href = '/thank-you';
+            });
+          });
+        });
+      });
+    </script>
     <!-- Live Chat: Tidio (free tier at tidio.com) -->
     <!-- 1. Sign up at tidio.com and grab your Public Key  -->
     <!-- 2. Replace TIDIO_KEY below, then uncomment the line -->
