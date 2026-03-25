@@ -33,16 +33,24 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="input-label">Stamp Duty</label>
-              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
-                <input type="checkbox" id="auto-stamp" checked style="accent-color:var(--color-gold);width:14px;height:14px;cursor:pointer;" />
-                <span style="font-size:0.72rem;color:var(--color-text-muted);">Auto-calculate (QLD)</span>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+                <label class="input-label" style="margin-bottom:0;">Stamp Duty</label>
+                <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">
+                  <input type="checkbox" id="auto-stamp" checked style="accent-color:var(--color-gold);width:13px;height:13px;cursor:pointer;" />
+                  <span style="font-size:0.65rem;color:var(--color-text-muted);white-space:nowrap;">Auto (QLD)</span>
+                </label>
               </div>
-              <input type="number" id="stamp-duty" class="obs-input" style="font-size:0.95rem;" readonly />
+              <div style="position:relative;">
+                <span style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);font-size:0.9rem;color:var(--color-text-muted);pointer-events:none;">$</span>
+                <input type="number" id="stamp-duty" class="obs-input" style="font-size:0.95rem;padding-left:1.5rem;" readonly />
+              </div>
             </div>
             <div>
               <label class="input-label">Legal / Acquisition Costs</label>
-              <input type="number" id="legal-costs" value="2500" class="obs-input" style="font-size:0.95rem;" />
+              <div style="position:relative;">
+                <span style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);font-size:0.9rem;color:var(--color-text-muted);pointer-events:none;">$</span>
+                <input type="number" id="legal-costs" value="2500" class="obs-input" style="font-size:0.95rem;padding-left:1.5rem;" />
+              </div>
             </div>
           </div>
 
