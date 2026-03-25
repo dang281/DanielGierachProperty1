@@ -651,20 +651,35 @@ const faqSchema = {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      {[
-        { href: '/tools/selling-costs',  phase: 'Seller', label: 'Selling Cost Calculator', desc: 'See your true net proceeds after all selling costs, agent fees and marketing.' },
-        { href: '/tools/stamp-duty',     phase: 'Buyer',  label: 'Stamp Duty Calculator',   desc: 'QLD stamp duty, first home buyer concessions and total upfront costs.' },
-        { href: '/tools/mortgage',       phase: 'Buyer',  label: 'Mortgage Calculator',     desc: 'Weekly or monthly repayments plus a full amortisation chart.' },
-      ].map((tool, i) => (
+    <!-- Filter Pills -->
+    <div id="home-filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem;">
+      {(['All', 'Seller', 'Buyer', 'Investor', 'Market'] as const).map(phase => (
+        <button
+          data-hfilter={phase}
+          class="home-filter-pill"
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1rem;border-radius:999px;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;transition:all 0.18s;background:${phase === 'All' ? 'var(--color-text-primary)' : 'transparent'};color:${phase === 'All' ? 'var(--color-base)' : 'var(--color-text-muted)'};border-color:${phase === 'All' ? 'var(--color-text-primary)' : 'rgba(28,25,23,0.2)'};`}
+        >
+          {phase !== 'All' && (
+            <span style={`width:6px;height:6px;border-radius:50%;background:${toolPhaseColors[phase]};flex-shrink:0;`}></span>
+          )}
+          {phase}
+        </button>
+      ))}
+    </div>
+
+    <div id="home-tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {showcaseTools.map((tool, i) => (
         <a href={tool.href}
-          class="reveal"
-          data-delay={String(i * 80)}
-          style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;"
-          onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-4px)'"
+          class="home-tool-card reveal"
+          data-hphase={tool.phase}
+          data-delay={String(i * 60)}
+          style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;position:relative;overflow:hidden;"
+          onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-3px)'"
           onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
         >
-          <span style={`font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${toolPhaseColors[tool.phase] || '#ffdd79'};`}>
+          <div style={`position:absolute;top:0;left:0;right:0;height:2px;background:${toolPhaseColors[tool.phase] || '#ffdd79'};`}></div>
+          <span style={`display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${toolPhaseColors[tool.phase] || '#ffdd79'};padding-top:0.25rem;`}>
+            <span style={`width:5px;height:5px;border-radius:50%;background:${toolPhaseColors[tool.phase] || '#ffdd79'};`}></span>
             {tool.phase}
           </span>
           <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">{tool.label}</h3>
@@ -857,6 +872,30 @@ const faqSchema = {
       });
     });
   });
+
+  // ── Homepage tools filter ──────────────────────────────────────
+  const hPillColors: Record<string, string> = {
+    All: '#1c1917', Seller: '#b89a2a', Buyer: '#3a8fa8', Investor: '#4a9e4a', Market: '#888'
+  };
+  const hPills = document.querySelectorAll<HTMLButtonElement>('.home-filter-pill');
+  const hCards = document.querySelectorAll<HTMLElement>('.home-tool-card');
+
+  function applyHomeFilter(active: string) {
+    hPills.forEach(pill => {
+      const phase = pill.dataset.hfilter!;
+      const isActive = phase === active;
+      const col = hPillColors[phase] || '#1c1917';
+      pill.style.background  = isActive ? col   : 'transparent';
+      pill.style.color       = isActive ? (phase === 'All' ? 'var(--color-base)' : '#fff') : 'var(--color-text-muted)';
+      pill.style.borderColor = isActive ? col   : 'rgba(28,25,23,0.2)';
+    });
+    hCards.forEach(card => {
+      card.style.display = (active === 'All' || card.dataset.hphase === active) ? '' : 'none';
+    });
+  }
+
+  hPills.forEach(pill => pill.addEventListener('click', () => applyHomeFilter(pill.dataset.hfilter!)));
+  applyHomeFilter('All');
 </script>
 
 <style>
