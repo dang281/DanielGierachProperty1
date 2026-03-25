@@ -903,13 +903,13 @@ const faqSchema = {
       const addr = selectedAddress || input.value.trim();
       if (!addr) { input.focus(); return; }
       gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr });
-      // Silently send address to Daniel, then redirect
+      // Send address to Daniel in background, redirect immediately
       const fd = new FormData();
       fd.append('_subject', 'Homepage address enquiry – ' + addr);
       fd.append('address', addr);
       fd.append('source', 'Homepage hero');
-      fetch('https://formspree.io/f/xnjgedwp', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
-        .finally(() => { window.location.href = '/property-worth?address=' + encodeURIComponent(addr); });
+      fetch('https://formspree.io/f/xnjgedwp', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+      window.location.href = '/property-worth?address=' + encodeURIComponent(addr);
     });
   })();
 
