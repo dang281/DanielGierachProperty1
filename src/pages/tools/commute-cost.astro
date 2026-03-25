@@ -197,7 +197,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   /* ─── Leaflet map ──────────────────────────────────────── */
   #cc-map {
-    height: 380px;
+    height: 500px;
     width: 100%;
     border: 1px solid rgba(28,25,23,0.12);
     margin-bottom: 1.5rem;
@@ -212,7 +212,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   .cc-results-header {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr;
     background: #1c1917;
     color: #f0ece4;
   }
@@ -230,7 +230,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   .cc-rrow {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr;
     border-bottom: 1px solid rgba(28,25,23,0.05);
   }
   .cc-rrow:last-child { border-bottom: none; }
@@ -276,10 +276,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   /* ─── Mobile ──────────────────────────────────────────── */
   @media (max-width: 860px) {
     .cc-locations { grid-template-columns: 1fr; }
-    #cc-map { height: 280px; }
-    .cc-results-header,
-    .cc-rrow { grid-template-columns: 1.2fr 1fr 1fr; }
-    .cc-rh-work, .cc-rcell:nth-child(2) { display: none; }
+    #cc-map { height: 340px; }
     .cc-vehicle-bar { gap: 1rem; }
     .cc-vsep { display: none; }
   }
@@ -376,44 +373,37 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <div id="ccTable" style="display:none;">
     <div class="cc-results-header">
       <div class="cc-rh-cell"></div>
-      <div class="cc-rh-cell cc-rh-work" id="hdrWork">Workplace</div>
       <div class="cc-rh-cell cc-rh-home" id="hdrHome">Current Home</div>
       <div class="cc-rh-cell cc-rh-prop" id="hdrProp">New Property</div>
     </div>
 
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Drive distance</div>
-      <div class="cc-rcell" id="wrkDist">—</div>
       <div class="cc-rcell val" id="homeDist">—</div>
       <div class="cc-rcell val" id="propDist">—</div>
     </div>
     <div class="cc-rrow">
-      <div class="cc-rcell label-cell">Drive time (peak)</div>
-      <div class="cc-rcell" id="wrkTime">—</div>
+      <div class="cc-rcell label-cell">Drive time</div>
       <div class="cc-rcell val" id="homeTime">—</div>
       <div class="cc-rcell val" id="propTime">—</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Weekly fuel cost</div>
-      <div class="cc-rcell">—</div>
       <div class="cc-rcell val" id="homeFuelWk">—</div>
       <div class="cc-rcell val" id="propFuelWk">—</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Annual fuel cost</div>
-      <div class="cc-rcell">—</div>
       <div class="cc-rcell val" id="homeFuelYr">—</div>
       <div class="cc-rcell val" id="propFuelYr">—</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Hours per year commuting</div>
-      <div class="cc-rcell">—</div>
       <div class="cc-rcell val" id="homeHrsYr">—</div>
       <div class="cc-rcell val" id="propHrsYr">—</div>
     </div>
     <div class="cc-rrow">
-      <div class="cc-rcell label-cell total-row">Annual difference vs current home</div>
-      <div class="cc-rcell total-row">—</div>
+      <div class="cc-rcell label-cell total-row">Annual difference</div>
       <div class="cc-rcell total-row" style="color:var(--color-text-muted);font-style:italic;">Baseline</div>
       <div class="cc-rcell total-row" id="propDiff">—</div>
     </div>
@@ -682,8 +672,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     // Map centred on Brisbane
     map = L.map('cc-map', { zoomControl: true }).setView([-27.4698, 153.0251], 11);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
       maxZoom: 19
     }).addTo(map);
 
