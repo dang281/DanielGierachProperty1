@@ -325,6 +325,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.25rem;justify-content:center;">
           Discuss with Daniel
         </a>
+        <button id="open-download"
+          style="width:100%;margin-top:0.75rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:var(--color-text-primary);border:1px solid rgba(72,72,72,0.3);font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:border-color 0.2s,color 0.2s;"
+          onmouseover="this.style.borderColor='var(--color-gold)';this.style.color='var(--color-gold)'"
+          onmouseout="this.style.borderColor='rgba(72,72,72,0.3)';this.style.color='var(--color-text-primary)'">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Analysis
+        </button>
       </div>
     </div>
   </div>
@@ -355,7 +362,296 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
   </div>
 
+<!-- ── DOWNLOAD MODAL ──────────────────────────── -->
+<div id="dl-modal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.78);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#1c1917;border:1px solid rgba(197,160,60,0.25);padding:2.5rem;max-width:460px;width:100%;position:relative;">
+    <button id="dl-close"
+      style="position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;color:rgba(240,236,228,0.5);font-size:1.3rem;line-height:1;padding:0.25rem 0.5rem;"
+      onmouseover="this.style.color='#f0ece4'" onmouseout="this.style.color='rgba(240,236,228,0.5)'">×</button>
+
+    <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c5a03c;display:block;margin-bottom:0.75rem;">Download</span>
+    <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#f0ece4;margin-bottom:0.5rem;">Get Your Analysis</h3>
+    <p style="font-size:0.82rem;color:rgba(240,236,228,0.55);line-height:1.6;margin-bottom:1.5rem;">
+      Enter your email below, then choose your preferred format. Daniel may follow up with insights on your numbers.
+    </p>
+
+    <label style="display:block;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.5);margin-bottom:0.5rem;">Your Email Address</label>
+    <input type="email" id="dl-email" placeholder="your@email.com"
+      style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(72,72,72,0.4);color:#f0ece4;font-size:0.95rem;padding:0.75rem 1rem;outline:none;box-sizing:border-box;"
+      onfocus="this.style.borderColor='rgba(197,160,60,0.6)'" onblur="this.style.borderColor='rgba(72,72,72,0.4)'" />
+    <p id="dl-error" style="display:none;font-size:0.72rem;color:rgba(220,80,60,0.9);margin-top:0.4rem;">Please enter a valid email address.</p>
+
+    <div class="grid grid-cols-2 gap-3" style="margin-top:1.25rem;">
+      <button id="dl-pdf"
+        style="display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:1.25rem 1rem;background:rgba(197,160,60,0.08);border:1px solid rgba(197,160,60,0.2);cursor:pointer;transition:background 0.2s,border-color 0.2s;"
+        onmouseover="this.style.background='rgba(197,160,60,0.15)';this.style.borderColor='rgba(197,160,60,0.5)'"
+        onmouseout="this.style.background='rgba(197,160,60,0.08)';this.style.borderColor='rgba(197,160,60,0.2)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f0ece4;">PDF Report</span>
+        <span style="font-size:0.65rem;color:rgba(240,236,228,0.45);">Formatted report</span>
+      </button>
+      <button id="dl-excel"
+        style="display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:1.25rem 1rem;background:rgba(197,160,60,0.08);border:1px solid rgba(197,160,60,0.2);cursor:pointer;transition:background 0.2s,border-color 0.2s;"
+        onmouseover="this.style.background='rgba(197,160,60,0.15)';this.style.borderColor='rgba(197,160,60,0.5)'"
+        onmouseout="this.style.background='rgba(197,160,60,0.08)';this.style.borderColor='rgba(197,160,60,0.2)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13l2 2 4-4"/></svg>
+        <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f0ece4;">Excel File</span>
+        <span style="font-size:0.65rem;color:rgba(240,236,228,0.45);">Edit &amp; model further</span>
+      </button>
+    </div>
+
+    <p id="dl-status" style="display:none;font-size:0.72rem;color:rgba(197,160,60,0.8);margin-top:1rem;text-align:center;"></p>
+    <p style="font-size:0.65rem;color:rgba(240,236,228,0.3);margin-top:1rem;line-height:1.5;text-align:center;">
+      Your email is only used to follow up on this analysis. No spam.
+    </p>
+  </div>
+</div>
+
 </ToolLayout>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script is:inline>
+(function () {
+  // ── Modal open/close ────────────────────────────────────────────────────
+  const modal   = document.getElementById('dl-modal');
+  const openBtn = document.getElementById('open-download');
+  const closeBtn= document.getElementById('dl-close');
+
+  openBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    document.getElementById('dl-error').style.display = 'none';
+    document.getElementById('dl-status').style.display = 'none';
+  });
+  closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+
+  // ── Validation & Formspree submit ────────────────────────────────────────
+  function validateAndSubmit(format) {
+    const email = document.getElementById('dl-email').value.trim();
+    const err   = document.getElementById('dl-error');
+    const status= document.getElementById('dl-status');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      err.style.display = 'block';
+      return false;
+    }
+    err.style.display = 'none';
+
+    const data = window.__dcfData;
+    if (!data) return false;
+
+    // Fire-and-forget to Formspree
+    fetch('https://formspree.io/f/xnjgedwp', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        _subject: 'DCF Tool Download — ' + new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(data.inputs.price),
+        tool: 'Property DCF Analyser',
+        format,
+        purchase_price: data.inputs.price,
+        hold_years: data.inputs.holdYears,
+        irr: data.summary.irr !== null ? data.summary.irr.toFixed(2) + '%' : 'N/A',
+        npv: data.summary.npv,
+      }),
+    }).catch(() => {});
+
+    status.textContent = 'Preparing your download…';
+    status.style.display = 'block';
+    return true;
+  }
+
+  // ── Formatting helpers ───────────────────────────────────────────────────
+  function fmtC(n) {
+    return n < 0
+      ? '-$' + Math.abs(Math.round(n)).toLocaleString('en-AU')
+      : '$'  + Math.round(n).toLocaleString('en-AU');
+  }
+  function fmtP(n) { return n.toFixed(2) + '%'; }
+
+  // ── PDF Generation ───────────────────────────────────────────────────────
+  document.getElementById('dl-pdf').addEventListener('click', function () {
+    if (!validateAndSubmit('PDF')) return;
+    const data = window.__dcfData;
+
+    setTimeout(function () {
+      try {
+        var jsPDF = window.jspdf.jsPDF;
+        var doc   = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        // Header bar
+        doc.setFillColor(28, 25, 23);
+        doc.rect(0, 0, 210, 32, 'F');
+        doc.setTextColor(197, 160, 60);
+        doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+        doc.text('PROPERTY INVESTMENT ANALYSIS', 14, 12);
+        doc.setTextColor(240, 236, 228);
+        doc.setFontSize(17); doc.setFont('helvetica', 'normal');
+        doc.text('DCF Analysis Report', 14, 23);
+        doc.setTextColor(160, 155, 148);
+        doc.setFontSize(7);
+        doc.text('Generated ' + data.date + '  |  danielgierach.com  |  0412 523 821', 14, 29);
+
+        // Two-column assumptions + metrics table
+        var inp = data.inputs, sum = data.summary;
+        var ioLabel = inp.ioPeriod > 0 ? inp.ioPeriod + ' yrs IO then P&I' : 'P&I from start';
+        var combined = [
+          ['Purchase Price',   '$' + inp.price.toLocaleString('en-AU'),    'Initial Outlay',      fmtC(sum.outlay)],
+          ['Stamp Duty',       fmtC(inp.stamp),                            'Gross Yield',         fmtP(sum.grossYield)],
+          ['Legal Costs',      fmtC(inp.legal),                            'Net Yield (Yr 1)',    fmtP(sum.netYield)],
+          ['Deposit',          fmtP(inp.depositPct) + ' (' + fmtC(inp.deposit) + ')', 'Cash-on-Cash (Yr 1)', fmtP(sum.cocReturn)],
+          ['Loan Amount',      fmtC(inp.loan),                             'Yr 1 Net Cashflow',   fmtC(sum.yr1NetCF) + '/yr'],
+          ['Interest Rate',    inp.rate.toFixed(2) + '% p.a.',             'Total Rent',          fmtC(sum.totalRent)],
+          ['Loan Term',        inp.term + ' years (' + ioLabel + ')',      'Cumul. Cashflow',     fmtC(sum.cumulCF)],
+          ['Weekly Rent',      '$' + inp.weeklyRent,                       'Exit Value',          fmtC(sum.exitValue)],
+          ['Vacancy Rate',     fmtP(inp.vacRate),                          'Remaining Loan',      fmtC(sum.finalLoanBal)],
+          ['Rent Growth',      fmtP(inp.rentGrowth) + ' p.a.',             'Equity at Exit',      fmtC(sum.netEquity)],
+          ['Capital Growth',   fmtP(inp.growthRate) + ' p.a.',             'NPV',                 fmtC(sum.npv)],
+          ['Hold Period',      inp.holdYears + ' years',                   'IRR',                 sum.irr !== null ? fmtP(sum.irr) : 'N/A'],
+          ['Selling Costs',    fmtP(inp.sellingCostPct),                   'Discount Rate',       fmtP(inp.discountRate)],
+        ];
+
+        doc.autoTable({
+          startY: 38,
+          head: [['ASSUMPTION', 'VALUE', 'METRIC', 'RESULT']],
+          body: combined,
+          theme: 'grid',
+          headStyles: { fillColor: [44, 40, 36], textColor: [197, 160, 60], fontSize: 7, fontStyle: 'bold' },
+          bodyStyles: { fontSize: 8, textColor: [44, 40, 36] },
+          alternateRowStyles: { fillColor: [248, 246, 242] },
+          columnStyles: {
+            0: { textColor: [100, 96, 90], cellWidth: 38 },
+            1: { fontStyle: 'bold', cellWidth: 45 },
+            2: { textColor: [100, 96, 90], cellWidth: 45 },
+            3: { fontStyle: 'bold', cellWidth: 'auto' },
+          },
+          margin: { left: 14, right: 14 },
+        });
+
+        // Cashflow table
+        var cfY = doc.lastAutoTable.finalY + 8;
+        doc.setTextColor(197, 160, 60);
+        doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+        doc.text('YEAR-BY-YEAR CASHFLOW', 14, cfY);
+
+        doc.autoTable({
+          startY: cfY + 4,
+          head: [['Yr', 'Property Value', 'Eff. Rent', 'Expenses', 'Interest', 'Net Cashflow', 'Loan Balance', 'Equity', 'PV of CF']],
+          body: data.tableData.map(function (r) {
+            return [r.yr, fmtC(r.propValue), fmtC(r.effRent), fmtC(-r.totalExp), fmtC(-r.annualInterest), fmtC(r.netCF), fmtC(r.loanBal), fmtC(r.equity), fmtC(r.pvCF)];
+          }),
+          theme: 'striped',
+          headStyles: { fillColor: [28, 25, 23], textColor: [197, 160, 60], fontSize: 7 },
+          bodyStyles: { fontSize: 7, textColor: [44, 40, 36] },
+          alternateRowStyles: { fillColor: [248, 246, 242] },
+          columnStyles: {
+            0: { halign: 'center', cellWidth: 8 },
+            1: { halign: 'right' }, 2: { halign: 'right' }, 3: { halign: 'right' },
+            4: { halign: 'right' }, 5: { halign: 'right' }, 6: { halign: 'right' },
+            7: { halign: 'right' }, 8: { halign: 'right' },
+          },
+          margin: { left: 14, right: 14 },
+        });
+
+        // Footer on every page
+        var pages = doc.internal.getNumberOfPages();
+        for (var i = 1; i <= pages; i++) {
+          doc.setPage(i);
+          doc.setFontSize(6.5); doc.setTextColor(160, 155, 148);
+          doc.text('Estimate only. Pre-tax, excludes depreciation & CGT. Confirm with a qualified financial adviser.', 14, 291);
+          doc.text('Page ' + i + ' of ' + pages, 190, 291, { align: 'right' });
+        }
+
+        doc.save('property-dcf-analysis.pdf');
+        document.getElementById('dl-status').textContent = 'Download started!';
+        setTimeout(function () { modal.style.display = 'none'; }, 1200);
+      } catch (e) {
+        document.getElementById('dl-status').textContent = 'Error generating PDF. Please try again.';
+        console.error(e);
+      }
+    }, 100);
+  });
+
+  // ── Excel Generation ─────────────────────────────────────────────────────
+  document.getElementById('dl-excel').addEventListener('click', function () {
+    if (!validateAndSubmit('Excel')) return;
+    var data = window.__dcfData;
+    var XLSX = window.XLSX;
+
+    setTimeout(function () {
+      try {
+        var wb = XLSX.utils.book_new();
+        var inp = data.inputs, sum = data.summary;
+
+        // ── Sheet 1: Summary ──
+        var ioLabel = inp.ioPeriod > 0 ? inp.ioPeriod + ' yrs IO then P&I' : 'P&I from start';
+        var s1 = [
+          ['PROPERTY INVESTMENT ANALYSIS — DCF REPORT'],
+          ['Generated', data.date, '', 'danielgierach.com', '0412 523 821'],
+          [],
+          ['ASSUMPTIONS', '', '', 'KEY METRICS', ''],
+          ['Purchase Price',   inp.price,               '', 'Initial Outlay',       sum.outlay],
+          ['Stamp Duty',       inp.stamp,               '', 'Gross Yield',          sum.grossYield / 100],
+          ['Legal Costs',      inp.legal,               '', 'Net Yield (Yr 1)',     sum.netYield / 100],
+          ['Deposit %',        inp.depositPct / 100,    '', 'Cash-on-Cash (Yr 1)', sum.cocReturn / 100],
+          ['Deposit $',        inp.deposit,             '', 'Yr 1 Net Cashflow',    sum.yr1NetCF],
+          ['Loan Amount',      inp.loan,                '', 'Total Rent Collected', sum.totalRent],
+          ['Interest Rate',    inp.rate / 100,          '', 'Cumulative Cashflow',  sum.cumulCF],
+          ['Loan Term',        inp.term + ' years',     '', 'Exit Property Value',  sum.exitValue],
+          ['Loan Structure',   ioLabel,                 '', 'Remaining Loan',       sum.finalLoanBal],
+          ['Weekly Rent',      inp.weeklyRent,          '', 'Equity at Exit',       sum.netEquity],
+          ['Vacancy Rate',     inp.vacRate / 100,       '', 'NPV',                  sum.npv],
+          ['Annual Rent Growth', inp.rentGrowth / 100,  '', 'IRR',                  sum.irr !== null ? sum.irr / 100 : 'N/A'],
+          ['PM Fee',           inp.pmRate / 100,        '', 'Discount Rate',        inp.discountRate / 100],
+          ['Maintenance Rate', inp.maintRate / 100,     '', '', ''],
+          ['Council Rates',    inp.council,             '', '', ''],
+          ['Water Rates',      inp.water,               '', '', ''],
+          ['Insurance',        inp.insurance,           '', '', ''],
+          ['Body Corporate',   inp.bodyCorp,            '', '', ''],
+          ['Capital Growth',   inp.growthRate / 100,    '', '', ''],
+          ['Hold Period',      inp.holdYears + ' years','', '', ''],
+          ['Selling Costs',    inp.sellingCostPct / 100,'', '', ''],
+        ];
+        var ws1 = XLSX.utils.aoa_to_sheet(s1);
+        // Format currency and percentage columns
+        var currencyFmt = '$#,##0';
+        var pctFmt = '0.00%';
+        var currencyCells = ['B5','B6','B7','B9','B10','B14','E5','E6','E7','E9','E10','E11','E12','E13','E14','E15'];
+        var pctCells = ['B8','B11','B16','B17','B18','B24','E8','E16','E17'];
+        currencyCells.forEach(function(c) { if (ws1[c]) ws1[c].z = currencyFmt; });
+        pctCells.forEach(function(c) { if (ws1[c]) ws1[c].z = pctFmt; });
+        ws1['!cols'] = [{wch:24},{wch:16},{wch:2},{wch:22},{wch:16}];
+        XLSX.utils.book_append_sheet(wb, ws1, 'Summary');
+
+        // ── Sheet 2: Cashflow ──
+        var headers = ['Year','Property Value','Effective Rent','Operating Expenses','Interest Paid','Net Cashflow','Loan Balance','Equity','PV of Cashflow'];
+        var cfRows  = data.tableData.map(function(r) {
+          return [r.yr, r.propValue, r.effRent, -r.totalExp, -r.annualInterest, r.netCF, r.loanBal, r.equity, r.pvCF];
+        });
+        var ws2 = XLSX.utils.aoa_to_sheet([headers].concat(cfRows));
+        // Format all currency columns (B–I)
+        for (var row = 2; row <= data.tableData.length + 1; row++) {
+          ['B','C','D','E','F','G','H','I'].forEach(function(col) {
+            var cell = ws2[col + row];
+            if (cell) cell.z = currencyFmt;
+          });
+        }
+        ws2['!cols'] = [{wch:6},{wch:16},{wch:14},{wch:20},{wch:14},{wch:16},{wch:14},{wch:14},{wch:14}];
+        XLSX.utils.book_append_sheet(wb, ws2, 'Cashflow');
+
+        XLSX.writeFile(wb, 'property-dcf-analysis.xlsx');
+        document.getElementById('dl-status').textContent = 'Download started!';
+        setTimeout(function () { modal.style.display = 'none'; }, 1200);
+      } catch (e) {
+        document.getElementById('dl-status').textContent = 'Error generating file. Please try again.';
+        console.error(e);
+      }
+    }, 100);
+  });
+})();
+</script>
 
 <script>
   // ── Helpers ────────────────────────────────────────────────────────────────
@@ -458,6 +754,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     const irrCFs: number[] = [-outlay];
     const tbodyRows: string[] = [];
+    const tableData: Array<{ yr:number; propValue:number; effRent:number; totalExp:number; annualInterest:number; netCF:number; loanBal:number; equity:number; pvCF:number; }> = [];
 
     for (let yr = 1; yr <= holdYears; yr++) {
       propValue = price * Math.pow(1 + growthRate, yr);
@@ -510,6 +807,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       discountedCFSum += pvCF;
 
       const equity = propValue - loanBal;
+      tableData.push({ yr, propValue, effRent, totalExp, annualInterest, netCF, loanBal, equity, pvCF });
 
       tbodyRows.push(`
         <tr style="border-bottom:1px solid rgba(72,72,72,0.12);${yr % 2 === 0 ? 'background:rgba(72,72,72,0.04);' : ''}">
@@ -597,6 +895,26 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Table
     document.getElementById('cf-tbody')!.innerHTML = tbodyRows.join('');
+
+    // Store for download functions
+    (window as any).__dcfData = {
+      date: new Date().toLocaleDateString('en-AU', { day:'2-digit', month:'long', year:'numeric' }),
+      inputs: {
+        price, stamp, legal,
+        depositPct: val('deposit-pct'), deposit: price * depositPct,
+        loan, rate, term, ioPeriod,
+        weeklyRent, vacRate: vacRate * 100, rentGrowth: rentGrowth * 100,
+        pmRate: pmRate * 100, maintRate: maintRate * 100,
+        council, water, insurance, bodyCorp,
+        growthRate: growthRate * 100, holdYears, sellingCostPct: sellingCostPct * 100,
+        discountRate: discountRate * 100,
+      },
+      summary: {
+        outlay, grossYield, netYield, cocReturn, yr1NetCF,
+        npv, irr, exitValue, finalLoanBal: loanBal, netEquity, totalRent, cumulCF,
+      },
+      tableData,
+    };
 
     // Live labels
     $('price-display')!.textContent   = fmtCur(price);
