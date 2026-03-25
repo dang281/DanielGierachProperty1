@@ -371,12 +371,10 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 400;
   }
 
-  /* ── SATURDAY — shaded column, not bookable ── */
+  /* ── SATURDAY — shaded column, bookable ── */
   .cal-day--saturday {
-    background: rgba(28,25,23,0.04) !important;
-    color: #a39d97 !important;
-    cursor: default;
-    pointer-events: none;
+    background: rgba(28,25,23,0.04);
+    color: #1c1917;
   }
 
   /* ── SUNDAY — deeper shade, not bookable ── */
@@ -581,7 +579,7 @@ import Layout from '../layouts/Layout.astro';
         if (isSaturday) btn.classList.add('cal-day--saturday');
         if (isSelected) btn.classList.add('cal-day--selected');
 
-        if (!isPast && !isFuture && !isSunday && !isSaturday) {
+        if (!isPast && !isFuture && !isSunday) {
           btn.addEventListener('click', () => {
             // Ripple effect
             const ripple = document.createElement('span');
