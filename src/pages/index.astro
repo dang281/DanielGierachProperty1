@@ -853,47 +853,40 @@ const faqSchema = {
 
   counters.forEach(el => countObserver.observe(el));
 
-  // ── Hero address input ─────────────────────────────────────────────
+  // ── Hero address input (Google Places) ────────────────────────────
   (function() {
     const input  = document.getElementById('hero-address-input') as HTMLInputElement;
     const acList = document.getElementById('hero-ac-list') as HTMLElement;
     const form   = document.getElementById('hero-address-form') as HTMLFormElement;
-    let acDebounce: ReturnType<typeof setTimeout>;
     let selectedAddress = '';
 
-    // ── Photon autocomplete (free, no API key) ─────────────────────
-    function showSuggestions(features: any[]) {
-      acList.innerHTML = '';
-      if (!features.length) { acList.style.display = 'none'; return; }
-      features.forEach((f: any) => {
-        const p = f.properties;
-        const label = [p.housenumber ? p.housenumber + ' ' + p.street : p.street || p.name, p.city || p.suburb, p.state].filter(Boolean).join(', ');
-        const item = document.createElement('div');
-        item.style.cssText = 'padding:0.6rem 1rem;font-size:0.82rem;color:#f0ece4;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.07);';
-        item.textContent = label;
-        item.addEventListener('mouseover', () => item.style.background = 'rgba(197,160,60,0.12)');
-        item.addEventListener('mouseout',  () => item.style.background = '');
-        item.addEventListener('mousedown', () => {
-          selectedAddress = label;
-          input.value = label;
-          acList.style.display = 'none';
-        });
-        acList.appendChild(item);
+    function initPlaces() {
+      const ac = new (window as any).google.maps.places.Autocomplete(input, {
+        componentRestrictions: { country: 'au' },
+        fields: ['formatted_address'],
+        types: ['address'],
       });
-      acList.style.display = 'block';
+      // When a suggestion is picked, store it
+      ac.addListener('place_changed', () => {
+        const place = ac.getPlace();
+        selectedAddress = place.formatted_address || input.value;
+        input.value = selectedAddress;
+      });
     }
 
-    input.addEventListener('input', () => {
-      clearTimeout(acDebounce);
-      const q = input.value.trim();
-      if (q.length < 3) { acList.style.display = 'none'; return; }
-      acDebounce = setTimeout(() => {
-        fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`)
-          .then(r => r.json())
-          .then(d => showSuggestions(d.features || []))
-          .catch(() => { acList.style.display = 'none'; });
-      }, 120);
-    });
+    // Define callback before the script loads (race-condition safe)
+    (window as any).initGooglePlacesHero = function() { initPlaces(); };
+
+    // Load Maps JS API with Places library — only on this page
+    if (!(window as any).google?.maps?.places) {
+      const s = document.createElement('script');
+      s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlacesHero';
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    } else {
+      initPlaces();
+    }
 
     document.addEventListener('click', function(e) {
       if (!form?.contains(e.target as Node)) acList.style.display = 'none';
