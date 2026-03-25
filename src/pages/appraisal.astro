@@ -158,25 +158,59 @@ import Layout from '../layouts/Layout.astro';
           />
         </div>
 
-        <!-- Preferred Date -->
-        <div>
-          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.5rem;">
-            Preferred Day <span style="color:#c4912a;">*</span>
-          </label>
-          <div id="day-tiles" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.4rem;"></div>
-          <input type="hidden" name="preferred_date" id="preferred-date-input" required />
-        </div>
+        <!-- Calendar picker -->
+        <div class="cal-wrap">
+          <label class="cal-label">Preferred Date &amp; Time <span style="color:#c4912a;">*</span></label>
 
-        <!-- Preferred Time -->
-        <div id="time-row" style="display:none;">
-          <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.5rem;">
-            Preferred Time
-          </label>
-          <div id="time-tiles" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;">
-            <button type="button" class="time-tile" data-time="Morning (8–12pm)">Morning<br/><span>8 – 12pm</span></button>
-            <button type="button" class="time-tile" data-time="Afternoon (12–5pm)">Afternoon<br/><span>12 – 5pm</span></button>
-            <button type="button" class="time-tile" data-time="Evening (5–7pm)">Evening<br/><span>5 – 7pm</span></button>
+          <!-- Calendar -->
+          <div class="cal-card">
+            <!-- Month nav -->
+            <div class="cal-header">
+              <button type="button" id="cal-prev" class="cal-nav" aria-label="Previous month">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <span id="cal-month-label" class="cal-month-name"></span>
+              <button type="button" id="cal-next" class="cal-nav" aria-label="Next month">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+            <!-- Day-of-week headers -->
+            <div class="cal-dow-row">
+              {['Mo','Tu','We','Th','Fr','Sa','Su'].map(d => <span class="cal-dow">{d}</span>)}
+            </div>
+            <!-- Day grid -->
+            <div id="cal-grid" class="cal-grid"></div>
           </div>
+
+          <!-- Time slots — shown after day is picked -->
+          <div id="cal-time-section" class="cal-time-section" style="display:none;">
+            <p class="cal-time-label">Choose a time</p>
+            <div class="cal-time-grid">
+              <button type="button" class="cal-time-btn" data-time="Morning  ·  8–12pm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <span>Morning</span>
+                <small>8 – 12pm</small>
+              </button>
+              <button type="button" class="cal-time-btn" data-time="Afternoon  ·  12–5pm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <span>Afternoon</span>
+                <small>12 – 5pm</small>
+              </button>
+              <button type="button" class="cal-time-btn" data-time="Evening  ·  5–7pm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <span>Evening</span>
+                <small>5 – 7pm</small>
+              </button>
+            </div>
+          </div>
+
+          <!-- Selected summary pill -->
+          <div id="cal-summary" class="cal-summary" style="display:none;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="cal-summary-text"></span>
+          </div>
+
+          <input type="hidden" name="preferred_date" id="preferred-date-input" required />
           <input type="hidden" name="preferred_time" id="preferred-time-input" />
         </div>
 
@@ -215,37 +249,179 @@ import Layout from '../layouts/Layout.astro';
   }
   input::placeholder { color: var(--color-text-muted); }
 
-  .day-tile, .time-tile {
-    background: var(--color-surface-4, #f0ece4);
+  /* ── Calendar ── */
+  .cal-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+  .cal-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #44403c;
+    margin-bottom: 0.15rem;
+  }
+  .cal-card {
     border: 1.5px solid rgba(28,25,23,0.12);
-    border-radius: 0;
-    padding: 0.55rem 0.3rem;
+    background: #fff;
+    padding: 1rem;
+    user-select: none;
+  }
+  .cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.85rem;
+  }
+  .cal-nav {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    background: none;
+    border: 1px solid rgba(28,25,23,0.12);
+    cursor: pointer;
+    color: #44403c;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .cal-nav:hover { border-color: #c4912a; color: #c4912a; }
+  .cal-nav:disabled { opacity: 0.3; cursor: default; }
+  .cal-month-name {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #1c1917;
+    letter-spacing: 0.02em;
+  }
+  .cal-dow-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.3rem;
+  }
+  .cal-dow {
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #78716c;
+    padding: 0.2rem 0;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #1c1917;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+    background: none;
+    position: relative;
+  }
+  .cal-day:hover:not(.cal-day--disabled):not(.cal-day--selected) {
+    background: rgba(196,145,42,0.08);
+    border-color: rgba(196,145,42,0.35);
+    color: #c4912a;
+  }
+  .cal-day--today:not(.cal-day--selected)::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 50%; transform: translateX(-50%);
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #c4912a;
+  }
+  .cal-day--selected {
+    background: #c4912a;
+    color: #fff;
+    font-weight: 700;
+  }
+  .cal-day--disabled {
+    color: rgba(28,25,23,0.2);
+    cursor: default;
+    pointer-events: none;
+  }
+  .cal-day--empty { pointer-events: none; }
+
+  /* Time slots */
+  .cal-time-section {
+    margin-top: 0.25rem;
+    animation: fadeInUp 0.25s ease both;
+  }
+  @keyframes fadeInUp {
+    from { opacity:0; transform:translateY(6px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .cal-time-label {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #78716c;
+    margin-bottom: 0.5rem;
+  }
+  .cal-time-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 0.5rem;
+  }
+  .cal-time-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.85rem 0.5rem;
+    border: 1.5px solid rgba(28,25,23,0.12);
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    color: #44403c;
+  }
+  .cal-time-btn svg { color: #78716c; }
+  .cal-time-btn span {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #1c1917;
+  }
+  .cal-time-btn small {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    color: #78716c;
+    font-weight: 400;
+  }
+  .cal-time-btn:hover {
+    border-color: #c4912a;
+    background: rgba(196,145,42,0.04);
+  }
+  .cal-time-btn.selected {
+    border-color: #c4912a;
+    background: rgba(196,145,42,0.08);
+  }
+  .cal-time-btn.selected span { color: #c4912a; }
+  .cal-time-btn.selected svg { color: #c4912a; }
+
+  /* Summary pill */
+  .cal-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    background: rgba(196,145,42,0.07);
+    border: 1px solid rgba(196,145,42,0.25);
+    animation: fadeInUp 0.2s ease both;
+  }
+  .cal-summary span {
     font-family: var(--font-sans);
     font-size: 0.72rem;
     font-weight: 600;
     color: #44403c;
-    cursor: pointer;
-    text-align: center;
-    line-height: 1.3;
-    transition: background 0.15s, border-color 0.15s, color 0.15s;
-  }
-  .day-tile span, .time-tile span {
-    font-weight: 400;
-    font-size: 0.65rem;
-    color: #78716c;
-    display: block;
-  }
-  .day-tile:hover, .time-tile:hover {
-    border-color: #c4912a;
-    color: #c4912a;
-  }
-  .day-tile.selected, .time-tile.selected {
-    background: #c4912a;
-    border-color: #c4912a;
-    color: #fff;
-  }
-  .day-tile.selected span, .time-tile.selected span {
-    color: rgba(255,255,255,0.75);
   }
 
   input:-webkit-autofill {
@@ -274,45 +450,117 @@ import Layout from '../layouts/Layout.astro';
 <script>
   document.body.classList.add('appraisal-page');
 
-  // ── Day tiles (next 8 days) ──
+  // ── Calendar picker ──────────────────────────────────────────────
   (function() {
-    const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const container = document.getElementById('day-tiles');
-    const hiddenDate = document.getElementById('preferred-date-input') as HTMLInputElement;
-    const timeRow = document.getElementById('time-row');
-
+    const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const today = new Date();
-    for (let i = 1; i <= 8; i++) {
-      const d = new Date(today);
-      d.setDate(today.getDate() + i);
-      const label = i === 1 ? 'Tomorrow' : dayNames[d.getDay()];
-      const sub = d.getDate() + ' ' + monthNames[d.getMonth()];
-      const tile = document.createElement('button');
-      tile.type = 'button';
-      tile.className = 'day-tile';
-      tile.dataset.date = d.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long' });
-      tile.innerHTML = `${label}<span>${sub}</span>`;
-      container!.appendChild(tile);
+    today.setHours(0,0,0,0);
+    const minDate = new Date(today); minDate.setDate(today.getDate() + 1); // earliest = tomorrow
+    const maxDate = new Date(today); maxDate.setDate(today.getDate() + 60);
+
+    let viewYear  = minDate.getFullYear();
+    let viewMonth = minDate.getMonth();
+    let selectedDate: Date | null = null;
+
+    const grid        = document.getElementById('cal-grid')!;
+    const monthLabel  = document.getElementById('cal-month-label')!;
+    const prevBtn     = document.getElementById('cal-prev') as HTMLButtonElement;
+    const nextBtn     = document.getElementById('cal-next') as HTMLButtonElement;
+    const timeSection = document.getElementById('cal-time-section')!;
+    const summary     = document.getElementById('cal-summary')!;
+    const summaryTxt  = document.getElementById('cal-summary-text')!;
+    const hiddenDate  = document.getElementById('preferred-date-input') as HTMLInputElement;
+    const hiddenTime  = document.getElementById('preferred-time-input') as HTMLInputElement;
+
+    function renderCalendar() {
+      monthLabel.textContent = `${MONTH_NAMES[viewMonth]} ${viewYear}`;
+
+      // Disable prev if first selectable month
+      const minMonth = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
+      const currView = new Date(viewYear, viewMonth, 1);
+      prevBtn.disabled = currView <= minMonth;
+
+      const maxMonth = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
+      nextBtn.disabled = currView >= maxMonth;
+
+      grid.innerHTML = '';
+
+      // Leading empty cells (Mon=0 … Sun=6)
+      const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+      const offset   = firstDay === 0 ? 6 : firstDay - 1; // Mon-start
+      for (let i = 0; i < offset; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'cal-day cal-day--empty';
+        grid.appendChild(empty);
+      }
+
+      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = new Date(viewYear, viewMonth, d);
+        const btn  = document.createElement('button');
+        btn.type   = 'button';
+        btn.textContent = String(d);
+        btn.className = 'cal-day';
+
+        const isToday = date.getTime() === today.getTime();
+        const isPast  = date < minDate;
+        const isFuture = date > maxDate;
+        const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
+
+        if (isPast || isFuture) btn.classList.add('cal-day--disabled');
+        if (isToday)    btn.classList.add('cal-day--today');
+        if (isSelected) btn.classList.add('cal-day--selected');
+
+        if (!isPast && !isFuture) {
+          btn.addEventListener('click', () => selectDate(date));
+        }
+        grid.appendChild(btn);
+      }
     }
 
-    container!.addEventListener('click', function(e) {
-      const tile = (e.target as HTMLElement).closest('.day-tile') as HTMLElement;
-      if (!tile) return;
-      container!.querySelectorAll('.day-tile').forEach(t => t.classList.remove('selected'));
-      tile.classList.add('selected');
-      hiddenDate!.value = tile.dataset.date || '';
-      timeRow!.style.display = 'block';
+    function selectDate(date: Date) {
+      selectedDate = date;
+      const label = date.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+      hiddenDate.value = label;
+      renderCalendar();
+
+      // Show time section
+      timeSection.style.display = 'block';
+      // Reset time selection
+      document.querySelectorAll('.cal-time-btn').forEach(b => b.classList.remove('selected'));
+      hiddenTime.value = '';
+      updateSummary();
+    }
+
+    function updateSummary() {
+      if (!selectedDate) return;
+      const dateLabel = selectedDate.toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short' });
+      const timeLabel = hiddenTime.value ? '  ·  ' + hiddenTime.value : '';
+      summaryTxt.textContent = dateLabel + timeLabel;
+      summary.style.display = 'flex';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      viewMonth--;
+      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+      renderCalendar();
+    });
+    nextBtn.addEventListener('click', () => {
+      viewMonth++;
+      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+      renderCalendar();
     });
 
-    // Time tile selection
-    document.getElementById('time-tiles')!.addEventListener('click', function(e) {
-      const tile = (e.target as HTMLElement).closest('.time-tile') as HTMLElement;
-      if (!tile) return;
-      document.querySelectorAll('.time-tile').forEach(t => t.classList.remove('selected'));
-      tile.classList.add('selected');
-      (document.getElementById('preferred-time-input') as HTMLInputElement).value = tile.dataset.time || '';
+    document.querySelectorAll('.cal-time-btn').forEach(btn => {
+      btn.addEventListener('click', function(this: HTMLElement) {
+        document.querySelectorAll('.cal-time-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        hiddenTime.value = this.dataset.time || '';
+        updateSummary();
+      });
     });
+
+    renderCalendar();
   })();
 
   // Field validation animation
