@@ -187,6 +187,53 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-gold);
   }
 
+  .bath-btn, .car-btn {
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid rgba(28,25,23,0.15);
+    background: var(--color-surface-3);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bath-btn.selected, .car-btn.selected {
+    border-color: var(--color-gold);
+    background: rgba(197,160,60,0.08);
+    color: var(--color-gold);
+  }
+
+  .block-grid {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .block-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 0.6rem 0.5rem;
+    border: 1.5px solid rgba(28,25,23,0.15);
+    background: var(--color-surface-3);
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .block-btn.selected {
+    border-color: var(--color-gold);
+    background: rgba(197,160,60,0.08);
+    color: var(--color-gold);
+  }
+
   .submit-btn {
     width: 100%;
     padding: 1rem 1.5rem;
@@ -323,6 +370,9 @@ import Layout from '../layouts/Layout.astro';
         <input type="hidden" name="report_type" id="hidden-report-type" value="Sales Report" />
         <input type="hidden" name="address" id="hidden-address" value="" />
         <input type="hidden" name="bedrooms" id="hidden-bedrooms" value="" />
+        <input type="hidden" name="bathrooms" id="hidden-bathrooms" value="" />
+        <input type="hidden" name="car_spaces" id="hidden-cars" value="" />
+        <input type="hidden" name="block_size" id="hidden-block" value="" />
         <input type="hidden" name="property_type" id="hidden-property-type" value="" />
 
         <!-- ── STEP 1: Address + report type ── -->
@@ -379,12 +429,42 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <!-- Bedrooms -->
-          <div style="margin-bottom:2rem;">
+          <div style="margin-bottom:1.5rem;">
             <label class="field-label">Bedrooms</label>
             <div class="bed-grid">
               {['1','2','3','4','5','6+'].map(n => (
                 <button type="button" class="bed-btn" data-beds={n}>{n}</button>
               ))}
+            </div>
+          </div>
+
+          <!-- Bathrooms -->
+          <div style="margin-bottom:1.5rem;">
+            <label class="field-label">Bathrooms</label>
+            <div class="bed-grid">
+              {['1','2','3','4','5+'].map(n => (
+                <button type="button" class="bath-btn" data-baths={n}>{n}</button>
+              ))}
+            </div>
+          </div>
+
+          <!-- Car spaces -->
+          <div style="margin-bottom:1.5rem;">
+            <label class="field-label">Car Spaces</label>
+            <div class="bed-grid">
+              {['0','1','2','3','4+'].map(n => (
+                <button type="button" class="car-btn" data-cars={n}>{n}</button>
+              ))}
+            </div>
+          </div>
+
+          <!-- Block size -->
+          <div style="margin-bottom:2rem;">
+            <label class="field-label">Block Size</label>
+            <div class="block-grid">
+              <button type="button" class="block-btn" data-block="Under 405 sqm">Under 405 sqm</button>
+              <button type="button" class="block-btn" data-block="405–810 sqm">405–810 sqm</button>
+              <button type="button" class="block-btn" data-block="810 sqm+">810 sqm+</button>
             </div>
           </div>
 
@@ -487,6 +567,33 @@ import Layout from '../layouts/Layout.astro';
       this.classList.add('selected');
       selectedBeds = this.dataset.beds || '';
       (document.getElementById('hidden-bedrooms') as HTMLInputElement).value = selectedBeds;
+    });
+  });
+
+  // ── Bathroom buttons ───────────────────────────────────────────────
+  document.querySelectorAll('.bath-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('.bath-btn').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      (document.getElementById('hidden-bathrooms') as HTMLInputElement).value = this.dataset.baths || '';
+    });
+  });
+
+  // ── Car space buttons ──────────────────────────────────────────────
+  document.querySelectorAll('.car-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('.car-btn').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      (document.getElementById('hidden-cars') as HTMLInputElement).value = this.dataset.cars || '';
+    });
+  });
+
+  // ── Block size buttons ─────────────────────────────────────────────
+  document.querySelectorAll('.block-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('.block-btn').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      (document.getElementById('hidden-block') as HTMLInputElement).value = this.dataset.block || '';
     });
   });
 
