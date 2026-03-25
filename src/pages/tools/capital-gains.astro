@@ -3,10 +3,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 ---
 
 <ToolLayout
-  title="Capital Gains Tax Calculator"
-  description="Estimate CGT on an Australian investment property sale. Includes the 50% discount, main residence exemption, capital losses, and a budget-scenario slider. Not a substitute for tax advice."
+  title="Capital Gains Tax Calculator — Queensland Property"
+  description="Estimate your capital gains tax on a Queensland property sale. Uses QLD transfer duty rates, covers the 50% CGT discount, main residence exemption, and proposed budget changes. Estimate only — not a substitute for tax advice."
   tool="Capital Gains Tax Calculator"
-  phase="Investor Tools"
+  phase="Investor Tools · Queensland"
 >
 
 <style is:global>
@@ -357,7 +357,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <!-- ── Intro notice ───────────────────────────────────────────── -->
 <div class="cg-alert" style="margin-bottom:1.5rem;">
-  <strong>Budget Watch:</strong> The Australian Government is considering changes to the CGT discount currently available for assets held over 12 months. Use the discount slider at the bottom of the inputs to model how proposed changes could affect your position. This calculator provides an estimate only. Always consult a registered tax adviser or accountant before making financial or tax decisions.
+  <strong>Queensland CGT Estimator.</strong> Built for Queensland property owners and investors. Uses QLD transfer duty rates and reflects Australian CGT rules including the 50% discount, main residence exemption, and capital loss treatment. <strong>Budget Watch:</strong> the Australian Government is considering changes to the CGT discount — use the slider below to model the impact. This calculator is an estimate only. Always consult a registered tax adviser or accountant before making financial or tax decisions.
 </div>
 
 <!-- ── Date validation warning ───────────────────────────────── -->
@@ -411,10 +411,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </p>
 
     <div class="cg-row">
-      <label>Transfer Duty (Stamp Duty)<small>Paid on purchase in Queensland</small></label>
+      <label>
+        Transfer Duty (QLD)
+        <small>
+          Queensland transfer duty paid at purchase.
+          <button type="button" id="calcDutyBtn" style="background:none;border:none;padding:0;font-size:0.68rem;font-weight:700;color:var(--color-gold);cursor:pointer;letter-spacing:0.04em;text-decoration:underline;text-underline-offset:2px;">Auto-calculate QLD rate</button>
+        </small>
+        <small id="dutyCalcNote" style="display:none;color:var(--color-gold);font-weight:600;"></small>
+        <small style="margin-top:0.2rem;">QLD first home buyers may qualify for a concession or exemption on homes valued up to $800,000. Adjust the figure if a concession applied to your purchase.</small>
+      </label>
       <div class="cg-input-wrap">
         <span class="cg-prefix">$</span>
-        <input class="cg-input" id="stampDuty" type="number" value="25000" min="0" step="500" />
+        <input class="cg-input" id="stampDuty" type="number" value="22275" min="0" step="500" />
       </div>
     </div>
 
@@ -499,7 +507,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         </div>
       </div>
       <div class="cg-row">
-        <label>Land Tax (not previously claimed)</label>
+        <label>
+          QLD Land Tax (not previously claimed)
+          <small>QLD land tax applies to investment properties with a taxable value above $600,000 (individuals) or $350,000 (companies and trustees) as at 30 June each year. Your principal place of residence is generally exempt.</small>
+        </label>
         <div class="cg-input-wrap">
           <span class="cg-prefix">$</span>
           <input class="cg-input" id="holdLandTax" type="number" value="0" min="0" step="500" />
@@ -513,7 +524,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         </div>
       </div>
       <div class="cg-row">
-        <label>Body Corporate / Strata Fees (not previously claimed)</label>
+        <label>Body Corporate Levies (not previously claimed)<small>Applicable to units and townhouses in QLD under the Body Corporate and Community Management Act</small></label>
         <div class="cg-input-wrap">
           <span class="cg-prefix">$</span>
           <input class="cg-input" id="holdBodyCorp" type="number" value="0" min="0" step="200" />
@@ -848,8 +859,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <span class="cg-result-label" style="margin-bottom:0.85rem;">Assumptions and Important Notes</span>
     <ul class="cg-assumptions" id="assumptionsList">
       <li>This is an estimate only and does not constitute tax advice.</li>
+      <li>Built for Queensland property owners. Transfer duty uses Queensland OSR rates.</li>
       <li>Uses 2024-25 Australian resident individual marginal tax rates.</li>
-      <li>Assumes all information entered is accurate and complete.</li>
       <li>Does not account for depreciation recapture, PAYG instalments, or Division 7A.</li>
       <li>Seek advice from a registered tax adviser before acting on any result.</li>
     </ul>
@@ -1387,7 +1398,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (ctx.mrResultStatus === 'absence_full' || ctx.mrResultStatus === 'partial_absence') notes.push('The 6-year absence rule may affect your outcome. This requires the property to have been your main residence before the absence, and that you did not treat another dwelling as your main residence during that period.');
     if (ctx.isFullExempt) notes.push('A full main residence exemption appears to apply. Confirm with a tax adviser that all eligibility conditions are met before assuming no CGT is payable.');
     if (ctx.isLoss) notes.push('Capital losses must be recorded on your tax return even though no CGT is payable. They can only offset capital gains, not ordinary income.');
-    notes.push('This estimate does not account for depreciation recapture (building write-offs), previous CGT events, or state land tax. Always seek advice from a registered tax agent or accountant before making decisions.');
+    notes.push('Transfer duty uses Queensland OSR standard rates. First home buyer concessions, foreign investor duty, and other QLD concessions are not automatically applied — adjust the transfer duty figure if applicable.');
+    notes.push('QLD land tax applies to investment properties above $600,000 (individuals) or $350,000 (companies and trustees). Your principal place of residence is generally exempt from QLD land tax.');
+    notes.push('This estimate does not account for depreciation recapture, previous CGT events, or foreign resident capital gains withholding (FRCGW). Always seek advice from a registered tax agent or accountant before making decisions.');
 
     const list = getEl('assumptionsList');
     if (!list) return;
@@ -1469,6 +1482,38 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   document.querySelectorAll<HTMLElement>('.cg-preset').forEach(p => {
     p.addEventListener('click', () => setDiscount(parseInt(p.dataset.val || '50')));
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     QLD TRANSFER DUTY AUTO-CALCULATOR
+     Source: Queensland Revenue Office standard rates (2024-25)
+     Residential property — standard dutiable value scale
+  ───────────────────────────────────────────────────────────── */
+  function qldTransferDuty(value: number): number {
+    if (value <= 5000)    return 0;
+    if (value <= 75000)   return Math.ceil((value - 5000) / 100) * 1.50;
+    if (value <= 540000)  return 1050 + Math.ceil((value - 75000) / 100) * 3.50;
+    if (value <= 1000000) return 17325 + Math.ceil((value - 540000) / 100) * 4.50;
+    return 38025 + Math.ceil((value - 1000000) / 100) * 5.75;
+  }
+
+  getEl('calcDutyBtn')?.addEventListener('click', () => {
+    const price = numVal('purchasePrice');
+    if (!price) return;
+    const duty = Math.round(qldTransferDuty(price));
+    const dutyInput = getInp('stampDuty');
+    if (dutyInput) {
+      dutyInput.value = String(duty);
+      // Brief highlight to confirm the change
+      dutyInput.style.borderColor = '#c5a03c';
+      setTimeout(() => { dutyInput.style.borderColor = ''; }, 1200);
+    }
+    const note = getEl('dutyCalcNote');
+    if (note) {
+      note.textContent = `Calculated: $${duty.toLocaleString('en-AU')} — based on QLD standard rates for $${price.toLocaleString('en-AU')}. Adjust below if a FHB concession or other concession applied.`;
+      note.style.display = 'block';
+    }
+    calc();
   });
 
   /* ─────────────────────────────────────────────────────────────
