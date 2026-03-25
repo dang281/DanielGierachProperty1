@@ -180,6 +180,53 @@ const suburbsJson = JSON.stringify(suburbs);
   </div>
 </section>
 
+<!-- Testimonials -->
+<section style="background:var(--color-base);padding:5rem 1.5rem;">
+  <div style="max-width:960px;margin:0 auto;">
+    <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--color-gold);text-align:center;margin-bottom:0.75rem;">What Clients Say</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;color:var(--color-text-primary);text-align:center;margin-bottom:3.5rem;line-height:1.2;">Results that speak<br/><em style="font-style:italic;color:var(--color-gold);">for themselves.</em></h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(28,25,23,0.1);">
+
+      <div style="background:var(--color-base);padding:2.5rem 2rem;">
+        <div style="display:flex;gap:0.2rem;margin-bottom:1.25rem;">
+          {[1,2,3,4,5].map(() => (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#c5a03c"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ))}
+        </div>
+        <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;font-style:italic;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.5rem;">"Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. The result went well above and beyond expectations."</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(197,160,60,0.12);border:1px solid rgba(197,160,60,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;color:var(--color-text-primary);">Past Seller</p>
+            <p style="font-size:0.68rem;color:var(--color-gold);letter-spacing:0.08em;">Brisbane Inner East</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--color-base);padding:2.5rem 2rem;">
+        <div style="display:flex;gap:0.2rem;margin-bottom:1.25rem;">
+          {[1,2,3,4,5].map(() => (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#c5a03c"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ))}
+        </div>
+        <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;font-style:italic;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.5rem;">"We had a great experience working with Daniel through our buying process. He was super honest, never pushy, and made the whole process way less stressful. Daniel is a genuinely solid, trustworthy person. Highly recommend."</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(197,160,60,0.12);border:1px solid rgba(197,160,60,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;color:var(--color-text-primary);">Past Buyer</p>
+            <p style="font-size:0.68rem;color:var(--color-gold);letter-spacing:0.08em;">Brisbane Inner East</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <script define:vars={{ suburbsJson }}>
 (function() {
   const suburbs = JSON.parse(suburbsJson);
