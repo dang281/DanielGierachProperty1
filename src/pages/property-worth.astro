@@ -153,15 +153,15 @@ const suburbsJson = JSON.stringify(suburbs);
     if (link) link.href = '/property-report?address=' + encodeURIComponent(addr);
   }
 
-  // Extract suburb name from address string
-  // e.g. "39, Moolabar Street, Morningside, Brisbane, Queensland" → "Morningside"
+  // Extract suburb from Google Places address
+  // e.g. "39 Moolabar Street, Morningside QLD 4122, Australia" → finds "Morningside"
   function extractSuburb(address) {
     const parts = address.split(',').map(p => p.trim());
-    // Try each part against known suburb names
     for (const part of parts) {
+      // Strip trailing state/postcode e.g. "Morningside QLD 4122" → "Morningside"
+      const cleaned = part.replace(/\s+(QLD|NSW|VIC|WA|SA|TAS|ACT|NT)\s+\d{4}$/i, '').trim();
       const match = suburbs.find(s =>
-        s.name.toLowerCase() === part.toLowerCase() ||
-        s.name.toLowerCase().replace(' ', '-') === part.toLowerCase().replace(' ', '-')
+        s.name.toLowerCase() === cleaned.toLowerCase()
       );
       if (match) return match;
     }
