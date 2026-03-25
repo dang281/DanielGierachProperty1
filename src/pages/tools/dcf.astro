@@ -437,81 +437,67 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       ($('stamp-duty') as HTMLInputElement).value = Math.round(stamp).toString();
     }
 
-    // P&I monthly payment (used after IO period ends)
-    // IO: loanBalance stays at `loan` during IO period
-    // After IO: P&I on remaining balance over remaining term
-    const piMonthly = monthlyPmt(loan, rate, term);
+    // Remaining loan term after IO period ends (used for P&I after IO)
+    const remainingTerm = Math.max(1, term - ioPeriod);
 
     // Build annual cashflows
-    const annualCFs: number[] = [];
-    let propValue   = price;
-    let currentRent = weeklyRent * 52;
-    let loanBal     = loan;
-    let cumulCF     = 0;
-    let totalRent   = 0;
-    let discountedCFSum = 0;
+    let propValue        = price;
+    let loanBal          = loan;
+    let cumulCF          = 0;
+    let totalRent        = 0;
+    let discountedCFSum  = 0;
+    let yr1NetCF         = 0; // captured from loop for summary panel
 
-    // For NPV: cashflows array starts with -outlay at t=0
     const irrCFs: number[] = [-outlay];
-
     const tbodyRows: string[] = [];
 
     for (let yr = 1; yr <= holdYears; yr++) {
       propValue = price * Math.pow(1 + growthRate, yr);
 
-      // Rent
-      currentRent = weeklyRent * 52 * Math.pow(1 + rentGrowth, yr - 1);
-      const effRent = currentRent * (1 - vacRate);
+      // Rent (growth starts from year 2)
+      const grossRent = weeklyRent * 52 * Math.pow(1 + rentGrowth, yr - 1);
+      const effRent   = grossRent * (1 - vacRate);
       totalRent += effRent;
 
-      // Expenses
-      const pmFee     = effRent * pmRate;
-      const maint     = propValue * maintRate;
-      const totalExp  = pmFee + maint + council + water + insurance + bodyCorp;
+      // Operating expenses
+      const pmFee    = effRent * pmRate;
+      const maint    = propValue * maintRate;
+      const totalExp = pmFee + maint + council + water + insurance + bodyCorp;
 
       // NOI
       const noi = effRent - totalExp;
 
-      // Interest & principal
+      // Debt service
       let annualInterest: number;
       let annualPrincipal: number;
 
       if (yr <= ioPeriod) {
-        // Interest only
-        annualInterest  = loanBal * (rate / 100);
+        // Interest only — balance unchanged
+        annualInterest  = loan * (rate / 100);
         annualPrincipal = 0;
+        loanBal         = loan;
       } else {
-        // P&I — but if IO just ended, recalculate payment on current balance over remaining term
-        const monthsIO      = ioPeriod * 12;
-        const remainingTerm = term - ioPeriod; // years
-        const piPmt         = remainingTerm > 0
-          ? monthlyPmt(loan, rate, remainingTerm)
-          : 0;
+        // P&I on remaining term — loan amount is always the original loan
+        // (IO loans re-amortise over remaining term on same principal)
         const monthsIntoPandI = (yr - ioPeriod - 1) * 12;
-        const balStart = ioPeriod > 0
-          ? loan  // IO balance = original loan throughout IO
-          : loanBalance(loan, rate, term, (yr - 1) * 12);
-        const balEnd = ioPeriod > 0
-          ? loanBalance(loan, rate, remainingTerm, monthsIntoPandI + 12)
-          : loanBalance(loan, rate, term, yr * 12);
+        // Balance at START of this P&I year
+        const balStart = loanBalance(loan, rate, remainingTerm, monthsIntoPandI);
+        // Balance at END of this P&I year
+        const balEnd   = loanBalance(loan, rate, remainingTerm, monthsIntoPandI + 12);
 
-        annualInterest  = balStart * (rate / 100); // approx annual interest
+        annualInterest  = balStart * (rate / 100); // beginning-of-year balance × rate
         annualPrincipal = Math.max(0, balStart - balEnd);
-        loanBal = Math.max(0, balEnd);
+        loanBal         = Math.max(0, balEnd);
       }
 
-      if (yr <= ioPeriod) {
-        // IO: balance stays constant
-        loanBal = loan;
-      }
-
-      // Net cashflow (after debt service, before tax / depreciation)
+      // Net cashflow after full debt service (interest + principal)
       const netCF = noi - annualInterest - annualPrincipal;
+      if (yr === 1) yr1NetCF = netCF;
 
       cumulCF += netCF;
       irrCFs.push(netCF);
 
-      // PV
+      // Discounted cashflow
       const pvCF = netCF / Math.pow(1 + discountRate, yr);
       discountedCFSum += pvCF;
 
@@ -546,16 +532,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const irrRaw = calcIRR(irrCFs);
     const irr    = irrRaw !== null ? irrRaw * 100 : null;
 
-    // Yield
+    // Yield metrics (Year 1 based on purchase price)
     const grossYield = (weeklyRent * 52) / price * 100;
-    const yr1Rent    = weeklyRent * 52 * (1 - vacRate);
-    const yr1Exp     = yr1Rent * pmRate + price * maintRate + council + water + insurance + bodyCorp;
-    const yr1NOI     = yr1Rent - yr1Exp;
+    const yr1EffRent = weeklyRent * 52 * (1 - vacRate);
+    const yr1Exp     = yr1EffRent * pmRate + price * maintRate + council + water + insurance + bodyCorp;
+    const yr1NOI     = yr1EffRent - yr1Exp;
     const netYield   = yr1NOI / price * 100;
-
-    const yr1Interest = loan * (rate / 100);
-    const yr1CF       = yr1NOI - yr1Interest;
-    const cocReturn   = outlay > 0 ? yr1CF / outlay * 100 : 0;
+    // Cash-on-cash: yr1NetCF (after full debt service incl. principal) / initial outlay
+    const cocReturn  = outlay > 0 ? yr1NetCF / outlay * 100 : 0;
 
     // ── Update DOM ──────────────────────────────────────────────────────────
     $('r-outlay')!.textContent     = fmtCur(outlay);
@@ -564,8 +548,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     $('r-coc')!.textContent        = fmtPct(cocReturn);
 
     const cf1El = document.getElementById('r-cf1')!;
-    cf1El.textContent  = fmtCur(yr1CF) + '/yr';
-    cf1El.style.color  = yr1CF >= 0 ? 'rgba(46,139,87,0.9)' : 'rgba(192,57,43,0.9)';
+    cf1El.textContent  = fmtCur(yr1NetCF) + '/yr';
+    cf1El.style.color  = yr1NetCF >= 0 ? 'rgba(46,139,87,0.9)' : 'rgba(192,57,43,0.9)';
 
     $('r-equity-exit')!.textContent = fmtCur(netEquity);
     $('r-exit-val')!.textContent    = fmtCur(exitValue);
