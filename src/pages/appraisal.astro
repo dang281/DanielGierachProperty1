@@ -315,7 +315,9 @@ import Layout from '../layouts/Layout.astro';
     color: #78716c;
     padding: 0.2rem 0;
   }
-  .cal-dow:last-child { color: #c4912a; opacity: 0.45; } /* Sun header hint */
+  /* Weekend column header tints */
+  .cal-dow:nth-child(6) { background: rgba(28,25,23,0.04); color: #78716c; }
+  .cal-dow:last-child   { background: rgba(28,25,23,0.04); color: #78716c; opacity: 0.6; }
   .cal-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -369,10 +371,18 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 400;
   }
 
-  /* ── SUNDAY — soft red-grey, not clickable ── */
+  /* ── SATURDAY — shaded column, not bookable ── */
+  .cal-day--saturday {
+    background: rgba(28,25,23,0.04) !important;
+    color: #a39d97 !important;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* ── SUNDAY — deeper shade, not bookable ── */
   .cal-day--sunday {
+    background: rgba(28,25,23,0.04) !important;
     color: #c9b8b8 !important;
-    background: transparent !important;
     cursor: default;
     pointer-events: none;
     font-style: italic;
@@ -562,14 +572,16 @@ import Layout from '../layouts/Layout.astro';
         const isPast     = date < minDate;
         const isFuture   = date > maxDate;
         const isSunday   = date.getDay() === 0;
+        const isSaturday = date.getDay() === 6;
         const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
 
         if (isPast || isFuture) btn.classList.add('cal-day--disabled');
         if (isToday || isTomorrow) btn.classList.add('cal-day--today');
-        if (isSunday && !isPast && !isFuture) btn.classList.add('cal-day--sunday');
+        if (isSunday)   btn.classList.add('cal-day--sunday');
+        if (isSaturday) btn.classList.add('cal-day--saturday');
         if (isSelected) btn.classList.add('cal-day--selected');
 
-        if (!isPast && !isFuture && !isSunday) {
+        if (!isPast && !isFuture && !isSunday && !isSaturday) {
           btn.addEventListener('click', () => {
             // Ripple effect
             const ripple = document.createElement('span');
