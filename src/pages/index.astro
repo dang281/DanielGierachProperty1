@@ -861,55 +861,28 @@ const faqSchema = {
     let acDebounce: ReturnType<typeof setTimeout>;
     let selectedAddress = '';
 
-    let lastQ = '';
+    // Google Places Autocomplete
+    function initPlaces() {
+      const autocomplete = new (window as any).google.maps.places.Autocomplete(input, {
+        componentRestrictions: { country: 'au' },
+        fields: ['formatted_address'],
+        types: ['address'],
+      });
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        selectedAddress = place.formatted_address || input.value;
+      });
+    }
 
-    input?.addEventListener('input', function() {
-      clearTimeout(acDebounce);
-      const q = this.value.trim();
-      selectedAddress = '';
-      if (q.length < 2) { acList.style.display = 'none'; return; }
-      acDebounce = setTimeout(() => fetchAC(q), 80);
-    });
+    if ((window as any).google?.maps?.places) {
+      initPlaces();
+    } else {
+      document.addEventListener('google-places-ready', initPlaces, { once: true });
+    }
 
     document.addEventListener('click', function(e) {
       if (!form?.contains(e.target as Node)) acList.style.display = 'none';
     });
-
-    async function fetchAC(q: string) {
-      if (q === lastQ) return;
-      lastQ = q;
-      try {
-        const res  = await fetch(
-          `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=6&lang=en&bbox=138.0,-39.0,154.0,-22.0`,
-          { headers: { 'Accept': 'application/json' } }
-        );
-        const data = await res.json();
-        const items = (data.features || []).filter((f: any) => {
-          const country = f.properties?.country || '';
-          return country === 'Australia';
-        });
-        if (!items.length) { acList.style.display = 'none'; return; }
-        acList.innerHTML = '';
-        items.forEach((item: any) => {
-          const p = item.properties;
-          const parts = [p.housenumber, p.street, p.suburb || p.city, p.state].filter(Boolean);
-          const label = parts.join(', ');
-          const div   = document.createElement('div');
-          div.textContent = label;
-          div.style.cssText = 'padding:0.65rem 1rem;font-size:0.82rem;color:#f0ece4;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.07);';
-          div.addEventListener('mouseover', () => div.style.background = 'rgba(197,160,60,0.1)');
-          div.addEventListener('mouseout',  () => div.style.background = '');
-          div.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            input.value = label;
-            selectedAddress = label;
-            acList.style.display = 'none';
-          });
-          acList.appendChild(div);
-        });
-        acList.style.display = 'block';
-      } catch(_) { acList.style.display = 'none'; }
-    }
 
     form?.addEventListener('submit', function(e) {
       e.preventDefault();
