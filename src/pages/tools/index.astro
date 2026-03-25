@@ -65,8 +65,7 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
 <div style="position:sticky;top:0;z-index:40;background:#f7f5f0;border-bottom:1px solid rgba(28,25,23,0.1);box-shadow:0 2px 12px rgba(28,25,23,0.06);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12" style="padding-top:0.9rem;padding-bottom:0.9rem;">
     <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-      <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#78716c;margin-right:0.5rem;white-space:nowrap;">I am a</span>
-      {(['All', 'Seller', 'Buyer', 'Investor', 'Market']).map(phase => (
+{(['All', 'Seller', 'Buyer', 'Investor', 'Market']).map(phase => (
         <button
           class="fpill"
           data-filter={phase}
