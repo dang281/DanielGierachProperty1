@@ -495,54 +495,32 @@ import Layout from '../layouts/Layout.astro';
     (document.getElementById('hidden-property-type') as HTMLInputElement).value = this.value;
   });
 
-  // ── Address autocomplete ───────────────────────────────────────────
+  // ── Address autocomplete (Google Places) ──────────────────────────
   const addrInput = document.getElementById('report-address') as HTMLInputElement;
   const acList    = document.getElementById('report-ac-list') as HTMLElement;
 
-  addrInput.addEventListener('input', function() {
-    clearTimeout(acDebounce);
-    const q = this.value.trim();
-    if (q.length < 4) { acList.style.display = 'none'; return; }
-    acDebounce = setTimeout(() => fetchAC(q), 320);
-  });
+  let placesAutocomplete: any = null;
 
-  addrInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') acList.style.display = 'none';
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!document.getElementById('report-address-wrap')?.contains(e.target as Node)) {
+  function initPlacesAutocomplete() {
+    if (placesAutocomplete) return;
+    placesAutocomplete = new (window as any).google.maps.places.Autocomplete(addrInput, {
+      componentRestrictions: { country: 'au' },
+      fields: ['formatted_address', 'geometry'],
+      types: ['address'],
+    });
+    placesAutocomplete.addListener('place_changed', function() {
+      const place = placesAutocomplete.getPlace();
+      const addr  = place.formatted_address || addrInput.value;
+      addrInput.value = addr;
+      selectedAddress = addr;
       acList.style.display = 'none';
-    }
-  });
-
-  async function fetchAC(q: string) {
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Australia')}&format=json&limit=5&countrycodes=au`;
-    try {
-      const res  = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
-      const data = await res.json();
-      renderAC(data);
-    } catch(_) { acList.style.display = 'none'; }
+    });
   }
 
-  function renderAC(items: any[]) {
-    if (!items.length) { acList.style.display = 'none'; return; }
-    acList.innerHTML = '';
-    items.forEach(item => {
-      const parts = item.display_name.split(', ');
-      const label = parts.slice(0, 4).join(', ');
-      const div   = document.createElement('div');
-      div.className = 'report-ac-item';
-      div.textContent = label;
-      div.addEventListener('mousedown', e => {
-        e.preventDefault();
-        addrInput.value  = label;
-        selectedAddress  = label;
-        acList.style.display = 'none';
-      });
-      acList.appendChild(div);
-    });
-    acList.style.display = 'block';
+  if ((window as any).google?.maps?.places) {
+    initPlacesAutocomplete();
+  } else {
+    document.addEventListener('google-places-ready', initPlacesAutocomplete, { once: true });
   }
 
   // ── Step navigation ────────────────────────────────────────────────

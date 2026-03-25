@@ -9,7 +9,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   description="Look up Brisbane City Plan 2014 zoning for any address. Understand Character, LMR, MDR and other zones across Brisbane's inner east."
 >
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
   #zone-search {
@@ -26,7 +25,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #zone-search:focus { border-color: var(--color-gold); }
   #zone-search::placeholder { color: var(--color-text-muted); }
 
-  #zone-map { height: 500px; width: 100%; border: 1px solid rgba(28,25,23,0.1); z-index: 1; }
+  #zone-map { height: 500px; width: 100%; border: 1px solid rgba(28,25,23,0.1); }
 
   #search-wrap { position: relative; flex: 1; }
   #autocomplete-list {
@@ -249,15 +248,40 @@ window.ZONES = {
   </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
-
 <script>
 (function () {
   const ZONES = window.ZONES;
-  let map, pinLayer, zoningLayer;
+  let map, pinMarker, zoningOverlay;
   let currentLat, currentLon;
-  let acDebounce, acHighlight = -1;
+  let acDebounce;
+  let placesService, placesAutocomplete;
+  let overlayOpacity = 0.65;
+
+  const mapStyle = [
+    { elementType: 'geometry', stylers: [{ color: '#1c1917' }] },
+    { elementType: 'labels.text.fill', stylers: [{ color: '#a8956a' }] },
+    { elementType: 'labels.text.stroke', stylers: [{ color: '#1c1917' }] },
+    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#2c2824' }] },
+    { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#212018' }] },
+    { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#3d3830' }] },
+    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0f1923' }] },
+    { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#1a2318' }] },
+    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+    { featureType: 'transit', stylers: [{ visibility: 'off' }] },
+  ];
+
+  // Gold pin SVG icon
+  function goldPinIcon() {
+    return {
+      path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z',
+      fillColor: '#c5a03c',
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 1.5,
+      scale: 1.6,
+      anchor: new google.maps.Point(12, 22),
+    };
+  }
 
   // ── Zone key lookup (partial name match from ArcGIS) ──────────────────
   function matchZone(raw) {
@@ -266,7 +290,6 @@ window.ZONES = {
     for (const [key, z] of Object.entries(ZONES)) {
       if (u.includes(key) || u.includes(z.name.toUpperCase())) return key;
     }
-    // Partial matches
     if (u.includes('CHARACTER'))          return 'CR';
     if (u.includes('LOW-MEDIUM') || u.includes('LOW MEDIUM')) return 'LMR';
     if (u.includes('LOW DENSITY'))        return 'LDR';
@@ -299,7 +322,6 @@ window.ZONES = {
     document.getElementById('result-height').textContent = z ? z.height : '';
     document.getElementById('result-summary').textContent = z ? z.summary : (rawName || '');
     document.getElementById('result-buyers').textContent = z ? z.forBuyers : '';
-    // Update legend highlight
     document.querySelectorAll('.legend-row').forEach(r => r.classList.toggle('active', r.dataset.zone === zoneKey));
   }
 
@@ -323,48 +345,51 @@ window.ZONES = {
     });
   }
 
-  // ── Init map ──────────────────────────────────────────────────────────
-  function initMap() {
-    map = L.map('zone-map', { zoomControl: true }).setView([-27.46, 153.04], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  // ── BCC ArcGIS zoning overlay as a Google Maps GroundOverlay tile proxy ──
+  // We use a custom ImageMapType that fetches tiles from the BCC ArcGIS MapServer export endpoint
+  function buildZoningOverlay(gmap) {
+    const tileSize = 256;
+    const zoningTileType = new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom) {
+        const n = Math.pow(2, zoom);
+        // Convert tile coords to lat/lon bounding box (EPSG:4326)
+        function tile2lon(x, z) { return (x / Math.pow(2, z)) * 360 - 180; }
+        function tile2lat(y, z) {
+          const n2 = Math.PI - 2 * Math.PI * y / Math.pow(2, z);
+          return (180 / Math.PI) * Math.atan(0.5 * (Math.exp(n2) - Math.exp(-n2)));
+        }
+        const west  = tile2lon(coord.x,     zoom);
+        const east  = tile2lon(coord.x + 1, zoom);
+        const north = tile2lat(coord.y,     zoom);
+        const south = tile2lat(coord.y + 1, zoom);
+        const extent = `${west},${south},${east},${north}`;
+        return `https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer/export`
+          + `?bbox=${encodeURIComponent(extent)}&bboxSR=4326&imageSR=4326`
+          + `&size=${tileSize},${tileSize}&f=image&format=png32&transparent=true&dpi=96`;
+      },
+      tileSize: new google.maps.Size(tileSize, tileSize),
+      opacity: overlayOpacity,
+      name: 'BCC Zoning',
       maxZoom: 19,
-    }).addTo(map);
-
-    pinLayer = L.layerGroup().addTo(map);
-
-    // BCC CityPlan 2014 zoning overlay via public ArcGIS service
-    try {
-      zoningLayer = L.esri.dynamicMapLayer({
-        url: 'https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer',
-        opacity: 0.65,
-        f: 'image',
-      });
-      zoningLayer.on('load', () => {
-        document.getElementById('status-msg').textContent = 'Zone overlay loaded. Enter an address or click the map.';
-      });
-      zoningLayer.on('requesterror', () => {
-        document.getElementById('status-msg').textContent = 'Enter an address — click "Verify on BCC CityPlan" for the official zone map.';
-      });
-      zoningLayer.addTo(map);
-    } catch(e) {}
-
-    // Click map to identify zone
-    map.on('click', function(e) {
-      identifyZone(e.latlng.lat, e.latlng.lng);
     });
+    gmap.overlayMapTypes.push(zoningTileType);
+    zoningOverlay = zoningTileType;
+    document.getElementById('status-msg').textContent = 'Zone overlay loaded. Enter an address or click the map.';
   }
 
   // ── Identify zone at lat/lon via BCC ArcGIS ───────────────────────────
   function identifyZone(lat, lon) {
     document.getElementById('status-msg').textContent = 'Identifying zone…';
     const bounds = map.getBounds();
-    const size   = map.getSize();
-    const extent = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
+    const ne = bounds.getNorthEast();
+    const sw = bounds.getSouthWest();
+    const mapDiv = document.getElementById('zone-map');
+    const w = mapDiv.offsetWidth || 800;
+    const h = mapDiv.offsetHeight || 500;
+    const extent = `${sw.lng()},${sw.lat()},${ne.lng()},${ne.lat()}`;
     const url = `https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer/identify`
       + `?geometry=${lon},${lat}&geometryType=esriGeometryPoint&layers=all`
-      + `&tolerance=3&mapExtent=${extent}&imageDisplay=${size.x},${size.y},96`
+      + `&tolerance=3&mapExtent=${extent}&imageDisplay=${w},${h},96`
       + `&returnGeometry=false&f=json`;
 
     fetch(url)
@@ -394,15 +419,79 @@ window.ZONES = {
     if (link) link.href = `https://cityplan.brisbane.qld.gov.au/#@${lon},${lat},16z`;
   }
 
-  // ── Geocode ───────────────────────────────────────────────────────────
-  async function geocode(address) {
-    const q = encodeURIComponent(address + ', Brisbane, Australia');
-    const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=au`, {
-      headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' }
+  // ── Init Google Map ───────────────────────────────────────────────────
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('zone-map'), {
+      center: { lat: -27.46, lng: 153.04 },
+      zoom: 13,
+      styles: mapStyle,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
     });
-    const data = await res.json();
-    if (!data.length) throw new Error('Not found');
-    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+
+    buildZoningOverlay(map);
+
+    // Click map to identify zone
+    map.addListener('click', function(e) {
+      identifyZone(e.latLng.lat(), e.latLng.lng());
+    });
+
+    // Google Places Autocomplete on the search input
+    const searchInput = document.getElementById('zone-search');
+    placesAutocomplete = new google.maps.places.Autocomplete(searchInput, {
+      componentRestrictions: { country: 'au' },
+      fields: ['formatted_address', 'geometry'],
+      types: ['address'],
+    });
+    placesAutocomplete.addListener('place_changed', function() {
+      const place = placesAutocomplete.getPlace();
+      if (!place.geometry) { doSearch(); return; }
+      const lat = place.geometry.location.lat();
+      const lon = place.geometry.location.lng();
+      currentLat = lat; currentLon = lon;
+      placePinAt(lat, lon);
+      map.setCenter({ lat, lng: lon });
+      map.setZoom(16);
+      identifyZone(lat, lon);
+      updateBCCLink(lat, lon);
+      document.getElementById('zone-result').style.display = 'block';
+      document.getElementById('autocomplete-list').style.display = 'none';
+    });
+
+    buildLegend();
+    wireUpControls();
+  }
+
+  // ── Place gold pin marker ─────────────────────────────────────────────
+  function placePinAt(lat, lon) {
+    if (pinMarker) pinMarker.setMap(null);
+    pinMarker = new google.maps.Marker({
+      position: { lat, lng: lon },
+      map: map,
+      icon: goldPinIcon(),
+      title: 'Your address',
+    });
+    const infoWindow = new google.maps.InfoWindow({ content: '<strong>Your address</strong>' });
+    pinMarker.addListener('click', () => infoWindow.open(map, pinMarker));
+  }
+
+  // ── Geocode via Google Geocoder ───────────────────────────────────────
+  function geocodeAddress(address) {
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+        { address: address + ', Brisbane, Australia', region: 'au' },
+        (results, status) => {
+          if (status === 'OK' && results.length) {
+            const loc = results[0].geometry.location;
+            resolve({ lat: loc.lat(), lon: loc.lng() });
+          } else {
+            reject(new Error('Not found'));
+          }
+        }
+      );
+    });
   }
 
   // ── Main search ───────────────────────────────────────────────────────
@@ -411,18 +500,13 @@ window.ZONES = {
     if (!val) return;
     document.getElementById('status-msg').textContent = 'Locating address…';
     document.getElementById('search-btn').disabled = true;
-    closeAC();
+    document.getElementById('autocomplete-list').style.display = 'none';
     try {
-      const { lat, lon } = await geocode(val);
+      const { lat, lon } = await geocodeAddress(val);
       currentLat = lat; currentLon = lon;
-      pinLayer.clearLayers();
-      const pinIcon = L.divIcon({
-        className: '',
-        html: `<div style="width:16px;height:16px;border-radius:50%;background:#c5a03c;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>`,
-        iconSize: [16,16], iconAnchor: [8,8],
-      });
-      L.marker([lat, lon], { icon: pinIcon }).bindPopup('<strong>Your address</strong>').addTo(pinLayer);
-      map.setView([lat, lon], 16);
+      placePinAt(lat, lon);
+      map.setCenter({ lat, lng: lon });
+      map.setZoom(16);
       identifyZone(lat, lon);
       updateBCCLink(lat, lon);
       document.getElementById('zone-result').style.display = 'block';
@@ -432,69 +516,29 @@ window.ZONES = {
     document.getElementById('search-btn').disabled = false;
   }
 
-  // ── Autocomplete ──────────────────────────────────────────────────────
-  async function fetchSuggestions(q) {
-    if (q.length < 4) { closeAC(); return; }
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Brisbane, Australia')}&format=json&limit=5&countrycodes=au`;
-    try {
-      const res = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
-      const data = await res.json();
-      renderAC(data);
-    } catch(_) { closeAC(); }
-  }
-  function renderAC(items) {
-    acHighlight = -1;
-    const list = document.getElementById('autocomplete-list');
-    if (!items.length) { list.style.display = 'none'; return; }
-    list.innerHTML = '';
-    items.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'ac-item';
-      const parts = item.display_name.split(', ');
-      div.textContent = parts.slice(0, 4).join(', ');
-      div.addEventListener('mousedown', e => {
-        e.preventDefault();
-        document.getElementById('zone-search').value = parts.slice(0, 4).join(', ');
-        list.style.display = 'none';
-        doSearch();
-      });
-      list.appendChild(div);
+  // ── Wire up UI controls ───────────────────────────────────────────────
+  function wireUpControls() {
+    document.getElementById('search-btn').addEventListener('click', () => doSearch());
+
+    document.getElementById('zone-search').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
     });
-    list.style.display = 'block';
-  }
-  function closeAC() {
-    document.getElementById('autocomplete-list').style.display = 'none';
-    acHighlight = -1;
-  }
 
-  // ── Boot ──────────────────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', function() {
-    initMap();
-    buildLegend();
-
-    const input = document.getElementById('zone-search');
-    input.addEventListener('input', function() {
-      clearTimeout(acDebounce);
-      acDebounce = setTimeout(() => fetchSuggestions(this.value.trim()), 320);
-    });
-    input.addEventListener('keydown', function(e) {
-      const items = document.querySelectorAll('#autocomplete-list .ac-item');
-      if (e.key === 'ArrowDown') { e.preventDefault(); acHighlight = Math.min(acHighlight+1, items.length-1); items.forEach((el,i) => el.classList.toggle('highlighted', i===acHighlight)); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); acHighlight = Math.max(acHighlight-1, -1); items.forEach((el,i) => el.classList.toggle('highlighted', i===acHighlight)); }
-      else if (e.key === 'Enter') { if (acHighlight >= 0 && items[acHighlight]) { items[acHighlight].dispatchEvent(new MouseEvent('mousedown')); } else { closeAC(); doSearch(); } }
-      else if (e.key === 'Escape') closeAC();
-    });
-    document.addEventListener('click', e => { if (!document.getElementById('search-wrap').contains(e.target)) closeAC(); });
-
-    document.getElementById('search-btn').addEventListener('click', () => { closeAC(); doSearch(); });
-
-    // Opacity slider
+    // Opacity slider — update the overlay map type opacity
     document.getElementById('opacity-slider').addEventListener('input', function() {
       const val = parseInt(this.value);
       document.getElementById('opacity-label').textContent = val + '%';
-      if (zoningLayer) zoningLayer.setOpacity(val / 100);
+      overlayOpacity = val / 100;
+      if (zoningOverlay) zoningOverlay.setOpacity(overlayOpacity);
     });
-  });
+  }
+
+  // ── Boot ──────────────────────────────────────────────────────────────
+  if (window.google?.maps) {
+    initMap();
+  } else {
+    document.addEventListener('google-places-ready', initMap, { once: true });
+  }
 })();
 </script>
 

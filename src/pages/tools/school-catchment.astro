@@ -9,8 +9,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   description="Find state and private schools near any Brisbane address. Check primary and high school catchment areas for properties across Brisbane's inner east."
 >
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
   #catchment-search {
@@ -31,7 +29,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     height: 480px;
     width: 100%;
     border: 1px solid rgba(28,25,23,0.1);
-    z-index: 1;
   }
 
   .school-card {
@@ -270,16 +267,29 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 </div>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
 (function () {
   // ── State ──────────────────────────────────────────────────────────
-  let map, markerLayer, circleLayer, currentLat, currentLon;
+  let map, pinMarker, radiusCircle, schoolMarkers = [];
+  let currentLat, currentLon;
   let allSchools = [];
   let activeFilter = 'all';
   let currentRadius = 2000;
+  let placesAutocomplete;
+  let openInfoWindow = null;
+
+  const mapStyle = [
+    { elementType: 'geometry', stylers: [{ color: '#1c1917' }] },
+    { elementType: 'labels.text.fill', stylers: [{ color: '#a8956a' }] },
+    { elementType: 'labels.text.stroke', stylers: [{ color: '#1c1917' }] },
+    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#2c2824' }] },
+    { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#212018' }] },
+    { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#3d3830' }] },
+    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0f1923' }] },
+    { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#1a2318' }] },
+    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+    { featureType: 'transit', stylers: [{ visibility: 'off' }] },
+  ];
 
   // ── Colour mapping ──────────────────────────────────────────────────
   function classifySchool(tags) {
@@ -297,26 +307,67 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (isCatholic) return 'catholic';
     if (isGovt && isHigh) return 'state-high';
     if (isGovt && isPrimary) return 'state-primary';
-    if (isGovt) return 'state-primary'; // default govt to primary if ambiguous
+    if (isGovt) return 'state-primary';
     return 'private';
   }
 
   const TYPE_CONFIG = {
     'state-primary': { label: 'State Primary',  color: '#2a7fa0', dot: 'dot-state-primary', badge: 'type-state-primary' },
     'state-high':    { label: 'State High',      color: '#c4912a', dot: 'dot-state-high',    badge: 'type-state-high'    },
-    'catholic':      { label: 'Faith-based',       color: '#6a5acd', dot: 'dot-catholic',      badge: 'type-catholic'      },
-    'private':       { label: 'Private',          color: '#3a7a35', dot: 'dot-private',       badge: 'type-private'       },
+    'catholic':      { label: 'Faith-based',     color: '#6a5acd', dot: 'dot-catholic',      badge: 'type-catholic'      },
+    'private':       { label: 'Private',         color: '#3a7a35', dot: 'dot-private',       badge: 'type-private'       },
   };
 
-  // ── Init map ────────────────────────────────────────────────────────
+  // ── SVG circle icon for school markers ─────────────────────────────
+  function schoolIcon(color) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="${color}" stroke="white" stroke-width="2"/></svg>`;
+    return {
+      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+      scaledSize: new google.maps.Size(16, 16),
+      anchor: new google.maps.Point(8, 8),
+    };
+  }
+
+  // ── Gold pin icon for searched address ─────────────────────────────
+  function goldPinIcon() {
+    return {
+      path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z',
+      fillColor: '#c5a03c',
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 1.5,
+      scale: 1.6,
+      anchor: new google.maps.Point(12, 22),
+    };
+  }
+
+  // ── Init Google Map ─────────────────────────────────────────────────
   function initMap() {
-    map = L.map('map', { zoomControl: true }).setView([-27.46, 153.04], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 19,
-    }).addTo(map);
-    markerLayer = L.layerGroup().addTo(map);
-    circleLayer = L.layerGroup().addTo(map);
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: -27.46, lng: 153.04 },
+      zoom: 12,
+      styles: mapStyle,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+    });
+
+    // Google Places Autocomplete
+    const searchInput = document.getElementById('catchment-search');
+    placesAutocomplete = new google.maps.places.Autocomplete(searchInput, {
+      componentRestrictions: { country: 'au' },
+      fields: ['formatted_address', 'geometry'],
+      types: ['address'],
+    });
+    placesAutocomplete.addListener('place_changed', function() {
+      const place = placesAutocomplete.getPlace();
+      if (!place.geometry) { doSearch(); return; }
+      searchInput.value = place.formatted_address || searchInput.value;
+      document.getElementById('autocomplete-list').style.display = 'none';
+      runSearch(place.geometry.location.lat(), place.geometry.location.lng());
+    });
+
+    wireUpControls();
   }
 
   // ── Distance helper ─────────────────────────────────────────────────
@@ -328,14 +379,22 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   }
 
-  // ── Geocode address ─────────────────────────────────────────────────
-  async function geocode(address) {
-    const q = encodeURIComponent(address + ', Brisbane, Australia');
-    const url = `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=au`;
-    const res = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
-    const data = await res.json();
-    if (!data.length) throw new Error('Address not found');
-    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), display: data[0].display_name };
+  // ── Geocode address via Google Geocoder ─────────────────────────────
+  function geocodeAddress(address) {
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+        { address: address + ', Brisbane, Australia', region: 'au' },
+        (results, status) => {
+          if (status === 'OK' && results.length) {
+            const loc = results[0].geometry.location;
+            resolve({ lat: loc.lat(), lon: loc.lng() });
+          } else {
+            reject(new Error('Address not found'));
+          }
+        }
+      );
+    });
   }
 
   // ── Fetch schools from Overpass ─────────────────────────────────────
@@ -368,21 +427,28 @@ out center tags;`;
       .sort((a, b) => a.distance - b.distance);
   }
 
-  // ── Render markers ──────────────────────────────────────────────────
+  // ── Render Google Maps markers ──────────────────────────────────────
   function renderMarkers(schools) {
-    markerLayer.clearLayers();
+    schoolMarkers.forEach(m => m.setMap(null));
+    schoolMarkers = [];
     schools.forEach(school => {
       if (activeFilter !== 'all' && school.type !== activeFilter) return;
       const cfg = TYPE_CONFIG[school.type] || TYPE_CONFIG['private'];
-      const icon = L.divIcon({
-        className: '',
-        html: `<div style="width:14px;height:14px;border-radius:50%;background:${cfg.color};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
+      const marker = new google.maps.Marker({
+        position: { lat: school.lat, lng: school.lon },
+        map: map,
+        icon: schoolIcon(cfg.color),
+        title: school.name,
       });
-      const marker = L.marker([school.lat, school.lon], { icon })
-        .bindPopup(`<strong style="font-size:0.85rem;">${school.name}</strong><br/><span style="font-size:0.75rem;color:#888;">${cfg.label} &nbsp;·&nbsp; ${(school.distance/1000).toFixed(1)} km away</span>`);
-      markerLayer.addLayer(marker);
+      const infoContent = `<div style="font-family:sans-serif;padding:2px 0;"><strong style="font-size:0.85rem;">${school.name}</strong><br/><span style="font-size:0.75rem;color:#888;">${cfg.label} &nbsp;·&nbsp; ${(school.distance/1000).toFixed(1)} km away</span></div>`;
+      const infoWindow = new google.maps.InfoWindow({ content: infoContent });
+      marker.addListener('click', () => {
+        if (openInfoWindow) openInfoWindow.close();
+        infoWindow.open(map, marker);
+        openInfoWindow = infoWindow;
+      });
+      marker._school = school;
+      schoolMarkers.push(marker);
     });
   }
 
@@ -414,155 +480,140 @@ out center tags;`;
           <span class="badge ${cfg.badge}">${cfg.label}</span>
         </div>`;
       card.addEventListener('click', () => {
-        map.setView([school.lat, school.lon], 16);
-        markerLayer.eachLayer(m => {
-          if (m.getLatLng && Math.abs(m.getLatLng().lat - school.lat) < 0.0001) m.openPopup();
-        });
+        map.setCenter({ lat: school.lat, lng: school.lon });
+        map.setZoom(16);
+        // Open the corresponding marker's info window
+        const m = schoolMarkers.find(mk => mk._school && Math.abs(mk._school.lat - school.lat) < 0.0001);
+        if (m) google.maps.event.trigger(m, 'click');
       });
       list.appendChild(card);
     });
   }
 
-  // ── Main search ─────────────────────────────────────────────────────
-  async function doSearch() {
-    const input = document.getElementById('catchment-search').value.trim();
-    if (!input) return;
-    const status = document.getElementById('status-msg');
-    const empty  = document.getElementById('empty-state');
+  // ── Place address pin + radius circle ───────────────────────────────
+  function placePinAndCircle(lat, lon) {
+    if (pinMarker) pinMarker.setMap(null);
+    if (radiusCircle) radiusCircle.setMap(null);
+
+    pinMarker = new google.maps.Marker({
+      position: { lat, lng: lon },
+      map: map,
+      icon: goldPinIcon(),
+      title: 'Your address',
+      zIndex: 999,
+    });
+    const pinInfo = new google.maps.InfoWindow({ content: '<strong>Your address</strong>' });
+    pinMarker.addListener('click', () => {
+      if (openInfoWindow) openInfoWindow.close();
+      pinInfo.open(map, pinMarker);
+      openInfoWindow = pinInfo;
+    });
+
+    radiusCircle = new google.maps.Circle({
+      map: map,
+      center: { lat, lng: lon },
+      radius: currentRadius,
+      strokeColor: '#c5a03c',
+      strokeOpacity: 0.7,
+      strokeWeight: 1.5,
+      fillColor: '#c5a03c',
+      fillOpacity: 0.05,
+      // Dashed stroke via SVG icons approach is not directly supported;
+      // strokeWeight + low opacity gives the light ring effect
+    });
+  }
+
+  // ── Core search runner ──────────────────────────────────────────────
+  async function runSearch(lat, lon) {
+    const status  = document.getElementById('status-msg');
+    const empty   = document.getElementById('empty-state');
     const results = document.getElementById('results-section');
 
-    status.textContent = 'Locating address…';
-    document.getElementById('search-btn').disabled = true;
+    currentLat = lat;
+    currentLon = lon;
+    status.textContent = 'Fetching schools…';
+
+    placePinAndCircle(lat, lon);
 
     try {
-      const { lat, lon } = await geocode(input);
-      currentLat = lat;
-      currentLon = lon;
-
-      status.textContent = 'Fetching schools…';
-
-      // Address pin
-      circleLayer.clearLayers();
-      const pinIcon = L.divIcon({
-        className: '',
-        html: `<div style="width:16px;height:16px;border-radius:50%;background:#c5a03c;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>`,
-        iconSize: [16, 16],
-        iconAnchor: [8, 8],
-      });
-      L.marker([lat, lon], { icon: pinIcon }).bindPopup('<strong>Your address</strong>').addTo(circleLayer);
-      L.circle([lat, lon], { radius: currentRadius, color: '#c5a03c', fillColor: '#c5a03c', fillOpacity: 0.05, weight: 1.5, dashArray: '6,4' }).addTo(circleLayer);
-
       allSchools = await fetchSchools(lat, lon, currentRadius);
       renderMarkers(allSchools);
       renderList(allSchools);
-
-      map.setView([lat, lon], 14);
+      map.setCenter({ lat, lng: lon });
+      map.setZoom(14);
       empty.style.display = 'none';
       results.style.display = 'block';
       status.textContent = `Found ${allSchools.length} school${allSchools.length !== 1 ? 's' : ''} within ${currentRadius >= 1000 ? (currentRadius/1000) + ' km' : currentRadius + 'm'}.`;
     } catch (err) {
-      status.textContent = 'Address not found. Try including the suburb (e.g. 12 Main St, Camp Hill).';
+      status.textContent = 'Could not fetch schools. Please try again.';
     }
 
     document.getElementById('search-btn').disabled = false;
   }
 
-  // ── Wire up ─────────────────────────────────────────────────────────
-  // ── Autocomplete ────────────────────────────────────────────────────
-  let acDebounce, acHighlight = -1, acResults = [];
-
-  function renderAC(items) {
-    acResults = items;
-    acHighlight = -1;
-    const list = document.getElementById('autocomplete-list');
-    if (!items.length) { list.style.display = 'none'; return; }
-    list.innerHTML = '';
-    items.forEach(function(item, i) {
-      const div = document.createElement('div');
-      div.className = 'ac-item';
-      // Show just the first two parts of the display name for readability
-      const parts = item.display_name.split(', ');
-      div.textContent = parts.slice(0, 4).join(', ');
-      div.addEventListener('mousedown', function(e) {
-        e.preventDefault();
-        document.getElementById('catchment-search').value = parts.slice(0, 4).join(', ');
-        list.style.display = 'none';
-        doSearch();
-      });
-      list.appendChild(div);
-    });
-    list.style.display = 'block';
-  }
-
-  function closeAC() {
+  // ── Main search (geocode first) ─────────────────────────────────────
+  async function doSearch() {
+    const input = document.getElementById('catchment-search').value.trim();
+    if (!input) return;
+    const status = document.getElementById('status-msg');
+    status.textContent = 'Locating address…';
+    document.getElementById('search-btn').disabled = true;
     document.getElementById('autocomplete-list').style.display = 'none';
-    acHighlight = -1;
-  }
-
-  async function fetchSuggestions(q) {
-    if (q.length < 4) { closeAC(); return; }
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Brisbane, Australia')}&format=json&limit=5&countrycodes=au&addressdetails=0`;
     try {
-      const res = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
-      const data = await res.json();
-      renderAC(data);
-    } catch (_) { closeAC(); }
+      const { lat, lon } = await geocodeAddress(input);
+      await runSearch(lat, lon);
+    } catch (err) {
+      status.textContent = 'Address not found. Try including the suburb (e.g. 12 Main St, Camp Hill).';
+      document.getElementById('search-btn').disabled = false;
+    }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    initMap();
-
-    const input = document.getElementById('catchment-search');
-    const list  = document.getElementById('autocomplete-list');
-
-    // Autocomplete on input
-    input.addEventListener('input', function() {
-      clearTimeout(acDebounce);
-      acDebounce = setTimeout(() => fetchSuggestions(this.value.trim()), 320);
+  // ── Wire up UI controls ─────────────────────────────────────────────
+  function wireUpControls() {
+    document.getElementById('search-btn').addEventListener('click', function() {
+      document.getElementById('autocomplete-list').style.display = 'none';
+      doSearch();
     });
 
-    // Keyboard nav through suggestions
-    input.addEventListener('keydown', function(e) {
-      const items = list.querySelectorAll('.ac-item');
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        acHighlight = Math.min(acHighlight + 1, items.length - 1);
-        items.forEach((el, i) => el.classList.toggle('highlighted', i === acHighlight));
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        acHighlight = Math.max(acHighlight - 1, -1);
-        items.forEach((el, i) => el.classList.toggle('highlighted', i === acHighlight));
-      } else if (e.key === 'Enter') {
-        if (acHighlight >= 0 && items[acHighlight]) {
-          items[acHighlight].dispatchEvent(new MouseEvent('mousedown'));
-        } else {
-          closeAC();
-          doSearch();
-        }
-      } else if (e.key === 'Escape') {
-        closeAC();
+    document.getElementById('catchment-search').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+      if (e.key === 'Escape') document.getElementById('autocomplete-list').style.display = 'none';
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!document.getElementById('search-wrap').contains(e.target)) {
+        document.getElementById('autocomplete-list').style.display = 'none';
       }
     });
 
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-      if (!document.getElementById('search-wrap').contains(e.target)) closeAC();
-    });
-
-    document.getElementById('search-btn').addEventListener('click', function() { closeAC(); doSearch(); });
     // Radius slider
-    document.getElementById('radius-slider').addEventListener('input', function () {
+    document.getElementById('radius-slider').addEventListener('input', function() {
       currentRadius = parseInt(this.value);
       const label = currentRadius >= 1000 ? (currentRadius / 1000) + ' km' : currentRadius + ' m';
       document.getElementById('radius-label').textContent = label;
     });
-    document.getElementById('radius-slider').addEventListener('change', function () {
-      if (currentLat) doSearch();
+    document.getElementById('radius-slider').addEventListener('change', function() {
+      if (currentLat) {
+        placePinAndCircle(currentLat, currentLon);
+        document.getElementById('search-btn').disabled = true;
+        document.getElementById('status-msg').textContent = 'Fetching schools…';
+        fetchSchools(currentLat, currentLon, currentRadius).then(schools => {
+          allSchools = schools;
+          renderMarkers(allSchools);
+          renderList(allSchools);
+          const r = currentRadius;
+          document.getElementById('status-msg').textContent = `Found ${allSchools.length} school${allSchools.length !== 1 ? 's' : ''} within ${r >= 1000 ? (r/1000) + ' km' : r + 'm'}.`;
+          document.getElementById('search-btn').disabled = false;
+        }).catch(() => {
+          document.getElementById('status-msg').textContent = 'Could not fetch schools.';
+          document.getElementById('search-btn').disabled = false;
+        });
+      }
     });
 
     // Filters
     document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         activeFilter = this.dataset.filter;
@@ -570,7 +621,14 @@ out center tags;`;
         renderList(allSchools);
       });
     });
-  });
+  }
+
+  // ── Boot ────────────────────────────────────────────────────────────
+  if (window.google?.maps) {
+    initMap();
+  } else {
+    document.addEventListener('google-places-ready', initMap, { once: true });
+  }
 })();
 </script>
 
