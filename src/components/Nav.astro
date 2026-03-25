@@ -102,9 +102,10 @@ const suburbs = [
     }
   });
 
-  // Scroll behaviour
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+  // Nav state logic
+  function updateNav() {
+    const isLight = document.body.dataset.lightNav === 'true';
+    if (window.scrollY > 50 || isLight) {
       header.classList.add('glass-nav');
       header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
       logoName.style.color = 'var(--color-text-primary)';
@@ -112,7 +113,7 @@ const suburbs = [
       bars.forEach(b => b.style.background = '#1c1917');
       const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
       if (trigger) trigger.style.color = '';
-    } else if (!document.body.dataset.lightNav) {
+    } else {
       header.classList.remove('glass-nav');
       header.style.boxShadow = 'none';
       logoName.style.color = '#f0ece4';
@@ -121,7 +122,11 @@ const suburbs = [
       const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
       if (trigger) trigger.style.color = '#f0ece4';
     }
-  });
+  }
+
+  // Apply on load and scroll
+  updateNav();
+  window.addEventListener('scroll', updateNav);
 
   // Mobile menu toggle
   mobileToggle.addEventListener('click', () => {
