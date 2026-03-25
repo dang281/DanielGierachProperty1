@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { suburbs } from '../data/suburbs';
+const suburbsJson = JSON.stringify(suburbs);
 ---
 
 <Layout
@@ -8,7 +10,7 @@ import Layout from '../layouts/Layout.astro';
   description="Find out what your home is worth in three ways — instant report, free in-person appraisal, or call Daniel directly. No obligation."
 >
 
-<section class="relative overflow-hidden" style="min-height:100dvh;display:flex;align-items:center;padding:7rem 0;">
+<section class="relative overflow-hidden" style="min-height:100dvh;display:flex;align-items:center;padding:7rem 0 5rem;">
   <div class="absolute inset-0">
     <img
       src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=55&fm=webp&auto=format"
@@ -24,16 +26,43 @@ import Layout from '../layouts/Layout.astro';
 
   <div class="relative max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
 
-    <!-- Heading -->
-    <div class="text-center mb-14">
-      <span style="display:block;text-align:center;color:#f5d07a;font-family:var(--font-sans);font-size:0.85rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.25rem;">What's Your Home Worth?</span>
-      <h1
+    <!-- Heading (dynamic or default) -->
+    <div class="text-center mb-10" id="pw-heading">
+      <span id="pw-eyebrow" style="display:block;text-align:center;color:#f5d07a;font-family:var(--font-sans);font-size:0.85rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.25rem;">What's Your Home Worth?</span>
+      <h1 id="pw-title"
         style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
         Find out in three ways.<br/><em style="font-style:italic;color:#c5a03c;">Choose yours.</em>
       </h1>
-      <p style="font-size:0.9375rem;color:rgba(240,236,228,0.65);max-width:48ch;margin:0 auto;line-height:1.8;">
+      <p id="pw-subtitle" style="font-size:0.9375rem;color:rgba(240,236,228,0.65);max-width:52ch;margin:0 auto;line-height:1.8;">
         Whether you want a number now, a detailed assessment, or a conversation, there's a starting point for every stage of thinking.
       </p>
+    </div>
+
+    <!-- Suburb stats strip (hidden by default, shown when suburb matched) -->
+    <div id="pw-stats" style="display:none;margin-bottom:2.5rem;">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,0.1);" class="sm:grid-cols-4">
+        <div style="background:rgba(10,8,6,0.55);backdrop-filter:blur(8px);padding:1.25rem 1.5rem;text-align:center;">
+          <p id="pw-stat-median" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#f0ece4;line-height:1;margin-bottom:0.3rem;">—</p>
+          <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">Median House Price</p>
+        </div>
+        <div style="background:rgba(10,8,6,0.55);backdrop-filter:blur(8px);padding:1.25rem 1.5rem;text-align:center;">
+          <p id="pw-stat-growth" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#c5a03c;line-height:1;margin-bottom:0.3rem;">—</p>
+          <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">Price Growth (1yr)</p>
+        </div>
+        <div style="background:rgba(10,8,6,0.55);backdrop-filter:blur(8px);padding:1.25rem 1.5rem;text-align:center;">
+          <p id="pw-stat-dom" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#f0ece4;line-height:1;margin-bottom:0.3rem;">—</p>
+          <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">Avg Days on Market</p>
+        </div>
+        <div style="background:rgba(10,8,6,0.55);backdrop-filter:blur(8px);padding:1.25rem 1.5rem;text-align:center;">
+          <p id="pw-stat-yield" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#f0ece4;line-height:1;margin-bottom:0.3rem;">—</p>
+          <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">Rental Yield</p>
+        </div>
+      </div>
+      <!-- Agent commentary -->
+      <div id="pw-commentary" style="display:none;background:rgba(197,160,60,0.06);border-left:3px solid rgba(197,160,60,0.4);padding:1rem 1.5rem;margin-top:1px;">
+        <p id="pw-commentary-text" style="font-size:0.82rem;color:rgba(240,236,228,0.7);line-height:1.8;font-style:italic;"></p>
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c5a03c;margin-top:0.5rem;">— Daniel Gierach, local market specialist</p>
+      </div>
     </div>
 
     <!-- Three option cards -->
@@ -61,8 +90,8 @@ import Layout from '../layouts/Layout.astro';
             <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Ready in under 60 seconds
           </li>
         </ul>
-        <a href="/property-report"
-          onclick="gtag('event','property_report_click',{event_category:'lead',event_label:'Property Worth Page'})"
+        <a id="pw-report-link" href="/property-report"
+          onclick="try{gtag('event','property_report_click',{event_category:'lead',event_label:'Property Worth Page'})}catch(_){}"
           style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
           onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
           Get My Instant Report
@@ -96,7 +125,7 @@ import Layout from '../layouts/Layout.astro';
           </li>
         </ul>
         <a href="/appraisal"
-          onclick="gtag('event','appraisal_click',{event_category:'lead',event_label:'Property Worth Page'})"
+          onclick="try{gtag('event','appraisal_click',{event_category:'lead',event_label:'Property Worth Page'})}catch(_){}"
           style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
           onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
           Request an Appraisal
@@ -127,7 +156,7 @@ import Layout from '../layouts/Layout.astro';
           </li>
         </ul>
         <a href="tel:+61412523821"
-          onclick="gtag('event','phone_click',{event_category:'contact',event_label:'Property Worth Page'})"
+          onclick="try{gtag('event','phone_click',{event_category:'contact',event_label:'Property Worth Page'})}catch(_){}"
           style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.25);font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;"
           onmouseover="this.style.borderColor='rgba(197,160,60,0.6)';this.style.color='#c5a03c'" onmouseout="this.style.borderColor='rgba(240,236,228,0.25)';this.style.color='#f0ece4'">
           Call 0412 523 821
@@ -139,16 +168,70 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </section>
 
+<script define:vars={{ suburbsJson }}>
+(function() {
+  const suburbs = JSON.parse(suburbsJson);
+  const params  = new URLSearchParams(window.location.search);
+  const addr    = params.get('address') || '';
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const addr   = params.get('address');
+  // Pre-fill report link with address
   if (addr) {
-    // Pre-fill the instant report link with address
-    document.querySelectorAll('a[href="/property-report"]').forEach(a => {
-      (a as HTMLAnchorElement).href = '/property-report?address=' + encodeURIComponent(addr);
-    });
+    const link = document.getElementById('pw-report-link');
+    if (link) link.href = '/property-report?address=' + encodeURIComponent(addr);
   }
+
+  // Extract suburb name from address string
+  // e.g. "39, Moolabar Street, Morningside, Brisbane, Queensland" → "Morningside"
+  function extractSuburb(address) {
+    const parts = address.split(',').map(p => p.trim());
+    // Try each part against known suburb names
+    for (const part of parts) {
+      const match = suburbs.find(s =>
+        s.name.toLowerCase() === part.toLowerCase() ||
+        s.name.toLowerCase().replace(' ', '-') === part.toLowerCase().replace(' ', '-')
+      );
+      if (match) return match;
+    }
+    return null;
+  }
+
+  function fmtPrice(n) {
+    if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2).replace(/\.?0+$/, '') + 'm';
+    return '$' + (n / 1000).toFixed(0) + 'k';
+  }
+
+  const suburb = addr ? extractSuburb(addr) : null;
+
+  if (suburb) {
+    // Update eyebrow
+    document.getElementById('pw-eyebrow').textContent = suburb.name + ' · ' + suburb.region;
+
+    // Update heading
+    document.getElementById('pw-title').innerHTML =
+      'What is your property worth<br/><em style="font-style:italic;color:#c5a03c;">in ' + suburb.name + '?</em>';
+
+    // Update subtitle
+    document.getElementById('pw-subtitle').textContent = suburb.overview;
+
+    // Show and populate stats
+    document.getElementById('pw-stats').style.display = 'block';
+    document.getElementById('pw-stat-median').textContent = fmtPrice(suburb.medianHousePrice);
+
+    const growth = suburb.priceGrowth1yr;
+    const growthEl = document.getElementById('pw-stat-growth');
+    growthEl.textContent = (growth >= 0 ? '+' : '') + growth.toFixed(1) + '%';
+    growthEl.style.color = growth >= 0 ? '#c5a03c' : '#e07070';
+
+    document.getElementById('pw-stat-dom').textContent = suburb.medianDaysOnMarket + ' days';
+    document.getElementById('pw-stat-yield').textContent = suburb.rentalYield.toFixed(2) + '%';
+
+    // Show agent commentary
+    if (suburb.agentCommentary) {
+      document.getElementById('pw-commentary-text').textContent = suburb.agentCommentary;
+      document.getElementById('pw-commentary').style.display = 'block';
+    }
+  }
+})();
 </script>
 
 </Layout>
