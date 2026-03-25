@@ -2,228 +2,69 @@
 import ToolLayout from '../../layouts/ToolLayout.astro';
 ---
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
 <ToolLayout
   title="Commute Cost Comparison"
-  description="Compare the true annual cost of driving to work from two different properties. Fuel, tolls, and wear and tear — factoring in current Brisbane fuel prices."
+  description="Compare the real annual fuel cost and drive time to work from your current home versus a property you are considering buying. Pin locations on the map and get instant results."
   tool="Commute Cost Comparison"
   phase="Buyer Tools"
 >
 
 <style is:global>
-  /* ── Shared card / row styles ─────────────────── */
-  .cc-card {
-    background: #ffffff;
-    border: 1px solid rgba(28,25,23,0.1);
-    padding: 1.75rem 2rem;
-    margin-bottom: 1rem;
+  /* ─── Layout ────────────────────────────────────────────── */
+  .cc-alert {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    padding: 0.9rem 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
   }
-  .cc-section-title {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    display: block;
+
+  /* ─── Vehicle bar ───────────────────────────────────────── */
+  .cc-vehicle-bar {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
     margin-bottom: 1.25rem;
   }
-  .cc-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .cc-row label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    line-height: 1.4;
-    flex: 1;
-  }
-  .cc-row label small {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: var(--color-text-muted);
-    margin-top: 0.2rem;
-    line-height: 1.5;
-  }
-  .cc-input-wrap {
-    position: relative;
+  .cc-vfield {
     display: flex;
     align-items: center;
-    flex-shrink: 0;
+    gap: 0.6rem;
   }
-  .cc-prefix {
-    position: absolute;
-    left: 0.6rem;
-    font-size: 0.78rem;
+  .cc-vfield label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
-    pointer-events: none;
-    z-index: 1;
+    white-space: nowrap;
   }
-  .cc-suffix {
-    position: absolute;
-    right: 0.6rem;
-    font-size: 0.72rem;
-    color: var(--color-text-muted);
-    pointer-events: none;
-  }
-  .cc-input {
-    width: 120px;
-    padding: 0.55rem 0.75rem;
-    font-size: 0.85rem;
+  .cc-vinput {
+    width: 72px;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.82rem;
     font-family: var(--font-sans);
     color: var(--color-text-primary);
     background: var(--color-surface-4);
     border: 1.5px solid rgba(28,25,23,0.14);
-    border-radius: 0;
     text-align: right;
     -moz-appearance: textfield;
   }
-  .cc-input::-webkit-outer-spin-button,
-  .cc-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .cc-input:focus { outline: none; border-color: var(--color-gold); }
-  .cc-input.has-prefix { padding-left: 1.4rem; text-align: left; }
-  .cc-input.has-suffix { padding-right: 2rem; }
-  .cc-select {
-    width: 160px;
-    padding: 0.55rem 0.75rem;
-    font-size: 0.8rem;
-    font-family: var(--font-sans);
-    color: var(--color-text-primary);
-    background: var(--color-surface-4);
-    border: 1.5px solid rgba(28,25,23,0.14);
-    border-radius: 0;
-    appearance: none;
-    cursor: pointer;
-  }
-  .cc-select:focus { outline: none; border-color: var(--color-gold); }
-
-  /* ── Property columns ─────────────────────────── */
-  .cc-prop-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  .cc-prop-card {
-    background: #ffffff;
-    border: 1px solid rgba(28,25,23,0.1);
-    padding: 1.5rem;
-  }
-  .cc-prop-card.prop-a { border-top: 3px solid #7ec8e3; }
-  .cc-prop-card.prop-b { border-top: 3px solid #f5d07a; }
-  .cc-prop-title {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 1rem;
-  }
-  .cc-prop-card.prop-a .cc-prop-title { color: #3a8fa8; }
-  .cc-prop-card.prop-b .cc-prop-title { color: #b89a2a; }
-  .cc-prop-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    margin-bottom: 0.85rem;
-  }
-  .cc-prop-row label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    line-height: 1.4;
-  }
-  .cc-prop-row label small {
-    display: block;
-    font-size: 0.67rem;
-    font-weight: 400;
-    color: var(--color-text-muted);
-  }
-
-  /* ── Results panel ───────────────────────────── */
-  .cc-result-card {
-    background: #ffffff;
-    border: 1px solid rgba(28,25,23,0.1);
-    padding: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-  .cc-result-label {
+  .cc-vinput::-webkit-outer-spin-button,
+  .cc-vinput::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .cc-vinput:focus { outline: none; border-color: var(--color-gold); }
+  .cc-vpresets { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+  .cc-vpreset {
+    padding: 0.3rem 0.65rem;
     font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .cc-result-value {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--color-text-primary);
-    line-height: 1.1;
-  }
-  .cc-result-value.gold { color: var(--color-gold); }
-  .cc-result-sub {
-    font-size: 0.7rem;
-    color: var(--color-text-muted);
-    margin-top: 0.25rem;
-    line-height: 1.5;
-  }
-  .cc-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5rem;
-    padding: 0.45rem 0;
-    border-bottom: 1px solid rgba(28,25,23,0.05);
-    font-size: 0.78rem;
-    color: var(--color-text-secondary);
-  }
-  .cc-line:last-child { border-bottom: none; }
-  .cc-line .val { font-weight: 600; color: var(--color-text-primary); white-space: nowrap; }
-  .cc-line.total {
-    font-weight: 700;
-    color: var(--color-text-primary);
-    border-top: 1.5px solid rgba(28,25,23,0.12);
-    margin-top: 0.25rem;
-    padding-top: 0.6rem;
-  }
-  .cc-line.total .val { font-size: 1rem; }
-  .cc-saving {
-    padding: 1.25rem;
-    background: rgba(196,145,42,0.07);
-    border-left: 3px solid var(--color-gold);
-    margin-top: 0.25rem;
-  }
-
-  /* ── Comparison bar ──────────────────────────── */
-  .cc-bar-wrap { margin: 0.5rem 0; }
-  .cc-bar-track {
-    height: 6px;
-    background: rgba(28,25,23,0.08);
-    position: relative;
-    overflow: hidden;
-  }
-  .cc-bar-fill {
-    height: 100%;
-    transition: width 0.4s ease;
-  }
-
-  /* ── Presets ─────────────────────────────────── */
-  .cc-presets {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.5rem;
-  }
-  .cc-preset {
-    padding: 0.3rem 0.75rem;
-    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -232,380 +73,647 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     color: var(--color-text-muted);
     cursor: pointer;
     transition: all 0.15s;
+    white-space: nowrap;
   }
-  .cc-preset:hover,
-  .cc-preset.active {
+  .cc-vpreset:hover, .cc-vpreset.active {
     background: var(--color-gold);
     border-color: var(--color-gold);
     color: #0a0806;
   }
-
-  /* ── Alert ───────────────────────────────────── */
-  .cc-alert {
-    font-size: 0.78rem;
-    color: var(--color-text-secondary);
-    background: rgba(196,145,42,0.07);
-    border-left: 3px solid var(--color-gold);
-    padding: 0.9rem 1.1rem;
-    line-height: 1.65;
-    margin-bottom: 1.25rem;
+  .cc-vsep {
+    width: 1px;
+    height: 28px;
+    background: rgba(28,25,23,0.1);
+    flex-shrink: 0;
   }
 
-  /* ── Note box ────────────────────────────────── */
-  .cc-note {
-    font-size: 0.72rem;
+  /* ─── Location pickers ──────────────────────────────────── */
+  .cc-locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .cc-loc-card {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    border-top: 3px solid rgba(28,25,23,0.12);
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .cc-loc-card.work-card  { border-top-color: #c5a03c; }
+  .cc-loc-card.home-card  { border-top-color: #7ec8e3; }
+  .cc-loc-card.prop-card  { border-top-color: #a8e6a3; }
+  .cc-loc-card.cc-active  { box-shadow: 0 0 0 2px var(--color-gold); }
+
+  .cc-loc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+  .cc-loc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .work-card  .cc-loc-dot { background: #c5a03c; }
+  .home-card  .cc-loc-dot { background: #3a8fa8; }
+  .prop-card  .cc-loc-dot { background: #4a9e4a; }
+
+  .cc-loc-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
-    background: var(--color-surface-3);
-    padding: 0.75rem 1rem;
-    line-height: 1.6;
-    margin-top: 0.5rem;
+  }
+  .work-card  .cc-loc-label { color: #b89a2a; }
+  .home-card  .cc-loc-label { color: #3a8fa8; }
+  .prop-card  .cc-loc-label { color: #4a9e4a; }
+
+  .cc-search-wrap { position: relative; }
+  .cc-search-input {
+    width: 100%;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background: var(--color-surface-4);
+    border: 1.5px solid rgba(28,25,23,0.12);
+    box-sizing: border-box;
+  }
+  .cc-search-input:focus { outline: none; border-color: var(--color-gold); }
+  .cc-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.12);
+    border-top: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 6px 20px rgba(28,25,23,0.1);
+  }
+  .cc-suggestions li {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.74rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.05);
+    line-height: 1.4;
+  }
+  .cc-suggestions li:hover { background: rgba(196,145,42,0.06); color: var(--color-text-primary); }
+  .cc-loc-set {
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+    margin-top: 0.45rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 1rem;
+  }
+  .cc-loc-set.is-set { color: var(--color-text-secondary); font-weight: 600; }
+
+  .cc-map-hint {
+    font-size: 0.62rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: 0.4rem;
+    background: rgba(28,25,23,0.03);
+    border: 1px solid rgba(28,25,23,0.08);
+    border-bottom: none;
+    letter-spacing: 0.04em;
+  }
+  .cc-map-hint strong { color: var(--color-gold); }
+
+  /* ─── Leaflet map ──────────────────────────────────────── */
+  #cc-map {
+    height: 380px;
+    width: 100%;
+    border: 1px solid rgba(28,25,23,0.12);
+    margin-bottom: 1.5rem;
+    z-index: 1;
   }
 
-  /* ── Mobile ──────────────────────────────────── */
-  @media (max-width: 900px) {
-    #cc-layout { flex-direction: column !important; }
-    #cc-results { position: static !important; }
-    .cc-prop-grid { grid-template-columns: 1fr; }
+  /* ─── Results ──────────────────────────────────────────── */
+  .cc-results {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    overflow: hidden;
   }
-  @media (max-width: 640px) {
-    .cc-input { width: 100px; }
-    .cc-select { width: 130px; }
-    .cc-row { flex-wrap: wrap; gap: 0.5rem; }
-    .cc-prop-row { flex-wrap: wrap; gap: 0.4rem; }
+  .cc-results-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: #1c1917;
+    color: #f0ece4;
+  }
+  .cc-rh-cell {
+    padding: 0.75rem 1rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cc-rh-cell:first-child { color: var(--color-text-muted); }
+  .cc-rh-work  { color: #c5a03c !important; }
+  .cc-rh-home  { color: #7ec8e3 !important; }
+  .cc-rh-prop  { color: #a8e6a3 !important; }
+
+  .cc-rrow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid rgba(28,25,23,0.05);
+  }
+  .cc-rrow:last-child { border-bottom: none; }
+  .cc-rcell {
+    padding: 0.85rem 1rem;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    border-right: 1px solid rgba(28,25,23,0.05);
+  }
+  .cc-rcell:last-child { border-right: none; }
+  .cc-rcell.label-cell {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: 0.03em;
+  }
+  .cc-rcell.val { font-weight: 600; color: var(--color-text-primary); }
+  .cc-rcell.saving { color: #4a9e4a; font-weight: 700; }
+  .cc-rcell.more   { color: #c0392b; font-weight: 600; }
+  .cc-rcell.total-row { background: rgba(196,145,42,0.05); font-weight: 700; font-size: 0.88rem; color: var(--color-text-primary); }
+  .cc-placeholder {
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── Loading spinner ─────────────────────────────────── */
+  .cc-loading {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(196,145,42,0.3);
+    border-top-color: var(--color-gold);
+    border-radius: 50%;
+    animation: cc-spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+  @keyframes cc-spin { to { transform: rotate(360deg); } }
+
+  /* ─── Mobile ──────────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .cc-locations { grid-template-columns: 1fr; }
+    #cc-map { height: 280px; }
+    .cc-results-header,
+    .cc-rrow { grid-template-columns: 1.2fr 1fr 1fr; }
+    .cc-rh-work, .cc-rcell:nth-child(2) { display: none; }
+    .cc-vehicle-bar { gap: 1rem; }
+    .cc-vsep { display: none; }
+  }
+  @media (max-width: 560px) {
+    .cc-vinput { width: 58px; }
   }
 </style>
 
-<!-- Alert -->
 <div class="cc-alert">
-  <strong>Commute costs are a hidden purchase expense.</strong> With Brisbane fuel prices elevated in 2025–26, a 10 km difference in commute distance can cost $2,000–$4,000 more per year. Use this tool to compare two properties side by side before you decide.
+  <strong>The hidden cost of a longer commute.</strong> With Brisbane fuel above $2/litre, a property 10 km further from work can cost $1,500+ more per year just in fuel. Pin your work, current home, and a property you are considering to see the real comparison.
 </div>
 
-<div id="cc-layout" style="display:flex;gap:1.5rem;align-items:flex-start;">
-
-<!-- ══ LEFT: INPUTS ══════════════════════════════════════════════ -->
-<div style="flex:1;min-width:0;">
-
-  <!-- 1. Your Car & Fuel -->
-  <div class="cc-card">
-    <span class="cc-section-title">Your Vehicle and Fuel</span>
-
-    <div class="cc-row">
-      <label>Fuel Price per Litre<small>Brisbane unleaded (ULP) — update to today's price</small></label>
-      <div class="cc-input-wrap">
-        <span class="cc-prefix">$</span>
-        <input class="cc-input has-prefix" id="fuelPrice" type="number" value="2.05" min="0.5" max="5" step="0.01" style="width:100px;" />
-      </div>
+<!-- ── Vehicle & Fuel ──────────────────────────────────────────── -->
+<div class="cc-vehicle-bar">
+  <div class="cc-vfield">
+    <label>Fuel $/L</label>
+    <input class="cc-vinput" id="fuelPrice" type="number" value="2.05" min="0.5" max="5" step="0.01" />
+  </div>
+  <div class="cc-vsep"></div>
+  <div class="cc-vfield" style="flex-wrap:wrap;gap:0.35rem;">
+    <label style="width:100%;">Fuel efficiency</label>
+    <div class="cc-vpresets" id="effPresets">
+      <button class="cc-vpreset" data-eff="6.5">Small car<br/><span style="opacity:0.6;font-size:0.55rem;">6.5 L/100</span></button>
+      <button class="cc-vpreset" data-eff="9">Sedan<br/><span style="opacity:0.6;font-size:0.55rem;">9 L/100</span></button>
+      <button class="cc-vpreset active" data-eff="10">SUV<br/><span style="opacity:0.6;font-size:0.55rem;">10 L/100</span></button>
+      <button class="cc-vpreset" data-eff="13">Ute/4WD<br/><span style="opacity:0.6;font-size:0.55rem;">13 L/100</span></button>
     </div>
+    <input class="cc-vinput" id="fuelEff" type="number" value="10" min="3" max="30" step="0.5" style="width:62px;" />
+    <span style="font-size:0.7rem;color:var(--color-text-muted);">L/100km</span>
+  </div>
+  <div class="cc-vsep"></div>
+  <div class="cc-vfield">
+    <label>Days/week</label>
+    <input class="cc-vinput" id="daysPerWeek" type="number" value="4" min="1" max="7" step="1" />
+  </div>
+  <div class="cc-vfield">
+    <label>Weeks/year</label>
+    <input class="cc-vinput" id="weeksPerYear" type="number" value="46" min="1" max="52" step="1" />
+  </div>
+</div>
 
-    <div class="cc-row">
-      <label>Fuel Efficiency<small>Litres per 100 km. Check your car's handbook or use a preset below.</small></label>
-      <div class="cc-input-wrap">
-        <input class="cc-input has-suffix" id="fuelEff" type="number" value="10" min="3" max="30" step="0.5" style="width:100px;" />
-        <span class="cc-suffix">L/100km</span>
-      </div>
-    </div>
-    <div class="cc-presets" id="effPresets">
-      <button class="cc-preset" data-eff="6.5">Small car (6.5)</button>
-      <button class="cc-preset" data-eff="9">Medium sedan (9)</button>
-      <button class="cc-preset active" data-eff="10">SUV (10)</button>
-      <button class="cc-preset" data-eff="13">Ute / 4WD (13)</button>
-      <button class="cc-preset" data-eff="16">Large 4WD (16)</button>
-    </div>
+<!-- ── Location Pickers ────────────────────────────────────────── -->
+<div class="cc-locations">
 
-    <div class="cc-row" style="margin-top:1.1rem;">
-      <label>Include Wear and Tear?<small>ATO vehicle running cost: $0.38/km for fuel and oil, or full $0.88/km cents-per-km rate covering all costs</small></label>
-      <select class="cc-select" id="wearMode">
-        <option value="none">No (fuel only)</option>
-        <option value="partial">Fuel and oil only ($0.38/km)</option>
-        <option value="full">Full ATO rate ($0.88/km)</option>
-      </select>
+  <div class="cc-loc-card work-card cc-active" id="locWork">
+    <div class="cc-loc-header">
+      <span class="cc-loc-dot"></span>
+      <span class="cc-loc-label">Workplace</span>
     </div>
+    <div class="cc-search-wrap">
+      <input class="cc-search-input" id="searchWork" type="text" placeholder="Search work address..." autocomplete="off" />
+      <ul class="cc-suggestions" id="sugWork"></ul>
+    </div>
+    <div class="cc-loc-set" id="setWork">Click card, then click map — or search above</div>
   </div>
 
-  <!-- 2. Commute Pattern -->
-  <div class="cc-card">
-    <span class="cc-section-title">Commute Pattern</span>
+  <div class="cc-loc-card home-card" id="locHome">
+    <div class="cc-loc-header">
+      <span class="cc-loc-dot"></span>
+      <span class="cc-loc-label">Current Home</span>
+    </div>
+    <div class="cc-search-wrap">
+      <input class="cc-search-input" id="searchHome" type="text" placeholder="Search current address..." autocomplete="off" />
+      <ul class="cc-suggestions" id="sugHome"></ul>
+    </div>
+    <div class="cc-loc-set" id="setHome">Click card, then click map — or search above</div>
+  </div>
 
-    <div class="cc-row">
-      <label>Days per Week in Office<small>Days you actually drive to work</small></label>
-      <div class="cc-input-wrap">
-        <input class="cc-input has-suffix" id="daysPerWeek" type="number" value="4" min="1" max="7" step="1" style="width:80px;" />
-        <span class="cc-suffix">days</span>
-      </div>
+  <div class="cc-loc-card prop-card" id="locProp">
+    <div class="cc-loc-header">
+      <span class="cc-loc-dot"></span>
+      <span class="cc-loc-label">Property Considering</span>
+    </div>
+    <div class="cc-search-wrap">
+      <input class="cc-search-input" id="searchProp" type="text" placeholder="Search property address..." autocomplete="off" />
+      <ul class="cc-suggestions" id="sugProp"></ul>
+    </div>
+    <div class="cc-loc-set" id="setProp">Click card, then click map — or search above</div>
+  </div>
+
+</div>
+
+<!-- ── Map ─────────────────────────────────────────────────────── -->
+<div class="cc-map-hint">
+  Placing: <strong id="mapModeLabel">Workplace</strong> &nbsp;·&nbsp; Click a location card above to switch &nbsp;·&nbsp; Click the map to drop a pin &nbsp;·&nbsp; Drag pins to adjust
+</div>
+<div id="cc-map"></div>
+
+<!-- ── Results ─────────────────────────────────────────────────── -->
+<div class="cc-results" id="ccResults">
+  <div class="cc-placeholder" id="ccPlaceholder">
+    Set at least your <strong>Workplace</strong> and one home location above to see your commute comparison.
+  </div>
+  <div id="ccTable" style="display:none;">
+    <div class="cc-results-header">
+      <div class="cc-rh-cell"></div>
+      <div class="cc-rh-cell cc-rh-work" id="hdrWork">Workplace</div>
+      <div class="cc-rh-cell cc-rh-home" id="hdrHome">Current Home</div>
+      <div class="cc-rh-cell cc-rh-prop" id="hdrProp">New Property</div>
     </div>
 
-    <div class="cc-row">
-      <label>Weeks per Year Commuting<small>52 minus holidays, annual leave, and remote-work weeks</small></label>
-      <div class="cc-input-wrap">
-        <input class="cc-input has-suffix" id="weeksPerYear" type="number" value="46" min="1" max="52" step="1" style="width:80px;" />
-        <span class="cc-suffix">wks</span>
-      </div>
+    <div class="cc-rrow">
+      <div class="cc-rcell label-cell">Drive distance</div>
+      <div class="cc-rcell" id="wrkDist">—</div>
+      <div class="cc-rcell val" id="homeDist">—</div>
+      <div class="cc-rcell val" id="propDist">—</div>
+    </div>
+    <div class="cc-rrow">
+      <div class="cc-rcell label-cell">Drive time (peak)</div>
+      <div class="cc-rcell" id="wrkTime">—</div>
+      <div class="cc-rcell val" id="homeTime">—</div>
+      <div class="cc-rcell val" id="propTime">—</div>
+    </div>
+    <div class="cc-rrow">
+      <div class="cc-rcell label-cell">Weekly fuel cost</div>
+      <div class="cc-rcell">—</div>
+      <div class="cc-rcell val" id="homeFuelWk">—</div>
+      <div class="cc-rcell val" id="propFuelWk">—</div>
+    </div>
+    <div class="cc-rrow">
+      <div class="cc-rcell label-cell">Annual fuel cost</div>
+      <div class="cc-rcell">—</div>
+      <div class="cc-rcell val" id="homeFuelYr">—</div>
+      <div class="cc-rcell val" id="propFuelYr">—</div>
+    </div>
+    <div class="cc-rrow">
+      <div class="cc-rcell label-cell">Hours per year commuting</div>
+      <div class="cc-rcell">—</div>
+      <div class="cc-rcell val" id="homeHrsYr">—</div>
+      <div class="cc-rcell val" id="propHrsYr">—</div>
+    </div>
+    <div class="cc-rrow">
+      <div class="cc-rcell label-cell total-row">Annual difference vs current home</div>
+      <div class="cc-rcell total-row">—</div>
+      <div class="cc-rcell total-row" style="color:var(--color-text-muted);font-style:italic;">Baseline</div>
+      <div class="cc-rcell total-row" id="propDiff">—</div>
     </div>
   </div>
+</div>
 
-  <!-- 3. Property Comparison -->
-  <div class="cc-card">
-    <span class="cc-section-title">Property Comparison</span>
-    <p style="font-size:0.74rem;color:var(--color-text-muted);line-height:1.55;margin-bottom:1.25rem;">
-      Enter the one-way distance from each property to your workplace. Use Google Maps to measure. SE Queensland toll roads (Clem7, Legacy Way, Airport Link, Go Between Bridge, Gateway) can add significant costs — enter the daily round-trip toll charge.
-    </p>
-
-    <div class="cc-prop-grid">
-
-      <!-- Property A -->
-      <div class="cc-prop-card prop-a">
-        <span class="cc-prop-title">Property A</span>
-        <div class="cc-prop-row">
-          <label>Label<small>E.g. suburb name</small></label>
-          <input class="cc-input" id="nameA" type="text" value="Option A" style="width:110px;text-align:left;padding-left:0.5rem;" />
-        </div>
-        <div class="cc-prop-row">
-          <label>One-way distance<small>km to work</small></label>
-          <div class="cc-input-wrap">
-            <input class="cc-input has-suffix" id="distA" type="number" value="12" min="0" step="0.5" style="width:80px;" />
-            <span class="cc-suffix">km</span>
-          </div>
-        </div>
-        <div class="cc-prop-row">
-          <label>Daily tolls<small>Round trip, total</small></label>
-          <div class="cc-input-wrap">
-            <span class="cc-prefix">$</span>
-            <input class="cc-input has-prefix" id="tollA" type="number" value="0" min="0" step="0.5" style="width:80px;" />
-          </div>
-        </div>
-        <div class="cc-prop-row">
-          <label>Daily parking<small>At work</small></label>
-          <div class="cc-input-wrap">
-            <span class="cc-prefix">$</span>
-            <input class="cc-input has-prefix" id="parkA" type="number" value="0" min="0" step="1" style="width:80px;" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Property B -->
-      <div class="cc-prop-card prop-b">
-        <span class="cc-prop-title">Property B</span>
-        <div class="cc-prop-row">
-          <label>Label<small>E.g. suburb name</small></label>
-          <input class="cc-input" id="nameB" type="text" value="Option B" style="width:110px;text-align:left;padding-left:0.5rem;" />
-        </div>
-        <div class="cc-prop-row">
-          <label>One-way distance<small>km to work</small></label>
-          <div class="cc-input-wrap">
-            <input class="cc-input has-suffix" id="distB" type="number" value="22" min="0" step="0.5" style="width:80px;" />
-            <span class="cc-suffix">km</span>
-          </div>
-        </div>
-        <div class="cc-prop-row">
-          <label>Daily tolls<small>Round trip, total</small></label>
-          <div class="cc-input-wrap">
-            <span class="cc-prefix">$</span>
-            <input class="cc-input has-prefix" id="tollB" type="number" value="6.50" min="0" step="0.5" style="width:80px;" />
-          </div>
-        </div>
-        <div class="cc-prop-row">
-          <label>Daily parking<small>At work</small></label>
-          <div class="cc-input-wrap">
-            <span class="cc-prefix">$</span>
-            <input class="cc-input has-prefix" id="parkB" type="number" value="0" min="0" step="1" style="width:80px;" />
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end prop-grid -->
-  </div><!-- end card -->
-
-</div><!-- end left -->
-
-<!-- ══ RIGHT: RESULTS ════════════════════════════════════════════ -->
-<div id="cc-results" style="width:340px;flex-shrink:0;position:sticky;top:80px;">
-
-  <!-- Property A breakdown -->
-  <div class="cc-result-card">
-    <span class="cc-result-label" id="labelA-title">Property A</span>
-    <div class="cc-line"><span>Fuel (weekly)</span><span class="val" id="rA-fuelWk">—</span></div>
-    <div class="cc-line"><span>Tolls (weekly)</span><span class="val" id="rA-tollWk">—</span></div>
-    <div class="cc-line"><span>Parking (weekly)</span><span class="val" id="rA-parkWk">—</span></div>
-    <div class="cc-line" id="rA-wearRow"><span>Wear and tear (weekly)</span><span class="val" id="rA-wearWk">—</span></div>
-    <div class="cc-line total"><span>Annual total</span><span class="val" id="rA-annual">—</span></div>
-  </div>
-
-  <!-- Property B breakdown -->
-  <div class="cc-result-card">
-    <span class="cc-result-label" id="labelB-title">Property B</span>
-    <div class="cc-line"><span>Fuel (weekly)</span><span class="val" id="rB-fuelWk">—</span></div>
-    <div class="cc-line"><span>Tolls (weekly)</span><span class="val" id="rB-tollWk">—</span></div>
-    <div class="cc-line"><span>Parking (weekly)</span><span class="val" id="rB-parkWk">—</span></div>
-    <div class="cc-line" id="rB-wearRow"><span>Wear and tear (weekly)</span><span class="val" id="rB-wearWk">—</span></div>
-    <div class="cc-line total"><span>Annual total</span><span class="val" id="rB-annual">—</span></div>
-  </div>
-
-  <!-- Saving -->
-  <div class="cc-result-card">
-    <span class="cc-result-label">Annual difference</span>
-    <div id="savingBlock">
-      <div class="cc-result-value gold" id="r-diff">—</div>
-      <div class="cc-result-sub" id="r-diffNote">cheaper per year</div>
-      <div style="margin-top:0.75rem;">
-        <div class="cc-bar-wrap">
-          <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
-            <span style="font-size:0.6rem;font-weight:700;color:#3a8fa8;" id="barLabelA">A</span>
-            <span style="font-size:0.6rem;font-weight:700;color:#b89a2a;" id="barLabelB">B</span>
-          </div>
-          <div class="cc-bar-track" style="border-radius:2px;">
-            <div class="cc-bar-fill" id="barA" style="background:#7ec8e3;width:50%;"></div>
-          </div>
-          <div class="cc-bar-track" style="margin-top:4px;border-radius:2px;">
-            <div class="cc-bar-fill" id="barB" style="background:#f5d07a;width:50%;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5-year impact -->
-  <div class="cc-result-card">
-    <span class="cc-result-label">5-year commute cost</span>
-    <div style="display:flex;gap:1rem;">
-      <div style="flex:1;">
-        <div style="font-size:0.6rem;font-weight:700;color:#3a8fa8;letter-spacing:0.1em;text-transform:uppercase;" id="fiveA-label">A</div>
-        <div style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);" id="r-5yrA">—</div>
-      </div>
-      <div style="flex:1;">
-        <div style="font-size:0.6rem;font-weight:700;color:#b89a2a;letter-spacing:0.1em;text-transform:uppercase;" id="fiveB-label">B</div>
-        <div style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);" id="r-5yrB">—</div>
-      </div>
-    </div>
-    <div class="cc-saving" style="margin-top:0.75rem;">
-      <div style="font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.25rem;">5-year saving by choosing cheaper commute</div>
-      <div style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-gold);" id="r-5yrSave">—</div>
-    </div>
-  </div>
-
-  <div class="cc-note">
-    Estimates only. Fuel price, driving style, and vehicle condition affect real costs. Toll charges are based on your daily input. Does not include public transport alternatives.
-  </div>
-
-</div><!-- end results -->
-
-</div><!-- end layout -->
+<div style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.75rem;line-height:1.6;">
+  Distances and times via OpenStreetMap routing. Drive times are estimates and do not account for peak-hour traffic. Fuel costs use your inputs above. This is an estimate only.
+</div>
 
 </ToolLayout>
 
-<script>
-  const $ = (id: string) => document.getElementById(id) as HTMLElement;
-  const inp = (id: string) => ($( id) as HTMLInputElement);
-  const num = (id: string, fallback = 0) => { const v = parseFloat(inp(id)?.value); return isNaN(v) ? fallback : v; };
-  const str = (id: string) => inp(id)?.value || '';
-  const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-AU');
-  const fmtD = (n: number) => '$' + n.toFixed(2);
-  const setText = (id: string, v: string) => { const el = $(id); if (el) el.textContent = v; };
+<script is:inline>
+(function () {
+  /* ── Load Leaflet from CDN then init ─────────────────────── */
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  document.head.appendChild(link);
 
-  /* ── Vehicle presets ─────────────────────── */
-  document.querySelectorAll<HTMLButtonElement>('#effPresets .cc-preset').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const eff = btn.dataset.eff!;
-      (inp('fuelEff') as HTMLInputElement).value = eff;
-      document.querySelectorAll('#effPresets .cc-preset').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      calculate();
+  const leafletScript = document.createElement('script');
+  leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  leafletScript.crossOrigin = '';
+  leafletScript.onload = initTool;
+  document.head.appendChild(leafletScript);
+
+  /* ── State ───────────────────────────────────────────────── */
+  const coords = { work: null, home: null, prop: null };
+  const routes = { home: null, prop: null };
+  let activeMode = 'work';
+  let map, markers = {};
+
+  /* ── Helpers ─────────────────────────────────────────────── */
+  const $ = id => document.getElementById(id);
+  const num = (id, def) => { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? def : v; };
+  const fmt$ = n => '$' + Math.round(n).toLocaleString('en-AU');
+  const fmtKm = n => n.toFixed(1) + ' km';
+  const fmtMin = n => n < 60 ? n + ' min' : Math.floor(n/60) + ' h ' + (n%60) + ' min';
+
+  const modeColors = { work: '#c5a03c', home: '#3a8fa8', prop: '#4a9e4a' };
+  const modeLabels = { work: 'Workplace', home: 'Current Home', prop: 'New Property' };
+
+  /* ── Leaflet custom marker icons ─────────────────────────── */
+  function makeIcon(color) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="38" viewBox="0 0 28 38">
+      <path d="M14 0C6.27 0 0 6.27 0 14c0 9.33 14 24 14 24S28 23.33 28 14C28 6.27 21.73 0 14 0z" fill="${color}"/>
+      <circle cx="14" cy="14" r="6" fill="white"/>
+    </svg>`;
+    return L.divIcon({
+      className: '',
+      html: `<div style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.35));">${svg}</div>`,
+      iconSize: [28, 38],
+      iconAnchor: [14, 38],
+      popupAnchor: [0, -38]
     });
-  });
-
-  /* ── Remove active preset if user types ──── */
-  inp('fuelEff').addEventListener('input', () => {
-    document.querySelectorAll('#effPresets .cc-preset').forEach(b => b.classList.remove('active'));
-    calculate();
-  });
-
-  /* ── Main calculate ──────────────────────── */
-  function calculate() {
-    const fuelPrice   = num('fuelPrice', 2.05);
-    const fuelEff     = num('fuelEff', 10);        // L/100km
-    const days        = num('daysPerWeek', 4);
-    const weeks       = num('weeksPerYear', 46);
-    const wearMode    = (inp('wearMode') as HTMLSelectElement).value;
-    const nameA       = str('nameA') || 'Property A';
-    const nameB       = str('nameB') || 'Property B';
-    const distA       = num('distA', 0);           // one-way km
-    const distB       = num('distB', 0);
-    const tollA       = num('tollA', 0);           // daily round-trip
-    const tollB       = num('tollB', 0);
-    const parkA       = num('parkA', 0);
-    const parkB       = num('parkB', 0);
-
-    // Wear rate per km
-    const wearRate = wearMode === 'full' ? 0.88 : wearMode === 'partial' ? 0.38 : 0;
-
-    function costs(dist: number, toll: number, park: number) {
-      const kmPerDay    = dist * 2;                                // round trip
-      const fuelPerDay  = (kmPerDay / 100) * fuelEff * fuelPrice; // $
-      const wearPerDay  = kmPerDay * wearRate;
-      const totalPerDay = fuelPerDay + toll + park + wearPerDay;
-
-      const fuelWk  = fuelPerDay * days;
-      const tollWk  = toll * days;
-      const parkWk  = park * days;
-      const wearWk  = wearPerDay * days;
-      const annual  = totalPerDay * days * weeks;
-
-      return { fuelWk, tollWk, parkWk, wearWk, annual };
-    }
-
-    const A = costs(distA, tollA, parkA);
-    const B = costs(distB, tollB, parkB);
-
-    // Update labels
-    setText('labelA-title', nameA);
-    setText('labelB-title', nameB);
-    setText('barLabelA', nameA);
-    setText('barLabelB', nameB);
-    setText('fiveA-label', nameA);
-    setText('fiveB-label', nameB);
-
-    // Property A
-    setText('rA-fuelWk', fmt(A.fuelWk));
-    setText('rA-tollWk', fmt(A.tollWk));
-    setText('rA-parkWk', fmt(A.parkWk));
-    setText('rA-wearWk', fmt(A.wearWk));
-    setText('rA-annual', fmt(A.annual));
-    const wearRowA = $('rA-wearRow');
-    const wearRowB = $('rB-wearRow');
-    if (wearRowA) wearRowA.style.display = wearMode === 'none' ? 'none' : 'flex';
-    if (wearRowB) wearRowB.style.display = wearMode === 'none' ? 'none' : 'flex';
-
-    // Property B
-    setText('rB-fuelWk', fmt(B.fuelWk));
-    setText('rB-tollWk', fmt(B.tollWk));
-    setText('rB-parkWk', fmt(B.parkWk));
-    setText('rB-wearWk', fmt(B.wearWk));
-    setText('rB-annual', fmt(B.annual));
-
-    // Difference
-    const diff = Math.abs(A.annual - B.annual);
-    const cheaper = A.annual <= B.annual ? nameA : nameB;
-    setText('r-diff', fmt(diff));
-    setText('r-diffNote', `${cheaper} is cheaper per year`);
-
-    // Bars — proportional width
-    const maxAnnual = Math.max(A.annual, B.annual, 1);
-    const barAEl = $('barA') as HTMLElement;
-    const barBEl = $('barB') as HTMLElement;
-    if (barAEl) barAEl.style.width = Math.round((A.annual / maxAnnual) * 100) + '%';
-    if (barBEl) barBEl.style.width = Math.round((B.annual / maxAnnual) * 100) + '%';
-
-    // 5-year
-    setText('r-5yrA', fmt(A.annual * 5));
-    setText('r-5yrB', fmt(B.annual * 5));
-    setText('r-5yrSave', fmt(diff * 5));
   }
 
-  /* ── Wire up all inputs ──────────────────── */
-  ['fuelPrice','fuelEff','daysPerWeek','weeksPerYear','wearMode',
-   'nameA','distA','tollA','parkA','nameB','distB','tollB','parkB'].forEach(id => {
-    const el = inp(id);
-    if (el) el.addEventListener('input', calculate);
-  });
+  /* ── OSRM routing ─────────────────────────────────────────── */
+  async function getRoute(from, to) {
+    try {
+      const url = `https://router.project-osrm.org/route/v1/driving/${from.lng},${from.lat};${to.lng},${to.lat}?overview=false`;
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (data.code !== 'Ok' || !data.routes?.length) return null;
+      return {
+        distKm: data.routes[0].distance / 1000,
+        durationMin: Math.round(data.routes[0].duration / 60)
+      };
+    } catch { return null; }
+  }
 
-  calculate();
+  /* ── Nominatim address search ────────────────────────────── */
+  let searchTimers = {};
+  async function searchAddress(q) {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=au&accept-language=en`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'DanielGierachProperty/1.0' } });
+    return await res.json();
+  }
+
+  function setupSearch(inputId, sugId, mode) {
+    const input = $(inputId);
+    const sug = $(sugId);
+    if (!input || !sug) return;
+
+    input.addEventListener('focus', () => setMode(mode));
+
+    input.addEventListener('input', () => {
+      clearTimeout(searchTimers[mode]);
+      const q = input.value.trim();
+      if (q.length < 3) { sug.innerHTML = ''; return; }
+      searchTimers[mode] = setTimeout(async () => {
+        const results = await searchAddress(q);
+        sug.innerHTML = '';
+        results.slice(0, 5).forEach(r => {
+          const li = document.createElement('li');
+          li.textContent = r.display_name;
+          li.addEventListener('click', () => {
+            placeMarker(mode, parseFloat(r.lat), parseFloat(r.lon));
+            input.value = r.display_name.split(',').slice(0, 2).join(',');
+            sug.innerHTML = '';
+          });
+          sug.appendChild(li);
+        });
+      }, 450);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', e => {
+      if (!input.contains(e.target) && !sug.contains(e.target)) sug.innerHTML = '';
+    });
+  }
+
+  /* ── Place / move a marker ───────────────────────────────── */
+  function placeMarker(mode, lat, lng) {
+    coords[mode] = { lat, lng };
+
+    if (markers[mode]) {
+      markers[mode].setLatLng([lat, lng]);
+    } else {
+      markers[mode] = L.marker([lat, lng], {
+        icon: makeIcon(modeColors[mode]),
+        draggable: true,
+        title: modeLabels[mode]
+      }).addTo(map);
+
+      markers[mode].on('dragend', e => {
+        const pos = e.target.getLatLng();
+        coords[mode] = { lat: pos.lat, lng: pos.lng };
+        updateSetLabel(mode, pos.lat, pos.lng);
+        recalcRoutes();
+      });
+    }
+
+    updateSetLabel(mode, lat, lng);
+    fitMapToBounds();
+    recalcRoutes();
+  }
+
+  function updateSetLabel(mode, lat, lng) {
+    const el = $({ work: 'setWork', home: 'setHome', prop: 'setProp' }[mode]);
+    if (el) {
+      el.textContent = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+      el.classList.add('is-set');
+    }
+  }
+
+  /* ── Mode selection ──────────────────────────────────────── */
+  function setMode(mode) {
+    activeMode = mode;
+    $('mapModeLabel').textContent = modeLabels[mode];
+    ['work', 'home', 'prop'].forEach(m => {
+      const card = $({ work: 'locWork', home: 'locHome', prop: 'locProp' }[m]);
+      if (card) card.classList.toggle('cc-active', m === mode);
+    });
+  }
+
+  /* ── Fit map ─────────────────────────────────────────────── */
+  function fitMapToBounds() {
+    const pts = Object.values(coords).filter(Boolean).map(c => [c.lat, c.lng]);
+    if (pts.length === 1) { map.setView(pts[0], 13); return; }
+    if (pts.length > 1) map.fitBounds(L.latLngBounds(pts).pad(0.2));
+  }
+
+  /* ── Recalculate routes and update table ─────────────────── */
+  async function recalcRoutes() {
+    const w = coords.work;
+    if (!w) { renderResults(); return; }
+
+    // Fetch both in parallel
+    const [rHome, rProp] = await Promise.all([
+      coords.home ? getRoute(coords.home, w) : Promise.resolve(null),
+      coords.prop ? getRoute(coords.prop, w) : Promise.resolve(null)
+    ]);
+
+    routes.home = rHome;
+    routes.prop = rProp;
+    renderResults();
+  }
+
+  /* ── Render results table ────────────────────────────────── */
+  function renderResults() {
+    const fuelPrice  = num('fuelPrice', 2.05);
+    const fuelEff    = num('fuelEff', 10);
+    const days       = num('daysPerWeek', 4);
+    const weeks      = num('weeksPerYear', 46);
+
+    const hasWork = !!coords.work;
+    const hasHome = !!routes.home;
+    const hasProp = !!routes.prop;
+
+    if (!hasWork || (!hasHome && !hasProp)) {
+      $('ccPlaceholder').style.display = '';
+      $('ccTable').style.display = 'none';
+      return;
+    }
+
+    $('ccPlaceholder').style.display = 'none';
+    $('ccTable').style.display = '';
+
+    function fuelPerYear(distKm) {
+      if (!distKm) return null;
+      return (distKm * 2 / 100) * fuelEff * fuelPrice * days * weeks;
+    }
+    function fuelPerWeek(distKm) {
+      if (!distKm) return null;
+      return (distKm * 2 / 100) * fuelEff * fuelPrice * days;
+    }
+    function hrsPerYear(durMin) {
+      if (!durMin) return null;
+      return (durMin * 2 * days * weeks) / 60;
+    }
+
+    const setText = (id, v) => { const el = $(id); if (el) el.textContent = v; };
+    const setClass = (id, cls) => { const el = $(id); if (el) { el.className = 'cc-rcell ' + cls; } };
+
+    // Home row
+    if (hasHome) {
+      setText('homeDist', fmtKm(routes.home.distKm));
+      setText('homeTime', fmtMin(routes.home.durationMin));
+      setText('homeFuelWk', fmt$(fuelPerWeek(routes.home.distKm)));
+      setText('homeFuelYr', fmt$(fuelPerYear(routes.home.distKm)));
+      const hrs = hrsPerYear(routes.home.durationMin);
+      setText('homeHrsYr', hrs.toFixed(0) + ' hrs');
+    } else {
+      ['homeDist','homeTime','homeFuelWk','homeFuelYr','homeHrsYr'].forEach(id => setText(id, '—'));
+    }
+
+    // Property row + diff
+    if (hasProp) {
+      setText('propDist', fmtKm(routes.prop.distKm));
+      setText('propTime', fmtMin(routes.prop.durationMin));
+      setText('propFuelWk', fmt$(fuelPerWeek(routes.prop.distKm)));
+      setText('propFuelYr', fmt$(fuelPerYear(routes.prop.distKm)));
+      const hrs = hrsPerYear(routes.prop.durationMin);
+      setText('propHrsYr', hrs.toFixed(0) + ' hrs');
+
+      // Diff vs home
+      if (hasHome) {
+        const diffFuel = fuelPerYear(routes.prop.distKm) - fuelPerYear(routes.home.distKm);
+        const diffEl = $('propDiff');
+        if (diffFuel > 0) {
+          setText('propDiff', '+' + fmt$(diffFuel) + '/yr more');
+          setClass('propDiff', 'cc-rcell total-row more');
+        } else if (diffFuel < 0) {
+          setText('propDiff', fmt$(Math.abs(diffFuel)) + '/yr saving');
+          setClass('propDiff', 'cc-rcell total-row saving');
+        } else {
+          setText('propDiff', 'Same cost');
+          setClass('propDiff', 'cc-rcell total-row');
+        }
+      } else {
+        setText('propDiff', '—');
+      }
+    } else {
+      ['propDist','propTime','propFuelWk','propFuelYr','propHrsYr','propDiff'].forEach(id => setText(id, '—'));
+    }
+
+    // Column headers with labels
+    if (coords.home) $('hdrHome').textContent = $('searchHome').value.split(',')[0] || 'Current Home';
+    if (coords.prop) $('hdrProp').textContent = $('searchProp').value.split(',')[0] || 'New Property';
+  }
+
+  /* ── Init map and wire up everything ────────────────────── */
+  function initTool() {
+    // Map centred on Brisbane
+    map = L.map('cc-map', { zoomControl: true }).setView([-27.4698, 153.0251], 11);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Map click places active mode marker
+    map.on('click', e => placeMarker(activeMode, e.latlng.lat, e.latlng.lng));
+
+    // Location card clicks set mode
+    $('locWork')?.addEventListener('click', () => setMode('work'));
+    $('locHome')?.addEventListener('click', () => setMode('home'));
+    $('locProp')?.addEventListener('click', () => setMode('prop'));
+
+    // Search boxes
+    setupSearch('searchWork', 'sugWork', 'work');
+    setupSearch('searchHome', 'sugHome', 'home');
+    setupSearch('searchProp', 'sugProp', 'prop');
+
+    // Vehicle preset buttons
+    document.querySelectorAll('#effPresets .cc-vpreset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('fuelEff').value = btn.dataset.eff;
+        document.querySelectorAll('#effPresets .cc-vpreset').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderResults();
+      });
+    });
+
+    // Fuel/days/weeks inputs
+    ['fuelPrice','fuelEff','daysPerWeek','weeksPerYear'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', renderResults);
+    });
+  }
+})();
 </script>
