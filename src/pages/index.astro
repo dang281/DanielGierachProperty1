@@ -861,24 +861,39 @@ const faqSchema = {
     let acDebounce: ReturnType<typeof setTimeout>;
     let selectedAddress = '';
 
-    // Google Places Autocomplete
-    function initPlaces() {
-      const autocomplete = new (window as any).google.maps.places.Autocomplete(input, {
-        componentRestrictions: { country: 'au' },
-        fields: ['formatted_address'],
-        types: ['address'],
+    // ── Photon autocomplete (free, no API key) ─────────────────────
+    function showSuggestions(features: any[]) {
+      acList.innerHTML = '';
+      if (!features.length) { acList.style.display = 'none'; return; }
+      features.forEach((f: any) => {
+        const p = f.properties;
+        const label = [p.housenumber ? p.housenumber + ' ' + p.street : p.street || p.name, p.city || p.suburb, p.state].filter(Boolean).join(', ');
+        const item = document.createElement('div');
+        item.style.cssText = 'padding:0.6rem 1rem;font-size:0.82rem;color:#f0ece4;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.07);';
+        item.textContent = label;
+        item.addEventListener('mouseover', () => item.style.background = 'rgba(197,160,60,0.12)');
+        item.addEventListener('mouseout',  () => item.style.background = '');
+        item.addEventListener('mousedown', () => {
+          selectedAddress = label;
+          input.value = label;
+          acList.style.display = 'none';
+        });
+        acList.appendChild(item);
       });
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        selectedAddress = place.formatted_address || input.value;
-      });
+      acList.style.display = 'block';
     }
 
-    if ((window as any).google?.maps?.places) {
-      initPlaces();
-    } else {
-      document.addEventListener('google-places-ready', initPlaces, { once: true });
-    }
+    input.addEventListener('input', () => {
+      clearTimeout(acDebounce);
+      const q = input.value.trim();
+      if (q.length < 3) { acList.style.display = 'none'; return; }
+      acDebounce = setTimeout(() => {
+        fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`)
+          .then(r => r.json())
+          .then(d => showSuggestions(d.features || []))
+          .catch(() => { acList.style.display = 'none'; });
+      }, 120);
+    });
 
     document.addEventListener('click', function(e) {
       if (!form?.contains(e.target as Node)) acList.style.display = 'none';
