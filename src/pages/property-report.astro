@@ -1,0 +1,587 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Instant Property Report | Daniel Gierach Property"
+  description="Find out what your Brisbane property is worth. Get a free sales or rental appraisal report from Daniel Gierach, Ray White Bulimba."
+  preloadImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format"
+>
+
+<style>
+  .report-hero {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Left dark panel */
+  .report-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    overflow: hidden;
+    background: #0a0806;
+  }
+  .report-left-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(10%) brightness(0.32);
+  }
+  .report-left-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, rgba(10,8,6,0.85) 0%, rgba(10,8,6,0.5) 100%);
+  }
+
+  /* Right form panel */
+  .report-right {
+    background: var(--color-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    overflow-y: auto;
+  }
+
+  /* Step indicator */
+  .step-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .step-dot {
+    width: 28px;
+    height: 3px;
+    background: rgba(28,25,23,0.15);
+    transition: background 0.3s;
+  }
+  .step-dot.active { background: var(--color-gold); }
+
+  /* Form steps */
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+
+  /* Address autocomplete */
+  #report-address-wrap { position: relative; }
+  #report-address {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1.5px solid rgba(28,25,23,0.2);
+    background: var(--color-surface-3);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #report-address:focus { border-color: var(--color-gold); }
+  #report-address::placeholder { color: var(--color-text-muted); }
+  #report-ac-list {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.15); border-top: none;
+    z-index: 100; max-height: 200px; overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  .report-ac-item {
+    padding: 0.7rem 1.25rem; font-size: 0.875rem;
+    color: var(--color-text-primary); cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    transition: background 0.15s;
+  }
+  .report-ac-item:hover { background: rgba(197,160,60,0.07); }
+  .report-ac-item:last-child { border-bottom: none; }
+
+  /* Report type toggle */
+  .report-type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .report-type-btn {
+    padding: 1.1rem 1rem;
+    border: 1.5px solid rgba(28,25,23,0.15);
+    background: var(--color-surface-3);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+  }
+  .report-type-btn.selected {
+    border-color: var(--color-gold);
+    background: rgba(197,160,60,0.06);
+  }
+  .report-type-btn p:first-child {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  .report-type-btn p:last-child {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+  .report-type-btn.selected p:first-child { color: var(--color-gold); }
+
+  /* Inputs */
+  .obs-field {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid rgba(28,25,23,0.15);
+    background: var(--color-surface-3);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .obs-field:focus { border-color: var(--color-gold); }
+  .obs-field::placeholder { color: var(--color-text-muted); }
+
+  .field-label {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Bedrooms selector */
+  .bed-grid {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .bed-btn {
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid rgba(28,25,23,0.15);
+    background: var(--color-surface-3);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bed-btn.selected {
+    border-color: var(--color-gold);
+    background: rgba(197,160,60,0.08);
+    color: var(--color-gold);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--color-gold);
+    color: #0a0806;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: #d4af4a; }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .back-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+  .back-btn:hover { color: var(--color-gold); }
+
+  /* Address confirmed pill */
+  #address-confirmed {
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    background: rgba(197,160,60,0.08);
+    border: 1px solid rgba(197,160,60,0.25);
+    margin-bottom: 1.5rem;
+  }
+  #address-confirmed span {
+    font-size: 0.82rem;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    flex: 1;
+  }
+
+  @media (max-width: 900px) {
+    .report-hero { grid-template-columns: 1fr; }
+    .report-left { display: none; }
+    .report-right { padding: 7rem 1.75rem 3rem; }
+  }
+</style>
+
+<div class="report-hero">
+
+  <!-- Left: dark hero -->
+  <div class="report-left">
+    <img
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format"
+      alt=""
+      class="report-left-img"
+      aria-hidden="true"
+      fetchpriority="high"
+    />
+    <div class="report-left-grad"></div>
+
+    <div style="position:relative;z-index:10;">
+      <span style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c5a03c;display:block;margin-bottom:1.25rem;">Free Property Report</span>
+
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2.4rem,4.5vw,3.75rem);font-weight:400;color:#f0ece4;line-height:1.08;letter-spacing:-0.025em;margin-bottom:1.5rem;">
+        What is your<br/>property worth<br/><em style="font-style:italic;color:#c5a03c;">right now?</em>
+      </h1>
+
+      <p style="font-size:0.95rem;color:rgba(240,236,228,0.65);line-height:1.85;max-width:40ch;margin-bottom:3rem;">
+        Get a detailed property value report based on recent comparable sales and current market conditions across Brisbane's inner east.
+      </p>
+
+      <!-- Trust points -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div style="display:flex;align-items:flex-start;gap:0.85rem;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(197,160,60,0.12);border:1px solid rgba(197,160,60,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#f0ece4;margin-bottom:0.2rem;">Comparable sales analysis</p>
+            <p style="font-size:0.75rem;color:rgba(240,236,228,0.5);line-height:1.6;">Based on what homes like yours have actually sold for, recently and nearby.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:0.85rem;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(197,160,60,0.12);border:1px solid rgba(197,160,60,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#f0ece4;margin-bottom:0.2rem;">No obligation, completely free</p>
+            <p style="font-size:0.75rem;color:rgba(240,236,228,0.5);line-height:1.6;">Just honest information to help you make the right decision.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:0.85rem;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(197,160,60,0.12);border:1px solid rgba(197,160,60,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#f0ece4;margin-bottom:0.2rem;">Daniel responds personally</p>
+            <p style="font-size:0.75rem;color:rgba(240,236,228,0.5);line-height:1.6;">Every request is reviewed by Daniel directly, not a call centre.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: form -->
+  <div class="report-right">
+    <div style="max-width:440px;width:100%;">
+
+      <!-- Step dots -->
+      <div class="step-dots">
+        <div class="step-dot active" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+      </div>
+
+      <form id="report-form" method="POST" action="https://formspree.io/f/xnjgedwp">
+        <input type="hidden" name="_subject" value="Property report request — danielgierach.com" />
+        <input type="hidden" name="report_type" id="hidden-report-type" value="Sales Report" />
+        <input type="hidden" name="address" id="hidden-address" value="" />
+        <input type="hidden" name="bedrooms" id="hidden-bedrooms" value="" />
+        <input type="hidden" name="property_type" id="hidden-property-type" value="" />
+
+        <!-- ── STEP 1: Address + report type ── -->
+        <div class="form-step active" id="step-1">
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.6rem;">Step 1 of 2</p>
+          <h2 style="font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.25rem);font-weight:400;color:var(--color-text-primary);line-height:1.15;margin-bottom:0.75rem;">
+            Tell us about<br/>your property.
+          </h2>
+          <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:2rem;">
+            Start by entering your address. We'll take it from there.
+          </p>
+
+          <!-- Report type -->
+          <div style="margin-bottom:1.5rem;">
+            <label class="field-label">I'm interested in a</label>
+            <div class="report-type-grid">
+              <button type="button" class="report-type-btn selected" data-type="Sales Report">
+                <p>Sales Report</p>
+                <p>What could my home sell for?</p>
+              </button>
+              <button type="button" class="report-type-btn" data-type="Rental Appraisal">
+                <p>Rental Appraisal</p>
+                <p>What rent could I achieve?</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div style="margin-bottom:1.5rem;">
+            <label class="field-label" for="report-address">Property Address <span style="color:var(--color-gold);">*</span></label>
+            <div id="report-address-wrap">
+              <input
+                type="text"
+                id="report-address"
+                placeholder="Start typing your address…"
+                autocomplete="off"
+                required
+              />
+              <div id="report-ac-list" style="display:none;"></div>
+            </div>
+          </div>
+
+          <!-- Property type -->
+          <div style="margin-bottom:1.5rem;">
+            <label class="field-label">Property Type</label>
+            <select id="prop-type" class="obs-select" style="width:100%;">
+              <option value="">Select type</option>
+              <option value="House">House</option>
+              <option value="Townhouse">Townhouse</option>
+              <option value="Unit / Apartment">Unit / Apartment</option>
+              <option value="Duplex">Duplex</option>
+              <option value="Land">Land</option>
+            </select>
+          </div>
+
+          <!-- Bedrooms -->
+          <div style="margin-bottom:2rem;">
+            <label class="field-label">Bedrooms</label>
+            <div class="bed-grid">
+              {['1','2','3','4','5','6+'].map(n => (
+                <button type="button" class="bed-btn" data-beds={n}>{n}</button>
+              ))}
+            </div>
+          </div>
+
+          <button type="button" id="next-btn" class="submit-btn">
+            Next: Your Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- ── STEP 2: Contact details ── -->
+        <div class="form-step" id="step-2">
+          <button type="button" class="back-btn" id="back-btn">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.6rem;">Step 2 of 2</p>
+          <h2 style="font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.25rem);font-weight:400;color:var(--color-text-primary);line-height:1.15;margin-bottom:0.75rem;">
+            Where should we<br/>send your report?
+          </h2>
+          <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:1.5rem;">
+            Daniel will review your property and send a personalised report — usually within a few hours.
+          </p>
+
+          <!-- Address confirmed pill -->
+          <div id="address-confirmed" style="display:flex;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="address-confirmed-text"></span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+              <div>
+                <label class="field-label" for="first-name">First Name <span style="color:var(--color-gold);">*</span></label>
+                <input type="text" id="first-name" name="first_name" class="obs-field" placeholder="First name" required autocomplete="given-name" />
+              </div>
+              <div>
+                <label class="field-label" for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" class="obs-field" placeholder="Last name" autocomplete="family-name" />
+              </div>
+            </div>
+            <div>
+              <label class="field-label" for="email">Email Address <span style="color:var(--color-gold);">*</span></label>
+              <input type="email" id="email" name="email" class="obs-field" placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div>
+              <label class="field-label" for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="obs-field" placeholder="04xx xxx xxx" autocomplete="tel" />
+            </div>
+            <div>
+              <label class="field-label" for="message">Anything else we should know? <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+              <textarea id="message" name="message" class="obs-field" rows="3" placeholder="Recent renovations, timeline, any other context…" style="resize:vertical;"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn"
+            onclick="gtag('event','property_report_submit',{event_category:'lead',event_label:'Property Report Page'})">
+            Send My Report Request
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+
+          <p style="font-size:0.72rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;text-align:center;">
+            No obligation. Your details are used only to send your report.
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  let selectedAddress = '';
+  let selectedBeds = '';
+  let acDebounce: ReturnType<typeof setTimeout>;
+
+  // ── Report type toggle ─────────────────────────────────────────────
+  document.querySelectorAll('.report-type-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('.report-type-btn').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      (document.getElementById('hidden-report-type') as HTMLInputElement).value = this.dataset.type || '';
+    });
+  });
+
+  // ── Bedroom buttons ────────────────────────────────────────────────
+  document.querySelectorAll('.bed-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('.bed-btn').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      selectedBeds = this.dataset.beds || '';
+      (document.getElementById('hidden-bedrooms') as HTMLInputElement).value = selectedBeds;
+    });
+  });
+
+  // ── Property type ──────────────────────────────────────────────────
+  document.getElementById('prop-type')?.addEventListener('change', function(this: HTMLSelectElement) {
+    (document.getElementById('hidden-property-type') as HTMLInputElement).value = this.value;
+  });
+
+  // ── Address autocomplete ───────────────────────────────────────────
+  const addrInput = document.getElementById('report-address') as HTMLInputElement;
+  const acList    = document.getElementById('report-ac-list') as HTMLElement;
+
+  addrInput.addEventListener('input', function() {
+    clearTimeout(acDebounce);
+    const q = this.value.trim();
+    if (q.length < 4) { acList.style.display = 'none'; return; }
+    acDebounce = setTimeout(() => fetchAC(q), 320);
+  });
+
+  addrInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') acList.style.display = 'none';
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('report-address-wrap')?.contains(e.target as Node)) {
+      acList.style.display = 'none';
+    }
+  });
+
+  async function fetchAC(q: string) {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Australia')}&format=json&limit=5&countrycodes=au`;
+    try {
+      const res  = await fetch(url, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
+      const data = await res.json();
+      renderAC(data);
+    } catch(_) { acList.style.display = 'none'; }
+  }
+
+  function renderAC(items: any[]) {
+    if (!items.length) { acList.style.display = 'none'; return; }
+    acList.innerHTML = '';
+    items.forEach(item => {
+      const parts = item.display_name.split(', ');
+      const label = parts.slice(0, 4).join(', ');
+      const div   = document.createElement('div');
+      div.className = 'report-ac-item';
+      div.textContent = label;
+      div.addEventListener('mousedown', e => {
+        e.preventDefault();
+        addrInput.value  = label;
+        selectedAddress  = label;
+        acList.style.display = 'none';
+      });
+      acList.appendChild(div);
+    });
+    acList.style.display = 'block';
+  }
+
+  // ── Step navigation ────────────────────────────────────────────────
+  document.getElementById('next-btn')?.addEventListener('click', function() {
+    const addr = addrInput.value.trim();
+    if (!addr) {
+      addrInput.focus();
+      addrInput.style.borderColor = '#c0392b';
+      return;
+    }
+    addrInput.style.borderColor = '';
+    selectedAddress = addr;
+    (document.getElementById('hidden-address') as HTMLInputElement).value = addr;
+
+    // Show confirmed address pill
+    const pill = document.getElementById('address-confirmed') as HTMLElement;
+    const txt  = document.getElementById('address-confirmed-text') as HTMLElement;
+    txt.textContent = addr;
+    pill.style.display = 'flex';
+
+    // Switch steps
+    document.getElementById('step-1')?.classList.remove('active');
+    document.getElementById('step-2')?.classList.add('active');
+    document.getElementById('dot-1')?.classList.add('active');
+    document.getElementById('dot-2')?.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('back-btn')?.addEventListener('click', function() {
+    document.getElementById('step-2')?.classList.remove('active');
+    document.getElementById('step-1')?.classList.add('active');
+    document.getElementById('dot-2')?.classList.remove('active');
+  });
+
+  // ── Form submit via fetch → /thank-you ────────────────────────────
+  document.getElementById('report-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch('https://formspree.io/f/xnjgedwp', {
+      method: 'POST',
+      body: new FormData(this as HTMLFormElement),
+      headers: { 'Accept': 'application/json' }
+    }).finally(() => { window.location.href = '/thank-you'; });
+  });
+})();
+</script>
+
+</Layout>

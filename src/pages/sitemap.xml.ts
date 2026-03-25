@@ -6,7 +6,8 @@ const pages = [
   // Core pages — highest priority
   { path: '/',          changefreq: 'weekly',  priority: '1.0' },
   { path: '/listings',  changefreq: 'daily',   priority: '0.95' },
-  { path: '/appraisal', changefreq: 'monthly', priority: '0.9' },
+  { path: '/appraisal',        changefreq: 'monthly', priority: '0.9' },
+  { path: '/property-report', changefreq: 'monthly', priority: '0.9' },
   { path: '/about',               changefreq: 'monthly', priority: '0.8' },
   { path: '/brisbane-inner-east', changefreq: 'monthly', priority: '0.9' },
   { path: '/suburbs/seven-hills',    changefreq: 'monthly', priority: '0.85' },
