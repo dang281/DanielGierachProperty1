@@ -50,6 +50,7 @@ const pages = [
   { path: '/tools/selling-costs',         changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/borrowing-power',       changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/investment-yield',      changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/dcf',                  changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/equity-calculator',     changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/school-catchment',     changefreq: 'monthly', priority: '0.8' },
   { path: '/tools/zoning-map',           changefreq: 'monthly', priority: '0.8' },

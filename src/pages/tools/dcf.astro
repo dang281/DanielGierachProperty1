@@ -1,0 +1,652 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Property DCF Analyser"
+  description="Model the full discounted cash flow of an investment property. NPV, IRR, annual cashflow, equity build and net returns — all in one place."
+  tool="Property DCF Analyser"
+  phase="Investor Tools"
+>
+
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- ── INPUTS ─────────────────────────────── -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- 1. Purchase -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">1. Purchase Details</p>
+        <div class="flex flex-col gap-4">
+
+          <div>
+            <label class="input-label">Purchase Price</label>
+            <div class="flex items-center gap-4 mb-2">
+              <span style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-text-primary);" id="price-display">$800,000</span>
+            </div>
+            <input type="range" id="purchase-price" min="200000" max="5000000" step="10000" value="800000"
+              style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.62rem;color:var(--color-text-muted);">
+              <span>$200K</span><span>$5M</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="input-label">Stamp Duty</label>
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+                <input type="checkbox" id="auto-stamp" checked style="accent-color:var(--color-gold);width:14px;height:14px;cursor:pointer;" />
+                <span style="font-size:0.72rem;color:var(--color-text-muted);">Auto-calculate (QLD)</span>
+              </div>
+              <input type="number" id="stamp-duty" class="obs-input" style="font-size:0.95rem;" readonly />
+            </div>
+            <div>
+              <label class="input-label">Legal / Acquisition Costs</label>
+              <input type="number" id="legal-costs" value="2500" class="obs-input" style="font-size:0.95rem;" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Finance -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">2. Financing</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div>
+            <label class="input-label">Deposit</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="deposit-pct" min="5" max="100" step="5" value="20"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3.5rem;text-align:center;">
+                <span id="deposit-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">20%</span>
+              </div>
+            </div>
+            <div style="font-size:0.72rem;color:var(--color-text-muted);margin-top:0.4rem;">Loan: <span id="loan-display">$640,000</span></div>
+          </div>
+
+          <div>
+            <label class="input-label">Interest Rate (% p.a.)</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="interest-rate" min="3" max="10" step="0.05" value="6.2"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3.5rem;text-align:center;">
+                <span id="rate-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">6.20%</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Loan Term (years)</label>
+            <select id="loan-term" class="obs-select" style="width:100%;">
+              <option value="25">25 years</option>
+              <option value="30" selected>30 years</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="input-label">Interest Only Period</label>
+            <select id="io-period" class="obs-select" style="width:100%;">
+              <option value="0" selected>Principal & Interest</option>
+              <option value="2">2 years IO</option>
+              <option value="3">3 years IO</option>
+              <option value="5">5 years IO</option>
+              <option value="10">10 years IO</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. Income -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">3. Rental Income</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+          <div>
+            <label class="input-label">Weekly Rent ($)</label>
+            <input type="number" id="weekly-rent" value="650" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+
+          <div>
+            <label class="input-label">Vacancy Rate</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="vacancy-rate" min="0" max="10" step="0.5" value="2"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="vacancy-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">2%</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Annual Rent Growth</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="rent-growth" min="0" max="8" step="0.25" value="3"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="rent-growth-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">3%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4. Expenses -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">4. Annual Operating Expenses</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div>
+            <label class="input-label">Property Management</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="pm-rate" min="5" max="12" step="0.5" value="8"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="pm-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">8%</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Maintenance (% of value p.a.)</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="maint-rate" min="0.1" max="2" step="0.1" value="0.5"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="maint-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">0.5%</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Council Rates ($/yr)</label>
+            <input type="number" id="council" value="2200" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+
+          <div>
+            <label class="input-label">Water Rates ($/yr)</label>
+            <input type="number" id="water" value="1000" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+
+          <div>
+            <label class="input-label">Insurance ($/yr)</label>
+            <input type="number" id="insurance" value="1800" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+
+          <div>
+            <label class="input-label">Body Corporate ($/yr)</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="checkbox" id="bc-toggle" style="accent-color:var(--color-gold);width:14px;height:14px;cursor:pointer;" />
+              <input type="number" id="body-corp" value="0" class="obs-input" style="flex:1;font-size:0.95rem;" disabled placeholder="0" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 5. Growth & Exit -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">5. Growth & Exit Assumptions</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div>
+            <label class="input-label">Capital Growth Rate (% p.a.)</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="growth-rate" min="0" max="10" step="0.25" value="5"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="growth-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">5%</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Hold Period (years)</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="hold-period" min="1" max="30" step="1" value="10"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="hold-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">10 yrs</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Selling Costs (% of exit value)</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="selling-costs" min="1" max="5" step="0.1" value="2.5"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="selling-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">2.5%</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="input-label">Discount Rate / Required Return</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <input type="range" id="discount-rate" min="4" max="15" step="0.25" value="8"
+                style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+              <div style="background:var(--color-surface-4);padding:0.4rem 0.6rem;min-width:3rem;text-align:center;">
+                <span id="discount-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">8%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── RESULTS ─────────────────────────────── -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(72,72,72,0.2);">
+          Investment Summary
+        </h2>
+
+        <!-- Key metrics grid -->
+        <div class="grid grid-cols-2 gap-px" style="background:rgba(72,72,72,0.15);margin-bottom:1.25rem;">
+          <div style="background:var(--color-surface-3);padding:1rem;">
+            <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Initial Outlay</p>
+            <p id="r-outlay" style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);"></p>
+          </div>
+          <div style="background:var(--color-surface-3);padding:1rem;">
+            <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Gross Yield</p>
+            <p id="r-gross-yield" style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);"></p>
+          </div>
+          <div style="background:var(--color-surface-3);padding:1rem;">
+            <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Net Yield (Yr 1)</p>
+            <p id="r-net-yield" style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);"></p>
+          </div>
+          <div style="background:var(--color-surface-3);padding:1rem;">
+            <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Cash-on-Cash (Yr 1)</p>
+            <p id="r-coc" style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);"></p>
+          </div>
+          <div style="background:var(--color-surface-3);padding:1rem;">
+            <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Yr 1 Net Cashflow</p>
+            <p id="r-cf1" style="font-family:var(--font-serif);font-size:1.1rem;"></p>
+          </div>
+          <div style="background:var(--color-surface-3);padding:1rem;">
+            <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Equity at Exit</p>
+            <p id="r-equity-exit" style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-gold);"></p>
+          </div>
+        </div>
+
+        <!-- NPV / IRR highlight -->
+        <div style="background:rgba(255,221,121,0.06);border-left:3px solid var(--color-gold);padding:1.25rem;margin-bottom:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+            <div>
+              <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.25rem;">Net Present Value</p>
+              <p id="r-npv" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;line-height:1;"></p>
+            </div>
+            <div style="text-align:right;">
+              <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.25rem;">IRR</p>
+              <p id="r-irr" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;line-height:1;color:var(--color-gold);"></p>
+            </div>
+          </div>
+          <p id="r-verdict" style="font-size:0.72rem;color:var(--color-text-muted);line-height:1.5;"></p>
+        </div>
+
+        <div style="display:flex;flex-col;gap:0.5rem;">
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.75rem;color:var(--color-text-muted);">Exit Property Value</span>
+            <span id="r-exit-val" style="font-size:0.8rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.75rem;color:var(--color-text-muted);">Remaining Loan</span>
+            <span id="r-loan-remain" style="font-size:0.8rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.75rem;color:var(--color-text-muted);">Total Rent Collected</span>
+            <span id="r-total-rent" style="font-size:0.8rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;">
+            <span style="font-size:0.75rem;color:var(--color-text-muted);">Cumulative Cashflow</span>
+            <span id="r-cumul-cf" style="font-size:0.8rem;font-weight:600;"></span>
+          </div>
+        </div>
+
+        <p style="font-size:0.65rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+          Estimate only. Pre-tax, excludes depreciation and CGT. Confirm with a financial adviser.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;margin-top:1.25rem;justify-content:center;">
+          Discuss with Daniel
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CASHFLOW TABLE ─────────────────────────── -->
+  <div style="margin-top:3rem;">
+    <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.25rem;">
+      Year-by-Year Cashflow
+    </h2>
+    <div style="overflow-x:auto;">
+      <table id="cf-table" style="width:100%;border-collapse:collapse;font-size:0.75rem;">
+        <thead>
+          <tr style="background:var(--color-surface-3);">
+            <th style="padding:0.75rem 1rem;text-align:left;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Year</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Property Value</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Eff. Rent</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Expenses</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Interest</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Net Cashflow</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Loan Balance</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">Equity</th>
+            <th style="padding:0.75rem 1rem;text-align:right;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">PV of CF</th>
+          </tr>
+        </thead>
+        <tbody id="cf-tbody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</ToolLayout>
+
+<script>
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const val = (id: string) => Number((document.getElementById(id) as HTMLInputElement).value);
+  const checked = (id: string) => (document.getElementById(id) as HTMLInputElement).checked;
+
+  const fmtCur = (n: number, dec = 0) =>
+    n < 0
+      ? `-$${Math.abs(n).toLocaleString('en-AU', { maximumFractionDigits: dec })}`
+      : `$${n.toLocaleString('en-AU', { maximumFractionDigits: dec })}`;
+
+  const fmtPct = (n: number) => `${n.toFixed(2)}%`;
+
+  // QLD stamp duty (standard — investment rate, no concessions)
+  function stampDuty(price: number): number {
+    if (price <= 5000) return 0;
+    if (price <= 75000) return (price - 5000) * 0.015;
+    if (price <= 540000) return 1050 + (price - 75000) * 0.035;
+    if (price <= 1000000) return 17325 + (price - 540000) * 0.045;
+    return 38025 + (price - 1000000) * 0.0575;
+  }
+
+  // P&I monthly payment
+  function monthlyPmt(principal: number, annualRate: number, termYears: number): number {
+    if (annualRate === 0) return principal / (termYears * 12);
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // Loan balance after k monthly payments
+  function loanBalance(principal: number, annualRate: number, termYears: number, monthsPaid: number): number {
+    if (annualRate === 0) return Math.max(0, principal - (principal / (termYears * 12)) * monthsPaid);
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    const k = monthsPaid;
+    return principal * (Math.pow(1 + r, n) - Math.pow(1 + r, k)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // IRR via bisection
+  function calcIRR(cashflows: number[]): number | null {
+    const npvAt = (r: number) =>
+      cashflows.reduce((acc, cf, t) => acc + cf / Math.pow(1 + r, t), 0);
+    let lo = -0.999, hi = 10;
+    if (npvAt(lo) * npvAt(hi) > 0) return null;
+    for (let i = 0; i < 200; i++) {
+      const mid = (lo + hi) / 2;
+      if (npvAt(mid) === 0 || (hi - lo) / 2 < 1e-8) return mid;
+      if (npvAt(mid) * npvAt(lo) < 0) hi = mid; else lo = mid;
+    }
+    return (lo + hi) / 2;
+  }
+
+  // ── Main calc ──────────────────────────────────────────────────────────────
+  function calc() {
+    const price     = val('purchase-price');
+    const stampAuto = checked('auto-stamp');
+    const stamp     = stampAuto ? stampDuty(price) : val('stamp-duty');
+    const legal     = val('legal-costs');
+    const depositPct = val('deposit-pct') / 100;
+    const loan      = price * (1 - depositPct);
+    const rate      = val('interest-rate');
+    const term      = val('loan-term');
+    const ioPeriod  = val('io-period');
+    const weeklyRent = val('weekly-rent');
+    const vacRate   = val('vacancy-rate') / 100;
+    const rentGrowth = val('rent-growth') / 100;
+    const pmRate    = val('pm-rate') / 100;
+    const maintRate = val('maint-rate') / 100;
+    const council   = val('council');
+    const water     = val('water');
+    const insurance = val('insurance');
+    const bcOn      = checked('bc-toggle');
+    const bodyCorp  = bcOn ? val('body-corp') : 0;
+    const growthRate = val('growth-rate') / 100;
+    const holdYears  = val('hold-period');
+    const sellingCostPct = val('selling-costs') / 100;
+    const discountRate = val('discount-rate') / 100;
+
+    // Initial equity outlay
+    const deposit   = price * depositPct;
+    const outlay    = deposit + stamp + legal;
+
+    // Update stamp display
+    if (stampAuto) {
+      ($('stamp-duty') as HTMLInputElement).value = Math.round(stamp).toString();
+    }
+
+    // P&I monthly payment (used after IO period ends)
+    // IO: loanBalance stays at `loan` during IO period
+    // After IO: P&I on remaining balance over remaining term
+    const piMonthly = monthlyPmt(loan, rate, term);
+
+    // Build annual cashflows
+    const annualCFs: number[] = [];
+    let propValue   = price;
+    let currentRent = weeklyRent * 52;
+    let loanBal     = loan;
+    let cumulCF     = 0;
+    let totalRent   = 0;
+    let discountedCFSum = 0;
+
+    // For NPV: cashflows array starts with -outlay at t=0
+    const irrCFs: number[] = [-outlay];
+
+    const tbodyRows: string[] = [];
+
+    for (let yr = 1; yr <= holdYears; yr++) {
+      propValue = price * Math.pow(1 + growthRate, yr);
+
+      // Rent
+      currentRent = weeklyRent * 52 * Math.pow(1 + rentGrowth, yr - 1);
+      const effRent = currentRent * (1 - vacRate);
+      totalRent += effRent;
+
+      // Expenses
+      const pmFee     = effRent * pmRate;
+      const maint     = propValue * maintRate;
+      const totalExp  = pmFee + maint + council + water + insurance + bodyCorp;
+
+      // NOI
+      const noi = effRent - totalExp;
+
+      // Interest & principal
+      let annualInterest: number;
+      let annualPrincipal: number;
+
+      if (yr <= ioPeriod) {
+        // Interest only
+        annualInterest  = loanBal * (rate / 100);
+        annualPrincipal = 0;
+      } else {
+        // P&I — but if IO just ended, recalculate payment on current balance over remaining term
+        const monthsIO      = ioPeriod * 12;
+        const remainingTerm = term - ioPeriod; // years
+        const piPmt         = remainingTerm > 0
+          ? monthlyPmt(loan, rate, remainingTerm)
+          : 0;
+        const monthsIntoPandI = (yr - ioPeriod - 1) * 12;
+        const balStart = ioPeriod > 0
+          ? loan  // IO balance = original loan throughout IO
+          : loanBalance(loan, rate, term, (yr - 1) * 12);
+        const balEnd = ioPeriod > 0
+          ? loanBalance(loan, rate, remainingTerm, monthsIntoPandI + 12)
+          : loanBalance(loan, rate, term, yr * 12);
+
+        annualInterest  = balStart * (rate / 100); // approx annual interest
+        annualPrincipal = Math.max(0, balStart - balEnd);
+        loanBal = Math.max(0, balEnd);
+      }
+
+      if (yr <= ioPeriod) {
+        // IO: balance stays constant
+        loanBal = loan;
+      }
+
+      // Net cashflow (after debt service, before tax / depreciation)
+      const netCF = noi - annualInterest - annualPrincipal;
+
+      cumulCF += netCF;
+      irrCFs.push(netCF);
+
+      // PV
+      const pvCF = netCF / Math.pow(1 + discountRate, yr);
+      discountedCFSum += pvCF;
+
+      const equity = propValue - loanBal;
+
+      tbodyRows.push(`
+        <tr style="border-bottom:1px solid rgba(72,72,72,0.12);${yr % 2 === 0 ? 'background:rgba(72,72,72,0.04);' : ''}">
+          <td style="padding:0.65rem 1rem;font-weight:600;color:var(--color-text-primary);">${yr}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;color:var(--color-text-secondary);">${fmtCur(propValue)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;color:var(--color-text-secondary);">${fmtCur(effRent)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;color:rgba(192,57,43,0.85);">${fmtCur(-totalExp)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;color:rgba(192,57,43,0.85);">${fmtCur(-annualInterest)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;font-weight:600;color:${netCF >= 0 ? 'rgba(46,139,87,0.9)' : 'rgba(192,57,43,0.9)'};">${fmtCur(netCF)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;color:var(--color-text-secondary);">${fmtCur(loanBal)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;font-weight:600;color:var(--color-gold);">${fmtCur(equity)}</td>
+          <td style="padding:0.65rem 1rem;text-align:right;color:var(--color-text-muted);">${fmtCur(pvCF)}</td>
+        </tr>
+      `);
+    }
+
+    // Terminal value (exit)
+    const exitValue   = propValue;
+    const exitCosts   = exitValue * sellingCostPct;
+    const netEquity   = exitValue - exitCosts - loanBal;
+
+    // NPV = sum of PV cashflows + PV of net equity at exit - initial outlay
+    const pvEquity = netEquity / Math.pow(1 + discountRate, holdYears);
+    const npv      = discountedCFSum + pvEquity - outlay;
+
+    // IRR: add net equity to final year cashflow
+    irrCFs[irrCFs.length - 1] += netEquity;
+    const irrRaw = calcIRR(irrCFs);
+    const irr    = irrRaw !== null ? irrRaw * 100 : null;
+
+    // Yield
+    const grossYield = (weeklyRent * 52) / price * 100;
+    const yr1Rent    = weeklyRent * 52 * (1 - vacRate);
+    const yr1Exp     = yr1Rent * pmRate + price * maintRate + council + water + insurance + bodyCorp;
+    const yr1NOI     = yr1Rent - yr1Exp;
+    const netYield   = yr1NOI / price * 100;
+
+    const yr1Interest = loan * (rate / 100);
+    const yr1CF       = yr1NOI - yr1Interest;
+    const cocReturn   = outlay > 0 ? yr1CF / outlay * 100 : 0;
+
+    // ── Update DOM ──────────────────────────────────────────────────────────
+    $('r-outlay')!.textContent     = fmtCur(outlay);
+    $('r-gross-yield')!.textContent = fmtPct(grossYield);
+    $('r-net-yield')!.textContent  = fmtPct(netYield);
+    $('r-coc')!.textContent        = fmtPct(cocReturn);
+
+    const cf1El = document.getElementById('r-cf1')!;
+    cf1El.textContent  = fmtCur(yr1CF) + '/yr';
+    cf1El.style.color  = yr1CF >= 0 ? 'rgba(46,139,87,0.9)' : 'rgba(192,57,43,0.9)';
+
+    $('r-equity-exit')!.textContent = fmtCur(netEquity);
+    $('r-exit-val')!.textContent    = fmtCur(exitValue);
+    $('r-loan-remain')!.textContent = fmtCur(loanBal);
+    $('r-total-rent')!.textContent  = fmtCur(totalRent);
+
+    const cumulEl = document.getElementById('r-cumul-cf')!;
+    cumulEl.textContent = fmtCur(cumulCF);
+    cumulEl.style.color = cumulCF >= 0 ? 'rgba(46,139,87,0.9)' : 'rgba(192,57,43,0.9)';
+
+    const npvEl = document.getElementById('r-npv')!;
+    npvEl.textContent = fmtCur(npv);
+    npvEl.style.color = npv >= 0 ? 'var(--color-gold)' : 'rgba(192,57,43,0.9)';
+
+    const irrEl = document.getElementById('r-irr')!;
+    if (irr !== null) {
+      irrEl.textContent = fmtPct(irr);
+      irrEl.style.color = irr >= val('discount-rate') ? 'var(--color-gold)' : 'rgba(192,57,43,0.9)';
+    } else {
+      irrEl.textContent = 'N/A';
+      irrEl.style.color = 'var(--color-text-muted)';
+    }
+
+    // Verdict
+    const verdictEl = document.getElementById('r-verdict')!;
+    if (npv > 0 && irr !== null && irr >= val('discount-rate')) {
+      verdictEl.textContent = `IRR exceeds your ${val('discount-rate')}% required return. Positive NPV suggests value creation at these assumptions.`;
+      verdictEl.style.color = 'rgba(46,139,87,0.75)';
+    } else if (npv < 0) {
+      verdictEl.textContent = `Negative NPV at a ${val('discount-rate')}% discount rate. Consider adjusting growth, rent, or hold period.`;
+      verdictEl.style.color = 'rgba(192,57,43,0.75)';
+    } else {
+      verdictEl.textContent = `IRR is close to your required return. Returns are marginal at current assumptions.`;
+      verdictEl.style.color = 'rgba(196,145,42,0.8)';
+    }
+
+    // Table
+    document.getElementById('cf-tbody')!.innerHTML = tbodyRows.join('');
+
+    // Live labels
+    $('price-display')!.textContent   = fmtCur(price);
+    $('deposit-display')!.textContent = `${val('deposit-pct')}%`;
+    $('loan-display')!.textContent    = fmtCur(loan);
+    $('rate-display')!.textContent    = `${Number(val('interest-rate')).toFixed(2)}%`;
+    $('vacancy-display')!.textContent  = `${val('vacancy-rate')}%`;
+    $('rent-growth-display')!.textContent = `${val('rent-growth')}%`;
+    $('pm-display')!.textContent       = `${val('pm-rate')}%`;
+    $('maint-display')!.textContent    = `${val('maint-rate')}%`;
+    $('growth-display')!.textContent   = `${val('growth-rate')}%`;
+    $('hold-display')!.textContent     = `${val('hold-period')} yrs`;
+    $('selling-display')!.textContent  = `${val('selling-costs')}%`;
+    $('discount-display')!.textContent = `${val('discount-rate')}%`;
+  }
+
+  // ── Stamp toggle ────────────────────────────────────────────────────────────
+  document.getElementById('auto-stamp')!.addEventListener('change', () => {
+    const stampInput = document.getElementById('stamp-duty') as HTMLInputElement;
+    stampInput.readOnly = (document.getElementById('auto-stamp') as HTMLInputElement).checked;
+    calc();
+  });
+
+  document.getElementById('bc-toggle')!.addEventListener('change', (e) => {
+    const bcInput = document.getElementById('body-corp') as HTMLInputElement;
+    bcInput.disabled = !(e.target as HTMLInputElement).checked;
+    calc();
+  });
+
+  // ── Wire all inputs ─────────────────────────────────────────────────────────
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+
+  calc();
+</script>
+
+<style>
+  .input-label {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+</style>
