@@ -90,7 +90,7 @@ const suburbsJson = JSON.stringify(suburbs);
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px pw-cards" style="background:rgba(255,255,255,0.08);">
 
       <!-- Option 1: Instant report -->
-      <div class="pw-card" style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border:1px solid transparent;">
+      <a id="pw-card-report" href="/property-report" class="pw-card" style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border:1px solid transparent;text-decoration:none;cursor:pointer;">
         <div>
           <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Instant · Online</p>
           <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;line-height:1.2;margin-bottom:0.75rem;">
@@ -111,17 +111,14 @@ const suburbsJson = JSON.stringify(suburbs);
             <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Ready in under 60 seconds
           </li>
         </ul>
-        <a id="pw-report-link" href="/property-report" class="pw-card-btn"
-          onclick="try{gtag('event','property_report_click',{event_category:'lead',event_label:'Property Worth Page'})}catch(_){}"
-          style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
-          onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+        <span class="pw-card-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           Get My Instant Report
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
       <!-- Option 2: Appraisal (featured) -->
-      <div class="pw-card pw-card-featured" style="background:rgba(197,160,60,0.08);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;position:relative;border:1px solid rgba(197,160,60,0.25);">
+      <a href="/appraisal" class="pw-card pw-card-featured" style="background:rgba(197,160,60,0.08);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;position:relative;border:1px solid rgba(197,160,60,0.25);text-decoration:none;cursor:pointer;">
         <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#c5a03c;padding:0.25rem 0.9rem;">
           <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#0a0806;">Most Popular & Accurate</span>
         </div>
@@ -145,17 +142,14 @@ const suburbsJson = JSON.stringify(suburbs);
             <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Completely free, no strings attached
           </li>
         </ul>
-        <a href="/appraisal" class="pw-card-btn"
-          onclick="try{gtag('event','appraisal_click',{event_category:'lead',event_label:'Property Worth Page'})}catch(_){}"
-          style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
-          onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+        <span class="pw-card-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           Request an Appraisal
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
       <!-- Option 3: Call -->
-      <div class="pw-card" style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border:1px solid transparent;">
+      <a href="tel:+61412523821" class="pw-card" style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border:1px solid transparent;text-decoration:none;cursor:pointer;">
         <div>
           <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Immediate · Personal</p>
           <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;line-height:1.2;margin-bottom:0.75rem;">
@@ -176,14 +170,11 @@ const suburbsJson = JSON.stringify(suburbs);
             <span style="color:#c5a03c;font-size:0.7rem;">✓</span> No scripts, no sales pitch
           </li>
         </ul>
-        <a href="tel:+61412523821" class="pw-card-outline-btn"
-          onclick="try{gtag('event','phone_click',{event_category:'contact',event_label:'Property Worth Page'})}catch(_){}"
-          style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.25);font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;"
-          onmouseover="this.style.borderColor='rgba(197,160,60,0.6)';this.style.color='#c5a03c'" onmouseout="this.style.borderColor='rgba(240,236,228,0.25)';this.style.color='#f0ece4'">
+        <span class="pw-card-outline-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.25);font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           Call 0412 523 821
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
     </div>
   </div>
