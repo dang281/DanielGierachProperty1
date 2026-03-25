@@ -151,12 +151,12 @@ const globalSchema = {
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlaces"></script>
     <script>
-      function initGooglePlaces() {
+      window.initGooglePlaces = function() {
         document.dispatchEvent(new Event('google-places-ready'));
       }
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlaces"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
