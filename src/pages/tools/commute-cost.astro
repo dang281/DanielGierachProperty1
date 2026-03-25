@@ -293,7 +293,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 <div class="cc-vehicle-bar">
   <div class="cc-vfield">
     <label>Fuel $/L</label>
-    <input class="cc-vinput" id="fuelPrice" type="number" value="2.05" min="0.5" max="5" step="0.01" />
+    <input class="cc-vinput" id="fuelPrice" type="number" value="2.60" min="0.5" max="5" step="0.01" />
   </div>
   <div class="cc-vsep"></div>
   <div class="cc-vfield" style="flex-wrap:wrap;gap:0.35rem;">
@@ -315,6 +315,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <div class="cc-vfield">
     <label>Weeks/year</label>
     <input class="cc-vinput" id="weeksPerYear" type="number" value="46" min="1" max="52" step="1" />
+  </div>
+  <div class="cc-vsep"></div>
+  <div class="cc-vfield" style="flex-wrap:wrap;gap:0.35rem;">
+    <label style="width:100%;">Peak hour traffic</label>
+    <div class="cc-vpresets" id="trafficPresets">
+      <button class="cc-vpreset" data-traffic="1.15">Light<br/><span style="opacity:0.6;font-size:0.55rem;">+15%</span></button>
+      <button class="cc-vpreset active" data-traffic="1.40">Moderate<br/><span style="opacity:0.6;font-size:0.55rem;">+40%</span></button>
+      <button class="cc-vpreset" data-traffic="1.65">Heavy<br/><span style="opacity:0.6;font-size:0.55rem;">+65%</span></button>
+      <button class="cc-vpreset" data-traffic="2.00">Severe<br/><span style="opacity:0.6;font-size:0.55rem;">+100%</span></button>
+    </div>
   </div>
 </div>
 
@@ -411,7 +421,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 </div>
 
 <div style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.75rem;line-height:1.6;">
-  Distances and times via OpenStreetMap routing. Drive times are estimates and do not account for peak-hour traffic. Fuel costs use your inputs above. This is an estimate only.
+  Distances via OpenStreetMap road network routing. Drive times are free-flow estimates multiplied by your selected peak-hour traffic factor. Actual times vary with conditions. Fuel costs use your inputs above.
 </div>
 
 </ToolLayout>
@@ -586,10 +596,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   /* ── Render results table ────────────────────────────────── */
   function renderResults() {
-    const fuelPrice  = num('fuelPrice', 2.05);
-    const fuelEff    = num('fuelEff', 10);
-    const days       = num('daysPerWeek', 4);
-    const weeks      = num('weeksPerYear', 46);
+    const fuelPrice   = num('fuelPrice', 2.60);
+    const fuelEff     = num('fuelEff', 10);
+    const days        = num('daysPerWeek', 4);
+    const weeks       = num('weeksPerYear', 46);
+    const activeTraffic = document.querySelector('#trafficPresets .cc-vpreset.active');
+    const trafficMult = activeTraffic ? parseFloat(activeTraffic.dataset.traffic) : 1.40;
 
     const hasWork = !!coords.work;
     const hasHome = !!routes.home;
@@ -622,11 +634,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Home row
     if (hasHome) {
+      const homePeakMin = Math.round(routes.home.durationMin * trafficMult);
       setText('homeDist', fmtKm(routes.home.distKm));
-      setText('homeTime', fmtMin(routes.home.durationMin));
+      setText('homeTime', fmtMin(homePeakMin));
       setText('homeFuelWk', fmt$(fuelPerWeek(routes.home.distKm)));
       setText('homeFuelYr', fmt$(fuelPerYear(routes.home.distKm)));
-      const hrs = hrsPerYear(routes.home.durationMin);
+      const hrs = hrsPerYear(homePeakMin);
       setText('homeHrsYr', hrs.toFixed(0) + ' hrs');
     } else {
       ['homeDist','homeTime','homeFuelWk','homeFuelYr','homeHrsYr'].forEach(id => setText(id, '—'));
@@ -634,11 +647,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Property row + diff
     if (hasProp) {
+      const propPeakMin = Math.round(routes.prop.durationMin * trafficMult);
       setText('propDist', fmtKm(routes.prop.distKm));
-      setText('propTime', fmtMin(routes.prop.durationMin));
+      setText('propTime', fmtMin(propPeakMin));
       setText('propFuelWk', fmt$(fuelPerWeek(routes.prop.distKm)));
       setText('propFuelYr', fmt$(fuelPerYear(routes.prop.distKm)));
-      const hrs = hrsPerYear(routes.prop.durationMin);
+      const hrs = hrsPerYear(propPeakMin);
       setText('propHrsYr', hrs.toFixed(0) + ' hrs');
 
       // Diff vs home
@@ -696,6 +710,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       btn.addEventListener('click', () => {
         document.getElementById('fuelEff').value = btn.dataset.eff;
         document.querySelectorAll('#effPresets .cc-vpreset').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderResults();
+      });
+    });
+
+    // Traffic preset buttons
+    document.querySelectorAll('#trafficPresets .cc-vpreset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#trafficPresets .cc-vpreset').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderResults();
       });
