@@ -3,8 +3,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 ---
 
 <ToolLayout
-  title="Capital Gains Tax Calculator — Queensland Property"
-  description="Estimate your capital gains tax on a Queensland property sale. Uses QLD transfer duty rates, covers the 50% CGT discount, main residence exemption, and proposed budget changes. Estimate only — not a substitute for tax advice."
+  title="Capital Gains Tax Calculator: Queensland Property"
+  description="Estimate your capital gains tax on a Queensland property sale. Uses QLD transfer duty rates, covers the 50% CGT discount, main residence exemption, and proposed budget changes. Estimate only. Not a substitute for tax advice."
   tool="Capital Gains Tax Calculator"
   phase="Investor Tools · Queensland"
 >
@@ -407,7 +407,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <!-- ── Intro notice ───────────────────────────────────────────── -->
 <div class="cg-alert" style="margin-bottom:1.5rem;">
-  <strong>Queensland CGT Estimator.</strong> Built for Queensland property owners and investors. Uses QLD transfer duty rates and reflects Australian CGT rules including the 50% discount, main residence exemption, and capital loss treatment. <strong>Budget Watch:</strong> the Australian Government is considering changes to the CGT discount — use the slider below to model the impact. This calculator is an estimate only. Always consult a registered tax adviser or accountant before making financial or tax decisions.
+  <strong>Queensland CGT Estimator.</strong> Built for Queensland property owners and investors. Uses QLD transfer duty rates and reflects Australian CGT rules including the 50% discount, main residence exemption, and capital loss treatment. <strong>Budget Watch:</strong> the Australian Government is considering changes to the CGT discount. Use the slider below to model the impact. This calculator is an estimate only. Always consult a registered tax adviser or accountant before making financial or tax decisions.
 </div>
 
 <!-- ── Date validation warning ───────────────────────────────── -->
@@ -469,17 +469,17 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
     <input type="range" class="cg-slider" id="discountSlider" min="0" max="75" value="50" step="5" />
     <div class="cg-slider-labels">
-      <span>0% — Removed</span>
+      <span>0% Removed</span>
       <span>25%</span>
-      <span>50% — Current law</span>
+      <span>50% Current law</span>
       <span>75%</span>
     </div>
     <div class="cg-discount-presets">
-      <button class="cg-preset" data-val="0">0% — Removed</button>
-      <button class="cg-preset" data-val="25">25% — Halved</button>
-      <button class="cg-preset" data-val="33">33% — Proposed</button>
+      <button class="cg-preset" data-val="0">0% Removed</button>
+      <button class="cg-preset" data-val="25">25% Halved</button>
+      <button class="cg-preset" data-val="33">33% Proposed</button>
       <button class="cg-preset" data-val="40">40%</button>
-      <button class="cg-preset active" data-val="50">50% — Current</button>
+      <button class="cg-preset active" data-val="50">50% Current</button>
     </div>
   </div>
 
@@ -625,7 +625,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <span class="cg-section-title">Your Situation</span>
 
     <div class="cg-row">
-      <label>Other Taxable Income This Year<small>Salary, business income, rental income, etc. — before adding any capital gain</small></label>
+      <label>Other Taxable Income This Year<small>Salary, business income, rental income, etc. Not including any capital gain</small></label>
       <div class="cg-input-wrap">
         <span class="cg-prefix">$</span>
         <input class="cg-input" id="otherIncome" type="number" value="120000" min="0" step="1000" />
@@ -660,7 +660,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
 
     <div class="cg-row">
-      <label>Prior Year Capital Losses<small>Unused net capital losses carried forward from the ATO — offset these against the gain before the discount is applied</small></label>
+      <label>Prior Year Capital Losses<small>Unused net capital losses carried forward from the ATO. These are offset against the gain before the discount is applied</small></label>
       <div class="cg-input-wrap">
         <span class="cg-prefix">$</span>
         <input class="cg-input" id="priorLosses" type="number" value="0" min="0" step="1000" />
@@ -827,11 +827,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
       <div style="height:0.4rem;"></div>
       <div class="cg-line">
-        <span>Income tax — before gain</span>
+        <span>Income tax (before gain)</span>
         <span class="val" id="r-taxBefore">$0</span>
       </div>
       <div class="cg-line">
-        <span>Income tax — with gain</span>
+        <span>Income tax (with gain)</span>
         <span class="val" id="r-taxAfter">$0</span>
       </div>
       <div class="cg-line total">
@@ -1048,7 +1048,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         return {
           fraction: 1,
           status: 'absence_full',
-          note: `The 6-year absence rule (s.118-145 ITAA 1997) may apply, potentially preserving the full main residence exemption even though the property was rented. This requires that no other dwelling was treated as your main residence during the absence, and that you moved back before selling. This estimate assumes full exemption — seek advice to confirm.`
+          note: `The 6-year absence rule (s.118-145 ITAA 1997) may apply, potentially preserving the full main residence exemption even though the property was rented. This requires that no other dwelling was treated as your main residence during the absence, and that you moved back before selling. This estimate assumes full exemption. Seek advice to confirm.`
         };
       } else {
         // Rented for <= 6 years but did not move back — partial, but absence rule may still help
@@ -1254,15 +1254,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (days === 0) {
       holdNoteStr = 'Enter your purchase and sale dates above.';
     } else if (!over12) {
-      holdNoteStr = 'Held less than 12 months — CGT discount does not apply.';
+      holdNoteStr = 'Held less than 12 months. CGT discount does not apply.';
     } else if (isCompany) {
       holdNoteStr = 'Companies do not receive the CGT discount regardless of hold period.';
     } else if (!resident) {
       holdNoteStr = 'Non-residents are not entitled to the CGT discount on Australian real property.';
     } else if (isSmsf) {
-      holdNoteStr = 'Held over 12 months — one-third SMSF discount applied (effective 10%).';
+      holdNoteStr = 'Held over 12 months. One-third SMSF discount applied (effective 10%).';
     } else {
-      holdNoteStr = `Held over 12 months — ${Math.round(discountPct * 100)}% CGT discount applies to net gain.`;
+      holdNoteStr = `Held over 12 months. ${Math.round(discountPct * 100)}% CGT discount applies to net gain.`;
     }
     setText('holdNote', holdNoteStr);
 
@@ -1293,7 +1293,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       if (totalCgtRowEl) totalCgtRowEl.style.display = 'none';
       setText('r-totalCGT', '$0');
       setText('r-netProceeds', fmt(mySalePrice - sellingCosts * ownerShare));
-      setText('r-effectiveRate', 'Main residence exemption — no CGT estimated.');
+      setText('r-effectiveRate', 'Main residence exemption. No CGT estimated.');
       setText('r-marginalNote', '');
     } else {
       show('gainPanel'); hide('exemptPanel'); hide('lossPanel'); show('taxPanel'); show('proceedsPanel');
@@ -1451,13 +1451,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (!ctx.resident) notes.push('Non-residents are not entitled to the 50% CGT discount on Australian real property sales.');
     if (ctx.ownership === 'company') notes.push('Companies are taxed at 30% (25% for base rate entities). No CGT discount applies.');
     if (ctx.ownership === 'trust') notes.push('Discretionary trusts may pass the CGT discount through to individual beneficiaries. Tax outcomes depend on how the gain is distributed.');
-    if (ctx.ownership === 'smsf') notes.push('SMSFs in accumulation phase receive a one-third discount. In pension phase, CGT may not apply. SMSF tax rules are complex — seek specialist advice.');
+    if (ctx.ownership === 'smsf') notes.push('SMSFs in accumulation phase receive a one-third discount. In pension phase, CGT may not apply. SMSF tax rules are complex. Seek specialist advice.');
     if (ctx.isJoint) notes.push(`Your ${Math.round(ctx.ownerShare * 100)}% ownership share has been applied throughout. Each co-owner declares their own share on their individual return.`);
-    if (ctx.mrFraction > 0 && ctx.mrFraction < 1) notes.push('A partial main residence exemption has been estimated based on time the property was your main residence. The ATO uses days, not years — the actual exempt fraction may differ. Seek advice.');
+    if (ctx.mrFraction > 0 && ctx.mrFraction < 1) notes.push('A partial main residence exemption has been estimated based on time the property was your main residence. The ATO uses days, not years. The actual exempt fraction may differ. Seek advice.');
     if (ctx.mrResultStatus === 'absence_full' || ctx.mrResultStatus === 'partial_absence') notes.push('The 6-year absence rule may affect your outcome. This requires the property to have been your main residence before the absence, and that you did not treat another dwelling as your main residence during that period.');
     if (ctx.isFullExempt) notes.push('A full main residence exemption appears to apply. Confirm with a tax adviser that all eligibility conditions are met before assuming no CGT is payable.');
     if (ctx.isLoss) notes.push('Capital losses must be recorded on your tax return even though no CGT is payable. They can only offset capital gains, not ordinary income.');
-    notes.push('Transfer duty uses Queensland OSR standard rates. First home buyer concessions, foreign investor duty, and other QLD concessions are not automatically applied — adjust the transfer duty figure if applicable.');
+    notes.push('Transfer duty uses Queensland OSR standard rates. First home buyer concessions, foreign investor duty, and other QLD concessions are not automatically applied. Adjust the transfer duty figure if applicable.');
     notes.push('QLD land tax applies to investment properties above $600,000 (individuals) or $350,000 (companies and trustees). Your principal place of residence is generally exempt from QLD land tax.');
     notes.push('This estimate does not account for depreciation recapture, previous CGT events, or foreign resident capital gains withholding (FRCGW). Always seek advice from a registered tax agent or accountant before making decisions.');
 
@@ -1569,7 +1569,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     }
     const note = getEl('dutyCalcNote');
     if (note) {
-      note.textContent = `Calculated: $${duty.toLocaleString('en-AU')} — based on QLD standard rates for $${price.toLocaleString('en-AU')}. Adjust below if a FHB concession or other concession applied.`;
+      note.textContent = `Calculated: $${duty.toLocaleString('en-AU')} based on QLD standard rates for $${price.toLocaleString('en-AU')}. Adjust below if a FHB concession or other concession applied.`;
       note.style.display = 'block';
     }
     calc();
@@ -1641,18 +1641,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const ownerLabels: Record<string, string> = { individual: 'Individual', joint: 'Joint Individuals', trust: 'Discretionary Trust', company: 'Company (Pty Ltd)', smsf: 'SMSF' };
     setText('pr-own',  ownerLabels[ownership] || ownership);
     setText('pr-res',  resident ? 'Australian resident' : 'Non-resident');
-    const mrLabels: Record<string, string> = { no: 'No — investment only', yes: 'Main residence' };
+    const mrLabels: Record<string, string> = { no: 'No (investment only)', yes: 'Main residence' };
     setText('pr-mr',   mrLabels[mrStatus] || mrStatus);
 
     // Cost base table
     const costItems: Array<[string, number]> = [
       ['Purchase price',             numVal('purchasePrice')],
       ['Transfer duty (QLD)',        numVal('stampDuty')],
-      ['Conveyancing — buying',      numVal('legalBuying')],
+      ['Conveyancing (buying)',       numVal('legalBuying')],
       ['Building and pest inspection', numVal('inspection')],
       ['Capital improvements',       numVal('improvements')],
       ['Agent commission',           numVal('agentFee')],
-      ['Conveyancing — selling',     numVal('legalSelling')],
+      ['Conveyancing (selling)',      numVal('legalSelling')],
       ['Other selling costs',        numVal('otherSelling')],
     ];
     const holdTotal = numVal('holdInterest') + numVal('holdRates') + numVal('holdLandTax') + numVal('holdInsurance') + numVal('holdBodyCorp') + numVal('holdOther');
@@ -1714,8 +1714,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           rowHtml('Other taxable income', getEl('r-otherIncome')?.textContent || '—'),
           rowHtml('Plus: net capital gain', getEl('r-addGain')?.textContent || '—'),
           rowHtml('Total taxable income', getEl('r-totalIncome')?.textContent || '—', 'pr-total'),
-          rowHtml('Income tax — before gain', getEl('r-taxBefore')?.textContent || '—'),
-          rowHtml('Income tax — with gain', getEl('r-taxAfter')?.textContent || '—'),
+          rowHtml('Income tax (before gain)', getEl('r-taxBefore')?.textContent || '-'),
+          rowHtml('Income tax (with gain)', getEl('r-taxAfter')?.textContent || '-'),
           rowHtml('Tax attributable to gain', getEl('r-taxOnGain')?.textContent || '—', 'pr-total'),
         ];
         if (resident) rows.push(rowHtml('Medicare levy on gain', getEl('r-medicare')?.textContent || '—'));
