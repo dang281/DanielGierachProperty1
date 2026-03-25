@@ -34,57 +34,6 @@ const counts: Record<string, number> = { All: tools.length };
 for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
 ---
 
-<style>
-  .filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-    align-items: center;
-  }
-  .fpill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.5rem 1.1rem;
-    border-radius: 999px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 1.5px solid rgba(28,25,23,0.2);
-    background: transparent;
-    color: #78716c;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-  }
-  .fpill[data-active="true"] {
-    color: #fff;
-  }
-  .fpill[data-active="true"][data-filter="All"]      { background: #1c1917; border-color: #1c1917; }
-  .fpill[data-active="true"][data-filter="Seller"]   { background: #b89a2a; border-color: #b89a2a; }
-  .fpill[data-active="true"][data-filter="Buyer"]    { background: #3a8fa8; border-color: #3a8fa8; }
-  .fpill[data-active="true"][data-filter="Investor"] { background: #4a9e4a; border-color: #4a9e4a; }
-  .fpill[data-active="true"][data-filter="Market"]   { background: #888; border-color: #888; }
-  .fpill-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 999px;
-    font-size: 0.6rem;
-    font-weight: 800;
-    background: rgba(28,25,23,0.08);
-    color: #78716c;
-    transition: background 0.15s, color 0.15s;
-  }
-  .fpill[data-active="true"] .fpill-count {
-    background: rgba(255,255,255,0.22);
-    color: #fff;
-  }
-  .tool-card[hidden] { display: none !important; }
-</style>
 
 <Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage calculator, stamp duty, selling costs, borrowing power and more - inner-east Brisbane.">
 
@@ -119,7 +68,7 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
     <!-- Filter Pills -->
     <div class="filter-bar">
       {(['All', 'Seller', 'Buyer', 'Investor', 'Market']).map(phase => (
-        <button class="fpill" data-filter={phase} data-active={phase === 'All' ? 'true' : 'false'}>
+        <button class={`fpill${phase === 'All' ? ' active-all' : ''}`} data-filter={phase}>
           {phase}
           <span class="fpill-count">{counts[phase] || 0}</span>
         </button>
@@ -187,8 +136,16 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
   const cards  = document.querySelectorAll<HTMLElement>('.tool-card');
   const noEl   = document.getElementById('no-tools')!;
 
+  const activeClass: Record<string, string> = {
+    All: 'active-all', Seller: 'active-seller', Buyer: 'active-buyer',
+    Investor: 'active-investor', Market: 'active-market',
+  };
+
   function applyFilter(active: string) {
-    pills.forEach(p => p.dataset.active = (p.dataset.filter === active) ? 'true' : 'false');
+    pills.forEach(p => {
+      const cls = activeClass[p.dataset.filter!] || 'active-all';
+      p.classList.toggle(cls, p.dataset.filter === active);
+    });
     let visible = 0;
     cards.forEach(c => {
       const show = active === 'All' || c.dataset.phase === active;

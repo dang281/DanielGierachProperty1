@@ -33,31 +33,6 @@ function filterCount(f: string): number {
 }
 ---
 
-<style>
-  .filter-bar { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2.5rem; align-items:center; }
-  .fpill {
-    display: inline-flex; align-items: center; gap: 0.45rem;
-    padding: 0.5rem 1.1rem; border-radius: 999px;
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    cursor: pointer; border: 1.5px solid rgba(28,25,23,0.2);
-    background: transparent; color: #78716c;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-  }
-  .fpill[data-active="true"] { color: #fff; }
-  .fpill[data-active="true"][data-filter="All"]              { background:#1c1917; border-color:#1c1917; }
-  .fpill[data-active="true"][data-filter="Buyers"]           { background:#3a8fa8; border-color:#3a8fa8; }
-  .fpill[data-active="true"][data-filter="Sellers"]          { background:#b89a2a; border-color:#b89a2a; }
-  .fpill[data-active="true"][data-filter="Buyers & Sellers"] { background:#b89a2a; border-color:#b89a2a; }
-  .fpill[data-active="true"][data-filter="Owners"]           { background:#4a9e4a; border-color:#4a9e4a; }
-  .fpill-count {
-    display:inline-flex; align-items:center; justify-content:center;
-    width:18px; height:18px; border-radius:999px;
-    font-size:0.6rem; font-weight:800;
-    background:rgba(28,25,23,0.08); color:#78716c;
-    transition: background 0.15s, color 0.15s;
-  }
-  .fpill[data-active="true"] .fpill-count { background:rgba(255,255,255,0.22); color:#fff; }
-</style>
 
 <Layout title="Insights & Articles | Daniel Gierach Property" description="Property insights and guides for Brisbane buyers, sellers and investors. Practical advice on auctions, contracts, flood mapping, stamp duty and more from Daniel Gierach.">
 
@@ -92,7 +67,7 @@ function filterCount(f: string): number {
     <!-- Filter Pills -->
     <div class="filter-bar">
       {filters.map(f => (
-        <button class="fpill" data-filter={f} data-active={f === 'All' ? 'true' : 'false'}>
+        <button class={`fpill${f === 'All' ? ' active-all' : ''}`} data-filter={f}>
           {f}
           <span class="fpill-count">{filterCount(f)}</span>
         </button>
@@ -154,6 +129,11 @@ function filterCount(f: string): number {
 </Layout>
 
 <script>
+  const activeClass: Record<string, string> = {
+    'All': 'active-all', 'Buyers': 'active-buyers', 'Sellers': 'active-sellers',
+    'Buyers & Sellers': 'active-buyers-and-sellers', 'Owners': 'active-owners',
+  };
+
   function insightMatches(tag: string, filter: string): boolean {
     if (filter === 'All') return true;
     if (filter === 'Buyers')  return tag === 'Buyers'  || tag === 'Buyers & Sellers';
@@ -161,12 +141,15 @@ function filterCount(f: string): number {
     return tag === filter;
   }
 
-  const pills  = document.querySelectorAll<HTMLButtonElement>('.fpill');
-  const cards  = document.querySelectorAll<HTMLElement>('.insight-card');
-  const noEl   = document.getElementById('no-articles')!;
+  const pills = document.querySelectorAll<HTMLButtonElement>('.fpill');
+  const cards = document.querySelectorAll<HTMLElement>('.insight-card');
+  const noEl  = document.getElementById('no-articles')!;
 
   function applyFilter(active: string) {
-    pills.forEach(p => p.dataset.active = (p.dataset.filter === active) ? 'true' : 'false');
+    pills.forEach(p => {
+      const cls = activeClass[p.dataset.filter!] || 'active-all';
+      p.classList.toggle(cls, p.dataset.filter === active);
+    });
     let visible = 0;
     cards.forEach(c => {
       const show = insightMatches(c.dataset.tag!, active);
