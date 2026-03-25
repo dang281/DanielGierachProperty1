@@ -186,7 +186,7 @@ const faqSchema = {
               type="text"
               placeholder="Enter your property address…"
               autocomplete="off"
-              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;"
+              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
             />
             <div id="hero-ac-list" style="display:none;position:absolute;top:100%;left:0;right:0;background:#1c1917;border:1px solid rgba(255,255,255,0.12);border-top:none;z-index:200;max-height:180px;overflow-y:auto;"></div>
           </div>
@@ -957,25 +957,49 @@ const faqSchema = {
   @media (max-width: 640px) {
     .testimonial-header { margin-bottom: 1.5rem !important; }
 
-    /* Remove full-height constraint — let content dictate height */
-    .hero-section { min-height: 0 !important; padding-top: 5rem; padding-bottom: 3rem; }
+    /* Hero: remove full-height, tighter padding */
+    .hero-section { min-height: 0 !important; padding-top: 4.5rem !important; padding-bottom: 2rem !important; }
+
+    /* Tighter card padding */
+    .hero-card { padding: 1.5rem !important; }
 
     /* Smaller headline */
-    .hero-h1 { font-size: 2rem !important; line-height: 1.12 !important; }
+    .hero-h1 { font-size: 1.85rem !important; line-height: 1.1 !important; margin-bottom: 1rem !important; }
+
+    /* Tighter body text */
+    .hero-section p[style*="font-size:1rem"] { font-size: 0.875rem !important; line-height: 1.7 !important; margin-bottom: 0.5rem !important; }
 
     /* Hide second paragraph — one is enough on mobile */
     .hero-p2 { display: none !important; }
 
-    /* Tighter card padding */
-    .hero-card { padding: 1.75rem !important; }
+    /* Stack address form vertically */
+    #hero-address-form { flex-direction: column !important; max-width: 100% !important; }
 
-    /* Stats: smaller numbers, tighter labels */
-    .stat-counter { font-size: 1.3rem !important; }
+    /* Input: restore right border, full width */
+    #hero-address-input {
+      border-right: 1.5px solid rgba(255,255,255,0.18) !important;
+      border-bottom: none !important;
+      font-size: 1rem !important;
+      padding: 1rem 1.1rem !important;
+    }
 
-    /* Full-width CTA with generous tap target */
-    .hero-cta { width: 100%; justify-content: center; min-height: 56px; }
+    /* Button: full width, generous tap target */
+    .hero-cta {
+      width: 100% !important;
+      justify-content: center !important;
+      min-height: 52px !important;
+      font-size: 0.78rem !important;
+    }
 
-    /* Hide trust signal on mobile — too much noise */
+    /* Stats: tighter */
+    .stat-counter { font-size: 1.4rem !important; }
+    .hero-section .flex.justify-between { margin-top: 1.5rem !important; padding-top: 1.25rem !important; }
+    .hero-section .flex.justify-between p:last-child {
+      font-size: 0.55rem !important;
+      letter-spacing: 0.1em !important;
+    }
+
+    /* Hide trust signal on mobile */
     .hero-trust { display: none; }
   }
 </style>
