@@ -325,6 +325,55 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     flex-shrink: 0; margin-top: 0.05rem;
   }
 
+  /* ── Print report styles ─────────────────── */
+  #print-report { display: none; }
+
+  /* Print-specific table and layout classes */
+  .pr-section-title {
+    font-size: 6.5pt;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c5a03c;
+    font-family: system-ui, sans-serif;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  .pr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 7.5pt;
+    color: #44403c;
+  }
+  .pr-table td {
+    padding: 0.18rem 0.1rem;
+    border-bottom: 1px solid #f0ece4;
+    vertical-align: middle;
+  }
+  .pr-table tr:last-child td { border-bottom: none; }
+  .pr-val { text-align: right; font-weight: 600; color: #1c1917; white-space: nowrap; padding-left: 0.5rem; }
+  .pr-total td { font-weight: 700; color: #1c1917; border-top: 1.5px solid #d6cfc2 !important; padding-top: 0.4rem !important; border-bottom: none !important; }
+  .pr-total .pr-val { color: #c5a03c; }
+  .pr-deduct .pr-val { color: #4a9e4a; }
+  .pr-loss .pr-val { color: #c0392b; }
+
+  @media print {
+    body * { visibility: hidden !important; }
+    #print-report {
+      visibility: visible !important;
+      display: block !important;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: #ffffff;
+    }
+    #print-report * { visibility: visible !important; }
+    @page { size: A4 portrait; margin: 12mm 16mm 14mm; }
+  }
+
   /* ── Mobile ──────────────────────────────── */
   @media (max-width: 900px) {
     #cg-layout { grid-template-columns: 1fr !important; }
@@ -677,6 +726,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
      RIGHT: RESULTS
 ══════════════════════════════════════════════════════════════ -->
 <div id="cg-results" style="position:sticky;top:80px;">
+
+  <!-- Print button -->
+  <button id="printBtn" type="button"
+    style="width:100%;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.8rem 1.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:0.75rem;transition:background 0.2s;"
+    onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+    Print / Save as PDF
+  </button>
 
   <!-- Hold Period -->
   <div class="cg-result-card" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
@@ -1553,11 +1610,268 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   ['mrMovedBack','mrOnlyMainRes'].forEach(id => getEl(id)?.addEventListener('change', calc));
 
   /* ─────────────────────────────────────────────────────────────
+     PRINT REPORT
+  ───────────────────────────────────────────────────────────── */
+  function fmtDate(str: string): string {
+    const d = new Date(str);
+    return isNaN(d.getTime()) ? '—' : d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function rowHtml(label: string, val: string, cls = ''): string {
+    return `<tr class="${cls}"><td>${label}</td><td class="pr-val">${val}</td></tr>`;
+  }
+
+  function buildPrintReport() {
+    const ownership   = selVal('ownershipType');
+    const ownerShare  = ownership === 'joint' ? numVal('ownerShare', 50) / 100 : 1.0;
+    const resident    = selVal('taxResident') === 'yes';
+    const mrStatus    = selVal('mainResStatus');
+
+    // Header date
+    setText('pr-prepared-date', new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }));
+
+    // Property details
+    setText('pr-pp',   fmt(numVal('purchasePrice') * ownerShare) + (ownership === 'joint' ? ` (${Math.round(ownerShare * 100)}% share)` : ''));
+    setText('pr-pd',   fmtDate(getInp('purchaseDate')?.value || ''));
+    setText('pr-sp',   fmt(numVal('salePrice') * ownerShare) + (ownership === 'joint' ? ` (${Math.round(ownerShare * 100)}% share)` : ''));
+    setText('pr-sd',   fmtDate(getInp('saleDate')?.value || ''));
+    setText('pr-hold', getEl('holdPeriod')?.textContent || '—');
+    const ownerLabels: Record<string, string> = { individual: 'Individual', joint: 'Joint Individuals', trust: 'Discretionary Trust', company: 'Company (Pty Ltd)', smsf: 'SMSF' };
+    setText('pr-own',  ownerLabels[ownership] || ownership);
+    setText('pr-res',  resident ? 'Australian resident' : 'Non-resident');
+    const mrLabels: Record<string, string> = { no: 'No — investment only', yes: 'Main residence' };
+    setText('pr-mr',   mrLabels[mrStatus] || mrStatus);
+
+    // Cost base table
+    const costItems: Array<[string, number]> = [
+      ['Purchase price',             numVal('purchasePrice')],
+      ['Transfer duty (QLD)',        numVal('stampDuty')],
+      ['Conveyancing — buying',      numVal('legalBuying')],
+      ['Building and pest inspection', numVal('inspection')],
+      ['Capital improvements',       numVal('improvements')],
+      ['Agent commission',           numVal('agentFee')],
+      ['Conveyancing — selling',     numVal('legalSelling')],
+      ['Other selling costs',        numVal('otherSelling')],
+    ];
+    const holdTotal = numVal('holdInterest') + numVal('holdRates') + numVal('holdLandTax') + numVal('holdInsurance') + numVal('holdBodyCorp') + numVal('holdOther');
+    if (holdTotal > 0) costItems.push(['Holding costs (not previously claimed)', holdTotal]);
+
+    let totalCostBase = 0;
+    const cbEl = getEl('pr-costbase-table');
+    if (cbEl) {
+      cbEl.innerHTML = costItems.filter(([, v]) => v > 0).map(([l, v]) => {
+        const share = v * ownerShare;
+        totalCostBase += share;
+        return rowHtml(l, fmt(share));
+      }).join('') + rowHtml('Total cost base', fmt(totalCostBase), 'pr-total');
+    }
+
+    // Gain table — read from live result DOM
+    const gainEl = getEl('pr-gain-table');
+    const lossPanel = getEl('lossPanel');
+    const exemptPanel = getEl('exemptPanel');
+    const isLoss     = lossPanel?.style.display !== 'none';
+    const isExempt   = exemptPanel?.style.display !== 'none';
+
+    if (isLoss) {
+      setText('pr-gain-title', 'Outcome: Capital Loss');
+      if (gainEl) gainEl.innerHTML = rowHtml('Estimated capital loss', getEl('r-lossAmt')?.textContent || '—', 'pr-loss') + rowHtml('CGT payable', '$0', 'pr-total');
+    } else if (isExempt) {
+      setText('pr-gain-title', 'Main Residence Exemption');
+      if (gainEl) gainEl.innerHTML = rowHtml(getEl('r-exemptMsg')?.textContent || 'Full exemption', getEl('r-exemptSub')?.textContent || '', '') + rowHtml('CGT payable', '$0', 'pr-total');
+    } else {
+      setText('pr-gain-title', 'Estimated Capital Gain');
+      if (gainEl) {
+        const rows = [rowHtml('Sale proceeds', getEl('r-salePrice')?.textContent || '—')];
+        rows.push(rowHtml('Less: total cost base', getEl('r-costBase')?.textContent || '—', 'pr-deduct'));
+        rows.push(rowHtml('Gross capital gain', getEl('r-grossGain')?.textContent || '—', 'pr-total'));
+        const mrRow = getEl('mrExemptRow');
+        if (mrRow?.style.display !== 'none') rows.push(rowHtml(getEl('mrExemptLabel')?.textContent || 'Main residence exemption', getEl('r-mrExempt')?.textContent || '—', 'pr-deduct'));
+        const prRow = getEl('priorLossRow');
+        if (prRow?.style.display !== 'none') rows.push(rowHtml('Less: prior year losses', getEl('r-priorApplied')?.textContent || '—', 'pr-deduct'));
+        const discRow = getEl('discountRow');
+        if (discRow?.style.display !== 'none') rows.push(rowHtml(getEl('discountLabel')?.textContent || 'CGT discount', getEl('r-discountAmt')?.textContent || '—', 'pr-deduct'));
+        rows.push(rowHtml('Net taxable capital gain', getEl('r-netGain')?.textContent || '—', 'pr-total'));
+        gainEl.innerHTML = rows.join('');
+      }
+    }
+
+    // Tax section
+    const taxEl = getEl('pr-tax-content');
+    if (taxEl) {
+      if (ownership === 'trust') {
+        taxEl.innerHTML = `<p style="font-family:system-ui,sans-serif;font-size:7pt;color:#57534e;line-height:1.65;margin:0;">A discretionary trust may pass the CGT discount to individual beneficiaries. Tax depends on distribution. Estimated net capital gain: <strong>${getEl('r-trustGain')?.textContent || '—'}</strong>. Seek accountant advice on distribution strategy.</p>`;
+      } else if (ownership === 'company') {
+        taxEl.innerHTML = `<table class="pr-table">${rowHtml('Net gain (no CGT discount)', getEl('r-companyGain')?.textContent || '—')}${rowHtml('Tax at 30% (company rate)', getEl('r-companyTax')?.textContent || '—', 'pr-total')}</table>`;
+      } else if (ownership === 'smsf') {
+        taxEl.innerHTML = `<table class="pr-table">${rowHtml('Net gain (one-third discount)', getEl('r-smsfGain')?.textContent || '—')}${rowHtml('Estimated tax at 15% (accumulation)', getEl('r-smsfTax')?.textContent || '—', 'pr-total')}</table>`;
+      } else if (isLoss || isExempt) {
+        taxEl.innerHTML = `<p style="font-family:system-ui,sans-serif;font-size:7pt;color:#57534e;margin:0;">${isLoss ? 'No CGT is payable on a capital loss.' : 'No CGT payable — main residence exemption applies.'}</p>`;
+      } else {
+        const rows = [
+          rowHtml('Other taxable income', getEl('r-otherIncome')?.textContent || '—'),
+          rowHtml('Plus: net capital gain', getEl('r-addGain')?.textContent || '—'),
+          rowHtml('Total taxable income', getEl('r-totalIncome')?.textContent || '—', 'pr-total'),
+          rowHtml('Income tax — before gain', getEl('r-taxBefore')?.textContent || '—'),
+          rowHtml('Income tax — with gain', getEl('r-taxAfter')?.textContent || '—'),
+          rowHtml('Tax attributable to gain', getEl('r-taxOnGain')?.textContent || '—', 'pr-total'),
+        ];
+        if (resident) rows.push(rowHtml('Medicare levy on gain', getEl('r-medicare')?.textContent || '—'));
+        rows.push(rowHtml('Total estimated CGT payable', getEl('r-totalCGT')?.textContent || '—', 'pr-total'));
+        taxEl.innerHTML = `<table class="pr-table">${rows.join('')}</table>`;
+      }
+    }
+
+    // Net proceeds
+    const procEl = getEl('pr-proceeds-table');
+    if (procEl) {
+      const sellingCosts = (numVal('agentFee') + numVal('legalSelling') + numVal('otherSelling')) * ownerShare;
+      const cgt = isLoss || isExempt ? '$0' : (getEl('r-totalCGT')?.textContent || '—');
+      procEl.innerHTML = [
+        rowHtml('Sale proceeds', fmt(numVal('salePrice') * ownerShare)),
+        rowHtml('Less: selling costs', '(' + fmt(sellingCosts) + ')', 'pr-deduct'),
+        rowHtml('Less: estimated CGT', '(' + (isLoss || isExempt ? '0' : (getEl('r-totalCGT')?.textContent?.replace(/[$,]/g, '') || '0')) + ')', 'pr-deduct'),
+      ].join('');
+    }
+    setText('pr-net-proceeds', getEl('r-netProceeds')?.textContent || '—');
+    setText('pr-effective-rate', getEl('r-effectiveRate')?.textContent || '');
+
+    // Budget comparison
+    const cmpBlock = getEl('pr-compare-block');
+    const mainCmpBlock = getEl('compareBlock');
+    if (cmpBlock && mainCmpBlock?.style.display !== 'none') {
+      cmpBlock.style.display = 'block';
+      const cmpEl = getEl('pr-compare-table');
+      if (cmpEl) {
+        cmpEl.innerHTML = [
+          rowHtml('Current law (50% discount)', getEl('r-compareCurrent')?.textContent || '—'),
+          rowHtml(getEl('r-compareLabel')?.textContent || 'Selected rate', getEl('r-compareNew')?.textContent || '—', 'pr-total'),
+          rowHtml('Difference', getEl('r-compareDiff')?.textContent || '—'),
+        ].join('');
+      }
+    } else if (cmpBlock) {
+      cmpBlock.style.display = 'none';
+    }
+
+    // Assumptions — clone from live list
+    const srcList = getEl('assumptionsList');
+    const prList  = getEl('pr-assumptions');
+    if (srcList && prList) {
+      prList.innerHTML = Array.from(srcList.children)
+        .map(li => `<li>${li.textContent}</li>`)
+        .join('');
+    }
+  }
+
+  getEl('printBtn')?.addEventListener('click', () => {
+    buildPrintReport();
+    window.print();
+  });
+
+  /* ─────────────────────────────────────────────────────────────
      INITIAL RENDER
   ───────────────────────────────────────────────────────────── */
   calc();
 
 })();
 </script>
+
+<!-- ════════════════════════════════════════════════════════
+     PRINT REPORT — hidden normally, shown only on print
+════════════════════════════════════════════════════════ -->
+<div id="print-report">
+
+  <!-- Gold accent bar -->
+  <div style="height:4px;background:#c5a03c;margin-bottom:0;"></div>
+
+  <!-- Header -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;padding:1rem 0 0.85rem;border-bottom:1.5px solid #e5e0d8;">
+    <div>
+      <div style="font-family:Georgia,serif;font-size:16pt;font-weight:400;color:#1c1917;letter-spacing:-0.01em;line-height:1.1;">Daniel Gierach</div>
+      <div style="font-family:system-ui,sans-serif;font-size:6.5pt;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c5a03c;margin-top:0.25rem;">Ray White — The Collective · Queensland</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:system-ui,sans-serif;font-size:9pt;font-weight:700;color:#1c1917;letter-spacing:0.04em;text-transform:uppercase;">Capital Gains Tax Estimate</div>
+      <div style="font-family:system-ui,sans-serif;font-size:6.5pt;color:#78716c;margin-top:0.2rem;">Queensland Property &nbsp;·&nbsp; Prepared <span id="pr-prepared-date"></span></div>
+    </div>
+  </div>
+
+  <!-- Row 1: Property Details + Cost Base (2-col) -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem;">
+
+    <div>
+      <span class="pr-section-title">Property Details</span>
+      <table class="pr-table">
+        <tr><td>Purchase price</td><td class="pr-val" id="pr-pp"></td></tr>
+        <tr><td>Purchase date</td><td class="pr-val" id="pr-pd"></td></tr>
+        <tr><td>Sale price</td><td class="pr-val" id="pr-sp"></td></tr>
+        <tr><td>Sale date</td><td class="pr-val" id="pr-sd"></td></tr>
+        <tr><td>Hold period</td><td class="pr-val" id="pr-hold"></td></tr>
+        <tr><td>Ownership</td><td class="pr-val" id="pr-own"></td></tr>
+        <tr><td>Tax residence</td><td class="pr-val" id="pr-res"></td></tr>
+        <tr><td>Main residence</td><td class="pr-val" id="pr-mr"></td></tr>
+      </table>
+    </div>
+
+    <div>
+      <span class="pr-section-title">Cost Base</span>
+      <table class="pr-table" id="pr-costbase-table"></table>
+    </div>
+
+  </div>
+
+  <!-- Row 2: Gain/Loss + Tax (2-col) -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid #f0ece4;">
+
+    <div id="pr-gain-block">
+      <span class="pr-section-title" id="pr-gain-title">Estimated Capital Gain</span>
+      <table class="pr-table" id="pr-gain-table"></table>
+    </div>
+
+    <div>
+      <span class="pr-section-title">Estimated Tax on Capital Gain</span>
+      <div id="pr-tax-content"></div>
+    </div>
+
+  </div>
+
+  <!-- Row 3: Net Proceeds highlight -->
+  <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid #f0ece4;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
+
+    <div>
+      <span class="pr-section-title">Net Proceeds After Tax</span>
+      <table class="pr-table" id="pr-proceeds-table" style="margin-bottom:0.5rem;"></table>
+      <div style="padding:0.6rem 0.85rem;background:#faf8f4;border-left:3px solid #c5a03c;margin-top:0.25rem;">
+        <div style="font-family:system-ui,sans-serif;font-size:6pt;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#78716c;">Estimated Net Proceeds</div>
+        <div style="font-family:Georgia,serif;font-size:14pt;font-weight:400;color:#c5a03c;line-height:1.2;" id="pr-net-proceeds"></div>
+        <div style="font-family:system-ui,sans-serif;font-size:6.5pt;color:#78716c;margin-top:0.15rem;" id="pr-effective-rate"></div>
+      </div>
+    </div>
+
+    <!-- Budget scenario comparison (shown if relevant) -->
+    <div id="pr-compare-block" style="display:none;">
+      <span class="pr-section-title">Budget Scenario Comparison</span>
+      <table class="pr-table" id="pr-compare-table"></table>
+    </div>
+
+  </div>
+
+  <!-- Assumptions -->
+  <div style="margin-top:0.9rem;padding-top:0.75rem;border-top:1.5px solid #e5e0d8;">
+    <span class="pr-section-title">Assumptions and Important Notes</span>
+    <ul id="pr-assumptions" style="margin:0.3rem 0 0;padding-left:1rem;font-family:system-ui,sans-serif;font-size:6.5pt;color:#57534e;line-height:1.7;column-count:2;column-gap:1.5rem;"></ul>
+  </div>
+
+  <!-- Footer -->
+  <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid #e5e0d8;display:flex;justify-content:space-between;align-items:center;">
+    <div style="font-family:system-ui,sans-serif;font-size:6pt;color:#78716c;">
+      Daniel Gierach &nbsp;·&nbsp; Ray White Bulimba &nbsp;·&nbsp; 0412 523 821 &nbsp;·&nbsp; danielgierach.com
+    </div>
+    <div style="font-family:system-ui,sans-serif;font-size:6pt;color:#a8a29e;font-style:italic;">
+      This estimate does not replace professional tax advice. Always consult a registered tax agent.
+    </div>
+  </div>
+
+</div>
 
 </ToolLayout>
