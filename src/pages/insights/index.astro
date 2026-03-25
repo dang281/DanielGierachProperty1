@@ -65,11 +65,17 @@ function filterCount(f: string): number {
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <!-- Filter Pills -->
-    <div class="filter-bar">
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;">
       {filters.map(f => (
-        <button class={`fpill${f === 'All' ? ' active-all' : ''}`} data-filter={f}>
+        <button
+          class="fpill"
+          data-filter={f}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#1c1917':'transparent'};color:${f==='All'?'#f0ece4':'#78716c'};border-color:${f==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
+        >
           {f}
-          <span class="fpill-count">{filterCount(f)}</span>
+          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;background:${f==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${f==='All'?'#f0ece4':'#78716c'};`}>
+            {filterCount(f)}
+          </span>
         </button>
       ))}
     </div>
@@ -129,9 +135,8 @@ function filterCount(f: string): number {
 </Layout>
 
 <script>
-  const activeClass: Record<string, string> = {
-    'All': 'active-all', 'Buyers': 'active-buyers', 'Sellers': 'active-sellers',
-    'Buyers & Sellers': 'active-buyers-and-sellers', 'Owners': 'active-owners',
+  const activeBg: Record<string, string> = {
+    'All':'#1c1917','Buyers':'#3a8fa8','Sellers':'#b89a2a','Buyers & Sellers':'#b89a2a','Owners':'#4a9e4a'
   };
 
   function insightMatches(tag: string, filter: string): boolean {
@@ -147,8 +152,17 @@ function filterCount(f: string): number {
 
   function applyFilter(active: string) {
     pills.forEach(p => {
-      const cls = activeClass[p.dataset.filter!] || 'active-all';
-      p.classList.toggle(cls, p.dataset.filter === active);
+      const f = p.dataset.filter!;
+      const isActive = f === active;
+      const bg = activeBg[f] || '#1c1917';
+      p.style.background  = isActive ? bg    : 'transparent';
+      p.style.color       = isActive ? '#fff' : '#78716c';
+      p.style.borderColor = isActive ? bg    : 'rgba(28,25,23,0.22)';
+      const badge = p.querySelector('span') as HTMLSpanElement;
+      if (badge) {
+        badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.08)';
+        badge.style.color      = isActive ? '#fff' : '#78716c';
+      }
     });
     let visible = 0;
     cards.forEach(c => {

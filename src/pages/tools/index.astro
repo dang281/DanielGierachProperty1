@@ -66,11 +66,17 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <!-- Filter Pills -->
-    <div class="filter-bar">
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;">
       {(['All', 'Seller', 'Buyer', 'Investor', 'Market']).map(phase => (
-        <button class={`fpill${phase === 'All' ? ' active-all' : ''}`} data-filter={phase}>
+        <button
+          class="fpill"
+          data-filter={phase}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${phase==='All'?'#1c1917':'transparent'};color:${phase==='All'?'#f0ece4':'#78716c'};border-color:${phase==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
+        >
           {phase}
-          <span class="fpill-count">{counts[phase] || 0}</span>
+          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;background:${phase==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${phase==='All'?'#f0ece4':'#78716c'};`}>
+            {counts[phase] || 0}
+          </span>
         </button>
       ))}
     </div>
@@ -132,19 +138,24 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
 </Layout>
 
 <script>
+  const activeBg:  Record<string, string> = { All:'#1c1917', Seller:'#b89a2a', Buyer:'#3a8fa8', Investor:'#4a9e4a', Market:'#888' };
   const pills  = document.querySelectorAll<HTMLButtonElement>('.fpill');
   const cards  = document.querySelectorAll<HTMLElement>('.tool-card');
   const noEl   = document.getElementById('no-tools')!;
 
-  const activeClass: Record<string, string> = {
-    All: 'active-all', Seller: 'active-seller', Buyer: 'active-buyer',
-    Investor: 'active-investor', Market: 'active-market',
-  };
-
   function applyFilter(active: string) {
     pills.forEach(p => {
-      const cls = activeClass[p.dataset.filter!] || 'active-all';
-      p.classList.toggle(cls, p.dataset.filter === active);
+      const f = p.dataset.filter!;
+      const isActive = f === active;
+      const bg = activeBg[f] || '#1c1917';
+      p.style.background   = isActive ? bg              : 'transparent';
+      p.style.color        = isActive ? '#fff'           : '#78716c';
+      p.style.borderColor  = isActive ? bg              : 'rgba(28,25,23,0.22)';
+      const badge = p.querySelector('span') as HTMLSpanElement;
+      if (badge) {
+        badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.08)';
+        badge.style.color      = isActive ? '#fff' : '#78716c';
+      }
     });
     let visible = 0;
     cards.forEach(c => {
