@@ -323,7 +323,7 @@ import Layout from '../layouts/Layout.astro';
     background: none;
     position: relative;
   }
-  .cal-day:hover:not(.cal-day--disabled):not(.cal-day--selected) {
+  .cal-day:hover:not(.cal-day--disabled):not(.cal-day--selected):not(.cal-day--sunday) {
     background: rgba(196,145,42,0.08);
     border-color: rgba(196,145,42,0.35);
     color: #c4912a;
@@ -334,19 +334,45 @@ import Layout from '../layouts/Layout.astro';
     bottom: 4px; left: 50%; transform: translateX(-50%);
     width: 4px; height: 4px;
     border-radius: 50%;
-    background: #c4912a;
+    background: rgba(28,25,23,0.25);
   }
   .cal-day--selected {
     background: #c4912a;
     color: #fff;
     font-weight: 700;
   }
+  /* Past days — clearly unavailable */
   .cal-day--disabled {
     color: rgba(28,25,23,0.2);
-    cursor: default;
+    background: rgba(28,25,23,0.03);
+    cursor: not-allowed;
     pointer-events: none;
+    text-decoration: line-through;
+    text-decoration-color: rgba(28,25,23,0.15);
+  }
+  /* Sundays — muted, not bookable */
+  .cal-day--sunday {
+    color: rgba(180,60,60,0.35);
+    cursor: not-allowed;
+    pointer-events: none;
+    font-style: italic;
   }
   .cal-day--empty { pointer-events: none; }
+
+  /* Click ripple animation */
+  @keyframes calRipple {
+    0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.45; }
+    100% { transform: translate(-50%,-50%) scale(2.8); opacity: 0; }
+  }
+  .cal-day .ripple {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: rgba(196,145,42,0.35);
+    pointer-events: none;
+    animation: calRipple 0.4s ease-out forwards;
+  }
 
   /* Time slots */
   .cal-time-section {
@@ -455,7 +481,7 @@ import Layout from '../layouts/Layout.astro';
     const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const today = new Date();
     today.setHours(0,0,0,0);
-    const minDate = new Date(today); minDate.setDate(today.getDate() + 1); // earliest = tomorrow
+    const minDate = new Date(today); minDate.setDate(today.getDate() + 2); // earliest = day after tomorrow
     const maxDate = new Date(today); maxDate.setDate(today.getDate() + 60);
 
     let viewYear  = minDate.getFullYear();
@@ -502,17 +528,27 @@ import Layout from '../layouts/Layout.astro';
         btn.textContent = String(d);
         btn.className = 'cal-day';
 
-        const isToday = date.getTime() === today.getTime();
-        const isPast  = date < minDate;
-        const isFuture = date > maxDate;
+        const isToday    = date.getTime() === today.getTime();
+        const isTomorrow = date.getTime() === new Date(today.getTime() + 86400000).getTime();
+        const isPast     = date < minDate;
+        const isFuture   = date > maxDate;
+        const isSunday   = date.getDay() === 0;
         const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
 
         if (isPast || isFuture) btn.classList.add('cal-day--disabled');
-        if (isToday)    btn.classList.add('cal-day--today');
+        if (isToday || isTomorrow) btn.classList.add('cal-day--today');
+        if (isSunday && !isPast && !isFuture) btn.classList.add('cal-day--sunday');
         if (isSelected) btn.classList.add('cal-day--selected');
 
-        if (!isPast && !isFuture) {
-          btn.addEventListener('click', () => selectDate(date));
+        if (!isPast && !isFuture && !isSunday) {
+          btn.addEventListener('click', () => {
+            // Ripple effect
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            btn.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+            selectDate(date);
+          });
         }
         grid.appendChild(btn);
       }
