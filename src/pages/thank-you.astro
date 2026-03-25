@@ -406,6 +406,57 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
   document.body.classList.add('thankyou-page');
+
+  (function() {
+    const from = new URLSearchParams(window.location.search).get('from');
+    if (from === 'report') {
+      const eyebrow = document.querySelector('.ty-eyebrow');
+      const h1 = document.querySelector('.ty-h1');
+      const sub = document.querySelector('.ty-sub');
+      const badge = document.querySelector('.ty-badge span');
+      const next1title = document.querySelectorAll('.ty-next-title')[0];
+      const next1body = document.querySelectorAll('.ty-next-body')[0];
+      const next2title = document.querySelectorAll('.ty-next-title')[1];
+      const next2body = document.querySelectorAll('.ty-next-body')[1];
+      const next3title = document.querySelectorAll('.ty-next-title')[2];
+      const next3body = document.querySelectorAll('.ty-next-body')[2];
+
+      if (eyebrow) eyebrow.textContent = 'Report Request Received';
+      if (h1) h1.innerHTML = 'Your report is<br/><em>on its way.</em>';
+      if (sub) sub.innerHTML = 'Daniel will review your property details and send through a personalised report — usually within a few hours. Or call him directly on <a href="tel:+61412523821">0412 523 821</a>.';
+      if (badge) badge.textContent = 'Report typically sent within a few hours · 7 days a week';
+      if (next1title) next1title.textContent = 'Daniel reviews your property';
+      if (next1body) next1body.textContent = 'He looks at your address, property type, and comparable recent sales to build an accurate picture.';
+      if (next2title) next2title.textContent = 'He prepares your report';
+      if (next2body) next2body.innerHTML = 'A personalised value range based on recent sales in your area. Usually ready within a few hours. If it\'s urgent, call <a href="tel:+61412523821" style="color:#c5a03c;text-decoration:none;font-weight:600;">0412 523 821</a>.';
+      if (next3title) next3title.textContent = 'You receive honest advice';
+      if (next3body) next3body.textContent = 'A clear, frank assessment of what your property could achieve — no fluff, no pressure.';
+    }
+
+    if (from === 'appraisal') {
+      const eyebrow = document.querySelector('.ty-eyebrow');
+      const h1 = document.querySelector('.ty-h1');
+      const sub = document.querySelector('.ty-sub');
+      const badge = document.querySelector('.ty-badge span');
+      const next1title = document.querySelectorAll('.ty-next-title')[0];
+      const next1body = document.querySelectorAll('.ty-next-body')[0];
+      const next2title = document.querySelectorAll('.ty-next-title')[1];
+      const next2body = document.querySelectorAll('.ty-next-body')[1];
+      const next3title = document.querySelectorAll('.ty-next-title')[2];
+      const next3body = document.querySelectorAll('.ty-next-body')[2];
+
+      if (eyebrow) eyebrow.textContent = 'Appraisal Request Received';
+      if (h1) h1.innerHTML = 'Your appraisal is<br/><em>booked in.</em>';
+      if (sub) sub.innerHTML = 'Daniel will confirm the exact time with you shortly. If you need to reach him sooner, call directly on <a href="tel:+61412523821">0412 523 821</a>.';
+      if (badge) badge.textContent = 'Confirmation sent shortly · 7 days a week';
+      if (next1title) next1title.textContent = 'Daniel reviews your request';
+      if (next1body) next1body.textContent = 'He checks your preferred date and time to make sure it works, and confirms availability.';
+      if (next2title) next2title.textContent = 'He\'ll confirm the exact time';
+      if (next2body) next2body.innerHTML = 'Expect a call or message from Daniel shortly to lock in the details. Or reach him directly on <a href="tel:+61412523821" style="color:#c5a03c;text-decoration:none;font-weight:600;">0412 523 821</a>.';
+      if (next3title) next3title.textContent = 'An honest, in-person assessment';
+      if (next3body) next3body.textContent = 'Daniel walks through your home and gives you a frank, well-researched opinion of value. Free, no obligation.';
+    }
+  })();
 </script>
 
 </Layout>

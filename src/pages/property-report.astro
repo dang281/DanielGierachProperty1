@@ -685,7 +685,7 @@ import Layout from '../layouts/Layout.astro';
       method: 'POST',
       body: new FormData(this as HTMLFormElement),
       headers: { 'Accept': 'application/json' }
-    }).finally(() => { window.location.href = '/thank-you'; });
+    }).finally(() => { window.location.href = '/thank-you?from=report'; });
   });
 })();
 </script>
