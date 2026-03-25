@@ -359,11 +359,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .pr-loss .pr-val { color: #c0392b; }
 
   @media print {
+    html, body { overflow: hidden !important; }
     body * { visibility: hidden !important; }
     #print-report {
       visibility: visible !important;
       display: block !important;
-      position: absolute;
+      position: fixed;
       top: 0; left: 0;
       width: 100%;
       padding: 0 !important;
