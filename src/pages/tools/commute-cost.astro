@@ -1,0 +1,611 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Commute Cost Comparison"
+  description="Compare the true annual cost of driving to work from two different properties. Fuel, tolls, and wear and tear — factoring in current Brisbane fuel prices."
+  tool="Commute Cost Comparison"
+  phase="Buyer Tools"
+>
+
+<style is:global>
+  /* ── Shared card / row styles ─────────────────── */
+  .cc-card {
+    background: #ffffff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.75rem 2rem;
+    margin-bottom: 1rem;
+  }
+  .cc-section-title {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+  .cc-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .cc-row label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .cc-row label small {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+  .cc-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .cc-prefix {
+    position: absolute;
+    left: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .cc-suffix {
+    position: absolute;
+    right: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+  .cc-input {
+    width: 120px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background: var(--color-surface-4);
+    border: 1.5px solid rgba(28,25,23,0.14);
+    border-radius: 0;
+    text-align: right;
+    -moz-appearance: textfield;
+  }
+  .cc-input::-webkit-outer-spin-button,
+  .cc-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .cc-input:focus { outline: none; border-color: var(--color-gold); }
+  .cc-input.has-prefix { padding-left: 1.4rem; text-align: left; }
+  .cc-input.has-suffix { padding-right: 2rem; }
+  .cc-select {
+    width: 160px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background: var(--color-surface-4);
+    border: 1.5px solid rgba(28,25,23,0.14);
+    border-radius: 0;
+    appearance: none;
+    cursor: pointer;
+  }
+  .cc-select:focus { outline: none; border-color: var(--color-gold); }
+
+  /* ── Property columns ─────────────────────────── */
+  .cc-prop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .cc-prop-card {
+    background: #ffffff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.5rem;
+  }
+  .cc-prop-card.prop-a { border-top: 3px solid #7ec8e3; }
+  .cc-prop-card.prop-b { border-top: 3px solid #f5d07a; }
+  .cc-prop-title {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .cc-prop-card.prop-a .cc-prop-title { color: #3a8fa8; }
+  .cc-prop-card.prop-b .cc-prop-title { color: #b89a2a; }
+  .cc-prop-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+  .cc-prop-row label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+  .cc-prop-row label small {
+    display: block;
+    font-size: 0.67rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Results panel ───────────────────────────── */
+  .cc-result-card {
+    background: #ffffff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .cc-result-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .cc-result-value {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+  .cc-result-value.gold { color: var(--color-gold); }
+  .cc-result-sub {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    line-height: 1.5;
+  }
+  .cc-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.05);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+  }
+  .cc-line:last-child { border-bottom: none; }
+  .cc-line .val { font-weight: 600; color: var(--color-text-primary); white-space: nowrap; }
+  .cc-line.total {
+    font-weight: 700;
+    color: var(--color-text-primary);
+    border-top: 1.5px solid rgba(28,25,23,0.12);
+    margin-top: 0.25rem;
+    padding-top: 0.6rem;
+  }
+  .cc-line.total .val { font-size: 1rem; }
+  .cc-saving {
+    padding: 1.25rem;
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    margin-top: 0.25rem;
+  }
+
+  /* ── Comparison bar ──────────────────────────── */
+  .cc-bar-wrap { margin: 0.5rem 0; }
+  .cc-bar-track {
+    height: 6px;
+    background: rgba(28,25,23,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .cc-bar-fill {
+    height: 100%;
+    transition: width 0.4s ease;
+  }
+
+  /* ── Presets ─────────────────────────────────── */
+  .cc-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+  .cc-preset {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(28,25,23,0.2);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .cc-preset:hover,
+  .cc-preset.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: #0a0806;
+  }
+
+  /* ── Alert ───────────────────────────────────── */
+  .cc-alert {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    padding: 0.9rem 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Note box ────────────────────────────────── */
+  .cc-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface-3);
+    padding: 0.75rem 1rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
+  /* ── Mobile ──────────────────────────────────── */
+  @media (max-width: 900px) {
+    #cc-layout { flex-direction: column !important; }
+    #cc-results { position: static !important; }
+    .cc-prop-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .cc-input { width: 100px; }
+    .cc-select { width: 130px; }
+    .cc-row { flex-wrap: wrap; gap: 0.5rem; }
+    .cc-prop-row { flex-wrap: wrap; gap: 0.4rem; }
+  }
+</style>
+
+<!-- Alert -->
+<div class="cc-alert">
+  <strong>Commute costs are a hidden purchase expense.</strong> With Brisbane fuel prices elevated in 2025–26, a 10 km difference in commute distance can cost $2,000–$4,000 more per year. Use this tool to compare two properties side by side before you decide.
+</div>
+
+<div id="cc-layout" style="display:flex;gap:1.5rem;align-items:flex-start;">
+
+<!-- ══ LEFT: INPUTS ══════════════════════════════════════════════ -->
+<div style="flex:1;min-width:0;">
+
+  <!-- 1. Your Car & Fuel -->
+  <div class="cc-card">
+    <span class="cc-section-title">Your Vehicle and Fuel</span>
+
+    <div class="cc-row">
+      <label>Fuel Price per Litre<small>Brisbane unleaded (ULP) — update to today's price</small></label>
+      <div class="cc-input-wrap">
+        <span class="cc-prefix">$</span>
+        <input class="cc-input has-prefix" id="fuelPrice" type="number" value="2.05" min="0.5" max="5" step="0.01" style="width:100px;" />
+      </div>
+    </div>
+
+    <div class="cc-row">
+      <label>Fuel Efficiency<small>Litres per 100 km. Check your car's handbook or use a preset below.</small></label>
+      <div class="cc-input-wrap">
+        <input class="cc-input has-suffix" id="fuelEff" type="number" value="10" min="3" max="30" step="0.5" style="width:100px;" />
+        <span class="cc-suffix">L/100km</span>
+      </div>
+    </div>
+    <div class="cc-presets" id="effPresets">
+      <button class="cc-preset" data-eff="6.5">Small car (6.5)</button>
+      <button class="cc-preset" data-eff="9">Medium sedan (9)</button>
+      <button class="cc-preset active" data-eff="10">SUV (10)</button>
+      <button class="cc-preset" data-eff="13">Ute / 4WD (13)</button>
+      <button class="cc-preset" data-eff="16">Large 4WD (16)</button>
+    </div>
+
+    <div class="cc-row" style="margin-top:1.1rem;">
+      <label>Include Wear and Tear?<small>ATO vehicle running cost: $0.38/km for fuel and oil, or full $0.88/km cents-per-km rate covering all costs</small></label>
+      <select class="cc-select" id="wearMode">
+        <option value="none">No (fuel only)</option>
+        <option value="partial">Fuel and oil only ($0.38/km)</option>
+        <option value="full">Full ATO rate ($0.88/km)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 2. Commute Pattern -->
+  <div class="cc-card">
+    <span class="cc-section-title">Commute Pattern</span>
+
+    <div class="cc-row">
+      <label>Days per Week in Office<small>Days you actually drive to work</small></label>
+      <div class="cc-input-wrap">
+        <input class="cc-input has-suffix" id="daysPerWeek" type="number" value="4" min="1" max="7" step="1" style="width:80px;" />
+        <span class="cc-suffix">days</span>
+      </div>
+    </div>
+
+    <div class="cc-row">
+      <label>Weeks per Year Commuting<small>52 minus holidays, annual leave, and remote-work weeks</small></label>
+      <div class="cc-input-wrap">
+        <input class="cc-input has-suffix" id="weeksPerYear" type="number" value="46" min="1" max="52" step="1" style="width:80px;" />
+        <span class="cc-suffix">wks</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Property Comparison -->
+  <div class="cc-card">
+    <span class="cc-section-title">Property Comparison</span>
+    <p style="font-size:0.74rem;color:var(--color-text-muted);line-height:1.55;margin-bottom:1.25rem;">
+      Enter the one-way distance from each property to your workplace. Use Google Maps to measure. SE Queensland toll roads (Clem7, Legacy Way, Airport Link, Go Between Bridge, Gateway) can add significant costs — enter the daily round-trip toll charge.
+    </p>
+
+    <div class="cc-prop-grid">
+
+      <!-- Property A -->
+      <div class="cc-prop-card prop-a">
+        <span class="cc-prop-title">Property A</span>
+        <div class="cc-prop-row">
+          <label>Label<small>E.g. suburb name</small></label>
+          <input class="cc-input" id="nameA" type="text" value="Option A" style="width:110px;text-align:left;padding-left:0.5rem;" />
+        </div>
+        <div class="cc-prop-row">
+          <label>One-way distance<small>km to work</small></label>
+          <div class="cc-input-wrap">
+            <input class="cc-input has-suffix" id="distA" type="number" value="12" min="0" step="0.5" style="width:80px;" />
+            <span class="cc-suffix">km</span>
+          </div>
+        </div>
+        <div class="cc-prop-row">
+          <label>Daily tolls<small>Round trip, total</small></label>
+          <div class="cc-input-wrap">
+            <span class="cc-prefix">$</span>
+            <input class="cc-input has-prefix" id="tollA" type="number" value="0" min="0" step="0.5" style="width:80px;" />
+          </div>
+        </div>
+        <div class="cc-prop-row">
+          <label>Daily parking<small>At work</small></label>
+          <div class="cc-input-wrap">
+            <span class="cc-prefix">$</span>
+            <input class="cc-input has-prefix" id="parkA" type="number" value="0" min="0" step="1" style="width:80px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Property B -->
+      <div class="cc-prop-card prop-b">
+        <span class="cc-prop-title">Property B</span>
+        <div class="cc-prop-row">
+          <label>Label<small>E.g. suburb name</small></label>
+          <input class="cc-input" id="nameB" type="text" value="Option B" style="width:110px;text-align:left;padding-left:0.5rem;" />
+        </div>
+        <div class="cc-prop-row">
+          <label>One-way distance<small>km to work</small></label>
+          <div class="cc-input-wrap">
+            <input class="cc-input has-suffix" id="distB" type="number" value="22" min="0" step="0.5" style="width:80px;" />
+            <span class="cc-suffix">km</span>
+          </div>
+        </div>
+        <div class="cc-prop-row">
+          <label>Daily tolls<small>Round trip, total</small></label>
+          <div class="cc-input-wrap">
+            <span class="cc-prefix">$</span>
+            <input class="cc-input has-prefix" id="tollB" type="number" value="6.50" min="0" step="0.5" style="width:80px;" />
+          </div>
+        </div>
+        <div class="cc-prop-row">
+          <label>Daily parking<small>At work</small></label>
+          <div class="cc-input-wrap">
+            <span class="cc-prefix">$</span>
+            <input class="cc-input has-prefix" id="parkB" type="number" value="0" min="0" step="1" style="width:80px;" />
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end prop-grid -->
+  </div><!-- end card -->
+
+</div><!-- end left -->
+
+<!-- ══ RIGHT: RESULTS ════════════════════════════════════════════ -->
+<div id="cc-results" style="width:340px;flex-shrink:0;position:sticky;top:80px;">
+
+  <!-- Property A breakdown -->
+  <div class="cc-result-card">
+    <span class="cc-result-label" id="labelA-title">Property A</span>
+    <div class="cc-line"><span>Fuel (weekly)</span><span class="val" id="rA-fuelWk">—</span></div>
+    <div class="cc-line"><span>Tolls (weekly)</span><span class="val" id="rA-tollWk">—</span></div>
+    <div class="cc-line"><span>Parking (weekly)</span><span class="val" id="rA-parkWk">—</span></div>
+    <div class="cc-line" id="rA-wearRow"><span>Wear and tear (weekly)</span><span class="val" id="rA-wearWk">—</span></div>
+    <div class="cc-line total"><span>Annual total</span><span class="val" id="rA-annual">—</span></div>
+  </div>
+
+  <!-- Property B breakdown -->
+  <div class="cc-result-card">
+    <span class="cc-result-label" id="labelB-title">Property B</span>
+    <div class="cc-line"><span>Fuel (weekly)</span><span class="val" id="rB-fuelWk">—</span></div>
+    <div class="cc-line"><span>Tolls (weekly)</span><span class="val" id="rB-tollWk">—</span></div>
+    <div class="cc-line"><span>Parking (weekly)</span><span class="val" id="rB-parkWk">—</span></div>
+    <div class="cc-line" id="rB-wearRow"><span>Wear and tear (weekly)</span><span class="val" id="rB-wearWk">—</span></div>
+    <div class="cc-line total"><span>Annual total</span><span class="val" id="rB-annual">—</span></div>
+  </div>
+
+  <!-- Saving -->
+  <div class="cc-result-card">
+    <span class="cc-result-label">Annual difference</span>
+    <div id="savingBlock">
+      <div class="cc-result-value gold" id="r-diff">—</div>
+      <div class="cc-result-sub" id="r-diffNote">cheaper per year</div>
+      <div style="margin-top:0.75rem;">
+        <div class="cc-bar-wrap">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
+            <span style="font-size:0.6rem;font-weight:700;color:#3a8fa8;" id="barLabelA">A</span>
+            <span style="font-size:0.6rem;font-weight:700;color:#b89a2a;" id="barLabelB">B</span>
+          </div>
+          <div class="cc-bar-track" style="border-radius:2px;">
+            <div class="cc-bar-fill" id="barA" style="background:#7ec8e3;width:50%;"></div>
+          </div>
+          <div class="cc-bar-track" style="margin-top:4px;border-radius:2px;">
+            <div class="cc-bar-fill" id="barB" style="background:#f5d07a;width:50%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-year impact -->
+  <div class="cc-result-card">
+    <span class="cc-result-label">5-year commute cost</span>
+    <div style="display:flex;gap:1rem;">
+      <div style="flex:1;">
+        <div style="font-size:0.6rem;font-weight:700;color:#3a8fa8;letter-spacing:0.1em;text-transform:uppercase;" id="fiveA-label">A</div>
+        <div style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);" id="r-5yrA">—</div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:0.6rem;font-weight:700;color:#b89a2a;letter-spacing:0.1em;text-transform:uppercase;" id="fiveB-label">B</div>
+        <div style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);" id="r-5yrB">—</div>
+      </div>
+    </div>
+    <div class="cc-saving" style="margin-top:0.75rem;">
+      <div style="font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.25rem;">5-year saving by choosing cheaper commute</div>
+      <div style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-gold);" id="r-5yrSave">—</div>
+    </div>
+  </div>
+
+  <div class="cc-note">
+    Estimates only. Fuel price, driving style, and vehicle condition affect real costs. Toll charges are based on your daily input. Does not include public transport alternatives.
+  </div>
+
+</div><!-- end results -->
+
+</div><!-- end layout -->
+
+</ToolLayout>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const inp = (id: string) => ($( id) as HTMLInputElement);
+  const num = (id: string, fallback = 0) => { const v = parseFloat(inp(id)?.value); return isNaN(v) ? fallback : v; };
+  const str = (id: string) => inp(id)?.value || '';
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-AU');
+  const fmtD = (n: number) => '$' + n.toFixed(2);
+  const setText = (id: string, v: string) => { const el = $(id); if (el) el.textContent = v; };
+
+  /* ── Vehicle presets ─────────────────────── */
+  document.querySelectorAll<HTMLButtonElement>('#effPresets .cc-preset').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const eff = btn.dataset.eff!;
+      (inp('fuelEff') as HTMLInputElement).value = eff;
+      document.querySelectorAll('#effPresets .cc-preset').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      calculate();
+    });
+  });
+
+  /* ── Remove active preset if user types ──── */
+  inp('fuelEff').addEventListener('input', () => {
+    document.querySelectorAll('#effPresets .cc-preset').forEach(b => b.classList.remove('active'));
+    calculate();
+  });
+
+  /* ── Main calculate ──────────────────────── */
+  function calculate() {
+    const fuelPrice   = num('fuelPrice', 2.05);
+    const fuelEff     = num('fuelEff', 10);        // L/100km
+    const days        = num('daysPerWeek', 4);
+    const weeks       = num('weeksPerYear', 46);
+    const wearMode    = (inp('wearMode') as HTMLSelectElement).value;
+    const nameA       = str('nameA') || 'Property A';
+    const nameB       = str('nameB') || 'Property B';
+    const distA       = num('distA', 0);           // one-way km
+    const distB       = num('distB', 0);
+    const tollA       = num('tollA', 0);           // daily round-trip
+    const tollB       = num('tollB', 0);
+    const parkA       = num('parkA', 0);
+    const parkB       = num('parkB', 0);
+
+    // Wear rate per km
+    const wearRate = wearMode === 'full' ? 0.88 : wearMode === 'partial' ? 0.38 : 0;
+
+    function costs(dist: number, toll: number, park: number) {
+      const kmPerDay    = dist * 2;                                // round trip
+      const fuelPerDay  = (kmPerDay / 100) * fuelEff * fuelPrice; // $
+      const wearPerDay  = kmPerDay * wearRate;
+      const totalPerDay = fuelPerDay + toll + park + wearPerDay;
+
+      const fuelWk  = fuelPerDay * days;
+      const tollWk  = toll * days;
+      const parkWk  = park * days;
+      const wearWk  = wearPerDay * days;
+      const annual  = totalPerDay * days * weeks;
+
+      return { fuelWk, tollWk, parkWk, wearWk, annual };
+    }
+
+    const A = costs(distA, tollA, parkA);
+    const B = costs(distB, tollB, parkB);
+
+    // Update labels
+    setText('labelA-title', nameA);
+    setText('labelB-title', nameB);
+    setText('barLabelA', nameA);
+    setText('barLabelB', nameB);
+    setText('fiveA-label', nameA);
+    setText('fiveB-label', nameB);
+
+    // Property A
+    setText('rA-fuelWk', fmt(A.fuelWk));
+    setText('rA-tollWk', fmt(A.tollWk));
+    setText('rA-parkWk', fmt(A.parkWk));
+    setText('rA-wearWk', fmt(A.wearWk));
+    setText('rA-annual', fmt(A.annual));
+    const wearRowA = $('rA-wearRow');
+    const wearRowB = $('rB-wearRow');
+    if (wearRowA) wearRowA.style.display = wearMode === 'none' ? 'none' : 'flex';
+    if (wearRowB) wearRowB.style.display = wearMode === 'none' ? 'none' : 'flex';
+
+    // Property B
+    setText('rB-fuelWk', fmt(B.fuelWk));
+    setText('rB-tollWk', fmt(B.tollWk));
+    setText('rB-parkWk', fmt(B.parkWk));
+    setText('rB-wearWk', fmt(B.wearWk));
+    setText('rB-annual', fmt(B.annual));
+
+    // Difference
+    const diff = Math.abs(A.annual - B.annual);
+    const cheaper = A.annual <= B.annual ? nameA : nameB;
+    setText('r-diff', fmt(diff));
+    setText('r-diffNote', `${cheaper} is cheaper per year`);
+
+    // Bars — proportional width
+    const maxAnnual = Math.max(A.annual, B.annual, 1);
+    const barAEl = $('barA') as HTMLElement;
+    const barBEl = $('barB') as HTMLElement;
+    if (barAEl) barAEl.style.width = Math.round((A.annual / maxAnnual) * 100) + '%';
+    if (barBEl) barBEl.style.width = Math.round((B.annual / maxAnnual) * 100) + '%';
+
+    // 5-year
+    setText('r-5yrA', fmt(A.annual * 5));
+    setText('r-5yrB', fmt(B.annual * 5));
+    setText('r-5yrSave', fmt(diff * 5));
+  }
+
+  /* ── Wire up all inputs ──────────────────── */
+  ['fuelPrice','fuelEff','daysPerWeek','weeksPerYear','wearMode',
+   'nameA','distA','tollA','parkA','nameB','distB','tollB','parkB'].forEach(id => {
+    const el = inp(id);
+    if (el) el.addEventListener('input', calculate);
+  });
+
+  calculate();
+</script>
