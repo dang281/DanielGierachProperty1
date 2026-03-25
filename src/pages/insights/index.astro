@@ -60,25 +60,30 @@ function filterCount(f: string): number {
   </div>
 </section>
 
-<!-- Articles Grid -->
-<section style="background:var(--color-base);padding:6rem 0 7rem;border-top:1px solid rgba(28,25,23,0.08);">
-  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-
-    <!-- Filter Pills -->
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;">
+<!-- Sticky Filter Bar -->
+<div style="position:sticky;top:0;z-index:40;background:#f7f5f0;border-bottom:1px solid rgba(28,25,23,0.1);box-shadow:0 2px 12px rgba(28,25,23,0.06);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12" style="padding-top:0.9rem;padding-bottom:0.9rem;">
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+      <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#78716c;margin-right:0.5rem;white-space:nowrap;">I am a</span>
       {filters.map(f => (
         <button
           class="fpill"
           data-filter={f}
-          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#1c1917':'transparent'};color:${f==='All'?'#f0ece4':'#78716c'};border-color:${f==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#1c1917':'transparent'};color:${f==='All'?'#f0ece4':'#78716c'};border-color:${f==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
         >
-          {f}
+          {f === 'All' ? 'Show All' : f}
           <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;background:${f==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${f==='All'?'#f0ece4':'#78716c'};`}>
             {filterCount(f)}
           </span>
         </button>
       ))}
     </div>
+  </div>
+</div>
+
+<!-- Articles Grid -->
+<section style="background:var(--color-base);padding:3.5rem 0 7rem;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {articles.map((a, i) => (
