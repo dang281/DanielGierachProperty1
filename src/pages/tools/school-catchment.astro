@@ -267,42 +267,39 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 </div>
 
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
 <script>
 (function () {
+  // ── Load Leaflet then boot ──────────────────────────────────────────
+  const leafletScript = document.createElement('script');
+  leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  leafletScript.onload = initMap;
+  document.head.appendChild(leafletScript);
+
   // ── State ──────────────────────────────────────────────────────────
-  let map, pinMarker, radiusCircle, schoolMarkers = [];
+  let map, pinMarker, radiusCircle;
+  let schoolMarkers = [];
   let currentLat, currentLon;
   let allSchools = [];
   let activeFilter = 'all';
   let currentRadius = 2000;
-  let placesAutocomplete;
-  let openInfoWindow = null;
-
-  const mapStyle = [
-    { elementType: 'geometry', stylers: [{ color: '#1c1917' }] },
-    { elementType: 'labels.text.fill', stylers: [{ color: '#a8956a' }] },
-    { elementType: 'labels.text.stroke', stylers: [{ color: '#1c1917' }] },
-    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#2c2824' }] },
-    { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#212018' }] },
-    { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#3d3830' }] },
-    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0f1923' }] },
-    { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#1a2318' }] },
-    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
-    { featureType: 'transit', stylers: [{ visibility: 'off' }] },
-  ];
+  let acTimer = null;
+  let acSelected = null;
 
   // ── Colour mapping ──────────────────────────────────────────────────
   function classifySchool(tags) {
-    const name = (tags.name || '').toLowerCase();
-    const op   = (tags.operator || '').toLowerCase();
-    const opType = (tags['operator:type'] || '').toLowerCase();
-    const denom  = (tags.denomination || tags.religion || '').toLowerCase();
-    const schoolType = (tags['school:type'] || tags['isced:level'] || '').toLowerCase();
+    const name    = (tags.name || '').toLowerCase();
+    const op      = (tags.operator || '').toLowerCase();
+    const opType  = (tags['operator:type'] || '').toLowerCase();
+    const denom   = (tags.denomination || tags.religion || '').toLowerCase();
+    const sType   = (tags['school:type'] || tags['isced:level'] || '').toLowerCase();
 
     const isCatholic = denom.includes('catholic') || name.includes('catholic') || name.includes('st ') || name.includes('holy') || name.includes('mary') || name.includes('joseph') || op.includes('catholic');
     const isGovt     = opType === 'government' || op.includes('department of education') || op.includes('queensland') || name.includes(' state school') || name.includes(' state high') || name.includes(' shs') || name.includes(' ss');
-    const isHigh     = schoolType.includes('secondar') || name.includes(' high') || name.includes(' secondary') || name.includes(' college') || name.includes(' shs');
-    const isPrimary  = !isHigh && (schoolType.includes('primar') || name.includes(' primary') || name.includes(' state school'));
+    const isHigh     = sType.includes('secondar') || name.includes(' high') || name.includes(' secondary') || name.includes(' college') || name.includes(' shs');
+    const isPrimary  = !isHigh && (sType.includes('primar') || name.includes(' primary') || name.includes(' state school'));
 
     if (isCatholic) return 'catholic';
     if (isGovt && isHigh) return 'state-high';
@@ -312,65 +309,49 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   const TYPE_CONFIG = {
-    'state-primary': { label: 'State Primary',  color: '#2a7fa0', dot: 'dot-state-primary', badge: 'type-state-primary' },
-    'state-high':    { label: 'State High',      color: '#c4912a', dot: 'dot-state-high',    badge: 'type-state-high'    },
-    'catholic':      { label: 'Faith-based',     color: '#6a5acd', dot: 'dot-catholic',      badge: 'type-catholic'      },
-    'private':       { label: 'Private',         color: '#3a7a35', dot: 'dot-private',       badge: 'type-private'       },
+    'state-primary': { label: 'State Primary', color: '#2a7fa0', dot: 'dot-state-primary', badge: 'type-state-primary' },
+    'state-high':    { label: 'State High',     color: '#c4912a', dot: 'dot-state-high',    badge: 'type-state-high'    },
+    'catholic':      { label: 'Faith-based',    color: '#6a5acd', dot: 'dot-catholic',      badge: 'type-catholic'      },
+    'private':       { label: 'Private',        color: '#3a7a35', dot: 'dot-private',       badge: 'type-private'       },
   };
 
-  // ── SVG circle icon for school markers ─────────────────────────────
+  // ── Leaflet circle marker icon ─────────────────────────────────────
   function schoolIcon(color) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="${color}" stroke="white" stroke-width="2"/></svg>`;
-    return {
-      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
-      scaledSize: new google.maps.Size(16, 16),
-      anchor: new google.maps.Point(8, 8),
-    };
+    return L.divIcon({
+      className: '',
+      html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="${color}" stroke="white" stroke-width="2"/></svg>`,
+      iconSize: [16, 16],
+      iconAnchor: [8, 8],
+      popupAnchor: [0, -10],
+    });
   }
 
-  // ── Gold pin icon for searched address ─────────────────────────────
+  // ── Gold pin icon ──────────────────────────────────────────────────
   function goldPinIcon() {
-    return {
-      path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z',
-      fillColor: '#c5a03c',
-      fillOpacity: 1,
-      strokeColor: '#ffffff',
-      strokeWeight: 1.5,
-      scale: 1.6,
-      anchor: new google.maps.Point(12, 22),
-    };
+    return L.divIcon({
+      className: '',
+      html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+      iconSize: [28, 36],
+      iconAnchor: [14, 36],
+      popupAnchor: [0, -36],
+    });
   }
 
-  // ── Init Google Map ─────────────────────────────────────────────────
+  // ── Init Leaflet map ────────────────────────────────────────────────
   function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: -27.46, lng: 153.04 },
-      zoom: 12,
-      styles: mapStyle,
-      mapTypeControl: false,
-      streetViewControl: false,
-      fullscreenControl: false,
-    });
+    map = L.map('map', { zoomControl: true }).setView([-27.46, 153.04], 12);
 
-    // Google Places Autocomplete
-    const searchInput = document.getElementById('catchment-search');
-    placesAutocomplete = new google.maps.places.Autocomplete(searchInput, {
-      componentRestrictions: { country: 'au' },
-      fields: ['formatted_address', 'geometry'],
-      types: ['address'],
-    });
-    placesAutocomplete.addListener('place_changed', function() {
-      const place = placesAutocomplete.getPlace();
-      if (!place.geometry) { doSearch(); return; }
-      searchInput.value = place.formatted_address || searchInput.value;
-      document.getElementById('autocomplete-list').style.display = 'none';
-      runSearch(place.geometry.location.lat(), place.geometry.location.lng());
-    });
+    // CartoDB Dark Matter — free, no API key
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
 
     wireUpControls();
   }
 
-  // ── Distance helper ─────────────────────────────────────────────────
+  // ── Haversine ──────────────────────────────────────────────────────
   function haversine(lat1, lon1, lat2, lon2) {
     const R = 6371000;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -379,80 +360,69 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   }
 
-  // ── Geocode address via Google Geocoder ─────────────────────────────
-  function geocodeAddress(address) {
-    return new Promise((resolve, reject) => {
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode(
-        { address: address + ', Brisbane, Australia', region: 'au' },
-        (results, status) => {
-          if (status === 'OK' && results.length) {
-            const loc = results[0].geometry.location;
-            resolve({ lat: loc.lat(), lon: loc.lng() });
-          } else {
-            reject(new Error('Address not found'));
-          }
-        }
-      );
-    });
+  // ── Geocode via Nominatim (free) ────────────────────────────────────
+  async function geocodeAddress(address) {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address + ', Brisbane, Australia')}&format=json&limit=1&countrycodes=au`;
+    const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+    const data = await res.json();
+    if (!data.length) throw new Error('Address not found');
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
   }
 
-  // ── Fetch schools from Overpass ─────────────────────────────────────
-  async function fetchSchools(lat, lon, radius) {
-    const overpass = `[out:json][timeout:30];
-(
-  node["amenity"="school"](around:${radius},${lat},${lon});
-  way["amenity"="school"](around:${radius},${lat},${lon});
-  relation["amenity"="school"](around:${radius},${lat},${lon});
-);
-out center tags;`;
-    const res = await fetch('https://overpass-api.de/api/interpreter', {
-      method: 'POST',
-      body: 'data=' + encodeURIComponent(overpass),
+  // ── Photon autocomplete ────────────────────────────────────────────
+  function fetchSuggestions(query) {
+    const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`;
+    return fetch(url).then(r => r.json()).then(d => d.features || []);
+  }
+
+  function showSuggestions(features) {
+    const list = document.getElementById('autocomplete-list');
+    list.innerHTML = '';
+    if (!features.length) { list.style.display = 'none'; return; }
+    features.forEach(f => {
+      const p = f.properties;
+      const label = [p.name, p.street && p.housenumber ? p.street + ' ' + p.housenumber : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const item = document.createElement('div');
+      item.className = 'ac-item';
+      item.textContent = label;
+      item.addEventListener('mousedown', () => {
+        acSelected = { lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0] };
+        document.getElementById('catchment-search').value = label;
+        list.style.display = 'none';
+        runSearch(acSelected.lat, acSelected.lon);
+      });
+      list.appendChild(item);
     });
+    list.style.display = 'block';
+  }
+
+  // ── Fetch schools from Overpass ────────────────────────────────────
+  async function fetchSchools(lat, lon, radius) {
+    const q = `[out:json][timeout:30];(node["amenity"="school"](around:${radius},${lat},${lon});way["amenity"="school"](around:${radius},${lat},${lon});relation["amenity"="school"](around:${radius},${lat},${lon}););out center tags;`;
+    const res  = await fetch('https://overpass-api.de/api/interpreter', { method: 'POST', body: 'data=' + encodeURIComponent(q) });
     const data = await res.json();
     return data.elements.map(el => {
-      const elLat = el.lat ?? el.center?.lat;
-      const elLon = el.lon ?? el.center?.lon;
-      return {
-        id: el.id,
-        name: el.tags?.name || 'Unknown School',
-        lat: elLat,
-        lon: elLon,
-        tags: el.tags || {},
-        type: classifySchool(el.tags || {}),
-        distance: haversine(lat, lon, elLat, elLon),
-      };
-    }).filter(s => s.name !== 'Unknown School' && s.lat && s.lon)
-      .sort((a, b) => a.distance - b.distance);
+      const eLat = el.lat ?? el.center?.lat;
+      const eLon = el.lon ?? el.center?.lon;
+      return { id: el.id, name: el.tags?.name || 'Unknown School', lat: eLat, lon: eLon, tags: el.tags || {}, type: classifySchool(el.tags || {}), distance: haversine(lat, lon, eLat, eLon) };
+    }).filter(s => s.name !== 'Unknown School' && s.lat && s.lon).sort((a, b) => a.distance - b.distance);
   }
 
-  // ── Render Google Maps markers ──────────────────────────────────────
+  // ── Render markers ─────────────────────────────────────────────────
   function renderMarkers(schools) {
-    schoolMarkers.forEach(m => m.setMap(null));
+    schoolMarkers.forEach(m => map.removeLayer(m));
     schoolMarkers = [];
     schools.forEach(school => {
       if (activeFilter !== 'all' && school.type !== activeFilter) return;
       const cfg = TYPE_CONFIG[school.type] || TYPE_CONFIG['private'];
-      const marker = new google.maps.Marker({
-        position: { lat: school.lat, lng: school.lon },
-        map: map,
-        icon: schoolIcon(cfg.color),
-        title: school.name,
-      });
-      const infoContent = `<div style="font-family:sans-serif;padding:2px 0;"><strong style="font-size:0.85rem;">${school.name}</strong><br/><span style="font-size:0.75rem;color:#888;">${cfg.label} &nbsp;·&nbsp; ${(school.distance/1000).toFixed(1)} km away</span></div>`;
-      const infoWindow = new google.maps.InfoWindow({ content: infoContent });
-      marker.addListener('click', () => {
-        if (openInfoWindow) openInfoWindow.close();
-        infoWindow.open(map, marker);
-        openInfoWindow = infoWindow;
-      });
-      marker._school = school;
-      schoolMarkers.push(marker);
+      const m = L.marker([school.lat, school.lon], { icon: schoolIcon(cfg.color) }).addTo(map);
+      m.bindPopup(`<strong style="font-size:0.85rem;">${school.name}</strong><br/><span style="font-size:0.75rem;color:#888;">${cfg.label} &nbsp;·&nbsp; ${(school.distance/1000).toFixed(1)} km away</span>`);
+      m._school = school;
+      schoolMarkers.push(m);
     });
   }
 
-  // ── Render school list ──────────────────────────────────────────────
+  // ── Render list ────────────────────────────────────────────────────
   function renderList(schools) {
     const list = document.getElementById('school-list');
     const count = document.getElementById('result-count');
@@ -465,93 +435,57 @@ out center tags;`;
     }
     filtered.forEach(school => {
       const cfg = TYPE_CONFIG[school.type] || TYPE_CONFIG['private'];
-      const distText = school.distance < 1000
-        ? `${Math.round(school.distance)} m`
-        : `${(school.distance / 1000).toFixed(1)} km`;
+      const distText = school.distance < 1000 ? `${Math.round(school.distance)} m` : `${(school.distance/1000).toFixed(1)} km`;
       const card = document.createElement('div');
       card.className = 'school-card';
-      card.innerHTML = `
-        <div class="school-dot ${cfg.dot}"></div>
-        <div style="flex:1;min-width:0;">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.4rem;">
-            <p style="font-family:var(--font-serif);font-size:0.95rem;font-weight:400;color:var(--color-text-primary);line-height:1.3;">${school.name}</p>
-            <span style="font-size:0.72rem;color:var(--color-text-muted);white-space:nowrap;padding-top:2px;">${distText}</span>
-          </div>
-          <span class="badge ${cfg.badge}">${cfg.label}</span>
-        </div>`;
+      card.innerHTML = `<div class="school-dot ${cfg.dot}"></div><div style="flex:1;min-width:0;"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.4rem;"><p style="font-family:var(--font-serif);font-size:0.95rem;font-weight:400;color:var(--color-text-primary);line-height:1.3;">${school.name}</p><span style="font-size:0.72rem;color:var(--color-text-muted);white-space:nowrap;padding-top:2px;">${distText}</span></div><span class="badge ${cfg.badge}">${cfg.label}</span></div>`;
       card.addEventListener('click', () => {
-        map.setCenter({ lat: school.lat, lng: school.lon });
-        map.setZoom(16);
-        // Open the corresponding marker's info window
+        map.setView([school.lat, school.lon], 16);
         const m = schoolMarkers.find(mk => mk._school && Math.abs(mk._school.lat - school.lat) < 0.0001);
-        if (m) google.maps.event.trigger(m, 'click');
+        if (m) m.openPopup();
       });
       list.appendChild(card);
     });
   }
 
-  // ── Place address pin + radius circle ───────────────────────────────
+  // ── Place pin + radius circle ──────────────────────────────────────
   function placePinAndCircle(lat, lon) {
-    if (pinMarker) pinMarker.setMap(null);
-    if (radiusCircle) radiusCircle.setMap(null);
-
-    pinMarker = new google.maps.Marker({
-      position: { lat, lng: lon },
-      map: map,
-      icon: goldPinIcon(),
-      title: 'Your address',
-      zIndex: 999,
-    });
-    const pinInfo = new google.maps.InfoWindow({ content: '<strong>Your address</strong>' });
-    pinMarker.addListener('click', () => {
-      if (openInfoWindow) openInfoWindow.close();
-      pinInfo.open(map, pinMarker);
-      openInfoWindow = pinInfo;
-    });
-
-    radiusCircle = new google.maps.Circle({
-      map: map,
-      center: { lat, lng: lon },
+    if (pinMarker) map.removeLayer(pinMarker);
+    if (radiusCircle) map.removeLayer(radiusCircle);
+    pinMarker = L.marker([lat, lon], { icon: goldPinIcon(), zIndexOffset: 1000 }).addTo(map).bindPopup('<strong>Your address</strong>');
+    radiusCircle = L.circle([lat, lon], {
       radius: currentRadius,
-      strokeColor: '#c5a03c',
-      strokeOpacity: 0.7,
-      strokeWeight: 1.5,
+      color: '#c5a03c',
+      weight: 1.5,
+      opacity: 0.7,
       fillColor: '#c5a03c',
       fillOpacity: 0.05,
-      // Dashed stroke via SVG icons approach is not directly supported;
-      // strokeWeight + low opacity gives the light ring effect
-    });
+    }).addTo(map);
   }
 
-  // ── Core search runner ──────────────────────────────────────────────
+  // ── Run search ─────────────────────────────────────────────────────
   async function runSearch(lat, lon) {
     const status  = document.getElementById('status-msg');
     const empty   = document.getElementById('empty-state');
     const results = document.getElementById('results-section');
-
-    currentLat = lat;
-    currentLon = lon;
+    currentLat = lat; currentLon = lon;
     status.textContent = 'Fetching schools…';
-
     placePinAndCircle(lat, lon);
-
     try {
       allSchools = await fetchSchools(lat, lon, currentRadius);
       renderMarkers(allSchools);
       renderList(allSchools);
-      map.setCenter({ lat, lng: lon });
-      map.setZoom(14);
+      map.setView([lat, lon], 14);
       empty.style.display = 'none';
       results.style.display = 'block';
       status.textContent = `Found ${allSchools.length} school${allSchools.length !== 1 ? 's' : ''} within ${currentRadius >= 1000 ? (currentRadius/1000) + ' km' : currentRadius + 'm'}.`;
-    } catch (err) {
+    } catch {
       status.textContent = 'Could not fetch schools. Please try again.';
     }
-
     document.getElementById('search-btn').disabled = false;
   }
 
-  // ── Main search (geocode first) ─────────────────────────────────────
+  // ── Manual search (geocode first) ──────────────────────────────────
   async function doSearch() {
     const input = document.getElementById('catchment-search').value.trim();
     if (!input) return;
@@ -562,56 +496,62 @@ out center tags;`;
     try {
       const { lat, lon } = await geocodeAddress(input);
       await runSearch(lat, lon);
-    } catch (err) {
+    } catch {
       status.textContent = 'Address not found. Try including the suburb (e.g. 12 Main St, Camp Hill).';
       document.getElementById('search-btn').disabled = false;
     }
   }
 
-  // ── Wire up UI controls ─────────────────────────────────────────────
+  // ── Wire UI ────────────────────────────────────────────────────────
   function wireUpControls() {
-    document.getElementById('search-btn').addEventListener('click', function() {
+    const searchInput = document.getElementById('catchment-search');
+
+    document.getElementById('search-btn').addEventListener('click', () => {
       document.getElementById('autocomplete-list').style.display = 'none';
       doSearch();
     });
 
-    document.getElementById('catchment-search').addEventListener('keydown', function(e) {
+    searchInput.addEventListener('keydown', e => {
       if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
       if (e.key === 'Escape') document.getElementById('autocomplete-list').style.display = 'none';
     });
 
-    document.addEventListener('click', function(e) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(acTimer);
+      const q = searchInput.value.trim();
+      if (q.length < 3) { document.getElementById('autocomplete-list').style.display = 'none'; return; }
+      acTimer = setTimeout(() => fetchSuggestions(q).then(showSuggestions), 120);
+    });
+
+    document.addEventListener('click', e => {
       if (!document.getElementById('search-wrap').contains(e.target)) {
         document.getElementById('autocomplete-list').style.display = 'none';
       }
     });
 
-    // Radius slider
     document.getElementById('radius-slider').addEventListener('input', function() {
       currentRadius = parseInt(this.value);
-      const label = currentRadius >= 1000 ? (currentRadius / 1000) + ' km' : currentRadius + ' m';
-      document.getElementById('radius-label').textContent = label;
-    });
-    document.getElementById('radius-slider').addEventListener('change', function() {
-      if (currentLat) {
-        placePinAndCircle(currentLat, currentLon);
-        document.getElementById('search-btn').disabled = true;
-        document.getElementById('status-msg').textContent = 'Fetching schools…';
-        fetchSchools(currentLat, currentLon, currentRadius).then(schools => {
-          allSchools = schools;
-          renderMarkers(allSchools);
-          renderList(allSchools);
-          const r = currentRadius;
-          document.getElementById('status-msg').textContent = `Found ${allSchools.length} school${allSchools.length !== 1 ? 's' : ''} within ${r >= 1000 ? (r/1000) + ' km' : r + 'm'}.`;
-          document.getElementById('search-btn').disabled = false;
-        }).catch(() => {
-          document.getElementById('status-msg').textContent = 'Could not fetch schools.';
-          document.getElementById('search-btn').disabled = false;
-        });
-      }
+      document.getElementById('radius-label').textContent = currentRadius >= 1000 ? (currentRadius/1000) + ' km' : currentRadius + ' m';
     });
 
-    // Filters
+    document.getElementById('radius-slider').addEventListener('change', function() {
+      if (!currentLat) return;
+      placePinAndCircle(currentLat, currentLon);
+      document.getElementById('search-btn').disabled = true;
+      document.getElementById('status-msg').textContent = 'Fetching schools…';
+      fetchSchools(currentLat, currentLon, currentRadius).then(schools => {
+        allSchools = schools;
+        renderMarkers(allSchools);
+        renderList(allSchools);
+        const r = currentRadius;
+        document.getElementById('status-msg').textContent = `Found ${allSchools.length} school${allSchools.length !== 1 ? 's' : ''} within ${r >= 1000 ? (r/1000) + ' km' : r + 'm'}.`;
+        document.getElementById('search-btn').disabled = false;
+      }).catch(() => {
+        document.getElementById('status-msg').textContent = 'Could not fetch schools.';
+        document.getElementById('search-btn').disabled = false;
+      });
+    });
+
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -621,13 +561,6 @@ out center tags;`;
         renderList(allSchools);
       });
     });
-  }
-
-  // ── Boot ────────────────────────────────────────────────────────────
-  if (window.google?.maps) {
-    initMap();
-  } else {
-    document.addEventListener('google-places-ready', initMap, { once: true });
   }
 })();
 </script>
