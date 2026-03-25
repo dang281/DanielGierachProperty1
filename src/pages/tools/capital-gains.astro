@@ -3,13 +3,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 ---
 
 <ToolLayout
-  title="Capital Gains Tax Calculator | Queensland Property"
-  description="Calculate your capital gains tax on Queensland investment property. Includes the 50% CGT discount for assets held over 12 months — adjustable for proposed budget changes."
+  title="Capital Gains Tax Calculator"
+  description="Estimate CGT on an Australian investment property sale. Includes the 50% discount, main residence exemption, capital losses, and a budget-scenario slider. Not a substitute for tax advice."
   tool="Capital Gains Tax Calculator"
   phase="Investor Tools"
 >
 
 <style is:global>
+  /* ── Base cards & sections ──────────────── */
   .cg-card {
     background: var(--color-surface-3);
     padding: 1.75rem;
@@ -24,6 +25,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     display: block;
     margin-bottom: 1.25rem;
   }
+
+  /* ── Input rows ─────────────────────────── */
   .cg-row {
     display: flex;
     align-items: center;
@@ -43,8 +46,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     display: block;
     font-size: 0.68rem;
     color: var(--color-text-muted);
-    margin-top: 0.1rem;
+    margin-top: 0.15rem;
+    line-height: 1.4;
   }
+
+  /* ── Inputs ─────────────────────────────── */
   .cg-input {
     width: 130px;
     text-align: right;
@@ -57,12 +63,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.45rem 0.75rem;
     outline: none;
     transition: border-color 0.2s;
+    -webkit-appearance: none;
   }
   .cg-input:focus { border-color: var(--color-gold); }
   .cg-input-wrap {
     position: relative;
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
   }
   .cg-input-wrap .cg-prefix {
     position: absolute;
@@ -81,17 +89,17 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pointer-events: none;
   }
   .cg-input-wrap .cg-input { padding-left: 1.4rem; }
-  .cg-input-wrap.suffix .cg-input { padding-left: 0.75rem; padding-right: 1.6rem; }
+  .cg-input-wrap.has-suffix .cg-input { padding-left: 0.75rem; padding-right: 1.6rem; }
 
   .cg-select {
-    width: 160px;
+    width: 170px;
     font-family: var(--font-sans);
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--color-text-primary);
     background: var(--color-surface-4);
     border: 1.5px solid rgba(28,25,23,0.12);
-    padding: 0.45rem 0.75rem;
+    padding: 0.45rem 2rem 0.45rem 0.75rem;
     outline: none;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -100,29 +108,74 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.6rem center;
-    padding-right: 2rem;
+    background-color: var(--color-surface-4);
+    flex-shrink: 0;
   }
   .cg-select:focus { border-color: var(--color-gold); }
 
-  /* ── Mobile ─────────────────────────────── */
-  @media (max-width: 900px) {
-    #cg-layout { grid-template-columns: 1fr !important; }
-    #cg-results { position: static !important; top: auto !important; }
+  /* ── Collapsible holding costs ──────────── */
+  .cg-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid rgba(28,25,23,0.07);
+    padding: 0.7rem 0 0;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    font-size: 0.72rem;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-align: left;
   }
-  @media (max-width: 640px) {
-    .cg-card          { padding: 1.1rem 0.9rem; }
-    .cg-discount-block { padding: 1.1rem 0.9rem; }
-    .cg-row           { flex-wrap: wrap; gap: 0.4rem; }
-    .cg-row label     { flex: 1 1 100%; }
-    .cg-input         { width: 100% !important; box-sizing: border-box; }
-    .cg-input-wrap    { width: 100%; }
-    .cg-select        { width: 100% !important; }
-    .cg-slider-labels { display: none; }
-    .cg-result-card   { padding: 1.1rem 0.9rem; }
-    .cg-compare-val   { font-size: 1.1rem; }
+  .cg-toggle-btn:hover { opacity: 0.8; }
+  .cg-toggle-chevron { transition: transform 0.2s; flex-shrink: 0; }
+  .cg-toggle-chevron.open { transform: rotate(180deg); }
+
+  /* ── Conditional follow-up questions ────── */
+  .cg-follow-up {
+    padding-left: 0.85rem;
+    border-left: 2px solid rgba(197,160,60,0.25);
+    margin-top: 0.1rem;
   }
 
-  /* Discount slider */
+  /* ── Alert / warning / note boxes ──────── */
+  .cg-alert {
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--color-gold);
+    background: rgba(197,160,60,0.06);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+  .cg-alert strong { color: var(--color-text-primary); }
+  .cg-warning {
+    display: none;
+    padding: 0.75rem 1.25rem;
+    border-left: 3px solid #c0392b;
+    background: rgba(192,57,43,0.05);
+    font-size: 0.78rem;
+    color: #c0392b;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  .cg-note-box {
+    padding: 0.85rem 1rem;
+    background: rgba(197,160,60,0.05);
+    border: 1px solid rgba(197,160,60,0.15);
+    font-size: 0.74rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-top: 0.6rem;
+  }
+  .cg-note-box strong { color: var(--color-text-primary); }
+
+  /* ── Discount slider ────────────────────── */
   .cg-discount-block {
     padding: 1.5rem;
     background: rgba(197,160,60,0.05);
@@ -133,7 +186,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     width: 100%;
     margin: 0.75rem 0 0.4rem;
     accent-color: #c5a03c;
-    height: 4px;
     cursor: pointer;
   }
   .cg-slider-labels {
@@ -141,7 +193,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     justify-content: space-between;
     font-size: 0.65rem;
     color: var(--color-text-muted);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
   }
   .cg-discount-presets {
     display: flex;
@@ -161,14 +213,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     cursor: pointer;
     transition: all 0.15s;
   }
-  .cg-preset:hover, .cg-preset.active {
-    border-color: var(--color-gold);
-    color: var(--color-gold);
-    background: rgba(197,160,60,0.07);
-  }
-  .cg-preset.active { background: rgba(197,160,60,0.12); }
+  .cg-preset:hover { border-color: var(--color-gold); color: var(--color-gold); }
+  .cg-preset.active { border-color: var(--color-gold); color: var(--color-gold); background: rgba(197,160,60,0.10); }
 
-  /* Results */
+  /* ── Results panel ─────────────────────── */
   .cg-result-card {
     background: var(--color-surface-3);
     padding: 1.5rem;
@@ -191,13 +239,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     line-height: 1;
   }
   .cg-result-value.gold { color: var(--color-gold); }
-  .cg-result-value.red  { color: #c0392b; }
+  .cg-result-value.muted { color: var(--color-text-muted); }
+  .cg-result-value.green { color: #4a9e4a; }
   .cg-result-sub {
     font-size: 0.72rem;
     color: var(--color-text-muted);
     margin-top: 0.35rem;
     line-height: 1.5;
   }
+
+  /* Result line items */
   .cg-line {
     display: flex;
     justify-content: space-between;
@@ -206,9 +257,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     border-bottom: 1px solid rgba(28,25,23,0.07);
     font-size: 0.8rem;
     color: var(--color-text-secondary);
+    gap: 0.5rem;
   }
   .cg-line:last-child { border-bottom: none; }
-  .cg-line .val { font-weight: 600; color: var(--color-text-primary); font-family: var(--font-sans); }
+  .cg-line .val { font-weight: 600; color: var(--color-text-primary); font-family: var(--font-sans); white-space: nowrap; }
   .cg-line.total {
     font-weight: 700;
     color: var(--color-text-primary);
@@ -220,18 +272,26 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   .cg-line.total .val { color: var(--color-gold); font-size: 0.95rem; }
   .cg-line.deduction .val { color: #4a9e4a; }
-  .cg-alert {
-    padding: 1rem 1.25rem;
-    border-left: 3px solid var(--color-gold);
-    background: rgba(197,160,60,0.06);
-    font-size: 0.78rem;
-    color: var(--color-text-secondary);
-    line-height: 1.65;
-    margin-bottom: 0.75rem;
-  }
-  .cg-alert strong { color: var(--color-text-primary); }
+  .cg-line.loss-line .val { color: #c0392b; }
+  .cg-line.indent { padding-left: 0.85rem; font-size: 0.75rem; }
 
-  /* Compare panel */
+  /* ── State badges ────────────────────────── */
+  .cg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cg-badge.eligible   { background: rgba(197,160,60,0.12); color: var(--color-gold); border: 1px solid rgba(197,160,60,0.3); }
+  .cg-badge.ineligible { background: rgba(28,25,23,0.06); color: #78716c; border: 1px solid rgba(28,25,23,0.15); }
+  .cg-badge.exempt     { background: rgba(74,158,74,0.1); color: #4a9e4a; border: 1px solid rgba(74,158,74,0.3); }
+  .cg-badge.loss       { background: rgba(120,113,108,0.08); color: #78716c; border: 1px solid rgba(120,113,108,0.2); }
+
+  /* ── Budget comparison ───────────────────── */
   .cg-compare {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,588 +299,1155 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     background: rgba(28,25,23,0.1);
     margin-top: 0.5rem;
   }
-  .cg-compare-col {
-    background: var(--color-surface-3);
-    padding: 1.25rem;
-    text-align: center;
-  }
+  .cg-compare-col { background: var(--color-surface-3); padding: 1.1rem; text-align: center; }
   .cg-compare-col.current { background: rgba(197,160,60,0.05); }
   .cg-compare-label {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: 0.5rem;
-    display: block;
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.4rem; display: block;
   }
   .cg-compare-val {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: var(--color-text-primary);
-    line-height: 1.1;
+    font-family: var(--font-serif); font-size: 1.25rem;
+    font-weight: 400; color: var(--color-text-primary); line-height: 1.1;
   }
-  .cg-compare-diff {
-    font-size: 0.72rem;
-    color: #c0392b;
-    margin-top: 0.3rem;
-    font-weight: 600;
+  .cg-compare-diff { font-size: 0.7rem; margin-top: 0.3rem; font-weight: 600; }
+
+  /* ── Assumptions list ────────────────────── */
+  .cg-assumptions {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .cg-assumptions li {
+    display: flex; align-items: flex-start; gap: 0.5rem;
+    font-size: 0.72rem; color: var(--color-text-secondary); line-height: 1.5;
+  }
+  .cg-assumptions li::before {
+    content: '·'; color: var(--color-gold); font-weight: 700;
+    flex-shrink: 0; margin-top: 0.05rem;
+  }
+
+  /* ── Mobile ──────────────────────────────── */
+  @media (max-width: 900px) {
+    #cg-layout { grid-template-columns: 1fr !important; }
+    #cg-results { position: static !important; top: auto !important; }
+  }
+  @media (max-width: 640px) {
+    .cg-card, .cg-discount-block { padding: 1.1rem 0.9rem; }
+    .cg-row  { flex-wrap: wrap; gap: 0.4rem; }
+    .cg-row label { flex: 1 1 100%; }
+    .cg-input { width: 100% !important; box-sizing: border-box; }
+    .cg-input-wrap { width: 100%; }
+    .cg-select { width: 100% !important; }
+    .cg-slider-labels { display: none; }
+    .cg-result-card { padding: 1.1rem 0.9rem; }
+    .cg-compare-val { font-size: 1rem; }
   }
 </style>
 
-<!-- ── Mobile sticky summary bar ──────────────────────────────── -->
+<!-- ── Mobile summary bar ─────────────────────────────────────── -->
 <div id="cg-mobile-bar" style="display:none;position:sticky;top:0;z-index:30;background:#1c1917;padding:0.65rem 1rem;margin-bottom:1.25rem;align-items:center;justify-content:space-between;gap:0.5rem;">
   <div>
-    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">CGT Payable</span>
-    <div id="cg-mob-cgt" style="font-family:var(--font-serif);font-size:1.35rem;color:#f0ece4;line-height:1.1;">$0</div>
+    <span style="font-size:0.52rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.45);">Estimated CGT</span>
+    <div id="cg-mob-cgt" style="font-family:var(--font-serif);font-size:1.3rem;color:#f0ece4;line-height:1.1;">$0</div>
   </div>
   <div style="text-align:right;">
-    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">Net Proceeds</span>
-    <div id="cg-mob-net" style="font-family:var(--font-serif);font-size:1.35rem;color:#c5a03c;line-height:1.1;">$0</div>
+    <span style="font-size:0.52rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.45);">Net Proceeds</span>
+    <div id="cg-mob-net" style="font-family:var(--font-serif);font-size:1.3rem;color:#c5a03c;line-height:1.1;">$0</div>
   </div>
 </div>
 
-<!-- ── Intro notice ─────────────────────────────────────────── -->
+<!-- ── Intro notice ───────────────────────────────────────────── -->
 <div class="cg-alert" style="margin-bottom:1.5rem;">
-  <strong>Budget Watch:</strong> The Australian Government is considering changes to the CGT discount currently available after 12 months of ownership. Use the discount slider below to model how proposed changes could affect your tax bill. This calculator provides an estimate only — always consult a registered tax adviser.
+  <strong>Budget Watch:</strong> The Australian Government is considering changes to the CGT discount currently available for assets held over 12 months. Use the discount slider at the bottom of the inputs to model how proposed changes could affect your position. This calculator provides an estimate only. Always consult a registered tax adviser or accountant before making financial or tax decisions.
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 380px;gap:2rem;align-items:start;" id="cg-layout">
+<!-- ── Date validation warning ───────────────────────────────── -->
+<div class="cg-warning" id="dateWarning">
+  Sale date cannot be before the purchase date. Please check your dates.
+</div>
 
-  <!-- ══ LEFT: Inputs ════════════════════════════════════════ -->
-  <div>
+<div style="display:grid;grid-template-columns:1fr 390px;gap:2rem;align-items:start;" id="cg-layout">
 
-    <!-- Property Details -->
-    <div class="cg-card">
-      <span class="cg-section-title">Property Details</span>
+<!-- ══════════════════════════════════════════════════════════════
+     LEFT: INPUTS
+══════════════════════════════════════════════════════════════ -->
+<div>
 
-      <div class="cg-row">
-        <label>Purchase Price<small>What you paid for the property</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="purchasePrice" type="number" value="650000" min="0" step="1000" />
-        </div>
-      </div>
+  <!-- 1. Property Details -->
+  <div class="cg-card">
+    <span class="cg-section-title">Property Details</span>
 
-      <div class="cg-row">
-        <label>Purchase Date<small>Settlement date</small></label>
-        <input class="cg-input" id="purchaseDate" type="date" value="2020-06-15" style="min-width:140px;text-align:left;padding-left:0.75rem;" />
-      </div>
-
-      <div class="cg-row">
-        <label>Sale Price<small>Expected or actual sale price</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="salePrice" type="number" value="950000" min="0" step="1000" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Sale Date<small>Settlement date or projected date</small></label>
-        <input class="cg-input" id="saleDate" type="date" style="min-width:140px;text-align:left;padding-left:0.75rem;" />
+    <div class="cg-row">
+      <label>Purchase Price<small>The amount you paid at settlement</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="purchasePrice" type="number" value="650000" min="0" step="1000" />
       </div>
     </div>
 
-    <!-- Cost Base -->
-    <div class="cg-card">
-      <span class="cg-section-title">Cost Base (reduces your gain)</span>
+    <div class="cg-row">
+      <label>Purchase (Settlement) Date</label>
+      <input class="cg-input" id="purchaseDate" type="date" value="2020-06-15" style="min-width:140px;text-align:left;padding-left:0.75rem;" />
+    </div>
 
-      <div class="cg-row">
-        <label>Stamp Duty Paid<small>On purchase</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="stampDuty" type="number" value="25000" min="0" step="500" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Legal / Conveyancing Costs<small>Buying + selling combined</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="legalCosts" type="number" value="3000" min="0" step="500" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Building & Pest Inspection<small>Pre-purchase</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="inspectionCosts" type="number" value="800" min="0" step="100" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Capital Improvements<small>Renovations that added value (not repairs/maintenance)</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="improvements" type="number" value="30000" min="0" step="1000" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Agent Commission<small>On sale</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="agentFee" type="number" value="19000" min="0" step="500" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Other Selling Costs<small>Marketing, styling, etc.</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="otherCosts" type="number" value="5000" min="0" step="500" />
-        </div>
+    <div class="cg-row">
+      <label>Sale Price<small>Expected or actual sale price at settlement</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="salePrice" type="number" value="950000" min="0" step="1000" />
       </div>
     </div>
 
-    <!-- Your Situation -->
-    <div class="cg-card">
-      <span class="cg-section-title">Your Tax Situation</span>
-
-      <div class="cg-row">
-        <label>Other Taxable Income<small>Salary, rental income, etc. (this year)</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="otherIncome" type="number" value="120000" min="0" step="1000" />
-        </div>
-      </div>
-
-      <div class="cg-row">
-        <label>Ownership Structure</label>
-        <select class="cg-select" id="ownershipType">
-          <option value="individual">Individual</option>
-          <option value="trust">Trust (discretionary)</option>
-          <option value="company">Company (Pty Ltd)</option>
-          <option value="smsf">SMSF</option>
-        </select>
-      </div>
-
-      <div class="cg-row">
-        <label>Australian Resident?<small>For tax purposes</small></label>
-        <select class="cg-select" id="taxResident">
-          <option value="yes">Yes — resident</option>
-          <option value="no">No — non-resident</option>
-        </select>
-      </div>
-
-      <div class="cg-row" id="mainResRow">
-        <label>Main Residence?<small>Did you live in this property as your primary home?</small></label>
-        <select class="cg-select" id="mainResidence">
-          <option value="no">No — investment only</option>
-          <option value="partial">Partial — mixed use</option>
-          <option value="yes">Yes — full exemption</option>
-        </select>
-      </div>
-
-      <div class="cg-row" id="mainResPercentRow" style="display:none;">
-        <label>Investment Use %<small>Proportion of time used as investment</small></label>
-        <div class="cg-input-wrap suffix">
-          <input class="cg-input" id="investmentPct" type="number" value="50" min="1" max="99" step="1" />
-          <span class="cg-suffix">%</span>
-        </div>
-      </div>
-
-      <div class="cg-row" id="capitalLossRow">
-        <label>Prior Year Capital Losses<small>Unused losses carried forward from ATO</small></label>
-        <div class="cg-input-wrap">
-          <span class="cg-prefix">$</span>
-          <input class="cg-input" id="priorLosses" type="number" value="0" min="0" step="1000" />
-        </div>
-      </div>
+    <div class="cg-row">
+      <label>Sale (Settlement) Date</label>
+      <input class="cg-input" id="saleDate" type="date" style="min-width:140px;text-align:left;padding-left:0.75rem;" />
     </div>
-
-    <!-- CGT Discount Control -->
-    <div class="cg-discount-block">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);">CGT Discount Rate</span>
-          <p style="font-size:0.78rem;color:var(--color-text-secondary);margin-top:0.3rem;line-height:1.5;">Applies to individuals &amp; trusts when property held &gt;12 months. Currently 50%. Drag to model proposed changes.</p>
-        </div>
-        <div style="text-align:center;flex-shrink:0;margin-left:1rem;">
-          <span id="discountDisplay" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-gold);line-height:1;">50%</span>
-          <span style="display:block;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);margin-top:0.2rem;">Discount</span>
-        </div>
-      </div>
-      <input type="range" class="cg-slider" id="discountSlider" min="0" max="75" value="50" step="5" />
-      <div class="cg-slider-labels">
-        <span>0% (no discount)</span>
-        <span>25%</span>
-        <span>50% (current)</span>
-        <span>75%</span>
-      </div>
-      <div class="cg-discount-presets">
-        <button class="cg-preset" data-val="0">0% — Removed</button>
-        <button class="cg-preset" data-val="25">25% — Halved</button>
-        <button class="cg-preset" data-val="33">33% — ⅓ Proposal</button>
-        <button class="cg-preset" data-val="40">40% — Reduced</button>
-        <button class="cg-preset active" data-val="50">50% — Current Law</button>
-        <button class="cg-preset" data-val="66">66% — ⅔ Rate</button>
-      </div>
-    </div>
-
   </div>
 
-  <!-- ══ RIGHT: Results ══════════════════════════════════════ -->
-  <div id="cg-results" style="position:sticky;top:80px;">
+  <!-- 2. Acquisition Costs -->
+  <div class="cg-card">
+    <span class="cg-section-title">Acquisition and Selling Costs</span>
+    <p style="font-size:0.74rem;color:var(--color-text-muted);line-height:1.55;margin-bottom:1.1rem;">
+      These are added to your cost base, which reduces your estimated capital gain. Include costs actually paid, not estimates.
+    </p>
 
-    <!-- Hold Period -->
-    <div class="cg-result-card" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
-      <div style="flex:1;">
-        <span class="cg-result-label">Hold Period</span>
-        <div class="cg-result-value gold" id="holdPeriod">—</div>
-        <div class="cg-result-sub" id="discountEligible">Calculating…</div>
-      </div>
-      <div id="discountBadge" style="padding:0.4rem 0.85rem;font-size:0.6rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;background:rgba(197,160,60,0.12);color:var(--color-gold);border:1px solid rgba(197,160,60,0.3);">
-        Discount Eligible
+    <div class="cg-row">
+      <label>Transfer Duty (Stamp Duty)<small>Paid on purchase in Queensland</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="stampDuty" type="number" value="25000" min="0" step="500" />
       </div>
     </div>
 
-    <!-- Capital Gain Breakdown -->
-    <div class="cg-result-card">
-      <span class="cg-result-label" style="margin-bottom:1rem;">Capital Gain Calculation</span>
-
-      <div class="cg-line">
-        <span>Sale Price</span>
-        <span class="val" id="r-salePrice">$0</span>
-      </div>
-      <div class="cg-line deduction">
-        <span>Less: Cost Base</span>
-        <span class="val" id="r-costBase">($0)</span>
-      </div>
-      <div class="cg-line deduction">
-        <span>Less: Prior Losses</span>
-        <span class="val" id="r-priorLosses">($0)</span>
-      </div>
-      <div class="cg-line total" style="border-top-color:rgba(28,25,23,0.12);">
-        <span>Gross Capital Gain</span>
-        <span class="val" id="r-grossGain">$0</span>
-      </div>
-      <div class="cg-line deduction" id="discountRow">
-        <span id="discountLabel">Less: 50% CGT Discount</span>
-        <span class="val" id="r-discountAmt">($0)</span>
-      </div>
-      <div class="cg-line deduction" id="mainResRow2" style="display:none;">
-        <span>Less: Main Residence</span>
-        <span class="val" id="r-mainResAmt">($0)</span>
-      </div>
-      <div class="cg-line total">
-        <span>Net Taxable Gain</span>
-        <span class="val" id="r-netGain">$0</span>
+    <div class="cg-row">
+      <label>Conveyancing (Buying)<small>Solicitor or conveyancer fees on purchase</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="legalBuying" type="number" value="1800" min="0" step="100" />
       </div>
     </div>
 
-    <!-- Tax Payable -->
-    <div class="cg-result-card">
-      <span class="cg-result-label" style="margin-bottom:0.9rem;">Estimated Tax on Gain</span>
+    <div class="cg-row">
+      <label>Building and Pest Inspection<small>Pre-purchase inspection fees</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="inspection" type="number" value="800" min="0" step="100" />
+      </div>
+    </div>
 
+    <div class="cg-row">
+      <label>
+        Capital Improvements
+        <small>
+          Renovations that added value or extended the property's useful life, such as an extension, new kitchen, or pool.
+          Do not include repairs, repainting, or items already claimed as deductions on your tax return.
+        </small>
+      </label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="improvements" type="number" value="30000" min="0" step="1000" />
+      </div>
+    </div>
+
+    <div class="cg-row">
+      <label>Agent Commission (Selling)<small>Sales agent fee, including GST</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="agentFee" type="number" value="19000" min="0" step="500" />
+      </div>
+    </div>
+
+    <div class="cg-row">
+      <label>Conveyancing (Selling)<small>Solicitor fees on sale</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="legalSelling" type="number" value="1200" min="0" step="100" />
+      </div>
+    </div>
+
+    <div class="cg-row">
+      <label>Other Selling Costs<small>Marketing, property styling, auctioneer fees, etc.</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="otherSelling" type="number" value="4000" min="0" step="500" />
+      </div>
+    </div>
+
+    <!-- Holding costs collapsible -->
+    <button class="cg-toggle-btn" id="holdingToggle" type="button">
+      <span>+ Holding Costs (optional)</span>
+      <svg class="cg-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+
+    <div id="holdingSection" style="display:none;margin-top:0.75rem;">
+      <div class="cg-note-box" style="margin-bottom:0.75rem;">
+        <strong>Only include costs you have not already claimed as income tax deductions.</strong>
+        For investment properties, expenses such as interest, council rates, and insurance are typically claimed as annual deductions and cannot also be added to the cost base. For owner-occupied properties held under main residence rules, some of these costs may be includable. Seek advice from your accountant if unsure.
+      </div>
+
+      <div class="cg-row">
+        <label>Loan Interest (not previously claimed)<small>Total interest over ownership period</small></label>
+        <div class="cg-input-wrap">
+          <span class="cg-prefix">$</span>
+          <input class="cg-input" id="holdInterest" type="number" value="0" min="0" step="1000" />
+        </div>
+      </div>
+      <div class="cg-row">
+        <label>Council Rates (not previously claimed)</label>
+        <div class="cg-input-wrap">
+          <span class="cg-prefix">$</span>
+          <input class="cg-input" id="holdRates" type="number" value="0" min="0" step="500" />
+        </div>
+      </div>
+      <div class="cg-row">
+        <label>Land Tax (not previously claimed)</label>
+        <div class="cg-input-wrap">
+          <span class="cg-prefix">$</span>
+          <input class="cg-input" id="holdLandTax" type="number" value="0" min="0" step="500" />
+        </div>
+      </div>
+      <div class="cg-row">
+        <label>Building Insurance (not previously claimed)</label>
+        <div class="cg-input-wrap">
+          <span class="cg-prefix">$</span>
+          <input class="cg-input" id="holdInsurance" type="number" value="0" min="0" step="200" />
+        </div>
+      </div>
+      <div class="cg-row">
+        <label>Body Corporate / Strata Fees (not previously claimed)</label>
+        <div class="cg-input-wrap">
+          <span class="cg-prefix">$</span>
+          <input class="cg-input" id="holdBodyCorp" type="number" value="0" min="0" step="200" />
+        </div>
+      </div>
+      <div class="cg-row">
+        <label>Other Holding Costs (not previously claimed)</label>
+        <div class="cg-input-wrap">
+          <span class="cg-prefix">$</span>
+          <input class="cg-input" id="holdOther" type="number" value="0" min="0" step="200" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Your Situation -->
+  <div class="cg-card">
+    <span class="cg-section-title">Your Situation</span>
+
+    <div class="cg-row">
+      <label>Other Taxable Income This Year<small>Salary, business income, rental income, etc. — before adding any capital gain</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="otherIncome" type="number" value="120000" min="0" step="1000" />
+      </div>
+    </div>
+
+    <div class="cg-row">
+      <label>Ownership Structure<small>How is the property legally owned?</small></label>
+      <select class="cg-select" id="ownershipType">
+        <option value="individual">Individual</option>
+        <option value="joint">Joint Individuals</option>
+        <option value="trust">Discretionary Trust</option>
+        <option value="company">Company (Pty Ltd)</option>
+        <option value="smsf">SMSF</option>
+      </select>
+    </div>
+
+    <div class="cg-row" id="ownerShareRow" style="display:none;">
+      <label>Your Ownership Share<small>Default 50/50 for joint ownership</small></label>
+      <div class="cg-input-wrap has-suffix">
+        <input class="cg-input" id="ownerShare" type="number" value="50" min="1" max="99" step="1" />
+        <span class="cg-suffix">%</span>
+      </div>
+    </div>
+
+    <div class="cg-row">
+      <label>Australian Tax Resident?<small>For Australian tax purposes at time of sale</small></label>
+      <select class="cg-select" id="taxResident">
+        <option value="yes">Yes, Australian resident</option>
+        <option value="no">No, non-resident</option>
+      </select>
+    </div>
+
+    <div class="cg-row">
+      <label>Prior Year Capital Losses<small>Unused net capital losses carried forward from the ATO — offset these against the gain before the discount is applied</small></label>
+      <div class="cg-input-wrap">
+        <span class="cg-prefix">$</span>
+        <input class="cg-input" id="priorLosses" type="number" value="0" min="0" step="1000" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Main Residence -->
+  <div class="cg-card">
+    <span class="cg-section-title">Main Residence</span>
+    <p style="font-size:0.74rem;color:var(--color-text-muted);line-height:1.55;margin-bottom:1rem;">
+      A full or partial main residence exemption can significantly reduce or eliminate CGT. The rules are complex; this section provides an estimate only.
+    </p>
+
+    <div class="cg-row">
+      <label>Was this your main residence?<small>Did you live in this property as your primary home at any point?</small></label>
+      <select class="cg-select" id="mainResStatus">
+        <option value="no">No, investment only</option>
+        <option value="yes">Yes, main residence</option>
+      </select>
+    </div>
+
+    <!-- Follow-up questions (shown when mainResStatus = 'yes') -->
+    <div id="mrFollowUp" style="display:none;" class="cg-follow-up">
+
+      <div class="cg-row">
+        <label>Was it ever rented out while you owned it?<small>Did it ever produce rental income during your ownership?</small></label>
+        <select class="cg-select" id="mrEverRented">
+          <option value="no">No, never rented</option>
+          <option value="yes">Yes, it was rented</option>
+        </select>
+      </div>
+
+      <div id="mrRentedDetail" style="display:none;">
+        <div class="cg-row">
+          <label>Approximately how many years was it rented?<small>Rounded to the nearest year</small></label>
+          <div class="cg-input-wrap has-suffix">
+            <input class="cg-input" id="mrRentedYears" type="number" value="2" min="0" step="1" style="width:100px;" />
+            <span class="cg-suffix" style="right:0.5rem;">yrs</span>
+          </div>
+        </div>
+        <div class="cg-row">
+          <label>Did you move back in before selling?<small>Moving back in may affect eligibility under the 6-year absence rule</small></label>
+          <select class="cg-select" id="mrMovedBack">
+            <option value="no">No, sold while it was rented or vacant</option>
+            <option value="yes">Yes, moved back before selling</option>
+          </select>
+        </div>
+        <div class="cg-row">
+          <label>Was this your only main residence during the rental period?<small>Important for the absence rule</small></label>
+          <select class="cg-select" id="mrOnlyMainRes">
+            <option value="yes">Yes, only main residence</option>
+            <option value="no">No, I had another main residence</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. CGT Discount -->
+  <div class="cg-discount-block">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+      <div>
+        <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);">CGT Discount Rate</span>
+        <p style="font-size:0.76rem;color:var(--color-text-secondary);margin-top:0.3rem;line-height:1.55;">
+          Applies to individuals and eligible trusts when property is held over 12 months. Currently 50% under Australian law. Adjust the slider to model proposed federal budget changes.
+        </p>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <span id="discountDisplay" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-gold);line-height:1;">50%</span>
+        <span style="display:block;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);margin-top:0.2rem;">Discount</span>
+      </div>
+    </div>
+    <input type="range" class="cg-slider" id="discountSlider" min="0" max="75" value="50" step="5" />
+    <div class="cg-slider-labels">
+      <span>0% — Removed</span>
+      <span>25%</span>
+      <span>50% — Current law</span>
+      <span>75%</span>
+    </div>
+    <div class="cg-discount-presets">
+      <button class="cg-preset" data-val="0">0% — Removed</button>
+      <button class="cg-preset" data-val="25">25% — Halved</button>
+      <button class="cg-preset" data-val="33">33% — Proposed</button>
+      <button class="cg-preset" data-val="40">40%</button>
+      <button class="cg-preset active" data-val="50">50% — Current</button>
+    </div>
+  </div>
+
+</div><!-- end left column -->
+
+<!-- ══════════════════════════════════════════════════════════════
+     RIGHT: RESULTS
+══════════════════════════════════════════════════════════════ -->
+<div id="cg-results" style="position:sticky;top:80px;">
+
+  <!-- Hold Period -->
+  <div class="cg-result-card" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+    <div style="flex:1;min-width:0;">
+      <span class="cg-result-label">Hold Period</span>
+      <div class="cg-result-value gold" id="holdPeriod">—</div>
+      <div class="cg-result-sub" id="holdNote">Enter your dates above.</div>
+    </div>
+    <div id="discountBadge" class="cg-badge eligible">Discount Eligible</div>
+  </div>
+
+  <!-- ── Gain / Loss / Exemption Panel ── -->
+  <!-- Normal gain state -->
+  <div class="cg-result-card" id="gainPanel">
+    <span class="cg-result-label" style="margin-bottom:0.9rem;">Estimated Capital Gain</span>
+
+    <div class="cg-line">
+      <span>Your sale proceeds</span>
+      <span class="val" id="r-salePrice">$0</span>
+    </div>
+    <div class="cg-line deduction">
+      <span>Less: total cost base</span>
+      <span class="val" id="r-costBase">($0)</span>
+    </div>
+    <div class="cg-line total" style="border-top-color:rgba(28,25,23,0.12);">
+      <span>Gross capital gain</span>
+      <span class="val" id="r-grossGain">$0</span>
+    </div>
+
+    <div class="cg-line deduction" id="mrExemptRow" style="display:none;">
+      <span id="mrExemptLabel">Less: main residence exemption</span>
+      <span class="val" id="r-mrExempt">($0)</span>
+    </div>
+    <div class="cg-line deduction" id="priorLossRow" style="display:none;">
+      <span>Less: prior year capital losses applied</span>
+      <span class="val" id="r-priorApplied">($0)</span>
+    </div>
+    <div class="cg-line" id="gainBeforeDiscountRow" style="display:none;">
+      <span>Gain after losses</span>
+      <span class="val" id="r-gainBeforeDiscount">$0</span>
+    </div>
+    <div class="cg-line deduction" id="discountRow" style="display:none;">
+      <span id="discountLabel">Less: 50% CGT discount</span>
+      <span class="val" id="r-discountAmt">($0)</span>
+    </div>
+    <div class="cg-line total" id="netGainRow">
+      <span>Net taxable capital gain</span>
+      <span class="val" id="r-netGain">$0</span>
+    </div>
+  </div>
+
+  <!-- Capital loss state (shown instead of gain panel) -->
+  <div class="cg-result-card" id="lossPanel" style="display:none;">
+    <span class="cg-result-label">Outcome</span>
+    <div class="cg-result-value muted" id="r-lossAmt">$0</div>
+    <div class="cg-result-sub" style="margin-top:0.5rem;">Estimated capital loss</div>
+    <div class="cg-note-box" style="margin-top:0.85rem;">
+      No CGT is payable on a capital loss. Capital losses may generally be carried forward and offset against future capital gains. You should record this loss on your tax return. Consult your accountant to confirm how this applies to your circumstances.
+    </div>
+  </div>
+
+  <!-- Full exemption state -->
+  <div class="cg-result-card" id="exemptPanel" style="display:none;">
+    <span class="cg-result-label">Main Residence Exemption</span>
+    <div class="cg-result-value green" style="font-size:1.3rem;" id="r-exemptMsg">Full exemption likely</div>
+    <div class="cg-result-sub" id="r-exemptSub" style="margin-top:0.5rem;">CGT may not apply to this transaction.</div>
+    <div class="cg-note-box" style="margin-top:0.85rem;" id="r-exemptNote">
+      This estimate assumes full main residence exemption applies. The actual outcome depends on your specific circumstances. Seek advice from a registered tax adviser to confirm eligibility.
+    </div>
+  </div>
+
+  <!-- ── Tax Estimate ── -->
+  <div class="cg-result-card" id="taxPanel">
+    <span class="cg-result-label" style="margin-bottom:0.9rem;">Estimated Tax on Capital Gain</span>
+
+    <!-- Individual / joint -->
+    <div id="taxIndividualSection">
       <div class="cg-line">
-        <span>Other Taxable Income</span>
+        <span>Other taxable income</span>
         <span class="val" id="r-otherIncome">$0</span>
       </div>
       <div class="cg-line">
-        <span>+ Net Capital Gain</span>
+        <span>Plus: net capital gain</span>
         <span class="val" id="r-addGain">$0</span>
       </div>
       <div class="cg-line total" style="border-top-color:rgba(28,25,23,0.12);">
-        <span>Total Taxable Income</span>
+        <span>Total taxable income</span>
         <span class="val" id="r-totalIncome">$0</span>
       </div>
-      <div style="height:0.5rem;"></div>
+      <div style="height:0.4rem;"></div>
       <div class="cg-line">
-        <span>Income Tax (before gain)</span>
+        <span>Income tax — before gain</span>
         <span class="val" id="r-taxBefore">$0</span>
       </div>
       <div class="cg-line">
-        <span>Income Tax (with gain)</span>
+        <span>Income tax — with gain</span>
         <span class="val" id="r-taxAfter">$0</span>
       </div>
       <div class="cg-line total">
-        <span>Tax on Capital Gain</span>
+        <span>Estimated tax attributable to gain</span>
         <span class="val" id="r-taxOnGain">$0</span>
       </div>
-      <div class="cg-line">
-        <span>Medicare Levy (2%)</span>
+      <div class="cg-line" id="medicareRow">
+        <span>Medicare levy on gain</span>
         <span class="val" id="r-medicare">$0</span>
       </div>
-      <div class="cg-line total" style="background:rgba(197,160,60,0.04);padding:0.75rem 0.5rem;margin-top:0.2rem;">
-        <span style="font-size:0.9rem;">Total CGT Payable</span>
-        <span class="val" style="font-size:1.05rem;" id="r-totalCGT">$0</span>
+    </div>
+
+    <!-- Trust note (shown instead) -->
+    <div id="taxTrustSection" style="display:none;">
+      <div class="cg-note-box">
+        <strong>Discretionary trust:</strong> The estimated net capital gain is <span id="r-trustGain">$0</span>. A discretionary trust may pass through the CGT discount to individual beneficiaries when distributing a capital gain. The tax payable depends on how the gain is distributed and each beneficiary's marginal tax rate. This estimate cannot reliably calculate a single tax figure. Seek advice from your accountant.
       </div>
     </div>
 
-    <!-- Net Proceeds -->
-    <div class="cg-result-card">
-      <span class="cg-result-label">Net Proceeds After Tax</span>
-      <div class="cg-result-value gold" id="r-netProceeds">$0</div>
-      <div class="cg-result-sub" id="r-effectiveRate">Effective CGT rate: —</div>
-    </div>
-
-    <!-- Budget Comparison -->
-    <div class="cg-result-card" id="compareBlock">
-      <span class="cg-result-label" style="margin-bottom:0.75rem;">Budget Impact Comparison</span>
-      <p style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:0.75rem;line-height:1.5;">Current 50% discount vs your selected rate</p>
-      <div class="cg-compare">
-        <div class="cg-compare-col current">
-          <span class="cg-compare-label">Current Law (50%)</span>
-          <div class="cg-compare-val" id="r-compareCurrent">$0</div>
-          <div style="font-size:0.68rem;color:var(--color-text-muted);margin-top:0.25rem;">Tax payable</div>
-        </div>
-        <div class="cg-compare-col">
-          <span class="cg-compare-label" id="r-compareLabel">Selected Rate</span>
-          <div class="cg-compare-val" id="r-compareNew">$0</div>
-          <div class="cg-compare-diff" id="r-compareDiff"></div>
-        </div>
+    <!-- Company note -->
+    <div id="taxCompanySection" style="display:none;">
+      <div class="cg-line">
+        <span>Net capital gain (no discount)</span>
+        <span class="val" id="r-companyGain">$0</span>
+      </div>
+      <div class="cg-line total">
+        <span>Tax at company rate (30%)</span>
+        <span class="val" id="r-companyTax">$0</span>
+      </div>
+      <div class="cg-note-box" style="margin-top:0.75rem;">
+        Companies do not receive the CGT discount. A base rate entity (turnover under $50 million) may pay 25% rather than 30%. No Medicare levy applies to companies.
       </div>
     </div>
 
-    <!-- Disclaimer -->
-    <p style="font-size:0.68rem;color:var(--color-text-muted);line-height:1.6;padding:0 0.25rem;">
-      Estimate only. Does not account for depreciation clawback, PAYG instalments, state land tax, or individual circumstances. Consult a registered tax adviser or accountant before making decisions.
-    </p>
+    <!-- SMSF note -->
+    <div id="taxSmsfSection" style="display:none;">
+      <div class="cg-line">
+        <span>Net gain (after one-third discount)</span>
+        <span class="val" id="r-smsfGain">$0</span>
+      </div>
+      <div class="cg-line total">
+        <span>Estimated tax at 15% (accumulation phase)</span>
+        <span class="val" id="r-smsfTax">$0</span>
+      </div>
+      <div class="cg-note-box" style="margin-top:0.75rem;">
+        SMSFs in accumulation phase receive a one-third CGT discount (not 50%) on assets held over 12 months, resulting in an effective CGT rate of 10%. In pension phase, no CGT applies. SMSF tax is complex. Seek advice from an SMSF specialist.
+      </div>
+    </div>
 
+    <div class="cg-line total" id="totalCgtRow" style="background:rgba(197,160,60,0.04);padding:0.75rem 0.5rem;margin-top:0.2rem;">
+      <span style="font-size:0.88rem;">Total estimated CGT payable</span>
+      <span class="val" style="font-size:1.05rem;" id="r-totalCGT">$0</span>
+    </div>
   </div>
-</div>
+
+  <!-- ── Net Proceeds ── -->
+  <div class="cg-result-card" id="proceedsPanel">
+    <span class="cg-result-label">Estimated Net Proceeds After Tax</span>
+    <div class="cg-result-value gold" id="r-netProceeds">$0</div>
+    <div class="cg-result-sub" id="r-effectiveRate">Effective rate on gross gain: —</div>
+    <div class="cg-result-sub" id="r-marginalNote" style="margin-top:0.25rem;"></div>
+  </div>
+
+  <!-- ── Budget comparison (shown when discount is not 50%) ── -->
+  <div class="cg-result-card" id="compareBlock" style="display:none;">
+    <span class="cg-result-label" style="margin-bottom:0.75rem;">Budget Impact: 50% vs Your Rate</span>
+    <p style="font-size:0.73rem;color:var(--color-text-muted);margin-bottom:0.75rem;line-height:1.5;">Current law (50% discount) compared to your selected rate</p>
+    <div class="cg-compare">
+      <div class="cg-compare-col current">
+        <span class="cg-compare-label">Current Law (50%)</span>
+        <div class="cg-compare-val" id="r-compareCurrent">$0</div>
+        <div style="font-size:0.65rem;color:var(--color-text-muted);margin-top:0.2rem;">Tax payable</div>
+      </div>
+      <div class="cg-compare-col">
+        <span class="cg-compare-label" id="r-compareLabel">Selected Rate</span>
+        <div class="cg-compare-val" id="r-compareNew">$0</div>
+        <div class="cg-compare-diff" id="r-compareDiff"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Assumptions & Notes ── -->
+  <div class="cg-result-card" id="assumptionsPanel">
+    <span class="cg-result-label" style="margin-bottom:0.85rem;">Assumptions and Important Notes</span>
+    <ul class="cg-assumptions" id="assumptionsList">
+      <li>This is an estimate only and does not constitute tax advice.</li>
+      <li>Uses 2024-25 Australian resident individual marginal tax rates.</li>
+      <li>Assumes all information entered is accurate and complete.</li>
+      <li>Does not account for depreciation recapture, PAYG instalments, or Division 7A.</li>
+      <li>Seek advice from a registered tax adviser before acting on any result.</li>
+    </ul>
+  </div>
+
+</div><!-- end right column -->
+</div><!-- end grid -->
 
 <script>
 (function () {
 
-  /* ─ helpers ─────────────────────────────── */
-  const $ = (id: string) => document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null;
-  const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-AU');
-  const fmtAbs = (n: number) => '$' + Math.round(Math.abs(n)).toLocaleString('en-AU');
-  const val = (id: string, fallback = 0) => parseFloat(($<HTMLInputElement>(id) as HTMLInputElement)?.value || '0') || fallback;
-  const sel = (id: string) => ($<HTMLSelectElement>(id) as HTMLSelectElement)?.value || '';
-  const setText = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  /* ─────────────────────────────────────────────────────────────
+     HELPERS
+  ───────────────────────────────────────────────────────────── */
+  const getEl   = (id: string) => document.getElementById(id);
+  const getInp  = (id: string) => getEl(id) as HTMLInputElement | null;
+  const getSel  = (id: string) => getEl(id) as HTMLSelectElement | null;
+  const numVal  = (id: string, fallback = 0): number => {
+    const v = parseFloat(getInp(id)?.value || '');
+    return isNaN(v) || v < 0 ? fallback : v;
+  };
+  const selVal  = (id: string): string => getSel(id)?.value || '';
+  const setText = (id: string, t: string) => { const el = getEl(id); if (el) el.textContent = t; };
+  const show    = (id: string) => { const el = getEl(id); if (el) el.style.display = 'block'; };
+  const hide    = (id: string) => { const el = getEl(id); if (el) el.style.display = 'none'; };
+  const showFlex = (id: string) => { const el = getEl(id); if (el) el.style.display = 'flex'; };
+  const fmt     = (n: number) => '$' + Math.round(Math.abs(n)).toLocaleString('en-AU');
+  const fmtNeg  = (n: number) => n < 0 ? '(' + fmt(n) + ')' : fmt(n);
 
-  /* ─ Australian tax brackets 2024-25 ─────── */
-  function incomeTax(income: number, isResident: boolean, isCompany: boolean, isSmsf: boolean): number {
+  /* ─────────────────────────────────────────────────────────────
+     TAX FUNCTIONS — 2024-25 Australian rates
+  ───────────────────────────────────────────────────────────── */
+
+  /** Individual resident income tax including LITO */
+  function residentTax(income: number): number {
     if (income <= 0) return 0;
-    if (isCompany) return income * 0.30; // base rate company
-    if (isSmsf) {
-      // SMSF: 15% in accumulation, 0% in pension phase (use accumulation as default)
-      return income * 0.15;
-    }
-    if (!isResident) {
-      // Non-resident: no tax-free threshold, no 50% discount
-      if (income <= 120000) return income * 0.325;
-      if (income <= 180000) return 39000 + (income - 120000) * 0.37;
-      return 61200 + (income - 180000) * 0.45;
-    }
-    // Resident individual/trust
     let tax = 0;
-    if (income <= 18200) tax = 0;
-    else if (income <= 45000) tax = (income - 18200) * 0.19;
+    if      (income <= 18200)  tax = 0;
+    else if (income <= 45000)  tax = (income - 18200) * 0.19;
     else if (income <= 135000) tax = 5092 + (income - 45000) * 0.325;
     else if (income <= 190000) tax = 34205 + (income - 135000) * 0.37;
-    else tax = 54805 + (income - 190000) * 0.45;
-    // LITO 2024-25
+    else                       tax = 54805 + (income - 190000) * 0.45;
+    // Low Income Tax Offset (LITO) 2024-25
     let lito = 0;
-    if (income <= 37500)      lito = 700;
-    else if (income <= 45000) lito = 700 - (income - 37500) * 0.05;
-    else if (income <= 66667) lito = 325 - (income - 45000) * 0.015;
+    if      (income <= 37500)  lito = 700;
+    else if (income <= 45000)  lito = 700 - (income - 37500) * 0.05;
+    else if (income <= 66667)  lito = 325 - (income - 45000) * 0.015;
     return Math.max(0, tax - lito);
   }
 
-  function medicareLevy(income: number, isResident: boolean, isCompany: boolean, isSmsf: boolean): number {
-    if (!isResident || isCompany || isSmsf) return 0;
+  /** Non-resident individual income tax (no free threshold, no LITO) */
+  function nonResidentTax(income: number): number {
+    if (income <= 0) return 0;
+    if      (income <= 135000) return income * 0.325;
+    else if (income <= 190000) return 43875 + (income - 135000) * 0.37;
+    else                       return 64225 + (income - 190000) * 0.45;
+  }
+
+  /** Medicare levy for Australian residents (2024-25 thresholds) */
+  function medicare(income: number): number {
+    if (income <= 0) return 0;
     if (income < 26000) return 0;
     if (income < 32500) return (income - 26000) * 0.10;
     return income * 0.02;
   }
 
-  /* ─ hold period ─────────────────────────── */
-  function holdMonths(buy: string, sell: string): number {
-    const b = new Date(buy), s = new Date(sell);
+  /* ─────────────────────────────────────────────────────────────
+     HOLD PERIOD
+  ───────────────────────────────────────────────────────────── */
+  function holdDays(buyStr: string, sellStr: string): number {
+    const b = new Date(buyStr), s = new Date(sellStr);
     if (isNaN(b.getTime()) || isNaN(s.getTime())) return 0;
-    return (s.getFullYear() - b.getFullYear()) * 12 + s.getMonth() - b.getMonth();
+    return Math.floor((s.getTime() - b.getTime()) / 86400000);
   }
-  function holdLabel(months: number): string {
-    if (months <= 0) return '—';
-    const y = Math.floor(months / 12), m = months % 12;
-    const parts = [];
+
+  function holdYears(buyStr: string, sellStr: string): number {
+    const b = new Date(buyStr), s = new Date(sellStr);
+    if (isNaN(b.getTime()) || isNaN(s.getTime())) return 0;
+    return (s.getFullYear() - b.getFullYear()) + (s.getMonth() - b.getMonth()) / 12;
+  }
+
+  function holdLabel(days: number): string {
+    if (days <= 0) return '—';
+    const y = Math.floor(days / 365), m = Math.floor((days % 365) / 30);
+    const parts: string[] = [];
     if (y > 0) parts.push(y + (y === 1 ? ' year' : ' years'));
     if (m > 0) parts.push(m + (m === 1 ? ' month' : ' months'));
-    return parts.join(', ');
+    return parts.join(', ') || `${days} days`;
   }
 
-  /* ─ set today as default sale date ──────── */
-  const sd = document.getElementById('saleDate') as HTMLInputElement;
-  if (sd && !sd.value) sd.value = new Date().toISOString().split('T')[0];
+  /* ─────────────────────────────────────────────────────────────
+     MAIN RESIDENCE EXEMPTION
+     Simplified model of s.118-110 to s.118-192 ITAA 1997.
+     Returns: exempt fraction (0-1), status, and a note string.
+  ───────────────────────────────────────────────────────────── */
+  function mainResExemption(
+    mrStatus: string,
+    everRented: string,
+    rentedYrs: number,
+    holdYrs: number,
+    movedBack: string,
+    onlyMainRes: string
+  ): { fraction: number; status: string; note: string } {
 
-  /* ─ main calc ───────────────────────────── */
-  function calc() {
-    const purchasePrice   = val('purchasePrice');
-    const salePrice       = val('salePrice');
-    const purchaseDate    = (document.getElementById('purchaseDate') as HTMLInputElement)?.value || '';
-    const saleDateVal     = (document.getElementById('saleDate') as HTMLInputElement)?.value || '';
-    const stampDuty       = val('stampDuty');
-    const legalCosts      = val('legalCosts');
-    const inspection      = val('inspectionCosts');
-    const improvements    = val('improvements');
-    const agentFee        = val('agentFee');
-    const otherSellCosts  = val('otherCosts');
-    const otherIncome     = val('otherIncome');
-    const priorLosses     = val('priorLosses');
-    const discountPct     = val('discountSlider') / 100;
-    const ownership       = sel('ownershipType');
-    const resident        = sel('taxResident') === 'yes';
-    const mainRes         = sel('mainResidence');
-    const investPct       = val('investmentPct', 50) / 100;
-
-    const isCompany = ownership === 'company';
-    const isSmsf    = ownership === 'smsf';
-    const isTrust   = ownership === 'trust';
-
-    /* Hold period */
-    const months = holdMonths(purchaseDate, saleDateVal);
-    const over12 = months >= 12;
-
-    /* Cost base */
-    const costBase = purchasePrice + stampDuty + legalCosts + inspection + improvements + agentFee + otherSellCosts;
-
-    /* Gross gain */
-    let grossGain = salePrice - costBase;
-
-    /* Main residence partial exclusion */
-    let mainResDeduction = 0;
-    if (mainRes === 'yes') {
-      mainResDeduction = grossGain; // full exemption
-    } else if (mainRes === 'partial') {
-      mainResDeduction = grossGain * (1 - investPct);
-    }
-    grossGain = Math.max(0, grossGain - mainResDeduction);
-
-    /* Prior losses offset */
-    const lossesApplied = Math.min(priorLosses, grossGain);
-    const gainAfterLosses = grossGain - lossesApplied;
-
-    /* CGT discount — individuals/trusts, >12 months, residents only */
-    const discountApplicable = over12 && !isCompany && !isSmsf && resident;
-    const effectiveDiscount = discountApplicable ? discountPct : 0;
-    const discountAmt = gainAfterLosses * effectiveDiscount;
-    const netGain = gainAfterLosses - discountAmt;
-
-    /* SMSF: in pension phase 0% — show note */
-    const smsf15 = isSmsf && over12 ? netGain * 0.10 : 0; // 10% effective for SMSF accumulation (one-third discount)
-
-    /* Tax */
-    const taxBefore = incomeTax(otherIncome, resident, isCompany, isSmsf);
-    const taxAfter  = incomeTax(otherIncome + netGain, resident, isCompany, isSmsf);
-    const taxOnGain = Math.max(0, taxAfter - taxBefore);
-
-    const medBefore  = medicareLevy(otherIncome, resident, isCompany, isSmsf);
-    const medAfter   = medicareLevy(otherIncome + netGain, resident, isCompany, isSmsf);
-    const medOnGain  = Math.max(0, medAfter - medBefore);
-
-    const totalCGT   = taxOnGain + medOnGain;
-    const netProceeds = salePrice - (costBase - purchasePrice - improvements) - totalCGT;
-    // (selling costs already in cost base, so net = salePrice - selling costs - CGT)
-    const sellingCosts = agentFee + otherSellCosts;
-    const netProc2 = salePrice - sellingCosts - totalCGT;
-
-    const grossGainRaw = salePrice - costBase; // before any adjustments
-    const effectiveRate = grossGainRaw > 0 ? (totalCGT / grossGainRaw) * 100 : 0;
-
-    /* ─ Budget comparison at current 50% ─ */
-    const discount50 = (over12 && !isCompany && !isSmsf && resident) ? 0.50 : 0;
-    const netGain50 = gainAfterLosses * (1 - discount50);
-    const taxAfter50 = incomeTax(otherIncome + netGain50, resident, isCompany, isSmsf);
-    const taxOnGain50 = Math.max(0, taxAfter50 - taxBefore);
-    const med50 = Math.max(0, medicareLevy(otherIncome + netGain50, resident, isCompany, isSmsf) - medBefore);
-    const totalCGT50 = taxOnGain50 + med50;
-    const diff = totalCGT - totalCGT50;
-
-    /* ─ Update DOM ─ */
-
-    // Hold period
-    setText('holdPeriod', holdLabel(months));
-    setText('discountEligible', over12
-      ? `Held over 12 months — ${discountApplicable ? Math.round(discountPct * 100) + '% CGT discount applies' : 'No discount (company/non-resident)'}`
-      : `Held under 12 months — no CGT discount applies`
-    );
-    const badge = document.getElementById('discountBadge');
-    if (badge) {
-      badge.textContent = discountApplicable ? Math.round(discountPct * 100) + '% Discount' : 'No Discount';
-      badge.style.color = discountApplicable ? 'var(--color-gold)' : '#78716c';
-      badge.style.borderColor = discountApplicable ? 'rgba(197,160,60,0.3)' : 'rgba(28,25,23,0.15)';
-      badge.style.background = discountApplicable ? 'rgba(197,160,60,0.12)' : 'rgba(28,25,23,0.04)';
+    if (mrStatus === 'no') {
+      return { fraction: 0, status: 'none', note: '' };
     }
 
-    // Gain calc
-    setText('r-salePrice', fmt(salePrice));
-    setText('r-costBase', '(' + fmtAbs(costBase) + ')');
-    setText('r-priorLosses', lossesApplied > 0 ? '(' + fmtAbs(lossesApplied) + ')' : '$0');
-    setText('r-grossGain', fmt(gainAfterLosses));
-    setText('discountLabel', `Less: ${Math.round(effectiveDiscount * 100)}% CGT Discount`);
-    setText('r-discountAmt', discountAmt > 0 ? '(' + fmtAbs(discountAmt) + ')' : '$0');
-    setText('r-netGain', fmt(netGain));
-
-    // Main res row
-    const mr2 = document.getElementById('mainResRow2');
-    if (mr2) {
-      mr2.style.display = mainResDeduction > 0 ? 'flex' : 'none';
-      setText('r-mainResAmt', '(' + fmtAbs(mainResDeduction) + ')');
+    if (everRented === 'no') {
+      // Never rented, used as main residence throughout — full exemption likely
+      return {
+        fraction: 1,
+        status: 'full',
+        note: 'The property appears to qualify for a full main residence exemption. No CGT should be payable, subject to confirming all eligibility criteria with a tax adviser.'
+      };
     }
 
-    // Tax
-    setText('r-otherIncome', fmt(otherIncome));
-    setText('r-addGain', fmt(netGain));
-    setText('r-totalIncome', fmt(otherIncome + netGain));
-    setText('r-taxBefore', fmt(taxBefore));
-    setText('r-taxAfter', fmt(taxAfter));
-    setText('r-taxOnGain', fmt(taxOnGain));
-    setText('r-medicare', fmt(medOnGain));
-    setText('r-totalCGT', fmt(totalCGT));
+    // Property was rented at some point
+    const safeFraction = holdYrs > 0 ? Math.min(rentedYrs / holdYrs, 1) : 0;
+    const investFraction = safeFraction;
+    const exemptFraction = 1 - investFraction;
 
-    // Net proceeds
-    setText('r-netProceeds', fmt(netProc2));
-    setText('r-effectiveRate', `Effective CGT rate: ${effectiveRate.toFixed(1)}% of gross gain`);
-
-    // Budget compare
-    setText('r-compareCurrent', fmt(totalCGT50));
-    setText('r-compareNew', fmt(totalCGT));
-    setText('r-compareLabel', Math.round(discountPct * 100) + '% Discount');
-    const diffEl = document.getElementById('r-compareDiff');
-    if (diffEl) {
-      if (Math.abs(diff) < 50) {
-        diffEl.textContent = 'No change';
-        diffEl.style.color = 'var(--color-text-muted)';
-      } else if (diff > 0) {
-        diffEl.textContent = '+' + fmtAbs(diff) + ' more tax';
-        diffEl.style.color = '#c0392b';
+    if (rentedYrs <= 6 && onlyMainRes === 'yes') {
+      if (movedBack === 'yes') {
+        // Classic absence rule scenario — potentially full exemption
+        return {
+          fraction: 1,
+          status: 'absence_full',
+          note: `The 6-year absence rule (s.118-145 ITAA 1997) may apply, potentially preserving the full main residence exemption even though the property was rented. This requires that no other dwelling was treated as your main residence during the absence, and that you moved back before selling. This estimate assumes full exemption — seek advice to confirm.`
+        };
       } else {
-        diffEl.textContent = fmtAbs(diff) + ' less tax';
-        diffEl.style.color = '#4a9e4a';
+        // Rented for <= 6 years but did not move back — partial, but absence rule may still help
+        return {
+          fraction: exemptFraction,
+          status: 'partial_absence',
+          note: `A partial main residence exemption has been estimated based on the proportion of time the property was your main residence (${Math.round(exemptFraction * 100)}%). The 6-year absence rule may provide additional relief depending on your circumstances. This estimate requires professional review.`
+        };
+      }
+    }
+
+    if (rentedYrs > 6) {
+      // Rented for more than 6 years — partial exemption, absence rule exceeded
+      return {
+        fraction: exemptFraction,
+        status: 'partial',
+        note: `A partial main residence exemption has been estimated at ${Math.round(exemptFraction * 100)}% based on the proportion of ownership during which the property was your main residence. The property was rented for more than 6 years, which exceeds the absence rule limit. Seek advice to confirm the correct exempt fraction.`
+      };
+    }
+
+    // Rented <= 6 years, not the only main res
+    return {
+      fraction: exemptFraction,
+      status: 'partial',
+      note: `A partial main residence exemption has been estimated at ${Math.round(exemptFraction * 100)}%. As you may have had another main residence during this period, the absence rule may not apply. Seek advice from a tax adviser.`
+    };
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     MAIN CALCULATION
+  ───────────────────────────────────────────────────────────── */
+  function calc() {
+    const purchasePrice = numVal('purchasePrice');
+    const salePrice     = numVal('salePrice');
+    const purchaseDate  = getInp('purchaseDate')?.value || '';
+    const saleDateVal   = getInp('saleDate')?.value || '';
+    const ownership     = selVal('ownershipType');
+    const resident      = selVal('taxResident') === 'yes';
+    const ownerShare    = ownership === 'joint' ? numVal('ownerShare', 50) / 100 : 1.0;
+    const otherIncome   = numVal('otherIncome');
+    const priorLosses   = numVal('priorLosses');
+    const discountPct   = numVal('discountSlider', 50) / 100;
+
+    // Cost base components
+    const stampDuty     = numVal('stampDuty');
+    const legalBuying   = numVal('legalBuying');
+    const inspection    = numVal('inspection');
+    const improvements  = numVal('improvements');
+    const agentFee      = numVal('agentFee');
+    const legalSelling  = numVal('legalSelling');
+    const otherSelling  = numVal('otherSelling');
+    const holdInterest  = numVal('holdInterest');
+    const holdRates     = numVal('holdRates');
+    const holdLandTax   = numVal('holdLandTax');
+    const holdInsurance = numVal('holdInsurance');
+    const holdBodyCorp  = numVal('holdBodyCorp');
+    const holdOther     = numVal('holdOther');
+
+    // Main residence inputs
+    const mrStatus      = selVal('mainResStatus');
+    const mrEverRented  = selVal('mrEverRented');
+    const mrRentedYrs   = numVal('mrRentedYears', 0);
+    const mrMovedBack   = selVal('mrMovedBack');
+    const mrOnlyMainRes = selVal('mrOnlyMainRes');
+
+    // Date validation
+    const days = holdDays(purchaseDate, saleDateVal);
+    const yrs  = holdYears(purchaseDate, saleDateVal);
+    const dateError = getEl('dateWarning');
+    if (days < 0) {
+      if (dateError) dateError.style.display = 'block';
+      return;
+    }
+    if (dateError) dateError.style.display = 'none';
+
+    const over12 = days >= 366; // strictly more than 12 months
+
+    /* ── Apply ownership share ── */
+    const myPurchasePrice = purchasePrice * ownerShare;
+    const mySalePrice     = salePrice * ownerShare;
+
+    /* ── Cost base ── */
+    const acquisitionCosts = stampDuty + legalBuying + inspection;
+    const sellingCosts     = agentFee + legalSelling + otherSelling;
+    const holdingCosts     = holdInterest + holdRates + holdLandTax + holdInsurance + holdBodyCorp + holdOther;
+    const totalCostBase    = (myPurchasePrice) + (acquisitionCosts + improvements + holdingCosts) * ownerShare + sellingCosts * ownerShare;
+
+    /* ── Gross gain / loss ── */
+    const grossAmount = mySalePrice - totalCostBase;
+    const isLoss = grossAmount < 0;
+
+    /* ── Determine if discount applies ── */
+    const isCompany  = ownership === 'company';
+    const isSmsf     = ownership === 'smsf';
+    const isTrust    = ownership === 'trust';
+    const isJoint    = ownership === 'joint';
+    const isIndividualType = !isCompany && !isSmsf;
+    // Non-residents are not entitled to the CGT discount on Australian real property (post-2012)
+    const discountApplicable = over12 && isIndividualType && resident;
+    const effectiveDiscount  = discountApplicable ? discountPct : (isSmsf && over12 ? 1/3 : 0);
+
+    /* ── Main residence ── */
+    const { fraction: mrFraction, status: mrResultStatus, note: mrNote } =
+      mainResExemption(mrStatus, mrEverRented, mrRentedYrs, yrs, mrMovedBack, mrOnlyMainRes);
+    const isFullExempt = mrFraction >= 1 && !isLoss && grossAmount > 0;
+    const mrExemptAmt  = !isLoss ? grossAmount * mrFraction : 0;
+    const gainAfterMR  = Math.max(0, grossAmount - mrExemptAmt);
+
+    /* ── Capital losses offset ── */
+    const lossesApplied     = Math.min(priorLosses, gainAfterMR);
+    const gainAfterLosses   = gainAfterMR - lossesApplied;
+
+    /* ── CGT discount ── */
+    const discountAmt = gainAfterLosses * effectiveDiscount;
+    const netGain     = gainAfterLosses - discountAmt;
+
+    /* ── Tax calculation ── */
+    let taxOnGain  = 0;
+    let medOnGain  = 0;
+    let totalCGT   = 0;
+    let taxBefore  = 0;
+    let taxAfter   = 0;
+    let medBefore  = 0;
+    let medAfter   = 0;
+
+    if (!isLoss && !isFullExempt && netGain > 0) {
+      if (isCompany) {
+        // Company: 30% flat (note: 25% for base rate, but we use 30% as conservative default)
+        taxOnGain = netGain * 0.30;
+        totalCGT  = taxOnGain;
+      } else if (isSmsf) {
+        // SMSF accumulation: 15% on two-thirds of gain (one-third discount already applied)
+        taxOnGain = netGain * 0.15;
+        totalCGT  = taxOnGain;
+      } else if (isTrust) {
+        // Show gain only — trust distributes to beneficiaries
+        // For comparison panel, estimate as if individual
+        taxBefore = resident ? residentTax(otherIncome) : nonResidentTax(otherIncome);
+        taxAfter  = resident ? residentTax(otherIncome + netGain) : nonResidentTax(otherIncome + netGain);
+        taxOnGain = Math.max(0, taxAfter - taxBefore);
+        if (resident) {
+          medBefore = medicare(otherIncome);
+          medAfter  = medicare(otherIncome + netGain);
+          medOnGain = Math.max(0, medAfter - medBefore);
+        }
+        totalCGT = 0; // Trust doesn't pay — shown as note
+      } else {
+        // Individual or joint
+        taxBefore = resident ? residentTax(otherIncome) : nonResidentTax(otherIncome);
+        taxAfter  = resident ? residentTax(otherIncome + netGain) : nonResidentTax(otherIncome + netGain);
+        taxOnGain = Math.max(0, taxAfter - taxBefore);
+        if (resident) {
+          medBefore = medicare(otherIncome);
+          medAfter  = medicare(otherIncome + netGain);
+          medOnGain = Math.max(0, medAfter - medBefore);
+        }
+        totalCGT = taxOnGain + medOnGain;
+      }
+    }
+
+    /* ── Net proceeds ── */
+    const netProceeds = mySalePrice - (sellingCosts * ownerShare) - totalCGT;
+    const effectiveRate = grossAmount > 0 ? (totalCGT / grossAmount) * 100 : 0;
+
+    /* ── Budget comparison at 50% (current law) ── */
+    let totalCGT50 = 0;
+    if (!isLoss && !isFullExempt && !isCompany && !isSmsf && !isTrust && gainAfterLosses > 0) {
+      const disc50    = (over12 && resident) ? 0.50 : 0;
+      const net50     = gainAfterLosses * (1 - disc50);
+      const t50After  = resident ? residentTax(otherIncome + net50) : nonResidentTax(otherIncome + net50);
+      const t50Before = resident ? residentTax(otherIncome) : nonResidentTax(otherIncome);
+      const m50       = resident ? Math.max(0, medicare(otherIncome + net50) - medicare(otherIncome)) : 0;
+      totalCGT50 = Math.max(0, t50After - t50Before) + m50;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       UPDATE DOM
+    ═══════════════════════════════════════════════════════════ */
+
+    // Hold period badge
+    setText('holdPeriod', holdLabel(days));
+    const badge = getEl('discountBadge');
+    if (badge) {
+      if (isLoss) {
+        badge.textContent = 'Capital Loss';
+        badge.className = 'cg-badge loss';
+      } else if (isFullExempt) {
+        badge.textContent = 'Exempt';
+        badge.className = 'cg-badge exempt';
+      } else if (discountApplicable) {
+        badge.textContent = `${Math.round(discountPct * 100)}% Discount`;
+        badge.className = 'cg-badge eligible';
+      } else if (isSmsf && over12) {
+        badge.textContent = '⅓ Discount (SMSF)';
+        badge.className = 'cg-badge eligible';
+      } else {
+        badge.textContent = over12 ? 'No Discount' : 'Under 12 Months';
+        badge.className = 'cg-badge ineligible';
+      }
+    }
+
+    let holdNoteStr = '';
+    if (days === 0) {
+      holdNoteStr = 'Enter your purchase and sale dates above.';
+    } else if (!over12) {
+      holdNoteStr = 'Held less than 12 months — CGT discount does not apply.';
+    } else if (isCompany) {
+      holdNoteStr = 'Companies do not receive the CGT discount regardless of hold period.';
+    } else if (!resident) {
+      holdNoteStr = 'Non-residents are not entitled to the CGT discount on Australian real property.';
+    } else if (isSmsf) {
+      holdNoteStr = 'Held over 12 months — one-third SMSF discount applied (effective 10%).';
+    } else {
+      holdNoteStr = `Held over 12 months — ${Math.round(discountPct * 100)}% CGT discount applies to net gain.`;
+    }
+    setText('holdNote', holdNoteStr);
+
+    // Show correct state panel
+    if (isLoss) {
+      hide('gainPanel'); hide('exemptPanel'); show('lossPanel'); show('taxPanel'); show('proceedsPanel');
+      setText('r-lossAmt', fmt(grossAmount) + ' capital loss');
+      hide('taxIndividualSection'); hide('taxTrustSection'); hide('taxCompanySection'); hide('taxSmsfSection');
+      const totalCgtRowEl = getEl('totalCgtRow');
+      if (totalCgtRowEl) totalCgtRowEl.style.display = 'none';
+      setText('r-totalCGT', '$0');
+      setText('r-netProceeds', fmt(mySalePrice - sellingCosts * ownerShare));
+      setText('r-effectiveRate', 'No CGT payable on a capital loss.');
+      setText('r-marginalNote', '');
+    } else if (isFullExempt) {
+      hide('gainPanel'); show('exemptPanel'); hide('lossPanel'); show('taxPanel'); show('proceedsPanel');
+      const exemptMsgEl = getEl('r-exemptMsg');
+      if (exemptMsgEl) {
+        exemptMsgEl.textContent = mrResultStatus === 'absence_full'
+          ? 'Full exemption likely (absence rule)'
+          : 'Full main residence exemption likely';
+      }
+      setText('r-exemptSub', mrNote || 'CGT may not apply to this transaction.');
+      const noteEl = getEl('r-exemptNote');
+      if (noteEl) noteEl.textContent = mrNote;
+      hide('taxIndividualSection'); hide('taxTrustSection'); hide('taxCompanySection'); hide('taxSmsfSection');
+      const totalCgtRowEl = getEl('totalCgtRow');
+      if (totalCgtRowEl) totalCgtRowEl.style.display = 'none';
+      setText('r-totalCGT', '$0');
+      setText('r-netProceeds', fmt(mySalePrice - sellingCosts * ownerShare));
+      setText('r-effectiveRate', 'Main residence exemption — no CGT estimated.');
+      setText('r-marginalNote', '');
+    } else {
+      show('gainPanel'); hide('exemptPanel'); hide('lossPanel'); show('taxPanel'); show('proceedsPanel');
+
+      // Gain panel
+      setText('r-salePrice', fmt(mySalePrice));
+      setText('r-costBase', '(' + fmt(totalCostBase) + ')');
+      setText('r-grossGain', fmt(grossAmount));
+
+      const mrRow = getEl('mrExemptRow');
+      if (mrRow) {
+        mrRow.style.display = mrExemptAmt > 0 ? 'flex' : 'none';
+        setText('mrExemptLabel', mrFraction < 1
+          ? `Less: partial main residence (${Math.round(mrFraction * 100)}%)`
+          : 'Less: main residence exemption');
+        setText('r-mrExempt', '(' + fmt(mrExemptAmt) + ')');
+      }
+
+      const prLossRow = getEl('priorLossRow');
+      if (prLossRow) {
+        prLossRow.style.display = lossesApplied > 0 ? 'flex' : 'none';
+        setText('r-priorApplied', '(' + fmt(lossesApplied) + ')');
+      }
+
+      const gainBeforeRow = getEl('gainBeforeDiscountRow');
+      if (gainBeforeRow) {
+        gainBeforeRow.style.display = (lossesApplied > 0 || mrExemptAmt > 0) && discountAmt > 0 ? 'flex' : 'none';
+        setText('r-gainBeforeDiscount', fmt(gainAfterLosses));
+      }
+
+      const discRow = getEl('discountRow');
+      if (discRow) {
+        discRow.style.display = discountAmt > 0 ? 'flex' : 'none';
+        const discPctLabel = isSmsf ? '⅓ SMSF discount' : `${Math.round(effectiveDiscount * 100)}% CGT discount`;
+        setText('discountLabel', `Less: ${discPctLabel}`);
+        setText('r-discountAmt', '(' + fmt(discountAmt) + ')');
+      }
+
+      setText('r-netGain', fmt(netGain));
+
+      // Tax panel — show correct section
+      hide('taxIndividualSection'); hide('taxTrustSection'); hide('taxCompanySection'); hide('taxSmsfSection');
+      const totalCgtRowEl = getEl('totalCgtRow');
+      if (totalCgtRowEl) totalCgtRowEl.style.display = 'flex';
+
+      if (isCompany) {
+        show('taxCompanySection');
+        setText('r-companyGain', fmt(netGain));
+        setText('r-companyTax', fmt(taxOnGain));
+        setText('r-totalCGT', fmt(totalCGT));
+      } else if (isSmsf) {
+        show('taxSmsfSection');
+        setText('r-smsfGain', fmt(netGain));
+        setText('r-smsfTax', fmt(taxOnGain));
+        setText('r-totalCGT', fmt(totalCGT));
+      } else if (isTrust) {
+        show('taxTrustSection');
+        setText('r-trustGain', fmt(netGain));
+        setText('r-totalCGT', '—');
+        if (totalCgtRowEl) totalCgtRowEl.style.display = 'none';
+      } else {
+        show('taxIndividualSection');
+        setText('r-otherIncome', fmt(otherIncome));
+        setText('r-addGain', fmt(netGain));
+        setText('r-totalIncome', fmt(otherIncome + netGain));
+        setText('r-taxBefore', fmt(taxBefore));
+        setText('r-taxAfter', fmt(taxAfter));
+        setText('r-taxOnGain', fmt(taxOnGain));
+        const medRow = getEl('medicareRow');
+        if (medRow) medRow.style.display = resident ? 'flex' : 'none';
+        setText('r-medicare', fmt(medOnGain));
+        setText('r-totalCGT', fmt(totalCGT));
+      }
+
+      // Net proceeds
+      setText('r-netProceeds', fmt(netProceeds));
+      setText('r-effectiveRate',
+        !isTrust && grossAmount > 0
+          ? `Effective rate on gross gain: ${effectiveRate.toFixed(1)}%`
+          : grossAmount > 0 ? 'Trust: tax depends on distribution.' : ''
+      );
+
+      // Marginal rate note
+      if (!isCompany && !isSmsf && !isTrust && netGain > 0) {
+        const marginalIncome = otherIncome + netGain;
+        let margRate = 0;
+        if (resident) {
+          if      (marginalIncome <= 18200)  margRate = 0;
+          else if (marginalIncome <= 45000)  margRate = 19;
+          else if (marginalIncome <= 135000) margRate = 32.5;
+          else if (marginalIncome <= 190000) margRate = 37;
+          else                               margRate = 45;
+        } else {
+          margRate = marginalIncome <= 135000 ? 32.5 : marginalIncome <= 190000 ? 37 : 45;
+        }
+        setText('r-marginalNote', `Top marginal rate applied: ${margRate}%${resident ? ' + Medicare' : ''}`);
+      } else {
+        setText('r-marginalNote', '');
+      }
+    }
+
+    // Budget comparison
+    const cmpBlock = getEl('compareBlock');
+    const showCompare = !isLoss && !isFullExempt && !isCompany && !isSmsf && !isTrust
+      && Math.round(discountPct * 100) !== 50 && grossAmount > 0;
+    if (cmpBlock) cmpBlock.style.display = showCompare ? 'block' : 'none';
+    if (showCompare) {
+      setText('r-compareCurrent', fmt(totalCGT50));
+      setText('r-compareNew', fmt(totalCGT));
+      setText('r-compareLabel', `${Math.round(discountPct * 100)}% Discount`);
+      const diff = totalCGT - totalCGT50;
+      const diffEl = getEl('r-compareDiff');
+      if (diffEl) {
+        if (Math.abs(diff) < 10) {
+          diffEl.textContent = 'No material change';
+          diffEl.style.color = 'var(--color-text-muted)';
+        } else if (diff > 0) {
+          diffEl.textContent = '+' + fmt(diff) + ' more tax';
+          diffEl.style.color = '#c0392b';
+        } else {
+          diffEl.textContent = fmt(diff) + ' less tax';
+          diffEl.style.color = '#4a9e4a';
+        }
       }
     }
 
     // Mobile bar
-    setText('cg-mob-cgt', fmt(totalCGT));
-    setText('cg-mob-net', fmt(netProc2));
+    if (!isLoss && !isTrust) {
+      setText('cg-mob-cgt', fmt(totalCGT));
+    } else if (isTrust) {
+      setText('cg-mob-cgt', 'See note');
+    } else {
+      setText('cg-mob-cgt', 'No CGT');
+    }
+    setText('cg-mob-net', fmt(isLoss ? mySalePrice - sellingCosts * ownerShare : netProceeds));
 
-    // Hide compare block if discount is 50
-    const cb = document.getElementById('compareBlock');
-    if (cb) cb.style.display = Math.round(discountPct * 100) === 50 ? 'none' : 'block';
-
-    // Discount row visibility
-    const dr = document.getElementById('discountRow');
-    if (dr) dr.style.display = discountAmt > 0 || discountApplicable ? 'flex' : 'none';
+    // Dynamic assumptions
+    buildAssumptions({ ownership, resident, mrResultStatus, mrFraction, over12, discountApplicable, isLoss, isFullExempt, ownerShare, isJoint, mrNote });
   }
 
-  /* ─ Main residence toggle ────────────────── */
-  function handleMainRes() {
-    const v = sel('mainResidence');
-    const row = document.getElementById('mainResPercentRow');
-    if (row) row.style.display = v === 'partial' ? 'flex' : 'none';
+  /* ─────────────────────────────────────────────────────────────
+     DYNAMIC ASSUMPTIONS PANEL
+  ───────────────────────────────────────────────────────────── */
+  function buildAssumptions(ctx: {
+    ownership: string; resident: boolean; mrResultStatus: string;
+    mrFraction: number; over12: boolean; discountApplicable: boolean;
+    isLoss: boolean; isFullExempt: boolean; ownerShare: number;
+    isJoint: boolean; mrNote: string;
+  }) {
+    const notes: string[] = [
+      'This estimate is for general guidance only and does not constitute tax advice.',
+      'Uses 2024-25 Australian individual marginal tax rates and the Low Income Tax Offset.',
+    ];
+
+    if (!ctx.resident) notes.push('Non-residents are not entitled to the 50% CGT discount on Australian real property sales.');
+    if (ctx.ownership === 'company') notes.push('Companies are taxed at 30% (25% for base rate entities). No CGT discount applies.');
+    if (ctx.ownership === 'trust') notes.push('Discretionary trusts may pass the CGT discount through to individual beneficiaries. Tax outcomes depend on how the gain is distributed.');
+    if (ctx.ownership === 'smsf') notes.push('SMSFs in accumulation phase receive a one-third discount. In pension phase, CGT may not apply. SMSF tax rules are complex — seek specialist advice.');
+    if (ctx.isJoint) notes.push(`Your ${Math.round(ctx.ownerShare * 100)}% ownership share has been applied throughout. Each co-owner declares their own share on their individual return.`);
+    if (ctx.mrFraction > 0 && ctx.mrFraction < 1) notes.push('A partial main residence exemption has been estimated based on time the property was your main residence. The ATO uses days, not years — the actual exempt fraction may differ. Seek advice.');
+    if (ctx.mrResultStatus === 'absence_full' || ctx.mrResultStatus === 'partial_absence') notes.push('The 6-year absence rule may affect your outcome. This requires the property to have been your main residence before the absence, and that you did not treat another dwelling as your main residence during that period.');
+    if (ctx.isFullExempt) notes.push('A full main residence exemption appears to apply. Confirm with a tax adviser that all eligibility conditions are met before assuming no CGT is payable.');
+    if (ctx.isLoss) notes.push('Capital losses must be recorded on your tax return even though no CGT is payable. They can only offset capital gains, not ordinary income.');
+    notes.push('This estimate does not account for depreciation recapture (building write-offs), previous CGT events, or state land tax. Always seek advice from a registered tax agent or accountant before making decisions.');
+
+    const list = getEl('assumptionsList');
+    if (!list) return;
+    list.innerHTML = notes.map(n => `<li>${n}</li>`).join('');
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CONDITIONAL FIELD VISIBILITY
+  ───────────────────────────────────────────────────────────── */
+  function handleOwnership() {
+    const v = selVal('ownershipType');
+    const row = getEl('ownerShareRow');
+    if (row) row.style.display = v === 'joint' ? 'flex' : 'none';
+    // Disable discount slider for company
+    const slider = getEl('discountSlider') as HTMLInputElement;
+    const discBlock = getEl('cg-discount-block') || document.querySelector('.cg-discount-block');
+    if (v === 'company') {
+      if (slider) slider.disabled = true;
+      if (discBlock) (discBlock as HTMLElement).style.opacity = '0.4';
+    } else {
+      if (slider) slider.disabled = false;
+      if (discBlock) (discBlock as HTMLElement).style.opacity = '1';
+    }
     calc();
   }
-  document.getElementById('mainResidence')?.addEventListener('change', handleMainRes);
 
-  /* ─ Discount slider + presets ────────────── */
-  const slider = document.getElementById('discountSlider') as HTMLInputElement;
-  const display = document.getElementById('discountDisplay');
+  function handleMainRes() {
+    const v = selVal('mainResStatus');
+    const followUp = getEl('mrFollowUp');
+    if (followUp) followUp.style.display = v === 'yes' ? 'block' : 'none';
+    calc();
+  }
+
+  function handleMrRented() {
+    const v = selVal('mrEverRented');
+    const detail = getEl('mrRentedDetail');
+    if (detail) detail.style.display = v === 'yes' ? 'block' : 'none';
+    calc();
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     HOLDING COSTS TOGGLE
+  ───────────────────────────────────────────────────────────── */
+  const holdingToggle = getEl('holdingToggle');
+  const holdingSection = getEl('holdingSection');
+  let holdingOpen = false;
+  holdingToggle?.addEventListener('click', () => {
+    holdingOpen = !holdingOpen;
+    if (holdingSection) holdingSection.style.display = holdingOpen ? 'block' : 'none';
+    const chevron = holdingToggle.querySelector('.cg-toggle-chevron');
+    if (chevron) chevron.classList.toggle('open', holdingOpen);
+    const btnSpan = holdingToggle.querySelector('span');
+    if (btnSpan) btnSpan.textContent = holdingOpen ? '- Holding Costs (optional)' : '+ Holding Costs (optional)';
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     DISCOUNT SLIDER AND PRESETS
+  ───────────────────────────────────────────────────────────── */
+  const slider  = getEl('discountSlider') as HTMLInputElement;
+  const display = getEl('discountDisplay');
 
   function setDiscount(v: number) {
     if (slider) slider.value = String(v);
@@ -844,27 +1471,45 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     p.addEventListener('click', () => setDiscount(parseInt(p.dataset.val || '50')));
   });
 
-  /* ─ Wire all inputs ────────────────────────── */
-  const ids = [
-    'purchasePrice','purchaseDate','salePrice','saleDate',
-    'stampDuty','legalCosts','inspectionCosts','improvements',
-    'agentFee','otherCosts','otherIncome','priorLosses',
-    'investmentPct','ownershipType','taxResident'
-  ];
-  ids.forEach(id => {
-    document.getElementById(id)?.addEventListener('input', calc);
-    document.getElementById(id)?.addEventListener('change', calc);
-  });
+  /* ─────────────────────────────────────────────────────────────
+     DEFAULT SALE DATE (TODAY)
+  ───────────────────────────────────────────────────────────── */
+  const sdEl = getEl('saleDate') as HTMLInputElement;
+  if (sdEl && !sdEl.value) sdEl.value = new Date().toISOString().split('T')[0];
 
-  /* ─ Mobile bar visibility ───────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     MOBILE BAR VISIBILITY
+  ───────────────────────────────────────────────────────────── */
   function checkLayout() {
-    const bar = document.getElementById('cg-mobile-bar');
+    const bar = getEl('cg-mobile-bar');
     if (bar) bar.style.display = window.innerWidth < 900 ? 'flex' : 'none';
   }
   window.addEventListener('resize', checkLayout);
   checkLayout();
 
-  /* ─ Initial calc ─────────────────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     EVENT WIRING
+  ───────────────────────────────────────────────────────────── */
+  const inputIds = [
+    'purchasePrice','purchaseDate','salePrice','saleDate',
+    'stampDuty','legalBuying','inspection','improvements',
+    'agentFee','legalSelling','otherSelling',
+    'holdInterest','holdRates','holdLandTax','holdInsurance','holdBodyCorp','holdOther',
+    'otherIncome','ownerShare','priorLosses','mrRentedYears'
+  ];
+  inputIds.forEach(id => {
+    getEl(id)?.addEventListener('input', calc);
+    getEl(id)?.addEventListener('change', calc);
+  });
+
+  ['ownershipType','taxResident'].forEach(id => getEl(id)?.addEventListener('change', handleOwnership));
+  getEl('mainResStatus')?.addEventListener('change', handleMainRes);
+  getEl('mrEverRented')?.addEventListener('change', handleMrRented);
+  ['mrMovedBack','mrOnlyMainRes'].forEach(id => getEl(id)?.addEventListener('change', calc));
+
+  /* ─────────────────────────────────────────────────────────────
+     INITIAL RENDER
+  ───────────────────────────────────────────────────────────── */
   calc();
 
 })();
