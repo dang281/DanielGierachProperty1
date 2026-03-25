@@ -477,16 +477,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         annualPrincipal = 0;
         loanBal         = loan;
       } else {
-        // P&I on remaining term — loan amount is always the original loan
-        // (IO loans re-amortise over remaining term on same principal)
+        // P&I on remaining term — IO loans re-amortise over remaining term on same principal
         const monthsIntoPandI = (yr - ioPeriod - 1) * 12;
-        // Balance at START of this P&I year
+        // Balance at START and END of this P&I year (exact amortisation schedule)
         const balStart = loanBalance(loan, rate, remainingTerm, monthsIntoPandI);
-        // Balance at END of this P&I year
         const balEnd   = loanBalance(loan, rate, remainingTerm, monthsIntoPandI + 12);
 
-        annualInterest  = balStart * (rate / 100); // beginning-of-year balance × rate
         annualPrincipal = Math.max(0, balStart - balEnd);
+        // Exact annual interest = annual debt service minus principal repaid this year
+        const annualDebtService = monthlyPmt(loan, rate, remainingTerm) * 12;
+        annualInterest  = annualDebtService - annualPrincipal;
         loanBal         = Math.max(0, balEnd);
       }
 
@@ -532,12 +532,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const irrRaw = calcIRR(irrCFs);
     const irr    = irrRaw !== null ? irrRaw * 100 : null;
 
-    // Yield metrics (Year 1 based on purchase price)
-    const grossYield = (weeklyRent * 52) / price * 100;
-    const yr1EffRent = weeklyRent * 52 * (1 - vacRate);
-    const yr1Exp     = yr1EffRent * pmRate + price * maintRate + council + water + insurance + bodyCorp;
-    const yr1NOI     = yr1EffRent - yr1Exp;
-    const netYield   = yr1NOI / price * 100;
+    // Yield metrics (Year 1 — maintenance uses Year 1 property value to match loop)
+    const grossYield   = (weeklyRent * 52) / price * 100;
+    const yr1EffRent   = weeklyRent * 52 * (1 - vacRate);
+    const yr1PropValue = price * (1 + growthRate);  // matches propValue at yr=1 in loop
+    const yr1Exp       = yr1EffRent * pmRate + yr1PropValue * maintRate + council + water + insurance + bodyCorp;
+    const yr1NOI       = yr1EffRent - yr1Exp;
+    const netYield     = yr1NOI / price * 100;
     // Cash-on-cash: yr1NetCF (after full debt service incl. principal) / initial outlay
     const cocReturn  = outlay > 0 ? yr1NetCF / outlay * 100 : 0;
 
