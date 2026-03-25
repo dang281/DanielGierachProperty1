@@ -902,7 +902,7 @@ const faqSchema = {
       e.preventDefault();
       const addr = selectedAddress || input.value.trim();
       if (!addr) { input.focus(); return; }
-      gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr });
+      try { gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr }); } catch(_) {}
       // Send address to Daniel in background, redirect immediately
       const fd = new FormData();
       fd.append('_subject', 'Homepage address enquiry – ' + addr);
