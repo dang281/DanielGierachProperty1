@@ -104,6 +104,24 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   .cg-select:focus { border-color: var(--color-gold); }
 
+  /* ── Mobile ─────────────────────────────── */
+  @media (max-width: 900px) {
+    #cg-layout { grid-template-columns: 1fr !important; }
+    #cg-results { position: static !important; top: auto !important; }
+  }
+  @media (max-width: 640px) {
+    .cg-card          { padding: 1.1rem 0.9rem; }
+    .cg-discount-block { padding: 1.1rem 0.9rem; }
+    .cg-row           { flex-wrap: wrap; gap: 0.4rem; }
+    .cg-row label     { flex: 1 1 100%; }
+    .cg-input         { width: 100% !important; box-sizing: border-box; }
+    .cg-input-wrap    { width: 100%; }
+    .cg-select        { width: 100% !important; }
+    .cg-slider-labels { display: none; }
+    .cg-result-card   { padding: 1.1rem 0.9rem; }
+    .cg-compare-val   { font-size: 1.1rem; }
+  }
+
   /* Discount slider */
   .cg-discount-block {
     padding: 1.5rem;
@@ -251,6 +269,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 </style>
 
+<!-- ── Mobile sticky summary bar ──────────────────────────────── -->
+<div id="cg-mobile-bar" style="display:none;position:sticky;top:0;z-index:30;background:#1c1917;padding:0.65rem 1rem;margin-bottom:1.25rem;align-items:center;justify-content:space-between;gap:0.5rem;">
+  <div>
+    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">CGT Payable</span>
+    <div id="cg-mob-cgt" style="font-family:var(--font-serif);font-size:1.35rem;color:#f0ece4;line-height:1.1;">$0</div>
+  </div>
+  <div style="text-align:right;">
+    <span style="font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);">Net Proceeds</span>
+    <div id="cg-mob-net" style="font-family:var(--font-serif);font-size:1.35rem;color:#c5a03c;line-height:1.1;">$0</div>
+  </div>
+</div>
+
 <!-- ── Intro notice ─────────────────────────────────────────── -->
 <div class="cg-alert" style="margin-bottom:1.5rem;">
   <strong>Budget Watch:</strong> The Australian Government is considering changes to the CGT discount currently available after 12 months of ownership. Use the discount slider below to model how proposed changes could affect your tax bill. This calculator provides an estimate only — always consult a registered tax adviser.
@@ -275,7 +305,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
       <div class="cg-row">
         <label>Purchase Date<small>Settlement date</small></label>
-        <input class="cg-input" id="purchaseDate" type="date" value="2020-06-15" style="width:160px;text-align:left;padding-left:0.75rem;" />
+        <input class="cg-input" id="purchaseDate" type="date" value="2020-06-15" style="min-width:140px;text-align:left;padding-left:0.75rem;" />
       </div>
 
       <div class="cg-row">
@@ -288,7 +318,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
       <div class="cg-row">
         <label>Sale Date<small>Settlement date or projected date</small></label>
-        <input class="cg-input" id="saleDate" type="date" id="saleDate" style="width:160px;text-align:left;padding-left:0.75rem;" />
+        <input class="cg-input" id="saleDate" type="date" style="min-width:140px;text-align:left;padding-left:0.75rem;" />
       </div>
     </div>
 
@@ -585,11 +615,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     else if (income <= 135000) tax = 5092 + (income - 45000) * 0.325;
     else if (income <= 190000) tax = 34205 + (income - 135000) * 0.37;
     else tax = 54805 + (income - 190000) * 0.45;
-    // LMITO / Low income tax offset (simplified)
-    if (income <= 37500) tax = Math.max(0, tax - 700);
-    else if (income <= 45000) tax = Math.max(0, tax - 700 + (income - 37500) * 0.05);
-    else if (income <= 66667) tax = Math.max(0, tax - (income - 45000) * (1500 / 21667));
-    return Math.max(0, tax);
+    // LITO 2024-25
+    let lito = 0;
+    if (income <= 37500)      lito = 700;
+    else if (income <= 45000) lito = 700 - (income - 37500) * 0.05;
+    else if (income <= 66667) lito = 325 - (income - 45000) * 0.015;
+    return Math.max(0, tax - lito);
   }
 
   function medicareLevy(income: number, isResident: boolean, isCompany: boolean, isSmsf: boolean): number {
@@ -765,6 +796,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       }
     }
 
+    // Mobile bar
+    setText('cg-mob-cgt', fmt(totalCGT));
+    setText('cg-mob-net', fmt(netProc2));
+
     // Hide compare block if discount is 50
     const cb = document.getElementById('compareBlock');
     if (cb) cb.style.display = Math.round(discountPct * 100) === 50 ? 'none' : 'block';
@@ -821,15 +856,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     document.getElementById(id)?.addEventListener('change', calc);
   });
 
-  /* ─ Responsive layout ───────────────────── */
+  /* ─ Mobile bar visibility ───────────────── */
   function checkLayout() {
-    const layout = document.getElementById('cg-layout');
-    if (!layout) return;
-    if (window.innerWidth < 900) {
-      layout.style.gridTemplateColumns = '1fr';
-    } else {
-      layout.style.gridTemplateColumns = '1fr 380px';
-    }
+    const bar = document.getElementById('cg-mobile-bar');
+    if (bar) bar.style.display = window.innerWidth < 900 ? 'flex' : 'none';
   }
   window.addEventListener('resize', checkLayout);
   checkLayout();
