@@ -23,12 +23,17 @@ const tools = [
   { href: '/tools/heatmap',            label: 'Price Heatmap',                  desc: 'Visual suburb-by-suburb median price and growth map.',                                                      phase: 'Market',   cta: 'Explore Map' },
 ];
 
+const phases = ['All', 'Buyer', 'Seller', 'Investor', 'Market'] as const;
+
 const phaseColors: Record<string, string> = {
   Seller:   '#f5d07a',
   Buyer:    '#7ec8e3',
   Investor: '#a8e6a3',
   Market:   '#c8c6c8',
 };
+
+const counts: Record<string, number> = { All: tools.length };
+for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
 ---
 
 <Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage calculator, stamp duty, selling costs, borrowing power and more - inner-east Brisbane.">
@@ -61,14 +66,32 @@ const phaseColors: Record<string, string> = {
 <section style="background:var(--color-base);padding:5rem 0 7rem;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
-    <!-- Filter Toggles -->
-    <div id="filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;">
-      {(['All', 'Buyer', 'Seller', 'Investor', 'Market'] as const).map(phase => (
+    <!-- Filter Pills -->
+    <div id="filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.75rem;align-items:center;">
+      {phases.map(phase => (
         <button
           data-filter={phase}
-          style={`font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:0.5rem 1.1rem;border:1.5px solid;cursor:pointer;transition:all 0.18s;background:${phase === 'All' ? '#1c1917' : 'transparent'};color:${phase === 'All' ? '#f0ece4' : '#78716c'};border-color:${phase === 'All' ? '#1c1917' : 'rgba(28,25,23,0.2)'};`}
+          class="filter-pill"
+          style={`
+            display:inline-flex;align-items:center;gap:0.5rem;
+            padding:0.55rem 1.1rem;border-radius:999px;
+            font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+            cursor:pointer;border:1.5px solid;transition:all 0.18s;
+            background:${phase === 'All' ? '#1c1917' : 'transparent'};
+            color:${phase === 'All' ? '#f0ece4' : '#78716c'};
+            border-color:${phase === 'All' ? '#1c1917' : 'rgba(28,25,23,0.18)'};
+          `}
         >
           {phase}
+          <span style={`
+            display:inline-flex;align-items:center;justify-content:center;
+            width:18px;height:18px;border-radius:999px;
+            font-size:0.6rem;font-weight:800;letter-spacing:0;
+            background:${phase === 'All' ? 'rgba(255,255,255,0.15)' : 'rgba(28,25,23,0.07)'};
+            color:${phase === 'All' ? '#f0ece4' : '#78716c'};
+          `} data-count={phase}>
+            {counts[phase] || 0}
+          </span>
         </button>
       ))}
     </div>
@@ -83,12 +106,17 @@ const phaseColors: Record<string, string> = {
           onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.35)';this.style.transform='translateY(-2px)'"
           onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)'"
         >
-          <div style={`position:absolute;top:0;left:0;right:0;height:2px;background:${phaseColors[tool.phase]};opacity:0.8;`}></div>
+          <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${phaseColors[tool.phase]};`}></div>
           <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
-            <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:${phaseColors[tool.phase]};`}>
+            <span style={`
+              display:inline-flex;align-items:center;gap:0.35rem;
+              font-family:var(--font-sans);font-size:0.55rem;font-weight:800;
+              letter-spacing:0.18em;text-transform:uppercase;color:${phaseColors[tool.phase]};
+            `}>
+              <span style={`width:5px;height:5px;border-radius:50%;background:${phaseColors[tool.phase]};flex-shrink:0;`}></span>
               {tool.phase}
             </span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,25,23,0.35)" stroke-width="1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,25,23,0.3)" stroke-width="1.5">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </div>
@@ -107,8 +135,7 @@ const phaseColors: Record<string, string> = {
       ))}
     </div>
 
-    <!-- Empty state -->
-    <p id="no-tools" style="display:none;text-align:center;padding:3rem 0;font-size:0.9rem;color:#78716c;">No tools in this category.</p>
+    <p id="no-tools" style="display:none;text-align:center;padding:4rem 0;font-size:0.9rem;color:#78716c;">No tools in this category.</p>
 
   </div>
 </section>
@@ -130,36 +157,42 @@ const phaseColors: Record<string, string> = {
 </Layout>
 
 <script>
-  const btns = document.querySelectorAll<HTMLButtonElement>('#filter-bar button');
+  const phaseColors: Record<string, string> = {
+    All:      '#1c1917',
+    Seller:   '#b89a2a',
+    Buyer:    '#3a8fa8',
+    Investor: '#4a9e4a',
+    Market:   '#888',
+  };
+
+  const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
   const cards = document.querySelectorAll<HTMLElement>('.tool-card');
   const noTools = document.getElementById('no-tools') as HTMLElement;
 
-  const activeStyle = { bg: '#1c1917', color: '#f0ece4', border: '#1c1917' };
-  const inactiveStyle = { bg: 'transparent', color: '#78716c', border: 'rgba(28,25,23,0.2)' };
-
-  function applyFilter(phase: string) {
-    // Update button styles
-    btns.forEach(btn => {
-      const isActive = btn.dataset.filter === phase;
-      btn.style.background   = isActive ? activeStyle.bg    : inactiveStyle.bg;
-      btn.style.color        = isActive ? activeStyle.color : inactiveStyle.color;
-      btn.style.borderColor  = isActive ? activeStyle.border: inactiveStyle.border;
+  function applyFilter(active: string) {
+    pills.forEach(pill => {
+      const phase = pill.dataset.filter!;
+      const isActive = phase === active;
+      const col = phaseColors[phase] || '#1c1917';
+      pill.style.background   = isActive ? col          : 'transparent';
+      pill.style.color        = isActive ? '#fff'        : '#78716c';
+      pill.style.borderColor  = isActive ? col          : 'rgba(28,25,23,0.18)';
+      const badge = pill.querySelector('[data-count]') as HTMLElement;
+      if (badge) {
+        badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.07)';
+        badge.style.color      = isActive ? '#fff' : '#78716c';
+      }
     });
 
-    // Show/hide cards
     let visible = 0;
     cards.forEach(card => {
-      const match = phase === 'All' || card.dataset.phase === phase;
+      const match = active === 'All' || card.dataset.phase === active;
       card.style.display = match ? '' : 'none';
       if (match) visible++;
     });
-
     noTools.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => applyFilter(btn.dataset.filter!));
-  });
-
+  pills.forEach(pill => pill.addEventListener('click', () => applyFilter(pill.dataset.filter!)));
   applyFilter('All');
 </script>
