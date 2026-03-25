@@ -1,0 +1,777 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Deposit Savings Planner"
+  description="Build a complete budget to see exactly how long it'll take to save your home deposit. Download as a fully functional Excel spreadsheet."
+  tool="Deposit Savings Planner"
+  phase="Buyer Tools"
+>
+
+<style is:global>
+  /* Section card */
+  .ds-card {
+    background: var(--color-surface-3);
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .ds-section-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Input row */
+  .ds-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.07);
+    gap: 0.75rem;
+  }
+  .ds-row:last-child { border-bottom: none; }
+  .ds-row label {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .ds-row label small {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+    margin-top: 0.1rem;
+  }
+
+  /* Number input */
+  .ds-input {
+    width: 130px;
+    text-align: right;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: var(--color-surface-4);
+    border: 1.5px solid rgba(28,25,23,0.12);
+    padding: 0.45rem 0.75rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ds-input:focus { border-color: var(--color-gold); }
+
+  /* Prefix wrapper */
+  .ds-input-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .ds-input-wrap .ds-prefix {
+    position: absolute;
+    left: 0.6rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+  .ds-input-wrap .ds-input { padding-left: 1.4rem; }
+
+  /* Tab selector */
+  .ds-tabs {
+    display: flex;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+  .ds-tab {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--color-surface-4);
+    border: 1.5px solid transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .ds-tab.active {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    background: rgba(197,160,60,0.06);
+  }
+
+  /* Results panel */
+  .ds-result-card {
+    background: var(--color-surface-3);
+    padding: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .ds-result-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .ds-result-value {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1;
+  }
+  .ds-result-value.gold { color: var(--color-gold); }
+  .ds-result-sub {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+    line-height: 1.5;
+  }
+
+  /* Progress bar */
+  .ds-progress-wrap {
+    height: 6px;
+    background: rgba(28,25,23,0.1);
+    margin: 0.75rem 0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .ds-progress-bar {
+    height: 100%;
+    background: var(--color-gold);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  /* Breakdown table */
+  .ds-breakdown {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    margin-top: 0.5rem;
+  }
+  .ds-breakdown td {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    color: var(--color-text-secondary);
+  }
+  .ds-breakdown td:last-child { text-align: right; font-weight: 600; color: var(--color-text-primary); }
+  .ds-breakdown tr:last-child td { border-bottom: none; }
+  .ds-breakdown .total td { font-weight: 700; color: var(--color-text-primary); border-top: 1.5px solid rgba(28,25,23,0.15); padding-top: 0.65rem; margin-top: 0.25rem; }
+  .ds-breakdown .total td:last-child { color: var(--color-gold); }
+
+  /* Tips */
+  .ds-tip {
+    background: rgba(197,160,60,0.06);
+    border-left: 2px solid var(--color-gold);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Download button */
+  .ds-download-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--color-gold);
+    color: #0a0806;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: background 0.2s;
+    margin-top: 1rem;
+  }
+  .ds-download-btn:hover { background: #d4af4a; }
+
+  /* Category totals */
+  .ds-cat-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-top: 1.5px solid rgba(28,25,23,0.12);
+    margin-top: 0.5rem;
+  }
+  .ds-cat-total span:first-child {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+  .ds-cat-total span:last-child {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+  }
+
+  /* Surplus indicator */
+  .surplus-positive { color: #4ade80 !important; }
+  .surplus-negative { color: #f87171 !important; }
+
+  @media (max-width: 640px) {
+    .ds-input { width: 110px; }
+    .ds-result-value { font-size: 1.4rem; }
+  }
+</style>
+
+<!-- ── INTRO NOTE ── -->
+<div style="background:rgba(197,160,60,0.07);border:1px solid rgba(197,160,60,0.2);padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;gap:0.75rem;align-items:flex-start;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+  <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.65;">Fill in your details below to see how long it'll take to reach your deposit goal. When you're done, download a fully functional Excel spreadsheet to keep tracking your progress each month.</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+  <!-- ═══════════════════════════════════════
+       LEFT: INPUTS (3 cols)
+  ═══════════════════════════════════════ -->
+  <div class="lg:col-span-3 flex flex-col gap-0">
+
+    <!-- ── GOAL ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">1. Your Deposit Goal</span>
+
+      <div class="ds-row">
+        <label>Target Property Price</label>
+        <div class="ds-input-wrap">
+          <span class="ds-prefix">$</span>
+          <input type="number" class="ds-input" id="property-price" value="750000" min="100000" max="5000000" step="10000" />
+        </div>
+      </div>
+
+      <div class="ds-row">
+        <label>Deposit %<small>20% avoids LMI; 10–15% still viable</small></label>
+        <div class="ds-tabs" style="margin:0;width:220px;">
+          <button class="ds-tab" data-dep="10">10%</button>
+          <button class="ds-tab" data-dep="15">15%</button>
+          <button class="ds-tab active" data-dep="20">20%</button>
+          <button class="ds-tab" data-dep="25">25%</button>
+        </div>
+      </div>
+
+      <div class="ds-row">
+        <label>Current Savings<small>Amount already saved</small></label>
+        <div class="ds-input-wrap">
+          <span class="ds-prefix">$</span>
+          <input type="number" class="ds-input" id="current-savings" value="0" min="0" />
+        </div>
+      </div>
+
+      <div class="ds-row">
+        <label>Buyer Type</label>
+        <div class="ds-tabs" style="margin:0;width:220px;">
+          <button class="ds-tab active" data-buyer="owner">Owner</button>
+          <button class="ds-tab" data-buyer="fhb">First Home</button>
+          <button class="ds-tab" data-buyer="investor">Investor</button>
+        </div>
+      </div>
+
+      <!-- Goal breakdown -->
+      <div style="background:var(--color-surface-4);padding:1rem;margin-top:1rem;">
+        <table class="ds-breakdown">
+          <tr><td>Deposit required</td><td id="bd-deposit">$150,000</td></tr>
+          <tr><td>QLD stamp duty</td><td id="bd-stamp">$24,525</td></tr>
+          <tr><td>LMI estimate</td><td id="bd-lmi">$0</td></tr>
+          <tr><td>Conveyancing &amp; misc.</td><td>~$3,500</td></tr>
+          <tr class="total"><td>Total savings needed</td><td id="bd-total">$178,025</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── INCOME ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">2. Monthly Take-Home Income</span>
+      <div class="ds-row"><label>Your salary (after tax)</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input income-input" id="inc-salary" value="5000" /></div></div>
+      <div class="ds-row"><label>Partner's salary (after tax)<small>Leave blank if not applicable</small></label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input income-input" id="inc-partner" value="0" /></div></div>
+      <div class="ds-row"><label>Rental income</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input income-input" id="inc-rental" value="0" /></div></div>
+      <div class="ds-row"><label>Side income / freelance</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input income-input" id="inc-side" value="0" /></div></div>
+      <div class="ds-row"><label>Other income</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input income-input" id="inc-other" value="0" /></div></div>
+      <div class="ds-cat-total">
+        <span>Total Monthly Income</span>
+        <span id="total-income">$5,000</span>
+      </div>
+    </div>
+
+    <!-- ── EXPENSES: HOUSING ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">3. Housing</span>
+      <div class="ds-row"><label>Rent / current mortgage</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-rent" value="1800" /></div></div>
+      <div class="ds-row"><label>Utilities (electricity, gas, water)</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-utilities" value="200" /></div></div>
+      <div class="ds-row"><label>Internet &amp; phone</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-internet" value="100" /></div></div>
+      <div class="ds-row"><label>Rates / strata / body corp<small>If applicable</small></label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-rates" value="0" /></div></div>
+      <div class="ds-cat-total"><span>Housing Total</span><span id="total-housing">$2,100</span></div>
+    </div>
+
+    <!-- ── EXPENSES: FOOD ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">4. Food &amp; Dining</span>
+      <div class="ds-row"><label>Groceries &amp; supermarket</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-groceries" value="600" /></div></div>
+      <div class="ds-row"><label>Dining out &amp; takeaway</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-dining" value="300" /></div></div>
+      <div class="ds-row"><label>Coffee</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-coffee" value="80" /></div></div>
+      <div class="ds-cat-total"><span>Food Total</span><span id="total-food">$980</span></div>
+    </div>
+
+    <!-- ── EXPENSES: TRANSPORT ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">5. Transport</span>
+      <div class="ds-row"><label>Car loan repayment</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-car-loan" value="0" /></div></div>
+      <div class="ds-row"><label>Fuel</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-fuel" value="150" /></div></div>
+      <div class="ds-row"><label>Registration &amp; insurance</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-car-ins" value="100" /></div></div>
+      <div class="ds-row"><label>Public transport</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-pt" value="0" /></div></div>
+      <div class="ds-cat-total"><span>Transport Total</span><span id="total-transport">$250</span></div>
+    </div>
+
+    <!-- ── EXPENSES: LIFESTYLE ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">6. Lifestyle &amp; Personal</span>
+      <div class="ds-row"><label>Gym &amp; sports</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-gym" value="60" /></div></div>
+      <div class="ds-row"><label>Entertainment &amp; hobbies</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-entertainment" value="150" /></div></div>
+      <div class="ds-row"><label>Subscriptions (Netflix, Spotify…)</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-subs" value="50" /></div></div>
+      <div class="ds-row"><label>Clothing &amp; personal care</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-clothing" value="100" /></div></div>
+      <div class="ds-row"><label>Health &amp; medical</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-health" value="60" /></div></div>
+      <div class="ds-row"><label>Pet costs</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-pets" value="0" /></div></div>
+      <div class="ds-cat-total"><span>Lifestyle Total</span><span id="total-lifestyle">$420</span></div>
+    </div>
+
+    <!-- ── EXPENSES: OTHER ── -->
+    <div class="ds-card">
+      <span class="ds-section-title">7. Insurance &amp; Other</span>
+      <div class="ds-row"><label>Health insurance</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-health-ins" value="120" /></div></div>
+      <div class="ds-row"><label>Life / income protection</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-life-ins" value="0" /></div></div>
+      <div class="ds-row"><label>Childcare &amp; school fees</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-childcare" value="0" /></div></div>
+      <div class="ds-row"><label>Student loan / HECS repayment</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-hecs" value="0" /></div></div>
+      <div class="ds-row"><label>Credit card / personal loan</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-debt" value="0" /></div></div>
+      <div class="ds-row"><label>Gifts &amp; holidays</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-holidays" value="100" /></div></div>
+      <div class="ds-row"><label>Other</label><div class="ds-input-wrap"><span class="ds-prefix">$</span><input type="number" class="ds-input exp-input" id="exp-misc" value="0" /></div></div>
+      <div class="ds-cat-total"><span>Other Total</span><span id="total-other">$220</span></div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       RIGHT: RESULTS (2 cols)
+  ═══════════════════════════════════════ -->
+  <div class="lg:col-span-2">
+    <div style="position:sticky;top:100px;">
+
+      <!-- Savings goal -->
+      <div class="ds-result-card" style="border-top:3px solid var(--color-gold);">
+        <span class="ds-result-label">Total Savings Needed</span>
+        <div class="ds-result-value gold" id="r-total-needed">$178,025</div>
+        <div class="ds-progress-wrap">
+          <div class="ds-progress-bar" id="r-progress" style="width:0%"></div>
+        </div>
+        <div class="ds-result-sub" id="r-progress-label">$0 saved of $178,025 (0%)</div>
+      </div>
+
+      <!-- Monthly cashflow -->
+      <div class="ds-result-card">
+        <span class="ds-result-label">Monthly Income</span>
+        <div class="ds-result-value" id="r-income">$5,000</div>
+      </div>
+      <div class="ds-result-card">
+        <span class="ds-result-label">Monthly Expenses</span>
+        <div class="ds-result-value" id="r-expenses">$3,970</div>
+      </div>
+      <div class="ds-result-card" style="border-top:3px solid var(--color-gold);">
+        <span class="ds-result-label">Monthly Surplus</span>
+        <div class="ds-result-value surplus-positive" id="r-surplus">$1,030</div>
+        <div class="ds-result-sub" id="r-surplus-pct">20.6% of income</div>
+      </div>
+
+      <!-- Time to goal -->
+      <div class="ds-result-card" style="background:var(--color-text-primary);padding:1.5rem;">
+        <span class="ds-result-label" style="color:rgba(240,236,228,0.55);">Time to Reach Goal</span>
+        <div class="ds-result-value" style="color:#f0ece4;" id="r-time">11.5 years</div>
+        <div class="ds-result-sub" style="color:rgba(240,236,228,0.55);" id="r-date">You'd be ready around <strong id="r-ready-date" style="color:#f5d07a;">Aug 2037</strong></div>
+      </div>
+
+      <!-- Savings scenarios -->
+      <div class="ds-result-card">
+        <span class="ds-result-label" style="margin-bottom:0.75rem;display:block;">What If I Saved More?</span>
+        <table class="ds-breakdown">
+          <tr><td>Save $500/mth extra</td><td id="sc-500">—</td></tr>
+          <tr><td>Save $1,000/mth extra</td><td id="sc-1000">—</td></tr>
+          <tr><td>Save $2,000/mth extra</td><td id="sc-2000">—</td></tr>
+        </table>
+      </div>
+
+      <!-- Tips -->
+      <div class="ds-result-card">
+        <span class="ds-result-label" style="margin-bottom:0.75rem;display:block;">Smart Saving Tips</span>
+        <div id="tips-container"></div>
+      </div>
+
+      <!-- Download -->
+      <div class="ds-result-card">
+        <span class="ds-result-label" style="margin-bottom:0.5rem;display:block;">Download Your Budget</span>
+        <p style="font-size:0.75rem;color:var(--color-text-muted);line-height:1.6;margin-bottom:0.75rem;">Export a fully functional Excel spreadsheet with all your figures, formulas, and a month-by-month savings timeline.</p>
+        <button class="ds-download-btn" id="download-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Excel Spreadsheet
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- SheetJS for Excel export -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+<script>
+(function() {
+
+  // ── State ──────────────────────────────────────────────────────────
+  let depositPct  = 20;
+  let buyerType   = 'owner';
+  const MISC_COSTS = 3500;
+
+  // ── QLD Stamp Duty ─────────────────────────────────────────────────
+  function calcStampDuty(price: number, buyer: string): number {
+    let duty = 0;
+    if (price <= 5000)        duty = 0;
+    else if (price <= 75000)  duty = (price - 5000) * 0.015;
+    else if (price <= 540000) duty = 1050 + (price - 75000) * 0.035;
+    else if (price <= 1000000) duty = 17325 + (price - 540000) * 0.045;
+    else                      duty = 38025 + (price - 1000000) * 0.0575;
+
+    if (buyer === 'fhb') {
+      if (price <= 500000)       duty = 0;
+      else if (price <= 550000)  duty = duty * ((price - 500000) / 50000);
+    }
+    return Math.round(duty);
+  }
+
+  // ── LMI estimate ──────────────────────────────────────────────────
+  function calcLMI(price: number, dep: number): number {
+    if (dep >= 20) return 0;
+    const loan = price * (1 - dep / 100);
+    const lvr  = (loan / price) * 100;
+    let rate = 0;
+    if (lvr <= 80)       rate = 0;
+    else if (lvr <= 85)  rate = 0.01;
+    else if (lvr <= 90)  rate = 0.02;
+    else if (lvr <= 95)  rate = 0.04;
+    return Math.round(loan * rate);
+  }
+
+  // ── Format currency ───────────────────────────────────────────────
+  const fmt  = (n: number) => '$' + Math.round(n).toLocaleString('en-AU');
+  const fmtN = (n: number) => n.toLocaleString('en-AU');
+
+  // ── Time to target ────────────────────────────────────────────────
+  function monthsToDate(months: number): string {
+    const d = new Date();
+    d.setMonth(d.getMonth() + Math.ceil(months));
+    return d.toLocaleDateString('en-AU', { month: 'short', year: 'numeric' });
+  }
+  function formatMonths(m: number): string {
+    if (!isFinite(m) || m < 0) return '—';
+    const yrs = Math.floor(m / 12);
+    const mths = Math.round(m % 12);
+    if (yrs === 0) return mths + ' months';
+    if (mths === 0) return yrs + (yrs === 1 ? ' year' : ' years');
+    return yrs + 'y ' + mths + 'm';
+  }
+
+  // ── Read inputs ───────────────────────────────────────────────────
+  function v(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement;
+    return parseFloat(el?.value || '0') || 0;
+  }
+
+  // ── Category totals ───────────────────────────────────────────────
+  function sumCat(ids: string[]): number {
+    return ids.reduce((a, id) => a + v(id), 0);
+  }
+
+  // ── Main calc ─────────────────────────────────────────────────────
+  function calc() {
+    const price    = v('property-price');
+    const saved    = v('current-savings');
+
+    const deposit  = price * (depositPct / 100);
+    const stamp    = calcStampDuty(price, buyerType);
+    const lmi      = calcLMI(price, depositPct);
+    const total    = deposit + stamp + lmi + MISC_COSTS;
+    const remaining = Math.max(0, total - saved);
+
+    // Income
+    const income = sumCat(['inc-salary','inc-partner','inc-rental','inc-side','inc-other']);
+
+    // Expenses
+    const housing   = sumCat(['exp-rent','exp-utilities','exp-internet','exp-rates']);
+    const food      = sumCat(['exp-groceries','exp-dining','exp-coffee']);
+    const transport = sumCat(['exp-car-loan','exp-fuel','exp-car-ins','exp-pt']);
+    const lifestyle = sumCat(['exp-gym','exp-entertainment','exp-subs','exp-clothing','exp-health','exp-pets']);
+    const other     = sumCat(['exp-health-ins','exp-life-ins','exp-childcare','exp-hecs','exp-debt','exp-holidays','exp-misc']);
+    const expenses  = housing + food + transport + lifestyle + other;
+    const surplus   = income - expenses;
+
+    // Time
+    const months = surplus > 0 ? remaining / surplus : Infinity;
+
+    // Progress
+    const pct = Math.min(100, total > 0 ? (saved / total) * 100 : 0);
+
+    // ── Update DOM ──────────────────────────────────────────────────
+    (document.getElementById('bd-deposit') as HTMLElement).textContent = fmt(deposit);
+    (document.getElementById('bd-stamp') as HTMLElement).textContent   = fmt(stamp);
+    (document.getElementById('bd-lmi') as HTMLElement).textContent     = lmi > 0 ? fmt(lmi) : '$0';
+    (document.getElementById('bd-total') as HTMLElement).textContent   = fmt(total);
+
+    (document.getElementById('r-total-needed') as HTMLElement).textContent = fmt(total);
+    (document.getElementById('r-progress') as HTMLElement).style.width     = pct.toFixed(1) + '%';
+    (document.getElementById('r-progress-label') as HTMLElement).textContent =
+      fmt(saved) + ' saved of ' + fmt(total) + ' (' + pct.toFixed(1) + '%)';
+
+    (document.getElementById('r-income') as HTMLElement).textContent   = fmt(income);
+    (document.getElementById('r-expenses') as HTMLElement).textContent = fmt(expenses);
+
+    const surplusEl = document.getElementById('r-surplus') as HTMLElement;
+    surplusEl.textContent = fmt(surplus);
+    surplusEl.className   = 'ds-result-value ' + (surplus >= 0 ? 'surplus-positive' : 'surplus-negative');
+
+    const surplusPct = income > 0 ? ((surplus / income) * 100).toFixed(1) : '0';
+    (document.getElementById('r-surplus-pct') as HTMLElement).textContent =
+      surplusPct + '% of income';
+
+    (document.getElementById('r-time') as HTMLElement).textContent = formatMonths(months);
+    const rdEl = document.getElementById('r-ready-date') as HTMLElement;
+    rdEl.textContent = isFinite(months) && months >= 0 ? monthsToDate(months) : '—';
+
+    // Category totals
+    (document.getElementById('total-income') as HTMLElement).textContent    = fmt(income);
+    (document.getElementById('total-housing') as HTMLElement).textContent   = fmt(housing);
+    (document.getElementById('total-food') as HTMLElement).textContent      = fmt(food);
+    (document.getElementById('total-transport') as HTMLElement).textContent = fmt(transport);
+    (document.getElementById('total-lifestyle') as HTMLElement).textContent = fmt(lifestyle);
+    (document.getElementById('total-other') as HTMLElement).textContent     = fmt(other);
+
+    // Scenarios
+    ['500','1000','2000'].forEach(extra => {
+      const m = surplus + parseInt(extra) > 0 ? remaining / (surplus + parseInt(extra)) : Infinity;
+      (document.getElementById('sc-' + extra) as HTMLElement).textContent =
+        isFinite(m) ? formatMonths(m) : '—';
+    });
+
+    // Tips
+    buildTips(surplus, income, housing, food, lifestyle, depositPct, lmi);
+
+    // Store for download
+    (window as any).__dsState = { price, saved, deposit, stamp, lmi, total, remaining, income, expenses, surplus, months, housing, food, transport, lifestyle, other, depositPct, buyerType };
+  }
+
+  // ── Smart tips ────────────────────────────────────────────────────
+  function buildTips(surplus: number, income: number, housing: number, food: number, lifestyle: number, dep: number, lmi: number) {
+    const tips: string[] = [];
+    const savingsRate = income > 0 ? surplus / income : 0;
+
+    if (surplus <= 0) {
+      tips.push('⚠️ Your expenses exceed your income. Review your biggest cost categories above to find room to cut.');
+    }
+    if (savingsRate < 0.15 && surplus > 0) {
+      tips.push('Aim for a savings rate of at least 20% of take-home income. Try trimming dining, subscriptions, or lifestyle spend.');
+    }
+    if (dep < 20 && lmi > 0) {
+      tips.push(`Saving to 20% deposit eliminates ~${fmt(lmi)} in LMI and reduces your interest from day one.`);
+    }
+    if (food > 500) {
+      tips.push('Meal planning and reducing dining out by $200/month saves $2,400/year — real progress toward your goal.');
+    }
+    if (lifestyle > 400) {
+      tips.push('Review subscriptions and entertainment. Cutting $150/month frees $1,800 per year for your deposit fund.');
+    }
+    if (surplus > 500) {
+      tips.push(`Auto-transfer your monthly surplus of ${fmt(surplus)} into a high-interest savings account on payday.`);
+    }
+    tips.push('QLD First Home Buyers Grant: up to $30,000 for new builds under $750,000. Check your eligibility at qld.gov.au.');
+
+    const container = document.getElementById('tips-container') as HTMLElement;
+    container.innerHTML = tips.map(t => `<div class="ds-tip">${t}</div>`).join('');
+  }
+
+  // ── Deposit % tabs ────────────────────────────────────────────────
+  document.querySelectorAll('[data-dep]').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('[data-dep]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      depositPct = parseInt(this.dataset.dep || '20');
+      calc();
+    });
+  });
+
+  // ── Buyer type tabs ───────────────────────────────────────────────
+  document.querySelectorAll('[data-buyer]').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('[data-buyer]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      buyerType = this.dataset.buyer || 'owner';
+      calc();
+    });
+  });
+
+  // ── Listen to all inputs ──────────────────────────────────────────
+  document.querySelectorAll('.ds-input, .income-input, .exp-input').forEach(inp => {
+    inp.addEventListener('input', calc);
+  });
+
+  // ── Excel download ────────────────────────────────────────────────
+  document.getElementById('download-btn')?.addEventListener('click', function() {
+    const s: any = (window as any).__dsState || {};
+    const XLSX = (window as any).XLSX;
+    if (!XLSX) { alert('Spreadsheet library still loading, please try again in a moment.'); return; }
+
+    const wb = XLSX.utils.book_new();
+
+    // ── Sheet 1: Budget Summary ──────────────────────────────────────
+    const today = new Date().toLocaleDateString('en-AU');
+    const summaryData = [
+      ['DEPOSIT SAVINGS PLANNER', '', '', ''],
+      ['Generated by danielgierach.com', '', 'Date:', today],
+      ['', '', '', ''],
+      ['DEPOSIT GOAL', '', '', ''],
+      ['Target Property Price', '', '', s.price || 0],
+      ['Deposit %', '', '', (s.depositPct || 20) + '%'],
+      ['Deposit Required', '', '', s.deposit || 0],
+      ['QLD Stamp Duty', '', '', s.stamp || 0],
+      ['LMI Estimate', '', '', s.lmi || 0],
+      ['Conveyancing & Misc', '', '', 3500],
+      ['TOTAL SAVINGS NEEDED', '', '', (s.total || 0)],
+      ['Current Savings', '', '', s.saved || 0],
+      ['Remaining to Save', '', '', s.remaining || 0],
+      ['', '', '', ''],
+      ['MONTHLY CASHFLOW', '', '', ''],
+      ['Total Monthly Income', '', '', s.income || 0],
+      ['Total Monthly Expenses', '', '', s.expenses || 0],
+      ['Monthly Surplus', '', '', s.surplus || 0],
+      ['Savings Rate', '', '', s.income > 0 ? ((s.surplus / s.income) * 100).toFixed(1) + '%' : '0%'],
+      ['', '', '', ''],
+      ['TIME TO GOAL', '', '', ''],
+      ['Months to Goal', '', '', isFinite(s.months) ? Math.ceil(s.months) : 'N/A'],
+      ['', '', '', ''],
+      ['EXPENSE BREAKDOWN', '', '', ''],
+      ['Housing', '', '', s.housing || 0],
+      ['Food & Dining', '', '', s.food || 0],
+      ['Transport', '', '', s.transport || 0],
+      ['Lifestyle & Personal', '', '', s.lifestyle || 0],
+      ['Insurance & Other', '', '', s.other || 0],
+    ];
+
+    const ws1 = XLSX.utils.aoa_to_sheet(summaryData);
+    ws1['!cols'] = [{ wch: 32 }, { wch: 12 }, { wch: 12 }, { wch: 18 }];
+    XLSX.utils.book_append_sheet(wb, ws1, 'Summary');
+
+    // ── Sheet 2: Detailed Budget ─────────────────────────────────────
+    const inputs = [
+      ['DETAILED MONTHLY BUDGET', '', ''],
+      ['Category', 'Item', 'Monthly ($)'],
+      ['', '', ''],
+      ['INCOME', '', ''],
+      ['Income', 'Your salary (after tax)',         v('inc-salary')],
+      ['Income', "Partner's salary (after tax)",    v('inc-partner')],
+      ['Income', 'Rental income',                   v('inc-rental')],
+      ['Income', 'Side income / freelance',         v('inc-side')],
+      ['Income', 'Other income',                    v('inc-other')],
+      ['', 'TOTAL INCOME',                          s.income || 0],
+      ['', '', ''],
+      ['EXPENSES', '', ''],
+      ['Housing', 'Rent / mortgage',                v('exp-rent')],
+      ['Housing', 'Utilities',                      v('exp-utilities')],
+      ['Housing', 'Internet & phone',               v('exp-internet')],
+      ['Housing', 'Rates / strata / body corp',     v('exp-rates')],
+      ['', 'Housing Total',                         s.housing || 0],
+      ['', '', ''],
+      ['Food', 'Groceries & supermarket',           v('exp-groceries')],
+      ['Food', 'Dining out & takeaway',             v('exp-dining')],
+      ['Food', 'Coffee',                            v('exp-coffee')],
+      ['', 'Food Total',                            s.food || 0],
+      ['', '', ''],
+      ['Transport', 'Car loan repayment',           v('exp-car-loan')],
+      ['Transport', 'Fuel',                         v('exp-fuel')],
+      ['Transport', 'Rego & insurance',             v('exp-car-ins')],
+      ['Transport', 'Public transport',             v('exp-pt')],
+      ['', 'Transport Total',                       s.transport || 0],
+      ['', '', ''],
+      ['Lifestyle', 'Gym & sports',                 v('exp-gym')],
+      ['Lifestyle', 'Entertainment & hobbies',      v('exp-entertainment')],
+      ['Lifestyle', 'Subscriptions',                v('exp-subs')],
+      ['Lifestyle', 'Clothing & personal care',     v('exp-clothing')],
+      ['Lifestyle', 'Health & medical',             v('exp-health')],
+      ['Lifestyle', 'Pets',                         v('exp-pets')],
+      ['', 'Lifestyle Total',                       s.lifestyle || 0],
+      ['', '', ''],
+      ['Other', 'Health insurance',                 v('exp-health-ins')],
+      ['Other', 'Life / income protection',         v('exp-life-ins')],
+      ['Other', 'Childcare & school fees',          v('exp-childcare')],
+      ['Other', 'HECS repayment',                   v('exp-hecs')],
+      ['Other', 'Credit card / personal loan',      v('exp-debt')],
+      ['Other', 'Gifts & holidays',                 v('exp-holidays')],
+      ['Other', 'Other',                            v('exp-misc')],
+      ['', 'Other Total',                           s.other || 0],
+      ['', '', ''],
+      ['', 'TOTAL EXPENSES',                        s.expenses || 0],
+      ['', 'MONTHLY SURPLUS',                       s.surplus || 0],
+    ];
+
+    const ws2 = XLSX.utils.aoa_to_sheet(inputs);
+    ws2['!cols'] = [{ wch: 14 }, { wch: 30 }, { wch: 18 }];
+    XLSX.utils.book_append_sheet(wb, ws2, 'Monthly Budget');
+
+    // ── Sheet 3: Month-by-Month Timeline ────────────────────────────
+    const timeline: any[][] = [
+      ['MONTH-BY-MONTH SAVINGS TIMELINE', '', '', '', ''],
+      ['Month', 'Date', 'Opening Balance ($)', 'Monthly Savings ($)', 'Closing Balance ($)', 'Progress (%)'],
+    ];
+    const monthlyContrib = Math.max(0, s.surplus || 0);
+    const startSaved     = s.saved || 0;
+    const goalTotal      = s.total || 1;
+    let balance = startSaved;
+    const maxMonths = Math.min(isFinite(s.months) ? Math.ceil(s.months) + 1 : 360, 360);
+    for (let i = 1; i <= maxMonths; i++) {
+      const d = new Date();
+      d.setMonth(d.getMonth() + i);
+      const label = d.toLocaleDateString('en-AU', { month: 'short', year: 'numeric' });
+      const opening = balance;
+      balance = Math.min(balance + monthlyContrib, goalTotal);
+      const pct = ((balance / goalTotal) * 100).toFixed(1) + '%';
+      timeline.push([i, label, opening, monthlyContrib, balance, pct]);
+      if (balance >= goalTotal) break;
+    }
+
+    const ws3 = XLSX.utils.aoa_to_sheet(timeline);
+    ws3['!cols'] = [{ wch: 8 }, { wch: 14 }, { wch: 22 }, { wch: 22 }, { wch: 22 }, { wch: 14 }];
+    XLSX.utils.book_append_sheet(wb, ws3, 'Savings Timeline');
+
+    XLSX.writeFile(wb, 'Deposit-Savings-Planner.xlsx');
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────
+  calc();
+
+})();
+</script>
+
+</ToolLayout>
