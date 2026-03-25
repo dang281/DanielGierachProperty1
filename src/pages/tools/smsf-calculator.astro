@@ -1,0 +1,513 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="SMSF Property Calculator"
+  description="Model whether your self-managed super fund can buy an investment property. Compare after-tax cashflow in super vs personal name and check fund affordability."
+  tool="SMSF Property Calculator"
+  phase="Investor Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- ── INPUTS ─────────────────────────────────────────────── -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- 1. Your SMSF -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.5rem;">Your SMSF</p>
+
+        <!-- Fund balance -->
+        <div class="mb-5">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">Current Fund Balance</label>
+          <div style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;" id="balance-display">$450,000</div>
+          <input type="range" id="fund-balance" min="100000" max="2000000" step="10000" value="450000"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>$100K</span><span>$2M</span>
+          </div>
+        </div>
+
+        <!-- Members + Tax phase -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Number of Members</label>
+            <select id="smsf-members" class="obs-select">
+              <option value="1">1 member</option>
+              <option value="2" selected>2 members</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Tax Phase</label>
+            <select id="tax-phase" class="obs-select">
+              <option value="accumulation" selected>Accumulation (15% tax)</option>
+              <option value="pension">Pension (0% tax)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Annual contributions -->
+        <div>
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">
+            Annual Concessional Contributions
+          </label>
+          <div class="flex items-center gap-4 mb-1">
+            <input type="range" id="contributions" min="0" max="55000" step="2500" value="27500"
+              style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:5.5rem;text-align:center;">
+              <span id="contributions-display" style="font-size:0.95rem;font-weight:700;color:var(--color-text-primary);">$27,500</span>
+            </div>
+          </div>
+          <p style="font-size:0.65rem;color:var(--color-text-muted);line-height:1.5;">Max $27,500 per member per year (2024–25)</p>
+        </div>
+      </div>
+
+      <!-- 2. Property Details -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.5rem;">Property Details</p>
+
+        <!-- Purchase price -->
+        <div class="mb-5">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">Purchase Price</label>
+          <div style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;" id="price-display">$750,000</div>
+          <input type="range" id="purchase-price" min="300000" max="3000000" step="10000" value="750000"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>$300K</span><span>$3M</span>
+          </div>
+        </div>
+
+        <!-- LRBA deposit -->
+        <div class="mb-5">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">LRBA Deposit</label>
+          <div class="flex items-center gap-4 mb-1">
+            <input type="range" id="smsf-deposit-pct" min="20" max="40" step="5" value="30"
+              style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:5.5rem;text-align:center;">
+              <span id="smsf-deposit-pct-display" style="font-size:0.95rem;font-weight:700;color:var(--color-text-primary);">30%</span>
+            </div>
+          </div>
+          <p style="font-size:0.65rem;color:var(--color-text-muted);line-height:1.5;">Lenders typically require 20–30% deposit for SMSF loans. Loan amount: <strong id="smsf-loan-display" style="color:var(--color-text-secondary);">$525,000</strong></p>
+        </div>
+
+        <!-- SMSF interest rate -->
+        <div class="mb-5">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">Interest Rate (SMSF LRBA)</label>
+          <div class="flex items-center gap-4 mb-1">
+            <input type="range" id="smsf-rate" min="4" max="12" step="0.05" value="7.5"
+              style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:5.5rem;text-align:center;">
+              <span id="smsf-rate-display" style="font-size:0.95rem;font-weight:700;color:var(--color-text-primary);">7.50%</span>
+            </div>
+          </div>
+          <p style="font-size:0.65rem;color:var(--color-text-muted);line-height:1.5;">SMSF LRBA rates are typically 1–2% higher than standard investor loans.</p>
+        </div>
+
+        <!-- Loan term -->
+        <div>
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Loan Term</label>
+          <select id="loan-term" class="obs-select" style="max-width:200px;">
+            <option value="25" selected>25 years</option>
+            <option value="30">30 years</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 3. Rental Income & Expenses -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.5rem;">Rental Income &amp; Expenses</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Weekly Rent ($)</label>
+            <input type="number" id="weekly-rent" value="600" min="0" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Annual Expenses ($)</label>
+            <input type="number" id="annual-expenses" value="9500" min="0" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+        </div>
+
+        <!-- Vacancy rate -->
+        <div class="mb-5">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">Vacancy Rate</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="vacancy-rate" min="0" max="10" step="0.5" value="2"
+              style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4rem;text-align:center;">
+              <span id="vacancy-rate-display" style="font-size:0.95rem;font-weight:700;color:var(--color-text-primary);">2.0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depreciation -->
+        <div>
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Annual Depreciation ($)</label>
+          <input type="number" id="annual-depreciation" value="4000" min="0" class="obs-input" style="font-size:0.95rem;max-width:200px;" />
+          <p style="font-size:0.65rem;color:var(--color-text-muted);margin-top:0.4rem;line-height:1.5;">Deductible in SMSF.</p>
+        </div>
+      </div>
+
+      <!-- 4. Comparison — Personal Name -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.5rem;">Comparison — Personal Name</p>
+
+        <!-- Marginal tax rate -->
+        <div class="mb-4">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Your Marginal Tax Rate (+ 2% Medicare)</label>
+          <select id="marginal-rate" class="obs-select">
+            <option value="0.16">16% ($18k–$45k)</option>
+            <option value="0.30">30% ($45k–$135k)</option>
+            <option value="0.37" selected>37% ($135k–$190k)</option>
+            <option value="0.45">45% ($190k+)</option>
+          </select>
+        </div>
+
+        <!-- Personal interest rate -->
+        <div class="mb-5">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">Personal Loan Interest Rate</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="personal-rate" min="4" max="10" step="0.05" value="6.5"
+              style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:5.5rem;text-align:center;">
+              <span id="personal-rate-display" style="font-size:0.95rem;font-weight:700;color:var(--color-text-primary);">6.50%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal deposit -->
+        <div>
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;">Personal Deposit %</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="personal-deposit-pct" min="10" max="30" step="5" value="20"
+              style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4rem;text-align:center;">
+              <span id="personal-deposit-pct-display" style="font-size:0.95rem;font-weight:700;color:var(--color-text-primary);">20%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end inputs col -->
+
+    <!-- ── RESULTS ────────────────────────────────────────────── -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+
+        <!-- Section 1: Affordability -->
+        <h2 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(72,72,72,0.2);">
+          Can Your SMSF Afford It?
+        </h2>
+
+        <div style="margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Deposit required</span>
+            <span id="r-deposit" style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">QLD stamp duty</span>
+            <span id="r-stamp-duty" style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Legal costs (est.)</span>
+            <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">$3,000</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Liquidity buffer</span>
+            <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">$50,000</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.2);">
+            <span style="font-size:0.8rem;font-weight:700;color:var(--color-text-secondary);">Total cash required</span>
+            <span id="r-required-cash" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);"></span>
+          </div>
+        </div>
+
+        <!-- Verdict -->
+        <div id="r-afford-verdict" style="padding:0.85rem 1rem;margin-bottom:1.25rem;border-radius:2px;display:flex;align-items:flex-start;gap:0.6rem;">
+          <span id="r-verdict-icon" style="font-size:1rem;flex-shrink:0;"></span>
+          <div>
+            <p id="r-verdict-text" style="font-size:0.82rem;font-weight:700;line-height:1.4;"></p>
+            <p id="r-after-balance" style="font-size:0.75rem;margin-top:0.2rem;"></p>
+          </div>
+        </div>
+
+        <!-- Section 2: SMSF Cashflow -->
+        <h2 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(72,72,72,0.2);">
+          SMSF After-Tax Cashflow <span style="font-size:0.75rem;color:var(--color-text-muted);font-family:var(--font-sans);">(Year 1)</span>
+        </h2>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Rental income (after vacancy)</span>
+            <span id="r-eff-rent" style="font-size:0.82rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Less: expenses</span>
+            <span id="r-expenses" style="font-size:0.82rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Less: depreciation</span>
+            <span id="r-depreciation" style="font-size:0.82rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Net rental income</span>
+            <span id="r-net-rental-smsf" style="font-size:0.82rem;font-weight:600;color:var(--color-text-secondary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span id="r-tax-smsf-label" style="font-size:0.78rem;color:var(--color-text-muted);">Tax (15%)</span>
+            <span id="r-tax-smsf" style="font-size:0.82rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">After-tax NOI</span>
+            <span id="r-after-tax-noi-smsf" style="font-size:0.82rem;font-weight:600;color:var(--color-text-secondary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Less: interest (net of tax deduction)</span>
+            <span id="r-smsf-interest-net" style="font-size:0.82rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;">
+            <span style="font-size:0.82rem;font-weight:700;color:var(--color-text-secondary);">Net cashflow in SMSF</span>
+            <span id="r-smsf-net-cf" style="font-size:0.9rem;font-weight:700;"></span>
+          </div>
+        </div>
+
+        <!-- Section 3: Personal Name -->
+        <h2 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(72,72,72,0.2);">
+          Personal Name <span style="font-size:0.75rem;color:var(--color-text-muted);font-family:var(--font-sans);">(same property)</span>
+        </h2>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">After-tax NOI (personal rate)</span>
+            <span id="r-after-tax-noi-personal" style="font-size:0.82rem;font-weight:600;color:var(--color-text-secondary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Less: interest (net of tax deduction)</span>
+            <span id="r-personal-interest-net" style="font-size:0.82rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;">
+            <span style="font-size:0.82rem;font-weight:700;color:var(--color-text-secondary);">Net cashflow (personal)</span>
+            <span id="r-personal-net-cf" style="font-size:0.9rem;font-weight:700;"></span>
+          </div>
+        </div>
+
+        <!-- Section 4: SMSF Advantage -->
+        <div style="padding:1.25rem;background:rgba(255,221,121,0.06);border:1px solid rgba(255,221,121,0.25);margin-bottom:1.25rem;text-align:center;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Annual SMSF Tax Advantage</p>
+          <p id="r-advantage" style="font-family:var(--font-serif);font-size:2.2rem;font-weight:400;color:var(--color-gold);"></p>
+          <p id="r-advantage-note" style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.3rem;"></p>
+        </div>
+
+        <!-- Key rules callout -->
+        <div style="border:1px solid rgba(255,221,121,0.3);background:rgba(255,221,121,0.04);padding:1rem 1.25rem;margin-bottom:1.25rem;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">Key SMSF Property Rules</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="font-size:0.72rem;color:var(--color-text-secondary);line-height:1.5;">&#10003; Property must pass the sole purpose test (retirement benefit only)</li>
+            <li style="font-size:0.72rem;color:var(--color-text-secondary);line-height:1.5;">&#10003; Cannot be lived in or rented to related parties</li>
+            <li style="font-size:0.72rem;color:var(--color-text-secondary);line-height:1.5;">&#10003; Must be acquired through a bare trust (LRBA structure)</li>
+            <li style="font-size:0.72rem;color:var(--color-text-secondary);line-height:1.5;">&#10003; Cannot be a residential property you renovate substantially</li>
+            <li style="font-size:0.72rem;color:var(--color-text-muted);line-height:1.5;">&#9888; Recommended minimum SMSF balance: $300,000+</li>
+            <li style="font-size:0.72rem;color:var(--color-text-muted);line-height:1.5;">&#9888; Annual SMSF audit cost: $1,500–$3,000</li>
+            <li style="font-size:0.72rem;color:var(--color-text-muted);line-height:1.5;">&#9888; Seek advice from a licensed SMSF adviser before proceeding</li>
+          </ul>
+        </div>
+
+        <!-- Disclaimer -->
+        <p style="font-size:0.68rem;color:var(--color-text-muted);line-height:1.65;margin-bottom:1.25rem;">
+          This calculator provides general estimates only. SMSF property investment involves complex rules and significant risks. You must obtain advice from a licensed SMSF adviser and accountant.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;justify-content:center;">
+          Book a Free Appraisal
+        </a>
+
+      </div>
+    </div><!-- end results col -->
+
+  </div>
+</ToolLayout>
+
+<script>
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  const fmt = (n: number): string =>
+    `$${Math.round(Math.abs(n)).toLocaleString('en-AU')}`;
+
+  const fmtSigned = (n: number): string =>
+    `${n >= 0 ? '+' : '-'}${fmt(n)}`;
+
+  const el = (id: string): HTMLElement => document.getElementById(id)!;
+  const inp = (id: string): HTMLInputElement =>
+    document.getElementById(id) as HTMLInputElement;
+  const sel = (id: string): HTMLSelectElement =>
+    document.getElementById(id) as HTMLSelectElement;
+
+  // ── QLD Stamp Duty ─────────────────────────────────────────────────────────
+  function stampDuty(price: number): number {
+    if (price <= 5000)    return 0;
+    if (price <= 75000)   return (price - 5000) * 0.015;
+    if (price <= 540000)  return 1050 + (price - 75000) * 0.035;
+    if (price <= 1000000) return 17325 + (price - 540000) * 0.045;
+    return 38025 + (price - 1000000) * 0.0575;
+  }
+
+  // ── Main Calculation ───────────────────────────────────────────────────────
+  function calc(): void {
+    // Read inputs
+    const fundBalance      = Number(inp('fund-balance').value);
+    const taxPhase         = sel('tax-phase').value;
+    const price            = Number(inp('purchase-price').value);
+    const smsfDepositPct   = Number(inp('smsf-deposit-pct').value) / 100;
+    const smsfRate         = Number(inp('smsf-rate').value);
+    const weeklyRent       = Number(inp('weekly-rent').value);
+    const vacancyRate      = Number(inp('vacancy-rate').value) / 100;
+    const annualExpenses   = Number(inp('annual-expenses').value) || 0;
+    const depreciation     = Number(inp('annual-depreciation').value) || 0;
+    const marginalRateBase = Number(sel('marginal-rate').value);
+    const personalRate     = Number(inp('personal-rate').value);
+    const personalDepositPct = Number(inp('personal-deposit-pct').value) / 100;
+
+    // ── Derived display values ─────────────────────────────────────────────
+    const smsfDeposit = price * smsfDepositPct;
+    const smsfLoan    = price - smsfDeposit;
+
+    el('smsf-loan-display').textContent = fmt(smsfLoan);
+
+    // ── Affordability ──────────────────────────────────────────────────────
+    const duty        = stampDuty(price);
+    const requiredCash = smsfDeposit + duty + 3000 + 50000;
+    const canAfford   = fundBalance >= requiredCash;
+    const fundsAfter  = fundBalance - requiredCash;
+
+    el('r-deposit').textContent     = fmt(smsfDeposit);
+    el('r-stamp-duty').textContent  = fmt(duty);
+    el('r-required-cash').textContent = fmt(requiredCash);
+
+    const verdictBox  = el('r-afford-verdict');
+    const verdictIcon = el('r-verdict-icon');
+    const verdictText = el('r-verdict-text');
+    const afterBal    = el('r-after-balance');
+
+    if (canAfford) {
+      verdictBox.style.background = 'rgba(168,230,163,0.08)';
+      verdictBox.style.borderLeft = '3px solid #a8e6a3';
+      verdictIcon.textContent     = '✓';
+      verdictIcon.style.color     = '#a8e6a3';
+      verdictText.textContent     = 'Fund can proceed';
+      verdictText.style.color     = '#a8e6a3';
+      afterBal.textContent        = `Balance after purchase: ${fmt(fundsAfter)}`;
+      afterBal.style.color        = fundsAfter >= 50000
+        ? 'var(--color-text-muted)'
+        : 'rgba(230,168,100,0.9)';
+    } else {
+      verdictBox.style.background = 'rgba(192,57,43,0.08)';
+      verdictBox.style.borderLeft = '3px solid rgba(192,57,43,0.8)';
+      verdictIcon.textContent     = '✗';
+      verdictIcon.style.color     = 'rgba(192,57,43,0.9)';
+      verdictText.textContent     = `Insufficient funds — shortfall: ${fmt(-fundsAfter)}`;
+      verdictText.style.color     = 'rgba(192,57,43,0.9)';
+      afterBal.textContent        = 'Recommend minimum $300,000+ SMSF balance for property investment.';
+      afterBal.style.color        = 'var(--color-text-muted)';
+    }
+
+    // ── SMSF Cashflow ──────────────────────────────────────────────────────
+    const smsfTaxRate = taxPhase === 'accumulation' ? 0.15 : 0;
+    const effRent     = weeklyRent * 52 * (1 - vacancyRate);
+
+    const netRentalSmsf   = effRent - annualExpenses - depreciation;
+    const taxInSmsf       = Math.max(0, netRentalSmsf * smsfTaxRate);
+    const afterTaxNOI_smsf = netRentalSmsf - taxInSmsf;
+
+    const smsfInterest         = smsfLoan * smsfRate / 100;
+    const smsfInterestAfterTax = smsfInterest * (1 - smsfTaxRate);
+    const smsfNetCF            = afterTaxNOI_smsf - smsfInterestAfterTax;
+
+    // Labels
+    el('r-tax-smsf-label').textContent = taxPhase === 'accumulation' ? 'Tax (15%)' : 'Tax (0% — pension)';
+
+    el('r-eff-rent').textContent          = fmt(effRent);
+    el('r-expenses').textContent          = `-${fmt(annualExpenses)}`;
+    el('r-depreciation').textContent      = `-${fmt(depreciation)}`;
+    el('r-net-rental-smsf').textContent   = fmtSigned(netRentalSmsf);
+    el('r-net-rental-smsf').style.color   = netRentalSmsf >= 0 ? 'var(--color-text-secondary)' : 'rgba(192,57,43,0.9)';
+    el('r-tax-smsf').textContent          = taxInSmsf === 0 ? '$0' : `-${fmt(taxInSmsf)}`;
+    el('r-after-tax-noi-smsf').textContent = fmtSigned(afterTaxNOI_smsf);
+    el('r-after-tax-noi-smsf').style.color = afterTaxNOI_smsf >= 0 ? 'var(--color-text-secondary)' : 'rgba(192,57,43,0.9)';
+    el('r-smsf-interest-net').textContent  = `-${fmt(smsfInterestAfterTax)}`;
+
+    const smsfCfEl = el('r-smsf-net-cf');
+    smsfCfEl.textContent = fmtSigned(smsfNetCF);
+    smsfCfEl.style.color = smsfNetCF >= 0 ? '#a8e6a3' : 'rgba(192,57,43,0.9)';
+
+    // ── Personal Name Cashflow ─────────────────────────────────────────────
+    const marginalRate     = marginalRateBase + 0.02; // + Medicare
+    const personalLoan     = price * (1 - personalDepositPct);
+    const personalInterest = personalLoan * personalRate / 100;
+
+    const netRentalPersonal = effRent - annualExpenses - depreciation - personalInterest;
+    // Negative gearing tax saving: if net rental is negative, personal taxes are reduced
+    const taxSavingPersonal = netRentalPersonal < 0
+      ? -netRentalPersonal * marginalRate
+      : 0;
+    const personalNetCF = effRent - annualExpenses - personalInterest + taxSavingPersonal;
+
+    // After-tax NOI for personal (ignoring interest)
+    const netRentalPersonalNoInterest = effRent - annualExpenses - depreciation;
+    const taxPersonalOnNOI = netRentalPersonalNoInterest > 0
+      ? netRentalPersonalNoInterest * marginalRate
+      : -netRentalPersonalNoInterest * marginalRate; // negative: tax saving
+    const afterTaxNOI_personal = netRentalPersonalNoInterest - (netRentalPersonalNoInterest > 0 ? taxPersonalOnNOI : 0);
+    const personalInterestAfterTax = personalInterest * (1 - marginalRate);
+
+    el('r-after-tax-noi-personal').textContent = fmtSigned(afterTaxNOI_personal);
+    el('r-after-tax-noi-personal').style.color = afterTaxNOI_personal >= 0 ? 'var(--color-text-secondary)' : 'rgba(192,57,43,0.9)';
+    el('r-personal-interest-net').textContent   = `-${fmt(personalInterestAfterTax)}`;
+
+    const personalCfEl = el('r-personal-net-cf');
+    personalCfEl.textContent = fmtSigned(personalNetCF);
+    personalCfEl.style.color = personalNetCF >= 0 ? '#a8e6a3' : 'rgba(192,57,43,0.9)';
+
+    // ── SMSF Advantage ─────────────────────────────────────────────────────
+    const advantage    = smsfNetCF - personalNetCF;
+    const advEl        = el('r-advantage');
+    const advNoteEl    = el('r-advantage-note');
+    advEl.textContent  = fmtSigned(advantage);
+    advEl.style.color  = advantage >= 0 ? 'var(--color-gold)' : 'rgba(192,57,43,0.9)';
+    advNoteEl.textContent = advantage >= 0
+      ? 'annual advantage holding in SMSF vs personal name'
+      : 'annual disadvantage vs personal name under these assumptions';
+  }
+
+  // ── Sync slider displays ───────────────────────────────────────────────────
+  function bindRange(
+    id: string,
+    displayId: string,
+    format: (v: number) => string
+  ) {
+    const slider = inp(id);
+    const update = () => {
+      el(displayId).textContent = format(Number(slider.value));
+      calc();
+    };
+    slider.addEventListener('input', update);
+  }
+
+  bindRange('fund-balance',       'balance-display',            v => `$${v.toLocaleString('en-AU')}`);
+  bindRange('purchase-price',     'price-display',              v => `$${v.toLocaleString('en-AU')}`);
+  bindRange('smsf-deposit-pct',   'smsf-deposit-pct-display',   v => `${v}%`);
+  bindRange('smsf-rate',          'smsf-rate-display',          v => `${v.toFixed(2)}%`);
+  bindRange('vacancy-rate',       'vacancy-rate-display',       v => `${v.toFixed(1)}%`);
+  bindRange('personal-rate',      'personal-rate-display',      v => `${v.toFixed(2)}%`);
+  bindRange('personal-deposit-pct','personal-deposit-pct-display', v => `${v}%`);
+  bindRange('contributions',      'contributions-display',      v => `$${v.toLocaleString('en-AU')}`);
+
+  // ── Wire remaining inputs ──────────────────────────────────────────────────
+  ['tax-phase', 'smsf-members', 'loan-term', 'marginal-rate'].forEach(id => {
+    document.getElementById(id)!.addEventListener('change', calc);
+  });
+  ['weekly-rent', 'annual-expenses', 'annual-depreciation'].forEach(id => {
+    document.getElementById(id)!.addEventListener('input', calc);
+  });
+
+  // ── Initial render ─────────────────────────────────────────────────────────
+  calc();
+</script>

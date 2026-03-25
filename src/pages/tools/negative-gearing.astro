@@ -1,0 +1,379 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Negative Gearing Calculator"
+  description="See your real after-tax cost of owning an investment property. Enter your income, loan details and expenses to find your weekly out-of-pocket figure and tax benefit."
+  tool="Negative Gearing Calculator"
+  phase="Investor Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- ── INPUTS (left 3 cols) ── -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- 1. Your Income -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Your Income</label>
+
+        <div style="margin-bottom:0.5rem;">
+          <p style="font-size:0.6rem;color:var(--color-text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;">Annual Salary</p>
+          <span id="salary-display" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);">$120,000</span>
+        </div>
+        <input type="range" id="salary" min="50000" max="500000" step="5000" value="120000"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+          <span>$50K</span><span>$500K</span>
+        </div>
+      </div>
+
+      <!-- 2. Property & Loan -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1.25rem;">Property &amp; Loan</label>
+
+        <!-- Purchase price -->
+        <div style="margin-bottom:1.5rem;">
+          <p style="font-size:0.6rem;color:var(--color-text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;">Purchase Price</p>
+          <span id="price-display" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-text-primary);">$750,000</span>
+          <input type="range" id="purchase-price" min="200000" max="3000000" step="10000" value="750000"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;margin-top:0.6rem;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>$200K</span><span>$3M</span>
+          </div>
+        </div>
+
+        <!-- Deposit -->
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <p style="font-size:0.6rem;color:var(--color-text-muted);letter-spacing:0.1em;text-transform:uppercase;">Deposit</p>
+            <span id="deposit-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">20%</span>
+          </div>
+          <input type="range" id="deposit-pct" min="10" max="40" step="5" value="20"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>10%</span><span>40%</span>
+          </div>
+          <p style="font-size:0.75rem;color:var(--color-text-secondary);margin-top:0.5rem;">
+            Loan amount: <span id="loan-display" style="font-weight:600;color:var(--color-text-primary);">$600,000</span>
+          </p>
+        </div>
+
+        <!-- Interest rate -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <p style="font-size:0.6rem;color:var(--color-text-muted);letter-spacing:0.1em;text-transform:uppercase;">Interest Rate (I/O)</p>
+            <span id="rate-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">6.20%</span>
+          </div>
+          <input type="range" id="interest-rate" min="3" max="10" step="0.05" value="6.2"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>3.00%</span><span>10.00%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Rental Income -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1.25rem;">Rental Income</label>
+
+        <!-- Weekly rent -->
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Weekly Rent</label>
+          <input type="number" id="weekly-rent" value="600" class="obs-input" style="font-size:0.95rem;" />
+        </div>
+
+        <!-- Vacancy rate -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <p style="font-size:0.6rem;color:var(--color-text-muted);letter-spacing:0.1em;text-transform:uppercase;">Vacancy Rate</p>
+            <span id="vacancy-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">2.00%</span>
+          </div>
+          <input type="range" id="vacancy-rate" min="0" max="10" step="0.5" value="2"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>0%</span><span>10%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Deductible Expenses -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1.25rem;">Deductible Expenses (Annual)</label>
+
+        <!-- Property management % -->
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <p style="font-size:0.6rem;color:var(--color-text-muted);letter-spacing:0.1em;text-transform:uppercase;">Property Management Fee</p>
+            <span id="pm-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">8.00%</span>
+          </div>
+          <input type="range" id="pm-rate" min="5" max="12" step="0.5" value="8"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>5%</span><span>12%</span>
+          </div>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.4rem;">% of effective annual rent</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Council Rates</label>
+            <input type="number" id="council" value="2200" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Water Rates</label>
+            <input type="number" id="water" value="1000" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Insurance</label>
+            <input type="number" id="insurance" value="1800" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Maintenance</label>
+            <input type="number" id="maintenance" value="1500" class="obs-input" style="font-size:0.95rem;" />
+          </div>
+          <div class="sm:col-span-2">
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Depreciation (Building + Fittings)</label>
+            <input type="number" id="depreciation" value="5000" class="obs-input" style="font-size:0.95rem;" />
+            <p style="font-size:0.68rem;color:var(--color-text-muted);margin-top:0.4rem;line-height:1.5;">Get a quantity surveyor report for accurate figures.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /inputs -->
+
+    <!-- ── RESULTS (right 2 cols) ── -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Tax &amp; Cashflow Summary
+        </h2>
+
+        <!-- Metric rows -->
+        <div style="display:flex;flex-direction:column;gap:0;margin-bottom:1.25rem;">
+
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual rental income</span>
+            <span id="r-rental-income" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Total deductions</span>
+            <span id="r-total-deductions" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Net rental income / loss</span>
+            <span id="r-net-rental" style="font-size:0.875rem;font-weight:600;"></span>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Your marginal tax rate</span>
+            <span id="r-marginal-rate" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+
+        </div>
+
+        <!-- Tax benefit highlight box -->
+        <div id="tax-benefit-box" style="padding:1rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);margin-bottom:1.25rem;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.3rem;">Tax Benefit</p>
+          <p id="r-tax-benefit" style="font-family:var(--font-serif);font-size:1.75rem;color:var(--color-gold);"></p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.15rem;">annual tax saving</p>
+        </div>
+
+        <!-- After-tax weekly cost — hero number -->
+        <div style="padding:1.25rem;background:var(--color-surface-4);margin-bottom:1rem;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">After-Tax Weekly Cost</p>
+          <p id="r-weekly-cost" style="font-family:var(--font-serif);font-size:2.25rem;font-weight:400;color:var(--color-gold);"></p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.15rem;">real out-of-pocket per week</p>
+          <div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(72,72,72,0.2);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.75rem;color:var(--color-text-muted);">Pre-tax weekly cashflow</span>
+              <span id="r-pretax-weekly" style="font-size:0.875rem;font-weight:600;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Annual tax saving metric row -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);margin-bottom:1.25rem;">
+          <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual tax saving</span>
+          <span id="r-annual-tax-saving" style="font-size:0.875rem;font-weight:600;color:var(--color-gold);"></span>
+        </div>
+
+        <!-- Tax comparison table -->
+        <div style="background:var(--color-surface-4);padding:1rem;margin-bottom:1.25rem;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">Tax Comparison (2024–25)</p>
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:0.4rem 0;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);border-bottom:1px solid rgba(72,72,72,0.2);">Scenario</th>
+                <th style="text-align:right;padding:0.4rem 0;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);border-bottom:1px solid rgba(72,72,72,0.2);">Tax Payable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:0.5rem 0;color:var(--color-text-secondary);border-bottom:1px solid rgba(72,72,72,0.1);">Without property</td>
+                <td id="r-tax-without" style="text-align:right;padding:0.5rem 0;font-weight:600;color:var(--color-text-primary);border-bottom:1px solid rgba(72,72,72,0.1);"></td>
+              </tr>
+              <tr>
+                <td style="padding:0.5rem 0;color:var(--color-text-secondary);border-bottom:1px solid rgba(72,72,72,0.1);">With property</td>
+                <td id="r-tax-with" style="text-align:right;padding:0.5rem 0;font-weight:600;color:var(--color-text-primary);border-bottom:1px solid rgba(72,72,72,0.1);"></td>
+              </tr>
+              <tr>
+                <td style="padding:0.5rem 0;font-weight:700;color:var(--color-gold);">Difference</td>
+                <td id="r-tax-diff" style="text-align:right;padding:0.5rem 0;font-weight:700;color:var(--color-gold);"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Disclaimer -->
+        <p style="font-size:0.68rem;color:var(--color-text-muted);line-height:1.65;margin-bottom:1.5rem;">
+          Estimate only. Pre-tax depreciation requires a quantity surveyor report. Consult a tax accountant for personal advice.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;justify-content:center;">
+          Book a Free Appraisal
+        </a>
+
+      </div>
+    </div><!-- /results -->
+
+  </div>
+</ToolLayout>
+
+<script>
+  // ── Helpers ────────────────────────────────────────────────────
+  const fmtCurrency = (n: number): string =>
+    '$' + Math.round(Math.abs(n)).toLocaleString('en-AU');
+
+  const fmtSigned = (n: number): string =>
+    (n >= 0 ? '+' : '-') + fmtCurrency(n);
+
+  const pct = (n: number, dp = 2): string => n.toFixed(dp) + '%';
+
+  function el<T extends HTMLElement>(id: string): T {
+    return document.getElementById(id) as T;
+  }
+
+  // ── 2024-25 Australian tax brackets (Stage 3) + 2% Medicare ──
+  function incomeTax(income: number): number {
+    let tax = 0;
+    if (income <= 18200) {
+      tax = 0;
+    } else if (income <= 45000) {
+      tax = (income - 18200) * 0.16;
+    } else if (income <= 135000) {
+      tax = 4288 + (income - 45000) * 0.30;
+    } else if (income <= 190000) {
+      tax = 31288 + (income - 135000) * 0.37;
+    } else {
+      tax = 51638 + (income - 190000) * 0.45;
+    }
+    // Medicare levy (simplified 2% on full income)
+    const medicare = income * 0.02;
+    return tax + medicare;
+  }
+
+  function marginalRate(income: number): number {
+    if (income <= 18200) return 0;
+    if (income <= 45000) return 0.16 + 0.02; // 16% + Medicare
+    if (income <= 135000) return 0.30 + 0.02;
+    if (income <= 190000) return 0.37 + 0.02;
+    return 0.45 + 0.02;
+  }
+
+  // ── Main calculation ──────────────────────────────────────────
+  function calc(): void {
+    const salary      = Number((el('salary') as HTMLInputElement).value);
+    const price       = Number((el('purchase-price') as HTMLInputElement).value);
+    const depositPct  = Number((el('deposit-pct') as HTMLInputElement).value);
+    const rate        = Number((el('interest-rate') as HTMLInputElement).value);
+    const weeklyRent  = Number((el('weekly-rent') as HTMLInputElement).value) || 0;
+    const vacancyPct  = Number((el('vacancy-rate') as HTMLInputElement).value);
+    const pmPct       = Number((el('pm-rate') as HTMLInputElement).value);
+    const council     = Number((el('council') as HTMLInputElement).value) || 0;
+    const water       = Number((el('water') as HTMLInputElement).value) || 0;
+    const insurance   = Number((el('insurance') as HTMLInputElement).value) || 0;
+    const maintenance = Number((el('maintenance') as HTMLInputElement).value) || 0;
+    const depreciation= Number((el('depreciation') as HTMLInputElement).value) || 0;
+
+    // Derived inputs
+    const loan = price * (1 - depositPct / 100);
+    const effectiveRent = weeklyRent * 52 * (1 - vacancyPct / 100);
+    const interest = loan * rate / 100;
+    const pmFee = effectiveRent * pmPct / 100;
+    const cashExpenses = pmFee + council + water + insurance + maintenance;
+    const totalDeductions = interest + cashExpenses + depreciation;
+    const netRentalIncome = effectiveRent - totalDeductions;
+
+    // Tax calculations
+    const taxWithout = incomeTax(salary);
+    const taxWith = incomeTax(salary + netRentalIncome);
+    const taxSaving = taxWithout - taxWith; // positive = saving (negatively geared)
+    const mRate = marginalRate(salary) * 100;
+
+    // Cashflow
+    const preTaxCashflow = effectiveRent - interest - cashExpenses; // excludes depreciation (non-cash)
+    const afterTaxCashflow = preTaxCashflow + taxSaving;
+    const weeklyAfterTaxCost = afterTaxCashflow / 52;
+    const preTaxWeekly = preTaxCashflow / 52;
+
+    // ── Update display values on sliders ──────────────────────
+    el('salary-display').textContent = fmtCurrency(salary);
+    el('price-display').textContent = fmtCurrency(price);
+    el('deposit-display').textContent = pct(depositPct, 0);
+    el('loan-display').textContent = fmtCurrency(loan);
+    el('rate-display').textContent = pct(rate);
+    el('vacancy-display').textContent = pct(vacancyPct);
+    el('pm-display').textContent = pct(pmPct, 2);
+
+    // ── Results panel ─────────────────────────────────────────
+    el('r-rental-income').textContent = fmtCurrency(effectiveRent);
+
+    el('r-total-deductions').textContent = '-' + fmtCurrency(totalDeductions);
+
+    const netRentalEl = el('r-net-rental');
+    netRentalEl.textContent = fmtSigned(netRentalIncome);
+    netRentalEl.style.color = netRentalIncome >= 0
+      ? '#a8e6a3'
+      : 'rgba(192,57,43,0.9)';
+
+    el('r-marginal-rate').textContent = pct(mRate, 0);
+
+    el('r-tax-benefit').textContent = fmtCurrency(taxSaving);
+
+    // Weekly after-tax cost
+    const weeklyEl = el('r-weekly-cost');
+    if (weeklyAfterTaxCost < 0) {
+      weeklyEl.textContent = '-' + fmtCurrency(weeklyAfterTaxCost) + '/wk';
+      weeklyEl.style.color = 'var(--color-gold)';
+    } else {
+      weeklyEl.textContent = '+' + fmtCurrency(weeklyAfterTaxCost) + '/wk';
+      weeklyEl.style.color = '#a8e6a3';
+    }
+
+    const preTaxWkEl = el('r-pretax-weekly');
+    preTaxWkEl.textContent = (preTaxWeekly >= 0 ? '+' : '-') + fmtCurrency(preTaxWeekly) + '/wk';
+    preTaxWkEl.style.color = preTaxWeekly >= 0 ? '#a8e6a3' : 'rgba(192,57,43,0.9)';
+
+    el('r-annual-tax-saving').textContent = fmtCurrency(taxSaving);
+
+    // Comparison table
+    el('r-tax-without').textContent = fmtCurrency(taxWithout);
+    el('r-tax-with').textContent = fmtCurrency(taxWith);
+    const diff = taxSaving;
+    el('r-tax-diff').textContent = (diff > 0 ? '-' : '+') + fmtCurrency(Math.abs(diff));
+  }
+
+  // ── Wire up all inputs ────────────────────────────────────────
+  const rangeIds = ['salary', 'purchase-price', 'deposit-pct', 'interest-rate', 'vacancy-rate', 'pm-rate'];
+  const numberIds = ['weekly-rent', 'council', 'water', 'insurance', 'maintenance', 'depreciation'];
+
+  rangeIds.forEach(id => el(id).addEventListener('input', calc));
+  numberIds.forEach(id => el(id).addEventListener('input', calc));
+
+  // Run on load
+  calc();
+</script>

@@ -1,0 +1,497 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Rent vs Buy Analyser"
+  description="Find the break-even year where buying beats renting. Model your scenario with real numbers to make a confident decision."
+  tool="Rent vs Buy Analyser"
+  phase="Buyer Tools"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+    <!-- ── INPUTS (left 3 cols) ── -->
+    <div class="lg:col-span-3 flex flex-col gap-6">
+
+      <!-- 1. If You Rent -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">If You Rent</p>
+
+        <!-- Monthly rent -->
+        <div style="margin-bottom:1.5rem;">
+          <label for="monthly-rent" style="font-size:0.75rem;color:var(--color-text-secondary);display:block;margin-bottom:0.5rem;">Monthly Rent</label>
+          <input type="number" id="monthly-rent" value="2600" min="500" max="20000" step="50" class="obs-input" style="font-size:1rem;width:100%;" />
+        </div>
+
+        <!-- Annual rent increase -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <label for="rent-increase" style="font-size:0.75rem;color:var(--color-text-secondary);">Annual Rent Increase</label>
+            <span id="rent-increase-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">3.00%</span>
+          </div>
+          <input type="range" id="rent-increase" min="0" max="8" step="0.25" value="3"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>0%</span><span>8%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. If You Buy -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">If You Buy</p>
+
+        <!-- Purchase price -->
+        <div style="margin-bottom:1.75rem;">
+          <label style="font-size:0.75rem;color:var(--color-text-secondary);display:block;margin-bottom:0.75rem;">Purchase Price</label>
+          <div style="margin-bottom:0.75rem;">
+            <span id="price-display" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);line-height:1;">$800,000</span>
+          </div>
+          <input type="range" id="purchase-price" min="300000" max="3000000" step="10000" value="800000"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>$300K</span><span>$3M</span>
+          </div>
+        </div>
+
+        <!-- Deposit -->
+        <div style="margin-bottom:1.75rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <label for="deposit-pct" style="font-size:0.75rem;color:var(--color-text-secondary);">Deposit</label>
+            <span id="deposit-pct-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">20%</span>
+          </div>
+          <input type="range" id="deposit-pct" min="5" max="40" step="5" value="20"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>5%</span><span>40%</span>
+          </div>
+          <div style="display:flex;gap:1.5rem;margin-top:0.75rem;">
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;flex:1;text-align:center;">
+              <p style="font-size:0.6rem;color:var(--color-text-muted);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.1em;">Deposit</p>
+              <p id="deposit-dollar" style="font-size:0.875rem;font-weight:700;color:var(--color-text-primary);">$160,000</p>
+            </div>
+            <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;flex:1;text-align:center;">
+              <p style="font-size:0.6rem;color:var(--color-text-muted);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.1em;">Loan</p>
+              <p id="loan-dollar" style="font-size:0.875rem;font-weight:700;color:var(--color-text-primary);">$640,000</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interest rate -->
+        <div style="margin-bottom:1.75rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <label for="interest-rate" style="font-size:0.75rem;color:var(--color-text-secondary);">Interest Rate (p.a.)</label>
+            <span id="rate-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">6.20%</span>
+          </div>
+          <input type="range" id="interest-rate" min="3" max="10" step="0.05" value="6.2"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>3%</span><span>10%</span>
+          </div>
+        </div>
+
+        <!-- Loan term -->
+        <div style="margin-bottom:1.75rem;">
+          <label for="loan-term" style="font-size:0.75rem;color:var(--color-text-secondary);display:block;margin-bottom:0.5rem;">Loan Term</label>
+          <select id="loan-term" class="obs-select" style="width:100%;font-size:0.9rem;">
+            <option value="25">25 years</option>
+            <option value="30" selected>30 years</option>
+          </select>
+        </div>
+
+        <!-- Annual capital growth -->
+        <div style="margin-bottom:1.75rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <label for="growth-rate" style="font-size:0.75rem;color:var(--color-text-secondary);">Annual Capital Growth</label>
+            <span id="growth-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">5.00%</span>
+          </div>
+          <input type="range" id="growth-rate" min="0" max="10" step="0.25" value="5"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>0%</span><span>10%</span>
+          </div>
+        </div>
+
+        <!-- Annual buying costs -->
+        <div style="margin-bottom:1.75rem;">
+          <label for="annual-costs" style="font-size:0.75rem;color:var(--color-text-secondary);display:block;margin-bottom:0.5rem;">
+            Annual Buying Costs
+          </label>
+          <input type="number" id="annual-costs" value="8000" min="0" max="100000" step="500" class="obs-input" style="font-size:1rem;width:100%;" />
+          <p style="font-size:0.68rem;color:var(--color-text-muted);margin-top:0.4rem;line-height:1.5;">Rates, insurance, maintenance — excludes mortgage.</p>
+        </div>
+
+        <!-- Selling costs at exit -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <label for="selling-costs" style="font-size:0.75rem;color:var(--color-text-secondary);">Selling Costs at Exit</label>
+            <span id="selling-costs-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">2.50%</span>
+          </div>
+          <input type="range" id="selling-costs" min="1" max="5" step="0.1" value="2.5"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>1%</span><span>5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Investment Return (if renting) -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">Investment Return (if Renting)</p>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+            <label for="invest-return" style="font-size:0.75rem;color:var(--color-text-secondary);">Return on Deposit if Invested</label>
+            <span id="invest-return-display" style="font-size:0.9rem;font-weight:700;color:var(--color-text-primary);">7.00%</span>
+          </div>
+          <input type="range" id="invest-return" min="3" max="12" step="0.25" value="7"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>3%</span><span>12%</span>
+          </div>
+          <p style="font-size:0.68rem;color:var(--color-text-muted);margin-top:0.6rem;line-height:1.5;">What could you earn investing the deposit instead?</p>
+        </div>
+      </div>
+
+      <!-- 4. Comparison Period -->
+      <div style="background:var(--color-surface-3);padding:2rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">Comparison Period</p>
+        <div>
+          <label style="font-size:0.75rem;color:var(--color-text-secondary);display:block;margin-bottom:0.75rem;">Years to Compare</label>
+          <div style="margin-bottom:0.75rem;">
+            <span id="period-display" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);line-height:1;">10 years</span>
+          </div>
+          <input type="range" id="compare-period" min="1" max="30" step="1" value="10"
+            style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--color-text-muted);">
+            <span>1 yr</span><span>30 yrs</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── RESULTS (right 2 cols, sticky) ── -->
+    <div class="lg:col-span-2">
+      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+          Analysis Results
+        </h2>
+
+        <!-- Break-even highlight -->
+        <div style="margin-bottom:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Break-Even Year</p>
+          <p id="break-even-year" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-gold);line-height:1;margin-bottom:0.4rem;">Year 7</p>
+          <p id="verdict" style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.5;">Buying wins after 7 years</p>
+        </div>
+
+        <!-- At end of period -->
+        <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">At End of Period</p>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Buyer's Net Equity</span>
+            <span id="buyer-equity" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Renter's Portfolio</span>
+            <span id="renter-portfolio" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Wealth Advantage</span>
+            <span id="wealth-advantage" style="font-size:0.875rem;font-weight:600;">—</span>
+          </div>
+        </div>
+
+        <!-- Monthly costs -->
+        <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">Monthly Costs</p>
+
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Buyer (mortgage + costs)</span>
+            <span id="monthly-buy-cost" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Renter (current)</span>
+            <span id="monthly-rent-cost" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Monthly difference</span>
+            <span id="monthly-diff" style="font-size:0.875rem;font-weight:600;">—</span>
+          </div>
+        </div>
+
+        <p style="font-size:0.68rem;color:var(--color-text-muted);line-height:1.6;margin-bottom:1.25rem;">
+          Estimates only. Does not include stamp duty, LMI, conveyancing, or tax considerations. Seek professional advice.
+        </p>
+
+        <a href="/appraisal" class="btn-gold" style="width:100%;justify-content:center;">
+          Book a Free Appraisal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CASHFLOW TABLE ── -->
+  <div style="margin-top:3rem;">
+    <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;">Year-by-Year Cashflow</h3>
+    <div style="overflow-x:auto;">
+      <table id="cashflow-table" style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+        <thead>
+          <tr style="border-bottom:2px solid rgba(255,221,121,0.3);">
+            <th style="text-align:left;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Year</th>
+            <th style="text-align:right;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Rent Paid (Cumul.)</th>
+            <th style="text-align:right;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Property Value</th>
+            <th style="text-align:right;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Remaining Loan</th>
+            <th style="text-align:right;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Buyer Net Equity</th>
+            <th style="text-align:right;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Renter Portfolio</th>
+            <th style="text-align:right;padding:0.65rem 1rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Advantage</th>
+          </tr>
+        </thead>
+        <tbody id="cashflow-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</ToolLayout>
+
+<script>
+  // ── Formatters ──────────────────────────────────────────────────────────────
+  const fmt = (n: number): string =>
+    '$' + Math.round(n).toLocaleString('en-AU');
+
+  const fmtPct = (n: number): string => n.toFixed(2) + '%';
+
+  // ── Loan balance after k months ──────────────────────────────────────────────
+  function loanBalanceAfterMonths(
+    principal: number,
+    annualRate: number,
+    termYears: number,
+    months: number
+  ): number {
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    if (r === 0) {
+      return Math.max(0, principal - (principal / n) * months);
+    }
+    const balance =
+      principal *
+      (Math.pow(1 + r, n) - Math.pow(1 + r, months)) /
+      (Math.pow(1 + r, n) - 1);
+    return Math.max(0, balance);
+  }
+
+  // ── Monthly P&I payment ──────────────────────────────────────────────────────
+  function monthlyPayment(
+    principal: number,
+    annualRate: number,
+    termYears: number
+  ): number {
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    if (r === 0) return principal / n;
+    return (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // ── Main calculation ─────────────────────────────────────────────────────────
+  function calculate(): void {
+    // Read inputs
+    const monthlyRent   = Number((document.getElementById('monthly-rent')    as HTMLInputElement).value);
+    const rentIncrease  = Number((document.getElementById('rent-increase')   as HTMLInputElement).value) / 100;
+    const price         = Number((document.getElementById('purchase-price')  as HTMLInputElement).value);
+    const depositPct    = Number((document.getElementById('deposit-pct')     as HTMLInputElement).value) / 100;
+    const annualRate    = Number((document.getElementById('interest-rate')   as HTMLInputElement).value);
+    const termYears     = Number((document.getElementById('loan-term')       as HTMLSelectElement).value);
+    const growthRate    = Number((document.getElementById('growth-rate')     as HTMLInputElement).value) / 100;
+    const annualCosts   = Number((document.getElementById('annual-costs')    as HTMLInputElement).value);
+    const sellingCostPct= Number((document.getElementById('selling-costs')   as HTMLInputElement).value) / 100;
+    const investReturn  = Number((document.getElementById('invest-return')   as HTMLInputElement).value) / 100;
+    const period        = Number((document.getElementById('compare-period')  as HTMLInputElement).value);
+
+    const deposit = price * depositPct;
+    const loan    = price - deposit;
+
+    const mPmt    = monthlyPayment(loan, annualRate, termYears);
+    const annualPI= mPmt * 12;
+
+    // Monthly costs summary
+    const monthlyBuyCost = mPmt + annualCosts / 12;
+    const diff = monthlyBuyCost - monthlyRent;
+
+    // Year-by-year
+    interface YearRow {
+      year: number;
+      cumulRent: number;
+      propertyValue: number;
+      loanBalance: number;
+      buyerNetEquity: number;
+      renterPortfolio: number;
+    }
+
+    const rows: YearRow[] = [];
+    let cumulRent = 0;
+    let breakEvenYear = -1;
+
+    for (let yr = 1; yr <= period; yr++) {
+      // Rent this year
+      const annualRent = monthlyRent * 12 * Math.pow(1 + rentIncrease, yr - 1);
+      cumulRent += annualRent;
+
+      const propertyValue   = price * Math.pow(1 + growthRate, yr);
+      const loanBalance     = loanBalanceAfterMonths(loan, annualRate, termYears, yr * 12);
+      const buyerNetEquity  = propertyValue - loanBalance - propertyValue * sellingCostPct;
+      const renterPortfolio = deposit * Math.pow(1 + investReturn, yr);
+
+      rows.push({ year: yr, cumulRent, propertyValue, loanBalance, buyerNetEquity, renterPortfolio });
+
+      if (breakEvenYear === -1 && buyerNetEquity > renterPortfolio) {
+        breakEvenYear = yr;
+      }
+    }
+
+    // Final year values
+    const finalRow        = rows[rows.length - 1];
+    const buyerFinal      = finalRow.buyerNetEquity;
+    const renterFinal     = finalRow.renterPortfolio;
+    const buyerWins       = buyerFinal > renterFinal;
+    const wealthDiff      = Math.abs(buyerFinal - renterFinal);
+
+    // ── Update results panel ───────────────────────────────────────────────────
+    const beEl     = document.getElementById('break-even-year')!;
+    const verdictEl = document.getElementById('verdict')!;
+
+    if (breakEvenYear === -1) {
+      beEl.textContent      = 'Never';
+      verdictEl.textContent = `Renting wins over ${period} year${period === 1 ? '' : 's'}`;
+      beEl.style.color      = '#a1a1a1';
+    } else {
+      beEl.textContent      = `Year ${breakEvenYear}`;
+      verdictEl.textContent = `Buying wins after ${breakEvenYear} year${breakEvenYear === 1 ? '' : 's'}`;
+      beEl.style.color      = 'var(--color-gold)';
+    }
+
+    document.getElementById('buyer-equity')!.textContent    = fmt(buyerFinal);
+    document.getElementById('renter-portfolio')!.textContent = fmt(renterFinal);
+
+    const advantageEl = document.getElementById('wealth-advantage')!;
+    if (buyerWins) {
+      advantageEl.textContent  = `Buyer +${fmt(wealthDiff)}`;
+      advantageEl.style.color  = '#a8e6a3';
+    } else if (renterFinal > buyerFinal) {
+      advantageEl.textContent  = `Renter +${fmt(wealthDiff)}`;
+      advantageEl.style.color  = 'rgba(192,57,43,0.9)';
+    } else {
+      advantageEl.textContent  = 'Equal';
+      advantageEl.style.color  = 'var(--color-text-secondary)';
+    }
+
+    document.getElementById('monthly-buy-cost')!.textContent  = fmt(monthlyBuyCost);
+    document.getElementById('monthly-rent-cost')!.textContent = fmt(monthlyRent);
+
+    const diffEl = document.getElementById('monthly-diff')!;
+    if (diff > 0) {
+      diffEl.textContent = `Buying costs ${fmt(diff)} more/mo`;
+      diffEl.style.color = 'rgba(192,57,43,0.9)';
+    } else if (diff < 0) {
+      diffEl.textContent = `Buying saves ${fmt(-diff)}/mo`;
+      diffEl.style.color = '#a8e6a3';
+    } else {
+      diffEl.textContent = 'Equal';
+      diffEl.style.color = 'var(--color-text-secondary)';
+    }
+
+    // ── Cashflow table ─────────────────────────────────────────────────────────
+    const tbody = document.getElementById('cashflow-body')!;
+    tbody.innerHTML = '';
+
+    rows.forEach(row => {
+      const buyerAhead = row.buyerNetEquity > row.renterPortfolio;
+      const isBreakEven = row.year === breakEvenYear;
+      const advAmt = Math.abs(row.buyerNetEquity - row.renterPortfolio);
+      const advText = buyerAhead
+        ? `Buyer +${fmt(advAmt)}`
+        : `Renter +${fmt(advAmt)}`;
+      const advColor = buyerAhead ? '#a8e6a3' : 'rgba(192,57,43,0.9)';
+
+      const tr = document.createElement('tr');
+      tr.style.cssText = `
+        border-bottom:1px solid rgba(72,72,72,0.12);
+        ${isBreakEven ? 'background:rgba(255,221,121,0.06);' : ''}
+        transition: background 0.15s;
+      `;
+      tr.innerHTML = `
+        <td style="padding:0.6rem 1rem;color:var(--color-text-secondary);font-weight:${isBreakEven ? '700' : '400'};">
+          ${row.year}${isBreakEven ? ' ★' : ''}
+        </td>
+        <td style="padding:0.6rem 1rem;text-align:right;color:var(--color-text-muted);">${fmt(row.cumulRent)}</td>
+        <td style="padding:0.6rem 1rem;text-align:right;color:var(--color-text-primary);">${fmt(row.propertyValue)}</td>
+        <td style="padding:0.6rem 1rem;text-align:right;color:rgba(192,57,43,0.8);">${fmt(row.loanBalance)}</td>
+        <td style="padding:0.6rem 1rem;text-align:right;color:var(--color-text-primary);font-weight:600;">${fmt(row.buyerNetEquity)}</td>
+        <td style="padding:0.6rem 1rem;text-align:right;color:var(--color-text-primary);">${fmt(row.renterPortfolio)}</td>
+        <td style="padding:0.6rem 1rem;text-align:right;color:${advColor};font-weight:600;">${advText}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ── Slider label updaters ────────────────────────────────────────────────────
+  function bindSlider(
+    inputId: string,
+    displayId: string,
+    format: (v: number) => string
+  ): void {
+    const el = document.getElementById(inputId) as HTMLInputElement;
+    el.addEventListener('input', () => {
+      document.getElementById(displayId)!.textContent = format(Number(el.value));
+      calculate();
+    });
+  }
+
+  function bindDepositSlider(): void {
+    const priceEl   = document.getElementById('purchase-price') as HTMLInputElement;
+    const depositEl = document.getElementById('deposit-pct')    as HTMLInputElement;
+
+    function updateDeposit(): void {
+      const price      = Number(priceEl.value);
+      const depositPct = Number(depositEl.value) / 100;
+      const deposit    = price * depositPct;
+      const loanAmt    = price - deposit;
+      document.getElementById('deposit-pct-display')!.textContent = `${Number(depositEl.value)}%`;
+      document.getElementById('deposit-dollar')!.textContent      = fmt(deposit);
+      document.getElementById('loan-dollar')!.textContent         = fmt(loanAmt);
+    }
+
+    priceEl.addEventListener('input', () => {
+      document.getElementById('price-display')!.textContent =
+        '$' + Number(priceEl.value).toLocaleString('en-AU');
+      updateDeposit();
+      calculate();
+    });
+
+    depositEl.addEventListener('input', () => {
+      updateDeposit();
+      calculate();
+    });
+  }
+
+  // ── Wire everything ──────────────────────────────────────────────────────────
+  bindDepositSlider();
+  bindSlider('rent-increase',  'rent-increase-display',  fmtPct);
+  bindSlider('interest-rate',  'rate-display',           fmtPct);
+  bindSlider('growth-rate',    'growth-display',         fmtPct);
+  bindSlider('selling-costs',  'selling-costs-display',  fmtPct);
+  bindSlider('invest-return',  'invest-return-display',  fmtPct);
+
+  (document.getElementById('compare-period') as HTMLInputElement).addEventListener('input', (e) => {
+    const v = Number((e.target as HTMLInputElement).value);
+    document.getElementById('period-display')!.textContent = `${v} year${v === 1 ? '' : 's'}`;
+    calculate();
+  });
+
+  document.getElementById('monthly-rent')!.addEventListener('input', calculate);
+  document.getElementById('annual-costs')!.addEventListener('input', calculate);
+  document.getElementById('loan-term')!.addEventListener('change', calculate);
+
+  // Initial render
+  calculate();
+</script>

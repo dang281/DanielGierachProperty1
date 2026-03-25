@@ -1,0 +1,924 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Portfolio Builder"
+  description="Model up to 3 investment properties together. See combined equity, cashflow and portfolio growth over time."
+  tool="Portfolio Builder"
+  phase="Investor Tools"
+>
+
+  <!-- ═══════════════════════════════════════════════
+       PROPERTY CARDS
+  ════════════════════════════════════════════════ -->
+  <div class="pb-grid" id="property-cards">
+
+    <!-- ── PROPERTY 1 ── -->
+    <div class="prop-card" id="card-1" data-prop="1" data-enabled="true" style="--card-color:#c5a03c;">
+      <div class="prop-card-header">
+        <span class="prop-card-title">Property 1</span>
+        <label class="toggle-label" title="Always active">
+          <input type="checkbox" class="prop-toggle" id="toggle-1" checked disabled />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="prop-card-body">
+
+        <!-- Purchase Price -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Purchase Price</span>
+            <span class="field-value" id="price-display-1">$700,000</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="price-1" min="200000" max="3000000" step="10000" value="700000" />
+          <div class="range-limits"><span>$200K</span><span>$3M</span></div>
+        </div>
+
+        <!-- Deposit -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Deposit</span>
+            <span class="field-value" id="deposit-display-1">20%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="deposit-1" min="10" max="40" step="5" value="20" />
+          <div class="range-limits"><span>10%</span><span>40%</span></div>
+          <p class="field-sub" id="loan-display-1">Loan: $560,000</p>
+        </div>
+
+        <!-- Interest Rate -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Interest Rate (p.a.)</span>
+            <span class="field-value" id="rate-display-1">6.20%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="rate-1" min="3" max="10" step="0.05" value="6.2" />
+          <div class="range-limits"><span>3%</span><span>10%</span></div>
+        </div>
+
+        <!-- Weekly Rent -->
+        <div class="field-group">
+          <label class="field-label" for="rent-1">Weekly Rent ($)</label>
+          <input type="number" class="obs-input prop-number" id="rent-1" value="550" min="0" step="10" />
+        </div>
+
+        <!-- Capital Growth -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Capital Growth (p.a.)</span>
+            <span class="field-value" id="growth-display-1">5.00%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="growth-1" min="0" max="10" step="0.25" value="5" />
+          <div class="range-limits"><span>0%</span><span>10%</span></div>
+        </div>
+
+        <!-- Rent Growth -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Rent Growth (p.a.)</span>
+            <span class="field-value" id="rentgrowth-display-1">3.00%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="rentgrowth-1" min="0" max="8" step="0.25" value="3" />
+          <div class="range-limits"><span>0%</span><span>8%</span></div>
+        </div>
+
+        <!-- IO Period -->
+        <div class="field-group">
+          <label class="field-label" for="io-1">Interest-Only Period</label>
+          <select class="obs-select prop-select" id="io-1">
+            <option value="0" selected>P&amp;I from start</option>
+            <option value="2">2yr IO</option>
+            <option value="5">5yr IO</option>
+            <option value="10">10yr IO</option>
+          </select>
+        </div>
+
+      </div>
+      <!-- disabled overlay (not shown for P1) -->
+      <div class="prop-overlay" id="overlay-1" style="display:none;">
+        <span>Click to enable</span>
+      </div>
+    </div>
+
+    <!-- ── PROPERTY 2 ── -->
+    <div class="prop-card prop-card--disabled" id="card-2" data-prop="2" data-enabled="false" style="--card-color:#7ec8e3;">
+      <div class="prop-card-header">
+        <span class="prop-card-title">Property 2</span>
+        <label class="toggle-label" title="Toggle property 2">
+          <input type="checkbox" class="prop-toggle" id="toggle-2" />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="prop-card-body">
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Purchase Price</span>
+            <span class="field-value" id="price-display-2">$600,000</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="price-2" min="200000" max="3000000" step="10000" value="600000" />
+          <div class="range-limits"><span>$200K</span><span>$3M</span></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Deposit</span>
+            <span class="field-value" id="deposit-display-2">20%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="deposit-2" min="10" max="40" step="5" value="20" />
+          <div class="range-limits"><span>10%</span><span>40%</span></div>
+          <p class="field-sub" id="loan-display-2">Loan: $480,000</p>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Interest Rate (p.a.)</span>
+            <span class="field-value" id="rate-display-2">6.20%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="rate-2" min="3" max="10" step="0.05" value="6.2" />
+          <div class="range-limits"><span>3%</span><span>10%</span></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="rent-2">Weekly Rent ($)</label>
+          <input type="number" class="obs-input prop-number" id="rent-2" value="480" min="0" step="10" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Capital Growth (p.a.)</span>
+            <span class="field-value" id="growth-display-2">5.00%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="growth-2" min="0" max="10" step="0.25" value="5" />
+          <div class="range-limits"><span>0%</span><span>10%</span></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Rent Growth (p.a.)</span>
+            <span class="field-value" id="rentgrowth-display-2">3.00%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="rentgrowth-2" min="0" max="8" step="0.25" value="3" />
+          <div class="range-limits"><span>0%</span><span>8%</span></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="io-2">Interest-Only Period</label>
+          <select class="obs-select prop-select" id="io-2">
+            <option value="0" selected>P&amp;I from start</option>
+            <option value="2">2yr IO</option>
+            <option value="5">5yr IO</option>
+            <option value="10">10yr IO</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="prop-overlay" id="overlay-2">
+        <span>Click to enable</span>
+      </div>
+    </div>
+
+    <!-- ── PROPERTY 3 ── -->
+    <div class="prop-card prop-card--disabled" id="card-3" data-prop="3" data-enabled="false" style="--card-color:#a8e6a3;">
+      <div class="prop-card-header">
+        <span class="prop-card-title">Property 3</span>
+        <label class="toggle-label" title="Toggle property 3">
+          <input type="checkbox" class="prop-toggle" id="toggle-3" />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="prop-card-body">
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Purchase Price</span>
+            <span class="field-value" id="price-display-3">$850,000</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="price-3" min="200000" max="3000000" step="10000" value="850000" />
+          <div class="range-limits"><span>$200K</span><span>$3M</span></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Deposit</span>
+            <span class="field-value" id="deposit-display-3">20%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="deposit-3" min="10" max="40" step="5" value="20" />
+          <div class="range-limits"><span>10%</span><span>40%</span></div>
+          <p class="field-sub" id="loan-display-3">Loan: $680,000</p>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Interest Rate (p.a.)</span>
+            <span class="field-value" id="rate-display-3">6.20%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="rate-3" min="3" max="10" step="0.05" value="6.2" />
+          <div class="range-limits"><span>3%</span><span>10%</span></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="rent-3">Weekly Rent ($)</label>
+          <input type="number" class="obs-input prop-number" id="rent-3" value="650" min="0" step="10" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Capital Growth (p.a.)</span>
+            <span class="field-value" id="growth-display-3">5.00%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="growth-3" min="0" max="10" step="0.25" value="5" />
+          <div class="range-limits"><span>0%</span><span>10%</span></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-row">
+            <span class="field-label">Rent Growth (p.a.)</span>
+            <span class="field-value" id="rentgrowth-display-3">3.00%</span>
+          </div>
+          <input type="range" class="obs-input prop-range" id="rentgrowth-3" min="0" max="8" step="0.25" value="3" />
+          <div class="range-limits"><span>0%</span><span>8%</span></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="io-3">Interest-Only Period</label>
+          <select class="obs-select prop-select" id="io-3">
+            <option value="0" selected>P&amp;I from start</option>
+            <option value="2">2yr IO</option>
+            <option value="5">5yr IO</option>
+            <option value="10">10yr IO</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="prop-overlay" id="overlay-3">
+        <span>Click to enable</span>
+      </div>
+    </div>
+
+  </div><!-- /property-cards -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       SHARED SETTINGS
+  ════════════════════════════════════════════════ -->
+  <div style="background:var(--color-surface-3);padding:2rem;margin-top:2rem;">
+    <h2 class="section-heading" style="margin-bottom:1.5rem;">Portfolio Settings</h2>
+    <div class="settings-grid">
+
+      <!-- Hold Period -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <span class="field-label">Hold Period</span>
+          <span class="field-value" id="hold-display">10 years</span>
+        </div>
+        <input type="range" class="obs-input" id="hold-period" min="1" max="30" step="1" value="10" />
+        <div class="range-limits"><span>1 yr</span><span>30 yrs</span></div>
+      </div>
+
+      <!-- Vacancy Rate -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <span class="field-label">Vacancy Rate</span>
+          <span class="field-value" id="vacancy-display">2.00%</span>
+        </div>
+        <input type="range" class="obs-input" id="vacancy-rate" min="0" max="10" step="0.5" value="2" />
+        <div class="range-limits"><span>0%</span><span>10%</span></div>
+      </div>
+
+      <!-- PM Fee -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <span class="field-label">PM Fee</span>
+          <span class="field-value" id="pm-display">8.00%</span>
+        </div>
+        <input type="range" class="obs-input" id="pm-fee" min="5" max="12" step="0.5" value="8" />
+        <div class="range-limits"><span>5%</span><span>12%</span></div>
+      </div>
+
+      <!-- Annual Expenses -->
+      <div class="field-group">
+        <label class="field-label" for="annual-expenses">Annual Expenses per Property ($)</label>
+        <input type="number" class="obs-input" id="annual-expenses" value="7000" min="0" step="500" />
+        <p class="field-sub">Council, water, insurance, maintenance</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PORTFOLIO SUMMARY
+  ════════════════════════════════════════════════ -->
+  <div style="margin-top:2rem;">
+    <h2 class="section-heading" style="margin-bottom:1rem;">Portfolio Summary <span id="summary-year-label" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:400;color:var(--color-text-muted);">— at Year 10</span></h2>
+    <div class="summary-grid">
+
+      <div class="summary-card">
+        <p class="summary-label">Total Portfolio Value</p>
+        <p class="summary-value" id="s-total-value">—</p>
+      </div>
+
+      <div class="summary-card">
+        <p class="summary-label">Total Debt</p>
+        <p class="summary-value" id="s-total-debt">—</p>
+      </div>
+
+      <div class="summary-card summary-card--highlight">
+        <p class="summary-label">Total Equity</p>
+        <p class="summary-value" id="s-total-equity">—</p>
+      </div>
+
+      <div class="summary-card">
+        <p class="summary-label">Annual Portfolio Cashflow</p>
+        <p class="summary-value" id="s-annual-cf">—</p>
+      </div>
+
+      <div class="summary-card">
+        <p class="summary-label">Total Invested (deposits + costs)</p>
+        <p class="summary-value" id="s-total-invested">—</p>
+      </div>
+
+      <div class="summary-card">
+        <p class="summary-label">Portfolio Gross Yield</p>
+        <p class="summary-value" id="s-gross-yield">—</p>
+      </div>
+
+      <div class="summary-card">
+        <p class="summary-label">Portfolio Net Yield</p>
+        <p class="summary-value" id="s-net-yield">—</p>
+      </div>
+
+      <div class="summary-card summary-card--highlight">
+        <p class="summary-label">Annualised Equity Return</p>
+        <p class="summary-value" id="s-irr">—</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       YEAR-BY-YEAR TABLE
+  ════════════════════════════════════════════════ -->
+  <div style="margin-top:2.5rem;">
+    <h2 class="section-heading" style="margin-bottom:1rem;">Year-by-Year Breakdown</h2>
+    <div style="overflow-x:auto;">
+      <table class="yby-table" id="yby-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th id="th-p1">P1 Value</th>
+            <th id="th-p2">P2 Value</th>
+            <th id="th-p3">P3 Value</th>
+            <th>Total Value</th>
+            <th>Total Debt</th>
+            <th>Total Equity</th>
+            <th>Annual CF</th>
+            <th>Cumul. CF</th>
+          </tr>
+        </thead>
+        <tbody id="yby-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1.5rem;line-height:1.7;max-width:72ch;">
+    Estimates only. Assumes 30-year loan term, stamp duty estimated at 4% of purchase price. Costs are simplified — consult a qualified financial adviser before making investment decisions.
+  </p>
+
+</ToolLayout>
+
+<style>
+  /* ─── Grid ─── */
+  .pb-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .pb-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ─── Property Card ─── */
+  .prop-card {
+    background: var(--color-surface-3);
+    position: relative;
+    border-top: 3px solid var(--card-color, var(--color-gold));
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.2s;
+  }
+  .prop-card--disabled { opacity: 0.55; }
+
+  .prop-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid rgba(72,72,72,0.18);
+  }
+  .prop-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+  }
+  .prop-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* ─── Toggle ─── */
+  .toggle-label { display: flex; align-items: center; cursor: pointer; }
+  .toggle-label input[type="checkbox"] { display: none; }
+  .toggle-track {
+    width: 38px; height: 20px;
+    background: rgba(72,72,72,0.3);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    left: 2px; top: 2px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #888;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .toggle-label input:checked + .toggle-track { background: var(--card-color, var(--color-gold)); }
+  .toggle-label input:checked + .toggle-track::after { transform: translateX(18px); background: #fff; }
+  .toggle-label input:disabled + .toggle-track { opacity: 0.5; cursor: not-allowed; }
+
+  /* ─── Disabled overlay ─── */
+  .prop-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(20,18,16,0.55);
+    cursor: pointer;
+  }
+  .prop-overlay span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.5rem 1.25rem;
+  }
+
+  /* ─── Field groups ─── */
+  .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .field-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  .field-value {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+  .field-sub {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .range-limits {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.62rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ─── Settings grid ─── */
+  .settings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) { .settings-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .settings-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  /* ─── Summary grid ─── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(72,72,72,0.15);
+    border: 1px solid rgba(72,72,72,0.15);
+  }
+  @media (min-width: 768px) { .summary-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .summary-card {
+    background: var(--color-surface-3);
+    padding: 1.25rem 1.5rem;
+  }
+  .summary-card--highlight { background: var(--color-surface-4); }
+  .summary-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 0.5rem;
+  }
+  .summary-value {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  /* ─── Section headings ─── */
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Year-by-year table ─── */
+  .yby-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+  }
+  .yby-table th {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    background: var(--color-surface-4);
+    padding: 0.75rem 1rem;
+    text-align: right;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(72,72,72,0.2);
+  }
+  .yby-table th:first-child { text-align: left; }
+  .yby-table td {
+    padding: 0.6rem 1rem;
+    text-align: right;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid rgba(72,72,72,0.1);
+    white-space: nowrap;
+  }
+  .yby-table td:first-child { text-align: left; font-weight: 700; color: var(--color-text-primary); }
+  .yby-table tbody tr:hover td { background: rgba(197,160,60,0.05); }
+  .yby-table tbody tr.is-exit td { background: rgba(197,160,60,0.08); font-weight: 600; color: var(--color-text-primary); }
+  .yby-table .cf-positive { color: #a8e6a3; }
+  .yby-table .cf-negative { color: rgba(192,57,43,0.9); }
+  .yby-table .cell-muted { color: var(--color-text-muted); font-style: italic; }
+</style>
+
+<script>
+  // ─────────────────────────────────────────────────────────────
+  // Helpers
+  // ─────────────────────────────────────────────────────────────
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const $i = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const $s = (id: string) => document.getElementById(id) as HTMLSelectElement;
+
+  const fmtCur = (n: number) =>
+    '$' + Math.round(n).toLocaleString('en-AU');
+
+  const fmtPct = (n: number) => n.toFixed(2) + '%';
+
+  /** Standard amortisation balance after k months paid */
+  function loanBalance(principal: number, annualRate: number, termYears: number, monthsPaid: number): number {
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    const k = Math.min(monthsPaid, n);
+    if (r === 0) return Math.max(0, principal - (principal / n) * k);
+    return principal * (Math.pow(1 + r, n) - Math.pow(1 + r, k)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  /** Monthly P&I payment */
+  function monthlyPayment(principal: number, annualRate: number, termYears: number): number {
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    if (r === 0) return principal / n;
+    return (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Per-property inputs
+  // ─────────────────────────────────────────────────────────────
+  interface PropInputs {
+    price: number;
+    depositPct: number;
+    rate: number;
+    weeklyRent: number;
+    growth: number;
+    rentGrowth: number;
+    ioPeriod: number;
+    enabled: boolean;
+  }
+
+  function readProp(n: 1 | 2 | 3): PropInputs {
+    const price      = Number($i(`price-${n}`).value);
+    const depositPct = Number($i(`deposit-${n}`).value) / 100;
+    const rate       = Number($i(`rate-${n}`).value);
+    const weeklyRent = Number($i(`rent-${n}`).value);
+    const growth     = Number($i(`growth-${n}`).value) / 100;
+    const rentGrowth = Number($i(`rentgrowth-${n}`).value) / 100;
+    const ioPeriod   = Number($s(`io-${n}`).value);
+    const enabled    = (document.getElementById(`card-${n}`) as HTMLElement).dataset.enabled === 'true';
+    return { price, depositPct, rate, weeklyRent, growth, rentGrowth, ioPeriod, enabled };
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Core calc per property per year
+  // ─────────────────────────────────────────────────────────────
+  interface YearRow {
+    propValue: number;
+    loanBal: number;
+    equity: number;
+    annualCF: number;
+    grossRentAnnual: number;
+    noiAnnual: number;
+  }
+
+  function calcPropYear(
+    p: PropInputs,
+    yr: number,
+    vacancyRate: number,
+    pmRate: number,
+    annualExpenses: number
+  ): YearRow {
+    const TERM = 30;
+    const loan = p.price * (1 - p.depositPct);
+
+    // Property value
+    const propValue = p.price * Math.pow(1 + p.growth, yr);
+
+    // Loan balance
+    let loanBal: number;
+    let interest: number;
+    let annualPrincipal: number;
+
+    if (yr <= p.ioPeriod) {
+      // IO period: balance stays constant
+      loanBal         = loan;
+      interest        = loan * (p.rate / 100);
+      annualPrincipal = 0;
+    } else {
+      // P&I on remaining term after IO
+      const remainingTerm = TERM - p.ioPeriod;
+      const monthsInPnI   = (yr - p.ioPeriod) * 12;
+      const monthsInPnI1  = (yr - p.ioPeriod - 1) * 12;
+
+      loanBal         = loanBalance(loan, p.rate, remainingTerm, monthsInPnI);
+      const loanBal1  = loanBalance(loan, p.rate, remainingTerm, monthsInPnI1);
+      annualPrincipal = loanBal1 - loanBal;
+
+      // Interest for the year = balance at start of year * rate (approx)
+      interest = loanBal1 * (p.rate / 100);
+    }
+
+    // Rent (year 1 = weeklyRent × 52, grows each subsequent year)
+    const grossRentAnnual = p.weeklyRent * 52 * Math.pow(1 + p.rentGrowth, yr - 1) * (1 - vacancyRate);
+    const pmFee           = grossRentAnnual * pmRate;
+    const noi             = grossRentAnnual - pmFee - annualExpenses;
+
+    const annualCF = noi - interest - annualPrincipal;
+    const equity   = propValue - loanBal;
+
+    return { propValue, loanBal, equity, annualCF, grossRentAnnual, noiAnnual: noi };
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Main calculation
+  // ─────────────────────────────────────────────────────────────
+  function calc(): void {
+    const holdYears   = Number($i('hold-period').value);
+    const vacancyRate = Number($i('vacancy-rate').value) / 100;
+    const pmRate      = Number($i('pm-fee').value) / 100;
+    const expenses    = Number((document.getElementById('annual-expenses') as HTMLInputElement).value);
+
+    const props = [readProp(1), readProp(2), readProp(3)];
+
+    // Update inline display values for shared settings
+    $('hold-display').textContent    = `${holdYears} year${holdYears > 1 ? 's' : ''}`;
+    $('vacancy-display').textContent = fmtPct(Number($i('vacancy-rate').value));
+    $('pm-display').textContent      = fmtPct(Number($i('pm-fee').value));
+    $('summary-year-label').textContent = `— at Year ${holdYears}`;
+
+    // Build year-by-year rows
+    interface PortfolioYear {
+      yr: number;
+      p1: YearRow | null;
+      p2: YearRow | null;
+      p3: YearRow | null;
+      totalValue: number;
+      totalDebt: number;
+      totalEquity: number;
+      annualCF: number;
+      cumulCF: number;
+    }
+
+    const rows: PortfolioYear[] = [];
+    let cumulCF = 0;
+
+    for (let yr = 1; yr <= holdYears; yr++) {
+      const p1 = props[0].enabled ? calcPropYear(props[0], yr, vacancyRate, pmRate, expenses) : null;
+      const p2 = props[1].enabled ? calcPropYear(props[1], yr, vacancyRate, pmRate, expenses) : null;
+      const p3 = props[2].enabled ? calcPropYear(props[2], yr, vacancyRate, pmRate, expenses) : null;
+
+      const totalValue  = (p1?.propValue ?? 0) + (p2?.propValue ?? 0) + (p3?.propValue ?? 0);
+      const totalDebt   = (p1?.loanBal  ?? 0) + (p2?.loanBal  ?? 0) + (p3?.loanBal  ?? 0);
+      const totalEquity = (p1?.equity   ?? 0) + (p2?.equity   ?? 0) + (p3?.equity   ?? 0);
+      const annualCF    = (p1?.annualCF ?? 0) + (p2?.annualCF ?? 0) + (p3?.annualCF ?? 0);
+      cumulCF += annualCF;
+
+      rows.push({ yr, p1, p2, p3, totalValue, totalDebt, totalEquity, annualCF, cumulCF });
+    }
+
+    // ── Summary at hold year ──
+    const exitRow = rows[rows.length - 1];
+    const STAMP_DUTY_RATE = 0.04;
+
+    const totalInvested = props.reduce((sum, p) => {
+      if (!p.enabled) return sum;
+      const deposit    = p.price * p.depositPct;
+      const stampDuty  = p.price * STAMP_DUTY_RATE;
+      return sum + deposit + stampDuty;
+    }, 0);
+
+    const totalGrossRent = props.reduce((sum, p, i) => {
+      if (!p.enabled) return sum;
+      // Year-1 gross rent for yield calc (on current purchase prices)
+      return sum + p.weeklyRent * 52;
+    }, 0);
+
+    const totalValue0 = props.reduce((sum, p) => p.enabled ? sum + p.price : sum, 0);
+
+    const grossYield = totalValue0 > 0 ? (totalGrossRent / totalValue0) * 100 : 0;
+
+    // Net yield: after PM and expenses (no vacancy deduction for yield display convention)
+    const totalNoi1 = props.reduce((sum, p) => {
+      if (!p.enabled) return sum;
+      const gr  = p.weeklyRent * 52;
+      const pm  = gr * pmRate;
+      return sum + gr - pm - expenses;
+    }, 0);
+    const netYield = totalValue0 > 0 ? (totalNoi1 / totalValue0) * 100 : 0;
+
+    const annualisedReturn =
+      totalInvested > 0 && holdYears > 0
+        ? ((exitRow.totalEquity - totalInvested) / totalInvested) * 100 / holdYears
+        : 0;
+
+    // Write summary
+    $('s-total-value').textContent    = fmtCur(exitRow.totalValue);
+    $('s-total-debt').textContent     = fmtCur(exitRow.totalDebt);
+    $('s-total-equity').textContent   = fmtCur(exitRow.totalEquity);
+    $('s-total-invested').textContent = fmtCur(totalInvested);
+    $('s-gross-yield').textContent    = fmtPct(grossYield);
+    $('s-net-yield').textContent      = fmtPct(netYield);
+    $('s-irr').textContent            = fmtPct(annualisedReturn) + ' p.a.';
+
+    const cfEl = $('s-annual-cf');
+    cfEl.textContent = fmtCur(exitRow.annualCF);
+    cfEl.style.color = exitRow.annualCF >= 0 ? '#a8e6a3' : 'rgba(192,57,43,0.9)';
+
+    // ── Build table ──
+    const tbody = document.getElementById('yby-body')!;
+    tbody.innerHTML = '';
+
+    rows.forEach(row => {
+      const tr = document.createElement('tr');
+      if (row.yr === holdYears) tr.className = 'is-exit';
+
+      const cfClass  = row.annualCF  >= 0 ? 'cf-positive' : 'cf-negative';
+      const ccfClass = row.cumulCF   >= 0 ? 'cf-positive' : 'cf-negative';
+
+      const p1Cell = row.p1 ? fmtCur(row.p1.propValue) : '<span class="cell-muted">—</span>';
+      const p2Cell = row.p2 ? fmtCur(row.p2.propValue) : '<span class="cell-muted">—</span>';
+      const p3Cell = row.p3 ? fmtCur(row.p3.propValue) : '<span class="cell-muted">—</span>';
+
+      tr.innerHTML = `
+        <td>${row.yr}</td>
+        <td>${p1Cell}</td>
+        <td>${p2Cell}</td>
+        <td>${p3Cell}</td>
+        <td>${fmtCur(row.totalValue)}</td>
+        <td>${fmtCur(row.totalDebt)}</td>
+        <td>${fmtCur(row.totalEquity)}</td>
+        <td class="${cfClass}">${fmtCur(row.annualCF)}</td>
+        <td class="${ccfClass}">${fmtCur(row.cumulCF)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Toggle enable / disable
+  // ─────────────────────────────────────────────────────────────
+  function setCardEnabled(n: 2 | 3, enabled: boolean): void {
+    const card    = document.getElementById(`card-${n}`) as HTMLElement;
+    const overlay = document.getElementById(`overlay-${n}`) as HTMLElement;
+    const toggle  = $i(`toggle-${n}`);
+
+    card.dataset.enabled = String(enabled);
+    toggle.checked = enabled;
+
+    if (enabled) {
+      card.classList.remove('prop-card--disabled');
+      overlay.style.display = 'none';
+    } else {
+      card.classList.add('prop-card--disabled');
+      overlay.style.display = 'flex';
+    }
+    calc();
+  }
+
+  // Overlay click enables the card
+  ([2, 3] as (2 | 3)[]).forEach(n => {
+    const overlay = document.getElementById(`overlay-${n}`) as HTMLElement;
+    overlay.addEventListener('click', () => setCardEnabled(n, true));
+
+    const toggle = $i(`toggle-${n}`);
+    toggle.addEventListener('change', () => setCardEnabled(n, toggle.checked));
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // Slider display bindings
+  // ─────────────────────────────────────────────────────────────
+  function bindPropSliders(n: 1 | 2 | 3): void {
+    $i(`price-${n}`).addEventListener('input', () => {
+      const v = Number($i(`price-${n}`).value);
+      $(`price-display-${n}`).textContent = fmtCur(v);
+      updateLoanDisplay(n);
+      calc();
+    });
+    $i(`deposit-${n}`).addEventListener('input', () => {
+      const v = Number($i(`deposit-${n}`).value);
+      $(`deposit-display-${n}`).textContent = `${v}%`;
+      updateLoanDisplay(n);
+      calc();
+    });
+    $i(`rate-${n}`).addEventListener('input', () => {
+      const v = Number($i(`rate-${n}`).value);
+      $(`rate-display-${n}`).textContent = v.toFixed(2) + '%';
+      calc();
+    });
+    $i(`growth-${n}`).addEventListener('input', () => {
+      const v = Number($i(`growth-${n}`).value);
+      $(`growth-display-${n}`).textContent = v.toFixed(2) + '%';
+      calc();
+    });
+    $i(`rentgrowth-${n}`).addEventListener('input', () => {
+      const v = Number($i(`rentgrowth-${n}`).value);
+      $(`rentgrowth-display-${n}`).textContent = v.toFixed(2) + '%';
+      calc();
+    });
+    $i(`rent-${n}`).addEventListener('input', calc);
+    $s(`io-${n}`).addEventListener('change', calc);
+  }
+
+  function updateLoanDisplay(n: 1 | 2 | 3): void {
+    const price      = Number($i(`price-${n}`).value);
+    const depositPct = Number($i(`deposit-${n}`).value) / 100;
+    const loan       = price * (1 - depositPct);
+    $(`loan-display-${n}`).textContent = `Loan: ${fmtCur(loan)}`;
+  }
+
+  // Shared settings
+  $i('hold-period').addEventListener('input', calc);
+  $i('vacancy-rate').addEventListener('input', () => {
+    const v = Number($i('vacancy-rate').value);
+    $('vacancy-display').textContent = v.toFixed(2) + '%';
+    calc();
+  });
+  $i('pm-fee').addEventListener('input', () => {
+    const v = Number($i('pm-fee').value);
+    $('pm-display').textContent = v.toFixed(2) + '%';
+    calc();
+  });
+  (document.getElementById('annual-expenses') as HTMLInputElement).addEventListener('input', calc);
+
+  // Bind all three property card sliders
+  ([1, 2, 3] as (1 | 2 | 3)[]).forEach(bindPropSliders);
+
+  // Initial loan displays
+  updateLoanDisplay(1);
+  updateLoanDisplay(2);
+  updateLoanDisplay(3);
+
+  // Run on load
+  calc();
+</script>

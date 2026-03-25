@@ -2,21 +2,25 @@
 import Layout from '../../layouts/Layout.astro';
 
 const tools = [
-  { href: '/tools/valuation',        label: 'Instant Valuation',       desc: 'Get an indicative value for your property in minutes.',                              phase: 'Seller',   cta: 'Estimate My Home' },
-  { href: '/tools/selling-costs',    label: 'Selling Cost Calculator',  desc: 'See your estimated net proceeds after all selling costs.',                           phase: 'Seller',   cta: 'Calculate Costs' },
-  { href: '/tools/stamp-duty',       label: 'Stamp Duty Calculator',    desc: 'QLD transfer duty, first home buyer concessions & full upfront costs.',              phase: 'Buyer',    cta: 'Calculate Duty' },
-  { href: '/tools/mortgage',         label: 'Mortgage Calculator',      desc: 'Weekly, fortnightly or monthly repayments + amortisation chart.',                   phase: 'Buyer',    cta: 'Calculate Repayments' },
-  { href: '/tools/investment-yield', label: 'Investment Yield',         desc: 'Gross & net yield, cash flow, 10-year capital growth projection.',                  phase: 'Investor', cta: 'Calculate Yield' },
-  { href: '/tools/dcf',             label: 'Property DCF Analyser',    desc: 'Full discounted cash flow model. NPV, IRR, year-by-year cashflow, equity build and net returns.', phase: 'Investor', cta: 'Analyse Investment' },
-  { href: '/tools/renovation-roi',   label: 'Renovation ROI',           desc: 'Which renovations add the most value before you sell?',                             phase: 'Seller',   cta: 'Check ROI' },
-  { href: '/tools/suburb-match',     label: 'Suburb Match Quiz',        desc: 'Answer 8 questions to find your ideal Brisbane inner east suburb.',                 phase: 'Buyer',    cta: 'Find My Suburb' },
-  { href: '/tools/flood-risk',       label: 'Flood Risk Checker',       desc: 'Understand BCC flood zones, 2011/2022 event risk & insurance implications.',       phase: 'Buyer',    cta: 'Check Risk' },
-  { href: '/tools/property-compare', label: 'Property Comparison',      desc: 'Compare up to 4 properties side-by-side on all key metrics.',                      phase: 'Buyer',    cta: 'Compare Properties' },
-  { href: '/tools/heatmap',          label: 'Price Heatmap',            desc: 'Visual suburb-by-suburb median price and growth map.',                              phase: 'Market',   cta: 'Explore Map' },
-  { href: '/tools/borrowing-power',  label: 'Borrowing Power Calculator', desc: 'Estimate how much you can borrow based on income, expenses, and dependants.',       phase: 'Buyer',    cta: 'Calculate Power' },
-  { href: '/tools/equity-calculator',   label: 'Home Equity Calculator',  desc: 'See how much equity you hold and how much you could access or take to your next purchase.', phase: 'Seller', cta: 'Calculate Equity' },
-  { href: '/tools/school-catchment',   label: 'School Catchment Map',    desc: 'Find state and private schools near any address. Search by radius and filter by school type.', phase: 'Buyer', cta: 'Find Schools' },
-  { href: '/tools/zoning-map',         label: 'Brisbane Zoning Map',     desc: 'Look up BCC CityPlan 2014 zoning for any address. Character, LMR, MDR and more explained.', phase: 'Buyer', cta: 'Check Zoning' },
+  { href: '/tools/valuation',          label: 'Instant Valuation',             desc: 'Get an indicative value for your property in minutes.',                                                      phase: 'Seller',   cta: 'Estimate My Home' },
+  { href: '/tools/selling-costs',      label: 'Selling Cost Calculator',        desc: 'See your estimated net proceeds after all selling costs.',                                                   phase: 'Seller',   cta: 'Calculate Costs' },
+  { href: '/tools/renovation-roi',     label: 'Renovation ROI',                 desc: 'Which renovations add the most value before you sell?',                                                      phase: 'Seller',   cta: 'Check ROI' },
+  { href: '/tools/equity-calculator',  label: 'Home Equity Calculator',         desc: 'See how much equity you hold and how much you could access or take to your next purchase.',                 phase: 'Seller',   cta: 'Calculate Equity' },
+  { href: '/tools/stamp-duty',         label: 'Stamp Duty Calculator',          desc: 'QLD transfer duty, first home buyer concessions & full upfront costs.',                                      phase: 'Buyer',    cta: 'Calculate Duty' },
+  { href: '/tools/mortgage',           label: 'Mortgage Calculator',            desc: 'Weekly, fortnightly or monthly repayments + amortisation chart.',                                           phase: 'Buyer',    cta: 'Calculate Repayments' },
+  { href: '/tools/borrowing-power',    label: 'Borrowing Power Calculator',     desc: 'Estimate how much you can borrow based on income, expenses, and dependants.',                               phase: 'Buyer',    cta: 'Calculate Power' },
+  { href: '/tools/suburb-match',       label: 'Suburb Match Quiz',              desc: 'Answer 8 questions to find your ideal Brisbane inner east suburb.',                                          phase: 'Buyer',    cta: 'Find My Suburb' },
+  { href: '/tools/flood-risk',         label: 'Flood Risk Checker',             desc: 'Understand BCC flood zones, 2011/2022 event risk & insurance implications.',                               phase: 'Buyer',    cta: 'Check Risk' },
+  { href: '/tools/property-compare',   label: 'Property Comparison',            desc: 'Compare up to 4 properties side-by-side on all key metrics.',                                              phase: 'Buyer',    cta: 'Compare Properties' },
+  { href: '/tools/school-catchment',   label: 'School Catchment Map',           desc: 'Find state and private schools near any address. Search by radius and filter by school type.',             phase: 'Buyer',    cta: 'Find Schools' },
+  { href: '/tools/zoning-map',         label: 'Brisbane Zoning Map',            desc: 'Look up BCC CityPlan 2014 zoning for any address. Character, LMR, MDR and more explained.',               phase: 'Buyer',    cta: 'Check Zoning' },
+  { href: '/tools/rent-vs-buy',        label: 'Rent vs Buy Analyser',           desc: 'Am I better off renting or buying? Break-even year, 10-year wealth comparison.',                           phase: 'Buyer',    cta: 'Compare Options' },
+  { href: '/tools/investment-yield',   label: 'Investment Yield',               desc: 'Gross & net yield, cash flow, 10-year capital growth projection.',                                         phase: 'Investor', cta: 'Calculate Yield' },
+  { href: '/tools/dcf',                label: 'Property DCF Analyser',          desc: 'Full discounted cash flow model. NPV, IRR, year-by-year cashflow, equity build and net returns.',          phase: 'Investor', cta: 'Analyse Investment' },
+  { href: '/tools/negative-gearing',   label: 'Negative Gearing Calculator',    desc: 'See your real after-tax cost of investment property. Tax offset based on your income bracket.',           phase: 'Investor', cta: 'Calculate Saving' },
+  { href: '/tools/portfolio-builder',  label: 'Portfolio Builder',              desc: 'Model owning 2–3 properties. Combined equity, cashflow and net worth over time.',                          phase: 'Investor', cta: 'Build Portfolio' },
+  { href: '/tools/smsf-calculator',    label: 'SMSF Property Calculator',       desc: 'Can you buy this property in your super fund? Affordability check, tax comparison & LRBA rules.',         phase: 'Investor', cta: 'Check SMSF' },
+  { href: '/tools/heatmap',            label: 'Price Heatmap',                  desc: 'Visual suburb-by-suburb median price and growth map.',                                                      phase: 'Market',   cta: 'Explore Map' },
 ];
 
 const phaseColors: Record<string, string> = {
@@ -56,10 +60,25 @@ const phaseColors: Record<string, string> = {
 <!-- Tools Grid -->
 <section style="background:var(--color-base);padding:5rem 0 7rem;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <!-- Filter Toggles -->
+    <div id="filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;">
+      {(['All', 'Buyer', 'Seller', 'Investor', 'Market'] as const).map(phase => (
+        <button
+          data-filter={phase}
+          style={`font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:0.5rem 1.1rem;border:1.5px solid;cursor:pointer;transition:all 0.18s;background:${phase === 'All' ? '#1c1917' : 'transparent'};color:${phase === 'All' ? '#f0ece4' : '#78716c'};border-color:${phase === 'All' ? '#1c1917' : 'rgba(28,25,23,0.2)'};`}
+        >
+          {phase}
+        </button>
+      ))}
+    </div>
+
+    <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {tools.map((tool, i) => (
         <a href={tool.href}
-          class="reveal" data-delay={i * 40}
+          class="tool-card reveal"
+          data-phase={tool.phase}
+          data-delay={i * 40}
           style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem 2rem 1.75rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;position:relative;overflow:hidden;"
           onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.35)';this.style.transform='translateY(-2px)'"
           onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)'"
@@ -87,6 +106,10 @@ const phaseColors: Record<string, string> = {
         </a>
       ))}
     </div>
+
+    <!-- Empty state -->
+    <p id="no-tools" style="display:none;text-align:center;padding:3rem 0;font-size:0.9rem;color:#78716c;">No tools in this category.</p>
+
   </div>
 </section>
 
@@ -105,3 +128,38 @@ const phaseColors: Record<string, string> = {
 </section>
 
 </Layout>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('#filter-bar button');
+  const cards = document.querySelectorAll<HTMLElement>('.tool-card');
+  const noTools = document.getElementById('no-tools') as HTMLElement;
+
+  const activeStyle = { bg: '#1c1917', color: '#f0ece4', border: '#1c1917' };
+  const inactiveStyle = { bg: 'transparent', color: '#78716c', border: 'rgba(28,25,23,0.2)' };
+
+  function applyFilter(phase: string) {
+    // Update button styles
+    btns.forEach(btn => {
+      const isActive = btn.dataset.filter === phase;
+      btn.style.background   = isActive ? activeStyle.bg    : inactiveStyle.bg;
+      btn.style.color        = isActive ? activeStyle.color : inactiveStyle.color;
+      btn.style.borderColor  = isActive ? activeStyle.border: inactiveStyle.border;
+    });
+
+    // Show/hide cards
+    let visible = 0;
+    cards.forEach(card => {
+      const match = phase === 'All' || card.dataset.phase === phase;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    noTools.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter!));
+  });
+
+  applyFilter('All');
+</script>
