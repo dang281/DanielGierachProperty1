@@ -23,8 +23,6 @@ const tools = [
   { href: '/tools/heatmap',            label: 'Price Heatmap',                  desc: 'Visual suburb-by-suburb median price and growth map.',                                                      phase: 'Market',   cta: 'Explore Map' },
 ];
 
-const phases = ['All', 'Buyer', 'Seller', 'Investor', 'Market'] as const;
-
 const phaseColors: Record<string, string> = {
   Seller:   '#f5d07a',
   Buyer:    '#7ec8e3',
@@ -35,6 +33,58 @@ const phaseColors: Record<string, string> = {
 const counts: Record<string, number> = { All: tools.length };
 for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
 ---
+
+<style>
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    align-items: center;
+  }
+  .fpill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1.5px solid rgba(28,25,23,0.2);
+    background: transparent;
+    color: #78716c;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .fpill[data-active="true"] {
+    color: #fff;
+  }
+  .fpill[data-active="true"][data-filter="All"]      { background: #1c1917; border-color: #1c1917; }
+  .fpill[data-active="true"][data-filter="Seller"]   { background: #b89a2a; border-color: #b89a2a; }
+  .fpill[data-active="true"][data-filter="Buyer"]    { background: #3a8fa8; border-color: #3a8fa8; }
+  .fpill[data-active="true"][data-filter="Investor"] { background: #4a9e4a; border-color: #4a9e4a; }
+  .fpill[data-active="true"][data-filter="Market"]   { background: #888; border-color: #888; }
+  .fpill-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    background: rgba(28,25,23,0.08);
+    color: #78716c;
+    transition: background 0.15s, color 0.15s;
+  }
+  .fpill[data-active="true"] .fpill-count {
+    background: rgba(255,255,255,0.22);
+    color: #fff;
+  }
+  .tool-card[hidden] { display: none !important; }
+</style>
 
 <Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage calculator, stamp duty, selling costs, borrowing power and more - inner-east Brisbane.">
 
@@ -67,36 +117,16 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <!-- Filter Pills -->
-    <div id="filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.75rem;align-items:center;">
-      {phases.map(phase => (
-        <button
-          data-filter={phase}
-          class="filter-pill"
-          style={`
-            display:inline-flex;align-items:center;gap:0.5rem;
-            padding:0.55rem 1.1rem;border-radius:999px;
-            font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-            cursor:pointer;border:1.5px solid;transition:all 0.18s;
-            background:${phase === 'All' ? '#1c1917' : 'transparent'};
-            color:${phase === 'All' ? '#f0ece4' : '#78716c'};
-            border-color:${phase === 'All' ? '#1c1917' : 'rgba(28,25,23,0.18)'};
-          `}
-        >
+    <div class="filter-bar">
+      {(['All', 'Seller', 'Buyer', 'Investor', 'Market']).map(phase => (
+        <button class="fpill" data-filter={phase} data-active={phase === 'All' ? 'true' : 'false'}>
           {phase}
-          <span style={`
-            display:inline-flex;align-items:center;justify-content:center;
-            width:18px;height:18px;border-radius:999px;
-            font-size:0.6rem;font-weight:800;letter-spacing:0;
-            background:${phase === 'All' ? 'rgba(255,255,255,0.15)' : 'rgba(28,25,23,0.07)'};
-            color:${phase === 'All' ? '#f0ece4' : '#78716c'};
-          `} data-count={phase}>
-            {counts[phase] || 0}
-          </span>
+          <span class="fpill-count">{counts[phase] || 0}</span>
         </button>
       ))}
     </div>
 
-    <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {tools.map((tool, i) => (
         <a href={tool.href}
           class="tool-card reveal"
@@ -108,11 +138,7 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
         >
           <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${phaseColors[tool.phase]};`}></div>
           <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
-            <span style={`
-              display:inline-flex;align-items:center;gap:0.35rem;
-              font-family:var(--font-sans);font-size:0.55rem;font-weight:800;
-              letter-spacing:0.18em;text-transform:uppercase;color:${phaseColors[tool.phase]};
-            `}>
+            <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:${phaseColors[tool.phase]};display:inline-flex;align-items:center;gap:0.35rem;`}>
               <span style={`width:5px;height:5px;border-radius:50%;background:${phaseColors[tool.phase]};flex-shrink:0;`}></span>
               {tool.phase}
             </span>
@@ -157,42 +183,21 @@ for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
 </Layout>
 
 <script>
-  const phaseColors: Record<string, string> = {
-    All:      '#1c1917',
-    Seller:   '#b89a2a',
-    Buyer:    '#3a8fa8',
-    Investor: '#4a9e4a',
-    Market:   '#888',
-  };
-
-  const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
-  const cards = document.querySelectorAll<HTMLElement>('.tool-card');
-  const noTools = document.getElementById('no-tools') as HTMLElement;
+  const pills  = document.querySelectorAll<HTMLButtonElement>('.fpill');
+  const cards  = document.querySelectorAll<HTMLElement>('.tool-card');
+  const noEl   = document.getElementById('no-tools')!;
 
   function applyFilter(active: string) {
-    pills.forEach(pill => {
-      const phase = pill.dataset.filter!;
-      const isActive = phase === active;
-      const col = phaseColors[phase] || '#1c1917';
-      pill.style.background   = isActive ? col          : 'transparent';
-      pill.style.color        = isActive ? '#fff'        : '#78716c';
-      pill.style.borderColor  = isActive ? col          : 'rgba(28,25,23,0.18)';
-      const badge = pill.querySelector('[data-count]') as HTMLElement;
-      if (badge) {
-        badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.07)';
-        badge.style.color      = isActive ? '#fff' : '#78716c';
-      }
-    });
-
+    pills.forEach(p => p.dataset.active = (p.dataset.filter === active) ? 'true' : 'false');
     let visible = 0;
-    cards.forEach(card => {
-      const match = active === 'All' || card.dataset.phase === active;
-      card.style.display = match ? '' : 'none';
-      if (match) visible++;
+    cards.forEach(c => {
+      const show = active === 'All' || c.dataset.phase === active;
+      c.hidden = !show;
+      if (show) visible++;
     });
-    noTools.style.display = visible === 0 ? 'block' : 'none';
+    noEl.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  pills.forEach(pill => pill.addEventListener('click', () => applyFilter(pill.dataset.filter!)));
+  pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter!)));
   applyFilter('All');
 </script>

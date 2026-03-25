@@ -2,90 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 
 const articles = [
-  {
-    slug: 'unconditional-offer',
-    tag: 'Buyers & Sellers',
-    title: 'What Is an Unconditional Offer?',
-    summary: 'An unconditional offer is one of the most powerful tools in property and one of the most misunderstood. Here\'s what it means and when to use it.',
-    readTime: '4 min read',
-  },
-  {
-    slug: 'mortgage-broker',
-    tag: 'Buyers',
-    title: 'Which Mortgage Broker Should I Use?',
-    summary: 'Not all brokers are equal. Here\'s what to look for, what to ask, and the red flags that should send you elsewhere.',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'buyers-agent',
-    tag: 'Buyers',
-    title: 'What Is a Buyer\'s Agent and Do I Need One?',
-    summary: 'A buyer\'s agent works exclusively for you, not the vendor. Understanding what they do and what they cost helps you decide if it\'s worth it.',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'engage-right-builder',
-    tag: 'Owners',
-    title: 'How to Engage the Right Builder',
-    summary: 'Choosing the wrong builder is an expensive mistake. Here\'s how to verify licences, read contracts, and protect yourself before work starts.',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'flood-mapping',
-    tag: 'Buyers & Sellers',
-    title: 'Is Your Property in a Flood Zone?',
-    summary: 'Brisbane\'s flood mapping affects insurance, value, and what you can build. Here\'s how to check your property and what to do with the results.',
-    readTime: '4 min read',
-  },
-  {
-    slug: 'what-happens-at-settlement',
-    tag: 'Buyers & Sellers',
-    title: 'What Happens at Settlement?',
-    summary: 'Settlement day can feel like a black box. Here\'s exactly what happens, who does what, and how to make sure nothing goes wrong at the last minute.',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'prepare-home-for-sale',
-    tag: 'Sellers',
-    title: 'How to Prepare Your Home for Sale',
-    summary: 'First impressions drive price. A focused pre-sale plan with the right repairs and the right styling can add tens of thousands to your result.',
-    readTime: '6 min read',
-  },
-  {
-    slug: 'understanding-the-contract',
-    tag: 'Buyers & Sellers',
-    title: 'Understanding the REIQ Contract of Sale',
-    summary: 'The standard Queensland contract is straightforward once you know what to look for. Here\'s what every buyer and seller should understand before signing.',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'stamp-duty-queensland',
-    tag: 'Buyers',
-    title: 'Stamp Duty in Queensland: What You\'ll Actually Pay',
-    summary: 'Transfer duty is one of the biggest upfront costs in property. Here\'s how it\'s calculated, what concessions are available, and how to budget for it.',
-    readTime: '4 min read',
-  },
-  {
-    slug: 'building-pest-report',
-    tag: 'Buyers',
-    title: 'How to Read a Building and Pest Report',
-    summary: 'A building and pest report can be overwhelming. Here\'s what the findings actually mean and which issues are dealbreakers versus normal wear.',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'auction-strategy',
-    tag: 'Buyers & Sellers',
-    title: 'Auction Strategy: How to Buy and Sell at Auction',
-    summary: 'Auctions in Brisbane\'s inner east are competitive. Whether you\'re bidding or selling under the hammer, strategy matters more than most people realise.',
-    readTime: '6 min read',
-  },
-  {
-    slug: 'when-to-sell',
-    tag: 'Sellers',
-    title: 'When Is the Right Time to Sell?',
-    summary: 'Timing a property sale well can make a meaningful difference to your result. Here\'s how to think about market conditions, personal timing, and what actually drives price.',
-    readTime: '5 min read',
-  },
+  { slug: 'unconditional-offer',       tag: 'Buyers & Sellers', title: 'What Is an Unconditional Offer?',                    summary: "An unconditional offer is one of the most powerful tools in property and one of the most misunderstood. Here's what it means and when to use it.",                                                          readTime: '4 min read' },
+  { slug: 'mortgage-broker',           tag: 'Buyers',           title: 'Which Mortgage Broker Should I Use?',               summary: "Not all brokers are equal. Here's what to look for, what to ask, and the red flags that should send you elsewhere.",                                                                                   readTime: '5 min read' },
+  { slug: 'buyers-agent',              tag: 'Buyers',           title: "What Is a Buyer's Agent and Do I Need One?",        summary: "A buyer's agent works exclusively for you, not the vendor. Understanding what they do and what they cost helps you decide if it's worth it.",                                                          readTime: '5 min read' },
+  { slug: 'engage-right-builder',      tag: 'Owners',           title: 'How to Engage the Right Builder',                   summary: "Choosing the wrong builder is an expensive mistake. Here's how to verify licences, read contracts, and protect yourself before work starts.",                                                          readTime: '5 min read' },
+  { slug: 'flood-mapping',             tag: 'Buyers & Sellers', title: 'Is Your Property in a Flood Zone?',                 summary: "Brisbane's flood mapping affects insurance, value, and what you can build. Here's how to check your property and what to do with the results.",                                                         readTime: '4 min read' },
+  { slug: 'what-happens-at-settlement',tag: 'Buyers & Sellers', title: 'What Happens at Settlement?',                       summary: "Settlement day can feel like a black box. Here's exactly what happens, who does what, and how to make sure nothing goes wrong at the last minute.",                                                       readTime: '5 min read' },
+  { slug: 'prepare-home-for-sale',     tag: 'Sellers',          title: 'How to Prepare Your Home for Sale',                 summary: 'First impressions drive price. A focused pre-sale plan with the right repairs and the right styling can add tens of thousands to your result.',                                                          readTime: '6 min read' },
+  { slug: 'understanding-the-contract',tag: 'Buyers & Sellers', title: 'Understanding the REIQ Contract of Sale',           summary: "The standard Queensland contract is straightforward once you know what to look for. Here's what every buyer and seller should understand before signing.",                                              readTime: '5 min read' },
+  { slug: 'stamp-duty-queensland',     tag: 'Buyers',           title: "Stamp Duty in Queensland: What You'll Actually Pay", summary: "Transfer duty is one of the biggest upfront costs in property. Here's how it's calculated, what concessions are available, and how to budget for it.",                                                readTime: '4 min read' },
+  { slug: 'building-pest-report',      tag: 'Buyers',           title: 'How to Read a Building and Pest Report',            summary: "A building and pest report can be overwhelming. Here's what the findings actually mean and which issues are dealbreakers versus normal wear.",                                                         readTime: '5 min read' },
+  { slug: 'auction-strategy',          tag: 'Buyers & Sellers', title: 'Auction Strategy: How to Buy and Sell at Auction',  summary: "Auctions in Brisbane's inner east are competitive. Whether you're bidding or selling under the hammer, strategy matters more than most people realise.",                                              readTime: '6 min read' },
+  { slug: 'when-to-sell',              tag: 'Sellers',          title: 'When Is the Right Time to Sell?',                   summary: "Timing a property sale well can make a meaningful difference to your result. Here's how to think about market conditions, personal timing, and what actually drives price.", readTime: '5 min read' },
 ];
 
 const filters = ['All', 'Buyers', 'Sellers', 'Buyers & Sellers', 'Owners'];
@@ -97,21 +25,39 @@ const tagColors: Record<string, string> = {
   'Owners':           '#a8e6a3',
 };
 
-const pillColors: Record<string, string> = {
-  'All':              '#1c1917',
-  'Buyers':           '#3a8fa8',
-  'Sellers':          '#b89a2a',
-  'Buyers & Sellers': '#b89a2a',
-  'Owners':           '#4a9e4a',
-};
-
 function filterCount(f: string): number {
-  if (f === 'All') return articles.length;
+  if (f === 'All')     return articles.length;
   if (f === 'Buyers')  return articles.filter(a => a.tag === 'Buyers'  || a.tag === 'Buyers & Sellers').length;
   if (f === 'Sellers') return articles.filter(a => a.tag === 'Sellers' || a.tag === 'Buyers & Sellers').length;
   return articles.filter(a => a.tag === f).length;
 }
 ---
+
+<style>
+  .filter-bar { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2.5rem; align-items:center; }
+  .fpill {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.5rem 1.1rem; border-radius: 999px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    cursor: pointer; border: 1.5px solid rgba(28,25,23,0.2);
+    background: transparent; color: #78716c;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .fpill[data-active="true"] { color: #fff; }
+  .fpill[data-active="true"][data-filter="All"]              { background:#1c1917; border-color:#1c1917; }
+  .fpill[data-active="true"][data-filter="Buyers"]           { background:#3a8fa8; border-color:#3a8fa8; }
+  .fpill[data-active="true"][data-filter="Sellers"]          { background:#b89a2a; border-color:#b89a2a; }
+  .fpill[data-active="true"][data-filter="Buyers & Sellers"] { background:#b89a2a; border-color:#b89a2a; }
+  .fpill[data-active="true"][data-filter="Owners"]           { background:#4a9e4a; border-color:#4a9e4a; }
+  .fpill-count {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:18px; height:18px; border-radius:999px;
+    font-size:0.6rem; font-weight:800;
+    background:rgba(28,25,23,0.08); color:#78716c;
+    transition: background 0.15s, color 0.15s;
+  }
+  .fpill[data-active="true"] .fpill-count { background:rgba(255,255,255,0.22); color:#fff; }
+</style>
 
 <Layout title="Insights & Articles | Daniel Gierach Property" description="Property insights and guides for Brisbane buyers, sellers and investors. Practical advice on auctions, contracts, flood mapping, stamp duty and more from Daniel Gierach.">
 
@@ -144,25 +90,16 @@ function filterCount(f: string): number {
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <!-- Filter Pills -->
-    <div id="filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.75rem;align-items:center;">
+    <div class="filter-bar">
       {filters.map(f => (
-        <button
-          data-filter={f}
-          class="insight-pill"
-          style={`display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;border-radius:999px;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;transition:all 0.18s;background:${f === 'All' ? '#1c1917' : 'transparent'};color:${f === 'All' ? '#f0ece4' : '#78716c'};border-color:${f === 'All' ? '#1c1917' : 'rgba(28,25,23,0.18)'};`}
-        >
+        <button class="fpill" data-filter={f} data-active={f === 'All' ? 'true' : 'false'}>
           {f}
-          <span
-            data-count={f}
-            style={`display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:999px;font-size:0.6rem;font-weight:800;letter-spacing:0;background:${f === 'All' ? 'rgba(255,255,255,0.15)' : 'rgba(28,25,23,0.07)'};color:${f === 'All' ? '#f0ece4' : '#78716c'};`}
-          >
-            {filterCount(f)}
-          </span>
+          <span class="fpill-count">{filterCount(f)}</span>
         </button>
       ))}
     </div>
 
-    <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {articles.map((a, i) => (
         <a href={`/insights/${a.slug}`}
           class="insight-card reveal"
@@ -174,11 +111,7 @@ function filterCount(f: string): number {
         >
           <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${tagColors[a.tag] || '#c4912a'};`}></div>
           <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
-            <span style={`
-              display:inline-flex;align-items:center;gap:0.35rem;
-              font-family:var(--font-sans);font-size:0.55rem;font-weight:800;
-              letter-spacing:0.16em;text-transform:uppercase;color:${tagColors[a.tag] || '#c4912a'};
-            `}>
+            <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${tagColors[a.tag] || '#c4912a'};display:inline-flex;align-items:center;gap:0.35rem;`}>
               <span style={`width:5px;height:5px;border-radius:50%;background:${tagColors[a.tag] || '#c4912a'};flex-shrink:0;`}></span>
               {a.tag}
             </span>
@@ -221,49 +154,28 @@ function filterCount(f: string): number {
 </Layout>
 
 <script>
-  const pillColors: Record<string, string> = {
-    'All':              '#1c1917',
-    'Buyers':           '#3a8fa8',
-    'Sellers':          '#b89a2a',
-    'Buyers & Sellers': '#b89a2a',
-    'Owners':           '#4a9e4a',
-  };
-
-  const pills    = document.querySelectorAll<HTMLButtonElement>('.insight-pill');
-  const cards    = document.querySelectorAll<HTMLElement>('.insight-card');
-  const noEl     = document.getElementById('no-articles') as HTMLElement;
-
-  function matches(tag: string, filter: string): boolean {
+  function insightMatches(tag: string, filter: string): boolean {
     if (filter === 'All') return true;
     if (filter === 'Buyers')  return tag === 'Buyers'  || tag === 'Buyers & Sellers';
     if (filter === 'Sellers') return tag === 'Sellers' || tag === 'Buyers & Sellers';
     return tag === filter;
   }
 
-  function applyFilter(active: string) {
-    pills.forEach(pill => {
-      const f = pill.dataset.filter!;
-      const isActive = f === active;
-      const col = pillColors[f] || '#1c1917';
-      pill.style.background  = isActive ? col   : 'transparent';
-      pill.style.color       = isActive ? '#fff' : '#78716c';
-      pill.style.borderColor = isActive ? col   : 'rgba(28,25,23,0.18)';
-      const badge = pill.querySelector('[data-count]') as HTMLElement;
-      if (badge) {
-        badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.07)';
-        badge.style.color      = isActive ? '#fff' : '#78716c';
-      }
-    });
+  const pills  = document.querySelectorAll<HTMLButtonElement>('.fpill');
+  const cards  = document.querySelectorAll<HTMLElement>('.insight-card');
+  const noEl   = document.getElementById('no-articles')!;
 
+  function applyFilter(active: string) {
+    pills.forEach(p => p.dataset.active = (p.dataset.filter === active) ? 'true' : 'false');
     let visible = 0;
-    cards.forEach(card => {
-      const show = matches(card.dataset.tag!, active);
-      card.style.display = show ? '' : 'none';
+    cards.forEach(c => {
+      const show = insightMatches(c.dataset.tag!, active);
+      c.hidden = !show;
       if (show) visible++;
     });
     noEl.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  pills.forEach(pill => pill.addEventListener('click', () => applyFilter(pill.dataset.filter!)));
+  pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter!)));
   applyFilter('All');
 </script>
