@@ -178,14 +178,25 @@ const faqSchema = {
         Most homeowners underestimate what their property is worth. Find out where yours really sits, free, in under 60 seconds.
       </p>
 
-      <div class="flex flex-wrap gap-4 reveal" data-delay="820">
-        <div>
-          <a href="/property-worth" class="btn-gold hero-cta">
-            What's Your Property Worth?
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <p style="font-size:0.65rem;color:rgba(240,236,228,0.45);margin-top:0.6rem;letter-spacing:0.06em;">Free · 60 seconds · No obligation</p>
-        </div>
+      <div class="reveal" data-delay="820">
+        <form id="hero-address-form" style="display:flex;gap:0;max-width:480px;">
+          <div style="position:relative;flex:1;">
+            <input
+              id="hero-address-input"
+              type="text"
+              placeholder="Enter your property address…"
+              autocomplete="off"
+              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;"
+            />
+            <div id="hero-ac-list" style="display:none;position:absolute;top:100%;left:0;right:0;background:#1c1917;border:1px solid rgba(255,255,255,0.12);border-top:none;z-index:200;max-height:180px;overflow-y:auto;"></div>
+          </div>
+          <button type="submit" class="hero-cta" style="padding:0.9rem 1.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
+            onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+            Get My Estimate
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <p style="font-size:0.65rem;color:rgba(240,236,228,0.4);margin-top:0.6rem;letter-spacing:0.06em;">Free · 60 seconds · No obligation</p>
       </div>
 
       <!-- Stats -->
@@ -842,13 +853,58 @@ const faqSchema = {
 
   counters.forEach(el => countObserver.observe(el));
 
-  // Track hero CTA click
-  document.querySelector('.hero-cta')?.addEventListener('click', function() {
-    gtag('event', 'hero_cta_click', {
-      event_category: 'engagement',
-      event_label: 'Find out how we do this'
+  // ── Hero address input ─────────────────────────────────────────────
+  (function() {
+    const input  = document.getElementById('hero-address-input') as HTMLInputElement;
+    const acList = document.getElementById('hero-ac-list') as HTMLElement;
+    const form   = document.getElementById('hero-address-form') as HTMLFormElement;
+    let acDebounce: ReturnType<typeof setTimeout>;
+    let selectedAddress = '';
+
+    input?.addEventListener('input', function() {
+      clearTimeout(acDebounce);
+      const q = this.value.trim();
+      selectedAddress = '';
+      if (q.length < 4) { acList.style.display = 'none'; return; }
+      acDebounce = setTimeout(() => fetchAC(q), 320);
     });
-  });
+
+    document.addEventListener('click', function(e) {
+      if (!form?.contains(e.target as Node)) acList.style.display = 'none';
+    });
+
+    async function fetchAC(q: string) {
+      try {
+        const res  = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ', Brisbane, Australia')}&format=json&limit=5&countrycodes=au`, { headers: { 'Accept-Language': 'en', 'User-Agent': 'DanielGierachProperty/1.0' } });
+        const data = await res.json();
+        if (!data.length) { acList.style.display = 'none'; return; }
+        acList.innerHTML = '';
+        data.forEach((item: any) => {
+          const label = item.display_name.split(', ').slice(0, 4).join(', ');
+          const div   = document.createElement('div');
+          div.textContent = label;
+          div.style.cssText = 'padding:0.65rem 1rem;font-size:0.82rem;color:#f0ece4;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.07);';
+          div.addEventListener('mouseover', () => div.style.background = 'rgba(197,160,60,0.1)');
+          div.addEventListener('mouseout',  () => div.style.background = '');
+          div.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            input.value = label;
+            selectedAddress = label;
+            acList.style.display = 'none';
+          });
+          acList.appendChild(div);
+        });
+        acList.style.display = 'block';
+      } catch(_) { acList.style.display = 'none'; }
+    }
+
+    form?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const addr = selectedAddress || input.value.trim();
+      gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr });
+      window.location.href = '/property-worth?address=' + encodeURIComponent(addr);
+    });
+  })();
 
   // Track listing card clicks
   document.querySelectorAll('.listing-card').forEach(function(card) {

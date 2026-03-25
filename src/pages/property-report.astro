@@ -459,7 +459,15 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
 (function() {
-  let selectedAddress = '';
+  // Pre-fill address from URL param
+  const _urlAddr = new URLSearchParams(window.location.search).get('address');
+  if (_urlAddr) {
+    const _inp = document.getElementById('report-address') as HTMLInputElement;
+    if (_inp) { _inp.value = _urlAddr; }
+    (document.getElementById('hidden-address') as HTMLInputElement).value = _urlAddr;
+  }
+
+  let selectedAddress = _urlAddr || '';
   let selectedBeds = '';
   let acDebounce: ReturnType<typeof setTimeout>;
 

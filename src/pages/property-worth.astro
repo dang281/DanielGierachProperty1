@@ -139,4 +139,16 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </section>
 
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const addr   = params.get('address');
+  if (addr) {
+    // Pre-fill the instant report link with address
+    document.querySelectorAll('a[href="/property-report"]').forEach(a => {
+      (a as HTMLAnchorElement).href = '/property-report?address=' + encodeURIComponent(addr);
+    });
+  }
+</script>
+
 </Layout>
