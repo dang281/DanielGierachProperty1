@@ -2,7 +2,6 @@
 import ToolLayout from '../../layouts/ToolLayout.astro';
 ---
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 
 <ToolLayout
   title="Commute Cost Comparison"
@@ -435,9 +434,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <script is:inline>
 (function () {
-  /* ── Load Leaflet + Google Maps in parallel ──────────────── */
   const GMAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 
+  /* ── Load Google Maps JS ─────────────────────────────────── */
   function loadScript(src) {
     return new Promise(resolve => {
       const s = document.createElement('script');
@@ -448,21 +447,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     });
   }
 
-  const leafletCss = document.createElement('link');
-  leafletCss.rel = 'stylesheet';
-  leafletCss.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  document.head.appendChild(leafletCss);
-
-  Promise.all([
-    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'),
-    loadScript(`https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}&libraries=places`)
-  ]).then(initTool);
+  loadScript(`https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}&libraries=places`).then(initTool);
 
   /* ── State ───────────────────────────────────────────────── */
   const coords = { work: null, home: null, prop: null };
   const routes = { home: null, prop: null };
   let activeMode = 'work';
-  let map, markers = {};
+  let map, markers = {}, dirRenderers = {};
 
   /* ── Helpers ─────────────────────────────────────────────── */
   const $ = id => document.getElementById(id);
@@ -474,20 +465,36 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const modeColors = { work: '#c5a03c', home: '#3a8fa8', prop: '#4a9e4a' };
   const modeLabels = { work: 'Workplace', home: 'Current Home', prop: 'New Property' };
 
-  /* ── Leaflet custom marker icons ─────────────────────────── */
+  /* ── Google Maps marker icons ────────────────────────────── */
   function makeIcon(color) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="38" viewBox="0 0 28 38">
-      <path d="M14 0C6.27 0 0 6.27 0 14c0 9.33 14 24 14 24S28 23.33 28 14C28 6.27 21.73 0 14 0z" fill="${color}"/>
+    const svg = encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="28" height="38" viewBox="0 0 28 38">
+      <path d="M14 0C6.27 0 0 6.27 0 14c0 9.33 14 24 14 24S28 23.33 28 14C28 6.27 21.73 0 14 0z" fill="${color}" filter="drop-shadow(0 2px 3px rgba(0,0,0,0.3))"/>
       <circle cx="14" cy="14" r="6" fill="white"/>
-    </svg>`;
-    return L.divIcon({
-      className: '',
-      html: `<div style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.35));">${svg}</div>`,
-      iconSize: [28, 38],
-      iconAnchor: [14, 38],
-      popupAnchor: [0, -38]
-    });
+    </svg>`);
+    return {
+      url: `data:image/svg+xml;charset=UTF-8,${svg}`,
+      scaledSize: new google.maps.Size(28, 38),
+      anchor: new google.maps.Point(14, 38)
+    };
   }
+
+  /* ── Clean map style ─────────────────────────────────────── */
+  const MAP_STYLE = [
+    { elementType: 'geometry', stylers: [{ color: '#f5f4f0' }] },
+    { elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+    { elementType: 'labels.text.fill', stylers: [{ color: '#57534e' }] },
+    { elementType: 'labels.text.stroke', stylers: [{ color: '#f5f4f0' }] },
+    { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+    { featureType: 'poi.park', stylers: [{ visibility: 'on' }] },
+    { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#dde8d0' }] },
+    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+    { featureType: 'road.arterial', elementType: 'geometry', stylers: [{ color: '#ede9e3' }] },
+    { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#d4cfc8' }] },
+    { featureType: 'road.highway', elementType: 'geometry.stroke', stylers: [{ color: '#c5bfb8' }] },
+    { featureType: 'transit', stylers: [{ visibility: 'off' }] },
+    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#b8d4e8' }] },
+    { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#78a0b8' }] },
+  ];
 
   /* ── Peak hour departure time (next Tuesday 8am local) ──── */
   function getNextPeakTime() {
@@ -553,26 +560,26 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   /* ── Place / move a marker ───────────────────────────────── */
   function placeMarker(mode, lat, lng) {
     coords[mode] = { lat, lng };
+    const pos = new google.maps.LatLng(lat, lng);
 
     if (markers[mode]) {
-      markers[mode].setLatLng([lat, lng]);
+      markers[mode].setPosition(pos);
     } else {
-      markers[mode] = L.marker([lat, lng], {
+      markers[mode] = new google.maps.Marker({
+        map,
+        position: pos,
         icon: makeIcon(modeColors[mode]),
         draggable: true,
         title: modeLabels[mode]
-      }).addTo(map);
-
-      markers[mode].on('dragend', e => {
-        const pos = e.target.getLatLng();
-        coords[mode] = { lat: pos.lat, lng: pos.lng };
-        updateSetLabel(mode, pos.lat, pos.lng);
+      });
+      markers[mode].addListener('dragend', e => {
+        coords[mode] = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+        updateSetLabel(mode, coords[mode].lat, coords[mode].lng);
         recalcRoutes();
       });
     }
 
     updateSetLabel(mode, lat, lng);
-    fitMapToBounds();
     recalcRoutes();
   }
 
@@ -594,19 +601,62 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     });
   }
 
-  /* ── Fit map ─────────────────────────────────────────────── */
+  /* ── Draw route polyline on map ──────────────────────────── */
+  function drawRoute(from, to, routeKey, color) {
+    const dirService = new google.maps.DirectionsService();
+    if (!dirRenderers[routeKey]) {
+      dirRenderers[routeKey] = new google.maps.DirectionsRenderer({
+        map,
+        suppressMarkers: true,
+        polylineOptions: { strokeColor: color, strokeWeight: 5, strokeOpacity: 0.75 }
+      });
+    }
+    dirService.route({
+      origin: new google.maps.LatLng(from.lat, from.lng),
+      destination: new google.maps.LatLng(to.lat, to.lng),
+      travelMode: google.maps.TravelMode.DRIVING,
+      drivingOptions: {
+        departureTime: getNextPeakTime(),
+        trafficModel: google.maps.TrafficModel.BEST_GUESS
+      }
+    }, (result, status) => {
+      if (status === 'OK') dirRenderers[routeKey].setDirections(result);
+    });
+  }
+
+  function clearRoute(routeKey) {
+    if (dirRenderers[routeKey]) {
+      dirRenderers[routeKey].setMap(null);
+      delete dirRenderers[routeKey];
+    }
+  }
+
+  /* ── Fit map to all markers ──────────────────────────────── */
   function fitMapToBounds() {
-    const pts = Object.values(coords).filter(Boolean).map(c => [c.lat, c.lng]);
-    if (pts.length === 1) { map.setView(pts[0], 13); return; }
-    if (pts.length > 1) map.fitBounds(L.latLngBounds(pts).pad(0.2));
+    const pts = Object.values(coords).filter(Boolean);
+    if (pts.length === 0) return;
+    if (pts.length === 1) { map.setCenter({ lat: pts[0].lat, lng: pts[0].lng }); map.setZoom(14); return; }
+    const bounds = new google.maps.LatLngBounds();
+    pts.forEach(p => bounds.extend(new google.maps.LatLng(p.lat, p.lng)));
+    map.fitBounds(bounds);
   }
 
   /* ── Recalculate routes and update table ─────────────────── */
   async function recalcRoutes() {
     const w = coords.work;
-    if (!w) { renderResults(); return; }
 
-    // Fetch both in parallel
+    // Clear routes if work not set
+    if (!w) { clearRoute('home'); clearRoute('prop'); renderResults(); return; }
+
+    // Draw route lines on map
+    if (coords.home) drawRoute(coords.home, w, 'home', '#3a8fa8');
+    else clearRoute('home');
+    if (coords.prop) drawRoute(coords.prop, w, 'prop', '#4a9e4a');
+    else clearRoute('prop');
+
+    fitMapToBounds();
+
+    // Fetch distance matrix data in parallel
     const [rHome, rProp] = await Promise.all([
       coords.home ? getRoute(coords.home, w) : Promise.resolve(null),
       coords.prop ? getRoute(coords.prop, w) : Promise.resolve(null)
@@ -702,17 +752,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   /* ── Init map and wire up everything ────────────────────── */
   function initTool() {
-    // Map centred on Brisbane
-    map = L.map('cc-map', { zoomControl: true }).setView([-27.4698, 153.0251], 11);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19
-    }).addTo(map);
+    // Google Maps centred on Brisbane
+    map = new google.maps.Map(document.getElementById('cc-map'), {
+      center: { lat: -27.4698, lng: 153.0251 },
+      zoom: 11,
+      styles: MAP_STYLE,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+      clickableIcons: false
+    });
 
     // Map click places active mode marker
-    map.on('click', e => placeMarker(activeMode, e.latlng.lat, e.latlng.lng));
+    map.addListener('click', e => placeMarker(activeMode, e.latLng.lat(), e.latLng.lng()));
 
     // Location card clicks set mode
     $('locWork')?.addEventListener('click', () => setMode('work'));
