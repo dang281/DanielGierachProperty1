@@ -630,14 +630,21 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const labelEl = $({ work: 'setWork', home: 'setHome', prop: 'setProp' }[mode]);
     const inputEl = $({ work: 'searchWork', home: 'searchHome', prop: 'searchProp' }[mode]);
 
-    // Show loading state immediately
+    // Show short coords immediately as fallback
     if (labelEl) {
-      labelEl.textContent = 'Locating...';
+      labelEl.textContent = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
       labelEl.classList.add('is-set');
     }
 
-    // Reverse geocode to get suburb + full address
+    // Reverse geocode — 4 second timeout in case API is slow or not enabled
+    let resolved = false;
+    const fallbackTimer = setTimeout(() => {
+      if (!resolved && labelEl) labelEl.textContent = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+    }, 4000);
+
     geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      resolved = true;
+      clearTimeout(fallbackTimer);
       if (status === 'OK' && results[0]) {
         const components = results[0].address_components;
         const suburb = (
@@ -647,8 +654,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         )?.long_name || results[0].formatted_address;
         if (labelEl) labelEl.textContent = suburb;
         if (inputEl) inputEl.value = results[0].formatted_address;
-      } else {
-        if (labelEl) labelEl.textContent = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
       }
     });
   }
