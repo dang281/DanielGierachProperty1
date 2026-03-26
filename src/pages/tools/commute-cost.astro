@@ -394,12 +394,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
 
     <div class="cc-rrow">
-      <div class="cc-rcell label-cell">Drive distance</div>
+      <div class="cc-rcell label-cell">Daily distance (return)</div>
       <div class="cc-rcell val" id="homeDist">—</div>
       <div class="cc-rcell val" id="propDist">—</div>
     </div>
     <div class="cc-rrow">
-      <div class="cc-rcell label-cell">Drive time</div>
+      <div class="cc-rcell label-cell">Daily drive time (return, peak)</div>
       <div class="cc-rcell val" id="homeTime">—</div>
       <div class="cc-rcell val" id="propTime">—</div>
     </div>
@@ -705,8 +705,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Home row
     if (hasHome) {
-      setText('homeDist', fmtKm(routes.home.distKm));
-      setText('homeTime', fmtMin(routes.home.durationMin));
+      setText('homeDist', fmtKm(routes.home.distKm * 2));
+      setText('homeTime', fmtMin(routes.home.durationMin * 2));
       setText('homeFuelWk', fmt$(fuelPerWeek(routes.home.distKm)));
       setText('homeFuelYr', fmt$(fuelPerYear(routes.home.distKm)));
       const hrs = hrsPerYear(routes.home.durationMin);
@@ -717,8 +717,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Property row + diff
     if (hasProp) {
-      setText('propDist', fmtKm(routes.prop.distKm));
-      setText('propTime', fmtMin(routes.prop.durationMin));
+      setText('propDist', fmtKm(routes.prop.distKm * 2));
+      setText('propTime', fmtMin(routes.prop.durationMin * 2));
       setText('propFuelWk', fmt$(fuelPerWeek(routes.prop.distKm)));
       setText('propFuelYr', fmt$(fuelPerYear(routes.prop.distKm)));
       const hrs = hrsPerYear(routes.prop.durationMin);
