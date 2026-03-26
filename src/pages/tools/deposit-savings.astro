@@ -599,7 +599,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       tips.push(`Saving to 20% deposit eliminates ~${fmt(lmi)} in LMI and reduces your interest from day one.`);
     }
     if (food > 500) {
-      tips.push('Meal planning and reducing dining out by $200/month saves $2,400/year — real progress toward your goal.');
+      tips.push('Meal planning and reducing dining out by $200/month saves $2,400/year, real progress toward your goal.');
     }
     if (lifestyle > 400) {
       tips.push('Review subscriptions and entertainment. Cutting $150/month frees $1,800 per year for your deposit fund.');
@@ -870,7 +870,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       fontCell(cSurp, { size:15, bold:true, color:{ argb: (s.surplus||0)>=0 ? C.green : C.red } });
       cSurp.alignment = { horizontal:'right', vertical:'middle' };
       const dSurp = ws.getCell('D68');
-      dSurp.value = (s.surplus||0)>=0 ? '✅  Saving money — great work!' : '❌  Expenses exceed income — review costs';
+      dSurp.value = (s.surplus||0)>=0 ? '✅  Saving money, great work!' : '❌  Expenses exceed income. Review costs.';
       fontCell(dSurp, { size:9, italic:true, color:{ argb: C.muted } });
       fillCell(dSurp, C.calcBold); dSurp.alignment = { vertical:'middle' };
 

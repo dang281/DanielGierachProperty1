@@ -311,7 +311,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
        PORTFOLIO SUMMARY
   ════════════════════════════════════════════════ -->
   <div style="margin-top:2rem;">
-    <h2 class="section-heading" style="margin-bottom:1rem;">Portfolio Summary <span id="summary-year-label" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:400;color:var(--color-text-muted);">— at Year 10</span></h2>
+    <h2 class="section-heading" style="margin-bottom:1rem;">Portfolio Summary <span id="summary-year-label" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:400;color:var(--color-text-muted);">at Year 10</span></h2>
     <div class="summary-grid">
 
       <div class="summary-card">
@@ -385,7 +385,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1.5rem;line-height:1.7;max-width:72ch;">
-    Estimates only. Assumes 30-year loan term, stamp duty estimated at 4% of purchase price. Costs are simplified — consult a qualified financial adviser before making investment decisions.
+    Estimates only. Assumes 30-year loan term, stamp duty estimated at 4% of purchase price. Costs are simplified. Consult a qualified financial adviser before making investment decisions.
   </p>
 
 </ToolLayout>
@@ -715,7 +715,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     $('hold-display').textContent    = `${holdYears} year${holdYears > 1 ? 's' : ''}`;
     $('vacancy-display').textContent = fmtPct(Number($i('vacancy-rate').value));
     $('pm-display').textContent      = fmtPct(Number($i('pm-fee').value));
-    $('summary-year-label').textContent = `— at Year ${holdYears}`;
+    $('summary-year-label').textContent = `at Year ${holdYears}`;
 
     // Build year-by-year rows
     interface PortfolioYear {

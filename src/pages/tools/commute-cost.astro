@@ -4,9 +4,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 
 <ToolLayout
-  title="Commute Cost Comparison"
+  title="Fuel Commute Cost Comparison"
   description="Compare the real annual fuel cost and drive time to work from your current home versus a property you are considering buying. Pin locations on the map and get instant results."
-  tool="Commute Cost Comparison"
+  tool="Fuel Commute Cost Comparison"
   phase="Buyer Tools"
 >
 
@@ -316,15 +316,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
   <div class="cc-vsep"></div>
   <div class="cc-vfield" style="flex-wrap:wrap;gap:0.35rem;">
-    <label style="width:100%;">Fuel efficiency</label>
+    <label style="width:100%;">Peak-hour fuel efficiency</label>
     <div class="cc-vpresets" id="effPresets">
-      <button class="cc-vpreset" data-eff="6.5">Small car<br/><span style="opacity:0.6;font-size:0.55rem;">6.5 L/100</span></button>
-      <button class="cc-vpreset" data-eff="9">Sedan<br/><span style="opacity:0.6;font-size:0.55rem;">9 L/100</span></button>
-      <button class="cc-vpreset active" data-eff="10">SUV<br/><span style="opacity:0.6;font-size:0.55rem;">10 L/100</span></button>
-      <button class="cc-vpreset" data-eff="13">Ute/4WD<br/><span style="opacity:0.6;font-size:0.55rem;">13 L/100</span></button>
+      <button class="cc-vpreset" data-eff="8">Small car<br/><span style="opacity:0.6;font-size:0.55rem;">8 L/100</span></button>
+      <button class="cc-vpreset" data-eff="11">Sedan<br/><span style="opacity:0.6;font-size:0.55rem;">11 L/100</span></button>
+      <button class="cc-vpreset active" data-eff="12">SUV<br/><span style="opacity:0.6;font-size:0.55rem;">12 L/100</span></button>
+      <button class="cc-vpreset" data-eff="16">Ute/4WD<br/><span style="opacity:0.6;font-size:0.55rem;">16 L/100</span></button>
     </div>
-    <input class="cc-vinput" id="fuelEff" type="number" value="10" min="3" max="30" step="0.5" style="width:62px;" />
+    <input class="cc-vinput" id="fuelEff" type="number" value="12" min="3" max="30" step="0.5" style="width:62px;" />
     <span style="font-size:0.7rem;color:var(--color-text-muted);">L/100km</span>
+    <span style="font-size:0.62rem;color:var(--color-text-muted);width:100%;margin-top:0.1rem;">Peak-hour stop-start + A/C typically uses 20–40% more than manufacturer ratings.</span>
   </div>
   <div class="cc-vsep"></div>
   <div class="cc-vfield">
@@ -348,7 +349,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div class="cc-search-wrap">
       <input class="cc-search-input" id="searchWork" type="text" placeholder="Search work address..." />
     </div>
-    <div class="cc-loc-set" id="setWork">Click card, then click map — or search above</div>
+    <div class="cc-loc-set" id="setWork">Click card, then click map, or search above</div>
   </div>
 
   <div class="cc-loc-card home-card" id="locHome">
@@ -359,7 +360,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div class="cc-search-wrap">
       <input class="cc-search-input" id="searchHome" type="text" placeholder="Search current address..." />
     </div>
-    <div class="cc-loc-set" id="setHome">Click card, then click map — or search above</div>
+    <div class="cc-loc-set" id="setHome">Click card, then click map, or search above</div>
   </div>
 
   <div class="cc-loc-card prop-card" id="locProp">
@@ -370,7 +371,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div class="cc-search-wrap">
       <input class="cc-search-input" id="searchProp" type="text" placeholder="Search property address..." />
     </div>
-    <div class="cc-loc-set" id="setProp">Click card, then click map — or search above</div>
+    <div class="cc-loc-set" id="setProp">Click card, then click map, or search above</div>
   </div>
 
 </div>
@@ -426,8 +427,42 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 </div>
 
-<div style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.75rem;line-height:1.6;">
-  Drive times use Google Maps traffic data for Tuesday 8am peak hour. Distances are real road network distances. Fuel costs use your inputs above. Estimates only — actual times vary.
+<div style="margin-top:2rem;padding:1.5rem;background:#f7f5f0;border:1px solid rgba(28,25,23,0.08);">
+  <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;margin-bottom:1rem;">Calculation Assumptions</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem;">
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Traffic data</strong>
+      Drive times are fetched from Google Maps using Tuesday 8:00 am as the departure time, representing a typical peak-hour morning commute.
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Return journey</strong>
+      Daily distance and time shown are return trips (to work and back). Annual figures multiply the return trip by days per week x weeks per year (your inputs above).
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Fuel cost formula</strong>
+      Annual fuel = (one-way km x 2) / 100 x peak-hour fuel efficiency (L/100km) x fuel price ($/L) x days/week x weeks/year. Peak-hour figures are set higher than manufacturer ratings to account for stop-start driving and A/C load.
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Fuel only</strong>
+      This tool calculates fuel costs only. Tolls, parking, registration, insurance, depreciation and maintenance are not included.
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Annual hours</strong>
+      Hours per year = (one-way drive minutes x 2) / 60 x days/week x weeks/year.
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Annual difference</strong>
+      The "Annual difference" row shows the extra fuel cost of the New Property commute compared to your Current Home commute each year.
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Default fuel price</strong>
+      Defaults to $2.60/L (Brisbane unleaded, March 2026). Update this to the current bowser price for the most accurate estimate.
+    </div>
+    <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
+      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Estimates only</strong>
+      Results are indicative. Actual fuel costs vary with driving style, traffic, vehicle condition and fuel price fluctuations.
+    </div>
+  </div>
 </div>
 
 </ToolLayout>
@@ -540,7 +575,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     const ac = new google.maps.places.Autocomplete(input, {
       componentRestrictions: { country: 'au' },
-      fields: ['geometry', 'formatted_address', 'name']
+      fields: ['geometry', 'formatted_address', 'name', 'address_components']
     });
 
     ac.addListener('place_changed', () => {
@@ -551,7 +586,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       placeMarker(mode, lat, lng);
       const setEl = $({ work: 'setWork', home: 'setHome', prop: 'setProp' }[mode]);
       if (setEl) {
-        setEl.textContent = (place.formatted_address || place.name || '').split(',').slice(0,2).join(',');
+        const components = place.address_components || [];
+        const suburb = (
+          components.find(c => c.types.includes('locality')) ||
+          components.find(c => c.types.includes('sublocality')) ||
+          components.find(c => c.types.includes('neighborhood'))
+        )?.long_name || (place.formatted_address || place.name || '').split(',')[0];
+        setEl.textContent = suburb;
         setEl.classList.add('is-set');
       }
     });
@@ -583,12 +624,33 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     recalcRoutes();
   }
 
+  const geocoder = new google.maps.Geocoder();
+
   function updateSetLabel(mode, lat, lng) {
-    const el = $({ work: 'setWork', home: 'setHome', prop: 'setProp' }[mode]);
-    if (el) {
-      el.textContent = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-      el.classList.add('is-set');
+    const labelEl = $({ work: 'setWork', home: 'setHome', prop: 'setProp' }[mode]);
+    const inputEl = $({ work: 'searchWork', home: 'searchHome', prop: 'searchProp' }[mode]);
+
+    // Show loading state immediately
+    if (labelEl) {
+      labelEl.textContent = 'Locating...';
+      labelEl.classList.add('is-set');
     }
+
+    // Reverse geocode to get suburb + full address
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        const components = results[0].address_components;
+        const suburb = (
+          components.find(c => c.types.includes('locality')) ||
+          components.find(c => c.types.includes('sublocality')) ||
+          components.find(c => c.types.includes('neighborhood'))
+        )?.long_name || results[0].formatted_address;
+        if (labelEl) labelEl.textContent = suburb;
+        if (inputEl) inputEl.value = results[0].formatted_address;
+      } else {
+        if (labelEl) labelEl.textContent = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+      }
+    });
   }
 
   /* ── Mode selection ──────────────────────────────────────── */
@@ -670,7 +732,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   /* ── Render results table ────────────────────────────────── */
   function renderResults() {
     const fuelPrice   = num('fuelPrice', 2.60);
-    const fuelEff     = num('fuelEff', 10);
+    const fuelEff     = num('fuelEff', 12);
     const days        = num('daysPerWeek', 5);
     const weeks       = num('weeksPerYear', 46);
 

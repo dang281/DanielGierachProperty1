@@ -148,9 +148,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         </div>
       </div>
 
-      <!-- 4. Comparison — Personal Name -->
+      <!-- 4. Comparison: Personal Name -->
       <div style="background:var(--color-surface-3);padding:2rem;">
-        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.5rem;">Comparison — Personal Name</p>
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.5rem;">Comparison: Personal Name</p>
 
         <!-- Marginal tax rate -->
         <div class="mb-4">
@@ -403,7 +403,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       verdictBox.style.borderLeft = '3px solid rgba(192,57,43,0.8)';
       verdictIcon.textContent     = '✗';
       verdictIcon.style.color     = 'rgba(192,57,43,0.9)';
-      verdictText.textContent     = `Insufficient funds — shortfall: ${fmt(-fundsAfter)}`;
+      verdictText.textContent     = `Insufficient funds. Shortfall: ${fmt(-fundsAfter)}`;
       verdictText.style.color     = 'rgba(192,57,43,0.9)';
       afterBal.textContent        = 'Recommend minimum $300,000+ SMSF balance for property investment.';
       afterBal.style.color        = 'var(--color-text-muted)';
@@ -422,7 +422,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const smsfNetCF            = afterTaxNOI_smsf - smsfInterestAfterTax;
 
     // Labels
-    el('r-tax-smsf-label').textContent = taxPhase === 'accumulation' ? 'Tax (15%)' : 'Tax (0% — pension)';
+    el('r-tax-smsf-label').textContent = taxPhase === 'accumulation' ? 'Tax (15%)' : 'Tax (0%, pension phase)';
 
     el('r-eff-rent').textContent          = fmt(effRent);
     el('r-expenses').textContent          = `-${fmt(annualExpenses)}`;

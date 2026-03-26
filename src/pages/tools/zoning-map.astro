@@ -222,7 +222,7 @@ window.ZONES = {
         <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(28,25,23,0.08);">
           <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);">
             Zone Legend
-            <span style="font-weight:400;margin-left:0.5rem;text-transform:none;letter-spacing:0;">— click any zone to learn more</span>
+            <span style="font-weight:400;margin-left:0.5rem;text-transform:none;letter-spacing:0;">click any zone to learn more</span>
           </p>
         </div>
         <div id="legend-list"></div>
@@ -298,7 +298,7 @@ window.ZONES = {
   function showZone(zoneKey, rawName) {
     const panel = document.getElementById('zone-result');
     const z = ZONES[zoneKey];
-    const displayName = z ? `${z.short} — ${z.name}` : (rawName || 'Unknown Zone');
+    const displayName = z ? `${z.short}: ${z.name}` : (rawName || 'Unknown Zone');
     const color = z ? z.color : '#888';
     panel.style.display = 'block';
     panel.className = z ? `zone-${zoneKey.toLowerCase().replace(/\s/g,'-')}` : '';
