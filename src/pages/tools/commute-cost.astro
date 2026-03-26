@@ -259,6 +259,26 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     line-height: 1.7;
   }
 
+  /* ─── Google Places autocomplete styling ─────────────── */
+  .pac-container {
+    border: 1px solid rgba(28,25,23,0.14);
+    border-top: none;
+    border-radius: 0;
+    box-shadow: 0 6px 20px rgba(28,25,23,0.1);
+    font-family: var(--font-sans);
+  }
+  .pac-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.74rem;
+    color: var(--color-text-secondary);
+    border-top: 1px solid rgba(28,25,23,0.05);
+    cursor: pointer;
+  }
+  .pac-item:hover, .pac-item-selected { background: rgba(196,145,42,0.06); }
+  .pac-item-query { font-size: 0.76rem; color: var(--color-text-primary); }
+  .pac-icon { display: none; }
+  .pac-logo::after { display: none; }
+
   /* ─── Loading spinner ─────────────────────────────────── */
   .cc-loading {
     display: inline-block;
@@ -316,16 +336,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <label>Weeks/year</label>
     <input class="cc-vinput" id="weeksPerYear" type="number" value="46" min="1" max="52" step="1" />
   </div>
-  <div class="cc-vsep"></div>
-  <div class="cc-vfield" style="flex-wrap:wrap;gap:0.35rem;">
-    <label style="width:100%;">Peak hour traffic</label>
-    <div class="cc-vpresets" id="trafficPresets">
-      <button class="cc-vpreset" data-traffic="1.15">Light<br/><span style="opacity:0.6;font-size:0.55rem;">+15%</span></button>
-      <button class="cc-vpreset active" data-traffic="1.40">Moderate<br/><span style="opacity:0.6;font-size:0.55rem;">+40%</span></button>
-      <button class="cc-vpreset" data-traffic="1.65">Heavy<br/><span style="opacity:0.6;font-size:0.55rem;">+65%</span></button>
-      <button class="cc-vpreset" data-traffic="2.00">Severe<br/><span style="opacity:0.6;font-size:0.55rem;">+100%</span></button>
-    </div>
-  </div>
 </div>
 
 <!-- ── Location Pickers ────────────────────────────────────────── -->
@@ -337,8 +347,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <span class="cc-loc-label">Workplace</span>
     </div>
     <div class="cc-search-wrap">
-      <input class="cc-search-input" id="searchWork" type="text" placeholder="Search work address..." autocomplete="off" />
-      <ul class="cc-suggestions" id="sugWork"></ul>
+      <input class="cc-search-input" id="searchWork" type="text" placeholder="Search work address..." />
     </div>
     <div class="cc-loc-set" id="setWork">Click card, then click map — or search above</div>
   </div>
@@ -349,8 +358,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <span class="cc-loc-label">Current Home</span>
     </div>
     <div class="cc-search-wrap">
-      <input class="cc-search-input" id="searchHome" type="text" placeholder="Search current address..." autocomplete="off" />
-      <ul class="cc-suggestions" id="sugHome"></ul>
+      <input class="cc-search-input" id="searchHome" type="text" placeholder="Search current address..." />
     </div>
     <div class="cc-loc-set" id="setHome">Click card, then click map — or search above</div>
   </div>
@@ -361,8 +369,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <span class="cc-loc-label">Property Considering</span>
     </div>
     <div class="cc-search-wrap">
-      <input class="cc-search-input" id="searchProp" type="text" placeholder="Search property address..." autocomplete="off" />
-      <ul class="cc-suggestions" id="sugProp"></ul>
+      <input class="cc-search-input" id="searchProp" type="text" placeholder="Search property address..." />
     </div>
     <div class="cc-loc-set" id="setProp">Click card, then click map — or search above</div>
   </div>
@@ -421,24 +428,35 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 </div>
 
 <div style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.75rem;line-height:1.6;">
-  Distances via OpenStreetMap road network routing. Drive times are free-flow estimates multiplied by your selected peak-hour traffic factor. Actual times vary with conditions. Fuel costs use your inputs above.
+  Drive times use Google Maps traffic data for Tuesday 8am peak hour. Distances are real road network distances. Fuel costs use your inputs above. Estimates only — actual times vary.
 </div>
 
 </ToolLayout>
 
 <script is:inline>
 (function () {
-  /* ── Load Leaflet from CDN then init ─────────────────────── */
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  document.head.appendChild(link);
+  /* ── Load Leaflet + Google Maps in parallel ──────────────── */
+  const GMAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 
-  const leafletScript = document.createElement('script');
-  leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  leafletScript.crossOrigin = '';
-  leafletScript.onload = initTool;
-  document.head.appendChild(leafletScript);
+  function loadScript(src) {
+    return new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = resolve;
+      document.head.appendChild(s);
+    });
+  }
+
+  const leafletCss = document.createElement('link');
+  leafletCss.rel = 'stylesheet';
+  leafletCss.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  document.head.appendChild(leafletCss);
+
+  Promise.all([
+    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'),
+    loadScript(`https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}&libraries=places`)
+  ]).then(initTool);
 
   /* ── State ───────────────────────────────────────────────── */
   const coords = { work: null, home: null, prop: null };
@@ -471,59 +489,64 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     });
   }
 
-  /* ── OSRM routing ─────────────────────────────────────────── */
-  async function getRoute(from, to) {
-    try {
-      const url = `https://router.project-osrm.org/route/v1/driving/${from.lng},${from.lat};${to.lng},${to.lat}?overview=false`;
-      const res = await fetch(url);
-      if (!res.ok) return null;
-      const data = await res.json();
-      if (data.code !== 'Ok' || !data.routes?.length) return null;
-      return {
-        distKm: data.routes[0].distance / 1000,
-        durationMin: Math.round(data.routes[0].duration / 60)
-      };
-    } catch { return null; }
+  /* ── Peak hour departure time (next Tuesday 8am local) ──── */
+  function getNextPeakTime() {
+    const d = new Date();
+    const day = d.getDay(); // 0=Sun, 2=Tue
+    const daysToTuesday = (2 - day + 7) % 7 || 7;
+    d.setDate(d.getDate() + daysToTuesday);
+    d.setHours(8, 0, 0, 0);
+    return d;
   }
 
-  /* ── Nominatim address search ────────────────────────────── */
-  let searchTimers = {};
-  async function searchAddress(q) {
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=au&accept-language=en`;
-    const res = await fetch(url, { headers: { 'User-Agent': 'DanielGierachProperty/1.0' } });
-    return await res.json();
+  /* ── Google Maps Distance Matrix routing ─────────────────── */
+  function getRoute(from, to) {
+    return new Promise(resolve => {
+      const svc = new google.maps.DistanceMatrixService();
+      svc.getDistanceMatrix({
+        origins: [new google.maps.LatLng(from.lat, from.lng)],
+        destinations: [new google.maps.LatLng(to.lat, to.lng)],
+        travelMode: google.maps.TravelMode.DRIVING,
+        drivingOptions: {
+          departureTime: getNextPeakTime(),
+          trafficModel: google.maps.TrafficModel.BEST_GUESS
+        },
+        unitSystem: google.maps.UnitSystem.METRIC
+      }, (res, status) => {
+        if (status !== 'OK') { resolve(null); return; }
+        const el = res.rows[0]?.elements[0];
+        if (!el || el.status !== 'OK') { resolve(null); return; }
+        resolve({
+          distKm: el.distance.value / 1000,
+          durationMin: Math.round((el.duration_in_traffic || el.duration).value / 60)
+        });
+      });
+    });
   }
 
-  function setupSearch(inputId, sugId, mode) {
+  /* ── Google Places Autocomplete ──────────────────────────── */
+  function setupAutocomplete(inputId, mode) {
     const input = $(inputId);
-    const sug = $(sugId);
-    if (!input || !sug) return;
+    if (!input) return;
 
     input.addEventListener('focus', () => setMode(mode));
 
-    input.addEventListener('input', () => {
-      clearTimeout(searchTimers[mode]);
-      const q = input.value.trim();
-      if (q.length < 3) { sug.innerHTML = ''; return; }
-      searchTimers[mode] = setTimeout(async () => {
-        const results = await searchAddress(q);
-        sug.innerHTML = '';
-        results.slice(0, 5).forEach(r => {
-          const li = document.createElement('li');
-          li.textContent = r.display_name;
-          li.addEventListener('click', () => {
-            placeMarker(mode, parseFloat(r.lat), parseFloat(r.lon));
-            input.value = r.display_name.split(',').slice(0, 2).join(',');
-            sug.innerHTML = '';
-          });
-          sug.appendChild(li);
-        });
-      }, 450);
+    const ac = new google.maps.places.Autocomplete(input, {
+      componentRestrictions: { country: 'au' },
+      fields: ['geometry', 'formatted_address', 'name']
     });
 
-    // Close on outside click
-    document.addEventListener('click', e => {
-      if (!input.contains(e.target) && !sug.contains(e.target)) sug.innerHTML = '';
+    ac.addListener('place_changed', () => {
+      const place = ac.getPlace();
+      if (!place.geometry?.location) return;
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      placeMarker(mode, lat, lng);
+      const setEl = $({ work: 'setWork', home: 'setHome', prop: 'setProp' }[mode]);
+      if (setEl) {
+        setEl.textContent = (place.formatted_address || place.name || '').split(',').slice(0,2).join(',');
+        setEl.classList.add('is-set');
+      }
     });
   }
 
@@ -598,10 +621,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   function renderResults() {
     const fuelPrice   = num('fuelPrice', 2.60);
     const fuelEff     = num('fuelEff', 10);
-    const days        = num('daysPerWeek', 4);
+    const days        = num('daysPerWeek', 5);
     const weeks       = num('weeksPerYear', 46);
-    const activeTraffic = document.querySelector('#trafficPresets .cc-vpreset.active');
-    const trafficMult = activeTraffic ? parseFloat(activeTraffic.dataset.traffic) : 1.40;
 
     const hasWork = !!coords.work;
     const hasHome = !!routes.home;
@@ -634,12 +655,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Home row
     if (hasHome) {
-      const homePeakMin = Math.round(routes.home.durationMin * trafficMult);
       setText('homeDist', fmtKm(routes.home.distKm));
-      setText('homeTime', fmtMin(homePeakMin));
+      setText('homeTime', fmtMin(routes.home.durationMin));
       setText('homeFuelWk', fmt$(fuelPerWeek(routes.home.distKm)));
       setText('homeFuelYr', fmt$(fuelPerYear(routes.home.distKm)));
-      const hrs = hrsPerYear(homePeakMin);
+      const hrs = hrsPerYear(routes.home.durationMin);
       setText('homeHrsYr', hrs.toFixed(0) + ' hrs');
     } else {
       ['homeDist','homeTime','homeFuelWk','homeFuelYr','homeHrsYr'].forEach(id => setText(id, '—'));
@@ -647,12 +667,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Property row + diff
     if (hasProp) {
-      const propPeakMin = Math.round(routes.prop.durationMin * trafficMult);
       setText('propDist', fmtKm(routes.prop.distKm));
-      setText('propTime', fmtMin(propPeakMin));
+      setText('propTime', fmtMin(routes.prop.durationMin));
       setText('propFuelWk', fmt$(fuelPerWeek(routes.prop.distKm)));
       setText('propFuelYr', fmt$(fuelPerYear(routes.prop.distKm)));
-      const hrs = hrsPerYear(propPeakMin);
+      const hrs = hrsPerYear(routes.prop.durationMin);
       setText('propHrsYr', hrs.toFixed(0) + ' hrs');
 
       // Diff vs home
@@ -700,25 +719,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     $('locHome')?.addEventListener('click', () => setMode('home'));
     $('locProp')?.addEventListener('click', () => setMode('prop'));
 
-    // Search boxes
-    setupSearch('searchWork', 'sugWork', 'work');
-    setupSearch('searchHome', 'sugHome', 'home');
-    setupSearch('searchProp', 'sugProp', 'prop');
+    // Google Places Autocomplete on each search box
+    setupAutocomplete('searchWork', 'work');
+    setupAutocomplete('searchHome', 'home');
+    setupAutocomplete('searchProp', 'prop');
 
-    // Vehicle preset buttons
+    // Vehicle efficiency presets
     document.querySelectorAll('#effPresets .cc-vpreset').forEach(btn => {
       btn.addEventListener('click', () => {
         document.getElementById('fuelEff').value = btn.dataset.eff;
         document.querySelectorAll('#effPresets .cc-vpreset').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderResults();
-      });
-    });
-
-    // Traffic preset buttons
-    document.querySelectorAll('#trafficPresets .cc-vpreset').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#trafficPresets .cc-vpreset').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderResults();
       });
