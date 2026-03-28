@@ -450,7 +450,7 @@ import Layout from '../layouts/Layout.astro';
 
       if (eyebrow) eyebrow.textContent = 'Time Request Received';
       const notifiedEl = document.querySelector('.ty-notified') as HTMLElement;
-      if (notifiedEl) notifiedEl.textContent = 'Daniel has been notified.';
+      if (notifiedEl) notifiedEl.style.display = 'none';
       if (h1) h1.innerHTML = 'Thank you for booking in your walkthrough.<br/><em style="color:#c5a03c;">Daniel will be in touch shortly to confirm the time.</em>';
       if (sub) sub.innerHTML = 'If you need to reach him sooner, call directly on <a href="tel:+61412523821">0412 523 821</a>.';
       if (badge) badge.textContent = 'Confirmation sent shortly · 7 days a week';
