@@ -584,34 +584,14 @@ const faqSchema = {
       </p>
     </div>
 
-    <!-- Testimonial strip -->
-    <div class="reveal" data-delay="140" style="margin-bottom:2.5rem;padding:1.75rem 2rem;border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;">
-      <div style="display:flex;gap:0.2rem;flex-shrink:0;">
-        {[1,2,3,4,5].map(() => (
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        ))}
-      </div>
-      <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(240,236,228,0.85);line-height:1.65;max-width:60ch;text-align:center;">
-        "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me. If you're after an agent who genuinely cares and goes above and beyond, Daniel's your guy."
-      </p>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;flex-shrink:0;">
-        <div style="display:flex;gap:0.2rem;">
-          {[1,2,3,4,5].map(() => (
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          ))}
-        </div>
-        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(197,160,60,0.7);white-space:nowrap;">5 Stars · Recent Review</span>
-      </div>
-    </div>
-
     <!-- Three cards side by side -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-px reveal" data-delay="200" style="background:rgba(255,255,255,0.08);">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" data-delay="200">
 
       <!-- Option 1: Instant Report -->
       <a href="/property-report"
         onclick="gtag('event','property_report_click',{event_category:'lead',event_label:'CTA Section'})"
         class="hw-card"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid transparent;min-height:520px;">
+        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid transparent;">
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
             <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Instant · Online</p>
@@ -649,7 +629,7 @@ const faqSchema = {
         </div>
       <a href="/appraisal"
         class="hw-card hw-card-featured"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;border:1px solid rgba(197,160,60,0.6);box-shadow:0 0 0 1px rgba(197,160,60,0.15),inset 0 0 40px rgba(197,160,60,0.04);flex:1;min-height:520px;">
+        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;border:1px solid rgba(197,160,60,0.6);box-shadow:0 0 0 1px rgba(197,160,60,0.15),inset 0 0 40px rgba(197,160,60,0.04);flex:1;">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c5a03c;"></div>
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
@@ -684,7 +664,7 @@ const faqSchema = {
       <a href="tel:+61412523821"
         onclick="gtag('event','phone_click',{event_category:'contact',event_label:'CTA Section'})"
         class="hw-card"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid transparent;min-height:520px;">
+        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid transparent;">
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
             <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Immediate · Personal</p>
