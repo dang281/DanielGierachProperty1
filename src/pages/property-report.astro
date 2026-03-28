@@ -374,6 +374,7 @@ import Layout from '../layouts/Layout.astro';
         <input type="hidden" name="car_spaces" id="hidden-cars" value="" />
         <input type="hidden" name="block_size" id="hidden-block" value="" />
         <input type="hidden" name="property_type" id="hidden-property-type" value="" />
+        <input type="hidden" name="pool" id="hidden-pool" value="No" />
 
         <!-- ── STEP 1: Address + report type ── -->
         <div class="form-step active" id="step-1">
@@ -459,12 +460,21 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <!-- Block size -->
-          <div style="margin-bottom:2rem;">
+          <div style="margin-bottom:1.5rem;">
             <label class="field-label">Block Size</label>
             <div class="block-grid">
               <button type="button" class="block-btn" data-block="Under 405 sqm">Under 405 sqm</button>
               <button type="button" class="block-btn" data-block="405–810 sqm">405–810 sqm</button>
               <button type="button" class="block-btn" data-block="810 sqm+">810 sqm+</button>
+            </div>
+          </div>
+
+          <!-- Pool -->
+          <div style="margin-bottom:2rem;">
+            <label class="field-label">Pool</label>
+            <div style="display:flex;gap:0.5rem;">
+              <button type="button" class="pool-btn" data-pool="Yes" style="flex:1;padding:0.6rem 0.5rem;border:1.5px solid rgba(28,25,23,0.15);background:var(--color-surface-3);font-family:var(--font-sans);font-size:0.76rem;font-weight:600;color:var(--color-text-muted);cursor:pointer;transition:all 0.15s;">Yes</button>
+              <button type="button" class="pool-btn selected" data-pool="No" style="flex:1;padding:0.6rem 0.5rem;border:1.5px solid var(--color-gold);background:rgba(197,160,60,0.08);font-family:var(--font-sans);font-size:0.76rem;font-weight:600;color:var(--color-gold);cursor:pointer;transition:all 0.15s;">No</button>
             </div>
           </div>
 
@@ -596,6 +606,24 @@ import Layout from '../layouts/Layout.astro';
       document.querySelectorAll('.block-btn').forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
       (document.getElementById('hidden-block') as HTMLInputElement).value = this.dataset.block || '';
+    });
+  });
+
+  // ── Pool buttons ───────────────────────────────────────────────────
+  document.querySelectorAll('.pool-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLElement) {
+      document.querySelectorAll('.pool-btn').forEach(b => {
+        const el = b as HTMLElement;
+        el.classList.remove('selected');
+        el.style.borderColor = 'rgba(28,25,23,0.15)';
+        el.style.background = 'var(--color-surface-3)';
+        el.style.color = 'var(--color-text-muted)';
+      });
+      this.classList.add('selected');
+      this.style.borderColor = 'var(--color-gold)';
+      this.style.background = 'rgba(197,160,60,0.08)';
+      this.style.color = 'var(--color-gold)';
+      (document.getElementById('hidden-pool') as HTMLInputElement).value = this.dataset.pool || 'No';
     });
   });
 
