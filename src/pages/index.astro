@@ -1049,7 +1049,16 @@ const faqSchema = {
     .hero-section { min-height: 0 !important; padding-top: 4.5rem !important; padding-bottom: 2rem !important; }
     .hero-card { padding: 1.5rem !important; }
     .hero-h1 { font-size: 1.85rem !important; line-height: 1.1 !important; margin-bottom: 1rem !important; }
-    .hero-p2 { display: none !important; }
+    /* Show shortened hero paragraph on mobile instead of hiding */
+    .hero-p2 {
+      font-size: 0.82rem !important;
+      line-height: 1.6 !important;
+      margin-bottom: 0.6rem !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
     #hero-address-form { flex-direction: column !important; max-width: 100% !important; }
     #hero-address-input {
       border-right: 1.5px solid rgba(255,255,255,0.18) !important;
@@ -1063,9 +1072,10 @@ const faqSchema = {
       min-height: 52px !important;
       font-size: 0.72rem !important;
     }
+    /* Stat numbers: slightly smaller; labels: hidden — numbers are self-explanatory */
     .stat-counter { font-size: 1.4rem !important; }
     .hero-section .flex.justify-between { margin-top: 1.5rem !important; padding-top: 1.25rem !important; }
-    .hero-section .flex.justify-between p:last-child { font-size: 0.55rem !important; letter-spacing: 0.1em !important; }
+    .hero-section .flex.justify-between p:last-child { display: none !important; }
     .hero-trust { display: none; }
 
     /* Portrait */
@@ -1090,7 +1100,7 @@ const faqSchema = {
     }
     .hw-card > div:first-child { flex: 1; gap: 0.3rem !important; }
     .hw-card > div:first-child > div:first-child { margin-bottom: 0 !important; }
-    .hw-card > div:first-child > div > h3 { font-size: 1rem !important; margin-bottom: 0.2rem !important; line-height: 1.2 !important; }
+    .hw-card > div:first-child > div > h3 { font-size: 1rem !important; margin-bottom: 0.2rem !important; line-height: 1.2 !important; overflow-wrap: break-word !important; word-break: break-word !important; }
     .hw-card > div:first-child > div > p { font-size: 0.75rem !important; line-height: 1.45 !important; }
     .hw-bullets { display: none !important; }
     .hw-card-btn, .hw-card-outline-btn { display: none !important; }
@@ -1131,6 +1141,10 @@ const faqSchema = {
 
     /* Listings section: tighter padding */
     section[style*="background:var(--color-surface-0)"] { /* handled above */ }
+
+    /* FAQ: prevent viewport jump when accordion opens */
+    details { overflow-anchor: none; }
+    details summary { min-height: 48px; }
   }
 </style>
 

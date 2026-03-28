@@ -299,6 +299,19 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   }
   @media (max-width: 600px) {
     .report-name-grid { grid-template-columns: 1fr !important; }
+
+    /* Increase tap target for bed/bath/car buttons to 44px minimum */
+    .bed-btn, .bath-btn, .car-btn {
+      width: 44px !important;
+      height: 44px !important;
+    }
+
+    /* 6-bedroom grid: 3 columns so buttons don't overflow on narrow screens */
+    .bed-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, 44px) !important;
+      gap: 0.45rem !important;
+    }
   }
 </style>
 
