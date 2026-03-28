@@ -65,14 +65,25 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
     </div>
   </div>
 
-  <!-- Back to tools -->
-  <div style="background:var(--color-surface-1);padding:2rem 0;border-top:1px solid rgba(72,72,72,0.15);">
-    <div class="max-w-[1400px] mx-auto px-8 lg:px-12 flex items-center justify-between gap-4">
-      <a href="/tools" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);transition:color 0.2s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-text-muted)'">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        All Tools
-      </a>
-      <a href="/appraisal" class="btn-gold" style="font-size:0.65rem;padding:0.75rem 1.5rem;">Book a Free Appraisal</a>
+  <!-- Tool CTA -->
+  <div style="background:var(--color-surface-1);padding:3.5rem 0;border-top:1px solid rgba(72,72,72,0.15);">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+      <div style="padding:2.5rem 3rem;background:var(--color-gold-muted);border:1px solid rgba(196,145,42,0.15);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;">
+        <div>
+          <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:var(--color-text-primary);margin-bottom:0.4rem;">Want to know what this means for your property?</p>
+          <p style="font-size:0.82rem;color:var(--color-text-secondary);line-height:1.75;">Daniel walks through your property, reviews recent sold results in your street, and gives you a clear number. Free, no obligation.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;flex-shrink:0;">
+          <a href="/appraisal" class="btn-gold">Book a Free Walk Through</a>
+          <a href="tel:+61412523821" class="btn-outline-gold">Call 0412 523 821</a>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;display:flex;align-items:center;">
+        <a href="/tools" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);transition:color 0.2s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-text-muted)'">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to All Tools
+        </a>
+      </div>
     </div>
   </div>
 </Layout>

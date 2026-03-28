@@ -91,9 +91,9 @@ const stats = [
 ];
 
 const reasons = [
-  { n: '01', title: 'Deep Local Knowledge', body: 'Born and raised in Brisbane, Daniel brings a decade of property economics expertise and hyper-local intelligence across the inner east and south, delivering insights no broad-market agency can match.' },
-  { n: '02', title: 'Data-Driven Campaigns', body: 'Every campaign is grounded in data, detail and clear communication. From pricing strategy to buyer targeting, decisions are backed by market evidence rather than gut feel.' },
-  { n: '03', title: 'Access to 607,000+ Buyers', body: 'Through the Ray White Collective network, your property is exposed to Australia\'s largest active buyer database, ensuring maximum competition and the strongest possible result.' },
+  { n: '01', title: 'Inner East Specialist', body: 'Daniel focuses exclusively on Brisbane\'s inner east and south. Every comparable sale, every street price movement, every buyer pool shift across Camp Hill, Seven Hills, Carina, Hawthorne and surrounds is territory he knows closely.' },
+  { n: '02', title: 'Campaigns Built on Evidence', body: 'Every campaign is built around what buyers in your suburb are actually searching for right now. Pricing strategy, marketing timing and targeting are grounded in current market data, not assumption.' },
+  { n: '03', title: 'Access to 607,000+ Buyers', body: 'When your home goes to market, it is seen by over 607,000 pre-registered buyers through the Ray White Collective network from day one. That reach creates genuine competition and stronger results.' },
 ];
 
 const toolPhaseColors: Record<string, string> = { Seller: '#ffdd79', Buyer: '#7ec8e3', Investor: '#a8e6a3', Market: '#c8c6c8' };
@@ -165,7 +165,12 @@ const faqSchema = {
   <div class="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-16 sm:pb-20">
     <div class="hero-card max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
 
-      <span class="eyebrow mb-5 reveal" data-delay="200" style="color:#f5d07a;">Brisbane Property Sales Specialist</span>
+      <div class="reveal" data-delay="100" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+        <img src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
+          alt="Daniel Gierach" width="40" height="40"
+          style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(197,160,60,0.5);" />
+        <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach · Ray White Bulimba</span>
+      </div>
 
       <h1 class="hero-h1 reveal" data-delay="380"
         style="font-family:var(--font-serif);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;">
@@ -536,6 +541,9 @@ const faqSchema = {
     transform: translateY(-6px);
     box-shadow: 0 24px 48px rgba(0,0,0,0.45);
   }
+  @media (max-width: 768px) {
+    .hw-card, .hw-card-featured { min-height: auto !important; }
+  }
   .hw-card-btn { transition: background 0.2s, gap 0.2s; }
   .hw-card-outline-btn { transition: border-color 0.2s, color 0.2s; }
   .hw-card:hover .hw-card-outline-btn {
@@ -576,6 +584,19 @@ const faqSchema = {
       </p>
     </div>
 
+    <!-- Testimonial strip -->
+    <div class="reveal" data-delay="140" style="margin-bottom:2.5rem;padding:1.5rem 2rem;border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;justify-content:center;">
+      <div style="display:flex;gap:0.2rem;">
+        {[1,2,3,4,5].map(() => (
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        ))}
+      </div>
+      <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(240,236,228,0.85);line-height:1.6;max-width:56ch;text-align:center;">
+        "The result went well above and beyond expectations. His advice was honest, the process was stress-free, and I would not hesitate to recommend Daniel."
+      </p>
+      <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(197,160,60,0.7);white-space:nowrap;">Seller · Brisbane Inner East</span>
+    </div>
+
     <!-- Three cards side by side -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px reveal" data-delay="200" style="background:rgba(255,255,255,0.08);">
 
@@ -591,7 +612,7 @@ const faqSchema = {
               Get an Instant<br/>Property Report
             </h3>
             <p style="font-size:0.82rem;color:rgba(240,236,228,0.6);line-height:1.75;">
-              Get a property value estimate in seconds, based on recent comparable sales in your area. Free, instant, and no obligation.
+              Based on recent sold results in your street. Free, takes under 60 seconds, and sent directly to you.
             </p>
           </div>
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
@@ -767,7 +788,7 @@ const faqSchema = {
     </h2>
     <p class="reveal" data-delay="120"
       style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-bottom:2rem;">
-      Monthly insights on property trends, sales results and what's moving the market across Brisbane's inner east. No spam, unsubscribe anytime.
+      One email per month. What actually sold, what it sold for, and what it means for your street. No filler, no spam.
     </p>
     <form class="reveal" data-delay="180"
       method="POST" action="https://formspree.io/f/xnjgedwp"
@@ -847,6 +868,16 @@ const faqSchema = {
       </details>
 
     </div>
+
+    <!-- FAQ CTA -->
+    <div class="reveal" data-delay="100" style="margin-top:3rem;padding:2rem 2.5rem;background:var(--color-gold-muted);border:1px solid rgba(196,145,42,0.15);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;">
+      <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--color-text-primary);">Still have a question? Daniel picks up.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <a href="tel:+61412523821" class="btn-gold">Call 0412 523 821</a>
+        <a href="/appraisal" class="btn-outline-gold">Book a Walk Through</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
