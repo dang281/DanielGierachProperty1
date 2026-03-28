@@ -51,9 +51,61 @@ const suburbsJson = JSON.stringify(suburbs);
   }
   .pw-card-btn { transition: background 0.2s, gap 0.2s; }
   .pw-card-outline-btn { transition: border-color 0.2s, color 0.2s; }
+
+  /* ── Mobile overrides ─────────────────────────────────── */
+  @media (max-width: 768px) {
+    .pw-section {
+      padding: 5rem 0 7rem !important; /* extra bottom for sticky bar */
+    }
+    .pw-inner { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    .pw-heading { margin-bottom: 1.5rem !important; }
+    .pw-heading h1 { font-size: 2rem !important; line-height: 1.15 !important; margin-bottom: 0.75rem !important; }
+    .pw-heading p { display: none; } /* subtitle adds clutter on mobile */
+
+    /* Testimonial: collapse to quote + stars only */
+    .pw-testimonial {
+      padding: 1.1rem 1.25rem !important;
+      gap: 0.75rem !important;
+      flex-direction: column !important;
+      margin-bottom: 1.5rem !important;
+    }
+    .pw-testimonial p { font-size: 0.82rem !important; }
+
+    /* Cards grid */
+    .pw-cards-grid { padding-top: 36px !important; gap: 0.75rem !important; }
+
+    /* Individual cards: compact */
+    .pw-card, .pw-card-featured {
+      padding: 1.4rem 1.25rem !important;
+      gap: 1rem !important;
+    }
+
+    /* Hide bullet lists on mobile — too much content */
+    .pw-bullets { display: none !important; }
+
+    /* Badge: flow inline above the featured card */
+    .pw-badge {
+      position: static !important;
+      transform: none !important;
+      display: block !important;
+      text-align: center !important;
+      margin-bottom: 0 !important;
+      padding: 0.6rem 1rem !important;
+    }
+
+    /* Buttons full-width on mobile */
+    .pw-card-btn, .pw-card-outline-btn {
+      width: 100% !important;
+      padding: 1rem !important;
+      font-size: 0.72rem !important;
+    }
+
+    /* Cards grid: less top padding since badge is now in-flow */
+    .pw-cards-grid { padding-top: 0 !important; }
+  }
 </style>
 
-<section class="relative overflow-hidden" style="min-height:100dvh;display:flex;align-items:center;padding:7rem 0 5rem;">
+<section class="pw-section relative overflow-hidden" style="min-height:100dvh;display:flex;align-items:center;padding:7rem 0 5rem;">
   <div class="absolute inset-0">
     <img
       src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=55&fm=webp&auto=format"
@@ -65,10 +117,10 @@ const suburbsJson = JSON.stringify(suburbs);
     <div class="absolute inset-0" style="background:rgba(10,8,6,0.55);"></div>
   </div>
 
-  <div class="relative max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
+  <div class="pw-inner relative max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
 
     <!-- Heading -->
-    <div class="text-center mb-10">
+    <div class="pw-heading text-center mb-10">
       <span id="pw-eyebrow" style="display:block;text-align:center;color:#f5d07a;font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:1.25rem;">What's Your Home Worth?</span>
       <h1 id="pw-title"
         style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
@@ -80,7 +132,7 @@ const suburbsJson = JSON.stringify(suburbs);
     </div>
 
     <!-- Testimonial strip -->
-    <div style="margin-bottom:2.5rem;padding:1.75rem 2rem;background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;">
+    <div class="pw-testimonial" style="margin-bottom:2.5rem;padding:1.75rem 2rem;background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;">
       <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(240,236,228,0.85);line-height:1.65;max-width:60ch;text-align:center;">
         "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me. If you're after an agent who genuinely cares and goes above and beyond, Daniel's your guy."
       </p>
@@ -95,7 +147,7 @@ const suburbsJson = JSON.stringify(suburbs);
     </div>
 
     <!-- Three cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="padding-top:28px;">
+    <div class="pw-cards-grid grid grid-cols-1 md:grid-cols-3 gap-6" style="padding-top:28px;">
 
       <!-- Card 1: Instant Report -->
       <a id="pw-card-report" href="/property-report" class="pw-card"
@@ -110,7 +162,7 @@ const suburbsJson = JSON.stringify(suburbs);
               An automated estimate based on recent sales data in your area. Good for a ballpark. For a precise number, book a walkthrough.
             </p>
           </div>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+          <ul class="pw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
             <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
               <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Instant estimate from real sales data
             </li>
@@ -130,7 +182,7 @@ const suburbsJson = JSON.stringify(suburbs);
 
       <!-- Card 2: Walkthrough (featured) -->
       <div class="pw-featured-wrapper" style="position:relative;display:flex;flex-direction:column;align-self:stretch;">
-        <div style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#c5a03c;padding:0.55rem 1.75rem;white-space:nowrap;z-index:2;">
+        <div class="pw-badge" style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#c5a03c;padding:0.55rem 1.75rem;white-space:nowrap;z-index:2;">
           <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#0a0806;">Most Accurate</span>
         </div>
         <a href="/walkthrough" class="pw-card pw-card-featured"
@@ -146,7 +198,7 @@ const suburbsJson = JSON.stringify(suburbs);
                 Daniel walks through your home, assesses it against recent comparable sales, and gives you a frank, well-researched opinion of value. No charge, no obligation.
               </p>
             </div>
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <ul class="pw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
               <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
                 <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Accurate, comparable-based assessment
               </li>
@@ -178,7 +230,7 @@ const suburbsJson = JSON.stringify(suburbs);
               Got a specific question about your property, a recent sale nearby, or the current market? Call Daniel directly and get a straight answer in minutes.
             </p>
           </div>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+          <ul class="pw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
             <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
               <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Speak directly with Daniel, no assistants
             </li>
