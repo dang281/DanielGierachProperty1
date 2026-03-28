@@ -605,7 +605,10 @@ const faqSchema = {
       </a>
 
       <!-- Option 2: Walk Through (featured) -->
-      <div style="position:relative;display:flex;flex-direction:column;align-self:stretch;">
+      <div
+        style="position:relative;display:flex;flex-direction:column;align-self:stretch;transition:transform 0.3s cubic-bezier(0.34,1,0.64,1);"
+        onmouseover="this.style.transform='translateY(-4px)'"
+        onmouseout="this.style.transform='translateY(0)'">
         <div style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#c5a03c;padding:0.55rem 1.75rem;white-space:nowrap;z-index:2;">
           <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#0a0806;">Most Popular</span>
         </div>
