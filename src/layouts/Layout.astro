@@ -205,7 +205,8 @@ const globalSchema = {
               body: new FormData(form),
               headers: { 'Accept': 'application/json' }
             }).finally(function() {
-              window.location.href = '/thank-you';
+              const nextInput = form.querySelector('input[name="_next"]');
+              window.location.href = nextInput ? nextInput.value : '/thank-you';
             });
           });
         });
