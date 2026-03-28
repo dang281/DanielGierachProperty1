@@ -66,6 +66,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
             <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Maintenance (annual)</label>
             <input type="number" id="maintenance" value="2000" class="obs-input" style="font-size:0.95rem;" />
           </div>
+          <div>
+            <label style="font-size:0.6rem;color:var(--color-text-muted);display:block;margin-bottom:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Vacancy Rate %</label>
+            <input type="number" id="vacancy-rate" value="4" min="0" max="30" step="0.5" class="obs-input" style="font-size:0.95rem;" />
+          </div>
         </div>
       </div>
 
@@ -110,8 +114,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
         <div class="flex flex-col gap-0 mb-4">
           <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
-            <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual Rent</span>
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Gross Annual Rent</span>
             <span id="r-rent" style="font-size:0.875rem;font-weight:600;color:var(--color-text-primary);"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">Vacancy Loss</span>
+            <span id="r-vacancy" style="font-size:0.875rem;font-weight:600;color:rgba(192,57,43,0.9);"></span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
             <span style="font-size:0.8rem;color:var(--color-text-muted);">Annual Costs</span>
@@ -143,7 +151,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         </div>
 
         <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.5rem;line-height:1.6;">
-          Estimate only. Does not account for tax, depreciation, vacancy, or market changes. Seek financial advice.
+          Estimate only. Does not account for tax, depreciation, or market changes. Seek financial advice.
         </p>
 
         <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
@@ -171,16 +179,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const rate     = Number((document.getElementById('interest-rate') as HTMLInputElement).value) || 6.2;
     const growth   = Number((document.getElementById('growth-rate') as HTMLInputElement).value) || 6;
 
+    const vacancy     = Number((document.getElementById('vacancy-rate') as HTMLInputElement).value) || 0;
     const annualRent  = rent * 52;
-    const mgmtFee     = annualRent * mgmtPct / 100;
+    const vacancyLoss = annualRent * (vacancy / 100);
+    const effectiveRent = annualRent - vacancyLoss;
+    const mgmtFee     = effectiveRent * mgmtPct / 100;
     const totalCosts  = strata + council + water + insurance + mgmtFee + maint;
-    const netRent     = annualRent - totalCosts;
+    const netRent     = effectiveRent - totalCosts;
 
     const loanAmt     = price * (1 - deposit / 100);
     const annualInterest = loanAmt * rate / 100;
     const netCashflow = (netRent - annualInterest) / 12;
 
-    const grossYield  = (annualRent / price) * 100;
+    const grossYield  = (effectiveRent / price) * 100;
     const netYield    = (netRent / price) * 100;
 
     const projValue = price * Math.pow(1 + growth / 100, 10);
@@ -192,8 +203,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     document.getElementById('gross-yield')!.textContent = `${grossYield.toFixed(2)}%`;
     document.getElementById('net-yield')!.textContent   = `${netYield.toFixed(2)}%`;
 
-    document.getElementById('r-rent')!.textContent   = fmt(annualRent);
-    document.getElementById('r-costs')!.textContent  = `-${fmt(totalCosts)}`;
+    document.getElementById('r-rent')!.textContent     = fmt(annualRent);
+    document.getElementById('r-vacancy')!.textContent  = `-${fmt(vacancyLoss)}`;
+    document.getElementById('r-costs')!.textContent    = `-${fmt(totalCosts)}`;
     document.getElementById('r-loan')!.textContent   = `-${fmt(annualInterest)}`;
 
     const cfEl = document.getElementById('r-cashflow')!;
