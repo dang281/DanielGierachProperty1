@@ -306,11 +306,13 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
+    <p class="ty-notified" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.75rem;">Daniel has been notified.</p>
+
     <span class="ty-eyebrow">Message Received</span>
 
     <h1 class="ty-h1">
-      Thanks for reaching<br/>
-      <em>out to Daniel.</em>
+      Good move.<br/>
+      <em>Daniel will be in touch shortly.</em>
     </h1>
 
     <p class="ty-sub">
@@ -327,6 +329,16 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </section>
 
+
+<!-- ══════════════════════════════════
+     QUOTE (above next steps)
+══════════════════════════════════ -->
+<section class="ty-quote">
+  <p class="ty-quote-text">
+    "Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. The result went well above and beyond expectations."
+  </p>
+  <p class="ty-quote-attr">Past Seller &nbsp;·&nbsp; Brisbane Inner East</p>
+</section>
 
 <!-- ══════════════════════════════════
      WHAT HAPPENS NEXT
@@ -353,22 +365,11 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="ty-next-item">
       <div class="ty-next-num">3</div>
-      <p class="ty-next-title">A straight, no-pressure conversation</p>
-      <p class="ty-next-body">No obligation. Just honest, expert advice on what your property could achieve and how to get there.</p>
+      <p class="ty-next-title">You get a clear, honest number for your home</p>
+      <p class="ty-next-body">A frank, well-researched opinion of what your property could achieve. No fluff, no pressure.</p>
     </div>
 
   </div>
-</section>
-
-
-<!-- ══════════════════════════════════
-     QUOTE
-══════════════════════════════════ -->
-<section class="ty-quote">
-  <p class="ty-quote-text">
-    "Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. The result went well above and beyond expectations."
-  </p>
-  <p class="ty-quote-attr">Past Seller &nbsp;·&nbsp; Brisbane Inner East</p>
 </section>
 
 
@@ -383,10 +384,10 @@ import Layout from '../layouts/Layout.astro';
 
   <div class="ty-explore-grid">
 
-    <a href="/insights" class="ty-explore-card">
-      <p class="ty-explore-label">Insights</p>
-      <p class="ty-explore-title">Read the Articles</p>
-      <p class="ty-explore-desc">Practical property knowledge for buyers and sellers across Brisbane's inner east.</p>
+    <a href="/tools/selling-costs" class="ty-explore-card">
+      <p class="ty-explore-label">Seller Tool</p>
+      <p class="ty-explore-title">What will selling actually cost?</p>
+      <p class="ty-explore-desc">See your estimated net proceeds after agent fees, marketing and other selling costs.</p>
     </a>
 
     <a href="/listings" class="ty-explore-card">
@@ -421,9 +422,11 @@ import Layout from '../layouts/Layout.astro';
       const next3title = document.querySelectorAll('.ty-next-title')[2];
       const next3body = document.querySelectorAll('.ty-next-body')[2];
 
-      if (eyebrow) eyebrow.textContent = 'Report Received';
-      if (h1) h1.innerHTML = 'Thanks for your submission.<br/><em>Your report will be in your inbox shortly.</em>';
-      if (sub) sub.innerHTML = 'Your report is being created and will be in your inbox shortly. If you have any questions in the meantime, call Daniel on <a href="tel:+61412523821">0412 523 821</a>.';
+      if (eyebrow) eyebrow.textContent = 'Report on Its Way';
+      const notified = document.querySelector('.ty-notified') as HTMLElement;
+      if (notified) notified.textContent = 'Daniel has been notified.';
+      if (h1) h1.innerHTML = 'Good move.<br/><em>Your report will be in your inbox shortly.</em>';
+      if (sub) sub.innerHTML = 'Your report is being created and will be in your inbox shortly. If you have any questions, call Daniel on <a href="tel:+61412523821">0412 523 821</a>.';
       if (badge) badge.textContent = 'Report typically sent within a few hours · 7 days a week';
       if (next1title) next1title.textContent = 'Daniel reviews your property';
       if (next1body) next1body.textContent = 'He looks at your address, property type, and comparable recent sales to build an accurate picture.';
@@ -445,8 +448,10 @@ import Layout from '../layouts/Layout.astro';
       const next3title = document.querySelectorAll('.ty-next-title')[2];
       const next3body = document.querySelectorAll('.ty-next-body')[2];
 
-      if (eyebrow) eyebrow.textContent = 'Appraisal Request Received';
-      if (h1) h1.innerHTML = 'Your appraisal is<br/><em>booked in.</em>';
+      if (eyebrow) eyebrow.textContent = 'Walk Through Requested';
+      const notifiedEl = document.querySelector('.ty-notified') as HTMLElement;
+      if (notifiedEl) notifiedEl.textContent = 'Daniel has been notified.';
+      if (h1) h1.innerHTML = 'Good move.<br/><em>Daniel will confirm your time shortly.</em>';
       if (sub) sub.innerHTML = 'Daniel will confirm the exact time with you shortly. If you need to reach him sooner, call directly on <a href="tel:+61412523821">0412 523 821</a>.';
       if (badge) badge.textContent = 'Confirmation sent shortly · 7 days a week';
       if (next1title) next1title.textContent = 'Daniel reviews your request';
