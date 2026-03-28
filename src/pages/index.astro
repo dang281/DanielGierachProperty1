@@ -568,90 +568,81 @@ const faqSchema = {
       </p>
     </div>
 
-    <!-- Primary: Walk Through -->
-    <div class="reveal" data-delay="200" style="margin-bottom:2px;">
-      <a href="/appraisal"
-        class="hw-card hw-card-featured"
-        style="display:flex;flex-direction:column;gap:0;background:rgba(197,160,60,0.1);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.3);position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c5a03c;"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3" style="gap:0;">
-          <!-- Left: label + heading -->
-          <div style="padding:2.5rem 2rem;border-right:1px solid rgba(197,160,60,0.15);">
-            <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(197,160,60,0.15);padding:0.3rem 0.75rem;margin-bottom:1rem;">
-              <span style="font-family:var(--font-sans);font-size:0.52rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c5a03c;">Most Accurate</span>
-            </div>
-            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.75rem;">In-Person · 20 mins</p>
-            <h3 style="font-family:var(--font-serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;color:#f0ece4;line-height:1.15;margin-bottom:0.75rem;">
-              A considered opinion based on what is actually happening in your market.
-            </h3>
-            <p style="font-size:0.85rem;color:rgba(240,236,228,0.65);line-height:1.8;">
-              Daniel walks your property and reviews recent comparable sales, buyer behaviour, and local conditions. You leave with a clear number and, if you want it, a view on timing and strategy.
-            </p>
-          </div>
-          <!-- Middle: bullets -->
-          <div style="padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(197,160,60,0.15);">
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.9rem;">
-              <li style="font-size:0.82rem;color:rgba(240,236,228,0.65);display:flex;align-items:flex-start;gap:0.6rem;">
-                <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.15rem;">✓</span> Priced against sold results, not asking prices
-              </li>
-              <li style="font-size:0.82rem;color:rgba(240,236,228,0.65);display:flex;align-items:flex-start;gap:0.6rem;">
-                <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.15rem;">✓</span> Accounts for your home's specific condition, position and street
-              </li>
-              <li style="font-size:0.82rem;color:rgba(240,236,228,0.65);display:flex;align-items:flex-start;gap:0.6rem;">
-                <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.15rem;">✓</span> Includes a view on timing if you want one
-              </li>
-            </ul>
-          </div>
-          <!-- Right: CTA -->
-          <div style="padding:2.5rem 2rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1rem;">
-            <span class="hw-card-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:1rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;width:100%;">
-              Get a clear value in 20 minutes
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-            <p style="font-size:0.68rem;color:rgba(240,236,228,0.35);text-align:center;width:100%;">No obligation to proceed. Available this week.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+    <!-- Three cards side by side -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px reveal" data-delay="200" style="background:rgba(255,255,255,0.08);">
 
-    <!-- Secondary: Instant Report + Call -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-px reveal" data-delay="280" style="background:rgba(255,255,255,0.06);">
-
-      <!-- Instant Report -->
+      <!-- Option 1: Instant Report -->
       <a href="/property-report"
         onclick="gtag('event','property_report_click',{event_category:'lead',event_label:'CTA Section'})"
         class="hw-card"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2rem 2rem;display:flex;flex-direction:column;gap:1rem;border:1px solid transparent;">
+        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border:1px solid transparent;">
         <div>
-          <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.6);margin-bottom:0.5rem;">Fastest</p>
-          <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:#f0ece4;line-height:1.2;margin-bottom:0.6rem;">
+          <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Fastest</p>
+          <h3 style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#f0ece4;line-height:1.25;margin-bottom:0.75rem;">
             A quick reference point before any conversation.
           </h3>
-          <p style="font-size:0.8rem;color:rgba(240,236,228,0.5);line-height:1.75;">
+          <p style="font-size:0.82rem;color:rgba(240,236,228,0.6);line-height:1.75;">
             An automated estimate based on recent sales in your area. Useful for getting your bearings. Not a substitute for an in-person assessment.
           </p>
         </div>
-        <span class="hw-card-outline-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.2);font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="hw-card-outline-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.2);font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           See a quick price guide
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </a>
 
-      <!-- Call -->
+      <!-- Option 2: Walk Through (featured) -->
+      <a href="/appraisal"
+        class="hw-card hw-card-featured"
+        style="background:rgba(197,160,60,0.1);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;position:relative;border:1px solid rgba(197,160,60,0.3);">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c5a03c;"></div>
+        <div style="display:inline-flex;align-items:center;background:rgba(197,160,60,0.15);padding:0.3rem 0.75rem;width:fit-content;margin-bottom:0.25rem;">
+          <span style="font-family:var(--font-sans);font-size:0.52rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c5a03c;">Most Accurate</span>
+        </div>
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">In-Person · 20 mins</p>
+          <h3 style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#f0ece4;line-height:1.25;margin-bottom:0.75rem;">
+            A considered opinion based on what is actually happening in your market.
+          </h3>
+          <p style="font-size:0.82rem;color:rgba(240,236,228,0.65);line-height:1.75;">
+            Daniel walks your property and reviews recent comparable sales, buyer behaviour, and local conditions. You leave with a clear number and, if you want it, a view on timing and strategy.
+          </p>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+          <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
+            <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Priced against sold results, not asking prices
+          </li>
+          <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
+            <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Accounts for your home's condition, position and street
+          </li>
+          <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
+            <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Includes a view on timing if you want one
+          </li>
+        </ul>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:0.5rem;">
+          <span class="hw-card-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
+            Get a clear value in 20 minutes
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          <p style="font-size:0.65rem;color:rgba(240,236,228,0.3);text-align:center;">No obligation to proceed. Available this week.</p>
+        </div>
+      </a>
+
+      <!-- Option 3: Call -->
       <a href="tel:+61412523821"
         onclick="gtag('event','phone_click',{event_category:'contact',event_label:'CTA Section'})"
         class="hw-card"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2rem 2rem;display:flex;flex-direction:column;gap:1rem;border:1px solid transparent;">
+        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border:1px solid transparent;">
         <div>
-          <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.6);margin-bottom:0.5rem;">Most Direct</p>
-          <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:#f0ece4;line-height:1.2;margin-bottom:0.6rem;">
+          <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Most Direct</p>
+          <h3 style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#f0ece4;line-height:1.25;margin-bottom:0.75rem;">
             A straight conversation, no forms.
           </h3>
-          <p style="font-size:0.8rem;color:rgba(240,236,228,0.5);line-height:1.75;">
+          <p style="font-size:0.82rem;color:rgba(240,236,228,0.6);line-height:1.75;">
             Call Daniel directly with a question about your property, the local market, or what your next step should be. Available 7 days.
           </p>
         </div>
-        <span class="hw-card-outline-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.2);font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="hw-card-outline-btn" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.2);font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           Speak directly with Daniel
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
         </span>
