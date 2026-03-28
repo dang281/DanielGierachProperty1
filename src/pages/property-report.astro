@@ -412,7 +412,6 @@ import Layout from '../layouts/Layout.astro';
                 autocomplete="off"
                 required
               />
-              <div id="report-ac-list" style="display:none;"></div>
             </div>
           </div>
 
@@ -632,46 +631,33 @@ import Layout from '../layouts/Layout.astro';
     (document.getElementById('hidden-property-type') as HTMLInputElement).value = this.value;
   });
 
-  // ── Address autocomplete (Photon — free, no API key) ──────────────
+  // ── Address autocomplete (Google Places) ──────────────────────────
   const addrInput = document.getElementById('report-address') as HTMLInputElement;
-  const acList    = document.getElementById('report-ac-list') as HTMLElement;
-  let acTimer: ReturnType<typeof setTimeout>;
 
-  addrInput.addEventListener('input', () => {
-    clearTimeout(acTimer);
-    const q = addrInput.value.trim();
-    if (q.length < 3) { acList.style.display = 'none'; return; }
-    acTimer = setTimeout(() => {
-      fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`)
-        .then(r => r.json())
-        .then((d: any) => {
-          acList.innerHTML = '';
-          const features = d.features || [];
-          if (!features.length) { acList.style.display = 'none'; return; }
-          features.forEach((f: any) => {
-            const p = f.properties;
-            const label = [p.housenumber ? p.housenumber + ' ' + p.street : p.street || p.name, p.city || p.suburb, p.state].filter(Boolean).join(', ');
-            const item = document.createElement('div');
-            item.className = 'ac-item';
-            item.textContent = label;
-            item.addEventListener('mousedown', () => {
-              addrInput.value = label;
-              selectedAddress = label;
-              acList.style.display = 'none';
-            });
-            acList.appendChild(item);
-          });
-          acList.style.display = 'block';
-        })
-        .catch(() => { acList.style.display = 'none'; });
-    }, 120);
-  });
+  function initGooglePlacesReport() {
+    const autocomplete = new (window as any).google.maps.places.Autocomplete(addrInput, {
+      componentRestrictions: { country: 'au' },
+      fields: ['formatted_address'],
+      types: ['address'],
+    });
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      const addr = place.formatted_address || addrInput.value;
+      addrInput.value = addr;
+      selectedAddress = addr;
+    });
+  }
 
-  document.addEventListener('click', e => {
-    if (!document.getElementById('report-address-wrap')?.contains(e.target as Node)) {
-      acList.style.display = 'none';
-    }
-  });
+  (window as any).initGooglePlacesReport = function() { initGooglePlacesReport(); };
+
+  if ((window as any).google?.maps?.places) {
+    initGooglePlacesReport();
+  } else {
+    const s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlacesReport';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
 
   // ── Step navigation ────────────────────────────────────────────────
   document.getElementById('next-btn')?.addEventListener('click', function() {
