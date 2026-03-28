@@ -127,7 +127,7 @@ import Layout from '../layouts/Layout.astro';
         Daniel will be in touch <em style="font-style:italic;">promptly.</em>
       </h2>
 
-      <form id="walkthrough-form" method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex;flex-direction:column;gap:1rem;">
+      <form id="walkthrough-form" style="display:flex;flex-direction:column;gap:1rem;">
   <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=walkthrough" />
   <input type="hidden" name="_subject" value="New appraisal request — danielgierach.com" />
 
@@ -723,18 +723,26 @@ import Layout from '../layouts/Layout.astro';
   }
 
   // ── Form submit via fetch → /thank-you?from=walkthrough ─────────────
-  document.getElementById('walkthrough-form')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-    try { gtag('event', 'appraisal_form_submit', { event_category: 'lead', event_label: 'Walkthrough Request' }); } catch(_) {}
-    fetch('https://formspree.io/f/xnjgedwp', {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).finally(() => { window.location.href = '/thank-you?from=walkthrough'; });
-  });
+  function attachWalkthroughSubmit() {
+    const form = document.getElementById('walkthrough-form') as HTMLFormElement;
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      try { (window as any).gtag('event', 'appraisal_form_submit', { event_category: 'lead', event_label: 'Walkthrough Request' }); } catch(_) {}
+      fetch('https://formspree.io/f/xnjgedwp', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).finally(() => { window.location.href = '/thank-you?from=walkthrough'; });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachWalkthroughSubmit);
+  } else {
+    attachWalkthroughSubmit();
+  }
 </script>
 
 </Layout>
