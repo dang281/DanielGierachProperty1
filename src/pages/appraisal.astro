@@ -722,13 +722,21 @@ import Layout from '../layouts/Layout.astro';
     document.head.appendChild(s);
   }
 
-  // Track appraisal form submission
-  document.querySelector('form[name="appraisal"], form[action*="formspree"]')?.addEventListener('submit', function() {
-    gtag('event', 'appraisal_form_submit', {
-      event_category: 'lead',
-      event_label: 'Appraisal Request'
+  // ── Form submit via fetch → /thank-you?from=appraisal ─────────────
+  const appraisalForm = document.querySelector('form[action*="formspree"]') as HTMLFormElement;
+  if (appraisalForm) {
+    appraisalForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = appraisalForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      gtag('event', 'appraisal_form_submit', { event_category: 'lead', event_label: 'Appraisal Request' });
+      fetch('https://formspree.io/f/xnjgedwp', {
+        method: 'POST',
+        body: new FormData(appraisalForm),
+        headers: { 'Accept': 'application/json' }
+      }).finally(() => { window.location.href = '/thank-you?from=appraisal'; });
     });
-  });
+  }
 </script>
 
 </Layout>
