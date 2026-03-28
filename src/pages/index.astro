@@ -638,13 +638,13 @@ const faqSchema = {
       <!-- Option 2: Walk Through (featured) -->
       <div
         class="hw-featured-wrapper"
-        style="position:relative;display:flex;flex-direction:column;align-self:stretch;">
-        <div style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#c5a03c;padding:0.55rem 1.75rem;white-space:nowrap;z-index:2;">
-          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#0a0806;">Most Accurate</span>
-        </div>
+        style="display:flex;flex-direction:column;align-self:stretch;">
       <a href="/walkthrough"
         class="hw-card hw-card-featured"
         style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;border:1px solid rgba(197,160,60,0.6);box-shadow:0 0 0 1px rgba(197,160,60,0.15),inset 0 0 40px rgba(197,160,60,0.04);flex:1;">
+        <div style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#c5a03c;padding:0.55rem 1.75rem;white-space:nowrap;z-index:2;">
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#0a0806;">Most Accurate</span>
+        </div>
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c5a03c;"></div>
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
@@ -1095,9 +1095,9 @@ const faqSchema = {
     .hw-bullets { display: none !important; }
     .hw-card-btn, .hw-card-outline-btn { display: none !important; }
     .hw-featured-wrapper { padding-top: 0 !important; }
-    .hw-featured-wrapper > div:first-child { display: none !important; } /* hide floating badge */
+    .hw-card-featured > div:first-child { display: none !important; } /* hide floating badge */
     .hw-card-featured { border-left: 3px solid #c5a03c !important; }
-    .hw-card-featured > div:first-child > div:first-of-type { height: 0 !important; overflow: hidden !important; } /* hide top bar */
+    .hw-card-featured > div:nth-child(2) { height: 0 !important; overflow: hidden !important; } /* hide top bar */
 
     /* After each hw-card, show arrow via pseudo (workaround: use the span.hw-card-btn area) */
     /* We show a simple arrow container for all cards */
