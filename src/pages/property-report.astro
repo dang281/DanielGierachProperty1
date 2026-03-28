@@ -296,6 +296,9 @@ import Layout from '../layouts/Layout.astro';
     .report-left { display: none; }
     .report-right { padding: 7rem 1.75rem 3rem; }
   }
+  @media (max-width: 600px) {
+    .report-name-grid { grid-template-columns: 1fr !important; }
+  }
 </style>
 
 <div class="report-hero">
@@ -462,9 +465,9 @@ import Layout from '../layouts/Layout.astro';
           <div style="margin-bottom:1.5rem;">
             <label class="field-label">Block Size</label>
             <div class="block-grid">
-              <button type="button" class="block-btn" data-block="Under 405 sqm">Under 405 sqm</button>
-              <button type="button" class="block-btn" data-block="405–810 sqm">405–810 sqm</button>
-              <button type="button" class="block-btn" data-block="810 sqm+">810 sqm+</button>
+              <button type="button" class="block-btn" data-block="Under 405 sqm" style="display:flex;flex-direction:column;gap:0.15rem;"><span>Small</span><small style="font-size:0.6rem;font-weight:400;opacity:0.65;">Under 405 sqm</small></button>
+              <button type="button" class="block-btn" data-block="405–810 sqm" style="display:flex;flex-direction:column;gap:0.15rem;"><span>Medium</span><small style="font-size:0.6rem;font-weight:400;opacity:0.65;">405–810 sqm</small></button>
+              <button type="button" class="block-btn" data-block="810 sqm+" style="display:flex;flex-direction:column;gap:0.15rem;"><span>Large</span><small style="font-size:0.6rem;font-weight:400;opacity:0.65;">810 sqm+</small></button>
             </div>
           </div>
 
@@ -505,7 +508,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+            <div class="report-name-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
               <div>
                 <label class="field-label" for="first-name">First Name <span style="color:var(--color-gold);">*</span></label>
                 <input type="text" id="first-name" name="first_name" class="obs-field" placeholder="First name" required autocomplete="given-name" />

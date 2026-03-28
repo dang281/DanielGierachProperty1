@@ -132,7 +132,7 @@ import Layout from '../layouts/Layout.astro';
   <input type="hidden" name="_subject" value="New appraisal request — danielgierach.com" />
 
         <!-- First Name + Last Name -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <div class="name-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
           <div>
             <label style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
               First Name <span style="color:#c4912a;">*</span>
@@ -173,7 +173,7 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Calendar picker -->
         <div class="cal-wrap">
-          <label class="cal-label">Preferred Date &amp; Time <span style="color:#c4912a;">*</span></label>
+          <label class="cal-label">Suggest a Date &amp; Time <span style="font-weight:400;opacity:0.6;">(optional)</span></label>
 
           <!-- Calendar -->
           <div class="cal-card">
@@ -223,7 +223,7 @@ import Layout from '../layouts/Layout.astro';
             <span id="cal-summary-text"></span>
           </div>
 
-          <input type="hidden" name="preferred_date" id="preferred-date-input" required />
+          <input type="hidden" name="preferred_date" id="preferred-date-input" />
           <input type="hidden" name="preferred_time" id="preferred-time-input" />
         </div>
 
@@ -235,6 +235,7 @@ import Layout from '../layouts/Layout.astro';
           Confirm My Booking
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
+        <p style="font-family:var(--font-sans);font-size:0.65rem;color:#78716c;text-align:center;margin-top:0.5rem;line-height:1.5;">Daniel will call to confirm the time. No pressure.</p>
 
       </form>
     </div>
@@ -244,6 +245,7 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   @media (max-width: 768px) {
+    .name-grid { grid-template-columns: 1fr !important; }
     .appraisal-split {
       grid-template-columns: 1fr !important;
     }

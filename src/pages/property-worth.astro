@@ -243,4 +243,17 @@ const suburbsJson = JSON.stringify(suburbs);
 })();
 </script>
 
+<!-- Mobile sticky CTA bar -->
+<div id="mobile-sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#c5a03c;padding:1rem 1.25rem;box-shadow:0 -4px 24px rgba(0,0,0,0.25);">
+  <a href="/walkthrough" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;">
+    Book a Free Walkthrough
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+<style>
+  @media (max-width: 768px) {
+    #mobile-sticky-cta { display: block !important; }
+  }
+</style>
+
 </Layout>
