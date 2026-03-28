@@ -451,11 +451,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   // ── QLD Stamp Duty ─────────────────────────────────────────────────
   function calcStampDuty(price: number, buyer: string): number {
     let duty = 0;
-    if (price <= 5000)        duty = 0;
-    else if (price <= 75000)  duty = (price - 5000) * 0.015;
-    else if (price <= 540000) duty = 1050 + (price - 75000) * 0.035;
-    else if (price <= 1000000) duty = 17325 + (price - 540000) * 0.045;
-    else                      duty = 38025 + (price - 1000000) * 0.0575;
+    if (price <= 350000)       duty = price * 0.01;
+    else if (price <= 540000)  duty = 3500 + (price - 350000) * 0.035;
+    else if (price <= 1000000) duty = 10150 + (price - 540000) * 0.045;
+    else                       duty = 30850 + (price - 1000000) * 0.0575;
 
     if (buyer === 'fhb') {
       if (price <= 500000)       duty = 0;

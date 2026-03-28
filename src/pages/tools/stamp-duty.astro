@@ -118,7 +118,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         </div>
 
         <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
-          Estimate only. QLD transfer duty rates current as of 2024. Confirm with your solicitor and the Queensland Revenue Office.
+          Estimate only. QLD transfer duty rates current as of 2025-26. Confirm with your solicitor and the Queensland Revenue Office.
         </p>
 
         <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
@@ -132,7 +132,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 <script>
   const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
 
-  // QLD Transfer Duty rates 2024
+  // QLD Transfer Duty rates 2025-26
   // QLD Transfer Duty: standard (investor) rates
   function calcBaseDuty(price: number): number {
     if (price <= 5000)    return 0;
