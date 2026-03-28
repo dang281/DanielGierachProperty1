@@ -178,7 +178,7 @@ const faqSchema = {
         <em style="font-style:italic;color:var(--color-gold);">home could sell for?</em>
       </h1>
 
-      <p class="reveal" data-delay="560"
+      <p class="reveal hero-p2" data-delay="560"
         style="font-size:1rem;color:rgba(240,236,228,0.72);line-height:1.8;max-width:46ch;margin-bottom:0.75rem;">
         Most homeowners underestimate what their property is worth. Find out where yours really sits, free, in under 60 seconds.
       </p>
@@ -397,7 +397,7 @@ const faqSchema = {
 
       <!-- Portrait + quote card -->
       <div class="relative reveal-left">
-        <div style="aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(28,25,23,0.1);">
+        <div class="daniel-portrait-wrap" style="aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(28,25,23,0.1);">
           <img
             src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
             alt="Daniel Gierach, Ray White Bulimba"
@@ -471,7 +471,7 @@ const faqSchema = {
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-px reveal" style="background:rgba(28,25,23,0.08);">
 
-      <div style="background:var(--color-surface-0);padding:2.75rem 3rem;">
+      <div class="testimonial-card" style="background:var(--color-surface-0);padding:2.75rem 3rem;">
         <div style="display:flex;gap:0.25rem;margin-bottom:1.5rem;">
           {[1,2,3,4,5].map(() => (
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -486,7 +486,7 @@ const faqSchema = {
         </div>
       </div>
 
-      <div style="background:var(--color-surface-0);padding:2.75rem 3rem;">
+      <div class="testimonial-card" style="background:var(--color-surface-0);padding:2.75rem 3rem;">
         <div style="display:flex;gap:0.25rem;margin-bottom:1.5rem;">
           {[1,2,3,4,5].map(() => (
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -585,7 +585,7 @@ const faqSchema = {
     </div>
 
     <!-- Testimonial strip -->
-    <div class="reveal" data-delay="140" style="margin-bottom:2.5rem;padding:1.75rem 2rem;background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;">
+    <div class="reveal hw-testimonial" data-delay="140" style="margin-bottom:2.5rem;padding:1.75rem 2rem;background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;">
       <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(240,236,228,0.85);line-height:1.65;max-width:60ch;text-align:center;">
         "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me. If you're after an agent who genuinely cares and goes above and beyond, Daniel's your guy."
       </p>
@@ -617,7 +617,7 @@ const faqSchema = {
               An automated estimate based on recent sales data in your area. Good for a ballpark. For a precise number, book a walkthrough.
             </p>
           </div>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+          <ul class="hw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
             <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
               <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Instant estimate from real sales data
             </li>
@@ -656,7 +656,7 @@ const faqSchema = {
               Daniel walks through your home, assesses it against recent comparable sales, and gives you a frank, well-researched opinion of value. No charge, no obligation.
             </p>
           </div>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+          <ul class="hw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
             <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
               <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Accurate, comparable-based assessment
             </li>
@@ -690,7 +690,7 @@ const faqSchema = {
               Got a specific question about your property, a recent sale nearby, or the current market? Call Daniel directly and get a straight answer in minutes.
             </p>
           </div>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+          <ul class="hw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
             <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
               <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Speak directly with Daniel, no assistants
             </li>
@@ -1041,53 +1041,96 @@ const faqSchema = {
 </script>
 
 <style>
+  /* ── Mobile: 640px and below ──────────────────────────── */
   @media (max-width: 640px) {
     .testimonial-header { margin-bottom: 1.5rem !important; }
 
-    /* Hero: remove full-height, tighter padding */
+    /* Hero */
     .hero-section { min-height: 0 !important; padding-top: 4.5rem !important; padding-bottom: 2rem !important; }
-
-    /* Tighter card padding */
     .hero-card { padding: 1.5rem !important; }
-
-    /* Smaller headline */
     .hero-h1 { font-size: 1.85rem !important; line-height: 1.1 !important; margin-bottom: 1rem !important; }
-
-    /* Tighter body text */
-    .hero-section p[style*="font-size:1rem"] { font-size: 0.875rem !important; line-height: 1.7 !important; margin-bottom: 0.5rem !important; }
-
-    /* Hide second paragraph — one is enough on mobile */
     .hero-p2 { display: none !important; }
-
-    /* Stack address form vertically */
     #hero-address-form { flex-direction: column !important; max-width: 100% !important; }
-
-    /* Input: restore right border, full width */
     #hero-address-input {
       border-right: 1.5px solid rgba(255,255,255,0.18) !important;
       border-bottom: none !important;
       font-size: 1rem !important;
       padding: 1rem 1.1rem !important;
     }
-
-    /* Button: full width, generous tap target */
     .hero-cta {
       width: 100% !important;
       justify-content: center !important;
       min-height: 52px !important;
-      font-size: 0.78rem !important;
+      font-size: 0.72rem !important;
     }
-
-    /* Stats: tighter */
     .stat-counter { font-size: 1.4rem !important; }
     .hero-section .flex.justify-between { margin-top: 1.5rem !important; padding-top: 1.25rem !important; }
-    .hero-section .flex.justify-between p:last-child {
-      font-size: 0.55rem !important;
-      letter-spacing: 0.1em !important;
+    .hero-section .flex.justify-between p:last-child { font-size: 0.55rem !important; letter-spacing: 0.1em !important; }
+    .hero-trust { display: none; }
+
+    /* Portrait */
+    .daniel-portrait-wrap { aspect-ratio: 4/3 !important; max-height: 280px !important; }
+
+    /* Testimonial cards */
+    .testimonial-card { padding: 1.5rem 1.25rem !important; }
+
+    /* "What's Your Home Worth" section cards → compact rows */
+    #home-worth { padding: 4rem 0 5rem !important; }
+    #home-worth .text-center { margin-bottom: 1.25rem !important; }
+    #home-worth h2 { font-size: 1.9rem !important; }
+    #home-worth > div > p { display: none !important; }
+    .hw-testimonial { display: none !important; }
+
+    /* Cards: compact horizontal rows */
+    .hw-card, .hw-card-featured {
+      flex-direction: row !important;
+      align-items: center !important;
+      padding: 1.1rem 1.1rem !important;
+      gap: 0.75rem !important;
+    }
+    .hw-card > div:first-child { flex: 1; gap: 0.3rem !important; }
+    .hw-card > div:first-child > div:first-child { margin-bottom: 0 !important; }
+    .hw-card > div:first-child > div > h3 { font-size: 1rem !important; margin-bottom: 0.2rem !important; line-height: 1.2 !important; }
+    .hw-card > div:first-child > div > p { font-size: 0.75rem !important; line-height: 1.45 !important; }
+    .hw-bullets { display: none !important; }
+    .hw-card-btn, .hw-card-outline-btn { display: none !important; }
+    .hw-featured-wrapper { padding-top: 0 !important; }
+    .hw-featured-wrapper > div:first-child { display: none !important; } /* hide floating badge */
+    .hw-card-featured { border-left: 3px solid #c5a03c !important; }
+    .hw-card-featured > div:first-child > div:first-of-type { height: 0 !important; overflow: hidden !important; } /* hide top bar */
+
+    /* After each hw-card, show arrow via pseudo (workaround: use the span.hw-card-btn area) */
+    /* We show a simple arrow container for all cards */
+    .hw-card::after {
+      content: '→';
+      font-size: 1rem;
+      color: #c5a03c;
+      flex-shrink: 0;
+      margin-left: auto;
     }
 
-    /* Hide trust signal on mobile */
-    .hero-trust { display: none; }
+    /* Grid: tighter gap for rows */
+    #home-worth .grid.md\:grid-cols-3 { gap: 0.6rem !important; padding-top: 0 !important; }
+
+    /* Sections: reduce vertical padding */
+    section[style*="padding:6rem"] { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+    section[style*="padding:7rem"] { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+    section[style*="padding:5rem"] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+
+    /* Tools: reduce padding on tool cards */
+    .home-tool-card { padding: 1.25rem !important; }
+
+    /* Market updates: stack form */
+    section[style*="background:var(--color-surface-2)"] form { flex-direction: column !important; }
+    section[style*="background:var(--color-surface-2)"] input[type="email"] { min-width: 0 !important; width: 100% !important; }
+
+    /* FAQ CTA: stack buttons */
+    section[style*="border-bottom:1px solid rgba(28,25,23,0.08)"] .flex.flex-wrap { flex-direction: column !important; }
+    section[style*="border-bottom:1px solid rgba(28,25,23,0.08)"] .btn-gold,
+    section[style*="border-bottom:1px solid rgba(28,25,23,0.08)"] .btn-outline-gold { width: 100% !important; justify-content: center !important; }
+
+    /* Listings section: tighter padding */
+    section[style*="background:var(--color-surface-0)"] { /* handled above */ }
   }
 </style>
 
