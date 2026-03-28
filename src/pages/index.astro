@@ -197,7 +197,7 @@ const faqSchema = {
           </div>
           <button type="submit" class="hero-cta" style="padding:0.9rem 1.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
             onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
-            What's My Property Worth?
+            What's Your Property Worth?
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </form>
@@ -573,7 +573,7 @@ const faqSchema = {
 
     <!-- Heading -->
     <div class="text-center mb-14">
-      <span class="eyebrow mb-5 reveal" style="display:block;text-align:center;color:#f5d07a;">What's Your Home Worth?</span>
+      <span class="eyebrow mb-5 reveal" style="display:block;text-align:center;color:#f5d07a;">What's Your Property Worth?</span>
       <h2 class="reveal" data-delay="80"
         style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
         Find out in three ways.<br/><em style="font-style:italic;color:#c5a03c;">Choose yours.</em>
@@ -714,102 +714,37 @@ const faqSchema = {
 
 
 <!-- ════════════════════════════════════════════
-     TOOLS SHOWCASE
-════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(72,72,72,0.15);">
-  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-12">
-      <div>
-        <span class="eyebrow mb-4 reveal" style="display:block;">Resources</span>
-        <h2 class="reveal" data-delay="80"
-          style="font-family:var(--font-serif);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
-          Free Property Tools<br />& Calculators
-        </h2>
-      </div>
-      <div>
-        <p class="reveal" data-delay="120" style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;max-width:46ch;">
-          Make smarter decisions at every stage of your property journey. Free tools built for buying, selling, and investing across Brisbane's inner east and south.
-        </p>
-        <a href="/tools" class="btn-outline-gold reveal" data-delay="200" style="display:inline-flex;margin-top:1.5rem;">
-          View All Tools →
-        </a>
-      </div>
-    </div>
-
-    <!-- Filter Pills -->
-    <div id="home-filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem;">
-      {(['All', 'Seller', 'Buyer', 'Investor', 'Market'] as const).map(phase => (
-        <button
-          data-hfilter={phase}
-          class="home-filter-pill"
-          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1rem;border-radius:999px;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;transition:all 0.18s;background:${phase === 'All' ? 'var(--color-text-primary)' : 'transparent'};color:${phase === 'All' ? 'var(--color-base)' : 'var(--color-text-muted)'};border-color:${phase === 'All' ? 'var(--color-text-primary)' : 'rgba(28,25,23,0.2)'};`}
-        >
-          {phase !== 'All' && (
-            <span style={`width:6px;height:6px;border-radius:50%;background:${toolPhaseColors[phase]};flex-shrink:0;`}></span>
-          )}
-          {phase}
-        </button>
-      ))}
-    </div>
-
-    <div id="home-tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {showcaseTools.map((tool, i) => (
-        <a href={tool.href}
-          class="home-tool-card reveal"
-          data-hphase={tool.phase}
-          data-delay={String(i * 60)}
-          style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;position:relative;overflow:hidden;"
-          onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-3px)'"
-          onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
-        >
-          <div style={`position:absolute;top:0;left:0;right:0;height:2px;background:${toolPhaseColors[tool.phase] || '#ffdd79'};`}></div>
-          <span style={`display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${toolPhaseColors[tool.phase] || '#ffdd79'};padding-top:0.25rem;`}>
-            <span style={`width:5px;height:5px;border-radius:50%;background:${toolPhaseColors[tool.phase] || '#ffdd79'};`}></span>
-            {tool.phase}
-          </span>
-          <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">{tool.label}</h3>
-          <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.7;flex:1;">{tool.desc}</p>
-          <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Use Tool →</span>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
      MARKET UPDATES — EMAIL CAPTURE
 ════════════════════════════════════════════ -->
 <section style="background:var(--color-surface-2);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[700px] mx-auto px-8 text-center">
-    <span class="eyebrow mb-4 reveal" style="display:block;">Stay Informed</span>
+    <span class="eyebrow mb-4 reveal" style="display:block;">Not Ready Yet?</span>
     <h2 class="reveal" data-delay="60"
       style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.25rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;margin-bottom:0.75rem;">
-      Brisbane Inner East<br/><em style="font-style:italic;">Market Updates</em>
+      Get a Free Monthly<br/><em style="font-style:italic;">Suburb Report</em>
     </h2>
     <p class="reveal" data-delay="120"
       style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-bottom:2rem;">
-      One email per month. What actually sold, what it sold for, and what it means for your street. No filler, no spam.
+      One email per month. What sold in your suburb, what it sold for, and what it means for your property's value. No spam, no fluff.
     </p>
     <form class="reveal" data-delay="180"
       method="POST" action="https://formspree.io/f/xnjgedwp"
       style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto;">
-      <input type="hidden" name="_subject" value="Market update signup — danielgierach.com" />
-      <input type="hidden" name="form_type" value="market_update_signup" />
+      <input type="hidden" name="_subject" value="Suburb report signup - danielgierach.com" />
+      <input type="hidden" name="form_type" value="suburb_report_signup" />
       <input type="email" name="email" required placeholder="Your email address" autocomplete="email"
         style="flex:1;min-width:220px;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(28,25,23,0.2);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;"
       />
       <button type="submit" class="btn-gold"
         style="white-space:nowrap;"
-        onclick="gtag('event', 'email_signup_click', { event_category: 'lead', event_label: 'Market Updates' })"
+        onclick="gtag('event', 'email_signup_click', { event_category: 'lead', event_label: 'Suburb Report' })"
       >
-        Get Monthly Updates
+        Send Me the Report
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </form>
     <p class="reveal" data-delay="220" style="font-size:0.72rem;color:var(--color-text-muted);margin-top:1rem;">
-      No spam. Unsubscribe at any time. <a href="/privacy" style="color:var(--color-gold);text-decoration:underline;">Privacy Policy</a>
+      Free. No spam. Unsubscribe at any time. <a href="/privacy" style="color:var(--color-gold);text-decoration:underline;">Privacy Policy</a>
     </p>
   </div>
 </section>
@@ -880,6 +815,71 @@ const faqSchema = {
       </div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TOOLS SHOWCASE
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(72,72,72,0.15);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-12">
+      <div>
+        <span class="eyebrow mb-4 reveal" style="display:block;">Resources</span>
+        <h2 class="reveal" data-delay="80"
+          style="font-family:var(--font-serif);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
+          Free Property Tools<br />& Calculators
+        </h2>
+      </div>
+      <div>
+        <p class="reveal" data-delay="120" style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;max-width:46ch;">
+          Make smarter decisions at every stage of your property journey. Free tools built for buying, selling, and investing across Brisbane's inner east and south.
+        </p>
+        <a href="/tools" class="btn-outline-gold reveal" data-delay="200" style="display:inline-flex;margin-top:1.5rem;">
+          View All Tools →
+        </a>
+      </div>
+    </div>
+
+    <!-- Filter Pills -->
+    <div id="home-filter-bar" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem;">
+      {(['All', 'Seller', 'Buyer', 'Investor', 'Market'] as const).map(phase => (
+        <button
+          data-hfilter={phase}
+          class="home-filter-pill"
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1rem;border-radius:999px;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;transition:all 0.18s;background:${phase === 'All' ? 'var(--color-text-primary)' : 'transparent'};color:${phase === 'All' ? 'var(--color-base)' : 'var(--color-text-muted)'};border-color:${phase === 'All' ? 'var(--color-text-primary)' : 'rgba(28,25,23,0.2)'};`}
+        >
+          {phase !== 'All' && (
+            <span style={`width:6px;height:6px;border-radius:50%;background:${toolPhaseColors[phase]};flex-shrink:0;`}></span>
+          )}
+          {phase}
+        </button>
+      ))}
+    </div>
+
+    <div id="home-tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {showcaseTools.map((tool, i) => (
+        <a href={tool.href}
+          class="home-tool-card reveal"
+          data-hphase={tool.phase}
+          data-delay={String(i * 60)}
+          style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;position:relative;overflow:hidden;"
+          onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
+        >
+          <div style={`position:absolute;top:0;left:0;right:0;height:2px;background:${toolPhaseColors[tool.phase] || '#ffdd79'};`}></div>
+          <span style={`display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${toolPhaseColors[tool.phase] || '#ffdd79'};padding-top:0.25rem;`}>
+            <span style={`width:5px;height:5px;border-radius:50%;background:${toolPhaseColors[tool.phase] || '#ffdd79'};`}></span>
+            {tool.phase}
+          </span>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">{tool.label}</h3>
+          <p style="font-size:0.8rem;color:var(--color-text-muted);line-height:1.7;flex:1;">{tool.desc}</p>
+          <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Use Tool →</span>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
 
