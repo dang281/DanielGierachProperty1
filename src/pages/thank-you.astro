@@ -436,6 +436,32 @@ import Layout from '../layouts/Layout.astro';
       if (next3body) next3body.innerHTML = 'Book a free walkthrough and Daniel will give you a frank, in-person assessment of exactly what your property could achieve.';
     }
 
+    if (from === 'contact') {
+      const eyebrow = document.querySelector('.ty-eyebrow');
+      const h1 = document.querySelector('.ty-h1');
+      const sub = document.querySelector('.ty-sub');
+      const badge = document.querySelector('.ty-badge span');
+      const next1title = document.querySelectorAll('.ty-next-title')[0];
+      const next1body = document.querySelectorAll('.ty-next-body')[0];
+      const next2title = document.querySelectorAll('.ty-next-title')[1];
+      const next2body = document.querySelectorAll('.ty-next-body')[1];
+      const next3title = document.querySelectorAll('.ty-next-title')[2];
+      const next3body = document.querySelectorAll('.ty-next-body')[2];
+      const notifiedEl = document.querySelector('.ty-notified') as HTMLElement;
+
+      if (eyebrow) eyebrow.textContent = 'Message Received';
+      if (notifiedEl) notifiedEl.style.display = 'none';
+      if (h1) h1.innerHTML = 'Good move.<br/><em>Daniel will be in touch shortly.</em>';
+      if (sub) sub.innerHTML = 'Daniel personally reviews every message. No call centres, no auto-replies. Expect to hear from him within 2 hours, or call directly on <a href="tel:+61412523821">0412 523 821</a>.';
+      if (badge) badge.textContent = 'Typically responds within 2 hours · 7 days a week';
+      if (next1title) next1title.textContent = 'Daniel reads your message';
+      if (next1body) next1body.textContent = 'Every enquiry lands directly with Daniel. No filtering, no delegation.';
+      if (next2title) next2title.textContent = 'He\'ll be in touch within 2 hours';
+      if (next2body) next2body.innerHTML = 'Available 7 days. If it\'s urgent, call <a href="tel:+61412523821" style="color:#c5a03c;text-decoration:none;font-weight:600;">0412 523 821</a> directly.';
+      if (next3title) next3title.textContent = 'A straightforward conversation';
+      if (next3body) next3body.textContent = 'No scripts, no pressure. Daniel will answer your questions and help you work out your next move.';
+    }
+
     if (from === 'walkthrough' || from === 'appraisal') {
       const eyebrow = document.querySelector('.ty-eyebrow');
       const h1 = document.querySelector('.ty-h1');

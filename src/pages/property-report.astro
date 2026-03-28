@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 ---
 
 <Layout
@@ -657,7 +658,7 @@ import Layout from '../layouts/Layout.astro';
     initGooglePlacesReport();
   } else {
     const s = document.createElement('script');
-    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlacesReport';
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesReport`;
     s.async = true; s.defer = true;
     document.head.appendChild(s);
   }

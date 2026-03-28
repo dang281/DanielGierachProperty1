@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   schema?: any;
   preloadImage?: string;
+  hideMobileCta?: boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   description = 'Data-driven campaigns and exceptional outcomes across Brisbane\'s inner east and south. Serving Bulimba, Balmoral, Hawthorne, Norman Park, Morningside and surrounds.',
   schema,
   preloadImage,
+  hideMobileCta = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://www.danielgierach.com').href;
@@ -222,7 +224,7 @@ const globalSchema = {
     <Footer />
 
     <!-- Mobile sticky call bar -->
-    <div class="mobile-call-bar">
+    <div class={`mobile-call-bar${hideMobileCta ? ' hidden-by-page' : ''}`}>
       <a href="/property-worth" class="mobile-appraisal-btn" onclick="gtag('event', 'mobile_worth_click', { event_category: 'lead', event_label: 'Mobile Call Bar' })">
         What's My Property Worth?
       </a>
