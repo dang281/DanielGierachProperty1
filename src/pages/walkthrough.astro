@@ -128,7 +128,7 @@ import Layout from '../layouts/Layout.astro';
       </h2>
 
       <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex;flex-direction:column;gap:1rem;">
-  <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you?from=appraisal" />
+  <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=walkthrough" />
   <input type="hidden" name="_subject" value="New appraisal request — danielgierach.com" />
 
         <!-- First Name + Last Name -->
@@ -722,7 +722,7 @@ import Layout from '../layouts/Layout.astro';
     document.head.appendChild(s);
   }
 
-  // ── Form submit via fetch → /thank-you?from=appraisal ─────────────
+  // ── Form submit via fetch → /thank-you?from=walkthrough ─────────────
   const appraisalForm = document.querySelector('form[action*="formspree"]') as HTMLFormElement;
   if (appraisalForm) {
     appraisalForm.addEventListener('submit', function(e) {
@@ -734,7 +734,7 @@ import Layout from '../layouts/Layout.astro';
         method: 'POST',
         body: new FormData(appraisalForm),
         headers: { 'Accept': 'application/json' }
-      }).finally(() => { window.location.href = '/thank-you?from=appraisal'; });
+      }).finally(() => { window.location.href = '/thank-you?from=walkthrough'; });
     });
   }
 </script>
