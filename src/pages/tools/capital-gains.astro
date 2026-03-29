@@ -919,7 +919,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <ul class="cg-assumptions" id="assumptionsList">
       <li>This is an estimate only and does not constitute tax advice.</li>
       <li>Built for Queensland property owners. Transfer duty uses Queensland OSR rates.</li>
-      <li>Uses 2024-25 Australian resident individual marginal tax rates.</li>
+      <li>Uses 2025-26 Australian resident individual marginal tax rates.</li>
       <li>Does not account for depreciation recapture, PAYG instalments, or Division 7A.</li>
       <li>Seek advice from a registered tax adviser before acting on any result.</li>
     </ul>
@@ -950,7 +950,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const fmtNeg  = (n: number) => n < 0 ? '(' + fmt(n) + ')' : fmt(n);
 
   /* ─────────────────────────────────────────────────────────────
-     TAX FUNCTIONS — 2024-25 Australian rates
+     TAX FUNCTIONS — 2025-26 Australian rates
   ───────────────────────────────────────────────────────────── */
 
   /** Individual resident income tax including LITO */
@@ -1382,12 +1382,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         let margRate = 0;
         if (resident) {
           if      (marginalIncome <= 18200)  margRate = 0;
-          else if (marginalIncome <= 45000)  margRate = 19;
-          else if (marginalIncome <= 135000) margRate = 32.5;
+          else if (marginalIncome <= 45000)  margRate = 16;
+          else if (marginalIncome <= 135000) margRate = 30;
           else if (marginalIncome <= 190000) margRate = 37;
           else                               margRate = 45;
         } else {
-          margRate = marginalIncome <= 135000 ? 32.5 : marginalIncome <= 190000 ? 37 : 45;
+          margRate = marginalIncome <= 135000 ? 30 : marginalIncome <= 190000 ? 37 : 45;
         }
         setText('r-marginalNote', `Top marginal rate applied: ${margRate}%${resident ? ' + Medicare' : ''}`);
       } else {
@@ -1445,7 +1445,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }) {
     const notes: string[] = [
       'This estimate is for general guidance only and does not constitute tax advice.',
-      'Uses 2024-25 Australian individual marginal tax rates and the Low Income Tax Offset.',
+      'Uses 2025-26 Australian individual marginal tax rates and the Low Income Tax Offset.',
     ];
 
     if (!ctx.resident) notes.push('Non-residents are not entitled to the 50% CGT discount on Australian real property sales.');
