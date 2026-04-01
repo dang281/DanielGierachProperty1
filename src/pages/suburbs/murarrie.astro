@@ -3,36 +3,105 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Real Estate Agent Murarrie Brisbane | Daniel Gierach"
-  description="Daniel Gierach, real estate agent in Murarrie Brisbane. Emerging riverside suburb with strong growth potential. Ray White Bulimba. Call 0412 523 821."
+  title="Real Estate Agent Murarrie Brisbane | Daniel Gierach Ray White"
+  description="Selling in Murarrie? Daniel Gierach is a specialist real estate agent covering Murarrie and Brisbane's emerging inner east. Ray White The Collective. Call 0412 523 821 for a free appraisal."
 >
 
 <script type="application/ld+json">{JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Real Estate Agent Murarrie Brisbane",
-  "description": "Daniel Gierach is a specialist real estate agent in Murarrie Brisbane, serving Brisbane's emerging inner east.",
-  "url": "https://www.danielgierach.com/suburbs/murarrie",
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.danielgierach.com" },
-      { "@type": "ListItem", "position": 2, "name": "Murarrie", "item": "https://www.danielgierach.com/suburbs/murarrie" }
-    ]
-  }
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RealEstateAgent"],
+      "name": "Daniel Gierach — Ray White The Collective",
+      "description": "Specialist real estate agent in Murarrie and Brisbane's emerging inner east. Selling property in Murarrie, Cannon Hill, Tingalpa, Morningside and surrounding suburbs.",
+      "url": "https://www.danielgierach.com/suburbs/murarrie",
+      "telephone": "+61412523821",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Murarrie",
+        "addressRegion": "QLD",
+        "postalCode": "4172",
+        "addressCountry": "AU"
+      },
+      "areaServed": [
+        { "@type": "Place", "name": "Murarrie QLD 4172" },
+        { "@type": "Place", "name": "Cannon Hill QLD 4170" },
+        { "@type": "Place", "name": "Tingalpa QLD 4173" },
+        { "@type": "Place", "name": "Morningside QLD 4170" },
+        { "@type": "Place", "name": "Hemmant QLD 4174" }
+      ],
+      "knowsAbout": ["Murarrie real estate", "Brisbane inner east property", "emerging Brisbane suburb", "riverside Brisbane homes"],
+      "sameAs": ["https://share.google/WipmgyJnjC5nkhGwx"]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Real Estate Agent Murarrie Brisbane — Daniel Gierach",
+      "url": "https://www.danielgierach.com/suburbs/murarrie",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.danielgierach.com" },
+          { "@type": "ListItem", "position": 2, "name": "Murarrie", "item": "https://www.danielgierach.com/suburbs/murarrie" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Murarrie Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach from Ray White The Collective is a specialist agent covering Murarrie and the surrounding inner east. He tracks the Murarrie market closely, works with buyers actively searching the suburb, and builds campaigns that convert that interest into strong sale results. Call 0412 523 821 for a free appraisal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Murarrie Brisbane like as a suburb?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Murarrie is an inner east Brisbane suburb approximately 7km from the CBD with Brisbane River frontage, Murarrie Recreation Reserve, and direct access to the Gateway Motorway. It is an emerging growth suburb attracting buyers who are priced out of Cannon Hill and Morningside. The residential pockets near the river sit in a very different environment to the surrounding industrial land, and buyers who visit invariably come away with a stronger sense of value than they expected."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far is Murarrie from Brisbane CBD?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Murarrie is approximately 7km from Brisbane CBD. It is also approximately 8km from Brisbane Airport, making it practical for frequent travellers. Access is via Wynnum Road and the Gateway Motorway."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Murarrie a good place to buy property in Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Murarrie offers relative value compared to neighbouring suburbs like Cannon Hill and Morningside, with improving amenity, riverside access, and strong infrastructure in the area. Buyers priced out of established inner east suburbs increasingly redirect their search to Murarrie, supporting ongoing demand. The suburb is considered one of Brisbane's emerging growth stories within the inner east corridor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get a free property appraisal in Murarrie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contact Daniel Gierach directly on 0412 523 821 or submit a request at danielgierach.com. Daniel will provide a detailed, obligation-free appraisal of your Murarrie property based on current market conditions and comparable sales."
+          }
+        }
+      ]
+    }
+  ]
 })}</script>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 1: HERO
-════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Murarrie</p>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Murarrie · QLD 4172</p>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
       Real Estate Agent<br/><em style="color:#f5d07a;">Murarrie.</em>
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
-      Specialist property sales in Murarrie and Brisbane's emerging inner east.
+      Specialist property sales in Murarrie and Brisbane's emerging inner east. Ray White The Collective.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
       <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
@@ -41,39 +110,59 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 2: WHY THIS AREA
-════════════════════════════════════════════════ -->
+<!-- SUBURB STATS STRIP -->
+<section style="background:#fff; border-bottom:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:900px; margin:0 auto; padding:0 24px;">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); text-align:center; border-left:1px solid rgba(28,25,23,0.08);">
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">~7 km</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">To Brisbane CBD</p>
+      </div>
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">4172</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Postcode</p>
+      </div>
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">~8 km</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">To Airport</p>
+      </div>
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">Inner East</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Riverside Growth</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY THIS AREA -->
 <section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">About Murarrie Brisbane</p>
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">An emerging suburb with serious growth credentials.</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Murarrie is one of Brisbane's most interesting growth stories. Riverside access, improving amenity and strong infrastructure investment have attracted a new wave of buyers who recognise the long-term value in this suburb.
+      Murarrie is one of Brisbane's most interesting growth stories. Located just 7km from the CBD with Brisbane River frontage, improving amenity, and strong infrastructure investment, the suburb has attracted a new wave of buyers who recognise the long-term value being established here. Murarrie sits in postcode 4172, bordered by Cannon Hill, Tingalpa, and Hemmant.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      I track the Murarrie market closely and work with buyers who are actively looking here. When you sell, that means a ready pool of qualified interest and campaigns built to convert it into the strongest possible result.
+      Brisbane Airport's proximity makes Murarrie a practical base for frequent travellers, and that angle is increasingly resonating with interstate buyers relocating to Brisbane for work. Murarrie Recreation Reserve provides open green space that residents of the densifying inner city are genuinely willing to pay for. The residential pockets near the river, particularly those around the Metroplex precinct boundary, sit in a very different environment to the surrounding industrial land, and buyers who do the site visit invariably come away with a stronger view of value than they arrived with.
     </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Brisbane Airport's proximity makes Murarrie a practical base for frequent travellers, and that angle is increasingly resonating with interstate buyers relocating to Brisbane for work. Murarrie Recreation Reserve provides the kind of green, open space that residents of the densifying inner city are genuinely willing to pay for. The suburb's residential pockets, particularly those along the river boundary near Metroplex, sit in a very different world to the surrounding industrial land, and buyers who do the site visit invariably come away with a stronger view of value than they arrived with. Demand has risen as buyers priced out of Cannon Hill redirect their search eastward.
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:2rem;">
+      Demand has risen steadily as buyers priced out of Cannon Hill redirect their search eastward. I track the Murarrie market closely and work with buyers who are actively looking here. When you sell, that means a ready pool of qualified interest and campaigns built to convert it into the strongest possible result.
     </p>
     <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
       <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
         <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Murarrie Specialist</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Eastern Brisbane</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Eastern Brisbane · Ray White</p>
       </div>
       <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
         <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Emerging Suburb</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Strong growth credentials</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Riverside · Growth credentials</p>
       </div>
     </div>
-    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/cannon-hill" style="color:#c4912a;">Cannon Hill</a>, <a href="/suburbs/hemmant" style="color:#c4912a;">Hemmant</a>, <a href="/suburbs/tingalpa" style="color:#c4912a;">Tingalpa</a>.</p>
+    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/cannon-hill" style="color:#c4912a;">Cannon Hill</a>, <a href="/suburbs/tingalpa" style="color:#c4912a;">Tingalpa</a>, <a href="/suburbs/morningside" style="color:#c4912a;">Morningside</a>.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 3: SUBURBS SERVED
-════════════════════════════════════════════════ -->
+<!-- SUBURBS SERVED -->
 <section style="background:#fff; padding:80px 24px;">
   <div style="max-width:900px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Areas Covered</p>
@@ -107,9 +196,7 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 4: HOW I CAN HELP YOU SELL
-════════════════════════════════════════════════ -->
+<!-- HOW I HELP -->
 <section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Selling in Murarrie</p>
@@ -119,14 +206,14 @@ import Layout from '../../layouts/Layout.astro';
         <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
         <div>
           <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Free appraisal</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I'll walk you through what your property is worth and what buyers are currently paying in your area.</p>
+          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I'll walk you through what your property is worth and what buyers are currently paying in Murarrie. No obligation, no pressure.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
         <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
         <div>
           <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Tailored campaign</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Every property is different. I build a strategy around your home, your timeline and your buyer profile.</p>
+          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Murarrie buyers include interstate relocators, airport workers, and buyers redirected from Cannon Hill. I build a strategy that reaches all of them.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
@@ -141,9 +228,52 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 5: CTA STRIP
-════════════════════════════════════════════════ -->
+<!-- FAQ SECTION -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Common Questions</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Murarrie real estate questions.</h2>
+    <div style="display:flex; flex-direction:column; gap:0;">
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What is Murarrie Brisbane like as a suburb?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Murarrie is an inner east Brisbane suburb approximately 7km from the CBD with Brisbane River frontage, Murarrie Recreation Reserve, and direct access to the Gateway Motorway. It is an emerging growth suburb with a mix of residential houses, newer builds, and proximity to the Metroplex on Gateway business precinct. The suburb is practical, well-connected, and offers relative value compared to Cannon Hill and Morningside.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          Who should I use as a real estate agent in Murarrie?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Daniel Gierach from Ray White The Collective is a specialist in Murarrie and the surrounding inner east. He understands the Murarrie buyer profile, the growth story of the suburb, and how to position a property to attract both local buyers and interstate relocators. Call 0412 523 821 for a no-obligation appraisal.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          Is Murarrie a good place to invest in property?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Murarrie is considered one of Brisbane's emerging inner east growth suburbs. It offers relative value compared to established neighbouring suburbs, improving amenity, and strong infrastructure in the area. Its proximity to Brisbane Airport and the Metroplex precinct supports both owner-occupier and investor demand. Buyers priced out of Cannon Hill and Morningside increasingly look to Murarrie, providing ongoing support for prices.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How far is Murarrie from Brisbane Airport?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Murarrie is approximately 8km from Brisbane Airport. The Gateway Motorway provides direct access, making it one of the most airport-accessible residential suburbs within the inner east. This proximity is a key selling point for frequent travellers and interstate relocators.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer; border-bottom:1px solid rgba(28,25,23,0.1);">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How do I get a free property appraisal in Murarrie?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Contact Daniel Gierach directly on 0412 523 821 or submit a request at danielgierach.com. Daniel will provide a detailed, obligation-free appraisal based on current Murarrie sales data and your property's specific features.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
 <section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
   <div style="max-width:700px; margin:0 auto;">
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in Murarrie?</h2>
@@ -163,12 +293,19 @@ import Layout from '../../layouts/Layout.astro';
     section div[style*="grid-template-columns:repeat(3"] {
       grid-template-columns: repeat(2, 1fr) !important;
     }
+    section div[style*="grid-template-columns:repeat(4"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
   @media (max-width: 480px) {
     section div[style*="grid-template-columns:repeat(3"] {
       grid-template-columns: 1fr !important;
     }
+    section div[style*="grid-template-columns:repeat(4"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
+  details summary::-webkit-details-marker { display: none; }
 </style>
 
 </Layout>

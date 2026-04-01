@@ -3,36 +3,105 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Real Estate Agent Seven Hills Brisbane | Daniel Gierach"
-  description="Daniel Gierach, real estate agent in Seven Hills Brisbane. Specialist in elevated inner-east Brisbane property sales. Ray White Bulimba. Call 0412 523 821."
+  title="Real Estate Agent Seven Hills Brisbane | Daniel Gierach Ray White"
+  description="Selling in Seven Hills? Daniel Gierach is a specialist real estate agent covering Seven Hills and Brisbane's elevated inner east. Ray White The Collective. Call 0412 523 821 for a free appraisal."
 >
 
 <script type="application/ld+json">{JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Real Estate Agent Seven Hills Brisbane",
-  "description": "Daniel Gierach is a specialist real estate agent in Seven Hills Brisbane, serving the elevated inner-east corridor.",
-  "url": "https://www.danielgierach.com/suburbs/seven-hills",
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.danielgierach.com" },
-      { "@type": "ListItem", "position": 2, "name": "Seven Hills", "item": "https://www.danielgierach.com/suburbs/seven-hills" }
-    ]
-  }
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RealEstateAgent"],
+      "name": "Daniel Gierach — Ray White The Collective",
+      "description": "Specialist real estate agent in Seven Hills and Brisbane's elevated inner east. Selling property in Seven Hills, Camp Hill, Norman Park, Balmoral and surrounding suburbs.",
+      "url": "https://www.danielgierach.com/suburbs/seven-hills",
+      "telephone": "+61412523821",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Seven Hills",
+        "addressRegion": "QLD",
+        "postalCode": "4170",
+        "addressCountry": "AU"
+      },
+      "areaServed": [
+        { "@type": "Place", "name": "Seven Hills QLD 4170" },
+        { "@type": "Place", "name": "Camp Hill QLD 4152" },
+        { "@type": "Place", "name": "Norman Park QLD 4170" },
+        { "@type": "Place", "name": "Balmoral QLD 4171" },
+        { "@type": "Place", "name": "Hawthorne QLD 4171" }
+      ],
+      "knowsAbout": ["Seven Hills real estate", "Brisbane inner east property", "elevated Brisbane suburb homes", "character home sales Brisbane"],
+      "sameAs": ["https://share.google/WipmgyJnjC5nkhGwx"]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Real Estate Agent Seven Hills Brisbane — Daniel Gierach",
+      "url": "https://www.danielgierach.com/suburbs/seven-hills",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.danielgierach.com" },
+          { "@type": "ListItem", "position": 2, "name": "Seven Hills", "item": "https://www.danielgierach.com/suburbs/seven-hills" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Seven Hills Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach from Ray White The Collective is a specialist agent covering Seven Hills and Brisbane's elevated inner east. With deep knowledge of the local market, elevated-street buyer demand, and the city-view premium, Daniel provides tailored campaigns for Seven Hills properties and represents both sellers and buyers across the suburb."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Seven Hills Brisbane like as a suburb?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seven Hills is a quiet, elevated inner-east Brisbane suburb approximately 6km from the CBD. It is known for its large allotments, city and bushland views, and the Seven Hills Bushland Reserve which borders the suburb on multiple sides. The suburb attracts buyers who prioritise privacy, green outlooks, and block size, and offers relative value compared to neighbouring elevated suburbs like Balmoral and Camp Hill."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far is Seven Hills from Brisbane CBD?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seven Hills is approximately 6km from Brisbane's CBD by road. The suburb sits in Brisbane's inner east corridor, with access via Wynnum Road and Old Cleveland Road."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What types of properties are in Seven Hills Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seven Hills is predominantly a low-density residential suburb of detached houses, including a mix of prewar Queenslanders and character homes on larger allotments, alongside more modern builds. The suburb is largely lowset and highset timber homes on generous blocks, many with city views from the elevated ridge streets."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get a free property appraisal in Seven Hills?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can request a free property appraisal from Daniel Gierach by calling 0412 523 821 or visiting danielgierach.com. Daniel provides obligation-free appraisals for Seven Hills homes and will walk you through current comparable sales and what buyers are paying in your street."
+          }
+        }
+      ]
+    }
+  ]
 })}</script>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 1: HERO
-════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Seven Hills</p>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Seven Hills · QLD 4170</p>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
       Real Estate Agent<br/><em style="color:#f5d07a;">Seven Hills.</em>
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
-      Specialist property sales in Seven Hills and Brisbane's elevated inner east.
+      Specialist property sales in Seven Hills and Brisbane's elevated inner east. Ray White The Collective.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
       <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
@@ -41,39 +110,62 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 2: WHY THIS AREA
-════════════════════════════════════════════════ -->
+<!-- SUBURB STATS STRIP -->
+<section style="background:#fff; border-bottom:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:900px; margin:0 auto; padding:0 24px;">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); text-align:center; border-left:1px solid rgba(28,25,23,0.08);">
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">~6 km</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">To Brisbane CBD</p>
+      </div>
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">4170</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Postcode</p>
+      </div>
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">Elevated</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Ridge Position</p>
+      </div>
+      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#1c1917; line-height:1;">Inner East</p>
+        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Brisbane Corridor</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY THIS AREA -->
 <section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">About Seven Hills Brisbane</p>
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">Elevated living with strong buyer demand.</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Seven Hills is one of Brisbane's best-kept secrets. Elevated streets, city views and a quiet residential feel make it highly sought after by buyers who want space and lifestyle without leaving the inner city.
+      Seven Hills is one of Brisbane's best-kept secrets. Elevated streets, city views and a quiet residential feel make it highly sought after by buyers who want space and lifestyle without leaving the inner city. The suburb sits just 6km from the CBD and shares a postcode with Norman Park and Morningside, placing it firmly within the premium inner-east corridor.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Marshall Avenue and the streets running along the ridge are among Brisbane's best-kept address secrets, offering large allotments with city views that would cost significantly more in nearby Balmoral or Camp Hill. The Seven Hills Bushland Reserve borders the suburb on multiple sides, giving residents a genuine sense of seclusion within 6km of the CBD.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Buyers in Seven Hills tend to be deliberate and discerning. They are typically looking for larger blocks, privacy, green outlooks, and city views, and are often coming from Balmoral, Hawthorne, or Norman Park and being priced out. That relative value gap has driven consistent demand and price growth, particularly for well-positioned properties on the upper ridge streets.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:2rem;">
       Having sold in Seven Hills and the surrounding inner east for over a decade, I understand what buyers look for here and how to position your property to attract the right people at the right price.
-    </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Marshall Avenue and the streets running along the ridge are among Brisbane's best-kept address secrets, offering large allotments with city views that would cost significantly more in nearby Balmoral or Camp Hill. The Seven Hills Bushland Reserve borders the suburb on multiple sides, giving residents a genuine sense of seclusion within 6km of the CBD. Buyers here tend to be deliberate and discerning, prioritising privacy, green outlooks and block size over proximity to retail strips. Demand for well-located properties has intensified as buyers recognise the relative value gap with comparable elevated suburbs.
     </p>
     <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
       <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
         <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Seven Hills Specialist</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Inner-east Brisbane</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Inner-east Brisbane · Ray White</p>
       </div>
       <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
         <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Quiet Elevated Suburb</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Strong buyer demand</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">City views · Large allotments</p>
       </div>
     </div>
     <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/balmoral" style="color:#c4912a;">Balmoral</a>, <a href="/suburbs/camp-hill" style="color:#c4912a;">Camp Hill</a>, <a href="/suburbs/norman-park" style="color:#c4912a;">Norman Park</a>.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 3: SUBURBS SERVED
-════════════════════════════════════════════════ -->
+<!-- SUBURBS SERVED -->
 <section style="background:#fff; padding:80px 24px;">
   <div style="max-width:900px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Areas Covered</p>
@@ -107,9 +199,7 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 4: HOW I CAN HELP YOU SELL
-════════════════════════════════════════════════ -->
+<!-- HOW I HELP -->
 <section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Selling in Seven Hills</p>
@@ -119,14 +209,14 @@ import Layout from '../../layouts/Layout.astro';
         <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
         <div>
           <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Free appraisal</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I'll walk you through what your property is worth and what buyers are currently paying in your area.</p>
+          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I'll walk you through what your property is worth and what buyers are currently paying in your area. No obligation, no pressure.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
         <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
         <div>
           <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Tailored campaign</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Every property is different. I build a strategy around your home, your timeline and your buyer profile.</p>
+          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Seven Hills buyers are specific. I build a campaign that reaches the right people: owner-occupiers who value elevation, views, and block size.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
@@ -141,9 +231,45 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 5: CTA STRIP
-════════════════════════════════════════════════ -->
+<!-- FAQ SECTION -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Common Questions</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Seven Hills real estate questions.</h2>
+    <div style="display:flex; flex-direction:column; gap:0;">
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What is Seven Hills Brisbane like as a suburb?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Seven Hills is a quiet, elevated inner-east suburb approximately 6km from Brisbane CBD. It is known for large allotments, city and bushland views, and the Seven Hills Bushland Reserve which wraps the suburb on multiple sides. It feels more secluded than its location suggests, which is precisely what its buyers are looking for. Property is predominantly detached houses, with a mix of prewar character homes and more modern builds on generous blocks.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          Who should I use as a real estate agent in Seven Hills?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Daniel Gierach from Ray White The Collective is a specialist in Seven Hills and the surrounding elevated inner east. With over a decade of sales in the area, Daniel understands the buyer profile, the premium that views and elevation command, and how to position a Seven Hills property to achieve the strongest result. Call 0412 523 821 for a no-obligation appraisal.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer;">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How far is Seven Hills from Brisbane CBD?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Seven Hills is approximately 6km from Brisbane CBD by road. Access is via Wynnum Road and Old Cleveland Road. The suburb is within the inner east corridor and is close to shops, schools, and amenities in Norman Park, Morningside, and Carina.</p>
+      </details>
+      <details style="border-top:1px solid rgba(28,25,23,0.1); padding:1.5rem 0; cursor:pointer; border-bottom:1px solid rgba(28,25,23,0.1);">
+        <summary style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How do I get a free property appraisal in Seven Hills?
+          <span style="color:#c4912a; font-size:1.25rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.8; color:#6b6560; margin-top:1rem;">Contact Daniel Gierach directly on 0412 523 821 or submit a request via danielgierach.com. Daniel will arrange a walk-through of your property and provide a detailed appraisal based on current comparable sales, buyer demand, and your property's specific features.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
 <section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
   <div style="max-width:700px; margin:0 auto;">
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in Seven Hills?</h2>
@@ -163,12 +289,19 @@ import Layout from '../../layouts/Layout.astro';
     section div[style*="grid-template-columns:repeat(3"] {
       grid-template-columns: repeat(2, 1fr) !important;
     }
+    section div[style*="grid-template-columns:repeat(4"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
   @media (max-width: 480px) {
     section div[style*="grid-template-columns:repeat(3"] {
       grid-template-columns: 1fr !important;
     }
+    section div[style*="grid-template-columns:repeat(4"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
+  details summary::-webkit-details-marker { display: none; }
 </style>
 
 </Layout>
