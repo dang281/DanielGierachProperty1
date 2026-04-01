@@ -1,0 +1,296 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Investment Property Depreciation Estimator"
+  tool="Depreciation Estimator"
+  phase="Investor Tools"
+  description="Estimate the tax depreciation deductions available on a Queensland investment property. Covers Division 43 (building allowance) and Division 40 (plant and equipment)."
+>
+
+<style>
+  .dep-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .dep-input:focus { border-color: var(--color-gold); }
+  .dep-select {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.5rem;
+  }
+
+  .result-card {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .dep-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    font-size: 0.82rem;
+    color: #1c1917;
+  }
+  .dep-row:last-child { border-bottom: none; }
+  .dep-row .label { color: #78716c; }
+  .dep-row.total { font-weight: 700; border-top: 2px solid rgba(28,25,23,0.1); padding-top: 0.85rem; }
+
+  .year-bar { display: flex; align-items: center; gap: 0.75rem; font-size: 0.78rem; color: #1c1917; }
+  .bar-bg { flex: 1; height: 8px; background: rgba(28,25,23,0.08); border-radius: 4px; overflow: hidden; }
+  .bar-fill-d43 { height: 100%; background: #3a8fa8; border-radius: 4px; }
+  .bar-fill-d40 { height: 100%; background: #c4912a; border-radius: 4px; }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:2rem;max-width:860px;">
+
+  <!-- ATO rule callout -->
+  <div style="background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;padding:1rem 1.25rem;">
+    <p style="font-size:0.85rem;color:#c0392b;font-weight:700;margin:0 0 0.3rem;">2017 ATO Rule Change</p>
+    <p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.7;">
+      From 1 July 2017, <strong>Division 40 plant and equipment deductions</strong> (carpet, appliances, hot water, etc.) are only available to investors who are the <em>first owner</em> of those assets — i.e., new properties or where you installed the items yourself. If you purchased an established property after 9 May 2017, you cannot claim Division 40 on pre-existing assets. Division 43 (building structure) is unaffected if the building was constructed after 15 September 1987.
+      <a href="https://www.ato.gov.au/general/property-and-capital-gains-tax/your-investment-property/what-investment-expenses-can-i-claim/" target="_blank" style="color:#c4912a;"> ATO guidance</a>.
+    </p>
+  </div>
+
+  <!-- Inputs -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.25rem;">
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Purchase Price ($)</label>
+      <input id="dep-price" class="dep-input" type="number" value="750000" min="100000" max="10000000" step="10000" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Year Built</label>
+      <input id="dep-year" class="dep-input" type="number" value="2005" min="1900" max="2025" step="1" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Property Type</label>
+      <select id="dep-type" class="dep-select">
+        <option value="house">House / Townhouse</option>
+        <option value="unit">Unit / Apartment</option>
+        <option value="new">New property (first owner)</option>
+      </select>
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Your Income Tax Bracket</label>
+      <select id="dep-bracket" class="dep-select">
+        <option value="0.19">19% (income $18,201 – $45,000)</option>
+        <option value="0.325">32.5% (income $45,001 – $120,000)</option>
+        <option value="0.37" selected>37% (income $120,001 – $180,000)</option>
+        <option value="0.45">45% (income over $180,000)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="dep-results" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+    <!-- Eligibility flags -->
+    <div id="eligibility-flags" style="display:flex;flex-direction:column;gap:0.5rem;"></div>
+
+    <!-- Key metrics -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#3a8fa8;">Division 43 — Year 1</span>
+        <span id="d43-yr1" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">Building structure allowance (2.5%/yr)</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">Division 40 — Year 1</span>
+        <span id="d40-yr1" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">Plant and equipment (diminishing value)</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;">Est. Tax Saving — Year 1</span>
+        <span id="tax-saving" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">At your marginal rate</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#7e6fa8;">10-Year Total Deduction</span>
+        <span id="total-10yr" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">Combined Div 43 + Div 40 estimate</span>
+      </div>
+    </div>
+
+    <!-- Breakdown -->
+    <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+      <div style="padding:1rem 1.5rem;background:#f9f7f4;border-bottom:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Depreciation Assumptions</p>
+      </div>
+      <div style="padding:0 1.5rem;" id="dep-breakdown"></div>
+    </div>
+
+    <!-- 5-year schedule -->
+    <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+      <div style="padding:1rem 1.5rem;background:#f9f7f4;border-bottom:1px solid rgba(28,25,23,0.08);">
+        <div style="display:flex;align-items:center;gap:1.5rem;">
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">5-Year Deduction Schedule</p>
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.65rem;color:#3a8fa8;font-weight:700;"><span style="width:10px;height:10px;background:#3a8fa8;border-radius:2px;display:inline-block;"></span>Div 43</span>
+            <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.65rem;color:#c4912a;font-weight:700;"><span style="width:10px;height:10px;background:#c4912a;border-radius:2px;display:inline-block;"></span>Div 40</span>
+          </div>
+        </div>
+      </div>
+      <div id="dep-schedule" style="padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:0.75rem;"></div>
+    </div>
+
+  </div>
+
+  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+    <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0;">
+      <strong>Get a Quantity Surveyor report</strong> for accurate figures. A QS report (typically $500-$800) produces a legally defensible depreciation schedule accepted by the ATO and is itself tax deductible. Firms such as BMT Tax Depreciation, Washington Brown, and Deppro operate across Brisbane. This calculator is indicative only.
+    </p>
+  </div>
+
+  <p style="font-size:0.72rem;color:#a8a29e;line-height:1.6;">
+    Tax deductions shown are estimates only. Does not constitute tax advice. Consult a registered tax agent or accountant. ATO rates: <a href="https://www.ato.gov.au" target="_blank" style="color:#c4912a;">ato.gov.au</a>. Division 43 rate 2.5% p.a. for residential buildings constructed after 15 September 1987 (40-year life). Division 40 rates based on ATO effective life determinations. 2017 budget changes apply to second-hand assets purchased post 9 May 2017.
+  </p>
+
+</div>
+
+<script>
+  const priceEl   = document.getElementById('dep-price')   as HTMLInputElement;
+  const yearEl    = document.getElementById('dep-year')    as HTMLInputElement;
+  const typeEl    = document.getElementById('dep-type')    as HTMLSelectElement;
+  const bracketEl = document.getElementById('dep-bracket') as HTMLSelectElement;
+
+  const d43Yr1El  = document.getElementById('d43-yr1')!;
+  const d40Yr1El  = document.getElementById('d40-yr1')!;
+  const taxSaveEl = document.getElementById('tax-saving')!;
+  const total10El = document.getElementById('total-10yr')!;
+  const flagsEl   = document.getElementById('eligibility-flags')!;
+  const breakdownEl=document.getElementById('dep-breakdown')!;
+  const scheduleEl= document.getElementById('dep-schedule')!;
+
+  function fmt(n: number) { return '$' + Math.round(n).toLocaleString('en-AU'); }
+
+  function render() {
+    const price   = parseFloat(priceEl.value)   || 0;
+    const year    = parseInt(yearEl.value)       || 0;
+    const type    = typeEl.value;
+    const bracket = parseFloat(bracketEl.value) || 0.37;
+    const isNew   = type === 'new';
+    const currentYear = 2025;
+    const age     = currentYear - year;
+
+    // Division 43 eligibility: built after 15 Sep 1987
+    const div43Eligible = year >= 1988;
+    // If pre-2017 purchase: Div 40 eligible. If post-2017: only if new.
+    const div40Eligible = isNew;
+
+    // Flags
+    flagsEl.innerHTML = '';
+    if (!div43Eligible) {
+      flagsEl.innerHTML += `<div style="background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;padding:0.75rem 1.1rem;font-size:0.8rem;color:#c0392b;font-weight:700;">Built before 1988 — Division 43 (building allowance) is not available for this property.</div>`;
+    }
+    if (!div40Eligible) {
+      flagsEl.innerHTML += `<div style="background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;padding:0.75rem 1.1rem;font-size:0.8rem;color:#c0392b;">Division 40 (plant and equipment) is only available for <strong>new properties</strong> or assets you personally installed. If you purchased an established property, you cannot claim Division 40 on pre-existing assets (ATO 2017 rule change).</div>`;
+    }
+    if (div43Eligible && age > 40) {
+      flagsEl.innerHTML += `<div style="background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;padding:0.75rem 1.1rem;font-size:0.8rem;color:#c0392b;">Building is over 40 years old — Division 43 deductions may be exhausted (40-year effective life).</div>`;
+    }
+
+    // Estimate construction cost component (rough rule of thumb)
+    // House: ~45-55% of purchase price; Unit: ~55-65%; New: ~55-65%
+    const constructPct = type === 'house' ? 0.50 : 0.60;
+    const constructCost = price * constructPct;
+
+    // Division 43: 2.5% of construction cost per year
+    const remainingYears = Math.max(0, 40 - age);
+    const d43Yr1 = div43Eligible && remainingYears > 0 ? constructCost * 0.025 : 0;
+
+    // Division 40: Plant & equipment estimate
+    // Typical year 1 diminishing value deductions as % of purchase price
+    const d40Pct = type === 'unit' ? 0.025 : 0.018; // units typically have more P&E
+    const d40Yr1 = div40Eligible ? price * d40Pct : 0;
+
+    const totalYr1   = d43Yr1 + d40Yr1;
+    const taxSaving  = totalYr1 * bracket;
+
+    // 10-year totals
+    const d43Total10 = div43Eligible ? Math.min(remainingYears, 10) * d43Yr1 : 0;
+    // Div 40 diminishes: rough estimate using declining balance
+    let d40Total10 = 0;
+    let d40Running = d40Yr1;
+    for (let i = 0; i < 10; i++) {
+      d40Total10 += d40Running;
+      d40Running *= 0.75; // diminishing value approximation
+    }
+
+    d43Yr1El.textContent  = div43Eligible && remainingYears > 0 ? fmt(d43Yr1) : 'N/A';
+    d40Yr1El.textContent  = div40Eligible ? fmt(d40Yr1) : 'N/A';
+    taxSaveEl.textContent = fmt(taxSaving);
+    total10El.textContent = fmt(d43Total10 + d40Total10);
+
+    // Breakdown rows
+    breakdownEl.innerHTML = [
+      ['Purchase price', fmt(price)],
+      ['Estimated construction cost (' + Math.round(constructPct * 100) + '% of price)', fmt(constructCost)],
+      ['Property age', age + ' years'],
+      ['Division 43 eligible', div43Eligible && remainingYears > 0 ? 'Yes — ' + remainingYears + ' years remaining' : 'No'],
+      ['Division 43 rate', '2.5% p.a. of construction cost'],
+      ['Division 40 eligible', div40Eligible ? 'Yes (new property / first owner)' : 'No (2017 ATO rule applies)'],
+      ['Marginal tax rate', Math.round(bracket * 100) + '%'],
+    ].map(([label, val]) => `
+      <div class="dep-row">
+        <span class="label">${label}</span>
+        <span style="font-weight:500;">${val}</span>
+      </div>
+    `).join('');
+
+    // 5-year schedule
+    scheduleEl.innerHTML = '';
+    const maxBar = d43Yr1 + d40Yr1;
+    let d40Running2 = d40Yr1;
+    for (let y = 1; y <= 5; y++) {
+      const d43 = div43Eligible && (age + y - 1) < 40 ? d43Yr1 : 0;
+      const d40 = div40Eligible ? d40Running2 : 0;
+      const total = d43 + d40;
+      const d43W  = maxBar > 0 ? (d43 / maxBar) * 100 : 0;
+      const d40W  = maxBar > 0 ? (d40 / maxBar) * 100 : 0;
+      scheduleEl.innerHTML += `
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;font-size:0.78rem;font-weight:700;color:#1c1917;">
+            <span>Year ${y}</span>
+            <span>${fmt(total)}</span>
+          </div>
+          <div style="display:flex;height:8px;gap:2px;border-radius:4px;overflow:hidden;background:rgba(28,25,23,0.06);">
+            <div style="width:${d43W}%;background:#3a8fa8;"></div>
+            <div style="width:${d40W}%;background:#c4912a;"></div>
+          </div>
+        </div>
+      `;
+      d40Running2 *= 0.75;
+    }
+  }
+
+  [priceEl, yearEl, typeEl, bracketEl].forEach(el => el.addEventListener('input', render));
+  render();
+</script>
+
+</ToolLayout>

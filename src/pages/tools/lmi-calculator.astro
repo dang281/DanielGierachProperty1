@@ -1,0 +1,220 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="LMI Calculator"
+  tool="LMI Calculator"
+  phase="Buyer Tools"
+  description="Estimate your Lenders Mortgage Insurance premium based on your deposit size and property value. LMI applies when your deposit is under 20%."
+>
+
+<style>
+  .lmi-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .lmi-input:focus { border-color: var(--color-gold); }
+
+  .result-card {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .lvr-bar-wrap { height: 12px; background: rgba(28,25,23,0.08); border-radius: 6px; overflow: hidden; position: relative; margin: 0.5rem 0; }
+  .lvr-bar { height: 100%; border-radius: 6px; transition: width 0.4s ease, background 0.3s; }
+  .lvr-tick { position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(28,25,23,0.2); }
+
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    font-size: 0.82rem;
+    color: #1c1917;
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-row .label { color: #78716c; }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:2rem;max-width:700px;">
+
+  <!-- Inputs -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Property Purchase Price ($)</label>
+      <input id="lmi-price" class="lmi-input" type="number" value="700000" min="100000" max="5000000" step="5000" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Your Deposit ($)</label>
+      <input id="lmi-deposit" class="lmi-input" type="number" value="70000" min="0" max="5000000" step="5000" />
+    </div>
+  </div>
+
+  <!-- LVR visual -->
+  <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);padding:1.5rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+      <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;">Loan to Value Ratio (LVR)</span>
+      <span id="lvr-pct" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;">90%</span>
+    </div>
+    <div class="lvr-bar-wrap">
+      <div id="lvr-bar" class="lvr-bar" style="width:90%;background:#c0392b;"></div>
+      <div class="lvr-tick" style="left:80%;"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:#a8a29e;margin-top:0.35rem;">
+      <span>0%</span><span style="position:relative;left:-12px;">80% (no LMI)</span><span>100%</span>
+    </div>
+    <p id="lvr-note" style="margin-top:0.75rem;font-size:0.8rem;color:#78716c;line-height:1.6;"></p>
+  </div>
+
+  <!-- No LMI message -->
+  <div id="no-lmi-msg" style="display:none;background:rgba(74,158,74,0.08);border-left:3px solid #4a9e4a;padding:1rem 1.25rem;">
+    <p style="font-size:0.85rem;color:#1a5c3a;font-weight:700;margin:0 0 0.25rem;">No LMI required</p>
+    <p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.6;">Your deposit is 20% or more of the purchase price. You do not need to pay Lenders Mortgage Insurance.</p>
+  </div>
+
+  <!-- LMI breakdown -->
+  <div id="lmi-results" style="display:none;flex-direction:column;gap:1.25rem;">
+
+    <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+      <div style="padding:1rem 1.5rem;background:#f9f7f4;border-bottom:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Estimated LMI Cost</p>
+      </div>
+      <div style="padding:0 1.5rem;" id="breakdown-rows"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">LMI Premium</span>
+        <span id="lmi-premium" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.75rem;color:#78716c;">Approximate — varies by lender</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">Total LMI (incl. QLD Stamp Duty)</span>
+        <span id="lmi-total" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.75rem;color:#78716c;">9% QLD stamp duty applied to premium</span>
+      </div>
+    </div>
+
+    <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+      <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0;">
+        <strong>Tip:</strong> LMI can usually be capitalised (added to your loan) rather than paid upfront. This increases your loan balance and total interest paid over the loan term. Ask your lender or broker which option works better for your situation.
+      </p>
+    </div>
+
+    <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+      <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0 0 0.4rem;">
+        <strong>Ways to avoid LMI:</strong>
+      </p>
+      <ul style="font-size:0.82rem;color:#1c1917;line-height:1.9;margin:0;padding-left:1.25rem;">
+        <li>Save a 20% deposit</li>
+        <li>Use a guarantor (family guarantee using parent's equity)</li>
+        <li>Queensland First Home Guarantee (eligible first home buyers, 5% deposit, no LMI)</li>
+        <li>Some professions (doctors, lawyers, accountants) qualify for LMI waivers with certain lenders</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:0.72rem;color:#a8a29e;line-height:1.6;">
+    LMI rates are approximate based on industry averages (Helia/Arch MI). Actual premiums vary by lender, loan type, and insurer. QLD stamp duty on LMI is 9% of the LMI premium. This calculator is a guide only. Source: <a href="https://www.qro.qld.gov.au" target="_blank" style="color:#c4912a;">Queensland Revenue Office</a>.
+  </p>
+
+</div>
+
+<script>
+  const priceInput  = document.getElementById('lmi-price')   as HTMLInputElement;
+  const depositInput= document.getElementById('lmi-deposit') as HTMLInputElement;
+  const lvrPct      = document.getElementById('lvr-pct')!;
+  const lvrBar      = document.getElementById('lvr-bar') as HTMLElement;
+  const lvrNote     = document.getElementById('lvr-note')!;
+  const noLmiMsg    = document.getElementById('no-lmi-msg')!;
+  const lmiResults  = document.getElementById('lmi-results')!;
+  const breakdownRows= document.getElementById('breakdown-rows')!;
+  const lmiPremiumEl= document.getElementById('lmi-premium')!;
+  const lmiTotalEl  = document.getElementById('lmi-total')!;
+
+  // Approximate LMI rates (% of loan amount) by LVR band
+  // Source: industry average based on Helia (formerly Genworth) published rate card
+  function getLmiRate(lvr: number): number {
+    if (lvr <= 80) return 0;
+    if (lvr <= 85) return 0.83;
+    if (lvr <= 90) return 1.72;
+    if (lvr <= 92) return 2.81;
+    if (lvr <= 95) return 3.84;
+    return 0; // >95% — lenders typically don't lend
+  }
+
+  function fmt(n: number) {
+    return '$' + Math.round(n).toLocaleString('en-AU');
+  }
+
+  function render() {
+    const price   = parseFloat(priceInput.value)   || 0;
+    const deposit = parseFloat(depositInput.value) || 0;
+    if (price <= 0) return;
+
+    const loan  = Math.max(0, price - deposit);
+    const lvr   = price > 0 ? (loan / price) * 100 : 0;
+    const lvrRounded = Math.round(lvr * 10) / 10;
+
+    lvrPct.textContent = lvrRounded.toFixed(1) + '%';
+
+    const barColor = lvr <= 80 ? '#4a9e4a' : lvr <= 90 ? '#e07a3a' : '#c0392b';
+    lvrBar.style.width   = Math.min(lvr, 100) + '%';
+    lvrBar.style.background = barColor;
+
+    if (lvr <= 80) {
+      lvrNote.textContent = 'Your LVR is at or below 80%. No LMI is required.';
+      noLmiMsg.style.display = 'block';
+      lmiResults.style.display = 'none';
+    } else if (lvr > 95) {
+      lvrNote.textContent = 'LVR above 95% — most lenders will not approve this loan. A larger deposit is required.';
+      noLmiMsg.style.display = 'none';
+      lmiResults.style.display = 'none';
+    } else {
+      lvrNote.textContent = `LVR of ${lvrRounded.toFixed(1)}% — LMI applies. Deposit needs to reach ${fmt(price * 0.2)} to eliminate LMI.`;
+      noLmiMsg.style.display = 'none';
+      lmiResults.style.display = 'flex';
+
+      const rate    = getLmiRate(lvr);
+      const premium = loan * rate / 100;
+      const duty    = premium * 0.09; // QLD stamp duty on LMI
+      const total   = premium + duty;
+
+      lmiPremiumEl.textContent = fmt(premium);
+      lmiTotalEl.textContent   = fmt(total);
+
+      breakdownRows.innerHTML = [
+        ['Loan amount', fmt(loan)],
+        ['LVR band', `${lvr <= 85 ? '80-85' : lvr <= 90 ? '85-90' : lvr <= 92 ? '90-92' : '92-95'}%`],
+        ['LMI rate applied', rate.toFixed(2) + '% of loan'],
+        ['LMI premium', fmt(premium)],
+        ['QLD stamp duty on LMI (9%)', fmt(duty)],
+        ['Total LMI cost', fmt(total)],
+        ['To reach 20% deposit (no LMI)', fmt(Math.max(0, price * 0.2 - deposit)) + ' more needed'],
+      ].map(([label, val], i) => `
+        <div class="breakdown-row" style="${i===5?'font-weight:700;border-top:2px solid rgba(28,25,23,0.1);':''}">
+          <span class="label">${label}</span>
+          <span>${val}</span>
+        </div>
+      `).join('');
+    }
+  }
+
+  [priceInput, depositInput].forEach(el => el.addEventListener('input', render));
+  render();
+</script>
+
+</ToolLayout>

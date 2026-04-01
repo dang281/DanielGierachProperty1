@@ -1,0 +1,460 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Open Home Inspection Checklist"
+  tool="Open Home Inspection Checklist"
+  phase="Buyer Tools"
+  description="Walk through any property with a structured checklist. Rate each area, flag issues, and get an overall score to compare properties."
+>
+
+<style>
+  .oh-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .oh-input:focus { border-color: var(--color-gold); }
+
+  .section-block {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    overflow: hidden;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+    user-select: none;
+  }
+  .section-header:hover { background: #f9f7f4; }
+
+  .section-items { display: none; }
+  .section-items.open { display: block; }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid rgba(28,25,23,0.05);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item:hover { background: #f9f7f4; }
+  .checklist-item.flagged { background: #fff5f5; }
+
+  .item-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(28,25,23,0.2);
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .checklist-item.checked .item-check {
+    background: #2a7a45;
+    border-color: #2a7a45;
+  }
+  .checklist-item.flagged .item-check {
+    background: #c0392b;
+    border-color: #c0392b;
+  }
+
+  .flag-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    background: none;
+    border: 1px solid rgba(28,25,23,0.15);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #78716c;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .flag-btn:hover, .flag-btn.active { background: #c0392b; color: #fff; border-color: #c0392b; }
+
+  .star-rating { display: flex; gap: 0.3rem; padding: 0.75rem 1.5rem; align-items: center; border-top: 1px solid rgba(28,25,23,0.06); }
+  .star { font-size: 1.25rem; cursor: pointer; color: rgba(28,25,23,0.2); transition: color 0.1s; }
+  .star.lit { color: #c4912a; }
+
+  .score-ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .score-circle { position: relative; width: 120px; height: 120px; }
+  .score-circle svg { transform: rotate(-90deg); }
+  .score-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  .priority-badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    flex-shrink: 0;
+  }
+
+  @media print {
+    .no-print { display: none !important; }
+    .section-items { display: block !important; }
+    body { font-size: 12px; }
+  }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:2rem;">
+
+  <!-- Property header -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" class="no-print">
+    <div>
+      <label class="oh-label" style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Property Address</label>
+      <input id="prop-address" class="oh-input" type="text" placeholder="e.g. 14 River St, Hawthorne" />
+    </div>
+    <div>
+      <label class="oh-label" style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Inspection Date</label>
+      <input id="prop-date" class="oh-input" type="date" />
+    </div>
+  </div>
+
+  <!-- Score summary -->
+  <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;padding:1.5rem 2rem;background:#fff;border:1px solid rgba(28,25,23,0.1);">
+    <div class="score-ring-wrap">
+      <div class="score-circle">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(28,25,23,0.08)" stroke-width="8"/>
+          <circle id="score-ring" cx="60" cy="60" r="50" fill="none" stroke="#c4912a" stroke-width="8"
+            stroke-dasharray="314.2" stroke-dashoffset="314.2" stroke-linecap="round" style="transition:stroke-dashoffset 0.4s ease,stroke 0.3s;"/>
+        </svg>
+        <div class="score-text">
+          <span id="score-val" style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;color:#1c1917;line-height:1;">0</span>
+          <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;color:#78716c;text-transform:uppercase;">/ 5</span>
+        </div>
+      </div>
+      <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;">Overall Score</span>
+    </div>
+    <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.5rem;">
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#1c1917;">
+        <span>Sections rated</span><span id="rated-count" style="font-weight:700;">0 / 8</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#1c1917;">
+        <span>Items checked</span><span id="checked-count" style="font-weight:700;">0</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#c0392b;">
+        <span>Issues flagged</span><span id="flagged-count" style="font-weight:700;">0</span>
+      </div>
+      <div id="score-label" style="margin-top:0.5rem;font-size:0.75rem;font-style:italic;color:#78716c;"></div>
+    </div>
+    <div style="display:flex;gap:0.75rem;flex-shrink:0;" class="no-print">
+      <button onclick="window.print()" style="padding:0.65rem 1.25rem;border:1.5px solid rgba(28,25,23,0.2);background:transparent;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;color:#1c1917;display:flex;align-items:center;gap:0.4rem;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
+        Print
+      </button>
+    </div>
+  </div>
+
+  <!-- Notes for print header -->
+  <div style="display:none;" id="print-header">
+    <p style="font-weight:700;font-size:1rem;" id="print-address"></p>
+    <p style="color:#78716c;font-size:0.8rem;" id="print-date"></p>
+  </div>
+
+  <!-- Sections -->
+  <div id="sections-wrap" style="display:flex;flex-direction:column;gap:0.75rem;"></div>
+
+  <!-- Notes -->
+  <div>
+    <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Additional Notes</label>
+    <textarea id="prop-notes" class="oh-input" rows="4" placeholder="Gut feel, neighbourhood observations, anything that stood out..." style="resize:vertical;"></textarea>
+  </div>
+
+</div>
+
+<script>
+  const SECTIONS = [
+    {
+      label: 'Exterior & Kerb Appeal',
+      color: '#4a9e4a',
+      items: [
+        { text: 'Roof condition — tiles, gutters, ridge capping', flag: true },
+        { text: 'Exterior walls — cracks, paint, render condition' },
+        { text: 'Driveway and paths — cracking, drainage' },
+        { text: 'Fencing and retaining walls — stability, lean, rust' },
+        { text: 'Subfloor ventilation — vents visible and unobstructed', flag: true },
+        { text: 'Overall street presence and neighbour properties' },
+      ],
+    },
+    {
+      label: 'Structure & Building',
+      color: '#c0392b',
+      items: [
+        { text: 'Floors — bounce, slope, soft spots (especially under carpet)', flag: true },
+        { text: 'Ceilings — staining, sagging, cracks', flag: true },
+        { text: 'Walls — cracks, damp patches, efflorescence', flag: true },
+        { text: 'Doors and windows — open and close freely, gaps, rot', flag: true },
+        { text: 'Evidence of termite activity or past damage', flag: true },
+        { text: 'Subfloor (if accessible) — stumps, moisture, pests', flag: true },
+      ],
+    },
+    {
+      label: 'Living & Dining Areas',
+      color: '#3a8fa8',
+      items: [
+        { text: 'Natural light and ventilation' },
+        { text: 'Room sizes — furniture placement, flow' },
+        { text: 'Flooring condition — timber, tiles, carpet' },
+        { text: 'Powerpoints and light switches — sufficient quantity' },
+        { text: 'Ceiling height and feel of space' },
+      ],
+    },
+    {
+      label: 'Kitchen',
+      color: '#c4912a',
+      items: [
+        { text: 'Bench space and layout' },
+        { text: 'Cabinetry — doors, hinges, drawers open smoothly' },
+        { text: 'Appliances — oven, cooktop, dishwasher condition' },
+        { text: 'Sink and taps — pressure, drainage, rust', flag: true },
+        { text: 'Splashback and benchtop condition' },
+        { text: 'Rangehood and ventilation' },
+      ],
+    },
+    {
+      label: 'Bedrooms',
+      color: '#7e6fa8',
+      items: [
+        { text: 'Room sizes — beds fit comfortably' },
+        { text: 'Built-in wardrobes or storage' },
+        { text: 'Windows — view, privacy, security locks' },
+        { text: 'Natural light and cross ventilation' },
+      ],
+    },
+    {
+      label: 'Bathrooms & Laundry',
+      color: '#a8778a',
+      items: [
+        { text: 'Shower and bath — grout, silicon seals, screen condition', flag: true },
+        { text: 'Taps and pressure — hot and cold both tested', flag: true },
+        { text: 'Toilet — flush, cistern, pan', flag: true },
+        { text: 'Ventilation — exhaust fan or window' },
+        { text: 'Laundry taps and drainage' },
+      ],
+    },
+    {
+      label: 'Utilities & Systems',
+      color: '#5a7a8a',
+      items: [
+        { text: 'Electrical switchboard — age, condition, safety switches', flag: true },
+        { text: 'Hot water system — age, type (gas/electric/solar)', flag: true },
+        { text: 'Air conditioning — present, type, condition' },
+        { text: 'Gas connections — bayonets, condition' },
+        { text: 'Internet / NBN connection type' },
+        { text: 'Solar panels — size, inverter age' },
+      ],
+    },
+    {
+      label: 'Outdoor & Land',
+      color: '#4a8a5a',
+      items: [
+        { text: 'Backyard size and usability' },
+        { text: 'Deck, patio or entertaining area — condition' },
+        { text: 'Shed or storage' },
+        { text: 'Garden maintenance requirements' },
+        { text: 'Drainage and slope — does water flow away from the house?', flag: true },
+      ],
+    },
+  ];
+
+  const wrap = document.getElementById('sections-wrap')!;
+  const scoreRing = document.getElementById('score-ring') as SVGCircleElement;
+  const scoreVal  = document.getElementById('score-val')!;
+  const scoreLabel= document.getElementById('score-label')!;
+  const ratedCount  = document.getElementById('rated-count')!;
+  const checkedCount= document.getElementById('checked-count')!;
+  const flaggedCount= document.getElementById('flagged-count')!;
+
+  const sectionRatings: number[] = new Array(SECTIONS.length).fill(0);
+  let totalChecked = 0;
+  let totalFlagged = 0;
+
+  const LABELS = ['','Needs major work','Below average','Average','Good','Excellent'];
+  const SCORE_COLORS = ['','#c0392b','#e07a3a','#c4912a','#4a9e4a','#2a7a45'];
+
+  function updateScore() {
+    const rated = sectionRatings.filter(r => r > 0);
+    const avg = rated.length ? rated.reduce((a,b)=>a+b,0)/rated.length : 0;
+    const pct = avg / 5;
+    const circumference = 314.2;
+    scoreRing.style.strokeDashoffset = String(circumference * (1 - pct));
+    scoreRing.style.stroke = avg > 0 ? SCORE_COLORS[Math.round(avg)] : '#c4912a';
+    scoreVal.textContent = avg > 0 ? avg.toFixed(1) : '0';
+    scoreLabel.textContent = avg > 0 ? LABELS[Math.round(avg)] : '';
+    ratedCount.textContent = `${rated.length} / ${SECTIONS.length}`;
+    checkedCount.textContent = String(totalChecked);
+    flaggedCount.textContent = String(totalFlagged);
+  }
+
+  SECTIONS.forEach((sec, si) => {
+    const block = document.createElement('div');
+    block.className = 'section-block';
+
+    const header = document.createElement('div');
+    header.className = 'section-header';
+    header.innerHTML = `
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span style="width:8px;height:8px;border-radius:50%;background:${sec.color};flex-shrink:0;"></span>
+        <span style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;">${sec.label}</span>
+        <span class="sec-count-${si}" style="font-size:0.65rem;color:#78716c;"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <span class="sec-stars-${si}" style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;color:#78716c;text-transform:uppercase;">Rate</span>
+        <svg class="chevron-${si}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2" style="transition:transform 0.2s;transform:rotate(180deg)"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    `;
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'section-items open';
+
+    sec.items.forEach((item, ii) => {
+      const row = document.createElement('div');
+      row.className = 'checklist-item';
+      row.dataset.si = String(si);
+      row.dataset.ii = String(ii);
+
+      row.innerHTML = `
+        <div class="item-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" style="display:none;"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <span style="font-size:0.82rem;color:#1c1917;line-height:1.5;flex:1;">${item.text}</span>
+        ${item.flag ? `<button class="flag-btn no-print" title="Flag as issue">⚑ Flag</button>` : ''}
+      `;
+
+      let checked = false;
+      let flagged = false;
+
+      const checkEl = row.querySelector('.item-check')!;
+      const checkSvg = checkEl.querySelector('svg')!;
+      const flagBtn  = row.querySelector('.flag-btn') as HTMLButtonElement | null;
+
+      row.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('.flag-btn')) return;
+        checked = !checked;
+        if (checked) {
+          row.classList.add('checked');
+          checkSvg.style.display = 'block';
+          totalChecked++;
+        } else {
+          row.classList.remove('checked');
+          checkSvg.style.display = 'none';
+          totalChecked--;
+          if (flagged) {
+            flagged = false;
+            row.classList.remove('flagged');
+            if (flagBtn) flagBtn.classList.remove('active');
+            totalFlagged--;
+          }
+        }
+        updateScore();
+        updateSecCount(si);
+      });
+
+      if (flagBtn) {
+        flagBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          flagged = !flagged;
+          if (flagged) {
+            row.classList.add('flagged');
+            row.classList.remove('checked');
+            checkSvg.style.display = 'none';
+            flagBtn.classList.add('active');
+            if (checked) { totalChecked--; checked = false; }
+            totalFlagged++;
+          } else {
+            row.classList.remove('flagged');
+            flagBtn.classList.remove('active');
+            totalFlagged--;
+          }
+          updateScore();
+          updateSecCount(si);
+        });
+      }
+
+      itemsDiv.appendChild(row);
+    });
+
+    // Star rating
+    const starRow = document.createElement('div');
+    starRow.className = 'star-rating';
+    starRow.innerHTML = `<span style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#78716c;margin-right:0.5rem;">Rate section:</span>`;
+    for (let s = 1; s <= 5; s++) {
+      const star = document.createElement('span');
+      star.className = 'star';
+      star.textContent = '★';
+      star.dataset.v = String(s);
+      star.addEventListener('click', () => {
+        sectionRatings[si] = s;
+        starRow.querySelectorAll('.star').forEach((el, idx) => {
+          el.classList.toggle('lit', idx < s);
+        });
+        const secStars = header.querySelector(`.sec-stars-${si}`);
+        if (secStars) {
+          secStars.textContent = `${'★'.repeat(s)}${'☆'.repeat(5-s)}`;
+          (secStars as HTMLElement).style.color = '#c4912a';
+        }
+        updateScore();
+      });
+      starRow.appendChild(star);
+    }
+    itemsDiv.appendChild(starRow);
+
+    header.addEventListener('click', () => {
+      const open = itemsDiv.classList.toggle('open');
+      const chev = header.querySelector(`.chevron-${si}`) as HTMLElement;
+      if (chev) chev.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+
+    block.appendChild(header);
+    block.appendChild(itemsDiv);
+    wrap.appendChild(block);
+  });
+
+  function updateSecCount(si: number) {
+    const items = wrap.querySelectorAll<HTMLElement>(`.checklist-item[data-si="${si}"]`);
+    const done  = [...items].filter(el => el.classList.contains('checked') || el.classList.contains('flagged')).length;
+    const el = wrap.querySelector(`.sec-count-${si}`);
+    if (el) el.textContent = done ? `${done}/${items.length}` : '';
+  }
+
+  // Print header
+  const addrInput = document.getElementById('prop-address') as HTMLInputElement;
+  const dateInput = document.getElementById('prop-date') as HTMLInputElement;
+  addrInput.addEventListener('input', () => {
+    const el = document.getElementById('print-address');
+    if (el) el.textContent = addrInput.value;
+  });
+  dateInput.addEventListener('input', () => {
+    const el = document.getElementById('print-date');
+    if (el) el.textContent = dateInput.value;
+  });
+
+  updateScore();
+</script>
+
+</ToolLayout>

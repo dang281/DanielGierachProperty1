@@ -1,0 +1,221 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Granny Flat & Dual Occupancy ROI"
+  tool="Granny Flat & Dual Occupancy ROI"
+  phase="Investor Tools"
+  description="Model the return on adding a granny flat or secondary dwelling. See the yield uplift, payback period, and income impact before you build."
+>
+
+<style>
+  .gf-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .gf-input:focus { border-color: var(--color-gold); }
+
+  .result-card {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    font-size: 0.82rem;
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-row .label { color: #78716c; }
+  .breakdown-row.total { font-weight: 700; border-top: 2px solid rgba(28,25,23,0.1); margin-top: 0.25rem; }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:2rem;max-width:860px;">
+
+  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+    <p style="font-size:0.85rem;color:#1c1917;font-weight:700;margin:0 0 0.3rem;">Brisbane zoning check first</p>
+    <p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.7;">
+      Secondary dwellings (granny flats) are permitted in Low-Medium Density Residential zones (LMR) and some Character zones in Brisbane. Some lots require a minimum size (typically 600m²). Check BCC CityPlan 2014 for your property before building. <a href="https://www.brisbane.qld.gov.au/planning-and-building/planning-framework/cityplan-2014" target="_blank" style="color:#c4912a;">BCC CityPlan 2014</a>.
+    </p>
+  </div>
+
+  <!-- Inputs -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;">
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Property Value ($)</label>
+      <input id="gf-propval" class="gf-input" type="number" value="950000" min="100000" max="10000000" step="10000" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Main Dwelling Rent ($/week)</label>
+      <input id="gf-mainrent" class="gf-input" type="number" value="700" min="0" max="5000" step="25" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Granny Flat Build Cost ($)</label>
+      <input id="gf-buildcost" class="gf-input" type="number" value="150000" min="50000" max="1000000" step="5000" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Expected GF Rent ($/week)</label>
+      <input id="gf-gfrent" class="gf-input" type="number" value="450" min="0" max="3000" step="25" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Finance Rate for Build (%)</label>
+      <input id="gf-finrate" class="gf-input" type="number" value="6.5" min="0" max="15" step="0.1" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Property Manager Fee (%)</label>
+      <input id="gf-mgmt" class="gf-input" type="number" value="8.5" min="0" max="15" step="0.5" />
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="gf-results" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+    <!-- Key metrics grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;">
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;">Added Income / Year</span>
+        <span id="gf-added-income" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">After management fees</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">Gross Yield — Before</span>
+        <span id="gf-yield-before" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">Main dwelling only</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#3a8fa8;">Gross Yield — After</span>
+        <span id="gf-yield-after" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">Combined on total value</span>
+      </div>
+      <div class="result-card">
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#7e6fa8;">Payback Period</span>
+        <span id="gf-payback" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
+        <span style="font-size:0.72rem;color:#78716c;">Net rent vs build cost</span>
+      </div>
+    </div>
+
+    <!-- Detailed breakdown -->
+    <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+      <div style="padding:1rem 1.5rem;background:#f9f7f4;border-bottom:1px solid rgba(28,25,23,0.08);">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Annual Cash Flow Breakdown</p>
+      </div>
+      <div style="padding:0 1.5rem;" id="gf-breakdown"></div>
+    </div>
+
+    <!-- Cash-on-cash return -->
+    <div id="coc-panel" style="background:#fff;border:1px solid rgba(28,25,23,0.1);padding:1.5rem;display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;">
+      <div>
+        <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c0392b;margin-bottom:0.3rem;">Annual Finance Cost (interest only)</div>
+        <div id="gf-interest" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#1c1917;"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#3a8fa8;margin-bottom:0.3rem;">Net Cashflow After Finance</div>
+        <div id="gf-cashflow" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#1c1917;"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.3rem;">Est. Value Add (0.6x build cost)</div>
+        <div id="gf-valueadd" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#1c1917;"></div>
+        <div style="font-size:0.7rem;color:#78716c;margin-top:0.2rem;">Rule of thumb only — varies by suburb and build quality</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size:0.72rem;color:#a8a29e;line-height:1.6;">
+    This calculator is for indicative planning purposes. Build costs, rental income, and property value uplift vary significantly. DA approval, council contributions, and connection costs are not included. Always get fixed-price quotes from licensed builders and confirm BCC approval requirements before proceeding.
+  </p>
+
+</div>
+
+<script>
+  const inputs = {
+    propval:   document.getElementById('gf-propval')   as HTMLInputElement,
+    mainrent:  document.getElementById('gf-mainrent')  as HTMLInputElement,
+    buildcost: document.getElementById('gf-buildcost') as HTMLInputElement,
+    gfrent:    document.getElementById('gf-gfrent')    as HTMLInputElement,
+    finrate:   document.getElementById('gf-finrate')   as HTMLInputElement,
+    mgmt:      document.getElementById('gf-mgmt')      as HTMLInputElement,
+  };
+
+  const els = {
+    addedIncome:  document.getElementById('gf-added-income')!,
+    yieldBefore:  document.getElementById('gf-yield-before')!,
+    yieldAfter:   document.getElementById('gf-yield-after')!,
+    payback:      document.getElementById('gf-payback')!,
+    breakdown:    document.getElementById('gf-breakdown')!,
+    interest:     document.getElementById('gf-interest')!,
+    cashflow:     document.getElementById('gf-cashflow')!,
+    valueadd:     document.getElementById('gf-valueadd')!,
+  };
+
+  function fmt(n: number, prefix = '$') {
+    return prefix + Math.round(Math.abs(n)).toLocaleString('en-AU');
+  }
+
+  function render() {
+    const propval   = parseFloat(inputs.propval.value)   || 0;
+    const mainrent  = parseFloat(inputs.mainrent.value)  || 0;
+    const buildcost = parseFloat(inputs.buildcost.value) || 0;
+    const gfrent    = parseFloat(inputs.gfrent.value)    || 0;
+    const finrate   = parseFloat(inputs.finrate.value)   || 0;
+    const mgmtPct   = parseFloat(inputs.mgmt.value)      || 0;
+
+    const WEEKS = 52;
+    const VACANCY = 0.97; // assume 97% occupancy
+
+    const mainAnnual = mainrent * WEEKS * VACANCY;
+    const gfAnnual   = gfrent   * WEEKS * VACANCY;
+    const gfNetAnnual = gfAnnual * (1 - mgmtPct / 100);
+
+    const totalAnnual     = mainAnnual + gfAnnual;
+    const totalValue      = propval + buildcost;
+    const yieldBefore     = propval > 0 ? (mainAnnual / propval) * 100 : 0;
+    const yieldAfter      = totalValue > 0 ? (totalAnnual / totalValue) * 100 : 0;
+    const interestPA      = buildcost * finrate / 100;
+    const netCashflow     = gfNetAnnual - interestPA;
+    const paybackYears    = gfNetAnnual > 0 ? buildcost / gfNetAnnual : 0;
+    const valueAdd        = buildcost * 0.6;
+
+    els.addedIncome.textContent  = fmt(gfNetAnnual) + '/yr';
+    els.yieldBefore.textContent  = yieldBefore.toFixed(2) + '%';
+    els.yieldAfter.textContent   = yieldAfter.toFixed(2) + '%';
+    els.payback.textContent      = paybackYears > 0 ? paybackYears.toFixed(1) + ' yrs' : 'N/A';
+    els.interest.textContent     = fmt(interestPA) + '/yr';
+    els.cashflow.textContent     = (netCashflow >= 0 ? '+' : '-') + fmt(netCashflow) + '/yr';
+    (els.cashflow as HTMLElement).style.color = netCashflow >= 0 ? '#2a7a45' : '#c0392b';
+    els.valueadd.textContent     = fmt(valueAdd);
+
+    els.breakdown.innerHTML = [
+      ['Main dwelling — gross rent (52 wks, 97% occ.)', fmt(mainAnnual)],
+      ['GF gross rent (52 wks, 97% occ.)', fmt(gfAnnual)],
+      ['GF management fees (' + mgmtPct + '%)', '-' + fmt(gfAnnual * mgmtPct / 100)],
+      ['GF net rent after management', fmt(gfNetAnnual)],
+      ['Combined gross rent (both dwellings)', fmt(totalAnnual)],
+    ].map(([label, val], i) => `
+      <div class="breakdown-row ${i === 4 ? 'total' : ''}">
+        <span class="label">${label}</span>
+        <span>${val}</span>
+      </div>
+    `).join('');
+  }
+
+  Object.values(inputs).forEach(el => el.addEventListener('input', render));
+  render();
+</script>
+
+</ToolLayout>

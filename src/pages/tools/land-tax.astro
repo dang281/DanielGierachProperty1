@@ -1,0 +1,242 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Queensland Land Tax Calculator"
+  tool="Queensland Land Tax Calculator"
+  phase="Investor Tools"
+  description="Calculate your annual Queensland land tax liability based on your total taxable land value. Uses current QRO rates including the 2024-25 thresholds."
+>
+
+<style>
+  .lt-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .lt-input:focus { border-color: var(--color-gold); }
+  .lt-select {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.5rem;
+  }
+
+  .rate-table-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    color: #1c1917;
+  }
+  .rate-table-row.header {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #78716c;
+    background: #f9f7f4;
+  }
+  .rate-table-row.active-band { background: rgba(196,145,42,0.1); font-weight: 700; }
+  .rate-table-row:last-child { border-bottom: none; }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:2rem;max-width:700px;">
+
+  <!-- Important note about land value -->
+  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+    <p style="font-size:0.85rem;color:#1c1917;font-weight:700;margin:0 0 0.3rem;">Land value, not purchase price</p>
+    <p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.7;">
+      Land tax is calculated on the <strong>unimproved value of land</strong> as assessed by the Queensland Valuer-General, not the purchase price. Find your land value on your council rates notice or at <a href="https://www.qld.gov.au/environment/land/title/valuation/search" target="_blank" style="color:#c4912a;">qld.gov.au</a>. If you own multiple properties, all non-exempt land values are <em>aggregated</em>.
+    </p>
+  </div>
+
+  <!-- Inputs -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Total Taxable Land Value ($)</label>
+      <input id="lt-value" class="lt-input" type="number" placeholder="800000" value="800000" min="0" max="20000000" step="10000" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Ownership Type</label>
+      <select id="lt-type" class="lt-select">
+        <option value="individual">Individual / Joint owners</option>
+        <option value="company">Company or Trust</option>
+        <option value="absentee">Absentee individual</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Primary residence exemption -->
+  <div>
+    <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;">
+      <input id="lt-home" type="checkbox" style="width:18px;height:18px;cursor:pointer;accent-color:#c4912a;" />
+      <span style="font-size:0.85rem;color:#1c1917;">This includes my principal place of residence (primary home exempt)</span>
+    </label>
+    <div id="home-note" style="display:none;margin-top:0.5rem;margin-left:2rem;font-size:0.78rem;color:#78716c;line-height:1.6;">
+      Your primary home land is generally exempt. Enter only the land value of your <em>investment properties</em> above, excluding your home.
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div id="result-wrap" style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+    <div style="padding:1.25rem 1.5rem;background:#f9f7f4;border-bottom:1px solid rgba(28,25,23,0.08);">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Land Tax Assessment (2024-25)</p>
+    </div>
+    <div style="padding:1.5rem;">
+      <div id="exempt-msg" style="display:none;"></div>
+      <div id="calc-result" style="display:none;flex-direction:column;gap:1.25rem;">
+        <div style="display:flex;align-items:flex-end;gap:1rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;margin-bottom:0.3rem;">Annual Land Tax</div>
+            <div id="lt-annual" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:#1c1917;line-height:1;"></div>
+          </div>
+          <div style="padding-bottom:0.4rem;">
+            <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#78716c;margin-bottom:0.3rem;">Effective Rate</div>
+            <div id="lt-eff-rate" style="font-size:1.1rem;font-weight:700;color:#78716c;"></div>
+          </div>
+        </div>
+        <div id="lt-breakdown" style="padding-top:1rem;border-top:1px solid rgba(28,25,23,0.08);font-size:0.8rem;color:#78716c;line-height:1.9;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rate table -->
+  <div>
+    <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.75rem;">Individual Rates (2024-25)</p>
+    <div id="rate-table" style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;"></div>
+  </div>
+
+  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+    <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0;">
+      <strong>Company / Trust:</strong> No tax-free threshold applies. Absentee surcharge adds an additional 2% above the standard rate. Foreign companies and trusts pay higher rates again. Always confirm with a tax accountant for complex structures. Source: <a href="https://www.qro.qld.gov.au/land-tax/" target="_blank" style="color:#c4912a;">Queensland Revenue Office</a>.
+    </p>
+  </div>
+
+  <p style="font-size:0.72rem;color:#a8a29e;line-height:1.6;">
+    This calculator is a guide only and uses 2024-25 rates. Land tax is assessed annually on 30 June. Properties used as your primary residence, primary production, and certain charitable uses may be exempt. Consult a registered tax agent for advice specific to your situation.
+  </p>
+
+</div>
+
+<script>
+  const valueInput = document.getElementById('lt-value') as HTMLInputElement;
+  const typeSelect = document.getElementById('lt-type')  as HTMLSelectElement;
+  const homeCheck  = document.getElementById('lt-home')  as HTMLInputElement;
+  const homeNote   = document.getElementById('home-note')!;
+  const exemptMsg  = document.getElementById('exempt-msg')!;
+  const calcResult = document.getElementById('calc-result')!;
+  const ltAnnual   = document.getElementById('lt-annual')!;
+  const ltEffRate  = document.getElementById('lt-eff-rate')!;
+  const ltBreakdown= document.getElementById('lt-breakdown')!;
+  const rateTableEl= document.getElementById('rate-table')!;
+
+  // QLD Land Tax 2024-25 rates — individual
+  // Source: Queensland Revenue Office (qro.qld.gov.au)
+  const INDIVIDUAL_BANDS = [
+    { from: 0,         to: 599999,   base: 0,      rate: 0,      label: 'Under $600,000', desc: 'Nil' },
+    { from: 600000,    to: 999999,   base: 500,    rate: 0.01,   label: '$600,000 – $999,999', desc: '$500 + 1c per $1 over $600,000' },
+    { from: 1000000,   to: 2999999,  base: 4500,   rate: 0.0165, label: '$1,000,000 – $2,999,999', desc: '$4,500 + 1.65c per $1 over $1,000,000' },
+    { from: 3000000,   to: 4999999,  base: 37500,  rate: 0.0125, label: '$3,000,000 – $4,999,999', desc: '$37,500 + 1.25c per $1 over $3,000,000' },
+    { from: 5000000,   to: Infinity, base: 62500,  rate: 0.0175, label: '$5,000,000 and over', desc: '$62,500 + 1.75c per $1 over $5,000,000' },
+  ];
+
+  // Company/Trust: no threshold, different rates
+  const COMPANY_BANDS = [
+    { from: 0,         to: 349999,   base: 0,      rate: 0.01,   label: 'Under $350,000', desc: '1c per $1' },
+    { from: 350000,    to: 2249999,  base: 3500,   rate: 0.0165, label: '$350,000 – $2,249,999', desc: '$3,500 + 1.65c per $1 over $350,000' },
+    { from: 2250000,   to: Infinity, base: 34500,  rate: 0.0125, label: '$2,250,000 and over', desc: '$34,500 + 1.25c per $1 over $2,250,000' },
+  ];
+
+  function calcTax(value: number, bands: typeof INDIVIDUAL_BANDS): { tax: number; band: (typeof INDIVIDUAL_BANDS)[0] } {
+    for (let i = bands.length - 1; i >= 0; i--) {
+      if (value >= bands[i].from) {
+        const tax = bands[i].base + (value - bands[i].from) * bands[i].rate;
+        return { tax: Math.max(0, tax), band: bands[i] };
+      }
+    }
+    return { tax: 0, band: bands[0] };
+  }
+
+  function fmt(n: number) { return '$' + Math.round(n).toLocaleString('en-AU'); }
+
+  function renderTable(bands: typeof INDIVIDUAL_BANDS, activeFrom: number) {
+    rateTableEl.innerHTML = `
+      <div class="rate-table-row header">
+        <div>Taxable Land Value</div>
+        <div>Rate</div>
+      </div>
+    ` + bands.map(b => `
+      <div class="rate-table-row ${activeFrom === b.from ? 'active-band' : ''}">
+        <div>${b.label}</div>
+        <div>${b.desc}</div>
+      </div>
+    `).join('');
+  }
+
+  function render() {
+    const value   = parseFloat(valueInput.value) || 0;
+    const type    = typeSelect.value;
+    const absentee= type === 'absentee';
+    const bands   = (type === 'company') ? COMPANY_BANDS : INDIVIDUAL_BANDS;
+    const threshold = (type === 'company') ? 0 : 600000;
+
+    homeNote.style.display = homeCheck.checked ? 'block' : 'none';
+
+    renderTable(INDIVIDUAL_BANDS, 0);
+
+    if (value <= 0) return;
+
+    // Check threshold
+    if (value < threshold) {
+      exemptMsg.innerHTML = `<div style="background:rgba(74,158,74,0.08);border-left:3px solid #4a9e4a;padding:1rem;"><p style="font-size:0.85rem;color:#1a5c3a;font-weight:700;margin:0 0 0.25rem;">Below the threshold — no land tax</p><p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.6;">Your land value of ${fmt(value)} is under the ${fmt(threshold)} individual threshold. No land tax is payable.</p></div>`;
+      exemptMsg.style.display = 'block';
+      calcResult.style.display = 'none';
+      renderTable(bands, bands[0].from);
+      return;
+    }
+
+    exemptMsg.style.display = 'none';
+    calcResult.style.display = 'flex';
+
+    let { tax, band } = calcTax(value, bands);
+
+    // Absentee surcharge: additional 2% of the taxable land value on top of standard tax
+    const surcharge = absentee ? value * 0.02 : 0;
+    const totalTax  = tax + surcharge;
+
+    ltAnnual.textContent = fmt(totalTax);
+    ltEffRate.textContent = ((totalTax / value) * 100).toFixed(3) + '%';
+
+    let breakdown = `Taxable land value: <strong>${fmt(value)}</strong><br>Band: ${band.label}<br>Base tax: <strong>${fmt(tax)}</strong>`;
+    if (absentee) breakdown += `<br>Absentee surcharge (2% of land value): <strong>${fmt(surcharge)}</strong><br><strong>Total: ${fmt(totalTax)}</strong>`;
+
+    ltBreakdown.innerHTML = breakdown;
+    renderTable(bands, band.from);
+  }
+
+  homeCheck.addEventListener('change', render);
+  [valueInput, typeSelect].forEach(el => el.addEventListener('input', render));
+  render();
+</script>
+
+</ToolLayout>
