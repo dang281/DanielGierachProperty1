@@ -12,6 +12,19 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
 ---
 
 <Layout title={`${title} | Dan's Website`} description={description}>
+
+<style is:global>
+  /* Tool pages always have a light background — lock the nav into its scrolled state immediately via CSS so there is no transparent flash or backdrop-filter bleed-through on scroll */
+  body.tool-page #site-header {
+    background: rgba(247,245,240,0.97) !important;
+    backdrop-filter: blur(24px) saturate(1.3) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.3) !important;
+    border-bottom: 1px solid rgba(28,25,23,0.08) !important;
+    box-shadow: 0 2px 16px rgba(28,25,23,0.06) !important;
+    transition: none !important;
+  }
+</style>
+
 <script>
   // Tool pages have a light background from the top — force nav into its scrolled state immediately
   (function () {
@@ -27,6 +40,7 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
       if (logoName) logoName.style.color = 'var(--color-text-primary)';
       navLinks.forEach(el => el.style.color = '');
     }
+    document.body.classList.add('tool-page');
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', applyLightNav);
     } else {
