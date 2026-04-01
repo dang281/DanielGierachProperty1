@@ -35,6 +35,7 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     gap: 0.5rem;
     box-shadow: 0 1px 4px rgba(28,25,23,0.05);
     transition: box-shadow 0.2s, border-color 0.2s;
+    text-decoration: none;
   }
   .place-card:hover {
     box-shadow: 0 6px 20px rgba(28,25,23,0.08);
@@ -43,21 +44,23 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 
   .stars { color: #c4912a; letter-spacing: -0.02em; }
 
-  .type-badge {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.55rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.55rem;
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: #1c1917;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(28,25,23,0.1);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
 
-  /* Hidden map container required by PlacesService */
   #places-map { display: none; width: 1px; height: 1px; }
 </style>
 
-<div style="display:flex;flex-direction:column;gap:2rem;">
+<div style="display:flex;flex-direction:column;gap:2.5rem;">
 
   <!-- Search row -->
   <div>
@@ -72,19 +75,15 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     <p id="status-msg" style="margin-top:0.6rem;min-height:1.2em;font-size:0.82rem;color:var(--color-text-muted);font-style:italic;"></p>
   </div>
 
-  <!-- Results -->
-  <div id="results-wrap" style="display:none;">
-    <p id="results-count" style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1.25rem;"></p>
-    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap:1rem;"></div>
-  </div>
+  <!-- Results by category -->
+  <div id="results-wrap" style="display:none;flex-direction:column;gap:3rem;"></div>
 
   <div id="no-results" style="display:none;text-align:center;padding:3rem 0;color:var(--color-text-muted);font-size:0.9rem;">
-    No cafes or restaurants found for that suburb. Try a different spelling.
+    No places found for that suburb. Try a different spelling.
   </div>
 
 </div>
 
-<!-- Hidden map div required by PlacesService -->
 <div id="places-map"></div>
 
 <script define:vars={{ MAPS_KEY }}>
@@ -92,8 +91,6 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
   const searchBtn   = document.getElementById('search-btn');
   const statusMsg   = document.getElementById('status-msg');
   const resultsWrap = document.getElementById('results-wrap');
-  const resultsGrid = document.getElementById('results-grid');
-  const resultsCount= document.getElementById('results-count');
   const noResults   = document.getElementById('no-results');
   const mapDiv      = document.getElementById('places-map');
 
@@ -118,16 +115,12 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     return `<span class="stars">${stars}</span> <span style="font-size:0.75rem;color:#78716c;">${rating.toFixed(1)}</span>`;
   }
 
-  function badgeHtml(types) {
-    if (!types) return '';
-    const map = { cafe: ['#f5d07a','#7a5c00'], bar: ['#c8c6c8','#3a3a3a'], restaurant: ['#d4ede4','#1a5c3a'] };
-    for (const [t, [bg, color]] of Object.entries(map)) {
-      if (types.includes(t)) {
-        const label = t.charAt(0).toUpperCase() + t.slice(1);
-        return `<span class="type-badge" style="background:${bg};color:${color};">${label}</span>`;
-      }
-    }
-    return '';
+  function getCategory(types) {
+    if (!types) return 'other';
+    if (types.includes('cafe'))       return 'cafe';
+    if (types.includes('bar'))        return 'bar';
+    if (types.includes('restaurant')) return 'restaurant';
+    return 'other';
   }
 
   function renderCard(place) {
@@ -140,13 +133,10 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
       : '';
 
     return `
-      <a href="${mapsUrl}" target="_blank" rel="noopener" class="place-card" style="text-decoration:none;">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;">
-          <span style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;line-height:1.3;">${place.name}</span>
-          ${badgeHtml(place.types)}
-        </div>
+      <a href="${mapsUrl}" target="_blank" rel="noopener" class="place-card">
+        <span style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;line-height:1.3;">${place.name}</span>
         ${place.vicinity ? `<p style="font-size:0.78rem;color:#78716c;margin:0;line-height:1.5;">${place.vicinity}</p>` : ''}
-        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-top:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-top:0.15rem;">
           ${place.rating ? starsHtml(place.rating) : ''}
           ${place.user_ratings_total ? `<span style="font-size:0.72rem;color:#a8a29e;">(${place.user_ratings_total.toLocaleString()} reviews)</span>` : ''}
           ${openTag}
@@ -156,43 +146,64 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     `;
   }
 
+  const SECTIONS = [
+    { key: 'cafe',       label: 'Cafes',       dot: '#c4912a',  queries: ['cafes'] },
+    { key: 'restaurant', label: 'Restaurants',  dot: '#3a8fa8',  queries: ['restaurants'] },
+    { key: 'bar',        label: 'Bars & Pubs',  dot: '#78716c',  queries: ['bars and pubs'] },
+  ];
+
+  function renderSection(label, dot, places) {
+    if (places.length === 0) return '';
+    return `
+      <div>
+        <div class="section-heading">
+          <span style="width:10px;height:10px;border-radius:50%;background:${dot};flex-shrink:0;display:inline-block;"></span>
+          ${label}
+          <span style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;color:#a8a29e;">${places.length} places</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap:1rem;">
+          ${places.map(renderCard).join('')}
+        </div>
+      </div>
+    `;
+  }
+
   function searchPlaces(suburb) {
     statusMsg.textContent = 'Searching...';
     resultsWrap.style.display = 'none';
+    resultsWrap.innerHTML     = '';
     noResults.style.display   = 'none';
-    resultsGrid.innerHTML     = '';
 
-    const allResults = [];
-    let pending = 2;
+    // Run 3 separate searches — one per category
+    const buckets = { cafe: [], restaurant: [], bar: [] };
+    let pending = SECTIONS.length;
 
-    function handleResults(results, status) {
-      if (results && status === google.maps.places.PlacesServiceStatus.OK) {
-        allResults.push(...results);
-      }
-      pending--;
-      if (pending > 0) return;
+    SECTIONS.forEach(({ key, queries }) => {
+      const query = `${queries[0]} in ${suburb} Brisbane QLD`;
+      service.textSearch({ query }, (results, status) => {
+        if (results && status === google.maps.places.PlacesServiceStatus.OK) {
+          const seen = new Set();
+          results.forEach(p => {
+            if (!seen.has(p.place_id)) {
+              seen.add(p.place_id);
+              buckets[key].push(p);
+            }
+          });
+          buckets[key].sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        }
+        pending--;
+        if (pending > 0) return;
 
-      // Dedupe by place_id, sort by rating desc
-      const seen  = new Set();
-      const unique = allResults.filter(p => {
-        if (seen.has(p.place_id)) return false;
-        seen.add(p.place_id);
-        return true;
+        statusMsg.textContent = '';
+        const total = Object.values(buckets).reduce((s, arr) => s + arr.length, 0);
+        if (total === 0) { noResults.style.display = 'block'; return; }
+
+        resultsWrap.innerHTML = SECTIONS
+          .map(({ key, label, dot }) => renderSection(label, dot, buckets[key]))
+          .join('');
+        resultsWrap.style.display = 'flex';
       });
-      unique.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-
-      statusMsg.textContent = '';
-      if (unique.length === 0) {
-        noResults.style.display = 'block';
-        return;
-      }
-      resultsCount.textContent = `${unique.length} places in ${suburb}`;
-      resultsGrid.innerHTML = unique.map(renderCard).join('');
-      resultsWrap.style.display = 'block';
-    }
-
-    service.textSearch({ query: `cafes in ${suburb} Brisbane QLD` },      handleResults);
-    service.textSearch({ query: `restaurants in ${suburb} Brisbane QLD` }, handleResults);
+    });
   }
 
   async function doSearch() {
