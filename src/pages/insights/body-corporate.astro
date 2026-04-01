@@ -79,7 +79,7 @@ import Layout from '../../layouts/Layout.astro';
           </tr>
         </thead>
         <tbody>
-          {[
+          <Fragment set:html={[
             ['Small townhouse complex (4-8 lots)', '$2,000 – $4,000/yr', 'No lift, minimal facilities'],
             ['Standard unit block (10-30 lots)', '$4,000 – $8,000/yr', 'Pool, garden, parking'],
             ['Mid-rise unit (lift, gym, pool)', '$6,000 – $14,000/yr', 'Higher maintenance costs'],
@@ -91,7 +91,7 @@ import Layout from '../../layouts/Layout.astro';
               <td style="padding:0.75rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);font-weight:700;color:#1c1917;">${cost}</td>
               <td style="padding:0.75rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#78716c;">${note}</td>
             </tr>
-          `).join('')}
+          `).join('')} />
         </tbody>
       </table>
     </div>
@@ -122,7 +122,7 @@ import Layout from '../../layouts/Layout.astro';
     </p>
 
     <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         ['Levy amounts', 'How much are the current quarterly levies? Is there a levy increase flagged?'],
         ['Sinking fund balance', 'Is it adequate for the age of the building? Low balance = risk.'],
         ['10-year maintenance plan', 'Required by law for schemes with 6 or more lots. Shows future capital works and projected levies.'],
@@ -138,7 +138,7 @@ import Layout from '../../layouts/Layout.astro';
             <p style="font-size:0.82rem;color:#78716c;margin:0;line-height:1.7;">${desc}</p>
           </div>
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">Short-term rental restrictions</h2>

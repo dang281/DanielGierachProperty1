@@ -70,7 +70,7 @@ import Layout from '../../layouts/Layout.astro';
           </tr>
         </thead>
         <tbody>
-          {[
+          <Fragment set:html={[
             ['Platform / agent commission', '8–10% of rent', '15–20% (Airbnb + mgmt)'],
             ['Cleaning', 'Tenant responsibility', '$80–$180 per turnover'],
             ['Furnishing', 'Unfurnished', '$15,000–$30,000 upfront'],
@@ -85,7 +85,7 @@ import Layout from '../../layouts/Layout.astro';
               <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${lt}</td>
               <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${st}</td>
             </tr>
-          `).join('')}
+          `).join('')} />
         </tbody>
       </table>
     </div>
@@ -99,7 +99,7 @@ import Layout from '../../layouts/Layout.astro';
       Queensland does not have a single short-term rental registration framework at the state level (as at early 2025), but Brisbane City Council planning rules apply. Under BCC CityPlan 2014:
     </p>
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;">
-      {[
+      <Fragment set:html={[
         'Short-term accommodation (under 60 days) in a residential property is generally accepted development in low-density zones without a DA, provided the property remains the owner\'s primary residence and is listed for the majority of the year.',
         'Whole-of-property short-term rental where the owner does not reside on site may require a development application in some zones.',
         'Investment properties listed exclusively as short-term rentals may be classified as "short-term accommodation" (a commercial use) rather than "dwelling house" — which can trigger DA requirements.',
@@ -108,7 +108,7 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#c4912a;flex-shrink:0;margin-top:7px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <div style="border-left:3px solid #c0392b;padding:1.1rem 1.5rem;background:rgba(192,57,43,0.05);margin-bottom:2rem;">
@@ -127,7 +127,7 @@ import Layout from '../../layouts/Layout.astro';
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">When short-term makes sense</h2>
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         'You are using the property yourself for part of the year and renting the remainder',
         'The property is in a high-tourism or events-heavy location (near Gabba, Fortitude Valley, or CBD) with demonstrably high occupancy data',
         'You have strong operational systems or a full-service STR manager and can accurately model the net return',
@@ -137,12 +137,12 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#4a9e4a;flex-shrink:0;margin-top:7px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">When long-term is the better call</h2>
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         'You want a passive, low-management investment',
         'The property is in a body corporate scheme with STR restrictions',
         'Your calculation shows the net return gap is under $5,000/year — the operational risk is not worth it',
@@ -153,7 +153,7 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#c4912a;flex-shrink:0;margin-top:7px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <div style="border-left:3px solid #c4912a;padding:1.1rem 1.5rem;background:rgba(196,145,42,0.05);margin-top:3rem;">

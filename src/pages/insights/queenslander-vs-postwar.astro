@@ -118,7 +118,7 @@ import Layout from '../../layouts/Layout.astro';
           </tr>
         </thead>
         <tbody>
-          {[
+          <Fragment set:html={[
             ['Entry price', 'High', 'Medium', 'High (new)'],
             ['Maintenance cost', 'High', 'Medium', 'Low'],
             ['Renovation upside', 'Very high', 'High', 'Low'],
@@ -133,7 +133,7 @@ import Layout from '../../layouts/Layout.astro';
               <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${pw}</td>
               <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${c}</td>
             </tr>
-          `).join('')}
+          `).join('')} />
         </tbody>
       </table>
     </div>

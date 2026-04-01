@@ -100,7 +100,7 @@ import Layout from '../../layouts/Layout.astro';
     </p>
 
     <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2.5rem;">
-      {[
+      <Fragment set:html={[
         'Flood-free, elevated sites command a permanent premium post-2022',
         'Character zoning limits competing supply',
         'School catchments create persistent floor demand',
@@ -111,7 +111,7 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#c4912a;flex-shrink:0;margin-top:8px;"></span>
           ${point}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <div style="border-left:3px solid #c4912a;padding:1.1rem 1.5rem;background:rgba(196,145,42,0.05);margin-top:3rem;">

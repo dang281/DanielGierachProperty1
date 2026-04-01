@@ -71,7 +71,7 @@ import Layout from '../../layouts/Layout.astro';
           </tr>
         </thead>
         <tbody>
-          {[
+          <Fragment set:html={[
             ['Owner or owner\'s relative wants to move in', '2 months'],
             ['Significant renovation or repair (property must be vacant)', '2 months'],
             ['Property to be demolished', '2 months'],
@@ -82,7 +82,7 @@ import Layout from '../../layouts/Layout.astro';
               <td style="padding:0.75rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#1c1917;">${reason}</td>
               <td style="padding:0.75rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);font-weight:700;color:#1c1917;">${notice}</td>
             </tr>
-          `).join('')}
+          `).join('')} />
         </tbody>
       </table>
     </div>
@@ -106,7 +106,7 @@ import Layout from '../../layouts/Layout.astro';
       At settlement, the following transfer automatically from the vendor to you:
     </p>
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         'The lease agreement in its current form',
         'The bond (transferred to your name as lessor with the RTA)',
         'The rent trust account balance (pro-rated to settlement date)',
@@ -117,7 +117,7 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#c4912a;flex-shrink:0;margin-top:8px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
     <p style="font-size:0.95rem;color:#44403c;line-height:1.85;margin-bottom:1.25rem;">
       Your solicitor will arrange for rent to be adjusted at settlement. Any rent already paid by the tenant beyond the settlement date is credited to you.
@@ -133,19 +133,19 @@ import Layout from '../../layouts/Layout.astro';
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">Key due diligence questions to ask before you buy</h2>
     <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         ['Is the lease fixed-term or periodic?', 'A fixed term with 12 months remaining locks you in, which may suit investors but blocks owner-occupiers.'],
         ['What is the current rent?', 'Is it at market? Below-market rent inherited at settlement. You can only increase rent to market after proper notice once you own it.'],
         ['How long has the tenant been there?', 'Long-term tenants have more protections and can be harder to transition.'],
         ['Is there a property management agreement?', 'Who is managing it and at what fee? You inherit this too unless you terminate.'],
         ['Are there outstanding maintenance issues?', 'These become your responsibility at settlement.'],
-        ['Is rent being paid on time?', 'Request a rent ledger. Arrears are not your problem to collect before settlement — but they signal the tenant.'],
+        ['Is rent being paid on time?', 'Request a rent ledger. Arrears are not your problem to collect before settlement but they signal the tenant.'],
       ].map(([q, a]) => `
         <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);padding:1.1rem 1.5rem;">
           <p style="font-weight:700;font-size:0.85rem;color:#1c1917;margin:0 0 0.35rem;">${q}</p>
           <p style="font-size:0.82rem;color:#78716c;margin:0;line-height:1.7;">${a}</p>
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <div style="border-left:3px solid #c4912a;padding:1.1rem 1.5rem;background:rgba(196,145,42,0.05);margin-top:3rem;">

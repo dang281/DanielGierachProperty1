@@ -68,7 +68,7 @@ import Layout from '../../layouts/Layout.astro';
     </p>
 
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;">
-      {[
+      <Fragment set:html={[
         'Demolishing the whole or part of a heritage place',
         'Removing or altering character-defining features (e.g. verandahs, VJ walls, decorative timberwork)',
         'Adding new structures that are visible from the street and inconsistent with the heritage character',
@@ -80,7 +80,7 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#c0392b;flex-shrink:0;margin-top:8px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <p style="font-size:0.95rem;color:#44403c;line-height:1.85;margin-bottom:1.25rem;">
@@ -117,17 +117,17 @@ import Layout from '../../layouts/Layout.astro';
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">How to check if a property has a heritage overlay</h2>
     <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;">
-      {[
-        ['BCC Property Search', 'Search by address at cityplan.brisbane.qld.gov.au to view overlays and zones.', 'https://cityplan.brisbane.qld.gov.au'],
-        ['Title search', 'Heritage listings do not always appear on title. The overlay is a planning instrument, not a title encumbrance — check CityPlan separately.', null],
-        ['Queensland Heritage Register search', 'State-listed places can be searched at environment.des.qld.gov.au under the Heritage Register.', null],
-        ['Contract disclosure', 'Vendors are not automatically required to disclose a heritage overlay in Queensland. Do your own search.', null],
+      <Fragment set:html={[
+        ['BCC Property Search', 'Search by address at cityplan.brisbane.qld.gov.au to view overlays and zones.'],
+        ['Title search', 'Heritage listings do not always appear on title. The overlay is a planning instrument, not a title encumbrance. Check CityPlan separately.'],
+        ['Queensland Heritage Register search', 'State-listed places can be searched at environment.des.qld.gov.au under the Heritage Register.'],
+        ['Contract disclosure', 'Vendors are not automatically required to disclose a heritage overlay in Queensland. Do your own search.'],
       ].map(([title, desc]) => `
         <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);padding:1.1rem 1.5rem;">
           <p style="font-weight:700;font-size:0.85rem;color:#1c1917;margin:0 0 0.35rem;">${title}</p>
           <p style="font-size:0.82rem;color:#78716c;margin:0;line-height:1.7;">${desc}</p>
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">For sellers with a heritage property</h2>

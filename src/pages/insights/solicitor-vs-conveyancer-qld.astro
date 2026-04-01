@@ -76,7 +76,7 @@ import Layout from '../../layouts/Layout.astro';
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">What does the conveyancing process involve?</h2>
 
     <div style="display:flex;flex-direction:column;gap:0;margin-bottom:2rem;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
-      {[
+      <Fragment set:html={[
         ['1', 'Contract review', 'Before you sign: review all special conditions, deadlines, and finance clauses. This is critical. Many buyers sign contracts without legal review and only engage their solicitor after.'],
         ['2', 'Finance clause management', 'Monitor and meet the finance approval deadline. Extensions must be agreed in writing.'],
         ['3', 'Searches and due diligence', 'Title search, council rates, body corporate (if applicable), flood mapping, contamination registers, land tax clearance.'],
@@ -92,12 +92,12 @@ import Layout from '../../layouts/Layout.astro';
             <p style="font-size:0.82rem;color:#78716c;margin:0;line-height:1.7;">${desc}</p>
           </div>
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">When you should use a solicitor</h2>
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         'Buying off-the-plan: complex sunset clauses, developer amendments, and construction risk require legal advice',
         'Purchasing through a trust, SMSF, or corporate entity',
         'Deceased estate or probate sale',
@@ -110,12 +110,12 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#c4912a;flex-shrink:0;margin-top:7px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">When a conveyancer is sufficient</h2>
     <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;">
-      {[
+      <Fragment set:html={[
         'Standard purchase of an established residential property in your own name',
         'Straightforward sale of a freestanding house or unit',
         'No complex special conditions, no disputes, clear title',
@@ -124,7 +124,7 @@ import Layout from '../../layouts/Layout.astro';
           <span style="width:6px;height:6px;border-radius:50%;background:#3a8fa8;flex-shrink:0;margin-top:7px;"></span>
           ${item}
         </div>
-      `).join('')}
+      `).join('')} />
     </div>
 
     <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">How much does it cost?</h2>
@@ -142,7 +142,7 @@ import Layout from '../../layouts/Layout.astro';
           </tr>
         </thead>
         <tbody>
-          {[
+          <Fragment set:html={[
             ['Purchase (standard)', '$800 – $1,200', '$1,500 – $2,200'],
             ['Sale (standard)', '$700 – $1,100', '$1,200 – $1,800'],
             ['Off-the-plan purchase', 'Not recommended', '$1,800 – $3,000+'],
@@ -153,7 +153,7 @@ import Layout from '../../layouts/Layout.astro';
               <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${conv}</td>
               <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${sol}</td>
             </tr>
-          `).join('')}
+          `).join('')} />
         </tbody>
       </table>
     </div>
