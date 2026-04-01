@@ -1,0 +1,263 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+
+const sections = [
+  {
+    id: 'kerb',
+    label: 'Kerb Appeal',
+    color: '#c4912a',
+    items: [
+      { id: 'k1', priority: 'High',   cost: '$200–$600',    task: 'Mow, edge and fertilise lawns. Remove weeds from garden beds and replace dead plants.' },
+      { id: 'k2', priority: 'High',   cost: '$300–$1,500',  task: 'Pressure wash driveway, pathways, and exterior walls. First impressions begin at the kerb.' },
+      { id: 'k3', priority: 'High',   cost: '$500–$3,000',  task: 'Touch up or repaint the front fence, gate, and letterbox. Peeling paint signals neglect immediately.' },
+      { id: 'k4', priority: 'Medium', cost: '$0–$300',      task: 'Replace or repaint the front door. A bold, fresh front door is a proven ROI item.' },
+      { id: 'k5', priority: 'Medium', cost: '$150–$500',    task: 'Clean all exterior windows inside and out. Dull glass dulls presentation.' },
+      { id: 'k6', priority: 'Low',    cost: '$100–$400',    task: 'Add potted plants or a small garden bed at the front entry to soften and welcome.' },
+    ],
+  },
+  {
+    id: 'repairs',
+    label: 'Repairs & Maintenance',
+    color: '#d95f5f',
+    items: [
+      { id: 'r1', priority: 'High',   cost: '$100–$500',    task: 'Fix all dripping taps, running toilets, and leaking showerheads. Buyers notice water damage and assume worse.' },
+      { id: 'r2', priority: 'High',   cost: '$200–$800',    task: 'Repair or replace damaged flyscreens, door handles, locks, and hinges. Rattling and sticking is a turn-off.' },
+      { id: 'r3', priority: 'High',   cost: '$300–$1,200',  task: 'Fill and touch up all wall cracks, scuffs, and nail holes. Repaint in the original colour where needed.' },
+      { id: 'r4', priority: 'High',   cost: '$200–$600',    task: 'Replace broken light globes and faulty switches. Every light should work during inspections.' },
+      { id: 'r5', priority: 'Medium', cost: '$150–$500',    task: 'Re-grout and reseal bathrooms and kitchen tiles. Stained grout reads as old and unclean.' },
+      { id: 'r6', priority: 'Medium', cost: '$500–$2,000',  task: 'Service air conditioning units and replace filters. Buyers will test them.' },
+      { id: 'r7', priority: 'Medium', cost: '$200–$800',    task: 'Fix any sagging gutters, blocked downpipes, or visible roof damage. These flag in building reports.' },
+      { id: 'r8', priority: 'Low',    cost: '$300–$1,500',  task: 'Sand and oil timber decking or verandah floorboards if weathered. Adds significant perceived value to prewar homes.' },
+    ],
+  },
+  {
+    id: 'clean',
+    label: 'Cleaning & Declutter',
+    color: '#3a8fa8',
+    items: [
+      { id: 'c1', priority: 'High',   cost: '$400–$1,200',  task: 'Hire a professional cleaner for a full deep clean: oven, bathrooms, skirting boards, ceiling fans, and inside cupboards.' },
+      { id: 'c2', priority: 'High',   cost: '$0',           task: 'Remove at least 30% of furniture and personal items. Less furniture makes rooms feel larger. Buyers need to see the space, not your belongings.' },
+      { id: 'c3', priority: 'High',   cost: '$0–$200',      task: 'Clear all bench tops in kitchen and bathroom. Every item on a bench reduces perceived bench space.' },
+      { id: 'c4', priority: 'High',   cost: '$150–$400',    task: 'Clean the oven, range hood filter, and dishwasher. Buyers open these during inspections.' },
+      { id: 'c5', priority: 'Medium', cost: '$0',           task: 'Remove all family photos, religious items, and personal memorabilia. Buyers need to see themselves in the home.' },
+      { id: 'c6', priority: 'Medium', cost: '$200–$500',    task: 'Have carpets professionally steam cleaned. Odour and visible staining are among the top buyer objections.' },
+      { id: 'c7', priority: 'Low',    cost: '$0',           task: 'Clear the garage to at minimum half capacity. A crammed garage reads as not enough storage.' },
+    ],
+  },
+  {
+    id: 'style',
+    label: 'Staging & Styling',
+    color: '#4a9e4a',
+    items: [
+      { id: 's1', priority: 'High',   cost: '$1,500–$5,000', task: 'Engage a professional property stylist for key rooms (living, master bedroom, dining). Styled homes consistently achieve 5–10% above comparable unstyled properties.' },
+      { id: 's2', priority: 'High',   cost: '$200–$600',     task: 'Replace tired or mismatched cushions, throws, and soft furnishings in the living areas with neutral, contemporary pieces.' },
+      { id: 's3', priority: 'High',   cost: '$100–$400',     task: 'Add fresh white towels to bathrooms and a new bath mat. Replace soap dispensers with matching sets.' },
+      { id: 's4', priority: 'Medium', cost: '$150–$500',     task: 'Place a large bunch of fresh flowers or a potted plant in the living room and kitchen for photography and open homes.' },
+      { id: 's5', priority: 'Medium', cost: '$0–$300',       task: 'Ensure all window furnishings are clean and in working order. Stick to open, light-filtering blinds for photography.' },
+      { id: 's6', priority: 'Low',    cost: '$200–$800',     task: 'Upgrade kitchen handles, tapware, or bathroom accessories if dated. Small hardware changes read as renovation.' },
+    ],
+  },
+  {
+    id: 'legal',
+    label: 'Documentation & Compliance',
+    color: '#8a7acd',
+    items: [
+      { id: 'l1', priority: 'High',   cost: '$400–$800',    task: 'Engage a solicitor or conveyancer to prepare the contract of sale and vendor disclosure documents before launch.' },
+      { id: 'l2', priority: 'High',   cost: '$300–$600',    task: 'Obtain a building and pest inspection report. Identifying issues before launch lets you address them on your terms, not the buyer\'s.' },
+      { id: 'l3', priority: 'High',   cost: '$0',           task: 'Gather all council approvals for any structures (decks, sheds, pergolas, carports) built since purchase. Unapproved structures must be disclosed.' },
+      { id: 'l4', priority: 'High',   cost: '$40–$80',      task: 'Obtain a current smoke alarm compliance certificate. This is a legal requirement for all QLD property sales.' },
+      { id: 'l5', priority: 'Medium', cost: '$50–$150',     task: 'Obtain a pool safety certificate if applicable. Required before contract in QLD (or within 90 days of settlement for buyers).' },
+      { id: 'l6', priority: 'Medium', cost: '$0',           task: 'Locate your current rates notices, water accounts, and any body corporate records. Buyers will request these.' },
+      { id: 'l7', priority: 'Low',    cost: '$0',           task: 'Obtain your most recent land tax notice if applicable. Useful for buyers doing their due diligence.' },
+    ],
+  },
+];
+---
+
+<ToolLayout
+  title="Pre-Sale Preparation Checklist"
+  tool="Pre-Sale Checklist"
+  phase="Seller Tools"
+  description="A complete pre-sale preparation checklist for Brisbane homeowners. Prioritised tasks, cost estimates, and what to do before your property goes to market."
+>
+
+<style>
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.25rem; cursor: pointer;
+    border: 1px solid rgba(28,25,23,0.1);
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .section-header:hover { background: rgba(28,25,23,0.02); }
+
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 0.9rem 1.25rem;
+    border: 1px solid rgba(28,25,23,0.06);
+    border-top: none;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .checklist-item:hover { background: rgba(28,25,23,0.02); }
+  .checklist-item.done { background: rgba(74,158,74,0.04); }
+  .checklist-item.done .item-task { text-decoration: line-through; color: var(--color-text-muted); }
+
+  .custom-cb {
+    width: 18px; height: 18px; border: 1.5px solid rgba(28,25,23,0.25);
+    flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .checklist-item.done .custom-cb {
+    background: #4a9e4a; border-color: #4a9e4a;
+  }
+
+  .priority-badge {
+    display: inline-block;
+    font-family: var(--font-sans); font-size: 0.5rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.15rem 0.4rem; flex-shrink: 0;
+  }
+  .pri-High   { background: rgba(217,95,95,0.1);  color: #a03030; }
+  .pri-Medium { background: rgba(196,145,42,0.1); color: #8a6010; }
+  .pri-Low    { background: rgba(28,25,23,0.07);  color: #78716c; }
+
+  #progress-ring-container {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.5rem; background: var(--color-surface-3);
+    border: 1px solid rgba(28,25,23,0.08);
+  }
+
+  .section-items { display: none; }
+  .section-items.open { display: block; }
+  .chevron { transition: transform 0.2s; }
+  .chevron.open { transform: rotate(180deg); }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+  <!-- Progress summary -->
+  <div id="progress-ring-container">
+    <svg width="64" height="64" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(28,25,23,0.1)" stroke-width="5"/>
+      <circle id="prog-circle" cx="32" cy="32" r="26" fill="none" stroke="#c4912a" stroke-width="5"
+        stroke-dasharray="163.4" stroke-dashoffset="163.4"
+        stroke-linecap="round" transform="rotate(-90 32 32)"
+        style="transition:stroke-dashoffset 0.4s;"/>
+    </svg>
+    <div>
+      <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:var(--color-text-primary);">
+        <span id="done-count">0</span> / <span id="total-count">0</span> tasks complete
+      </p>
+      <p id="prog-label" style="font-size:0.82rem;color:var(--color-text-muted);margin-top:0.25rem;">Tick items off as you go.</p>
+    </div>
+    <button id="print-btn" style="margin-left:auto;padding:0.6rem 1.1rem;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid rgba(28,25,23,0.22);color:#78716c;background:transparent;cursor:pointer;display:flex;align-items:center;gap:0.4rem;" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print
+    </button>
+  </div>
+
+  <!-- Sections -->
+  {sections.map(section => (
+    <div class="checklist-section" data-section={section.id}>
+      <div class="section-header" data-toggle={section.id}
+        style={`border-left:3px solid ${section.color};`}>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span style={`font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);`}>{section.label}</span>
+          <span class="section-count" data-section={section.id}
+            style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;color:var(--color-text-muted);">
+            0/{section.items.length}
+          </span>
+        </div>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-items open" id={`items-${section.id}`}>
+        {section.items.map(item => (
+          <div class="checklist-item" data-id={item.id} data-section={section.id}>
+            <div class="custom-cb">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon" style="display:none;">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;flex-wrap:wrap;">
+                <span class={`priority-badge pri-${item.priority}`}>{item.priority}</span>
+                <span style="font-size:0.72rem;color:var(--color-text-muted);">{item.cost}</span>
+              </div>
+              <p class="item-task" style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.7;">{item.task}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  <!-- Daniel CTA -->
+  <div style="padding:1.5rem;background:rgba(196,145,42,0.06);border-left:3px solid var(--color-gold);margin-top:0.5rem;">
+    <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--color-text-primary);margin-bottom:0.4rem;">Not sure where to start?</p>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.75;margin-bottom:0.75rem;">Daniel walks through your property before it goes to market, prioritises what will actually move the needle, and tells you what not to spend money on. Free, no obligation.</p>
+    <a href="/contact" style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">Book a Pre-Sale Walk Through →</a>
+  </div>
+
+</div>
+
+<script>
+  // Build total count
+  const allItems = document.querySelectorAll<HTMLElement>('.checklist-item');
+  const totalEl  = document.getElementById('total-count')!;
+  const doneEl   = document.getElementById('done-count')!;
+  const progCircle = document.getElementById('prog-circle')!;
+  const progLabel  = document.getElementById('prog-label')!;
+  const circumference = 163.4;
+  totalEl.textContent = String(allItems.length);
+
+  const labels = ['Tick items off as you go.', 'Getting started!', 'Making progress.', 'Over halfway there.', 'Almost ready to list!', 'All done — time to go to market!'];
+
+  function updateProgress() {
+    const done  = document.querySelectorAll('.checklist-item.done').length;
+    const total = allItems.length;
+    const pct   = total > 0 ? done / total : 0;
+    doneEl.textContent = String(done);
+    progCircle.style.strokeDashoffset = String(circumference * (1 - pct));
+    const idx = Math.min(Math.floor(pct * 5), 5);
+    progLabel.textContent = labels[idx];
+
+    // Update section counts
+    document.querySelectorAll<HTMLElement>('[data-section]').forEach(el => {
+      if (!el.classList.contains('checklist-section')) {
+        const sec  = el.dataset.section!;
+        const secDone  = document.querySelectorAll(`.checklist-item.done[data-section="${sec}"]`).length;
+        const secTotal = document.querySelectorAll(`.checklist-item[data-section="${sec}"]`).length;
+        if (el.classList.contains('section-count')) {
+          el.textContent = `${secDone}/${secTotal}`;
+          el.style.color = secDone === secTotal && secTotal > 0 ? '#4a9e4a' : 'var(--color-text-muted)';
+        }
+      }
+    });
+  }
+
+  // Toggle items
+  allItems.forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('done');
+      const icon = item.querySelector<SVGElement>('.check-icon')!;
+      icon.style.display = item.classList.contains('done') ? 'block' : 'none';
+      updateProgress();
+    });
+  });
+
+  // Toggle sections
+  document.querySelectorAll<HTMLElement>('[data-toggle]').forEach(header => {
+    header.addEventListener('click', () => {
+      const id     = header.dataset.toggle!;
+      const items  = document.getElementById(`items-${id}`)!;
+      const chev   = header.querySelector<SVGElement>('.chevron')!;
+      items.classList.toggle('open');
+      chev.classList.toggle('open');
+    });
+  });
+
+  updateProgress();
+</script>
+
+</ToolLayout>

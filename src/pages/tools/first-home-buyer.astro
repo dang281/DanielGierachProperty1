@@ -1,0 +1,367 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Queensland First Home Buyer Grant & Concessions"
+  tool="First Home Buyer Grant"
+  phase="Buyer Tools"
+  description="Check eligibility for the $30,000 Queensland First Home Owner Grant and transfer duty concessions. Current rates with links to official QLD Government sources."
+>
+
+<style>
+  .step-panel {
+    background: var(--color-surface-3);
+    border: 1px solid rgba(28,25,23,0.08);
+    padding: 2rem;
+    display: none;
+  }
+  .step-panel.active { display: block; }
+
+  .yn-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.75rem 2rem;
+    font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1.5px solid rgba(28,25,23,0.22); cursor: pointer;
+    background: transparent; color: #78716c;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    min-width: 100px;
+  }
+  .yn-btn:hover, .yn-btn.selected {
+    background: #1c1917; color: #f0ece4; border-color: #1c1917;
+  }
+
+  .result-block {
+    padding: 1.5rem;
+    border-left: 3px solid;
+    margin-bottom: 1rem;
+  }
+  .result-block.positive { border-color: #4a9e4a; background: rgba(74,158,74,0.05); }
+  .result-block.negative { border-color: #d95f5f; background: rgba(217,95,95,0.05); }
+  .result-block.info     { border-color: #c4912a; background: rgba(196,145,42,0.05); }
+
+  .ref-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none;
+  }
+  .ref-link:hover { text-decoration: underline; }
+
+  input[type=number], input[type=text] {
+    width: 100%; font-family: var(--font-sans); font-size: 0.95rem;
+    padding: 0.85rem 1rem; border: 1px solid rgba(28,25,23,0.2);
+    background: var(--color-surface-4); color: var(--color-text-primary);
+    outline: none; transition: border-color 0.2s;
+  }
+  input[type=number]:focus, input[type=text]:focus { border-color: var(--color-gold); }
+
+  .progress-bar {
+    height: 3px; background: rgba(28,25,23,0.1); margin-bottom: 2rem;
+  }
+  .progress-fill {
+    height: 100%; background: var(--color-gold); transition: width 0.3s;
+  }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:1.5rem;max-width:680px;">
+
+  <!-- Progress -->
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+      <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Eligibility Check</span>
+      <span id="progress-label" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);">Step 1 of 5</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:20%;"></div></div>
+  </div>
+
+  <!-- Step 1: Home type -->
+  <div class="step-panel active" id="step-1">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Step 1</p>
+    <h3 style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">What type of property are you buying?</h3>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:1.5rem;">The $30,000 First Home Owner Grant applies to <strong>new homes only</strong> — newly built houses, off-the-plan apartments, or substantially renovated homes. Transfer duty concessions apply to both new and established homes.</p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <button class="yn-btn" data-step="1" data-key="homeType" data-val="new">New Home / Off-the-Plan</button>
+      <button class="yn-btn" data-step="1" data-key="homeType" data-val="established">Established Home</button>
+    </div>
+  </div>
+
+  <!-- Step 2: Previous ownership -->
+  <div class="step-panel" id="step-2">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Step 2</p>
+    <h3 style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">Have you or your partner previously owned a home in Australia?</h3>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:1.5rem;">This includes any residential property you or your co-applicant have owned, co-owned, or held an interest in anywhere in Australia — not just Queensland.</p>
+    <div style="display:flex;gap:0.75rem;">
+      <button class="yn-btn" data-step="2" data-key="prevOwned" data-val="no">No</button>
+      <button class="yn-btn" data-step="2" data-key="prevOwned" data-val="yes">Yes</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Residency -->
+  <div class="step-panel" id="step-3">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Step 3</p>
+    <h3 style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">Are you an Australian citizen or permanent resident?</h3>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:1.5rem;">At least one applicant must be an Australian citizen or permanent resident. Temporary visa holders are not eligible for the FHOG.</p>
+    <div style="display:flex;gap:0.75rem;">
+      <button class="yn-btn" data-step="3" data-key="citizen" data-val="yes">Yes</button>
+      <button class="yn-btn" data-step="3" data-key="citizen" data-val="no">No</button>
+    </div>
+  </div>
+
+  <!-- Step 4: Occupancy intent -->
+  <div class="step-panel" id="step-4">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Step 4</p>
+    <h3 style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">Will you live in the property as your principal place of residence?</h3>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:1.5rem;">You must move in within 1 year of settlement (or completion for new builds) and live there continuously for at least 1 year. Buying as a pure investment property does not qualify.</p>
+    <div style="display:flex;gap:0.75rem;">
+      <button class="yn-btn" data-step="4" data-key="occupancy" data-val="yes">Yes</button>
+      <button class="yn-btn" data-step="4" data-key="occupancy" data-val="no">No — Investment only</button>
+    </div>
+  </div>
+
+  <!-- Step 5: Purchase price -->
+  <div class="step-panel" id="step-5">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Step 5</p>
+    <h3 style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">What is the purchase price?</h3>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:1.5rem;">Grant and concession thresholds depend on the total contract value of the property.</p>
+    <div style="position:relative;max-width:320px;">
+      <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:0.9rem;color:var(--color-text-muted);">$</span>
+      <input type="number" id="price-input" placeholder="650,000" min="0" max="5000000" style="padding-left:2rem;" />
+    </div>
+    <button id="calc-btn" class="btn-gold" style="margin-top:1rem;">
+      Calculate My Entitlements
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- Results -->
+  <div id="results" style="display:none;flex-direction:column;gap:1rem;">
+
+    <h3 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--color-text-primary);padding-bottom:0.75rem;border-bottom:1px solid rgba(28,25,23,0.1);">Your Results</h3>
+
+    <!-- FHOG result -->
+    <div id="fhog-block" class="result-block"></div>
+
+    <!-- Duty result -->
+    <div id="duty-block" class="result-block info"></div>
+
+    <!-- Concession result -->
+    <div id="concession-block" class="result-block"></div>
+
+    <!-- Summary -->
+    <div id="summary-block" style="padding:1.5rem;background:#1c1917;color:#f0ece4;">
+      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Total Estimated Savings</p>
+      <p id="summary-total" style="font-family:var(--font-serif);font-size:2rem;font-weight:300;color:#f5d07a;"></p>
+      <p style="font-size:0.78rem;color:rgba(240,236,228,0.6);line-height:1.7;margin-top:0.5rem;">Indicative only. Verify exact amounts with the Queensland Revenue Office before settlement.</p>
+    </div>
+
+    <!-- Official links -->
+    <div style="padding:1.25rem 1.5rem;background:rgba(28,25,23,0.03);border:1px solid rgba(28,25,23,0.08);">
+      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.75rem;">Official References</p>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <a class="ref-link" href="https://www.qld.gov.au/housing/buying-owning-home/financial-help-concessions/qld-first-home-owners-grant" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          QLD First Home Owner Grant — QLD Government
+        </a>
+        <a class="ref-link" href="https://www.qro.qld.gov.au/duties/transfer-duty/concessions-for-transfer-duty/first-home-concession/" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          First Home Concession (Transfer Duty) — QLD Revenue Office
+        </a>
+        <a class="ref-link" href="https://www.qro.qld.gov.au/duties/transfer-duty/concessions-for-transfer-duty/first-home-vacant-land-concession/" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          First Home Vacant Land Concession — QLD Revenue Office
+        </a>
+        <a class="ref-link" href="https://www.qro.qld.gov.au/duties/transfer-duty/calculating-transfer-duty/" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          Transfer Duty Calculator — QLD Revenue Office
+        </a>
+      </div>
+    </div>
+
+    <button id="restart-btn" style="align-self:flex-start;padding:0.6rem 1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:transparent;border:1.5px solid rgba(28,25,23,0.22);color:#78716c;cursor:pointer;">
+      Start Again
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const answers: Record<string, string> = {};
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  function fmt(n: number) {
+    return '$' + Math.round(n).toLocaleString('en-AU');
+  }
+
+  function updateProgress(step: number) {
+    document.getElementById('progress-label')!.textContent = `Step ${step} of ${totalSteps}`;
+    (document.getElementById('progress-fill') as HTMLElement).style.width = `${(step / totalSteps) * 100}%`;
+  }
+
+  function goToStep(step: number) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById(`step-${step}`);
+    if (panel) {
+      panel.classList.add('active');
+      currentStep = step;
+      updateProgress(step);
+    }
+  }
+
+  // Transfer duty (standard QLD rates)
+  function calcDuty(price: number): number {
+    if (price <= 5000)    return 0;
+    if (price <= 75000)   return (price - 5000) * 0.015;
+    if (price <= 540000)  return 1050 + (price - 75000) * 0.035;
+    if (price <= 980000)  return 17325 + (price - 540000) * 0.045;
+    return 37125 + (price - 980000) * 0.0575;
+  }
+
+  // First home concession on established home (threshold $700k)
+  // Full concession (duty = $0) for homes <= $500k
+  // Partial: concession = fullDuty * ((700000 - price) / 200000) for $500k-$700k
+  function calcEstablishedConcession(price: number): number {
+    if (price > 700000) return 0;
+    const duty = calcDuty(price);
+    if (price <= 500000) return duty; // full concession
+    return duty * ((700000 - price) / 200000);
+  }
+
+  // First home concession on new home (threshold $800k)
+  // Full concession for <= $550k, partial for $550k-$800k
+  function calcNewHomeConcession(price: number): number {
+    if (price > 800000) return 0;
+    const duty = calcDuty(price);
+    if (price <= 550000) return duty;
+    return duty * ((800000 - price) / 250000);
+  }
+
+  function showResults() {
+    const price      = parseFloat((document.getElementById('price-input') as HTMLInputElement).value) || 0;
+    const isNew      = answers.homeType === 'new';
+    const prevOwned  = answers.prevOwned === 'yes';
+    const citizen    = answers.citizen === 'yes';
+    const occupancy  = answers.occupancy === 'yes';
+
+    const firstHome  = !prevOwned && citizen && occupancy;
+    const fhogEligible = firstHome && isNew && price <= 750000;
+    const concessionEligible = firstHome;
+
+    // FHOG
+    const fhogBlock = document.getElementById('fhog-block')!;
+    if (fhogEligible) {
+      fhogBlock.className = 'result-block positive';
+      fhogBlock.innerHTML = `
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.4rem;">First Home Owner Grant (FHOG)</p>
+        <p style="font-family:var(--font-serif);font-size:1.75rem;font-weight:300;color:var(--color-text-primary);">$30,000</p>
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">You appear eligible for the Queensland $30,000 First Home Owner Grant. This was increased from $15,000 on 20 November 2023. The grant is paid directly to your lender at settlement or on the first progressive payment for new builds.</p>`;
+    } else if (!firstHome) {
+      fhogBlock.className = 'result-block negative';
+      fhogBlock.innerHTML = `
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#d95f5f;margin-bottom:0.4rem;">First Home Owner Grant (FHOG)</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">Not eligible</p>
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">${prevOwned ? 'You or your partner have previously owned a residential property in Australia.' : citizen ? '' : 'You must be an Australian citizen or permanent resident.'} ${!occupancy ? 'The grant requires you to live in the property as your principal place of residence.' : ''}</p>`;
+    } else if (!isNew) {
+      fhogBlock.className = 'result-block negative';
+      fhogBlock.innerHTML = `
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#d95f5f;margin-bottom:0.4rem;">First Home Owner Grant (FHOG)</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">Not eligible — established home</p>
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">The $30,000 FHOG applies to new homes only. Established/existing homes are not eligible for the grant. You may still be eligible for transfer duty concessions below.</p>`;
+    } else {
+      fhogBlock.className = 'result-block negative';
+      fhogBlock.innerHTML = `
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#d95f5f;margin-bottom:0.4rem;">First Home Owner Grant (FHOG)</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">Not eligible — price exceeds $750,000</p>
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">The FHOG requires the total contract value to be $750,000 or less. Your purchase price of ${fmt(price)} exceeds this threshold.</p>`;
+    }
+
+    // Transfer duty
+    const standardDuty = calcDuty(price);
+    const concession = concessionEligible
+      ? (isNew ? calcNewHomeConcession(price) : calcEstablishedConcession(price))
+      : 0;
+    const dutyPayable = Math.max(0, standardDuty - concession);
+
+    const dutyBlock = document.getElementById('duty-block')!;
+    dutyBlock.innerHTML = `
+      <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Transfer Duty Estimate</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:0.75rem;">
+        <div>
+          <p style="font-size:0.65rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Standard Duty</p>
+          <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:300;color:var(--color-text-primary);">${fmt(standardDuty)}</p>
+        </div>
+        <div>
+          <p style="font-size:0.65rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Concession</p>
+          <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:300;color:#4a9e4a;">${concession > 0 ? '- ' + fmt(concession) : '$0'}</p>
+        </div>
+        <div>
+          <p style="font-size:0.65rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Duty Payable</p>
+          <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:300;color:var(--color-text-primary);">${fmt(dutyPayable)}</p>
+        </div>
+      </div>`;
+
+    // Concession note
+    const concBlock = document.getElementById('concession-block')!;
+    if (concessionEligible && concession > 0) {
+      concBlock.className = 'result-block positive';
+      concBlock.innerHTML = `
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.4rem;">First Home Transfer Duty Concession</p>
+        <p style="font-family:var(--font-serif);font-size:1.75rem;font-weight:300;color:var(--color-text-primary);">${fmt(concession)} saved</p>
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">
+          ${isNew
+            ? `New home concession applies. Full concession (no duty) for new homes up to $550,000. Partial concession for $550,000–$800,000.`
+            : `Established home concession applies. Full concession (no duty) for homes up to $500,000. Partial concession for $500,000–$700,000.`
+          }
+        </p>`;
+    } else if (concessionEligible && concession === 0 && price > (isNew ? 800000 : 700000)) {
+      concBlock.className = 'result-block negative';
+      concBlock.innerHTML = `
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#d95f5f;margin-bottom:0.4rem;">First Home Transfer Duty Concession</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">No concession — price exceeds threshold</p>
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">The first home concession threshold is ${isNew ? '$800,000 for new homes' : '$700,000 for established homes'}. Standard transfer duty applies at ${fmt(standardDuty)}.</p>`;
+    } else {
+      concBlock.style.display = 'none';
+    }
+
+    // Summary
+    const totalSavings = (fhogEligible ? 30000 : 0) + concession;
+    document.getElementById('summary-total')!.textContent = fmt(totalSavings);
+
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('results')!.style.display = 'flex';
+    updateProgress(5);
+  }
+
+  // Button handlers
+  document.querySelectorAll<HTMLButtonElement>('.yn-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = parseInt(btn.dataset.step!);
+      const key  = btn.dataset.key!;
+      const val  = btn.dataset.val!;
+      answers[key] = val;
+
+      // Highlight selected
+      document.querySelectorAll<HTMLButtonElement>(`.yn-btn[data-step="${step}"]`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      setTimeout(() => {
+        if (step < totalSteps) goToStep(step + 1);
+      }, 180);
+    });
+  });
+
+  document.getElementById('calc-btn')!.addEventListener('click', showResults);
+  document.getElementById('price-input')!.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter') showResults();
+  });
+  document.getElementById('restart-btn')!.addEventListener('click', () => {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.getElementById('results')!.style.display = 'none';
+    document.getElementById('concession-block')!.style.display = 'block';
+    (document.getElementById('price-input') as HTMLInputElement).value = '';
+    document.querySelectorAll<HTMLButtonElement>('.yn-btn').forEach(b => b.classList.remove('selected'));
+    goToStep(1);
+  });
+</script>
+
+</ToolLayout>

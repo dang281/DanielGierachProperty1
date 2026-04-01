@@ -1,0 +1,337 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
+---
+
+<ToolLayout
+  title="Brisbane 2032 Olympics & Infrastructure Map"
+  tool="Brisbane 2032 Map"
+  phase="Market Tools"
+  description="Olympic venues, Cross River Rail stations, Athletes Village, and major development precincts. See which suburbs sit inside Brisbane's growth corridors."
+>
+
+<style>
+  #map-2032 { width:100%; height:520px; border:1px solid rgba(28,25,23,0.1); }
+
+  .filter-btn {
+    display:inline-flex; align-items:center; gap:0.4rem;
+    padding:0.5rem 1.1rem;
+    font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.13em; text-transform:uppercase;
+    border:1.5px solid; cursor:pointer;
+    transition:background 0.15s,color 0.15s,border-color 0.15s;
+  }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; display:inline-block; }
+
+  .venue-card {
+    background:var(--color-surface-3); border:1px solid rgba(28,25,23,0.08);
+    padding:1rem 1.25rem; transition:border-color 0.2s; cursor:pointer;
+  }
+  .venue-card:hover { border-color:var(--color-gold); }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+  <!-- Filter row -->
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+    <button class="filter-btn active-filter" data-cat="all"   style="background:#1c1917;color:#f0ece4;border-color:#1c1917;">
+      <span class="dot" style="background:#c4912a;"></span>All
+    </button>
+    <button class="filter-btn" data-cat="venue"    style="background:transparent;color:#78716c;border-color:rgba(28,25,23,0.22);">
+      <span class="dot" style="background:#c4912a;"></span>Olympic Venues
+    </button>
+    <button class="filter-btn" data-cat="rail"     style="background:transparent;color:#78716c;border-color:rgba(28,25,23,0.22);">
+      <span class="dot" style="background:#3a8fa8;"></span>Cross River Rail
+    </button>
+    <button class="filter-btn" data-cat="precinct" style="background:transparent;color:#78716c;border-color:rgba(28,25,23,0.22);">
+      <span class="dot" style="background:#4a9e4a;"></span>Growth Precincts
+    </button>
+  </div>
+
+  <!-- Map -->
+  <div id="map-2032"></div>
+
+  <!-- Selected info panel -->
+  <div id="info-panel" style="display:none;padding:1.25rem 1.5rem;background:rgba(196,145,42,0.06);border-left:3px solid var(--color-gold);">
+    <p id="info-name"   style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.3rem;"></p>
+    <p id="info-cat"    style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;margin-bottom:0.6rem;"></p>
+    <p id="info-desc"   style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:0.75rem;"></p>
+    <a id="info-link" href="#" target="_blank" rel="noopener"
+      style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
+      Official Source →
+    </a>
+  </div>
+
+  <!-- Venue list -->
+  <div id="venue-list" style="display:flex;flex-direction:column;gap:0.4rem;"></div>
+
+  <!-- Source note -->
+  <p style="font-size:0.75rem;color:var(--color-text-muted);line-height:1.7;border-top:1px solid rgba(28,25,23,0.08);padding-top:1rem;">
+    Sources:
+    <a href="https://www.olympic.org/brisbane-2032" target="_blank" rel="noopener" style="color:var(--color-gold);">IOC Brisbane 2032</a> ·
+    <a href="https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032" target="_blank" rel="noopener" style="color:var(--color-gold);">QLD Government</a> ·
+    <a href="https://crossriverrail.qld.gov.au" target="_blank" rel="noopener" style="color:var(--color-gold);">Cross River Rail</a> ·
+    <a href="https://www.economic.qld.gov.au/projects/northshore" target="_blank" rel="noopener" style="color:var(--color-gold);">Northshore Hamilton</a>.
+    Venue plan reflects updates as of 2024. The Gabba stadium rebuild was cancelled in February 2024; athletics events relocated to QSAC.
+  </p>
+
+</div>
+
+<script define:vars={{ MAPS_KEY }}>
+const places = [
+  // ── Olympic Venues ──────────────────────────────────────────────────────
+  {
+    name: 'Suncorp Stadium (Lang Park)',
+    cat: 'venue',
+    lat: -27.4652, lng: 153.0097,
+    desc: 'Main Olympic Stadium — Opening and Closing Ceremonies, Football. Capacity 52,500. No rebuild required; confirmed as primary venue after the Gabba rebuild was cancelled in 2024.',
+    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
+    status: 'Confirmed',
+  },
+  {
+    name: 'Queensland Sport & Athletics Centre (QSAC)',
+    cat: 'venue',
+    lat: -27.5524, lng: 153.0127,
+    desc: 'Athletics and Paralympic Athletics. Located at Nathan, adjacent to Griffith University. Took over athletics events after the Gabba rebuild plan was abandoned.',
+    link: 'https://www.olympic.org/brisbane-2032',
+    status: 'Confirmed',
+  },
+  {
+    name: 'Sleeman Sports Complex — Chandler',
+    cat: 'venue',
+    lat: -27.5124, lng: 153.1127,
+    desc: 'Aquatics Centre, Velodrome (cycling), and Tennis. Major existing multi-sport precinct in Chandler. Already hosted multiple World Championships.',
+    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
+    status: 'Confirmed',
+  },
+  {
+    name: 'Brisbane Entertainment Centre',
+    cat: 'venue',
+    lat: -27.3802, lng: 153.0836,
+    desc: 'Indoor Arena — Basketball, Gymnastics, Volleyball finals. Located at Boondall in Brisbane\'s north. Capacity approximately 13,500.',
+    link: 'https://www.olympic.org/brisbane-2032',
+    status: 'Confirmed',
+  },
+  {
+    name: 'Queensland Tennis Centre',
+    cat: 'venue',
+    lat: -27.5302, lng: 153.0062,
+    desc: 'Tennis events. Located at Tennyson on the Brisbane River, the precinct already hosts the Brisbane International. Capacity 5,500 on centre court.',
+    link: 'https://www.olympic.org/brisbane-2032',
+    status: 'Confirmed',
+  },
+  {
+    name: 'Brisbane Convention & Exhibition Centre',
+    cat: 'venue',
+    lat: -27.4836, lng: 153.0193,
+    desc: 'Combat sports — Boxing, Judo, Taekwondo, Wrestling, Weightlifting. Located at South Bank adjacent to the Cultural Centre.',
+    link: 'https://www.olympic.org/brisbane-2032',
+    status: 'Confirmed',
+  },
+  {
+    name: 'The Gabba (Cricket Ground)',
+    cat: 'venue',
+    lat: -27.4858, lng: 153.0381,
+    desc: 'Cricket and Baseball. The planned $2.7B Gabba rebuild was formally cancelled in February 2024. The existing stadium will be upgraded rather than demolished.',
+    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
+    status: 'Confirmed (no rebuild)',
+  },
+
+  // ── Cross River Rail ─────────────────────────────────────────────────────
+  {
+    name: 'Woolloongabba Station (Cross River Rail)',
+    cat: 'rail',
+    lat: -27.4940, lng: 153.0356,
+    desc: 'New underground station adjacent to the Gabba. Part of the $7.1B Cross River Rail project. Woolloongabba is one of the biggest urban renewal precincts triggered by the Olympics.',
+    link: 'https://crossriverrail.qld.gov.au/stations/woolloongabba/',
+    status: 'Under construction',
+  },
+  {
+    name: 'Albert Street Station (Cross River Rail)',
+    cat: 'rail',
+    lat: -27.4724, lng: 153.0252,
+    desc: 'New underground CBD station on Albert Street — the first new Brisbane CBD rail station in decades. Opening as part of the full Cross River Rail network.',
+    link: 'https://crossriverrail.qld.gov.au/stations/albert-street/',
+    status: 'Under construction',
+  },
+  {
+    name: 'Roma Street Station (Cross River Rail)',
+    cat: 'rail',
+    lat: -27.4660, lng: 153.0120,
+    desc: 'Major upgrade to existing Roma Street station as part of Cross River Rail. Adjacent to the proposed Brisbane Arena development precinct at Bowen Hills.',
+    link: 'https://crossriverrail.qld.gov.au/stations/roma-street/',
+    status: 'Under construction',
+  },
+  {
+    name: 'Exhibition Station — Bowen Hills (Cross River Rail)',
+    cat: 'rail',
+    lat: -27.4528, lng: 153.0346,
+    desc: 'New underground station at Bowen Hills / RNA Showgrounds precinct. Directly serves the proposed Brisbane Arena site and the Exhibition precinct.',
+    link: 'https://crossriverrail.qld.gov.au/stations/exhibition/',
+    status: 'Under construction',
+  },
+  {
+    name: 'Boggo Road Station (Cross River Rail)',
+    cat: 'rail',
+    lat: -27.4982, lng: 153.0296,
+    desc: 'New underground station at Boggo Road, Dutton Park — connecting the Ecosciences Precinct and Princess Alexandra Hospital catchment to the Cross River Rail network.',
+    link: 'https://crossriverrail.qld.gov.au/stations/boggo-road/',
+    status: 'Under construction',
+  },
+
+  // ── Growth Precincts ─────────────────────────────────────────────────────
+  {
+    name: 'Northshore Hamilton — Athletes Village',
+    cat: 'precinct',
+    lat: -27.4328, lng: 153.0724,
+    desc: 'Confirmed site of the Brisbane 2032 Athletes Village. A 30-hectare riverside precinct being transformed into high-density residential, commercial, and parkland. One of the largest urban renewal projects in QLD history.',
+    link: 'https://www.economic.qld.gov.au/projects/northshore',
+    status: 'Under development',
+  },
+  {
+    name: 'Woolloongabba Precinct',
+    cat: 'precinct',
+    lat: -27.4924, lng: 153.0375,
+    desc: 'The single biggest Olympics-driven urban renewal area in Brisbane. The new Cross River Rail station and Gabba precinct are catalysing major rezoning, towers, retail, and public realm upgrades in Woolloongabba.',
+    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
+    status: 'Planning and construction',
+  },
+  {
+    name: 'Brisbane Arena — Bowen Hills Precinct',
+    cat: 'precinct',
+    lat: -27.4532, lng: 153.0358,
+    desc: 'Approved new multi-purpose arena (17,000 seats) to be built at the RNA Showgrounds, Bowen Hills. Will be a permanent legacy venue for entertainment and sport after 2032. Adjacent to the new Exhibition Cross River Rail station.',
+    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
+    status: 'Approved',
+  },
+  {
+    name: 'Victoria Park / Herston Precinct',
+    cat: 'precinct',
+    lat: -27.4528, lng: 153.0218,
+    desc: 'Inner-city precinct earmarked for Olympics-related development and increased green space. Adjacent to QUT Kelvin Grove, the RBWH health precinct, and Herston. Victoria Park golf course area under review for future public use.',
+    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
+    status: 'Planning',
+  },
+  {
+    name: 'Queens Wharf Brisbane',
+    cat: 'precinct',
+    lat: -27.4726, lng: 153.0188,
+    desc: 'Major CBD riverside precinct — casino, hotels, public realm, and Sky Deck. Integrated resort development by Destination Brisbane Consortium. Part of the broader CBD transformation ahead of 2032.',
+    link: 'https://queenswharfbrisbane.com.au',
+    status: 'Under construction / partial open',
+  },
+];
+
+const catColors = { venue: '#c4912a', rail: '#3a8fa8', precinct: '#4a9e4a' };
+const catLabels = { venue: 'Olympic Venue', rail: 'Cross River Rail', precinct: 'Growth Precinct' };
+
+let map, markers = [], activeFilter = 'all';
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map-2032'), {
+    center: { lat: -27.4698, lng: 153.0251 },
+    zoom: 12,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
+    styles: [
+      { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+      { featureType: 'transit.station', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+    ],
+  });
+
+  places.forEach(p => {
+    const color = catColors[p.cat];
+    const marker = new google.maps.Marker({
+      position: { lat: p.lat, lng: p.lng },
+      map,
+      title: p.name,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 9,
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+      },
+      category: p.cat,
+    });
+
+    marker.addListener('click', () => showInfo(p));
+    markers.push({ marker, place: p });
+  });
+
+  renderList('all');
+}
+
+function showInfo(p) {
+  const panel = document.getElementById('info-panel');
+  document.getElementById('info-name').textContent = p.name;
+  document.getElementById('info-cat').textContent = `${catLabels[p.cat]} · ${p.status}`;
+  document.getElementById('info-desc').textContent = p.desc;
+  const link = document.getElementById('info-link');
+  link.href = p.link;
+  link.style.display = p.link ? 'inline' : 'none';
+  panel.style.display = 'block';
+  map.panTo({ lat: p.lat, lng: p.lng });
+}
+
+function setFilter(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    const isActive = b.dataset.cat === cat;
+    b.style.background   = isActive ? '#1c1917' : 'transparent';
+    b.style.color        = isActive ? '#f0ece4' : '#78716c';
+    b.style.borderColor  = isActive ? '#1c1917' : 'rgba(28,25,23,0.22)';
+  });
+  markers.forEach(({ marker, place }) => {
+    marker.setVisible(cat === 'all' || place.cat === cat);
+  });
+  renderList(cat);
+  document.getElementById('info-panel').style.display = 'none';
+}
+
+function renderList(cat) {
+  const list = document.getElementById('venue-list');
+  list.innerHTML = '';
+  const filtered = cat === 'all' ? places : places.filter(p => p.cat === cat);
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'venue-card';
+    card.innerHTML = `
+      <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+        <span style="width:9px;height:9px;border-radius:50%;background:${catColors[p.cat]};flex-shrink:0;margin-top:5px;"></span>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.2rem;">
+            <span style="font-family:var(--font-serif);font-size:0.97rem;font-weight:400;color:var(--color-text-primary);">${p.name}</span>
+            <span style="font-family:var(--font-sans);font-size:0.52rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:0.15rem 0.45rem;background:rgba(28,25,23,0.06);color:#78716c;flex-shrink:0;">${p.status}</span>
+          </div>
+          <p style="font-size:0.78rem;color:var(--color-text-muted);line-height:1.65;">${p.desc}</p>
+          <a href="${p.link}" target="_blank" rel="noopener"
+            style="display:inline-block;margin-top:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
+            Official source →
+          </a>
+        </div>
+      </div>`;
+    card.addEventListener('click', () => {
+      showInfo(p);
+      map.setZoom(15);
+      window.scrollTo({ top: document.getElementById('map-2032').offsetTop - 100, behavior: 'smooth' });
+    });
+    list.appendChild(card);
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => setFilter(btn.dataset.cat));
+});
+
+// Load Maps JS API
+const script = document.createElement('script');
+script.src = `https://maps.googleapis.com/maps/api/js?key=${MAPS_KEY}&callback=initMap`;
+script.async = true;
+script.defer = true;
+window.initMap = initMap;
+document.head.appendChild(script);
+</script>
+
+</ToolLayout>
