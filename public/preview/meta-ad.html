@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="robots" content="noindex, nofollow"/>
 <title>Daniel Gierach – Meta Ad Animation</title>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;600;700;800&display=swap');
 
@@ -382,25 +381,14 @@
 <!-- Download button -->
 <div style="margin-top:24px;text-align:center;">
   <button id="dlBtn" onclick="downloadVideo()" style="background:#1c1917;color:#f0ece4;border:1px solid rgba(240,236,228,0.15);padding:12px 28px;font-family:'Manrope',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;">
-    Download Video
+    Record &amp; Download
   </button>
-  <div id="dlStatus" style="margin-top:8px;font-size:0.6rem;color:rgba(240,236,228,0.4);letter-spacing:0.08em;min-height:16px;"></div>
+  <div id="dlStatus" style="margin-top:8px;font-size:0.6rem;color:rgba(240,236,228,0.4);letter-spacing:0.06em;min-height:16px;max-width:320px;margin-left:auto;margin-right:auto;line-height:1.6;"></div>
 </div>
 
 <script>
   let isRecording = false;
-
-  async function toDataURL(url) {
-    try {
-      const r = await fetch(url, { mode: 'cors' });
-      const blob = await r.blob();
-      return new Promise(res => {
-        const reader = new FileReader();
-        reader.onload = () => res(reader.result);
-        reader.readAsDataURL(blob);
-      });
-    } catch(e) { return null; }
-  }
+  let animGeneration = 0;
 
   async function downloadVideo() {
     if (isRecording) return;
@@ -408,88 +396,70 @@
 
     const btn = document.getElementById('dlBtn');
     const status = document.getElementById('dlStatus');
-    const frame = document.querySelector('.frame');
-    const SCALE = 2;
-    const LOOP_MS = 18000;
+    const LOOP_MS = 19000;
 
-    btn.textContent = 'Loading images...';
+    btn.textContent = 'Starting...';
     btn.style.opacity = '0.6';
-    status.textContent = 'Fetching assets for high-quality export…';
+    status.textContent = 'A tab-sharing prompt will appear — select this tab, then click Share.';
 
-    // Pre-fetch images as data URLs so CORS doesn't block canvas rendering
-    const [headshotData, bgData] = await Promise.all([
-      toDataURL('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg'),
-      toDataURL('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&fm=webp')
-    ]);
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getDisplayMedia({
+        video: { frameRate: 60, width: { ideal: 3840 }, height: { ideal: 2160 } },
+        audio: false,
+        preferCurrentTab: true
+      });
+    } catch(e) {
+      isRecording = false;
+      btn.textContent = 'Record & Download';
+      btn.style.opacity = '1';
+      status.textContent = 'Cancelled.';
+      setTimeout(() => { status.textContent = ''; }, 3000);
+      return;
+    }
 
-    // Inject data URLs inline to override CSS (avoids taint/CORS issues)
-    const avatarEl = document.querySelector('.avatar');
-    const bgEl = document.querySelector('.s1-bg');
-    if (headshotData) avatarEl.style.background = `url('${headshotData}') center 10%/cover`;
-    if (bgData) bgEl.style.background = `url('${bgData}') center/cover no-repeat`;
-
-    status.textContent = 'Recording — takes about 20 seconds…';
-
-    const canvas = document.createElement('canvas');
-    canvas.width = 390 * SCALE;
-    canvas.height = 693 * SCALE;
-    const ctx = canvas.getContext('2d');
-    canvas.style.cssText = 'position:fixed;left:-9999px;top:0;';
-    document.body.appendChild(canvas);
+    // Restart animation from the top so recording begins at frame 1
+    restartAnimation();
 
     const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
       ? 'video/webm;codecs=vp9' : 'video/webm';
-    const stream = canvas.captureStream(30);
-    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 10000000 });
+    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 20000000 });
     const chunks = [];
 
     recorder.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
     recorder.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
       const blob = new Blob(chunks, { type: 'video/webm' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = 'daniel-gierach-property-ad.webm';
       a.click();
-      canvas.remove();
-      // Restore CSS-controlled backgrounds
-      avatarEl.style.background = '';
-      bgEl.style.background = '';
       isRecording = false;
-      btn.textContent = 'Download Video';
+      btn.textContent = 'Record & Download';
       btn.style.opacity = '1';
       status.textContent = 'Done! Check your downloads folder.';
-      setTimeout(() => { status.textContent = ''; }, 4000);
+      setTimeout(() => { status.textContent = ''; }, 5000);
     };
 
     recorder.start(200);
+    btn.textContent = 'Recording...';
+    status.textContent = `Recording one full loop at 60fps — stops automatically.`;
+
+    // Track remaining time
     const startTime = Date.now();
-
-    async function captureLoop() {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(99, Math.round(elapsed / LOOP_MS * 100));
-      btn.textContent = `Recording ${pct}%`;
-
-      if (elapsed >= LOOP_MS) {
-        recorder.stop();
-        return;
+    const tick = setInterval(() => {
+      const remaining = Math.ceil((LOOP_MS - (Date.now() - startTime)) / 1000);
+      if (remaining > 0) {
+        status.textContent = `Recording… ${remaining}s remaining`;
+      } else {
+        clearInterval(tick);
       }
+    }, 1000);
 
-      try {
-        const snap = await html2canvas(frame, {
-          scale: SCALE,
-          useCORS: true,
-          allowTaint: false,
-          backgroundColor: '#0a0806',
-          logging: false,
-          imageTimeout: 0
-        });
-        ctx.drawImage(snap, 0, 0);
-      } catch(e) {}
-
-      requestAnimationFrame(captureLoop);
-    }
-
-    captureLoop();
+    setTimeout(() => {
+      clearInterval(tick);
+      if (recorder.state === 'recording') recorder.stop();
+    }, LOOP_MS);
   }
 
   const PARTIAL   = '21 Sherwood';
@@ -548,8 +518,26 @@
     rptCta.classList.add('show');
   }
 
-  async function run() {
+  function restartAnimation() {
+    animGeneration++;
+    typedEl.textContent = '';
+    phEl.style.display = '';
+    caretEl.style.display = 'none';
+    goBtn.classList.remove('clicked');
+    s1.classList.remove('out');
+    s2.classList.remove('in', 'out');
+    s3.classList.remove('in');
+    dropdown.classList.remove('open');
+    fieldRow.classList.remove('dropdown-open');
+    dd0.classList.remove('active');
+    resetReport();
+    run(animGeneration);
+  }
+
+  async function run(gen) {
+    if (gen === undefined) gen = animGeneration;
     await wait(1400);
+    if (gen !== animGeneration) return;
     phEl.style.display = 'none';
     caretEl.style.display = 'inline-block';
     await typeText(PARTIAL);
@@ -597,10 +585,10 @@
     s1.classList.remove('out');
 
     await wait(600);
-    run();
+    run(gen);
   }
 
-  run();
+  run(animGeneration);
 </script>
 </body>
 </html>
