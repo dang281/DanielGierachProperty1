@@ -9,7 +9,12 @@ import Layout from '../../layouts/Layout.astro';
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">
   <div class="absolute inset-0 z-0">
-    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp&auto=format" alt="Brisbane inner east" class="w-full h-full object-cover" style="filter:brightness(0.35) grayscale(10%);"/>
+    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=65&fm=webp&auto=format"
+  srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=640&q=60&fm=webp&auto=format 640w,
+          https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=65&fm=webp&auto=format 1200w,
+          https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=70&fm=webp&auto=format 1920w"
+  sizes="100vw" alt="Brisbane inner east" width="1920" height="1080" fetchpriority="high"
+  class="w-full h-full object-cover" style="filter:brightness(0.35) grayscale(10%);"/>
     <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.75) 0%,rgba(10,8,6,0.3) 100%);"></div>
   </div>
   <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-36 pb-20">
