@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="robots" content="noindex, nofollow"/>
 <title>Daniel Gierach – Meta Ad Animation</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;600;700;800&display=swap');
 
@@ -321,7 +322,7 @@
         </button>
       </div>
 
-      <p class="note">Free · You'll get an indicative value range based on recent comparable sales in your street.</p>
+      <p class="note">Free · You'll get an indicative value range based on recent comparable sales in your area.</p>
 
 
     </div>
@@ -377,7 +378,92 @@
   </div>
 
 </div>
+
+<!-- Download button -->
+<div style="margin-top:24px;text-align:center;">
+  <button id="dlBtn" onclick="downloadVideo()" style="background:#1c1917;color:#f0ece4;border:1px solid rgba(240,236,228,0.15);padding:12px 28px;font-family:'Manrope',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;">
+    Download Video
+  </button>
+  <div id="dlStatus" style="margin-top:8px;font-size:0.6rem;color:rgba(240,236,228,0.4);letter-spacing:0.08em;min-height:16px;"></div>
+</div>
+
 <script>
+  let isRecording = false;
+
+  async function downloadVideo() {
+    if (isRecording) return;
+    isRecording = true;
+
+    const btn = document.getElementById('dlBtn');
+    const status = document.getElementById('dlStatus');
+    const frame = document.querySelector('.frame');
+    const SCALE = 2;
+    const LOOP_MS = 18000;
+
+    btn.textContent = 'Starting...';
+    btn.style.opacity = '0.6';
+    status.textContent = 'Preparing — this takes about 20 seconds';
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 390 * SCALE;
+    canvas.height = 693 * SCALE;
+    const ctx = canvas.getContext('2d');
+    canvas.style.cssText = 'position:fixed;left:-9999px;top:0;';
+    document.body.appendChild(canvas);
+
+    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+      ? 'video/webm;codecs=vp9' : 'video/webm';
+    const stream = canvas.captureStream(30);
+    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 10000000 });
+    const chunks = [];
+
+    recorder.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: 'video/webm' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'daniel-gierach-property-ad.webm';
+      a.click();
+      canvas.remove();
+      isRecording = false;
+      btn.textContent = 'Download Video';
+      btn.style.opacity = '1';
+      status.textContent = 'Done! Check your downloads folder.';
+      setTimeout(() => { status.textContent = ''; }, 4000);
+    };
+
+    recorder.start(200);
+    const startTime = Date.now();
+
+    async function captureLoop() {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(99, Math.round(elapsed / LOOP_MS * 100));
+      btn.textContent = `Recording ${pct}%`;
+      status.textContent = `Capturing at 2× resolution…`;
+
+      if (elapsed >= LOOP_MS) {
+        recorder.stop();
+        return;
+      }
+
+      try {
+        const snap = await html2canvas(frame, {
+          scale: SCALE,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#0a0806',
+          logging: false,
+          imageTimeout: 0
+        });
+        ctx.drawImage(snap, 0, 0);
+      } catch(e) {}
+
+      requestAnimationFrame(captureLoop);
+    }
+
+    captureLoop();
+  }
+
   const PARTIAL   = '21 Sherwood';
   const FULL      = '21 Sherwood Road, Camp Hill';
 
