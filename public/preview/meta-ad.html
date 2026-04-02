@@ -390,6 +390,18 @@
 <script>
   let isRecording = false;
 
+  async function toDataURL(url) {
+    try {
+      const r = await fetch(url, { mode: 'cors' });
+      const blob = await r.blob();
+      return new Promise(res => {
+        const reader = new FileReader();
+        reader.onload = () => res(reader.result);
+        reader.readAsDataURL(blob);
+      });
+    } catch(e) { return null; }
+  }
+
   async function downloadVideo() {
     if (isRecording) return;
     isRecording = true;
@@ -400,9 +412,23 @@
     const SCALE = 2;
     const LOOP_MS = 18000;
 
-    btn.textContent = 'Starting...';
+    btn.textContent = 'Loading images...';
     btn.style.opacity = '0.6';
-    status.textContent = 'Preparing — this takes about 20 seconds';
+    status.textContent = 'Fetching assets for high-quality export…';
+
+    // Pre-fetch images as data URLs so CORS doesn't block canvas rendering
+    const [headshotData, bgData] = await Promise.all([
+      toDataURL('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg'),
+      toDataURL('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&fm=webp')
+    ]);
+
+    // Inject data URLs inline to override CSS (avoids taint/CORS issues)
+    const avatarEl = document.querySelector('.avatar');
+    const bgEl = document.querySelector('.s1-bg');
+    if (headshotData) avatarEl.style.background = `url('${headshotData}') center 10%/cover`;
+    if (bgData) bgEl.style.background = `url('${bgData}') center/cover no-repeat`;
+
+    status.textContent = 'Recording — takes about 20 seconds…';
 
     const canvas = document.createElement('canvas');
     canvas.width = 390 * SCALE;
@@ -425,6 +451,9 @@
       a.download = 'daniel-gierach-property-ad.webm';
       a.click();
       canvas.remove();
+      // Restore CSS-controlled backgrounds
+      avatarEl.style.background = '';
+      bgEl.style.background = '';
       isRecording = false;
       btn.textContent = 'Download Video';
       btn.style.opacity = '1';
@@ -439,7 +468,6 @@
       const elapsed = Date.now() - startTime;
       const pct = Math.min(99, Math.round(elapsed / LOOP_MS * 100));
       btn.textContent = `Recording ${pct}%`;
-      status.textContent = `Capturing at 2× resolution…`;
 
       if (elapsed >= LOOP_MS) {
         recorder.stop();
@@ -450,7 +478,7 @@
         const snap = await html2canvas(frame, {
           scale: SCALE,
           useCORS: true,
-          allowTaint: true,
+          allowTaint: false,
           backgroundColor: '#0a0806',
           logging: false,
           imageTimeout: 0
