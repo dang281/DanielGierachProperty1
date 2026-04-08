@@ -163,10 +163,7 @@ const globalSchema = {
 
     <!-- Mobile sticky call bar -->
     <div class={`mobile-call-bar${hideMobileCta ? ' hidden-by-page' : ''}`}>
-      <a href="/property-worth" class="mobile-appraisal-btn" onclick="gtag('event', 'mobile_worth_click', { event_category: 'lead', event_label: 'Mobile Call Bar' })">
-        My Property Report
-      </a>
-      <a href="sms:+61412523821" class="mobile-call-btn" onclick="gtag('event', 'mobile_sms_click', { event_category: 'contact', event_label: 'Mobile Call Bar' })">
+<a href="sms:+61412523821" class="mobile-call-btn" onclick="gtag('event', 'mobile_sms_click', { event_category: 'contact', event_label: 'Mobile Call Bar' })">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
@@ -179,6 +176,24 @@ const globalSchema = {
         Call
       </a>
     </div>
+
+    <!-- Meta Pixel — replace YOUR_PIXEL_ID with your actual ID from Meta Business Suite → Events Manager -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
 
     <!-- Google Analytics 4 — deferred to end of body so it never blocks paint -->
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
