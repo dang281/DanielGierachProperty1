@@ -64,7 +64,7 @@ const suburbs = [
   <div
     id="mobile-menu"
     class="lg:hidden overflow-hidden transition-all duration-300"
-    style="max-height:0;background:rgba(242,239,233,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(28,25,23,0.08);"
+    style="max-height:0;background:rgba(242,239,233,0.98);backdrop-filter:blur(20px);"
   >
     <div class="max-w-[1400px] mx-auto px-8 py-6 flex flex-col gap-5">
       {navLinks.map((link) => (
@@ -132,6 +132,7 @@ const suburbs = [
   mobileToggle.addEventListener('click', () => {
     menuOpen = !menuOpen;
     mobileMenu.style.maxHeight = menuOpen ? '600px' : '0';
+    mobileMenu.style.borderBottom = menuOpen ? '1px solid rgba(28,25,23,0.08)' : '';
     bar3.style.width = menuOpen ? '1.5rem' : '1rem';
   });
 
