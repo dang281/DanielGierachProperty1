@@ -86,6 +86,8 @@ const year = new Date().getFullYear();
         <p class="eyebrow mb-6">Areas</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 1rem;">
           {[
+            { label: 'Annerley',           href: '/suburbs/annerley' },
+            { label: 'Ascot',               href: '/suburbs/ascot' },
             { label: 'Balmoral',            href: '/suburbs/balmoral' },
             { label: 'Belmont',             href: '/suburbs/belmont' },
             { label: 'Brisbane CBD',        href: '/suburbs/brisbane-cbd' },
@@ -97,9 +99,11 @@ const year = new Date().getFullYear();
             { label: 'Carina Heights',      href: '/suburbs/carina-heights' },
             { label: 'Carindale',           href: '/suburbs/carindale' },
             { label: 'Coorparoo',           href: '/suburbs/coorparoo' },
+            { label: 'Dutton Park',         href: '/suburbs/dutton-park' },
             { label: 'East Brisbane',       href: '/suburbs/east-brisbane' },
             { label: 'Fortitude Valley',    href: '/suburbs/fortitude-valley' },
             { label: 'Greenslopes',         href: '/suburbs/greenslopes' },
+            { label: 'Hamilton',            href: '/suburbs/hamilton' },
             { label: 'Hawthorne',           href: '/suburbs/hawthorne' },
             { label: 'Hemmant',             href: '/suburbs/hemmant' },
             { label: 'Holland Park',        href: '/suburbs/holland-park' },
@@ -112,10 +116,12 @@ const year = new Date().getFullYear();
             { label: 'New Farm',            href: '/suburbs/new-farm' },
             { label: 'Norman Park',         href: '/suburbs/norman-park' },
             { label: 'Seven Hills',         href: '/suburbs/seven-hills' },
+            { label: 'Stones Corner',       href: '/suburbs/stones-corner' },
             { label: 'Tarragindi',          href: '/suburbs/tarragindi' },
             { label: 'Teneriffe',           href: '/suburbs/teneriffe' },
             { label: 'Tingalpa',            href: '/suburbs/tingalpa' },
             { label: 'Upper Mt Gravatt',    href: '/suburbs/upper-mount-gravatt' },
+            { label: 'West End',            href: '/suburbs/west-end' },
             { label: 'Woolloongabba',       href: '/suburbs/woolloongabba' },
           ].map(item => (
             <a href={item.href} style="font-size:0.75rem;color:var(--color-text-muted);transition:color 0.2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" onmouseover="this.style.color='var(--color-text-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">{item.label}</a>
