@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const suburbs = [
+  { name: 'Balmoral',            href: '/suburbs/balmoral',            desc: 'Prestige riverfront living, heritage Queenslanders' },
+  { name: 'Belmont',             href: '/suburbs/belmont',             desc: 'Family-friendly, great value southeast Brisbane' },
+  { name: 'Brisbane CBD',        href: '/suburbs/brisbane-cbd',        desc: 'Inner-city apartments and investment property' },
+  { name: 'Brisbane Inner East', href: '/brisbane-inner-east',         desc: 'Daniel\'s core focus area across the inner east' },
+  { name: 'Bulimba',             href: '/suburbs/bulimba',             desc: 'Village lifestyle, Oxford Street, riverside appeal' },
+  { name: 'Camp Hill',           href: '/suburbs/camp-hill',           desc: 'Elevated inner east, character homes, strong schools' },
+  { name: 'Cannon Hill',         href: '/suburbs/cannon-hill',         desc: 'Family suburb, good access, growing demand' },
+  { name: 'Carina',              href: '/suburbs/carina',              desc: 'Popular with families, well-connected southeast' },
+  { name: 'Carina Heights',      href: '/suburbs/carina-heights',      desc: 'Quiet residential, strong family appeal' },
+  { name: 'Carindale',           href: '/suburbs/carindale',           desc: 'Large blocks, family living, Garden City proximity' },
+  { name: 'Coorparoo',           href: '/suburbs/coorparoo',           desc: 'Inner south character homes, strong buyer demand' },
+  { name: 'East Brisbane',       href: '/suburbs/east-brisbane',       desc: 'Walkable inner city, terrace homes, café culture' },
+  { name: 'Fortitude Valley',    href: '/suburbs/fortitude-valley',    desc: 'Inner-city apartments, culture and entertainment hub' },
+  { name: 'Greenslopes',         href: '/suburbs/greenslopes',         desc: 'Leafy inner south, character homes, good schools' },
+  { name: 'Hawthorne',           href: '/suburbs/hawthorne',           desc: 'Premium riverside, Riding Road village, top schools' },
+  { name: 'Hemmant',             href: '/suburbs/hemmant',             desc: 'Affordable east, bayside access, good value' },
+  { name: 'Holland Park',        href: '/suburbs/holland-park',        desc: 'Established inner south, character homes, leafy streets' },
+  { name: 'Holland Park West',   href: '/suburbs/holland-park-west',   desc: 'Quiet family suburb, parks, inner-south lifestyle' },
+  { name: 'Kangaroo Point',      href: '/suburbs/kangaroo-point',      desc: 'Cliff apartments, river views, walkable CBD fringe' },
+  { name: 'Morningside',         href: '/suburbs/morningside',         desc: 'Growing inner east, renovated Queenslanders, cafes' },
+  { name: 'Mount Gravatt',       href: '/suburbs/mount-gravatt',       desc: 'Central south, Garden City, strong family demand' },
+  { name: 'Mt Gravatt East',     href: '/suburbs/mount-gravatt-east',  desc: 'Growing suburb, families, relative affordability' },
+  { name: 'Murarrie',            href: '/suburbs/murarrie',            desc: 'Emerging inner east, industrial-to-residential shift' },
+  { name: 'New Farm',            href: '/suburbs/new-farm',            desc: 'Prestige inner city, heritage homes, New Farm Park' },
+  { name: 'Norman Park',         href: '/suburbs/norman-park',         desc: 'Character Queenslanders, families, tightly held' },
+  { name: 'Seven Hills',         href: '/suburbs/seven-hills',         desc: 'Elevated inner east, bushland views, strong demand' },
+  { name: 'Tarragindi',          href: '/suburbs/tarragindi',          desc: 'Quiet family suburb, Toohey Forest, good value' },
+  { name: 'Teneriffe',           href: '/suburbs/teneriffe',           desc: 'Prestige woolstore conversions, river views, premium' },
+  { name: 'Tingalpa',            href: '/suburbs/tingalpa',            desc: 'Affordable east Brisbane, good access, family homes' },
+  { name: 'Upper Mt Gravatt',    href: '/suburbs/upper-mount-gravatt', desc: 'Elevated south, views, Garden City, strong schools' },
+  { name: 'Woolloongabba',       href: '/suburbs/woolloongabba',       desc: 'Transforming inner south, The Gabba, CBD proximity' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['LocalBusiness', 'RealEstateAgent'],
+      name: 'Daniel Gierach — Ray White The Collective',
+      description: 'Specialist real estate agent covering Brisbane\'s inner east, inner south and surrounding suburbs. Serving over 30 suburbs across the greater Brisbane area.',
+      url: 'https://www.danielgierach.com/suburbs',
+      telephone: '+61412523821',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Unit 6, 57-59 Oxford Street',
+        addressLocality: 'Bulimba',
+        addressRegion: 'QLD',
+        postalCode: '4171',
+        addressCountry: 'AU',
+      },
+      areaServed: suburbs.map(s => ({ '@type': 'Place', name: `${s.name} QLD` })),
+      sameAs: ['https://share.google/WipmgyJnjC5nkhGwx'],
+    },
+    {
+      '@type': 'WebPage',
+      name: 'Suburbs Covered — Daniel Gierach Real Estate Brisbane',
+      url: 'https://www.danielgierach.com/suburbs',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.danielgierach.com' },
+          { '@type': 'ListItem', position: 2, name: 'Suburbs', item: 'https://www.danielgierach.com/suburbs' },
+        ],
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="Suburbs Covered | Daniel Gierach Real Estate Brisbane"
+  description="Daniel Gierach is a specialist real estate agent covering 30+ suburbs across Brisbane's inner east and south — from Hawthorne and Balmoral to Camp Hill, Norman Park, Woolloongabba and beyond. Ray White Bulimba."
+>
+
+<script type="application/ld+json">{JSON.stringify(schema)}</script>
+
+<!-- HERO -->
+<section style="background:#1c1917; color:#f2efe9; padding:100px 24px 80px;">
+  <div style="max-width:800px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Service Area</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
+      Real estate agent covering<br/><em style="color:#f5d07a;">Brisbane's inner east and south.</em>
+    </h1>
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
+      Daniel Gierach sells property across 30+ suburbs from the riverfront prestige of Hawthorne and Balmoral to the growing family suburbs of Camp Hill, Norman Park, Morningside and beyond.
+    </p>
+    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Get a Free Appraisal</a>
+  </div>
+</section>
+
+<!-- SUBURB GRID -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem; text-align:center;">All Areas</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem; text-align:center;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:rgba(28,25,23,0.1);" class="suburb-grid">
+      {suburbs.map(suburb => (
+        <a href={suburb.href} style="background:white; padding:1.75rem 1.5rem; text-decoration:none; display:block; transition:background 0.18s;" onmouseover="this.style.background='#f7f5f0'" onmouseout="this.style.background='white'">
+          <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">{suburb.name}</p>
+          <p style="font-family:var(--font-sans); font-size:0.8rem; font-weight:300; color:#6b6560; line-height:1.5;">{suburb.desc}</p>
+          <span style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#c4912a; display:inline-block; margin-top:0.75rem;">View suburb &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
+  <div style="max-width:700px; margin:0 auto;">
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling?</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.75; color:#c9c4bc; margin-bottom:2rem;">Whether your suburb is on this list or not, call Daniel for a straight conversation about what your property could achieve.</p>
+    <p style="margin-bottom:2.5rem;">
+      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#f5d07a; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2efe9; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #c4912a;">Send a Message</a>
+      <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Free Property Appraisal</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .suburb-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .suburb-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+</Layout>

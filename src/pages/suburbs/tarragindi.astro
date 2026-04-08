@@ -21,6 +21,56 @@ import Layout from '../../layouts/Layout.astro';
     ]
   }
 })}</script>
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": [
+    "LocalBusiness",
+    "RealEstateAgent"
+  ],
+  "name": "Daniel Gierach — Ray White The Collective",
+  "description": "Specialist real estate agent in Tarragindi and Brisbane's inner east and south. Selling property in Tarragindi, Holland Park, Greenslopes, Holland Park West and surrounding suburbs.",
+  "url": "https://www.danielgierach.com/suburbs/tarragindi",
+  "telephone": "+61412523821",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Tarragindi",
+    "addressRegion": "QLD",
+    "postalCode": "4121",
+    "addressCountry": "AU"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Tarragindi QLD 4121"
+    },
+    {
+      "@type": "Place",
+      "name": "Holland Park QLD"
+    },
+    {
+      "@type": "Place",
+      "name": "Greenslopes QLD"
+    },
+    {
+      "@type": "Place",
+      "name": "Holland Park West QLD"
+    },
+    {
+      "@type": "Place",
+      "name": "Upper Mount Gravatt QLD"
+    }
+  ],
+  "knowsAbout": [
+    "Tarragindi real estate",
+    "Tarragindi house prices",
+    "Brisbane south family homes",
+    "character homes Tarragindi"
+  ],
+  "sameAs": [
+    "https://share.google/WipmgyJnjC5nkhGwx"
+  ]
+})}</script>
+
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO
@@ -171,4 +221,43 @@ import Layout from '../../layouts/Layout.astro';
   }
 </style>
 
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is the best real estate agent in Tarragindi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daniel Gierach of Ray White The Collective is an active agent across Brisbane's inner south, including Tarragindi. He understands the family buyer profile in this suburb and builds campaigns that attract motivated, qualified buyers. Call 0412 523 821 for a free property appraisal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the median house price in Tarragindi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tarragindi's median house price is approximately $1.1 million as of early 2026. The suburb attracts families drawn to its quiet character, good school options, Toohey Forest proximity and relative value compared to Greenslopes and Holland Park."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a home in Tarragindi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tarragindi homes typically sell within 25 to 40 days when correctly priced and well-presented. Daniel Gierach's median days on market across his Brisbane south and inner-east campaigns is 20 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of buyers look in Tarragindi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tarragindi primarily attracts families seeking affordable inner-south living with access to quality schools, Toohey Forest and good arterial connections. Buyers often include those who have been outpriced in Greenslopes or Holland Park and are seeking comparable lifestyle at better value."
+      }
+    }
+  ]
+})}</script>
 </Layout>

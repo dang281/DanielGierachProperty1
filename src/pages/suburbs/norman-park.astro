@@ -21,6 +21,56 @@ import Layout from '../../layouts/Layout.astro';
     ]
   }
 })}</script>
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": [
+    "LocalBusiness",
+    "RealEstateAgent"
+  ],
+  "name": "Daniel Gierach — Ray White The Collective",
+  "description": "Specialist real estate agent in Norman Park and Brisbane's inner east and south. Selling property in Norman Park, Camp Hill, Seven Hills, East Brisbane and surrounding suburbs.",
+  "url": "https://www.danielgierach.com/suburbs/norman-park",
+  "telephone": "+61412523821",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Norman Park",
+    "addressRegion": "QLD",
+    "postalCode": "4170",
+    "addressCountry": "AU"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Norman Park QLD 4170"
+    },
+    {
+      "@type": "Place",
+      "name": "Camp Hill QLD"
+    },
+    {
+      "@type": "Place",
+      "name": "Seven Hills QLD"
+    },
+    {
+      "@type": "Place",
+      "name": "East Brisbane QLD"
+    },
+    {
+      "@type": "Place",
+      "name": "Balmoral QLD"
+    }
+  ],
+  "knowsAbout": [
+    "Norman Park real estate",
+    "Norman Park Queenslanders",
+    "Brisbane inner east character homes",
+    "Norman Park property values"
+  ],
+  "sameAs": [
+    "https://share.google/WipmgyJnjC5nkhGwx"
+  ]
+})}</script>
+
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO
@@ -171,4 +221,43 @@ import Layout from '../../layouts/Layout.astro';
   }
 </style>
 
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is the best real estate agent in Norman Park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daniel Gierach of Ray White The Collective is a specialist agent in Norman Park and Brisbane's broader inner east. He has sold extensively in Norman Park and understands the character home buyer profile that drives competition in this suburb. Call 0412 523 821 for a free appraisal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the median house price in Norman Park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Norman Park's median house price is approximately $1.4 million as of early 2026. Original Queenslanders on larger blocks and homes backing onto Norman Creek reserve consistently attract premium results. Renovated character homes and properties within strong school catchments command the top of the market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a home in Norman Park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Well-priced Norman Park homes typically sell within 20 to 35 days. The suburb's tightly held nature and consistent family demand create strong conditions for competitive campaigns. Daniel Gierach's median days on market is 20 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes Norman Park a strong suburb for sellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Norman Park benefits from consistent demand from families priced out of Balmoral and Hawthorne who still want inner-east character living. Limited listing supply, strong school catchments and the suburb's green credentials along Norman Creek create competitive conditions that support strong sale prices."
+      }
+    }
+  ]
+})}</script>
 </Layout>

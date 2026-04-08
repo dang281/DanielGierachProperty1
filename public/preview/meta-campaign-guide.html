@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Meta Campaign Guide — Seven Hills · Daniel Gierach</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--gold:#c4912a;--dark:#0a0806;--cream:#f2efe9;--serif:'Noto Serif',serif;--sans:'Manrope',sans-serif;}
+  body{background:#f8f5f0;color:#1c1917;font-family:var(--sans);font-size:0.9rem;line-height:1.7;}
+  .page{max-width:860px;margin:0 auto;padding:3rem 2rem 6rem;}
+
+  h1{font-family:var(--serif);font-size:2.2rem;font-weight:400;color:#1c1917;margin-bottom:0.5rem;}
+  .subtitle{font-size:0.78rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:3rem;display:block;}
+
+  h2{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:#1c1917;margin:2.75rem 0 1rem;padding-bottom:0.6rem;border-bottom:2px solid var(--gold);}
+  h3{font-family:var(--sans);font-size:0.72rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin:1.75rem 0 0.6rem;}
+
+  p{margin-bottom:0.9rem;color:#44403c;}
+  ul,ol{padding-left:1.5rem;margin-bottom:1rem;}
+  li{margin-bottom:0.4rem;color:#44403c;}
+
+  /* Copy blocks */
+  .copy-block{background:#1c1917;color:#f2efe9;padding:1.5rem 1.75rem;margin:1rem 0;border-left:4px solid var(--gold);position:relative;}
+  .copy-block p{color:rgba(242,239,233,0.85);font-size:0.88rem;margin-bottom:0.6rem;}
+  .copy-block p:last-child{margin-bottom:0;}
+  .copy-label{font-size:0.58rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:block;}
+  .copy-btn{position:absolute;top:1rem;right:1rem;background:rgba(196,145,42,0.2);border:1px solid rgba(196,145,42,0.4);color:var(--gold);font-family:var(--sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.7rem;cursor:pointer;transition:background 0.15s;}
+  .copy-btn:hover{background:rgba(196,145,42,0.35);}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;margin:1rem 0 1.5rem;font-size:0.84rem;}
+  th{background:#1c1917;color:#f2efe9;font-weight:700;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left;}
+  td{padding:0.75rem 1rem;border-bottom:1px solid rgba(28,25,23,0.1);vertical-align:top;}
+  tr:nth-child(even) td{background:rgba(28,25,23,0.03);}
+
+  /* Step badges */
+  .step{display:flex;gap:1.25rem;margin-bottom:1.5rem;align-items:flex-start;}
+  .step-num{width:2rem;height:2rem;background:var(--gold);color:#0a0806;font-family:var(--serif);font-size:1rem;font-weight:400;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;}
+  .step-body h4{font-family:var(--serif);font-size:1rem;font-weight:400;color:#1c1917;margin-bottom:0.3rem;}
+  .step-body p{font-size:0.84rem;margin-bottom:0;}
+
+  /* Alert */
+  .alert{background:#fff8e6;border-left:4px solid var(--gold);padding:1rem 1.25rem;margin:1.25rem 0;font-size:0.84rem;}
+  .alert strong{color:#1c1917;}
+
+  /* URL block */
+  .url-block{background:#fff;border:1px solid rgba(28,25,23,0.15);padding:0.85rem 1.25rem;font-family:monospace;font-size:0.78rem;color:#1c1917;word-break:break-all;margin:0.75rem 0;}
+
+  /* Checklist */
+  .checklist{list-style:none;padding:0;}
+  .checklist li{display:flex;align-items:flex-start;gap:0.6rem;padding:0.5rem 0;border-bottom:1px solid rgba(28,25,23,0.07);}
+  .checklist li:last-child{border-bottom:none;}
+  .check{width:18px;height:18px;border:2px solid var(--gold);flex-shrink:0;margin-top:0.15rem;}
+
+  @media print{.copy-btn{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <span class="subtitle">Meta Ads Campaign Guide</span>
+  <h1>Seven Hills Property Report<br/>Lead Generation Campaign</h1>
+  <p style="margin-bottom:2rem;font-size:0.84rem;color:#78716c;">Prepared for Daniel Gierach · April 2026 · Use alongside the Seven Hills video ad</p>
+
+  <div class="alert"><strong>Before you start:</strong> You need your Meta Pixel ID from Meta Business Suite → Events Manager. Once you have it, replace <code>YOUR_PIXEL_ID</code> in both <code>Layout.astro</code> and <code>LandingLayout.astro</code> — it's already wired up and ready to fire Lead events.</div>
+
+  <!-- SECTION 1 -->
+  <h2>1. Campaign Setup in Meta Ads Manager</h2>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Create a new Campaign</h4>
+      <p>Objective: <strong>Leads</strong> (if using instant form) or <strong>Website Conversions</strong> (recommended — builds your pixel audience for retargeting). Campaign name: <em>Seven Hills — Property Report — April 2026</em></p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Enable Advantage Campaign Budget</h4>
+      <p>Start at <strong>$45/day AUD</strong> total. Meta will distribute across ad sets. Review after 5–7 days once the pixel has enough data.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Create 3 Ad Sets (audiences)</h4>
+      <p>See the audience table below. Run all three simultaneously — let Meta optimise toward the best performer.</p>
+    </div>
+  </div>
+
+  <!-- Audiences -->
+  <h2>2. Audiences — 3 Ad Sets</h2>
+
+  <table>
+    <thead>
+      <tr><th>Ad Set Name</th><th>Audience Setup</th><th>Budget</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Core — Seven Hills</strong></td>
+        <td>Location: Seven Hills QLD 4170 + 3km radius<br/>Age: 38–65<br/>Homeowner signals: "Home ownership" behaviour (if available in AU)<br/>No interest targeting — let location do the work</td>
+        <td>$20/day</td>
+      </tr>
+      <tr>
+        <td><strong>Broad — Inner East Homeowners</strong></td>
+        <td>Location: Brisbane Inner East (Norman Park, Morningside, Camp Hill, Balmoral, Hawthorne)<br/>Age: 35–65<br/>Interests: Real estate, Home improvement, Property investment, Home renovation</td>
+        <td>$15/day</td>
+      </tr>
+      <tr>
+        <td><strong>Retargeting — Website Visitors</strong></td>
+        <td>Custom Audience: visited danielgierach.com in last 30 days (requires pixel live for 14+ days first)<br/>Exclude: people who already submitted the form</td>
+        <td>$10/day</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert"><strong>Placement:</strong> Start with Automatic Placements. After 7 days, check performance and consider switching to Instagram Feed + Facebook Feed only if Reels/Stories underperform.</div>
+
+  <!-- SECTION 3 -->
+  <h2>3. The Ad — Video + Copy</h2>
+
+  <p>Use the <strong>Seven Hills video ad</strong> you recorded. Upload it as the creative. Then use the copy below.</p>
+
+  <h3>Ad Variation A — Curiosity (recommended lead-off)</h3>
+  <div class="copy-block">
+    <span class="copy-label">Primary Text</span>
+    <button class="copy-btn" onclick="copyText(this)">Copy</button>
+    <p>Seven Hills homeowners — most people have no idea their home has gone up as much as it has.</p>
+    <p>We put together a free property report so you can see exactly where your home sits against recent sales in your area. No phone call needed, no obligation.</p>
+    <p>Tap below and enter your address to get yours free.</p>
+  </div>
+  <div class="copy-block">
+    <span class="copy-label">Headline</span>
+    <button class="copy-btn" onclick="copyText(this)">Copy</button>
+    <p>What's Your Seven Hills Home Worth?</p>
+  </div>
+  <div class="copy-block">
+    <span class="copy-label">Description</span>
+    <button class="copy-btn" onclick="copyText(this)">Copy</button>
+    <p>Free instant report based on recent comparable sales. No obligation.</p>
+  </div>
+
+  <h3>Ad Variation B — Social Proof</h3>
+  <div class="copy-block">
+    <span class="copy-label">Primary Text</span>
+    <button class="copy-btn" onclick="copyText(this)">Copy</button>
+    <p>We recently sold 21A Marshall Avenue, Seven Hills — and the result surprised even the vendor.</p>
+    <p>If you own in Seven Hills, it's worth knowing what your home could realistically achieve right now. Free report, takes 30 seconds.</p>
+  </div>
+  <div class="copy-block">
+    <span class="copy-label">Headline</span>
+    <button class="copy-btn" onclick="copyText(this)">Copy</button>
+    <p>See What Seven Hills Is Selling For</p>
+  </div>
+  <div class="copy-block">
+    <span class="copy-label">Description</span>
+    <button class="copy-btn" onclick="copyText(this)">Copy</button>
+    <p>Recent comparable sales in your area. Free, no obligation report.</p>
+  </div>
+
+  <h3>CTA Button (both variations)</h3>
+  <div class="copy-block">
+    <span class="copy-label">Call to Action</span>
+    <p>Learn More</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2>4. Destination URL</h2>
+
+  <p>Point both ad variations to the dedicated Seven Hills landing page:</p>
+  <div class="url-block">https://danielgierach.com/lp/seven-hills?utm_source=meta&utm_medium=paid_social&utm_campaign=seven_hills_apr26&utm_content=variation_a</div>
+  <div class="url-block">https://danielgierach.com/lp/seven-hills?utm_source=meta&utm_medium=paid_social&utm_campaign=seven_hills_apr26&utm_content=variation_b</div>
+
+  <div class="alert"><strong>Why a dedicated landing page?</strong> The <code>/lp/seven-hills</code> page has no nav, one CTA, and suburb-specific copy. It will convert significantly better than sending people to the homepage or the general property-worth page.</div>
+
+  <!-- SECTION 5 -->
+  <h2>5. Pixel Setup Checklist</h2>
+
+  <ul class="checklist">
+    <li><div class="check"></div><span>Get your Pixel ID from Meta Business Suite → Events Manager</span></li>
+    <li><div class="check"></div><span>Replace <code>YOUR_PIXEL_ID</code> in <code>src/layouts/Layout.astro</code> (covers all site pages)</span></li>
+    <li><div class="check"></div><span>Replace <code>YOUR_PIXEL_ID</code> in <code>src/layouts/LandingLayout.astro</code> (covers the landing page)</span></li>
+    <li><div class="check"></div><span>Deploy to Vercel using the <code>dang281</code> remote</span></li>
+    <li><div class="check"></div><span>Verify pixel is firing using Meta Pixel Helper Chrome extension</span></li>
+    <li><div class="check"></div><span>Confirm <strong>Lead</strong> event fires when address is submitted on <code>/lp/seven-hills</code></span></li>
+    <li><div class="check"></div><span>Set up <strong>Lead</strong> as a conversion event in Meta Ads Manager → Events Manager → Configure</span></li>
+  </ul>
+
+  <!-- SECTION 6 -->
+  <h2>6. What to Watch After Launch</h2>
+
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Good Benchmark</th><th>Action if Below</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cost per Lead (CPL)</td><td>$15–$35 AUD</td><td>Pause underperforming ad set, increase budget on winner</td></tr>
+      <tr><td>Link Click-Through Rate</td><td>1.5%+</td><td>Test new primary text or change the first line of copy</td></tr>
+      <tr><td>Landing Page Conversion</td><td>15%+ (of clicks)</td><td>Check page load speed; simplify the form</td></tr>
+      <tr><td>Video ThruPlay Rate</td><td>20%+</td><td>Add captions; shorten the video if possible</td></tr>
+      <tr><td>Frequency</td><td>Below 3.0</td><td>Expand audience radius or refresh creative</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert"><strong>Review at day 7:</strong> Pause the worst-performing ad set. Put that budget into the winner. Don't make changes before day 5 — the algorithm needs time to learn.</div>
+
+  <!-- SECTION 7 -->
+  <h2>7. Retargeting (Start Week 3)</h2>
+
+  <p>Once you have 100+ website visitors in your pixel, build these retargeting audiences:</p>
+  <ul>
+    <li><strong>Hot:</strong> Visited <code>/lp/seven-hills</code> but did NOT submit — show a different ad with more urgency ("Still curious what your home is worth?")</li>
+    <li><strong>Warm:</strong> Visited any page on danielgierach.com in last 30 days — show the video ad</li>
+    <li><strong>Lookalike:</strong> Upload your existing lead/client list to Meta → create a 1% Lookalike Audience in QLD → scale budget here once CPL is proven</li>
+  </ul>
+
+  <h2>8. Quick-Expand Template</h2>
+  <p>Once the Seven Hills campaign is profitable, clone the campaign for each suburb. Swap out:</p>
+  <ul>
+    <li>The video (use the suburb-specific version you recorded)</li>
+    <li>The landing page URL (<code>/lp/murarrie</code>, <code>/lp/camp-hill</code>, etc.)</li>
+    <li>The location targeting</li>
+    <li>The suburb name in the ad copy</li>
+  </ul>
+  <p>Everything else — structure, budgets, pixel setup — stays the same.</p>
+
+</div>
+
+<script>
+  function copyText(btn) {
+    const block = btn.closest('.copy-block');
+    const paras = block.querySelectorAll('p');
+    const text = Array.from(paras).map(p => p.textContent).join('\n\n');
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
