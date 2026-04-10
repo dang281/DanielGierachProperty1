@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { execSync } from 'child_process';
+import { readdirSync } from 'fs';
+import { join } from 'path';
+
+// Build-time data
+const repoPath = '/Users/danielgierach/DanielGierachProperty';
+
+let gitCommits: { hash: string; date: string; message: string; author: string }[] = [];
+try {
+  const raw = execSync(
+    `git -C ${repoPath} log --format="%H|%ad|%s|%an" --date=format:"%d %b %Y" -10`,
+    { encoding: 'utf-8' }
+  ).trim();
+  gitCommits = raw.split('\n').map(line => {
+    const [hash, date, message, author] = line.split('|');
+    return { hash: hash.slice(0, 7), date, message, author };
+  });
+} catch (_) {}
+
+let suburbCount = 0;
+let insightsCount = 0;
+try {
+  suburbCount = readdirSync(join(repoPath, 'src/pages/suburbs')).filter(f => f.endsWith('.astro')).length;
+  insightsCount = readdirSync(join(repoPath, 'src/pages/insights')).filter(f => f.endsWith('.astro') && f !== 'index.astro').length;
+} catch (_) {}
+
+const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'medium', timeStyle: 'short' });
+---
+
+<Layout
+  title="Agent Dashboard | Daniel Gierach Property"
+  description="Internal dashboard for the Daniel Gierach Property website — agent status, issues board, recent deploys, and live page counts."
+  hideMobileCta={true}
+>
+
+<div style="background:#0f0d0c; min-height:100vh; padding:2rem 1.5rem 6rem;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Header -->
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:3rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(196,145,42,0.2);">
+      <div>
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.4rem;">Daniel Gierach Property</p>
+        <h1 style="font-family:var(--font-serif); font-size:1.8rem; font-weight:300; color:#f2efe9; margin:0;">Agent Dashboard</h1>
+      </div>
+      <div style="text-align:right;">
+        <p style="font-family:var(--font-sans); font-size:0.7rem; color:rgba(242,239,233,0.4); margin:0;">Built {buildTime} AEST</p>
+        <p style="font-family:var(--font-sans); font-size:0.7rem; color:rgba(242,239,233,0.4); margin:0.2rem 0 0;">Refresh page for latest data</p>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:3rem;">
+      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Suburb Pages</p>
+        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;">{suburbCount}</p>
+        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">live at /suburbs/*</p>
+      </div>
+      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Insights Articles</p>
+        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;">{insightsCount}</p>
+        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">live at /insights/*</p>
+      </div>
+      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;" id="agents-stat">
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Active Agents</p>
+        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;" id="agents-count">—</p>
+        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">Paperclip team</p>
+      </div>
+      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Open Issues</p>
+        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;" id="open-issues-count">—</p>
+        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">todo + in_progress</p>
+      </div>
+    </div>
+
+    <!-- Two-col: Agents + Pending Approvals -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem;">
+
+      <!-- Agent Status -->
+      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem;">
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Agent Status</p>
+        <div id="agents-list">
+          <p style="font-family:var(--font-sans); font-size:0.8rem; color:rgba(242,239,233,0.4);">Loading...</p>
+        </div>
+      </div>
+
+      <!-- Pending Approvals -->
+      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem;">
+        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Pending Daniel's Review</p>
+        <div id="pending-approvals">
+          <p style="font-family:var(--font-sans); font-size:0.8rem; color:rgba(242,239,233,0.4);">Loading...</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Issues Board -->
+    <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem; margin-bottom:2rem;">
+      <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Issues Board</p>
+      <div id="issues-board" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.25rem;">
+        <p style="font-family:var(--font-sans); font-size:0.8rem; color:rgba(242,239,233,0.4);">Loading...</p>
+      </div>
+    </div>
+
+    <!-- Recent Git Commits -->
+    <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem;">
+      <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Recent Deploys</p>
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+        {gitCommits.map(commit => (
+          <div style="display:flex; gap:1rem; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <code style="font-size:0.7rem; color:#c4912a; flex-shrink:0; font-family:monospace;">{commit.hash}</code>
+            <p style="font-family:var(--font-sans); font-size:0.82rem; font-weight:300; color:#f2efe9; margin:0; flex:1; line-height:1.5;">{commit.message}</p>
+            <p style="font-family:var(--font-sans); font-size:0.7rem; color:rgba(242,239,233,0.35); flex-shrink:0; white-space:nowrap;">{commit.date}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const API = 'http://127.0.0.1:3100';
+  const COMPANY = 'e01db3e8-fb70-4c7a-b7a7-495c1df05882';
+
+  const priorityColour: Record<string, string> = {
+    critical: '#ef4444',
+    high: '#f97316',
+    medium: '#c4912a',
+    low: '#6b7280',
+  };
+
+  const statusColour: Record<string, string> = {
+    todo: '#6b7280',
+    in_progress: '#3b82f6',
+    blocked: '#ef4444',
+    in_review: '#a855f7',
+    done: '#22c55e',
+    cancelled: '#374151',
+    backlog: '#4b5563',
+  };
+
+  function pill(label: string, colour: string) {
+    return `<span style="display:inline-block;font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:${colour}22;color:${colour};padding:0.15rem 0.5rem;border-radius:2px;">${label}</span>`;
+  }
+
+  async function loadAgents() {
+    try {
+      const res = await fetch(`${API}/api/companies/${COMPANY}/agents`);
+      const agents = await res.json();
+      const list = document.getElementById('agents-list')!;
+      const count = document.getElementById('agents-count')!;
+      count.textContent = String(agents.length);
+      list.innerHTML = agents.map((a: any) => `
+        <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+          <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <p style="font-family:var(--font-sans);font-size:0.82rem;font-weight:600;color:#f2efe9;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.name}</p>
+            <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0;">${a.role || 'Agent'}</p>
+          </div>
+        </div>
+      `).join('');
+    } catch (e) {
+      document.getElementById('agents-list')!.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API</p>';
+    }
+  }
+
+  async function loadIssues() {
+    try {
+      const res = await fetch(`${API}/api/companies/${COMPANY}/issues?status=todo,in_progress,blocked,in_review&limit=100`);
+      const issues: any[] = await res.json();
+
+      // count
+      const openCount = issues.filter((i: any) => ['todo','in_progress','blocked'].includes(i.status)).length;
+      document.getElementById('open-issues-count')!.textContent = String(openCount);
+
+      // group by status
+      const groups: Record<string, any[]> = { in_progress: [], todo: [], blocked: [], in_review: [] };
+      issues.forEach((i: any) => { if (groups[i.status]) groups[i.status].push(i); });
+
+      const labels: Record<string, string> = {
+        in_progress: 'In Progress',
+        todo: 'To Do',
+        blocked: 'Blocked',
+        in_review: 'In Review',
+      };
+
+      const board = document.getElementById('issues-board')!;
+      board.innerHTML = Object.entries(groups).map(([status, items]) => `
+        <div>
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+            <div style="width:8px;height:8px;border-radius:50%;background:${statusColour[status]};"></div>
+            <p style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0;">${labels[status]} (${items.length})</p>
+          </div>
+          ${items.length === 0
+            ? '<p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.25);padding:0.5rem 0;">None</p>'
+            : items.map((i: any) => `
+                <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);margin-bottom:0.5rem;">
+                  <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
+                    <code style="font-size:0.65rem;color:#c4912a;">${i.identifier}</code>
+                    ${pill(i.priority || 'medium', priorityColour[i.priority] || '#6b7280')}
+                  </div>
+                  <p style="font-family:var(--font-sans);font-size:0.8rem;font-weight:400;color:#f2efe9;margin:0;line-height:1.4;">${i.title}</p>
+                  ${i.assigneeAgentId ? `<p style="font-family:var(--font-sans);font-size:0.68rem;color:rgba(242,239,233,0.35);margin:0.3rem 0 0;">Assigned to agent</p>` : ''}
+                </div>
+              `).join('')
+          }
+        </div>
+      `).join('');
+
+      // Pending approvals = in_review items
+      const reviewItems = issues.filter((i: any) => i.status === 'in_review');
+      const approvalEl = document.getElementById('pending-approvals')!;
+      if (reviewItems.length === 0) {
+        approvalEl.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.82rem;color:rgba(242,239,233,0.4);">No items awaiting review.</p>';
+      } else {
+        approvalEl.innerHTML = reviewItems.map((i: any) => `
+          <div style="padding:0.75rem;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.2);margin-bottom:0.5rem;">
+            <code style="font-size:0.65rem;color:#a855f7;">${i.identifier}</code>
+            <p style="font-family:var(--font-sans);font-size:0.82rem;color:#f2efe9;margin:0.3rem 0 0;line-height:1.4;">${i.title}</p>
+          </div>
+        `).join('');
+      }
+    } catch (e) {
+      document.getElementById('issues-board')!.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API</p>';
+      document.getElementById('pending-approvals')!.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API</p>';
+    }
+  }
+
+  loadAgents();
+  loadIssues();
+</script>
+
+<style>
+  @media (max-width: 640px) {
+    #issues-board {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+</Layout>
