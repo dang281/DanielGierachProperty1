@@ -49,6 +49,64 @@ try {
 } catch (_) {}
 
 const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'medium', timeStyle: 'short' });
+
+// ── Weekly Content Review ──────────────────────────────────────────────────
+// Compute AEST-aware week boundaries (Mon–Sun)
+function toAEST(d: Date) {
+  // AEST = UTC+10 (no DST correction needed for date arithmetic)
+  return new Date(d.toLocaleString('en-US', { timeZone: 'Australia/Brisbane' }));
+}
+const aestNow = toAEST(new Date());
+const dow = aestNow.getDay(); // 0=Sun … 6=Sat
+const daysToMon = dow === 0 ? 6 : dow - 1;
+
+const thisMon = new Date(aestNow);
+thisMon.setDate(aestNow.getDate() - daysToMon);
+thisMon.setHours(0, 0, 0, 0);
+
+const thisSun = new Date(thisMon);
+thisSun.setDate(thisMon.getDate() + 6);
+thisSun.setHours(23, 59, 59, 0);
+
+const lastMon = new Date(thisMon);
+lastMon.setDate(thisMon.getDate() - 7);
+
+const lastSun = new Date(thisMon);
+lastSun.setDate(thisMon.getDate() - 1);
+lastSun.setHours(23, 59, 59, 0);
+
+const fmtDay = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', timeZone: 'Australia/Brisbane' });
+const thisWeekLabel = `${fmtDay(thisMon)} – ${fmtDay(thisSun)}`;
+const lastWeekLabel = `${fmtDay(lastMon)} – ${fmtDay(lastSun)}`;
+
+function deriveLinkFromMessage(message: string): string {
+  const suburbMatch = message.match(/suburb[s]?\s+page[s]?\s+(?:for\s+)?([a-z\s\-]+)/i) ||
+                      message.match(/add\s+([a-z\s\-]+)\s+suburb/i);
+  const insightMatch = message.match(/selling[- ]in[- ]([a-z\-]+)/i) ||
+                       message.match(/insights?\s+article\s+(?:for\s+)?([a-z\s\-]+)/i);
+  if (insightMatch) return `https://danielgierach.com/insights/selling-in-${insightMatch[1].trim().toLowerCase().replace(/\s+/g, '-')}`;
+  if (suburbMatch) return `https://danielgierach.com/suburbs/${suburbMatch[1].trim().toLowerCase().replace(/\s+/g, '-')}`;
+  if (/homepage|index/i.test(message)) return 'https://danielgierach.com';
+  return '';
+}
+
+let lastWeekContent: { date: string; message: string; link: string; type: string }[] = [];
+try {
+  const since = lastMon.toISOString().slice(0, 10);
+  const until = thisMon.toISOString().slice(0, 10);
+  const raw = execSync(
+    `git -C ${repoPath} log --format="%ad|%s" --date=format:"%d %b" --after="${since}" --before="${until}"`,
+    { encoding: 'utf-8' }
+  ).trim();
+  lastWeekContent = raw.split('\n').filter(Boolean).map(line => {
+    const [date, ...msgParts] = line.split('|');
+    const message = msgParts.join('|');
+    const link = deriveLinkFromMessage(message);
+    const type = /insight|article|selling[- ]in/i.test(message) ? 'Article'
+               : /suburb/i.test(message) ? 'Suburb Page' : 'Page';
+    return { date, message, link, type };
+  }).filter(c => c.link);
+} catch (_) {}
 ---
 
 <Layout title="Dashboard" description="Internal." hideMobileCta={true}>
@@ -108,6 +166,64 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
         <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Open Tasks</p>
         <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="open-issues-count">—</p>
         <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">todo + in progress</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         WEEKLY CONTENT REVIEW
+    ════════════════════════════════════════ -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.3);padding:1.75rem;margin-bottom:2rem;">
+      <!-- Header row -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(196,145,42,0.15);">
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.35rem;">Weekly Content Review</p>
+          <p style="font-family:var(--font-serif);font-size:1.2rem;font-weight:300;color:#f2efe9;margin:0;">This week: {thisWeekLabel}</p>
+          <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0.2rem 0 0;">Reviewed every Monday — approve items below to clear them for publishing.</p>
+        </div>
+        <!-- Approval progress (filled client-side) -->
+        <div id="weekly-progress" style="text-align:right;min-width:160px;">
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0 0 0.4rem;">Approvals</p>
+          <p style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:#22c55e;margin:0;" id="approval-fraction">—</p>
+          <div style="margin-top:0.5rem;height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;width:160px;">
+            <div id="approval-bar" style="height:100%;background:#22c55e;width:0%;transition:width 0.4s;border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-column layout -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="weekly-grid">
+
+        <!-- Left: Last week's published content (build-time from git) -->
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0 0 1rem;">Published Last Week <span style="color:rgba(242,239,233,0.3);font-weight:400;">({lastWeekLabel})</span></p>
+          {lastWeekContent.length === 0 ? (
+            <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.3);font-style:italic;">No content commits found for last week.</p>
+          ) : (
+            <div style="display:flex;flex-direction:column;gap:0.5rem;">
+              {lastWeekContent.map(c => (
+                <div style="display:flex;align-items:center;gap:0.75rem;padding:0.7rem 0.9rem;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);">
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem;">
+                      <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:rgba(34,197,94,0.15);color:#22c55e;padding:0.1rem 0.4rem;border-radius:2px;">{c.type}</span>
+                      <span style="font-size:0.65rem;color:rgba(242,239,233,0.35);">{c.date}</span>
+                    </div>
+                    <p style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;margin:0;line-height:1.35;">{c.message}</p>
+                  </div>
+                  {c.link && (
+                    <a href={c.link} target="_blank" style="flex-shrink:0;font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#22c55e;text-decoration:none;border:1px solid rgba(34,197,94,0.3);padding:0.2rem 0.5rem;white-space:nowrap;">View ↗</a>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Right: This week's content — pending approval (client-side) -->
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0 0 1rem;">Awaiting Your Approval <span style="color:rgba(242,239,233,0.3);font-weight:400;">(this week)</span></p>
+          <div id="weekly-queue"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+        </div>
+
       </div>
     </div>
 
@@ -229,6 +345,108 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
     return '';
   }
 
+  // Approval state persisted in localStorage
+  function getApproval(id: string): 'approved' | 'rejected' | null {
+    return localStorage.getItem(`wcr_${id}`) as any;
+  }
+  function setApproval(id: string, state: 'approved' | 'rejected') {
+    localStorage.setItem(`wcr_${id}`, state);
+  }
+
+  async function approveIssue(issueId: string, el: HTMLElement) {
+    setApproval(issueId, 'approved');
+    try {
+      await fetch(`${API}/api/companies/${COMPANY}/issues/${issueId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'done' })
+      });
+    } catch {}
+    renderWeeklyQueue(weeklyIssues);
+  }
+
+  async function rejectIssue(issueId: string) {
+    setApproval(issueId, 'rejected');
+    try {
+      await fetch(`${API}/api/companies/${COMPANY}/issues/${issueId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'todo' })
+      });
+    } catch {}
+    renderWeeklyQueue(weeklyIssues);
+  }
+
+  let weeklyIssues: any[] = [];
+
+  function renderWeeklyQueue(items: any[]) {
+    const el = document.getElementById('weekly-queue')!;
+    const fracEl = document.getElementById('approval-fraction')!;
+    const barEl = document.getElementById('approval-bar')!;
+
+    // Content issues = in_review OR assigned to SEO agent that are todo/in_progress
+    const SEO_AGENT = '8868cd83-6be1-4b6d-9c85-26eebb8d92b7';
+    const contentItems = items.filter(i =>
+      i.status === 'in_review' ||
+      (i.assigneeAgentId === SEO_AGENT && ['todo','in_progress'].includes(i.status))
+    );
+
+    const approved = contentItems.filter(i => getApproval(i.id) === 'approved').length;
+    const rejected = contentItems.filter(i => getApproval(i.id) === 'rejected').length;
+    const pending  = contentItems.length - approved - rejected;
+    const pct = contentItems.length > 0 ? Math.round((approved / contentItems.length) * 100) : 0;
+
+    fracEl.textContent = `${approved} / ${contentItems.length}`;
+    barEl.style.width = `${pct}%`;
+
+    if (contentItems.length === 0) {
+      el.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.3);font-style:italic;">No content queued for approval this week.</p>';
+      return;
+    }
+
+    el.innerHTML = contentItems.map(i => {
+      const state = getApproval(i.id);
+      const agentName = agentMap[i.assigneeAgentId] || 'Agent';
+      const isContent = /insight|article|suburb|selling[- ]in/i.test(i.title);
+      const why = i.description
+        ? `<p style="font-size:0.72rem;color:rgba(242,239,233,0.45);margin:0.3rem 0 0.6rem;line-height:1.5;">${i.description.slice(0, 200)}${i.description.length > 200 ? '…' : ''}</p>`
+        : `<p style="font-size:0.72rem;color:rgba(242,239,233,0.35);margin:0.3rem 0 0.6rem;font-style:italic;">Created by ${agentName} · ${i.status.replace('_',' ')}</p>`;
+
+      const borderColour = state === 'approved' ? 'rgba(34,197,94,0.35)'
+                         : state === 'rejected'  ? 'rgba(239,68,68,0.3)'
+                         : 'rgba(168,85,247,0.25)';
+      const bgColour     = state === 'approved' ? 'rgba(34,197,94,0.05)'
+                         : state === 'rejected'  ? 'rgba(239,68,68,0.05)'
+                         : 'rgba(168,85,247,0.05)';
+
+      const link = issueLink(i.title);
+      const viewBtn = link ? `<a href="${link}" target="_blank" style="font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.2rem 0.5rem;white-space:nowrap;">View ↗</a>` : '';
+
+      return `
+        <div id="wqi-${i.id}" style="padding:0.85rem;background:${bgColour};border:1px solid ${borderColour};margin-bottom:0.6rem;border-radius:1px;">
+          <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.2rem;flex-wrap:wrap;">
+            <code style="font-size:0.62rem;color:#c4912a;">${i.identifier}</code>
+            ${pill(i.status.replace('_',' '), statusColour[i.status]||'#6b7280')}
+            ${state === 'approved' ? pill('approved', '#22c55e') : state === 'rejected' ? pill('rejected', '#ef4444') : ''}
+          </div>
+          <p style="font-family:var(--font-sans);font-size:0.82rem;color:#f2efe9;margin:0.1rem 0 0;line-height:1.4;">${i.title}</p>
+          ${why}
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+            ${state ? '' : `
+              <button onclick="window.__approveIssue('${i.id}',this)" style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:#22c55e;color:#0a0806;border:none;padding:0.3rem 0.75rem;cursor:pointer;">Approve ✓</button>
+              <button onclick="window.__rejectIssue('${i.id}')" style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:transparent;color:#ef4444;border:1px solid rgba(239,68,68,0.4);padding:0.3rem 0.75rem;cursor:pointer;">Reject ✗</button>
+            `}
+            ${state === 'rejected' ? `<button onclick="window.__approveIssue('${i.id}',this)" style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:#22c55e;color:#0a0806;border:none;padding:0.3rem 0.75rem;cursor:pointer;">Approve anyway ✓</button>` : ''}
+            ${viewBtn}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  // Expose approval handlers to global scope for inline onclick
+  (window as any).__approveIssue = approveIssue;
+  (window as any).__rejectIssue  = rejectIssue;
+
   let agentMap: Record<string, string> = {};
 
   async function loadAgents() {
@@ -266,6 +484,10 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
       const open   = all.filter(i => ['todo','in_progress','blocked','in_review'].includes(i.status));
       const done   = all.filter(i => i.status === 'done');
       const review = all.filter(i => i.status === 'in_review');
+
+      // Weekly review queue
+      weeklyIssues = all;
+      renderWeeklyQueue(all);
 
       document.getElementById('open-issues-count')!.textContent = String(open.length);
       document.getElementById('done-count')!.textContent = String(done.length);
@@ -377,6 +599,7 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
 <style>
   @media (max-width: 640px) {
     #issues-board { grid-template-columns: 1fr !important; }
+    .weekly-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 
