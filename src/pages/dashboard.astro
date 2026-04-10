@@ -93,6 +93,28 @@ function deriveLinkFromMessage(message: string): string {
   return '';
 }
 
+// ── Today's commits ───────────────────────────────────────────────────────
+const todayLabel = aestNow.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
+const todayISO = aestNow.toISOString().slice(0, 10);
+
+let todayCommits: { time: string; message: string; link: string; type: string }[] = [];
+try {
+  const raw = execSync(
+    `git -C ${repoRoot} log --format="%ad|%s" --date=format:"%H:%M" --after="${todayISO}T00:00:00+10:00"`,
+    { encoding: 'utf-8' }
+  ).trim();
+  todayCommits = raw.split('\n').filter(Boolean).map(line => {
+    const [time, ...msgParts] = line.split('|');
+    const message = msgParts.join('|');
+    const link = deriveLinkFromMessage(message);
+    const type = /insight|article|selling[- ]in/i.test(message) ? 'Article'
+               : /suburb/i.test(message) ? 'Suburb Page'
+               : /social/i.test(message) ? 'Social'
+               : 'Update';
+    return { time, message, link, type };
+  });
+} catch (_) {}
+
 let lastWeekContent: { date: string; message: string; link: string; type: string }[] = [];
 try {
   const since = lastMon.toISOString().slice(0, 10);
@@ -140,6 +162,69 @@ try {
       <div style="text-align:right;">
         <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0;">Built {buildTime} AEST</p>
         <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0.2rem 0 0;"><a href="/dashboard" style="color:#c4912a;text-decoration:none;">Refresh for latest data →</a></p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         DAILY UPDATE
+    ════════════════════════════════════════ -->
+    <div style="background:linear-gradient(135deg,rgba(196,145,42,0.12) 0%,rgba(196,145,42,0.04) 100%);border:1px solid rgba(196,145,42,0.35);padding:1.75rem;margin-bottom:2rem;">
+
+      <!-- Date + summary bar -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin-bottom:0.3rem;">Daily Update</p>
+          <p style="font-family:var(--font-serif);font-size:1.4rem;font-weight:300;color:#f2efe9;margin:0;">{todayLabel}</p>
+        </div>
+        <!-- Quick counts — filled client-side -->
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+          <div style="text-align:center;">
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#22c55e;margin:0;" id="today-done-count">{todayCommits.length}</p>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Published</p>
+          </div>
+          <div style="text-align:center;">
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#3b82f6;margin:0;" id="today-tasks-count">—</p>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Completed</p>
+          </div>
+          <div style="text-align:center;">
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#c4912a;margin:0;" id="today-running-count">—</p>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">In Progress</p>
+          </div>
+          <div style="text-align:center;">
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#a855f7;margin:0;" id="today-review-count">—</p>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Needs Review</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two columns -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="daily-grid">
+
+        <!-- Left: Published today (git, build-time) -->
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(242,239,233,0.45);margin:0 0 0.85rem;">Published Today</p>
+          {todayCommits.length === 0 ? (
+            <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.3);font-style:italic;">Nothing deployed yet today.</p>
+          ) : (
+            <div style="display:flex;flex-direction:column;gap:0.4rem;">
+              {todayCommits.map(c => (
+                <div style="display:flex;align-items:center;gap:0.6rem;padding:0.55rem 0.8rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.18);">
+                  <span style="font-size:0.58rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:rgba(34,197,94,0.15);color:#22c55e;padding:0.1rem 0.35rem;border-radius:2px;flex-shrink:0;">{c.type}</span>
+                  <p style="font-family:var(--font-sans);font-size:0.77rem;color:#f2efe9;margin:0;flex:1;line-height:1.3;">{c.message}</p>
+                  <span style="font-size:0.62rem;color:rgba(242,239,233,0.3);flex-shrink:0;">{c.time}</span>
+                  {c.link && <a href={c.link} target="_blank" style="flex-shrink:0;font-size:0.6rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#22c55e;text-decoration:none;border:1px solid rgba(34,197,94,0.3);padding:0.15rem 0.4rem;">View ↗</a>}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Right: Agent activity today (client-side) -->
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(242,239,233,0.45);margin:0 0 0.85rem;">Agent Activity Today</p>
+          <div id="today-activity"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+        </div>
+
       </div>
     </div>
 
@@ -348,6 +433,75 @@ try {
     return '';
   }
 
+  // ── Daily Update helpers ────────────────────────────────────────────────
+  function isToday(dateStr: string): boolean {
+    if (!dateStr) return false;
+    const d = new Date(dateStr);
+    const now = new Date();
+    // Compare in AEST
+    const aestD   = new Date(d.toLocaleString('en-US',   { timeZone: 'Australia/Brisbane' }));
+    const aestNow = new Date(now.toLocaleString('en-US', { timeZone: 'Australia/Brisbane' }));
+    return aestD.getFullYear() === aestNow.getFullYear() &&
+           aestD.getMonth()    === aestNow.getMonth()    &&
+           aestD.getDate()     === aestNow.getDate();
+  }
+
+  function renderDailyActivity(issues: any[]) {
+    const completedToday = issues.filter(i => i.status === 'done' && isToday(i.completedAt));
+    const inProgress     = issues.filter(i => i.status === 'in_progress');
+    const needsReview    = issues.filter(i => ['in_review','blocked'].includes(i.status));
+
+    document.getElementById('today-tasks-count')!.textContent   = String(completedToday.length);
+    document.getElementById('today-running-count')!.textContent = String(inProgress.length);
+    document.getElementById('today-review-count')!.textContent  = String(needsReview.length);
+
+    const el = document.getElementById('today-activity')!;
+
+    const rows: string[] = [];
+
+    if (inProgress.length > 0) {
+      rows.push(`<p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0 0 0.4rem;">Running now</p>`);
+      inProgress.forEach(i => {
+        rows.push(`<div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);margin-bottom:0.35rem;">
+          <div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;animation:pulse 1.5s infinite;"></div>
+          <div style="flex:1;min-width:0;">
+            <p style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;margin:0;line-height:1.3;">${i.title}</p>
+            <p style="font-size:0.62rem;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId] || 'Agent'}</p>
+          </div>
+        </div>`);
+      });
+    }
+
+    if (completedToday.length > 0) {
+      rows.push(`<p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:${inProgress.length>0?'0.85rem':0} 0 0.4rem;">Completed today</p>`);
+      completedToday.forEach(i => {
+        const link = issueLink(i.title);
+        rows.push(`<div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);margin-bottom:0.35rem;">
+          <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <p style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;margin:0;line-height:1.3;">${i.title}</p>
+            <p style="font-size:0.62rem;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId] || 'Agent'}</p>
+          </div>
+          ${link ? `<a href="${link}" target="_blank" style="flex-shrink:0;font-size:0.6rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.15rem 0.4rem;">View ↗</a>` : ''}
+        </div>`);
+      });
+    }
+
+    if (needsReview.length > 0) {
+      rows.push(`<p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin:${(inProgress.length||completedToday.length)?'0.85rem':0} 0 0.4rem;">Needs your attention</p>`);
+      needsReview.forEach(i => {
+        const colour = i.status === 'blocked' ? '#ef4444' : '#a855f7';
+        rows.push(`<div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;background:${colour}11;border:1px solid ${colour}33;margin-bottom:0.35rem;">
+          <div style="width:6px;height:6px;border-radius:50%;background:${colour};flex-shrink:0;"></div>
+          <p style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;margin:0;flex:1;line-height:1.3;">${i.title}</p>
+          ${pill(i.status.replace('_',' '), colour)}
+        </div>`);
+      });
+    }
+
+    el.innerHTML = rows.length > 0 ? rows.join('') : '<p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.3);font-style:italic;">No agent activity recorded yet today.</p>';
+  }
+
   // Approval state persisted in localStorage
   function getApproval(id: string): 'approved' | 'rejected' | null {
     return localStorage.getItem(`wcr_${id}`) as any;
@@ -488,6 +642,9 @@ try {
       const done   = all.filter(i => i.status === 'done');
       const review = all.filter(i => i.status === 'in_review');
 
+      // Daily update
+      renderDailyActivity(all);
+
       // Weekly review queue
       weeklyIssues = all;
       renderWeeklyQueue(all);
@@ -600,9 +757,14 @@ try {
 </script>
 
 <style>
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
   @media (max-width: 640px) {
     #issues-board { grid-template-columns: 1fr !important; }
-    .weekly-grid { grid-template-columns: 1fr !important; }
+    .weekly-grid  { grid-template-columns: 1fr !important; }
+    .daily-grid   { grid-template-columns: 1fr !important; }
   }
 </style>
 

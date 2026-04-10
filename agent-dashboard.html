@@ -62,6 +62,7 @@
   }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
   /* ── Pill ── */
   .pill {
@@ -153,6 +154,40 @@
     <div style="text-align:right;">
       <p style="font-size:0.7rem;color:var(--text-dim);margin:0;" id="last-refresh">Loading...</p>
       <p style="font-size:0.7rem;margin:0.2rem 0 0;"><a href="javascript:location.reload()">Refresh ↺</a></p>
+    </div>
+  </div>
+
+  <!-- Daily Update -->
+  <div style="background:linear-gradient(135deg,rgba(196,145,42,0.12) 0%,rgba(196,145,42,0.04) 100%);border:1px solid rgba(196,145,42,0.35);padding:1.75rem;margin-bottom:2rem;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+      <div>
+        <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem;">Daily Update</p>
+        <p style="font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--text);margin:0;" id="today-label">—</p>
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+        <div style="text-align:center;">
+          <p style="font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--green);margin:0;" id="today-done-count">—</p>
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin:0.1rem 0 0;">Completed</p>
+        </div>
+        <div style="text-align:center;">
+          <p style="font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--blue);margin:0;" id="today-running-count">—</p>
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin:0.1rem 0 0;">In Progress</p>
+        </div>
+        <div style="text-align:center;">
+          <p style="font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--purple);margin:0;" id="today-review-count">—</p>
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin:0.1rem 0 0;">Needs Review</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="grid-2">
+      <div>
+        <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);margin:0 0 0.85rem;">Completed Today</p>
+        <div id="today-completed"><p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">Loading...</p></div>
+      </div>
+      <div>
+        <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);margin:0 0 0.85rem;">Running Now &amp; Needs Attention</p>
+        <div id="today-running"><p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">Loading...</p></div>
+      </div>
     </div>
   </div>
 
@@ -494,11 +529,82 @@ async function loadIssues() {
   renderRecentDone();
 }
 
+// ── Daily Update ──────────────────────────────────────────────────────────
+function isToday(dateStr) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  const now = new Date();
+  const aestD   = new Date(d.toLocaleString('en-US',   { timeZone: 'Australia/Brisbane' }));
+  const aestNow = new Date(now.toLocaleString('en-US', { timeZone: 'Australia/Brisbane' }));
+  return aestD.getFullYear() === aestNow.getFullYear() &&
+         aestD.getMonth()    === aestNow.getMonth()    &&
+         aestD.getDate()     === aestNow.getDate();
+}
+
+function renderDailyUpdate() {
+  // Date label
+  const now = new Date();
+  const label = now.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', year:'numeric', timeZone:'Australia/Brisbane' });
+  document.getElementById('today-label').textContent = label;
+
+  const completedToday = allIssues.filter(i => i.status === 'done' && isToday(i.completedAt));
+  const inProgress     = allIssues.filter(i => i.status === 'in_progress');
+  const needsReview    = allIssues.filter(i => ['in_review','blocked'].includes(i.status));
+
+  document.getElementById('today-done-count').textContent    = completedToday.length;
+  document.getElementById('today-running-count').textContent = inProgress.length;
+  document.getElementById('today-review-count').textContent  = needsReview.length;
+
+  // Completed today
+  const compEl = document.getElementById('today-completed');
+  compEl.innerHTML = completedToday.length === 0
+    ? '<p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">Nothing completed yet today.</p>'
+    : completedToday.map(i => {
+        const link = issueLink(i.title);
+        return `<div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);margin-bottom:0.35rem;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <p style="font-size:0.78rem;color:var(--text);margin:0;line-height:1.3;">${i.title}</p>
+            <p style="font-size:0.62rem;color:var(--text-dimmer);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId]||'Agent'}</p>
+          </div>
+          ${link ? `<a href="${link}" target="_blank" class="btn-view">View ↗</a>` : ''}
+        </div>`;
+      }).join('');
+
+  // Running + needs attention
+  const runEl = document.getElementById('today-running');
+  const rows = [];
+  if (inProgress.length > 0) {
+    rows.push('<p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(59,130,246,0.8);margin:0 0 0.4rem;">Running now</p>');
+    inProgress.forEach(i => rows.push(`
+      <div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);margin-bottom:0.35rem;">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;animation:pulse 1.5s infinite;"></div>
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:0.78rem;color:var(--text);margin:0;line-height:1.3;">${i.title}</p>
+          <p style="font-size:0.62rem;color:var(--text-dimmer);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId]||'Agent'}</p>
+        </div>
+      </div>`));
+  }
+  if (needsReview.length > 0) {
+    rows.push(`<p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,85,247,0.8);margin:${inProgress.length?'0.75rem':0} 0 0.4rem;">Needs attention</p>`);
+    needsReview.forEach(i => {
+      const colour = i.status === 'blocked' ? 'var(--red)' : 'var(--purple)';
+      rows.push(`<div style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.75rem;background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.2);margin-bottom:0.35rem;">
+        <div style="width:6px;height:6px;border-radius:50%;background:${colour};flex-shrink:0;"></div>
+        <p style="font-size:0.78rem;color:var(--text);margin:0;flex:1;line-height:1.3;">${i.title}</p>
+        ${pill(i.status.replace('_',' '), colour === 'var(--red)' ? '#ef4444' : '#a855f7')}
+      </div>`);
+    });
+  }
+  runEl.innerHTML = rows.length > 0 ? rows.join('') : '<p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">Nothing running right now.</p>';
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────
 async function init() {
   try {
     await loadAgents();
     await loadIssues();
+    renderDailyUpdate();
     const now = new Date().toLocaleString('en-AU', { timeZone:'Australia/Brisbane', dateStyle:'medium', timeStyle:'short' });
     document.getElementById('last-refresh').textContent = `Updated ${now} AEST`;
   } catch (err) {
