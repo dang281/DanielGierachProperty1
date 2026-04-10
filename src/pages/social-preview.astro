@@ -1,0 +1,315 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
+
+const AVATAR = 'https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg';
+
+interface SocialDraft {
+  filename: string;
+  platform: string;
+  platformNorm: string;
+  title: string;
+  date: string;
+  body: string;
+  hashtags: string;
+  notes: string;
+  goal: string;
+  format: string;
+}
+
+let drafts: SocialDraft[] = [];
+try {
+  const socialDir = join(process.cwd(), 'content', 'social');
+  const files = readdirSync(socialDir).filter(f => f.endsWith('.md') && f !== '.gitkeep');
+  drafts = files.map(filename => {
+    const raw = readFileSync(join(socialDir, filename), 'utf-8');
+    const titleMatch    = raw.match(/^#\s+(.+)/m);
+    const platformMatch = raw.match(/\*\*Platform:\*\*\s*(.+)/i);
+    const formatMatch   = raw.match(/\*\*Format:\*\*\s*(.+)/i);
+    const goalMatch     = raw.match(/\*\*Goal:\*\*\s*(.+)/i);
+    const captionMatch  = raw.match(/## Caption\s+([\s\S]+?)(?=\n## |\n---|\s*$)/i);
+    const hashtagMatch  = raw.match(/## Hashtags\s+([\s\S]+?)(?=\n## |\n---|\s*$)/i);
+    const notesMatch    = raw.match(/## Notes for Daniel\s+([\s\S]+?)(?=\n## |\s*$)/i);
+    const dateFromFile  = filename.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    const dateFormatted = dateFromFile
+      ? new Date(dateFromFile + 'T12:00:00').toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short', year:'numeric' })
+      : '';
+    const platformRaw   = platformMatch?.[1]?.trim() || 'Social';
+    const p             = platformRaw.toLowerCase();
+    const platformNorm  = p.includes('instagram') ? 'instagram'
+                        : p.includes('facebook')  ? 'facebook'
+                        : p.includes('linkedin')  ? 'linkedin'
+                        : 'other';
+    return {
+      filename,
+      platform: platformRaw,
+      platformNorm,
+      title:    titleMatch?.[1]?.trim()  || filename.replace('.md',''),
+      date:     dateFormatted,
+      body:     captionMatch?.[1]?.trim() || raw.slice(0, 600),
+      hashtags: hashtagMatch?.[1]?.trim() || '',
+      notes:    notesMatch?.[1]?.trim()   || '',
+      goal:     goalMatch?.[1]?.trim()    || '',
+      format:   formatMatch?.[1]?.trim()  || '',
+    };
+  }).sort((a, b) => b.filename.localeCompare(a.filename));
+} catch (_) {}
+
+const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'medium', timeStyle: 'short' });
+
+// Group by platform
+const byPlatform: Record<string, SocialDraft[]> = {};
+drafts.forEach(d => {
+  const key = d.platformNorm;
+  if (!byPlatform[key]) byPlatform[key] = [];
+  byPlatform[key].push(d);
+});
+---
+
+<Layout title="Social Content Preview" description="Internal." hideMobileCta={true}>
+
+<script>document.querySelector('meta[name="robots"]')?.setAttribute('content','noindex,nofollow');</script>
+
+<!-- Password gate -->
+<div id="gate" style="display:none;position:fixed;inset:0;background:#0f0d0c;z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;padding:2rem;">
+    <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Daniel Gierach Property</p>
+    <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:#f2efe9;margin-bottom:1.5rem;">Social Preview</h2>
+    <input id="gate-input" type="password" placeholder="Password" style="background:#1c1917;border:1px solid rgba(196,145,42,0.3);color:#f2efe9;font-family:var(--font-sans);font-size:0.9rem;padding:0.65rem 1rem;width:220px;outline:none;display:block;margin:0 auto 0.75rem;" />
+    <p id="gate-error" style="font-family:var(--font-sans);font-size:0.75rem;color:#ef4444;min-height:1rem;margin-bottom:0.75rem;"></p>
+    <button id="gate-btn" style="background:#c4912a;color:#1c1917;font-family:var(--font-sans);font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;padding:0.65rem 1.75rem;cursor:pointer;">Enter</button>
+  </div>
+</div>
+
+<div id="page-content" style="display:none;">
+<div style="background:#0f0d0c;min-height:100vh;padding:2rem 1.5rem 6rem;">
+<div style="max-width:1200px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(196,145,42,0.2);">
+    <div>
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.4rem;">Daniel Gierach Property</p>
+      <h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:#f2efe9;margin:0;">Social Content</h1>
+    </div>
+    <div style="text-align:right;">
+      <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0;">{drafts.length} draft{drafts.length !== 1 ? 's' : ''} · Built {buildTime} AEST</p>
+      <p style="font-family:var(--font-sans);font-size:0.7rem;margin:0.2rem 0 0;"><a href="/social-preview" style="color:#c4912a;text-decoration:none;">Refresh →</a></p>
+    </div>
+  </div>
+
+  {drafts.length === 0 ? (
+    <div style="padding:3rem;background:#1c1917;border:1px dashed rgba(255,255,255,0.08);text-align:center;">
+      <p style="font-family:var(--font-sans);font-size:1rem;color:rgba(242,239,233,0.3);margin:0 0 0.5rem;">No social drafts yet.</p>
+      <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.2);margin:0;">The Social Media Agent will write posts here when tasks are assigned.</p>
+    </div>
+  ) : (
+    <div>
+
+      <!-- Platform filter tabs -->
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;" id="filter-tabs">
+        <button onclick="filterPlatform('all')" data-p="all" style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;padding:0.45rem 1rem;cursor:pointer;background:#c4912a;color:#1c1917;">All ({drafts.length})</button>
+        {Object.entries(byPlatform).map(([p, items]) => (
+          <button onclick={`filterPlatform('${p}')`} data-p={p} style={`font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.12);padding:0.45rem 1rem;cursor:pointer;background:transparent;color:rgba(242,239,233,0.6);`}>
+            {p.charAt(0).toUpperCase() + p.slice(1)} ({items.length})
+          </button>
+        ))}
+      </div>
+
+      <!-- Draft cards -->
+      <div style="display:flex;flex-direction:column;gap:2rem;" id="drafts-container">
+        {drafts.map(d => (
+          <div class="draft-card" data-platform={d.platformNorm} style="background:#1c1917;border:1px solid rgba(255,255,255,0.07);overflow:hidden;">
+
+            <!-- Platform bar -->
+            <div style={`display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.06);background:${d.platformNorm==='instagram'?'linear-gradient(90deg,rgba(193,53,132,0.15),rgba(225,119,46,0.1))':d.platformNorm==='facebook'?'rgba(24,119,242,0.08)':d.platformNorm==='linkedin'?'rgba(10,102,194,0.1)':'rgba(255,255,255,0.04)'};`}>
+              <span style={`font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:${d.platformNorm==='instagram'?'#e1306c':d.platformNorm==='facebook'?'#1877f2':d.platformNorm==='linkedin'?'#0a66c2':'#c4912a'};`}>{d.platform}</span>
+              {d.format && <span style="font-size:0.62rem;color:rgba(242,239,233,0.35);background:rgba(255,255,255,0.06);padding:0.1rem 0.4rem;">{d.format}</span>}
+              {d.goal   && <span style="font-size:0.62rem;color:rgba(242,239,233,0.35);">Goal: {d.goal}</span>}
+              <span style="margin-left:auto;font-size:0.65rem;color:rgba(242,239,233,0.3);">{d.date}</span>
+            </div>
+
+            <!-- Two-col: mockup + copy -->
+            <div style="display:grid;grid-template-columns:320px 1fr;gap:0;align-items:start;" class="draft-grid">
+
+              <!-- MOCKUP -->
+              {d.platformNorm === 'instagram' && (
+                <div style="border-right:1px solid rgba(255,255,255,0.06);background:#fafafa;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.75rem;">
+                    <div style="display:flex;align-items:center;gap:0.5rem;">
+                      <img src={AVATAR} alt="Daniel" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888) border-box;" />
+                      <div>
+                        <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.72rem;font-weight:600;color:#262626;margin:0;line-height:1;">danielgierach</p>
+                        <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.6rem;color:#8e8e8e;margin:0.1rem 0 0;">Ray White Bulimba</p>
+                      </div>
+                    </div>
+                    <span style="font-size:1.1rem;color:#262626;">···</span>
+                  </div>
+                  <div style="width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,#e8e0d5,#d4c5b0);display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.7rem;color:#8e8e8e;">Image / Reel</span>
+                  </div>
+                  <div style="padding:0.6rem 0.75rem 0.5rem;">
+                    <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:0.35rem;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8" style="margin-left:auto;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.7rem;color:#262626;margin:0 0 0.2rem;line-height:1.5;"><strong>danielgierach</strong> {d.body.slice(0,120)}{d.body.length > 120 ? '…' : ''}</p>
+                    {d.hashtags && <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.68rem;color:#00376b;margin:0 0 0.4rem;line-height:1.5;">{d.hashtags.slice(0,80)}</p>}
+                  </div>
+                </div>
+              )}
+
+              {d.platformNorm === 'facebook' && (
+                <div style="border-right:1px solid rgba(255,255,255,0.06);background:#fff;">
+                  <div style="display:flex;align-items:center;gap:0.6rem;padding:0.75rem;">
+                    <img src={AVATAR} alt="Daniel" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                    <div>
+                      <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.78rem;font-weight:700;color:#050505;margin:0;">Daniel Gierach</p>
+                      <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.62rem;color:#65676b;margin:0;">{d.date || 'Just now'} · 🌐</p>
+                    </div>
+                    <span style="margin-left:auto;font-size:1rem;color:#65676b;">···</span>
+                  </div>
+                  <div style="padding:0 0.75rem 0.5rem;">
+                    <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.78rem;color:#050505;margin:0;line-height:1.6;">{d.body.slice(0,220)}{d.body.length > 220 ? '…' : ''}</p>
+                  </div>
+                  <div style="width:100%;height:140px;background:linear-gradient(135deg,#e4e6eb,#cdd1db);display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:Helvetica,Arial,sans-serif;font-size:0.7rem;color:#65676b;">Image</span>
+                  </div>
+                  <div style="padding:0.35rem 0.75rem 0.75rem;">
+                    <div style="display:flex;border-top:1px solid #e4e6eb;padding-top:0.35rem;">
+                      {['👍 Like','💬 Comment','↗ Share'].map(a => (
+                        <button style="flex:1;background:none;border:none;font-family:Helvetica,Arial,sans-serif;font-size:0.72rem;font-weight:600;color:#65676b;padding:0.35rem 0;cursor:default;">{a}</button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {d.platformNorm === 'linkedin' && (
+                <div style="border-right:1px solid rgba(255,255,255,0.06);background:#fff;">
+                  <div style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.75rem 0.75rem 0.4rem;">
+                    <img src={AVATAR} alt="Daniel" style="width:44px;height:44px;border-radius:50%;object-fit:cover;" />
+                    <div style="flex:1;">
+                      <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.78rem;font-weight:600;color:#000;margin:0;">Daniel Gierach</p>
+                      <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.64rem;color:#666;margin:0.1rem 0 0;">Property Agent · Ray White Bulimba</p>
+                      <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.6rem;color:#999;margin:0.2rem 0 0;">{d.date || 'Today'} · 🌐</p>
+                    </div>
+                    <button style="background:#e8f3ff;border:1px solid #0a66c2;color:#0a66c2;font-size:0.7rem;font-weight:600;padding:0.2rem 0.7rem;cursor:default;border-radius:2px;">+ Follow</button>
+                  </div>
+                  <div style="padding:0 0.75rem 0.5rem;">
+                    <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.76rem;color:#000;margin:0;line-height:1.65;">{d.body.slice(0,260)}{d.body.length > 260 ? '… more' : ''}</p>
+                    {d.hashtags && <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.7rem;color:#0a66c2;margin:0.4rem 0 0;">{d.hashtags.slice(0,80)}</p>}
+                  </div>
+                  <div style="width:100%;height:130px;background:linear-gradient(135deg,#eef3f8,#dce6f0);display:flex;align-items:center;justify-content:center;">
+                    <span style="font-size:0.7rem;color:#666;">Image</span>
+                  </div>
+                  <div style="padding:0.2rem 0.75rem 0.75rem;">
+                    <div style="display:flex;border-top:1px solid #e0dfdd;padding-top:0.35rem;">
+                      {['👍 Like','💬 Comment','↗ Repost','✉ Send'].map(a => (
+                        <button style="flex:1;background:none;border:none;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.65rem;font-weight:600;color:#666;padding:0.3rem 0;cursor:default;">{a}</button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {d.platformNorm === 'other' && (
+                <div style="border-right:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;min-height:180px;">
+                  <div style="text-align:center;">
+                    <p style="font-size:1.5rem;margin:0 0 0.4rem;">📱</p>
+                    <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.3);margin:0;">{d.platform}</p>
+                  </div>
+                </div>
+              )}
+
+              <!-- Full copy panel -->
+              <div style="padding:1.25rem;display:flex;flex-direction:column;gap:1rem;">
+                <div>
+                  <p style="font-family:var(--font-sans);font-size:0.9rem;font-weight:600;color:#f2efe9;margin:0 0 0.75rem;">{d.title}</p>
+                  <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.3);margin:0 0 0.4rem;">Full Caption</p>
+                  <div style="background:rgba(0,0,0,0.25);border-left:2px solid rgba(196,145,42,0.4);padding:0.85rem 1rem;max-height:260px;overflow-y:auto;">
+                    <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.9);margin:0;line-height:1.8;white-space:pre-wrap;">{d.body}</p>
+                  </div>
+                </div>
+                {d.hashtags && (
+                  <div>
+                    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.3);margin:0 0 0.3rem;">Hashtags</p>
+                    <p style="font-family:var(--font-sans);font-size:0.78rem;color:#3b82f6;margin:0;line-height:1.6;">{d.hashtags}</p>
+                  </div>
+                )}
+                {d.notes && (
+                  <div style="background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);padding:0.85rem;">
+                    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;margin:0 0 0.35rem;">Notes for Daniel</p>
+                    <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.7);margin:0;line-height:1.6;">{d.notes}</p>
+                  </div>
+                )}
+                <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);">
+                  <code style="font-size:0.62rem;color:rgba(242,239,233,0.25);">{d.filename}</code>
+                  <a href={`https://github.com/dang281/DanielGierachProperty1/blob/main/content/social/${d.filename}`} target="_blank"
+                    style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.2rem 0.5rem;">Edit on GitHub ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+</div>
+</div>
+</div>
+
+<script>
+  const PASS = 'dang2026';
+  const gate    = document.getElementById('gate')!;
+  const content = document.getElementById('page-content')!;
+  const inp     = document.getElementById('gate-input') as HTMLInputElement;
+  const btn     = document.getElementById('gate-btn')!;
+  const err     = document.getElementById('gate-error')!;
+
+  function unlock() {
+    if (inp.value === PASS) {
+      sessionStorage.setItem('social_auth','1');
+      gate.style.display = 'none';
+      content.style.display = 'block';
+    } else {
+      err.textContent = 'Incorrect password.';
+      inp.value = ''; inp.focus();
+    }
+  }
+
+  if (sessionStorage.getItem('social_auth') === '1') {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    gate.style.display = 'flex';
+  }
+
+  btn.addEventListener('click', unlock);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+
+  // Platform filter
+  function filterPlatform(p: string) {
+    document.querySelectorAll('.draft-card').forEach((el: any) => {
+      el.style.display = (p === 'all' || el.dataset.platform === p) ? 'block' : 'none';
+    });
+    document.querySelectorAll('#filter-tabs button').forEach((btn: any) => {
+      const active = btn.dataset.p === p;
+      btn.style.background = active ? '#c4912a' : 'transparent';
+      btn.style.color      = active ? '#1c1917' : 'rgba(242,239,233,0.6)';
+      btn.style.border     = active ? 'none' : '1px solid rgba(255,255,255,0.12)';
+    });
+  }
+  (window as any).filterPlatform = filterPlatform;
+</script>
+
+<style>
+  @media (max-width: 700px) {
+    .draft-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+</Layout>
