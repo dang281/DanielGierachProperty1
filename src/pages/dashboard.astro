@@ -30,11 +30,26 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
 ---
 
 <Layout
-  title="Agent Dashboard | Daniel Gierach Property"
-  description="Internal dashboard for the Daniel Gierach Property website — agent status, issues board, recent deploys, and live page counts."
+  title="Dashboard"
+  description="Internal."
   hideMobileCta={true}
 >
 
+<!-- noindex injected via script since Layout doesn't expose robots prop -->
+<script>document.querySelector('meta[name="robots"]')?.setAttribute('content','noindex,nofollow');</script>
+
+<!-- Password gate -->
+<div id="gate" style="display:none;position:fixed;inset:0;background:#0f0d0c;z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;padding:2rem;">
+    <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Daniel Gierach Property</p>
+    <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:#f2efe9;margin-bottom:1.5rem;">Dashboard Access</h2>
+    <input id="gate-input" type="password" placeholder="Password" style="background:#1c1917;border:1px solid rgba(196,145,42,0.3);color:#f2efe9;font-family:var(--font-sans);font-size:0.9rem;padding:0.65rem 1rem;width:220px;outline:none;display:block;margin:0 auto 0.75rem;" />
+    <p id="gate-error" style="font-family:var(--font-sans);font-size:0.75rem;color:#ef4444;min-height:1rem;margin-bottom:0.75rem;"></p>
+    <button id="gate-btn" style="background:#c4912a;color:#1c1917;font-family:var(--font-sans);font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;padding:0.65rem 1.75rem;cursor:pointer;">Enter</button>
+  </div>
+</div>
+
+<div id="dashboard-content" style="display:none;">
 <div style="background:#0f0d0c; min-height:100vh; padding:2rem 1.5rem 6rem;">
   <div style="max-width:1100px; margin:0 auto;">
 
@@ -119,6 +134,7 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
 
   </div>
 </div>
+</div> <!-- end dashboard-content -->
 
 <script>
   const API = 'http://127.0.0.1:3100';
@@ -228,8 +244,39 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
     }
   }
 
-  loadAgents();
-  loadIssues();
+  // Password gate
+  const PASS = 'dang2026';
+  const gate = document.getElementById('gate')!;
+  const content = document.getElementById('dashboard-content')!;
+  const input = document.getElementById('gate-input') as HTMLInputElement;
+  const btn = document.getElementById('gate-btn')!;
+  const err = document.getElementById('gate-error')!;
+
+  function unlock() {
+    if (input.value === PASS) {
+      sessionStorage.setItem('dash_auth', '1');
+      gate.style.display = 'none';
+      content.style.display = 'block';
+      loadAgents();
+      loadIssues();
+    } else {
+      err.textContent = 'Incorrect password.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  if (sessionStorage.getItem('dash_auth') === '1') {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+    loadAgents();
+    loadIssues();
+  } else {
+    gate.style.display = 'flex';
+  }
+
+  btn.addEventListener('click', unlock);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlock(); });
 </script>
 
 <style>
