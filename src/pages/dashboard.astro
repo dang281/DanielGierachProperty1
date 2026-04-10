@@ -2,14 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import { execSync } from 'child_process';
 import { readdirSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const repoPath = '/Users/danielgierach/DanielGierachProperty';
+// Works on both local machine and Vercel
+const __dir = dirname(fileURLToPath(import.meta.url)); // src/pages/
+const repoRoot = process.cwd();
 
 let gitCommits: { hash: string; date: string; message: string; link: string }[] = [];
 try {
   const raw = execSync(
-    `git -C ${repoPath} log --format="%H|%ad|%s" --date=format:"%d %b %Y" -30`,
+    `git -C ${repoRoot} log --format="%H|%ad|%s" --date=format:"%d %b %Y" -30`,
     { encoding: 'utf-8' }
   ).trim();
   gitCommits = raw.split('\n').map(line => {
@@ -40,10 +43,10 @@ try {
 let suburbPages: string[] = [];
 let insightPages: string[] = [];
 try {
-  suburbPages = readdirSync(join(repoPath, 'src/pages/suburbs'))
+  suburbPages = readdirSync(join(__dir, 'suburbs'))
     .filter(f => f.endsWith('.astro') && f !== 'index.astro')
     .map(f => f.replace('.astro', ''));
-  insightPages = readdirSync(join(repoPath, 'src/pages/insights'))
+  insightPages = readdirSync(join(__dir, 'insights'))
     .filter(f => f.endsWith('.astro') && f !== 'index.astro')
     .map(f => f.replace('.astro', ''));
 } catch (_) {}
@@ -95,7 +98,7 @@ try {
   const since = lastMon.toISOString().slice(0, 10);
   const until = thisMon.toISOString().slice(0, 10);
   const raw = execSync(
-    `git -C ${repoPath} log --format="%ad|%s" --date=format:"%d %b" --after="${since}" --before="${until}"`,
+    `git -C ${repoRoot} log --format="%ad|%s" --date=format:"%d %b" --after="${since}" --before="${until}"`,
     { encoding: 'utf-8' }
   ).trim();
   lastWeekContent = raw.split('\n').filter(Boolean).map(line => {

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agent Dashboard — Daniel Gierach Property</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #c4912a;
+    --gold-dim: rgba(196,145,42,0.15);
+    --bg: #0f0d0c;
+    --card: #1c1917;
+    --text: #f2efe9;
+    --text-dim: rgba(242,239,233,0.4);
+    --text-dimmer: rgba(242,239,233,0.25);
+    --border: rgba(196,145,42,0.15);
+    --border-w: rgba(255,255,255,0.06);
+    --serif: 'Noto Serif', Georgia, serif;
+    --sans: 'Manrope', system-ui, sans-serif;
+    --green: #22c55e;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+  }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); }
+  a { color: var(--gold); text-decoration: none; }
+  code { font-family: monospace; }
+
+  /* ── Gate ── */
+  #gate {
+    display: none; position: fixed; inset: 0;
+    background: var(--bg); z-index: 9999;
+    align-items: center; justify-content: center;
+  }
+  #gate input {
+    background: var(--card); border: 1px solid rgba(196,145,42,0.3);
+    color: var(--text); font-family: var(--sans); font-size: 0.9rem;
+    padding: 0.65rem 1rem; width: 220px; outline: none;
+    display: block; margin: 0 auto 0.75rem;
+  }
+  #gate-btn {
+    background: var(--gold); color: var(--card);
+    font-family: var(--sans); font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; padding: 0.65rem 1.75rem; cursor: pointer;
+  }
+
+  /* ── Layout ── */
+  #dash { display: none; padding: 2rem 1.5rem 6rem; min-height: 100vh; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .card-title {
+    font-family: var(--sans); font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; }
+
+  /* ── Pill ── */
+  .pill {
+    display: inline-block; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.15rem 0.5rem; border-radius: 2px;
+  }
+
+  /* ── Issue card ── */
+  .issue {
+    padding: 0.75rem; background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-w); margin-bottom: 0.5rem;
+  }
+  .issue-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+
+  /* ── Approval item ── */
+  .approval-item {
+    padding: 0.85rem; margin-bottom: 0.6rem; border-radius: 1px;
+  }
+  .approval-btns { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  .btn-approve {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; background: var(--green); color: #0a0806;
+    border: none; padding: 0.3rem 0.75rem; cursor: pointer;
+  }
+  .btn-reject {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; background: transparent; color: var(--red);
+    border: 1px solid rgba(239,68,68,0.4); padding: 0.3rem 0.75rem; cursor: pointer;
+  }
+  .btn-view {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--gold); border: 1px solid rgba(196,145,42,0.3);
+    padding: 0.2rem 0.5rem; white-space: nowrap;
+  }
+
+  /* ── Progress bar ── */
+  .progress-track { height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; margin-top: 0.4rem; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.4s; }
+
+  /* ── Agent row ── */
+  .agent-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 0; border-bottom: 1px solid var(--border-w);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── Stat card ── */
+  .stat { background: var(--card); border: 1px solid var(--border); padding: 1.25rem 1.5rem; }
+  .stat-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .stat-val { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--text); margin: 0; }
+  .stat-sub { font-size: 0.72rem; color: var(--text-dim); margin: 0.2rem 0 0; }
+
+  /* ── Completed work ── */
+  .done-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.6rem 0.85rem; background: rgba(34,197,94,0.04);
+    border: 1px solid rgba(34,197,94,0.12); margin-bottom: 0.4rem;
+  }
+
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Gate -->
+<div id="gate">
+  <div style="text-align:center;padding:2rem;">
+    <p style="font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Daniel Gierach Property</p>
+    <h2 style="font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--text);margin-bottom:1.5rem;">Dashboard Access</h2>
+    <input id="gate-input" type="password" placeholder="Password" />
+    <p id="gate-error" style="font-family:var(--sans);font-size:0.75rem;color:var(--red);min-height:1rem;margin-bottom:0.75rem;"></p>
+    <button id="gate-btn">Enter</button>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dash">
+<div class="wrap">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(196,145,42,0.2);">
+    <div>
+      <p style="font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Daniel Gierach Property</p>
+      <h1 style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--text);margin:0;">Agent Dashboard <span style="font-size:0.9rem;color:var(--text-dim);">— Live</span></h1>
+    </div>
+    <div style="text-align:right;">
+      <p style="font-size:0.7rem;color:var(--text-dim);margin:0;" id="last-refresh">Loading...</p>
+      <p style="font-size:0.7rem;margin:0.2rem 0 0;"><a href="javascript:location.reload()">Refresh ↺</a></p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid-auto" style="margin-bottom:2.5rem;">
+    <div class="stat">
+      <div class="stat-label">Active Agents</div>
+      <div class="stat-val" id="s-agents">—</div>
+      <div class="stat-sub">Paperclip team</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Tasks Completed</div>
+      <div class="stat-val" id="s-done">—</div>
+      <div class="stat-sub">All time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Open Tasks</div>
+      <div class="stat-val" id="s-open">—</div>
+      <div class="stat-sub">todo + in progress</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Awaiting Approval</div>
+      <div class="stat-val" id="s-review" style="color:var(--purple);">—</div>
+      <div class="stat-sub">in review</div>
+    </div>
+  </div>
+
+  <!-- Weekly Content Review -->
+  <div class="card" style="border-color:rgba(196,145,42,0.3);margin-bottom:2rem;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);">
+      <div>
+        <p style="font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem;">Weekly Content Review</p>
+        <p style="font-family:var(--serif);font-size:1.2rem;font-weight:300;color:var(--text);margin:0;" id="week-label">This week: —</p>
+        <p style="font-size:0.72rem;color:var(--text-dim);margin:0.2rem 0 0;">Approve items to clear them for publishing. Rejection sends back to the agent.</p>
+      </div>
+      <div style="text-align:right;min-width:160px;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin:0 0 0.4rem;">Approvals</p>
+        <p style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--green);margin:0;" id="approval-fraction">0 / 0</p>
+        <div class="progress-track" style="width:160px;"><div class="progress-fill" id="approval-bar" style="width:0%;"></div></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin:0 0 1rem;">Awaiting Your Approval</p>
+        <div id="weekly-queue"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
+      </div>
+      <div>
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin:0 0 1rem;">Recently Completed by Agents</p>
+        <div id="recent-done"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agents + Pending -->
+  <div class="grid-2" style="margin-bottom:1.5rem;">
+    <div class="card">
+      <div class="card-title">Agent Status</div>
+      <div id="agents-list"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Pending Your Review</div>
+      <div id="pending-approvals"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
+    </div>
+  </div>
+
+  <!-- Active Tasks -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card-title">Active Tasks</div>
+    <div id="issues-board" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
+      <p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p>
+    </div>
+  </div>
+
+  <!-- Completed Work -->
+  <div class="card">
+    <div class="card-title">Completed Work</div>
+    <div id="completed-work"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+const API     = '';  // same-origin: served from 127.0.0.1:3100
+const COMPANY = 'e01db3e8-fb70-4c7a-b7a7-495c1df05882';
+const SEO_AGENT = '8868cd83-6be1-4b6d-9c85-26eebb8d92b7';
+const SITE    = 'https://danielgierach.com';
+
+// ── Colours ──────────────────────────────────────────────────────────────
+const statusColour = {
+  idle:'#22c55e', running:'#3b82f6', error:'#ef4444', paused:'#f97316',
+  todo:'#6b7280', in_progress:'#3b82f6', blocked:'#ef4444',
+  in_review:'#a855f7', done:'#22c55e', backlog:'#4b5563',
+};
+const priorityColour = { critical:'#ef4444', high:'#f97316', medium:'#c4912a', low:'#6b7280' };
+
+function pill(label, colour) {
+  return `<span class="pill" style="background:${colour}22;color:${colour};">${label}</span>`;
+}
+
+// ── Week helpers ──────────────────────────────────────────────────────────
+function getWeekBounds() {
+  const now = new Date();
+  const aest = new Date(now.toLocaleString('en-US', { timeZone: 'Australia/Brisbane' }));
+  const dow = aest.getDay();
+  const daysToMon = dow === 0 ? 6 : dow - 1;
+  const thisMon = new Date(aest); thisMon.setDate(aest.getDate() - daysToMon); thisMon.setHours(0,0,0,0);
+  const thisSun = new Date(thisMon); thisSun.setDate(thisMon.getDate() + 6); thisSun.setHours(23,59,59,0);
+  const fmt = d => d.toLocaleDateString('en-AU', { day:'numeric', month:'short', timeZone:'Australia/Brisbane' });
+  return { thisMon, thisSun, label: `${fmt(thisMon)} – ${fmt(thisSun)}` };
+}
+
+// ── Approval state ────────────────────────────────────────────────────────
+const getApproval = id => localStorage.getItem(`wcr_${id}`);
+const setApproval = (id, state) => localStorage.setItem(`wcr_${id}`, state);
+
+// ── Link derivation ───────────────────────────────────────────────────────
+function issueLink(title) {
+  const t = title.toLowerCase();
+  const sellingMatch = t.match(/selling[- ]in[- ]([a-z\s\-]+?)(?:\s+insight|\s+article|$)/);
+  const insightMatch = t.match(/insights?\s+article\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+insight|$)/);
+  const suburbMatch  = t.match(/(?:suburb page|suburb|page)\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+page|$)/);
+  if (sellingMatch) return `${SITE}/insights/selling-in-${sellingMatch[1].trim().replace(/\s+/g,'-')}`;
+  if (insightMatch) return `${SITE}/insights/selling-in-${insightMatch[1].trim().replace(/\s+/g,'-')}`;
+  if (suburbMatch)  return `${SITE}/suburbs/${suburbMatch[1].trim().replace(/\s+/g,'-')}`;
+  if (t.includes('dashboard')) return `${SITE}/dashboard`;
+  if (t.includes('homepage') || t.includes('home page')) return SITE;
+  return '';
+}
+
+// ── State ──────────────────────────────────────────────────────────────────
+let agentMap = {};
+let allIssues = [];
+
+// ── Render: Weekly Queue ──────────────────────────────────────────────────
+function renderWeeklyQueue() {
+  const el     = document.getElementById('weekly-queue');
+  const fracEl = document.getElementById('approval-fraction');
+  const barEl  = document.getElementById('approval-bar');
+
+  const contentItems = allIssues.filter(i =>
+    i.status === 'in_review' ||
+    (i.assigneeAgentId === SEO_AGENT && ['todo','in_progress'].includes(i.status))
+  );
+
+  const approved = contentItems.filter(i => getApproval(i.id) === 'approved').length;
+  const total    = contentItems.length;
+  const pct      = total > 0 ? Math.round((approved / total) * 100) : 0;
+  fracEl.textContent = `${approved} / ${total}`;
+  barEl.style.width  = pct + '%';
+
+  if (total === 0) {
+    el.innerHTML = '<p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">No content queued this week.</p>';
+    return;
+  }
+
+  el.innerHTML = contentItems.map(i => {
+    const state = getApproval(i.id);
+    const agentName = agentMap[i.assigneeAgentId] || 'Agent';
+    const why = i.description
+      ? `<p style="font-size:0.72rem;color:var(--text-dim);margin:0.3rem 0 0.5rem;line-height:1.5;">${i.description.slice(0,220)}${i.description.length > 220 ? '…' : ''}</p>`
+      : `<p style="font-size:0.72rem;color:var(--text-dimmer);margin:0.3rem 0 0.5rem;font-style:italic;">By ${agentName} · ${i.status.replace('_',' ')}</p>`;
+    const border = state === 'approved' ? 'rgba(34,197,94,0.35)' : state === 'rejected' ? 'rgba(239,68,68,0.3)' : 'rgba(168,85,247,0.25)';
+    const bg     = state === 'approved' ? 'rgba(34,197,94,0.05)' : state === 'rejected' ? 'rgba(239,68,68,0.05)' : 'rgba(168,85,247,0.05)';
+    const link   = issueLink(i.title);
+    const viewBtn = link ? `<a href="${link}" target="_blank" class="btn-view">View ↗</a>` : '';
+    return `
+      <div class="approval-item" style="border:1px solid ${border};background:${bg};">
+        <div class="issue-meta">
+          <code style="font-size:0.62rem;color:var(--gold);">${i.identifier}</code>
+          ${pill(i.status.replace('_',' '), statusColour[i.status]||'#6b7280')}
+          ${state === 'approved' ? pill('approved','#22c55e') : state === 'rejected' ? pill('rejected','#ef4444') : ''}
+        </div>
+        <p style="font-size:0.82rem;color:var(--text);line-height:1.4;">${i.title}</p>
+        ${why}
+        <div class="approval-btns">
+          ${!state ? `<button class="btn-approve" onclick="approve('${i.id}')">Approve ✓</button><button class="btn-reject" onclick="reject('${i.id}')">Reject ✗</button>` : ''}
+          ${state === 'rejected' ? `<button class="btn-approve" onclick="approve('${i.id}')">Approve anyway ✓</button>` : ''}
+          ${viewBtn}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ── Render: Recent done ───────────────────────────────────────────────────
+function renderRecentDone() {
+  const el = document.getElementById('recent-done');
+  const recent = allIssues
+    .filter(i => i.status === 'done' && i.completedAt)
+    .sort((a,b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime())
+    .slice(0, 8);
+
+  if (recent.length === 0) {
+    el.innerHTML = '<p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">No completed work yet.</p>';
+    return;
+  }
+  el.innerHTML = recent.map(i => {
+    const link = issueLink(i.title);
+    const dt = new Date(i.completedAt).toLocaleDateString('en-AU', { timeZone:'Australia/Brisbane', day:'numeric', month:'short' });
+    return `
+      <div class="done-item">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;"></div>
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:0.78rem;color:var(--text);line-height:1.35;">${i.title}</p>
+          <p style="font-size:0.65rem;color:var(--text-dimmer);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId]||'Agent'} · ${dt}</p>
+        </div>
+        ${link ? `<a href="${link}" target="_blank" class="btn-view">View ↗</a>` : ''}
+      </div>`;
+  }).join('');
+}
+
+// ── Approval actions ──────────────────────────────────────────────────────
+async function approve(id) {
+  setApproval(id, 'approved');
+  try {
+    await fetch(`${API}/api/companies/${COMPANY}/issues/${id}`, {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'done' })
+    });
+  } catch {}
+  renderWeeklyQueue();
+}
+async function reject(id) {
+  setApproval(id, 'rejected');
+  try {
+    await fetch(`${API}/api/companies/${COMPANY}/issues/${id}`, {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'todo' })
+    });
+  } catch {}
+  renderWeeklyQueue();
+}
+window.approve = approve;
+window.reject  = reject;
+
+// ── Load Agents ───────────────────────────────────────────────────────────
+async function loadAgents() {
+  const res = await fetch(`${API}/api/companies/${COMPANY}/agents`);
+  const agents = await res.json();
+  agents.forEach(a => { agentMap[a.id] = a.name; });
+  document.getElementById('s-agents').textContent = agents.length;
+  document.getElementById('agents-list').innerHTML = agents.map(a => {
+    const colour = statusColour[a.status] || '#6b7280';
+    const lastBeat = a.lastHeartbeatAt
+      ? new Date(a.lastHeartbeatAt).toLocaleString('en-AU', { timeZone:'Australia/Brisbane', dateStyle:'short', timeStyle:'short' })
+      : 'Never';
+    return `
+      <div class="agent-row">
+        <div class="dot" style="background:${colour};"></div>
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:0.84rem;font-weight:600;color:var(--text);margin:0;">${a.name}</p>
+          <p style="font-size:0.68rem;color:var(--text-dim);margin:0.1rem 0 0;">Last active: ${lastBeat} AEST</p>
+        </div>
+        ${pill(a.status, colour)}
+      </div>`;
+  }).join('');
+  return agents;
+}
+
+// ── Load Issues ───────────────────────────────────────────────────────────
+async function loadIssues() {
+  const res = await fetch(`${API}/api/companies/${COMPANY}/issues`);
+  allIssues = await res.json();
+
+  const open   = allIssues.filter(i => ['todo','in_progress','blocked','in_review'].includes(i.status));
+  const done   = allIssues.filter(i => i.status === 'done');
+  const review = allIssues.filter(i => i.status === 'in_review');
+
+  document.getElementById('s-done').textContent   = done.length;
+  document.getElementById('s-open').textContent   = open.length;
+  document.getElementById('s-review').textContent = review.length;
+
+  // Active tasks board
+  const groups = { in_progress:[], todo:[], blocked:[], in_review:[] };
+  open.forEach(i => { if (groups[i.status]) groups[i.status].push(i); });
+  const labels = { in_progress:'In Progress', todo:'To Do', blocked:'Blocked', in_review:'In Review' };
+  document.getElementById('issues-board').innerHTML = Object.entries(groups).map(([status, items]) => `
+    <div>
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+        <div style="width:8px;height:8px;border-radius:50%;background:${statusColour[status]||'#6b7280'};"></div>
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin:0;">${labels[status]} (${items.length})</p>
+      </div>
+      ${items.length === 0
+        ? '<p style="font-size:0.78rem;color:var(--text-dimmer);padding:0.5rem 0;">None</p>'
+        : items.map(i => `
+          <div class="issue">
+            <div class="issue-meta">
+              <code style="font-size:0.65rem;color:var(--gold);">${i.identifier}</code>
+              ${pill(i.priority||'medium', priorityColour[i.priority]||'#6b7280')}
+            </div>
+            <p style="font-size:0.8rem;color:var(--text);line-height:1.4;">${i.title}</p>
+            ${i.assigneeAgentId ? `<p style="font-size:0.68rem;color:var(--text-dimmer);margin:0.3rem 0 0;">${agentMap[i.assigneeAgentId]||'Agent'}</p>` : ''}
+          </div>`).join('')
+      }
+    </div>`).join('');
+
+  // Pending review
+  document.getElementById('pending-approvals').innerHTML = review.length === 0
+    ? '<p style="font-size:0.82rem;color:var(--text-dim);">Nothing awaiting review.</p>'
+    : review.map(i => `
+        <div style="padding:0.75rem;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.2);margin-bottom:0.5rem;">
+          <code style="font-size:0.65rem;color:var(--purple);">${i.identifier}</code>
+          <p style="font-size:0.82rem;color:var(--text);margin:0.3rem 0 0;line-height:1.4;">${i.title}</p>
+        </div>`).join('');
+
+  // Completed work grouped by agent
+  const byAgent = {};
+  done.forEach(i => {
+    const key = agentMap[i.assigneeAgentId] || 'Unassigned';
+    if (!byAgent[key]) byAgent[key] = [];
+    byAgent[key].push(i);
+  });
+  document.getElementById('completed-work').innerHTML = Object.entries(byAgent).map(([name, items]) => `
+    <div style="margin-bottom:1.75rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin:0 0 0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border-w);">
+        ${name} — ${items.length} completed
+      </p>
+      ${items.map(i => {
+        const link = issueLink(i.title);
+        const dt = i.completedAt
+          ? new Date(i.completedAt).toLocaleString('en-AU', { timeZone:'Australia/Brisbane', dateStyle:'short', timeStyle:'short' })
+          : '';
+        return `
+          <div class="done-item">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;"></div>
+            <div style="flex:1;min-width:0;">
+              <p style="font-size:0.8rem;color:var(--text);line-height:1.4;">${i.title}</p>
+              ${dt ? `<p style="font-size:0.65rem;color:var(--text-dimmer);margin:0.15rem 0 0;">Completed ${dt} AEST</p>` : ''}
+            </div>
+            ${link ? `<a href="${link}" target="_blank" class="btn-view">View ↗</a>` : ''}
+          </div>`;
+      }).join('')}
+    </div>`).join('');
+
+  // Weekly review
+  const { label } = getWeekBounds();
+  document.getElementById('week-label').textContent = `This week: ${label}`;
+  renderWeeklyQueue();
+  renderRecentDone();
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    await loadAgents();
+    await loadIssues();
+    const now = new Date().toLocaleString('en-AU', { timeZone:'Australia/Brisbane', dateStyle:'medium', timeStyle:'short' });
+    document.getElementById('last-refresh').textContent = `Updated ${now} AEST`;
+  } catch (err) {
+    console.error(err);
+    ['agents-list','pending-approvals','issues-board','completed-work','weekly-queue','recent-done'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = `<p style="font-size:0.8rem;color:var(--red);">Could not reach PaperclipAI API. Is it running?</p>`;
+    });
+  }
+}
+
+// ── Gate ──────────────────────────────────────────────────────────────────
+const PASS = 'dang2026';
+const gate = document.getElementById('gate');
+const dash = document.getElementById('dash');
+const inp  = document.getElementById('gate-input');
+const btn  = document.getElementById('gate-btn');
+const err  = document.getElementById('gate-error');
+
+function unlock() {
+  if (inp.value === PASS) {
+    localStorage.setItem('dash_auth','1');
+    gate.style.display = 'none';
+    dash.style.display = 'block';
+    init();
+  } else {
+    err.textContent = 'Incorrect password.';
+    inp.value = '';
+    inp.focus();
+  }
+}
+
+if (localStorage.getItem('dash_auth') === '1') {
+  gate.style.display = 'none';
+  dash.style.display = 'block';
+  init();
+} else {
+  gate.style.display = 'flex';
+}
+btn.addEventListener('click', unlock);
+inp.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+</script>
+</body>
+</html>
