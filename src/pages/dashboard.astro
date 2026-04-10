@@ -4,38 +4,55 @@ import { execSync } from 'child_process';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
-// Build-time data
 const repoPath = '/Users/danielgierach/DanielGierachProperty';
 
-let gitCommits: { hash: string; date: string; message: string; author: string }[] = [];
+let gitCommits: { hash: string; date: string; message: string; link: string }[] = [];
 try {
   const raw = execSync(
-    `git -C ${repoPath} log --format="%H|%ad|%s|%an" --date=format:"%d %b %Y" -10`,
+    `git -C ${repoPath} log --format="%H|%ad|%s" --date=format:"%d %b %Y" -30`,
     { encoding: 'utf-8' }
   ).trim();
   gitCommits = raw.split('\n').map(line => {
-    const [hash, date, message, author] = line.split('|');
-    return { hash: hash.slice(0, 7), date, message, author };
+    const [hash, date, ...msgParts] = line.split('|');
+    const message = msgParts.join('|');
+    // Derive a live link from the commit message
+    let link = '';
+    const suburbMatch = message.match(/suburb[s]?\s+page[s]?\s+(?:for\s+)?([a-z\s\-]+)/i) ||
+                        message.match(/add\s+([a-z\s\-]+)\s+suburb/i);
+    const insightMatch = message.match(/selling[- ]in[- ]([a-z\-]+)/i) ||
+                         message.match(/insights?\s+article\s+(?:for\s+)?([a-z\s\-]+)/i);
+    const pathMatch = message.match(/at\s+(\/[a-z0-9\/\-]+)/i);
+    if (insightMatch) {
+      const slug = insightMatch[1].trim().toLowerCase().replace(/\s+/g, '-');
+      link = `https://danielgierach.com/insights/selling-in-${slug}`;
+    } else if (suburbMatch) {
+      const slug = suburbMatch[1].trim().toLowerCase().replace(/\s+/g, '-');
+      link = `https://danielgierach.com/suburbs/${slug}`;
+    } else if (pathMatch) {
+      link = `https://danielgierach.com${pathMatch[1]}`;
+    } else if (message.toLowerCase().includes('homepage') || message.toLowerCase().includes('index')) {
+      link = 'https://danielgierach.com';
+    }
+    return { hash: hash.slice(0, 7), date, message, link };
   });
 } catch (_) {}
 
-let suburbCount = 0;
-let insightsCount = 0;
+let suburbPages: string[] = [];
+let insightPages: string[] = [];
 try {
-  suburbCount = readdirSync(join(repoPath, 'src/pages/suburbs')).filter(f => f.endsWith('.astro')).length;
-  insightsCount = readdirSync(join(repoPath, 'src/pages/insights')).filter(f => f.endsWith('.astro') && f !== 'index.astro').length;
+  suburbPages = readdirSync(join(repoPath, 'src/pages/suburbs'))
+    .filter(f => f.endsWith('.astro') && f !== 'index.astro')
+    .map(f => f.replace('.astro', ''));
+  insightPages = readdirSync(join(repoPath, 'src/pages/insights'))
+    .filter(f => f.endsWith('.astro') && f !== 'index.astro')
+    .map(f => f.replace('.astro', ''));
 } catch (_) {}
 
 const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'medium', timeStyle: 'short' });
 ---
 
-<Layout
-  title="Dashboard"
-  description="Internal."
-  hideMobileCta={true}
->
+<Layout title="Dashboard" description="Internal." hideMobileCta={true}>
 
-<!-- noindex injected via script since Layout doesn't expose robots prop -->
 <script>document.querySelector('meta[name="robots"]')?.setAttribute('content','noindex,nofollow');</script>
 
 <!-- Password gate -->
@@ -50,83 +67,118 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
 </div>
 
 <div id="dashboard-content" style="display:none;">
-<div style="background:#0f0d0c; min-height:100vh; padding:2rem 1.5rem 6rem;">
-  <div style="max-width:1100px; margin:0 auto;">
+<div style="background:#0f0d0c;min-height:100vh;padding:2rem 1.5rem 6rem;">
+  <div style="max-width:1200px;margin:0 auto;">
 
     <!-- Header -->
-    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:3rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(196,145,42,0.2);">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(196,145,42,0.2);">
       <div>
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.4rem;">Daniel Gierach Property</p>
-        <h1 style="font-family:var(--font-serif); font-size:1.8rem; font-weight:300; color:#f2efe9; margin:0;">Agent Dashboard</h1>
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.4rem;">Daniel Gierach Property</p>
+        <h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:#f2efe9;margin:0;">Agent Dashboard</h1>
       </div>
       <div style="text-align:right;">
-        <p style="font-family:var(--font-sans); font-size:0.7rem; color:rgba(242,239,233,0.4); margin:0;">Built {buildTime} AEST</p>
-        <p style="font-family:var(--font-sans); font-size:0.7rem; color:rgba(242,239,233,0.4); margin:0.2rem 0 0;">Refresh page for latest data</p>
+        <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0;">Built {buildTime} AEST</p>
+        <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0.2rem 0 0;"><a href="/dashboard" style="color:#c4912a;text-decoration:none;">Refresh for latest data →</a></p>
       </div>
     </div>
 
     <!-- Stats strip -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:3rem;">
-      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;">
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Suburb Pages</p>
-        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;">{suburbCount}</p>
-        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">live at /suburbs/*</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-bottom:2.5rem;">
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Suburb Pages</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;">{suburbPages.length}</p>
+        <a href="https://danielgierach.com/suburbs" target="_blank" style="font-family:var(--font-sans);font-size:0.72rem;color:#c4912a;text-decoration:none;">View all suburbs →</a>
       </div>
-      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;">
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Insights Articles</p>
-        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;">{insightsCount}</p>
-        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">live at /insights/*</p>
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Insights Articles</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;">{insightPages.length}</p>
+        <a href="https://danielgierach.com/insights" target="_blank" style="font-family:var(--font-sans);font-size:0.72rem;color:#c4912a;text-decoration:none;">View all articles →</a>
       </div>
-      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;" id="agents-stat">
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Active Agents</p>
-        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;" id="agents-count">—</p>
-        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">Paperclip team</p>
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Active Agents</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="agents-count">—</p>
+        <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">Paperclip team</p>
       </div>
-      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.25rem 1.5rem;">
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Open Issues</p>
-        <p style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; color:#f2efe9; margin:0;" id="open-issues-count">—</p>
-        <p style="font-family:var(--font-sans); font-size:0.75rem; color:rgba(242,239,233,0.4); margin:0.25rem 0 0;">todo + in_progress</p>
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Tasks Completed</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="done-count">—</p>
+        <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">All time</p>
       </div>
-    </div>
-
-    <!-- Two-col: Agents + Pending Approvals -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem;">
-
-      <!-- Agent Status -->
-      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem;">
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Agent Status</p>
-        <div id="agents-list">
-          <p style="font-family:var(--font-sans); font-size:0.8rem; color:rgba(242,239,233,0.4);">Loading...</p>
-        </div>
-      </div>
-
-      <!-- Pending Approvals -->
-      <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem;">
-        <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Pending Daniel's Review</p>
-        <div id="pending-approvals">
-          <p style="font-family:var(--font-sans); font-size:0.8rem; color:rgba(242,239,233,0.4);">Loading...</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Issues Board -->
-    <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem; margin-bottom:2rem;">
-      <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Issues Board</p>
-      <div id="issues-board" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.25rem;">
-        <p style="font-family:var(--font-sans); font-size:0.8rem; color:rgba(242,239,233,0.4);">Loading...</p>
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Open Tasks</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="open-issues-count">—</p>
+        <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">todo + in progress</p>
       </div>
     </div>
 
-    <!-- Recent Git Commits -->
-    <div style="background:#1c1917; border:1px solid rgba(196,145,42,0.15); padding:1.5rem;">
-      <p style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Recent Deploys</p>
-      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+    <!-- Agents + Pending -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Agent Status</p>
+        <div id="agents-list"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+      </div>
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Pending Your Review</p>
+        <div id="pending-approvals"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+      </div>
+    </div>
+
+    <!-- Active Tasks -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Active Tasks</p>
+      <div id="issues-board" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
+        <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p>
+      </div>
+    </div>
+
+    <!-- Completed Work -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Completed Work</p>
+      <div id="completed-work"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+    </div>
+
+    <!-- Suburb Pages Live -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Live Suburb Pages ({suburbPages.length})</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;">
+        {suburbPages.sort().map(slug => (
+          <a href={`https://danielgierach.com/suburbs/${slug}`} target="_blank"
+            style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);text-decoration:none;transition:border-color 0.15s;"
+            onmouseover="this.style.borderColor='rgba(196,145,42,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+            <span style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;text-transform:capitalize;">{slug.replace(/-/g,' ')}</span>
+            <span style="font-size:0.65rem;color:#c4912a;">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Insights Articles Live -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Live Insights Articles ({insightPages.length})</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.5rem;">
+        {insightPages.sort().map(slug => (
+          <a href={`https://danielgierach.com/insights/${slug}`} target="_blank"
+            style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);text-decoration:none;transition:border-color 0.15s;"
+            onmouseover="this.style.borderColor='rgba(196,145,42,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+            <span style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;text-transform:capitalize;">{slug.replace(/-/g,' ')}</span>
+            <span style="font-size:0.65rem;color:#c4912a;">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Recent Deploys -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Recent Deploys (last 30 commits)</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
         {gitCommits.map(commit => (
-          <div style="display:flex; gap:1rem; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.05);">
-            <code style="font-size:0.7rem; color:#c4912a; flex-shrink:0; font-family:monospace;">{commit.hash}</code>
-            <p style="font-family:var(--font-sans); font-size:0.82rem; font-weight:300; color:#f2efe9; margin:0; flex:1; line-height:1.5;">{commit.message}</p>
-            <p style="font-family:var(--font-sans); font-size:0.7rem; color:rgba(242,239,233,0.35); flex-shrink:0; white-space:nowrap;">{commit.date}</p>
+          <div style="display:flex;gap:1rem;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+            <code style="font-size:0.68rem;color:#c4912a;flex-shrink:0;font-family:monospace;width:4rem;">{commit.hash}</code>
+            <p style="font-family:var(--font-sans);font-size:0.8rem;font-weight:300;color:#f2efe9;margin:0;flex:1;line-height:1.4;">{commit.message}</p>
+            <p style="font-family:var(--font-sans);font-size:0.68rem;color:rgba(242,239,233,0.35);flex-shrink:0;white-space:nowrap;">{commit.date}</p>
+            {commit.link && (
+              <a href={commit.link} target="_blank" style="flex-shrink:0;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.2rem 0.5rem;white-space:nowrap;">View ↗</a>
+            )}
           </div>
         ))}
       </div>
@@ -139,108 +191,153 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
 <script>
   const API = 'http://127.0.0.1:3100';
   const COMPANY = 'e01db3e8-fb70-4c7a-b7a7-495c1df05882';
-
-  const priorityColour: Record<string, string> = {
-    critical: '#ef4444',
-    high: '#f97316',
-    medium: '#c4912a',
-    low: '#6b7280',
-  };
+  const SITE = 'https://danielgierach.com';
 
   const statusColour: Record<string, string> = {
-    todo: '#6b7280',
-    in_progress: '#3b82f6',
-    blocked: '#ef4444',
-    in_review: '#a855f7',
-    done: '#22c55e',
-    cancelled: '#374151',
-    backlog: '#4b5563',
+    idle:       '#22c55e',
+    running:    '#3b82f6',
+    error:      '#ef4444',
+    todo:       '#6b7280',
+    in_progress:'#3b82f6',
+    blocked:    '#ef4444',
+    in_review:  '#a855f7',
+    done:       '#22c55e',
+    backlog:    '#4b5563',
+  };
+
+  const priorityColour: Record<string, string> = {
+    critical: '#ef4444', high: '#f97316', medium: '#c4912a', low: '#6b7280',
   };
 
   function pill(label: string, colour: string) {
     return `<span style="display:inline-block;font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:${colour}22;color:${colour};padding:0.15rem 0.5rem;border-radius:2px;">${label}</span>`;
   }
 
+  // Derive a live URL from an issue title
+  function issueLink(title: string): string {
+    const t = title.toLowerCase();
+    const suburbPageMatch = t.match(/(?:suburb page|suburb|page)\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+page|$)/);
+    const sellingMatch = t.match(/selling[- ]in[- ]([a-z\s\-]+?)(?:\s+insight|\s+article|$)/);
+    const insightMatch = t.match(/insights?\s+article\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+insight|$)/);
+    if (sellingMatch) return `${SITE}/insights/selling-in-${sellingMatch[1].trim().replace(/\s+/g,'-')}`;
+    if (insightMatch) return `${SITE}/insights/selling-in-${insightMatch[1].trim().replace(/\s+/g,'-')}`;
+    if (suburbPageMatch) return `${SITE}/suburbs/${suburbPageMatch[1].trim().replace(/\s+/g,'-')}`;
+    if (t.includes('dashboard')) return `${SITE}/dashboard`;
+    if (t.includes('homepage') || t.includes('home page')) return SITE;
+    if (t.includes('suburb')) return `${SITE}/suburbs`;
+    if (t.includes('insight') || t.includes('article')) return `${SITE}/insights`;
+    return '';
+  }
+
+  let agentMap: Record<string, string> = {};
+
   async function loadAgents() {
     try {
       const res = await fetch(`${API}/api/companies/${COMPANY}/agents`);
-      const agents = await res.json();
-      const list = document.getElementById('agents-list')!;
-      const count = document.getElementById('agents-count')!;
-      count.textContent = String(agents.length);
-      list.innerHTML = agents.map((a: any) => `
-        <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-          <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></div>
-          <div style="flex:1;min-width:0;">
-            <p style="font-family:var(--font-sans);font-size:0.82rem;font-weight:600;color:#f2efe9;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.name}</p>
-            <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0;">${a.role || 'Agent'}</p>
-          </div>
-        </div>
-      `).join('');
-    } catch (e) {
-      document.getElementById('agents-list')!.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API</p>';
+      const agents: any[] = await res.json();
+      agents.forEach(a => { agentMap[a.id] = a.name; });
+
+      document.getElementById('agents-count')!.textContent = String(agents.length);
+      document.getElementById('agents-list')!.innerHTML = agents.map(a => {
+        const colour = statusColour[a.status] || '#6b7280';
+        const lastBeat = a.lastHeartbeatAt
+          ? new Date(a.lastHeartbeatAt).toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'short', timeStyle: 'short' })
+          : 'Never';
+        return `
+          <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="width:9px;height:9px;border-radius:50%;background:${colour};flex-shrink:0;"></div>
+            <div style="flex:1;min-width:0;">
+              <p style="font-family:var(--font-sans);font-size:0.84rem;font-weight:600;color:#f2efe9;margin:0;">${a.name}</p>
+              <p style="font-family:var(--font-sans);font-size:0.68rem;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Last active: ${lastBeat} AEST</p>
+            </div>
+            ${pill(a.status, colour)}
+          </div>`;
+      }).join('');
+    } catch {
+      document.getElementById('agents-list')!.innerHTML = '<p style="font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API. Is PaperclipAI running?</p>';
     }
   }
 
   async function loadIssues() {
     try {
-      const res = await fetch(`${API}/api/companies/${COMPANY}/issues?status=todo,in_progress,blocked,in_review&limit=100`);
-      const issues: any[] = await res.json();
+      const res = await fetch(`${API}/api/companies/${COMPANY}/issues`);
+      const all: any[] = await res.json();
 
-      // count
-      const openCount = issues.filter((i: any) => ['todo','in_progress','blocked'].includes(i.status)).length;
-      document.getElementById('open-issues-count')!.textContent = String(openCount);
+      const open   = all.filter(i => ['todo','in_progress','blocked','in_review'].includes(i.status));
+      const done   = all.filter(i => i.status === 'done');
+      const review = all.filter(i => i.status === 'in_review');
 
-      // group by status
-      const groups: Record<string, any[]> = { in_progress: [], todo: [], blocked: [], in_review: [] };
-      issues.forEach((i: any) => { if (groups[i.status]) groups[i.status].push(i); });
+      document.getElementById('open-issues-count')!.textContent = String(open.length);
+      document.getElementById('done-count')!.textContent = String(done.length);
 
-      const labels: Record<string, string> = {
-        in_progress: 'In Progress',
-        todo: 'To Do',
-        blocked: 'Blocked',
-        in_review: 'In Review',
-      };
-
-      const board = document.getElementById('issues-board')!;
-      board.innerHTML = Object.entries(groups).map(([status, items]) => `
+      // Active tasks board
+      const groups: Record<string, any[]> = { in_progress:[], todo:[], blocked:[], in_review:[] };
+      open.forEach(i => { if (groups[i.status]) groups[i.status].push(i); });
+      const labels: Record<string,string> = { in_progress:'In Progress', todo:'To Do', blocked:'Blocked', in_review:'In Review' };
+      document.getElementById('issues-board')!.innerHTML = Object.entries(groups).map(([status, items]) => `
         <div>
           <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
             <div style="width:8px;height:8px;border-radius:50%;background:${statusColour[status]};"></div>
             <p style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0;">${labels[status]} (${items.length})</p>
           </div>
           ${items.length === 0
-            ? '<p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.25);padding:0.5rem 0;">None</p>'
-            : items.map((i: any) => `
-                <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);margin-bottom:0.5rem;">
-                  <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
-                    <code style="font-size:0.65rem;color:#c4912a;">${i.identifier}</code>
-                    ${pill(i.priority || 'medium', priorityColour[i.priority] || '#6b7280')}
-                  </div>
-                  <p style="font-family:var(--font-sans);font-size:0.8rem;font-weight:400;color:#f2efe9;margin:0;line-height:1.4;">${i.title}</p>
-                  ${i.assigneeAgentId ? `<p style="font-family:var(--font-sans);font-size:0.68rem;color:rgba(242,239,233,0.35);margin:0.3rem 0 0;">Assigned to agent</p>` : ''}
+            ? '<p style="font-size:0.78rem;color:rgba(242,239,233,0.25);padding:0.5rem 0;">None</p>'
+            : items.map(i => `
+              <div style="padding:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);margin-bottom:0.5rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
+                  <code style="font-size:0.65rem;color:#c4912a;">${i.identifier}</code>
+                  ${pill(i.priority||'medium', priorityColour[i.priority]||'#6b7280')}
                 </div>
-              `).join('')
+                <p style="font-family:var(--font-sans);font-size:0.8rem;color:#f2efe9;margin:0;line-height:1.4;">${i.title}</p>
+                ${i.assigneeAgentId ? `<p style="font-size:0.68rem;color:rgba(242,239,233,0.35);margin:0.3rem 0 0;">${agentMap[i.assigneeAgentId] || 'Agent'}</p>` : ''}
+              </div>`).join('')
           }
-        </div>
-      `).join('');
+        </div>`).join('');
 
-      // Pending approvals = in_review items
-      const reviewItems = issues.filter((i: any) => i.status === 'in_review');
+      // Pending review
       const approvalEl = document.getElementById('pending-approvals')!;
-      if (reviewItems.length === 0) {
-        approvalEl.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.82rem;color:rgba(242,239,233,0.4);">No items awaiting review.</p>';
-      } else {
-        approvalEl.innerHTML = reviewItems.map((i: any) => `
+      approvalEl.innerHTML = review.length === 0
+        ? '<p style="font-size:0.82rem;color:rgba(242,239,233,0.4);">Nothing awaiting review.</p>'
+        : review.map(i => `
           <div style="padding:0.75rem;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.2);margin-bottom:0.5rem;">
             <code style="font-size:0.65rem;color:#a855f7;">${i.identifier}</code>
-            <p style="font-family:var(--font-sans);font-size:0.82rem;color:#f2efe9;margin:0.3rem 0 0;line-height:1.4;">${i.title}</p>
+            <p style="font-size:0.82rem;color:#f2efe9;margin:0.3rem 0 0;line-height:1.4;">${i.title}</p>
+          </div>`).join('');
+
+      // Completed work — grouped by agent
+      const byAgent: Record<string, any[]> = {};
+      done.forEach(i => {
+        const key = i.assigneeAgentId ? (agentMap[i.assigneeAgentId] || i.assigneeAgentId) : 'Unassigned';
+        if (!byAgent[key]) byAgent[key] = [];
+        byAgent[key].push(i);
+      });
+
+      document.getElementById('completed-work')!.innerHTML = Object.entries(byAgent).map(([agentName, items]) => `
+        <div style="margin-bottom:1.75rem;">
+          <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0 0 0.75rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+            ${agentName} — ${items.length} completed
+          </p>
+          <div style="display:flex;flex-direction:column;gap:0.4rem;">
+            ${items.map(i => {
+              const link = issueLink(i.title);
+              const completedAt = i.completedAt
+                ? new Date(i.completedAt).toLocaleString('en-AU', { timeZone:'Australia/Brisbane', dateStyle:'short', timeStyle:'short' })
+                : '';
+              return `
+                <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.85rem;background:rgba(34,197,94,0.04);border:1px solid rgba(34,197,94,0.12);">
+                  <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;"></div>
+                  <div style="flex:1;min-width:0;">
+                    <p style="font-family:var(--font-sans);font-size:0.8rem;color:#f2efe9;margin:0;line-height:1.4;">${i.title}</p>
+                    ${completedAt ? `<p style="font-size:0.65rem;color:rgba(242,239,233,0.35);margin:0.15rem 0 0;">Completed ${completedAt} AEST</p>` : ''}
+                  </div>
+                  ${link ? `<a href="${link}" target="_blank" style="flex-shrink:0;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.25rem 0.6rem;white-space:nowrap;">View ↗</a>` : ''}
+                </div>`;
+            }).join('')}
           </div>
-        `).join('');
-      }
-    } catch (e) {
-      document.getElementById('issues-board')!.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API</p>';
-      document.getElementById('pending-approvals')!.innerHTML = '<p style="font-family:var(--font-sans);font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API</p>';
+        </div>`).join('');
+
+    } catch {
+      document.getElementById('completed-work')!.innerHTML = '<p style="font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API. Is PaperclipAI running?</p>';
     }
   }
 
@@ -248,42 +345,38 @@ const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Bris
   const PASS = 'dang2026';
   const gate = document.getElementById('gate')!;
   const content = document.getElementById('dashboard-content')!;
-  const input = document.getElementById('gate-input') as HTMLInputElement;
+  const inp = document.getElementById('gate-input') as HTMLInputElement;
   const btn = document.getElementById('gate-btn')!;
   const err = document.getElementById('gate-error')!;
 
   function unlock() {
-    if (input.value === PASS) {
-      sessionStorage.setItem('dash_auth', '1');
+    if (inp.value === PASS) {
+      sessionStorage.setItem('dash_auth','1');
       gate.style.display = 'none';
       content.style.display = 'block';
-      loadAgents();
-      loadIssues();
+      loadAgents().then(loadIssues);
     } else {
       err.textContent = 'Incorrect password.';
-      input.value = '';
-      input.focus();
+      inp.value = '';
+      inp.focus();
     }
   }
 
   if (sessionStorage.getItem('dash_auth') === '1') {
     gate.style.display = 'none';
     content.style.display = 'block';
-    loadAgents();
-    loadIssues();
+    loadAgents().then(loadIssues);
   } else {
     gate.style.display = 'flex';
   }
 
   btn.addEventListener('click', unlock);
-  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlock(); });
+  inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlock(); });
 </script>
 
 <style>
   @media (max-width: 640px) {
-    #issues-board {
-      grid-template-columns: 1fr !important;
-    }
+    #issues-board { grid-template-columns: 1fr !important; }
   }
 </style>
 
