@@ -342,11 +342,15 @@ const setApproval = (id, state) => localStorage.setItem(`wcr_${id}`, state);
 // ── Link derivation ───────────────────────────────────────────────────────
 function issueLink(title) {
   const t = title.toLowerCase();
+  // Social content has no live URL — return empty so no broken View button
+  if (/^social:|instagram|facebook|linkedin/i.test(title)) return '';
   const sellingMatch = t.match(/selling[- ]in[- ]([a-z\s\-]+?)(?:\s+insight|\s+article|$)/);
   const insightMatch = t.match(/insights?\s+article\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+insight|$)/);
   const suburbMatch  = t.match(/(?:suburb page|suburb|page)\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+page|$)/);
+  const slugMatch    = t.match(/slug[:\s]+([a-z0-9-]+)/);
   if (sellingMatch) return `${SITE}/insights/selling-in-${sellingMatch[1].trim().replace(/\s+/g,'-')}`;
   if (insightMatch) return `${SITE}/insights/selling-in-${insightMatch[1].trim().replace(/\s+/g,'-')}`;
+  if (slugMatch)    return `${SITE}/insights/${slugMatch[1].trim()}`;
   if (suburbMatch)  return `${SITE}/suburbs/${suburbMatch[1].trim().replace(/\s+/g,'-')}`;
   if (t.includes('dashboard')) return `${SITE}/dashboard`;
   if (t.includes('homepage') || t.includes('home page')) return SITE;
