@@ -1248,6 +1248,9 @@ try {
 
   btn.addEventListener('click', unlock);
   inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlock(); });
+
+  // Auto-refresh every 60 seconds
+  if (sessionStorage.getItem('dash_auth') === '1') setTimeout(() => location.reload(), 60000);
 </script>
 
 <style>
