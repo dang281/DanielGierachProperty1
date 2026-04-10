@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { execSync } from 'child_process';
-import { readdirSync } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -52,6 +52,42 @@ try {
 } catch (_) {}
 
 const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'medium', timeStyle: 'short' });
+
+// ── Social content drafts ──────────────────────────────────────────────────
+interface SocialDraft {
+  filename: string;
+  platform: string;
+  title: string;
+  date: string;
+  body: string;
+  notes: string;
+}
+let socialDrafts: SocialDraft[] = [];
+try {
+  const socialDir = join(repoRoot, 'content', 'social');
+  const files = readdirSync(socialDir).filter(f => f.endsWith('.md') && f !== '.gitkeep');
+  socialDrafts = files.map(filename => {
+    const raw = readFileSync(join(socialDir, filename), 'utf-8');
+    // Parse frontmatter-style headers from the markdown
+    const titleMatch   = raw.match(/^#\s+(.+)/m);
+    const platformMatch = raw.match(/\*\*Platform:\*\*\s*(.+)/i);
+    const captionMatch = raw.match(/## Caption\s+([\s\S]+?)(?=\n## |\n---|\s*$)/i);
+    const notesMatch   = raw.match(/## Notes for Daniel\s+([\s\S]+?)(?=\n## |\s*$)/i);
+    // Date from filename: YYYY-MM-DD-platform-topic.md
+    const dateFromFile = filename.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    const dateFormatted = dateFromFile
+      ? new Date(dateFromFile + 'T00:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })
+      : '';
+    return {
+      filename,
+      platform: platformMatch?.[1]?.trim() || 'Social',
+      title: titleMatch?.[1]?.trim() || filename.replace('.md',''),
+      date: dateFormatted,
+      body: captionMatch?.[1]?.trim() || raw.slice(0, 400),
+      notes: notesMatch?.[1]?.trim() || '',
+    };
+  }).sort((a, b) => b.filename.localeCompare(a.filename)); // newest first
+} catch (_) {}
 
 // ── Weekly Content Review ──────────────────────────────────────────────────
 // Compute AEST-aware week boundaries (Mon–Sun)
@@ -369,6 +405,54 @@ try {
           </a>
         ))}
       </div>
+    </div>
+
+    <!-- Social Content Drafts -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin:0;">Social Content Drafts ({socialDrafts.length})</p>
+        <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.35);margin:0;">Written by Social Media Agent → saved to <code style="font-size:0.68rem;color:#c4912a;">content/social/</code></p>
+      </div>
+      {socialDrafts.length === 0 ? (
+        <div style="padding:1.5rem;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.08);text-align:center;">
+          <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.3);margin:0 0 0.4rem;">No social drafts yet.</p>
+          <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.2);margin:0;">The Social Media Agent will write posts here when tasks are assigned.</p>
+        </div>
+      ) : (
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;">
+          {socialDrafts.map(d => (
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:1.25rem;display:flex;flex-direction:column;gap:0.75rem;">
+              <!-- Header -->
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;">
+                <div>
+                  <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:600;color:#f2efe9;margin:0;line-height:1.35;">{d.title}</p>
+                  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.35rem;">
+                    <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(196,145,42,0.15);color:#c4912a;padding:0.1rem 0.45rem;border-radius:2px;">{d.platform}</span>
+                    {d.date && <span style="font-size:0.65rem;color:rgba(242,239,233,0.35);">{d.date}</span>}
+                  </div>
+                </div>
+              </div>
+              <!-- Caption -->
+              <div style="background:rgba(0,0,0,0.25);border-left:2px solid rgba(196,145,42,0.4);padding:0.75rem 1rem;">
+                <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.85);margin:0;line-height:1.7;white-space:pre-wrap;">{d.body}</p>
+              </div>
+              <!-- Notes -->
+              {d.notes && (
+                <div>
+                  <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0 0 0.3rem;">Notes for Daniel</p>
+                  <p style="font-family:var(--font-sans);font-size:0.75rem;color:rgba(242,239,233,0.55);margin:0;line-height:1.6;">{d.notes}</p>
+                </div>
+              )}
+              <!-- Footer -->
+              <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);">
+                <code style="font-size:0.62rem;color:rgba(242,239,233,0.3);">{d.filename}</code>
+                <a href={`https://github.com/dang281/DanielGierachProperty1/blob/main/content/social/${d.filename}`} target="_blank"
+                  style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.2rem 0.5rem;">Edit on GitHub ↗</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
 
     <!-- Recent Deploys -->
