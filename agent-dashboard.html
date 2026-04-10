@@ -342,16 +342,24 @@ const setApproval = (id, state) => localStorage.setItem(`wcr_${id}`, state);
 // ── Link derivation ───────────────────────────────────────────────────────
 function issueLink(title) {
   const t = title.toLowerCase();
-  // Social content has no live URL — return empty so no broken View button
+  // Social content has no live URL
   if (/^social:|instagram|facebook|linkedin/i.test(title)) return '';
-  const sellingMatch = t.match(/selling[- ]in[- ]([a-z\s\-]+?)(?:\s+insight|\s+article|$)/);
-  const insightMatch = t.match(/insights?\s+article\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+insight|$)/);
-  const suburbMatch  = t.match(/(?:suburb page|suburb|page)\s+(?:for\s+)?([a-z\s]+?)(?:\s+suburb|\s+page|$)/);
-  const slugMatch    = t.match(/slug[:\s]+([a-z0-9-]+)/);
+  // "selling-in-X" insight
+  const sellingMatch = t.match(/selling[- ]in[- ]([a-z][a-z\s\-]+?)(?:\s+insight|\s+article|\s+page|$)/);
   if (sellingMatch) return `${SITE}/insights/selling-in-${sellingMatch[1].trim().replace(/\s+/g,'-')}`;
+  // Generic insight article slug
+  const slugMatch = t.match(/slug[:\s]+([a-z0-9-]+)/);
+  if (slugMatch) return `${SITE}/insights/${slugMatch[1].trim()}`;
+  // Suburb page — suburb name comes BEFORE the word "suburb"
+  // e.g. "Write Paddington suburb landing page" → paddington
+  const suburbBeforeMatch = t.match(/write\s+([a-z][a-z\s]+?)\s+suburb/);
+  if (suburbBeforeMatch) return `${SITE}/suburbs/${suburbBeforeMatch[1].trim().replace(/\s+/g,'-')}`;
+  // "publish X suburb page" or "suburb page for X"
+  const suburbForMatch = t.match(/(?:suburb page for|page for)\s+([a-z][a-z\s]+?)(?:\s+to\s|\s*$)/);
+  if (suburbForMatch) return `${SITE}/suburbs/${suburbForMatch[1].trim().replace(/\s+/g,'-')}`;
+  // insight article for X suburb
+  const insightMatch = t.match(/insights?\s+article\s+(?:for\s+)?([a-z][a-z\s]+?)(?:\s+suburb|\s*$)/);
   if (insightMatch) return `${SITE}/insights/selling-in-${insightMatch[1].trim().replace(/\s+/g,'-')}`;
-  if (slugMatch)    return `${SITE}/insights/${slugMatch[1].trim()}`;
-  if (suburbMatch)  return `${SITE}/suburbs/${suburbMatch[1].trim().replace(/\s+/g,'-')}`;
   if (t.includes('dashboard')) return `${SITE}/dashboard`;
   if (t.includes('homepage') || t.includes('home page')) return SITE;
   return '';
