@@ -891,6 +891,75 @@ const faqSchema = {
 
 
 <!-- ════════════════════════════════════════════
+     SUBURBS SERVED
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1280px] mx-auto px-8 sm:px-12 lg:px-16">
+
+    <div class="reveal" style="max-width:42rem;margin-bottom:3.5rem;">
+      <span class="eyebrow mb-4" style="display:block;">Areas Covered</span>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
+        Selling across Brisbane's inner east and south.
+      </h2>
+      <p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:1rem;line-height:1.8;max-width:48ch;">
+        Deep local knowledge across every suburb in the corridor. Click your suburb to see recent sales, market conditions and what your home could be worth.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(28,25,23,0.08);">
+      {[
+        { name: 'Balmoral',           slug: 'balmoral' },
+        { name: 'Bulimba',            slug: 'bulimba' },
+        { name: 'Camp Hill',          slug: 'camp-hill' },
+        { name: 'Cannon Hill',        slug: 'cannon-hill' },
+        { name: 'Carina',             slug: 'carina' },
+        { name: 'Carina Heights',     slug: 'carina-heights' },
+        { name: 'Carindale',          slug: 'carindale' },
+        { name: 'Coorparoo',          slug: 'coorparoo' },
+        { name: 'East Brisbane',      slug: 'east-brisbane' },
+        { name: 'Greenslopes',        slug: 'greenslopes' },
+        { name: 'Hamilton',           slug: 'hamilton' },
+        { name: 'Hawthorne',          slug: 'hawthorne' },
+        { name: 'Holland Park',       slug: 'holland-park' },
+        { name: 'Holland Park West',  slug: 'holland-park-west' },
+        { name: 'Kangaroo Point',     slug: 'kangaroo-point' },
+        { name: 'Morningside',        slug: 'morningside' },
+        { name: 'Mount Gravatt',      slug: 'mount-gravatt' },
+        { name: 'Mount Gravatt East', slug: 'mount-gravatt-east' },
+        { name: 'Murarrie',           slug: 'murarrie' },
+        { name: 'New Farm',           slug: 'new-farm' },
+        { name: 'Norman Park',        slug: 'norman-park' },
+        { name: 'Seven Hills',        slug: 'seven-hills' },
+        { name: 'Tarragindi',         slug: 'tarragindi' },
+        { name: 'Teneriffe',          slug: 'teneriffe' },
+        { name: 'Woolloongabba',      slug: 'woolloongabba' },
+        { name: 'West End',           slug: 'west-end' },
+        { name: 'Stones Corner',      slug: 'stones-corner' },
+        { name: 'Annerley',           slug: 'annerley' },
+        { name: 'Ascot',              slug: 'ascot' },
+        { name: 'Belmont',            slug: 'belmont' },
+        { name: 'Dutton Park',        slug: 'dutton-park' },
+        { name: 'Fortitude Valley',   slug: 'fortitude-valley' },
+        { name: 'Hemmant',            slug: 'hemmant' },
+        { name: 'Tingalpa',           slug: 'tingalpa' },
+        { name: 'Upper Mount Gravatt',slug: 'upper-mount-gravatt' },
+        { name: 'Brisbane CBD',       slug: 'brisbane-cbd' },
+      ].map((suburb) => (
+        <a href={`/suburbs/${suburb.slug}`}
+          style="display:block;background:var(--color-surface-0);padding:1.25rem 1.5rem;text-decoration:none;transition:background 0.15s;"
+          onmouseover="this.style.background='var(--color-surface-2)'"
+          onmouseout="this.style.background='var(--color-surface-0)'">
+          <p style="font-family:var(--font-sans);font-size:0.82rem;font-weight:600;color:var(--color-text-primary);margin:0 0 0.2rem;">{suburb.name}</p>
+          <p style="font-family:var(--font-sans);font-size:0.68rem;color:#c4912a;margin:0;">View suburb →</p>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════════════ -->
 <script>
