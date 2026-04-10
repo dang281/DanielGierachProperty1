@@ -21,6 +21,23 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').href;
 
+// Breadcrumb computation (moved out of template to avoid IIFE/JSX issues)
+const _bPath = Astro.url.pathname.replace(/\/$/, '');
+const _bParts = _bPath.split('/').filter(Boolean);
+const _bSectionLabels: Record<string, string> = {
+  suburbs: 'Suburbs', insights: 'Insights', tools: 'Tools',
+  listings: 'Listings', contact: 'Contact', walkthrough: 'Free Appraisal', 'property-worth': 'Property Worth',
+};
+const breadcrumbs: { label: string; href: string }[] = [{ label: 'Home', href: '/' }];
+if (_bParts.length >= 1 && _bSectionLabels[_bParts[0]]) {
+  breadcrumbs.push({ label: _bSectionLabels[_bParts[0]], href: `/${_bParts[0]}` });
+}
+if (_bParts.length >= 2) {
+  const _bLabel = _bParts[1].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  breadcrumbs.push({ label: _bLabel, href: _bPath });
+}
+const showBreadcrumbs = breadcrumbs.length > 1;
+
 const globalSchema = {
   "@context": "https://schema.org",
   "@type": ["RealEstateAgent", "LocalBusiness"],
@@ -156,47 +173,24 @@ const globalSchema = {
   </head>
   <body>
     <Nav />
-    {(() => {
-      const path = Astro.url.pathname.replace(/\/$/, '');
-      const parts = path.split('/').filter(Boolean);
-      if (parts.length === 0) return null;
-      const sectionLabels: Record<string, string> = {
-        suburbs: 'Suburbs',
-        insights: 'Insights',
-        tools: 'Tools',
-        listings: 'Listings',
-        contact: 'Contact',
-        walkthrough: 'Free Appraisal',
-        'property-worth': 'Property Worth',
-      };
-      const crumbs = [{ label: 'Home', href: '/' }];
-      if (parts.length >= 1 && sectionLabels[parts[0]]) {
-        crumbs.push({ label: sectionLabels[parts[0]], href: `/${parts[0]}` });
-      }
-      if (parts.length >= 2) {
-        const label = parts[1].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-        crumbs.push({ label, href: path });
-      }
-      if (crumbs.length <= 1) return null;
-      return (
-        <nav aria-label="Breadcrumb" style="background:#1c1917;padding:0.6rem 1.5rem;border-bottom:1px solid rgba(196,145,42,0.1);">
-          <ol style="display:flex;align-items:center;gap:0.4rem;list-style:none;margin:0;padding:0;max-width:1280px;margin:0 auto;flex-wrap:wrap;">
-            {crumbs.map((crumb, i) => (
-              <li style="display:flex;align-items:center;gap:0.4rem;">
-                {i < crumbs.length - 1 ? (
-                  <>
-                    <a href={crumb.href} style="font-family:var(--font-sans);font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(196,145,42,0.7);text-decoration:none;">{crumb.label}</a>
-                    <span style="font-size:0.6rem;color:rgba(242,239,233,0.2);" aria-hidden="true">›</span>
-                  </>
-                ) : (
-                  <span style="font-family:var(--font-sans);font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(242,239,233,0.45);" aria-current="page">{crumb.label}</span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-      );
-    })()}
+    {showBreadcrumbs && (
+      <nav aria-label="Breadcrumb" style="background:#1c1917;padding:0.6rem 1.5rem;border-bottom:1px solid rgba(196,145,42,0.1);">
+        <ol style="display:flex;align-items:center;gap:0.4rem;list-style:none;margin:0;padding:0;max-width:1280px;margin:0 auto;flex-wrap:wrap;">
+          {breadcrumbs.map((crumb, i) => (
+            <li style="display:flex;align-items:center;gap:0.4rem;">
+              {i < breadcrumbs.length - 1 ? (
+                <Fragment>
+                  <a href={crumb.href} style="font-family:var(--font-sans);font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(196,145,42,0.7);text-decoration:none;">{crumb.label}</a>
+                  <span style="font-size:0.6rem;color:rgba(242,239,233,0.2);" aria-hidden="true">›</span>
+                </Fragment>
+              ) : (
+                <span style="font-family:var(--font-sans);font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(242,239,233,0.45);" aria-current="page">{crumb.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
     <main>
       <slot />
     </main>

@@ -368,16 +368,21 @@ try {
       </div>
     </div>
 
-    <!-- Agents + Pending -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
-      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;">
-        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Agent Status</p>
-        <div id="agents-list"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+    <!-- Agent Intelligence -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin:0;">Agent Intelligence</p>
+        <p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.3);margin:0;">Token usage · current project · task queue</p>
       </div>
-      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;">
-        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Pending Your Review</p>
-        <div id="pending-approvals"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
+      <div id="agent-intel-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:1.25rem;">
+        <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p>
       </div>
+    </div>
+
+    <!-- Pending Your Review -->
+    <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Pending Your Review</p>
+      <div id="pending-approvals"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
     </div>
 
     <!-- Active Tasks -->
@@ -386,6 +391,21 @@ try {
       <div id="issues-board" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
         <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p>
       </div>
+    </div>
+
+    <!-- Project Cost Estimator -->
+    <div style="background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(59,130,246,0.02) 100%);border:1px solid rgba(59,130,246,0.2);padding:1.75rem;margin-bottom:2rem;">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+        <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#3b82f6;margin:0;">Project Cost Estimator</p>
+        <p style="font-family:var(--font-sans);font-size:0.68rem;color:rgba(242,239,233,0.35);margin:0;" id="est-baseline">Calculating historical baseline...</p>
+      </div>
+      <p style="font-family:var(--font-sans);font-size:0.75rem;color:rgba(242,239,233,0.5);margin:0 0 1.25rem;line-height:1.6;">Describe a project and get a token + cost estimate based on what your agents have spent on similar work.</p>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:flex-start;">
+        <textarea id="est-input" placeholder="e.g. Write suburb pages for Bulimba, Hawthorne and Balmoral, plus a selling guide for each..." rows="3"
+          style="flex:1;min-width:240px;background:rgba(0,0,0,0.3);border:1px solid rgba(59,130,246,0.25);color:#f2efe9;font-family:var(--font-sans);font-size:0.8rem;padding:0.65rem 0.9rem;resize:vertical;outline:none;line-height:1.6;"></textarea>
+        <button onclick="window.__estimateCost()" style="flex-shrink:0;background:#3b82f6;color:#fff;font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;padding:0.65rem 1.5rem;cursor:pointer;align-self:flex-end;">Estimate →</button>
+      </div>
+      <div id="est-result" style="margin-top:1rem;"></div>
     </div>
 
     <!-- Completed Work -->
@@ -823,31 +843,19 @@ try {
   (window as any).__rejectIssue  = rejectIssue;
 
   let agentMap: Record<string, string> = {};
+  let cachedAgents: any[] = [];
 
   async function loadAgents() {
     try {
       const res = await fetch(`${API}/api/companies/${COMPANY}/agents`);
       const agents: any[] = await res.json();
+      cachedAgents = agents;
       agents.forEach(a => { agentMap[a.id] = a.name; });
-
       document.getElementById('agents-count')!.textContent = String(agents.length);
-      document.getElementById('agents-list')!.innerHTML = agents.map(a => {
-        const colour = statusColour[a.status] || '#6b7280';
-        const lastBeat = a.lastHeartbeatAt
-          ? new Date(a.lastHeartbeatAt).toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'short', timeStyle: 'short' })
-          : 'Never';
-        return `
-          <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-            <div style="width:9px;height:9px;border-radius:50%;background:${colour};flex-shrink:0;"></div>
-            <div style="flex:1;min-width:0;">
-              <p style="font-family:var(--font-sans);font-size:0.84rem;font-weight:600;color:#f2efe9;margin:0;">${a.name}</p>
-              <p style="font-family:var(--font-sans);font-size:0.68rem;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Last active: ${lastBeat} AEST</p>
-            </div>
-            ${pill(a.status, colour)}
-          </div>`;
-      }).join('');
+      // Token data loads alongside issues; agent intel rendered after both are ready
+      await loadTokenData(agents.map(a => a.id));
     } catch {
-      document.getElementById('agents-list')!.innerHTML = '<p style="font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API. Is PaperclipAI running?</p>';
+      document.getElementById('agent-intel-grid')!.innerHTML = '<p style="font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API. Is PaperclipAI running?</p>';
     }
   }
 
@@ -859,6 +867,21 @@ try {
       const open   = all.filter(i => ['todo','in_progress','blocked','in_review'].includes(i.status));
       const done   = all.filter(i => i.status === 'done');
       const review = all.filter(i => i.status === 'in_review');
+
+      // Store for estimator
+      doneIssues = done;
+
+      // Build per-agent issue map and render agent intel (needs tokenData from loadAgents)
+      const issuesByAgent: Record<string, any[]> = {};
+      all.filter(i => ['todo','in_progress'].includes(i.status)).forEach(i => {
+        if (!i.assigneeAgentId) return;
+        if (!issuesByAgent[i.assigneeAgentId]) issuesByAgent[i.assigneeAgentId] = [];
+        issuesByAgent[i.assigneeAgentId].push(i);
+      });
+      if (cachedAgents.length > 0) {
+        renderAgentIntel(cachedAgents, issuesByAgent);
+        updateEstimatorBaseline();
+      }
 
       // Daily update
       renderDailyActivity(all);
@@ -940,6 +963,259 @@ try {
       document.getElementById('completed-work')!.innerHTML = '<p style="font-size:0.8rem;color:#ef4444;">Could not reach Paperclip API. Is PaperclipAI running?</p>';
     }
   }
+
+  // ── Token / run data ───────────────────────────────────────────────────
+  let tokenData: Record<string, {
+    totalRuns: number; totalInput: number; totalOutput: number;
+    totalCached: number; totalCost: number; avgTokensPerRun: number;
+    avgCostPerRun: number; recentRuns: any[];
+  }> = {};
+  let doneIssues: any[] = [];
+
+  async function loadTokenData(agentIds: string[]): Promise<void> {
+    await Promise.all(agentIds.map(async (agentId) => {
+      try {
+        const res = await fetch(`${API}/api/companies/${COMPANY}/heartbeat-runs?agentId=${agentId}`);
+        const runs: any[] = await res.json();
+        let totalInput = 0, totalOutput = 0, totalCached = 0, totalCost = 0;
+        const recentRuns: any[] = [];
+        runs.forEach(run => {
+          const u = run.usageJson || {};
+          totalInput  += u.inputTokens  || 0;
+          totalOutput += u.outputTokens || 0;
+          totalCached += u.cachedInputTokens || 0;
+          totalCost   += u.costUsd || 0;
+          if (recentRuns.length < 4 && run.status === 'succeeded') {
+            recentRuns.push({
+              startedAt: run.startedAt,
+              input:  u.inputTokens  || 0,
+              output: u.outputTokens || 0,
+              cached: u.cachedInputTokens || 0,
+              cost:   u.costUsd || 0,
+              summary: run.resultJson?.result?.replace(/\*\*/g,'').slice(0, 180) || '',
+            });
+          }
+        });
+        const total = totalInput + totalOutput;
+        tokenData[agentId] = {
+          totalRuns: runs.length,
+          totalInput, totalOutput, totalCached, totalCost,
+          avgTokensPerRun: runs.length > 0 ? Math.round(total / runs.length) : 0,
+          avgCostPerRun:   runs.length > 0 ? totalCost / runs.length : 0,
+          recentRuns,
+        };
+      } catch {
+        tokenData[agentId] = { totalRuns:0, totalInput:0, totalOutput:0, totalCached:0, totalCost:0, avgTokensPerRun:0, avgCostPerRun:0, recentRuns:[] };
+      }
+    }));
+  }
+
+  function fmtK(n: number): string {
+    if (n >= 1_000_000) return (n/1_000_000).toFixed(1) + 'M';
+    if (n >= 1_000)     return Math.round(n/1_000) + 'K';
+    return String(n);
+  }
+  function fmtUsd(n: number): string {
+    if (n >= 1) return '$' + n.toFixed(2);
+    return '$' + n.toFixed(3);
+  }
+
+  function renderAgentIntel(agents: any[], issuesByAgent: Record<string, any[]>) {
+    const el = document.getElementById('agent-intel-grid')!;
+    if (!agents.length) { el.innerHTML = '<p style="color:#ef4444;font-size:0.8rem;">Could not load agent data.</p>'; return; }
+
+    // Global token totals for reference bar scaling
+    const maxCost = Math.max(...agents.map(a => tokenData[a.id]?.totalCost || 0), 0.01);
+
+    el.innerHTML = agents.map(a => {
+      const td = tokenData[a.id];
+      const colour = statusColour[a.status] || '#6b7280';
+      const tasks  = issuesByAgent[a.id] || [];
+      const active = tasks.find(t => t.status === 'in_progress');
+      const queue  = tasks.filter(t => t.status === 'todo');
+      const lastBeat = a.lastHeartbeatAt
+        ? new Date(a.lastHeartbeatAt).toLocaleString('en-AU', { timeZone:'Australia/Brisbane', hour:'numeric', minute:'2-digit', day:'numeric', month:'short' })
+        : 'Never';
+
+      const totalTok = td ? td.totalInput + td.totalOutput : 0;
+      const costFrac = td ? (td.totalCost / maxCost) : 0;
+      const barWidth = Math.round(costFrac * 100);
+
+      const currentProject = active
+        ? `<div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);padding:0.6rem 0.85rem;margin-bottom:0.6rem;">
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#3b82f6;margin:0 0 0.2rem;">Working on</p>
+            <div style="display:flex;align-items:center;gap:0.4rem;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;animation:pulse 1.5s infinite;"></div>
+              <p style="font-family:var(--font-sans);font-size:0.78rem;color:#f2efe9;margin:0;line-height:1.35;">${active.title}</p>
+            </div>
+          </div>`
+        : `<div style="padding:0.5rem 0.75rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);margin-bottom:0.6rem;">
+            <p style="font-family:var(--font-sans);font-size:0.75rem;color:rgba(242,239,233,0.3);margin:0;font-style:italic;">No active task</p>
+          </div>`;
+
+      const queueHtml = queue.length > 0
+        ? queue.slice(0,3).map(t => `<div style="display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+            <code style="font-size:0.6rem;color:rgba(196,145,42,0.6);flex-shrink:0;">${t.identifier}</code>
+            <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.7);margin:0;flex:1;line-height:1.3;">${t.title}</p>
+          </div>`).join('') + (queue.length > 3 ? `<p style="font-size:0.65rem;color:rgba(242,239,233,0.3);margin:0.4rem 0 0;">+${queue.length - 3} more in queue</p>` : '')
+        : `<p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.25);margin:0;font-style:italic;">Queue empty</p>`;
+
+      const lastRunHtml = td?.recentRuns[0]?.summary
+        ? `<div style="margin-top:0.75rem;padding:0.6rem 0.75rem;background:rgba(255,255,255,0.02);border-left:2px solid rgba(196,145,42,0.2);">
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.3);margin:0 0 0.2rem;">Last run summary</p>
+            <p style="font-family:var(--font-sans);font-size:0.71rem;color:rgba(242,239,233,0.55);margin:0;line-height:1.55;">${td.recentRuns[0].summary}${td.recentRuns[0].summary.length === 180 ? '…' : ''}</p>
+          </div>`
+        : '';
+
+      return `
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);padding:1.1rem;display:flex;flex-direction:column;gap:0.85rem;">
+
+          <!-- Header -->
+          <div style="display:flex;align-items:center;gap:0.65rem;padding-bottom:0.85rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="width:10px;height:10px;border-radius:50%;background:${colour};flex-shrink:0;${a.status==='running'?'animation:pulse 1.5s infinite;':''}"></div>
+            <div style="flex:1;min-width:0;">
+              <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:600;color:#f2efe9;margin:0;">${a.name}</p>
+              <p style="font-family:var(--font-sans);font-size:0.64rem;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Last active: ${lastBeat} AEST</p>
+            </div>
+            ${pill(a.status, colour)}
+          </div>
+
+          <!-- Token usage -->
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem;">
+              <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0;">Token Usage</p>
+              <p style="font-family:var(--font-sans);font-size:0.65rem;color:#c4912a;margin:0;">${td ? fmtUsd(td.totalCost) : '—'} total</p>
+            </div>
+            <!-- Cost bar (relative to most expensive agent) -->
+            <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-bottom:0.5rem;">
+              <div style="height:100%;width:${barWidth}%;background:linear-gradient(90deg,#c4912a,#f59e0b);border-radius:3px;transition:width 0.6s;"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;">
+              <div style="text-align:center;padding:0.4rem;background:rgba(255,255,255,0.03);">
+                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? fmtK(totalTok) : '—'}</p>
+                <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Total tokens</p>
+              </div>
+              <div style="text-align:center;padding:0.4rem;background:rgba(255,255,255,0.03);">
+                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? fmtK(td.avgTokensPerRun) : '—'}</p>
+                <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Avg / run</p>
+              </div>
+              <div style="text-align:center;padding:0.4rem;background:rgba(255,255,255,0.03);">
+                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? String(td.totalRuns) : '—'}</p>
+                <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Total runs</p>
+              </div>
+            </div>
+            <!-- cached tokens note -->
+            ${td && td.totalCached > 0 ? `<p style="font-family:var(--font-sans);font-size:0.6rem;color:rgba(242,239,233,0.25);margin:0.4rem 0 0;">${fmtK(td.totalCached)} cached (prompt cache hits)</p>` : ''}
+          </div>
+
+          <!-- Current project + queue -->
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0 0 0.5rem;">Project Pipeline</p>
+            ${currentProject}
+            ${queueHtml}
+          </div>
+
+          ${lastRunHtml}
+        </div>`;
+    }).join('');
+  }
+
+  // ── Project Cost Estimator ──────────────────────────────────────────────
+  function updateEstimatorBaseline() {
+    const done = doneIssues.length;
+    const allAgentIds = Object.keys(tokenData);
+    const totalTok = allAgentIds.reduce((s, id) => s + (tokenData[id]?.totalInput||0) + (tokenData[id]?.totalOutput||0), 0);
+    const totalCost = allAgentIds.reduce((s, id) => s + (tokenData[id]?.totalCost||0), 0);
+    const el = document.getElementById('est-baseline');
+    if (!el) return;
+    if (done > 0 && totalTok > 0) {
+      const tokPerTask = Math.round(totalTok / done);
+      const costPerTask = totalCost / done;
+      el.textContent = `Baseline: ~${fmtK(tokPerTask)} tokens per task · ${fmtUsd(costPerTask)} avg · from ${done} completed tasks`;
+    } else {
+      el.textContent = 'Not enough data yet — complete some tasks first.';
+    }
+  }
+
+  function estimateCost() {
+    const input = (document.getElementById('est-input') as HTMLTextAreaElement).value.trim();
+    const el = document.getElementById('est-result')!;
+    if (!input) { el.innerHTML = '<p style="color:rgba(242,239,233,0.4);font-size:0.78rem;">Enter a project description above.</p>'; return; }
+
+    const done = doneIssues.length;
+    if (done === 0) {
+      el.innerHTML = '<p style="color:rgba(242,239,233,0.4);font-size:0.78rem;">No completed tasks yet to base an estimate on.</p>';
+      return;
+    }
+
+    const allAgentIds = Object.keys(tokenData);
+    const totalTok  = allAgentIds.reduce((s, id) => s + (tokenData[id]?.totalInput||0) + (tokenData[id]?.totalOutput||0), 0);
+    const totalCost = allAgentIds.reduce((s, id) => s + (tokenData[id]?.totalCost||0), 0);
+    const baseTokensPerTask = totalTok / done;
+    const baseCostPerTask   = totalCost / done;
+
+    // Detect task type and count from the description
+    const lower = input.toLowerCase();
+    let taskCount = 1;
+    let multiplier = 1.0;
+    let breakdown: string[] = [];
+
+    // Count items in lists (e.g. "Bulimba, Hawthorne and Balmoral" = 3)
+    const listItems = input.split(/,|\band\b/).map(s => s.trim()).filter(Boolean);
+    if (listItems.length > 1) taskCount = listItems.length;
+
+    // Adjust multiplier by task type
+    if (/suburb page|suburb seo|suburb content/i.test(input)) {
+      multiplier = 1.2; breakdown.push('Suburb pages are slightly heavier than average (template + SEO copy).');
+    } else if (/insight|article|selling guide|seller guide|blog/i.test(input)) {
+      multiplier = 1.0; breakdown.push('Insights articles align closely with historical average.');
+    } else if (/social|instagram|facebook|linkedin|post/i.test(input)) {
+      multiplier = 0.65; breakdown.push('Social posts are lighter than average.');
+    } else if (/suburb|page/i.test(input)) {
+      multiplier = 1.1; breakdown.push('Suburb pages estimated at 1.1x baseline.');
+    } else if (/multi|series|all suburb|every suburb|campaign/i.test(input)) {
+      multiplier = 1.3; breakdown.push('Multi-item projects estimated at 1.3x baseline per item.');
+    }
+
+    const estTokensPerTask = Math.round(baseTokensPerTask * multiplier);
+    const estCostPerTask   = baseCostPerTask * multiplier;
+    const estTotalTokens   = estTokensPerTask * taskCount;
+    const estTotalCost     = estCostPerTask * taskCount;
+
+    // Detect which agent would handle this
+    let agentHint = 'SEO & Content Agent';
+    if (/social|instagram|facebook|linkedin/i.test(input)) agentHint = 'Social Media Agent';
+    else if (/seo|suburb|insight|article|content/i.test(input)) agentHint = 'SEO & Content Agent';
+
+    el.innerHTML = `
+      <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);padding:1.25rem;">
+        <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#3b82f6;margin:0 0 0.85rem;">Cost Estimate</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.75rem;margin-bottom:1rem;">
+          <div style="text-align:center;padding:0.75rem;background:rgba(0,0,0,0.2);">
+            <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:#f2efe9;margin:0;">${taskCount}</p>
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Task${taskCount !== 1 ? 's' : ''} detected</p>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:rgba(0,0,0,0.2);">
+            <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:#f2efe9;margin:0;">${fmtK(estTokensPerTask)}</p>
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Tokens / task</p>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:rgba(0,0,0,0.2);">
+            <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:#c4912a;margin:0;">${fmtK(estTotalTokens)}</p>
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Total tokens</p>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:rgba(0,0,0,0.2);">
+            <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:#c4912a;margin:0;">${fmtUsd(estTotalCost)}</p>
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Est. cost</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.3rem;">
+          <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.5);margin:0;">Agent: <strong style="color:#f2efe9;">${agentHint}</strong></p>
+          ${breakdown.map(b => `<p style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(242,239,233,0.4);margin:0;">${b}</p>`).join('')}
+          <p style="font-family:var(--font-sans);font-size:0.65rem;color:rgba(242,239,233,0.25);margin:0.4rem 0 0;">Based on ${done} completed tasks · ${fmtK(Math.round(baseTokensPerTask))} tokens avg · ${fmtUsd(baseCostPerTask)} avg/task</p>
+        </div>
+      </div>`;
+  }
+  (window as any).__estimateCost = estimateCost;
 
   // Password gate
   const PASS = 'dang2026';
