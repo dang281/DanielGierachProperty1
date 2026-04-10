@@ -54,13 +54,19 @@ try {
 const buildTime = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Brisbane', dateStyle: 'medium', timeStyle: 'short' });
 
 // ── Social content drafts ──────────────────────────────────────────────────
+const AVATAR = 'https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg';
+
 interface SocialDraft {
   filename: string;
   platform: string;
+  platformNorm: string; // 'instagram' | 'facebook' | 'linkedin' | 'other'
   title: string;
   date: string;
   body: string;
+  hashtags: string;
   notes: string;
+  goal: string;
+  format: string;
 }
 let socialDrafts: SocialDraft[] = [];
 try {
@@ -68,25 +74,36 @@ try {
   const files = readdirSync(socialDir).filter(f => f.endsWith('.md') && f !== '.gitkeep');
   socialDrafts = files.map(filename => {
     const raw = readFileSync(join(socialDir, filename), 'utf-8');
-    // Parse frontmatter-style headers from the markdown
-    const titleMatch   = raw.match(/^#\s+(.+)/m);
+    const titleMatch    = raw.match(/^#\s+(.+)/m);
     const platformMatch = raw.match(/\*\*Platform:\*\*\s*(.+)/i);
-    const captionMatch = raw.match(/## Caption\s+([\s\S]+?)(?=\n## |\n---|\s*$)/i);
-    const notesMatch   = raw.match(/## Notes for Daniel\s+([\s\S]+?)(?=\n## |\s*$)/i);
-    // Date from filename: YYYY-MM-DD-platform-topic.md
-    const dateFromFile = filename.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    const formatMatch   = raw.match(/\*\*Format:\*\*\s*(.+)/i);
+    const goalMatch     = raw.match(/\*\*Goal:\*\*\s*(.+)/i);
+    const captionMatch  = raw.match(/## Caption\s+([\s\S]+?)(?=\n## |\n---|\s*$)/i);
+    const hashtagMatch  = raw.match(/## Hashtags\s+([\s\S]+?)(?=\n## |\n---|\s*$)/i);
+    const notesMatch    = raw.match(/## Notes for Daniel\s+([\s\S]+?)(?=\n## |\s*$)/i);
+    const dateFromFile  = filename.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '';
     const dateFormatted = dateFromFile
-      ? new Date(dateFromFile + 'T00:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })
+      ? new Date(dateFromFile + 'T12:00:00').toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short', year:'numeric' })
       : '';
+    const platformRaw = platformMatch?.[1]?.trim() || 'Social';
+    const platformLower = platformRaw.toLowerCase();
+    const platformNorm = platformLower.includes('instagram') ? 'instagram'
+                       : platformLower.includes('facebook') ? 'facebook'
+                       : platformLower.includes('linkedin') ? 'linkedin'
+                       : 'other';
     return {
       filename,
-      platform: platformMatch?.[1]?.trim() || 'Social',
+      platform: platformRaw,
+      platformNorm,
       title: titleMatch?.[1]?.trim() || filename.replace('.md',''),
       date: dateFormatted,
-      body: captionMatch?.[1]?.trim() || raw.slice(0, 400),
+      body: captionMatch?.[1]?.trim() || raw.slice(0, 600),
+      hashtags: hashtagMatch?.[1]?.trim() || '',
       notes: notesMatch?.[1]?.trim() || '',
+      goal: goalMatch?.[1]?.trim() || '',
+      format: formatMatch?.[1]?.trim() || '',
     };
-  }).sort((a, b) => b.filename.localeCompare(a.filename)); // newest first
+  }).sort((a, b) => b.filename.localeCompare(a.filename));
 } catch (_) {}
 
 // ── Weekly Content Review ──────────────────────────────────────────────────
@@ -409,45 +426,162 @@ try {
 
     <!-- Social Content Drafts -->
     <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.5rem;margin-bottom:2rem;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem;">
         <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin:0;">Social Content Drafts ({socialDrafts.length})</p>
-        <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.35);margin:0;">Written by Social Media Agent → saved to <code style="font-size:0.68rem;color:#c4912a;">content/social/</code></p>
+        <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.35);margin:0;">Written by Social Media Agent → <code style="font-size:0.68rem;color:#c4912a;">content/social/</code></p>
       </div>
       {socialDrafts.length === 0 ? (
-        <div style="padding:1.5rem;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.08);text-align:center;">
+        <div style="padding:2rem;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.08);text-align:center;">
           <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.3);margin:0 0 0.4rem;">No social drafts yet.</p>
           <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.2);margin:0;">The Social Media Agent will write posts here when tasks are assigned.</p>
         </div>
       ) : (
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;">
+        <div style="display:flex;flex-direction:column;gap:2rem;">
           {socialDrafts.map(d => (
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:1.25rem;display:flex;flex-direction:column;gap:0.75rem;">
-              <!-- Header -->
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;">
-                <div>
-                  <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:600;color:#f2efe9;margin:0;line-height:1.35;">{d.title}</p>
-                  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.35rem;">
-                    <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(196,145,42,0.15);color:#c4912a;padding:0.1rem 0.45rem;border-radius:2px;">{d.platform}</span>
-                    {d.date && <span style="font-size:0.65rem;color:rgba(242,239,233,0.35);">{d.date}</span>}
+            <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);overflow:hidden;">
+              <!-- Card header bar -->
+              <div style={`display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.06);background:${d.platformNorm==='instagram'?'linear-gradient(90deg,rgba(193,53,132,0.15),rgba(225,119,46,0.1))':d.platformNorm==='facebook'?'rgba(24,119,242,0.08)':d.platformNorm==='linkedin'?'rgba(10,102,194,0.1)':'rgba(255,255,255,0.04)'};`}>
+                <span style={`font-family:var(--font-sans);font-size:0.65rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:${d.platformNorm==='instagram'?'#e1306c':d.platformNorm==='facebook'?'#1877f2':d.platformNorm==='linkedin'?'#0a66c2':'#c4912a'};`}>{d.platform}</span>
+                {d.format && <span style="font-size:0.6rem;color:rgba(242,239,233,0.3);background:rgba(255,255,255,0.05);padding:0.1rem 0.4rem;">{d.format}</span>}
+                {d.goal && <span style="font-size:0.6rem;color:rgba(242,239,233,0.3);">Goal: {d.goal}</span>}
+                <span style="margin-left:auto;font-size:0.65rem;color:rgba(242,239,233,0.3);">{d.date}</span>
+              </div>
+
+              <!-- Two-col: mockup + copy -->
+              <div style="display:grid;grid-template-columns:320px 1fr;gap:0;align-items:start;">
+
+                <!-- LEFT: Platform visual mockup -->
+                {d.platformNorm === 'instagram' && (
+                  <div style="border-right:1px solid rgba(255,255,255,0.06);background:#fafafa;">
+                    <!-- IG top bar -->
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.75rem;">
+                      <div style="display:flex;align-items:center;gap:0.5rem;">
+                        <img src={AVATAR} alt="Daniel" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888) border-box;" />
+                        <div>
+                          <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.72rem;font-weight:600;color:#262626;margin:0;line-height:1;">danielgierach</p>
+                          <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.6rem;color:#8e8e8e;margin:0.1rem 0 0;line-height:1;">Ray White Bulimba</p>
+                        </div>
+                      </div>
+                      <span style="font-size:1.1rem;color:#262626;">···</span>
+                    </div>
+                    <!-- Image placeholder -->
+                    <div style="width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,#e8e0d5,#d4c5b0);display:flex;align-items:center;justify-content:center;">
+                      <span style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.7rem;color:#8e8e8e;">Image / Reel</span>
+                    </div>
+                    <!-- Action icons -->
+                    <div style="padding:0.6rem 0.75rem 0.25rem;">
+                      <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:0.35rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8" style="margin-left:auto;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                      </div>
+                      <!-- Caption preview in IG -->
+                      <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.7rem;color:#262626;margin:0 0 0.25rem;line-height:1.5;"><strong>danielgierach</strong> {d.body.slice(0, 120)}{d.body.length > 120 ? '…' : ''}</p>
+                      {d.hashtags && <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.68rem;color:#00376b;margin:0 0 0.5rem;line-height:1.5;">{d.hashtags.slice(0,80)}</p>}
+                    </div>
+                  </div>
+                )}
+                {d.platformNorm === 'facebook' && (
+                  <div style="border-right:1px solid rgba(255,255,255,0.06);background:#fff;">
+                    <!-- FB post header -->
+                    <div style="display:flex;align-items:center;gap:0.6rem;padding:0.75rem;">
+                      <img src={AVATAR} alt="Daniel" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                      <div>
+                        <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.78rem;font-weight:700;color:#050505;margin:0;">Daniel Gierach</p>
+                        <div style="display:flex;align-items:center;gap:0.3rem;">
+                          <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.62rem;color:#65676b;margin:0;">{d.date || 'Just now'}</p>
+                          <span style="font-size:0.55rem;color:#65676b;">·</span>
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="#65676b"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
+                      </div>
+                      <span style="margin-left:auto;font-size:1rem;color:#65676b;">···</span>
+                    </div>
+                    <!-- FB text preview -->
+                    <div style="padding:0 0.75rem 0.5rem;">
+                      <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.78rem;color:#050505;margin:0;line-height:1.6;">{d.body.slice(0,220)}{d.body.length > 220 ? '…' : ''}</p>
+                    </div>
+                    <!-- FB link image placeholder -->
+                    <div style="width:100%;height:140px;background:linear-gradient(135deg,#e4e6eb,#cdd1db);display:flex;align-items:center;justify-content:center;margin-bottom:0.5rem;">
+                      <span style="font-family:Helvetica,Arial,sans-serif;font-size:0.7rem;color:#65676b;">Image / Link preview</span>
+                    </div>
+                    <!-- FB reactions bar -->
+                    <div style="padding:0.35rem 0.75rem 0.75rem;">
+                      <div style="display:flex;border-top:1px solid #e4e6eb;padding-top:0.35rem;gap:0;">
+                        {['👍 Like','💬 Comment','↗ Share'].map(a => (
+                          <button style="flex:1;background:none;border:none;font-family:Helvetica,Arial,sans-serif;font-size:0.72rem;font-weight:600;color:#65676b;padding:0.35rem 0;cursor:default;">{a}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {d.platformNorm === 'linkedin' && (
+                  <div style="border-right:1px solid rgba(255,255,255,0.06);background:#fff;">
+                    <!-- LI post header -->
+                    <div style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.75rem 0.75rem 0.4rem;">
+                      <img src={AVATAR} alt="Daniel" style="width:44px;height:44px;border-radius:50%;object-fit:cover;" />
+                      <div style="flex:1;">
+                        <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.78rem;font-weight:600;color:#000;margin:0;line-height:1.3;">Daniel Gierach</p>
+                        <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.64rem;color:#666;margin:0.1rem 0 0;line-height:1.3;">Property Agent · Ray White Bulimba</p>
+                        <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.6rem;color:#999;margin:0.2rem 0 0;">{d.date || 'Today'} · 🌐</p>
+                      </div>
+                      <button style="background:#e8f3ff;border:1px solid #0a66c2;color:#0a66c2;font-size:0.7rem;font-weight:600;padding:0.2rem 0.7rem;cursor:default;border-radius:2px;">+ Follow</button>
+                    </div>
+                    <!-- LI text preview -->
+                    <div style="padding:0 0.75rem 0.5rem;">
+                      <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.76rem;color:#000;margin:0;line-height:1.65;">{d.body.slice(0,240)}{d.body.length > 240 ? '…more' : ''}</p>
+                      {d.hashtags && <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.7rem;color:#0a66c2;margin:0.4rem 0 0;">{d.hashtags.slice(0,80)}</p>}
+                    </div>
+                    <!-- LI image placeholder -->
+                    <div style="width:100%;height:130px;background:linear-gradient(135deg,#eef3f8,#dce6f0);display:flex;align-items:center;justify-content:center;margin-bottom:0.5rem;">
+                      <span style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.7rem;color:#666;">Image</span>
+                    </div>
+                    <!-- LI reactions -->
+                    <div style="padding:0.2rem 0.75rem 0.75rem;">
+                      <div style="display:flex;border-top:1px solid #e0dfdd;padding-top:0.35rem;gap:0;">
+                        {['👍 Like','💬 Comment','↗ Repost','✉ Send'].map(a => (
+                          <button style="flex:1;background:none;border:none;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.65rem;font-weight:600;color:#666;padding:0.3rem 0;cursor:default;">{a}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {d.platformNorm === 'other' && (
+                  <div style="border-right:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;min-height:200px;">
+                    <div style="text-align:center;">
+                      <p style="font-family:var(--font-sans);font-size:1.5rem;margin:0 0 0.4rem;">📱</p>
+                      <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.3);margin:0;">{d.platform}</p>
+                    </div>
+                  </div>
+                )}
+
+                <!-- RIGHT: Full copy + meta -->
+                <div style="padding:1.25rem;display:flex;flex-direction:column;gap:1rem;">
+                  <div>
+                    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:600;color:#f2efe9;margin:0 0 0.5rem;line-height:1.35;">{d.title}</p>
+                    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.3);margin:0 0 0.4rem;">Full Caption</p>
+                    <div style="background:rgba(0,0,0,0.25);border-left:2px solid rgba(196,145,42,0.4);padding:0.75rem 1rem;max-height:220px;overflow-y:auto;">
+                      <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.85);margin:0;line-height:1.75;white-space:pre-wrap;">{d.body}</p>
+                    </div>
+                  </div>
+                  {d.hashtags && (
+                    <div>
+                      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.3);margin:0 0 0.35rem;">Hashtags</p>
+                      <p style="font-family:var(--font-sans);font-size:0.75rem;color:#3b82f6;margin:0;line-height:1.6;">{d.hashtags}</p>
+                    </div>
+                  )}
+                  {d.notes && (
+                    <div style="background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.15);padding:0.75rem;">
+                      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;margin:0 0 0.3rem;">Notes for Daniel</p>
+                      <p style="font-family:var(--font-sans);font-size:0.75rem;color:rgba(242,239,233,0.65);margin:0;line-height:1.6;">{d.notes}</p>
+                    </div>
+                  )}
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);">
+                    <code style="font-size:0.6rem;color:rgba(242,239,233,0.25);">{d.filename}</code>
+                    <a href={`https://github.com/dang281/DanielGierachProperty1/blob/main/content/social/${d.filename}`} target="_blank"
+                      style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.2rem 0.5rem;">Edit on GitHub ↗</a>
                   </div>
                 </div>
-              </div>
-              <!-- Caption -->
-              <div style="background:rgba(0,0,0,0.25);border-left:2px solid rgba(196,145,42,0.4);padding:0.75rem 1rem;">
-                <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(242,239,233,0.85);margin:0;line-height:1.7;white-space:pre-wrap;">{d.body}</p>
-              </div>
-              <!-- Notes -->
-              {d.notes && (
-                <div>
-                  <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0 0 0.3rem;">Notes for Daniel</p>
-                  <p style="font-family:var(--font-sans);font-size:0.75rem;color:rgba(242,239,233,0.55);margin:0;line-height:1.6;">{d.notes}</p>
-                </div>
-              )}
-              <!-- Footer -->
-              <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);">
-                <code style="font-size:0.62rem;color:rgba(242,239,233,0.3);">{d.filename}</code>
-                <a href={`https://github.com/dang281/DanielGierachProperty1/blob/main/content/social/${d.filename}`} target="_blank"
-                  style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c4912a;text-decoration:none;border:1px solid rgba(196,145,42,0.3);padding:0.2rem 0.5rem;">Edit on GitHub ↗</a>
               </div>
             </div>
           ))}
