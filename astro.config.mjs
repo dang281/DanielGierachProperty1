@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.danielgierach.com',
+  site: 'https://danielgierach.com',
   output: 'static',
   integrations: [
     sitemap({
