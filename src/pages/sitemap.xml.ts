@@ -40,6 +40,14 @@ const pages = [
   { path: '/suburbs/mount-gravatt-east',  changefreq: 'monthly', priority: '0.85' },
   { path: '/suburbs/upper-mount-gravatt', changefreq: 'monthly', priority: '0.85' },
   { path: '/suburbs/tarragindi',          changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/annerley',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/ascot',              changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/dutton-park',        changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/hamilton',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/paddington',         changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/red-hill',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/stones-corner',      changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/west-end',           changefreq: 'monthly', priority: '0.85' },
   { path: '/contact',             changefreq: 'monthly', priority: '0.8' },
 
   // Tools index + individual tools (long-tail keyword traffic)
@@ -108,6 +116,13 @@ const pages = [
   { path: '/insights/selling-in-west-end',          changefreq: 'monthly', priority: '0.78' },
   { path: '/insights/selling-in-woolloongabba',     changefreq: 'monthly', priority: '0.78' },
 
+  // High-priority seller intent articles (0.75)
+  { path: '/insights/best-time-to-sell-brisbane',               changefreq: 'monthly', priority: '0.75' },
+  { path: '/insights/cost-of-selling-house-brisbane',           changefreq: 'monthly', priority: '0.75' },
+  { path: '/insights/how-long-does-it-take-to-sell-a-home-in-brisbane', changefreq: 'monthly', priority: '0.75' },
+  { path: '/insights/how-much-is-my-home-worth-brisbane',       changefreq: 'monthly', priority: '0.75' },
+  { path: '/insights/how-to-choose-a-real-estate-agent-brisbane', changefreq: 'monthly', priority: '0.75' },
+
   // General insights articles
   { path: '/insights/auction-strategy',             changefreq: 'monthly', priority: '0.7' },
   { path: '/insights/building-pest-report',         changefreq: 'monthly', priority: '0.7' },
@@ -121,6 +136,15 @@ const pages = [
   { path: '/insights/understanding-the-contract',   changefreq: 'monthly', priority: '0.65' },
   { path: '/insights/what-happens-at-settlement',   changefreq: 'monthly', priority: '0.65' },
   { path: '/insights/when-to-sell',                 changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/airbnb-vs-longterm',           changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/body-corporate',               changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/brisbane-house-styles',        changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/brisbane-inner-east-value',    changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/buying-with-tenant',           changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/heritage-overlays-brisbane',   changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/prewar-homes-brisbane',        changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/queenslander-vs-postwar',      changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/solicitor-vs-conveyancer-qld', changefreq: 'monthly', priority: '0.7' },
 
   // Legal — low priority
   { path: '/privacy',    changefreq: 'yearly', priority: '0.2' },
