@@ -1015,31 +1015,61 @@ const faqSchema = {
 
   counters.forEach(el => countObserver.observe(el));
 
-  // ── Hero address input (Google Places) ────────────────────────────
+  // ── Hero address input (Google Places AutocompleteService) ───────
   (function() {
     const input  = document.getElementById('hero-address-input') as HTMLInputElement;
     const acList = document.getElementById('hero-ac-list') as HTMLElement;
     const form   = document.getElementById('hero-address-form') as HTMLFormElement;
     let selectedAddress = '';
+    let debounce: ReturnType<typeof setTimeout> | null = null;
+    let autoSvc: any = null;
 
-    function initPlaces() {
-      const ac = new (window as any).google.maps.places.Autocomplete(input, {
-        componentRestrictions: { country: 'au' },
-        fields: ['formatted_address'],
-        types: ['address'],
-      });
-      // When a suggestion is picked, store it
-      ac.addListener('place_changed', () => {
-        const place = ac.getPlace();
-        selectedAddress = place.formatted_address || input.value;
-        input.value = selectedAddress;
+    function renderSuggestions(predictions: any[]) {
+      if (!predictions || predictions.length === 0) { acList.style.display = 'none'; return; }
+      acList.innerHTML = predictions.map((p: any) =>
+        `<div class="hero-ac-item" data-place="${p.description.replace(/"/g,'&quot;')}"
+          style="padding:0.65rem 1rem;cursor:pointer;font-family:var(--font-sans);font-size:0.82rem;color:#f0ece4;border-bottom:1px solid rgba(255,255,255,0.07);line-height:1.35;transition:background 0.15s;">
+          ${p.description}
+        </div>`
+      ).join('');
+      acList.style.display = 'block';
+      acList.querySelectorAll<HTMLElement>('.hero-ac-item').forEach(function(el) {
+        el.addEventListener('mouseover',  function() { el.style.background = 'rgba(255,255,255,0.09)'; });
+        el.addEventListener('mouseout',   function() { el.style.background = ''; });
+        el.addEventListener('mousedown',  function(e) {
+          e.preventDefault();
+          selectedAddress = el.dataset.place || '';
+          input.value = selectedAddress;
+          acList.style.display = 'none';
+        });
       });
     }
 
-    // Define callback before the script loads (race-condition safe)
-    (window as any).initGooglePlacesHero = function() { initPlaces(); };
+    function initMaps() {
+      autoSvc = new (window as any).google.maps.places.AutocompleteService();
+      input.addEventListener('input', function() {
+        if (debounce) clearTimeout(debounce);
+        const val = input.value.trim();
+        if (val.length < 3) { acList.style.display = 'none'; return; }
+        debounce = setTimeout(function() {
+          autoSvc.getPlacePredictions(
+            { input: val, componentRestrictions: { country: 'au' }, types: ['address'] },
+            function(predictions: any[], status: string) {
+              const OK = (window as any).google.maps.places.PlacesServiceStatus.OK;
+              renderSuggestions(status === OK ? predictions : []);
+            }
+          );
+        }, 250);
+      });
+      input.addEventListener('blur', function() {
+        setTimeout(function() { acList.style.display = 'none'; }, 160);
+      });
+    }
 
-    // Load Maps JS API with Places library — only on this page
+    // Define callback before script loads (race-condition safe)
+    (window as any).initGooglePlacesHero = initMaps;
+
+    // Load Maps JS API with Places library
     if (!(window as any).google?.maps?.places) {
       const s = document.createElement('script');
       s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesHero`;
@@ -1047,7 +1077,7 @@ const faqSchema = {
       s.defer = true;
       document.head.appendChild(s);
     } else {
-      initPlaces();
+      initMaps();
     }
 
     document.addEventListener('click', function(e) {
@@ -1058,8 +1088,7 @@ const faqSchema = {
       e.preventDefault();
       const addr = selectedAddress || input.value.trim();
       if (!addr) { input.focus(); return; }
-      try { gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr }); } catch(_) {}
-      // Send address to Daniel in background, redirect immediately
+      try { (window as any).gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr }); } catch(_) {}
       const fd = new FormData();
       fd.append('_subject', 'Homepage address enquiry – ' + addr);
       fd.append('address', addr);
