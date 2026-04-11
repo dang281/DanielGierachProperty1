@@ -137,7 +137,9 @@ A complete Visual Brief includes:
 ## Canva Resources
 
 - **Brand kit:** `kAGjS7yZLr8`
-- **News-reactive LinkedIn/Facebook template:** Create new design using brand kit, dark background, gold headline
+- **News-reactive post template (Facebook/LinkedIn):** Design ID `DAHGjv8sW3w` — edit at https://www.canva.com/d/GPqiM2gkn-aMsWW
+  - Dark charcoal background, gold headline, cream bullet points, Daniel footer
+  - Duplicate this for every news-reactive post — never publish over the master
 - **Existing designs:** See Canva root folder for templates and past work
 
 ## Photo Guidelines
