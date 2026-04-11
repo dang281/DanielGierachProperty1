@@ -1052,13 +1052,17 @@ const faqSchema = {
         const val = input.value.trim();
         if (val.length < 3) { acList.style.display = 'none'; return; }
         debounce = setTimeout(function() {
-          autoSvc.getPlacePredictions(
-            { input: val, componentRestrictions: { country: 'au' }, types: ['address'] },
-            function(predictions: any[], status: string) {
-              const OK = (window as any).google.maps.places.PlacesServiceStatus.OK;
-              renderSuggestions(status === OK ? predictions : []);
-            }
-          );
+          const req = { input: val, componentRestrictions: { country: 'au' }, types: ['address'] };
+          // Support both Promise-based (newer API) and callback-based (older API)
+          const result = autoSvc.getPlacePredictions(req, function(predictions: any[], status: string) {
+            if (status === 'OK') renderSuggestions(predictions || []);
+            else acList.style.display = 'none';
+          });
+          if (result && typeof result.then === 'function') {
+            result.then(function(res: any) {
+              renderSuggestions((res && res.predictions) ? res.predictions : []);
+            }).catch(function() { acList.style.display = 'none'; });
+          }
         }, 250);
       });
       input.addEventListener('blur', function() {
