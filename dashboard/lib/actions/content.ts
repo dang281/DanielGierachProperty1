@@ -4,6 +4,19 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import type { ContentItem, ContentItemUpdate, Status } from '@/types/content'
 
+export async function checkVisualMigration(): Promise<boolean> {
+  try {
+    const supabase = await createClient()
+    const { error } = await supabase
+      .from('content_items')
+      .select('visual_status')
+      .limit(1)
+    return !error
+  } catch {
+    return false
+  }
+}
+
 export async function getContentItems(): Promise<ContentItem[]> {
   const supabase = await createClient()
   const { data, error } = await supabase

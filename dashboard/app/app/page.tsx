@@ -1,4 +1,4 @@
-import { getContentItems } from '@/lib/actions/content'
+import { getContentItems, checkVisualMigration } from '@/lib/actions/content'
 import { getAgents, getIssues, getAgentTokenData } from '@/lib/actions/paperclip'
 import ContentCard from '@/components/dashboard/ContentCard'
 import AttentionBar from '@/components/dashboard/AttentionBar'
@@ -14,10 +14,11 @@ function todayAEST(): string {
 }
 
 export default async function DashboardPage() {
-  const [allItems, agents, issues] = await Promise.all([
+  const [allItems, agents, issues, visualMigrationDone] = await Promise.all([
     getContentItems(),
     getAgents(),
     getIssues(),
+    checkVisualMigration(),
   ])
   const tokenData = agents.length > 0 ? await getAgentTokenData(agents.map(a => a.id)) : {}
   const today = todayAEST()
@@ -33,6 +34,26 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col gap-5">
       <AutoRefresh intervalMs={30_000} />
+
+      {/* Migration notice — auto-hides once column exists */}
+      {!visualMigrationDone && (
+        <div
+          className="rounded-xl px-5 py-4 flex items-start gap-4"
+          style={{ background: 'rgba(245,208,122,0.08)', border: '1px solid rgba(245,208,122,0.3)' }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5d07a" strokeWidth="2" className="flex-shrink-0 mt-0.5">
+            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <div className="flex flex-col gap-1 flex-1">
+            <p className="text-sm font-sans font-semibold" style={{ color: '#f5d07a' }}>
+              Database migration needed — visual fields not yet active
+            </p>
+            <p className="text-xs font-sans text-[var(--color-cream-dim)] leading-relaxed">
+              Run <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: 'rgba(245,208,122,0.12)', color: '#f5d07a' }}>dashboard/supabase/add-visual-fields.sql</code> in your Supabase SQL editor to enable visual briefs, Canva links, and visual feedback on content cards. This notice disappears automatically once the migration is applied.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Attention bar */}
       <AttentionBar reviewItems={readyForReview} issues={issues} />
