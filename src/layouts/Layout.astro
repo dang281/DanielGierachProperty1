@@ -38,6 +38,16 @@ if (_bParts.length >= 2) {
 }
 const showBreadcrumbs = breadcrumbs.length > 1;
 
+// Suburb → Insight linking (#8)
+const _suburbMatch = _bPath.match(/^\/suburbs\/(.+)$/);
+const _suburbSlug  = _suburbMatch ? _suburbMatch[1] : null;
+const _suburbName  = _suburbSlug ? _suburbSlug.replace(/-/g,' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()) : null;
+
+// Insight → Suburb + CTA cross-link (#11)
+const _insightMatch      = _bPath.match(/^\/insights\/selling-in-(.+)$/);
+const _insightSuburbSlug = _insightMatch ? _insightMatch[1] : null;
+const _insightSuburbName = _insightSuburbSlug ? _insightSuburbSlug.replace(/-/g,' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()) : null;
+
 const globalSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -181,6 +191,7 @@ const globalSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
+    <meta name="author" content="Daniel Gierach" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
@@ -242,6 +253,46 @@ const globalSchema = {
     <main>
       <slot />
     </main>
+
+    {/* #8 — Suburb → Insight selling guide link */}
+    {_suburbSlug && (
+      <div style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+        <div class="max-w-[1400px] mx-auto px-8 lg:px-12" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;">
+          <div>
+            <span class="eyebrow mb-2" style="display:block;">Seller Guide</span>
+            <h2 style="font-family:var(--font-serif);font-size:clamp(1.3rem,2.5vw,1.75rem);font-weight:400;color:var(--color-text-primary);margin-bottom:0.6rem;line-height:1.2;">
+              Thinking of selling in {_suburbName}?
+            </h2>
+            <p style="font-size:0.85rem;color:var(--color-text-secondary);max-width:50ch;line-height:1.75;">
+              Read Daniel's complete selling guide — what buyers look for, recent comparable sales, and how to prepare for the best result.
+            </p>
+          </div>
+          <a href={`/insights/selling-in-${_suburbSlug}`} class="btn-gold" style="flex-shrink:0;">
+            Read the {_suburbName} Selling Guide →
+          </a>
+        </div>
+      </div>
+    )}
+
+    {/* #11 — Insight → Suburb cross-link + CTA */}
+    {_insightSuburbSlug && (
+      <div style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+        <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+            <a href={`/suburbs/${_insightSuburbSlug}`} style="display:flex;flex-direction:column;gap:0.5rem;padding:1.75rem 2rem;background:var(--color-surface-0);border:1px solid rgba(28,25,23,0.1);text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(196,145,42,0.4)'" onmouseout="this.style.borderColor='rgba(28,25,23,0.1)'">
+              <span class="eyebrow" style="display:block;">Suburb Profile</span>
+              <span style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);">{_insightSuburbName} — market data, prices & trends →</span>
+            </a>
+            <div style="padding:1.75rem 2rem;background:var(--color-gold-muted);border:1px solid rgba(196,145,42,0.2);">
+              <p style="font-family:var(--font-serif);font-style:italic;font-size:1rem;color:var(--color-text-primary);margin-bottom:0.6rem;">Want to know what your {_insightSuburbName} home could sell for?</p>
+              <p style="font-size:0.8rem;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.7;">Daniel walks through your property and reviews recent sold results in your street. Free, no obligation.</p>
+              <a href="/walkthrough" class="btn-gold">Book a Free Walk Through</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
     <Footer />
 
     <!-- Mobile sticky call bar -->
@@ -286,6 +337,16 @@ const globalSchema = {
       gtag('js', new Date());
       gtag('config', 'G-K1P37GL73K');
     </script>
+    <!-- Web Vitals → GA4 (#10) -->
+    <script type="module">
+      import {onCLS,onINP,onLCP,onFCP,onTTFB} from 'https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js?module';
+      function sendVital({name,value,rating}){
+        if(typeof gtag==='undefined')return;
+        gtag('event',name,{value:Math.round(name==='CLS'?value*1000:value),metric_rating:rating,non_interaction:true});
+      }
+      onCLS(sendVital);onINP(sendVital);onLCP(sendVital);onFCP(sendVital);onTTFB(sendVital);
+    </script>
+
     <!-- GA4 Enhanced Event Tracking -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {

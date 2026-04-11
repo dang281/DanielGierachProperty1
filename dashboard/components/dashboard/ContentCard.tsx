@@ -38,7 +38,7 @@ export default function ContentCard({ item, showActions = false }: Props) {
 
   return (
     <div
-      className="bg-[var(--color-card)] rounded-xl flex flex-col overflow-hidden border border-[var(--color-border-w)] hover:border-[rgba(255,255,255,0.12)] transition-colors"
+      className="bg-[var(--color-card)] rounded-xl flex flex-col overflow-hidden border border-[var(--color-border-w)] hover:border-[rgba(28,25,23,0.25)] transition-colors"
       style={{ borderLeft: `3px solid ${platformColour}` }}
     >
       <div className="p-4 flex flex-col gap-3 flex-1">

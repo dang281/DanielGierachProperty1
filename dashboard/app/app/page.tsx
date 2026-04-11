@@ -70,7 +70,7 @@ export default async function DashboardPage() {
           {/* Ideas Pipeline */}
           {ideas.length > 0 && (
             <section>
-              <SectionHeader label="Ideas Pipeline" count={ideas.length} colour="rgba(242,239,233,0.25)" />
+              <SectionHeader label="Ideas Pipeline" count={ideas.length} colour="rgba(28,25,23,0.4)" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
                 {ideas.map(item => <ContentCard key={item.id} item={item} />)}
               </div>
@@ -80,7 +80,7 @@ export default async function DashboardPage() {
           {/* Recently Posted */}
           {recentlyPosted.length > 0 && (
             <section>
-              <SectionHeader label="Recently Posted" count={recentlyPosted.length} colour="rgba(242,239,233,0.15)" />
+              <SectionHeader label="Recently Posted" count={recentlyPosted.length} colour="rgba(28,25,23,0.3)" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 opacity-60">
                 {recentlyPosted.map(item => <ContentCard key={item.id} item={item} />)}
               </div>
@@ -122,7 +122,7 @@ function SectionHeader({ label, count, colour }: { label: string; count: number;
       </h2>
       <span
         className="text-xs font-sans px-2 py-0.5 rounded-full flex-shrink-0"
-        style={{ color: colour, background: colour.startsWith('rgba') ? 'rgba(255,255,255,0.06)' : colour + '20' }}
+        style={{ color: colour, background: 'rgba(28,25,23,0.06)' }}
       >
         {count}
       </span>
@@ -135,7 +135,7 @@ function EmptyState({ message }: { message: string }) {
   return (
     <p
       className="text-[var(--color-cream-x)] text-sm font-sans mt-3 py-5 text-center rounded-xl"
-      style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }}
+      style={{ background: 'rgba(28,25,23,0.03)', border: '1px solid rgba(28,25,23,0.08)' }}
     >
       {message}
     </p>
