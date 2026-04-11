@@ -4,6 +4,7 @@ import { logout } from '@/lib/actions/auth'
 const NAV = [
   { href: '/app',          label: 'Dashboard' },
   { href: '/app/calendar', label: 'Calendar' },
+  { href: '/app/brand',    label: 'Brand' },
 ]
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
