@@ -193,6 +193,7 @@ const faqSchema = {
               autocomplete="off"
               style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
             />
+            <div id="hero-ac-list" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:9999;background:#1c1917;border:1px solid rgba(255,255,255,0.15);border-top:none;max-height:220px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.5);"></div>
           </div>
           <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
             onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
@@ -1014,38 +1015,71 @@ const faqSchema = {
 
   counters.forEach(el => countObserver.observe(el));
 
-  // ── Hero address input (Google Places) ────────────────────────────
+  // ── Hero address input (Google Places AutocompleteService) ────────
   (function() {
     const input  = document.getElementById('hero-address-input') as HTMLInputElement;
+    const acList = document.getElementById('hero-ac-list') as HTMLElement;
     const form   = document.getElementById('hero-address-form') as HTMLFormElement;
     let selectedAddress = '';
+    let debounce: ReturnType<typeof setTimeout> | null = null;
 
-    function initPlaces() {
-      const ac = new (window as any).google.maps.places.Autocomplete(input, {
-        componentRestrictions: { country: 'au' },
-        fields: ['formatted_address'],
-        types: ['address'],
+    function showItems(items: {label: string; value: string}[]) {
+      if (!items.length) { acList.style.display = 'none'; return; }
+      acList.innerHTML = items.map(it =>
+        `<div class="hac" data-v="${it.value.replace(/"/g,'&quot;')}"
+          style="padding:0.65rem 1rem;cursor:pointer;color:#f0ece4;font-family:var(--font-sans);font-size:0.83rem;line-height:1.35;border-bottom:1px solid rgba(255,255,255,0.07);">${it.label}</div>`
+      ).join('');
+      acList.querySelectorAll<HTMLElement>('.hac').forEach(el => {
+        el.onmouseover = () => el.style.background = 'rgba(255,255,255,0.09)';
+        el.onmouseout  = () => el.style.background = '';
+        el.onmousedown = (e) => {
+          e.preventDefault();
+          selectedAddress = el.dataset.v || '';
+          input.value = selectedAddress;
+          acList.style.display = 'none';
+        };
       });
-      ac.addListener('place_changed', function() {
-        const place = ac.getPlace();
-        selectedAddress = place.formatted_address || input.value;
-        input.value = selectedAddress;
-      });
+      acList.style.display = 'block';
     }
 
-    (window as any).initGooglePlacesHero = initPlaces;
+    function initMaps() {
+      const svc = new (window as any).google.maps.places.AutocompleteService();
+      input.addEventListener('input', () => {
+        if (debounce) clearTimeout(debounce);
+        const val = input.value.trim();
+        if (val.length < 2) { acList.style.display = 'none'; selectedAddress = ''; return; }
+        debounce = setTimeout(async () => {
+          try {
+            const res = await svc.getPlacePredictions({
+              input: val,
+              componentRestrictions: { country: 'au' },
+              types: ['address'],
+            });
+            const preds = res?.predictions ?? [];
+            showItems(preds.map((p: any) => ({ label: p.description, value: p.description })));
+          } catch { acList.style.display = 'none'; }
+        }, 200);
+      });
+      input.addEventListener('blur', () => setTimeout(() => { acList.style.display = 'none'; }, 150));
+      input.addEventListener('focus', () => { if (input.value.trim().length >= 2) input.dispatchEvent(new Event('input')); });
+    }
+
+    (window as any).initGooglePlacesHero = initMaps;
 
     if (!(window as any).google?.maps?.places) {
       const s = document.createElement('script');
       s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesHero`;
-      s.async = true;
-      s.defer = true;
+      s.async = true; s.defer = true;
       document.head.appendChild(s);
     } else {
-      initPlaces();
+      initMaps();
     }
 
-    form?.addEventListener('submit', function(e) {
+    document.addEventListener('click', e => {
+      if (!form?.contains(e.target as Node)) acList.style.display = 'none';
+    });
+
+    form?.addEventListener('submit', e => {
       e.preventDefault();
       const addr = selectedAddress || input.value.trim();
       if (!addr) { input.focus(); return; }
@@ -1114,35 +1148,6 @@ const faqSchema = {
     transform: none !important;
     transition: none !important;
   }
-
-  /* ── Google Places pac-container: match dark hero theme ── */
-  .pac-container {
-    background: #1c1917 !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    border-top: none !important;
-    border-radius: 0 !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
-    font-family: var(--font-sans) !important;
-  }
-  .pac-item {
-    background: transparent !important;
-    color: #f0ece4 !important;
-    border-top: 1px solid rgba(255,255,255,0.07) !important;
-    padding: 0.6rem 1rem !important;
-    cursor: pointer !important;
-    font-size: 0.82rem !important;
-    line-height: 1.4 !important;
-  }
-  .pac-item:hover, .pac-item-selected {
-    background: rgba(255,255,255,0.09) !important;
-  }
-  .pac-item-query {
-    color: #f0ece4 !important;
-    font-size: 0.82rem !important;
-  }
-  .pac-matched { font-weight: 700 !important; color: #c4912a !important; }
-  .pac-icon { display: none !important; }
-  .pac-icon-marker { display: none !important; }
 
   /* ── Mobile: 640px and below ──────────────────────────── */
   @media (max-width: 640px) {
