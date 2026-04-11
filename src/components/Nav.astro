@@ -37,7 +37,7 @@ const suburbs = [
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-10" id="nav-links">
+      <nav class="nav-desktop items-center gap-10" id="nav-links">
         {navLinks.map((link) => (
           <a href={link.href} class="nav-link-mono" style="color:#f0ece4;">{link.label}</a>
         ))}
@@ -45,7 +45,7 @@ const suburbs = [
       </nav>
 
       <!-- CTA -->
-      <div class="hidden lg:flex items-center gap-6" id="nav-cta">
+      <div class="nav-desktop items-center gap-6" id="nav-cta">
         <a href="/contact" class="nav-link-mono" style="color:#f0ece4;">Contact</a>
         <a href="/property-worth" class="btn-gold" style="padding:0.7rem 1.5rem;">
           What's Your Property Worth?
@@ -53,7 +53,7 @@ const suburbs = [
       </div>
 
       <!-- Mobile toggle -->
-      <button id="mobile-toggle" class="lg:hidden flex flex-col gap-[5px] p-2" aria-label="Menu">
+      <button id="mobile-toggle" class="nav-mobile flex flex-col gap-[5px] p-2" aria-label="Menu">
         <span id="bar1" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
         <span id="bar2" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
         <span id="bar3" class="block w-4 transition-all duration-300 self-end" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
@@ -64,7 +64,7 @@ const suburbs = [
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="lg:hidden overflow-hidden transition-all duration-300"
+    class="nav-mobile overflow-hidden transition-all duration-300"
     style="max-height:0;background:rgba(242,239,233,0.98);backdrop-filter:blur(20px);"
   >
     <div class="max-w-[1400px] mx-auto px-8 py-6 flex flex-col gap-5">
@@ -80,6 +80,18 @@ const suburbs = [
     </div>
   </div>
 </header>
+
+<style>
+  /* Mobile-first: desktop nav hidden, mobile toggle visible */
+  .nav-desktop { display: none; }
+  .nav-mobile  { display: flex; }
+
+  /* At 1024px+ flip them */
+  @media (min-width: 1024px) {
+    .nav-desktop { display: flex; }
+    .nav-mobile  { display: none; }
+  }
+</style>
 
 <script>
   const header       = document.getElementById('site-header')!;
