@@ -193,7 +193,6 @@ const faqSchema = {
               autocomplete="off"
               style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
             />
-            <div id="hero-ac-list" style="display:none;position:absolute;top:100%;left:0;right:0;background:#1c1917;border:1px solid rgba(255,255,255,0.12);border-top:none;z-index:200;max-height:180px;overflow-y:auto;"></div>
           </div>
           <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
             onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
@@ -1015,65 +1014,27 @@ const faqSchema = {
 
   counters.forEach(el => countObserver.observe(el));
 
-  // ── Hero address input (Google Places AutocompleteService) ───────
+  // ── Hero address input (Google Places) ────────────────────────────
   (function() {
     const input  = document.getElementById('hero-address-input') as HTMLInputElement;
-    const acList = document.getElementById('hero-ac-list') as HTMLElement;
     const form   = document.getElementById('hero-address-form') as HTMLFormElement;
     let selectedAddress = '';
-    let debounce: ReturnType<typeof setTimeout> | null = null;
-    let autoSvc: any = null;
 
-    function renderSuggestions(predictions: any[]) {
-      if (!predictions || predictions.length === 0) { acList.style.display = 'none'; return; }
-      acList.innerHTML = predictions.map((p: any) =>
-        `<div class="hero-ac-item" data-place="${p.description.replace(/"/g,'&quot;')}"
-          style="padding:0.65rem 1rem;cursor:pointer;font-family:var(--font-sans);font-size:0.82rem;color:#f0ece4;border-bottom:1px solid rgba(255,255,255,0.07);line-height:1.35;transition:background 0.15s;">
-          ${p.description}
-        </div>`
-      ).join('');
-      acList.style.display = 'block';
-      acList.querySelectorAll<HTMLElement>('.hero-ac-item').forEach(function(el) {
-        el.addEventListener('mouseover',  function() { el.style.background = 'rgba(255,255,255,0.09)'; });
-        el.addEventListener('mouseout',   function() { el.style.background = ''; });
-        el.addEventListener('mousedown',  function(e) {
-          e.preventDefault();
-          selectedAddress = el.dataset.place || '';
-          input.value = selectedAddress;
-          acList.style.display = 'none';
-        });
+    function initPlaces() {
+      const ac = new (window as any).google.maps.places.Autocomplete(input, {
+        componentRestrictions: { country: 'au' },
+        fields: ['formatted_address'],
+        types: ['address'],
+      });
+      ac.addListener('place_changed', function() {
+        const place = ac.getPlace();
+        selectedAddress = place.formatted_address || input.value;
+        input.value = selectedAddress;
       });
     }
 
-    function initMaps() {
-      autoSvc = new (window as any).google.maps.places.AutocompleteService();
-      input.addEventListener('input', function() {
-        if (debounce) clearTimeout(debounce);
-        const val = input.value.trim();
-        if (val.length < 3) { acList.style.display = 'none'; return; }
-        debounce = setTimeout(function() {
-          const req = { input: val, componentRestrictions: { country: 'au' }, types: ['address'] };
-          // Support both Promise-based (newer API) and callback-based (older API)
-          const result = autoSvc.getPlacePredictions(req, function(predictions: any[], status: string) {
-            if (status === 'OK') renderSuggestions(predictions || []);
-            else acList.style.display = 'none';
-          });
-          if (result && typeof result.then === 'function') {
-            result.then(function(res: any) {
-              renderSuggestions((res && res.predictions) ? res.predictions : []);
-            }).catch(function() { acList.style.display = 'none'; });
-          }
-        }, 250);
-      });
-      input.addEventListener('blur', function() {
-        setTimeout(function() { acList.style.display = 'none'; }, 160);
-      });
-    }
+    (window as any).initGooglePlacesHero = initPlaces;
 
-    // Define callback before script loads (race-condition safe)
-    (window as any).initGooglePlacesHero = initMaps;
-
-    // Load Maps JS API with Places library
     if (!(window as any).google?.maps?.places) {
       const s = document.createElement('script');
       s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesHero`;
@@ -1081,12 +1042,8 @@ const faqSchema = {
       s.defer = true;
       document.head.appendChild(s);
     } else {
-      initMaps();
+      initPlaces();
     }
-
-    document.addEventListener('click', function(e) {
-      if (!form?.contains(e.target as Node)) acList.style.display = 'none';
-    });
 
     form?.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -1157,6 +1114,35 @@ const faqSchema = {
     transform: none !important;
     transition: none !important;
   }
+
+  /* ── Google Places pac-container: match dark hero theme ── */
+  .pac-container {
+    background: #1c1917 !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-top: none !important;
+    border-radius: 0 !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+    font-family: var(--font-sans) !important;
+  }
+  .pac-item {
+    background: transparent !important;
+    color: #f0ece4 !important;
+    border-top: 1px solid rgba(255,255,255,0.07) !important;
+    padding: 0.6rem 1rem !important;
+    cursor: pointer !important;
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+  .pac-item:hover, .pac-item-selected {
+    background: rgba(255,255,255,0.09) !important;
+  }
+  .pac-item-query {
+    color: #f0ece4 !important;
+    font-size: 0.82rem !important;
+  }
+  .pac-matched { font-weight: 700 !important; color: #c4912a !important; }
+  .pac-icon { display: none !important; }
+  .pac-icon-marker { display: none !important; }
 
   /* ── Mobile: 640px and below ──────────────────────────── */
   @media (max-width: 640px) {
