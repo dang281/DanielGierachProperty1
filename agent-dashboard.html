@@ -139,6 +139,267 @@
     border: 1px solid rgba(34,197,94,0.12); margin-bottom: 0.4rem;
   }
 
+  /* ── Revision form ── */
+  .btn-revise {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; background: transparent; color: #fb923c;
+    border: 1px solid rgba(251,146,60,0.4); padding: 0.2rem 0.55rem;
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  }
+  .revision-form {
+    margin-top: 0.6rem; padding: 0.75rem;
+    background: rgba(251,146,60,0.05); border: 1px solid rgba(251,146,60,0.2);
+  }
+  .revision-form textarea {
+    width: 100%; background: rgba(0,0,0,0.35); border: 1px solid rgba(251,146,60,0.3);
+    color: var(--text); font-family: var(--sans); font-size: 0.78rem;
+    padding: 0.5rem 0.7rem; resize: vertical; min-height: 72px; outline: none; line-height: 1.55;
+    display: block; margin-bottom: 0.5rem;
+  }
+  .btn-send-revision {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; background: #fb923c; color: #0f0d0c;
+    border: none; padding: 0.35rem 0.9rem; cursor: pointer; margin-right: 0.4rem;
+  }
+  .btn-cancel-revision {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; background: transparent; color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.1); padding: 0.35rem 0.75rem; cursor: pointer;
+  }
+
+  /* ── Status badges ── */
+  .status-badge {
+    display: inline-block; font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 2px;
+  }
+  .status-idea       { background:rgba(107,114,128,0.18); color:#9ca3af;  border:1px solid rgba(107,114,128,0.25); }
+  .status-review     { background:rgba(168,85,247,0.15);  color:#a855f7;  border:1px solid rgba(168,85,247,0.3);  }
+  .status-scheduled  { background:rgba(34,197,94,0.12);   color:#22c55e;  border:1px solid rgba(34,197,94,0.25);  }
+  .status-posted     { background:rgba(59,130,246,0.12);  color:#60a5fa;  border:1px solid rgba(59,130,246,0.2);  }
+  .status-rejected   { background:rgba(239,68,68,0.1);    color:#ef4444;  border:1px solid rgba(239,68,68,0.2);   }
+
+  /* ── Pillar badges ── */
+  .pillar { display:inline-block; font-size:0.56rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.15rem 0.45rem; border-radius:2px; }
+  .pillar-seller       { background:rgba(196,145,42,0.15);   color:#d4a843; }
+  .pillar-authority    { background:rgba(59,130,246,0.12);   color:#60a5fa; }
+  .pillar-suburb       { background:rgba(34,197,94,0.1);     color:#4ade80; }
+  .pillar-social-proof { background:rgba(168,85,247,0.12);   color:#c084fc; }
+  .pillar-buyer        { background:rgba(20,184,166,0.12);   color:#2dd4bf; }
+
+  /* ── Ready for Review cards ── */
+  .rfr-card {
+    background: rgba(168,85,247,0.04); border: 1px solid rgba(168,85,247,0.18);
+    padding: 1.1rem; margin-bottom: 0.75rem; transition: border-color 0.15s;
+  }
+  .rfr-card:last-child { margin-bottom: 0; }
+  .rfr-card:hover { border-color: rgba(168,85,247,0.32); }
+  .rfr-meta { display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap; margin-bottom:0.6rem; }
+  .rfr-caption {
+    font-size: 0.78rem; color: var(--text-dim); line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    margin: 0.5rem 0 0.75rem;
+  }
+  .rfr-footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; }
+  .rfr-actions { display:flex; gap:0.4rem; }
+  .btn-approve-post {
+    font-size:0.65rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--green); color:#0a0806; border:none; padding:0.35rem 0.85rem; cursor:pointer;
+  }
+  .btn-reject-post {
+    font-size:0.65rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    background:transparent; color:var(--red); border:1px solid rgba(239,68,68,0.4);
+    padding:0.35rem 0.75rem; cursor:pointer;
+  }
+  .btn-edit-post {
+    font-size:0.65rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    background:transparent; color:var(--text-dim); border:1px solid rgba(255,255,255,0.12);
+    padding:0.35rem 0.75rem; cursor:pointer;
+  }
+  .btn-edit-post:hover { color:var(--text); border-color:rgba(255,255,255,0.25); }
+
+  /* ── Posting today ── */
+  .today-item {
+    display:flex; align-items:center; gap:0.85rem; padding:0.6rem 0.85rem;
+    border:1px solid rgba(255,255,255,0.06); margin-bottom:0.35rem; background:rgba(34,197,94,0.03);
+  }
+  .today-item:last-child { margin-bottom:0; }
+  .today-time { font-size:0.72rem; font-weight:700; color:var(--gold); min-width:52px; }
+  .today-plat { font-size:0.6rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; min-width:28px; }
+  .today-title { flex:1; font-size:0.78rem; color:var(--text); min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  /* ── Ideas pipeline ── */
+  .idea-card {
+    padding:0.85rem; border:1px solid rgba(255,255,255,0.06); margin-bottom:0.5rem;
+    background:rgba(255,255,255,0.015);
+  }
+  .idea-card:last-child { margin-bottom:0; }
+  .idea-meta { display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap; margin-bottom:0.45rem; }
+  .idea-body { font-size:0.75rem; color:var(--text-dim); line-height:1.55;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* ── Edit modal ── */
+  #edit-modal {
+    display:none; position:fixed; inset:0; z-index:9000;
+    background:rgba(0,0,0,0.8); backdrop-filter:blur(4px);
+    overflow-y:auto; padding:1.5rem 1rem;
+  }
+  .edit-modal-inner {
+    max-width:680px; margin:0 auto; background:var(--card);
+    border:1px solid rgba(196,145,42,0.25); display:flex; flex-direction:column;
+  }
+  .edit-modal-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1rem 1.25rem; border-bottom:1px solid rgba(255,255,255,0.07);
+  }
+  .edit-modal-body { padding:1.25rem; display:flex; flex-direction:column; gap:1rem; }
+  .edit-modal-footer {
+    display:flex; align-items:center; gap:0.5rem; padding:1rem 1.25rem;
+    border-top:1px solid rgba(255,255,255,0.07); flex-wrap:wrap;
+  }
+  .edit-field label {
+    display:block; font-size:0.58rem; font-weight:700; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--text-dimmer); margin-bottom:0.4rem;
+  }
+  .edit-field input, .edit-field textarea, .edit-field select {
+    width:100%; background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.1);
+    color:var(--text); font-family:var(--sans); font-size:0.8rem; padding:0.55rem 0.75rem;
+    outline:none; resize:vertical; line-height:1.6;
+  }
+  .edit-field input:focus, .edit-field textarea:focus, .edit-field select:focus {
+    border-color:rgba(196,145,42,0.5);
+  }
+  .edit-field select option { background:var(--card); }
+  .btn-save-edit {
+    font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--gold); color:var(--card); border:none; padding:0.5rem 1.25rem; cursor:pointer;
+  }
+  .btn-save-approve {
+    font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--green); color:#0a0806; border:none; padding:0.5rem 1.25rem; cursor:pointer;
+  }
+  .btn-cancel-edit {
+    font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    background:transparent; color:var(--text-dim); border:1px solid rgba(255,255,255,0.12);
+    padding:0.5rem 1rem; cursor:pointer; margin-left:auto;
+  }
+
+  /* ── Content calendar ── */
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+  }
+  .cal-day-header {
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-dimmer);
+    text-align: center; padding: 0.3rem 0;
+  }
+  .cal-cell {
+    min-height: 88px; background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 0.45rem; display: flex; flex-direction: column; gap: 3px;
+  }
+  .cal-cell.today {
+    border-color: rgba(196,145,42,0.5); background: rgba(196,145,42,0.05);
+  }
+  .cal-cell.past {
+    opacity: 0.45;
+  }
+  .cal-cell.other-month {
+    background: rgba(255,255,255,0.008);
+    border-color: rgba(255,255,255,0.03);
+  }
+  .cal-cell.other-month .cal-date {
+    color: rgba(242,239,233,0.18);
+  }
+  .cal-date {
+    font-size: 0.68rem; font-weight: 700; color: var(--text-dim);
+    margin-bottom: 2px; line-height: 1;
+  }
+  .cal-cell.today .cal-date { color: var(--gold); }
+  .cal-pill {
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.18rem 0.4rem; border-radius: 2px; color: #fff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    cursor: default; line-height: 1.4;
+  }
+  .cal-empty {
+    font-size: 0.6rem; color: rgba(255,255,255,0.08); text-align: center;
+    margin-top: auto; padding-bottom: 0.3rem;
+  }
+  @media (max-width: 700px) {
+    .cal-day-header, .cal-date { font-size: 0.5rem; }
+    .cal-pill { font-size: 0.5rem; }
+    .cal-cell { min-height: 52px; padding: 0.3rem; }
+  }
+
+  /* ── Health banner ── */
+  .alert-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.75rem 1rem; margin-bottom: 0.4rem;
+    font-size: 0.78rem; line-height: 1.5;
+  }
+  .alert-item:last-child { margin-bottom: 0; }
+
+  /* ── Velocity / cost chart ── */
+  .chart-bar {
+    flex: 1; min-width: 18px; border-radius: 2px 2px 0 0;
+    transition: opacity 0.2s; cursor: default; position: relative;
+  }
+  .chart-bar:hover { opacity: 0.8; }
+  .chart-label {
+    flex: 1; min-width: 18px; font-size: 0.52rem; color: var(--text-dimmer);
+    text-align: center; overflow: hidden; white-space: nowrap;
+  }
+
+  /* ── Coverage matrix ── */
+  .cov-row {
+    display: flex; align-items: center; gap: 0.35rem;
+    padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .cov-row:last-child { border-bottom: none; }
+  .cov-dot {
+    width: 52px; height: 22px; display: flex; align-items: center; justify-content: center;
+  }
+  .dot-yes  { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+  .dot-no   { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+
+  /* ── Social content ── */
+  .social-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.07); overflow: hidden; margin-bottom: 1.5rem;
+  }
+  .social-platform-bar {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.7rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .social-grid {
+    display: grid; grid-template-columns: 300px 1fr; align-items: start;
+  }
+  .social-mockup {
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .social-copy {
+    padding: 1.1rem; display: flex; flex-direction: column; gap: 0.85rem;
+  }
+  .copy-block {
+    background: rgba(0,0,0,0.25); border-left: 2px solid rgba(196,145,42,0.4);
+    padding: 0.75rem 0.9rem; max-height: 220px; overflow-y: auto;
+  }
+  .social-filter-btn {
+    font-family: var(--sans); font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.4rem 0.9rem; cursor: pointer; background: transparent; color: rgba(242,239,233,0.6);
+  }
+  .social-filter-btn.active {
+    background: var(--gold); color: var(--card); border-color: var(--gold);
+  }
+  .poll-option {
+    font-size: 0.72rem; color: rgba(242,239,233,0.75); border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.35rem 0.7rem; margin-bottom: 0.3rem; line-height: 1.4;
+  }
+
+  @media (max-width: 700px) {
+    .social-grid { grid-template-columns: 1fr !important; }
+    .social-mockup { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  }
   @media (max-width: 640px) {
     .grid-2 { grid-template-columns: 1fr !important; }
   }
@@ -157,6 +418,78 @@
   </div>
 </div>
 
+<!-- Edit modal -->
+<div id="edit-modal" onclick="if(event.target===this)closeEditModal()">
+  <div class="edit-modal-inner">
+    <div class="edit-modal-header">
+      <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin:0;">Edit Post</p>
+      <button onclick="closeEditModal()" style="background:none;border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
+    </div>
+    <div class="edit-modal-body">
+      <div class="edit-field">
+        <label>Title</label>
+        <input type="text" id="ef-title" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="edit-field">
+          <label>Platform</label>
+          <select id="ef-platform">
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Facebook">Facebook</option>
+          </select>
+        </div>
+        <div class="edit-field">
+          <label>Content Pillar</label>
+          <select id="ef-pillar">
+            <option value="">— None —</option>
+            <option value="Seller">Seller</option>
+            <option value="Authority">Authority</option>
+            <option value="Suburb">Suburb</option>
+            <option value="Social Proof">Social Proof</option>
+            <option value="Buyer">Buyer</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="edit-field">
+          <label>Publish Date</label>
+          <input type="date" id="ef-date" />
+        </div>
+        <div class="edit-field">
+          <label>Scheduled Time</label>
+          <input type="time" id="ef-time" />
+        </div>
+      </div>
+      <div class="edit-field">
+        <label>Caption</label>
+        <textarea id="ef-caption" rows="8"></textarea>
+      </div>
+      <div class="edit-field">
+        <label>Hashtags</label>
+        <input type="text" id="ef-hashtags" />
+      </div>
+      <div class="edit-field">
+        <label>Notes</label>
+        <textarea id="ef-notes" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="edit-modal-footer">
+      <button class="btn-save-edit" onclick="savePostEdit(false)">Save</button>
+      <button class="btn-save-approve" onclick="savePostEdit(true)">Save + Approve →</button>
+      <button class="btn-cancel-edit" onclick="closeEditModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Post modal -->
+<div id="post-modal" style="display:none;position:fixed;inset:0;z-index:8000;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);overflow-y:auto;padding:2rem 1rem;" onclick="if(event.target===this)closePostModal()">
+  <div style="max-width:860px;margin:0 auto;background:var(--card);border:1px solid rgba(196,145,42,0.25);position:relative;">
+    <button onclick="closePostModal()" style="position:absolute;top:0.75rem;right:0.9rem;background:none;border:none;color:var(--text-dim);font-size:1.3rem;cursor:pointer;line-height:1;z-index:1;">✕</button>
+    <div id="post-modal-body"></div>
+  </div>
+</div>
+
 <!-- Dashboard -->
 <div id="dash">
 <div class="wrap">
@@ -172,6 +505,9 @@
       <p style="font-size:0.7rem;margin:0.2rem 0 0;"><a href="javascript:location.reload()">Refresh ↺</a></p>
     </div>
   </div>
+
+  <!-- Health Alert Banner -->
+  <div id="health-banner" style="display:none;margin-bottom:1.5rem;"></div>
 
   <!-- Daily Update -->
   <div style="background:linear-gradient(135deg,rgba(196,145,42,0.12) 0%,rgba(196,145,42,0.04) 100%);border:1px solid rgba(196,145,42,0.35);padding:1.75rem;margin-bottom:2rem;">
@@ -231,6 +567,72 @@
     </div>
   </div>
 
+  <!-- Posting Today -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem;">
+      <div class="card-title" style="margin-bottom:0;">Posting Today</div>
+      <span id="today-date-label" style="font-size:0.7rem;color:var(--text-dimmer);"></span>
+    </div>
+    <div id="posting-today-list"></div>
+  </div>
+
+  <!-- Content Calendar -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;margin-bottom:1.5rem;">
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div class="card-title" style="margin-bottom:0;">Content Calendar</div>
+        <div style="display:flex;align-items:center;gap:0.25rem;">
+          <button onclick="calPrevMonth()" style="background:none;border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);width:26px;height:26px;cursor:pointer;font-size:0.85rem;line-height:1;display:flex;align-items:center;justify-content:center;">‹</button>
+          <span id="cal-month-label" style="font-size:0.78rem;font-weight:600;color:var(--text);min-width:110px;text-align:center;"></span>
+          <button onclick="calNextMonth()" style="background:none;border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);width:26px;height:26px;cursor:pointer;font-size:0.85rem;line-height:1;display:flex;align-items:center;justify-content:center;">›</button>
+          <button onclick="calGoToday()" style="background:none;border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.2rem 0.55rem;cursor:pointer;margin-left:0.25rem;">Today</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;font-size:0.65rem;color:var(--text-dimmer);">
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:1px;background:#0a66c2;margin-right:4px;vertical-align:middle;"></span>LinkedIn</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:1px;background:#e1306c;margin-right:4px;vertical-align:middle;"></span>Instagram</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:1px;background:#1877f2;margin-right:4px;vertical-align:middle;"></span>Facebook</span>
+      </div>
+    </div>
+    <div id="cal-weeks"></div>
+  </div>
+
+  <!-- Velocity + Cost row -->
+  <div class="grid-2" style="margin-bottom:1.5rem;">
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-title">Content Velocity</div>
+      <p style="font-size:0.7rem;color:var(--text-dimmer);margin:-0.75rem 0 1rem;">Tasks completed per week</p>
+      <div id="velocity-chart" style="display:flex;align-items:flex-end;gap:4px;height:80px;"></div>
+      <div id="velocity-labels" style="display:flex;gap:4px;margin-top:0.35rem;"></div>
+    </div>
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-title">Monthly Spend</div>
+      <p style="font-size:0.7rem;color:var(--text-dimmer);margin:-0.75rem 0 1rem;">Cumulative token cost USD</p>
+      <div id="cost-chart" style="display:flex;align-items:flex-end;gap:4px;height:80px;"></div>
+      <div id="cost-labels" style="display:flex;gap:4px;margin-top:0.35rem;"></div>
+    </div>
+  </div>
+
+  <!-- Suburb Coverage Matrix -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem;">
+      <div class="card-title" style="margin-bottom:0;">Suburb Coverage</div>
+      <div style="display:flex;gap:1.25rem;font-size:0.65rem;color:var(--text-dimmer);">
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px;vertical-align:middle;"></span>Done</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f97316;margin-right:4px;vertical-align:middle;"></span>Partial</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.12);margin-right:4px;vertical-align:middle;"></span>Missing</span>
+        <span style="color:var(--gold);font-weight:700;" id="coverage-score"></span>
+      </div>
+    </div>
+    <div style="display:flex;gap:0.35rem;flex-wrap:wrap;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:0.75rem;">
+      <span style="min-width:140px;"></span>
+      <span style="width:52px;text-align:center;">Page</span>
+      <span style="width:52px;text-align:center;">Article</span>
+      <span style="width:52px;text-align:center;">Social</span>
+    </div>
+    <div id="coverage-matrix"></div>
+  </div>
+
   <!-- Weekly Content Review -->
   <div class="card" style="border-color:rgba(196,145,42,0.3);margin-bottom:2rem;">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);">
@@ -255,6 +657,26 @@
         <div id="recent-done"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
       </div>
     </div>
+  </div>
+
+  <!-- Ready for Review — primary action section -->
+  <div class="card" style="margin-bottom:1.5rem;border-color:rgba(168,85,247,0.3);">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.35rem;">
+      <div class="card-title" style="margin-bottom:0;color:#a855f7;">Ready for Review</div>
+      <span id="rfr-count" class="status-badge status-review">0 items</span>
+    </div>
+    <p style="font-size:0.72rem;color:var(--text-dimmer);margin:0 0 1.25rem;">Approve or reject each post. Edit before approving if needed.</p>
+    <div id="rfr-list"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
+  </div>
+
+  <!-- Ideas Pipeline -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.35rem;">
+      <div class="card-title" style="margin-bottom:0;">Ideas Pipeline</div>
+      <span id="ideas-count" class="status-badge status-idea">0 ideas</span>
+    </div>
+    <p style="font-size:0.72rem;color:var(--text-dimmer);margin:0 0 1.25rem;">AI-generated concepts not yet turned into full posts.</p>
+    <div id="ideas-list"><p style="font-size:0.8rem;color:var(--text-dim);">Loading...</p></div>
   </div>
 
   <!-- Agent Intelligence -->
@@ -310,6 +732,833 @@ const API     = '';  // same-origin: served from 127.0.0.1:3100
 const COMPANY = 'e01db3e8-fb70-4c7a-b7a7-495c1df05882';
 const SEO_AGENT = '8868cd83-6be1-4b6d-9c85-26eebb8d92b7';
 const SITE    = 'https://danielgierach.com';
+
+// ── Content status & edit engine ─────────────────────────────────────────
+// Status and edits live in localStorage so no backend write is needed.
+// Keys: post_status_{filename}, post_edit_{filename}
+
+const PILLAR_CSS = {
+  'Seller':'pillar-seller', 'Authority':'pillar-authority', 'Suburb':'pillar-suburb',
+  'Social Proof':'pillar-social-proof', 'Buyer':'pillar-buyer'
+};
+const STATUS_LABEL = {
+  idea:'Idea', ready_for_review:'Ready for Review', scheduled:'Scheduled',
+  posted:'Posted', rejected:'Rejected'
+};
+const STATUS_CSS = {
+  idea:'status-idea', ready_for_review:'status-review', scheduled:'status-scheduled',
+  posted:'status-posted', rejected:'status-rejected'
+};
+const PLAT_COL = { linkedin:'#0a66c2', instagram:'#e1306c', facebook:'#1877f2', other:'#c4912a' };
+
+function getPostStatus(d) {
+  return localStorage.getItem('post_status_' + d.filename) || d.status || 'ready_for_review';
+}
+function setPostStatus(filename, status) {
+  localStorage.setItem('post_status_' + filename, status);
+}
+function getPostEdits(filename) {
+  try { return JSON.parse(localStorage.getItem('post_edit_' + filename)) || {}; } catch { return {}; }
+}
+function applyEdits(d) {
+  const e = getPostEdits(d.filename);
+  return Object.keys(e).length ? { ...d, ...e } : d;
+}
+
+// Effective post data = file data + any saved edits
+function effectivePost(d) { return applyEdits(d); }
+
+function approvePost(filename) {
+  setPostStatus(filename, 'scheduled');
+  refreshWorkflow();
+}
+function rejectPost(filename) {
+  setPostStatus(filename, 'rejected');
+  refreshWorkflow();
+}
+window.approvePost = approvePost;
+window.rejectPost  = rejectPost;
+
+function refreshWorkflow() {
+  renderPostingToday();
+  renderReadyForReview();
+  renderIdeasPipeline();
+  renderContentCalendar();
+}
+
+// ── Posting Today ─────────────────────────────────────────────────────────
+function renderPostingToday() {
+  const el = document.getElementById('posting-today-list');
+  const lblEl = document.getElementById('today-date-label');
+
+  const todayBne = new Date(new Date().toLocaleString('en-US', { timeZone:'Australia/Brisbane' }));
+  const todayKey = todayBne.toISOString().slice(0,10);
+  if (lblEl) lblEl.textContent = todayBne.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', timeZone:'Australia/Brisbane' });
+
+  const todays = socialDrafts
+    .map(effectivePost)
+    .filter(d => {
+      const s = getPostStatus(d);
+      return (s === 'scheduled' || s === 'posted') && d.publishDate === todayKey;
+    })
+    .sort((a,b) => (a.scheduledTime||'').localeCompare(b.scheduledTime||''));
+
+  if (!todays.length) {
+    el.innerHTML = '<p style="font-size:0.78rem;color:var(--text-dimmer);padding:0.5rem 0;font-style:italic;">Nothing scheduled for today.</p>';
+    return;
+  }
+  el.innerHTML = todays.map(d => {
+    const status = getPostStatus(d);
+    const platCol = PLAT_COL[d.platformNorm] || PLAT_COL.other;
+    const platLbl = d.platformNorm === 'linkedin' ? 'LI' : d.platformNorm === 'instagram' ? 'IG' : 'FB';
+    const idx = socialDrafts.findIndex(x => x.filename === d.filename);
+    return `<div class="today-item" onclick="openPostModal(${idx})" style="cursor:pointer;">
+      <span class="today-time">${d.scheduledTime || 'All day'}</span>
+      <span class="today-plat" style="color:${platCol};">${platLbl}</span>
+      <span class="today-title">${esc(d.title)}</span>
+      <span class="status-badge ${STATUS_CSS[status]}">${STATUS_LABEL[status]}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Ready for Review ──────────────────────────────────────────────────────
+function renderReadyForReview() {
+  const el      = document.getElementById('rfr-list');
+  const countEl = document.getElementById('rfr-count');
+
+  const items = socialDrafts.map(effectivePost).filter(d => getPostStatus(d) === 'ready_for_review');
+  if (countEl) countEl.textContent = `${items.length} item${items.length !== 1 ? 's' : ''}`;
+
+  if (!items.length) {
+    el.innerHTML = '<p style="font-size:0.78rem;color:var(--text-dimmer);padding:0.5rem 0;font-style:italic;">No content waiting for review.</p>';
+    return;
+  }
+
+  el.innerHTML = items.map(d => {
+    const platCol  = PLAT_COL[d.platformNorm] || PLAT_COL.other;
+    const platLbl  = d.platform || d.platformNorm;
+    const pillarCss = PILLAR_CSS[d.contentPillar] || '';
+    const idx = socialDrafts.findIndex(x => x.filename === d.filename);
+    const preview = (d.body || '').replace(/\n/g,' ').slice(0, 200);
+    const dateStr = d.publishDate ? new Date(d.publishDate + 'T12:00:00').toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short', year:'numeric' }) : '';
+    const scoreHtml = d.score ? `<span style="font-size:0.68rem;color:var(--text-dim);">Score ${esc(d.score)}</span>` : '';
+
+    return `<div class="rfr-card">
+      <div class="rfr-meta">
+        <span style="font-size:0.68rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:${platCol};">${esc(platLbl)}</span>
+        ${d.format ? `<span style="font-size:0.62rem;color:var(--text-dimmer);background:rgba(255,255,255,0.06);padding:0.12rem 0.4rem;">${esc(d.format)}</span>` : ''}
+        ${d.contentPillar ? `<span class="pillar ${pillarCss}">${esc(d.contentPillar)}</span>` : ''}
+        ${scoreHtml}
+      </div>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--text);margin:0;line-height:1.4;" onclick="openPostModal(${idx})" style="cursor:pointer;">${esc(d.title)}</p>
+      <p class="rfr-caption">${esc(preview)}</p>
+      <div class="rfr-footer">
+        ${dateStr ? `<span style="font-size:0.68rem;color:var(--text-dimmer);">📅 ${dateStr}</span>` : '<span></span>'}
+        <div class="rfr-actions">
+          <button class="btn-approve-post" onclick="approvePost('${esc(d.filename)}')">Approve ✓</button>
+          <button class="btn-reject-post"  onclick="rejectPost('${esc(d.filename)}')">Reject ✗</button>
+          <button class="btn-edit-post"    onclick="openEditModal(${idx})">Edit ✎</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Ideas Pipeline ────────────────────────────────────────────────────────
+function renderIdeasPipeline() {
+  const el      = document.getElementById('ideas-list');
+  const countEl = document.getElementById('ideas-count');
+
+  const items = socialDrafts.map(effectivePost).filter(d => getPostStatus(d) === 'idea');
+  if (countEl) countEl.textContent = `${items.length} idea${items.length !== 1 ? 's' : ''}`;
+
+  if (!items.length) {
+    el.innerHTML = '<p style="font-size:0.78rem;color:var(--text-dimmer);padding:0.5rem 0;font-style:italic;">No ideas in the pipeline yet.</p>';
+    return;
+  }
+
+  el.innerHTML = items.map(d => {
+    const platCol  = PLAT_COL[d.platformNorm] || PLAT_COL.other;
+    const pillarCss = PILLAR_CSS[d.contentPillar] || '';
+    const idx = socialDrafts.findIndex(x => x.filename === d.filename);
+    const preview = (d.body || '').replace(/\n/g,' ').slice(0, 140);
+
+    return `<div class="idea-card" onclick="openPostModal(${idx})" style="cursor:pointer;">
+      <div class="idea-meta">
+        <span class="status-badge status-idea">Idea</span>
+        ${d.platformNorm ? `<span style="font-size:0.6rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:${platCol};">${esc(d.platform||d.platformNorm)}</span>` : ''}
+        ${d.contentPillar ? `<span class="pillar ${pillarCss}">${esc(d.contentPillar)}</span>` : ''}
+      </div>
+      <p style="font-size:0.82rem;font-weight:600;color:var(--text);margin:0 0 0.35rem;line-height:1.4;">${esc(d.title)}</p>
+      ${preview ? `<p class="idea-body">${esc(preview)}</p>` : ''}
+    </div>`;
+  }).join('');
+}
+
+// ── Edit modal ────────────────────────────────────────────────────────────
+let editingFilename = null;
+
+function openEditModal(idx) {
+  const raw = socialDrafts[idx];
+  if (!raw) return;
+  const d = effectivePost(raw);
+  editingFilename = d.filename;
+
+  document.getElementById('ef-title').value    = d.title    || '';
+  document.getElementById('ef-platform').value = d.platform || 'LinkedIn';
+  document.getElementById('ef-pillar').value   = d.contentPillar || '';
+  document.getElementById('ef-date').value     = d.publishDate   || '';
+  document.getElementById('ef-time').value     = d.scheduledTime || '';
+  document.getElementById('ef-caption').value  = d.body          || '';
+  document.getElementById('ef-hashtags').value = d.hashtags      || '';
+  document.getElementById('ef-notes').value    = d.notes         || '';
+
+  document.getElementById('edit-modal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEditModal() {
+  document.getElementById('edit-modal').style.display = 'none';
+  document.body.style.overflow = '';
+  editingFilename = null;
+}
+
+function savePostEdit(andApprove) {
+  if (!editingFilename) return;
+
+  const edits = {
+    title:         document.getElementById('ef-title').value.trim(),
+    platform:      document.getElementById('ef-platform').value,
+    contentPillar: document.getElementById('ef-pillar').value,
+    publishDate:   document.getElementById('ef-date').value,
+    scheduledTime: document.getElementById('ef-time').value,
+    body:          document.getElementById('ef-caption').value,
+    hashtags:      document.getElementById('ef-hashtags').value.trim(),
+    notes:         document.getElementById('ef-notes').value.trim(),
+    // Re-derive platformNorm from platform selection
+    platformNorm: document.getElementById('ef-platform').value.toLowerCase() === 'instagram' ? 'instagram'
+                : document.getElementById('ef-platform').value.toLowerCase() === 'facebook'  ? 'facebook'
+                : document.getElementById('ef-platform').value.toLowerCase() === 'linkedin'  ? 'linkedin' : 'other',
+  };
+
+  localStorage.setItem('post_edit_' + editingFilename, JSON.stringify(edits));
+  if (andApprove) setPostStatus(editingFilename, 'scheduled');
+
+  closeEditModal();
+  refreshWorkflow();
+}
+window.openEditModal  = openEditModal;
+window.closeEditModal = closeEditModal;
+window.savePostEdit   = savePostEdit;
+
+// ── Social content ───────────────────────────────────────────────────────
+let socialDrafts = [];
+let activeSocialFilter = 'all';
+
+async function loadSocialContent() {
+  try {
+    const res = await fetch('/social-data.json');
+    if (!res.ok) throw new Error('not found');
+    socialDrafts = await res.json();
+  } catch {
+    socialDrafts = [];
+  }
+  refreshWorkflow();
+}
+
+function socialFilterPlatform(p) {
+  activeSocialFilter = p;
+  document.querySelectorAll('.social-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.p === p);
+  });
+  document.querySelectorAll('.social-card').forEach(el => {
+    el.style.display = (p === 'all' || el.dataset.platform === p) ? 'block' : 'none';
+  });
+}
+window.socialFilterPlatform = socialFilterPlatform;
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function socialMockup(d) {
+  const av = d.avatar;
+  const body120 = esc(d.body.slice(0,120)) + (d.body.length > 120 ? '…' : '');
+  const body220 = esc(d.body.slice(0,220)) + (d.body.length > 220 ? '…' : '');
+  const body260 = esc(d.body.slice(0,260)) + (d.body.length > 260 ? '… more' : '');
+  const tags80  = esc((d.hashtags||'').slice(0,80));
+
+  if (d.platformNorm === 'instagram') return `
+    <div class="social-mockup" style="background:#fafafa;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.75rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <img src="${av}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888) border-box;" />
+          <div>
+            <p style="font-family:-apple-system,sans-serif;font-size:0.72rem;font-weight:600;color:#262626;margin:0;">danielgierach</p>
+            <p style="font-family:-apple-system,sans-serif;font-size:0.6rem;color:#8e8e8e;margin:0.1rem 0 0;">Ray White Bulimba</p>
+          </div>
+        </div>
+        <span style="font-size:1.1rem;color:#262626;">···</span>
+      </div>
+      <div style="width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,#e8e0d5,#d4c5b0);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:-apple-system,sans-serif;font-size:0.7rem;color:#8e8e8e;">Image / Reel</span>
+      </div>
+      <div style="padding:0.6rem 0.75rem 0.5rem;">
+        <div style="display:flex;gap:0.9rem;margin-bottom:0.35rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.8" style="margin-left:auto;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <p style="font-family:-apple-system,sans-serif;font-size:0.7rem;color:#262626;margin:0 0 0.2rem;line-height:1.5;"><strong>danielgierach</strong> ${body120}</p>
+        ${tags80 ? `<p style="font-family:-apple-system,sans-serif;font-size:0.68rem;color:#00376b;margin:0;line-height:1.5;">${tags80}</p>` : ''}
+      </div>
+    </div>`;
+
+  if (d.platformNorm === 'facebook') return `
+    <div class="social-mockup" style="background:#fff;">
+      <div style="display:flex;align-items:center;gap:0.6rem;padding:0.75rem;">
+        <img src="${av}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+        <div>
+          <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.78rem;font-weight:700;color:#050505;margin:0;">Daniel Gierach</p>
+          <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.62rem;color:#65676b;margin:0;">${esc(d.date)||'Just now'} · 🌐</p>
+        </div>
+        <span style="margin-left:auto;font-size:1rem;color:#65676b;">···</span>
+      </div>
+      <div style="padding:0 0.75rem 0.5rem;">
+        <p style="font-family:Helvetica,Arial,sans-serif;font-size:0.78rem;color:#050505;margin:0;line-height:1.6;">${body220}</p>
+      </div>
+      <div style="width:100%;height:130px;background:linear-gradient(135deg,#e4e6eb,#cdd1db);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:Helvetica,Arial,sans-serif;font-size:0.7rem;color:#65676b;">Image</span>
+      </div>
+      <div style="padding:0.3rem 0.75rem 0.6rem;">
+        <div style="display:flex;border-top:1px solid #e4e6eb;padding-top:0.3rem;">
+          ${['👍 Like','💬 Comment','↗ Share'].map(a=>`<button style="flex:1;background:none;border:none;font-family:Helvetica,Arial,sans-serif;font-size:0.7rem;font-weight:600;color:#65676b;padding:0.3rem 0;cursor:default;">${a}</button>`).join('')}
+        </div>
+      </div>
+    </div>`;
+
+  if (d.platformNorm === 'linkedin') {
+    const pollHtml = d.pollOptions && d.pollOptions.length
+      ? `<div style="margin:0.5rem 0 0;">${d.pollOptions.map(o=>`<div class="poll-option">${esc(o)}</div>`).join('')}</div>`
+      : '';
+    return `
+    <div class="social-mockup" style="background:#fff;">
+      <div style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.75rem 0.75rem 0.4rem;">
+        <img src="${av}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;" />
+        <div style="flex:1;">
+          <p style="font-family:-apple-system,'Segoe UI',sans-serif;font-size:0.78rem;font-weight:600;color:#000;margin:0;">Daniel Gierach</p>
+          <p style="font-family:-apple-system,'Segoe UI',sans-serif;font-size:0.64rem;color:#666;margin:0.1rem 0 0;">Property Agent · Ray White Bulimba</p>
+          <p style="font-family:-apple-system,'Segoe UI',sans-serif;font-size:0.6rem;color:#999;margin:0.2rem 0 0;">${esc(d.date)||'Today'} · 🌐</p>
+        </div>
+        <button style="background:#e8f3ff;border:1px solid #0a66c2;color:#0a66c2;font-size:0.7rem;font-weight:600;padding:0.2rem 0.7rem;cursor:default;border-radius:2px;">+ Follow</button>
+      </div>
+      <div style="padding:0 0.75rem 0.5rem;">
+        <p style="font-family:-apple-system,'Segoe UI',sans-serif;font-size:0.76rem;color:#000;margin:0;line-height:1.65;">${body260}</p>
+        ${tags80 ? `<p style="font-family:-apple-system,'Segoe UI',sans-serif;font-size:0.7rem;color:#0a66c2;margin:0.4rem 0 0;">${tags80}</p>` : ''}
+        ${pollHtml}
+      </div>
+      <div style="width:100%;height:100px;background:linear-gradient(135deg,#eef3f8,#dce6f0);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:0.7rem;color:#666;">Image</span>
+      </div>
+      <div style="padding:0.2rem 0.75rem 0.6rem;">
+        <div style="display:flex;border-top:1px solid #e0dfdd;padding-top:0.3rem;">
+          ${['👍 Like','💬 Comment','↗ Repost','✉ Send'].map(a=>`<button style="flex:1;background:none;border:none;font-family:-apple-system,sans-serif;font-size:0.62rem;font-weight:600;color:#666;padding:0.3rem 0;cursor:default;">${a}</button>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  return `<div class="social-mockup" style="display:flex;align-items:center;justify-content:center;min-height:180px;background:rgba(255,255,255,0.02);">
+    <p style="font-size:0.72rem;color:var(--text-dimmer);">${esc(d.platform)}</p></div>`;
+}
+
+function renderSocialContent() {
+  const tabsEl = document.getElementById('social-filter-tabs');
+  const cardsEl = document.getElementById('social-cards');
+
+  if (!socialDrafts.length) {
+    tabsEl.innerHTML = '';
+    cardsEl.innerHTML = '<p style="font-size:0.8rem;color:var(--text-dimmer);font-style:italic;">No social posts yet. Run <code>node setup-local-dashboard.cjs</code> after the agent pushes new content.</p>';
+    return;
+  }
+
+  // Build platform counts for filter tabs
+  const counts = { all: socialDrafts.length };
+  socialDrafts.forEach(d => { counts[d.platformNorm] = (counts[d.platformNorm] || 0) + 1; });
+  const platforms = Object.keys(counts).filter(p => p !== 'all');
+
+  tabsEl.innerHTML = [
+    `<button class="social-filter-btn active" data-p="all" onclick="socialFilterPlatform('all')">All (${counts.all})</button>`,
+    ...platforms.map(p => `<button class="social-filter-btn" data-p="${p}" onclick="socialFilterPlatform('${p}')">${p.charAt(0).toUpperCase()+p.slice(1)} (${counts[p]})</button>`)
+  ].join('');
+
+  cardsEl.innerHTML = socialDrafts.map(d => {
+    const platColour = d.platformNorm === 'instagram' ? '#e1306c'
+                     : d.platformNorm === 'facebook'  ? '#1877f2'
+                     : d.platformNorm === 'linkedin'  ? '#0a66c2' : '#c4912a';
+    const platBg    = d.platformNorm === 'instagram' ? 'linear-gradient(90deg,rgba(193,53,132,0.15),rgba(225,119,46,0.1))'
+                     : d.platformNorm === 'facebook'  ? 'rgba(24,119,242,0.08)'
+                     : d.platformNorm === 'linkedin'  ? 'rgba(10,102,194,0.1)' : 'rgba(255,255,255,0.04)';
+    const safeId    = d.filename.replace(/[^a-z0-9]/gi, '_');
+    const pollSection = d.pollOptions && d.pollOptions.length
+      ? `<div><p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dimmer);margin:0 0 0.4rem;">Poll Options</p>${d.pollOptions.map(o=>`<div class="poll-option">${esc(o)}</div>`).join('')}</div>`
+      : '';
+    return `
+      <div class="social-card" data-platform="${d.platformNorm}" id="sc-${safeId}">
+        <div class="social-platform-bar" style="background:${platBg};">
+          <span style="font-size:0.7rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:${platColour};">${esc(d.platform)}</span>
+          ${d.format ? `<span style="font-size:0.62rem;color:var(--text-dimmer);background:rgba(255,255,255,0.06);padding:0.1rem 0.4rem;">${esc(d.format)}</span>` : ''}
+          ${d.goal   ? `<span style="font-size:0.62rem;color:var(--text-dimmer);">Goal: ${esc(d.goal)}</span>` : ''}
+          <span style="margin-left:auto;font-size:0.65rem;color:var(--text-dimmer);">${esc(d.publishDate||d.date)}</span>
+        </div>
+        <div class="social-grid">
+          ${socialMockup(d)}
+          <div class="social-copy">
+            <p style="font-size:0.88rem;font-weight:600;color:var(--text);margin:0;">${esc(d.title)}</p>
+            <div>
+              <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dimmer);margin:0 0 0.4rem;">Full Caption</p>
+              <div class="copy-block">
+                <p style="font-size:0.8rem;color:rgba(242,239,233,0.9);margin:0;line-height:1.8;white-space:pre-wrap;">${esc(d.body)}</p>
+              </div>
+            </div>
+            ${d.hashtags ? `<div><p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dimmer);margin:0 0 0.3rem;">Hashtags</p><p style="font-size:0.78rem;color:var(--blue);margin:0;line-height:1.6;">${esc(d.hashtags)}</p></div>` : ''}
+            ${pollSection}
+            ${d.notes ? `<div style="background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);padding:0.75rem;"><p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:0 0 0.3rem;">Notes for Daniel</p><p style="font-size:0.78rem;color:rgba(242,239,233,0.7);margin:0;line-height:1.6;">${esc(d.notes)}</p></div>` : ''}
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);">
+              <code style="font-size:0.6rem;color:var(--text-dimmer);">${esc(d.filename)}</code>
+              <button class="btn-revise" onclick="toggleRevisionForm('social-${safeId}')">Revise ✎</button>
+            </div>
+            <div id="revform-social-${safeId}" class="revision-form" style="display:none;">
+              <textarea id="revtext-social-${safeId}" placeholder="Describe what needs changing — the agent will produce a revised version."></textarea>
+              <button id="revsend-social-${safeId}" class="btn-send-revision" onclick="submitSocialRevision('${esc(d.filename)}', 'social-${safeId}')">Send revision request</button>
+              <button class="btn-cancel-revision" onclick="toggleRevisionForm('social-${safeId}')">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Re-apply current filter
+  if (activeSocialFilter !== 'all') socialFilterPlatform(activeSocialFilter);
+}
+
+async function submitSocialRevision(filename, formSuffix) {
+  const ta  = document.getElementById(`revtext-${formSuffix}`);
+  const btn = document.getElementById(`revsend-${formSuffix}`);
+  const feedback = ta ? ta.value.trim() : '';
+  if (!feedback) { ta && ta.focus(); return; }
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  try {
+    // Find the matching issue by title/filename so we can post the comment
+    const match = allIssues.find(i =>
+      i.title && (i.title.toLowerCase().includes(filename.replace('.md','').toLowerCase()) ||
+                  (i.description && i.description.includes(filename)))
+    );
+
+    if (match) {
+      await fetch(`${API}/api/issues/${match.id}/comments`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ body: `Revision request from Daniel:\n\n${feedback}` })
+      });
+    }
+
+    // Create a new revision task
+    await fetch(`${API}/api/companies/${COMPANY}/issues`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: `Revise: ${filename.replace('.md','')}`,
+        description: `Daniel requested the following changes to ${filename}:\n\n${feedback}\n\nRevise the post and overwrite the file at content/social/${filename}. Commit and push to dang281 main.`,
+        status: 'todo',
+        priority: 'high',
+        assigneeAgentId: '41425987-fc69-4182-ab3b-e793be89cc8d',
+      })
+    });
+
+    if (btn) btn.textContent = 'Sent!';
+    setTimeout(() => toggleRevisionForm(formSuffix), 800);
+  } catch {
+    if (btn) { btn.textContent = 'Error — try again'; btn.disabled = false; }
+  }
+}
+window.submitSocialRevision = submitSocialRevision;
+
+// ── Content calendar (full month) ────────────────────────────────────────
+const todayBne = new Date(new Date().toLocaleString('en-US', { timeZone: 'Australia/Brisbane' }));
+const todayKey = todayBne.getFullYear() + '-'
+  + String(todayBne.getMonth()+1).padStart(2,'0') + '-'
+  + String(todayBne.getDate()).padStart(2,'0');
+
+let calViewYear  = todayBne.getFullYear();
+let calViewMonth = todayBne.getMonth(); // 0-indexed
+
+function calPrevMonth() { calViewMonth--; if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; } renderContentCalendar(); }
+function calNextMonth() { calViewMonth++; if (calViewMonth > 11) { calViewMonth = 0;  calViewYear++; } renderContentCalendar(); }
+function calGoToday()   { calViewYear = todayBne.getFullYear(); calViewMonth = todayBne.getMonth(); renderContentCalendar(); }
+window.calPrevMonth = calPrevMonth;
+window.calNextMonth = calNextMonth;
+window.calGoToday   = calGoToday;
+
+function renderContentCalendar() {
+  const el      = document.getElementById('cal-weeks');
+  const lblEl   = document.getElementById('cal-month-label');
+  const MONTHS  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DAY_HDR = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+  if (lblEl) lblEl.textContent = `${MONTHS[calViewMonth]} ${calViewYear}`;
+
+  // Build post-by-date lookup
+  const postsByDate = {};
+  socialDrafts.forEach(d => {
+    const key = effectivePost(d).publishDate || (d.filename.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '');
+    if (!key) return;
+    if (!postsByDate[key]) postsByDate[key] = [];
+    postsByDate[key].push(d);
+  });
+
+  const platColour = { linkedin:'#0a66c2', instagram:'#e1306c', facebook:'#1877f2', other:'#c4912a' };
+  const platLabel  = { linkedin:'LI', instagram:'IG', facebook:'FB', other:'??' };
+
+  // First day of the month, then walk back to the Monday of that week
+  const firstOfMonth = new Date(calViewYear, calViewMonth, 1);
+  const dow = firstOfMonth.getDay(); // 0=Sun
+  const startOffset = dow === 0 ? 6 : dow - 1;
+  const gridStart = new Date(firstOfMonth);
+  gridStart.setDate(gridStart.getDate() - startOffset);
+
+  // How many rows do we need? Always enough to cover the full month.
+  const lastOfMonth = new Date(calViewYear, calViewMonth + 1, 0);
+  const dowEnd = lastOfMonth.getDay();
+  const endOffset = dowEnd === 0 ? 0 : 7 - dowEnd;
+  const gridEnd = new Date(lastOfMonth);
+  gridEnd.setDate(gridEnd.getDate() + endOffset);
+  const totalDays = Math.round((gridEnd - gridStart) / 86400000) + 1;
+  const numWeeks  = totalDays / 7;
+
+  // Day-of-header row
+  let html = `<div class="cal-grid" style="margin-bottom:3px;">${DAY_HDR.map(d => `<div class="cal-day-header">${d}</div>`).join('')}</div>`;
+
+  for (let w = 0; w < numWeeks; w++) {
+    const cells = [];
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(gridStart);
+      date.setDate(gridStart.getDate() + w * 7 + d);
+
+      const y   = date.getFullYear();
+      const m   = date.getMonth();
+      const day = date.getDate();
+      const dateKey   = y + '-' + String(m+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+      const isThisMon = m === calViewMonth;
+      const isToday   = dateKey === todayKey;
+      const isPast    = date < todayBne && !isToday;
+
+      const posts = postsByDate[dateKey] || [];
+      const PILL_MAX = 3;
+      const visible  = posts.slice(0, PILL_MAX);
+      const overflow = posts.length - PILL_MAX;
+
+      const pillsHtml = visible.map(p => {
+        const ep    = effectivePost(p);
+        const st    = getPostStatus(ep);
+        const col   = platColour[ep.platformNorm] || platColour.other;
+        const lbl   = platLabel[ep.platformNorm]  || '??';
+        const short = ep.title.replace(/^[^:]*:\s*/, '').slice(0, 18);
+        const idx   = socialDrafts.indexOf(p);
+        const opacity  = st === 'rejected' ? '0.35' : '1';
+        const outline  = st === 'ready_for_review' ? '1px dashed rgba(168,85,247,0.8)' : 'none';
+        const bg       = st === 'posted' ? 'rgba(59,130,246,0.6)' : col;
+        return `<div class="cal-pill" style="background:${bg};opacity:${opacity};outline:${outline};cursor:pointer;" title="${esc(ep.title)} · ${STATUS_LABEL[st]||st}" onclick="openPostModal(${idx})">${lbl} ${short}</div>`;
+      }).join('');
+
+      const overflowHtml = overflow > 0
+        ? `<div style="font-size:0.58rem;color:var(--text-dimmer);padding:0.1rem 0.3rem;cursor:pointer;" onclick="calShowDay('${dateKey}')">+${overflow} more</div>`
+        : '';
+
+      cells.push(`
+        <div class="cal-cell${isToday ? ' today' : ''}${isPast ? ' past' : ''}${!isThisMon ? ' other-month' : ''}">
+          <div class="cal-date">${day}${day === 1 ? `<span style="font-size:0.55rem;font-weight:400;margin-left:3px;">${MONTHS[m].slice(0,3)}</span>` : ''}</div>
+          ${pillsHtml}${overflowHtml}
+        </div>`);
+    }
+    html += `<div class="cal-grid" style="margin-bottom:3px;">${cells.join('')}</div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+function calShowDay(dateKey) {
+  const posts = socialDrafts.filter(d => {
+    const ep = effectivePost(d);
+    return (ep.publishDate || d.filename.slice(0,10)) === dateKey;
+  });
+  if (!posts.length) return;
+  // Open first post; user can navigate from modal if needed
+  openPostModal(socialDrafts.indexOf(posts[0]));
+}
+
+// ── Post modal ───────────────────────────────────────────────────────────
+function openPostModal(idx) {
+  const raw = socialDrafts[idx];
+  if (!raw) return;
+  const d      = effectivePost(raw);
+  const status = getPostStatus(d);
+  const modal  = document.getElementById('post-modal');
+  const bodyEl = document.getElementById('post-modal-body');
+  const safeId = d.filename.replace(/[^a-z0-9]/gi, '_') + '_modal';
+  const platBg = { linkedin:'rgba(10,102,194,0.1)', instagram:'linear-gradient(90deg,rgba(193,53,132,0.15),rgba(225,119,46,0.1))', facebook:'rgba(24,119,242,0.08)', other:'rgba(255,255,255,0.04)' };
+
+  const pollSection = d.pollOptions && d.pollOptions.length
+    ? `<div><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dimmer);margin:0 0 0.5rem;">Poll Options</p>${d.pollOptions.map(o=>`<div class="poll-option">${esc(o)}</div>`).join('')}</div>`
+    : '';
+
+  // Action bar changes based on current status
+  const actionBar = status === 'ready_for_review'
+    ? `<button class="btn-approve-post" onclick="approvePost('${esc(d.filename)}');closePostModal()">Approve ✓</button>
+       <button class="btn-reject-post"  onclick="rejectPost('${esc(d.filename)}');closePostModal()">Reject ✗</button>
+       <button class="btn-edit-post"    onclick="closePostModal();openEditModal(${idx})">Edit ✎</button>`
+    : status === 'scheduled'
+    ? `<span class="status-badge status-scheduled" style="margin-right:0.5rem;">Scheduled</span>
+       <button class="btn-edit-post" onclick="closePostModal();openEditModal(${idx})">Edit ✎</button>
+       <button class="btn-reject-post" onclick="rejectPost('${esc(d.filename)}');closePostModal()">Unschedule</button>`
+    : status === 'posted'
+    ? `<span class="status-badge status-posted">Posted</span>`
+    : status === 'rejected'
+    ? `<span class="status-badge status-rejected" style="margin-right:0.5rem;">Rejected</span>
+       <button class="btn-approve-post" onclick="approvePost('${esc(d.filename)}');closePostModal()">Re-approve ✓</button>`
+    : `<button class="btn-edit-post" onclick="closePostModal();openEditModal(${idx})">Edit ✎</button>`;
+
+  bodyEl.innerHTML = `
+    <!-- Platform + status bar -->
+    <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;padding:0.85rem 1.25rem;padding-right:2.5rem;border-bottom:1px solid rgba(255,255,255,0.06);background:${platBg[d.platformNorm]||platBg.other};">
+      <span style="font-size:0.7rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:${PLAT_COL[d.platformNorm]||PLAT_COL.other};">${esc(d.platform||d.platformNorm)}</span>
+      ${d.format ? `<span style="font-size:0.62rem;color:var(--text-dimmer);background:rgba(255,255,255,0.07);padding:0.1rem 0.4rem;">${esc(d.format)}</span>` : ''}
+      ${d.contentPillar ? `<span class="pillar ${PILLAR_CSS[d.contentPillar]||''}">${esc(d.contentPillar)}</span>` : ''}
+      <span class="status-badge ${STATUS_CSS[status]||''}" style="margin-left:auto;">${STATUS_LABEL[status]||status}</span>
+    </div>
+
+    <!-- Mockup + copy -->
+    <div class="social-grid">
+      ${socialMockup(d)}
+      <div class="social-copy">
+        <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin:0;">${esc(d.title)}</p>
+        ${d.publishDate ? `<p style="font-size:0.7rem;color:var(--text-dimmer);margin:0.2rem 0 0;">📅 ${esc(d.publishDate)}${d.scheduledTime ? ' · '+esc(d.scheduledTime) : ''}</p>` : ''}
+        <div>
+          <p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dimmer);margin:0 0 0.4rem;">Caption</p>
+          <div class="copy-block">
+            <p style="font-size:0.8rem;color:rgba(242,239,233,0.9);margin:0;line-height:1.85;white-space:pre-wrap;">${esc(d.body)}</p>
+          </div>
+        </div>
+        ${d.hashtags ? `<div><p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dimmer);margin:0 0 0.3rem;">Hashtags</p><p style="font-size:0.78rem;color:var(--blue);margin:0;line-height:1.6;">${esc(d.hashtags)}</p></div>` : ''}
+        ${pollSection}
+        ${d.notes ? `<div style="background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);padding:0.85rem;"><p style="font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:0 0 0.4rem;">Notes for Daniel</p><p style="font-size:0.78rem;color:rgba(242,239,233,0.7);margin:0;line-height:1.65;">${esc(d.notes)}</p></div>` : ''}
+        <!-- Action bar -->
+        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.07);">
+          ${actionBar}
+        </div>
+        <!-- Agent revision (for already-scheduled or done content) -->
+        <div style="padding-top:0.5rem;">
+          <button class="btn-revise" onclick="toggleRevisionForm('modal-${safeId}')">Request agent revision ✎</button>
+          <div id="revform-modal-${safeId}" class="revision-form" style="display:none;margin-top:0.5rem;">
+            <textarea id="revtext-modal-${safeId}" placeholder="Describe what needs changing."></textarea>
+            <button id="revsend-modal-${safeId}" class="btn-send-revision" onclick="submitSocialRevision('${esc(d.filename)}', 'modal-${safeId}')">Send revision request</button>
+            <button class="btn-cancel-revision" onclick="toggleRevisionForm('modal-${safeId}')">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePostModal() {
+  document.getElementById('post-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+window.openPostModal  = openPostModal;
+window.closePostModal = closePostModal;
+
+// Keyboard close
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closePostModal(); closeEditModal(); }
+});
+
+// ── Health alerts ────────────────────────────────────────────────────────
+function renderHealthAlerts() {
+  const banner = document.getElementById('health-banner');
+  const alerts = [];
+  const now = Date.now();
+  const HOURS = ms => Math.round(ms / 36e5);
+
+  // Agents paused with pending work
+  cachedAgents.forEach(a => {
+    if (a.status === 'paused') {
+      const pending = allIssues.filter(i =>
+        i.assigneeAgentId === a.id && ['todo','in_progress'].includes(i.status)
+      );
+      if (pending.length > 0) {
+        alerts.push({ level: 'warn', msg: `${a.name} is paused — ${pending.length} task${pending.length > 1 ? 's' : ''} waiting to run.` });
+      }
+    }
+  });
+
+  // Tasks stuck in_progress > 24 h
+  allIssues.filter(i => i.status === 'in_progress' && i.updatedAt).forEach(i => {
+    const age = now - new Date(i.updatedAt).getTime();
+    if (age > 24 * 36e5) {
+      alerts.push({ level: 'error', msg: `Stuck task (${HOURS(age)}h): "${i.title.slice(0,55)}${i.title.length > 55 ? '…' : ''}"` });
+    }
+  });
+
+  // Tasks in_review > 72 h (awaiting Daniel's approval)
+  allIssues.filter(i => i.status === 'in_review' && i.updatedAt).forEach(i => {
+    const age = now - new Date(i.updatedAt).getTime();
+    if (age > 72 * 36e5) {
+      alerts.push({ level: 'info', msg: `Awaiting review ${HOURS(age)}h: "${i.title.slice(0,55)}${i.title.length > 55 ? '…' : ''}"` });
+    }
+  });
+
+  if (!alerts.length) { banner.style.display = 'none'; return; }
+
+  const colours = { error: ['rgba(239,68,68,0.12)','rgba(239,68,68,0.35)','#ef4444','!'], warn: ['rgba(249,115,22,0.1)','rgba(249,115,22,0.3)','#f97316','!'], info: ['rgba(59,130,246,0.08)','rgba(59,130,246,0.25)','#3b82f6','i'] };
+  banner.style.display = 'block';
+  banner.innerHTML = `
+    <div style="border:1px solid ${colours[alerts[0].level][1]};background:${colours[alerts[0].level][0]};padding:0.6rem 1rem 0.2rem;">
+      <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:${colours[alerts[0].level][2]};margin:0 0 0.5rem;">System Alerts</p>
+      ${alerts.map(a => {
+        const [bg,border,col,icon] = colours[a.level];
+        return `<div class="alert-item" style="background:${bg};border-left:3px solid ${col};">
+          <span style="font-size:0.85rem;font-weight:700;color:${col};flex-shrink:0;">${icon}</span>
+          <span style="color:var(--text);">${a.msg}</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+// ── Content velocity chart ────────────────────────────────────────────────
+function renderVelocityChart() {
+  const chartEl  = document.getElementById('velocity-chart');
+  const labelsEl = document.getElementById('velocity-labels');
+  const now = new Date();
+  const weeks = [];
+  for (let w = 7; w >= 0; w--) {
+    const end   = new Date(now); end.setDate(end.getDate() - w * 7);
+    const start = new Date(end); start.setDate(start.getDate() - 7);
+    const count = allIssues.filter(i => {
+      if (i.status !== 'done' || !i.completedAt) return false;
+      const d = new Date(i.completedAt);
+      return d >= start && d < end;
+    }).length;
+    const label = start.toLocaleDateString('en-AU', { day:'numeric', month:'short', timeZone:'Australia/Brisbane' });
+    weeks.push({ label, count });
+  }
+  const max = Math.max(...weeks.map(w => w.count), 1);
+  chartEl.innerHTML = weeks.map(w => {
+    const pct = Math.max(4, Math.round((w.count / max) * 100));
+    const tip = `${w.count} task${w.count !== 1 ? 's' : ''}`;
+    return `<div class="chart-bar" style="height:${pct}%;background:var(--gold);opacity:${w.count ? 1 : 0.25};" title="${tip}"></div>`;
+  }).join('');
+  labelsEl.innerHTML = weeks.map((w,i) => `<span class="chart-label">${i % 2 === 0 ? w.label : ''}</span>`).join('');
+}
+
+// ── Monthly cost chart ────────────────────────────────────────────────────
+function renderCostChart() {
+  const chartEl  = document.getElementById('cost-chart');
+  const labelsEl = document.getElementById('cost-labels');
+
+  // Bucket heartbeat runs by month across all agents
+  const monthTotals = {};
+  Object.values(tokenData).forEach(agent => {
+    (agent.runs || []).forEach(r => {
+      if (!r.createdAt) return;
+      const key = r.createdAt.slice(0, 7); // YYYY-MM
+      monthTotals[key] = (monthTotals[key] || 0) + (r.costUsd || 0);
+    });
+  });
+
+  const sorted = Object.keys(monthTotals).sort();
+  if (!sorted.length) {
+    // Fall back to per-agent cost as single bar
+    const totalCost = Object.values(tokenData).reduce((s, a) => s + (a.totalCost || 0), 0);
+    if (totalCost > 0) {
+      chartEl.innerHTML = `<div class="chart-bar" style="height:80%;background:var(--blue);" title="${fmtUsd(totalCost)}"></div>`;
+      labelsEl.innerHTML = `<span class="chart-label">All time</span>`;
+    } else {
+      chartEl.innerHTML = '<p style="font-size:0.72rem;color:var(--text-dimmer);font-style:italic;">No cost data yet.</p>';
+    }
+    return;
+  }
+
+  const max = Math.max(...sorted.map(k => monthTotals[k]), 0.001);
+  chartEl.innerHTML = sorted.map(k => {
+    const pct = Math.max(4, Math.round((monthTotals[k] / max) * 100));
+    return `<div class="chart-bar" style="height:${pct}%;background:var(--blue);" title="${fmtUsd(monthTotals[k])}"></div>`;
+  }).join('');
+  labelsEl.innerHTML = sorted.map(k => {
+    const [y,m] = k.split('-');
+    const lbl = new Date(+y, +m-1, 1).toLocaleDateString('en-AU', { month:'short', year:'2-digit' });
+    return `<span class="chart-label">${lbl}</span>`;
+  }).join('');
+}
+
+// ── Suburb coverage matrix ────────────────────────────────────────────────
+const ALL_SUBURBS = [
+  'annerley','ascot','balmoral','belmont','brisbane cbd','bulimba',
+  'camp hill','cannon hill','carina heights','carina','carindale','coorparoo',
+  'dutton park','east brisbane','fortitude valley','greenslopes','hamilton',
+  'hawthorne','hemmant','holland park west','holland park','kangaroo point',
+  'morningside','mount gravatt east','mount gravatt','murarrie','new farm',
+  'norman park','paddington','seven hills','stones corner','tarragindi',
+  'teneriffe','tingalpa','upper mount gravatt','west end','woolloongabba'
+];
+
+function renderCoverageMatrix() {
+  const el = document.getElementById('coverage-matrix');
+  const scoreEl = document.getElementById('coverage-score');
+  const done = allIssues.filter(i => i.status === 'done');
+
+  function has(suburb, patterns) {
+    const s = suburb.toLowerCase();
+    const slug = s.replace(/\s+/g,'-');
+    return done.some(i => {
+      const t = i.title.toLowerCase();
+      return (t.includes(s) || t.includes(slug)) && patterns.some(p => p.test(t));
+    });
+  }
+
+  const PAGE_PAT    = [/suburb|landing page|seo.*page|page.*seo/];
+  const ARTICLE_PAT = [/insight|article|selling.*guide|guide.*selling|selling in/];
+  const SOCIAL_PAT  = [/social|instagram|facebook|linkedin|spotlight/];
+
+  const rows = ALL_SUBURBS.map(suburb => {
+    const hasPage    = has(suburb, PAGE_PAT);
+    const hasArticle = has(suburb, ARTICLE_PAT);
+    const hasSocial  = has(suburb, SOCIAL_PAT);
+    return { suburb, hasPage, hasArticle, hasSocial };
+  });
+
+  const full    = rows.filter(r => r.hasPage && r.hasArticle && r.hasSocial).length;
+  const partial = rows.filter(r => (r.hasPage || r.hasArticle || r.hasSocial) && !(r.hasPage && r.hasArticle && r.hasSocial)).length;
+  scoreEl.textContent = `${full}/${rows.length} full coverage`;
+
+  // Two-column layout
+  const half = Math.ceil(rows.length / 2);
+  const col1 = rows.slice(0, half);
+  const col2 = rows.slice(half);
+
+  function rowHtml(r) {
+    const name = r.suburb.replace(/\b\w/g, c => c.toUpperCase());
+    const dot = v => `<div class="cov-dot"><div class="${v ? 'dot-yes' : 'dot-no'}"></div></div>`;
+    return `<div class="cov-row">
+      <span style="min-width:140px;font-size:0.72rem;color:var(--text);">${name}</span>
+      ${dot(r.hasPage)}${dot(r.hasArticle)}${dot(r.hasSocial)}
+    </div>`;
+  }
+
+  el.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;">
+    <div>${col1.map(rowHtml).join('')}</div>
+    <div>${col2.map(rowHtml).join('')}</div>
+  </div>`;
+}
 
 // ── Colours ──────────────────────────────────────────────────────────────
 const statusColour = {
@@ -414,6 +1663,12 @@ function renderWeeklyQueue() {
           ${!state ? `<button class="btn-approve" onclick="approve('${i.id}')">Approve ✓</button><button class="btn-reject" onclick="reject('${i.id}')">Reject ✗</button>` : ''}
           ${state === 'rejected' ? `<button class="btn-approve" onclick="approve('${i.id}')">Approve anyway ✓</button>` : ''}
           ${viewBtn}
+          <button class="btn-revise" onclick="toggleRevisionForm('${i.id}')">Revise ✎</button>
+        </div>
+        <div id="revform-${i.id}" class="revision-form" style="display:none;">
+          <textarea id="revtext-${i.id}" placeholder="Describe what needs changing — the agent will receive this as feedback and produce a revised version."></textarea>
+          <button id="revsend-${i.id}" class="btn-send-revision" onclick="submitRevision('${i.id}', \`${i.title.replace(/`/g,"'")}\`)">Send revision request</button>
+          <button class="btn-cancel-revision" onclick="toggleRevisionForm('${i.id}')">Cancel</button>
         </div>
       </div>`;
   }).join('');
@@ -433,15 +1688,25 @@ function renderRecentDone() {
   }
   el.innerHTML = recent.map(i => {
     const link = issueLink(i.title);
+    const isSocial = /^social:|instagram|facebook|linkedin/i.test(i.title);
     const dt = new Date(i.completedAt).toLocaleDateString('en-AU', { timeZone:'Australia/Brisbane', day:'numeric', month:'short' });
     return `
-      <div class="done-item">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;"></div>
-        <div style="flex:1;min-width:0;">
-          <p style="font-size:0.78rem;color:var(--text);line-height:1.35;">${i.title}</p>
-          <p style="font-size:0.65rem;color:var(--text-dimmer);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId]||'Agent'} · ${dt}</p>
+      <div style="margin-bottom:0.4rem;">
+        <div class="done-item" style="margin-bottom:0;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <p style="font-size:0.78rem;color:var(--text);line-height:1.35;">${i.title}</p>
+            <p style="font-size:0.65rem;color:var(--text-dimmer);margin:0.1rem 0 0;">${agentMap[i.assigneeAgentId]||'Agent'} · ${dt}</p>
+          </div>
+          ${link ? `<a href="${link}" target="_blank" class="btn-view">View ↗</a>` : ''}
+          ${isSocial ? `<button class="btn-revise" onclick="toggleRevisionForm('done-${i.id}')">Revise ✎</button>` : ''}
         </div>
-        ${link ? `<a href="${link}" target="_blank" class="btn-view">View ↗</a>` : ''}
+        ${isSocial ? `
+        <div id="revform-done-${i.id}" class="revision-form" style="display:none;">
+          <textarea id="revtext-done-${i.id}" placeholder="Describe what needs changing — the agent will produce a revised version."></textarea>
+          <button id="revsend-done-${i.id}" class="btn-send-revision" onclick="submitRevision('${i.id}', \`${i.title.replace(/`/g,"'")}\`)">Send revision request</button>
+          <button class="btn-cancel-revision" onclick="toggleRevisionForm('done-${i.id}')">Cancel</button>
+        </div>` : ''}
       </div>`;
   }).join('');
 }
@@ -469,6 +1734,53 @@ async function reject(id) {
 }
 window.approve = approve;
 window.reject  = reject;
+
+// ── Revision feedback ─────────────────────────────────────────────────────
+function toggleRevisionForm(id) {
+  const el = document.getElementById(`revform-${id}`);
+  if (!el) return;
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') el.querySelector('textarea').focus();
+}
+
+async function submitRevision(id, title) {
+  const ta = document.getElementById(`revtext-${id}`);
+  const feedback = ta ? ta.value.trim() : '';
+  if (!feedback) { ta && ta.focus(); return; }
+
+  const btn = document.getElementById(`revsend-${id}`);
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  try {
+    // 1. Post comment on original issue
+    await fetch(`${API}/api/issues/${id}/comments`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ body: `Revision request from Daniel:\n\n${feedback}` })
+    });
+
+    // 2. Create a new revision task assigned to same agent
+    const original = allIssues.find(i => i.id === id);
+    const agentId = original?.assigneeAgentId || null;
+    const body = {
+      title: `Revise: ${title}`,
+      description: `Daniel requested the following changes to the original post:\n\n${feedback}\n\nPlease revise and save a new file at the same location, overwriting the previous version.`,
+      status: 'todo',
+      priority: 'high',
+    };
+    if (agentId) body.assigneeAgentId = agentId;
+    await fetch(`${API}/api/companies/${COMPANY}/issues`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    if (btn) { btn.textContent = 'Sent!'; }
+    setTimeout(() => toggleRevisionForm(id), 800);
+  } catch(e) {
+    if (btn) { btn.textContent = 'Error — try again'; btn.disabled = false; }
+  }
+}
+window.toggleRevisionForm = toggleRevisionForm;
+window.submitRevision = submitRevision;
 
 // ── Token helpers ─────────────────────────────────────────────────────────
 let tokenData = {};
@@ -502,9 +1814,11 @@ async function loadTokenData(agentIds) {
         }
       });
       const total = totalIn + totalOut;
+      // Keep lightweight run records for cost-by-month chart
+      const runRecords = runs.map(r => ({ createdAt: r.createdAt, costUsd: (r.usageJson||{}).costUsd || 0 }));
       tokenData[id] = { totalRuns: runs.length, totalIn, totalOut, totalCached, totalCost,
         avgPerRun: runs.length > 0 ? Math.round(total/runs.length) : 0,
-        avgCostPerRun: runs.length > 0 ? totalCost/runs.length : 0, recentRuns };
+        avgCostPerRun: runs.length > 0 ? totalCost/runs.length : 0, recentRuns, runs: runRecords };
     } catch { tokenData[id] = { totalRuns:0,totalIn:0,totalOut:0,totalCached:0,totalCost:0,avgPerRun:0,avgCostPerRun:0,recentRuns:[] }; }
   }));
 }
@@ -736,6 +2050,13 @@ async function loadIssues() {
   });
   renderAgentIntel(issuesByAgent);
   updateEstBaseline();
+
+  // New panels
+  renderHealthAlerts();
+  renderVelocityChart();
+  renderCostChart();
+  renderCoverageMatrix();
+  renderContentCalendar();
 }
 
 // ── Daily Update ──────────────────────────────────────────────────────────
@@ -813,6 +2134,7 @@ async function init() {
   try {
     await loadAgents();
     await loadIssues();
+    loadSocialContent();
     renderDailyUpdate();
     const now = new Date().toLocaleString('en-AU', { timeZone:'Australia/Brisbane', dateStyle:'medium', timeStyle:'short' });
     document.getElementById('last-refresh').textContent = `Updated ${now} AEST`;

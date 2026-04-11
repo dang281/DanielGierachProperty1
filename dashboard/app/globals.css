@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg:        #0f0d0c;
+  --color-card:      #1c1917;
+  --color-card-2:    #231f1c;
+  --color-gold:      #c4912a;
+  --color-gold-dim:  rgba(196,145,42,0.15);
+  --color-cream:     #f2efe9;
+  --color-cream-dim: rgba(242,239,233,0.4);
+  --color-cream-x:   rgba(242,239,233,0.25);
+  --color-border:    rgba(196,145,42,0.15);
+  --color-border-w:  rgba(255,255,255,0.06);
+
+  --color-status-idea:      rgba(107,114,128,0.18);
+  --color-status-ready:     rgba(168,85,247,0.15);
+  --color-status-scheduled: rgba(34,197,94,0.12);
+  --color-status-posted:    rgba(59,130,246,0.12);
+  --color-status-rejected:  rgba(239,68,68,0.1);
+
+  --font-sans:  'Manrope', system-ui, sans-serif;
+  --font-serif: 'Noto Serif', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(196,145,42,0.3); border-radius: 3px; }

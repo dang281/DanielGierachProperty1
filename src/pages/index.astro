@@ -906,7 +906,7 @@ const faqSchema = {
       </p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(28,25,23,0.08);">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px" style="background:rgba(28,25,23,0.08);">
       {[
         { name: 'Balmoral',           slug: 'balmoral' },
         { name: 'Bulimba',            slug: 'bulimba' },
@@ -1042,7 +1042,7 @@ const faqSchema = {
     // Load Maps JS API with Places library — only on this page
     if (!(window as any).google?.maps?.places) {
       const s = document.createElement('script');
-      s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlacesHero';
+      s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesHero`;
       s.async = true;
       s.defer = true;
       document.head.appendChild(s);
@@ -1116,6 +1116,15 @@ const faqSchema = {
 </script>
 
 <style>
+  /* ── Hero: never hide above-the-fold content waiting for JS ── */
+  .hero-card .reveal,
+  .hero-card .reveal-left,
+  .hero-card .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   /* ── Mobile: 640px and below ──────────────────────────── */
   @media (max-width: 640px) {
     .testimonial-header { margin-bottom: 1.5rem !important; }
