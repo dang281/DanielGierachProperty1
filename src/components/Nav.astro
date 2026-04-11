@@ -36,24 +36,23 @@ const suburbs = [
         </span>
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="nav-desktop items-center gap-10" id="nav-links">
+      <!-- Desktop nav — hidden by default, JS shows on ≥1024px -->
+      <nav id="nav-links" style="display:none;align-items:center;gap:2.5rem;">
         {navLinks.map((link) => (
           <a href={link.href} class="nav-link-mono" style="color:#f0ece4;">{link.label}</a>
         ))}
-
       </nav>
 
-      <!-- CTA -->
-      <div class="nav-desktop items-center gap-6" id="nav-cta">
+      <!-- CTA — hidden by default, JS shows on ≥1024px -->
+      <div id="nav-cta" style="display:none;align-items:center;gap:1.5rem;">
         <a href="/contact" class="nav-link-mono" style="color:#f0ece4;">Contact</a>
         <a href="/property-worth" class="btn-gold" style="padding:0.7rem 1.5rem;">
           What's Your Property Worth?
         </a>
       </div>
 
-      <!-- Mobile toggle -->
-      <button id="mobile-toggle" class="nav-mobile flex flex-col gap-[5px] p-2" aria-label="Menu">
+      <!-- Mobile toggle — shown by default, JS hides on ≥1024px -->
+      <button id="mobile-toggle" style="display:flex;flex-direction:column;gap:5px;padding:0.5rem;" aria-label="Menu">
         <span id="bar1" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
         <span id="bar2" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
         <span id="bar3" class="block w-4 transition-all duration-300 self-end" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
@@ -61,17 +60,16 @@ const suburbs = [
     </div>
   </div>
 
-  <!-- Mobile menu -->
+  <!-- Mobile menu — always in DOM, hidden via max-height -->
   <div
     id="mobile-menu"
-    class="nav-mobile overflow-hidden transition-all duration-300"
+    class="overflow-hidden transition-all duration-300"
     style="max-height:0;background:rgba(242,239,233,0.98);backdrop-filter:blur(20px);"
   >
     <div class="max-w-[1400px] mx-auto px-8 py-6 flex flex-col gap-5">
       {navLinks.map((link) => (
         <a href={link.href} class="nav-link-mono mobile-nav-link">{link.label}</a>
       ))}
-
 
       <div class="pt-4 flex flex-col gap-3" style="border-top:1px solid rgba(28,25,23,0.12);">
         <a href="/contact" class="nav-link-mono">Contact</a>
@@ -83,6 +81,8 @@ const suburbs = [
 
 <script>
   const header       = document.getElementById('site-header')!;
+  const navLinksEl   = document.getElementById('nav-links')!;
+  const navCtaEl     = document.getElementById('nav-cta')!;
   const mobileToggle = document.getElementById('mobile-toggle')!;
   const mobileMenu   = document.getElementById('mobile-menu')!;
   const bar1         = document.getElementById('bar1')!;
@@ -93,7 +93,24 @@ const suburbs = [
   const bars         = [bar1, bar2, bar3];
   let menuOpen = false;
 
-  // Highlight active mobile nav link
+  // ── Responsive layout (pure JS, no CSS classes) ──────────────────────────
+  function applyLayout() {
+    const desktop = window.innerWidth >= 1024;
+    navLinksEl.style.display   = desktop ? 'flex' : 'none';
+    navCtaEl.style.display     = desktop ? 'flex' : 'none';
+    mobileToggle.style.display = desktop ? 'none' : 'flex';
+    // Close mobile menu when resizing to desktop
+    if (desktop && menuOpen) {
+      menuOpen = false;
+      mobileMenu.style.maxHeight = '0';
+      mobileMenu.style.borderBottom = '';
+      bar3.style.width = '1rem';
+    }
+  }
+  applyLayout();
+  window.addEventListener('resize', applyLayout);
+
+  // ── Highlight active mobile nav link ─────────────────────────────────────
   const currentPath = window.location.pathname;
   document.querySelectorAll<HTMLAnchorElement>('.mobile-nav-link').forEach(link => {
     if (link.getAttribute('href') === currentPath || currentPath.startsWith(link.getAttribute('href') + '/')) {
@@ -103,7 +120,7 @@ const suburbs = [
     }
   });
 
-  // Nav state logic
+  // ── Nav scroll state ─────────────────────────────────────────────────────
   function updateNav() {
     const isLight = document.body.dataset.lightNav === 'true';
     if (window.scrollY > 50 || isLight) {
@@ -124,17 +141,14 @@ const suburbs = [
       if (trigger) trigger.style.color = '#f0ece4';
     }
   }
-
-  // Apply on load and scroll
   updateNav();
   window.addEventListener('scroll', updateNav);
 
-  // Mobile menu toggle
+  // ── Mobile menu toggle ───────────────────────────────────────────────────
   mobileToggle.addEventListener('click', () => {
     menuOpen = !menuOpen;
     mobileMenu.style.maxHeight = menuOpen ? '600px' : '0';
     mobileMenu.style.borderBottom = menuOpen ? '1px solid rgba(28,25,23,0.08)' : '';
     bar3.style.width = menuOpen ? '1.5rem' : '1rem';
   });
-
 </script>
