@@ -40,7 +40,10 @@ const showBreadcrumbs = breadcrumbs.length > 1;
 
 const globalSchema = {
   "@context": "https://schema.org",
+  "@graph": [
+  {
   "@type": ["RealEstateAgent", "LocalBusiness"],
+  "@id": "https://danielgierach.com/#business",
   "name": "Daniel Gierach",
   "description": "Brisbane inner-east real estate specialist at Ray White Bulimba. Expert in property sales across Camp Hill, Norman Park, Hawthorne, Balmoral, Seven Hills and surrounds.",
   "url": "https://danielgierach.com",
@@ -121,7 +124,52 @@ const globalSchema = {
     "closes": "20:00"
   },
   "sameAs": [
-    "https://www.raywhite.com/agents/agent/daniel-gierach-88889915"
+    "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
+    "https://www.linkedin.com/in/daniel-gierach",
+    "https://www.facebook.com/danielgierachproperty",
+    "https://www.instagram.com/danielgierach",
+    "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach"
+  ]
+  },
+  {
+    "@type": "Person",
+    "@id": "https://danielgierach.com/#person",
+    "name": "Daniel Gierach",
+    "alternateName": ["danielgierach", "Dan Gierach"],
+    "jobTitle": "Licensed Real Estate Agent",
+    "description": "Brisbane inner east real estate agent specialising in property sales across Camp Hill, Hawthorne, Bulimba, Norman Park and surrounds. Ray White Bulimba.",
+    "url": "https://danielgierach.com",
+    "telephone": "+61412523821",
+    "email": "daniel.gierach@raywhite.com",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+      "width": 400,
+      "height": 400
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Ray White Bulimba",
+      "url": "https://raywhitebulimba.com.au"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Unit 6, 57-59 Oxford Street",
+      "addressLocality": "Bulimba",
+      "addressRegion": "QLD",
+      "postalCode": "4171",
+      "addressCountry": "AU"
+    },
+    "knowsAbout": ["Real Estate", "Property Sales", "Brisbane Property Market", "Inner East Brisbane", "Property Valuation", "Auction Strategy"],
+    "sameAs": [
+      "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
+      "https://www.linkedin.com/in/daniel-gierach",
+      "https://www.facebook.com/danielgierachproperty",
+      "https://www.instagram.com/danielgierach",
+      "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach",
+      "https://danielgierach.com"
+    ]
+  }
   ]
 };
 ---
