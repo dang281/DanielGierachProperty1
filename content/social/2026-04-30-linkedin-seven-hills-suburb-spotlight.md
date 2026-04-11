@@ -1,0 +1,44 @@
+# Seven Hills Suburb Spotlight - LinkedIn
+
+**Platform:** LinkedIn
+**Format:** Post
+**Goal:** Build local authority and thought leadership on Seven Hills micro-market dynamics
+**Content Pillar:** Authority
+**Status:** Ready for Review
+**Publish date:** 2026-04-30
+**Scheduled time:** 07:30
+
+---
+
+## Caption
+
+Seven Hills is priced below Hawthorne and Bulimba by a significant margin. That gap deserves more attention than it gets.
+
+The suburb sits 5km east of the CBD on an elevated ridge. It has one of Brisbane's larger inner-city bushland reserves on its boundary. Cavendish Road State High School catchment. Large established blocks. City views from the ridge streets. On the fundamentals that drive inner-east pricing, Seven Hills scores well.
+
+And yet the median sits materially below both Hawthorne and Bulimba.
+
+Part of that discount is about profile. Hawthorne and Bulimba have active café strips and visible lifestyle anchors. Seven Hills is quieter. The suburb's character comes from the elevation, the reserve, and the streetscape rather than from foot traffic. That is harder to market at scale, so the suburb tends to be underrepresented in the kind of coverage that drives broad buyer awareness.
+
+Part of it is supply dynamics. The elevated topography and reserve boundary limit infill. There is no apartment corridor absorbing demand and skewing median calculations. The low transaction volume reflects genuine scarcity.
+
+That scarcity is significant from a selling perspective. Around 47 houses traded in Seven Hills in the past 12 months. The buyer pool here tends to be self-selecting: people who have looked at Hawthorne and Bulimba and decided they either cannot stretch that far or do not want to pay that premium for a flatter block. When they find Seven Hills, they have often already decided it is where they want to be.
+
+What that means in practice: the sellers who do well are the ones who understand that the comparable base is shallow and that accurate positioning against a limited set of sold properties matters more here than in a higher-volume suburb. Overpricing relative to comps does not work in low-turnover markets. Accurate pricing with strong presentation does.
+
+If you are thinking about selling in Seven Hills, I am happy to walk through the numbers with you.
+
+danielgierach.com
+
+## Hashtags
+
+#SevenHills #BrisbaneProperty #InnerEastBrisbane #RealEstateInsights #BrisbaneSeller #RayWhiteBulimba
+
+## Notes for Daniel
+
+- 47 house sales in 12 months: sourced from realestateinvestar.com.au (CoreLogic). ⚠️ VERIFY: Confirm before posting.
+- The "discount to Hawthorne/Bulimba" framing is supported by YIP/propertyvalue.com.au data showing Seven Hills ~$1.8M vs Hawthorne ~$2.3M and Bulimba ~$2.1M. ⚠️ VERIFY: These medians shift. Do not post specific figures unless you've confirmed them against current CoreLogic data.
+- Cavendish Road SHS catchment: accurate per suburb profile sources. Worth confirming catchment boundaries have not changed.
+- 52-hectare Seven Hills Bushland Reserve: confirmed. This is a genuine point of difference worth mentioning if you want to add texture.
+- Post intentionally makes no price forecast — it presents analysis only. The "undervalued" framing is based on current price differential, not a prediction.
+- Text-only format recommended for LinkedIn.
