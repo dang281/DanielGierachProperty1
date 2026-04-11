@@ -7,6 +7,7 @@ import IssuesBoard from '@/components/dashboard/IssuesBoard'
 import AgentIntel from '@/components/dashboard/AgentIntel'
 import AgentIntelCards from '@/components/dashboard/AgentIntelCards'
 import SuburbCoverage from '@/components/dashboard/SuburbCoverage'
+import AutoRefresh from '@/components/dashboard/AutoRefresh'
 
 function todayAEST(): string {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'Australia/Brisbane' })
@@ -28,6 +29,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-5">
+      <AutoRefresh intervalMs={30_000} />
 
       {/* Attention bar */}
       <AttentionBar reviewItems={readyForReview} issues={issues} />
@@ -47,7 +49,7 @@ export default async function DashboardPage() {
           {postingToday.length > 0 && (
             <section>
               <SectionHeader label="Posting Today" count={postingToday.length} colour="var(--color-gold)" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mt-3">
                 {postingToday.map(item => <ContentCard key={item.id} item={item} />)}
               </div>
             </section>
@@ -59,7 +61,7 @@ export default async function DashboardPage() {
             {readyForReview.length === 0 ? (
               <EmptyState message="Nothing waiting for review." />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mt-3">
                 {readyForReview.map(item => (
                   <ContentCard key={item.id} item={item} showActions />
                 ))}
@@ -71,7 +73,7 @@ export default async function DashboardPage() {
           {ideas.length > 0 && (
             <section>
               <SectionHeader label="Ideas Pipeline" count={ideas.length} colour="rgba(28,25,23,0.4)" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mt-3">
                 {ideas.map(item => <ContentCard key={item.id} item={item} />)}
               </div>
             </section>
@@ -90,7 +92,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* RIGHT — operations sidebar */}
-        <div className="w-full lg:w-80 flex-shrink-0 flex flex-col gap-6">
+        <div className="w-full lg:w-96 xl:w-[28rem] flex-shrink-0 flex flex-col gap-6">
           <IssuesBoard issues={issues} agents={agents} />
           <AgentIntel agents={agents} issues={issues} />
         </div>

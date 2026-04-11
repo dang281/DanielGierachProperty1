@@ -47,7 +47,7 @@ export default function AgentIntelCards({
         </h2>
         <div className="flex-1 border-t border-[var(--color-border-w)]" />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
         {agents.map(agent => {
           const td        = tokenData[agent.id] ?? { totalIn: 0, totalOut: 0, totalCached: 0, totalCost: 0, totalRuns: 0, avgPerRun: 0, avgCostPerRun: 0, recentRuns: [] }
           const colour    = STATUS_COLOUR[agent.status] ?? '#9ca3af'

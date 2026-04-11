@@ -9,7 +9,7 @@ const NAV = [
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-full flex flex-col bg-[var(--color-bg)]">
-      <header className="border-b border-[var(--color-border-w)] bg-[var(--color-card)] px-6 py-3 flex items-center justify-between">
+      <header className="border-b border-[var(--color-border-w)] bg-[var(--color-card)] px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div>
             <p className="text-[var(--color-gold)] text-[10px] tracking-[0.2em] uppercase font-sans leading-none mb-0.5">
@@ -40,7 +40,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </button>
         </form>
       </header>
-      <main className="flex-1 px-6 py-6 max-w-7xl mx-auto w-full">
+      <main className="flex-1 px-8 py-7 max-w-[2200px] mx-auto w-full">
         {children}
       </main>
     </div>
