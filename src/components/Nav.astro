@@ -81,15 +81,15 @@ const suburbs = [
   </div>
 </header>
 
-<style>
+<style is:global>
   /* Mobile-first: desktop nav hidden, mobile toggle visible */
-  .nav-desktop { display: none; }
-  .nav-mobile  { display: flex; }
+  .nav-desktop { display: none !important; }
+  .nav-mobile  { display: flex !important; }
 
   /* At 1024px+ flip them */
   @media (min-width: 1024px) {
-    .nav-desktop { display: flex; }
-    .nav-mobile  { display: none; }
+    .nav-desktop { display: flex !important; }
+    .nav-mobile  { display: none !important; }
   }
 </style>
 
