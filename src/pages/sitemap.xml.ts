@@ -5,8 +5,9 @@ const SITE_URL = 'https://www.danielgierach.com';
 const pages = [
   // Core pages — highest priority
   { path: '/',          changefreq: 'weekly',  priority: '1.0' },
-  { path: '/listings',  changefreq: 'daily',   priority: '0.95' },
-  { path: '/appraisal',        changefreq: 'monthly', priority: '0.9' },
+  { path: '/listings',        changefreq: 'daily',   priority: '0.95' },
+  { path: '/walkthrough',     changefreq: 'monthly', priority: '0.90' },
+  { path: '/property-worth',  changefreq: 'monthly', priority: '0.88' },
   { path: '/property-report', changefreq: 'monthly', priority: '0.9' },
   { path: '/about',               changefreq: 'monthly', priority: '0.8' },
   { path: '/brisbane-inner-east', changefreq: 'monthly', priority: '0.9' },
