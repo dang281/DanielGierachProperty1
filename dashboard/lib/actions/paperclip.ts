@@ -25,6 +25,23 @@ export async function getIssues(): Promise<Issue[]> {
   return data ?? []
 }
 
+export async function approveProposal(issueId: string): Promise<void> {
+  // Remove the proposal label — issue becomes a regular todo the agents will pick up
+  await fetch(`${API}/api/issues/${issueId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ labelIds: [] }),
+  })
+}
+
+export async function dismissProposal(issueId: string): Promise<void> {
+  await fetch(`${API}/api/issues/${issueId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'cancelled' }),
+  })
+}
+
 export async function getAgentTokenData(agentIds: string[]): Promise<Record<string, AgentTokenData>> {
   const results = await Promise.all(
     agentIds.map(async id => {

@@ -215,11 +215,15 @@ const globalSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg" />
+    <meta property="og:image" content={preloadImage ? preloadImage.replace(/w=\d+/, 'w=1200').replace(/h=\d+&?/, '').replace(/q=\d+/, 'q=80') : 'https://danielgierach.com/og-default.jpg'} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${title} — Daniel Gierach, Real Estate Agent Brisbane Inner East`} />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={preloadImage ? preloadImage.replace(/w=\d+/, 'w=1200').replace(/h=\d+&?/, '').replace(/q=\d+/, 'q=80') : 'https://danielgierach.com/og-default.jpg'} />
     <!-- Geo -->
     <meta name="geo.region" content="AU-QLD" />
     <meta name="geo.placename" content="Brisbane" />
@@ -229,6 +233,11 @@ const globalSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    <!-- GA4: stub defined synchronously so inline onclick="gtag(...)" handlers never fire before gtag exists -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+    </script>
   </head>
   <body>
     <Nav />
@@ -329,11 +338,9 @@ const globalSchema = {
         src="https://www.facebook.com/tr?id=1493183205636761&ev=PageView&noscript=1"/>
     </noscript>
 
-    <!-- Google Analytics 4 — deferred to end of body so it never blocks paint -->
+    <!-- Google Analytics 4 — measurement script deferred so it never blocks paint -->
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-K1P37GL73K');
     </script>

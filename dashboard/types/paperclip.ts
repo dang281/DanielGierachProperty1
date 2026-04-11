@@ -17,6 +17,14 @@ export interface Agent {
 export type IssueStatus = 'todo' | 'in_progress' | 'needs_review' | 'done' | 'cancelled'
 export type IssuePriority = 'critical' | 'high' | 'medium' | 'low' | null
 
+export const PROPOSAL_LABEL_ID = '3ba3a995-0590-487a-899e-5302c2af1c3e'
+
+export interface IssueLabel {
+  id: string
+  name: string
+  color: string
+}
+
 export interface Issue {
   id: string
   identifier: string
@@ -28,6 +36,8 @@ export interface Issue {
   createdAt: string
   startedAt: string | null
   completedAt: string | null
+  labels: IssueLabel[]
+  labelIds: string[]
 }
 
 export interface HeartbeatRun {

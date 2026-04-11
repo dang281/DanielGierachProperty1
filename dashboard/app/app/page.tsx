@@ -3,9 +3,9 @@ import { getAgents, getIssues, getAgentTokenData } from '@/lib/actions/paperclip
 import ContentCard from '@/components/dashboard/ContentCard'
 import AttentionBar from '@/components/dashboard/AttentionBar'
 import StatStrip from '@/components/dashboard/StatStrip'
-import IssuesBoard from '@/components/dashboard/IssuesBoard'
-import AgentIntel from '@/components/dashboard/AgentIntel'
+import LiveFeed from '@/components/dashboard/LiveFeed'
 import AgentIntelCards from '@/components/dashboard/AgentIntelCards'
+import ProjectProposals from '@/components/dashboard/ProjectProposals'
 import SuburbCoverage from '@/components/dashboard/SuburbCoverage'
 import AutoRefresh from '@/components/dashboard/AutoRefresh'
 
@@ -14,13 +14,16 @@ function todayAEST(): string {
 }
 
 export default async function DashboardPage() {
-  const [items, agents, issues] = await Promise.all([
+  const [allItems, agents, issues] = await Promise.all([
     getContentItems(),
     getAgents(),
     getIssues(),
   ])
   const tokenData = agents.length > 0 ? await getAgentTokenData(agents.map(a => a.id)) : {}
   const today = todayAEST()
+
+  // Instagram excluded — not a current focus
+  const items = allItems.filter(i => i.platform !== 'instagram')
 
   const postingToday   = items.filter(i => i.scheduled_date === today && i.status === 'scheduled')
   const readyForReview = items.filter(i => i.status === 'ready')
@@ -93,11 +96,13 @@ export default async function DashboardPage() {
 
         {/* RIGHT — operations sidebar */}
         <div className="w-full lg:w-96 xl:w-[28rem] flex-shrink-0 flex flex-col gap-6">
-          <IssuesBoard issues={issues} agents={agents} />
-          <AgentIntel agents={agents} issues={issues} />
+          <LiveFeed agents={agents} issues={issues} />
         </div>
 
       </div>
+
+      {/* Project Proposals — CEO-generated ideas awaiting approval */}
+      <ProjectProposals issues={issues} agents={agents} />
 
       {/* Agent Intelligence cards */}
       {agents.length > 0 && (
