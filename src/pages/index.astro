@@ -193,7 +193,6 @@ const faqSchema = {
               autocomplete="off"
               style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
             />
-            <div id="hero-ac-list" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:9999;background:#1c1917;border:1px solid rgba(255,255,255,0.15);border-top:none;max-height:220px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.5);"></div>
           </div>
           <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
             onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
@@ -1015,39 +1014,68 @@ const faqSchema = {
 
   counters.forEach(el => countObserver.observe(el));
 
-  // ── Hero address input (Google Places AutocompleteService) ────────
+  // ── Hero address input (Google Places) ────────────────────────────
   (function() {
-    const input  = document.getElementById('hero-address-input') as HTMLInputElement;
-    const acList = document.getElementById('hero-ac-list') as HTMLElement;
-    const form   = document.getElementById('hero-address-form') as HTMLFormElement;
+    const input = document.getElementById('hero-address-input') as HTMLInputElement;
+    const form  = document.getElementById('hero-address-form') as HTMLFormElement;
     let selectedAddress = '';
     let debounce: ReturnType<typeof setTimeout> | null = null;
 
-    function showItems(items: {label: string; value: string}[]) {
-      if (!items.length) { acList.style.display = 'none'; return; }
-      acList.innerHTML = items.map(it =>
-        `<div class="hac" data-v="${it.value.replace(/"/g,'&quot;')}"
-          style="padding:0.65rem 1rem;cursor:pointer;color:#f0ece4;font-family:var(--font-sans);font-size:0.83rem;line-height:1.35;border-bottom:1px solid rgba(255,255,255,0.07);">${it.label}</div>`
+    // Build dropdown appended to body with position:fixed
+    // so overflow:hidden on hero never clips it and it never causes scroll
+    const drop = document.createElement('div');
+    drop.style.cssText = [
+      'display:none',
+      'position:fixed',
+      'z-index:99999',
+      'background:#1c1917',
+      'border:1px solid rgba(255,255,255,0.18)',
+      'border-top:none',
+      'max-height:220px',
+      'overflow-y:auto',
+      'box-shadow:0 8px 32px rgba(0,0,0,0.6)',
+    ].join(';');
+    document.body.appendChild(drop);
+
+    function positionDrop() {
+      const r = input.getBoundingClientRect();
+      drop.style.top   = r.bottom + 'px';
+      drop.style.left  = r.left + 'px';
+      drop.style.width = r.width + 'px';
+    }
+
+    function hideDrop() { drop.style.display = 'none'; }
+
+    function showPredictions(preds: any[]) {
+      if (!preds.length) { hideDrop(); return; }
+      drop.innerHTML = preds.map((p: any) =>
+        `<div data-desc="${(p.description||'').replace(/"/g,'&quot;')}"
+          style="padding:0.65rem 1rem;cursor:pointer;color:#f0ece4;font-size:0.83rem;font-family:sans-serif;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.08);">
+          ${p.description || ''}
+        </div>`
       ).join('');
-      acList.querySelectorAll<HTMLElement>('.hac').forEach(el => {
-        el.onmouseover = () => el.style.background = 'rgba(255,255,255,0.09)';
-        el.onmouseout  = () => el.style.background = '';
-        el.onmousedown = (e) => {
+      drop.querySelectorAll<HTMLElement>('[data-desc]').forEach(el => {
+        el.addEventListener('mouseover',  () => { el.style.background = 'rgba(255,255,255,0.1)'; });
+        el.addEventListener('mouseout',   () => { el.style.background = ''; });
+        el.addEventListener('mousedown',  (e) => {
           e.preventDefault();
-          selectedAddress = el.dataset.v || '';
+          selectedAddress = el.dataset.desc || '';
           input.value = selectedAddress;
-          acList.style.display = 'none';
-        };
+          hideDrop();
+        });
       });
-      acList.style.display = 'block';
+      positionDrop();
+      drop.style.display = 'block';
     }
 
     function initMaps() {
       const svc = new (window as any).google.maps.places.AutocompleteService();
+
       input.addEventListener('input', () => {
         if (debounce) clearTimeout(debounce);
+        selectedAddress = '';
         const val = input.value.trim();
-        if (val.length < 2) { acList.style.display = 'none'; selectedAddress = ''; return; }
+        if (val.length < 2) { hideDrop(); return; }
         debounce = setTimeout(async () => {
           try {
             const res = await svc.getPlacePredictions({
@@ -1055,13 +1083,14 @@ const faqSchema = {
               componentRestrictions: { country: 'au' },
               types: ['address'],
             });
-            const preds = res?.predictions ?? [];
-            showItems(preds.map((p: any) => ({ label: p.description, value: p.description })));
-          } catch { acList.style.display = 'none'; }
-        }, 200);
+            showPredictions(res?.predictions ?? []);
+          } catch(_) { hideDrop(); }
+        }, 220);
       });
-      input.addEventListener('blur', () => setTimeout(() => { acList.style.display = 'none'; }, 150));
-      input.addEventListener('focus', () => { if (input.value.trim().length >= 2) input.dispatchEvent(new Event('input')); });
+
+      input.addEventListener('blur',  () => setTimeout(hideDrop, 160));
+      window.addEventListener('scroll', positionDrop, { passive: true });
+      window.addEventListener('resize', positionDrop);
     }
 
     (window as any).initGooglePlacesHero = initMaps;
@@ -1069,17 +1098,18 @@ const faqSchema = {
     if (!(window as any).google?.maps?.places) {
       const s = document.createElement('script');
       s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesHero`;
-      s.async = true; s.defer = true;
+      s.async = true;
+      s.defer = true;
       document.head.appendChild(s);
     } else {
       initMaps();
     }
 
-    document.addEventListener('click', e => {
-      if (!form?.contains(e.target as Node)) acList.style.display = 'none';
+    document.addEventListener('click', (e) => {
+      if (!form?.contains(e.target as Node) && e.target !== drop && !drop.contains(e.target as Node)) hideDrop();
     });
 
-    form?.addEventListener('submit', e => {
+    form?.addEventListener('submit', (e) => {
       e.preventDefault();
       const addr = selectedAddress || input.value.trim();
       if (!addr) { input.focus(); return; }
