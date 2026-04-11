@@ -147,6 +147,68 @@ function filterCount(f: string): number {
   </div>
 </section>
 
+<!-- Selling Guides by Suburb -->
+<section style="background:#f7f5f0;padding:4rem 0 5rem;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;display:block;margin-bottom:0.75rem;">Suburb Guides</span>
+      <h2 style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;color:#1c1917;letter-spacing:-0.02em;line-height:1.2;margin-bottom:0.5rem;">Selling guides by suburb</h2>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:52ch;">Thinking about selling? Every suburb sells differently. Find your suburb below for timing, days-on-market data, and what drives value in your street.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;">
+      {[
+        { slug: 'selling-in-annerley',         name: 'Annerley' },
+        { slug: 'selling-in-ascot',             name: 'Ascot' },
+        { slug: 'selling-in-balmoral',          name: 'Balmoral' },
+        { slug: 'selling-in-belmont',           name: 'Belmont' },
+        { slug: 'selling-in-brisbane-cbd',      name: 'Brisbane CBD' },
+        { slug: 'selling-in-bulimba',           name: 'Bulimba' },
+        { slug: 'selling-in-camp-hill',         name: 'Camp Hill' },
+        { slug: 'selling-in-cannon-hill',       name: 'Cannon Hill' },
+        { slug: 'selling-in-carina',            name: 'Carina' },
+        { slug: 'selling-in-carina-heights',    name: 'Carina Heights' },
+        { slug: 'selling-in-carindale',         name: 'Carindale' },
+        { slug: 'selling-in-coorparoo',         name: 'Coorparoo' },
+        { slug: 'selling-in-dutton-park',       name: 'Dutton Park' },
+        { slug: 'selling-in-east-brisbane',     name: 'East Brisbane' },
+        { slug: 'selling-in-fortitude-valley',  name: 'Fortitude Valley' },
+        { slug: 'selling-in-greenslopes',       name: 'Greenslopes' },
+        { slug: 'selling-in-hamilton',          name: 'Hamilton' },
+        { slug: 'selling-in-hawthorne',         name: 'Hawthorne' },
+        { slug: 'selling-in-hemmant',           name: 'Hemmant' },
+        { slug: 'selling-in-holland-park',      name: 'Holland Park' },
+        { slug: 'selling-in-holland-park-west', name: 'Holland Park West' },
+        { slug: 'selling-in-kangaroo-point',    name: 'Kangaroo Point' },
+        { slug: 'selling-in-morningside',       name: 'Morningside' },
+        { slug: 'selling-in-mount-gravatt',     name: 'Mount Gravatt' },
+        { slug: 'selling-in-mount-gravatt-east',name: 'Mount Gravatt East' },
+        { slug: 'selling-in-murarrie',          name: 'Murarrie' },
+        { slug: 'selling-in-new-farm',          name: 'New Farm' },
+        { slug: 'selling-in-norman-park',       name: 'Norman Park' },
+        { slug: 'selling-in-paddington',        name: 'Paddington' },
+        { slug: 'selling-in-red-hill',          name: 'Red Hill' },
+        { slug: 'selling-in-seven-hills',       name: 'Seven Hills' },
+        { slug: 'selling-in-stones-corner',     name: 'Stones Corner' },
+        { slug: 'selling-in-tarragindi',        name: 'Tarragindi' },
+        { slug: 'selling-in-teneriffe',         name: 'Teneriffe' },
+        { slug: 'selling-in-tingalpa',          name: 'Tingalpa' },
+        { slug: 'selling-in-upper-mount-gravatt',name: 'Upper Mount Gravatt' },
+        { slug: 'selling-in-west-end',          name: 'West End' },
+        { slug: 'selling-in-woolloongabba',     name: 'Woolloongabba' },
+      ].map(s => (
+        <a href={`/insights/${s.slug}`}
+          style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#ffffff;border:1px solid rgba(28,25,23,0.1);font-family:var(--font-sans);font-size:0.78rem;color:#1c1917;text-decoration:none;transition:background 0.15s,border-color 0.15s,color 0.15s;"
+          onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.color='#c4912a'"
+          onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.color='#1c1917'"
+        >
+          {s.name}
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- Property Report CTA -->
 <section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
