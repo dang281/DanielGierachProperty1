@@ -42,7 +42,7 @@ function dotColor(status: CoverageStatus): string {
 
 function Dot({ status }: { status: CoverageStatus }) {
   return (
-    <div className="flex items-center justify-center w-5">
+    <div className="flex items-center justify-center w-12">
       <span
         className="w-2 h-2 rounded-full"
         style={{ background: dotColor(status) }}
@@ -114,9 +114,9 @@ export default function SuburbCoverage({ issues }: { issues: Issue[] }) {
               <span className="flex-1 text-[10px] font-sans text-[var(--color-cream-x)]" />
               <div className="flex gap-0">
                 {['Page', 'Article', 'Social'].map(h => (
-                  <div key={h} className="w-5 text-center">
+                  <div key={h} className="w-12 text-center">
                     <span className="text-[9px] font-sans uppercase tracking-wide text-[var(--color-cream-x)]">
-                      {h.slice(0, 3)}
+                      {h}
                     </span>
                   </div>
                 ))}
