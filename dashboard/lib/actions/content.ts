@@ -60,6 +60,39 @@ export async function createItem(item: Omit<ContentItem, 'id' | 'created_at' | '
   return data as ContentItem
 }
 
+export async function saveVisualFeedback(id: string, feedback: string) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ visual_feedback: feedback, visual_status: 'needs_revision' })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath('/app')
+  revalidatePath(`/app/content/${id}`)
+}
+
+export async function approveVisual(id: string) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ visual_status: 'approved', visual_feedback: null })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath('/app')
+  revalidatePath(`/app/content/${id}`)
+}
+
+export async function saveCanvaUrl(id: string, canva_url: string, visual_thumbnail?: string) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ canva_url, visual_thumbnail: visual_thumbnail ?? null, visual_status: 'draft' })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath('/app')
+  revalidatePath(`/app/content/${id}`)
+}
+
 export async function deleteItem(id: string) {
   const supabase = await createClient()
   const { error } = await supabase

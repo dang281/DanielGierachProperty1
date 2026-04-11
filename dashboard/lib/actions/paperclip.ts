@@ -25,6 +25,15 @@ export async function getIssues(): Promise<Issue[]> {
   return data ?? []
 }
 
+export async function amendProposal(issueId: string, feedback: string): Promise<void> {
+  // Post feedback comment — CEO reads this and revises the proposal accordingly
+  await fetch(`${API}/api/issues/${issueId}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ body: `Amendment requested by Daniel: ${feedback.trim()}` }),
+  })
+}
+
 export async function approveProposal(issueId: string): Promise<void> {
   // Remove the proposal label — issue becomes a regular todo the agents will pick up
   await fetch(`${API}/api/issues/${issueId}`, {

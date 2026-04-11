@@ -1,6 +1,7 @@
-export type Platform = 'linkedin' | 'instagram' | 'facebook'
-export type Status   = 'idea' | 'ready' | 'scheduled' | 'posted' | 'rejected'
-export type Pillar   = 'seller' | 'authority' | 'suburb' | 'proof' | 'buyer'
+export type Platform    = 'linkedin' | 'instagram' | 'facebook'
+export type Status      = 'idea' | 'ready' | 'scheduled' | 'posted' | 'rejected'
+export type Pillar      = 'seller' | 'authority' | 'suburb' | 'proof' | 'buyer'
+export type VisualStatus = 'needed' | 'draft' | 'needs_revision' | 'approved'
 
 export interface ContentItem {
   id: string
@@ -20,6 +21,12 @@ export interface ContentItem {
   scheduled_date: string | null   // YYYY-MM-DD
   scheduled_time: string | null   // HH:MM
   notes: string | null
+  // Visual / Canva fields
+  visual_brief: string | null
+  canva_url: string | null
+  visual_thumbnail: string | null
+  visual_feedback: string | null
+  visual_status: VisualStatus
   created_at: string
   updated_at: string
 }
