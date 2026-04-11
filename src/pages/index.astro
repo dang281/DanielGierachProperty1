@@ -1070,21 +1070,24 @@ const faqSchema = {
 
     function initMaps() {
       const svc = new (window as any).google.maps.places.AutocompleteService();
+      const G   = (window as any).google;
 
       input.addEventListener('input', () => {
         if (debounce) clearTimeout(debounce);
         selectedAddress = '';
         const val = input.value.trim();
         if (val.length < 2) { hideDrop(); return; }
-        debounce = setTimeout(async () => {
-          try {
-            const res = await svc.getPlacePredictions({
-              input: val,
-              componentRestrictions: { country: 'au' },
-              types: ['address'],
-            });
-            showPredictions(res?.predictions ?? []);
-          } catch(_) { hideDrop(); }
+        debounce = setTimeout(() => {
+          svc.getPlacePredictions(
+            { input: val, componentRestrictions: { country: 'au' }, types: ['address'] },
+            (predictions: any[], status: string) => {
+              if (status === G.maps.places.PlacesServiceStatus.OK && predictions?.length) {
+                showPredictions(predictions);
+              } else {
+                hideDrop();
+              }
+            }
+          );
         }, 220);
       });
 
