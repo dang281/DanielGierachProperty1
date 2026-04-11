@@ -34,7 +34,14 @@ export async function approveProposal(issueId: string): Promise<void> {
   })
 }
 
-export async function dismissProposal(issueId: string): Promise<void> {
+export async function dismissProposal(issueId: string, reason?: string): Promise<void> {
+  if (reason?.trim()) {
+    await fetch(`${API}/api/issues/${issueId}/comments`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ body: `Dismissed by Daniel: ${reason.trim()}` }),
+    })
+  }
   await fetch(`${API}/api/issues/${issueId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
