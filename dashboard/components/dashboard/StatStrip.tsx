@@ -29,7 +29,7 @@ export default function StatStrip({
     {
       value: issues.filter(i => i.status === 'done').length,
       label: 'Completed',
-      colour: 'rgba(242,239,233,0.25)',
+      colour: 'rgba(28,25,23,0.35)',
     },
   ]
 
