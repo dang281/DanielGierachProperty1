@@ -251,6 +251,25 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           </Field>
         </div>
 
+        {/* Poll Options — shown prominently for polls */}
+        {item.platform_variants && (() => {
+          let opts: string[] = []
+          try { opts = JSON.parse(item.platform_variants) } catch { return null }
+          if (!Array.isArray(opts) || opts.length === 0) return null
+          return (
+            <div className="flex flex-col gap-2">
+              <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">
+                Poll Options — copy and paste into LinkedIn
+              </label>
+              <div className="flex flex-col gap-2">
+                {opts.map((opt, i) => (
+                  <PollOption key={i} index={i} text={opt} />
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+
         {/* Caption */}
         <Field label="Caption">
           {editing ? (
@@ -363,6 +382,34 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           Delete post
         </button>
       </div>
+    </div>
+  )
+}
+
+function PollOption({ index, text }: { index: number; text: string }) {
+  const [copied, setCopied] = useState(false)
+  function copy() {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+  return (
+    <div className="flex items-center gap-3 rounded-lg border border-[var(--color-border-w)] px-4 py-2.5"
+      style={{ background: 'var(--color-bg)' }}>
+      <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-sans font-bold"
+        style={{ background: 'rgba(196,145,42,0.15)', color: 'var(--color-gold)' }}>
+        {index + 1}
+      </span>
+      <span className="flex-1 text-sm font-sans text-[var(--color-cream)]">{text}</span>
+      <button
+        onClick={copy}
+        className="text-[10px] font-sans font-semibold px-2.5 py-1 rounded-lg transition-all flex-shrink-0"
+        style={copied
+          ? { background: 'rgba(34,197,94,0.15)', color: '#22c55e' }
+          : { background: 'rgba(196,145,42,0.12)', color: 'var(--color-gold)' }}
+      >
+        {copied ? 'Copied!' : 'Copy'}
+      </button>
     </div>
   )
 }

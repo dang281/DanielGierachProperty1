@@ -146,19 +146,26 @@ async function main() {
     const notes        = section(md, 'Notes for Daniel')
     const hashtags     = section(md, 'Hashtags')
 
+    // Extract poll options → store as JSON array in platform_variants
+    const pollOptionsSection = section(md, 'Poll [Oo]ptions?') ?? section(md, 'Poll options') ?? section(md, 'Poll Options')
+    const pollOptions = pollOptionsSection
+      ? pollOptionsSection.split('\n').map(l => l.replace(/^[-*]\s*/, '').trim()).filter(Boolean)
+      : null
+
     const row = {
       title,
       platform,
-      content_type:   field(md, 'Format') ?? 'Post',
-      caption:        [caption, hashtags].filter(Boolean).join('\n\n') || null,
-      status:         parseStatus(field(md, 'Status')),
-      content_pillar: parsePillar(field(md, 'Content Pillar')),
-      scheduled_date: field(md, 'Publish date') ?? null,
-      scheduled_time: parseScheduledTime(field(md, 'Scheduled time')),
-      notes:          notes ?? null,
-      visual_brief:   visualBrief ?? null,
-      visual_status:  parseVisualStatus(field(md, 'Visual status')),
-      canva_url:      field(md, 'Canva URL') ?? null,
+      content_type:      field(md, 'Format') ?? 'Post',
+      caption:           [caption, hashtags].filter(Boolean).join('\n\n') || null,
+      status:            parseStatus(field(md, 'Status')),
+      content_pillar:    parsePillar(field(md, 'Content Pillar')),
+      scheduled_date:    field(md, 'Publish date') ?? null,
+      scheduled_time:    parseScheduledTime(field(md, 'Scheduled time')),
+      notes:             notes ?? null,
+      visual_brief:      visualBrief ?? null,
+      visual_status:     parseVisualStatus(field(md, 'Visual status')),
+      canva_url:         field(md, 'Canva URL') ?? null,
+      platform_variants: pollOptions ? JSON.stringify(pollOptions) : null,
     }
 
     const existingId = existingMap.get(title)
