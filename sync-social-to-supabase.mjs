@@ -10,7 +10,7 @@ import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
 
 const SUPABASE_URL  = 'https://hmwulvvwsksuyqozuxvw.supabase.co'
-const SUPABASE_KEY  = 'REDACTED_USE_ENV'
+const SUPABASE_KEY  = process.env.SUPABASE_KEY
 const SOCIAL_DIR    = new URL('./content/social/', import.meta.url).pathname
 
 const HEADERS = {
