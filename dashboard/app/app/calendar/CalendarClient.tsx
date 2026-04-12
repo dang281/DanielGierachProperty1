@@ -663,15 +663,15 @@ export default function CalendarClient({
     return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}`
   })()
 
-  // Two-week view: last week + this week (always relative to today)
-  const lastWeekDays = getWeekDays(addDays(todayDate, -7))
+  // Two-week view: this week + next week (always relative to today)
   const thisWeekDays = getWeekDays(todayDate)
-  const lastWeekLabel = (() => {
-    const mon = lastWeekDays[0]; const sun = lastWeekDays[6]
-    return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
-  })()
+  const nextWeekDays = getWeekDays(addDays(todayDate, 7))
   const thisWeekLabel = (() => {
     const mon = thisWeekDays[0]; const sun = thisWeekDays[6]
+    return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
+  })()
+  const nextWeekLabel = (() => {
+    const mon = nextWeekDays[0]; const sun = nextWeekDays[6]
     return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
   })()
   const monthLabel = new Date(monthYear, monthIdx).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })
@@ -796,10 +796,10 @@ export default function CalendarClient({
           <div className="flex flex-col gap-6">
             <div>
               <p className="text-[10px] font-sans font-semibold tracking-[0.08em] uppercase text-[var(--color-cream-x)] mb-2">
-                Last week · {lastWeekLabel}
+                This week · {thisWeekLabel}
               </p>
               <WeekView
-                items={filtered} weekDays={lastWeekDays} today={today}
+                items={filtered} weekDays={thisWeekDays} today={today}
                 onHoverEnter={(item, rect) => setHovered({ item, rect })}
                 onHoverLeave={() => setHovered(null)}
                 onCompose={setComposingDate}
@@ -807,10 +807,10 @@ export default function CalendarClient({
             </div>
             <div>
               <p className="text-[10px] font-sans font-semibold tracking-[0.08em] uppercase text-[var(--color-cream-x)] mb-2">
-                This week · {thisWeekLabel}
+                Next week · {nextWeekLabel}
               </p>
               <WeekView
-                items={filtered} weekDays={thisWeekDays} today={today}
+                items={filtered} weekDays={nextWeekDays} today={today}
                 onHoverEnter={(item, rect) => setHovered({ item, rect })}
                 onHoverLeave={() => setHovered(null)}
                 onCompose={setComposingDate}
