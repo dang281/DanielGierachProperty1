@@ -1,4 +1,4 @@
-# LinkedIn Poll: House or Unit — Which Do You Back for the Next Decade?
+# LinkedIn Poll: House or Unit - Which Do You Back for the Next Decade?
 
 **Platform:** LinkedIn
 **Format:** Poll
@@ -16,7 +16,7 @@
 
 Houses offer land, which appreciates. Units offer entry price and location.
 
-Both have produced strong returns for Brisbane investors — but they do not perform the same way, and the gap matters more in some suburbs than others. In the inner east, where land content is tight and densification is ongoing, I see buyers making very different bets.
+Both have produced strong returns for Brisbane investors, but they do not perform the same way, and the gap matters more in some suburbs than others. In the inner east, where land content is tight and densification is ongoing, I see buyers making very different bets.
 
 If you had to back one for the next ten years, which would it be?
 
