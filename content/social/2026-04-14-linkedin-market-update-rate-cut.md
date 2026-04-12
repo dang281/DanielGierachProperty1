@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the local expert translating macro rate news into specific inner east implications for buyers and sellers
 **Content Pillar:** Authority
-**Status:** Ready for Review
+**Status:** Rejected
 **Publish date:** 2026-04-14
 **Scheduled time:** 07:30
 **Visual status:** Needed
@@ -13,6 +13,8 @@
 ---
 
 ## Caption
+
+⚠️ THIS POST HAS BEEN REJECTED — RATE FIGURES INCORRECT. DO NOT USE.
 
 Two rate cuts in two months.
 
