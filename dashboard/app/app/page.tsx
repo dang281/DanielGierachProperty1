@@ -4,7 +4,7 @@ import { getAgents, getIssues } from '@/lib/actions/paperclip'
 import AutoRefresh from '@/components/dashboard/AutoRefresh'
 import AgentStatusPanel from '@/components/dashboard/AgentStatusPanel'
 import WeeklyForecast from '@/components/dashboard/WeeklyForecast'
-import SuburbCoverage from '@/components/dashboard/SuburbCoverage'
+import PublishingHealth from '@/components/dashboard/PublishingHealth'
 import {
   PipelineDonut, HorizBars, CoverageProgress,
   type PipelineSlice, type BarItem,
@@ -278,19 +278,8 @@ export default async function DashboardPage() {
         <AgentStatusPanel agents={agents} issues={issues} />
       </div>
 
-      {/* ── SEO COVERAGE MATRIX ─────────── */}
-      <div>
-        <div className="flex items-center gap-2 mb-3">
-          <h2 className="text-[11px] font-sans font-semibold tracking-[0.1em] uppercase text-[var(--color-cream-dim)]">
-            SEO Coverage
-          </h2>
-          <div className="flex-1 h-px bg-[var(--color-border-w)]" />
-          <Link href="/app/seo" className="text-[10px] font-sans font-semibold text-[var(--color-gold)] hover:underline flex-shrink-0">
-            Full SEO view →
-          </Link>
-        </div>
-        <SuburbCoverage issues={issues} />
-      </div>
+      {/* ── PUBLISHING HEALTH ─────────── */}
+      <PublishingHealth items={items} />
 
     </div>
   )
