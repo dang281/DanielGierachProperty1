@@ -601,9 +601,9 @@ function MonthView({ items, year, month, today }: {
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS: { value: PlatformFilter; label: string; colour?: string }[] = [
-  { value: 'all',      label: 'All platforms' },
   { value: 'linkedin', label: 'LinkedIn',  colour: '#0a66c2' },
   { value: 'facebook', label: 'Facebook',  colour: '#1877f2' },
+  { value: 'all',      label: 'All' },
 ]
 
 const STATUS_OPTIONS: { value: StatusFilter; label: string; colour?: string }[] = [
@@ -634,7 +634,7 @@ export default function CalendarClient({
 }) {
   const [localItems, setLocalItems] = useState<ContentItem[]>(initialItems)
   const [view, setView]             = useState<ViewMode>('week')
-  const [platform, setPlatform]     = useState<PlatformFilter>('all')
+  const [platform, setPlatform]     = useState<PlatformFilter>('linkedin')
   const [status, setStatus]         = useState<StatusFilter>('all')
   const [pillar, setPillar]         = useState<PillarFilter>('all')
 

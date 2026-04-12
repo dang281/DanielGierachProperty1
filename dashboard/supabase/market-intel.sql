@@ -11,9 +11,10 @@ CREATE TABLE IF NOT EXISTS public.market_intel (
   post_worthy      boolean NOT NULL DEFAULT false,
   suburbs          text[],
   published_date   date,
-  created_at       timestamptz NOT NULL DEFAULT now(),
-  UNIQUE (title, created_at::date)
+  created_at       timestamptz NOT NULL DEFAULT now()
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS market_intel_title_idx ON public.market_intel (title);
 
 ALTER TABLE public.market_intel ENABLE ROW LEVEL SECURITY;
 

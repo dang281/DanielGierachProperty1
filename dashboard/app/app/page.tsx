@@ -22,6 +22,22 @@ function todayAEST(): string {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'Australia/Brisbane' })
 }
 
+function weekBoundsAEST(): { weekStart: string; weekEnd: string } {
+  const aestStr = new Date().toLocaleDateString('en-CA', { timeZone: 'Australia/Brisbane' })
+  const [y, m, d] = aestStr.split('-').map(Number)
+  const aestDate = new Date(y, m - 1, d)
+  const day = aestDate.getDay() // 0=Sun, 1=Mon, ..., 6=Sat
+  const diffToMon = day === 0 ? -6 : 1 - day
+  const mon = new Date(aestDate)
+  mon.setDate(aestDate.getDate() + diffToMon)
+  const sun = new Date(mon)
+  sun.setDate(mon.getDate() + 6)
+  return {
+    weekStart: mon.toISOString().slice(0, 10),
+    weekEnd: sun.toISOString().slice(0, 10),
+  }
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function DashboardPage() {
@@ -35,6 +51,7 @@ export default async function DashboardPage() {
   ])
 
   const today = todayAEST()
+  const { weekStart, weekEnd } = weekBoundsAEST()
   const items = allItems.filter(i => i.platform !== 'instagram')
 
   const ready     = items.filter(i => i.status === 'ready')
@@ -42,6 +59,9 @@ export default async function DashboardPage() {
   const posted    = items.filter(i => i.status === 'posted')
   const ideas     = items.filter(i => i.status === 'idea')
   const rejected  = items.filter(i => i.status === 'rejected')
+
+  // All ready LinkedIn posts (for priority panel + quick stats)
+  const linkedinReady = ready.filter(i => i.platform === 'linkedin')
 
   const activeAgents = agents.filter(a => a.status === 'active')
 
@@ -66,14 +86,14 @@ export default async function DashboardPage() {
   }))
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <AutoRefresh intervalMs={30_000} />
 
       {/* ── 1. PRIORITY PANEL ─────────────────────────────────────────────── */}
       <PriorityPanel items={items} today={today} />
 
       {/* ── 2. WEEKLY CONTENT REVIEW ──────────────────────────────────────── */}
-      <WeeklyContentReview initialItems={items} />
+      <WeeklyContentReview initialItems={allItems} today={today} />
 
       {/* ── 3. ANALYTICS ROW ──────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -92,10 +112,10 @@ export default async function DashboardPage() {
 
         <ChartCard title="Quick stats" subtitle="Live pipeline snapshot">
           <div className="grid grid-cols-2 gap-3">
-            <StatTile value={ready.length}     label="Need approval"  colour="#a855f7" />
-            <StatTile value={scheduled.length} label="Scheduled"      colour="#22c55e" />
-            <StatTile value={posted.length}    label="Published"      colour="#3b82f6" />
-            <StatTile value={activeAgents.length} label="Agents active" colour="var(--color-gold)" />
+            <StatTile value={linkedinReady.length} label="LinkedIn to approve" colour="#a855f7" />
+            <StatTile value={scheduled.length}             label="Scheduled"           colour="#22c55e" />
+            <StatTile value={posted.length}                label="Published"           colour="#3b82f6" />
+            <StatTile value={activeAgents.length}          label="Agents active"       colour="var(--color-gold)" />
           </div>
         </ChartCard>
       </div>
@@ -111,7 +131,7 @@ export default async function DashboardPage() {
 
       {/* ── 6. MARKET INTEL + GROWTH ──────────────────────────────────────── */}
       {(intelItems.length > 0 || opportunities.length > 0) ? (
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
           <MarketIntelFeed items={intelItems} />
           <GrowthOpportunities initialOpportunities={opportunities} />
         </div>

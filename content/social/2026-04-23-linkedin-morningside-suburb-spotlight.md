@@ -4,8 +4,8 @@
 **Format:** Post
 **Goal:** Build local authority and drive appraisal enquiries from Morningside homeowners
 **Content Pillar:** Suburb
-**Status:** Ready for Review
-**Publish date:** 2026-04-23
+**Status:** Idea
+**Publish date:** 2026-05-30
 **Scheduled time:** 07:30
 
 ---

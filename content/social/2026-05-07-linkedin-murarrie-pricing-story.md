@@ -4,45 +4,29 @@
 **Format:** Post
 **Goal:** Build thought leadership; demonstrate Daniel's suburb-level nuance to professional and investor audience
 **Content Pillar:** Authority / Suburb
-**Status:** Ready for Review
-**Publish date:** 2026-05-07
+**Status:** Idea
+**Publish date:** 2026-06-13
 **Scheduled time:** 07:30
 
 ---
 
 ## Caption
 
-There's a suburb 8km from Brisbane's CBD where you can still buy a house for $1.2 million.
+There is a suburb 8km from Brisbane's CBD where you can still buy a house for $1.2 million. Its neighbours are selling for $1.31M (Morningside) and $1.52M (Cannon Hill).
 
-Its neighbours are selling for $1.31M (Morningside) and $1.52M (Cannon Hill).
+That $110K to $320K gap exists almost entirely because of one word on the suburb profile: industrial.
 
-That gap — $110K to $320K — exists almost entirely because of one word on the suburb profile: industrial.
+Murarrie is a mixed-use suburb. But the industrial precinct sits on the northern edge along the riverfront and the eastern portions around Queensport Road. The residential area is in the south-west, different streets, different character, separated by the suburb's own geography. Buyers who have driven through the residential pocket know this. Most buyers who rule it out on a search filter never do.
 
-**The perception vs the reality**
+Houses in Murarrie are averaging 16 days on market. Vendor discounting is sitting at -4.5%, which means properties are transacting close to asking price. The annual house price growth is 4.35%, and the unit market has moved at 22.6% in the same period, which often signals investors moving in before owner-occupiers catch up.
 
-Murarrie is a mixed-use suburb. That much is true. But "mixed-use" is doing a lot of heavy lifting in how buyers process it.
+The suburbs that generate the most long-term buyer regret are not the ones that seemed expensive at the time. They are the ones dismissed on surface-level reasoning: a label, a search result, a second-hand comment from someone who drove past the wrong part of the suburb.
 
-The industrial precinct occupies the northern edge along the riverfront and the eastern portions around Queensport Road. The residential area is in the south-west of the suburb — different streets, different character, separated by the suburb's own geography.
+The industrial adjacency is real and it does shape parts of Murarrie. Any honest appraisal accounts for it by street and by position. But as a blanket reason to discount $300K from the comparable? That is a perception gap, not a market gap.
 
-Buyers who've driven through the residential pocket know this. Most buyers who rule it out on a search filter never do.
+Sellers in Murarrie are in a better position than many of them realise.
 
-**What's happening in the market right now**
-
-Houses in Murarrie are averaging 16 days on market. Vendor discounting is sitting at -4.5%, which means properties are transacting close to asking price. That's not the profile of a suburb struggling under the weight of a perception problem — it's a suburb where informed buyers have worked out the math.
-
-The annual house price growth is 4.35%. The unit market has moved more aggressively — 22.6% in the same period — which often signals that investors have been moving into a suburb before owner-occupiers catch up.
-
-**The agent's read**
-
-In my experience, the suburbs that generate the most long-term buyer regret are not the ones that seemed expensive at the time. They're the ones that were dismissed on surface-level reasoning — a label, a google search, a second-hand comment from someone who drove past the wrong part.
-
-Murarrie is one of those suburbs right now.
-
-I'm not saying the industrial adjacency is nothing. It's real, it shapes parts of the suburb, and any honest appraisal accounts for it by street and by position within the suburb. But as a blanket reason to discount $300K from the comparable? That's a perception gap, not a market gap.
-
-Sellers in Murarrie are in a better position than many of them realise. Buyers who've done the work know that.
-
-Happy to talk through either side of that equation.
+danielgierach.com
 
 ---
 

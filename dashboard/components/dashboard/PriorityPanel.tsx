@@ -23,18 +23,18 @@ export default function PriorityPanel({
   items: ContentItem[]
   today: string
 }) {
-  // ── 1. Approvals needed ───────────────────────────────────────────────────
-  const readyPosts  = items.filter(i => i.status === 'ready')
+  // ── 1. Approvals needed — all ready LinkedIn posts ────────────────────────
+  const readyPosts   = items.filter(i => i.status === 'ready' && i.platform === 'linkedin')
   const postingToday = items.filter(i => i.scheduled_date === today && i.status === 'scheduled')
   const approvalsUrgent = readyPosts.length > 0 || postingToday.length > 0
 
   let approvalLabel       = 'Nothing to approve'
-  let approvalDescription = 'All posts have been reviewed. Check back after the next agent run.'
+  let approvalDescription = 'All LinkedIn posts reviewed. Next batch queues Sunday.'
   if (postingToday.length > 0) {
     approvalLabel       = `${postingToday.length} post${postingToday.length > 1 ? 's' : ''} publishing today`
     approvalDescription = `${postingToday[0].title}${postingToday.length > 1 ? ` + ${postingToday.length - 1} more` : ''}`
   } else if (readyPosts.length > 0) {
-    approvalLabel       = `${readyPosts.length} post${readyPosts.length > 1 ? 's' : ''} need review`
+    approvalLabel       = `${readyPosts.length} LinkedIn post${readyPosts.length > 1 ? 's' : ''} need review`
     approvalDescription = readyPosts[0].title + (readyPosts.length > 1 ? ` + ${readyPosts.length - 1} more` : '')
   }
 

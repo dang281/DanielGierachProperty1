@@ -4,8 +4,8 @@
 **Format:** Post
 **Goal:** Build local authority and drive appraisal enquiries from Hawthorne homeowners
 **Content Pillar:** Suburb
-**Status:** Ready for Review
-**Publish date:** 2026-04-14
+**Status:** Idea
+**Publish date:** 2026-04-25
 **Scheduled time:** 07:30
 
 ---

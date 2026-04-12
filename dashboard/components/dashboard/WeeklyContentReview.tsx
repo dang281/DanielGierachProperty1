@@ -294,59 +294,193 @@ function ReviewCard({ item, onAction }: { item: ContentItem; onAction: (id: stri
   )
 }
 
+// ─── 2-week schedule grid ─────────────────────────────────────────────────────
+
+const DOW_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+const STATUS_DOT: Record<string, string> = {
+  ready:     '#a855f7',
+  scheduled: '#22c55e',
+  posted:    '#3b82f6',
+  idea:      '#6b7280',
+  rejected:  '#ef4444',
+}
+
+function mondayOf(dateStr: string): Date {
+  const d = new Date(dateStr + 'T00:00:00')
+  const day = (d.getDay() + 6) % 7 // 0=Mon
+  d.setDate(d.getDate() - day)
+  return d
+}
+
+function isoStr(d: Date): string {
+  return d.toLocaleDateString('en-CA')
+}
+
+function ScheduleGrid({ allLinkedin, today }: { allLinkedin: ContentItem[]; today: string }) {
+  const mon0 = mondayOf(today)
+  const mon1 = new Date(mon0); mon1.setDate(mon0.getDate() + 7)
+
+  const weeks = [mon0, mon1].map(mon => {
+    const days = Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(mon); d.setDate(mon.getDate() + i)
+      return d
+    })
+    const label = `${days[0].toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${days[6].toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
+    return { days, label }
+  })
+
+  const byDate = new Map<string, ContentItem[]>()
+  allLinkedin.forEach(item => {
+    if (!item.scheduled_date) return
+    const existing = byDate.get(item.scheduled_date) ?? []
+    byDate.set(item.scheduled_date, [...existing, item])
+  })
+
+  const isTargetDay = (d: Date) => [1, 3, 5].includes(d.getDay()) // Mon/Wed/Fri
+
+  return (
+    <div className="flex flex-col gap-3">
+      {weeks.map((week, wi) => (
+        <div key={wi}>
+          <p className="text-[10px] font-sans text-[var(--color-cream-x)] mb-1.5">
+            {wi === 0 ? 'This week' : 'Next week'} · {week.label}
+          </p>
+          <div className="grid grid-cols-7 gap-1.5">
+            {week.days.map((day, di) => {
+              const str     = isoStr(day)
+              const isToday = str === today
+              const posts   = byDate.get(str) ?? []
+              const target  = isTargetDay(day)
+
+              return (
+                <div key={di}
+                  className="rounded-lg p-1.5 flex flex-col gap-1 min-h-[64px]"
+                  style={{
+                    background: isToday ? 'rgba(196,145,42,0.08)' : target ? 'var(--color-card)' : 'transparent',
+                    border: isToday ? '1px solid rgba(196,145,42,0.4)' : target ? '1px solid var(--color-border-w)' : '1px solid transparent',
+                  }}>
+                  <div className="flex items-center justify-between gap-0.5">
+                    <span className="text-[9px] font-sans font-bold uppercase"
+                      style={{ color: isToday ? 'var(--color-gold)' : 'var(--color-cream-dim)' }}>
+                      {DOW_SHORT[di]}
+                    </span>
+                    <span className="text-[9px] font-sans tabular-nums"
+                      style={{ color: isToday ? 'var(--color-gold)' : 'var(--color-cream-x)' }}>
+                      {day.getDate()}
+                    </span>
+                  </div>
+
+                  {posts.length > 0 ? (
+                    posts.map((post, pi) => (
+                      <div key={pi} className="flex items-start gap-1 group">
+                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-0.5"
+                          style={{ background: STATUS_DOT[post.status] ?? '#6b7280' }} />
+                        <span className="text-[9px] font-sans leading-tight text-[var(--color-cream-dim)] line-clamp-2 group-hover:text-[var(--color-cream)] transition-colors">
+                          {post.title}
+                        </span>
+                      </div>
+                    ))
+                  ) : target ? (
+                    <span className="text-[8px] font-sans text-[var(--color-cream-x)] opacity-50 mt-auto">
+                      {di === 0 ? 'Market update' : di === 2 ? 'Poll' : 'Spotlight'}
+                    </span>
+                  ) : null}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      ))}
+
+      {/* Legend */}
+      <div className="flex items-center gap-3 pt-1">
+        {[['ready', 'Needs approval'], ['scheduled', 'Approved'], ['idea', 'Queued (idea)']] .map(([s, l]) => (
+          <div key={s} className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: STATUS_DOT[s] }} />
+            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{l}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function WeeklyContentReview({
   initialItems,
+  today,
 }: {
   initialItems: ContentItem[]
+  today: string
 }) {
+  const allLinkedin = initialItems
+    .filter(i => i.platform === 'linkedin' && i.scheduled_date != null)
+    .sort((a, b) => (a.scheduled_date ?? '').localeCompare(b.scheduled_date ?? ''))
+
   const [items, setItems] = useState<ContentItem[]>(
     initialItems
-      .filter(i => i.status === 'ready')
+      .filter(i => i.status === 'ready' && i.platform === 'linkedin')
       .sort((a, b) => (a.scheduled_date ?? '9999').localeCompare(b.scheduled_date ?? '9999')),
   )
 
   function handleAction(id: string, _action: 'approve' | 'reject' | 'revise') {
-    // Keep the card visible with done state (handled inside ReviewCard)
-    // Could remove from list after animation
     setTimeout(() => {
       setItems(prev => prev.filter(i => i.id !== id))
     }, 1200)
   }
 
   return (
-    <section>
-      <div className="flex items-center gap-2 mb-3">
-        <h2 className="text-[11px] font-sans font-semibold tracking-[0.1em] uppercase text-[var(--color-cream-dim)]">
-          Weekly Content Review
-        </h2>
-        {items.length > 0 && (
-          <span className="text-[10px] font-sans px-2 py-0.5 rounded-full"
-            style={{ color: '#a855f7', background: 'rgba(168,85,247,0.12)' }}>
-            {items.length} post{items.length !== 1 ? 's' : ''} awaiting approval
-          </span>
-        )}
-        <div className="flex-1 h-px bg-[var(--color-border-w)]" />
-        <a href="/app/social" className="text-[10px] font-sans font-semibold text-[var(--color-gold)] hover:underline">
-          All posts →
-        </a>
+    <section className="flex flex-col gap-4">
+
+      {/* ── Schedule grid ── */}
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <h2 className="text-[11px] font-sans font-semibold tracking-[0.1em] uppercase text-[var(--color-cream-dim)]">
+            LinkedIn Schedule
+          </h2>
+          <div className="flex-1 h-px bg-[var(--color-border-w)]" />
+          <a href="/app/calendar" className="text-[10px] font-sans font-semibold text-[var(--color-gold)] hover:underline">
+            Full calendar →
+          </a>
+        </div>
+        <ScheduleGrid allLinkedin={allLinkedin} today={today} />
       </div>
 
-      {items.length === 0 ? (
-        <div className="rounded-xl border border-[var(--color-border-w)] bg-[var(--color-card)] px-6 py-8 text-center">
-          <p className="text-sm font-sans font-semibold" style={{ color: '#22c55e' }}>All clear</p>
-          <p className="text-[11px] font-sans text-[var(--color-cream-x)] mt-1">
-            No posts waiting for review. The agent will queue next week&apos;s content on Sunday evening.
-          </p>
+      {/* ── Review queue ── */}
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <h2 className="text-[11px] font-sans font-semibold tracking-[0.1em] uppercase text-[var(--color-cream-dim)]">
+            Needs Approval
+          </h2>
+          {items.length > 0 && (
+            <span className="text-[10px] font-sans px-2 py-0.5 rounded-full"
+              style={{ color: '#a855f7', background: 'rgba(168,85,247,0.12)' }}>
+              {items.length} post{items.length !== 1 ? 's' : ''}
+            </span>
+          )}
+          <div className="flex-1 h-px bg-[var(--color-border-w)]" />
+          <a href="/app/social" className="text-[10px] font-sans font-semibold text-[var(--color-gold)] hover:underline">
+            All posts →
+          </a>
         </div>
-      ) : (
-        <div className="flex flex-col gap-3">
-          {items.map(item => (
-            <ReviewCard key={item.id} item={item} onAction={handleAction} />
-          ))}
-        </div>
-      )}
+
+        {items.length === 0 ? (
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[var(--color-border-w)] bg-[var(--color-card)]">
+            <span className="text-[11px]" style={{ color: '#22c55e' }}>✓</span>
+            <span className="text-[11px] font-sans text-[var(--color-cream-x)]">
+              All clear — no LinkedIn posts awaiting approval
+            </span>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-3">
+            {items.map(item => (
+              <ReviewCard key={item.id} item={item} onAction={handleAction} />
+            ))}
+          </div>
+        )}
+      </div>
+
     </section>
   )
 }

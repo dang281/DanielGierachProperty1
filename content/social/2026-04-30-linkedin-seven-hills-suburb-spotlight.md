@@ -4,8 +4,8 @@
 **Format:** Post
 **Goal:** Build local authority and thought leadership on Seven Hills micro-market dynamics
 **Content Pillar:** Authority
-**Status:** Ready for Review
-**Publish date:** 2026-04-30
+**Status:** Idea
+**Publish date:** 2026-06-06
 **Scheduled time:** 07:30
 
 ---

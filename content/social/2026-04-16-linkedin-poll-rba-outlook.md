@@ -4,8 +4,8 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers, sellers, and investors; position Daniel as the go-to voice on rate commentary in the inner east
 **Content Pillar:** Authority
-**Status:** Ready for Review
-**Publish date:** 2026-04-16
+**Status:** Idea
+**Publish date:** 2026-04-23
 **Scheduled time:** 07:30
 **Visual status:** Needed
 **Canva URL:**
