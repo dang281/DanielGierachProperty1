@@ -165,7 +165,7 @@ async function main() {
       visual_brief:      visualBrief ?? null,
       visual_status:     parseVisualStatus(field(md, 'Visual status')),
       canva_url:         field(md, 'Canva URL') ?? null,
-      platform_variants: pollOptions ? JSON.stringify(pollOptions) : null,
+      platform_variants: pollOptions || null,
     }
 
     const existingId = existingMap.get(title)

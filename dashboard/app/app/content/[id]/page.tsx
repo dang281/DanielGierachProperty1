@@ -252,23 +252,18 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* Poll Options — shown prominently for polls */}
-        {item.platform_variants && (() => {
-          let opts: string[] = []
-          try { opts = JSON.parse(item.platform_variants) } catch { return null }
-          if (!Array.isArray(opts) || opts.length === 0) return null
-          return (
+        {Array.isArray(item.platform_variants) && item.platform_variants.length > 0 && (
+          <div className="flex flex-col gap-2">
+            <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">
+              Poll Options — copy and paste into LinkedIn
+            </label>
             <div className="flex flex-col gap-2">
-              <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">
-                Poll Options — copy and paste into LinkedIn
-              </label>
-              <div className="flex flex-col gap-2">
-                {opts.map((opt, i) => (
-                  <PollOption key={i} index={i} text={opt} />
-                ))}
-              </div>
+              {item.platform_variants.map((opt, i) => (
+                <PollOption key={i} index={i} text={opt} />
+              ))}
             </div>
-          )
-        })()}
+          </div>
+        )}
 
         {/* Caption */}
         <Field label="Caption">

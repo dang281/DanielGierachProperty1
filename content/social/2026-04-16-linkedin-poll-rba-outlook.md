@@ -1,43 +1,43 @@
-# LinkedIn Poll: What Does the RBA Do Next?
+# LinkedIn Poll: Two Rate Rises Down — What Does the RBA Do on 5 May?
 
 **Platform:** LinkedIn
 **Format:** Poll
-**Goal:** Drive engagement from buyers, sellers, and investors; position Daniel as the go-to voice on rate commentary in the inner east
+**Goal:** Drive engagement from buyers, sellers, and investors; position Daniel as informed on macro conditions affecting the inner east market
 **Content Pillar:** Authority
 **Status:** Idea
 **Publish date:** 2026-04-23
 **Scheduled time:** 07:30
-**Visual status:** Needed
+**Visual status:** Not needed
 **Canva URL:**
 
 ---
 
 ## Caption
 
-Two rate cuts in two months.
+The RBA has raised rates twice in 2026.
 
-The big banks are now forecasting anywhere from one to four more cuts by the end of 2026. Westpac, CBA, NAB and ANZ are all telling a slightly different story.
+Two back-to-back 25 basis point increases in February and March have pushed the cash rate to 4.10%. The March decision was close: five board members voted to raise, four voted to hold.
 
-For Brisbane property, the direction of rates over the next 12 months matters more than almost anything else. More cuts means more borrowing power, more buyers in the market, and more competition for well-priced properties.
+The next decision lands on 5 May. Economists are split. Some are forecasting a third consecutive rise to 4.35%. Others think the board will pause and watch how the previous hikes flow through household budgets and the labour market.
 
-What do you think the RBA does at their next meeting?
+For Brisbane property buyers, two rises have already started to reduce borrowing capacity. For sellers, the question is whether demand softens further before spring or stabilises.
 
-I will share what the market is pricing in after the results come in.
+What do you think the RBA does on 5 May?
 
 Daniel Gierach
 Ray White Bulimba · Inner East Brisbane
 
 ## Hashtags
 
-#BrisbaneProperty #RBA #MortgageRates #BrisbaneRealEstate #InnerEastBrisbane #DanielGierach
+#BrisbaneProperty #RBA #InterestRates #BrisbaneRealEstate #InnerEastBrisbane #DanielGierach
 
 ---
 
 ## Poll Options
 
-- Cut again
+- Rise again to 4.35%
 - Hold and wait
-- Surprise hike
+- Surprise cut
 - Too close to call
 
 ---
@@ -46,25 +46,16 @@ Ray White Bulimba · Inner East Brisbane
 
 **Confidence: Ready**
 
-This poll is evergreen and intentionally open-ended. It does not require specific stats, just the setup question and a commitment to follow up with what markets are pricing in after results close.
+All figures verified:
+- Two consecutive 25bp rises in February and March 2026 — confirmed via RBA media releases
+- Cash rate at 4.10% as of March 2026 — confirmed via rba.gov.au/statistics/cash-rate/
+- Next board meeting: 4-5 May 2026, decision announced 5 May at 2:30pm AEST — confirmed via RBA schedule
+- Westpac economists forecasting possible further hike to 4.35% in May
 
-After the poll closes (typically 7 days), post a brief comment with what the market had priced in. This keeps engagement going and positions Daniel as someone who follows through.
+After the poll closes (7 days), post a comment noting what the market had priced in via ASX RBA Rate Tracker. This turns a poll into a genuine two-part conversation.
 
-Source: Adapted from POLL 01 in content/polls.md for April 2026 context.
-
----
-
-## Visual Brief
-
-**Format:** 1080x1080px square
-**Style:** Poll, minimal and clean
-**Headline text:** "What does the RBA do next?"
-**Subheadline:** "Two cuts down. How many more?"
-**Poll options listed clearly:**
-1. Cut again
-2. Hold and wait
-3. Surprise hike
-4. Too close to call
-**Footer:** "Daniel Gierach · Ray White Bulimba · danielgierach.com"
-**Style note:** Light or neutral background. Polls are about the question, so keep the design minimal.
-**Image direction:** No photo. Text only.
+Sources:
+- rba.gov.au/media-releases/2026/mr-26-08.html (March decision)
+- rba.gov.au/statistics/cash-rate/
+- rba.gov.au/schedules-events/monetary-policy-board-schedule.html
+- westpaciq.com.au (May hike forecast)

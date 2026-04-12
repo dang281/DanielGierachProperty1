@@ -9,7 +9,7 @@ export interface ContentItem {
   platform: Platform
   content_type: string | null
   caption: string | null
-  platform_variants: Record<string, string> | null
+  platform_variants: string[] | null
   objective: string | null
   target_audience: string | null
   expected_outcome: string | null
