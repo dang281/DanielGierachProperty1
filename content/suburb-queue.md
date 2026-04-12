@@ -22,7 +22,15 @@
 17. Hawthorne
 
 ## Already Covered (do not repeat until full cycle complete)
-*(Agent: move suburb names here after posting a spotlight)*
+
+- Hawthorne — 2026-04-14-linkedin-hawthorne-suburb-spotlight.md
+- Norman Park — 2026-04-15-linkedin-normanpark-suburb-spotlight.md
+- Balmoral — 2026-04-16-linkedin-balmoral-suburb-spotlight.md
+- Camp Hill — 2026-04-17-linkedin-camphill-suburb-spotlight.md
+- Coorparoo — 2026-04-22-linkedin-coorparoo-suburb-spotlight.md
+- Morningside — 2026-04-23-linkedin-morningside-suburb-spotlight.md
+- Seven Hills — 2026-04-30-linkedin-seven-hills-suburb-spotlight.md
+- Murarrie — 2026-05-07-linkedin-murarrie-pricing-story.md
 
 ---
 

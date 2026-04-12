@@ -98,17 +98,17 @@ If POST TODAY: write one LinkedIn post (format below), create Canva design, comm
 
 Skip this section on any other day or time.
 
-Generate 3 LinkedIn posts for NEXT WEEK:
-- **Monday** — Market Update or Authority Post
-- **Wednesday** — Poll
-- **Friday** — Suburb Spotlight
+Generate 3 LinkedIn posts for the next unscheduled week (not necessarily next week — there may already be content scheduled further ahead).
 
-Calculate next week's dates:
+First find the last already-scheduled LinkedIn post date:
 ```bash
-NEXT_MON=$(TZ='Australia/Brisbane' date -v+1d -v+Mon '+%Y-%m-%d' 2>/dev/null || date -d 'next Monday' '+%Y-%m-%d')
-NEXT_WED=$(TZ='Australia/Brisbane' date -v+3d -v+Wed '+%Y-%m-%d' 2>/dev/null || date -d 'next Wednesday' '+%Y-%m-%d')
-NEXT_FRI=$(TZ='Australia/Brisbane' date -v+5d -v+Fri '+%Y-%m-%d' 2>/dev/null || date -d 'next Friday' '+%Y-%m-%d')
+ls /Users/danielgierach/DanielGierachProperty/content/social/*linkedin*.md | \
+  xargs grep -l "Publish date:" | \
+  xargs grep "Publish date:" | \
+  grep -oP '\d{4}-\d{2}-\d{2}' | sort | tail -1
 ```
+
+Then calculate Mon/Wed/Fri of the week AFTER that last date. **Never overwrite an existing file.**
 
 ### Post 1 — Market Update (Monday 07:30)
 
