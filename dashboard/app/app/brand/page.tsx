@@ -3,7 +3,6 @@ const PALETTE = [
   { name: 'Cream',        hex: '#f0ece4', label: 'Primary text on dark',         text: '#0a0806' },
   { name: 'Gold',         hex: '#f5d07a', label: 'Accents, CTAs, highlights',    text: '#0a0806' },
   { name: 'Cream-dim',    hex: 'rgba(240,236,228,0.6)', label: 'Secondary text on dark', text: '#0a0806', solid: '#b8b0a5' },
-  { name: 'Ray White Red',hex: '#e60028', label: 'Ray White attribution only',   text: '#ffffff' },
   { name: 'White',        hex: '#ffffff', label: 'Clean light backgrounds',       text: '#0a0806' },
 ]
 

@@ -31,10 +31,9 @@ Professional, honest, data-led, local. The agent who genuinely knows Brisbane's 
 | Cream-dim | `rgba(240,236,228,0.6)` | Secondary text on dark |
 | Gold | `#f5d07a` | Accents, key stats, CTAs, highlights |
 
-### Ray White Corporate
+### Supporting
 | Token | Hex | Use |
 |---|---|---|
-| Ray White Red | `#e60028` | Ray White logo / attribution only — never as a primary brand colour |
 | White | `#ffffff` | Clean backgrounds on light designs |
 | Off-black | `#1a1a1a` | Body text on light backgrounds |
 
@@ -42,6 +41,7 @@ Professional, honest, data-led, local. The agent who genuinely knows Brisbane's 
 - Neon colours
 - Generic blues or greens unrelated to the palette
 - Gradients that clash with charcoal/cream/gold
+- Red in any form — it is not part of Daniel's brand
 
 ---
 
@@ -152,8 +152,30 @@ A complete Visual Brief includes:
 
 ---
 
+## Tone for Market News — No Doom and Gloom
+
+This is the most common mistake in real estate content. Market news must always be framed as useful information that helps people act — not as bad news that creates anxiety.
+
+**Wrong:**
+- "Uncertainty remains for buyers and sellers" — passive, negative, gives nothing to do
+- "Market conditions remain challenging" — vague and discouraging
+- "Buyers face headwinds" — doom language
+
+**Right:**
+- What does this mean for a Brisbane inner-east seller specifically?
+- What is the practical implication — not the emotional one?
+- RBA holds: "Borrowing capacity is stable — buyers who've been waiting now have certainty to act"
+- RBA cuts: "X basis points off an $800K loan is $Y/month — here's what that means for the Morningside buyer pool"
+
+**The test:** After reading this post, does the audience feel informed and capable of making a decision? Or anxious and stuck? Only publish the former.
+
+Daniel's role is to be the most useful person in the room. Data, context, local implication, practical takeaway. Never amplify fear.
+
+---
+
 ## What NOT to Do
 
+- No doom and gloom framing — "uncertainty", "headwinds", "challenging conditions" must be reframed as practical information
 - No neon colours or gradients that clash with the palette
 - No generic "houses" or "keys" clipart
 - No competitor agent or agency names

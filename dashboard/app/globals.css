@@ -1,28 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;400;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-bg:        #f7f5f0;
+  /* ── Brand palette ─────────────────────────── */
+  --color-bg:        #f6f4ef;
   --color-card:      #ffffff;
-  --color-card-2:    #f2efe9;
+  --color-card-2:    #f0ede7;
   --color-gold:      #c4912a;
-  --color-gold-dim:  rgba(196,145,42,0.12);
+  --color-gold-dim:  rgba(196,145,42,0.1);
+
+  /* ── Text scale ────────────────────────────── */
   --color-cream:     #1c1917;
-  --color-cream-dim: rgba(28,25,23,0.55);
-  --color-cream-x:   rgba(28,25,23,0.35);
-  --color-border:    rgba(196,145,42,0.2);
-  --color-border-w:  rgba(28,25,23,0.09);
+  --color-cream-dim: rgba(28,25,23,0.52);
+  --color-cream-x:   rgba(28,25,23,0.32);
 
-  --color-status-idea:      rgba(107,114,128,0.12);
-  --color-status-ready:     rgba(168,85,247,0.1);
-  --color-status-scheduled: rgba(34,197,94,0.1);
-  --color-status-posted:    rgba(59,130,246,0.1);
-  --color-status-rejected:  rgba(239,68,68,0.08);
+  /* ── Borders ───────────────────────────────── */
+  --color-border:    rgba(196,145,42,0.18);
+  --color-border-w:  rgba(28,25,23,0.08);
 
+  /* ── Semantic status backgrounds ───────────── */
+  --color-status-idea:      rgba(107,114,128,0.10);
+  --color-status-ready:     rgba(168,85,247,0.09);
+  --color-status-scheduled: rgba(34,197,94,0.09);
+  --color-status-posted:    rgba(59,130,246,0.09);
+  --color-status-rejected:  rgba(239,68,68,0.07);
+
+  /* ── Semantic accent tokens ─────────────────── */
+  --color-success: #22c55e;
+  --color-warning: #f5d07a;
+  --color-purple:  #a855f7;
+  --color-indigo:  #6366f1;
+  --color-orange:  #f97316;
+  --color-blue:    #3b82f6;
+
+  /* ── Typography ─────────────────────────────── */
   --font-sans:  'Manrope', system-ui, sans-serif;
   --font-serif: 'Noto Serif', Georgia, serif;
 }
 
+/* ── Reset ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -30,8 +45,25 @@ body {
   color: var(--color-cream);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(28,25,23,0.18); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(28,25,23,0.14); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(28,25,23,0.24); }
+
+/* ── Focus ring ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(196,145,42,0.5);
+  outline-offset: 2px;
+}
+
+/* ── Smooth transitions on interactive elements ─── */
+button, a {
+  transition-property: color, background-color, border-color, opacity;
+  transition-duration: 120ms;
+  transition-timing-function: ease;
+}

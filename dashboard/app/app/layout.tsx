@@ -1,47 +1,44 @@
-import Link from 'next/link'
+import NavLinks from '@/components/dashboard/NavLinks'
 import { logout } from '@/lib/actions/auth'
-
-const NAV = [
-  { href: '/app',          label: 'Dashboard' },
-  { href: '/app/calendar', label: 'Calendar' },
-  { href: '/app/brand',    label: 'Brand' },
-]
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-full flex flex-col bg-[var(--color-bg)]">
-      <header className="border-b border-[var(--color-border-w)] bg-[var(--color-card)] px-8 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <div>
-            <p className="text-[var(--color-gold)] text-[10px] tracking-[0.2em] uppercase font-sans leading-none mb-0.5">
-              Ray White Bulimba
-            </p>
-            <p className="text-[var(--color-cream)] text-sm font-serif leading-none">
+      <header
+        className="sticky top-0 z-40 border-b border-[var(--color-border-w)] px-6 flex items-center justify-between h-12"
+        style={{ backdropFilter: 'blur(12px)', background: 'rgba(255,255,255,0.92)' }}
+      >
+        <div className="flex items-center gap-5">
+          {/* Wordmark */}
+          <div className="flex items-baseline gap-1.5 select-none flex-shrink-0">
+            <span
+              className="text-[11px] font-sans font-semibold tracking-[0.18em] uppercase"
+              style={{ color: 'var(--color-gold)' }}
+            >
               Daniel Gierach
-            </p>
+            </span>
+            <span className="text-[10px] font-sans text-[var(--color-cream-x)] tracking-wide hidden sm:block">
+              · Property
+            </span>
           </div>
-          <nav className="flex gap-1">
-            {NAV.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-[var(--color-cream-dim)] hover:text-[var(--color-cream)] text-sm font-sans px-3 py-1.5 rounded-lg hover:bg-[var(--color-card-2)] transition-colors"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
+
+          {/* Divider */}
+          <div className="w-px h-4 bg-[var(--color-border-w)] flex-shrink-0" />
+
+          <NavLinks />
         </div>
+
         <form action={logout}>
           <button
             type="submit"
-            className="text-[var(--color-cream-x)] hover:text-[var(--color-cream-dim)] text-xs font-sans transition-colors"
+            className="text-[var(--color-cream-x)] hover:text-[var(--color-cream-dim)] text-[12px] font-sans"
           >
             Sign out
           </button>
         </form>
       </header>
-      <main className="flex-1 px-8 py-7 max-w-[2200px] mx-auto w-full">
+
+      <main className="flex-1 px-6 py-6 max-w-[1440px] mx-auto w-full">
         {children}
       </main>
     </div>

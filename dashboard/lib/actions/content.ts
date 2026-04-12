@@ -46,6 +46,7 @@ export async function updateStatus(id: string, status: Status) {
     .eq('id', id)
   if (error) throw error
   revalidatePath('/app')
+  revalidatePath('/app/social')
   revalidatePath('/app/calendar')
 }
 

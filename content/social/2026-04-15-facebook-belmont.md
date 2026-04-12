@@ -7,7 +7,8 @@
 **Status:** Ready for Review
 **Publish date:** 2026-04-15
 **Scheduled time:** 09:00 AEST
-**Visual status:** Needed
+**Visual status:** Draft
+**Canva URL:** https://www.canva.com/d/8aF4yN_8e4qOq-5
 
 ---
 
