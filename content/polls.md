@@ -6,7 +6,8 @@
 ---
 
 ## ✅ Used Polls
-*(Agent: move poll titles here after posting)*
+
+- POLL 01 — RBA Rate Decision (used: 2026-04-16, file: 2026-04-16-linkedin-poll-rba-outlook.md)
 
 ---
 

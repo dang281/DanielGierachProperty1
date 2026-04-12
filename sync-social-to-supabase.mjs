@@ -8,10 +8,26 @@
 
 import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
+import { existsSync } from 'fs'
+
+// Load .env from repo root so the script works from git hooks too
+const envPath = new URL('./.env', import.meta.url).pathname
+if (existsSync(envPath)) {
+  const envText = await readFile(envPath, 'utf8')
+  for (const line of envText.split('\n')) {
+    const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/)
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim()
+  }
+}
 
 const SUPABASE_URL  = 'https://hmwulvvwsksuyqozuxvw.supabase.co'
 const SUPABASE_KEY  = process.env.SUPABASE_KEY
 const SOCIAL_DIR    = new URL('./content/social/', import.meta.url).pathname
+
+if (!SUPABASE_KEY) {
+  console.error('SUPABASE_KEY not set — aborting sync')
+  process.exit(1)
+}
 
 const HEADERS = {
   'apikey': SUPABASE_KEY,
@@ -100,7 +116,11 @@ async function supabaseFetch(path, options = {}) {
 async function main() {
   // Fetch existing records (id + title) to decide insert vs update
   const existing = await supabaseFetch('/rest/v1/content_items?select=id,title&limit=1000')
-  const existingMap = new Map((existing.data ?? []).map(r => [r.title, r.id]))
+  if (!existing.ok || !Array.isArray(existing.data)) {
+    console.error(`Failed to fetch existing records: ${existing.status} — ${JSON.stringify(existing.data)}`)
+    process.exit(1)
+  }
+  const existingMap = new Map(existing.data.map(r => [r.title, r.id]))
 
   const files = (await readdir(SOCIAL_DIR))
     .filter(f => f.endsWith('.md'))

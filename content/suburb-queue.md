@@ -31,6 +31,7 @@
 - Morningside — 2026-04-23-linkedin-morningside-suburb-spotlight.md
 - Seven Hills — 2026-04-30-linkedin-seven-hills-suburb-spotlight.md
 - Murarrie — 2026-05-07-linkedin-murarrie-pricing-story.md
+- Carina Heights — 2026-04-18-linkedin-carina-heights-suburb-spotlight.md
 
 ---
 
