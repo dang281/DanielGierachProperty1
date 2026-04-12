@@ -7,7 +7,7 @@ function todayAEST(): string {
 
 export default async function CalendarPage() {
   const allItems = await getContentItems()
-  const items = allItems.filter(i => i.platform !== 'instagram')
+  const items = allItems.filter(i => i.platform === 'linkedin')
   const today = todayAEST()
 
   return (

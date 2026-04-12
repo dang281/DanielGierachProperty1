@@ -22,7 +22,7 @@ import { rescheduleItem, createItem } from '@/lib/actions/content'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type ViewMode       = 'week' | 'month'
+type ViewMode       = 'week' | 'twoweek' | 'month'
 type PlatformFilter = 'all' | Platform
 type StatusFilter   = 'all' | Status
 type PillarFilter   = 'all' | Pillar
@@ -268,7 +268,6 @@ function QuickComposeModal({ date, allItems, onClose, onCreated }: {
             <select value={platform} onChange={e => setPlatform(e.target.value as Platform)}
               className={inCls} style={inStyle}>
               <option value="linkedin">LinkedIn</option>
-              <option value="facebook">Facebook</option>
             </select>
           </div>
 
@@ -601,8 +600,7 @@ function MonthView({ items, year, month, today }: {
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS: { value: PlatformFilter; label: string; colour?: string }[] = [
-  { value: 'linkedin', label: 'LinkedIn',  colour: '#0a66c2' },
-  { value: 'facebook', label: 'Facebook',  colour: '#1877f2' },
+  { value: 'linkedin', label: 'LinkedIn', colour: '#0a66c2' },
   { value: 'all',      label: 'All' },
 ]
 
@@ -628,12 +626,14 @@ const PILLAR_OPTIONS: { value: PillarFilter; label: string }[] = [
 export default function CalendarClient({
   items: initialItems,
   today,
+  defaultView = 'week',
 }: {
   items: ContentItem[]
   today: string
+  defaultView?: ViewMode
 }) {
   const [localItems, setLocalItems] = useState<ContentItem[]>(initialItems)
-  const [view, setView]             = useState<ViewMode>('week')
+  const [view, setView]             = useState<ViewMode>(defaultView)
   const [platform, setPlatform]     = useState<PlatformFilter>('linkedin')
   const [status, setStatus]         = useState<StatusFilter>('all')
   const [pillar, setPillar]         = useState<PillarFilter>('all')
@@ -661,6 +661,18 @@ export default function CalendarClient({
     const mon = weekDays[0]
     const sun = weekDays[6]
     return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}`
+  })()
+
+  // Two-week view: last week + this week (always relative to today)
+  const lastWeekDays = getWeekDays(addDays(todayDate, -7))
+  const thisWeekDays = getWeekDays(todayDate)
+  const lastWeekLabel = (() => {
+    const mon = lastWeekDays[0]; const sun = lastWeekDays[6]
+    return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
+  })()
+  const thisWeekLabel = (() => {
+    const mon = thisWeekDays[0]; const sun = thisWeekDays[6]
+    return `${mon.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${sun.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
   })()
   const monthLabel = new Date(monthYear, monthIdx).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })
 
@@ -715,13 +727,13 @@ export default function CalendarClient({
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex rounded-lg border border-[var(--color-border-w)] overflow-hidden"
             style={{ background: 'var(--color-card)' }}>
-            {(['week', 'month'] as ViewMode[]).map(v => (
+            {([['twoweek', '2 Weeks'], ['week', 'Week'], ['month', 'Month']] as [ViewMode, string][]).map(([v, label]) => (
               <button key={v} onClick={() => setView(v)}
-                className="px-3 py-1.5 text-[11px] font-sans font-semibold capitalize transition-colors"
+                className="px-3 py-1.5 text-[11px] font-sans font-semibold transition-colors"
                 style={view === v
                   ? { background: 'var(--color-gold)', color: '#1c1917' }
                   : { background: 'transparent', color: 'var(--color-cream-dim)' }}>
-                {v}
+                {label}
               </button>
             ))}
           </div>
@@ -765,20 +777,47 @@ export default function CalendarClient({
           ))}
         </div>
 
-        {/* ── Navigation ── */}
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1">
-            <button onClick={prevPeriod} className="text-[var(--color-cream-dim)] text-sm font-sans px-3 py-1.5 rounded-lg bg-[var(--color-card)] border border-[var(--color-border-w)] hover:border-[var(--color-border)] transition-colors">‹</button>
-            <button onClick={goToday}    className="text-[var(--color-cream-dim)] text-sm font-sans px-3 py-1.5 rounded-lg bg-[var(--color-card)] border border-[var(--color-border-w)] hover:border-[var(--color-border)] transition-colors">Today</button>
-            <button onClick={nextPeriod} className="text-[var(--color-cream-dim)] text-sm font-sans px-3 py-1.5 rounded-lg bg-[var(--color-card)] border border-[var(--color-border-w)] hover:border-[var(--color-border)] transition-colors">›</button>
+        {/* ── Navigation (hidden in twoweek mode) ── */}
+        {view !== 'twoweek' && (
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1">
+              <button onClick={prevPeriod} className="text-[var(--color-cream-dim)] text-sm font-sans px-3 py-1.5 rounded-lg bg-[var(--color-card)] border border-[var(--color-border-w)] hover:border-[var(--color-border)] transition-colors">‹</button>
+              <button onClick={goToday}    className="text-[var(--color-cream-dim)] text-sm font-sans px-3 py-1.5 rounded-lg bg-[var(--color-card)] border border-[var(--color-border-w)] hover:border-[var(--color-border)] transition-colors">Today</button>
+              <button onClick={nextPeriod} className="text-[var(--color-cream-dim)] text-sm font-sans px-3 py-1.5 rounded-lg bg-[var(--color-card)] border border-[var(--color-border-w)] hover:border-[var(--color-border)] transition-colors">›</button>
+            </div>
+            <h2 className="text-[var(--color-cream)] font-serif text-base">
+              {view === 'week' ? weekRangeLabel : monthLabel}
+            </h2>
           </div>
-          <h2 className="text-[var(--color-cream)] font-serif text-base">
-            {view === 'week' ? weekRangeLabel : monthLabel}
-          </h2>
-        </div>
+        )}
 
         {/* ── Calendar body ── */}
-        {view === 'week' ? (
+        {view === 'twoweek' ? (
+          <div className="flex flex-col gap-6">
+            <div>
+              <p className="text-[10px] font-sans font-semibold tracking-[0.08em] uppercase text-[var(--color-cream-x)] mb-2">
+                Last week · {lastWeekLabel}
+              </p>
+              <WeekView
+                items={filtered} weekDays={lastWeekDays} today={today}
+                onHoverEnter={(item, rect) => setHovered({ item, rect })}
+                onHoverLeave={() => setHovered(null)}
+                onCompose={setComposingDate}
+              />
+            </div>
+            <div>
+              <p className="text-[10px] font-sans font-semibold tracking-[0.08em] uppercase text-[var(--color-cream-x)] mb-2">
+                This week · {thisWeekLabel}
+              </p>
+              <WeekView
+                items={filtered} weekDays={thisWeekDays} today={today}
+                onHoverEnter={(item, rect) => setHovered({ item, rect })}
+                onHoverLeave={() => setHovered(null)}
+                onCompose={setComposingDate}
+              />
+            </div>
+          </div>
+        ) : view === 'week' ? (
           <WeekView
             items={filtered} weekDays={weekDays} today={today}
             onHoverEnter={(item, rect) => setHovered({ item, rect })}
@@ -794,10 +833,6 @@ export default function CalendarClient({
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded-sm" style={{ background: '#0a66c2' }} />
             <span className="text-[10px] font-sans text-[var(--color-cream-x)]">LinkedIn</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-sm" style={{ background: '#1877f2' }} />
-            <span className="text-[10px] font-sans text-[var(--color-cream-x)]">Facebook</span>
           </div>
           <div className="w-px h-3 bg-[var(--color-border-w)]" />
           {Object.entries(VISUAL_DOT).map(([k, v]) => (
