@@ -107,6 +107,16 @@ export async function saveCanvaUrl(id: string, canva_url: string, visual_thumbna
   revalidatePath(`/app/content/${id}`)
 }
 
+export async function rescheduleItem(id: string, newDate: string) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ scheduled_date: newDate })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath('/app/calendar')
+}
+
 export async function deleteItem(id: string) {
   const supabase = await createClient()
   const { error } = await supabase
