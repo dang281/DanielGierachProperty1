@@ -22,7 +22,7 @@ The sellers who do best in Balmoral right now are the ones who go in with a clea
 
 If you are thinking about selling in Balmoral, I am happy to walk through the numbers with you.
 
-danielgierach.com
+danielgierach.com/suburbs/balmoral
 
 ## Hashtags
 

@@ -22,7 +22,7 @@ For homeowners who have been thinking about timing a sale, that kind of buyer po
 
 If you own in Hawthorne and you are curious what your home is worth right now, I am happy to have a straight conversation about it.
 
-danielgierach.com
+danielgierach.com/suburbs/hawthorne
 
 ## Hashtags
 

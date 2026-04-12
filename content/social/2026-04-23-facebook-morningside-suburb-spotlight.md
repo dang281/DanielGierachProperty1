@@ -20,7 +20,7 @@ The Cannon Hill Shopping Centre redevelopment nearby is also adding to the area'
 
 If you own in Morningside and have been thinking about selling, it is worth knowing what your home is worth in the current market before you make a decision.
 
-danielgierach.com
+danielgierach.com/suburbs/morningside
 
 ## Hashtags
 

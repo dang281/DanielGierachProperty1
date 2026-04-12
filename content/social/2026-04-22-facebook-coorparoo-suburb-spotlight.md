@@ -20,7 +20,7 @@ The buyers who look at Coorparoo are often comparing it to suburbs further in at
 
 If you own in Coorparoo and you have been thinking about your options, I am happy to sit down and give you a clear read on the current market.
 
-danielgierach.com
+danielgierach.com/suburbs/coorparoo
 
 ## Hashtags
 

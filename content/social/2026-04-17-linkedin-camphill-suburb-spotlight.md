@@ -22,7 +22,7 @@ For homeowners in Camp Hill, the opportunity is in positioning. A home that is w
 
 Happy to walk through what that looks like specifically for your Camp Hill property.
 
-danielgierach.com
+danielgierach.com/suburbs/camp-hill
 
 ## Hashtags
 

@@ -22,7 +22,7 @@ Property here tends to trade at a premium relative to comparable floorplans in s
 
 If you own in Balmoral and have been wondering what the current market looks like for your home, I am happy to sit down and give you a clear picture.
 
-danielgierach.com
+danielgierach.com/suburbs/balmoral
 
 ## Hashtags
 

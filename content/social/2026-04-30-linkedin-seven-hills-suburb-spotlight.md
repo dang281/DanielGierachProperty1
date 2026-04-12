@@ -14,21 +14,19 @@
 
 Seven Hills is priced below Hawthorne and Bulimba by a significant margin. That gap deserves more attention than it gets.
 
-The suburb sits 5km east of the CBD on an elevated ridge. It has one of Brisbane's larger inner-city bushland reserves on its boundary. Cavendish Road State High School catchment. Large established blocks. City views from the ridge streets. On the fundamentals that drive inner-east pricing, Seven Hills scores well.
+The suburb sits 5km east of the CBD on an elevated ridge with one of Brisbane's larger inner-city bushland reserves on its boundary. Cavendish Road State High School catchment. Large established blocks. City views from the ridge streets. On the fundamentals that drive inner-east pricing, Seven Hills scores well.
 
-And yet the median sits materially below both Hawthorne and Bulimba.
+Part of that discount is about profile. Hawthorne and Bulimba have active café strips and visible lifestyle anchors. Seven Hills is quieter. Its character comes from the elevation, the reserve, and the streetscape rather than foot traffic. Harder to market at scale, which means it tends to be underrepresented in the coverage that drives broad buyer awareness.
 
-Part of that discount is about profile. Hawthorne and Bulimba have active café strips and visible lifestyle anchors. Seven Hills is quieter. The suburb's character comes from the elevation, the reserve, and the streetscape rather than from foot traffic. That is harder to market at scale, so the suburb tends to be underrepresented in the kind of coverage that drives broad buyer awareness.
+Part of it is supply. The elevated topography and reserve boundary limit infill. No apartment corridor absorbing demand. Low transaction volume reflects genuine scarcity.
 
-Part of it is supply dynamics. The elevated topography and reserve boundary limit infill. There is no apartment corridor absorbing demand and skewing median calculations. The low transaction volume reflects genuine scarcity.
+That scarcity matters from a selling perspective. Around 47 houses traded in Seven Hills in the past 12 months. The buyer pool tends to be self-selecting: people who have looked at Hawthorne and Bulimba and decided they cannot stretch that far, or do not want to pay the premium for a flatter block. When they find Seven Hills, they have usually already decided it is where they want to be.
 
-That scarcity is significant from a selling perspective. Around 47 houses traded in Seven Hills in the past 12 months. The buyer pool here tends to be self-selecting: people who have looked at Hawthorne and Bulimba and decided they either cannot stretch that far or do not want to pay that premium for a flatter block. When they find Seven Hills, they have often already decided it is where they want to be.
-
-What that means in practice: the sellers who do well are the ones who understand that the comparable base is shallow and that accurate positioning against a limited set of sold properties matters more here than in a higher-volume suburb. Overpricing relative to comps does not work in low-turnover markets. Accurate pricing with strong presentation does.
+The sellers who do well understand the comparable base is shallow. Accurate positioning against a limited set of sold properties matters more here than in a higher-volume suburb. Overpricing does not work. Accurate pricing with strong presentation does.
 
 If you are thinking about selling in Seven Hills, I am happy to walk through the numbers with you.
 
-danielgierach.com
+danielgierach.com/suburbs/seven-hills
 
 ## Hashtags
 

@@ -24,7 +24,7 @@ If you have been sitting on a decision about whether to sell, the honest answer 
 
 Happy to chat if you are curious about what your Norman Park home is worth right now.
 
-danielgierach.com
+danielgierach.com/suburbs/norman-park
 
 ## Hashtags
 

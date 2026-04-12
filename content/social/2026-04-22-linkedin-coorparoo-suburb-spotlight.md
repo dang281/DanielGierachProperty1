@@ -22,7 +22,7 @@ The nuance for sellers right now is that Coorparoo's price growth has been stron
 
 If you own in Coorparoo and want to understand what your property is worth in the current market, I am happy to give you a straight answer.
 
-danielgierach.com
+danielgierach.com/suburbs/coorparoo
 
 ## Hashtags
 

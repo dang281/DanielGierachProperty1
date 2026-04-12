@@ -22,7 +22,7 @@ The current rate environment adds complexity to any sale decision. Buyers are mo
 
 If you own in Norman Park and are thinking about what comes next, I am happy to give you an honest picture of where the market sits for your property specifically.
 
-danielgierach.com
+danielgierach.com/suburbs/norman-park
 
 ## Hashtags
 

@@ -22,7 +22,7 @@ The challenge for homeowners considering a sale right now is the same one everyo
 
 If you are thinking about selling in Hawthorne or the inner east, I am happy to walk through what the current market looks like for your specific property.
 
-danielgierach.com
+danielgierach.com/suburbs/hawthorne
 
 ## Hashtags
 

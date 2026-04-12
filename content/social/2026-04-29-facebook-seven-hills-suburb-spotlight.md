@@ -22,7 +22,7 @@ Then there is the elevation. The ridge streets sit above the flat of Carina and 
 
 If you own in Seven Hills and have been thinking about what the current market looks like for your property, I am happy to walk through it with you.
 
-danielgierach.com
+danielgierach.com/suburbs/seven-hills
 
 ## Hashtags
 

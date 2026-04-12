@@ -22,7 +22,7 @@ Over the past decade, Camp Hill house values have more than doubled. That is not
 
 If you own in Camp Hill and you have been thinking about what your home is worth in this market, I am happy to have that conversation.
 
-danielgierach.com
+danielgierach.com/suburbs/camp-hill
 
 ## Hashtags
 

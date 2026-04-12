@@ -24,7 +24,7 @@ For homeowners thinking about timing, the fundamentals here are solid. The quest
 
 Happy to give you a clear picture of what your Morningside property is worth right now.
 
-danielgierach.com
+danielgierach.com/suburbs/morningside
 
 ## Hashtags
 
