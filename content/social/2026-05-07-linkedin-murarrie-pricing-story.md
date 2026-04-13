@@ -41,8 +41,8 @@ danielgierach.com
 - A simple, clean graphic with two data points displayed prominently:
   - "Murarrie median: $1.2M" vs "Cannon Hill median: $1.52M"
   - Subtitle: "Same postcode corridor. $320K difference."
-- Alternatively: a map visual showing the three suburbs (Murarrie, Morningside, Cannon Hill) with their medians annotated — simple infographic style
-- Professional and data-forward — avoid lifestyle/real estate cliche imagery on LinkedIn
+- Alternatively: a map visual showing the three suburbs (Murarrie, Morningside, Cannon Hill) with their medians annotated, simple infographic style
+- Professional and data-forward. Avoid lifestyle/real estate cliche imagery on LinkedIn
 - Ray White brand colours acceptable but not required
 
 ---
