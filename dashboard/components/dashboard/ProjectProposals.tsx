@@ -5,6 +5,22 @@ import { approveProposal, amendProposal, dismissProposal } from '@/lib/actions/p
 import type { Issue, Agent } from '@/types/paperclip'
 import { PROPOSAL_LABEL_ID } from '@/types/paperclip'
 
+type Filter = 'all' | 'social' | 'seo' | 'other'
+
+const FILTERS: { key: Filter; label: string; colour: string }[] = [
+  { key: 'all',    label: 'All',    colour: '#818cf8' },
+  { key: 'social', label: 'Social', colour: '#f472b6' },
+  { key: 'seo',    label: 'SEO',    colour: '#34d399' },
+  { key: 'other',  label: 'Other',  colour: '#94a3b8' },
+]
+
+function getFilter(title: string): Filter {
+  const t = title.toLowerCase()
+  if (t.startsWith('social:') || t.includes('social')) return 'social'
+  if (t.startsWith('seo:')    || t.includes('seo'))    return 'seo'
+  return 'other'
+}
+
 const PRIORITY_COLOUR: Record<string, string> = {
   critical: '#ef4444',
   high:     '#f97316',
@@ -239,6 +255,8 @@ export default function ProjectProposals({
   issues: Issue[]
   agents: Agent[]
 }) {
+  const [activeFilter, setActiveFilter] = useState<Filter>('all')
+
   const proposals = issues.filter(i =>
     i.labelIds.includes(PROPOSAL_LABEL_ID) && i.status !== 'cancelled' && i.status !== 'done'
   )
@@ -247,9 +265,21 @@ export default function ProjectProposals({
 
   const agentMap = Object.fromEntries(agents.map(a => [a.id, a]))
 
+  const counts: Record<Filter, number> = {
+    all:    proposals.length,
+    social: proposals.filter(i => getFilter(i.title) === 'social').length,
+    seo:    proposals.filter(i => getFilter(i.title) === 'seo').length,
+    other:  proposals.filter(i => getFilter(i.title) === 'other').length,
+  }
+
+  const visible = activeFilter === 'all'
+    ? proposals
+    : proposals.filter(i => getFilter(i.title) === activeFilter)
+
   return (
     <section>
-      <div className="flex items-center gap-3 mb-4">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-3">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#6366f1' }} />
           <h2 className="font-sans text-xs font-semibold tracking-[0.15em] uppercase" style={{ color: '#818cf8' }}>
@@ -262,11 +292,44 @@ export default function ProjectProposals({
         </span>
       </div>
 
+      {/* Filter tabs */}
+      <div className="flex gap-1.5 mb-4">
+        {FILTERS.map(f => {
+          const active = activeFilter === f.key
+          return (
+            <button
+              key={f.key}
+              onClick={() => setActiveFilter(f.key)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans font-semibold transition-all"
+              style={active
+                ? { background: f.colour + '20', color: f.colour, border: `1px solid ${f.colour}50` }
+                : { background: 'var(--color-card)', color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)' }}
+            >
+              {f.label}
+              <span
+                className="text-[10px] px-1.5 py-0.5 rounded-full tabular-nums"
+                style={active
+                  ? { background: f.colour + '30', color: f.colour }
+                  : { background: 'rgba(28,25,23,0.08)', color: 'var(--color-cream-x)' }}
+              >
+                {counts[f.key]}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
-        {proposals.map(issue => (
+        {visible.map(issue => (
           <ProposalCard key={issue.id} issue={issue} agentMap={agentMap} />
         ))}
       </div>
+
+      {visible.length === 0 && (
+        <p className="text-sm font-sans text-[var(--color-cream-x)] text-center py-8">
+          No {activeFilter} proposals pending.
+        </p>
+      )}
     </section>
   )
 }
