@@ -48,6 +48,9 @@ const _insightMatch      = _bPath.match(/^\/insights\/selling-in-(.+)$/);
 const _insightSuburbSlug = _insightMatch ? _insightMatch[1] : null;
 const _insightSuburbName = _insightSuburbSlug ? _insightSuburbSlug.replace(/-/g,' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()) : null;
 
+// Email capture: show on all insights article pages (not the index)
+const _isInsightsArticle = _bParts[0] === 'insights' && _bParts.length >= 2;
+
 const globalSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -262,6 +265,41 @@ const globalSchema = {
     <main>
       <slot />
     </main>
+
+    {/* Email capture — all insights articles */}
+    {_isInsightsArticle && (
+      <section style="background:var(--color-surface-1);padding:3.5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+        <div class="max-w-[640px] mx-auto px-8 text-center">
+          <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">Brisbane Inner East Market</p>
+          <h2 style="font-family:var(--font-serif);font-size:clamp(1.3rem,3vw,1.75rem);font-weight:400;color:var(--color-text-primary);line-height:1.2;margin-bottom:0.75rem;">
+            Stay across what is happening in your suburb
+          </h2>
+          <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-bottom:1.75rem;max-width:44ch;margin-left:auto;margin-right:auto;">
+            One email per quarter. What sold, what it sold for, and what it means for your property's value. No spam.
+          </p>
+          <form
+            method="POST" action="https://formspree.io/f/xnjgedwp"
+            style="display:flex;gap:0.6rem;max-width:480px;margin:0 auto;flex-wrap:wrap;"
+          >
+            <input type="hidden" name="_subject" value="Market update signup - insights article" />
+            <input type="hidden" name="form_type" value="insights_market_update_signup" />
+            <input
+              type="email" name="email" required placeholder="Your email address" autocomplete="email"
+              style="flex:1;min-width:0;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(28,25,23,0.2);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;"
+            />
+            <button type="submit" class="btn-gold" style="white-space:nowrap;"
+              onclick="gtag('event', 'email_signup_click', { event_category: 'lead', event_label: 'Insights Article' })"
+            >
+              Subscribe
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.875rem;">
+            Free. Unsubscribe at any time. <a href="/privacy" style="color:var(--color-gold);text-decoration:underline;">Privacy Policy</a>
+          </p>
+        </div>
+      </section>
+    )}
 
     {/* #8 — Suburb → Insight selling guide link */}
     {_suburbSlug && (
