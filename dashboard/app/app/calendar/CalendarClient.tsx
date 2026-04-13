@@ -420,12 +420,12 @@ function SeoWeekChip({ item }: { item: ContentItem }) {
   const isDraft = item.notes?.includes('Staged')
   // Staged = teal (scheduled, not yet indexed)
   // Live   = green (published, visible on site)
-  const bg       = isDraft ? '#ccfbf1' : '#dcfce7'
-  const border   = isDraft ? '1.5px solid #5eead4' : '1.5px solid #4ade80'
-  const iconBg   = isDraft ? '#0d9488' : '#16a34a'
-  const text     = isDraft ? '#0f766e' : '#15803d'
-  const badgeBg  = isDraft ? '#99f6e4' : '#bbf7d0'
-  const badgeTxt = isDraft ? '#0f766e' : '#14532d'
+  const bg       = isDraft ? '#0d9488' : '#16a34a'
+  const border   = isDraft ? '1.5px solid #0f766e' : '1.5px solid #15803d'
+  const iconBg   = isDraft ? '#0f766e' : '#14532d'
+  const text     = '#f0fdf4'
+  const badgeBg  = isDraft ? '#0f766e' : '#15803d'
+  const badgeTxt = isDraft ? '#99f6e4' : '#bbf7d0'
   const badgeLabel = isDraft ? 'staged' : 'live'
   return (
     <a
@@ -566,9 +566,9 @@ function MonthCard({ item }: { item: ContentItem }) {
 
   if (item.platform === 'seo') {
     const seoIsDraft  = item.notes?.includes('Staged')
-    const seoText     = seoIsDraft ? '#0f766e' : '#15803d'
-    const seoBg       = seoIsDraft ? '#ccfbf1'  : '#dcfce7'
-    const seoBorderCl = seoIsDraft ? '#0d9488'  : '#16a34a'
+    const seoText     = '#f0fdf4'
+    const seoBg       = seoIsDraft ? '#0d9488' : '#16a34a'
+    const seoBorderCl = seoIsDraft ? '#0f766e' : '#15803d'
     return (
       <a href={item.destination_url ?? '#'} target="_blank" rel="noreferrer"
         className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans font-medium leading-tight truncate hover:opacity-90 transition-opacity border-l-2"
