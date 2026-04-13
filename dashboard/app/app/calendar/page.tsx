@@ -1,4 +1,5 @@
 import { getContentItems } from '@/lib/actions/content'
+import { getSeoSchedule } from '@/lib/actions/seo-schedule'
 import CalendarClient from './CalendarClient'
 
 function todayAEST(): string {
@@ -6,8 +7,11 @@ function todayAEST(): string {
 }
 
 export default async function CalendarPage() {
-  const allItems = await getContentItems()
-  const items = allItems.filter(i => i.platform === 'linkedin')
+  const [socialItems, seoItems] = await Promise.all([
+    getContentItems(),
+    Promise.resolve(getSeoSchedule()),
+  ])
+  const items = [...socialItems, ...seoItems]
   const today = todayAEST()
 
   return (

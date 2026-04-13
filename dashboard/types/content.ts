@@ -1,4 +1,4 @@
-export type Platform    = 'linkedin' | 'instagram' | 'facebook'
+export type Platform    = 'linkedin' | 'instagram' | 'facebook' | 'seo'
 export type Status      = 'idea' | 'ready' | 'scheduled' | 'posted' | 'rejected'
 export type Pillar      = 'seller' | 'authority' | 'suburb' | 'proof' | 'buyer'
 export type VisualStatus = 'needed' | 'draft' | 'needs_revision' | 'approved'
@@ -70,6 +70,7 @@ export const PLATFORM_COLOUR: Record<Platform, string> = {
   linkedin:  '#0a66c2',
   instagram: '#e1306c',
   facebook:  '#1877f2',
+  seo:       '#10b981',
 }
 
 export const PILLAR_COLOUR: Record<Pillar, string> = {

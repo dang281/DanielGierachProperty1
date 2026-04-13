@@ -87,8 +87,8 @@ function nextAvailableSlot(items: ContentItem[], platform: Platform): string {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const PLATFORM_ICON: Record<string, string>  = { linkedin: 'in', facebook: 'f', instagram: '✦' }
-const PLATFORM_LABEL: Record<string, string> = { linkedin: 'LinkedIn', facebook: 'Facebook', instagram: 'Instagram' }
+const PLATFORM_ICON: Record<string, string>  = { linkedin: 'in', facebook: 'f', instagram: '✦', seo: '↗' }
+const PLATFORM_LABEL: Record<string, string> = { linkedin: 'LinkedIn', facebook: 'Facebook', instagram: 'Instagram', seo: 'Website' }
 
 const VISUAL_DOT: Record<string, { colour: string; label: string }> = {
   needed:         { colour: '#9ca3af', label: 'Visual needed'   },
@@ -414,6 +414,33 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
 
 // ─── Draggable wrapper ────────────────────────────────────────────────────────
 
+// ─── SEO article chip (non-draggable, links to live site) ────────────────────
+
+function SeoWeekChip({ item }: { item: ContentItem }) {
+  const isDraft = item.notes?.includes('Staged')
+  return (
+    <a
+      href={item.destination_url ?? '#'}
+      target="_blank"
+      rel="noreferrer"
+      className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-sans leading-tight hover:opacity-80 transition-opacity"
+      style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.25)' }}
+    >
+      <span className="w-4 h-4 rounded text-[8px] font-bold flex items-center justify-center flex-shrink-0"
+        style={{ background: '#10b981', color: '#fff' }}>
+        ↗
+      </span>
+      <span className="flex-1 min-w-0 truncate" style={{ color: '#6ee7b7' }}>{item.title}</span>
+      {isDraft && (
+        <span className="text-[8px] font-semibold flex-shrink-0 px-1 py-0.5 rounded"
+          style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981' }}>
+          staged
+        </span>
+      )}
+    </a>
+  )
+}
+
 function DraggableWeekCard({ item, onHoverEnter, onHoverLeave }: {
   item: ContentItem
   onHoverEnter: (item: ContentItem, rect: DOMRect) => void
@@ -476,10 +503,11 @@ function DroppableDay({ date, dateStr, today, index, dayItems, onHoverEnter, onH
           </button>
         ) : (
           <>
-            {dayItems.map(item => (
-              <DraggableWeekCard key={item.id} item={item}
-                onHoverEnter={onHoverEnter} onHoverLeave={onHoverLeave} />
-            ))}
+            {dayItems.map(item => item.platform === 'seo'
+              ? <SeoWeekChip key={item.id} item={item} />
+              : <DraggableWeekCard key={item.id} item={item}
+                  onHoverEnter={onHoverEnter} onHoverLeave={onHoverLeave} />
+            )}
             <button onClick={() => onCompose(dateStr)}
               className="rounded border border-dashed flex items-center justify-center py-1 hover:border-[var(--color-gold)] transition-colors group"
               style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
@@ -528,6 +556,20 @@ function WeekView({ items, weekDays, today, onHoverEnter, onHoverLeave, onCompos
 
 function MonthCard({ item }: { item: ContentItem }) {
   const pc = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
+
+  if (item.platform === 'seo') {
+    return (
+      <a href={item.destination_url ?? '#'} target="_blank" rel="noreferrer"
+        className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans leading-tight truncate hover:opacity-80 transition-opacity border-l-2"
+        style={{ color: '#6ee7b7', background: 'rgba(16,185,129,0.1)', borderColor: pc }}
+        title={item.title}>
+        <span className="w-3 h-3 rounded text-[7px] font-bold flex items-center justify-center flex-shrink-0"
+          style={{ background: pc, color: '#fff' }}>↗</span>
+        <span className="truncate">{item.title}</span>
+      </a>
+    )
+  }
+
   return (
     <Link href={`/app/content/${item.id}`}
       className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans leading-tight truncate hover:opacity-80 transition-opacity border-l-2"
@@ -600,8 +642,11 @@ function MonthView({ items, year, month, today }: {
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS: { value: PlatformFilter; label: string; colour?: string }[] = [
-  { value: 'linkedin', label: 'LinkedIn', colour: '#0a66c2' },
-  { value: 'all',      label: 'All' },
+  { value: 'all',       label: 'All' },
+  { value: 'linkedin',  label: 'LinkedIn',  colour: '#0a66c2' },
+  { value: 'facebook',  label: 'Facebook',  colour: '#1877f2' },
+  { value: 'instagram', label: 'Instagram', colour: '#e1306c' },
+  { value: 'seo',       label: 'Website',   colour: '#10b981' },
 ]
 
 const STATUS_OPTIONS: { value: StatusFilter; label: string; colour?: string }[] = [
@@ -634,7 +679,7 @@ export default function CalendarClient({
 }) {
   const [localItems, setLocalItems] = useState<ContentItem[]>(initialItems)
   const [view, setView]             = useState<ViewMode>(defaultView)
-  const [platform, setPlatform]     = useState<PlatformFilter>('linkedin')
+  const [platform, setPlatform]     = useState<PlatformFilter>('all')
   const [status, setStatus]         = useState<StatusFilter>('all')
   const [pillar, setPillar]         = useState<PillarFilter>('all')
 

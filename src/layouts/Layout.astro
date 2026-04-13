@@ -9,6 +9,7 @@ interface Props {
   schema?: any;
   preloadImage?: string;
   hideMobileCta?: boolean;
+  draft?: boolean;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   schema,
   preloadImage,
   hideMobileCta = false,
+  draft = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').href;
@@ -195,7 +197,7 @@ const globalSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <meta name="author" content="Daniel Gierach" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="robots" content={draft ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     {preloadImage && <link rel="preload" as="image" href={preloadImage} imagesrcset={`${preloadImage.replace(/w=\d+/, 'w=640')} 640w, ${preloadImage.replace(/w=\d+/, 'w=1200')} 1200w, ${preloadImage.replace(/w=\d+/, 'w=1440')} 1440w`} imagesizes="100vw" fetchpriority="high" />}
