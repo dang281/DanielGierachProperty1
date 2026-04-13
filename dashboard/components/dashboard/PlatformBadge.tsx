@@ -1,9 +1,10 @@
 import { PLATFORM_COLOUR, type Platform } from '@/types/content'
 
 const PLATFORM_LABEL: Record<Platform, string> = {
-  linkedin: 'LinkedIn',
+  linkedin:  'LinkedIn',
   instagram: 'Instagram',
-  facebook: 'Facebook',
+  facebook:  'Facebook',
+  seo:       'Website',
 }
 
 export default function PlatformBadge({ platform }: { platform: Platform }) {
