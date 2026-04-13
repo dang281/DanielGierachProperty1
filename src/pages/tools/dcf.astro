@@ -445,7 +445,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
-        _subject: 'DCF Tool Download — ' + new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(data.inputs.price),
+        _subject: 'DCF Tool Download, ' + new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(data.inputs.price),
         tool: 'Property DCF Analyser',
         format,
         purchase_price: data.inputs.price,
@@ -585,7 +585,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         // ── Sheet 1: Summary ──
         var ioLabel = inp.ioPeriod > 0 ? inp.ioPeriod + ' yrs IO then P&I' : 'P&I from start';
         var s1 = [
-          ['PROPERTY INVESTMENT ANALYSIS — DCF REPORT'],
+          ['PROPERTY INVESTMENT ANALYSIS, DCF REPORT'],
           ['Generated', data.date, '', 'danielgierach.com', '0412 523 821'],
           [],
           ['ASSUMPTIONS', '', '', 'KEY METRICS', ''],
@@ -628,7 +628,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           return [r.yr, r.propValue, r.effRent, -r.totalExp, -r.annualInterest, r.netCF, r.loanBal, r.equity, r.pvCF];
         });
         var ws2 = XLSX.utils.aoa_to_sheet([headers].concat(cfRows));
-        // Format all currency columns (B–I)
+        // Format all currency columns (B-I)
         for (var row = 2; row <= data.tableData.length + 1; row++) {
           ['B','C','D','E','F','G','H','I'].forEach(function(col) {
             var cell = ws2[col + row];
@@ -663,7 +663,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   const fmtPct = (n: number) => `${n.toFixed(2)}%`;
 
-  // QLD stamp duty (standard — investment rate, no concessions)
+  // QLD stamp duty (standard, investment rate, no concessions)
   function stampDuty(price: number): number {
     if (price <= 5000) return 0;
     if (price <= 75000) return (price - 5000) * 0.015;
@@ -774,12 +774,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       let annualPrincipal: number;
 
       if (yr <= ioPeriod) {
-        // Interest only — balance unchanged
+        // Interest only, balance unchanged
         annualInterest  = loan * (rate / 100);
         annualPrincipal = 0;
         loanBal         = loan;
       } else {
-        // P&I on remaining term — IO loans re-amortise over remaining term on same principal
+        // P&I on remaining term, IO loans re-amortise over remaining term on same principal
         const monthsIntoPandI = (yr - ioPeriod - 1) * 12;
         // Balance at START and END of this P&I year (exact amortisation schedule)
         const balStart = loanBalance(loan, rate, remainingTerm, monthsIntoPandI);
@@ -835,7 +835,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const irrRaw = calcIRR(irrCFs);
     const irr    = irrRaw !== null ? irrRaw * 100 : null;
 
-    // Yield metrics (Year 1 — maintenance uses Year 1 property value to match loop)
+    // Yield metrics (Year 1, maintenance uses Year 1 property value to match loop)
     const grossYield   = (weeklyRent * 52) / price * 100;
     const yr1EffRent   = weeklyRent * 52 * (1 - vacRate);
     const yr1PropValue = price * (1 + growthRate);  // matches propValue at yr=1 in loop

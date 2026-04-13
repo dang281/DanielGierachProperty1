@@ -40,7 +40,7 @@ Book a free appraisal at danielgierach.com
 - Median house price ~$1,580,000
 - ~13.7% annual growth
 - 11km east of Brisbane CBD
-- Westfield Carindale — major shopping precinct
+- Westfield Carindale, major shopping precinct
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
 **Image direction:** Established family home in Carindale with a large block, suburban streetscape. Alternatively, an aerial showing the suburb in relation to Westfield Carindale. No generic stock images.

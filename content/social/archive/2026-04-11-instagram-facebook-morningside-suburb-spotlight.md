@@ -6,7 +6,7 @@
 
 ---
 
-## Post 1 — Instagram Caption
+## Post 1, Instagram Caption
 
 Morningside is one of Brisbane's most underrated inner suburbs. Buyers love it for the character homes, the flat blocks, and the easy access to Hawthorne and Bulimba without the price tag. Demand is strong and the pool of buyers competing for well-presented homes is deep. Thinking of selling? Let's talk.
 
@@ -16,7 +16,7 @@ Morningside is one of Brisbane's most underrated inner suburbs. Buyers love it f
 
 ---
 
-## Post 2 — Facebook Caption
+## Post 2, Facebook Caption
 
 If you own a home in Morningside, it's worth understanding what's happening in your market right now. The suburb sits in a strong position, with easy access to the CBD, the ongoing improvements along the Wynnum Road corridor, and proximity to Hawthorne and Bulimba drawing buyers who can't quite stretch to those price points. Character homes, post-war cottages, and larger family blocks are all seeing solid interest from a wide buyer pool. It's one of those suburbs where a well-prepared campaign genuinely makes a difference to the result. If you're thinking about what your home might be worth, start here: danielgierach.com/suburbs/morningside
 

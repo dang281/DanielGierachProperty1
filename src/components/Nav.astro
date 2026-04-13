@@ -36,14 +36,14 @@ const suburbs = [
         </span>
       </a>
 
-      <!-- Desktop nav — hidden by default, JS shows on ≥1024px -->
+      <!-- Desktop nav, hidden by default, JS shows on ≥1024px -->
       <nav id="nav-links" style="display:none;align-items:center;gap:2.5rem;">
         {navLinks.map((link) => (
           <a href={link.href} class="nav-link-mono" style="color:#f0ece4;">{link.label}</a>
         ))}
       </nav>
 
-      <!-- CTA — hidden by default, JS shows on ≥1024px -->
+      <!-- CTA, hidden by default, JS shows on ≥1024px -->
       <div id="nav-cta" style="display:none;align-items:center;gap:1.5rem;">
         <a href="/contact" class="nav-link-mono" style="color:#f0ece4;">Contact</a>
         <a href="/property-worth" class="btn-gold" style="padding:0.7rem 1.5rem;">
@@ -51,7 +51,7 @@ const suburbs = [
         </a>
       </div>
 
-      <!-- Mobile toggle — shown by default, JS hides on ≥1024px -->
+      <!-- Mobile toggle, shown by default, JS hides on ≥1024px -->
       <button id="mobile-toggle" style="display:flex;flex-direction:column;gap:5px;padding:0.5rem;" aria-label="Menu">
         <span id="bar1" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
         <span id="bar2" class="block w-6 transition-all duration-300" style="height:2px;background:#f0ece4;border-radius:1px;"></span>
@@ -60,7 +60,7 @@ const suburbs = [
     </div>
   </div>
 
-  <!-- Mobile menu — always in DOM, hidden via max-height -->
+  <!-- Mobile menu, always in DOM, hidden via max-height -->
   <div
     id="mobile-menu"
     class="overflow-hidden transition-all duration-300"

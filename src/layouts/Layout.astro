@@ -224,7 +224,7 @@ const globalSchema = {
     <meta property="og:image" content={preloadImage ? preloadImage.replace(/w=\d+/, 'w=1200').replace(/h=\d+&?/, '').replace(/q=\d+/, 'q=80') : 'https://danielgierach.com/og-default.jpg'} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${title} — Daniel Gierach, Real Estate Agent Brisbane Inner East`} />
+    <meta property="og:image:alt" content={`${title}, Daniel Gierach, Real Estate Agent Brisbane Inner East`} />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -239,7 +239,7 @@ const globalSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
-    <!-- BreadcrumbList JSON-LD — generated automatically from URL path -->
+    <!-- BreadcrumbList JSON-LD, generated automatically from URL path -->
     {showBreadcrumbs && <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -280,7 +280,7 @@ const globalSchema = {
       <slot />
     </main>
 
-    {/* Email capture — all insights articles */}
+    {/* Email capture, all insights articles */}
     {_isInsightsArticle && (
       <section style="background:var(--color-surface-1);padding:3.5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
         <div class="max-w-[640px] mx-auto px-8 text-center">
@@ -315,12 +315,12 @@ const globalSchema = {
       </section>
     )}
 
-    {/* Related articles — all insights article pages */}
+    {/* Related articles, all insights article pages */}
     {_isInsightsArticle && _bParts[1] && (
       <RelatedArticles slug={_bParts[1]} />
     )}
 
-    {/* #8 — Suburb → Insight selling guide link */}
+    {/* #8, Suburb → Insight selling guide link */}
     {_suburbSlug && (
       <div style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
         <div class="max-w-[1400px] mx-auto px-8 lg:px-12" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;">
@@ -330,7 +330,7 @@ const globalSchema = {
               Thinking of selling in {_suburbName}?
             </h2>
             <p style="font-size:0.85rem;color:var(--color-text-secondary);max-width:50ch;line-height:1.75;">
-              Read Daniel's complete selling guide — what buyers look for, recent comparable sales, and how to prepare for the best result.
+              Read Daniel's complete selling guide, what buyers look for, recent comparable sales, and how to prepare for the best result.
             </p>
           </div>
           <a href={`/insights/selling-in-${_suburbSlug}`} class="btn-gold" style="flex-shrink:0;">
@@ -340,14 +340,14 @@ const globalSchema = {
       </div>
     )}
 
-    {/* #11 — Insight → Suburb cross-link + CTA */}
+    {/* #11, Insight → Suburb cross-link + CTA */}
     {_insightSuburbSlug && (
       <div style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
         <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
             <a href={`/suburbs/${_insightSuburbSlug}`} style="display:flex;flex-direction:column;gap:0.5rem;padding:1.75rem 2rem;background:var(--color-surface-0);border:1px solid rgba(28,25,23,0.1);text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(196,145,42,0.4)'" onmouseout="this.style.borderColor='rgba(28,25,23,0.1)'">
               <span class="eyebrow" style="display:block;">Suburb Profile</span>
-              <span style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);">{_insightSuburbName} — market data, prices & trends →</span>
+              <span style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);">{_insightSuburbName}, market data, prices & trends →</span>
             </a>
             <div style="padding:1.75rem 2rem;background:var(--color-gold-muted);border:1px solid rgba(196,145,42,0.2);">
               <p style="font-family:var(--font-serif);font-style:italic;font-size:1rem;color:var(--color-text-primary);margin-bottom:0.6rem;">Want to know what your {_insightSuburbName} home could sell for?</p>
@@ -377,7 +377,7 @@ const globalSchema = {
       </a>
     </div>
 
-    <!-- Meta Pixel — replace 1493183205636761 with your actual ID from Meta Business Suite → Events Manager -->
+    <!-- Meta Pixel, replace 1493183205636761 with your actual ID from Meta Business Suite → Events Manager -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -395,7 +395,7 @@ const globalSchema = {
         src="https://www.facebook.com/tr?id=1493183205636761&ev=PageView&noscript=1"/>
     </noscript>
 
-    <!-- Google Analytics 4 — measurement script deferred so it never blocks paint -->
+    <!-- Google Analytics 4, measurement script deferred so it never blocks paint -->
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
     <script>
       gtag('js', new Date());

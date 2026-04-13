@@ -12,7 +12,7 @@
 
 ## Caption
 
-West End sits close to the South Bank precinct and the river, with a character that is distinct from the rest of inner Brisbane. It attracts buyers who want the urban lifestyle — Boundary Street, the weekend markets, the proximity to the university precinct and the cultural hub — rather than the quieter tree-lined streets of the inner east.
+West End sits close to the South Bank precinct and the river, with a character that is distinct from the rest of inner Brisbane. It attracts buyers who want the urban lifestyle, Boundary Street, the weekend markets, the proximity to the university precinct and the cultural hub, rather than the quieter tree-lined streets of the inner east.
 
 The suburb has been identified as one of the clearer gentrification stories in Brisbane going into 2026, with ongoing investment in the broader precinct lifting long-run appeal. Unit rental yields sit around 4.2 per cent, which keeps it on investors' radar alongside the owner-occupier market.
 
@@ -31,8 +31,8 @@ danielgierach.com
 ## Notes for Daniel
 
 - Sources: yourinvestmentpropertymag.com.au (West End 4101), propertyvalue.com.au
-- ⚠️ VERIFY: One source showed 47.4% annual house growth — likely a data anomaly. Do NOT cite this figure. Verify actual growth with CoreLogic before adding any growth percentage to this post.
+- ⚠️ VERIFY: One source showed 47.4% annual house growth, likely a data anomaly. Do NOT cite this figure. Verify actual growth with CoreLogic before adding any growth percentage to this post.
 - ⚠️ VERIFY: Median house price varies significantly across sources. Confirm before adding a specific figure.
-- 4.2% unit yield cited from yourinvestmentpropertymag.com.au — verify before quoting
+- 4.2% unit yield cited from yourinvestmentpropertymag.com.au, verify before quoting
 - Text-only post recommended for LinkedIn
-- West End is outside Daniel's primary inner-east patch — confirm he is actively listing there
+- West End is outside Daniel's primary inner-east patch, confirm he is actively listing there

@@ -316,42 +316,42 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
       <div class="summary-card">
         <p class="summary-label">Total Portfolio Value</p>
-        <p class="summary-value" id="s-total-value">—</p>
+        <p class="summary-value" id="s-total-value">-</p>
       </div>
 
       <div class="summary-card">
         <p class="summary-label">Total Debt</p>
-        <p class="summary-value" id="s-total-debt">—</p>
+        <p class="summary-value" id="s-total-debt">-</p>
       </div>
 
       <div class="summary-card summary-card--highlight">
         <p class="summary-label">Total Equity</p>
-        <p class="summary-value" id="s-total-equity">—</p>
+        <p class="summary-value" id="s-total-equity">-</p>
       </div>
 
       <div class="summary-card">
         <p class="summary-label">Annual Portfolio Cashflow</p>
-        <p class="summary-value" id="s-annual-cf">—</p>
+        <p class="summary-value" id="s-annual-cf">-</p>
       </div>
 
       <div class="summary-card">
         <p class="summary-label">Total Invested (deposits + costs)</p>
-        <p class="summary-value" id="s-total-invested">—</p>
+        <p class="summary-value" id="s-total-invested">-</p>
       </div>
 
       <div class="summary-card">
         <p class="summary-label">Portfolio Gross Yield</p>
-        <p class="summary-value" id="s-gross-yield">—</p>
+        <p class="summary-value" id="s-gross-yield">-</p>
       </div>
 
       <div class="summary-card">
         <p class="summary-label">Portfolio Net Yield</p>
-        <p class="summary-value" id="s-net-yield">—</p>
+        <p class="summary-value" id="s-net-yield">-</p>
       </div>
 
       <div class="summary-card summary-card--highlight">
         <p class="summary-label">Annualised Equity Return</p>
-        <p class="summary-value" id="s-irr">—</p>
+        <p class="summary-value" id="s-irr">-</p>
       </div>
 
     </div>
@@ -806,9 +806,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       const cfClass  = row.annualCF  >= 0 ? 'cf-positive' : 'cf-negative';
       const ccfClass = row.cumulCF   >= 0 ? 'cf-positive' : 'cf-negative';
 
-      const p1Cell = row.p1 ? fmtCur(row.p1.propValue) : '<span class="cell-muted">—</span>';
-      const p2Cell = row.p2 ? fmtCur(row.p2.propValue) : '<span class="cell-muted">—</span>';
-      const p3Cell = row.p3 ? fmtCur(row.p3.propValue) : '<span class="cell-muted">—</span>';
+      const p1Cell = row.p1 ? fmtCur(row.p1.propValue) : '<span class="cell-muted">-</span>';
+      const p2Cell = row.p2 ? fmtCur(row.p2.propValue) : '<span class="cell-muted">-</span>';
+      const p3Cell = row.p3 ? fmtCur(row.p3.propValue) : '<span class="cell-muted">-</span>';
 
       tr.innerHTML = `
         <td>${row.yr}</td>

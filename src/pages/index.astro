@@ -123,7 +123,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "How long does it take to sell a property in Brisbane's inner east?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Daniel's median days on market is 20 days. Well-positioned homes in Brisbane's inner east typically sell within 2–4 weeks when priced accurately and supported by a targeted buyer campaign." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Daniel's median days on market is 20 days. Well-positioned homes in Brisbane's inner east typically sell within 2-4 weeks when priced accurately and supported by a targeted buyer campaign." }
     },
     {
       "@type": "Question",
@@ -152,7 +152,7 @@ const faqSchema = {
       src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format"
       srcset="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format 1440w"
       sizes="100vw"
-      alt="Brisbane inner east property — Daniel Gierach, real estate agent Ray White Bulimba"
+      alt="Brisbane inner east property, Daniel Gierach, real estate agent Ray White Bulimba"
       class="w-full h-full object-cover"
       style="filter:grayscale(8%) brightness(0.58);"
       fetchpriority="high"
@@ -714,7 +714,7 @@ const faqSchema = {
 
 
 <!-- ════════════════════════════════════════════
-     MARKET UPDATES — EMAIL CAPTURE
+     MARKET UPDATES, EMAIL CAPTURE
 ════════════════════════════════════════════ -->
 <section style="background:var(--color-surface-2);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[700px] mx-auto px-8 text-center">
@@ -785,7 +785,7 @@ const faqSchema = {
           <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
         </summary>
         <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
-          Daniel's median days on market is 20 days. Well-positioned homes typically sell within 2–4 weeks when priced accurately and supported by a targeted buyer campaign.
+          Daniel's median days on market is 20 days. Well-positioned homes typically sell within 2-4 weeks when priced accurately and supported by a targeted buyer campaign.
         </p>
       </details>
 
@@ -1022,7 +1022,7 @@ const faqSchema = {
     let selectedAddress = '';
     let debounce: ReturnType<typeof setTimeout> | null = null;
 
-    // Dropdown appended to body, position:fixed — escapes overflow:hidden on hero
+    // Dropdown appended to body, position:fixed, escapes overflow:hidden on hero
     const drop = document.createElement('div');
     drop.style.cssText = 'display:none;position:fixed;z-index:99999;background:#1c1917;border:1px solid rgba(255,255,255,0.18);border-top:none;max-height:240px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.65);';
     document.body.appendChild(drop);
@@ -1117,7 +1117,7 @@ const faqSchema = {
       if (!addr) { input.focus(); return; }
       try { (window as any).gtag('event', 'hero_address_submit', { event_category: 'lead', event_label: addr }); } catch(_) {}
       const fd = new FormData();
-      fd.append('_subject', 'Homepage address enquiry – ' + addr);
+      fd.append('_subject', 'Homepage address enquiry, ' + addr);
       fd.append('address', addr);
       fd.append('source', 'Homepage hero');
       fetch('https://formspree.io/f/xnjgedwp', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });

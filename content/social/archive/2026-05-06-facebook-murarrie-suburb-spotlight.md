@@ -1,4 +1,4 @@
-# Murarrie Suburb Spotlight — Facebook
+# Murarrie Suburb Spotlight, Facebook
 
 **Platform:** Facebook
 **Format:** Post
@@ -14,11 +14,11 @@
 
 Murarrie doesn't get mentioned as often as it should.
 
-Eight kilometres from the CBD, its own train station, and a median house price of $1.2 million — that's $320,000 less than Cannon Hill and $110,000 less than Morningside.
+Eight kilometres from the CBD, its own train station, and a median house price of $1.2 million, that's $320,000 less than Cannon Hill and $110,000 less than Morningside.
 
 A lot of that gap comes down to one word: industrial.
 
-Buyers hear it and hesitate. But here's what they're missing: the industrial precinct in Murarrie runs along the northern river edge and the eastern side of the suburb around Queensport Road. The residential pocket — the one with the Queenslanders, the school families, the young professionals — sits in the south-west, well clear of it. These are different parts of the same suburb. If you've driven through the residential streets, you'd have no idea you were within a kilometre of a warehouse.
+Buyers hear it and hesitate. But here's what they're missing: the industrial precinct in Murarrie runs along the northern river edge and the eastern side of the suburb around Queensport Road. The residential pocket, the one with the Queenslanders, the school families, the young professionals, sits in the south-west, well clear of it. These are different parts of the same suburb. If you've driven through the residential streets, you'd have no idea you were within a kilometre of a warehouse.
 
 What buyers who do their homework find:
 - Gateway Motorway access that makes the airport and the Gold Coast genuinely easy
@@ -28,7 +28,7 @@ What buyers who do their homework find:
 
 Properties here are moving in an average of 16 days. Seller discounting sits at -4.5%, which means vendors are getting close to asking price.
 
-If you own in Murarrie and have been wondering what your home is worth right now, I'd be happy to have that conversation — no pressure, just numbers.
+If you own in Murarrie and have been wondering what your home is worth right now, I'd be happy to have that conversation, no pressure, just numbers.
 
 📩 DM me or drop your address in the comments.
 
@@ -53,12 +53,12 @@ A clean split-image works well here:
 ## Notes for Daniel
 
 **Data sources:**
-- Murarrie median house price $1,200,000 — PropertyValue.com.au / HTAG (accessed April 2026)
-- Cannon Hill median ~$1,520,000, Morningside median ~$1,310,000 — OpenAgent (accessed April 2026)
-- 16 days on market, -4.5% vendor discounting — PropertyValue.com.au
+- Murarrie median house price $1,200,000, PropertyValue.com.au / HTAG (accessed April 2026)
+- Cannon Hill median ~$1,520,000, Morningside median ~$1,310,000, OpenAgent (accessed April 2026)
+- 16 days on market, -4.5% vendor discounting, PropertyValue.com.au
 
-⚠️ VERIFY: All three medians. Prices have been moving — confirm these figures are current before posting.
+⚠️ VERIFY: All three medians. Prices have been moving, confirm these figures are current before posting.
 
-**Geography note:** Multiple sources describe the industrial zone as running along the northern river boundary and eastern sections (Queensport Road area), with residential in the south-west. The post reflects this accurately, but worth a quick sanity check if you know the suburb well — you'd spot any inaccuracy faster than any data source would.
+**Geography note:** Multiple sources describe the industrial zone as running along the northern river boundary and eastern sections (Queensport Road area), with residential in the south-west. The post reflects this accurately, but worth a quick sanity check if you know the suburb well, you'd spot any inaccuracy faster than any data source would.
 
-**Tone check:** This post is deliberately addressing the industrial hesitation that buyers voice. It's factual, not dismissive. If you feel the framing is too direct, the paragraph can be softened — but I'd recommend keeping it because naming the objection builds credibility.
+**Tone check:** This post is deliberately addressing the industrial hesitation that buyers voice. It's factual, not dismissive. If you feel the framing is too direct, the paragraph can be softened, but I'd recommend keeping it because naming the objection builds credibility.

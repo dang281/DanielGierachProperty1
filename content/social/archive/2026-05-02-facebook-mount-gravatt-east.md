@@ -43,13 +43,13 @@ Book a free appraisal at danielgierach.com
 - Strong growth across the Mount Gravatt corridor
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** N/A
-**Image direction:** Residential street in Mount Gravatt East — family homes, established gardens. If no specific photo, text only on dark background.
+**Image direction:** Residential street in Mount Gravatt East, family homes, established gardens. If no specific photo, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
 
 ## Notes for Daniel
 
-⚠️ VERIFY: No specific Mount Gravatt East median price was returned in research. Before posting, add a median price from your CoreLogic access. Based on Mount Gravatt (~$1,305,000) and Upper Mount Gravatt (~$1,230,000), the East likely sits in the $1,250,000-$1,350,000 range — but verify before publishing a figure.
+⚠️ VERIFY: No specific Mount Gravatt East median price was returned in research. Before posting, add a median price from your CoreLogic access. Based on Mount Gravatt (~$1,305,000) and Upper Mount Gravatt (~$1,230,000), the East likely sits in the $1,250,000-$1,350,000 range, but verify before publishing a figure.
 - Logan Road and Creek Road bus services are worth confirming as the correct arterials for Mount Gravatt East connections.
 - Eight Mile Plains busway is the closest busway station to this area.

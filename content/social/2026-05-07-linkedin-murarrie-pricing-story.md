@@ -1,4 +1,4 @@
-# Murarrie: The Pricing Story — LinkedIn Authority Post
+# Murarrie: The Pricing Story, LinkedIn Authority Post
 
 **Platform:** LinkedIn
 **Format:** Post
@@ -50,11 +50,11 @@ danielgierach.com
 ## Notes for Daniel
 
 **Data sources:**
-- Murarrie median $1.2M, growth 4.35%, unit growth 22.64%, 16 days on market, -4.5% discounting — PropertyValue.com.au / HTAG (accessed April 2026)
-- Cannon Hill median ~$1.52M, Morningside median ~$1.31M — OpenAgent (accessed April 2026)
+- Murarrie median $1.2M, growth 4.35%, unit growth 22.64%, 16 days on market, -4.5% discounting, PropertyValue.com.au / HTAG (accessed April 2026)
+- Cannon Hill median ~$1.52M, Morningside median ~$1.31M, OpenAgent (accessed April 2026)
 
-⚠️ VERIFY: All medians and the unit growth figure before posting. Unit growth of 22.6% in particular is striking — worth confirming this is trailing 12 months, not an anomalous short window.
+⚠️ VERIFY: All medians and the unit growth figure before posting. Unit growth of 22.6% in particular is striking, worth confirming this is trailing 12 months, not an anomalous short window.
 
-**Tone note:** This post takes a clear position — that the industrial perception overstates the discount. That's Daniel's professional view, not a data claim. It's appropriate on LinkedIn for building credibility, but you should be comfortable owning that take. If you'd prefer a more neutral framing, the final section ("The agent's read") can be softened.
+**Tone note:** This post takes a clear position, that the industrial perception overstates the discount. That's Daniel's professional view, not a data claim. It's appropriate on LinkedIn for building credibility, but you should be comfortable owning that take. If you'd prefer a more neutral framing, the final section ("The agent's read") can be softened.
 
-**Audience note:** This is written for LinkedIn's professional audience — investors, buyers, and people in the property ecosystem. It's more analytical than the Facebook version deliberately. The sell is indirect: position Daniel as someone who thinks carefully about suburbs, not someone pushing listings.
+**Audience note:** This is written for LinkedIn's professional audience, investors, buyers, and people in the property ecosystem. It's more analytical than the Facebook version deliberately. The sell is indirect: position Daniel as someone who thinks carefully about suburbs, not someone pushing listings.

@@ -50,6 +50,6 @@ Book a free appraisal at danielgierach.com
 
 ## Notes for Daniel
 
-⚠️ VERIFY: No specific 2026 median house price was returned in research for East Brisbane. Before posting, add a median price figure from your CoreLogic access. Based on proximity to Kangaroo Point and inner-city position, likely in the $1.5M+ range for houses — but do not publish without a verified figure.
+⚠️ VERIFY: No specific 2026 median house price was returned in research for East Brisbane. Before posting, add a median price figure from your CoreLogic access. Based on proximity to Kangaroo Point and inner-city position, likely in the $1.5M+ range for houses, but do not publish without a verified figure.
 - Gabba/2032 Olympic precinct proximity is confirmed and a strong buyer draw.
-- "Tightly held" characterisation is consistent with low-turnover inner-city suburbs — qualitative, no source needed.
+- "Tightly held" characterisation is consistent with low-turnover inner-city suburbs, qualitative, no source needed.

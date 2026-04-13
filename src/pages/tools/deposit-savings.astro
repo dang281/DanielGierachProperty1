@@ -260,7 +260,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
 
       <div class="ds-row">
-        <label>Deposit %<small>20% avoids LMI; 10–15% still viable</small></label>
+        <label>Deposit %<small>20% avoids LMI; 10-15% still viable</small></label>
         <div class="ds-tabs" style="margin:0;width:220px;">
           <button class="ds-tab" data-dep="10">10%</button>
           <button class="ds-tab" data-dep="15">15%</button>
@@ -410,9 +410,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div class="ds-result-card">
         <span class="ds-result-label" style="margin-bottom:0.75rem;display:block;">What If I Saved More?</span>
         <table class="ds-breakdown">
-          <tr><td>Save $500/mth extra</td><td id="sc-500">—</td></tr>
-          <tr><td>Save $1,000/mth extra</td><td id="sc-1000">—</td></tr>
-          <tr><td>Save $2,000/mth extra</td><td id="sc-2000">—</td></tr>
+          <tr><td>Save $500/mth extra</td><td id="sc-500">-</td></tr>
+          <tr><td>Save $1,000/mth extra</td><td id="sc-1000">-</td></tr>
+          <tr><td>Save $2,000/mth extra</td><td id="sc-2000">-</td></tr>
         </table>
       </div>
 
@@ -487,7 +487,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return d.toLocaleDateString('en-AU', { month: 'short', year: 'numeric' });
   }
   function formatMonths(m: number): string {
-    if (!isFinite(m) || m < 0) return '—';
+    if (!isFinite(m) || m < 0) return '-';
     const yrs = Math.floor(m / 12);
     const mths = Math.round(m % 12);
     if (yrs === 0) return mths + ' months';
@@ -559,7 +559,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     (document.getElementById('r-time') as HTMLElement).textContent = formatMonths(months);
     const rdEl = document.getElementById('r-ready-date') as HTMLElement;
-    rdEl.textContent = isFinite(months) && months >= 0 ? monthsToDate(months) : '—';
+    rdEl.textContent = isFinite(months) && months >= 0 ? monthsToDate(months) : '-';
 
     // Category totals
     (document.getElementById('total-income') as HTMLElement).textContent    = fmt(income);
@@ -573,7 +573,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     ['500','1000','2000'].forEach(extra => {
       const m = surplus + parseInt(extra) > 0 ? remaining / (surplus + parseInt(extra)) : Infinity;
       (document.getElementById('sc-' + extra) as HTMLElement).textContent =
-        isFinite(m) ? formatMonths(m) : '—';
+        isFinite(m) ? formatMonths(m) : '-';
     });
 
     // Tips
@@ -806,7 +806,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       blank(25, 10);
 
       // HOUSING
-      sectionHdr(26, '  🏠   EXPENSES — HOUSING');
+      sectionHdr(26, '  🏠   EXPENSES, HOUSING');
       inputRow(27, 'Rent / current mortgage',       v('exp-rent'),      '', '$#,##0');
       inputRow(28, 'Utilities',                     v('exp-utilities'), '', '$#,##0');
       inputRow(29, 'Internet & phone',              v('exp-internet'),  '', '$#,##0');
@@ -815,7 +815,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       blank(32, 5);
 
       // FOOD
-      sectionHdr(33, '  🛒   EXPENSES — FOOD & DINING');
+      sectionHdr(33, '  🛒   EXPENSES, FOOD & DINING');
       inputRow(34, 'Groceries & supermarket',       v('exp-groceries'), '', '$#,##0');
       inputRow(35, 'Dining out & takeaway',         v('exp-dining'),    '', '$#,##0');
       inputRow(36, 'Coffee',                        v('exp-coffee'),    '', '$#,##0');
@@ -823,7 +823,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       blank(38, 5);
 
       // TRANSPORT
-      sectionHdr(39, '  🚗   EXPENSES — TRANSPORT');
+      sectionHdr(39, '  🚗   EXPENSES, TRANSPORT');
       inputRow(40, 'Car loan repayment',            v('exp-car-loan'),  '', '$#,##0');
       inputRow(41, 'Fuel',                          v('exp-fuel'),      '', '$#,##0');
       inputRow(42, 'Registration & insurance',      v('exp-car-ins'),   '', '$#,##0');
@@ -832,7 +832,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       blank(45, 5);
 
       // LIFESTYLE
-      sectionHdr(46, '  🎭   EXPENSES — LIFESTYLE & PERSONAL');
+      sectionHdr(46, '  🎭   EXPENSES, LIFESTYLE & PERSONAL');
       inputRow(47, 'Gym & sports',                  v('exp-gym'),           '', '$#,##0');
       inputRow(48, 'Entertainment & hobbies',       v('exp-entertainment'), '', '$#,##0');
       inputRow(49, 'Subscriptions',                 v('exp-subs'),          '', '$#,##0');
@@ -843,7 +843,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       blank(54, 5);
 
       // OTHER
-      sectionHdr(55, '  🛡️   EXPENSES — INSURANCE & OTHER');
+      sectionHdr(55, '  🛡️   EXPENSES, INSURANCE & OTHER');
       inputRow(56, 'Health insurance',              v('exp-health-ins'), '', '$#,##0');
       inputRow(57, 'Life / income protection',      v('exp-life-ins'),   '', '$#,##0');
       inputRow(58, 'Childcare & school fees',       v('exp-childcare'),  '', '$#,##0');
@@ -880,18 +880,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
       calcRow(69, 'Savings Rate',                    'IF(C24>0,C68/C24,0)',                                                           'Aim for 20% or more',   '0.0%');
       calcRow(70, 'Months to Deposit Goal',          'IF(AND(ISNUMBER(C68),C68>0),CEILING(C16/C68,1),"Increase your monthly surplus")', 'Auto-calculates',       '0');
-      calcRow(71, 'Years & Months to Goal',          'IF(ISNUMBER(C70),INT(C70/12)&" yrs  "&MOD(C70,12)&" mths","—")',                 '',                      '@');
+      calcRow(71, 'Years & Months to Goal',          'IF(ISNUMBER(C70),INT(C70/12)&" yrs  "&MOD(C70,12)&" mths","-")',                 '',                      '@');
       blank(72, 10);
 
-      sectionHdr(73, '  💡   SAVINGS SCENARIOS  — What if I saved more?');
-      calcRow(74, 'At current rate',                 'IF(AND(ISNUMBER(C70),C70>0),C70&" months","—")',               '', '@');
-      calcRow(75, 'Saving $500 / month extra',       'IF(C68+500>0,CEILING(C16/(C68+500),1)&" months","—")',         '', '@');
-      calcRow(76, 'Saving $1,000 / month extra',     'IF(C68+1000>0,CEILING(C16/(C68+1000),1)&" months","—")',       '', '@');
-      calcRow(77, 'Saving $2,000 / month extra',     'IF(C68+2000>0,CEILING(C16/(C68+2000),1)&" months","—")',       '', '@');
+      sectionHdr(73, '  💡   SAVINGS SCENARIOS , What if I saved more?');
+      calcRow(74, 'At current rate',                 'IF(AND(ISNUMBER(C70),C70>0),C70&" months","-")',               '', '@');
+      calcRow(75, 'Saving $500 / month extra',       'IF(C68+500>0,CEILING(C16/(C68+500),1)&" months","-")',         '', '@');
+      calcRow(76, 'Saving $1,000 / month extra',     'IF(C68+1000>0,CEILING(C16/(C68+1000),1)&" months","-")',       '', '@');
+      calcRow(77, 'Saving $2,000 / month extra',     'IF(C68+2000>0,CEILING(C16/(C68+2000),1)&" months","-")',       '', '@');
       blank(78, 12);
 
-      sectionHdr(79, '  ℹ️   HOW TO USE  — Yellow cells are editable. All other cells auto-calculate.');
-      [['Cells with yellow background', '← INPUT cells. Edit freely — formulas update instantly.'],
+      sectionHdr(79, '  ℹ️   HOW TO USE , Yellow cells are editable. All other cells auto-calculate.');
+      [['Cells with yellow background', '← INPUT cells. Edit freely, formulas update instantly.'],
        ['Cells with cream/grey background', '← Formula cells. Do not edit.'],
        ['Dropdown in C7 (Buyer Type)', '← Click to choose Owner / First Home Buyer / Investor.'],
        ['Month-by-Month sheet', '← Full savings timeline from today to your goal.'],
@@ -970,9 +970,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
         let ms = '';
         if (reached)        ms = '🎉 GOAL REACHED!';
-        else if (pct>=0.75) ms = '75% — nearly there';
-        else if (pct>=0.5)  ms = '50% — halfway!';
-        else if (pct>=0.25) ms = '25% — great start';
+        else if (pct>=0.75) ms = '75%, nearly there';
+        else if (pct>=0.5)  ms = '50%, halfway!';
+        else if (pct>=0.25) ms = '25%, great start';
 
         [{col:'A',val:i,fmt:'0',h:'center'},{col:'B',val:dateStr,fmt:'@',h:'center'},
          {col:'C',val:opening,fmt:'$#,##0',h:'right'},{col:'D',val:contrib,fmt:'$#,##0',h:'right'},
@@ -1010,9 +1010,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       const instRows: [string, 'section'|'body'|'blank'][] = [
         ['', 'blank'],
         ['GETTING STARTED', 'section'],
-        ['Go to the "Budget Planner" tab — this is your main working sheet.', 'body'],
+        ['Go to the "Budget Planner" tab, this is your main working sheet.', 'body'],
         ['Edit any cell with a yellow background. These are input cells you can change freely.', 'body'],
-        ['All formula cells (cream / grey background) update automatically — do not edit these.', 'body'],
+        ['All formula cells (cream / grey background) update automatically, do not edit these.', 'body'],
         ['Start with Section 1 (Deposit Goal): enter property price, deposit % and buyer type.', 'body'],
         ['Work through income and expenses section by section with your real monthly figures.', 'body'],
         ['', 'blank'],
@@ -1023,7 +1023,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         ['Scenarios: time to goal if you find an extra $500, $1,000 or $2,000 per month.', 'body'],
         ['', 'blank'],
         ['TIPS FOR FASTER SAVING', 'section'],
-        ['Save to 20% deposit: eliminates LMI (potentially $10,000–$40,000) and reduces your interest rate.', 'body'],
+        ['Save to 20% deposit: eliminates LMI (potentially $10,000-$40,000) and reduces your interest rate.', 'body'],
         ['Auto-transfer: set up an automatic transfer on payday into a high-interest savings account.', 'body'],
         ['Review expenses monthly: trimming $300/month adds $3,600/year to your deposit fund.', 'body'],
         ['QLD First Home Buyer Grant: up to $30,000 for eligible new builds under $750,000. See qld.gov.au.', 'body'],
@@ -1031,15 +1031,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         ['', 'blank'],
         ['UNDERSTANDING THE CALCULATIONS', 'section'],
         ['Stamp Duty: QLD Transfer Duty rates as at 2025. FHB concession auto-applied if selected.', 'body'],
-        ['LMI: Estimated at 1–4% of the loan depending on your LVR. Get an exact quote from your broker.', 'body'],
-        ['Conveyancing: $3,500 estimate. Actual costs typically range $1,500–$4,000.', 'body'],
+        ['LMI: Estimated at 1-4% of the loan depending on your LVR. Get an exact quote from your broker.', 'body'],
+        ['Conveyancing: $3,500 estimate. Actual costs typically range $1,500-$4,000.', 'body'],
         ['', 'blank'],
         ['NEED HELP WITH YOUR NEXT STEP?', 'section'],
         ['Daniel Gierach  |  Ray White Bulimba  |  Brisbane Inner East Specialist', 'body'],
-        ['📞  0412 523 821  (7 days, 7am–8pm)', 'body'],
+        ['📞  0412 523 821  (7 days, 7am-8pm)', 'body'],
         ['🌐  danielgierach.com', 'body'],
         ['📧  daniel.gierach@raywhite.com', 'body'],
-        ['Free property appraisals available anytime — no obligation.', 'body'],
+        ['Free property appraisals available anytime, no obligation.', 'body'],
         ['', 'blank'],
         ['DISCLAIMER', 'section'],
         ['This spreadsheet is for general information only. It does not constitute financial, legal, or taxation advice.', 'body'],
@@ -1083,7 +1083,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       URL.revokeObjectURL(url);
 
     } catch(err: any) {
-      if (err?.message==='loading') alert('Spreadsheet library still loading — try again in a moment.');
+      if (err?.message==='loading') alert('Spreadsheet library still loading, try again in a moment.');
       else alert('Could not generate spreadsheet. Please try again.');
       console.error(err);
     } finally {

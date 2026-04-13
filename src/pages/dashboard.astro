@@ -107,7 +107,7 @@ try {
 } catch (_) {}
 
 // ── Weekly Content Review ──────────────────────────────────────────────────
-// Compute AEST-aware week boundaries (Mon–Sun)
+// Compute AEST-aware week boundaries (Mon-Sun)
 function toAEST(d: Date) {
   // AEST = UTC+10 (no DST correction needed for date arithmetic)
   return new Date(d.toLocaleString('en-US', { timeZone: 'Australia/Brisbane' }));
@@ -132,8 +132,8 @@ lastSun.setDate(thisMon.getDate() - 1);
 lastSun.setHours(23, 59, 59, 0);
 
 const fmtDay = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', timeZone: 'Australia/Brisbane' });
-const thisWeekLabel = `${fmtDay(thisMon)} – ${fmtDay(thisSun)}`;
-const lastWeekLabel = `${fmtDay(lastMon)} – ${fmtDay(lastSun)}`;
+const thisWeekLabel = `${fmtDay(thisMon)}, ${fmtDay(thisSun)}`;
+const lastWeekLabel = `${fmtDay(lastMon)}, ${fmtDay(lastSun)}`;
 
 function deriveLinkFromMessage(message: string): string {
   const suburbMatch = message.match(/suburb[s]?\s+page[s]?\s+(?:for\s+)?([a-z\s\-]+)/i) ||
@@ -229,22 +229,22 @@ try {
           <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin-bottom:0.3rem;">Daily Update</p>
           <p style="font-family:var(--font-serif);font-size:1.4rem;font-weight:300;color:#f2efe9;margin:0;">{todayLabel}</p>
         </div>
-        <!-- Quick counts — filled client-side -->
+        <!-- Quick counts, filled client-side -->
         <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
           <div style="text-align:center;">
             <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#22c55e;margin:0;" id="today-done-count">{todayCommits.length}</p>
             <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Published</p>
           </div>
           <div style="text-align:center;">
-            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#3b82f6;margin:0;" id="today-tasks-count">—</p>
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#3b82f6;margin:0;" id="today-tasks-count">-</p>
             <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Completed</p>
           </div>
           <div style="text-align:center;">
-            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#c4912a;margin:0;" id="today-running-count">—</p>
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#c4912a;margin:0;" id="today-running-count">-</p>
             <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">In Progress</p>
           </div>
           <div style="text-align:center;">
-            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#a855f7;margin:0;" id="today-review-count">—</p>
+            <p style="font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#a855f7;margin:0;" id="today-review-count">-</p>
             <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0.1rem 0 0;">Needs Review</p>
           </div>
         </div>
@@ -295,17 +295,17 @@ try {
       </div>
       <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
         <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Active Agents</p>
-        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="agents-count">—</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="agents-count">-</p>
         <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">Paperclip team</p>
       </div>
       <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
         <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Tasks Completed</p>
-        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="done-count">—</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="done-count">-</p>
         <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">All time</p>
       </div>
       <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.15);padding:1.25rem 1.5rem;">
         <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Open Tasks</p>
-        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="open-issues-count">—</p>
+        <p style="font-family:var(--font-serif);font-size:2.2rem;font-weight:300;color:#f2efe9;margin:0;" id="open-issues-count">-</p>
         <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0;">todo + in progress</p>
       </div>
     </div>
@@ -319,12 +319,12 @@ try {
         <div>
           <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.35rem;">Weekly Content Review</p>
           <p style="font-family:var(--font-serif);font-size:1.2rem;font-weight:300;color:#f2efe9;margin:0;">This week: {thisWeekLabel}</p>
-          <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0.2rem 0 0;">Reviewed every Monday — approve items below to clear them for publishing.</p>
+          <p style="font-family:var(--font-sans);font-size:0.72rem;color:rgba(242,239,233,0.4);margin:0.2rem 0 0;">Reviewed every Monday, approve items below to clear them for publishing.</p>
         </div>
         <!-- Approval progress (filled client-side) -->
         <div id="weekly-progress" style="text-align:right;min-width:160px;">
           <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0 0 0.4rem;">Approvals</p>
-          <p style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:#22c55e;margin:0;" id="approval-fraction">—</p>
+          <p style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:#22c55e;margin:0;" id="approval-fraction">-</p>
           <div style="margin-top:0.5rem;height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;width:160px;">
             <div id="approval-bar" style="height:100%;background:#22c55e;width:0%;transition:width 0.4s;border-radius:3px;"></div>
           </div>
@@ -359,7 +359,7 @@ try {
           )}
         </div>
 
-        <!-- Right: This week's content — pending approval (client-side) -->
+        <!-- Right: This week's content, pending approval (client-side) -->
         <div>
           <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0 0 1rem;">Awaiting Your Approval <span style="color:rgba(242,239,233,0.3);font-weight:400;">(this week)</span></p>
           <div id="weekly-queue"><p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(242,239,233,0.4);">Loading...</p></div>
@@ -927,7 +927,7 @@ try {
             <p style="font-size:0.82rem;color:#f2efe9;margin:0.3rem 0 0;line-height:1.4;">${i.title}</p>
           </div>`).join('');
 
-      // Completed work — grouped by agent
+      // Completed work, grouped by agent
       const byAgent: Record<string, any[]> = {};
       done.forEach(i => {
         const key = i.assigneeAgentId ? (agentMap[i.assigneeAgentId] || i.assigneeAgentId) : 'Unassigned';
@@ -938,7 +938,7 @@ try {
       document.getElementById('completed-work')!.innerHTML = Object.entries(byAgent).map(([agentName, items]) => `
         <div style="margin-bottom:1.75rem;">
           <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,233,0.5);margin:0 0 0.75rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.06);">
-            ${agentName} — ${items.length} completed
+            ${agentName}, ${items.length} completed
           </p>
           <div style="display:flex;flex-direction:column;gap:0.4rem;">
             ${items.map(i => {
@@ -1084,7 +1084,7 @@ try {
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem;">
               <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,233,0.4);margin:0;">Token Usage</p>
-              <p style="font-family:var(--font-sans);font-size:0.65rem;color:#c4912a;margin:0;">${td ? fmtUsd(td.totalCost) : '—'} total</p>
+              <p style="font-family:var(--font-sans);font-size:0.65rem;color:#c4912a;margin:0;">${td ? fmtUsd(td.totalCost) : '-'} total</p>
             </div>
             <!-- Cost bar (relative to most expensive agent) -->
             <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-bottom:0.5rem;">
@@ -1092,15 +1092,15 @@ try {
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;">
               <div style="text-align:center;padding:0.4rem;background:rgba(255,255,255,0.03);">
-                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? fmtK(totalTok) : '—'}</p>
+                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? fmtK(totalTok) : '-'}</p>
                 <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Total tokens</p>
               </div>
               <div style="text-align:center;padding:0.4rem;background:rgba(255,255,255,0.03);">
-                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? fmtK(td.avgTokensPerRun) : '—'}</p>
+                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? fmtK(td.avgTokensPerRun) : '-'}</p>
                 <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Avg / run</p>
               </div>
               <div style="text-align:center;padding:0.4rem;background:rgba(255,255,255,0.03);">
-                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? String(td.totalRuns) : '—'}</p>
+                <p style="font-family:var(--font-serif);font-size:1rem;font-weight:300;color:#f2efe9;margin:0;">${td ? String(td.totalRuns) : '-'}</p>
                 <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(242,239,233,0.35);margin:0.1rem 0 0;">Total runs</p>
               </div>
             </div>
@@ -1133,7 +1133,7 @@ try {
       const costPerTask = totalCost / done;
       el.textContent = `Baseline: ~${fmtK(tokPerTask)} tokens per task · ${fmtUsd(costPerTask)} avg · from ${done} completed tasks`;
     } else {
-      el.textContent = 'Not enough data yet — complete some tasks first.';
+      el.textContent = 'Not enough data yet, complete some tasks first.';
     }
   }
 

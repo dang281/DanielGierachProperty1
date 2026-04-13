@@ -37,19 +37,19 @@ Book a free appraisal at danielgierach.com
 **Style:** Suburb spotlight
 **Headline text:** Stones Corner
 **Body text:**
-- Old Cleveland Road village strip — cafes and retail
+- Old Cleveland Road village strip, cafes and retail
 - 5km south of Brisbane CBD
 - Direct bus to CBD, freeway access nearby
 - Between Coorparoo and Greenslopes
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** N/A
-**Image direction:** Stones Corner Old Cleveland Road retail strip — village character, boutique shops and cafes. Alternatively, a residential street off the main road with character homes. No generic stock.
+**Image direction:** Stones Corner Old Cleveland Road retail strip, village character, boutique shops and cafes. Alternatively, a residential street off the main road with character homes. No generic stock.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
 
 ## Notes for Daniel
 
-⚠️ VERIFY: No specific Stones Corner median price was returned in research. Before posting, add a median price from your CoreLogic access. Based on nearby Coorparoo and Greenslopes pricing, likely in the $1.2-1.4M range for houses — but verify before publishing any figure.
+⚠️ VERIFY: No specific Stones Corner median price was returned in research. Before posting, add a median price from your CoreLogic access. Based on nearby Coorparoo and Greenslopes pricing, likely in the $1.2-1.4M range for houses, but verify before publishing any figure.
 - The caption deliberately avoids a specific median price since data was unavailable. If you add a figure from CoreLogic, insert it in the body text and the visual brief.
 - Old Cleveland Road as the main commercial strip for Stones Corner is well-established.

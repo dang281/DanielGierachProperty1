@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 const SITE_URL = 'https://www.danielgierach.com';
 
 const pages = [
-  // Core pages — highest priority
+  // Core pages, highest priority
   { path: '/',          changefreq: 'weekly',  priority: '1.0' },
   { path: '/listings',        changefreq: 'daily',   priority: '0.95' },
   { path: '/walkthrough',     changefreq: 'monthly', priority: '0.90' },
@@ -89,7 +89,7 @@ const pages = [
   // Insights index + articles (content marketing / organic search)
   { path: '/insights',                              changefreq: 'weekly',  priority: '0.8' },
 
-  // Selling-in suburb guides — high commercial intent
+  // Selling-in suburb guides, high commercial intent
   // Priority suburbs first (0.82), remaining suburbs (0.78)
   { path: '/insights/selling-in-morningside',       changefreq: 'monthly', priority: '0.82' },
   { path: '/insights/selling-in-murarrie',          changefreq: 'monthly', priority: '0.82' },
@@ -160,7 +160,7 @@ const pages = [
   { path: '/insights/queenslander-vs-postwar',      changefreq: 'monthly', priority: '0.7' },
   { path: '/insights/solicitor-vs-conveyancer-qld', changefreq: 'monthly', priority: '0.7' },
 
-  // Legal — low priority
+  // Legal, low priority
   { path: '/privacy',    changefreq: 'yearly', priority: '0.2' },
   { path: '/terms',      changefreq: 'yearly', priority: '0.2' },
   { path: '/thank-you',  changefreq: 'yearly', priority: '0.1' },

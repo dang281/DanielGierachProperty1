@@ -93,12 +93,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <span style="font-size:0.72rem;color:#78716c;">After management fees</span>
       </div>
       <div class="result-card">
-        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">Gross Yield — Before</span>
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">Gross Yield, Before</span>
         <span id="gf-yield-before" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
         <span style="font-size:0.72rem;color:#78716c;">Main dwelling only</span>
       </div>
       <div class="result-card">
-        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#3a8fa8;">Gross Yield — After</span>
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#3a8fa8;">Gross Yield, After</span>
         <span id="gf-yield-after" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
         <span style="font-size:0.72rem;color:#78716c;">Combined on total value</span>
       </div>
@@ -130,7 +130,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div>
         <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.3rem;">Est. Value Add (0.6x build cost)</div>
         <div id="gf-valueadd" style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#1c1917;"></div>
-        <div style="font-size:0.7rem;color:#78716c;margin-top:0.2rem;">Rule of thumb only — varies by suburb and build quality</div>
+        <div style="font-size:0.7rem;color:#78716c;margin-top:0.2rem;">Rule of thumb only, varies by suburb and build quality</div>
       </div>
     </div>
 
@@ -201,7 +201,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     els.valueadd.textContent     = fmt(valueAdd);
 
     els.breakdown.innerHTML = [
-      ['Main dwelling — gross rent (52 wks, 97% occ.)', fmt(mainAnnual)],
+      ['Main dwelling, gross rent (52 wks, 97% occ.)', fmt(mainAnnual)],
       ['GF gross rent (52 wks, 97% occ.)', fmt(gfAnnual)],
       ['GF management fees (' + mgmtPct + '%)', '-' + fmt(gfAnnual * mgmtPct / 100)],
       ['GF net rent after management', fmt(gfNetAnnual)],

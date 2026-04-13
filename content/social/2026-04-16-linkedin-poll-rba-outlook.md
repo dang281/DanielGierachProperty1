@@ -1,4 +1,4 @@
-# LinkedIn Poll: Two Rate Rises Down — What Does the RBA Do on 5 May?
+# LinkedIn Poll: Two Rate Rises Down, What Does the RBA Do on 5 May?
 
 **Platform:** LinkedIn
 **Format:** Poll
@@ -47,9 +47,9 @@ Ray White Bulimba · Inner East Brisbane
 **Confidence: Ready**
 
 All figures verified:
-- Two consecutive 25bp rises in February and March 2026 — confirmed via RBA media releases
-- Cash rate at 4.10% as of March 2026 — confirmed via rba.gov.au/statistics/cash-rate/
-- Next board meeting: 4-5 May 2026, decision announced 5 May at 2:30pm AEST — confirmed via RBA schedule
+- Two consecutive 25bp rises in February and March 2026, confirmed via RBA media releases
+- Cash rate at 4.10% as of March 2026, confirmed via rba.gov.au/statistics/cash-rate/
+- Next board meeting: 4-5 May 2026, decision announced 5 May at 2:30pm AEST, confirmed via RBA schedule
 - Westpac economists forecasting possible further hike to 4.35% in May
 
 After the poll closes (7 days), post a comment noting what the market had priced in via ASX RBA Rate Tracker. This turns a poll into a genuine two-part conversation.

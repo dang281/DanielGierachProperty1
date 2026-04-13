@@ -39,17 +39,17 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Median house price ~$1,230,000
 - 12km from Brisbane CBD
-- Westfield Garden City — major retail precinct
+- Westfield Garden City, major retail precinct
 - South-East Freeway access
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
-**Image direction:** Residential street in Upper Mount Gravatt — family home, established gardens. If no specific photo available, text only on dark background.
+**Image direction:** Residential street in Upper Mount Gravatt, family home, established gardens. If no specific photo available, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
 
 ## Notes for Daniel
 
-⚠️ VERIFY: Median $1,230,000 from propertyvalue.com.au Upper Mount Gravatt (2026). One source showed +3.36% annual growth — lower than most Brisbane suburbs. Cross-check CoreLogic before posting and adjust framing if growth is minimal (focus on value proposition rather than growth in that case).
-- Westfield Garden City is the correct name for the Garden City shopping centre in this area — confirm before posting.
+⚠️ VERIFY: Median $1,230,000 from propertyvalue.com.au Upper Mount Gravatt (2026). One source showed +3.36% annual growth, lower than most Brisbane suburbs. Cross-check CoreLogic before posting and adjust framing if growth is minimal (focus on value proposition rather than growth in that case).
+- Westfield Garden City is the correct name for the Garden City shopping centre in this area, confirm before posting.
 - Griffith University Nathan campus proximity is confirmed.

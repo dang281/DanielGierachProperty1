@@ -38,7 +38,7 @@ Book a free appraisal at danielgierach.com
 **Headline text:** Carina Heights
 **Body text:**
 - Typical house value ~$1,627,000
-- Elevated, quieter streets — low through-traffic
+- Elevated, quieter streets, low through-traffic
 - Tight supply: long-held family homes
 - Close to Westfield Carindale and Camp Hill
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
@@ -51,6 +51,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Typical house value ~$1,627,403 sourced from htag.com.au Carina Heights suburb profile (2026). Cross-check against your CoreLogic data before posting.
-- Camp Hill State School catchment reference should be verified — confirm that Carina Heights streets fall within the Camp Hill SS catchment (some may fall under Carina SS instead depending on street). This is worth checking before posting.
-- "Long-held family homes / tight supply" is a qualitative observation commonly noted for this suburb — not directly sourced but well established locally.
+- Camp Hill State School catchment reference should be verified, confirm that Carina Heights streets fall within the Camp Hill SS catchment (some may fall under Carina SS instead depending on street). This is worth checking before posting.
+- "Long-held family homes / tight supply" is a qualitative observation commonly noted for this suburb, not directly sourced but well established locally.
 - Carina Heights is in Daniel's core inner-east market.

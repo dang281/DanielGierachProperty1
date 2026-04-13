@@ -155,7 +155,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       return { duty: calcBaseDuty(price), label: 'Investor Rate' };
     }
     if (buyerType === 'fhb') {
-      // FHB established: exempt under $500K, tapered $500K–$550K
+      // FHB established: exempt under $500K, tapered $500K-$550K
       if (propType === 'established') {
         if (price <= 500000) return { duty: 0, label: 'FHB Exempt' };
         if (price < 550000) {
@@ -164,7 +164,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           return { duty: full - concession, label: 'FHB Concessional' };
         }
       }
-      // FHB new home: exempt under $750K, tapered $750K–$800K
+      // FHB new home: exempt under $750K, tapered $750K-$800K
       if (propType === 'new') {
         if (price <= 750000) return { duty: 0, label: 'FHB New Home Exempt' };
         if (price < 800000) {

@@ -30,7 +30,7 @@ danielgierach.com/suburbs/seven-hills
 
 ## Notes for Daniel
 
-- 47 house sales / 54 days on market: sourced from realestateinvestar.com.au citing CoreLogic, backed up by Smart Property Investment (smartpropertyinvestment.com.au/data/qld/4170/seven-hills). ⚠️ VERIFY: Confirm these figures are current before posting — aggregator sites can lag 1-2 quarters.
-- Median $1.8M (Seven Hills), Morningside $1.33M, Hawthorne ~$2.3M, Bulimba ~$2.1M: sourced from YIP / realestateinvestar / propertyvalue.com.au. ⚠️ VERIFY: All figures should be cross-checked against CoreLogic or your own recent comparable sales. Post deliberately avoids citing a specific Seven Hills median — use your own data if you add one.
+- 47 house sales / 54 days on market: sourced from realestateinvestar.com.au citing CoreLogic, backed up by Smart Property Investment (smartpropertyinvestment.com.au/data/qld/4170/seven-hills). ⚠️ VERIFY: Confirm these figures are current before posting, aggregator sites can lag 1-2 quarters.
+- Median $1.8M (Seven Hills), Morningside $1.33M, Hawthorne ~$2.3M, Bulimba ~$2.1M: sourced from YIP / realestateinvestar / propertyvalue.com.au. ⚠️ VERIFY: All figures should be cross-checked against CoreLogic or your own recent comparable sales. Post deliberately avoids citing a specific Seven Hills median, use your own data if you add one.
 - "Aspect premium" angle is accurate: Seven Hills is elevated above the Morningside/Carina flat, with ridge streets offering city-facing views. Paramount Lookout is in the suburb.
 - Image suggestion: A wide-angle shot from a ridge street looking toward the CBD skyline, or a character home on an elevated block with city views in the background.

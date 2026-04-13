@@ -135,7 +135,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
             <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${r.label}</span>
             <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);white-space:nowrap;">+${r.returnPct}%</span>
           </div>
-          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.2rem;">Est. cost: $${(r.costLow/1000).toFixed(0)}K – $${(r.costHigh/1000).toFixed(0)}K</p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.2rem;">Est. cost: $${(r.costLow/1000).toFixed(0)}K, $${(r.costHigh/1000).toFixed(0)}K</p>
         </div>
       </label>
     `).join('');

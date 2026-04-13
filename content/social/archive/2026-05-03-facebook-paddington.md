@@ -15,7 +15,7 @@
 
 Paddington sits 3km from the Brisbane CBD and has held its position as one of Brisbane's most desirable character suburbs for decades. The numbers reflect that consistency.
 
-The median house price in Paddington is approximately $2,044,000. The suburb's appeal comes from a combination of genuinely distinctive architecture — Victorian and Queenslander homes on steep hillside blocks — and Given Terrace's village-style retail and dining strip, which is one of Brisbane's most established lifestyle precincts. Bardon and Red Hill border the suburb, and buyers who compare the three often settle on Paddington for the balance of character, proximity, and streetscape quality.
+The median house price in Paddington is approximately $2,044,000. The suburb's appeal comes from a combination of genuinely distinctive architecture, Victorian and Queenslander homes on steep hillside blocks, and Given Terrace's village-style retail and dining strip, which is one of Brisbane's most established lifestyle precincts. Bardon and Red Hill border the suburb, and buyers who compare the three often settle on Paddington for the balance of character, proximity, and streetscape quality.
 
 Supply is genuinely constrained. The topography limits development, heritage overlays protect the character housing stock, and owners tend to hold. When a quality home comes to market here, the buyer competition reflects that scarcity.
 
@@ -43,7 +43,7 @@ Book a free appraisal at danielgierach.com
 - Given Terrace village lifestyle precinct
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
-**Image direction:** Paddington streetscape — hillside Queenslander or Victorian terrace, steep block, character features. Alternatively, Given Terrace retail strip with the suburb's character visible. No generic stock.
+**Image direction:** Paddington streetscape, hillside Queenslander or Victorian terrace, steep block, character features. Alternatively, Given Terrace retail strip with the suburb's character visible. No generic stock.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
@@ -53,4 +53,4 @@ Book a free appraisal at danielgierach.com
 ⚠️ VERIFY: Median $2,044,000 from yourinvestmentpropertymag.com.au Paddington QLD 4064 profile (2026). Cross-check CoreLogic before posting.
 - Given Terrace as Paddington's village lifestyle strip is confirmed and well-known.
 - Heritage overlays and topography constraints are established facts about this suburb.
-- Paddington is inner-west rather than inner-east — slightly outside Daniel's primary patch. Consider whether he has sold or appraised there recently.
+- Paddington is inner-west rather than inner-east, slightly outside Daniel's primary patch. Consider whether he has sold or appraised there recently.

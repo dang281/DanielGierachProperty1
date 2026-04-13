@@ -39,7 +39,7 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Median house price ~$1,525,000
 - ~10.5% annual growth
-- Cross River Rail — Boggo Road station nearby
+- Cross River Rail, Boggo Road station nearby
 - 4km south of Brisbane CBD
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
@@ -51,6 +51,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Median $1,525,000 and 10.51% annual growth from propertyvalue.com.au (2026). Cross-check CoreLogic.
-- Cross River Rail / Boggo Road station is confirmed infrastructure — Woolloongabba and Boggo Road stations are part of the Cross River Rail project serving this area.
+- Cross River Rail / Boggo Road station is confirmed infrastructure, Woolloongabba and Boggo Road stations are part of the Cross River Rail project serving this area.
 - UQ and PA Hospital precinct proximity is established fact.
 - Dutton Park is slightly outside Daniel's core inner-east patch but adjacent and credible.

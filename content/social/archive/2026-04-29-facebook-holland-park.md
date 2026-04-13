@@ -40,7 +40,7 @@ Book a free appraisal at danielgierach.com
 - Median house price ~$1,612,000
 - ~8.5% annual growth
 - 7km south of Brisbane CBD
-- Holland Park SHS — sought-after school catchment
+- Holland Park SHS, sought-after school catchment
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
 **Image direction:** Character Queenslander or postwar home on a Holland Park residential street, established gardens, tree-lined. If no specific photo available, text only on dark background.

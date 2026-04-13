@@ -40,7 +40,7 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Median house price ~$1,162,000
 - 8km east of Brisbane CBD
-- Carina Village — walkable shops and cafes
+- Carina Village, walkable shops and cafes
 - Growing buyer competition from upsizers and downsizers
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
@@ -52,6 +52,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Median house price ~$1,162,000 sourced from edwardsandsmith.com.au Carina suburb guide (2026). Cross-check against your CoreLogic data before posting.
-- Carina is in Daniel's core inner-east market — high credibility for this post.
+- Carina is in Daniel's core inner-east market, high credibility for this post.
 - Old Cleveland Road bus connections are well established.
-- The buyer profile observation (upsizers + downsizers competing) is a general market trend — no specific source, presented as observation rather than data. This is fine per brand guidelines for qualitative commentary.
+- The buyer profile observation (upsizers + downsizers competing) is a general market trend, no specific source, presented as observation rather than data. This is fine per brand guidelines for qualitative commentary.

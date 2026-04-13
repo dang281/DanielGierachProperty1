@@ -296,7 +296,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     const fmt = (n: number) => n >= 1000000 ? `$${(n/1000000).toFixed(2)}M` : `$${(n/1000).toFixed(0)}K`;
 
-    document.getElementById('val-low-high')!.textContent = `${fmt(low)} – ${fmt(high)}`;
+    document.getElementById('val-low-high')!.textContent = `${fmt(low)}, ${fmt(high)}`;
     document.getElementById('val-mid')!.textContent = `Mid-point estimate: ${fmt(mid)}`;
     document.getElementById('val-suburb')!.textContent = `Based on recent comparable sales in ${suburb.charAt(0).toUpperCase() + suburb.slice(1).replace('-', ' ')}.`;
 

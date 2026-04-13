@@ -99,7 +99,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div class="result-card">
         <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">LMI Premium</span>
         <span id="lmi-premium" style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;"></span>
-        <span style="font-size:0.75rem;color:#78716c;">Approximate — varies by lender</span>
+        <span style="font-size:0.75rem;color:#78716c;">Approximate, varies by lender</span>
       </div>
       <div class="result-card">
         <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;">Total LMI (incl. QLD Stamp Duty)</span>
@@ -153,7 +153,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (lvr <= 90) return 1.72;
     if (lvr <= 92) return 2.81;
     if (lvr <= 95) return 3.84;
-    return 0; // >95% — lenders typically don't lend
+    return 0; // >95%, lenders typically don't lend
   }
 
   function fmt(n: number) {
@@ -180,11 +180,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       noLmiMsg.style.display = 'block';
       lmiResults.style.display = 'none';
     } else if (lvr > 95) {
-      lvrNote.textContent = 'LVR above 95% — most lenders will not approve this loan. A larger deposit is required.';
+      lvrNote.textContent = 'LVR above 95%, most lenders will not approve this loan. A larger deposit is required.';
       noLmiMsg.style.display = 'none';
       lmiResults.style.display = 'none';
     } else {
-      lvrNote.textContent = `LVR of ${lvrRounded.toFixed(1)}% — LMI applies. Deposit needs to reach ${fmt(price * 0.2)} to eliminate LMI.`;
+      lvrNote.textContent = `LVR of ${lvrRounded.toFixed(1)}%, LMI applies. Deposit needs to reach ${fmt(price * 0.2)} to eliminate LMI.`;
       noLmiMsg.style.display = 'none';
       lmiResults.style.display = 'flex';
 

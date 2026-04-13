@@ -14,7 +14,7 @@
 
 Teneriffe is one of the most distinctive addresses in Brisbane.
 
-The historic woolstore conversions along the riverfront, the proximity to New Farm Park and the Powerhouse, and the kind of urban lifestyle that attracts a specific type of buyer — usually professionals who want walkability, character, and a short trip to the CBD. Units in Teneriffe have seen some of the strongest growth in inner Brisbane over the past year, reflecting genuine demand.
+The historic woolstore conversions along the riverfront, the proximity to New Farm Park and the Powerhouse, and the kind of urban lifestyle that attracts a specific type of buyer, usually professionals who want walkability, character, and a short trip to the CBD. Units in Teneriffe have seen some of the strongest growth in inner Brisbane over the past year, reflecting genuine demand.
 
 It is a suburb where the character of the building and the quality of the fit-out matter enormously to the buyer. That is an advantage for owners who have invested in the property.
 
@@ -32,4 +32,4 @@ danielgierach.com
 - Median house ~$1.57M, units ~$1.055M with ~17% annual growth
 - ⚠️ VERIFY: Confirm median and unit growth figures with CoreLogic before posting
 - Image suggestion: A restored woolstore apartment building on the Teneriffe riverfront
-- Note: Teneriffe is primarily an apartment/woolstore market — Daniel should confirm he has the right contacts and listings pipeline before publishing
+- Note: Teneriffe is primarily an apartment/woolstore market, Daniel should confirm he has the right contacts and listings pipeline before publishing

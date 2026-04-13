@@ -44,7 +44,7 @@ Book a free appraisal at danielgierach.com
 - Close to PA Hospital employment precinct
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property data, 2026
-**Image direction:** Streetscape of Queenslander homes in Annerley — character timber homes with front verandahs, tree-lined street. If no suburb-specific photo is available, text only on dark background.
+**Image direction:** Streetscape of Queenslander homes in Annerley, character timber homes with front verandahs, tree-lined street. If no suburb-specific photo is available, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
@@ -53,5 +53,5 @@ Book a free appraisal at danielgierach.com
 
 ⚠️ VERIFY: Median house price of $1,350,000 sourced from aggregated property data platforms (2026). Cross-check against your CoreLogic or REIQ access before posting.
 - Annual growth figure of ~8% should be verified against latest REIQ QLD data.
-- Photo direction: ideal image would be a timber Queenslander on a side street off Ipswich Road — not a stock photo.
-- PA Hospital proximity is well established as a buyer draw point — solid angle for this audience.
+- Photo direction: ideal image would be a timber Queenslander on a side street off Ipswich Road, not a stock photo.
+- PA Hospital proximity is well established as a buyer draw point, solid angle for this audience.

@@ -38,5 +38,5 @@ danielgierach.com/suburbs/seven-hills
 - The "discount to Hawthorne/Bulimba" framing is supported by YIP/propertyvalue.com.au data showing Seven Hills ~$1.8M vs Hawthorne ~$2.3M and Bulimba ~$2.1M. ⚠️ VERIFY: These medians shift. Do not post specific figures unless you've confirmed them against current CoreLogic data.
 - Cavendish Road SHS catchment: accurate per suburb profile sources. Worth confirming catchment boundaries have not changed.
 - 52-hectare Seven Hills Bushland Reserve: confirmed. This is a genuine point of difference worth mentioning if you want to add texture.
-- Post intentionally makes no price forecast — it presents analysis only. The "undervalued" framing is based on current price differential, not a prediction.
+- Post intentionally makes no price forecast, it presents analysis only. The "undervalued" framing is based on current price differential, not a prediction.
 - Text-only format recommended for LinkedIn.

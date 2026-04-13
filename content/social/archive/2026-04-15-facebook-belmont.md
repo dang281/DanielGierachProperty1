@@ -46,7 +46,7 @@ Book a free appraisal at danielgierach.com
 - 12km east of Brisbane CBD
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
-**Image direction:** Elevated street view or home with tree-lined backdrop in Belmont QLD — avoid any WA or generic suburban imagery. If no specific photo available, text only on dark background.
+**Image direction:** Elevated street view or home with tree-lined backdrop in Belmont QLD, avoid any WA or generic suburban imagery. If no specific photo available, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
@@ -54,6 +54,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Median house price ~$1,450,000 and 19.51% annual growth sourced from aggregated data platforms (htag.com.au, propertyvalue.com.au, 2026). Cross-check against CoreLogic before posting.
-⚠️ VERIFY: 16 days on market figure — sourced from same platforms, check this is current.
+⚠️ VERIFY: 16 days on market figure, sourced from same platforms, check this is current.
 - Gateway Motorway access and Westfield Carindale proximity are well-established suburb selling points.
 - Note: Belmont is slightly outside Daniel's core inner-east market but is adjacent. Worth checking whether he has recently sold or appraised there before posting under his name.

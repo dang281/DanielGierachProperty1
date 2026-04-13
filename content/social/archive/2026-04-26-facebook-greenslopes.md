@@ -50,7 +50,7 @@ Book a free appraisal at danielgierach.com
 
 ## Notes for Daniel
 
-⚠️ VERIFY: Median $1,350,000-$1,400,000 from aggregated platforms (htag.com.au, propertyvalue.com.au). One source showed -5.59% annual growth — this could reflect a data anomaly or genuine price adjustment. Cross-check your CoreLogic access before posting and adjust the framing if growth has been negative.
+⚠️ VERIFY: Median $1,350,000-$1,400,000 from aggregated platforms (htag.com.au, propertyvalue.com.au). One source showed -5.59% annual growth, this could reflect a data anomaly or genuine price adjustment. Cross-check your CoreLogic access before posting and adjust the framing if growth has been negative.
 - If annual growth is indeed negative, remove the growth mention and focus on the value proposition angle instead.
 - Greenslopes Private Hospital proximity is confirmed infrastructure.
 - This is slightly outside Daniel's core inner-east market but is adjacent enough to be credible.

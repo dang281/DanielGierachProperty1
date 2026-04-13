@@ -14,7 +14,7 @@
 
 Kangaroo Point is about as close to the CBD as you can get without being in it.
 
-The cliffs, the river, the views back across to the city — it is a setting that sells itself. Buyers who want to be in that loop, with a short bridge crossing or a CityCat hop to work, know what they are looking for and they come ready.
+The cliffs, the river, the views back across to the city, it is a setting that sells itself. Buyers who want to be in that loop, with a short bridge crossing or a CityCat hop to work, know what they are looking for and they come ready.
 
 Unit values here have been climbing steadily, driven by the combination of inner-city access, riverside amenity, and a limited supply of quality stock. For homeowners thinking about their options, that demand-supply dynamic is worth understanding.
 

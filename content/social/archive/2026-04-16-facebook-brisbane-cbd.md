@@ -44,7 +44,7 @@ Book a free appraisal at danielgierach.com
 - River corridor and South Bank proximity
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Cotality (CoreLogic), February 2026
-**Image direction:** Brisbane cityscape or South Bank river corridor shot — skyline at dusk or Story Bridge perspective. No generic apartment lobby stock imagery.
+**Image direction:** Brisbane cityscape or South Bank river corridor shot, skyline at dusk or Story Bridge perspective. No generic apartment lobby stock imagery.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
@@ -52,6 +52,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 - Cotality (CoreLogic) median unit value of $844,844 sourced from NAB Brisbane Property Market Insights February 2026 report (based on Cotality data). This is a credible, citable source.
-- 18.3% annual growth figure is from the same Cotality/NAB source — published February 2026.
-- Note that Cotality is the rebranded CoreLogic Australia entity — the data is from the same authoritative source.
+- 18.3% annual growth figure is from the same Cotality/NAB source, published February 2026.
+- Note that Cotality is the rebranded CoreLogic Australia entity, the data is from the same authoritative source.
 - CBD apartment market is adjacent to Daniel's inner-east patch. Worth framing this post if he has sold or appraised inner-city properties, or has buyers looking in this space.

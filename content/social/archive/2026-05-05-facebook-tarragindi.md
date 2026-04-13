@@ -43,13 +43,13 @@ Book a free appraisal at danielgierach.com
 - Inner-south corridor, South-East Freeway access
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** N/A
-**Image direction:** Tarragindi residential street — postwar or character home with a decent block, established garden. If no specific photo, text only on dark background.
+**Image direction:** Tarragindi residential street, postwar or character home with a decent block, established garden. If no specific photo, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
 
 ## Notes for Daniel
 
-⚠️ VERIFY: No specific Tarragindi median price was returned in research. Before posting, add a median price from your CoreLogic access. Tarragindi falls in postcode 4121 (shared with Holland Park and Greenslopes area). Based on comparable suburbs, likely in the $1.2-1.45M range — but verify before publishing.
+⚠️ VERIFY: No specific Tarragindi median price was returned in research. Before posting, add a median price from your CoreLogic access. Tarragindi falls in postcode 4121 (shared with Holland Park and Greenslopes area). Based on comparable suburbs, likely in the $1.2-1.45M range, but verify before publishing.
 - "Analysts' lists of suburbs to watch in 2026" reference is from API Magazine Brisbane 2026 hotspots article. The reference is qualified as analyst opinion in the caption.
-- The caption avoids a specific median price due to lack of verified data — if Daniel adds a figure, insert it in line 1 of the caption and the visual brief.
+- The caption avoids a specific median price due to lack of verified data, if Daniel adds a figure, insert it in line 1 of the caption and the visual brief.

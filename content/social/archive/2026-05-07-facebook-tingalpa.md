@@ -17,7 +17,7 @@ Tingalpa sits 12km east of Brisbane's CBD along the Gateway Motorway corridor, a
 
 The typical house price in Tingalpa is around $1,244,000, offering a genuine entry point into Brisbane's eastern suburbs for buyers who are being priced out of Cannon Hill, Carina, or Carindale. The suburb has a mix of older homes and newer builds, with good block sizes and a family-oriented character. Access to the Gateway Motorway means the airport precinct, Port of Brisbane, and the south-east corridor are all manageable commutes.
 
-Tingalpa is not a suburb that competes on lifestyle amenity with the inner-east suburbs closer to the river — it competes on space, practicality, and price. For the right buyer, that trade-off is exactly what they're looking for.
+Tingalpa is not a suburb that competes on lifestyle amenity with the inner-east suburbs closer to the river, it competes on space, practicality, and price. For the right buyer, that trade-off is exactly what they're looking for.
 
 For homeowners in Tingalpa who have watched neighbouring suburb prices rise over recent years, the eastern corridor market has lifted across the board. An appraisal will tell you where your property sits today.
 
@@ -39,11 +39,11 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Typical house price ~$1,244,000
 - 12km east of Brisbane CBD
-- Gateway Motorway access — airport and Port of Brisbane
+- Gateway Motorway access, airport and Port of Brisbane
 - Space and practicality vs inner-east suburbs
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
-**Image direction:** Tingalpa residential street — family home, reasonable block size. If no specific Tingalpa photo, text only on dark background.
+**Image direction:** Tingalpa residential street, family home, reasonable block size. If no specific Tingalpa photo, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---

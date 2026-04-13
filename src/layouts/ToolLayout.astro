@@ -14,7 +14,7 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
 <Layout title={`${title} | Dan's Website`} description={description}>
 
 <style is:global>
-  /* Tool pages always have a light background — lock the nav into its scrolled state immediately via CSS so there is no transparent flash or backdrop-filter bleed-through on scroll */
+  /* Tool pages always have a light background, lock the nav into its scrolled state immediately via CSS so there is no transparent flash or backdrop-filter bleed-through on scroll */
   body.tool-page #site-header {
     background: rgba(247,245,240,0.97) !important;
     backdrop-filter: blur(24px) saturate(1.3) !important;
@@ -26,7 +26,7 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
 </style>
 
 <script>
-  // Tool pages have a light background from the top — force nav into its scrolled state immediately
+  // Tool pages have a light background from the top, force nav into its scrolled state immediately
   (function () {
     function applyLightNav() {
       const header = document.getElementById('site-header');
@@ -79,7 +79,7 @@ const { title, description, tool, phase = 'Seller Tools' } = Astro.props;
     </div>
   </div>
 
-  <!-- Sticky tool CTA bar — visible on mobile after 300px scroll -->
+  <!-- Sticky tool CTA bar, visible on mobile after 300px scroll -->
   <div id="tool-sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:#1c1917;border-top:1px solid rgba(196,145,42,0.3);padding:0.85rem 1.25rem;gap:0.75rem;align-items:center;justify-content:space-between;box-shadow:0 -6px 24px rgba(0,0,0,0.3);">
     <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;color:rgba(240,236,228,0.85);margin:0;flex:1;">Questions about these numbers?</p>
     <a href="/walkthrough" style="display:inline-flex;align-items:center;gap:0.4rem;background:#c4912a;color:#1c1917;font-family:var(--font-sans);font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.65rem 1.1rem;white-space:nowrap;flex-shrink:0;">

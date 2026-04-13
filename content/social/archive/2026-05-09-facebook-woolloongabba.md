@@ -39,11 +39,11 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Median house price ~$1,400,000
 - ~15.7% annual growth
-- Cross River Rail station — direct CBD access
+- Cross River Rail station, direct CBD access
 - 2032 Olympic Games precinct redevelopment
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data / Cotality, 2026
-**Image direction:** Woolloongabba streetscape — character homes on residential street with The Gabba stadium visible or implied. Alternatively, a shot referencing the Cross River Rail / Woolloongabba station development. No generic stock.
+**Image direction:** Woolloongabba streetscape, character homes on residential street with The Gabba stadium visible or implied. Alternatively, a shot referencing the Cross River Rail / Woolloongabba station development. No generic stock.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
@@ -51,6 +51,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Median $1,400,000 and 15.7% annual growth from propertyvalue.com.au and yourinvestmentpropertymag.com.au Woolloongabba QLD 4102 (2026). Cross-check CoreLogic before posting.
-- Cross River Rail Woolloongabba station is confirmed — it is one of the four underground stations in the project.
+- Cross River Rail Woolloongabba station is confirmed, it is one of the four underground stations in the project.
 - 2032 Olympic Games Gabba precinct is confirmed planned redevelopment.
 - Woolloongabba is slightly outside Daniel's inner-east patch but adjacent (same postcode corridor as Dutton Park). Strong credibility for this post given the Olympic and infrastructure angles.

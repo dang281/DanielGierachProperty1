@@ -82,7 +82,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 </style>
 
-<!-- Zone data — Brisbane CityPlan 2014 -->
+<!-- Zone data, Brisbane CityPlan 2014 -->
 <script>
 window.ZONES = {
   'CR':  { name: 'Character Residential',       short: 'CR',  color: '#6a8f5a', cls: 'zone-cr',
@@ -94,7 +94,7 @@ window.ZONES = {
     summary: 'Standard suburban residential zone for single detached houses and small dual occupancy. Limited higher-density development.',
     forBuyers: 'Standard family neighbourhood. Good land banking potential as infill gradually increases nearby.' },
   'LMR': { name: 'Low-Medium Density Residential', short: 'LMR', color: '#d4843c', cls: 'zone-lmr',
-    height: 'Up to 3 storeys (approx 9.5–15m)',
+    height: 'Up to 3 storeys (approx 9.5-15m)',
     summary: 'Allows townhouses, dual occupancy and small apartment buildings. Common in inner-ring suburbs experiencing densification.',
     forBuyers: 'Strong developer interest. Existing houses may have subdivision or townhouse potential, which is often reflected in land values.' },
   'MDR': { name: 'Medium Density Residential',  short: 'MDR', color: '#c05a2a', cls: 'zone-mdr',
@@ -110,11 +110,11 @@ window.ZONES = {
     summary: 'Combines commercial (ground floor) with residential above. Allows cafes, offices, retail and services alongside apartments.',
     forBuyers: 'Live/work potential and strong walkability. Popular with professionals and downsizers. Ground-floor tenancies add complexity to strata.' },
   'NC':  { name: 'Neighbourhood Centre',         short: 'NC',  color: '#5a7acd', cls: 'zone-nc',
-    height: 'Up to 3–4 storeys',
+    height: 'Up to 3-4 storeys',
     summary: 'Small local convenience centres: corner shops, cafes, medical. Maintains human-scale neighbourhood services.',
     forBuyers: 'Proximity premium for nearby residential. Zoning allows future commercial use of corner or main road lots.' },
   'LC':  { name: 'Local Centre',                short: 'LC',  color: '#3a5aad', cls: 'zone-lc',
-    height: 'Up to 4–5 storeys',
+    height: 'Up to 4-5 storeys',
     summary: 'Established local shopping strips, supermarkets, restaurants, services and above-shop residential.',
     forBuyers: 'High foot traffic, strong retail tenancy demand. Residential above retail is popular in inner suburbs.' },
   'DC':  { name: 'District Centre',             short: 'DC',  color: '#2a3a8d', cls: 'zone-dc',
@@ -336,7 +336,7 @@ window.ZONES = {
   function initMap() {
     map = L.map('zone-map').setView([-27.46, 153.04], 13);
 
-    // Dark base tiles — free, no API key
+    // Dark base tiles, free, no API key
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       subdomains: 'abcd',
@@ -510,7 +510,7 @@ window.ZONES = {
     });
   }
 
-  // ── Boot — load Leaflet then init ─────────────────────────────────────
+  // ── Boot, load Leaflet then init ─────────────────────────────────────
   const s = document.createElement('script');
   s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
   s.onload = initMap;

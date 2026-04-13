@@ -325,7 +325,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
     <input class="cc-vinput" id="fuelEff" type="number" value="12" min="3" max="30" step="0.5" style="width:62px;" />
     <span style="font-size:0.7rem;color:var(--color-text-muted);">L/100km</span>
-    <span style="font-size:0.62rem;color:var(--color-text-muted);width:100%;margin-top:0.1rem;">Peak-hour stop-start + A/C typically uses 20–40% more than manufacturer ratings.</span>
+    <span style="font-size:0.62rem;color:var(--color-text-muted);width:100%;margin-top:0.1rem;">Peak-hour stop-start + A/C typically uses 20-40% more than manufacturer ratings.</span>
   </div>
   <div class="cc-vsep"></div>
   <div class="cc-vfield">
@@ -396,33 +396,33 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Daily distance (return)</div>
-      <div class="cc-rcell val" id="homeDist">—</div>
-      <div class="cc-rcell val" id="propDist">—</div>
+      <div class="cc-rcell val" id="homeDist">-</div>
+      <div class="cc-rcell val" id="propDist">-</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Daily drive time (return, peak)</div>
-      <div class="cc-rcell val" id="homeTime">—</div>
-      <div class="cc-rcell val" id="propTime">—</div>
+      <div class="cc-rcell val" id="homeTime">-</div>
+      <div class="cc-rcell val" id="propTime">-</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Weekly fuel cost</div>
-      <div class="cc-rcell val" id="homeFuelWk">—</div>
-      <div class="cc-rcell val" id="propFuelWk">—</div>
+      <div class="cc-rcell val" id="homeFuelWk">-</div>
+      <div class="cc-rcell val" id="propFuelWk">-</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Annual fuel cost</div>
-      <div class="cc-rcell val" id="homeFuelYr">—</div>
-      <div class="cc-rcell val" id="propFuelYr">—</div>
+      <div class="cc-rcell val" id="homeFuelYr">-</div>
+      <div class="cc-rcell val" id="propFuelYr">-</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell">Hours per year commuting</div>
-      <div class="cc-rcell val" id="homeHrsYr">—</div>
-      <div class="cc-rcell val" id="propHrsYr">—</div>
+      <div class="cc-rcell val" id="homeHrsYr">-</div>
+      <div class="cc-rcell val" id="propHrsYr">-</div>
     </div>
     <div class="cc-rrow">
       <div class="cc-rcell label-cell total-row">Annual difference</div>
       <div class="cc-rcell total-row" style="color:var(--color-text-muted);font-style:italic;">Baseline</div>
-      <div class="cc-rcell total-row" id="propDiff">—</div>
+      <div class="cc-rcell total-row" id="propDiff">-</div>
     </div>
   </div>
 </div>
@@ -636,7 +636,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       labelEl.classList.add('is-set');
     }
 
-    // Reverse geocode — 4 second timeout in case API is slow or not enabled
+    // Reverse geocode, 4 second timeout in case API is slow or not enabled
     let resolved = false;
     const fallbackTimer = setTimeout(() => {
       if (!resolved && labelEl) labelEl.textContent = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
@@ -779,7 +779,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       const hrs = hrsPerYear(routes.home.durationMin);
       setText('homeHrsYr', hrs.toFixed(0) + ' hrs');
     } else {
-      ['homeDist','homeTime','homeFuelWk','homeFuelYr','homeHrsYr'].forEach(id => setText(id, '—'));
+      ['homeDist','homeTime','homeFuelWk','homeFuelYr','homeHrsYr'].forEach(id => setText(id, '-'));
     }
 
     // Property row + diff
@@ -806,10 +806,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           setClass('propDiff', 'cc-rcell total-row');
         }
       } else {
-        setText('propDiff', '—');
+        setText('propDiff', '-');
       }
     } else {
-      ['propDist','propTime','propFuelWk','propFuelYr','propHrsYr','propDiff'].forEach(id => setText(id, '—'));
+      ['propDist','propTime','propFuelWk','propFuelYr','propHrsYr','propDiff'].forEach(id => setText(id, '-'));
     }
 
     // Column headers with labels

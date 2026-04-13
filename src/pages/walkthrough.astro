@@ -195,24 +195,24 @@ import Layout from '../layouts/Layout.astro';
             <div id="cal-grid" class="cal-grid"></div>
           </div>
 
-          <!-- Time slots — shown after day is picked -->
+          <!-- Time slots, shown after day is picked -->
           <div id="cal-time-section" class="cal-time-section" style="display:none;">
             <p class="cal-time-label">Choose a time</p>
             <div class="cal-time-grid">
-              <button type="button" class="cal-time-btn" data-time="Morning  ·  8–12pm">
+              <button type="button" class="cal-time-btn" data-time="Morning  ·  8-12pm">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <span>Morning</span>
-                <small>8 – 12pm</small>
+                <small>8, 12pm</small>
               </button>
-              <button type="button" class="cal-time-btn" data-time="Afternoon  ·  12–5pm">
+              <button type="button" class="cal-time-btn" data-time="Afternoon  ·  12-5pm">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <span>Afternoon</span>
-                <small>12 – 5pm</small>
+                <small>12, 5pm</small>
               </button>
-              <button type="button" class="cal-time-btn" data-time="Evening  ·  5–7pm">
+              <button type="button" class="cal-time-btn" data-time="Evening  ·  5-7pm">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <span>Evening</span>
-                <small>5 – 7pm</small>
+                <small>5, 7pm</small>
               </button>
             </div>
           </div>
@@ -257,7 +257,7 @@ import Layout from '../layouts/Layout.astro';
     .appraisal-split > div:last-child {
       padding: 3rem 2rem 4rem !important;
     }
-    /* Hide eyebrow, description + contact details on mobile — headline only */
+    /* Hide eyebrow, description + contact details on mobile, headline only */
     .appraisal-hero-eyebrow,
     .appraisal-hero-desc,
     .appraisal-hero-contacts { display: none !important; }
@@ -272,7 +272,7 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <style is:global>
-  /* ══ Calendar — global so JS-created elements inherit styles ══ */
+  /* ══ Calendar, global so JS-created elements inherit styles ══ */
   .cal-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
   .cal-label {
     display: block;
@@ -358,7 +358,7 @@ import Layout from '../layouts/Layout.astro';
     transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
   }
 
-  /* Available — subtle hover */
+  /* Available, subtle hover */
   .cal-day:hover:not(.cal-day--disabled):not(.cal-day--selected):not(.cal-day--sunday) {
     background: rgba(196,145,42,0.1);
     border-color: rgba(196,145,42,0.4);
@@ -366,7 +366,7 @@ import Layout from '../layouts/Layout.astro';
     transform: scale(1.08);
   }
 
-  /* ── SELECTED — bold gold fill, unmissable ── */
+  /* ── SELECTED, bold gold fill, unmissable ── */
   .cal-day--selected {
     background: #c4912a !important;
     color: #fff !important;
@@ -376,7 +376,7 @@ import Layout from '../layouts/Layout.astro';
     transform: scale(1.1);
   }
 
-  /* ── PAST / DISABLED — very obviously unavailable ── */
+  /* ── PAST / DISABLED, very obviously unavailable ── */
   .cal-day--disabled {
     color: #d4cfc9 !important;
     background: transparent !important;
@@ -386,13 +386,13 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 400;
   }
 
-  /* ── SATURDAY — shaded column, bookable ── */
+  /* ── SATURDAY, shaded column, bookable ── */
   .cal-day--saturday {
     background: rgba(28,25,23,0.04);
     color: #1c1917;
   }
 
-  /* ── SUNDAY — deeper shade, not bookable ── */
+  /* ── SUNDAY, deeper shade, not bookable ── */
   .cal-day--sunday {
     background: rgba(28,25,23,0.04) !important;
     color: #c9b8b8 !important;

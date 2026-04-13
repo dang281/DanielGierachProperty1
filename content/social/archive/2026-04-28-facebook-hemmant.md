@@ -39,7 +39,7 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Typical house price ~$1,260,000
 - Brisbane River frontage and access
-- Gateway Motorway — airport and south-east corridor
+- Gateway Motorway, airport and south-east corridor
 - More space per dollar vs inner-east suburbs
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
@@ -52,4 +52,4 @@ Book a free appraisal at danielgierach.com
 
 ⚠️ VERIFY: Typical house price ~$1,261,693 from htag.com.au Hemmant QLD 4174 profile (2026). Cross-check CoreLogic before posting.
 - Gateway Motorway access and Port of Brisbane proximity are confirmed infrastructure.
-- Hemmant is on the eastern fringe of Daniel's market. Consider whether he has sold or appraised there recently — if not, a more general framing is appropriate.
+- Hemmant is on the eastern fringe of Daniel's market. Consider whether he has sold or appraised there recently, if not, a more general framing is appropriate.

@@ -43,13 +43,13 @@ Book a free appraisal at danielgierach.com
 - Character homes, established tree canopy
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** N/A
-**Image direction:** Residential street in Holland Park West — character home, established gardens, lower-traffic feel. If no specific photo available, text only on dark background.
+**Image direction:** Residential street in Holland Park West, character home, established gardens, lower-traffic feel. If no specific photo available, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
 
 ## Notes for Daniel
 
-⚠️ VERIFY: No specific median price data was returned for Holland Park West in research. Before posting, add a median price from your CoreLogic access. Based on Holland Park (~$1,612,000), Holland Park West is likely in a similar range — but verify before publishing any figure.
+⚠️ VERIFY: No specific median price data was returned for Holland Park West in research. Before posting, add a median price from your CoreLogic access. Based on Holland Park (~$1,612,000), Holland Park West is likely in a similar range, but verify before publishing any figure.
 - Holland Park SHS catchment reference: confirm that Holland Park West streets fall within the HPHS catchment before posting.
-- Cavendish Road bus connections are a reasonable reference — worth a quick check.
+- Cavendish Road bus connections are a reasonable reference, worth a quick check.

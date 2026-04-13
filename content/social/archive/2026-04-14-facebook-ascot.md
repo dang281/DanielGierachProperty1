@@ -40,11 +40,11 @@ Book a free appraisal at danielgierach.com
 **Body text:**
 - Median house price ~$2,550,000
 - ~13% annual capital growth
-- Ascot State School catchment — highly sought-after
+- Ascot State School catchment, highly sought-after
 - Prestige heritage streetscapes, limited supply
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 **Source line:** Source: Property market data, 2026
-**Image direction:** Heritage Queensland home or leafy street in Ascot — character federation or Queenslander style. No generic stock. If no specific photo available, text only on dark background.
+**Image direction:** Heritage Queensland home or leafy street in Ascot, character federation or Queenslander style. No generic stock. If no specific photo available, text only on dark background.
 **Canva brand kit:** kAGjS7yZLr8
 
 ---
@@ -52,6 +52,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Median house price $2,550,000 and 13.33% annual growth sourced from aggregated property data platforms (2026). Cross-check against your CoreLogic access or recent comparable sales before posting.
-- Ascot State School catchment is a well-documented buyer draw — confirmed.
-- Hamilton proximity and heritage character are established suburb features — no verification needed.
-- This is a prestige market outside Daniel's typical inner-east patch but adjacent enough to be credible. Consider whether you have sold or appraised in Ascot recently — a personal reference would strengthen this post.
+- Ascot State School catchment is a well-documented buyer draw, confirmed.
+- Hamilton proximity and heritage character are established suburb features, no verification needed.
+- This is a prestige market outside Daniel's typical inner-east patch but adjacent enough to be credible. Consider whether you have sold or appraised in Ascot recently, a personal reference would strengthen this post.

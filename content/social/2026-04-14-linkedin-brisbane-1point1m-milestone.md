@@ -1,4 +1,4 @@
-# Brisbane Crosses $1.1M — What the Milestone Means for Inner East Sellers
+# Brisbane Crosses $1.1M, What the Milestone Means for Inner East Sellers
 
 **Platform:** LinkedIn
 **Format:** Post
@@ -8,7 +8,7 @@
 **Publish date:** 2026-04-14
 **Scheduled time:** 07:30
 **Visual status:** Draft
-**Canva URL:** [To be created from template DAHGjv8sW3w — see Visual Brief below]
+**Canva URL:** [To be created from template DAHGjv8sW3w, see Visual Brief below]
 
 ---
 
@@ -49,17 +49,17 @@ danielgierach.com
 - QLD: 25%+ of population growth, <20% of new supply
 **Source line:** Source: Cotality April 2026 HVI
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
-**Image direction:** Text only — no photo needed
+**Image direction:** Text only, no photo needed
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-- All stats verified from primary/credible sources at write time — approve without reading every word
+- All stats verified from primary/credible sources at write time, approve without reading every word
 
 **1. Stats used and sources:**
 - Brisbane median house price $1.1M, +19% annual, Q1 2026 +5.1%: Cotality April 2026 Home Value Index, reported in Newsreel (newsreel.com.au) and InDaily QLD, April 13 2026
 - Queensland population/supply gap (>25% of population growth, <20% of new dwellings): InDaily QLD, April 13 2026
-- $25,000 borrowing capacity reduction: InDaily QLD, April 13 2026 — note this applies to a single person on the average full-time wage, not all buyer types
+- $25,000 borrowing capacity reduction: InDaily QLD, April 13 2026, note this applies to a single person on the average full-time wage, not all buyer types
 
 **2. Suggested first comment (post this as your reply):**
 Inner east properties are sitting well above the citywide median. If you want to know where your specific property sits in this data, I am happy to give you a straight number.

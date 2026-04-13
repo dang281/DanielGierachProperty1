@@ -57,4 +57,4 @@ This post is observation-based. No external statistics to verify. Every claim re
 **Background:** Deep charcoal (#0a0806)
 **Text colours:** Gold headline, cream subheadline
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
-**Style:** Bold, minimal, text-only — no photos
+**Style:** Bold, minimal, text-only, no photos

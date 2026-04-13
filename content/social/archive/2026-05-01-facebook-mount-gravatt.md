@@ -51,6 +51,6 @@ Book a free appraisal at danielgierach.com
 ## Notes for Daniel
 
 ⚠️ VERIFY: Median $1,305,000 and 20.83% annual growth from yourinvestmentpropertymag.com.au Mount Gravatt QLD 4122 profile. Cross-check CoreLogic before posting.
-- 20%+ annual growth is a strong claim — worth verifying this is current 12-month data, not a longer-period figure.
+- 20%+ annual growth is a strong claim, worth verifying this is current 12-month data, not a longer-period figure.
 - Westfield Mount Gravatt and South-East Busway are confirmed infrastructure.
-- Griffith University Nathan campus borders Mount Gravatt — confirmed.
+- Griffith University Nathan campus borders Mount Gravatt, confirmed.
