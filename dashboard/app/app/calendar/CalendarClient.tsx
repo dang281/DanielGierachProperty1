@@ -418,35 +418,32 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
 
 function SeoWeekChip({ item }: { item: ContentItem }) {
   const isDraft = item.notes?.includes('Staged')
-  // Staged = light teal. Published (live) = dark green.
-  const bg     = isDraft ? 'rgba(16,185,129,0.08)'  : 'rgba(20,83,45,0.18)'
-  const border = isDraft ? '1px solid rgba(16,185,129,0.25)' : '1px solid rgba(20,83,45,0.5)'
-  const iconBg = isDraft ? '#10b981' : '#14532d'
-  const text   = isDraft ? '#6ee7b7' : '#86efac'
+  // Staged = teal (scheduled, not yet indexed)
+  // Live   = green (published, visible on site)
+  const bg       = isDraft ? '#ccfbf1' : '#dcfce7'
+  const border   = isDraft ? '1.5px solid #5eead4' : '1.5px solid #4ade80'
+  const iconBg   = isDraft ? '#0d9488' : '#16a34a'
+  const text     = isDraft ? '#0f766e' : '#15803d'
+  const badgeBg  = isDraft ? '#99f6e4' : '#bbf7d0'
+  const badgeTxt = isDraft ? '#0f766e' : '#14532d'
+  const badgeLabel = isDraft ? 'staged' : 'live'
   return (
     <a
       href={item.destination_url ?? '#'}
       target="_blank"
       rel="noreferrer"
-      className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-sans leading-tight hover:opacity-80 transition-opacity"
+      className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-sans leading-tight hover:opacity-90 transition-opacity"
       style={{ background: bg, border }}
     >
       <span className="w-4 h-4 rounded text-[8px] font-bold flex items-center justify-center flex-shrink-0"
         style={{ background: iconBg, color: '#fff' }}>
         ↗
       </span>
-      <span className="flex-1 min-w-0 truncate" style={{ color: text }}>{item.title}</span>
-      {isDraft ? (
-        <span className="text-[8px] font-semibold flex-shrink-0 px-1 py-0.5 rounded"
-          style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981' }}>
-          staged
-        </span>
-      ) : (
-        <span className="text-[8px] font-semibold flex-shrink-0 px-1 py-0.5 rounded"
-          style={{ background: 'rgba(20,83,45,0.3)', color: '#86efac' }}>
-          live
-        </span>
-      )}
+      <span className="flex-1 min-w-0 truncate font-medium" style={{ color: text }}>{item.title}</span>
+      <span className="text-[8px] font-bold flex-shrink-0 px-1.5 py-0.5 rounded-full"
+        style={{ background: badgeBg, color: badgeTxt }}>
+        {badgeLabel}
+      </span>
     </a>
   )
 }
@@ -568,17 +565,17 @@ function MonthCard({ item }: { item: ContentItem }) {
   const pc = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
 
   if (item.platform === 'seo') {
-    const seoIsDraft = item.notes?.includes('Staged')
-    const seoColor   = seoIsDraft ? '#6ee7b7' : '#86efac'
-    const seoBg      = seoIsDraft ? 'rgba(16,185,129,0.1)' : 'rgba(20,83,45,0.18)'
-    const seoBorder  = seoIsDraft ? '#10b981' : '#14532d'
+    const seoIsDraft  = item.notes?.includes('Staged')
+    const seoText     = seoIsDraft ? '#0f766e' : '#15803d'
+    const seoBg       = seoIsDraft ? '#ccfbf1'  : '#dcfce7'
+    const seoBorderCl = seoIsDraft ? '#0d9488'  : '#16a34a'
     return (
       <a href={item.destination_url ?? '#'} target="_blank" rel="noreferrer"
-        className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans leading-tight truncate hover:opacity-80 transition-opacity border-l-2"
-        style={{ color: seoColor, background: seoBg, borderColor: seoBorder }}
+        className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans font-medium leading-tight truncate hover:opacity-90 transition-opacity border-l-2"
+        style={{ color: seoText, background: seoBg, borderColor: seoBorderCl }}
         title={item.title}>
         <span className="w-3 h-3 rounded text-[7px] font-bold flex items-center justify-center flex-shrink-0"
-          style={{ background: seoBorder, color: '#fff' }}>↗</span>
+          style={{ background: seoBorderCl, color: '#fff' }}>↗</span>
         <span className="truncate">{item.title}</span>
       </a>
     )
