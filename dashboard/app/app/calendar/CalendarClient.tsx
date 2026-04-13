@@ -456,6 +456,7 @@ function DraggableWeekCard({ item, onHoverEnter, onHoverLeave }: {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id: item.id })
   return (
     <div ref={setNodeRef} {...attributes} {...listeners}
+      suppressHydrationWarning
       style={{ opacity: isDragging ? 0 : 1, touchAction: 'none', cursor: 'grab' }}>
       <WeekCard item={item} onHoverEnter={onHoverEnter} onHoverLeave={onHoverLeave} />
     </div>
