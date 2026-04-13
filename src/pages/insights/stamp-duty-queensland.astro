@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is stamp duty in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transfer duty (stamp duty) in Queensland is calculated on a sliding scale based on purchase price. On a $1 million property, the standard duty is approximately $38,025. On a $1.5 million property it is approximately $62,525. Owner-occupiers may be eligible for a home concession that reduces this amount."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do first home buyers pay stamp duty in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First home buyers in Queensland may be eligible for a full stamp duty exemption on properties valued up to $800,000 and a partial concession up to $1,000,000, provided they meet residency requirements. The Queensland Government's first home concession applies to owner-occupiers, not investors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do you pay stamp duty in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transfer duty is payable within 30 days of the contract becoming unconditional. In most cases this is managed by your conveyancer and paid at or before settlement. Budget for it as an upfront cost alongside your deposit and legal fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there stamp duty on investment properties in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Investment properties are subject to the standard transfer duty rates without the owner-occupier home concession. On a $1 million investment property, the duty is approximately $38,025. Foreign buyers are also subject to additional foreign acquirer duty of 8% of the purchase price."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Stamp Duty in Queensland: What You'll Actually Pay | Daniel Gierach Property" description="Transfer duty is one of the biggest upfront costs in property. Here's how it's calculated, what concessions are available, and how to budget for it.">
+<Layout title="Stamp Duty in Queensland: What You'll Actually Pay | Daniel Gierach Property" description="Transfer duty is one of the biggest upfront costs in property. Here's how it's calculated, what concessions are available, and how to budget for it." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

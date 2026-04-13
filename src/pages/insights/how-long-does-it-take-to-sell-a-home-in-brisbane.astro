@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a house in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From the decision to sell through to settlement, most Brisbane inner-east properties take 10 to 16 weeks. This includes 2 to 4 weeks of preparation, a 4-week marketing campaign, and a 30 to 45-day settlement period. Well-priced properties in good condition often receive offers within the first two open homes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the average days on market for Brisbane inner-east suburbs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Brisbane's inner east, well-prepared and correctly priced properties typically go under contract within 21 to 35 days of listing. Properties that are overpriced at launch or need significant presentation work often sit longer and are more likely to require price reductions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is settlement after selling a house in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard settlement period in Queensland is 30 days, though 45 and 60-day settlements are common and negotiable. Longer settlements can suit sellers who need more time to find their next property. Your conveyancer manages the settlement process from contract to handover."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What slows down a property sale in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common factors are overpricing at launch (which reduces early buyer urgency), poor presentation, limited marketing reach, and extended due diligence periods for buyers with complex finance situations. Correcting a price after two to three weeks of low interest is possible but costly to momentum."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How Long Does It Take to Sell a Home in Brisbane? | Daniel Gierach Property" description="The realistic timeline for selling a home in Brisbane — from preparation through to settlement. What inner-suburb sellers should expect at each stage and what slows things down.">
+<Layout title="How Long Does It Take to Sell a Home in Brisbane? | Daniel Gierach Property" description="The realistic timeline for selling a home in Brisbane — from preparation through to settlement. What inner-suburb sellers should expect at each stage and what slows things down." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is the best time to sell a house in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spring (September to November) and autumn (March to May) typically produce the strongest results in Brisbane's inner east. Buyer numbers are higher, competition is more active, and properties presented well tend to achieve stronger prices. That said, timing relative to your personal circumstances and what else is on the market in your suburb matters just as much as season."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is winter a bad time to sell in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Brisbane's mild winters mean outdoor presentation is not as affected as in southern cities. Winter often has less competition from other listings, which can work in your favour if your property is well-presented and correctly priced. Serious buyers are active year-round."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the time of year affect property prices in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seasonal variation exists but is less dramatic in Brisbane than in Melbourne or Sydney. More significant factors include your suburb's current supply of comparable listings, local infrastructure and school catchment appeal, and how well your property is prepared and positioned for its price point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell in Brisbane's inner east suburbs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Well-priced properties in Brisbane's inner east typically sell within 3 to 5 weeks of going live. Total time from the decision to list through to settlement is usually 10 to 14 weeks, depending on preparation time, campaign length, and the settlement period negotiated with the buyer."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Best Time to Sell Your Home in Brisbane | Daniel Gierach Property" description="Wondering when to sell your Brisbane property? Here's an honest look at seasonal trends, auction clearance rates, and what actually drives strong results in Brisbane's inner-east suburbs.">
+<Layout title="Best Time to Sell Your Home in Brisbane | Daniel Gierach Property" description="Wondering when to sell your Brisbane property? Here's an honest look at seasonal trends, auction clearance rates, and what actually drives strong results in Brisbane's inner-east suburbs." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

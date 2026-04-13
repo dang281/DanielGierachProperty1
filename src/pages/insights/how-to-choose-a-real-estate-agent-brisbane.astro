@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I choose the right real estate agent in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Focus on their recent sales record in your specific suburb and price bracket — not their office's overall numbers. Ask how many comparable properties they have sold in the past six months, what the results were relative to vendor expectations, and how they handle communication throughout a campaign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What questions should I ask a real estate agent before signing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask for their personal sales record in your suburb, their recommended method of sale and why, how they will keep you informed during the campaign, and what their fee structure covers. A good agent gives specific, honest answers rather than deflecting to brand reputation or generalities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a transactional and advisory real estate agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A transactional agent lists your property, runs opens, and manages offers. An advisory agent does all of that but also gives you a specific view on preparation, pricing strategy, and buyer psychology before you go to market. The advisory approach consistently produces better results for sellers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does local knowledge matter when choosing a Brisbane real estate agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Brisbane's inner east, buyer pools are specific and markets are relationship-driven. An agent who actively works your suburb knows which buyers are looking, what comparable sales actually mean in your street, and how to position your property for the buyers most likely to compete. That intelligence is measurable and affects your result."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How to Choose a Real Estate Agent in Brisbane | Daniel Gierach Property" description="Choosing the right real estate agent can make a significant difference to your sale result. Here's what to ask, what to watch out for, and how to tell the difference between an agent who advises and one who just sells.">
+<Layout title="How to Choose a Real Estate Agent in Brisbane | Daniel Gierach Property" description="Choosing the right real estate agent can make a significant difference to your sale result. Here's what to ask, what to watch out for, and how to tell the difference between an agent who advises and one who just sells." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

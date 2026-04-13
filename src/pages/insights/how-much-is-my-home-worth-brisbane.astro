@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I find out what my Brisbane home is worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most accurate method is a comparative market appraisal from an agent who actively works your suburb. They assess recent sales of genuinely comparable properties, your home's condition and presentation, and current buyer demand at your price point. Online estimates from automated tools are often 10 to 20% off because they cannot account for these variables."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are online property valuations accurate in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Automated valuations (such as those from Domain or CoreLogic) use recent sales data but cannot assess your property's specific condition, renovation quality, aspect, street appeal, or the nuances of your street versus the suburb average. They are useful as a starting point but should not be relied on for pricing decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What factors affect property value in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Key drivers in Brisbane's inner east include school catchment (particularly state primary zones), land size and usability, proximity to the river or parkland, the quality of renovation if carried out, street presentation, flood overlay status, and the level of buyer competition for that property type in that suburb at that moment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a free property appraisal in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most real estate agents offer free appraisals. For an appraisal that is genuinely useful rather than just a number designed to win your business, choose an agent who has demonstrable recent sales in your suburb. Ask them to walk through the comparable sales they are using and to give you a realistic range with the reasoning behind it."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How Much Is My Home Worth in Brisbane? | Daniel Gierach Property" description="Online property estimates are often unreliable. Here's what actually determines the value of a Brisbane home, and how to get an accurate read on what yours could achieve.">
+<Layout title="How Much Is My Home Worth in Brisbane? | Daniel Gierach Property" description="Online property estimates are often unreliable. Here's what actually determines the value of a Brisbane home, and how to get an accurate read on what yours could achieve." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

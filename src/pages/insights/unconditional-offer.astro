@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an unconditional offer in property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An unconditional offer means the buyer agrees to purchase the property without any conditions attached -- no finance clause, no building and pest inspection clause, no subject-to-sale clause. Once accepted, the contract is binding immediately. It is the strongest type of offer a buyer can make."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an unconditional offer better for the seller in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. An unconditional offer eliminates the risk of the contract falling over due to finance or inspection outcomes. Sellers often accept a lower unconditional offer over a higher conditional one because it provides certainty. In competitive markets, unconditional offers give buyers a significant advantage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the risks of making an unconditional offer as a buyer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you make an unconditional offer and later cannot complete the purchase, you forfeit your deposit and may face additional legal action from the seller. Buyers should only make unconditional offers when finance is pre-approved and confirmed, and ideally after completing a pre-purchase building and pest inspection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you negotiate after making an unconditional offer in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once an unconditional contract is signed by both parties in Queensland, it is legally binding. There is no cooling-off period for auction purchases, and the standard cooling-off period for private treaty sales does not apply once waived. Negotiation happens before signing, not after."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What Is an Unconditional Offer? | Daniel Gierach Property" description="An unconditional offer is one of the most powerful tools in property and one of the most misunderstood. Here's what it means and when to use it.">
+<Layout title="What Is an Unconditional Offer? | Daniel Gierach Property" description="An unconditional offer is one of the most powerful tools in property and one of the most misunderstood. Here's what it means and when to use it." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

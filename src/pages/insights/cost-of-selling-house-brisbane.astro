@@ -1,7 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to sell a house in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total selling costs in Brisbane typically range from 2.5% to 4% of the sale price. This covers agent commission (usually 2% to 2.75%), marketing ($3,000 to $8,000 depending on the campaign), conveyancing ($1,200 to $2,000), and any preparation costs such as styling or minor repairs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the average real estate agent commission in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Real estate commission in Queensland is negotiable and typically falls between 2% and 2.75% of the sale price plus GST. There is no regulated rate. The cheapest rate is not always the best value -- an agent who negotiates well on your behalf often returns more than the difference in commission."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I pay capital gains tax when I sell my home in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the property is your principal place of residence, you are generally exempt from capital gains tax. If it is an investment property or you rented it out at any point, CGT applies on the proportion of time it was not your primary home. A tax accountant can calculate your specific position before you sell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the main costs of selling a house in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The main costs are agent commission, marketing and advertising, conveyancing fees, any pre-sale preparation (repairs, styling, cleaning), and mortgage discharge fees if applicable. There is no stamp duty for sellers in Queensland -- that cost sits with the buyer."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What Does It Cost to Sell a House in Brisbane? | Daniel Gierach Property" description="A clear breakdown of every selling cost you should budget for in Queensland — agent commission, marketing, conveyancing, styling, and what capital gains means for your situation.">
+<Layout title="What Does It Cost to Sell a House in Brisbane? | Daniel Gierach Property" description="A clear breakdown of every selling cost you should budget for in Queensland — agent commission, marketing, conveyancing, styling, and what capital gains means for your situation." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
