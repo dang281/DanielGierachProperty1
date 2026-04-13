@@ -10,6 +10,7 @@ const pages = [
   { path: '/property-worth',  changefreq: 'monthly', priority: '0.88' },
   { path: '/property-report', changefreq: 'monthly', priority: '0.9' },
   { path: '/about',               changefreq: 'monthly', priority: '0.8' },
+  { path: '/reviews',             changefreq: 'monthly', priority: '0.8' },
   { path: '/brisbane-inner-east', changefreq: 'monthly', priority: '0.9' },
   { path: '/suburbs/seven-hills',    changefreq: 'weekly',  priority: '0.92' },
   { path: '/suburbs/carina',         changefreq: 'weekly',  priority: '0.92' },

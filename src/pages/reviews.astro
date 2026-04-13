@@ -1,0 +1,345 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Real testimonials from clients.
+// DANIEL: Replace the placeholder blocks below with real client quotes.
+// Organise by suburb so visitors see results from their own area.
+const testimonials = [
+  {
+    suburb: 'Bulimba',
+    name: 'Seller',
+    role: 'Vendor, Bulimba',
+    quote: "Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. The result went well above and beyond expectations.",
+    rating: 5,
+    source: 'Google',
+    real: true,
+  },
+  {
+    suburb: 'Bulimba',
+    name: 'Buyer',
+    role: 'Purchaser, Bulimba',
+    quote: "We had a great experience working with Daniel through our buying process. He was super honest, never pushy, and made the whole process way less stressful. Daniel is a genuinely solid, trustworthy person. Highly recommend.",
+    rating: 5,
+    source: 'Google',
+    real: true,
+  },
+  // PLACEHOLDER: Replace with a real Camp Hill vendor testimonial
+  // { suburb: 'Camp Hill', name: 'Client Name', role: 'Vendor, Camp Hill', quote: "...", rating: 5, source: 'RateMyAgent', real: true },
+  // PLACEHOLDER: Replace with a real Hawthorne vendor testimonial
+  // { suburb: 'Hawthorne', name: 'Client Name', role: 'Vendor, Hawthorne', quote: "...", rating: 5, source: 'RateMyAgent', real: true },
+  // PLACEHOLDER: Replace with a real Norman Park vendor testimonial
+  // { suburb: 'Norman Park', name: 'Client Name', role: 'Vendor, Norman Park', quote: "...", rating: 5, source: 'RateMyAgent', real: true },
+  // PLACEHOLDER: Replace with a real Morningside vendor testimonial
+  // { suburb: 'Morningside', name: 'Client Name', role: 'Vendor, Morningside', quote: "...", rating: 5, source: 'RateMyAgent', real: true },
+  // PLACEHOLDER: Replace with a real Carina vendor testimonial
+  // { suburb: 'Carina', name: 'Client Name', role: 'Vendor, Carina', quote: "...", rating: 5, source: 'RateMyAgent', real: true },
+  // PLACEHOLDER: Replace with a real Cannon Hill vendor testimonial
+  // { suburb: 'Cannon Hill', name: 'Client Name', role: 'Vendor, Cannon Hill', quote: "...", rating: 5, source: 'RateMyAgent', real: true },
+];
+
+const liveTestimonials = testimonials.filter(t => t.real);
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://danielgierach.com/#business",
+  "name": "Daniel Gierach Property",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": String(liveTestimonials.length),
+    "bestRating": "5"
+  },
+  "review": liveTestimonials.map(t => ({
+    "@type": "Review",
+    "reviewRating": { "@type": "Rating", "ratingValue": String(t.rating), "bestRating": "5" },
+    "author": { "@type": "Person", "name": t.name },
+    "reviewBody": t.quote
+  }))
+};
+---
+
+<Layout
+  title="Client Reviews | Daniel Gierach Property | Ray White Bulimba"
+  description="Read what sellers and buyers across Brisbane's inner east say about working with Daniel Gierach. Real reviews from real clients in Bulimba, Camp Hill, Hawthorne and surrounds."
+  schema={reviewSchema}
+>
+
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="relative min-h-[55vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format"
+      srcset="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format 1440w"
+      sizes="100vw"
+      alt="Brisbane inner-east property"
+      class="w-full h-full object-cover"
+      style="filter:grayscale(8%) brightness(0.52);"
+      fetchpriority="high"
+      width="1920" height="1080"
+    />
+    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.58) 0%,rgba(10,8,6,0.18) 100%);"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-28 pb-20">
+    <div class="max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
+      <span class="eyebrow mb-5 reveal" style="color:#f5d07a;">Client Reviews</span>
+      <h1 class="reveal" data-delay="80"
+        style="font-family:var(--font-serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:0.75rem;">
+        What clients say<br/>
+        <em style="font-style:italic;color:#f5d07a;">about Daniel.</em>
+      </h1>
+      <p class="reveal" data-delay="160"
+        style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(240,236,228,0.65);line-height:1.8;max-width:44ch;">
+        Reviews from sellers and buyers across Brisbane's inner east.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     INTRO
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <div class="reveal">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Track Record</p>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#1c1917;line-height:1.3;letter-spacing:-0.01em;margin-bottom:1.25rem;">
+          Results people<br/>
+          <em style="font-style:italic;color:#c4912a;">talk about.</em>
+        </h2>
+        <p style="font-size:0.9rem;color:#44403c;line-height:1.85;">
+          In residential real estate, trust is built before you sign anything. Vendors choose an agent based on what past clients say about them, not what the agent says about themselves.
+        </p>
+      </div>
+
+      <div class="reveal" data-delay="80">
+        <p style="font-size:0.9rem;color:#44403c;line-height:1.85;margin-bottom:1rem;">
+          The feedback I receive consistently comes back to three things: honest advice from the start, genuine communication during the campaign, and results that reflected the preparation that went in beforehand.
+        </p>
+        <p style="font-size:0.9rem;color:#44403c;line-height:1.85;">
+          Reviews are also published on <a href="https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach" target="_blank" rel="noopener noreferrer" style="color:#c4912a;text-decoration:none;border-bottom:1px solid rgba(196,145,42,0.3);" onmouseover="this.style.borderBottomColor='#c4912a'" onmouseout="this.style.borderBottomColor='rgba(196,145,42,0.3)'">RateMyAgent</a> and Google if you want a third-party source.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TESTIMONIALS GRID
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <p class="reveal" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:3rem;">Client Reviews</p>
+
+    {liveTestimonials.length === 0 ? (
+      <p style="font-size:0.9rem;color:#78716c;">Reviews are being added. Check back soon, or visit RateMyAgent for the latest.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {liveTestimonials.map((t, i) => (
+          <div class="reveal" data-delay={i * 60} style="background:var(--color-base);border:1px solid rgba(28,25,23,0.1);padding:2.5rem 2.25rem;display:flex;flex-direction:column;gap:1.25rem;">
+
+            <!-- Stars -->
+            <div style="display:flex;gap:3px;">
+              {Array.from({length: t.rating}).map(() => (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#c4912a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+
+            <!-- Quote -->
+            <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:#1c1917;line-height:1.75;flex:1;">
+              "{t.quote}"
+            </p>
+
+            <!-- Attribution -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.08);">
+              <div>
+                <p style="font-family:var(--font-sans);font-size:0.8rem;font-weight:700;color:#1c1917;letter-spacing:0.03em;">{t.name}</p>
+                <p style="font-size:0.72rem;color:#78716c;margin-top:0.15rem;">{t.role}</p>
+              </div>
+              <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(196,145,42,0.6);padding:0.3rem 0.6rem;border:1px solid rgba(196,145,42,0.2);">{t.source}</span>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Placeholder note for Daniel -->
+    <div style="margin-top:3rem;padding:2rem;background:rgba(196,145,42,0.04);border:1px dashed rgba(196,145,42,0.3);">
+      <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">For Daniel: Add Your Client Testimonials</p>
+      <p style="font-size:0.84rem;color:#78716c;line-height:1.8;">
+        Open <code style="font-size:0.82rem;background:rgba(28,25,23,0.06);padding:0.1rem 0.35rem;border-radius:2px;">src/pages/reviews.astro</code> and fill in the commented-out placeholder blocks in the <code>testimonials</code> array at the top of the file. Organise by suburb (Camp Hill, Hawthorne, Norman Park, Morningside, Carina, Cannon Hill) so visitors can see results from their own area. Each entry needs: <code>suburb</code>, <code>name</code>, <code>role</code>, <code>quote</code>, <code>rating</code> (1-5), <code>source</code> (Google / RateMyAgent), and <code>real: true</code>. Remove this note once testimonials are filled in.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     EXTERNAL REVIEW SOURCES
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+      <div class="lg:col-span-4 reveal">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Verify Independently</p>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#1c1917;line-height:1.3;letter-spacing:-0.01em;margin-bottom:1rem;">
+          Check the<br/>
+          <em style="font-style:italic;color:#c4912a;">third-party record.</em>
+        </h2>
+        <p style="font-size:0.85rem;color:#78716c;line-height:1.8;">
+          Reviews on this page are real. You can also read them on the platforms where they were originally posted.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 reveal" data-delay="80">
+        {[
+          {
+            name: 'RateMyAgent',
+            description: "Australia's dedicated real estate review platform. All reviews are verified as genuine client transactions.",
+            url: 'https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach',
+            label: 'View on RateMyAgent',
+          },
+          {
+            name: 'Google Reviews',
+            description: 'Search "Daniel Gierach Ray White Bulimba" on Google to read and leave reviews.',
+            url: 'https://www.google.com/search?q=Daniel+Gierach+Ray+White+Bulimba+reviews',
+            label: 'View on Google',
+          },
+          {
+            name: 'Ray White Profile',
+            description: 'Daniel\'s official Ray White agent profile includes sales history and client feedback.',
+            url: 'https://www.raywhite.com/agents/agent/daniel-gierach-88889915',
+            label: 'View on Ray White',
+          },
+        ].map((source, i) => (
+          <div style={`padding:1.5rem 0;border-top:1px solid rgba(28,25,23,0.1);display:flex;gap:2rem;align-items:flex-start;${i === 2 ? 'border-bottom:1px solid rgba(28,25,23,0.1);' : ''}`}>
+            <div style="flex:1;">
+              <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:#1c1917;margin-bottom:0.35rem;">{source.name}</p>
+              <p style="font-size:0.84rem;color:#78716c;line-height:1.75;">{source.description}</p>
+            </div>
+            <a
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="flex-shrink:0;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;text-decoration:none;padding-top:0.25rem;white-space:nowrap;transition:opacity 0.2s;"
+              onmouseover="this.style.opacity='0.7'"
+              onmouseout="this.style.opacity='1'"
+            >
+              {source.label} &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     HOW DANIEL WORKS SUMMARY
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+      <div class="lg:col-span-4 reveal">
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">How Daniel Works</p>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#1c1917;line-height:1.3;letter-spacing:-0.01em;margin-bottom:1rem;">
+          A process designed<br/>
+          <em style="font-style:italic;color:#c4912a;">for your result.</em>
+        </h2>
+        <p style="font-size:0.85rem;color:#78716c;line-height:1.8;margin-bottom:1.5rem;">
+          The feedback above reflects a consistent approach, not luck. Here is what that process looks like.
+        </p>
+        <a href="/walkthrough" class="btn-gold" style="display:inline-flex;align-items:center;gap:0.5rem;">
+          See the full walkthrough
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="lg:col-span-8 reveal" data-delay="80">
+        {[
+          { step: '01', label: 'Appraisal and positioning', text: "A written appraisal with recent comparable sales, not a verbal estimate designed to win your listing. The right price position from day one creates competition, not discounting." },
+          { step: '02', label: 'Preparation before launch', text: "Most results are shaped before a property goes live. Presentation, timing, and buyer targeting are established before the campaign begins, not adjusted after feedback." },
+          { step: '03', label: 'Managing the campaign', text: "Qualified buyers are engaged before and during the open home period. You receive regular updates with actual buyer feedback, not summaries designed to manage your expectations downward." },
+          { step: '04', label: 'Negotiating the result', text: "The preparation is only as good as the negotiation that follows. Creating genuine competition and managing multiple interested parties is where the final result is won or lost." },
+        ].map((item, i) => (
+          <div style={`padding:1.5rem 0;border-top:1px solid rgba(28,25,23,0.1);display:flex;gap:2rem;align-items:baseline;${i === 3 ? 'border-bottom:1px solid rgba(28,25,23,0.1);' : ''}`}>
+            <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;color:#c4912a;flex-shrink:0;padding-top:0.1rem;">{item.step}</span>
+            <div>
+              <p style="font-family:var(--font-serif);font-size:0.98rem;font-style:italic;color:#1c1917;margin-bottom:0.4rem;">{item.label}</p>
+              <p style="font-size:0.85rem;color:#78716c;line-height:1.8;">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════ -->
+<section style="background:#1c1917;padding:5rem 0;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <div class="reveal">
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.6rem);font-weight:400;color:#f0ece4;line-height:1.2;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+          Ready to find out what your property is worth?
+        </h2>
+        <p style="font-size:0.9rem;color:rgba(240,236,228,0.6);line-height:1.85;max-width:42ch;">
+          Daniel provides written appraisals with comparable sales data. A conversation that starts with the numbers, not the pitch.
+        </p>
+      </div>
+
+      <div class="reveal" data-delay="80" style="display:flex;flex-direction:column;gap:2rem;">
+        <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Phone</p>
+            <a href="tel:+61412523821"
+              style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+              onmouseover="this.style.color='#f5d07a'"
+              onmouseout="this.style.color='#f0ece4'">0412 523 821</a>
+            <p style="font-size:0.62rem;color:rgba(240,236,228,0.35);margin-top:0.25rem;letter-spacing:0.06em;">Available 7 days</p>
+          </div>
+          <div style="width:1px;height:44px;background:rgba(240,236,228,0.12);"></div>
+          <div>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Email</p>
+            <a href="mailto:daniel.gierach@raywhite.com"
+              style="font-family:var(--font-sans);font-size:0.83rem;font-weight:500;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
+              onmouseover="this.style.color='#f5d07a'"
+              onmouseout="this.style.color='#f0ece4'">daniel.gierach@raywhite.com</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="/contact" class="btn-outline-gold">Send a Message</a>
+          <a href="/walkthrough" class="btn-gold">
+            Request an Appraisal
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>
