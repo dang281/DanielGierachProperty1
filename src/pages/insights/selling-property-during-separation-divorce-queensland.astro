@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 const draft = true; // STAGED — remove this line on publish date
 ---
-<Layout title="Selling a Property During Separation or Divorce in Queensland | Daniel Gierach Property" description="A practical guide to selling property during or after a separation or divorce in Queensland — the legal process, how to sell when one party disagrees, and what to expect from the agent." draft={draft}>
+<Layout title="Selling a Property During Separation or Divorce in Queensland | Daniel Gierach Property" description="A practical guide to selling property during or after a separation or divorce in Queensland — the legal process, how to sell when one party disagrees, CGT implications, and what to expect from each stage." draft={draft}>
 
 <script type="application/ld+json">
 {
@@ -14,15 +14,15 @@ const draft = true; // STAGED — remove this line on publish date
       "name": "Can one partner force the sale of a jointly owned property during separation in Queensland?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. If one party refuses to sell a jointly owned property during a property settlement dispute, the other party can apply to the Family Court (for married couples) or Federal Circuit Court for an order requiring the sale. For non-married couples, an application can also be made under state property law. A family law solicitor should advise on the appropriate process for your situation."
+        "text": "Yes. If one party refuses to sell a jointly owned property during a property settlement dispute, the other party can apply to the Family Court (for married couples) or Federal Circuit and Family Court for an order requiring the sale. For de facto couples, similar rights apply under the Family Law Act. A family law solicitor should advise on the appropriate process and timeframes for your situation."
       }
     },
     {
       "@type": "Question",
-      "name": "Do both parties need to sign the agency agreement when selling a jointly owned property?",
+      "name": "Do both parties need to sign the agency agreement when selling a jointly owned property during separation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Both joint owners must sign the agency agreement and the contract of sale. If one party refuses to engage, the selling process cannot proceed without a court order or binding financial agreement that grants the other party the authority to act."
+        "text": "Yes. Both joint owners must sign the agency agreement and the contract of sale. If one party refuses to engage, the selling process cannot proceed without a court order or binding financial agreement that grants the other party the authority to act on behalf of both."
       }
     },
     {
@@ -30,15 +30,23 @@ const draft = true; // STAGED — remove this line on publish date
       "name": "How is property split during a divorce in Australia?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Property settlements in Australia are not necessarily 50/50. The Family Court considers contributions made by each party (financial and non-financial), future needs, and the overall justice of the settlement. The starting point is an assessment of the total property pool, which is why a current market appraisal is one of the first practical steps in the process."
+        "text": "Property settlements in Australia are not necessarily 50/50. The Family Court considers contributions made by each party (financial and non-financial), future needs, and what is just and equitable in all the circumstances. The starting point is an assessment of the total property pool, which is why a current market appraisal is one of the first practical steps in the process."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I use the same real estate agent as my ex-partner during a separation sale?",
+      "name": "Do I pay capital gains tax when selling a jointly owned home during separation in Australia?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Both parties must agree on the agent. It is usually in both parties' interest to appoint a single professional agent — not a friend or family connection to either party — and to ensure the agency agreement clearly documents what both parties have agreed to. An agent experienced in separation sales understands the dynamics and can manage the process without taking sides."
+        "text": "If the property was your main residence and you are selling it to a third party as part of the separation, the main residence CGT exemption may still apply, reducing or eliminating your capital gains tax liability. For investment properties, CGT will generally apply on the gain. The Australian Taxation Office provides specific rollover relief provisions for assets transferred between spouses as part of a relationship breakdown, which defer rather than eliminate CGT. Consult a tax accountant for advice specific to your situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a property during separation in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If both parties agree to sell and can cooperate on the process, a property can be listed within weeks and settled within three to four months of the decision to sell. If there is a dispute, the timeline can stretch significantly: property settlement negotiations typically take six to eighteen months, and contested court proceedings can take two years or more before resolution. The sale itself, once both parties agree, typically takes four to eight weeks to go under contract and another thirty to ninety days to reach settlement."
       }
     }
   ]
@@ -54,12 +62,12 @@ const draft = true; // STAGED — remove this line on publish date
         onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
         ← All Articles
       </a>
-      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 6 min read</span>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 10 min read</span>
       <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
         Selling a Property During Separation or Divorce in Queensland
       </h1>
       <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
-        The property sale is often the largest single transaction in a separation. Here is how it works, what your rights are, and what to expect from the process.
+        The property sale is often the largest single transaction in a separation. Here is how it works, what your rights are, and what to expect at each stage of the process.
       </p>
     </div>
   </div>
@@ -68,43 +76,95 @@ const draft = true; // STAGED — remove this line on publish date
   <div style="padding:3rem 0 7rem;">
     <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
 
-      <p>Separation is one of the most common triggers for a property sale in Australia, and it is one of the most emotionally and legally complex situations an agent and vendor encounter. The property sale often happens in the middle of the most difficult period in two people's lives — while legal proceedings are active, while emotions are raw, and while both parties are trying to establish independent financial footing. This article explains the practical process of selling a jointly owned property during separation in Queensland, and what to expect from each stage.</p>
+      <p>Separation is one of the most common triggers for a property sale in Australia, and it brings together one of the most significant financial transactions you will make with one of the most difficult personal situations you can navigate. This article explains the practical process of selling a jointly owned property during separation in Queensland. It covers the legal framework, what happens when parties disagree, the role of the agent, capital gains tax considerations, and realistic timelines for each scenario.</p>
 
-      <p>This is not legal or financial advice. If you are in the process of a separation or divorce and jointly own property, engage a family law solicitor before making any decisions about the property sale.</p>
+      <p style="padding:1rem 1.25rem;background:rgba(240,236,228,0.04);border-left:2px solid rgba(240,236,228,0.15);font-size:0.9rem;">This article is general information only. It is not legal, tax, or financial advice. If you are in the process of a separation or divorce and jointly own property, engage a family law solicitor before making any decisions about the property sale.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Legal authority to sell</h2>
-      <p>For most jointly owned residential properties, both parties must agree to the sale and both must sign the agency agreement and the contract of sale. If both parties agree on selling — even if they disagree on almost everything else — the sale process can proceed relatively normally, with the proceeds held in trust by the conveyancing solicitor and distributed in accordance with either an agreed split or a court order.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When does a property need to be sold in a separation?</h2>
+      <p>There is no automatic requirement to sell a jointly owned property when a relationship breaks down. The decision to sell is separate from the decision to separate, and depends on the circumstances and what both parties agree on or a court ultimately orders.</p>
 
-      <p>If one party refuses to sell, the other party cannot force a sale without a court order. For married couples, either party can apply to the Family Court of Australia for orders relating to the property, including an order requiring the sale. The Family Court has broad powers to make orders that are just and equitable based on the contributions and needs of each party. The process takes time and legal costs accumulate — most disputes that reach the court are resolved through negotiation before a hearing, but it can take months or years.</p>
+      <p>In many separations, both parties recognise that selling the property is the most practical way to divide the asset and establish financial independence. Neither party can afford to buy out the other, or neither wants the ongoing responsibility of ownership. In these cases, the process can proceed cooperatively and relatively efficiently once both parties agree on an agent, a price range, and a distribution of proceeds.</p>
 
-      <p>For de facto couples (unmarried partners who lived together in a genuine domestic relationship for at least two years, or who have a child together), similar rights exist under the Family Law Act. The time limit for property settlement applications for de facto couples is two years from the date of separation. Missing this deadline can be costly — seek legal advice early.</p>
+      <p>In other cases, one party wants to sell and the other does not, or both parties want to sell but cannot agree on the terms. These situations require either negotiated resolution (which can happen through solicitors, mediation, or direct agreement) or, ultimately, a court order requiring the sale to proceed.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How the property is valued in a settlement</h2>
-      <p>Before a property settlement can be finalised — whether by agreement or court order — both parties need a reliable current market value for the property. This is typically established through a formal valuation from a licensed valuer, or through an agreed real estate appraisal. The value becomes the foundation for calculating each party's share of the property pool and is a critical input into any settlement negotiations.</p>
+      <p>A third scenario is that one party wants to retain the property and buy out the other. If this is feasible given the parties' financial positions, it can avoid the need for a sale entirely. The buyout price is based on an agreed or independently assessed current market value, and the transaction is documented through the property settlement agreement.</p>
 
-      <p>In practice, parties sometimes obtain separate appraisals that produce different values — and use those differences as negotiating leverage. An independent formal valuation, agreed to by both parties, is generally more reliable and reduces the risk of disputes about the starting point. Your family law solicitor will advise on the most appropriate approach for your situation.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The QLD legal framework: binding financial agreements, consent orders, and the Family Law Act</h2>
+      <p>Property disputes arising from separation in Australia are primarily governed by the Family Law Act 1975 (Cth), regardless of whether the couple was married or in a de facto relationship. Queensland does not have separate state legislation for the division of relationship property between former partners; the federal Family Law Act applies.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Agreeing on the agent</h2>
-      <p>Both parties need to agree on which agent to appoint. This is sometimes the first test of whether a cooperative sale process is possible. The most practical approach is for both parties (or their solicitors) to agree on a shortlist of reputable agents in the area, interview them together or separately, and make a joint decision. An agent who is a personal friend or family connection to one party should be avoided, as it creates a perception of bias that can complicate an already difficult process.</p>
+      <p>For married couples, property settlement applications must generally be made within twelve months of the date the divorce order takes effect. For de facto couples, the time limit is two years from the date of separation. These deadlines are strict. If you miss them, you will need to apply to the court for permission to proceed out of time, which adds cost and uncertainty. Engage a solicitor early to understand the relevant timeframe for your situation.</p>
 
-      <p>A good agent for a separation sale is one who communicates with both parties professionally and without taking sides, provides written updates that can be shared with both parties and their solicitors, manages the open home and buyer feedback process neutrally, and does not use knowledge of the vendor's circumstances to reduce their expectations.</p>
+      <p>The two main formal mechanisms for documenting an agreed property settlement are:</p>
 
-      <p>The agency agreement should be signed by both parties. If one party is unable or unwilling to sign, your solicitor should be involved before proceeding.</p>
+      <p><strong style="color:var(--color-text-primary);">Binding financial agreements</strong> are private contracts between the parties, drawn up and signed by each party's solicitor. They do not require court approval, which means they can be completed more quickly and cost-effectively than court orders when both parties are in agreement. However, they can be set aside by a court in certain circumstances, so their enforceability is not absolute. Both parties must have independent legal advice before signing.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">During the campaign</h2>
-      <p>Once the campaign is underway, practical questions arise: who is living in the property, how access for opens is managed, and how decisions about offers are made. These need to be agreed before the campaign starts rather than negotiated in the moment.</p>
+      <p><strong style="color:var(--color-text-primary);">Consent orders</strong> are filed with and approved by the Federal Circuit and Family Court of Australia. Once approved, they have the same force as a court order made after a contested hearing. The court will approve consent orders if they appear just and equitable. Because they carry the weight of a court order, they are generally considered more robust than a binding financial agreement. They take longer to prepare and file than a binding financial agreement, but can still be completed without a contested hearing.</p>
 
-      <p>If one party is still living in the property, they need to agree to present it appropriately for open homes and allow buyer access. If neither party is living in the property, it is vacant and typically easier to manage from a presentation standpoint.</p>
+      <p>The property settlement does not require a divorce to be finalised first. In practice, most couples complete their property settlement well before a divorce is granted. Divorce in Australia is a separate, administrative process that can only be applied for after twelve months of separation.</p>
 
-      <p>Decisions about price reductions, offers, and sale method require agreement from both parties. This can be a source of delay if communication between the parties has broken down. Having a clear communication protocol — for example, all correspondence to go through solicitors, or both parties agreeing to respond to offers within 48 hours — can reduce friction.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What happens when one party does not want to sell</h2>
+      <p>If one party refuses to sell a jointly owned property, the other party cannot force the sale themselves. They need to either negotiate an agreement or obtain a court order.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Settlement proceeds and distribution</h2>
-      <p>The proceeds of the sale are typically held by the conveyancing solicitor in trust pending final distribution. Distribution is governed by either a binding financial agreement (a private agreement between the parties, formalised by solicitors) or a court consent order. In most cases, the net proceeds are split according to the agreed or ordered division, with any outstanding mortgage discharged at settlement and the residual divided.</p>
+      <p>For married couples, an application to the Family Court seeking orders for the sale of the property can be made. The court has broad powers to make orders that are just and equitable, which includes ordering the sale of a jointly owned asset if it is appropriate in the circumstances. The process typically involves filing an initiating application, financial disclosure by both parties, and attempts at mediation before the matter is listed for a hearing. Most property disputes resolve through negotiation at or before the mediation stage, but the threat of a contested hearing is often what brings the parties to agreement.</p>
 
-      <p>If there is an outstanding dispute about the distribution when settlement approaches, the proceeds can be held in a solicitor's trust account pending resolution. Settlement does not need to be held up by an unresolved financial dispute — the dispute can continue after settlement with the funds secured.</p>
+      <p>For de facto couples, the same Family Law Act provisions apply where the couple was in a genuine domestic relationship for at least two years, or has a child together.</p>
 
-      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
-        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Navigating a property sale through separation?</strong> Daniel understands the pressures involved and can manage the campaign professionally for both parties. He communicates transparently, presents feedback clearly, and keeps the process moving without adding to the stress. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch for a confidential conversation.</a></p>
+      <p>In some cases, particularly where the property is owned as tenants in common rather than as joint tenants, an application can also be made under Queensland's Property Law Act 1974 for an order for partition or sale. This is a separate avenue, and a solicitor can advise on whether it is appropriate for your situation.</p>
+
+      <p>Court-ordered sales do proceed to completion. Once an order is made, both parties must comply. If one party refuses to execute the agency agreement or the contract of sale, the court can authorise another person, such as a court registrar, to sign on their behalf.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The practical process: listing, signing, and distributing proceeds</h2>
+      <p>For most jointly owned properties, both parties must sign the agency agreement before the agent can list and market the property. Both parties must also sign the contract of sale when an acceptable offer is received. If one party is unavailable or refuses, the sale process stalls without a court order or authority under an existing consent order.</p>
+
+      <p>Before the campaign launches, both parties should agree on a number of practical matters that will affect the campaign:</p>
+
+      <p><strong style="color:var(--color-text-primary);">The agent.</strong> Both parties must agree on who to appoint. The process for reaching that decision, and whether both parties will engage with the agent directly or through their respective solicitors, should be established upfront.</p>
+
+      <p><strong style="color:var(--color-text-primary);">The price range and method.</strong> Both parties will need to agree on the asking price range (or reserve, if selling by auction) and on any price reductions during the campaign. Having a pre-agreed protocol for offer decision-making avoids delays when a buyer is under time pressure.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Property access and presentation.</strong> If one party is still occupying the property, they need to agree to reasonable access for photography, open homes, and private inspections. The presenting condition of the property directly affects the price achieved, so both parties have a financial interest in cooperation here.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Communication flow.</strong> In some separations, direct communication between the parties is difficult. In those cases, routing campaign updates and offer discussions through solicitors or through a pre-agreed written format can reduce friction without slowing the process significantly.</p>
+
+      <p>The proceeds of the sale are held by the conveyancing solicitor in trust pending final distribution. Distribution is governed by the binding financial agreement, consent order, or any other written agreement between the parties. The conveyancer will require documentation of the agreed split before distributing funds. If there is no agreement in place by the time settlement is reached, the proceeds can be held in trust while the financial settlement continues.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Capital gains tax considerations for separation sales</h2>
+      <p>Capital gains tax treatment for separation sales in Australia depends on whether the property is the former family home, an investment property, or a mix of both.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Main residence exemption.</strong> If the property was your main residence (or both parties' main residence), the CGT main residence exemption under the Income Tax Assessment Act 1997 will generally apply to a sale to a third party. This means the capital gain on the sale is reduced or eliminated. Both parties may be entitled to claim the main residence exemption on their proportionate share of the gain, provided the property meets the relevant conditions. The specific application depends on how long the property was used as a main residence and whether either party has another main residence.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Investment properties.</strong> If the property is an investment property that was rented out for some or all of the ownership period, the main residence exemption will not apply to the investment use portion of the ownership. In that case, CGT will apply to the capital gain on each party's share. The 50% CGT discount is available for assets held for more than twelve months. The CGT liability is calculated separately for each party based on their respective shares and individual tax circumstances.</p>
+
+      <p><strong style="color:var(--color-text-primary);">CGT rollover on interspousal transfers.</strong> Where one party transfers their share of a property to the other as part of a property settlement, there is a specific CGT rollover provision under Division 126 of the Income Tax Assessment Act. This rollover defers (but does not eliminate) any CGT liability on the transfer itself. The recipient takes on the transferor's cost base for CGT purposes. This means the CGT is not triggered at the time of the interspousal transfer, but will crystallise when the receiving party eventually sells the property to a third party. This is an important planning consideration if one party is buying out the other.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Stamp duty.</strong> In Queensland, transfers of property between spouses or de facto partners as part of a relationship breakdown are generally exempt from transfer duty (stamp duty) under the Duties Act 2001 (Qld), provided the transfer is documented under a court order or written agreement. Confirm this with your solicitor, as conditions apply.</p>
+
+      <p>These CGT and duty rules are complex and depend heavily on the specific facts of your situation. Consult a registered tax agent or accountant before making decisions that have tax implications.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Timeline: how long does this process take?</h2>
+      <p>The timeline for selling a property during separation varies significantly depending on whether the parties are in agreement or in dispute.</p>
+
+      <p><strong style="color:var(--color-text-primary);">When both parties agree.</strong> If both parties agree to sell, the process can move at a normal pace. Depending on preparation time, a property can be listed within two to four weeks of the decision to proceed. A well-run campaign in Brisbane's inner east typically attracts offers within three to five weeks. Settlement typically occurs thirty to sixty days after contracts are exchanged. From the decision to sell to settlement, the total elapsed time is often three to five months, comparable to a normal sale.</p>
+
+      <p><strong style="color:var(--color-text-primary);">When there is disagreement about selling but cooperation during the sale.</strong> If one party was initially reluctant but a sale is eventually agreed on, or if the parties disagree about terms but can cooperate once the agency agreement is signed, add time for the negotiation period before the campaign. This might extend the overall timeline by two to six months compared to a fully cooperative sale.</p>
+
+      <p><strong style="color:var(--color-text-primary);">When there is active dispute.</strong> If the sale is being contested and court proceedings are required, the timeline is substantially longer. Family Court proceedings are resource-intensive and can take twelve months to two or more years before a final hearing. Most disputes resolve through negotiation or at mediation before a hearing, but the process is still measured in months, not weeks. The sale itself, once both parties are legally required to proceed, moves on a normal commercial timeline.</p>
+
+      <p>One practical point on timeline: the pressure created by financial separation, mortgage obligations, and the cost of running two households often creates an implicit urgency to sell. That urgency is real, but it should not drive a rushed campaign or an underpriced result. A property sold below its market value because both parties wanted to close the chapter quickly is still a loss that both parties share. Taking the additional time to present the property properly and run a proper campaign is almost always worth it.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Choosing the right agent for a separation sale</h2>
+      <p>The agent you appoint for a separation sale plays a different role than in a standard sale. They are not just managing a marketing campaign; they are managing a process where two parties with a complicated relationship both need to trust and cooperate with the same person.</p>
+
+      <p>The agent must communicate with both parties professionally and without taking sides. If the agent is seen to be closer to one party, the other will disengage, and the sale process will slow. Written updates that can be shared with both parties (and, where necessary, their respective solicitors) are a practical way to maintain transparency. Verbal updates reported selectively are a source of misunderstanding.</p>
+
+      <p>The agent should not use knowledge of the vendor's circumstances to influence buyer expectations. A separation is not a reason for a buyer to expect a discount. An experienced agent maintains a professional presentation of the property and the campaign regardless of the personal situation behind the sale.</p>
+
+      <p>The agent should be comfortable managing a situation where decisions require agreement between two parties who may not be on speaking terms. This means being direct, clear, and efficient in communications, providing a recommendation rather than simply presenting options, and being prepared to handle the practical implications of disagreements without escalating them.</p>
+
+      <p>An agent who has experience with separation sales understands the dynamics and can run a campaign that produces a strong result without adding to the complexity of the process.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;margin-top:0.5rem;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Need an independent appraisal for the property division process?</strong> Daniel can provide a written market appraisal for both parties, clearly documenting methodology and current comparable sales. An independent appraisal from a local agent with knowledge of the area gives both parties and their solicitors a reliable starting point. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch for a confidential conversation.</a></p>
       </div>
 
     </div>
