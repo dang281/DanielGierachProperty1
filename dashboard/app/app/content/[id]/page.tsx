@@ -3,7 +3,7 @@
 import { useState, useTransition, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { getContentItem, updateItem, updateStatus, deleteItem } from '@/lib/actions/content'
+import { getContentItem, updateItem, updateStatus, deleteItem, saveReviewRequest, clearReviewRequest } from '@/lib/actions/content'
 import type { ContentItem, Platform, Pillar, Status } from '@/types/content'
 import StatusBadge from '@/components/dashboard/StatusBadge'
 import PlatformBadge from '@/components/dashboard/PlatformBadge'
@@ -31,6 +31,8 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   const [editing, setEditing] = useState(false)
   const [form, setForm] = useState<Partial<ContentItem>>({})
   const [isPending, startTransition] = useTransition()
+  const [reviewText, setReviewText] = useState('')
+  const [reviewSent, setReviewSent] = useState(false)
 
   useEffect(() => {
     params.then(({ id }) => {
@@ -93,6 +95,24 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
     })
   }
 
+  function submitReview() {
+    if (!reviewText.trim()) return
+    startTransition(async () => {
+      await saveReviewRequest(item!.id, reviewText.trim())
+      setItem({ ...item!, visual_feedback: reviewText.trim() } as ContentItem)
+      setReviewText('')
+      setReviewSent(true)
+      setTimeout(() => setReviewSent(false), 3000)
+    })
+  }
+
+  function clearReview() {
+    startTransition(async () => {
+      await clearReviewRequest(item!.id)
+      setItem({ ...item!, visual_feedback: null } as ContentItem)
+    })
+  }
+
   return (
     <div className="max-w-3xl mx-auto flex flex-col gap-6">
       {/* Back */}
@@ -123,6 +143,15 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         </div>
 
         <div className="flex gap-2 shrink-0">
+          {item.canva_url && !editing && (
+            <button
+              onClick={() => window.open(item.canva_url!, '_blank', 'noreferrer')}
+              className="text-xs font-sans px-3 py-1.5 rounded-lg font-semibold transition-colors"
+              style={{ background: 'rgba(139,92,246,0.15)', color: '#a78bfa', border: '1px solid rgba(139,92,246,0.3)' }}
+            >
+              Open in Canva ↗
+            </button>
+          )}
           {editing ? (
             <>
               <button
@@ -360,6 +389,64 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
             <Value>{item.notes}</Value>
           )}
         </Field>
+      </div>
+
+      {/* Request Changes */}
+      <div className="bg-[var(--color-card)] border border-[var(--color-border-w)] rounded-xl p-5 flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">
+            Request Changes
+          </label>
+          <span className="text-[10px] font-sans text-[var(--color-cream-x)]">Visible to agent on next run</span>
+        </div>
+
+        {/* Pending review — show existing request */}
+        {item.visual_feedback && (
+          <div className="flex flex-col gap-2 rounded-lg border px-4 py-3"
+            style={{ background: 'rgba(251,191,36,0.06)', borderColor: 'rgba(251,191,36,0.25)' }}>
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-sm font-sans text-[var(--color-cream)] leading-relaxed whitespace-pre-wrap flex-1">
+                {item.visual_feedback}
+              </p>
+              <button
+                onClick={clearReview}
+                disabled={isPending}
+                className="text-[10px] font-sans text-[var(--color-cream-x)] hover:text-red-400 transition-colors flex-shrink-0 mt-0.5"
+              >
+                Clear
+              </button>
+            </div>
+            <p className="text-[10px] font-sans" style={{ color: 'rgba(251,191,36,0.7)' }}>
+              Pending — agent will pick this up on the next run
+            </p>
+          </div>
+        )}
+
+        {/* New request textarea */}
+        {!item.visual_feedback && (
+          <div className="flex flex-col gap-2">
+            <textarea
+              rows={3}
+              value={reviewText}
+              onChange={e => setReviewText(e.target.value)}
+              placeholder="Describe the changes you want the agent to make..."
+              className={inputClass + ' resize-y'}
+            />
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-[10px] font-sans text-[var(--color-cream-x)]">
+                The agent will update the post and clear this request when done.
+              </p>
+              <button
+                onClick={submitReview}
+                disabled={isPending || !reviewText.trim()}
+                className="text-xs font-sans px-4 py-1.5 rounded-lg font-semibold transition-all disabled:opacity-40 flex-shrink-0"
+                style={{ background: 'rgba(251,191,36,0.15)', color: 'var(--color-gold)', border: '1px solid rgba(251,191,36,0.3)' }}
+              >
+                {reviewSent ? 'Sent!' : isPending ? 'Sending...' : 'Send to Agent'}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Metadata + Delete */}

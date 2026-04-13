@@ -117,6 +117,26 @@ export async function rescheduleItem(id: string, newDate: string) {
   revalidatePath('/app/calendar')
 }
 
+export async function saveReviewRequest(id: string, notes: string) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ visual_feedback: notes })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath(`/app/content/${id}`)
+}
+
+export async function clearReviewRequest(id: string) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ visual_feedback: null })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath(`/app/content/${id}`)
+}
+
 export async function deleteItem(id: string) {
   const supabase = await createClient()
   const { error } = await supabase
