@@ -14,7 +14,7 @@ export interface SeoArticle {
   createdAt:   string
 }
 
-export function getSeoSchedule(): ContentItem[] {
+export async function getSeoSchedule(): Promise<ContentItem[]> {
   try {
     const raw  = readFileSync(join(process.cwd(), 'seo-schedule.json'), 'utf-8')
     const data = JSON.parse(raw) as { articles: SeoArticle[] }
