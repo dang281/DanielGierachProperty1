@@ -1,0 +1,28 @@
+---
+import { getRelatedArticles } from '../data/related-articles';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const articles = getRelatedArticles(slug);
+---
+
+<section style="background:var(--color-surface-1);border-top:1px solid rgba(28,25,23,0.08);padding:3.5rem 0;">
+  <div class="max-w-[780px] mx-auto px-8">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1.25rem;">Keep Reading</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;">
+      {articles.map(article => (
+        <a href={`/insights/${article.slug}`}
+           style="display:flex;flex-direction:column;gap:0.5rem;padding:1.25rem;background:var(--color-surface-0);border:1px solid rgba(28,25,23,0.08);text-decoration:none;transition:border-color 0.2s;"
+           onmouseover="this.style.borderColor='rgba(196,145,42,0.35)'"
+           onmouseout="this.style.borderColor='rgba(28,25,23,0.08)'">
+          <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);">{article.label}</span>
+          <span style="font-family:var(--font-serif);font-size:0.95rem;font-weight:400;color:var(--color-text-primary);line-height:1.4;">{article.title}</span>
+          <span style="font-family:var(--font-sans);font-size:0.78rem;color:var(--color-gold);margin-top:auto;">Read →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

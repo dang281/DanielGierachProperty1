@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import RelatedArticles from '../components/RelatedArticles.astro';
 
 interface Props {
   title?: string;
@@ -238,6 +239,17 @@ const globalSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    <!-- BreadcrumbList JSON-LD — generated automatically from URL path -->
+    {showBreadcrumbs && <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs.map((crumb, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": crumb.label,
+        "item": `https://danielgierach.com${crumb.href}`
+      }))
+    })} />}
     <!-- GA4: stub defined synchronously so inline onclick="gtag(...)" handlers never fire before gtag exists -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -301,6 +313,11 @@ const globalSchema = {
           </p>
         </div>
       </section>
+    )}
+
+    {/* Related articles — all insights article pages */}
+    {_isInsightsArticle && _bParts[1] && (
+      <RelatedArticles slug={_bParts[1]} />
     )}
 
     {/* #8 — Suburb → Insight selling guide link */}
