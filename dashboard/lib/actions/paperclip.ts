@@ -58,6 +58,47 @@ export async function dismissProposal(issueId: string, reason?: string): Promise
   })
 }
 
+// Agent IDs — used for inbox notifications
+const SOCIAL_AGENT_ID = '41425987-fc69-4182-ab3b-e793be89cc8d'
+
+export async function notifyAgentOfStatusChange(
+  postTitle: string,
+  newStatus: string,
+  notes?: string | null,
+): Promise<boolean> {
+  const statusLabel: Record<string, string> = {
+    scheduled: 'approved for scheduling',
+    posted:    'marked as posted',
+    rejected:  'rejected',
+    ready:     'sent back for review',
+    idea:      'moved back to idea',
+  }
+  const label = statusLabel[newStatus] ?? newStatus
+
+  const body = [
+    `Daniel has ${label}: "${postTitle}"`,
+    notes ? `\nDaniel's note: ${notes}` : '',
+    `\nAction required: acknowledge and update your records. If rejected or sent back, read the review request in the dashboard and amend accordingly.`,
+  ].join('')
+
+  try {
+    const res = await fetch(`${API}/api/issues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title:      `Post ${label}: "${postTitle}"`,
+        body,
+        assigneeId: SOCIAL_AGENT_ID,
+        status:     'todo',
+        priority:   newStatus === 'rejected' ? 'high' : 'medium',
+      }),
+    })
+    return res.ok
+  } catch {
+    return false
+  }
+}
+
 export async function getAgentTokenData(agentIds: string[]): Promise<Record<string, AgentTokenData>> {
   const results = await Promise.all(
     agentIds.map(async id => {

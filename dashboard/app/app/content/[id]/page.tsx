@@ -4,6 +4,7 @@ import { useState, useTransition, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { getContentItem, updateItem, updateStatus, deleteItem, saveReviewRequest, clearReviewRequest } from '@/lib/actions/content'
+import { notifyAgentOfStatusChange } from '@/lib/actions/paperclip'
 import type { ContentItem, Platform, Pillar, Status } from '@/types/content'
 import StatusBadge from '@/components/dashboard/StatusBadge'
 import PlatformBadge from '@/components/dashboard/PlatformBadge'
@@ -33,6 +34,7 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   const [isPending, startTransition] = useTransition()
   const [reviewText, setReviewText] = useState('')
   const [reviewSent, setReviewSent] = useState(false)
+  const [agentNotified, setAgentNotified] = useState<string | null>(null)
 
   useEffect(() => {
     params.then(({ id }) => {
@@ -92,6 +94,24 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
     startTransition(async () => {
       await updateStatus(item!.id, status)
       setItem({ ...item!, status })
+      // Notify the agent for meaningful status changes
+      if (['scheduled', 'posted', 'rejected', 'ready'].includes(status)) {
+        const notified = await notifyAgentOfStatusChange(
+          item!.title,
+          status,
+          item!.visual_feedback ?? undefined,
+        )
+        if (notified) {
+          const labels: Record<string, string> = {
+            scheduled: 'approved',
+            posted:    'marked as posted',
+            rejected:  'rejected',
+            ready:     'sent back for review',
+          }
+          setAgentNotified(labels[status] ?? status)
+          setTimeout(() => setAgentNotified(null), 5000)
+        }
+      }
     })
   }
 
@@ -122,6 +142,15 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
       >
         Back to dashboard
       </Link>
+
+      {/* Agent notification banner */}
+      {agentNotified && (
+        <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-sans"
+          style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)', color: '#22c55e' }}>
+          <span className="text-base">✓</span>
+          <span>Post <strong>{agentNotified}</strong> — agent notified and will acknowledge on next run.</span>
+        </div>
+      )}
 
       {/* Header */}
       <div className="flex items-start justify-between gap-4">

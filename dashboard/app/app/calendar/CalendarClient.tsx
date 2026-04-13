@@ -398,12 +398,12 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
               <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
             </div>
             {item.canva_url && (
-              <a href={item.canva_url} target="_blank" rel="noreferrer"
-                onClick={e => e.stopPropagation()}
+              <button
+                onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(item.canva_url!, '_blank', 'noreferrer') }}
                 className="text-[9px] font-sans font-bold rounded px-1.5 py-0.5 flex-shrink-0"
                 style={{ color: '#a78bfa', background: 'rgba(139,92,246,0.15)' }}>
                 Canva ↗
-              </a>
+              </button>
             )}
           </div>
         </div>
