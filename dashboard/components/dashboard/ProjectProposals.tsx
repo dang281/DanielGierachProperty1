@@ -30,7 +30,7 @@ function parseEstimatedTokens(description: string | null): number | null {
   return parseInt(match[1].replace(/[,_]/g, ''), 10)
 }
 
-type CardMode = 'idle' | 'amending' | 'dismissing'
+type CardMode = 'idle' | 'amending' | 'dismissing' | 'amended'
 
 function ProposalCard({ issue, agentMap }: { issue: Issue; agentMap: Record<string, Agent> }) {
   const [isPending, startTransition] = useTransition()
@@ -132,7 +132,23 @@ function ProposalCard({ issue, agentMap }: { issue: Issue; agentMap: Record<stri
 
       {/* Action area */}
       <div className="border-t border-[var(--color-border-w)]">
-        {mode === 'idle' ? (
+        {mode === 'amended' ? (
+          /* Confirmation banner */
+          <div
+            className="flex items-start gap-3 px-4 py-3"
+            style={{ background: 'rgba(129,140,248,0.07)' }}
+          >
+            <span className="text-base flex-shrink-0 mt-0.5">✓</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-sans font-semibold" style={{ color: '#a5b4fc' }}>
+                Notes sent to CEO
+              </p>
+              <p className="text-[11px] font-sans text-[var(--color-cream-dim)] mt-0.5 leading-relaxed">
+                Your feedback has been posted to this proposal. The CEO agent will read it on its next run, revise the proposal, and resubmit for your approval.
+              </p>
+            </div>
+          </div>
+        ) : mode === 'idle' ? (
           /* Three-way action bar */
           <div className="grid grid-cols-3">
             <button
@@ -184,7 +200,11 @@ function ProposalCard({ issue, agentMap }: { issue: Issue; agentMap: Record<stri
                 disabled={isPending}
                 onClick={() => {
                   if (mode === 'amending') {
-                    startTransition(async () => { await amendProposal(issue.id, inputText); reset() })
+                    startTransition(async () => {
+                      await amendProposal(issue.id, inputText)
+                      setInputText('')
+                      setMode('amended')
+                    })
                   } else {
                     startTransition(() => dismissProposal(issue.id, inputText))
                   }
