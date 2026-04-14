@@ -62,3 +62,12 @@
 | 2027-04-15 | how-much-is-my-home-worth-brisbane | Two houses on the same Hawthorne street can be $200,000 apart; automated estimates lag 2 to 4 months and cannot see aspect, flood risk, or renovation quality |
 | 2027-04-22 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4 per cent; fixed-rate break costs can add thousands before settlement |
 | 2027-04-29 | airbnb-vs-longterm | Short-term rental adds $15K to $25K in extra annual costs; net return often within a few thousand dollars of a well-run long-term tenancy |
+| 2026-12-31 | form-6-agency-agreement-queensland | Most sellers sign the Form 6 without reading it; 5-business-day cooling-off right under Property Occupations Act 2014 (Qld); rebate clause must be disclosed |
+| 2027-05-06 | solicitor-vs-conveyancer-qld | Most buyers call their solicitor after signing the contract; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2027-05-13 | what-is-an-unconditional-offer-queensland | Seller often accepts lower unconditional offer over higher conditional one; unconditional eliminates the 2 to 3 week risk window entirely |
+| 2027-05-20 | stamp-duty-queensland | On a $1M owner-occupier purchase, transfer duty adds approximately $38,025; most buyers underestimate the actual number by $10,000 or more |
+| 2027-05-27 | heritage-overlays-brisbane | Heritage overlay does not mean no renovation; Council approval required for external character changes; due diligence before purchase is essential |
+| 2027-06-03 | negative-gearing-selling-investment-property-brisbane | Settlement timing relative to 30 June affects which financial year capital gain falls into; getting it wrong by a few days shifts significant tax liability |
+| 2027-06-10 | land-tax-queensland-investment-property | Calculated on unimproved land value; rising inner east land values pushing more investors over QLD threshold without realising it until assessment arrives |
+| 2027-06-17 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over that lease, not vacant possession |
+| 2027-06-24 | should-i-renovate-before-selling-brisbane | Fixing defects protects existing value; full kitchen renovation ($40K-$60K) almost never earns back its full cost at sale; fix what is broken, leave cosmetics to buyer |

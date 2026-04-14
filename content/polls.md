@@ -61,6 +61,16 @@
 - CUSTOM — What Drives Where You Buy in Brisbane's Inner East? (used: 2027-04-21, file: 2027-04-23-linkedin-poll-suburb-drivers.md)
 - CUSTOM — How Much Does Street Appeal Matter When You're Buying? (used: 2027-04-14, file: 2027-04-14-linkedin-poll-street-appeal.md)
 - CUSTOM — What Is Your Biggest Hesitation About Selling Your Home? (used: 2027-04-28, file: 2027-04-28-linkedin-poll-hesitation-selling.md)
+- CUSTOM — 2026 Property Year in Review: What Mattered Most? (used: 2026-12-30, file: 2026-12-30-linkedin-poll-2026-year-in-review.md)
+- CUSTOM — What Is Stopping You From Downsizing Right Now? (used: 2027-05-05, file: 2027-05-05-linkedin-poll-downsizing-timing.md)
+- CUSTOM — When Selling Your Home, Which Matters More: Price or Speed? (used: 2027-05-12, file: 2027-05-12-linkedin-poll-price-vs-days-on-market.md)
+- CUSTOM — Has the Cost of Living Affected Your Property Plans? (used: 2027-05-19, file: 2027-05-19-linkedin-poll-cost-of-living-property.md)
+- CUSTOM — If Your Property Passed In at Auction, What Would You Do Next? (used: 2027-05-26, file: 2027-05-26-linkedin-poll-auction-reserve.md)
+- CUSTOM — What Is Your Biggest Barrier to Selling Your Home Right Now? (used: 2027-06-02, file: 2027-06-02-linkedin-poll-biggest-barrier-selling.md)
+- CUSTOM — How Much Does School Catchment Influence What You Would Pay? (used: 2027-06-09, file: 2027-06-09-linkedin-poll-school-catchment-value.md)
+- CUSTOM — Cashflow vs Capital Growth: Which Matters More When Investing? (used: 2027-06-16, file: 2027-06-16-linkedin-poll-investment-cashflow.md)
+- CUSTOM — Have You Ever Timed a Property Sale Around End of Financial Year? (used: 2027-06-23, file: 2027-06-23-linkedin-poll-financial-year-timing.md)
+- CUSTOM — If You Were Selling Your Home, When Would You List? (used: 2027-06-30, file: 2027-06-30-linkedin-poll-spring-or-now.md)
 
 ---
 
