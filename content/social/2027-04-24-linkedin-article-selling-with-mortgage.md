@@ -5,7 +5,7 @@
 **Goal:** Educate sellers on net proceeds calculation before they commit to buying; drive appraisal and planning conversations with Daniel
 **Content Pillar:** seller
 **Status:** Ready for Review
-**Publish date:** 2027-04-24
+**Publish date:** 2027-04-22
 **Scheduled time:** 07:30
 **Visual status:** Draft
 **Canva URL:** [fill on Friday]

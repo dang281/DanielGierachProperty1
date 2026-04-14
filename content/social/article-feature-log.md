@@ -60,4 +60,5 @@
 | 2027-04-01 | when-to-sell | Preparation almost always matters more than timing; gap between a well-prepared and rushed inner-east campaign regularly $50K to $150K |
 | 2027-04-08 | handling-lowball-offers-selling-brisbane | Rejecting a low offer outright removes negotiating position; 8 to 10 per cent below asking is the inner-east low-offer threshold |
 | 2027-04-15 | how-much-is-my-home-worth-brisbane | Two houses on the same Hawthorne street can be $200,000 apart; automated estimates lag 2 to 4 months and cannot see aspect, flood risk, or renovation quality |
-| 2027-04-24 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4 per cent; fixed-rate break costs can add thousands before settlement |
+| 2027-04-22 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4 per cent; fixed-rate break costs can add thousands before settlement |
+| 2027-04-29 | airbnb-vs-longterm | Short-term rental adds $15K to $25K in extra annual costs; net return often within a few thousand dollars of a well-run long-term tenancy |

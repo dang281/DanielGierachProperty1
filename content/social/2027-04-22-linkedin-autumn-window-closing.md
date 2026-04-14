@@ -5,7 +5,7 @@
 **Goal:** Create urgency for sellers still considering listing; demonstrate Daniel's market timing knowledge; drive appraisal enquiries
 **Content Pillar:** seller
 **Status:** Ready for Review
-**Publish date:** 2027-04-22
+**Publish date:** 2027-04-20
 **Scheduled time:** 07:30
 **Visual status:** Draft
 **Canva URL:** [fill on Friday]

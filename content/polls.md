@@ -58,7 +58,9 @@
 - CUSTOM — What Is Your Biggest Barrier to Buying in Brisbane Right Now? (used: 2027-03-24, file: 2027-03-24-linkedin-poll-barriers-to-buying.md)
 - CUSTOM — Does Transport Infrastructure Influence Where You Would Buy? (used: 2027-03-31, file: 2027-03-31-linkedin-poll-transport-infrastructure.md)
 - CUSTOM — Have You Ever Sold a Property and Regretted the Timing? (used: 2027-04-07, file: 2027-04-07-linkedin-poll-selling-timing-regret.md)
-- CUSTOM — What Drives Where You Buy in Brisbane's Inner East? (used: 2027-04-23, file: 2027-04-23-linkedin-poll-suburb-drivers.md)
+- CUSTOM — What Drives Where You Buy in Brisbane's Inner East? (used: 2027-04-21, file: 2027-04-23-linkedin-poll-suburb-drivers.md)
+- CUSTOM — How Much Does Street Appeal Matter When You're Buying? (used: 2027-04-14, file: 2027-04-14-linkedin-poll-street-appeal.md)
+- CUSTOM — What Is Your Biggest Hesitation About Selling Your Home? (used: 2027-04-28, file: 2027-04-28-linkedin-poll-hesitation-selling.md)
 
 ---
 
