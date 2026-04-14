@@ -40,13 +40,15 @@ Ray White Bulimba · Inner East Brisbane
 
 ## Notes for Daniel
 
-**Confidence: Check**
+**Confidence: Ready**
 
-1. KPMG 11% forecast and Westpac affordability comment are drawn from the polls.md bank. Verify these figures are still current before posting - forecasts shift.
+Stats verified 14 April 2026:
+- KPMG 10.9% Brisbane house price forecast for 2026: CONFIRMED — kpmg.com/au/en/media/media-releases/2026/01/house-prices-to-rise-in-2026-despite-interest-rate-uncertainty.html. Post rounds to "close to 11%" which is accurate.
+- Westpac affordability comment: CONFIRMED — Westpac February 2026 Housing Pulse describes Brisbane as "entering uncharted territory" with "very stretched affordability" and notes buyer pool shrinking as borrowing capacity tightens. Post's framing is accurate.
 
 **Suggested first comment (post this as your reply):**
 My read: the inner east is holding better than the broader Brisbane metric suggests. Stock is tight, buyer quality is high, and I am not seeing the kind of hesitation that usually precedes a correction. But I would be interested in what you are seeing from where you sit.
 
 **All sources:**
-KPMG Brisbane property forecast 2026 (verify current figure before posting)
-Westpac property research (verify current comment before posting)
+- https://kpmg.com/au/en/media/media-releases/2026/01/house-prices-to-rise-in-2026-despite-interest-rate-uncertainty.html (KPMG January 2026 Residential Property Market Outlook)
+- https://www.westpaciq.com.au/economics/2026/02/westpac-housing-pulse-february-2026 (Westpac Housing Pulse February 2026)
