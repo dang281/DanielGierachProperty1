@@ -8,8 +8,8 @@
 **Publish date:** 2027-03-30
 **Scheduled time:** 07:30
 **Visual status:** Draft
-**Canva URL:** [fill on Friday — after creating Canva design]
-**Canva Thumbnail:** [fill on Friday — URL from get-design-thumbnail]
+**Canva URL:** https://www.canva.com/d/flslwh55niijqWz
+**Canva Thumbnail:** https://export-download.canva.com/cbdfadb2-ebe2-4022-94a1-19f9ac3c697b/0/0001-3854455503633337766.png
 
 ---
 
