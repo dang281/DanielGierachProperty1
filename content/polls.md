@@ -44,6 +44,19 @@
 - CUSTOM — What Was the Biggest Property Story of 2026? (used: 2026-12-09, file: 2026-12-09-linkedin-poll-biggest-story-2026.md)
 - CUSTOM — What Is Your Property Goal for 2027? (used: 2026-12-16, file: 2026-12-16-linkedin-poll-property-goals-2027.md)
 - CUSTOM — Are You Expecting a Busy or Quiet January Property Market? (used: 2026-12-23, file: 2026-12-23-linkedin-poll-january-market.md)
+- CUSTOM — Brisbane 2027: More or Less Optimistic? (used: 2027-01-06, file: 2027-01-06-linkedin-poll-brisbane-2027-optimism.md)
+- CUSTOM — Would You Buy Without a Building and Pest Inspection? (used: 2027-01-13, file: 2027-01-13-linkedin-poll-building-pest-inspection.md)
+- CUSTOM — Has a School Catchment Ever Influenced Where You Bought? (used: 2027-01-20, file: 2027-01-20-linkedin-poll-school-catchment.md)
+- CUSTOM — Off-Market: Would You Accept Without Testing the Market? (used: 2027-01-27, file: 2027-01-27-linkedin-poll-off-market.md)
+- CUSTOM — Have You Ever Been Surprised by Your Borrowing Capacity? (used: 2027-02-03, file: 2027-02-03-linkedin-poll-borrowing-capacity.md)
+- CUSTOM — What Is Your Biggest Property Goal for the Next Two Years? (used: 2027-02-10, file: 2027-02-10-linkedin-poll-property-goals-2027.md)
+- CUSTOM — Do You Think Brisbane Is Overvalued Right Now? (used: 2027-02-17, file: 2027-02-17-linkedin-poll-brisbane-overvalued.md)
+- CUSTOM — Auction or Private Treaty: Which Do You Prefer as a Buyer? (used: 2027-02-24, file: 2027-02-24-linkedin-poll-auction-vs-private-treaty.md)
+- CUSTOM — What Matters Most When Selling Your Home? (used: 2027-03-03, file: 2027-03-03-linkedin-poll-what-matters-when-selling.md)
+- CUSTOM — How Many Properties Did You Inspect Before Making an Offer? (used: 2027-03-10, file: 2027-03-10-linkedin-poll-inspections-before-offer.md)
+- CUSTOM — Would You Style Your Home Before Selling? (used: 2027-03-17, file: 2027-03-17-linkedin-poll-staging-before-selling.md)
+- CUSTOM — What Is Your Biggest Barrier to Buying in Brisbane Right Now? (used: 2027-03-24, file: 2027-03-24-linkedin-poll-barriers-to-buying.md)
+- CUSTOM — Does Transport Infrastructure Influence Where You Would Buy? (used: 2027-03-31, file: 2027-03-31-linkedin-poll-transport-infrastructure.md)
 
 ---
 

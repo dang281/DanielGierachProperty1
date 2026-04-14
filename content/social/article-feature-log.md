@@ -45,3 +45,15 @@
 | 2026-12-10 | cooling-off-period-property-sale-queensland | Cooling-off cannot be waived by vendor; auction contracts have no cooling-off; 0.25% fee to exit within 5 business days |
 | 2026-12-17 | best-time-to-sell-brisbane | Spring advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is the most reliable inner-east window |
 | 2026-12-24 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate at any time before settlement if not provided |
+| 2027-01-07 | what-is-an-unconditional-offer-queensland | Seller will often accept lower unconditional offer over higher conditional one to eliminate finance/B&P risk window |
+| 2027-01-14 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; six-year absence rule has conditions and property interactions |
+| 2027-01-21 | auction-vs-private-treaty | Method of sale should follow the property and market conditions, not seller preference or a recent result in the street |
+| 2027-01-28 | cost-of-selling-house-brisbane | Selling costs 2.5-4% of sale price; on $1.4M home that is $35K-$56K before net proceeds calculation |
+| 2027-02-04 | cooling-off-period-property-sale-queensland | Seller cannot waive cooling-off; it is a statutory buyer right; 0.25% fee to exit within five business days; no cooling-off at auction |
+| 2027-02-11 | best-time-to-sell-brisbane | Autumn (late Feb to May) is Brisbane's most consistent inner-east window; spring advice is built around Melbourne and Sydney |
+| 2027-02-18 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; disclosure statement must be ready before campaign launch |
+| 2027-02-25 | understanding-the-contract | Finance condition deadline lapses if missed even without bank approval; chattels and inclusions must be listed in contract |
+| 2027-03-04 | stamp-duty-queensland | Transfer duty on $1M owner-occupier purchase approximately $38,025; must be factored into deposit and LVR calculations |
+| 2027-03-11 | pre-settlement-inspection-seller-guide-qld | Buyer entitled to one pre-settlement inspection; property must be in same condition as at contract signing |
+| 2027-03-18 | easements-property-brisbane-qld | Drainage easement along rear boundary is usually non-issue; access easement through yard is materially different |
+| 2027-03-25 | body-corporate | Levies range $2K-$4K/yr for small townhouse to $6K-$14K+/yr for mid-rise; check sinking fund balance before buying |
