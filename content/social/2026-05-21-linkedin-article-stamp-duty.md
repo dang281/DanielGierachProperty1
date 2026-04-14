@@ -20,7 +20,7 @@ That figure does not appear in the purchase price. It does not add to your equit
 
 For buyers who have been focused on saving a deposit, transfer duty is the number that catches people off guard. A 10% deposit on a $1M property is $100K. Add stamp duty, legal fees, and building and pest inspection costs, and the real upfront number is closer to $145K to $150K before you move in.
 
-First home buyers in Queensland can access a full exemption on properties up to $800K and a partial concession up to $1M, provided they meet the residency requirements. This makes a material difference at the entry level - but most first home buyers in the inner east are shopping above $800K, which limits the benefit.
+First home buyers in Queensland purchasing a new home pay zero transfer duty with no price cap (from May 2025). For existing homes, a full concession applies up to $700K and a partial concession up to $800K. Above $800K on an existing home, there is no first home buyer concession. Most first home buyers in the inner east are shopping above that threshold, which limits the benefit unless they are buying new.
 
 Investment properties attract the standard transfer duty rates without the owner-occupier concession. Foreign buyers pay additional duty on top of that.
 
@@ -42,15 +42,20 @@ danielgierach.com/insights/stamp-duty-queensland
 
 **Confidence: Check**
 
-1. Transfer duty on $1M property: approximately $38,025. Source: Queensland Revenue Office transfer duty calculator. Verify this figure is current before posting - duty rates can be adjusted by government.
-2. First home buyer exemption threshold ($800K full, $1M partial) - verify current thresholds at qro.qld.gov.au before posting.
+Verified 15 April 2026:
+
+1. **$38,025 for $1M property: CONFIRMED — but this is the STANDARD rate (no concession).** An owner-occupier using the home concession pays approximately $30,850 on a $1M purchase. The caption opens with $38,025 without specifying which buyer type — read as a general/investor figure this is correct, but if a reader assumes this is what they as an owner-occupier will pay, it will be $7,175 higher than their actual bill. The full article at danielgierach.com likely clarifies; if you want the caption to be precise for owner-occupiers, change $38,025 to $30,850. Leave as-is if you are comfortable using the standard rate as a "worst case" illustration.
+
+2. **FHB thresholds: CORRECTED in caption.** Original caption said "$800K full, $1M partial" which was incorrect. Corrected to: full concession on existing homes up to $700K; partial concession $700K-$800K; no concession above $800K on existing homes. New homes (from May 2025): zero duty with no price cap. Source: qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home/ and qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home-new-home/
 
 **Suggested first comment (post this as your reply):**
 The most common budget conversation I have with buyers who are close to making an offer: what is your total funds available, not just what you are borrowing. The difference between purchase price and what you actually need to have ready is where plans come unstuck.
 
 **Approve or flag:**
-Check stamp duty figures against QRO calculator before approving.
+Approve if you are comfortable using $38,025 as a standard-rate illustration. If you want it to reflect what an owner-occupier actually pays, change $38,025 to approximately $30,850 in the opening line.
 
 **All sources:**
-danielgierach.com/insights/stamp-duty-queensland
-Queensland Revenue Office: qro.qld.gov.au (transfer duty calculator)
+- danielgierach.com/insights/stamp-duty-queensland
+- https://qro.qld.gov.au/duties/transfer-duty/calculate/rates/ (standard transfer duty rates)
+- https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home/ (FHB existing home concession — up to $700K full, $800K partial)
+- https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home-new-home/ (FHB new home — zero duty, no cap from May 2025)
