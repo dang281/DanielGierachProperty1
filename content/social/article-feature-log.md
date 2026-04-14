@@ -37,3 +37,11 @@
 | 2026-10-15 | fixtures-fittings-inclusions-property-sale-qld | Light fittings are fixtures and stay with the property unless excluded in the contract before signing |
 | 2026-10-22 | what-happens-on-settlement-day-queensland | For most vendors settlement day is quiet and handled digitally via PEXA; vendor role is preparation, not attendance |
 | 2026-10-29 | form-6-agency-agreement-queensland | Most sellers sign the Form 6 without reading it; 5-business-day cooling-off right exists under the Property Occupations Act 2014 (Qld) |
+| 2026-11-05 | how-to-read-a-building-and-pest-report | Summary page is the wrong place to start; active termite damage vs general maintenance notes require different responses |
+| 2026-11-12 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional offer over higher conditional one to eliminate finance/B&P risk window |
+| 2026-11-19 | capital-gains-tax-selling-home-brisbane | Main residence exemption is proportional if property was rented; six-year absence rule depends on whether another home was nominated |
+| 2026-11-26 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second — that sequence is backwards; solicitor needed for complex transactions |
+| 2026-12-03 | cost-of-selling-house-brisbane | Full cost 2.5-4% of sale price; net proceeds calculation must include agent commission, conveyancing, marketing, mortgage discharge |
+| 2026-12-10 | cooling-off-period-property-sale-queensland | Cooling-off cannot be waived by vendor; auction contracts have no cooling-off; 0.25% fee to exit within 5 business days |
+| 2026-12-17 | best-time-to-sell-brisbane | Spring advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is the most reliable inner-east window |
+| 2026-12-24 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate at any time before settlement if not provided |

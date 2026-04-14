@@ -36,6 +36,14 @@
 - CUSTOM — Are You Planning to Sell in the Next 12 Months? (used: 2026-10-07, file: 2026-10-07-linkedin-poll-selling-plans.md)
 - CUSTOM — What Matters Most When Choosing an Agent? (used: 2026-10-14, file: 2026-10-14-linkedin-poll-choosing-an-agent.md)
 - CUSTOM — When Are You Planning to List? (used: 2026-10-21, file: 2026-10-21-linkedin-poll-listing-timing.md)
+- CUSTOM — When Are You Planning to Buy or Sell? (used: 2026-11-04, file: 2026-11-04-linkedin-poll-buying-selling-timing.md)
+- CUSTOM — Do You Know What an Unconditional Offer Means? (used: 2026-11-11, file: 2026-11-11-linkedin-poll-unconditional-offer.md)
+- CUSTOM — Where Are Brisbane Property Prices Heading in 2027? (used: 2026-11-18, file: 2026-11-18-linkedin-poll-brisbane-2027-prices.md)
+- CUSTOM — Have You Ever Withdrawn From a Property Purchase? (used: 2026-11-25, file: 2026-11-25-linkedin-poll-cooling-off-experience.md)
+- CUSTOM — If You're Selling in 2027, When Are You Planning to List? (used: 2026-12-02, file: 2026-12-02-linkedin-poll-2027-listing-plans.md)
+- CUSTOM — What Was the Biggest Property Story of 2026? (used: 2026-12-09, file: 2026-12-09-linkedin-poll-biggest-story-2026.md)
+- CUSTOM — What Is Your Property Goal for 2027? (used: 2026-12-16, file: 2026-12-16-linkedin-poll-property-goals-2027.md)
+- CUSTOM — Are You Expecting a Busy or Quiet January Property Market? (used: 2026-12-23, file: 2026-12-23-linkedin-poll-january-market.md)
 
 ---
 
