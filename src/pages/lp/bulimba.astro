@@ -1,0 +1,387 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
+---
+
+<LandingLayout
+  title="What Is Your Bulimba Home Worth? | Free Report"
+  description="Find out what your Bulimba property is worth based on recent comparable sales. Free, instant, no obligation. Daniel Gierach, Ray White."
+>
+
+<style>
+  /* ── Topbar ── */
+  .lp-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 76px;
+    background: rgba(10,8,6,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,208,122,0.08);
+  }
+  .lp-bar-logo {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    text-decoration: none; line-height: 1;
+  }
+  .lp-bar-logo-name {
+    font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400;
+    font-style: italic; color: #f0ece4; letter-spacing: 0.02em;
+  }
+  .lp-bar-logo-sub {
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .lp-bar-logo-line {
+    display: block; height: 1px; width: 1.25rem;
+    background: var(--gold); opacity: 0.8;
+  }
+  .lp-bar-logo-agency {
+    font-family: var(--font-sans); font-size: 0.625rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); opacity: 0.85;
+  }
+  .lp-bar-phone {
+    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-light); text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+
+  /* ── Hero ── */
+  .lp-hero {
+    min-height: 100dvh;
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .lp-hero-bg {
+    position: absolute; inset: 0;
+  }
+  .lp-hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(8%) brightness(0.58);
+  }
+  .lp-hero-grad {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(120deg, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.15) 100%);
+  }
+  .lp-hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1400px; margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .lp-card {
+    max-width: 640px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(72,72,72,0.2);
+    padding: 3rem 3.5rem;
+  }
+  .lp-avatar-badge {
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+  }
+  .lp-avatar-img {
+    width: 40px; height: 40px; border-radius: 50%;
+    object-fit: cover; object-position: center 10%;
+    border: 1.5px solid rgba(197,160,60,0.5);
+    flex-shrink: 0;
+  }
+  .lp-avatar-name {
+    font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #f5d07a;
+  }
+  .lp-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 400; line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: #f0ece4; margin-bottom: 1.5rem;
+  }
+  .lp-h1 em { font-style: italic; color: var(--gold); }
+  .lp-sub {
+    font-size: 1rem; color: rgba(240,236,228,0.72);
+    line-height: 1.8; max-width: 46ch; margin-bottom: 0.75rem;
+  }
+
+  .lp-form { display: flex; gap: 0; max-width: 560px; }
+  .lp-input-wrap { position: relative; flex: 1; min-width: 0; }
+  .lp-input {
+    width: 100%; padding: 0.9rem 1.1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-right: none;
+    color: #f0ece4; font-family: var(--font-sans); font-size: 0.85rem;
+    outline: none; box-sizing: border-box; -webkit-appearance: none;
+  }
+  .lp-input::placeholder { color: rgba(240,236,228,0.4); }
+
+  .pac-container {
+    background: #1c1917;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-top: none; border-radius: 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    font-family: var(--font-sans);
+  }
+  .pac-item {
+    padding: 0.65rem 1.1rem; font-size: 0.82rem;
+    color: rgba(240,236,228,0.8);
+    border-top: 1px solid rgba(255,255,255,0.08); cursor: pointer;
+  }
+  .pac-item:hover, .pac-item-selected { background: rgba(196,145,42,0.12); }
+  .pac-item-query { color: #f0ece4; font-weight: 600; }
+  .pac-matched { color: var(--gold); }
+  .pac-icon { display: none; }
+
+  .lp-submit {
+    padding: 0.9rem 1.5rem;
+    background: #c5a03c; border: none; cursor: pointer;
+    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark);
+    white-space: nowrap; flex-shrink: 0;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: background 0.2s;
+  }
+  .lp-submit:hover { background: #d4af4a; }
+  .lp-trust {
+    font-size: 0.72rem; color: rgba(240,236,228,0.55);
+    margin-top: 0.6rem; letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 540px) {
+    .lp-card { padding: 2rem 1.5rem; }
+    .lp-form { flex-direction: column; }
+    .lp-input { border-right: 1.5px solid rgba(255,255,255,0.18); border-bottom: none; }
+    .lp-submit { width: 100%; justify-content: center; }
+  }
+
+  /* ── Testimonial ── */
+  .lp-testimonial {
+    background: #111; padding: 5rem 1.5rem;
+    border-top: 1px solid rgba(242,239,233,0.06);
+  }
+  .lp-testimonial-inner {
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .lp-quote {
+    font-family: var(--font-serif); font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-style: italic; font-weight: 400; color: var(--cream);
+    line-height: 1.65; margin-bottom: 1.5rem;
+  }
+  .lp-stars { display: flex; gap: 0.25rem; justify-content: center; margin-bottom: 0.6rem; }
+  .lp-attr {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(242,239,233,0.4);
+  }
+
+  /* ── Daniel section ── */
+  .lp-daniel {
+    background: var(--dark); padding: 5rem 1.5rem;
+    border-top: 1px solid rgba(242,239,233,0.06);
+  }
+  .lp-daniel-inner {
+    max-width: 600px; margin: 0 auto;
+    display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
+  }
+  .lp-avatar {
+    width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
+    background: url('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg') center 10%/cover;
+    border: 2px solid rgba(196,145,42,0.4);
+  }
+  .lp-daniel-name {
+    font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400;
+    color: var(--cream); margin-bottom: 0.2rem;
+  }
+  .lp-daniel-role {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+  }
+  .lp-daniel-body {
+    font-size: 0.82rem; font-weight: 300; color: rgba(242,239,233,0.55);
+    line-height: 1.7; margin-bottom: 1rem;
+  }
+  .lp-call-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dark); background: var(--gold);
+    padding: 0.75rem 1.5rem; text-decoration: none;
+    transition: background 0.18s;
+  }
+  .lp-call-btn:hover { background: #d4a035; }
+
+  /* ── Footer ── */
+  .lp-footer {
+    background: #111; padding: 2rem 1.5rem;
+    border-top: 1px solid rgba(242,239,233,0.06);
+    text-align: center;
+  }
+  .lp-footer p {
+    font-size: 0.6rem; color: rgba(242,239,233,0.25);
+    letter-spacing: 0.06em; line-height: 1.8;
+  }
+  .lp-footer a { color: rgba(242,239,233,0.4); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .lp-bar { padding: 0.85rem 1.25rem; }
+    .lp-daniel-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  }
+</style>
+
+<!-- Topbar -->
+<header class="lp-bar">
+  <a href="/" class="lp-bar-logo">
+    <span class="lp-bar-logo-name">Daniel Gierach</span>
+    <span class="lp-bar-logo-sub">
+      <span class="lp-bar-logo-line"></span>
+      <span class="lp-bar-logo-agency">Ray White · The Collective</span>
+    </span>
+  </a>
+  <a href="tel:+61412523821" class="lp-bar-phone">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
+    0412 523 821
+  </a>
+</header>
+
+<!-- Hero -->
+<section class="lp-hero">
+  <div class="lp-hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1440&q=70&fm=webp&auto=format"
+      srcset="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1440&q=70&fm=webp&auto=format 1440w"
+      sizes="100vw"
+      alt="Bulimba Brisbane property"
+      fetchpriority="high"
+      width="1920" height="1080"
+    />
+    <div class="lp-hero-grad"></div>
+  </div>
+  <div class="lp-hero-inner">
+    <div class="lp-card">
+      <div class="lp-avatar-badge">
+        <img
+          class="lp-avatar-img"
+          src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
+          alt="Daniel Gierach"
+          width="40" height="40"
+        />
+        <span class="lp-avatar-name">Daniel Gierach</span>
+      </div>
+      <h1 class="lp-h1">What is your<br/><em>Bulimba home<br/>worth right now?</em></h1>
+      <p class="lp-sub">Bulimba is one of Brisbane's most consistently strong property markets. Catchment access, the Riverside precinct, and limited supply keep demand high. Find out where your home sits in the current market.</p>
+
+      <form class="lp-form" id="lpForm" action="/property-report" method="get">
+        <div class="lp-input-wrap">
+          <input
+            class="lp-input"
+            type="text"
+            name="address"
+            id="lpAddress"
+            placeholder="Start typing your address..."
+            autocomplete="off"
+            required
+          />
+        </div>
+        <button type="submit" class="lp-submit">
+          Get My Free Report
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <p class="lp-trust">Free &nbsp;·&nbsp; Based on recent comparable sales</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="lp-testimonial">
+  <div class="lp-testimonial-inner">
+    <div class="lp-stars">
+      {[1,2,3,4,5].map(() => (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      ))}
+    </div>
+    <blockquote class="lp-quote">
+      "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me."
+    </blockquote>
+    <p class="lp-attr">5 Stars · Ray White</p>
+  </div>
+</section>
+
+<!-- Daniel section -->
+<section class="lp-daniel">
+  <div class="lp-daniel-inner">
+    <div class="lp-avatar"></div>
+    <div>
+      <div class="lp-daniel-name">Daniel Gierach</div>
+      <div class="lp-daniel-role">Ray White · Brisbane Inner East</div>
+      <p class="lp-daniel-body">Bulimba is one of my most active markets. I know the streets where buyers compete hardest, the catchment boundaries that matter to families, and the type of campaign that gets the strongest result for a Bulimba home. An appraisal with me is a frank, data-backed conversation about what your property is worth and how to get there.</p>
+      <a href="tel:+61412523821" class="lp-call-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
+        Call 0412 523 821
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="lp-footer">
+  <p>
+    Daniel Gierach · Ray White The Collective · Brisbane Inner East<br/>
+    <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">danielgierach.com</a>
+  </p>
+</footer>
+
+<script define:vars={{ googleMapsKey }}>
+  function initPlaces() {
+    const input = document.getElementById('lpAddress');
+    if (!input || !(window).google?.maps?.places) return;
+    const ac = new (window).google.maps.places.Autocomplete(input, {
+      componentRestrictions: { country: 'au' },
+      fields: ['formatted_address'],
+      types: ['address'],
+    });
+    ac.addListener('place_changed', () => {
+      const place = ac.getPlace();
+      if (place.formatted_address) input.value = place.formatted_address;
+    });
+  }
+
+  window.initLpPlaces = initPlaces;
+
+  if ((window).google?.maps?.places) {
+    initPlaces();
+  } else {
+    const s = document.createElement('script');
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=initLpPlaces`;
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  (function() {
+    const params = new URLSearchParams(location.search);
+    const utm = {};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k => {
+      if (params.get(k)) utm[k] = params.get(k);
+    });
+    if (Object.keys(utm).length) sessionStorage.setItem('utm_data', JSON.stringify(utm));
+
+    const form = document.getElementById('lpForm');
+    if (form) {
+      form.addEventListener('submit', function() {
+        const stored = sessionStorage.getItem('utm_data');
+        if (stored) {
+          Object.entries(JSON.parse(stored)).forEach(([k, v]) => {
+            const input = document.createElement('input');
+            input.type = 'hidden'; input.name = k; input.value = v;
+            form.appendChild(input);
+          });
+        }
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Bulimba Property Report' });
+        if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { suburb: 'Bulimba', source: 'lp' });
+      });
+    }
+  })();
+</script>
+
+</LandingLayout>
