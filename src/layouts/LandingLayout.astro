@@ -35,8 +35,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     </noscript>
 
-    <!-- Meta Pixel, replace 1462440981414974 with your actual Pixel ID from Meta Business Suite → Events Manager -->
-    <script>
+    <!-- Meta Pixel -->
+    <script is:inline>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
