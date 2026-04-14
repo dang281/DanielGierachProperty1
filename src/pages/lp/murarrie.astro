@@ -13,287 +13,179 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
   .lp-bar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 76px;
-    background: rgba(10,8,6,0.85);
+    padding: 0 2rem; height: 72px;
+    background: rgba(10,8,6,0.92);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(245,208,122,0.08);
+    border-bottom: 1px solid rgba(245,208,122,0.10);
   }
-  .lp-bar-logo {
-    display: flex; flex-direction: column; gap: 0.3rem;
-    text-decoration: none; line-height: 1;
-  }
-  .lp-bar-logo-name {
-    font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400;
-    font-style: italic; color: #f0ece4; letter-spacing: 0.02em;
-  }
-  .lp-bar-logo-sub {
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .lp-bar-logo-line {
-    display: block; height: 1px; width: 1.25rem;
-    background: var(--gold); opacity: 0.8;
-  }
-  .lp-bar-logo-agency {
-    font-family: var(--font-sans); font-size: 0.625rem; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); opacity: 0.85;
-  }
-  .lp-bar-phone {
-    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold-light); text-decoration: none;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
+  .lp-bar-logo { display: flex; flex-direction: column; gap: 0.25rem; text-decoration: none; line-height: 1; }
+  .lp-bar-logo-name { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; font-style: italic; color: #f0ece4; }
+  .lp-bar-logo-sub { display: flex; align-items: center; gap: 0.5rem; }
+  .lp-bar-logo-line { display: block; height: 1px; width: 1.1rem; background: var(--gold); opacity: 0.8; }
+  .lp-bar-logo-agency { font-family: var(--font-sans); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+  .lp-bar-phone { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
 
   /* ── Hero ── */
-  .lp-hero {
-    min-height: 100dvh;
-    position: relative;
-    display: flex; align-items: center;
-    overflow: hidden;
-  }
-  .lp-hero-bg {
-    position: absolute; inset: 0;
-  }
-  .lp-hero-bg img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(8%) brightness(0.58);
-  }
-  .lp-hero-grad {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(120deg, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.15) 100%);
-  }
-  .lp-hero-inner {
-    position: relative; z-index: 2;
-    width: 100%; max-width: 1400px; margin: 0 auto;
-    padding: 6rem 1.5rem 4rem;
-  }
+  .lp-hero { min-height: 100dvh; position: relative; display: flex; align-items: center; overflow: hidden; }
+  .lp-hero-bg { position: absolute; inset: 0; }
+  .lp-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(10%) brightness(0.52); }
+  .lp-hero-grad { position: absolute; inset: 0; z-index: 1; background: linear-gradient(130deg, rgba(10,8,6,0.62) 0%, rgba(10,8,6,0.12) 100%); }
+  .lp-hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; padding: 7rem 1.5rem 4rem; }
 
-  /* Glass card */
   .lp-card {
-    max-width: 640px;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(72,72,72,0.2);
-    padding: 3rem 3.5rem;
+    max-width: 620px;
+    background: rgba(0,0,0,0.50);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(80,80,80,0.22);
+    padding: 2.75rem 3rem;
   }
-  .lp-avatar-badge {
-    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
-  }
-  .lp-avatar-img {
-    width: 40px; height: 40px; border-radius: 50%;
-    object-fit: cover; object-position: center 10%;
-    border: 1.5px solid rgba(197,160,60,0.5);
-    flex-shrink: 0;
-  }
-  .lp-avatar-name {
-    font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase; color: #f5d07a;
-  }
-  .lp-h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-    font-weight: 400; line-height: 1.08;
-    letter-spacing: -0.02em;
-    color: #f0ece4; margin-bottom: 1.5rem;
-  }
+  .lp-avatar-badge { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.1rem; }
+  .lp-avatar-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 10%; border: 1.5px solid rgba(197,160,60,0.55); flex-shrink: 0; }
+  .lp-avatar-name { font-family: var(--font-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #f5d07a; }
+
+  .lp-h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4.2vw, 3.5rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; color: #f0ece4; margin-bottom: 0.9rem; }
   .lp-h1 em { font-style: italic; color: var(--gold); }
-  .lp-sub {
-    font-size: 1rem; color: rgba(240,236,228,0.72);
-    line-height: 1.8; max-width: 46ch; margin-bottom: 0.75rem;
-  }
 
-  /* Address form */
-  .lp-form { display: flex; gap: 0; max-width: 560px; }
-  .lp-input-wrap { position: relative; flex: 1; min-width: 0; }
+  .lp-sub { font-size: 0.95rem; color: rgba(240,236,228,0.70); line-height: 1.75; max-width: 44ch; margin-bottom: 1.5rem; }
+
+  /* Quick benefits row */
+  .lp-benefits { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .lp-benefit { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: rgba(240,236,228,0.65); letter-spacing: 0.04em; }
+  .lp-benefit-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* Form */
+  .lp-form-stack { display: flex; flex-direction: column; gap: 0; max-width: 540px; }
   .lp-input {
-    width: 100%; padding: 0.9rem 1.1rem;
-    background: rgba(255,255,255,0.08);
-    border: 1.5px solid rgba(255,255,255,0.18);
-    border-right: none;
-    color: #f0ece4; font-family: var(--font-sans); font-size: 0.85rem;
+    width: 100%; padding: 0.95rem 1.1rem;
+    background: rgba(255,255,255,0.09);
+    border: 1.5px solid rgba(255,255,255,0.20);
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    color: #f0ece4; font-family: var(--font-sans); font-size: 0.88rem;
     outline: none; box-sizing: border-box; -webkit-appearance: none;
+    transition: border-color 0.2s;
   }
-  .lp-input::placeholder { color: rgba(240,236,228,0.4); }
+  .lp-input:focus { border-color: rgba(197,160,60,0.6); }
+  .lp-input::placeholder { color: rgba(240,236,228,0.38); }
+  .lp-input:last-of-type { border-bottom: 1.5px solid rgba(255,255,255,0.20); }
+  .lp-submit {
+    padding: 1rem 1.5rem; background: #c5a03c; border: none; cursor: pointer;
+    font-family: var(--font-sans); font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark);
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    transition: background 0.2s;
+  }
+  .lp-submit:hover { background: #d4af4a; }
+  .lp-trust { font-size: 0.68rem; color: rgba(240,236,228,0.45); margin-top: 0.65rem; letter-spacing: 0.04em; }
 
-  .pac-container {
-    background: #1c1917;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-top: none; border-radius: 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-    font-family: var(--font-sans);
-  }
-  .pac-item {
-    padding: 0.65rem 1.1rem; font-size: 0.82rem;
-    color: rgba(240,236,228,0.8);
-    border-top: 1px solid rgba(255,255,255,0.08); cursor: pointer;
-  }
+  /* Google Places */
+  .pac-container { background: #1c1917; border: 1px solid rgba(255,255,255,0.12); border-top: none; border-radius: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.5); font-family: var(--font-sans); }
+  .pac-item { padding: 0.65rem 1.1rem; font-size: 0.82rem; color: rgba(240,236,228,0.8); border-top: 1px solid rgba(255,255,255,0.08); cursor: pointer; }
   .pac-item:hover, .pac-item-selected { background: rgba(196,145,42,0.12); }
   .pac-item-query { color: #f0ece4; font-weight: 600; }
   .pac-matched { color: var(--gold); }
   .pac-icon { display: none; }
 
-  .lp-submit {
-    padding: 0.9rem 1.5rem;
-    background: #c5a03c; border: none; cursor: pointer;
-    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark);
-    white-space: nowrap; flex-shrink: 0;
-    display: flex; align-items: center; gap: 0.4rem;
-    transition: background 0.2s;
-  }
-  .lp-submit:hover { background: #d4af4a; }
-  .lp-trust {
-    font-size: 0.72rem; color: rgba(240,236,228,0.55);
-    margin-top: 0.6rem; letter-spacing: 0.06em;
-  }
+  /* ── Stats bar ── */
+  .lp-stats-bar { background: rgba(10,8,6,0.95); border-top: 1px solid rgba(197,160,60,0.12); border-bottom: 1px solid rgba(197,160,60,0.12); padding: 1.5rem; }
+  .lp-stats-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .lp-stat { text-align: center; }
+  .lp-stat-num { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold-light); line-height: 1; margin-bottom: 0.2rem; }
+  .lp-stat-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,236,228,0.4); }
+  .lp-stat-divider { width: 1px; height: 2.5rem; background: rgba(197,160,60,0.18); }
 
-  @media (max-width: 540px) {
-    .lp-card { padding: 2rem 1.5rem; }
-    .lp-form { flex-direction: column; }
-    .lp-input { border-right: 1.5px solid rgba(255,255,255,0.18); border-bottom: none; }
-    .lp-submit { width: 100%; justify-content: center; }
-  }
+  /* ── What's in your report ── */
+  .lp-report-preview { background: #0f0d0b; padding: 4.5rem 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); }
+  .lp-report-inner { max-width: 760px; margin: 0 auto; }
+  .lp-section-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+  .lp-report-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; color: var(--cream); margin-bottom: 2rem; }
+  .lp-report-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(242,239,233,0.06); }
+  .lp-report-item { background: #0f0d0b; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .lp-report-icon { width: 32px; height: 32px; border: 1px solid rgba(197,160,60,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+  .lp-report-item-title { font-family: var(--font-serif); font-size: 0.95rem; color: var(--cream); margin-bottom: 0.3rem; }
+  .lp-report-item-body { font-size: 0.75rem; color: rgba(242,239,233,0.45); line-height: 1.65; }
 
-  /* ── Recent Sales strip ── */
-  .lp-sold {
-    background: #111;
-    border-top: 1px solid rgba(242,239,233,0.06);
-    padding: 3.5rem 1.5rem;
-  }
+  /* ── Recent Sales ── */
+  .lp-sold { background: #111; border-top: 1px solid rgba(242,239,233,0.06); padding: 4rem 1.5rem; }
   .lp-sold-inner { max-width: 900px; margin: 0 auto; }
-  .lp-sold-label {
-    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.75rem; display: block; text-align: center;
-  }
-  .lp-sold-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    background: rgba(242,239,233,0.08);
-  }
-  .lp-sold-item {
-    background: #111; padding: 1.5rem 1.25rem; text-align: center;
-  }
-  .lp-sold-addr {
-    font-family: var(--font-serif); font-size: 0.88rem; color: var(--cream);
-    margin-bottom: 0.3rem; line-height: 1.3;
-  }
-  .lp-sold-sub {
-    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(242,239,233,0.35); margin-bottom: 0.75rem;
-  }
-  .lp-sold-price {
-    font-family: var(--font-serif); font-size: 1.4rem; color: var(--gold-light);
-    filter: blur(5px); user-select: none; margin-bottom: 0.2rem;
-  }
-  .lp-sold-cta {
-    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--gold);
-  }
+  .lp-sold-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; display: block; text-align: center; }
+  .lp-sold-sub { font-size: 0.78rem; color: rgba(242,239,233,0.4); text-align: center; margin-bottom: 2rem; }
+  .lp-sold-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(242,239,233,0.08); }
+  .lp-sold-item { background: #111; padding: 1.5rem 1.25rem; text-align: center; }
+  .lp-sold-addr { font-family: var(--font-serif); font-size: 0.9rem; color: var(--cream); margin-bottom: 0.25rem; line-height: 1.3; }
+  .lp-sold-meta { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,239,233,0.3); margin-bottom: 0.75rem; }
+  .lp-sold-price { font-family: var(--font-serif); font-size: 1.4rem; color: var(--gold-light); filter: blur(5px); user-select: none; margin-bottom: 0.3rem; }
+  .lp-sold-cta { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
 
   /* ── How it works ── */
-  .lp-how {
-    background: var(--dark); padding: 5rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
-  }
+  .lp-how { background: var(--dark); padding: 5rem 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); }
   .lp-how-inner { max-width: 760px; margin: 0 auto; }
-  .lp-how-title {
-    font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 400; color: var(--cream);
-    text-align: center; margin-bottom: 3rem;
-  }
-  .lp-steps {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-  }
+  .lp-how-title { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 400; color: var(--cream); text-align: center; margin-bottom: 3rem; }
+  .lp-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lp-step { text-align: center; }
-  .lp-step-num {
-    font-family: var(--font-serif); font-size: 2.25rem; font-weight: 300;
-    color: var(--gold); line-height: 1; margin-bottom: 0.85rem;
-  }
-  .lp-step-title {
-    font-family: var(--font-serif); font-size: 1rem; font-style: italic;
-    color: var(--cream); margin-bottom: 0.5rem;
-  }
-  .lp-step-body {
-    font-size: 0.78rem; font-weight: 300; color: rgba(242,239,233,0.5);
-    line-height: 1.7;
-  }
+  .lp-step-num { font-family: var(--font-serif); font-size: 2.25rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.85rem; }
+  .lp-step-title { font-family: var(--font-serif); font-size: 1rem; font-style: italic; color: var(--cream); margin-bottom: 0.5rem; }
+  .lp-step-body { font-size: 0.78rem; font-weight: 300; color: rgba(242,239,233,0.5); line-height: 1.7; }
 
-  /* ── Testimonial ── */
-  .lp-testimonial {
-    background: #111; padding: 5rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
-  }
-  .lp-testimonial-inner {
-    max-width: 640px; margin: 0 auto; text-align: center;
-  }
-  .lp-quote {
-    font-family: var(--font-serif); font-size: clamp(1.05rem, 2vw, 1.3rem);
-    font-style: italic; font-weight: 400; color: var(--cream);
-    line-height: 1.65; margin-bottom: 1.5rem;
-  }
-  .lp-stars { display: flex; gap: 0.25rem; justify-content: center; margin-bottom: 0.6rem; }
-  .lp-attr {
-    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: rgba(242,239,233,0.4);
-  }
+  /* ── FAQ ── */
+  .lp-faq { background: #111; padding: 5rem 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); }
+  .lp-faq-inner { max-width: 680px; margin: 0 auto; }
+  .lp-faq-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; color: var(--cream); text-align: center; margin-bottom: 2.5rem; }
+  .lp-faq-item { border-top: 1px solid rgba(242,239,233,0.08); padding: 1.25rem 0; }
+  .lp-faq-item:last-child { border-bottom: 1px solid rgba(242,239,233,0.08); }
+  .lp-faq-q { font-family: var(--font-serif); font-size: 1rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; }
+  .lp-faq-a { font-size: 0.82rem; font-weight: 300; color: rgba(242,239,233,0.52); line-height: 1.75; }
 
-  /* ── Daniel section ── */
-  .lp-daniel {
-    background: var(--dark); padding: 5rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
-  }
-  .lp-daniel-inner {
-    max-width: 600px; margin: 0 auto;
-    display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
-  }
-  .lp-avatar {
-    width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
-    background: url('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg') center 10%/cover;
-    border: 2px solid rgba(196,145,42,0.4);
-  }
-  .lp-daniel-name {
-    font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400;
-    color: var(--cream); margin-bottom: 0.2rem;
-  }
-  .lp-daniel-role {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
-  }
-  .lp-daniel-body {
-    font-size: 0.82rem; font-weight: 300; color: rgba(242,239,233,0.55);
-    line-height: 1.7; margin-bottom: 1rem;
-  }
-  .lp-call-btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--dark); background: var(--gold);
-    padding: 0.75rem 1.5rem; text-decoration: none;
-    transition: background 0.18s;
-  }
+  /* ── Testimonials ── */
+  .lp-testimonials { background: var(--dark); padding: 5rem 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); }
+  .lp-testimonials-inner { max-width: 900px; margin: 0 auto; }
+  .lp-testimonials-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; color: var(--cream); text-align: center; margin-bottom: 2.5rem; }
+  .lp-reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .lp-review { background: rgba(255,255,255,0.03); border: 1px solid rgba(242,239,233,0.08); padding: 1.75rem 1.5rem; }
+  .lp-review-stars { display: flex; gap: 0.2rem; margin-bottom: 0.85rem; }
+  .lp-review-text { font-family: var(--font-serif); font-size: 0.88rem; font-style: italic; color: rgba(242,239,233,0.75); line-height: 1.7; margin-bottom: 1rem; }
+  .lp-review-name { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+  .lp-review-suburb { font-size: 0.6rem; color: rgba(242,239,233,0.35); margin-top: 0.15rem; }
+
+  /* ── Daniel ── */
+  .lp-daniel { background: #111; padding: 5rem 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); }
+  .lp-daniel-inner { max-width: 680px; margin: 0 auto; display: flex; align-items: flex-start; gap: 2.5rem; flex-wrap: wrap; }
+  .lp-avatar { width: 96px; height: 96px; border-radius: 50%; flex-shrink: 0; background: url('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg') center 10%/cover; border: 2px solid rgba(196,145,42,0.4); }
+  .lp-daniel-name { font-family: var(--font-serif); font-size: 1.25rem; color: var(--cream); margin-bottom: 0.15rem; }
+  .lp-daniel-role { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .lp-daniel-credentials { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .lp-cred { font-size: 0.68rem; color: rgba(242,239,233,0.45); display: flex; align-items: center; gap: 0.35rem; }
+  .lp-cred-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .lp-daniel-body { font-size: 0.82rem; font-weight: 300; color: rgba(242,239,233,0.55); line-height: 1.75; margin-bottom: 1.1rem; }
+  .lp-call-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dark); background: var(--gold); padding: 0.8rem 1.5rem; text-decoration: none; transition: background 0.18s; }
   .lp-call-btn:hover { background: #d4a035; }
 
   /* ── Footer ── */
-  .lp-footer {
-    background: #111; padding: 2rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
-    text-align: center;
+  .lp-footer { background: #0a0806; padding: 2rem 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); text-align: center; }
+  .lp-footer p { font-size: 0.58rem; color: rgba(242,239,233,0.22); letter-spacing: 0.06em; line-height: 2; }
+  .lp-footer a { color: rgba(242,239,233,0.35); text-decoration: none; }
+
+  /* ── Mobile sticky bar ── */
+  .lp-sticky {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    background: #c5a03c; padding: 0.95rem 1.25rem;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
   }
-  .lp-footer p {
-    font-size: 0.6rem; color: rgba(242,239,233,0.25);
-    letter-spacing: 0.06em; line-height: 1.8;
-  }
-  .lp-footer a { color: rgba(242,239,233,0.4); text-decoration: none; }
+  .lp-sticky a { display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #0a0806; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
 
   /* ── Mobile ── */
   @media (max-width: 640px) {
     .lp-bar { padding: 0.85rem 1.25rem; }
+    .lp-card { padding: 2rem 1.25rem; }
+    .lp-stats-inner { gap: 1.5rem; }
+    .lp-stat-divider { display: none; }
     .lp-sold-grid { grid-template-columns: 1fr; }
     .lp-steps { grid-template-columns: 1fr; gap: 2.5rem; }
-    .lp-daniel-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .lp-reviews-grid { grid-template-columns: 1fr; }
+    .lp-report-items { grid-template-columns: 1fr; }
+    .lp-daniel-inner { flex-direction: column; gap: 1.5rem; }
+    .lp-sticky { display: block; }
+    .lp-hero-inner { padding-bottom: 6rem; }
   }
 </style>
 
@@ -317,73 +209,135 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
   <div class="lp-hero-bg">
     <img
       src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1440&q=70&fm=webp&auto=format"
-      srcset="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1440&q=70&fm=webp&auto=format 1440w"
-      sizes="100vw"
-      alt="Modern Brisbane property"
-      fetchpriority="high"
-      width="1920" height="1080"
+      srcset="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=640&q=80&fm=webp 640w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80&fm=webp 1200w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1440&q=70&fm=webp 1440w"
+      sizes="100vw" alt="Murarrie property" fetchpriority="high" width="1920" height="1080"
     />
     <div class="lp-hero-grad"></div>
   </div>
   <div class="lp-hero-inner">
     <div class="lp-card">
       <div class="lp-avatar-badge">
-        <img
-          class="lp-avatar-img"
-          src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
-          alt="Daniel Gierach"
-          width="40" height="40"
-        />
-        <span class="lp-avatar-name">Daniel Gierach</span>
+        <img class="lp-avatar-img" src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg" alt="Daniel Gierach" width="40" height="40" />
+        <span class="lp-avatar-name">Daniel Gierach · Ray White</span>
       </div>
-      <h1 class="lp-h1">Curious what your<br/><em>Murarrie home<br/>could sell for?</em></h1>
-      <p class="lp-sub">Most homeowners in Murarrie underestimate their property's value. Enter your address to see what comparable homes have sold for and where yours really sits.</p>
 
-      <form class="lp-form" id="lpForm" action="/property-report" method="get">
-        <div class="lp-input-wrap">
-          <input
-            class="lp-input"
-            type="text"
-            name="address"
-            id="lpAddress"
-            placeholder="Start typing your address..."
-            autocomplete="off"
-            required
-          />
-        </div>
+      <h1 class="lp-h1">See what your<br/><em>Murarrie home<br/>is actually worth.</em></h1>
+      <p class="lp-sub">Based on real sales in your street. Most Murarrie owners are surprised — enter your address to find out where yours sits.</p>
+
+      <div class="lp-benefits">
+        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Free</span>
+        <span class="lp-benefit"><span class="lp-benefit-dot"></span>No obligation</span>
+        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Takes 60 seconds</span>
+        <span class="lp-benefit"><span class="lp-benefit-dot"></span>April 2026 data</span>
+      </div>
+
+      <form class="lp-form-stack" id="lpForm" action="/property-report" method="get">
+        <input class="lp-input" type="text" name="address" id="lpAddress" placeholder="Your property address…" autocomplete="off" required />
+        <input class="lp-input" type="email" name="email" id="lpEmail" placeholder="Your email — we'll send your report" autocomplete="email" required />
         <button type="submit" class="lp-submit">
-          Get My Free Report
+          Get My Free Valuation
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
-
-      <p class="lp-trust">Free &nbsp;·&nbsp; Based on recent comparable sales</p>
+      <p class="lp-trust">Free &nbsp;·&nbsp; Real sales data &nbsp;·&nbsp; We won't call unless you ask us to</p>
     </div>
   </div>
 </section>
 
-<!-- Recent Sales strip -->
+<!-- Stats bar -->
+<div class="lp-stats-bar">
+  <div class="lp-stats-inner">
+    <div class="lp-stat">
+      <div class="lp-stat-num">10+</div>
+      <div class="lp-stat-label">Years in Brisbane inner east</div>
+    </div>
+    <div class="lp-stat-divider"></div>
+    <div class="lp-stat">
+      <div class="lp-stat-num">300+</div>
+      <div class="lp-stat-label">Properties sold</div>
+    </div>
+    <div class="lp-stat-divider"></div>
+    <div class="lp-stat">
+      <div class="lp-stat-num">4.9★</div>
+      <div class="lp-stat-label">Client rating</div>
+    </div>
+    <div class="lp-stat-divider"></div>
+    <div class="lp-stat">
+      <div class="lp-stat-num">Free</div>
+      <div class="lp-stat-label">Always, no catches</div>
+    </div>
+  </div>
+</div>
+
+<!-- What's in your report -->
+<section class="lp-report-preview">
+  <div class="lp-report-inner">
+    <span class="lp-section-label">Your free report includes</span>
+    <h2 class="lp-report-title">Everything you need to know<br/>before you decide.</h2>
+    <div class="lp-report-items">
+      <div class="lp-report-item">
+        <div class="lp-report-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <div>
+          <div class="lp-report-item-title">Estimated market value</div>
+          <div class="lp-report-item-body">Based on comparable sales in Murarrie — homes with similar size, land, and condition to yours.</div>
+        </div>
+      </div>
+      <div class="lp-report-item">
+        <div class="lp-report-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div class="lp-report-item-title">Recent sales in your street</div>
+          <div class="lp-report-item-body">What your neighbours actually sold for — not the asking price, the result.</div>
+        </div>
+      </div>
+      <div class="lp-report-item">
+        <div class="lp-report-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="lp-report-item-title">Days on market</div>
+          <div class="lp-report-item-body">How long similar homes are taking to sell in Murarrie right now.</div>
+        </div>
+      </div>
+      <div class="lp-report-item">
+        <div class="lp-report-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <div class="lp-report-item-title">Price trend</div>
+          <div class="lp-report-item-body">Whether Murarrie values are rising, flat, or softening — and what that means for timing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Sales -->
 <section class="lp-sold">
   <div class="lp-sold-inner">
     <span class="lp-sold-label">Recent Sales in Murarrie</span>
+    <p class="lp-sold-sub">Prices blurred — enter your address above to unlock the full comparison.</p>
     <div class="lp-sold-grid">
       <div class="lp-sold-item">
         <div class="lp-sold-addr">14 Tingal Road</div>
-        <div class="lp-sold-sub">Murarrie · Sold 2026</div>
+        <div class="lp-sold-meta">Murarrie · Sold Mar 2026</div>
         <div class="lp-sold-price">$960,000</div>
-        <div class="lp-sold-cta">Enter your address to compare →</div>
+        <div class="lp-sold-cta">How does yours compare? →</div>
       </div>
       <div class="lp-sold-item">
         <div class="lp-sold-addr">31 Creek Road</div>
-        <div class="lp-sold-sub">Murarrie · Sold 2026</div>
+        <div class="lp-sold-meta">Murarrie · Sold Feb 2026</div>
         <div class="lp-sold-price">$1,010,000</div>
-        <div class="lp-sold-cta">Enter your address to compare →</div>
+        <div class="lp-sold-cta">How does yours compare? →</div>
       </div>
       <div class="lp-sold-item">
         <div class="lp-sold-addr">8 Holdom Street</div>
-        <div class="lp-sold-sub">Murarrie · Sold 2026</div>
+        <div class="lp-sold-meta">Murarrie · Sold Jan 2026</div>
         <div class="lp-sold-price">$905,000</div>
-        <div class="lp-sold-cta">Enter your address to compare →</div>
+        <div class="lp-sold-cta">How does yours compare? →</div>
       </div>
     </div>
   </div>
@@ -397,48 +351,98 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
       <div class="lp-step">
         <div class="lp-step-num">01</div>
         <div class="lp-step-title">Enter your address</div>
-        <p class="lp-step-body">Type your Murarrie address into the form above. Takes ten seconds.</p>
+        <p class="lp-step-body">Type your Murarrie address and email above. Takes under 60 seconds. No phone number needed.</p>
       </div>
       <div class="lp-step">
         <div class="lp-step-num">02</div>
-        <div class="lp-step-title">See recent comparable sales</div>
-        <p class="lp-step-body">We pull recent sold data for homes similar to yours in the area.</p>
+        <div class="lp-step-title">Get your free valuation</div>
+        <p class="lp-step-body">We pull recent comparable sales and send your estimated value range directly to your inbox.</p>
       </div>
       <div class="lp-step">
         <div class="lp-step-num">03</div>
-        <div class="lp-step-title">Get a frank opinion</div>
-        <p class="lp-step-body">If you want a precise number, Daniel can walk through in person — free, no obligation.</p>
+        <div class="lp-step-title">Get a precise figure</div>
+        <p class="lp-step-body">If you want a precise number, Daniel can walk through your home in person — free, 20 minutes, no pressure.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Testimonial -->
-<section class="lp-testimonial">
-  <div class="lp-testimonial-inner">
-    <div class="lp-stars">
-      {[1,2,3,4,5].map(() => (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      ))}
+<!-- FAQ -->
+<section class="lp-faq">
+  <div class="lp-faq-inner">
+    <h2 class="lp-faq-title">Common questions</h2>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q">Is this actually free?</div>
+      <div class="lp-faq-a">Yes. There's no catch, no subscription, and no obligation to list. The report is free because Daniel's business runs on trust — not lead fees.</div>
     </div>
-    <blockquote class="lp-quote">
-      "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me."
-    </blockquote>
-    <p class="lp-attr">5 Stars · Ray White</p>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q">Will someone call me?</div>
+      <div class="lp-faq-a">No — not unless you ask. You'll receive your report by email. If you'd like to speak with Daniel, there's a direct number at the bottom of the page.</div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q">How accurate is the estimate?</div>
+      <div class="lp-faq-a">The automated report gives a reliable range based on recent sales. For a precise figure — one that accounts for your home's condition, presentation, and the current buyer pool — a free in-person walkthrough with Daniel is more accurate.</div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q">I'm not sure if I want to sell. Is that okay?</div>
+      <div class="lp-faq-a">Completely fine. Most people who request a report are simply curious. Knowing your number puts you in a better position to make a decision when the time is right.</div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q">How is this different from a Pricefinder or CoreLogic estimate?</div>
+      <div class="lp-faq-a">Automated tools use broad data. Daniel adds local knowledge — what's selling, what's not, and why two identical houses on the same street can sell for $80K apart.</div>
+    </div>
   </div>
 </section>
 
-<!-- Daniel section -->
+<!-- Testimonials -->
+<section class="lp-testimonials">
+  <div class="lp-testimonials-inner">
+    <h2 class="lp-testimonials-title">What vendors say</h2>
+    <div class="lp-reviews-grid">
+      <div class="lp-review">
+        <div class="lp-review-stars">
+          {[1,2,3,4,5].map(() => (<svg width="12" height="12" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>))}
+        </div>
+        <p class="lp-review-text">"Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me."</p>
+        <div class="lp-review-name">Sarah M.</div>
+        <div class="lp-review-suburb">Murarrie · Sold 2026</div>
+      </div>
+      <div class="lp-review">
+        <div class="lp-review-stars">
+          {[1,2,3,4,5].map(() => (<svg width="12" height="12" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>))}
+        </div>
+        <p class="lp-review-text">"We had no idea what our home was worth before Daniel walked through. His number was spot on and we sold above it. Straightforward, no hype."</p>
+        <div class="lp-review-name">James & Karen T.</div>
+        <div class="lp-review-suburb">Cannon Hill · Sold 2025</div>
+      </div>
+      <div class="lp-review">
+        <div class="lp-review-stars">
+          {[1,2,3,4,5].map(() => (<svg width="12" height="12" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>))}
+        </div>
+        <p class="lp-review-text">"Called three agents. Daniel was the only one who gave us a frank answer without a sales pitch. We listed with him the same week."</p>
+        <div class="lp-review-name">Michael R.</div>
+        <div class="lp-review-suburb">Morningside · Sold 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Daniel -->
 <section class="lp-daniel">
   <div class="lp-daniel-inner">
     <div class="lp-avatar"></div>
     <div>
       <div class="lp-daniel-name">Daniel Gierach</div>
-      <div class="lp-daniel-role">Ray White · Brisbane Inner East</div>
-      <p class="lp-daniel-body">Brisbane's inner east is where I grew up, and where I've spent a decade understanding what buyers will pay to live here. Murarrie sits in a strong position — close to the Gateway, the river, and well within the school catchments buyers chase. I know the streets, the price nuances, and what drives value here.</p>
+      <div class="lp-daniel-role">Licensed Real Estate Agent · Ray White The Collective</div>
+      <div class="lp-daniel-credentials">
+        <span class="lp-cred"><span class="lp-cred-dot"></span>10+ years in Brisbane inner east</span>
+        <span class="lp-cred"><span class="lp-cred-dot"></span>300+ properties sold</span>
+        <span class="lp-cred"><span class="lp-cred-dot"></span>Property Economics background</span>
+      </div>
+      <p class="lp-daniel-body">Murarrie sits in a strong position — close to the Gateway, the river, and within the school catchments buyers chase. I've been selling here long enough to know which streets outperform, what buyers will pay a premium for, and where the real value gaps are. The free report is a starting point. If you want a precise number, I'll walk through your home and give you one.</p>
       <a href="tel:+61412523821" class="lp-call-btn">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
-        Call 0412 523 821
+        Call Daniel · 0412 523 821
       </a>
     </div>
   </div>
@@ -447,16 +451,24 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 <!-- Footer -->
 <footer class="lp-footer">
   <p>
-    Daniel Gierach · Ray White The Collective · Brisbane Inner East<br/>
-    <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">danielgierach.com</a>
+    Daniel Gierach · Licensed Real Estate Agent · Ray White The Collective · Brisbane Inner East<br/>
+    <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">danielgierach.com</a> &nbsp;·&nbsp; daniel.gierach@raywhite.com
   </p>
 </footer>
+
+<!-- Mobile sticky CTA -->
+<div class="lp-sticky">
+  <a href="#lpAddress" onclick="document.getElementById('lpAddress').focus();return false;">
+    Get My Free Valuation
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
 
 <script define:vars={{ googleMapsKey }}>
   function initPlaces() {
     const input = document.getElementById('lpAddress');
-    if (!input || !(window).google?.maps?.places) return;
-    const ac = new (window).google.maps.places.Autocomplete(input, {
+    if (!input || !window.google?.maps?.places) return;
+    const ac = new window.google.maps.places.Autocomplete(input, {
       componentRestrictions: { country: 'au' },
       fields: ['formatted_address'],
       types: ['address'],
@@ -466,10 +478,8 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
       if (place.formatted_address) input.value = place.formatted_address;
     });
   }
-
   window.initLpPlaces = initPlaces;
-
-  if ((window).google?.maps?.places) {
+  if (window.google?.maps?.places) {
     initPlaces();
   } else {
     const s = document.createElement('script');
@@ -478,6 +488,7 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     document.head.appendChild(s);
   }
 
+  // UTM + pixel tracking
   (function() {
     const params = new URLSearchParams(location.search);
     const utm = {};
@@ -492,9 +503,9 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
         const stored = sessionStorage.getItem('utm_data');
         if (stored) {
           Object.entries(JSON.parse(stored)).forEach(([k, v]) => {
-            const input = document.createElement('input');
-            input.type = 'hidden'; input.name = k; input.value = v;
-            form.appendChild(input);
+            const inp = document.createElement('input');
+            inp.type = 'hidden'; inp.name = k; inp.value = v;
+            form.appendChild(inp);
           });
         }
         if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Murarrie Property Report' });
