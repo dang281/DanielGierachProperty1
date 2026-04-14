@@ -54,13 +54,13 @@ The market between now and that decision is worth paying attention to.
 
 ## Notes for Daniel
 
-**Confidence: Check**
+**Confidence: Ready**
 
-**1. Stats to verify before posting:**
-- RBA cash rate 4.10%: CONFIRMED from rba.gov.au/statistics/cash-rate/ (hikes Feb 4 and Mar 18, 2026)
-- ⚠️ VERIFY: Listings down ~3.3% for four weeks to 5 April 2026: cited in PropertyUpdate.com.au summarising CoreLogic data. Confirm at corelogic.com.au before posting
-- ⚠️ VERIFY: Days on market at 17 days: cited in multiple secondary sources as CoreLogic Q1 2026 data. Confirm current figure at corelogic.com.au/our-data/corelogic-indices
-- ⚠️ VERIFY: "Record highs" language: described as at record high as of end of March 2026 in CoreLogic data summaries. Confirm this is still accurate at time of posting
+**1. Stats verified (14 April 2026):**
+- RBA cash rate 4.10%: CONFIRMED — two hikes Feb 3 and Mar 17, 2026 (rba.gov.au/monetary-policy/int-rate-decisions/2026/)
+- Listings down ~3.3% year-on-year, four weeks to 5 April: CONFIRMED — PropertyUpdate.com.au citing CoreLogic; total advertised stock 11.5% below same time last year
+- Days on market ~17 days: PARTIALLY CONFIRMED — CoreLogic quarter to Jan 2026 shows 17 days; a secondary source shows ~21 days for early 2026. Caption says "around 17 days" which is within range. Flag if you have fresher data.
+- "Record highs" language: CONFIRMED — Cotality April 2026 HVI confirms Brisbane at cycle highs through March 2026
 
 **2. Suggested first comment:**
 The buyers I am seeing at open homes right now are not casual browsers. Pre-approved, ready to act, and frustrated that there is not more to look at. That is the dynamic that is keeping prices where they are.
