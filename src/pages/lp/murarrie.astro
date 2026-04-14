@@ -4,8 +4,8 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 ---
 
 <LandingLayout
-  title="What Is Your Seven Hills Home Worth? | Free Report"
-  description="Find out what your Seven Hills property is worth based on recent comparable sales. Free, instant, no obligation. Daniel Gierach, Ray White."
+  title="What Is Your Murarrie Home Worth? | Free Report"
+  description="Find out what your Murarrie property is worth based on recent comparable sales. Free, instant, no obligation. Daniel Gierach, Ray White."
 >
 
 <style>
@@ -70,7 +70,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     padding: 6rem 1.5rem 4rem;
   }
 
-  /* Glass card, matches homepage hero exactly */
+  /* Glass card */
   .lp-card {
     max-width: 640px;
     background: rgba(0,0,0,0.45);
@@ -105,7 +105,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     line-height: 1.8; max-width: 46ch; margin-bottom: 0.75rem;
   }
 
-  /* Inline address form, matches homepage */
+  /* Address form */
   .lp-form { display: flex; gap: 0; max-width: 560px; }
   .lp-input-wrap { position: relative; flex: 1; min-width: 0; }
   .lp-input {
@@ -118,7 +118,6 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   }
   .lp-input::placeholder { color: rgba(240,236,228,0.4); }
 
-  /* Google Places dropdown */
   .pac-container {
     background: #1c1917;
     border: 1px solid rgba(255,255,255,0.12);
@@ -158,7 +157,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     .lp-submit { width: 100%; justify-content: center; }
   }
 
-  /* ── Sold strip ── */
+  /* ── Recent Sales strip ── */
   .lp-sold {
     background: #111;
     border-top: 1px solid rgba(242,239,233,0.06);
@@ -317,8 +316,8 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 <section class="lp-hero">
   <div class="lp-hero-bg">
     <img
-      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format"
-      srcset="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format 1440w"
+      src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1440&q=70&fm=webp&auto=format"
+      srcset="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1440&q=70&fm=webp&auto=format 1440w"
       sizes="100vw"
       alt="Modern Brisbane property"
       fetchpriority="high"
@@ -337,8 +336,8 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
         />
         <span class="lp-avatar-name">Daniel Gierach</span>
       </div>
-      <h1 class="lp-h1">Curious what your<br/><em>Seven Hills home<br/>could sell for?</em></h1>
-      <p class="lp-sub">Most homeowners in Seven Hills underestimate their property's value. Enter your address to see what comparable homes have sold for and where yours really sits.</p>
+      <h1 class="lp-h1">Curious what your<br/><em>Murarrie home<br/>could sell for?</em></h1>
+      <p class="lp-sub">Most homeowners in Murarrie underestimate their property's value. Enter your address to see what comparable homes have sold for and where yours really sits.</p>
 
       <form class="lp-form" id="lpForm" action="/property-report" method="get">
         <div class="lp-input-wrap">
@@ -366,24 +365,24 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 <!-- Recent Sales strip -->
 <section class="lp-sold">
   <div class="lp-sold-inner">
-    <span class="lp-sold-label">Recent Sales in Seven Hills</span>
+    <span class="lp-sold-label">Recent Sales in Murarrie</span>
     <div class="lp-sold-grid">
       <div class="lp-sold-item">
-        <div class="lp-sold-addr">11 Pandanus Street</div>
-        <div class="lp-sold-sub">Seven Hills · Sold 2026</div>
-        <div class="lp-sold-price">$1,310,000</div>
+        <div class="lp-sold-addr">14 Tingal Road</div>
+        <div class="lp-sold-sub">Murarrie · Sold 2026</div>
+        <div class="lp-sold-price">$960,000</div>
         <div class="lp-sold-cta">Enter your address to compare →</div>
       </div>
       <div class="lp-sold-item">
-        <div class="lp-sold-addr">19 Hoop Pine Street</div>
-        <div class="lp-sold-sub">Seven Hills · Sold 2026</div>
-        <div class="lp-sold-price">$1,380,000</div>
+        <div class="lp-sold-addr">31 Creek Road</div>
+        <div class="lp-sold-sub">Murarrie · Sold 2026</div>
+        <div class="lp-sold-price">$1,010,000</div>
         <div class="lp-sold-cta">Enter your address to compare →</div>
       </div>
       <div class="lp-sold-item">
-        <div class="lp-sold-addr">6 Kauri Court</div>
-        <div class="lp-sold-sub">Seven Hills · Sold 2026</div>
-        <div class="lp-sold-price">$1,240,000</div>
+        <div class="lp-sold-addr">8 Holdom Street</div>
+        <div class="lp-sold-sub">Murarrie · Sold 2026</div>
+        <div class="lp-sold-price">$905,000</div>
         <div class="lp-sold-cta">Enter your address to compare →</div>
       </div>
     </div>
@@ -398,7 +397,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
       <div class="lp-step">
         <div class="lp-step-num">01</div>
         <div class="lp-step-title">Enter your address</div>
-        <p class="lp-step-body">Type your Seven Hills address into the form above. Takes ten seconds.</p>
+        <p class="lp-step-body">Type your Murarrie address into the form above. Takes ten seconds.</p>
       </div>
       <div class="lp-step">
         <div class="lp-step-num">02</div>
@@ -436,7 +435,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     <div>
       <div class="lp-daniel-name">Daniel Gierach</div>
       <div class="lp-daniel-role">Ray White · Brisbane Inner East</div>
-      <p class="lp-daniel-body">Brisbane's inner east is where I grew up, and where I've spent a decade understanding what buyers will pay to live here. Backed by a background in Property Economics, I approach every appraisal with structure, strategy and a clear understanding of what drives value.</p>
+      <p class="lp-daniel-body">Brisbane's inner east is where I grew up, and where I've spent a decade understanding what buyers will pay to live here. Murarrie sits in a strong position — close to the Gateway, the river, and well within the school catchments buyers chase. I know the streets, the price nuances, and what drives value here.</p>
       <a href="tel:+61412523821" class="lp-call-btn">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
         Call 0412 523 821
@@ -454,7 +453,6 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 </footer>
 
 <script define:vars={{ googleMapsKey }}>
-  // ── Google Places Autocomplete ──────────────────────────────────
   function initPlaces() {
     const input = document.getElementById('lpAddress');
     if (!input || !(window).google?.maps?.places) return;
@@ -480,7 +478,6 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     document.head.appendChild(s);
   }
 
-  // ── UTM capture + form tracking ────────────────────────────────
   (function() {
     const params = new URLSearchParams(location.search);
     const utm = {};
@@ -500,8 +497,8 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
             form.appendChild(input);
           });
         }
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Seven Hills Property Report' });
-        if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { suburb: 'Seven Hills', source: 'lp' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Murarrie Property Report' });
+        if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { suburb: 'Murarrie', source: 'lp' });
       });
     }
   })();
