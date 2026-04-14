@@ -8,8 +8,15 @@
 ## ✅ Used Polls
 
 - POLL 01 — RBA Rate Decision (used: 2026-04-16, file: 2026-04-16-linkedin-poll-rba-outlook.md)
+- POLL 02 — Brisbane: Still Running? (used: 2026-04-22, file: 2026-04-22-linkedin-poll-brisbane-outlook.md)
+- POLL 03 — Saving a Deposit (used: 2026-04-29, file: 2026-04-29-linkedin-poll-deposit-strategy.md)
+- POLL 04 — Is Property Still Worth It? (used: 2026-05-06, file: 2026-05-06-linkedin-poll-investment-worth-it.md)
 - POLL 05 — Do You Know What Negative Gearing Is? (used: 2026-04-15, file: 2026-04-15-linkedin-poll-negative-gearing.md)
-- POLL 08 — House vs Unit (used: 2026-05-13, file: 2026-04-16-linkedin-poll-house-vs-unit.md)
+- POLL 06 — LVR Comfort Zone (used: 2026-05-20, file: 2026-05-20-linkedin-poll-lvr-comfort.md)
+- POLL 07 — What Does "Passed In" Mean? (used: 2026-05-27, file: 2026-05-27-linkedin-poll-passed-in.md)
+- POLL 08 — House vs Unit (used: 2026-05-13, file: 2026-05-13-linkedin-poll-house-vs-unit.md)
+- POLL 09 — Rentvesting (used: 2026-06-03, file: 2026-06-03-linkedin-poll-rentvesting.md)
+- POLL 10 — Should Stamp Duty Be Abolished? (used: 2026-06-10, file: 2026-06-10-linkedin-poll-stamp-duty-abolished.md)
 
 ---
 
