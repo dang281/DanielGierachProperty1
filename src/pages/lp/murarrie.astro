@@ -1,6 +1,5 @@
 ---
 import LandingLayout from '../../layouts/LandingLayout.astro';
-const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 ---
 
 <LandingLayout
@@ -76,14 +75,6 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
   }
   .lp-submit:hover { background: #d4af4a; }
   .lp-trust { font-size: 0.68rem; color: rgba(240,236,228,0.45); margin-top: 0.65rem; letter-spacing: 0.04em; }
-
-  /* Google Places */
-  .pac-container { background: #1c1917; border: 1px solid rgba(255,255,255,0.12); border-top: none; border-radius: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.5); font-family: var(--font-sans); }
-  .pac-item { padding: 0.65rem 1.1rem; font-size: 0.82rem; color: rgba(240,236,228,0.8); border-top: 1px solid rgba(255,255,255,0.08); cursor: pointer; }
-  .pac-item:hover, .pac-item-selected { background: rgba(196,145,42,0.12); }
-  .pac-item-query { color: #f0ece4; font-weight: 600; }
-  .pac-matched { color: var(--gold); }
-  .pac-icon { display: none; }
 
   /* ── Stats bar ── */
   .lp-stats-bar { background: rgba(10,8,6,0.95); border-top: 1px solid rgba(197,160,60,0.12); border-bottom: 1px solid rgba(197,160,60,0.12); padding: 1.5rem; }
@@ -222,18 +213,17 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
       </div>
 
       <h1 class="lp-h1">See what your<br/><em>Murarrie home<br/>is actually worth.</em></h1>
-      <p class="lp-sub">Based on real sales in your street. Most Murarrie owners are surprised — enter your address to find out where yours sits.</p>
+      <p class="lp-sub">Based on real sales in your street. Most Murarrie owners are surprised — enter your email and we'll show you where yours sits.</p>
 
       <div class="lp-benefits">
         <span class="lp-benefit"><span class="lp-benefit-dot"></span>Free</span>
         <span class="lp-benefit"><span class="lp-benefit-dot"></span>No obligation</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Takes 60 seconds</span>
+        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Takes 10 seconds</span>
         <span class="lp-benefit"><span class="lp-benefit-dot"></span>April 2026 data</span>
       </div>
 
       <form class="lp-form-stack" id="lpForm" action="/property-report" method="get">
-        <input class="lp-input" type="text" name="address" id="lpAddress" placeholder="Your property address…" autocomplete="off" required />
-        <input class="lp-input" type="email" name="email" id="lpEmail" placeholder="Your email — we'll send your report" autocomplete="email" required />
+        <input class="lp-input" type="email" name="email" id="lpEmail" placeholder="Your email address…" autocomplete="email" required />
         <button type="submit" class="lp-submit">
           Get My Free Valuation
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -319,7 +309,7 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 <section class="lp-sold">
   <div class="lp-sold-inner">
     <span class="lp-sold-label">Recent Sales in Murarrie</span>
-    <p class="lp-sold-sub">Prices blurred — enter your address above to unlock the full comparison.</p>
+    <p class="lp-sold-sub">Prices blurred — enter your email above to unlock the full comparison.</p>
     <div class="lp-sold-grid">
       <div class="lp-sold-item">
         <div class="lp-sold-addr">14 Tingal Road</div>
@@ -350,8 +340,8 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     <div class="lp-steps">
       <div class="lp-step">
         <div class="lp-step-num">01</div>
-        <div class="lp-step-title">Enter your address</div>
-        <p class="lp-step-body">Type your Murarrie address and email above. Takes under 60 seconds. No phone number needed.</p>
+        <div class="lp-step-title">Enter your email</div>
+        <p class="lp-step-body">Just your email address. Takes 10 seconds. No phone number, no commitment.</p>
       </div>
       <div class="lp-step">
         <div class="lp-step-num">02</div>
@@ -458,36 +448,13 @@ const googleMapsKey = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 
 <!-- Mobile sticky CTA -->
 <div class="lp-sticky">
-  <a href="#lpAddress" onclick="document.getElementById('lpAddress').focus();return false;">
+  <a href="#lpEmail" onclick="document.getElementById('lpEmail').focus();return false;">
     Get My Free Valuation
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
 </div>
 
-<script define:vars={{ googleMapsKey }}>
-  function initPlaces() {
-    const input = document.getElementById('lpAddress');
-    if (!input || !window.google?.maps?.places) return;
-    const ac = new window.google.maps.places.Autocomplete(input, {
-      componentRestrictions: { country: 'au' },
-      fields: ['formatted_address'],
-      types: ['address'],
-    });
-    ac.addListener('place_changed', () => {
-      const place = ac.getPlace();
-      if (place.formatted_address) input.value = place.formatted_address;
-    });
-  }
-  window.initLpPlaces = initPlaces;
-  if (window.google?.maps?.places) {
-    initPlaces();
-  } else {
-    const s = document.createElement('script');
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=initLpPlaces`;
-    s.async = true; s.defer = true;
-    document.head.appendChild(s);
-  }
-
+<script>
   // UTM + pixel tracking
   (function() {
     const params = new URLSearchParams(location.search);
