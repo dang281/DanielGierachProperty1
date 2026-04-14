@@ -31,6 +31,10 @@
 - POLL 22 — What Actually Drives Prices? (used: 2026-09-02, file: 2026-09-02-linkedin-poll-what-drives-prices.md)
 - POLL 23 — Vendor Bids: Fair or Not? (used: 2026-09-09, file: 2026-09-09-linkedin-poll-vendor-bids.md)
 - POLL 24 — How Much Do You Trust Comparable Sales? (used: 2026-09-16, file: 2026-09-16-linkedin-poll-comparable-sales.md)
+- CUSTOM — How Did You Find Your Property? (used: 2026-09-23, file: 2026-09-23-linkedin-poll-how-did-you-find-property.md)
+- CUSTOM — Selling a Property: What Stresses You Most? (used: 2026-09-30, file: 2026-09-30-linkedin-poll-stressful-selling.md)
+- CUSTOM — Are You Planning to Sell in the Next 12 Months? (used: 2026-10-07, file: 2026-10-07-linkedin-poll-selling-plans.md)
+- CUSTOM — What Matters Most When Choosing an Agent? (used: 2026-10-14, file: 2026-10-14-linkedin-poll-choosing-an-agent.md)
 
 ---
 
