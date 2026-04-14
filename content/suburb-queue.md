@@ -34,6 +34,24 @@
 - Carina Heights — 2026-04-18-linkedin-carina-heights-suburb-spotlight.md
 - Carindale — 2026-05-05-linkedin-carindale-suburb-spotlight.md
 
+### Facebook Suburb Spotlights — Q1 2027 (cycle continues from Dec 26 Coorparoo)
+
+- Carina Heights (FB) — 2027-01-02-facebook-carina-heights-suburb-spotlight.md
+- Carindale (FB) — 2027-01-09-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB) — 2027-01-16-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB) — 2027-01-23-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB) — 2027-01-30-facebook-mt-gravatt-east-suburb-spotlight.md
+- Mt Gravatt (FB) — 2027-02-06-facebook-mt-gravatt-suburb-spotlight.md
+- Morningside (FB) — 2027-02-13-facebook-morningside-suburb-spotlight.md
+- Norman Park (FB) — 2027-02-20-facebook-normanpark-suburb-spotlight.md
+- Carina (FB) — 2027-02-27-facebook-carina-suburb-spotlight.md
+- Cannon Hill (FB) — 2027-03-06-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB) — 2027-03-13-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB) — 2027-03-20-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB) — 2027-03-27-facebook-balmoral-suburb-spotlight.md
+
+Next in Q2 2027: Seven Hills, Murarrie, Hawthorne (completing the cycle before restarting)
+
 ---
 
 ## What Each Suburb Spotlight Must Include
