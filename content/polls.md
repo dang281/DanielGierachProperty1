@@ -364,3 +364,107 @@
 ---
 
 *Sources: KPMG, Westpac, CBA, RBA, SBS News, Australian Property Update, APRA, Queensland Revenue Office, QLD Property Occupations Act 2014*
+
+---
+
+### CUSTOM — Brisbane 2027: More or Less Optimistic?
+**Intro:** Twelve months ago, Brisbane was posting record median prices and strong buyer demand. The Cross River Rail opened, migration remained elevated, and the 2032 Olympic countdown moved into single-digit years. A lot has happened since. Time for a gut check.
+
+**Question:** Compared to 12 months ago, how do you feel about Brisbane property in 2027?
+
+**Options:**
+- More optimistic (fundamentals are strong)
+- About the same
+- Less optimistic (affordability is the concern)
+- It depends entirely on the suburb
+
+---
+
+### CUSTOM — Would You Buy Without a Building and Pest Inspection?
+**Intro:** The building and pest clause is standard in QLD contracts. Most buyers use it. Some waive it in competitive markets to make their offer more attractive. A clear B and P report takes roughly 3 to 5 business days and costs $400 to $700. What you find can change the deal significantly.
+
+**Question:** Would you ever waive the building and pest inspection to win a property?
+
+**Options:**
+- Never, the risk is too high
+- Yes, if I knew the property well
+- Depends on the age and condition of the home
+- I've done it and regretted it
+
+---
+
+### CUSTOM — Has a School Catchment Ever Influenced Where You Bought?
+**Intro:** In Brisbane's inner east, school catchment boundaries can affect a property's value by $100,000 or more compared to an identical home on the wrong side of the line. The demand for homes in catchments like Whites Hill State College, Coorparoo State School, and Bulimba State School is consistently reflected in sale prices.
+
+**Question:** Has a school catchment ever been a deciding factor in where you bought or are looking to buy?
+
+**Options:**
+- Yes, it was the main reason we chose that suburb
+- It was one factor among several
+- Not directly, but we noticed the price premium
+- No, catchments have never influenced our decision
+
+---
+
+### CUSTOM — Off-Market: Would You Accept Without Testing the Market?
+**Intro:** Off-market sales are common in Brisbane's inner east. An agent approaches a homeowner on behalf of a buyer before the property is listed. No open homes, no marketing, no competing offers. The seller avoids the process but almost always sells for less than a well-run campaign would achieve.
+
+**Question:** If you received a strong off-market offer on your home, would you accept it without going to market?
+
+**Options:**
+- Yes, if the price was right
+- No, I'd always want to test the market
+- Depends on how close to my expectation the offer was
+- I'd list it, but the off-market offer would set my floor
+
+---
+
+### CUSTOM — Have You Ever Been Surprised by Your Borrowing Capacity?
+**Intro:** APRA's 3% serviceability buffer means lenders test you at your actual rate plus 3 percentage points. On top of that, most banks apply their own conservative income assumptions. First-time borrowers are often surprised by the gap between what they expected and what the bank approved.
+
+**Question:** When you last applied for a home loan, how did the approved amount compare to your expectation?
+
+**Options:**
+- Higher than expected (pleasant surprise)
+- About what I expected
+- Lower than expected (disappointing)
+- I haven't applied for a mortgage yet
+
+---
+
+### CUSTOM — What Is Your Biggest Property Goal for the Next 2 Years?
+**Intro:** Brisbane's property market has changed significantly over the past three years. Rate movements, population growth, infrastructure investment, and affordability pressures have reshaped what is achievable for different buyer groups. Worth asking the question directly.
+
+**Question:** What is your primary property goal over the next two years?
+
+**Options:**
+- Buy my first home
+- Upgrade or upsize my current home
+- Add an investment property to my portfolio
+- Pay down existing debt and build equity
+
+---
+
+### CUSTOM — Do You Think Brisbane Is Overvalued Right Now?
+**Intro:** Brisbane's median house price has grown significantly over the past four years. Affordability relative to incomes is stretched compared to historical norms. At the same time, fundamentals including population growth, Olympics infrastructure, and undersupply remain intact. The debate is live.
+
+**Question:** Do you think Brisbane residential property is currently overvalued?
+
+**Options:**
+- Yes, prices have run too far
+- No, the fundamentals justify current prices
+- Depends on the suburb and price point
+- Honestly, I'm not sure how to assess it
+
+---
+
+### CUSTOM — Auction or Private Treaty: Which Do You Prefer as a Buyer?
+**Intro:** Auctions create transparency on the day but require unconditional readiness. Private treaty gives you conditions and time but less clarity on where other buyers are sitting. Both methods are common in Brisbane's inner east, and which works better depends as much on the property and market conditions as buyer preference.
+
+**Question:** As a buyer, which sale method do you prefer?
+
+**Options:**
+- Auction (transparent, I know where I stand)
+- Private treaty (conditions give me protection)
+- Expression of interest (structured but flexible)
+- I'll adapt to whatever the vendor chooses
