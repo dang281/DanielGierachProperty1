@@ -17,6 +17,13 @@
 - POLL 08 — House vs Unit (used: 2026-05-13, file: 2026-05-13-linkedin-poll-house-vs-unit.md)
 - POLL 09 — Rentvesting (used: 2026-06-03, file: 2026-06-03-linkedin-poll-rentvesting.md)
 - POLL 10 — Should Stamp Duty Be Abolished? (used: 2026-06-10, file: 2026-06-10-linkedin-poll-stamp-duty-abolished.md)
+- POLL 11 — Buyer's Agent: Worth It? (used: 2026-06-17, file: 2026-06-17-linkedin-poll-buyers-agent.md)
+- POLL 12 — Property vs Shares (used: 2026-06-24, file: 2026-06-24-linkedin-poll-property-vs-shares.md)
+- POLL 13 — Off the Plan vs Established (used: 2026-07-01, file: 2026-07-01-linkedin-poll-off-plan-vs-established.md)
+- POLL 14 — Gross Yield vs Net Yield (used: 2026-07-08, file: 2026-07-08-linkedin-poll-gross-vs-net-yield.md)
+- POLL 15 — The Serviceability Buffer (used: 2026-07-15, file: 2026-07-15-linkedin-poll-serviceability-buffer.md)
+- POLL 16 — Is LMI Worth Paying? (used: 2026-07-22, file: 2026-07-22-linkedin-poll-lmi-worth-paying.md)
+- POLL 17 — How Many Properties for Financial Freedom? (used: 2026-07-29, file: 2026-07-29-linkedin-poll-properties-for-financial-freedom.md)
 
 ---
 
