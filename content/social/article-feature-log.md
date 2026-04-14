@@ -35,3 +35,4 @@
 | 2026-10-01 | how-to-handle-offers-when-selling | An unconditional offer eliminates 2-3 weeks of conditional risk; price is only one variable in offer comparison |
 | 2026-10-08 | negative-gearing-selling-investment-property-brisbane | Negative gearing strategy should be reviewed annually; settlement timing relative to 30 June affects CGT outcome |
 | 2026-10-15 | fixtures-fittings-inclusions-property-sale-qld | Light fittings are fixtures and stay with the property unless excluded in the contract before signing |
+| 2026-10-22 | what-happens-on-settlement-day-queensland | For most vendors settlement day is quiet and handled digitally via PEXA; vendor role is preparation, not attendance |

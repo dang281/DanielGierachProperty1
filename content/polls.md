@@ -35,6 +35,7 @@
 - CUSTOM — Selling a Property: What Stresses You Most? (used: 2026-09-30, file: 2026-09-30-linkedin-poll-stressful-selling.md)
 - CUSTOM — Are You Planning to Sell in the Next 12 Months? (used: 2026-10-07, file: 2026-10-07-linkedin-poll-selling-plans.md)
 - CUSTOM — What Matters Most When Choosing an Agent? (used: 2026-10-14, file: 2026-10-14-linkedin-poll-choosing-an-agent.md)
+- CUSTOM — When Are You Planning to List? (used: 2026-10-21, file: 2026-10-21-linkedin-poll-listing-timing.md)
 
 ---
 
