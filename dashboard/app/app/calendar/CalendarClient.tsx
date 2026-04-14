@@ -124,69 +124,109 @@ function Chip({ active, colour, onClick, children }: {
 // ─── Hover Preview ────────────────────────────────────────────────────────────
 
 function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
-  const W = 300
+  const W = 320
   const screenW = typeof window !== 'undefined' ? window.innerWidth : 1400
   const screenH = typeof window !== 'undefined' ? window.innerHeight : 900
   const left    = rect.right + 12 + W > screenW ? rect.left - W - 12 : rect.right + 12
-  const top     = Math.max(8, Math.min(rect.top, screenH - 480))
+  const top     = Math.max(8, Math.min(rect.top, screenH - 560))
   const pc      = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
   const visual  = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
 
   return (
     <div
-      className="fixed z-50 rounded-xl border shadow-2xl p-4 flex flex-col gap-3 pointer-events-none"
+      className="fixed z-50 rounded-xl border shadow-2xl overflow-hidden flex flex-col pointer-events-none"
       style={{ left, top, width: W, background: 'var(--color-bg)', borderColor: pc,
-        boxShadow: `0 0 0 1px ${pc}33, 0 20px 40px rgba(0,0,0,0.55)` }}
+        boxShadow: `0 0 0 1px ${pc}33, 0 24px 48px rgba(0,0,0,0.65)` }}
     >
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <span className="w-5 h-5 rounded text-[10px] font-bold flex items-center justify-center"
-            style={{ background: pc, color: '#fff' }}>
-            {PLATFORM_ICON[item.platform] ?? '?'}
-          </span>
-          <span className="text-[11px] font-sans font-semibold" style={{ color: pc }}>
-            {PLATFORM_LABEL[item.platform]}
+      {/* Design preview — shown when Canva thumbnail available */}
+      {item.visual_thumbnail ? (
+        <div className="relative w-full" style={{ aspectRatio: '1.91/1', background: '#111' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={item.visual_thumbnail} alt="Post visual"
+            className="w-full h-full object-cover" />
+          {/* Platform badge overlay */}
+          <div className="absolute top-2 left-2 flex items-center gap-1.5 rounded-full px-2 py-1"
+            style={{ background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)' }}>
+            <span className="w-4 h-4 rounded text-[9px] font-bold flex items-center justify-center"
+              style={{ background: pc, color: '#fff' }}>
+              {PLATFORM_ICON[item.platform] ?? '?'}
+            </span>
+            <span className="text-[10px] font-sans font-semibold" style={{ color: '#fff' }}>
+              {PLATFORM_LABEL[item.platform]}
+            </span>
+          </div>
+          {/* Status badge overlay */}
+          <span className="absolute top-2 right-2 text-[9px] font-sans font-semibold px-2 py-0.5 rounded-full capitalize"
+            style={{ color: STATUS_COLOUR[item.status as Status], background: 'rgba(0,0,0,0.65)',
+              backdropFilter: 'blur(4px)', border: `1px solid ${STATUS_COLOUR[item.status as Status]}44` }}>
+            {item.status}
           </span>
         </div>
-        <span className="text-[10px] font-sans font-semibold px-2 py-0.5 rounded-full capitalize"
-          style={{ color: STATUS_COLOUR[item.status as Status], background: STATUS_BG[item.status as Status] }}>
-          {item.status}
-        </span>
-      </div>
-
-      <p className="text-[13px] font-sans font-semibold text-[var(--color-cream)] leading-snug">{item.title}</p>
-
-      {item.scheduled_date && (
-        <p className="text-[10px] font-sans text-[var(--color-cream-x)]">
-          {new Date(item.scheduled_date + 'T00:00:00').toLocaleDateString('en-AU', {
-            weekday: 'long', day: 'numeric', month: 'long',
-          })}
-          {item.scheduled_time && ` · ${item.scheduled_time} AEST`}
-        </p>
-      )}
-
-      {item.caption && (
-        <p className="text-[10px] font-sans text-[var(--color-cream-dim)] leading-relaxed line-clamp-5">
-          {item.caption.slice(0, 300)}{item.caption.length > 300 ? '…' : ''}
-        </p>
-      )}
-
-      <div className="flex items-center justify-between gap-2 pt-1 border-t border-[rgba(255,255,255,0.06)]">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full" style={{ background: visual.colour }} />
-          <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
-        </div>
-        {item.content_pillar && (
-          <span className="text-[9px] font-sans font-semibold px-1.5 py-0.5 rounded"
-            style={{ color: PILLAR_COLOUR[item.content_pillar], background: `${PILLAR_COLOUR[item.content_pillar]}22` }}>
-            {PILLAR_LABEL[item.content_pillar]}
+      ) : (
+        /* No thumbnail — placeholder banner with platform colour */
+        <div className="w-full flex items-center justify-center" style={{ height: 72, background: `${pc}18` }}>
+          <span className="text-[10px] font-sans font-semibold opacity-50" style={{ color: pc }}>
+            No visual yet
           </span>
+        </div>
+      )}
+
+      <div className="flex flex-col gap-2.5 p-4">
+        {/* Platform + status (only when no thumbnail) */}
+        {!item.visual_thumbnail && (
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="w-5 h-5 rounded text-[10px] font-bold flex items-center justify-center"
+                style={{ background: pc, color: '#fff' }}>
+                {PLATFORM_ICON[item.platform] ?? '?'}
+              </span>
+              <span className="text-[11px] font-sans font-semibold" style={{ color: pc }}>
+                {PLATFORM_LABEL[item.platform]}
+              </span>
+            </div>
+            <span className="text-[10px] font-sans font-semibold px-2 py-0.5 rounded-full capitalize"
+              style={{ color: STATUS_COLOUR[item.status as Status], background: STATUS_BG[item.status as Status] }}>
+              {item.status}
+            </span>
+          </div>
         )}
-      </div>
 
-      <p className="text-[10px] font-sans text-[var(--color-cream-x)]">
-        Click to view full post{item.canva_url ? ' · Canva attached' : ''}
-      </p>
+        <p className="text-[13px] font-sans font-semibold text-[var(--color-cream)] leading-snug">{item.title}</p>
+
+        {item.scheduled_date && (
+          <p className="text-[10px] font-sans text-[var(--color-cream-x)]">
+            {new Date(item.scheduled_date + 'T00:00:00').toLocaleDateString('en-AU', {
+              weekday: 'long', day: 'numeric', month: 'long',
+            })}
+            {item.scheduled_time && ` · ${item.scheduled_time} AEST`}
+          </p>
+        )}
+
+        {item.caption && (
+          <p className="text-[11px] font-sans text-[var(--color-cream-dim)] leading-relaxed line-clamp-4"
+            style={{ borderLeft: `2px solid ${pc}44`, paddingLeft: 8 }}>
+            {item.caption.slice(0, 280)}{item.caption.length > 280 ? '…' : ''}
+          </p>
+        )}
+
+        <div className="flex items-center justify-between gap-2 pt-1 border-t border-[rgba(255,255,255,0.06)]">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full" style={{ background: visual.colour }} />
+            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {item.content_pillar && (
+              <span className="text-[9px] font-sans font-semibold px-1.5 py-0.5 rounded"
+                style={{ color: PILLAR_COLOUR[item.content_pillar], background: `${PILLAR_COLOUR[item.content_pillar]}22` }}>
+                {PILLAR_LABEL[item.content_pillar]}
+              </span>
+            )}
+            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">
+              Click to open{item.canva_url ? ' · Canva ↗' : ''}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -350,7 +390,7 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
           borderLeft: `3px solid ${pc}` }}
       >
         {item.visual_thumbnail && (
-          <div className="w-full h-[72px] overflow-hidden">
+          <div className="w-full overflow-hidden" style={{ aspectRatio: '1.91/1' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={item.visual_thumbnail} alt=""
               className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />

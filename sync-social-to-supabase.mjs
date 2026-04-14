@@ -165,6 +165,7 @@ async function main() {
       visual_brief:      visualBrief ?? null,
       visual_status:     parseVisualStatus(field(md, 'Visual status')),
       canva_url:         field(md, 'Canva URL') ?? null,
+      visual_thumbnail:  field(md, 'Canva Thumbnail') ?? null,
       platform_variants: pollOptions || null,
     }
 
