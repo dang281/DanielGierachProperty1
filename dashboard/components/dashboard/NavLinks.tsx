@@ -4,12 +4,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
-  { href: '/app',          label: 'Dashboard', exact: true },
-  { href: '/app/social',   label: 'Social' },
-  { href: '/app/seo',      label: 'SEO' },
-  { href: '/app/projects', label: 'Projects' },
-  { href: '/app/calendar', label: 'Calendar' },
-  { href: '/app/brand',    label: 'Brand' },
+  { href: '/app',           label: 'Dashboard', exact: true },
+  { href: '/app/social',    label: 'Social' },
+  { href: '/app/seo',       label: 'SEO' },
+  { href: '/app/projects',  label: 'Projects' },
+  { href: '/app/calendar',  label: 'Calendar' },
+  { href: '/app/brand',     label: 'Brand' },
+  { href: '/app/workflow',  label: 'Workflow' },
 ]
 
 export default function NavLinks() {
