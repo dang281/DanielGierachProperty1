@@ -57,3 +57,5 @@
 | 2027-03-11 | pre-settlement-inspection-seller-guide-qld | Buyer entitled to one pre-settlement inspection; property must be in same condition as at contract signing |
 | 2027-03-18 | easements-property-brisbane-qld | Drainage easement along rear boundary is usually non-issue; access easement through yard is materially different |
 | 2027-03-25 | body-corporate | Levies range $2K-$4K/yr for small townhouse to $6K-$14K+/yr for mid-rise; check sinking fund balance before buying |
+| 2027-04-01 | when-to-sell | Preparation almost always matters more than timing; gap between a well-prepared and rushed inner-east campaign regularly $50K to $150K |
+| 2027-04-08 | handling-lowball-offers-selling-brisbane | Rejecting a low offer outright removes negotiating position; 8 to 10 per cent below asking is the inner-east low-offer threshold |

@@ -57,6 +57,7 @@
 - CUSTOM — Would You Style Your Home Before Selling? (used: 2027-03-17, file: 2027-03-17-linkedin-poll-staging-before-selling.md)
 - CUSTOM — What Is Your Biggest Barrier to Buying in Brisbane Right Now? (used: 2027-03-24, file: 2027-03-24-linkedin-poll-barriers-to-buying.md)
 - CUSTOM — Does Transport Infrastructure Influence Where You Would Buy? (used: 2027-03-31, file: 2027-03-31-linkedin-poll-transport-infrastructure.md)
+- CUSTOM — Have You Ever Sold a Property and Regretted the Timing? (used: 2027-04-07, file: 2027-04-07-linkedin-poll-selling-timing-regret.md)
 
 ---
 
