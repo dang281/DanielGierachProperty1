@@ -5,7 +5,7 @@
 **Goal:** Drive engagement from property investors; position Daniel as an informed local expert on Brisbane investment conditions
 **Content Pillar:** Authority
 **Status:** Ready for Review
-**Publish date:** 2026-05-07
+**Publish date:** 2026-05-06
 **Scheduled time:** 07:30
 
 ---

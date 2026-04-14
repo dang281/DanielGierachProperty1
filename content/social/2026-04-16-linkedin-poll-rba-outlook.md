@@ -5,7 +5,7 @@
 **Goal:** Drive engagement from buyers, sellers, and investors; position Daniel as informed on macro conditions affecting the inner east market
 **Content Pillar:** Authority
 **Status:** Idea
-**Publish date:** 2026-04-23
+**Publish date:** 2026-05-20
 **Scheduled time:** 07:30
 **Visual status:** Not needed
 **Canva URL:**
@@ -39,6 +39,12 @@ Ray White Bulimba · Inner East Brisbane
 - Hold and wait
 - Surprise cut
 - Too close to call
+
+---
+
+## Agent note
+
+**DATE MOVED:** This poll was originally drafted to publish 23 April 2026, ahead of the May 5 RBA meeting. That date now has a scheduled article feature. The poll has been moved to 20 May 2026. **The question needs revision before posting** since the May 5 meeting will have already happened by then. Daniel: either update the question to reference the next meeting after May 5, or archive this file.
 
 ---
 

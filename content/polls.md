@@ -8,6 +8,8 @@
 ## ✅ Used Polls
 
 - POLL 01 — RBA Rate Decision (used: 2026-04-16, file: 2026-04-16-linkedin-poll-rba-outlook.md)
+- POLL 05 — Do You Know What Negative Gearing Is? (used: 2026-04-15, file: 2026-04-15-linkedin-poll-negative-gearing.md)
+- POLL 08 — House vs Unit (used: 2026-05-13, file: 2026-04-16-linkedin-poll-house-vs-unit.md)
 
 ---
 
