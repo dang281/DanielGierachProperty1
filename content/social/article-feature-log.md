@@ -24,3 +24,13 @@
 | 2026-07-16 | heritage-overlays-brisbane | Heritage overlay affects what you can alter or demolish; informed buyers in inner east respond well to character homes |
 | 2026-07-23 | body-corporate | Body corporate levies: small townhouse $2K-$4K/yr; mid-rise with lift $6K-$14K/yr; check sinking fund before buying |
 | 2026-07-30 | cost-of-selling-house-brisbane | Total selling cost 2.5-4% of sale price; on $1.4M home that's $35K-$56K before proceeds |
+| 2026-08-06 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance once you add agent commission, conveyancing, and discharge fees |
+| 2026-08-13 | property-styling-staging-brisbane | Styling is primarily a photography investment; better photos drive enquiry, enquiry drives competition, competition drives price |
+| 2026-08-20 | how-long-does-it-take-to-sell-a-home-in-brisbane | Full timeline 10-16 weeks; preparation phase (4-8 weeks) is where the campaign is won or lost |
+| 2026-08-27 | off-market-property-sales-brisbane | Off-market usually means limiting buyer competition, and limiting competition almost always affects price |
+| 2026-09-03 | best-time-to-sell-brisbane | Autumn (late Feb to May) is Brisbane's most consistent inner-east window; spring advice is built around Melbourne and Sydney |
+| 2026-09-10 | land-tax-queensland-investment-property | Land tax calculated on unimproved value; rising inner-east land values pushing more investors over QLD threshold |
+| 2026-09-17 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date blocks vacant possession |
+| 2026-09-24 | should-i-renovate-before-selling-brisbane | Distinction between fixing defects (protects existing value) vs adding value (rarely earns back full kitchen cost) |
+| 2026-10-01 | how-to-handle-offers-when-selling | An unconditional offer eliminates 2-3 weeks of conditional risk; price is only one variable in offer comparison |
+| 2026-10-08 | negative-gearing-selling-investment-property-brisbane | Negative gearing strategy should be reviewed annually; settlement timing relative to 30 June affects CGT outcome |

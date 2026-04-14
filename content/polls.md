@@ -24,6 +24,13 @@
 - POLL 15 — The Serviceability Buffer (used: 2026-07-15, file: 2026-07-15-linkedin-poll-serviceability-buffer.md)
 - POLL 16 — Is LMI Worth Paying? (used: 2026-07-22, file: 2026-07-22-linkedin-poll-lmi-worth-paying.md)
 - POLL 17 — How Many Properties for Financial Freedom? (used: 2026-07-29, file: 2026-07-29-linkedin-poll-properties-for-financial-freedom.md)
+- POLL 18 — Regional vs Metro (used: 2026-08-05, file: 2026-08-05-linkedin-poll-regional-vs-metro.md)
+- POLL 19 — Renovate or Buy Renovated? (used: 2026-08-12, file: 2026-08-12-linkedin-poll-renovate-or-buy-renovated.md)
+- POLL 20 — Worst Property Advice Ever Heard (used: 2026-08-19, file: 2026-08-19-linkedin-poll-worst-property-advice.md)
+- POLL 21 — Equity: Have You Used It? (used: 2026-08-26, file: 2026-08-26-linkedin-poll-equity.md)
+- POLL 22 — What Actually Drives Prices? (used: 2026-09-02, file: 2026-09-02-linkedin-poll-what-drives-prices.md)
+- POLL 23 — Vendor Bids: Fair or Not? (used: 2026-09-09, file: 2026-09-09-linkedin-poll-vendor-bids.md)
+- POLL 24 — How Much Do You Trust Comparable Sales? (used: 2026-09-16, file: 2026-09-16-linkedin-poll-comparable-sales.md)
 
 ---
 
