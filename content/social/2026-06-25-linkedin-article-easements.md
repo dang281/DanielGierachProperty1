@@ -8,8 +8,8 @@
 **Publish date:** 2026-06-25
 **Scheduled time:** 07:30
 **Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/CtJD9pUbS_T4LXn
-**Canva Thumbnail:** https://design-manipulation-download.canva.com/a67537ff-bd31-4299-a9ab-47a5b973d934/0000-1761407525802163828.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHYZOT325Q%2F20260413%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260413T215946Z&X-Amz-Expires=39872&X-Amz-Signature=95c4538900f8e06f6a7d6468eb08b1228740a4bcf7df91403dace91c193946e5&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2014%20Apr%202026%2009%3A04%3A18%20GMT
+**Canva URL:** https://www.canva.com/design/DAHGjv8sW3w/edit
+**Canva Thumbnail:** https://design-manipulation-download.canva.com/6c9ef4d6-befd-4ce0-bc5f-1b823459d76d/0000-5986909882402005341.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHYZOT325Q%2F20260413%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260413T111117Z&X-Amz-Expires=86544&X-Amz-Signature=e64aa4491af13f5dcfbdf8418eadb3957bffe99b6acba5642b04a7e28f699afa&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2014%20Apr%202026%2011%3A13%3A41%20GMT
 
 ---
 
