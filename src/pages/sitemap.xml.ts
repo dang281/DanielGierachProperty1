@@ -9,6 +9,7 @@ const pages = [
   { path: '/walkthrough',     changefreq: 'monthly', priority: '0.90' },
   { path: '/property-worth',  changefreq: 'monthly', priority: '0.88' },
   { path: '/property-report', changefreq: 'monthly', priority: '0.9' },
+  { path: '/results',          changefreq: 'monthly', priority: '0.85' },
   { path: '/about',               changefreq: 'monthly', priority: '0.8' },
   { path: '/reviews',             changefreq: 'monthly', priority: '0.8' },
   { path: '/brisbane-inner-east', changefreq: 'monthly', priority: '0.9' },
