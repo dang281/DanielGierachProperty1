@@ -65,7 +65,7 @@ export default async function handler(req, res) {
     parts: [{ text: m.content }],
   }));
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
   try {
     const response = await fetch(url, {
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const err = await response.text();
       console.error('Gemini error:', response.status, err);
-      return res.status(502).json({ error: 'AI service error — try again shortly' });
+      return res.status(502).json({ error: 'AI service error — try again shortly', _debug: response.status });
     }
 
     const data = await response.json();
