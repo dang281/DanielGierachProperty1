@@ -36,3 +36,4 @@
 | 2026-10-08 | negative-gearing-selling-investment-property-brisbane | Negative gearing strategy should be reviewed annually; settlement timing relative to 30 June affects CGT outcome |
 | 2026-10-15 | fixtures-fittings-inclusions-property-sale-qld | Light fittings are fixtures and stay with the property unless excluded in the contract before signing |
 | 2026-10-22 | what-happens-on-settlement-day-queensland | For most vendors settlement day is quiet and handled digitally via PEXA; vendor role is preparation, not attendance |
+| 2026-10-29 | form-6-agency-agreement-queensland | Most sellers sign the Form 6 without reading it; 5-business-day cooling-off right exists under the Property Occupations Act 2014 (Qld) |
