@@ -8,7 +8,7 @@
 **Publish date:** 2026-10-24
 **Scheduled time:** 08:30
 **Visual status:** Draft
-**Canva URL:** [fill after creating design]
+**Canva URL:** https://www.canva.com/d/AXp2YdHF5r47ptI
 
 ---
 
