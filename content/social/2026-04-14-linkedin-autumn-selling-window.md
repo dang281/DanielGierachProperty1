@@ -9,6 +9,7 @@
 **Scheduled time:** 07:30
 **Visual status:** Draft
 **Canva URL:** https://www.canva.com/design/DAHGnHAL6Dk/edit
+**Canva Thumbnail:** https://export-download.canva.com/c65eebf0-4944-4aa7-ab98-0ccfad7f9a3a/0/0001-8649663174427802453.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260414T024743Z&X-Amz-Expires=42401&X-Amz-Signature=8e2d3b3d9abf888ae9baccf8423aec6cdeab24e6a455fefa7382f6cf39a52554&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2014%20Apr%202026%2014%3A34%3A24%20GMT
 
 ---
 
