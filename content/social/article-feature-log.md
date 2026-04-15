@@ -40,7 +40,7 @@
 | 2026-11-05 | how-to-read-a-building-and-pest-report | Summary page is the wrong place to start; active termite damage vs general maintenance notes require different responses |
 | 2026-11-12 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional offer over higher conditional one to eliminate finance/B&P risk window |
 | 2026-11-19 | capital-gains-tax-selling-home-brisbane | Main residence exemption is proportional if property was rented; six-year absence rule depends on whether another home was nominated |
-| 2026-11-26 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second — that sequence is backwards; solicitor needed for complex transactions |
+| 2026-11-26 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second. That sequence is backwards; solicitor needed for complex transactions |
 | 2026-12-03 | cost-of-selling-house-brisbane | Full cost 2.5-4% of sale price; net proceeds calculation must include agent commission, conveyancing, marketing, mortgage discharge |
 | 2026-12-10 | cooling-off-period-property-sale-queensland | Cooling-off cannot be waived by vendor; auction contracts have no cooling-off; 0.25% fee to exit within 5 business days |
 | 2026-12-17 | best-time-to-sell-brisbane | Spring advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is the most reliable inner-east window |
@@ -111,3 +111,15 @@
 | 2028-03-23 | land-tax-queensland-investment-property | Calculated on unimproved land value across all taxable QLD holdings; primary residence exempt; rising inner-east values pushing investors over threshold without realising |
 | 2028-03-30 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over lease; match settlement date to lease end before launching |
 | 2028-04-06 | how-much-is-my-home-worth-brisbane | Two houses on the same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days and cannot read aspect, renovation quality, or flood overlay |
+| 2028-04-13 | solicitor-vs-conveyancer-qld | Most buyers call their solicitor after signing the contract; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2028-04-20 | what-is-an-unconditional-offer-queensland | Sellers often accept a lower unconditional offer over a higher conditional one; unconditional eliminates the 2 to 3 week finance and B&P risk window entirely |
+| 2028-04-27 | stamp-duty-queensland | On a $1M owner-occupier purchase, transfer duty adds approximately $38,025; most buyers underestimate the actual number by $10,000 or more |
+| 2028-05-04 | cooling-off-period-property-sale-queensland | Seller cannot waive the 5-business-day cooling off period; auction contracts have no cooling off; exit costs 0.25% of the purchase price |
+| 2028-05-11 | what-happens-on-settlement-day-queensland | Settlement handled digitally via PEXA; most vendors find out it is done via a text from their solicitor; preparation phase is where settlement is won or lost |
+| 2028-05-18 | airbnb-vs-longterm | Short-term rental extra costs add $15K to $25K per year; net return often within a few thousand of a well-managed long-term tenancy |
+| 2028-05-25 | body-corporate | Levies run $2K to $4K/yr for a small townhouse to $6K to $14K+/yr for mid-rise; check the sinking fund balance before buying, not just the levy amount |
+| 2028-06-01 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4%; fixed-rate break costs can add thousands before settlement |
+| 2028-06-08 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; "we have a buyer ready" is a convenience offer, not necessarily a good outcome |
+| 2028-06-15 | best-time-to-sell-brisbane | Most spring-selling advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is the most consistent inner east window |
+| 2028-06-22 | heritage-overlays-brisbane | Heritage overlay does not mean no renovation; Council approval required for external character changes; internal renovations typically proceed without heritage approval |
+| 2028-06-29 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry, enquiry drives competition, competition drives price |
