@@ -7,8 +7,9 @@
 **Status:** Ready for Review
 **Publish date:** 2026-04-28
 **Scheduled time:** 07:30
-**Visual status:** Not needed
-**Canva URL:** N/A (text-only post)
+**Visual status:** Draft
+**Canva URL:** https://www.canva.com/d/ZNfZ5KYi16LXAqj
+**Canva Thumbnail:** https://design-manipulation-download.canva.com/04b66faf-adfb-4be1-ad67-f6c12dbbada4/0000-3913002367119826668.png
 
 ---
 
@@ -53,4 +54,4 @@ What is the one thing buyers in your suburb almost always ask about at inspectio
 Approve as-is. No stats to check.
 
 **Visual:**
-No image required. Text-only posts in this voice perform well on LinkedIn.
+Canva design created. Headline: WHAT BUYERS WANT. Three-column layout: They say / Offers go to / The truth. Brand colours, Daniel footer.
