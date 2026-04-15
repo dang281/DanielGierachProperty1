@@ -201,3 +201,16 @@
 | 2029-12-11 | handling-lowball-offers-selling-brisbane | Rejecting a low offer outright closes the negotiation entirely; 8 to 10% below asking is standard inner east opening position; counter to discover buyer's real ceiling |
 | 2029-12-18 | when-to-sell | Preparation matters more than season; gap between well-prepared and rushed inner east campaign regularly $50,000 to $150,000 |
 | 2029-12-25 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate any time before settlement if not provided correctly |
+| 2030-01-01 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; partial CGT applies to rental years; settlement date determines which financial year gain falls into |
+| 2030-01-09 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2030-01-16 | auction-vs-private-treaty | Method of sale should follow the property and buyer pool; auction best with broad competitive pool; EOI suits unique properties where buyer value range is genuinely wide |
+| 2030-01-23 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional over higher conditional; unconditional eliminates 2 to 3 week risk window entirely |
+| 2030-01-30 | stamp-duty-queensland | On $1M owner-occupier purchase transfer duty approximately $38,025; most buyers underestimate by $10K+; verify at QRO before relying on any estimate |
+| 2030-02-06 | cooling-off-period-property-sale-queensland | Seller cannot waive 5-business-day cooling off; auction contracts have no cooling off; exit costs 0.25% of purchase price |
+| 2030-02-13 | easements-property-brisbane-qld | Drainage easement along back fence rarely affects resale; access easement through the yard is a different matter entirely |
+| 2030-02-20 | airbnb-vs-longterm | Short-term rental adds $15K to $25K/year in costs most investors don't factor in before comparing gross figures |
+| 2030-02-27 | heritage-overlays-brisbane | Heritage overlay affects what you can alter or demolish; in inner east character homes often supported rather than restricted by overlay |
+| 2030-03-06 | how-to-handle-offers-when-selling | Rejecting low offer outright closes negotiation; price is one variable; unconditional vs conditional changes risk profile significantly |
+| 2030-03-13 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east land values pushing investors over threshold without realising |
+| 2030-03-20 | selling-tenanted-property-queensland | Fixed-term lease past settlement date means buyer takes over lease; align settlement to lease expiry before launch |
+| 2030-03-27 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry volume, enquiry drives competition, competition moves price |
