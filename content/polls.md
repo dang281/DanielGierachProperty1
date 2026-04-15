@@ -75,6 +75,19 @@
 - CUSTOM — Property Hindsight: What Would You Do Differently? (used: 2027-07-14, file: 2027-07-14-linkedin-poll-property-hindsight.md)
 - CUSTOM — What Would Make You Sell Your Home This Year? (used: 2027-07-21, file: 2027-07-21-linkedin-poll-selling-trigger.md)
 - CUSTOM — Have You Ever Chosen Not to Offer and Regretted It? (used: 2027-07-28, file: 2027-07-28-linkedin-poll-missed-opportunity.md)
+- CUSTOM — Are You Planning to List Before Christmas? (used: 2027-08-04, file: 2027-08-04-linkedin-poll-listing-before-christmas.md)
+- CUSTOM — What Is the First Thing You Notice When You Walk Through a Property? (used: 2027-08-11, file: 2027-08-11-linkedin-poll-first-impression.md)
+- CUSTOM — Natural Light or a Good Floorplan: Which Matters More? (used: 2027-08-18, file: 2027-08-18-linkedin-poll-natural-light-floorplan.md)
+- CUSTOM — Have You Ever Bought or Considered Buying a Property Sight Unseen? (used: 2027-08-25, file: 2027-08-25-linkedin-poll-sight-unseen.md)
+- CUSTOM — If You Were Selling Again Today, What Would You Do Differently? (used: 2027-09-01, file: 2027-09-01-linkedin-poll-selling-differently.md)
+- CUSTOM — Is Now a Good Time to Buy in Brisbane's Inner East? (used: 2027-09-08, file: 2027-09-08-linkedin-poll-right-time-to-buy.md)
+- CUSTOM — Would You Accept a Longer Settlement Period to Secure a Better Price? (used: 2027-09-15, file: 2027-09-15-linkedin-poll-long-settlement.md)
+- CUSTOM — How Would You Describe Brisbane's Spring Property Market This Year? (used: 2027-09-22, file: 2027-09-22-linkedin-poll-spring-market-feeling.md)
+- CUSTOM — If You Sold Your Home in Brisbane's Inner East Tomorrow, Where Would You Buy Next? (used: 2027-09-29, file: 2027-09-29-linkedin-poll-where-next.md)
+- CUSTOM — When Buying a House, Which Matters More: Land Size or Living Space? (used: 2027-10-06, file: 2027-10-06-linkedin-poll-land-vs-living.md)
+- CUSTOM — Have Interest Rate Movements Over the Past 12 Months Changed Your Property Plans? (used: 2027-10-13, file: 2027-10-13-linkedin-poll-rate-cuts.md)
+- CUSTOM — Would You Make an Offer on a Property Without Attending a Physical Inspection? (used: 2027-10-20, file: 2027-10-20-linkedin-poll-sight-unseen-open-home.md)
+- CUSTOM — What Is Your Favourite Suburb in Brisbane's Inner East? (used: 2027-10-27, file: 2027-10-27-linkedin-poll-best-inner-east-suburb.md)
 
 ---
 
