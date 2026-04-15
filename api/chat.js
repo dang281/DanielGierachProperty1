@@ -1,6 +1,7 @@
 // Vercel serverless function — /api/chat
-// Powered by Claude Haiku (Anthropic)
-// Add ANTHROPIC_API_KEY to Vercel Environment Variables
+// Powered by Google Gemini (free tier: 1,500 req/day, no credit card)
+// Get a free key at: aistudio.google.com/apikey
+// Add GEMINI_API_KEY to Vercel Environment Variables
 
 const SYSTEM_PROMPT = `You are the virtual assistant for Daniel Gierach Property, Ray White Bulimba. You help buyers, sellers and homeowners with property questions in Brisbane's inner east and south.
 
@@ -39,9 +40,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'Chat not configured — add ANTHROPIC_API_KEY to Vercel' });
+    return res.status(500).json({ error: 'Chat not configured — add GEMINI_API_KEY to Vercel' });
   }
 
   let body;
@@ -56,47 +57,72 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'No messages' });
   }
 
-  // Normalise to role: user | assistant only
+  // Gemini uses 'user' / 'model' roles
   const history = messages.slice(-10).filter(m =>
     m.role && m.content && typeof m.content === 'string'
   ).map(m => ({
-    role: m.role === 'assistant' ? 'assistant' : 'user',
-    content: m.content,
+    role: m.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: m.content }],
   }));
 
+  const MODELS = [
+    'gemini-2.0-flash',
+    'gemini-1.5-flash',
+    'gemini-1.5-flash-8b',
+  ];
+
+  const payload = JSON.stringify({
+    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+    contents: history,
+    generationConfig: { maxOutputTokens: 350, temperature: 0.7 },
+    safetySettings: [
+      { category: 'HARM_CATEGORY_HARASSMENT',        threshold: 'BLOCK_ONLY_HIGH' },
+      { category: 'HARM_CATEGORY_HATE_SPEECH',       threshold: 'BLOCK_ONLY_HIGH' },
+      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_ONLY_HIGH' },
+      { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' },
+    ],
+  });
+
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 350,
-        system: SYSTEM_PROMPT,
-        messages: history,
-      }),
-    });
+    let lastStatus = 0;
 
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error('Anthropic error:', response.status, errText);
-      if (response.status === 429) {
-        return res.status(503).json({ error: 'The assistant is busy right now. Please try again in a moment.' });
+    for (const model of MODELS) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      for (let attempt = 0; attempt < 2; attempt++) {
+        if (attempt > 0) await sleep(1500);
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+          if (!text) {
+            return res.status(200).json({ reply: "I didn't quite catch that. Could you rephrase your question?" });
+          }
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          return res.status(200).json({ reply: text.trim() });
+        }
+
+        lastStatus = response.status;
+        console.error(`Gemini error (${model} attempt ${attempt + 1}):`, lastStatus);
+
+        // Auth / not-found errors: skip to next model immediately
+        if ([400, 401, 403, 404].includes(lastStatus)) break;
+        // Rate limit: retry after sleep
       }
-      return res.status(502).json({ error: 'AI service error. Please try again shortly.' });
     }
 
-    const data = await response.json();
-    const text = data.content?.[0]?.text ?? '';
-    if (!text) {
-      return res.status(200).json({ reply: "I didn't quite catch that. Could you rephrase your question?" });
+    if (lastStatus === 429) {
+      return res.status(503).json({ error: 'The assistant is busy right now. Please try again in a moment.' });
     }
-
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    return res.status(200).json({ reply: text.trim() });
+    return res.status(502).json({ error: 'AI service error. Please try again shortly.' });
 
   } catch (err) {
     console.error('Chat error:', err);
