@@ -51,4 +51,11 @@ No external statistics. Pure advisory content. No verify flags required.
 The sellers I remember most are the ones who made a clear decision for clear reasons. The ones I worry about are the ones who were waiting for a signal that never quite came.
 
 **Approve or flag:**
-Approve as-is.
+Approve as-is — the post content holds regardless of what the RBA does.
+
+**Scheduling note — RBA May 5 decision:**
+The RBA announces its May board decision at 2:30pm AEST on May 5 — the same day this post is scheduled (07:30). The post goes out 7 hours before the announcement. Two options depending on what the RBA does:
+- Hold at 4.10%: this evergreen post works perfectly. No action needed.
+- Hike or cut: consider posting a short reactive comment on this post by 5pm (e.g. "RBA held/moved today — for the sellers weighing this: here is what it actually means for your borrowing pool..."). Or swap this post entirely for a rate-reactive authority post if the move is significant.
+
+The March 2026 board vote was 5-4 in favour of the hike to 4.10%. The board is divided. Watch March quarter CPI data (due late April) — if it comes in hot, another hike on May 5 is more likely and you should prepare a rate-reactive post to swap in. Source: rba.gov.au/media-releases/2026/mr-26-08.html
