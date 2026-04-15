@@ -8,8 +8,8 @@
 **Publish date:** 2028-05-23
 **Scheduled time:** 07:30
 **Visual status:** Draft
-**Canva URL:** [fill on Friday]
-**Canva Thumbnail:** [fill on Friday]
+**Canva URL:** https://www.canva.com/d/iHwqDZFrXCBTiVS
+**Canva Thumbnail:** https://export-download.canva.com/4c7f4226-7b36-43a9-8c2f-3089eb5da016/0/0001-5333888050460959483.png
 
 ---
 
