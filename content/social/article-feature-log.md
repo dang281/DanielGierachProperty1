@@ -124,3 +124,15 @@
 | 2028-06-22 | heritage-overlays-brisbane | Heritage overlay does not mean no renovation; Council approval required for external character changes; internal renovations typically proceed without heritage approval |
 | 2028-06-29 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry, enquiry drives competition, competition drives price |
 | 2028-07-06 | how-to-handle-offers-when-selling | Price is one variable, not the only one; rejecting an offer outright closes the conversation; know your number before offers arrive |
+| 2028-07-11 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; partial CGT liability applies to rental years; model position before campaign |
+| 2028-07-18 | understanding-the-contract | Finance condition lapses on deadline regardless of bank approval; inclusions not excluded in contract assumed to stay; solicitor review before signing |
+| 2028-07-25 | land-tax-queensland-investment-property | Calculated on unimproved land value across all QLD holdings; threshold is combined not per property; rising inner east values pushing investors over threshold |
+| 2028-08-01 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over tenancy; align settlement to lease expiry |
+| 2028-08-08 | how-much-is-my-home-worth-brisbane | Two houses on same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days; comparable sales reviewed by someone who knows the street |
+| 2028-08-15 | solicitor-vs-conveyancer-qld | Most buyers call solicitor after signing; reviewing before signing catches missing inclusions and risky conditions; both valid for standard purchase, solicitor for complex title |
+| 2028-08-22 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional over higher conditional; pre-approval plus independent B&P converts buyer to unconditional; eliminates 2 to 3 week risk window |
+| 2028-08-29 | stamp-duty-queensland | On $1M purchase transfer duty approximately $38,025; most buyers underestimate by $10,000+; first home buyer concession up to $700,000 tapering threshold |
+| 2028-09-05 | cooling-off-period-property-sale-queensland | Seller cannot waive 5-business-day cooling off; auction contracts have no cooling off; exit costs 0.25% of purchase price |
+| 2028-09-12 | pre-settlement-inspection-seller-guide-qld | Property must be in same condition as at contract date; walkthrough with photos before and after removalists; missing inclusions and removalist damage create disputes |
+| 2028-09-19 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; incomplete disclosure gives buyer right to terminate any time before settlement |
+| 2028-09-26 | easements-property-brisbane-qld | Drainage easement along rear boundary usually non-issue; access easement through yard is materially different; title search shows all registered easements |
