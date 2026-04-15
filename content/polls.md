@@ -96,6 +96,19 @@
 - CUSTOM — What Would You Do First to Prepare Your Home for Sale? (used: 2027-12-08, file: 2027-12-08-linkedin-poll-preparing-home-for-sale.md)
 - CUSTOM — What Is Your Property Goal for 2028? (used: 2027-12-15, file: 2027-12-15-linkedin-poll-property-goals-2028.md)
 - CUSTOM — If You Were Listing in 2028, When Would You Go to Market? (used: 2027-12-22, file: 2027-12-22-linkedin-poll-when-would-you-list.md)
+- CUSTOM — What Would Make You List Your Home in 2028? (used: 2028-01-05, file: 2028-01-05-linkedin-poll-listing-trigger-2028.md)
+- CUSTOM — Has the Olympic 2032 Countdown Changed How You Think About Brisbane Property? (used: 2028-01-12, file: 2028-01-12-linkedin-poll-olympic-2032-property.md)
+- CUSTOM — What Do You Decide in the First 60 Seconds of an Inspection? (used: 2028-01-19, file: 2028-01-19-linkedin-poll-first-60-seconds.md)
+- CUSTOM — What Is Your Biggest Concern About Brisbane Property in 2028? (used: 2028-01-26, file: 2028-01-26-linkedin-poll-brisbane-2028-concern.md)
+- CUSTOM — Would You Pay More for a Property With a Dedicated Home Office? (used: 2028-02-02, file: 2028-02-02-linkedin-poll-home-office-value.md)
+- CUSTOM — How Important Is a Pool When Buying in Brisbane's Inner East? (used: 2028-02-09, file: 2028-02-09-linkedin-poll-pool-value.md)
+- CUSTOM — If You Inherited a Property in Brisbane, What Would You Do? (used: 2028-02-16, file: 2028-02-16-linkedin-poll-inherited-property.md)
+- CUSTOM — What Is the Hardest Part of Preparing a Property for Sale? (used: 2028-02-23, file: 2028-02-23-linkedin-poll-hardest-part-preparing-to-sell.md)
+- CUSTOM — Inner East or Western Suburbs: Where Is the Better Value Right Now? (used: 2028-03-01, file: 2028-03-01-linkedin-poll-inner-east-vs-western-suburbs.md)
+- CUSTOM — Which Inner East Suburb Would You Hold for 10 Years? (used: 2028-03-08, file: 2028-03-08-linkedin-poll-suburb-10-year-hold.md)
+- CUSTOM — Autumn or Spring: When Do You Prefer to Sell? (used: 2028-03-15, file: 2028-03-15-linkedin-poll-autumn-vs-spring.md)
+- CUSTOM — Has the Cost of Building Work Changed Your Renovation Plans? (used: 2028-03-22, file: 2028-03-22-linkedin-poll-building-work-renovation-plans.md)
+- CUSTOM — How Has the Autumn Property Market Felt in 2028? (used: 2028-03-29, file: 2028-03-29-linkedin-poll-autumn-campaign-feel.md)
 
 ---
 
