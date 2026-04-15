@@ -123,3 +123,4 @@
 | 2028-06-15 | best-time-to-sell-brisbane | Most spring-selling advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is the most consistent inner east window |
 | 2028-06-22 | heritage-overlays-brisbane | Heritage overlay does not mean no renovation; Council approval required for external character changes; internal renovations typically proceed without heritage approval |
 | 2028-06-29 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry, enquiry drives competition, competition drives price |
+| 2028-07-06 | how-to-handle-offers-when-selling | Price is one variable, not the only one; rejecting an offer outright closes the conversation; know your number before offers arrive |
