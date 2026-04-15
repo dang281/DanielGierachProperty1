@@ -67,7 +67,15 @@
 - Norman Park (FB) — 2027-06-19-facebook-normanpark-suburb-spotlight.md
 - Carina (FB) — 2027-06-26-facebook-carina-suburb-spotlight.md
 
-Next in Q3 2027: Cannon Hill, Camp Hill, Bulimba, Balmoral, Seven Hills, Murarrie, Hawthorne (completing cycle 3)
+### Facebook Suburb Spotlights — Q3 2027 Cycle 3 (Cannon Hill through Hawthorne)
+
+- Cannon Hill (FB) — 2027-07-03-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB) — 2027-07-10-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB) — 2027-07-17-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB) — 2027-07-24-facebook-balmoral-suburb-spotlight.md
+- Seven Hills (FB) — 2027-07-31-facebook-seven-hills-suburb-spotlight.md
+
+Next in Q3 2027: Murarrie, Hawthorne (completing cycle 3)
 
 ---
 
