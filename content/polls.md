@@ -109,6 +109,7 @@
 - CUSTOM — Autumn or Spring: When Do You Prefer to Sell? (used: 2028-03-15, file: 2028-03-15-linkedin-poll-autumn-vs-spring.md)
 - CUSTOM — Has the Cost of Building Work Changed Your Renovation Plans? (used: 2028-03-22, file: 2028-03-22-linkedin-poll-building-work-renovation-plans.md)
 - CUSTOM — How Has the Autumn Property Market Felt in 2028? (used: 2028-03-29, file: 2028-03-29-linkedin-poll-autumn-campaign-feel.md)
+- CUSTOM — Sell First or Buy First: What Would You Do? (used: 2028-04-05, file: 2028-04-05-linkedin-poll-sell-first-or-buy-first.md)
 
 ---
 

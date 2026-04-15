@@ -110,3 +110,4 @@
 | 2028-03-16 | form-6-agency-agreement-queensland | Most sellers sign without reading it; rebate clause must be disclosed; 5-business-day cooling-off right under Property Occupations Act 2014 (Qld) |
 | 2028-03-23 | land-tax-queensland-investment-property | Calculated on unimproved land value across all taxable QLD holdings; primary residence exempt; rising inner-east values pushing investors over threshold without realising |
 | 2028-03-30 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over lease; match settlement date to lease end before launching |
+| 2028-04-06 | how-much-is-my-home-worth-brisbane | Two houses on the same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days and cannot read aspect, renovation quality, or flood overlay |
