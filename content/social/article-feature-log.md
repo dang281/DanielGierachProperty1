@@ -149,3 +149,16 @@
 | 2028-12-12 | airbnb-vs-longterm | Platform fees 15 to 20% of gross revenue; cleaning, insurance, maintenance add to costs; net return often within a few thousand of well-managed long-term tenancy |
 | 2028-12-19 | auction-vs-private-treaty | Method of sale should follow the property and buyer pool; auction best with broad competitive pool; EOI suits unique properties where buyer value range is genuinely wide |
 | 2028-12-26 | how-much-is-my-home-worth-brisbane | Two houses on same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days and cannot read aspect, renovation quality, or flood overlay |
+| 2029-01-02 | property-styling-staging-brisbane | Staging is primarily a photography investment; vacant properties photograph smaller than they are; $3K to $6K earns back many times over in final result |
+| 2029-01-09 | solicitor-vs-conveyancer-qld | Most buyers call solicitor after signing; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2029-01-16 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; notify lender immediately on accepting offer; fixed-rate break costs must be confirmed before campaign launch |
+| 2029-01-23 | body-corporate | Check sinking fund balance before buying, not just the levy; levies $2K to $4K/yr small townhouse, $6K to $14K+/yr mid-rise |
+| 2029-01-30 | best-time-to-sell-brisbane | Spring advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is most consistent inner east window; preparation matters more than season |
+| 2029-02-06 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional over higher conditional; unconditional eliminates the 2 to 3 week finance and B&P risk window entirely |
+| 2029-02-13 | how-to-read-a-building-and-pest-report | Start with active defects section, not the summary; active timber pest vs general maintenance requires different response |
+| 2029-02-20 | how-much-is-my-home-worth-brisbane | Two houses on same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days and cannot read aspect, renovation quality, or flood overlay |
+| 2029-02-27 | stamp-duty-queensland | On $1M owner-occupier purchase transfer duty approximately $38,025; most buyers underestimate by $10K+; verify at QRO before relying on any estimate |
+| 2029-03-06 | cooling-off-period-property-sale-queensland | Seller cannot waive 5-business-day cooling off; auction contracts have no cooling off; exit costs 0.25% of purchase price |
+| 2029-03-13 | what-happens-on-settlement-day-queensland | Most vendors find out via text from solicitor; settlement is digital via PEXA; preparation in weeks before is where settlement is won or lost |
+| 2029-03-20 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate any time before settlement if not provided correctly |
+| 2029-03-27 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east values pushing investors over threshold; primary residence exempt |

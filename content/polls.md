@@ -148,6 +148,19 @@
 - CUSTOM — If You Are Planning to Sell in 2029, When Would You List? (used: 2028-12-11, file: 2028-12-11-linkedin-poll-2029-listing-plans.md)
 - CUSTOM — Looking Back on 2028, How Would You Rate It as a Year for Brisbane Property? (used: 2028-12-18, file: 2028-12-18-linkedin-poll-rate-2028-year.md)
 - CUSTOM — What Is Your Property Resolution for 2029? (used: 2028-12-25, file: 2028-12-25-linkedin-poll-2029-resolution.md)
+- CUSTOM — How Are You Feeling About Brisbane Property Heading Into 2029? (used: 2029-01-01, file: 2029-01-01-linkedin-poll-2029-market-start.md)
+- CUSTOM — What Is the Single Biggest Barrier for First Home Buyers Right Now? (used: 2029-01-08, file: 2029-01-08-linkedin-poll-first-home-entry.md)
+- CUSTOM — If You Are Planning a Property Campaign This Autumn, When Would You List? (used: 2029-01-15, file: 2029-01-15-linkedin-poll-autumn-campaign-timing.md)
+- CUSTOM — What Do You Think the RBA Does at Its Next Meeting? (used: 2029-01-22, file: 2029-01-22-linkedin-poll-rba-2029.md)
+- CUSTOM — If You Were Selling This Year, Which Season Would You Choose? (used: 2029-01-29, file: 2029-01-29-linkedin-poll-listing-season.md)
+- CUSTOM — Sell First or Buy First: What Is the Smarter Move Right Now? (used: 2029-02-05, file: 2029-02-05-linkedin-poll-sell-first-buy-first.md)
+- CUSTOM — Does a Heritage or Character Overlay Add Value in Brisbane's Inner East? (used: 2029-02-12, file: 2029-02-12-linkedin-poll-heritage-character.md)
+- CUSTOM — How Quickly Do You Typically Decide Whether to Make an Offer After Inspecting? (used: 2029-02-19, file: 2029-02-19-linkedin-poll-open-home-decision.md)
+- CUSTOM — Autumn or Spring: Which Do You Prefer for Selling in Brisbane? (used: 2029-02-26, file: 2029-02-26-linkedin-poll-autumn-vs-spring.md)
+- CUSTOM — What Single Factor Would Most Influence You to List This Autumn? (used: 2029-03-05, file: 2029-03-05-linkedin-poll-buyer-priorities.md)
+- CUSTOM — With Easter Approaching, Would You List Before or After the Break? (used: 2029-03-12, file: 2029-03-12-linkedin-poll-pre-easter-selling.md)
+- CUSTOM — Flood Overlay: Dealbreaker or Something You Would Price In? (used: 2029-03-19, file: 2029-03-19-linkedin-poll-flood-overlay.md)
+- CUSTOM — How Would You Rate Brisbane's Inner East Property Market Performance in Q1 2029? (used: 2029-03-26, file: 2029-03-26-linkedin-poll-q1-review.md)
 
 ---
 
