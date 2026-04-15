@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const draft = true; // STAGED: remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where is Brisbane's property market in its cycle right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Identifying market cycle position requires looking at local indicators rather than national headlines. For Brisbane's inner east, the most useful signals are days on market, clearance rates, and the ratio of active buyers to available listings in specific suburbs and price brackets. A qualified local agent with recent comparable sales data can give you a more accurate read on current cycle position than any index or media commentary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I wait for the market to peak before selling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trying to sell at the exact peak of a market cycle is not a reliable strategy. Peaks are only identifiable in retrospect, and the cost of waiting -- additional holding costs, missed opportunity, and the possibility of misjudging the cycle -- regularly exceeds any marginal gain from better timing. A well-prepared, correctly priced property sold in a healthy market will almost always outperform a poorly prepared property sold at the theoretical market peak."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What drives property market cycles in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane's property market cycles are influenced by interstate and international migration, interest rate settings, housing supply constraints, and employment levels. The inner east is also affected by school catchment demand, infrastructure investment, and the relative affordability of inner-city living compared to southern capitals. These factors interact in ways that make Brisbane's cycle distinct from Sydney or Melbourne."
+      }
+    }
+  ]
+};
+---
+<Layout title="Understanding Property Market Cycles in Brisbane: A Seller's Guide 2026 | Daniel Gierach Property" description="Brisbane's property market moves in cycles driven by migration, interest rates, and supply. Here is how to read where the market is and what it means for your sale." schema={faqSchema} draft={draft}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Understanding Property Market Cycles in Brisbane: A Seller's Guide
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Brisbane's property market does not move in a straight line. Understanding the cycle makes it easier to position your sale and set realistic expectations about what your property will achieve.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Property markets move in cycles. Prices rise, growth slows, conditions flatten, and then the cycle turns again. This has been true of Brisbane for as long as there has been a property market here, and it will remain true. Understanding the cycle does not mean you can predict the future with precision. It means you can make a more informed decision about where you are likely selling into, rather than relying on market commentary that may have little bearing on your specific suburb and price bracket.</p>
+
+      <p>The challenge for sellers in Brisbane's inner east is that the national property narrative frequently obscures what is actually happening locally. Sydney and Melbourne are large enough to drive national averages, which means Brisbane's cycle is regularly described inaccurately in media coverage calibrated to southern markets. Inner Brisbane has its own supply dynamics, its own migration drivers, and its own buyer composition. Reading the cycle correctly requires focusing on local data rather than national headlines.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What drives Brisbane's property cycle</h2>
+      <p>Interstate migration is one of the most significant factors in Brisbane's property market performance over the past decade. Queensland has received sustained net inflows from New South Wales and Victoria, driven by relative affordability, lifestyle, and a strong local employment base. When migration is strong, it creates demand across multiple price points simultaneously: downsizers from southern capitals entering the inner-east market, families seeking space and school catchments, and investors responding to rental yield compression in Sydney and Melbourne. This migration effect is different from what drives cycles in southern capitals and helps explain why Brisbane's recent growth phase was more sustained than historical cycles suggested it should be.</p>
+
+      <p>Interest rates affect Brisbane's market, but the effect is not uniform across price points. In the inner east, owner-occupier demand from equity-rich buyers is less sensitive to rate changes than in first home buyer markets or outer suburban investment corridors. A rate increase that meaningfully reduces borrowing capacity for a first home buyer in an outer suburb has a more moderate effect on a buyer purchasing a $1.5 million family home in Morningside who has substantial equity from a prior sale. Understanding which part of the buyer pool dominates your property type and price bracket is more useful than tracking the cash rate in isolation.</p>
+
+      <p>Housing supply is a structural factor that shapes the cycle at a local level. Inner Brisbane's supply is constrained by geography, established infrastructure, and community resistance to higher density in many suburbs. New supply in the inner east comes primarily from townhouse developments and smaller infill projects rather than the large residential estates that can rapidly increase stock in outer areas. This supply constraint provides a degree of floor support through market downturns that is absent in less constrained areas.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to read where the market is right now</h2>
+      <p>There are three local indicators that give a more reliable read on current cycle position than any index or commentator. The first is days on market for comparable properties in your suburb and price bracket over the past 90 days. A falling median days on market signals rising buyer conviction and tightening supply. A rising median signals the opposite. This is more useful than knowing whether the median price has gone up or down, because days on market is a leading indicator: it tells you about current buyer urgency before price movements are confirmed in settled sales.</p>
+
+      <p>The second indicator is the volume of active listings relative to the same period in prior years. More listings than usual at this time of year means buyers have more alternatives, which reduces their urgency and gives them more comparative data to anchor lower offers. Fewer listings than usual creates scarcity, which tends to produce more competitive offer situations and shorter campaigns. Your agent should be able to pull this data for your specific suburb without difficulty.</p>
+
+      <p>The third indicator is the relationship between asking prices and achieved prices on recent comparable sales. In a rising market, properties regularly achieve above their advertised price range or reserve. In a flat or falling market, discounting from initial asking prices to eventual sale prices increases. If the properties you are tracking as comparables are consistently selling below their listed range, that is a clear signal about buyer sentiment in your price bracket right now.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why trying to time the market peak rarely works</h2>
+      <p>One of the most common conversations in real estate is the vendor who wants to wait for the market to peak before selling. The problem is that market peaks are only identifiable in hindsight. You cannot know you have reached the peak until prices have already begun to fall, which is precisely the moment you did not want to be selling. The practical consequence of waiting for the peak is that most vendors either miss it entirely or sell into the early stages of a correction while telling themselves conditions will improve again.</p>
+
+      <p>There is also the cost of waiting to consider. If you are holding a property for an extra six to twelve months in the expectation of a better market, you are paying holding costs, forgoing the capital you would have released, and potentially missing the opportunity to transact on your next purchase in the same market conditions. A 3% improvement in sale price achieved by waiting twelve months is often smaller than the combined holding costs for that period.</p>
+
+      <p>The more reliable path is to prepare thoroughly, price with reference to what comparable sales evidence supports, and execute a well-resourced campaign when your personal circumstances align with a healthy local market. Preparation quality has a larger and more reliable impact on sale outcome than cycle timing. In Brisbane's inner east, a well-presented, correctly priced property marketed properly will consistently outperform a poorly prepared property sold at a theoretically better point in the cycle.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the current cycle means for inner-east sellers</h2>
+      <p>Inner Brisbane's market in 2026 sits in a different position to the high-growth phase of 2021 to 2023, when interstate migration was at its most intense and supply was critically short. The conditions that drove exceptional price growth in that period were unusual, and sellers comparing today's environment to that period are often working from an unrealistic benchmark. The more useful comparison is to the decade prior to the COVID growth phase, which featured steady but moderate growth, reasonable transaction volumes, and results that were strongly influenced by property presentation and campaign quality.</p>
+
+      <p>The inner east continues to benefit from structural demand: school catchment premiums, limited supply, lifestyle appeal, and ongoing inflows of equity-rich buyers from southern capitals. These factors do not disappear in a softer phase of the cycle; they moderate. A realistic assessment of current conditions combined with proper preparation and pricing continues to produce strong outcomes for sellers who approach the process with evidence and patience.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want a clear read on where the market sits right now?</strong> Daniel can walk you through current comparable sales data, active listing volumes, and days on market for your suburb and price bracket. No spin, no pressure. <a href="/contact" style="color:#f5d07a;font-weight:600;">Book a free appraisal.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+</Layout>
