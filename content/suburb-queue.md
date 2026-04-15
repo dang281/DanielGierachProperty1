@@ -92,7 +92,16 @@
 - Carina (FB) — 2027-10-23-facebook-carina-suburb-spotlight.md
 - Cannon Hill (FB) — 2027-10-30-facebook-cannon-hill-suburb-spotlight.md
 
-Next in Q4 2027: Camp Hill (continuing cycle 4)
+- Camp Hill (FB) — 2027-11-06-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB) — 2027-11-13-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB) — 2027-11-20-facebook-balmoral-suburb-spotlight.md
+- Seven Hills (FB) — 2027-11-27-facebook-seven-hills-suburb-spotlight.md
+- Murarrie (FB) — 2027-12-04-facebook-murarrie-suburb-spotlight.md
+- Hawthorne (FB) — 2027-12-11-facebook-hawthorne-suburb-spotlight.md
+- Coorparoo (FB) — 2027-12-18-facebook-coorparoo-suburb-spotlight.md
+- Carina Heights (FB) — 2027-12-25-facebook-carina-heights-suburb-spotlight.md
+
+Next in Q1 2028: Carindale (continuing cycle 5 — start from 2028-01-03)
 
 ---
 
