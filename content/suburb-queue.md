@@ -101,7 +101,23 @@
 - Coorparoo (FB) — 2027-12-18-facebook-coorparoo-suburb-spotlight.md
 - Carina Heights (FB) — 2027-12-25-facebook-carina-heights-suburb-spotlight.md
 
-Next in Q1 2028: Carindale (continuing cycle 5 — start from 2028-01-03)
+### Facebook Suburb Spotlights — Q2 2028 Cycle 6 (Murarrie through Camp Hill)
+
+- Murarrie (FB) — 2028-04-01-facebook-murarrie-suburb-spotlight.md
+- Coorparoo (FB) — 2028-04-08-facebook-coorparoo-suburb-spotlight.md
+- Carina Heights (FB) — 2028-04-15-facebook-carina-heights-suburb-spotlight.md
+- Carindale (FB) — 2028-04-22-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB) — 2028-04-29-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB) — 2028-05-06-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB) — 2028-05-13-facebook-mt-gravatt-east-suburb-spotlight.md
+- Mt Gravatt (FB) — 2028-05-20-facebook-mt-gravatt-suburb-spotlight.md
+- Morningside (FB) — 2028-05-27-facebook-morningside-suburb-spotlight.md
+- Norman Park (FB) — 2028-06-03-facebook-norman-park-suburb-spotlight.md
+- Carina (FB) — 2028-06-10-facebook-carina-suburb-spotlight.md
+- Cannon Hill (FB) — 2028-06-17-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB) — 2028-06-24-facebook-camp-hill-suburb-spotlight.md
+
+Next in Q3 2028: Bulimba (continuing cycle 6 from 2028-07-01)
 
 ---
 
