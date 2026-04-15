@@ -201,7 +201,23 @@
 - Norman Park (FB) — 2029-09-22-facebook-normanpark-suburb-spotlight.md
 - Carina (FB) — 2029-09-29-facebook-carina-suburb-spotlight.md
 
-Next in Q4 2029: Cannon Hill (continuing cycle 9 from 2029-10-06)
+### Facebook Suburb Spotlights: Q4 2029 Cycle 9 completion + Cycle 10 start
+
+- Cannon Hill (FB): 2029-10-06-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB): 2029-10-13-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB): 2029-10-20-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB): 2029-10-27-facebook-balmoral-suburb-spotlight.md
+- Seven Hills (FB): 2029-11-03-facebook-seven-hills-suburb-spotlight.md
+- Murarrie (FB): 2029-11-10-facebook-murarrie-suburb-spotlight.md
+- Hawthorne (FB): 2029-11-17-facebook-hawthorne-suburb-spotlight.md
+- Coorparoo (FB): 2029-11-24-facebook-coorparoo-suburb-spotlight.md
+- Carina Heights (FB): 2029-12-01-facebook-carina-heights-suburb-spotlight.md (Cycle 10 restart)
+- Carindale (FB): 2029-12-08-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB): 2029-12-15-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB): 2029-12-22-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB): 2029-12-29-facebook-mt-gravatt-east-suburb-spotlight.md
+
+Next in Q1 2030: Mt Gravatt continuing Cycle 10 from 2030-01-05
 
 ---
 

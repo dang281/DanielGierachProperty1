@@ -188,3 +188,16 @@
 | 2029-09-11 | how-to-read-a-building-and-pest-report | Summary page is the wrong place to start; active defects vs maintenance items require different responses; significant structural finding vs routine maintenance note |
 | 2029-09-18 | understanding-the-reiq-contract-of-sale | Finance condition deadline lapses on date regardless of bank approval; inclusions not excluded in contract assumed to stay; solicitor review before signing |
 | 2029-09-25 | stamp-duty-queensland | Most buyers underestimate by $10K+; on $1M owner-occupier purchase transfer duty approximately $38,025; first home buyer concession up to $700,000 tapering threshold |
+| 2029-10-02 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; most vendors assume full coverage; rental history triggers partial liability |
+| 2029-10-09 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; inner east land values pushing more investors over threshold without realising |
+| 2029-10-16 | negative-gearing-selling-investment-property-brisbane | Negative gearing claim stops at settlement; settlement timing relative to 30 June determines which financial year capital gain falls into |
+| 2029-10-23 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry volume, enquiry drives competition, competition moves price |
+| 2029-10-30 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; "buyer ready to go" is a convenience offer for the agent |
+| 2029-11-06 | best-time-to-sell-brisbane | Spring-selling advice built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is most consistent inner east window |
+| 2029-11-13 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4%; fixed-rate break costs must be confirmed before campaign launch |
+| 2029-11-20 | how-much-is-my-home-worth-brisbane | Two houses on same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days and cannot read aspect, renovation quality, or flood overlay |
+| 2029-11-27 | body-corporate | Sinking fund balance matters more than levy rate; levies $2K to $4K/yr small townhouse, $6K to $14K+/yr mid-rise |
+| 2029-12-04 | pre-settlement-inspection-seller-guide-qld | Pre-settlement inspection is not a formality; removalist damage and missing inclusions create last-minute disputes; do your own walkthrough 2 to 3 days before |
+| 2029-12-11 | handling-lowball-offers-selling-brisbane | Rejecting a low offer outright closes the negotiation entirely; 8 to 10% below asking is standard inner east opening position; counter to discover buyer's real ceiling |
+| 2029-12-18 | when-to-sell | Preparation matters more than season; gap between well-prepared and rushed inner east campaign regularly $50,000 to $150,000 |
+| 2029-12-25 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate any time before settlement if not provided correctly |
