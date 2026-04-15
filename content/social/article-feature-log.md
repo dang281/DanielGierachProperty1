@@ -89,3 +89,11 @@
 | 2027-10-14 | form-6-agency-agreement-queensland | Most sellers sign the Form 6 without reading it; 5-business-day cooling-off right under Property Occupations Act 2014 (Qld); rebate clause must be disclosed |
 | 2027-10-21 | off-market-property-sales-brisbane | Off-market limits competition; limiting competition almost always affects price; "we have a buyer ready to go" is a convenience offer, not necessarily a good outcome |
 | 2027-10-28 | best-time-to-sell-brisbane | Most spring-selling advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is the most consistent inner east window and historically outperforms spring |
+| 2027-11-04 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing the contract before signing catches missing inclusions and risky conditions early |
+| 2027-11-11 | what-is-an-unconditional-offer-queensland | Sellers often accept a lower unconditional offer over a higher conditional one; unconditional eliminates the 2 to 3 week finance and B&P risk window entirely |
+| 2027-11-18 | body-corporate | Levies run $2K-$4K/yr for a small townhouse to $6K-$14K+/yr for mid-rise; check the sinking fund balance before buying, not just the levy amount on the listing |
+| 2027-11-25 | cooling-off-period-property-sale-queensland | Seller cannot waive the 5-business-day cooling off period; auction contracts have no cooling off; exit costs 0.25% of the purchase price |
+| 2027-12-02 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; notify lender immediately on accepting an offer; fixed-rate break costs can add thousands before settlement |
+| 2027-12-09 | how-much-is-my-home-worth-brisbane | Comparable sales drive the answer for residential property; automated estimates lag 60-120 days and cannot read aspect, renovation quality, or current buyer demand |
+| 2027-12-16 | property-styling-staging-brisbane | Vacant properties almost always benefit; $3K-$6K for a three-bedroom home for a four-week campaign; primarily a photography investment that drives enquiry and competition |
+| 2027-12-23 | stamp-duty-queensland | Transfer duty is paid by the buyer on a tiered rate; first home buyer concession applies on homes up to $700,000; verify the exact figure at QRO before relying on any estimate |

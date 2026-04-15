@@ -88,6 +88,14 @@
 - CUSTOM — Have Interest Rate Movements Over the Past 12 Months Changed Your Property Plans? (used: 2027-10-13, file: 2027-10-13-linkedin-poll-rate-cuts.md)
 - CUSTOM — Would You Make an Offer on a Property Without Attending a Physical Inspection? (used: 2027-10-20, file: 2027-10-20-linkedin-poll-sight-unseen-open-home.md)
 - CUSTOM — What Is Your Favourite Suburb in Brisbane's Inner East? (used: 2027-10-27, file: 2027-10-27-linkedin-poll-best-inner-east-suburb.md)
+- CUSTOM — When Does the Asking Price Actually Matter? (used: 2027-11-03, file: 2027-11-03-linkedin-poll-asking-price.md)
+- CUSTOM — Have You Ever Bought at Auction? (used: 2027-11-10, file: 2027-11-10-linkedin-poll-bought-at-auction.md)
+- CUSTOM — Sell First or Buy First? (used: 2027-11-17, file: 2027-11-17-linkedin-poll-sell-first-buy-first.md)
+- CUSTOM — What Are Your Christmas Property Plans? (used: 2027-11-24, file: 2027-11-24-linkedin-poll-christmas-property-plans.md)
+- CUSTOM — Spring or Autumn: When Do You Prefer to List? (used: 2027-12-01, file: 2027-12-01-linkedin-poll-listing-season-preference.md)
+- CUSTOM — What Would You Do First to Prepare Your Home for Sale? (used: 2027-12-08, file: 2027-12-08-linkedin-poll-preparing-home-for-sale.md)
+- CUSTOM — What Is Your Property Goal for 2028? (used: 2027-12-15, file: 2027-12-15-linkedin-poll-property-goals-2028.md)
+- CUSTOM — If You Were Listing in 2028, When Would You Go to Market? (used: 2027-12-22, file: 2027-12-22-linkedin-poll-when-would-you-list.md)
 
 ---
 
