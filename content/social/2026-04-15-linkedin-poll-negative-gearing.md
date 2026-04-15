@@ -5,6 +5,7 @@
 **Goal:** Drive engagement; position Daniel as an informed and approachable local expert on property investment concepts
 **Content Pillar:** authority
 **Status:** Ready for Review
+**Amendment:** Poll options trimmed to LinkedIn's 30-character limit per Daniel's feedback (15 Apr 2026)
 **Publish date:** 2026-04-15
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -27,9 +28,9 @@ Which of these best describes negative gearing?
 
 ## Poll options
 
-- When rental income is less than property costs
-- When you sell a property at a loss
-- When the bank won't lend you more money
+- Costs exceed rental income
+- Selling a property at a loss
+- Bank won't lend more money
 - Honestly, not totally sure
 
 ## Hashtags
