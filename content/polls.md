@@ -71,6 +71,10 @@
 - CUSTOM — Cashflow vs Capital Growth: Which Matters More When Investing? (used: 2027-06-16, file: 2027-06-16-linkedin-poll-investment-cashflow.md)
 - CUSTOM — Have You Ever Timed a Property Sale Around End of Financial Year? (used: 2027-06-23, file: 2027-06-23-linkedin-poll-financial-year-timing.md)
 - CUSTOM — If You Were Selling Your Home, When Would You List? (used: 2027-06-30, file: 2027-06-30-linkedin-poll-spring-or-now.md)
+- CUSTOM — Sell First or Buy First? (used: 2027-07-07, file: 2027-07-07-linkedin-poll-sell-first-buy-first.md)
+- CUSTOM — Property Hindsight: What Would You Do Differently? (used: 2027-07-14, file: 2027-07-14-linkedin-poll-property-hindsight.md)
+- CUSTOM — What Would Make You Sell Your Home This Year? (used: 2027-07-21, file: 2027-07-21-linkedin-poll-selling-trigger.md)
+- CUSTOM — Have You Ever Chosen Not to Offer and Regretted It? (used: 2027-07-28, file: 2027-07-28-linkedin-poll-missed-opportunity.md)
 
 ---
 

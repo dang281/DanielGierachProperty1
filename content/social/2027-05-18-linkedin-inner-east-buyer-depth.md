@@ -8,8 +8,8 @@
 **Publish date:** 2027-05-18
 **Scheduled time:** 07:30
 **Visual status:** Draft
-**Canva URL:** [fill on Friday — after creating Canva design]
-**Canva Thumbnail:** [fill on Friday — URL from get-design-thumbnail]
+**Canva URL:** https://www.canva.com/design/DAHGjv8sW3w/edit
+**Canva Thumbnail:** https://design-manipulation-download.canva.com/98ea56f2-5eab-49dc-b525-ce8c10558db9/0000-7727551207648458626.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHYZOT325Q%2F20260414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260414T032349Z&X-Amz-Expires=81974&X-Amz-Signature=b7a3d4d4c950467df49cc7beff962cf0065be6ea15ba2ae12248e4a86fb0ae9d&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Wed%2C%2015%20Apr%202026%2002%3A10%3A03%20GMT
 
 ---
 

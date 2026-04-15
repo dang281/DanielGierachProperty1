@@ -71,3 +71,8 @@
 | 2027-06-10 | land-tax-queensland-investment-property | Calculated on unimproved land value; rising inner east land values pushing more investors over QLD threshold without realising it until assessment arrives |
 | 2027-06-17 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over that lease, not vacant possession |
 | 2027-06-24 | should-i-renovate-before-selling-brisbane | Fixing defects protects existing value; full kitchen renovation ($40K-$60K) almost never earns back its full cost at sale; fix what is broken, leave cosmetics to buyer |
+| 2027-07-01 | cooling-off-period-property-sale-queensland | Seller cannot waive cooling off; 5-business-day statutory buyer right; 0.25% fee to exit; auction contracts carry no cooling off period |
+| 2027-07-08 | how-much-is-my-home-worth-brisbane | Two houses on same Hawthorne street can be $200,000 apart; automated estimates lag 60-120 days and cannot read aspect, renovation quality, or buyer demand |
+| 2027-07-15 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5-4%; fixed-rate break costs can add thousands and must be confirmed before campaign launch |
+| 2027-07-22 | airbnb-vs-longterm | Short-term rental extra costs narrow the gross income advantage significantly; net return often within a few thousand of well-managed long-term tenancy |
+| 2027-07-29 | handling-lowball-offers-selling-brisbane | Rejecting a low offer closes negotiation entirely; 8-10% below asking is standard inner east opening position; counter to discover buyer's real ceiling |
