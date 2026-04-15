@@ -136,3 +136,16 @@
 | 2028-09-12 | pre-settlement-inspection-seller-guide-qld | Property must be in same condition as at contract date; walkthrough with photos before and after removalists; missing inclusions and removalist damage create disputes |
 | 2028-09-19 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; incomplete disclosure gives buyer right to terminate any time before settlement |
 | 2028-09-26 | easements-property-brisbane-qld | Drainage easement along rear boundary usually non-issue; access easement through yard is materially different; title search shows all registered easements |
+| 2028-10-03 | how-to-handle-offers-when-selling | Unconditional offer eliminates 2 to 3 weeks of conditional risk; rejecting a low offer outright closes the negotiation entirely |
+| 2028-10-10 | understanding-the-reiq-contract-of-sale | Finance condition deadline lapses on date regardless of bank approval; inclusions not excluded in contract assumed to stay; solicitor review before signing |
+| 2028-10-17 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; six-year absence rule has conditions; settlement timing relative to 30 June matters for investment properties |
+| 2028-10-24 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over the lease; align settlement to lease expiry before launch |
+| 2028-10-31 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; primary residence exempt; rising inner east values pushing more investors over threshold |
+| 2028-11-07 | property-styling-staging-brisbane | Staging is primarily a photography investment; vacant properties almost always benefit; cost approximately $3,000 to $6,000 for a three-bedroom four-week campaign |
+| 2028-11-14 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; "buyer ready to go" is a convenience offer, not necessarily a good outcome for vendor |
+| 2028-11-21 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; fixed-rate break cost can be thousands; notify lender immediately on accepting an offer |
+| 2028-11-28 | body-corporate | Levies $2K to $4K/yr for small townhouse; $6K to $14K+/yr for mid-rise; sinking fund balance matters more than levy rate |
+| 2028-12-05 | best-time-to-sell-brisbane | Spring advice built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is most consistent inner east window; preparation matters more than season |
+| 2028-12-12 | airbnb-vs-longterm | Platform fees 15 to 20% of gross revenue; cleaning, insurance, maintenance add to costs; net return often within a few thousand of well-managed long-term tenancy |
+| 2028-12-19 | auction-vs-private-treaty | Method of sale should follow the property and buyer pool; auction best with broad competitive pool; EOI suits unique properties where buyer value range is genuinely wide |
+| 2028-12-26 | how-much-is-my-home-worth-brisbane | Two houses on same Hawthorne street can be $200,000 apart; automated estimates lag 60 to 120 days and cannot read aspect, renovation quality, or flood overlay |

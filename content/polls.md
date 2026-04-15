@@ -135,6 +135,19 @@
 - CUSTOM — Has the Brisbane 2032 Olympics Changed How You Think About Property? (used: 2028-09-11, file: 2028-09-11-linkedin-poll-olympic-property-thinking.md)
 - CUSTOM — How Do You Think About Brisbane Property vs Other Investments Right Now? (used: 2028-09-18, file: 2028-09-18-linkedin-poll-inner-east-vs-other-investments.md)
 - CUSTOM — What Are You Prioritising in a Property Search This Spring? (used: 2028-09-25, file: 2028-09-25-linkedin-poll-spring-property-priorities.md)
+- CUSTOM — What Puts You Off a Property at a Spring Inspection? (used: 2028-10-02, file: 2028-10-02-linkedin-poll-spring-inspection-dealbreakers.md)
+- CUSTOM — Spring or Autumn: When Do You Prefer to Sell? (used: 2028-10-09, file: 2028-10-09-linkedin-poll-spring-vs-autumn-selling.md)
+- CUSTOM — Do You Know Your Capital Gains Tax Position If You Sold Today? (used: 2028-10-16, file: 2028-10-16-linkedin-poll-cgt-awareness.md)
+- CUSTOM — What Is Most Likely to Stop a Homeowner From Listing in October or November? (used: 2028-10-23, file: 2028-10-23-linkedin-poll-what-stalls-sellers.md)
+- CUSTOM — December Campaign or Wait Until February? (used: 2028-10-30, file: 2028-10-30-linkedin-poll-december-vs-february.md)
+- CUSTOM — Does Your Home Need Professional Styling Before You Sell? (used: 2028-11-06, file: 2028-11-06-linkedin-poll-styling-before-selling.md)
+- CUSTOM — Off-Market or Full Campaign: Which Gets a Better Result? (used: 2028-11-13, file: 2028-11-13-linkedin-poll-off-market-vs-campaign.md)
+- CUSTOM — Have You Ever Missed Out on a Property You Were Seriously Considering? (used: 2028-11-20, file: 2028-11-20-linkedin-poll-missed-out-property.md)
+- CUSTOM — What Is Your Biggest Property Goal for 2029? (used: 2028-11-27, file: 2028-11-27-linkedin-poll-property-goals-2029.md)
+- CUSTOM — What Was the Most Significant Brisbane Property Story of 2028? (used: 2028-12-04, file: 2028-12-04-linkedin-poll-biggest-story-2028.md)
+- CUSTOM — If You Are Planning to Sell in 2029, When Would You List? (used: 2028-12-11, file: 2028-12-11-linkedin-poll-2029-listing-plans.md)
+- CUSTOM — Looking Back on 2028, How Would You Rate It as a Year for Brisbane Property? (used: 2028-12-18, file: 2028-12-18-linkedin-poll-rate-2028-year.md)
+- CUSTOM — What Is Your Property Resolution for 2029? (used: 2028-12-25, file: 2028-12-25-linkedin-poll-2029-resolution.md)
 
 ---
 
