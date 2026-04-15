@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an authority on infrastructure-driven value change in the inner east; relevant to buyers who want to understand the market and sellers considering their timing
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** Hold
 **Publish date:** 2027-04-27
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -49,9 +49,9 @@ If you are selling or considering selling in the inner east, the relevant questi
 
 ## Notes for Daniel
 
-**Confidence: Check**
+**Confidence: Hold**
 
-The post uses the framing that Cross River Rail has been running for approximately two years by April 2027 (it opened late 2024/early 2025). Verify the actual opening date and adjust the opening line if needed.
+CRITICAL: This post must not be published. Cross River Rail will NOT have opened by April 2027. The confirmed opening date is 2029 (QLD Government, December 2024). The entire premise of "running for two years" is factually wrong for April 2027. This post needs to be completely rewritten or rescheduled to 2031 or later when CRR would actually have been operational for approximately two years. Do not approve without a full rewrite. The social media agent will flag this for the Sunday planner to rewrite and reschedule before it reaches review.
 
 The suburb-specific observations (Cannon Hill, Coorparoo demand from CBD workers; Camp Hill/Carina Heights still school-catchment-driven) are based on your direct market experience. Update these if your observations on the ground differ.
 

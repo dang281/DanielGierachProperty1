@@ -21,7 +21,7 @@ What this means in practice: rental properties in Bulimba, Hawthorne, Balmoral, 
 
 For investors, the vacancy story matters for two reasons. The first is yield. A property that is rarely vacant delivers more reliable income than one in a market with higher churn and longer gaps between tenancies. The second is holding cost. A property that costs $600 a week to hold is a very different investment when it's earning $700 a week in rent versus when it's been vacant for six weeks.
 
-The inner east's vacancy rate reflects its fundamentals: proximity to the CBD, access to Cross River Rail stations, good schools, and a lifestyle that tenants in this income bracket will pay a premium to access. Those fundamentals are not changing.
+The inner east's vacancy rate reflects its fundamentals: proximity to the CBD, proximity to future Cross River Rail stations (opening 2029), good schools, and a lifestyle that tenants in this income bracket will pay a premium to access. Those fundamentals are not changing.
 
 For sellers with investment properties, tight vacancy also matters. A tenanted property with a strong rental history and a long-term lease is a compelling offer to the investor buyer pool, which is deep in the inner east right now.
 
@@ -45,7 +45,7 @@ danielgierach.com
 **Body text:**
 - Inner east rental vacancy: structural, not temporary
 - Properties leasing within days of listing
-- Strong fundamentals: CBD, Cross River Rail, schools
+- Strong fundamentals: CBD, future Cross River Rail (2029), schools
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel

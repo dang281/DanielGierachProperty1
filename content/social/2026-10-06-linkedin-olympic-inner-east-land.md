@@ -17,7 +17,7 @@
 
 The 2032 Brisbane Olympics conversation tends to get framed as a distant, abstract event. But the infrastructure investment that supports it is not distant. It is being built now, and it is concentrated in specific corridors that run directly through Brisbane's inner east.
 
-Cross River Rail is the most significant. The new underground stations at Boggo Road and the connection through to the inner south are changing travel time calculations for suburbs that were previously dependent on traffic. Properties within walking distance of these stations are being evaluated differently by buyers who are thinking five to ten years ahead. The Gabba precinct redevelopment brings sporting and entertainment infrastructure to the inner east in a way that has historically been concentrated in the CBD or South Bank. The Kangaroo Point green bridge, the Breakfast Creek road works, and the broader active transport investment are all reducing the friction of living in the eastern suburbs without a car.
+Cross River Rail is the most significant. The new underground stations at Boggo Road and the connection through to the inner south will change travel time calculations for suburbs that were previously dependent on traffic. Opening in 2029 and operational well before the Games, it's confirmed infrastructure, not a promise. Properties within walking distance of these stations are being priced differently by buyers who are thinking five to ten years ahead. The Gabba precinct redevelopment brings sporting and entertainment infrastructure to the inner east in a way that has historically been concentrated in the CBD or South Bank. The Kangaroo Point green bridge, the Breakfast Creek road works, and the broader active transport investment are all reducing the friction of living in the eastern suburbs without a car.
 
 What I observe in buyer conversations is that a meaningful cohort of buyers in this corridor, both owner-occupiers and investors, are explicitly factoring the Olympic infrastructure timeline into their decision-making. They're not chasing short-term event uplift. They're buying the permanent infrastructure improvement: better connectivity, better amenity, and the sustained demand pressure that comes with a city that is investing heavily in a known, globally visible deadline.
 
@@ -31,10 +31,13 @@ Start the conversation at danielgierach.com.
 
 ## Notes for Daniel
 
-**Confidence: Ready**
+**Confidence: Check**
 
-**1. Suggested first comment:**
+**1. Stat to verify before posting:**
+Cross River Rail opening date: confirmed 2029 per QLD Government (Crisafulli Government statement, December 2024). Verify no further change at crossriverrail.qld.gov.au before publishing.
+
+**2. Suggested first comment:**
 The buyers who are most deliberate about the infrastructure corridors are often the ones making the best long-term decisions, and I'm seeing more of them in the inner east this year.
 
-**2. Approve or flag:**
-Approve as-is
+**3. Approve or flag:**
+Approve once CRR opening date confirmed as still 2029.
