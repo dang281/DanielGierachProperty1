@@ -174,6 +174,19 @@
 - CUSTOM — What Would Be Your Top Priority in a Property if Buying Today? (used: 2029-06-11, file: 2029-06-11-linkedin-poll-top-priority-buying-today.md)
 - CUSTOM — Heading Into Spring: Are You Planning Any Property Moves? (used: 2029-06-18, file: 2029-06-18-linkedin-poll-spring-property-plans.md)
 - CUSTOM — What Has Been the Biggest Factor Driving Inner East Prices in 2029? (used: 2029-06-25, file: 2029-06-25-linkedin-poll-biggest-price-driver-2029.md)
+- CUSTOM — If Listing for Spring, When Would You Want to Settle? (used: 2029-07-02, file: 2029-07-02-linkedin-poll-spring-settlement-timing.md)
+- CUSTOM — What Is Your Biggest Property Concern for the Second Half of 2029? (used: 2029-07-09, file: 2029-07-09-linkedin-poll-second-half-concerns.md)
+- CUSTOM — Which Inner East Suburb Has the Most Long-Term Potential? (used: 2029-07-16, file: 2029-07-16-linkedin-poll-inner-east-potential.md)
+- CUSTOM — Has the Olympic 2032 Countdown Changed How You Think About Inner East Property? (used: 2029-07-23, file: 2029-07-23-linkedin-poll-olympic-property-effect.md)
+- CUSTOM — When You Walk Through a Property for Sale, What Do You Notice First? (used: 2029-07-30, file: 2029-07-30-linkedin-poll-first-impression-inspection.md)
+- CUSTOM — What Would Make You Decide to Sell Your Home Before Christmas? (used: 2029-08-06, file: 2029-08-06-linkedin-poll-sell-before-christmas.md)
+- CUSTOM — Spring Is Approaching. Are You Planning Any Property Moves? (used: 2029-08-13, file: 2029-08-13-linkedin-poll-spring-plans.md)
+- CUSTOM — If Selling This Spring, Which Would You Be Most Likely to Do? (used: 2029-08-20, file: 2029-08-20-linkedin-poll-renovate-vs-sell-as-is.md)
+- CUSTOM — How Confident Are You in Brisbane Inner East Property Prices Heading Into 2030? (used: 2029-08-27, file: 2029-08-27-linkedin-poll-2030-confidence.md)
+- CUSTOM — If Selling Your Home This Spring, Which Method Would You Prefer? (used: 2029-09-03, file: 2029-09-03-linkedin-poll-auction-vs-private-treaty-spring.md)
+- CUSTOM — How Would You Describe Buyer Competition in Brisbane's Inner East This Spring? (used: 2029-09-10, file: 2029-09-10-linkedin-poll-spring-buyer-competition.md)
+- CUSTOM — What Would Most Influence You to Upgrade Your Property in the Next 12 Months? (used: 2029-09-17, file: 2029-09-17-linkedin-poll-upgrade-trigger.md)
+- CUSTOM — Looking Back on Q3 2029 in Brisbane Property, How Would You Rate It? (used: 2029-09-24, file: 2029-09-24-linkedin-poll-q3-market-rating.md)
 
 ---
 
