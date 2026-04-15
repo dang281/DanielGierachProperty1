@@ -169,7 +169,23 @@
 - Hawthorne (FB) — 2029-03-24-facebook-hawthorne-suburb-spotlight.md
 - Coorparoo (FB) — 2029-03-31-facebook-coorparoo-suburb-spotlight.md (Cycle 9 restart)
 
-Next in Q2 2029: Carina Heights (continuing cycle 9 from 2029-04-07)
+### Facebook Suburb Spotlights — Q2 2029 Cycle 9 continuation (Carina Heights through Balmoral)
+
+- Carina Heights (FB) — 2029-04-07-facebook-carina-heights-suburb-spotlight.md
+- Carindale (FB) — 2029-04-14-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB) — 2029-04-21-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB) — 2029-04-28-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB) — 2029-05-05-facebook-mt-gravatt-east-suburb-spotlight.md
+- Mt Gravatt (FB) — 2029-05-12-facebook-mt-gravatt-suburb-spotlight.md
+- Morningside (FB) — 2029-05-19-facebook-morningside-suburb-spotlight.md
+- Norman Park (FB) — 2029-05-26-facebook-normanpark-suburb-spotlight.md
+- Carina (FB) — 2029-06-02-facebook-carina-suburb-spotlight.md
+- Cannon Hill (FB) — 2029-06-09-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB) — 2029-06-16-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB) — 2029-06-23-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB) — 2029-06-30-facebook-balmoral-suburb-spotlight.md
+
+Next in Q3 2029: Seven Hills (continuing cycle 9 from 2029-07-07)
 
 ---
 

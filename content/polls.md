@@ -161,6 +161,19 @@
 - CUSTOM — With Easter Approaching, Would You List Before or After the Break? (used: 2029-03-12, file: 2029-03-12-linkedin-poll-pre-easter-selling.md)
 - CUSTOM — Flood Overlay: Dealbreaker or Something You Would Price In? (used: 2029-03-19, file: 2029-03-19-linkedin-poll-flood-overlay.md)
 - CUSTOM — How Would You Rate Brisbane's Inner East Property Market Performance in Q1 2029? (used: 2029-03-26, file: 2029-03-26-linkedin-poll-q1-review.md)
+- CUSTOM — What Has Been the Standout Inner East Suburb for Capital Growth Over the Past Year? (used: 2029-04-02, file: 2029-04-02-linkedin-poll-standout-suburb-growth.md)
+- CUSTOM — Would You Buy a Property With a Short-Term Rental History? (used: 2029-04-09, file: 2029-04-09-linkedin-poll-short-term-rental-history.md)
+- CUSTOM — What Is the Single Biggest Risk to Brisbane Property in the Next 12 Months? (used: 2029-04-16, file: 2029-04-16-linkedin-poll-biggest-risk-brisbane.md)
+- CUSTOM — How Many Inspections Before Making an Offer? (used: 2029-04-23, file: 2029-04-23-linkedin-poll-inspections-before-offer.md)
+- CUSTOM — What Would Most Influence You to Upgrade Your Home Right Now? (used: 2029-04-30, file: 2029-04-30-linkedin-poll-upgrade-trigger.md)
+- CUSTOM — Has Cross River Rail Changed How You Think About Inner East Access? (used: 2029-05-07, file: 2029-05-07-linkedin-poll-cross-river-rail-access.md)
+- CUSTOM — What Is Your Ideal Property Hold Period as an Investor? (used: 2029-05-14, file: 2029-05-14-linkedin-poll-ideal-hold-period.md)
+- CUSTOM — What Is the Hardest Part of Running a Property Campaign as a Vendor? (used: 2029-05-21, file: 2029-05-21-linkedin-poll-hardest-part-autumn-selling.md)
+- CUSTOM — Does End of Financial Year Affect Your Property Decisions? (used: 2029-05-28, file: 2029-05-28-linkedin-poll-eofy-property-decisions.md)
+- CUSTOM — What Has Surprised You Most About Brisbane's Inner East Property Market in 2029? (used: 2029-06-04, file: 2029-06-04-linkedin-poll-2029-market-surprise.md)
+- CUSTOM — What Would Be Your Top Priority in a Property if Buying Today? (used: 2029-06-11, file: 2029-06-11-linkedin-poll-top-priority-buying-today.md)
+- CUSTOM — Heading Into Spring: Are You Planning Any Property Moves? (used: 2029-06-18, file: 2029-06-18-linkedin-poll-spring-property-plans.md)
+- CUSTOM — What Has Been the Biggest Factor Driving Inner East Prices in 2029? (used: 2029-06-25, file: 2029-06-25-linkedin-poll-biggest-price-driver-2029.md)
 
 ---
 

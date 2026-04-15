@@ -162,3 +162,16 @@
 | 2029-03-13 | what-happens-on-settlement-day-queensland | Most vendors find out via text from solicitor; settlement is digital via PEXA; preparation in weeks before is where settlement is won or lost |
 | 2029-03-20 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate any time before settlement if not provided correctly |
 | 2029-03-27 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east values pushing investors over threshold; primary residence exempt |
+| 2029-04-03 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2029-04-10 | pre-settlement-inspection-seller-guide-qld | Buyer entitled to one pre-settlement inspection; property must match contract-date condition; walkthrough before buyer visit prevents disputes |
+| 2029-04-17 | body-corporate | Sinking fund balance matters more than levy rate; levies $2K to $4K/yr small townhouse, $6K to $14K+/yr mid-rise; check records before buying |
+| 2029-04-24 | best-time-to-sell-brisbane | Spring-selling advice built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is most consistent inner east window; preparation matters more than season |
+| 2029-05-01 | auction-vs-private-treaty | Method of sale should follow property and buyer pool, not seller preference; EOI suits unique properties where buyer value range is genuinely wide |
+| 2029-05-08 | how-to-handle-offers-when-selling | Price is one variable; unconditional eliminates 2 to 3 week risk window; rejecting low offer outright closes negotiation entirely |
+| 2029-05-15 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; fixed-rate break cost can add thousands; notify lender immediately on accepting offer |
+| 2029-05-22 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; "buyer ready to go" is a convenience offer, not necessarily a good outcome |
+| 2029-05-29 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; partial CGT liability applies to rental years; settlement date relative to 30 June affects which year capital gain falls into |
+| 2029-06-05 | negative-gearing-selling-investment-property-brisbane | Settlement timing relative to 30 June shifts capital gain between financial years; negative gearing claim ceases at settlement; model position before campaign |
+| 2029-06-12 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over lease; align settlement to lease expiry before launch |
+| 2029-06-19 | should-i-renovate-before-selling-brisbane | Fix defects to protect existing value; full kitchen renovation ($40K to $60K+) almost never earns back full cost; fix what is broken, leave cosmetics to buyer |
+| 2029-06-26 | airbnb-vs-longterm | Platform fees 15 to 20% of gross revenue; extra costs add $15K to $25K/year; net return often within a few thousand of well-managed long-term tenancy |
