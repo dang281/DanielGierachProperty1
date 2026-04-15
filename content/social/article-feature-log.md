@@ -214,3 +214,16 @@
 | 2030-03-13 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east land values pushing investors over threshold without realising |
 | 2030-03-20 | selling-tenanted-property-queensland | Fixed-term lease past settlement date means buyer takes over lease; align settlement to lease expiry before launch |
 | 2030-03-27 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry volume, enquiry drives competition, competition moves price |
+| 2030-04-03 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing before signing catches missing inclusions and risky conditions |
+| 2030-04-10 | what-is-an-unconditional-offer-queensland | Seller will often accept lower unconditional over higher conditional; unconditional eliminates 2 to 3 week risk window |
+| 2030-04-17 | auction-vs-private-treaty | Method of sale should follow property and buyer pool, not seller preference; EOI suits unique properties |
+| 2030-04-24 | capital-gains-tax-selling-home-brisbane | Main residence exemption not automatic if property was rented; settlement timing relative to 30 June matters |
+| 2030-05-01 | heritage-overlays-brisbane | Overlay requires Council approval for external character changes; internal renovations typically proceed without approval |
+| 2030-05-08 | how-to-read-a-building-and-pest-report | Start with active defects section not summary page; active termite activity vs maintenance items require different responses |
+| 2030-05-15 | understanding-the-reiq-contract-of-sale | Finance condition lapses on deadline regardless of bank approval; inclusions not excluded assumed to stay |
+| 2030-05-22 | what-happens-on-settlement-day-queensland | Most vendors find out via text from solicitor; preparation in weeks before is where settlement is won or lost |
+| 2030-05-29 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate any time before settlement if not provided |
+| 2030-06-05 | pre-settlement-inspection-seller-guide-qld | Pre-settlement inspection not a formality; removalist damage and missing inclusions create last-minute disputes |
+| 2030-06-12 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; fixed-rate break costs must be confirmed before campaign launch |
+| 2030-06-19 | body-corporate | Sinking fund balance matters more than levy rate; levies $2K to $4K/yr small townhouse, $6K to $14K+/yr mid-rise |
+| 2030-06-26 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; "buyer ready to go" is a convenience offer |
