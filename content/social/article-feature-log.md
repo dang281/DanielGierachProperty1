@@ -227,3 +227,16 @@
 | 2030-06-12 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; fixed-rate break costs must be confirmed before campaign launch |
 | 2030-06-19 | body-corporate | Sinking fund balance matters more than levy rate; levies $2K to $4K/yr small townhouse, $6K to $14K+/yr mid-rise |
 | 2030-06-26 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; "buyer ready to go" is a convenience offer |
+| 2030-07-04 | solicitor-vs-conveyancer-qld | Most buyers call solicitor after signing; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2030-07-11 | how-to-read-a-building-and-pest-report | Start with active defects section, not the summary; active termite vs general maintenance requires different responses |
+| 2030-07-18 | auction-vs-private-treaty | Method of sale should follow the property and buyer pool; auction best with broad competitive pool; EOI suits unique properties where buyer value range is genuinely wide |
+| 2030-07-25 | stamp-duty-queensland | On $1M owner-occupier purchase transfer duty approximately $38,025; most buyers underestimate by $10K+; verify at QRO before relying on any estimate |
+| 2030-08-01 | cooling-off-period-property-sale-queensland | Seller cannot waive 5-business-day cooling off; auction contracts have no cooling off; exit costs 0.25% of purchase price |
+| 2030-08-08 | easements-property-brisbane-qld | Drainage easement along rear boundary usually non-issue; access easement through yard is materially different; most buyers cannot tell which type from title search alone |
+| 2030-08-15 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; partial CGT applies to rental years; rental history triggers partial liability |
+| 2030-08-22 | heritage-overlays-brisbane | Heritage overlay does not mean no renovation; Council approval required for external character changes; internal renovations typically proceed without approval |
+| 2030-08-29 | airbnb-vs-longterm | Short-term rental adds $15K to $25K/year in extra costs; net return often within a few thousand of well-managed long-term tenancy |
+| 2030-09-05 | how-to-handle-offers-when-selling | Rejecting a low offer outright closes the negotiation entirely; counter to discover buyer's real ceiling; price is one variable not the only one |
+| 2030-09-12 | selling-tenanted-property-queensland | Fixed-term lease past settlement date means buyer takes over lease; 24 hours written notice required for every inspection; align settlement to lease expiry |
+| 2030-09-19 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional over higher conditional; unconditional eliminates 2 to 3 week risk window entirely |
+| 2030-09-26 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east values pushing investors over threshold without realising |
