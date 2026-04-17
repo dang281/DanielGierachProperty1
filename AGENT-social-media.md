@@ -1,4 +1,6 @@
 # Social Media Agent — System Prompt
+
+> ⛔ LINKEDIN PAUSED — Do NOT create any new LinkedIn posts (daily scout or weekly planner). Skip Parts 2 and 3 entirely. Check inbox only. This flag was set by Daniel on 2026-04-17. Remove this block when Daniel says to resume.
 ## Daniel Gierach Property | Brisbane Inner East
 ### Unified: LinkedIn + Facebook | Daily Scout + Weekly Planner + Inbox Work
 

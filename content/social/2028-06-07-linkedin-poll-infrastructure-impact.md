@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; position Daniel as informed and approachable
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** Hold
 **Publish date:** 2028-06-07
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -33,6 +33,8 @@ Infrastructure investment shapes property values in ways that take years to full
 
 ## Notes for Daniel
 
-Cross River Rail is operational as of 2026. Olympic venue preparations are ongoing through to 2032. Gateway Motorway upgrades refer to the ongoing SEQ infrastructure program. All four options reflect genuine buyer conversation topics.
+⛔ HOLD — FACTUAL ERROR: Notes state "Cross River Rail is operational as of 2026" — CRR does not open until 2029. The poll caption also implies CRR is already operational. Rewrite caption to use future tense or reschedule to post-2029. The poll options and structure are otherwise fine.
+
+Cross River Rail opening is confirmed 2029 — NOT 2026. Olympic venue preparations are ongoing through to 2032. Gateway Motorway upgrades refer to the ongoing SEQ infrastructure program. All four options reflect genuine buyer conversation topics.
 
 Suggested follow-up comment: "My observation from buyer conversations is that Cross River Rail had the most immediate pricing impact, but the Olympic factor is what is driving longer-horizon thinking right now. The cycling infrastructure one is underrated. Certain streets in Bulimba and Hawthorne have genuinely repriced because of it. What is your read?"

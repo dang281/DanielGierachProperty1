@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement at the start of the year; gauge sentiment among buyers, sellers, and investors in Daniel's network
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** Hold
 **Publish date:** 2027-01-06
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -37,6 +37,8 @@ Compared to 12 months ago, how are you feeling about Brisbane property?
 #Brisbane2027
 
 ## Notes for Daniel
+
+⛔ HOLD — FACTUAL ERROR: Caption states "The Cross River Rail opened" as something that happened in 2026. CRR does not open until 2029 (confirmed QLD Government). Remove the CRR reference entirely or rewrite the caption context before posting.
 
 New year sentiment poll. No stats cited. Appropriate for the first Wednesday of January when people are returning to work and reflecting on the year ahead.
 

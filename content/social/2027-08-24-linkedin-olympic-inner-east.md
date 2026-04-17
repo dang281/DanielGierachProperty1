@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an informed inner east specialist who understands the long-term structural factors shaping buyer demand.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** Hold
 **Publish date:** 2027-08-24
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -33,7 +33,9 @@ danielgierach.com
 
 ## Notes for Daniel
 
-**Confidence: Ready**
+⛔ HOLD — FACTUAL ERROR: Caption states "Cross River Rail opened in 2025" — CRR does not open until 2029 (confirmed QLD Government). The entire post premise relies on CRR being operational. Needs a full rewrite for a post-2029 publish date, or replace the CRR angle with a different infrastructure narrative.
+
+**Confidence: Hold**
 
 **1. Suggested first comment:**
 Happy to talk through how the Olympic corridor is showing up in buyer behaviour for specific inner east suburbs if that is relevant to your situation.
