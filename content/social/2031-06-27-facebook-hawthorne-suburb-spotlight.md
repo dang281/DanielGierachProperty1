@@ -14,7 +14,7 @@
 
 ## Caption
 
-The approach to the end of financial year in Hawthorne produces a specific buyer conversation that agents in the suburb hear regularly in June. Investors who are assessing their portfolio position before the new financial year, alongside owner-occupiers who have been searching since autumn and want to be settled before the school year review begins, create a period where buyer intent is high even if the number of open home attendees is lower than in the autumn peak.
+The end of financial year in Hawthorne produces a specific buyer conversation that agents hear regularly in June. Investors assessing their portfolio position before the new financial year, alongside owner-occupiers who have been searching since autumn and want to be settled before the school year begins, create a period where buyer intent is high even if open home attendance is lower than the autumn peak.
 
 Hawthorne's housing mix is worth revisiting for vendors who are wondering how their property sits relative to its competition. The suburb contains a range from original but liveable Queenslanders through to fully renovated character homes that present at a standard that rivals anything on offer in Balmoral or Bulimba. The variance in presentation quality means the market is not uniform, and an accurately prepared and well-staged property can stand out considerably in June when the surrounding competition is thin.
 

@@ -14,7 +14,7 @@
 
 ## Caption
 
-The approach to winter in Camp Hill produces a market dynamic that vendors who have been preparing since autumn can take advantage of. The buyers who are active in June in this suburb are not the casual browsers who attend open homes in February and March and then disappear. They are buyers who have maintained their search through a quieter period, have accumulated detailed knowledge of the suburb's streets and price points, and are ready to transact when the right property appears. That buyer is a more efficient counterpart for a vendor than a large but unfocused pool.
+Winter in Camp Hill produces a market dynamic that prepared vendors can take advantage of. The buyers active in June are not the casual browsers who attend open homes in February and March and then disappear. They have maintained their search through a quieter period, accumulated detailed knowledge of the suburb's streets and price points, and are ready to transact when the right property appears. That buyer is a more efficient counterpart for a vendor than a large but unfocused pool.
 
 The Whites Hill State College catchment is the reference point against which everything else in Camp Hill's demand story is measured. Families who are specifically targeting the catchment have usually narrowed their search to the streets within it before they contact an agent. The vendor who understands which part of their property's appeal derives from catchment status and which derives from the street, the aspect, and the physical quality of the home is better positioned to have the pricing conversation clearly.
 

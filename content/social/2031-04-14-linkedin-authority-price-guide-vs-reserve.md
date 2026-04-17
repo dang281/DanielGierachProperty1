@@ -23,7 +23,7 @@ The reserve is different. It is the minimum price the vendor will accept on auct
 
 What this means in practice is that the reserve can sit above the guide if the campaign has generated strong interest and the evidence supports it. It can also sit below the top of the guide if the buyer pool has been thinner than expected. Neither outcome means the original guide was wrong. It reflects the fact that guides are estimates made at a point in time and the reserve is a decision made at the end of the process.
 
-Sophisticated inner east buyers understand this. They watch the guide, they assess the property against it, and they arrive at their own view of value before auction day. The buyers who do that work consistently are the ones who bid with confidence rather than hesitation.
+Sophisticated inner east buyers understand this. They watch the guide, assess the property against it, and arrive at their own view of value before auction day. The buyers who do that work are the ones who bid with confidence rather than hesitation.
 
 More at danielgierach.com.
 

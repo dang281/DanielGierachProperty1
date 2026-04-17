@@ -16,7 +16,7 @@
 
 The buyers who have been most consistent in the Carina market over the past several years are families who are making a long-term commitment to the suburb rather than a transitional purchase. Carina was, for some time, read as a suburb people moved through on their way to something closer to the city. The evidence from the past decade of sales data suggests that picture has changed. Renovation investment, owner-occupier retention rates, and the standard of properties being listed all point to a suburb where owners are staying and improving.
 
-The bus access from Carina into the city, via the Old Cleveland Road corridor and the connecting routes toward the CBD, is functional for households that have structured their daily movements around public transport. The routes are not as fast as a train, but the coverage is broad enough to be useful for residents in most parts of the suburb. For households with children at school, the bus network also connects to relevant secondary schools in the south-east corridor.
+The bus access from Carina into the city via the Old Cleveland Road corridor is functional for households structured around public transport. The routes are not as fast as a train, but coverage is broad enough to be useful for residents across the suburb and connects to relevant secondary schools in the south-east corridor.
 
 The newer construction in Carina, which sits alongside the character home stock on the older streets, represents a segment of the market where buyers who want lower maintenance and a contemporary floor plan can find genuine options at a price that does not require the premium of Cannon Hill or Morningside.
 

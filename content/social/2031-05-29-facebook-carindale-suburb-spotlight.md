@@ -18,7 +18,7 @@ Carindale's market behaviour through the cooler months is instructive for vendor
 
 The larger lots in Carindale support a scale of home that is difficult to achieve closer to the city at equivalent cost. Buyers who are designing or substantially renovating a home, and who need a block that accommodates the floor plan they have in mind without requiring council variances or tight builds, find that Carindale's blocks give them the room to work with. That practical freedom is worth more to some buyers than the streetscape of a character suburb.
 
-The relationship between Carindale and the surrounding school network is worth tracking at the time of purchase. The specific catchment boundaries and the private school options nearby can shift in their relative attractiveness as school populations change, and buyers who have done recent research on school options rather than relying on information that is several years old are making better-informed decisions.
+The school network around Carindale is worth researching carefully at the time of purchase. Catchment boundaries and private school options can shift in relative attractiveness as school populations change, and buyers with current research make better-informed decisions than those relying on older information.
 
 Vendors in Carindale dealing with buyers in winter are often dealing with people who have been looking for several months and have not yet found the right property. That patience and persistence describes a ready buyer.
 

@@ -14,11 +14,11 @@
 
 ## Caption
 
-Seven Hills at the end of June is a suburb that demonstrates one of the more interesting features of the Brisbane property market: the buyers who are motivated by land content and views are less disrupted by seasonality than buyers who are motivated by lifestyle infrastructure or school catchments. The family buying into a catchment suburb has a school timeline. The buyer in Seven Hills who wants a large elevated lot with renovation potential has a different kind of urgency, or no urgency at all, and will wait as long as it takes to find the right block.
+Seven Hills demonstrates one of the more interesting features of the Brisbane property market: buyers motivated by land content and views are less disrupted by seasonality than those motivated by lifestyle infrastructure or school catchments. The family buying into a catchment suburb has a school timeline. The buyer in Seven Hills who wants a large elevated lot with renovation potential has a different kind of urgency, or none at all, and will wait as long as it takes to find the right block.
 
-That patience from the buyer side is matched by patience from the vendor side. Seven Hills owners who have been in the suburb for a long time tend to have a clear sense of what their property is worth and are not inclined to test the market at a price that does not reflect it. The transaction rate in the suburb is low, and both buyers and vendors tend to approach the process with a longer horizon than the more active precincts in the inner east.
+That patience from buyers is matched by patience from vendors. Seven Hills owners who have been in the suburb for a long time tend to have a clear sense of what their property is worth and are not inclined to test the market at a price that does not reflect it. Transaction rates are low, and both buyers and vendors approach the process with a longer horizon than the more active inner east precincts.
 
-The end of financial year brings some property investors to Seven Hills who are assessing their options for an asset with low maintenance and land content that holds well through market cycles. The investment case for a well-positioned Seven Hills property, on a large elevated lot that requires limited management, is one that a particular segment of the EOFY buyer considers carefully.
+The end of financial year brings property investors to Seven Hills assessing their options for an asset with low maintenance and land content that holds well through market cycles.
 
 The last trading day of Q2 is a reasonable time for Seven Hills homeowners to have a current assessment of their property's value. Markets move, and the figure that applied twelve months ago may not be the figure that applies now.
 

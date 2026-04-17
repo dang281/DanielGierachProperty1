@@ -21,7 +21,7 @@ Attendance volume is a lagging output of advertising spend and online listing ac
 
 What matters after an open home is the profile of who attended. Five buyer groups who have unconditional finance, have resolved their suburb decision, and are prepared to bid or make an offer at market price are worth more to a vendor's campaign than thirty groups browsing with a vague interest in the area. Three to four unconditional-capable groups at a well-priced inner east property in May is typically enough to produce competitive auction conditions, if the pricing reflects the evidence and the presentation is working.
 
-The questions a vendor should ask their agent after an open home are specific. Who attended and do we know enough about their situation to assess whether they are buyers or browsers? Are any of the groups who have inspected twice, because repeat inspectors are almost always genuine buyers. Has anyone asked about access for a building and pest inspection? Those questions produce useful information. The attendance headcount does not.
+The questions a vendor should ask their agent after an open home are specific. Who attended and do we know enough about their situation to assess whether they are buyers or browsers? Have any groups inspected twice, because repeat inspectors are almost always genuine buyers? Has anyone asked about access for a building and pest inspection? Those questions produce useful information. The attendance headcount does not.
 
 An agent who can answer those questions clearly after every open home is giving a vendor something they can make decisions with.
 

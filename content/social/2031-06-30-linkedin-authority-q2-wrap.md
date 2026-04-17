@@ -17,13 +17,13 @@
 
 Q2 in Brisbane's inner east delivered what the season's pattern usually delivers, with some nuances worth noting for vendors who are planning a Q3 launch.
 
-The post-Easter buyer pool was smaller than the February and March pool, as it consistently is. But smaller does not mean inactive. The buyers who were still searching in mid to late April had already made their suburb and price range decisions. They were not browsing. The campaigns that converted inquiry into results in that period were the ones with accurate pricing and presentation that connected with the buyer profile active in the market at that point.
+The post-Easter buyer pool was smaller than the February and March pool, as it consistently is. But smaller does not mean inactive. Buyers still searching in mid to late April had already made their suburb and price range decisions. They were not browsing. The campaigns that converted inquiry into results were the ones with accurate pricing and presentation that connected with the active buyer profile.
 
-The EOFY period introduced a consideration that was more visible this year among investment property vendors. The question of whether to settle before or after 30 June was a genuine decision for investors with capital gains in the current financial year, and it shaped the timing of some listings and the structure of some sale negotiations in May and June. That is not a new dynamic, but it was present enough in Q2 to be worth flagging.
+The EOFY period introduced a consideration more visible this year among investment property vendors. The question of whether to settle before or after 30 June was a genuine decision for investors with capital gains in the current financial year, and it shaped the timing of some listings and the structure of some negotiations in May and June.
 
-The winter market in the inner east performed consistently with what a well-supplied, well-prepared winter market here tends to produce. The buyer pool was composed of genuinely motivated buyers: people with lease expiries, school enrolment requirements, and job timelines. Open home attendance at well-presented properties was not the casualty that the spring-is-better narrative predicts. Properties that launched in June with current pricing and honest marketing found buyers.
+The winter market performed consistently with what a well-supplied, well-prepared winter market here tends to produce. The buyer pool was composed of genuinely motivated buyers: people with lease expiries, school enrolment requirements, and job timelines. Open home attendance at well-presented properties was not the casualty that the spring-is-better narrative predicts. Properties that launched in June with current pricing and honest marketing found buyers.
 
-The gap that characterised the quarter was the same gap that characterised Q1: the distance between prepared and underprepared campaigns. That gap does not narrow in winter. If anything, a buyer pool that is smaller and more discerning notices underprepared properties more quickly.
+The gap that characterised the quarter was the same gap that characterised Q1: the distance between prepared and underprepared campaigns. That gap does not narrow in winter. A buyer pool that is smaller and more discerning notices underprepared properties quickly.
 
 Q3 begins with a buyer pool that is rebuilding. Vendors who are ready to launch in July will enter a market that is transitioning toward the spring window, with less competition from other listings than September will bring.
 

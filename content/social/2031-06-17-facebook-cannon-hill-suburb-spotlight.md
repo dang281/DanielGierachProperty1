@@ -18,7 +18,7 @@ The conversation about Cannon Hill in the early days of the Cross River Rail upg
 
 The school story in Cannon Hill is more layered than it is in suburbs with a single dominant state school catchment. Cannon Hill Anglican College draws families from surrounding precincts into the suburb specifically for schooling, and those families are purchasing or renting in Cannon Hill because the school is there. That school-driven demand is a feature of the suburb that operates across economic cycles.
 
-The proximity to the Gateway Motorway is particularly relevant for buyers who work in trade, logistics, construction, or any industry where the city's motorway network is the daily commute route rather than a train. For those households, Cannon Hill's combination of established residential character, train access, and motorway proximity is a combination that very few inner south-east suburbs can match simultaneously.
+The proximity to the Gateway Motorway is particularly relevant for buyers who work in trade, logistics, construction, or any industry where the motorway network is the daily commute route rather than a train. For those households, Cannon Hill's combination of established residential character, train access, and motorway proximity is one that very few inner south-east suburbs can match.
 
 June in Cannon Hill tends to bring motivated buyers who have been watching the suburb since the autumn peak and have not yet found the right property. For vendors who are ready to list before the winter trough deepens further, mid-June can produce a focussed buyer pool with limited competition.
 
