@@ -9,7 +9,7 @@
 **Scheduled time:** 07:30
 **Visual status:** Draft
 **Canva URL:** https://www.canva.com/design/DAHGjv8sW3w/edit
-**Canva Thumbnail:** https://export-download.canva.com/2d1009b7-ed28-4803-8030-0ced40d58168/0/0001-3058444497488340314.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260416%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260416T035500Z&X-Amz-Expires=81834&X-Amz-Signature=68df0ffe85bb969e6180cc9db01228f0fc74176dde451dcce23d95e73c995a74&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Fri%2C%2017%20Apr%202026%2002%3A38%3A54%20GMT
+**Canva Thumbnail:** https://design-manipulation-download.canva.com/ce393242-b9bd-45ed-b9c3-a01bfa5b6949/0000-4907172151571103066.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHYZOT325Q%2F20260416%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260416T211848Z&X-Amz-Expires=23649&X-Amz-Signature=2c62bf675027618a4497b3e3285a3a99ec89897df669a2eaad237a11d566b32e&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Fri%2C%2017%20Apr%202026%2003%3A52%3A57%20GMT
 
 ---
 
