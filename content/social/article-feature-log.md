@@ -240,3 +240,16 @@
 | 2030-09-12 | selling-tenanted-property-queensland | Fixed-term lease past settlement date means buyer takes over lease; 24 hours written notice required for every inspection; align settlement to lease expiry |
 | 2030-09-19 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional over higher conditional; unconditional eliminates 2 to 3 week risk window entirely |
 | 2030-09-26 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east values pushing investors over threshold without realising |
+| 2030-10-03 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2030-10-10 | how-to-read-a-building-and-pest-report | Summary page is the wrong place to start; active termite vs general maintenance items require completely different responses |
+| 2030-10-17 | auction-vs-private-treaty | Sale method should follow the property and buyer pool; auction best with broad competitive pool; EOI suits unique properties where buyer value range is genuinely wide |
+| 2030-10-24 | stamp-duty-queensland | On $1M owner-occupier purchase transfer duty approximately $38,025; most buyers underestimate by $10K+; verify at QRO before relying on any estimate |
+| 2030-10-31 | body-corporate | Sinking fund balance matters more than levy rate; levies $2K to $4K/yr small townhouse, $6K to $14K+/yr mid-rise |
+| 2030-11-06 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; gap between off-market and campaign result regularly $50K+ on $1.2M |
+| 2030-11-13 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4%; fixed-rate break costs must be confirmed before campaign launch |
+| 2030-11-20 | pre-settlement-inspection-seller-guide-qld | Pre-settlement inspection not a formality; removalist damage and missing inclusions create last-minute disputes; vendor walkthrough 2-3 days before settlement |
+| 2030-11-27 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; prepare statement before campaign launch not when buyer makes offer |
+| 2030-12-04 | what-happens-on-settlement-day-queensland | For most vendors settlement day is quiet and digital via PEXA; preparation in the weeks before is where settlement is won or lost |
+| 2030-12-11 | understanding-the-reiq-contract-of-sale | Finance condition lapses on deadline even without bank approval; inclusions not listed in contract assumed to stay with the property |
+| 2030-12-18 | property-styling-staging-brisbane | Staging is a photography investment; better photos drive enquiry volume, enquiry drives competition, competition moves price |
+| 2030-12-25 | cooling-off-period-property-sale-queensland | Vendor cannot waive the 5-business-day cooling off period; auction contracts have no cooling off; exit costs 0.25% of purchase price |
