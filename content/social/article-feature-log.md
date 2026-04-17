@@ -266,3 +266,16 @@
 | 2031-03-12 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry, enquiry drives competition, competition moves price |
 | 2031-03-19 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; gap between off-market and well-run campaign regularly $50K+ |
 | 2031-03-26 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4%; fixed-rate break costs must be confirmed before campaign launch |
+| 2031-04-02 | solicitor-vs-conveyancer-qld | Most buyers call solicitor after signing; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2031-04-09 | auction-vs-private-treaty | Method of sale should follow property and buyer pool, not seller preference; auction best with broad competitive pool; EOI suits unique properties |
+| 2031-04-16 | best-time-to-sell-brisbane | Most spring-selling advice is built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is most consistent inner east window; preparation matters more than season |
+| 2031-04-23 | stamp-duty-queensland | Most buyers underestimate by $10K+; on $1M owner-occupier purchase transfer duty approximately $38,025; verify at QRO before relying on any estimate |
+| 2031-04-30 | capital-gains-tax-selling-home-brisbane | Main residence exemption not automatic if property was rented; partial CGT applies to rental years; EOFY approaching means settlement timing matters now |
+| 2031-05-07 | airbnb-vs-longterm | Gross yield higher but platform fees, cleaning, insurance, maintenance add $15K to $25K/year; net return often within thousands of well-managed long-term tenancy |
+| 2031-05-14 | land-tax-queensland-investment-property | Calculated on combined unimproved land value across all QLD holdings; rising inner east land values pushing investors over threshold without realising |
+| 2031-05-21 | how-to-handle-offers-when-selling | Rejecting low offer outright closes negotiation; 8 to 10% below asking is standard inner east opening position; unconditional vs conditional changes risk profile |
+| 2031-05-28 | when-to-sell | Preparation matters more than season; gap between well-prepared and rushed inner east campaign regularly $50,000 to $150,000 |
+| 2031-06-04 | what-is-an-unconditional-offer-queensland | Seller often accepts lower unconditional over higher conditional; unconditional eliminates 2 to 3 week risk window; pre-approval plus independent B&P enables buyer to go unconditional |
+| 2031-06-11 | selling-tenanted-property-queensland | 24 hours written notice required for every inspection; fixed-term lease past settlement date means buyer takes over lease; align settlement to lease expiry before launch |
+| 2031-06-18 | property-styling-staging-brisbane | Styling is primarily a photography investment; better photos drive enquiry volume, enquiry drives competition, competition moves price |
+| 2031-06-25 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; gap between off-market and well-run campaign regularly $50K+ on $1.2M to $1.8M properties |
