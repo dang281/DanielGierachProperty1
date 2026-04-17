@@ -71,8 +71,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
     <slot />
 
     <!-- Google Analytics 4 -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
-    <script>
+    <script is:inline defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());

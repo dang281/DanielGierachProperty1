@@ -252,7 +252,7 @@ const globalSchema = {
       }))
     })} />}
     <!-- GA4: stub defined synchronously so inline onclick="gtag(...)" handlers never fire before gtag exists -->
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
     </script>
@@ -397,8 +397,8 @@ const globalSchema = {
     </noscript>
 
     <!-- Google Analytics 4, measurement script deferred so it never blocks paint -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
-    <script>
+    <script is:inline defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>
+    <script is:inline>
       gtag('js', new Date());
       gtag('config', 'G-K1P37GL73K');
     </script>
@@ -413,7 +413,7 @@ const globalSchema = {
     </script>
 
     <!-- GA4 Enhanced Event Tracking -->
-    <script>
+    <script is:inline>
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('a').forEach(function(link) {
           link.addEventListener('click', function() {
