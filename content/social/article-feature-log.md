@@ -253,3 +253,16 @@
 | 2030-12-11 | understanding-the-reiq-contract-of-sale | Finance condition lapses on deadline even without bank approval; inclusions not listed in contract assumed to stay with the property |
 | 2030-12-18 | property-styling-staging-brisbane | Staging is a photography investment; better photos drive enquiry volume, enquiry drives competition, competition moves price |
 | 2030-12-25 | cooling-off-period-property-sale-queensland | Vendor cannot waive the 5-business-day cooling off period; auction contracts have no cooling off; exit costs 0.25% of purchase price |
+| 2031-01-01 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing before signing catches missing inclusions, finance deadline risks, and costly special conditions |
+| 2031-01-08 | auction-vs-private-treaty | Sale method should follow the property and buyer pool, not seller preference; EOI suits unique properties where buyer value range is genuinely wide |
+| 2031-01-15 | best-time-to-sell-brisbane | Spring-selling advice built around Melbourne and Sydney; Brisbane autumn (late Feb to May) is most consistent inner east window; preparation matters more than season |
+| 2031-01-22 | stamp-duty-queensland | On $1M owner-occupier purchase transfer duty approximately $38,025; most buyers underestimate by $10K+; verify at QRO before relying on any estimate |
+| 2031-01-29 | capital-gains-tax-selling-home-brisbane | Main residence exemption is not automatic if property was rented; partial CGT applies to rental years; most vendors find out at tax time, not before settlement |
+| 2031-02-05 | how-to-read-a-building-and-pest-report | Summary page is the wrong place to start; active timber pest vs general maintenance items require completely different responses |
+| 2031-02-12 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional over higher conditional; unconditional eliminates 2 to 3 week finance and B&P risk window entirely |
+| 2031-02-19 | easements-property-brisbane-qld | Drainage easement along rear boundary is usually non-issue; access easement through yard is materially different; most buyers cannot tell which type from title search alone |
+| 2031-02-26 | cooling-off-period-property-sale-queensland | Vendor cannot waive 5-business-day cooling off period; auction contracts have no cooling off; exit costs 0.25% of purchase price |
+| 2031-03-05 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires disclosure before contract; buyer can terminate at any time before settlement if not provided correctly |
+| 2031-03-12 | property-styling-staging-brisbane | Staging is primarily a photography investment; better photos drive enquiry, enquiry drives competition, competition moves price |
+| 2031-03-19 | off-market-property-sales-brisbane | Off-market limits buyer competition; limiting competition almost always affects price; gap between off-market and well-run campaign regularly $50K+ |
+| 2031-03-26 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; selling costs 2.5 to 4%; fixed-rate break costs must be confirmed before campaign launch |
