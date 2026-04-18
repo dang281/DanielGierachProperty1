@@ -74,15 +74,40 @@ export default function PlanningClient({
   dates:        Dates
   nextFieldGuideIssue: number
 }) {
-  // Seed slots from already-scheduled posts
+  // Deduplicate library by title — prefer the entry with a visual_thumbnail
+  const deduplicatedLibrary = useMemo(() => {
+    const seen = new Map<string, ContentItem>()
+    for (const post of libraryPosts) {
+      const key = shortTitle(post.title).toLowerCase().trim()
+      const existing = seen.get(key)
+      if (!existing || (!existing.visual_thumbnail && post.visual_thumbnail)) {
+        seen.set(key, post)
+      }
+    }
+    return Array.from(seen.values())
+  }, [libraryPosts])
+
+  // Seed slots: pre-scheduled first, then auto-populate remaining from library
   const seedSlots = useMemo(() => {
     const s: Partial<Record<SlotKey, ContentItem>> = {}
+    const used = new Set<string>()
+
+    // Pre-scheduled posts take priority
     for (const key of Object.keys(SLOT_CONFIG) as SlotKey[]) {
       const match = preFilled.find(p => p.scheduled_date === dates[key])
-      if (match) s[key] = match
+      if (match) { s[key] = match; used.add(match.id) }
     }
+
+    // Auto-fill remaining slots (oldest-first library order)
+    for (const key of Object.keys(SLOT_CONFIG) as SlotKey[]) {
+      if (s[key]) continue
+      const slotType = SLOT_CONFIG[key].type
+      const best = deduplicatedLibrary.find(p => !used.has(p.id) && categorise(p) === slotType)
+      if (best) { s[key] = best; used.add(best.id) }
+    }
+
     return s
-  }, [preFilled, dates])
+  }, [preFilled, dates, deduplicatedLibrary])
 
   const [slots,       setSlots]       = useState<Partial<Record<SlotKey, ContentItem>>>(seedSlots)
   const [activeSlot,  setActiveSlot]  = useState<SlotKey | null>(null)
@@ -98,13 +123,13 @@ export default function PlanningClient({
 
   // Library — filtered by active slot type + pillar
   const filteredLibrary = useMemo(() =>
-    libraryPosts.filter(p => {
+    deduplicatedLibrary.filter(p => {
       if (usedIds.has(p.id)) return false
       if (activeType && categorise(p) !== activeType) return false
       if (pillarFilter && p.content_pillar !== pillarFilter) return false
       return true
     }),
-    [libraryPosts, usedIds, activeType, pillarFilter]
+    [deduplicatedLibrary, usedIds, activeType, pillarFilter]
   )
 
   // Top 3 suggestions shown when a slot is active
@@ -241,7 +266,7 @@ export default function PlanningClient({
               <p className="text-[10px] font-sans mt-0.5" style={{ color: 'var(--color-cream-x)' }}>
                 {activeSlot
                   ? `${SLOT_CONFIG[activeSlot].day} · ${SLOT_CONFIG[activeSlot].typeLabel}`
-                  : `${filteredLibrary.length} posts available`
+                  : `${deduplicatedLibrary.length} posts available`
                 }
               </p>
             </div>
