@@ -4,12 +4,12 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a trusted, educational resource for Brisbane buyers
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** Ready for Review
 **Publish date:** 2026-04-16
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/7Kbqn9ee2yqelTR
-**Canva Thumbnail:** https://design.canva.ai/3vZB9HZbVCO7N3Y
+**Visual status:** Ready
+**Image:** content/social/images/2026-04-16-article-cover.png
+**Canva Thumbnail:** https://hmwulvvwsksuyqozuxvw.supabase.co/storage/v1/object/public/social-images/2026-04-16-article-cover.png
 
 ---
 
