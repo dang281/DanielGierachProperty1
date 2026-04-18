@@ -370,12 +370,12 @@ function buildAuthorityHtml() {
   .eyebrow{
     display:flex;align-items:center;gap:10px;
     font-family:'JetBrains Mono',monospace;
-    font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+    font-size:16px;letter-spacing:2.5px;text-transform:uppercase;
     color:${GOLD_WARM};
     margin-bottom:32px;flex-shrink:0;
   }
   .eyebrow-dot{
-    width:7px;height:7px;border-radius:50%;
+    width:8px;height:8px;border-radius:50%;
     background:${GOLD_WARM};flex-shrink:0;
   }
   h1{
@@ -399,13 +399,14 @@ function buildAuthorityHtml() {
     color:${GOLD_WARM};
     border-right:1px solid rgba(245,208,122,0.25);
     padding-right:22px;
-    display:flex;align-items:flex-start;padding-top:2px;
+    display:flex;align-items:flex-start;padding-top:6px;
   }
   .row-content{
     flex:1;
     padding-left:24px;
+    padding-top:6px;
     display:flex;flex-direction:column;gap:5px;
-    justify-content:center;
+    justify-content:flex-start;
   }
   .row-title{
     font-family:'Fraunces',Georgia,serif;
@@ -422,29 +423,24 @@ function buildAuthorityHtml() {
     margin-top:28px;
     padding-top:20px;
     border-top:1px solid rgba(245,208,122,0.15);
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;
   }
-  .footer-left{display:flex;align-items:center;gap:14px;}
+  .footer-left{display:flex;align-items:center;gap:16px;}
   .dg-circle{
-    width:44px;height:44px;border-radius:50%;
+    width:52px;height:52px;border-radius:50%;
     background:${GOLD_WARM};color:${CHARCOAL};
     display:flex;align-items:center;justify-content:center;
-    font-family:'Fraunces',serif;font-size:16px;font-weight:500;
+    font-family:'Fraunces',serif;font-size:18px;font-weight:500;
     flex-shrink:0;
   }
   .f-name{
     font-family:'Inter',sans-serif;
-    font-size:14px;font-weight:600;color:${CREAM};line-height:1.3;
+    font-size:18px;font-weight:600;color:${CREAM};line-height:1.3;
   }
   .f-sub{
     font-family:'Inter',sans-serif;
-    font-size:11px;font-weight:400;color:rgba(240,236,228,0.5);
-    margin-top:2px;
-  }
-  .f-url{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;letter-spacing:1.5px;
-    color:rgba(245,208,122,0.6);
+    font-size:13px;font-weight:400;color:rgba(240,236,228,0.5);
+    margin-top:3px;
   }
 </style>
 </head><body>
@@ -459,7 +455,6 @@ function buildAuthorityHtml() {
         <div class="f-sub">Licensed Real Estate Agent · Ray White Bulimba</div>
       </div>
     </div>
-    <div class="f-url">danielgierach.com</div>
   </div>
 </body></html>`;
 }
