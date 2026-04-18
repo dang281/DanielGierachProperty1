@@ -32,16 +32,38 @@
  *     --date "2026-04-23" \
  *     --out content/social/images/2026-04-23-article-cover.png
  *
+ * Usage — authority/market numbered-list post (Tuesday 07:30), 1080×1350:
+ *   node scripts/screenshot-linkedin.mjs \
+ *     --type authority \
+ *     --label "BUYER'S CHECKLIST" \
+ *     --headline "Five things to do before you walk into an auction." \
+ *     --keyword "auction" \
+ *     --p1t "Check the flood overlay." \
+ *     --p1b "Brisbane City Council publishes flood maps for free. A Q100 zone can add 40% to insurance." \
+ *     --p2t "Read the contract, then re-read." \
+ *     --p2b "Special conditions are where money quietly disappears." \
+ *     --p3t "Get pre-approved, not pre-qualified." \
+ *     --p3b "Pre-qualified is a guess. Pre-approved is a commitment." \
+ *     --p4t "Inspect twice: alone, then with a builder." \
+ *     --p4b "Your first visit is emotional. The second is forensic." \
+ *     --p5t "Write your ceiling on paper." \
+ *     --p5b "Auction rooms are designed to push past your number. Paper is how you push back." \
+ *     --date "2026-04-21" \
+ *     --out content/social/images/2026-04-21-linkedin-market.png
+ *
  * Arguments:
- *   --type      market | article | article-cover
- *   --label     Eyebrow label for market posts (e.g. "MARKET UPDATE", "SELLER INSIGHT")
+ *   --type      market | article | article-cover | authority
+ *   --label     Eyebrow label (e.g. "MARKET UPDATE", "BUYER'S CHECKLIST")
  *   --headline  Main headline text
+ *   --keyword   One word in the headline to render in italic gold (authority type only)
  *   --body      Body excerpt for market posts (≤ 220 chars recommended)
  *   --excerpt   Pull quote for article posts (≤ 180 chars recommended)
  *   --slug      Insights article slug for article posts (no leading slash)
  *   --issue     Issue number for article-cover (e.g. "01", "02")
  *   --tagline   Tagline for article-cover (bottom-right italic text)
  *   --readtime  Read time for article-cover (e.g. "5 MIN READ")
+ *   --p1t–p5t  Title for each numbered point (authority type)
+ *   --p1b–p5b  Body text for each numbered point (authority type)
  *   --date      ISO date YYYY-MM-DD
  *   --out       Output path (relative to cwd or absolute)
  */
@@ -57,6 +79,7 @@ const get  = (key) => { const i = args.indexOf(`--${key}`); return i !== -1 ? ar
 const type     = get('type')     || 'market';
 const label    = get('label')    || 'MARKET UPDATE';
 const headline = get('headline') || '';
+const keyword  = get('keyword')  || '';
 const body     = get('body')     || '';
 const excerpt  = get('excerpt')  || '';
 const slug     = get('slug')     || '';
@@ -303,6 +326,144 @@ function buildArticleCoverHtml() {
 </body></html>`;
 }
 
+// ── Authority/Market numbered-list template — 1080×1350 ─────────────────────
+// Replicates the N3 "Two-column numbered list" Canva design.
+function buildAuthorityHtml() {
+  // Collect up to 5 points from --p1t/--p1b ... --p5t/--p5b
+  const points = [1,2,3,4,5].map(n => ({
+    t: get(`p${n}t`) || '',
+    b: get(`p${n}b`) || '',
+  })).filter(p => p.t);
+
+  // Optionally italicise one keyword in the headline (gold, Fraunces italic)
+  let headlineHtml = esc(headline);
+  if (keyword) {
+    const escapedKw = esc(keyword);
+    headlineHtml = headlineHtml.replace(
+      escapedKw,
+      `<em style="color:${GOLD_WARM};font-style:italic;">${escapedKw}</em>`
+    );
+  }
+
+  const pointsHtml = points.map((p, i) => `
+    <div class="row">
+      <div class="num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="row-content">
+        <div class="row-title">${esc(p.t)}</div>
+        ${p.b ? `<div class="row-body">${esc(p.b)}</div>` : ''}
+      </div>
+    </div>`).join('');
+
+  return `<!DOCTYPE html><html><head>
+<meta charset="UTF-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="${FONT_URL_COVER}" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1350px;overflow:hidden;background:${CHARCOAL};}
+  body{
+    font-family:'Inter',sans-serif;
+    display:flex;flex-direction:column;
+    padding:72px 80px 56px;
+  }
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+    color:${GOLD_WARM};
+    margin-bottom:32px;flex-shrink:0;
+  }
+  .eyebrow-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:${GOLD_WARM};flex-shrink:0;
+  }
+  h1{
+    font-family:'Fraunces',Georgia,serif;
+    font-size:54px;font-weight:400;line-height:1.02;letter-spacing:-1.2px;
+    color:${CREAM};
+    margin-bottom:40px;flex-shrink:0;
+  }
+  .list{flex:1;display:flex;flex-direction:column;min-height:0;}
+  .row{
+    display:flex;align-items:stretch;
+    border-bottom:1px solid rgba(240,236,228,0.1);
+    padding:14px 0;
+    flex:1;
+  }
+  .row:last-child{border-bottom:none;}
+  .num{
+    width:90px;flex-shrink:0;
+    font-family:'Fraunces',Georgia,serif;
+    font-size:52px;font-weight:300;line-height:1;
+    color:${GOLD_WARM};
+    border-right:1px solid rgba(245,208,122,0.25);
+    padding-right:22px;
+    display:flex;align-items:flex-start;padding-top:2px;
+  }
+  .row-content{
+    flex:1;
+    padding-left:24px;
+    display:flex;flex-direction:column;gap:5px;
+    justify-content:center;
+  }
+  .row-title{
+    font-family:'Fraunces',Georgia,serif;
+    font-size:22px;font-weight:400;line-height:1.2;letter-spacing:-0.4px;
+    color:${CREAM};
+  }
+  .row-body{
+    font-family:'Inter',sans-serif;
+    font-size:13px;font-weight:400;line-height:1.5;
+    color:rgba(240,236,228,0.6);
+  }
+  .footer{
+    flex-shrink:0;
+    margin-top:28px;
+    padding-top:20px;
+    border-top:1px solid rgba(245,208,122,0.15);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .footer-left{display:flex;align-items:center;gap:14px;}
+  .dg-circle{
+    width:44px;height:44px;border-radius:50%;
+    background:${GOLD_WARM};color:${CHARCOAL};
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-size:16px;font-weight:500;
+    flex-shrink:0;
+  }
+  .f-name{
+    font-family:'Inter',sans-serif;
+    font-size:14px;font-weight:600;color:${CREAM};line-height:1.3;
+  }
+  .f-sub{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:400;color:rgba(240,236,228,0.5);
+    margin-top:2px;
+  }
+  .f-url{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:1.5px;
+    color:rgba(245,208,122,0.6);
+  }
+</style>
+</head><body>
+  <div class="eyebrow"><span class="eyebrow-dot"></span>${esc(label)}</div>
+  <h1>${headlineHtml}</h1>
+  <div class="list">${pointsHtml}</div>
+  <div class="footer">
+    <div class="footer-left">
+      <div class="dg-circle">DG</div>
+      <div>
+        <div class="f-name">Daniel Gierach</div>
+        <div class="f-sub">Licensed Real Estate Agent · Ray White Bulimba</div>
+      </div>
+    </div>
+    <div class="f-url">danielgierach.com</div>
+  </div>
+</body></html>`;
+}
+
 // ── Screenshot ────────────────────────────────────────────────────────────────
 let html, vpWidth, vpHeight;
 if (type === 'article-cover') {
@@ -313,6 +474,10 @@ if (type === 'article-cover') {
   html     = buildArticleHtml();
   vpWidth  = 1080;
   vpHeight = 1080;
+} else if (type === 'authority') {
+  html     = buildAuthorityHtml();
+  vpWidth  = 1080;
+  vpHeight = 1350;
 } else {
   html     = buildMarketHtml();
   vpWidth  = 1080;
