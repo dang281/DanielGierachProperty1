@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an authority on infrastructure-driven value change in the inner east; relevant to buyers who want to understand the market and sellers considering their timing
 **Content Pillar:** authority
-**Status:** Hold
+**Status:** idea
 **Publish date:** 2027-04-27
 **Scheduled time:** 07:30
 **Visual status:** Draft
