@@ -137,6 +137,21 @@ export async function clearReviewRequest(id: string) {
   revalidatePath(`/app/content/${id}`)
 }
 
+export async function confirmSchedule(
+  assignments: Array<{ id: string; scheduled_date: string }>
+) {
+  const supabase = await createClient()
+  for (const { id, scheduled_date } of assignments) {
+    await supabase
+      .from('content_items')
+      .update({ status: 'scheduled', scheduled_date })
+      .eq('id', id)
+  }
+  revalidatePath('/app/planning')
+  revalidatePath('/app/social')
+  revalidatePath('/app/calendar')
+}
+
 export async function deleteItem(id: string) {
   const supabase = await createClient()
   const { error } = await supabase

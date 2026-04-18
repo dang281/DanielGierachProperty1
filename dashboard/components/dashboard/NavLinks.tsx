@@ -12,6 +12,7 @@ const NAV = [
   { href: '/app/brand',     label: 'Brand' },
   { href: '/app/workflow',  label: 'Workflow' },
   { href: '/app/templates', label: 'Templates' },
+  { href: '/app/planning',  label: 'Planning' },
 ]
 
 export default function NavLinks() {
