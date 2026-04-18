@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Share real-time market intelligence from open home observations to build credibility and inform vendors and buyers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-03-23
 **Scheduled time:** 07:30
 **Visual status:** suspended

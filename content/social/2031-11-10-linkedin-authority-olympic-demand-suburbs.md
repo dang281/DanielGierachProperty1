@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a credible, on-the-ground observer of Olympic-related market activity
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-11-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

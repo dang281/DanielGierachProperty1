@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the thoughtful year-end authority; build trust with sellers planning 2028 listings
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-12-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

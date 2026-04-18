@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Acknowledge the seller mindset; create connection with homeowners on the fence; drive appraisal conversations
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-05-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Christmas week engagement; understand seller timing intentions for the January-February pipeline
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-12-22
 **Scheduled time:** 07:30
 **Visual status:** Not needed

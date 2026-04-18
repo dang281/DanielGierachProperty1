@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface sellers thinking about autumn campaigns; generate leads through engagement
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-01-15
 **Scheduled time:** 07:30
 **Visual status:** Not needed

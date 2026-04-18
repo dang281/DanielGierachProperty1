@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Create urgency for sellers still to launch; explain the settlement timeline mathematics
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-11-19
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/how-much-is-my-home-worth-brisbane by showing why automated valuations fail and a proper assessment matters.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-20
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

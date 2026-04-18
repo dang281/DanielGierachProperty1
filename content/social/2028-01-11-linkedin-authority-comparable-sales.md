@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority as a pricing expert; attract sellers who have been given misleading agent estimates
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-01-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

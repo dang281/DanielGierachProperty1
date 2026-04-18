@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors and investors on how rate movements affect inner-east buyer behaviour specifically
 **Content Pillar:** market
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-09-22
 **Scheduled time:** 07:30
 **Visual status:** Draft

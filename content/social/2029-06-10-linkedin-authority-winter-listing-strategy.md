@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Address the winter listing question directly; help potential vendors understand whether winter is the right time for them
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-06-10
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

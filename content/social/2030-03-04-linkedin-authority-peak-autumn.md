@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive urgency for sellers who are close to ready to launch and prompt final pre-campaign conversations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-03-04
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

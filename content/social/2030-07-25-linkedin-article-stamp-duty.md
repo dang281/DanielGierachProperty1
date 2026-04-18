@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/stamp-duty-queensland; give buyers a concrete number they can plan around
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-25
 **Scheduled time:** 07:30
 **Visual status:** suspended

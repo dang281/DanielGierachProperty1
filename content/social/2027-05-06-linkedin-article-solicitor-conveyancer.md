@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and position Daniel as a trusted resource for buyers navigating Queensland contracts
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-05-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

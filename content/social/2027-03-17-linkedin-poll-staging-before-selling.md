@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from seller audience; educate on the value of professional styling in a competitive market
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-17
 **Scheduled time:** 07:30
 **Visual status:** Not needed

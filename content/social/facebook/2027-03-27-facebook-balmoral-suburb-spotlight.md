@@ -18,7 +18,7 @@ Balmoral is where the Brisbane River is not just a backdrop. It is a feature tha
 
 The suburb occupies a peninsula-like position between Hawthorne to the north and Bulimba to the south, with the river to the east. The topography creates natural tiers: riverfront and near-river properties at the top of the market, elevated character streets in the middle, and the streets closest to the Bulimba border at the more accessible end of the price range.
 
-The housing is predominantly Queenslanders and character homes, some original and some substantially renovated or rebuilt. The market at the top end of Balmoral is among the most tightly held in the inner east. Properties on the better river-aspect streets rarely come to market, and when they do, the buyer pool is small but deeply motivated.
+The housing is predominantly Queenslanders and character homes, some original and some substantially renovated or rebuilt. Properties at the top end of Balmoral rarely come to market, and when they do, the buyer pool is small but deeply motivated.
 
 Balmoral State High School is a genuine catchment driver. As one of a small number of state high schools in the inner east with a strong academic reputation, it brings secondary school-focused family buyers into the suburb who are specifically targeting the catchment rather than the suburb for its own sake.
 

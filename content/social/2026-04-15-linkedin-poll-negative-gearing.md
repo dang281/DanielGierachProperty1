@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; position Daniel as an informed and approachable local expert on property investment concepts
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Amendment:** Poll options trimmed to LinkedIn's 30-character limit per Daniel's feedback (15 Apr 2026)
 **Publish date:** 2026-04-15
 **Scheduled time:** 07:30

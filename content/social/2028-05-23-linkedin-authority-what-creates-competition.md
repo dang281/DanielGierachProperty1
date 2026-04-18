@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Reframe where auction competition is actually created and establish Daniel's pre-auction process as the differentiator
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-05-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

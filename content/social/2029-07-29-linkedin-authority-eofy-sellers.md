@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent to call for investment property owners and upgraders who are now ready to act post-EOFY.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-07-29
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

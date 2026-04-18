@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the handling lowball offers article and demonstrate Daniel's negotiation expertise to vendors
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-12-11
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

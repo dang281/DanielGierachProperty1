@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** End-of-quarter sentiment poll; drive engagement from homeowners and investors reflecting on Q1
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-03-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed

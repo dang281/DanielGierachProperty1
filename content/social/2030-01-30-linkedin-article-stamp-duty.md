@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive clicks to danielgierach.com/insights/stamp-duty-queensland; position Daniel as educational authority
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-01-30
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

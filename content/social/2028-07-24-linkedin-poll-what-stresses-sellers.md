@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; reveal seller anxiety points to help Daniel's audience feel understood
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-07-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed

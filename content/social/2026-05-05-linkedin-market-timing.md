@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who gives honest, practical advice rather than pressure-based sales talk. Attract sellers who are on the fence.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-05
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a trusted educator on the selling process
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-01-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

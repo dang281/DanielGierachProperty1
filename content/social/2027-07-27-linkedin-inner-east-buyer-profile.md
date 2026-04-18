@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors an accurate picture of who is actively buying in the inner east right now and what that means for campaign timing.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

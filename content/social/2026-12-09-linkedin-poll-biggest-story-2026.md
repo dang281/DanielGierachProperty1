@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Year-end engagement; prompt reflection on the market and position Daniel as someone who stays across the full picture
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed

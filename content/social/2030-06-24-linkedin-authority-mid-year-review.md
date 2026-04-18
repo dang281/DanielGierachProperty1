@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel as the authoritative voice on inner east market conditions; drive seller conversations ahead of spring
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

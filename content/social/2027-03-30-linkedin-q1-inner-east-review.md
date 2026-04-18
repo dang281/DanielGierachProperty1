@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Year-in-review authority post for Q1; position Daniel as an agent with a clear analytical read on conditions; plant seeds for Q2 conversations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

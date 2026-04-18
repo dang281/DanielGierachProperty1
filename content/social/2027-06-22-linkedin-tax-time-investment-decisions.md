@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent to call before financial year end for vendors with investment properties, and establish that the accountant conversation should precede the agent conversation.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-06-22
 **Scheduled time:** 07:30
 **Visual status:** Draft

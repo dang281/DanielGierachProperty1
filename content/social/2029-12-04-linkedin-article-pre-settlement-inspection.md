@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the pre-settlement inspection seller guide article and position Daniel as a practical, process-oriented agent
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-12-04
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

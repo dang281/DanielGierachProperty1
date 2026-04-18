@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the most perceptive agent in the inner east; prompt sellers thinking about a late-spring or early-summer campaign to make contact now
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-10-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

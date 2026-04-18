@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the article at danielgierach.com/insights/best-time-to-sell-brisbane by surfacing a counterintuitive seasonal insight specific to the inner east.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-06
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

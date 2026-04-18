@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a market expert who understands inner east selling dynamics; attract sellers considering timing their campaign
 **Content Pillar:** Seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-14
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -19,7 +19,7 @@ April is not a season most sellers plan around.
 
 Most of the conversation in real estate centres on spring: more buyers, more energy, more competition. That framing holds for many markets. Inner east Brisbane runs differently.
 
-The buyers active in April have typically been searching since January. They have missed out on properties, narrowed their brief, and are ready to move. They are not browsing. Stock levels in April are also lower than they will be in September, which means less competition for the seller and less negotiating leverage for the buyer.
+The buyers active in April have typically been searching since January. They have missed out on properties, narrowed their brief, and are ready to move. They are not browsing. Stock levels in April are also lower than they will be in September, which means less competition for the seller and less negotiating power for the buyer.
 
 What this creates is a window. Not a secret, not a trick, just a supply and demand reality that plays out most years.
 

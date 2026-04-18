@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers think more clearly about pre-sale renovation spend. Build Daniel's authority as someone who gives honest advice rather than encouraging unnecessary cost.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-12
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -25,7 +25,7 @@ The properties I see sellers over-invest in are usually the ones where the renov
 
 Before spending anything, the useful question is: what is the one thing holding this property back from competing with the best listings in the street?
 
-Sometimes the answer is a $3K repaint and a skip bin. Sometimes it is nothing - the property presents well and the money is better kept in your pocket.
+Sometimes the answer is a $3K repaint and a skip bin. Sometimes it is nothing: the property presents well and the money is better kept in your pocket.
 
 Good preparation and genuine renovation are different things. Knowing which one applies to your property is worth a conversation before you start spending.
 

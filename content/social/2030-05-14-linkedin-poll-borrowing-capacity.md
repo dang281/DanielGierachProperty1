@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface buyers who need pre-approval conversations
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-05-14
 **Scheduled time:** 07:30
 **Visual status:** Not needed

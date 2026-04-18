@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; practical education for buyers navigating their first or second purchase
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-02-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

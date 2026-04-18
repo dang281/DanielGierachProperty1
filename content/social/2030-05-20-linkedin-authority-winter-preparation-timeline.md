@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give sellers a practical timeline; create urgency for May-June preparation work; drive appraisal enquiries
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-05-20
 **Scheduled time:** 07:30
 **Visual status:** suspended

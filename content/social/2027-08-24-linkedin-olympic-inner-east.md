@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an informed inner east specialist who understands the long-term structural factors shaping buyer demand.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-24
 **Scheduled time:** 07:30
 **Visual status:** Draft

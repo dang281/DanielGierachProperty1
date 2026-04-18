@@ -12,7 +12,7 @@
 
 ## Caption
 
-Seven Hills is one of the most tightly held addresses in Brisbane's inner east.
+Seven Hills has one of the lowest turnover rates of any address in Brisbane's inner east.
 
 Around 47 houses traded in the suburb over the past 12 months. That is a fraction of the turnover you see in comparable inner-east suburbs. Buyers who want Seven Hills know there is rarely much to choose from, and that shapes how they behave when something does come up.
 

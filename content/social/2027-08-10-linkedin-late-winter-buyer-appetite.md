@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's on-the-ground market knowledge and signal to vendors that genuine buyers are active now.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-10
 **Scheduled time:** 07:30
 **Visual status:** Draft

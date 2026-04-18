@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/pre-settlement-inspection-seller-guide-qld; educate vendors
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-11-20
 **Scheduled time:** 07:30
 **Visual status:** suspended

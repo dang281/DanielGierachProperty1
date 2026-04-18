@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights and position Daniel as the educator buyers trust before they sign.
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-05
 **Scheduled time:** 07:30
 **Visual status:** Draft

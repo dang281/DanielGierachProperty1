@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/body-corporate; educate unit buyers and investors
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-31
 **Scheduled time:** 07:30
 **Visual status:** suspended

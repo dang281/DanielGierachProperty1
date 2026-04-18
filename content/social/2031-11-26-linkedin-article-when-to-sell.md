@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/when-to-sell; position Daniel as educational resource
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-11-26
 **Scheduled time:** 07:30
 **Visual status:** suspended

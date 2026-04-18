@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on CGT before they are surprised at tax time
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; challenge the automated estimate assumption and prompt appraisal conversations
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-26
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

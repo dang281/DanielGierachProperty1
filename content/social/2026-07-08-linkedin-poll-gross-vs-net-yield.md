@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from investors; educate on yield calculation; surface how sophisticated Daniel's audience is
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-07-08
 **Scheduled time:** 07:30
 **Visual status:** Not needed

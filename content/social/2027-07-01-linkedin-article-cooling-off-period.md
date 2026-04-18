@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and educate vendors on the cooling off period rules that affect their sale.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

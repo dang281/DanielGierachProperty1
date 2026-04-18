@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface seller and buyer sentiment heading into the second half of the year; drive enquiries
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-25
 **Scheduled time:** 07:30
 **Visual status:** Not needed

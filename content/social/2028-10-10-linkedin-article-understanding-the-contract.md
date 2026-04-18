@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate buyers on contract risks before signing
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-10-10
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

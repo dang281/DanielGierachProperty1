@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/off-market-property-sales-brisbane; position Daniel as an educator
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-06-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

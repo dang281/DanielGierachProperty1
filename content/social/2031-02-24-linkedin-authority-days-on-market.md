@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a data-literate agent who reads market signals accurately and helps vendors interpret them.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-02-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -16,7 +16,7 @@
 
 Hawthorne sits at the premium end of the inner east, and it earns that position. The suburb has the kind of lifestyle infrastructure that buyers relocating from interstate tend to notice first: the Oxford Street strip runs through the heart of the suburb with cafes, restaurants, and boutiques that hold their own against anything in the inner city. The Hawthorne Ferry terminal gives CityCat access directly from the suburb, which means CBD commutes don't require a car or a bus.
 
-The housing stock is predominantly Queenslanders and character homes, many of them on elevated streets that look toward the river or the city. Streets north of the main ridge consistently attract the strongest buyer competition, particularly where views open up. The suburb is tightly held, meaning supply rarely keeps pace with demand, and when well-presented properties do come to market they tend to attract buyers who are ready to move.
+The housing stock is predominantly Queenslanders and character homes, many of them on elevated streets that look toward the river or the city. Streets north of the main ridge consistently attract the strongest buyer competition, particularly where views open up. Supply here rarely keeps pace with demand, and when well-presented properties do come to market they tend to attract buyers who are ready to move.
 
 The Balmoral State High School catchment is a significant factor for families with children approaching secondary age. It's one of the most sought-after state school catchments in the inner east and plays a meaningful role in underpinning demand at the family end of the market.
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive early conversations with vendors planning autumn campaigns; establish Daniel as the agent who starts conversations early and delivers better-prepared results
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-01-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors an insight into the early spring buyer profile; demonstrate Daniel's deep understanding of buyer behaviour
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-13
 **Scheduled time:** 07:30
 **Visual status:** suspended

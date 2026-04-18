@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Counter the Easter-delay habit; drive seller enquiries from homeowners who are procrastinating
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

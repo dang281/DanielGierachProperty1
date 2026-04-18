@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive high-engagement conversation around property myths
 **Content Pillar:** investor
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-19
 **Scheduled time:** 07:30
 **Visual status:** Not needed

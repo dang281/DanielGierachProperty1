@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Education poll to demonstrate that process knowledge matters; prime the audience for Thursday's article feature
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed

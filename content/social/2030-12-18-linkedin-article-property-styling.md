@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/property-styling-staging-brisbane; educate vendors on staging ROI
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-12-18
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -21,7 +21,7 @@ In Brisbane's inner east, the first contact most buyers have with a listed prope
 
 Staging exists primarily to serve that photograph. A well-staged living room photographs larger, brighter, and more aspirational than the same room with the vendor's furniture. Better photos drive more enquiry. More enquiry produces more open home attendance. More open home attendance creates more competition. Competition moves price.
 
-The chain from staging to price is not direct. It runs through photographs and enquiry, which are the actual leverage points. Vendors who understand this evaluate staging as a photography investment, not a decorating exercise.
+The chain from staging to price is not direct. It runs through photographs and enquiry, which are where the outcome is actually determined. Vendors who understand this evaluate staging as a photography investment, not a decorating exercise.
 
 For most inner east properties, a professional staging package runs from $3,000 to $7,000 for a four to six-week campaign period. The question is not whether the rooms look prettier with the hired furniture. The question is whether the photography is better, and whether that leads to more buyer enquiries than would have arrived otherwise.
 

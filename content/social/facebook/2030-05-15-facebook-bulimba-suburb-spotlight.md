@@ -22,7 +22,7 @@ Oxford Street is the community anchor. The morning rhythm of the coffee strip, t
 
 The river precinct and the CityCat ferry service add a CBD connectivity option that most inner east suburbs cannot match. For buyers who want to commute by water, Bulimba is one of a small number of residential suburbs where that genuinely works.
 
-The tightly held nature of the suburb means that supply in winter is thin, and thin supply with motivated buyers is a combination sellers can work with.
+The low listing volume means supply in winter is thin, and thin supply with motivated buyers is a combination sellers can work with.
 
 danielgierach.com/suburbs/bulimba
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority on current market conditions; attract both buyer and seller enquiries
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-02-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

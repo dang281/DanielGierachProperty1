@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt sellers who are considering spring to contact Daniel now; demonstrate preparation expertise
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-30
 **Scheduled time:** 07:30
 **Visual status:** suspended

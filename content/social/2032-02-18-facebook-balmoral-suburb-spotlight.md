@@ -16,7 +16,7 @@
 
 Balmoral is the suburb that consistently surprises buyers who have been focused on Hawthorne and Bulimba. The river views from the elevated northern blocks, the mature tree cover along Wynnum Road and the streets running down toward the water, and the density of substantial homes on larger lots produce an address that often exceeds expectations on first inspection.
 
-The riverfront section of Balmoral, particularly the streets between Wynnum Road and the Brisbane River, is among the most tightly held residential land in the inner east. Turnover here is low by choice. When something does come to market in this section of the suburb, it tends to attract buyers from well outside the immediate area who have been waiting for the opportunity.
+The riverfront section of Balmoral, particularly the streets between Wynnum Road and the Brisbane River, is among the least frequently traded residential land in the inner east. Turnover here is low by choice. When something does come to market in this section of the suburb, it tends to attract buyers from well outside the immediate area who have been waiting for the opportunity.
 
 The Balmoral State School catchment is a consistent draw for families, and the suburb's position adjacent to the Bulimba Barracks precinct and the Hawthorne waterfront amenity means residents access river life without being in the thick of the Oxford Street foot traffic. For buyers who want the waterfront suburb feel with slightly more space between them and the commercial strip, Balmoral is the answer.
 

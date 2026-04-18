@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority on the inner east character home market and attract vendors and buyers of Queenslander and pre-war homes.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-11
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

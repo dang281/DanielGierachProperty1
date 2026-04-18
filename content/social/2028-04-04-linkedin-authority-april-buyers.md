@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a market-aware authority; prompt sellers considering a late listing to get in touch
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-04-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

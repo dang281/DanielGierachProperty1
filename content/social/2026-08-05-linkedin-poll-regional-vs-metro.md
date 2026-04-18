@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and surface audience sentiment on metro vs regional property investment
 **Content Pillar:** investor
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface seller intent for early 2027; start conversations with people planning to sell in the new year
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

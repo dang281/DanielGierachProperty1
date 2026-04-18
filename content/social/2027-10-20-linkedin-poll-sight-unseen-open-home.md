@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand buyer attitudes toward virtual inspections versus in-person visits
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-10-20
 **Scheduled time:** 07:30
 **Visual status:** Not needed

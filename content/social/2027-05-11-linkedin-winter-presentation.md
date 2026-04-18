@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a knowledgeable local agent who helps sellers prepare for seasonal conditions
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-05-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

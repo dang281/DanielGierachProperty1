@@ -20,7 +20,7 @@ The buyers who are active right now, in April, have typically been searching sin
 
 Compare that to October: more buyers in the room, yes, but also more curious neighbours, early researchers, and people who are not yet serious. The spring crowd is bigger but a lower proportion of them are ready to move.
 
-Stock levels in April are lower too. Less competition for the seller. Less negotiating leverage for the buyer.
+Stock levels in April are lower too. Less competition for the seller. Less negotiating power for the buyer.
 
 What I see at open homes across the inner east right now: solid attendance, serious buyers, shorter days on market than spring tends to deliver, and vendor discounting that is tighter than at the back end of the year.
 

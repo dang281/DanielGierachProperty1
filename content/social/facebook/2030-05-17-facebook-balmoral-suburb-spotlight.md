@@ -20,7 +20,7 @@ Properties in Balmoral turn over infrequently. Many homeowners stay for 10, 15, 
 
 The winter period in Balmoral sees a genuine reduction in casual open home traffic, but the buyer pool for this suburb is not particularly seasonal. The people who want to live here want to live here in winter. They are not waiting for spring to make a decision.
 
-For sellers, the practical implication of the suburb's turnover dynamic is that getting the campaign right matters more than getting the timing right. A well-structured campaign in a tightly held suburb with motivated buyers performs well across seasons.
+For sellers, the practical implication of the suburb's turnover dynamic is that getting the campaign right matters more than getting the timing right. A well-structured campaign in a suburb with low listing volume and motivated buyers performs well across seasons.
 
 The Balmoral State High School catchment continues to anchor the family buyer segment. The transition from Bulimba-Hawthorne-Balmoral along the river corridor remains the most common upgrade path for long-term inner east residents.
 

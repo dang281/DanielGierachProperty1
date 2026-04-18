@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate landlords on tenanted sale obligations and timing
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-10-24
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

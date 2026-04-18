@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the best time to sell article; correct the spring-is-best assumption that circulates in Brisbane
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-17
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage buyers and investors on risk appetite; surface where Daniel's audience sits on the leverage spectrum
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-20
 **Scheduled time:** 07:30
 **Visual status:** Not needed

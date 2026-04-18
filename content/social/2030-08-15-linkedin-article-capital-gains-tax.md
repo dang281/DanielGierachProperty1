@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/capital-gains-tax-selling-home-brisbane; help vendors understand their CGT position before they sell
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

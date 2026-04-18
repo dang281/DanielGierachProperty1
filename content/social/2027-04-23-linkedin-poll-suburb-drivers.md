@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface buyer priorities; position Daniel as informed about what actually motivates inner-east buyers
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-04-21
 **Scheduled time:** 07:30
 **Visual status:** Not needed

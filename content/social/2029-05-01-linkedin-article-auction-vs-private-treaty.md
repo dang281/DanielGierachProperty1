@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate vendors on how method of sale is matched to the property and market
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-01
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

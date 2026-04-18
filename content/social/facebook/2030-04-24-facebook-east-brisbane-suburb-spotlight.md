@@ -22,7 +22,7 @@ What East Brisbane has benefited from in recent years is the broader transformat
 
 The turnover rate in East Brisbane is relatively low, particularly in the character home segment. When properties do come to market, they tend to attract immediate attention from buyers who have been waiting.
 
-For homeowners considering selling, the tightly held nature of this market is an asset.
+For homeowners considering selling, the low listing volume in this market is an asset.
 
 danielgierach.com/suburbs/east-brisbane
 

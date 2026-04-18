@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Reassure sellers that qualified buyer demand is building; position Daniel as someone who reads the market closely
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

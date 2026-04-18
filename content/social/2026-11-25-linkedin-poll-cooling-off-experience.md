@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Education and engagement poll; surfaces common buyer experiences and primes audience for practical process content
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-25
 **Scheduled time:** 07:30
 **Visual status:** Not needed

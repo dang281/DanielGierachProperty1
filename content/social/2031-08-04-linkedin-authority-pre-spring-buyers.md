@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help vendors understand why August is often the strongest month to launch for motivated, ready-to-act buyers.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-08-04
 **Scheduled time:** 07:30
 **Visual status:** suspended

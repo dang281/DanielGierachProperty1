@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt forward intent; generate 2029 seller and buyer conversations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-25
 **Scheduled time:** 07:30
 **Visual status:** Not needed

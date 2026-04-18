@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Create urgency for sellers who have not yet listed; position the end of autumn as a critical window
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

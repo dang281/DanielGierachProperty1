@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give sellers a practical, honest framework for thinking about listing timing relative to the Games period
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-04-27
 **Scheduled time:** 07:30
 **Visual status:** suspended

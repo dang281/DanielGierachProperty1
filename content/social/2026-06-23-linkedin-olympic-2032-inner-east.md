@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority on the Olympic infrastructure story; attract investors and upgraders tracking long-term value drivers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

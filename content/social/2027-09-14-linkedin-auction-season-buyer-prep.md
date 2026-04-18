@@ -2,7 +2,7 @@
 **Format:** Post
 **Goal:** Educate active inner east buyers on auction preparation and position Daniel as a trusted advisor for buyers
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-09-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

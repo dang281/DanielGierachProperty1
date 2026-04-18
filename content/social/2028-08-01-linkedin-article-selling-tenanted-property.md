@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help investor-sellers understand the specific challenges of tenanted campaigns
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-08-01
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

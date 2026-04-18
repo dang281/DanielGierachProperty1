@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface Q4 vendor intent; generate dialogue about December listing decisions
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed

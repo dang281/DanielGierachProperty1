@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate data-led market knowledge specific to the Brisbane inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-05-11
 **Scheduled time:** 07:30
 **Visual status:** suspended

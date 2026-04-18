@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Thursday article feature; drive traffic to danielgierach.com/insights; position Daniel as the agent who explains what others gloss over
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-31
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on how overpricing damages campaign momentum and buyer psychology
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-11
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -15,7 +15,7 @@
 
 ## Caption
 
-Days on market is the number buyers use to work out how much leverage they have. A property that launched a fortnight ago sits in a completely different negotiating position to one that's been listed for eight weeks. Buyers know this, and experienced buyers use it deliberately.
+Days on market is the number buyers use to work out their negotiating position. A property that launched a fortnight ago sits in a completely different position to one that's been listed for eight weeks. Buyers know this, and experienced buyers use it deliberately.
 
 The practical consequence: when a property is overpriced at launch and then sits, it doesn't simply wait for the right buyer to appear. It trains every buyer who walks through to think about the discount they're entitled to. The longer it sits, the stronger that expectation becomes. By the time a price reduction brings it into the correct range, much of the active buyer pool has already seen it, formed an opinion, and moved on.
 

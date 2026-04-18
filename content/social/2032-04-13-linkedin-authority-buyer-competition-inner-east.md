@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give sellers and buyers an honest, data-grounded view of current conditions in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-04-13
 **Scheduled time:** 07:30
 **Visual status:** suspended

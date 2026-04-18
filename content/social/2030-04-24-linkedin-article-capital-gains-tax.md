@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on CGT position before they launch a campaign
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-04-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

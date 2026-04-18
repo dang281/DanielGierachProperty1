@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's active market knowledge; trigger seller conversations about the October window
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-10-01
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on the importance of launching a campaign at the right price. Attract sellers who are thinking about timing and market strategy.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -16,11 +16,11 @@
 
 A property that sells in week one did not get lucky.
 
-Week one is when buyer interest is highest. The people who have been watching the suburb, attending every open home, talking to their broker for the past three months - they see the new listing notification and they move. That window is real, and it closes fast.
+Week one is when buyer interest is highest. The people who have been watching the suburb, attending every open home, talking to their broker for the past three months: they see the new listing notification and they move. That window is real, and it closes fast.
 
 What happens if you miss it?
 
-The listing sits. Buyers who were ready start to wonder what is wrong with it. The days on market count ticks up. By week five, you are dealing with a different conversation - one that starts with "what is the flexibility on price?"
+The listing sits. Buyers who were ready start to wonder what is wrong with it. The days on market count ticks up. By week five, you are dealing with a different conversation: "what is the flexibility on price?"
 
 The properties that go stale almost always share a common factor: they launched at an optimistic price rather than a strategic one. The vendor and the agent both knew more buyer activity was needed, so they went high hoping someone would surprise them. The buyers who could have competed in week one at the right price instead put their hand up somewhere else.
 

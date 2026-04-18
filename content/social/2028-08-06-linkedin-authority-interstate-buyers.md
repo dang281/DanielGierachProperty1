@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on a genuine market dynamic; attract sellers who are curious about their buyer pool
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-08-06
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

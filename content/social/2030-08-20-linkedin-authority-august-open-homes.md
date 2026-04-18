@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Show vendors why their spring campaign will be measured against August inspections; demonstrate Daniel's observational depth
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-20
 **Scheduled time:** 07:30
 **Visual status:** suspended

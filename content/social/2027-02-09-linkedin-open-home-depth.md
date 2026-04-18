@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on current buyer activity; useful context for sellers considering when to list and buyers understanding competition they will face
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-02-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

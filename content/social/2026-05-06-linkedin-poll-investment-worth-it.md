@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage investors and prospective investors in Daniel's network; surface genuine sentiment about the investment case right now
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-06
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -13,7 +13,7 @@
 
 ## Caption
 
-Rates have moved significantly. Rental yields are improving as rents rise, but borrowing costs are eating into cashflow. Capital growth forecasts for Brisbane remain positive - but the investment calculation is more complex than it was two years ago.
+Rates have moved significantly. Rental yields are improving as rents rise, but borrowing costs are eating into cashflow. Capital growth forecasts for Brisbane remain positive, but the investment calculation is more complex than it was two years ago.
 
 I am seeing a wide range of approaches from investors right now. Some are actively buying. Others are holding and watching. A few are taking chips off the table.
 

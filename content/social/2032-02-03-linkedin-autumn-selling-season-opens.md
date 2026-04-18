@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority on the 2032 autumn selling season and signal market intelligence to sellers and buyers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-02-03
 **Scheduled time:** 07:30
 **Visual status:** suspended

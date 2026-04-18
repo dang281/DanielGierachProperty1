@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and surface buyer priorities for Daniel's market knowledge.
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-18
 **Scheduled time:** 07:30
 **Visual status:** Not needed

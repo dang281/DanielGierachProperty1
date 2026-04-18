@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; give vendors an honest assessment of when off-market works and when it does not
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-22
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

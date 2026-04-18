@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers; surface how buyers approach the purchase decision timeline
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-23
 **Scheduled time:** 07:30
 **Visual status:** Not needed

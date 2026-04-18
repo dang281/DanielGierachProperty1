@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/auction-vs-private-treaty-eoi; position Daniel as the agent who recommends method of sale strategically
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-18
 **Scheduled time:** 07:30
 **Visual status:** suspended

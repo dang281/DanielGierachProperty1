@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand buyer rejection triggers; generate buyer conversations
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-10-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Define what a properly run sales campaign looks like and separate it from simply placing a listing online
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-05-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; alert investors to land tax exposure they may not have anticipated
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-07-25
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

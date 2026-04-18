@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on infrastructure and location value; relevant to inner east buyers watching Olympic and Cross River Rail investment
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-31
 **Scheduled time:** 07:30
 **Visual status:** Not needed

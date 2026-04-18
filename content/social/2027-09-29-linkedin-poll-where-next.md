@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand where inner east vendors are heading post-sale
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-09-29
 **Scheduled time:** 07:30
 **Visual status:** Not needed

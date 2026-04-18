@@ -14,7 +14,7 @@
 
 ## Caption
 
-Balmoral is among Brisbane's most tightly held residential suburbs, and the volume of stock that comes to market in any given year reflects that. Owners who buy in Balmoral, particularly on the river-facing streets below Lytton Road and along the elevated sections of Balmoral Road, tend to hold for extended periods. When those properties do appear, the buyer response is immediate and competitive.
+Balmoral is among Brisbane's lowest-turnover residential suburbs, and the volume of stock that comes to market in any given year reflects that. Owners who buy in Balmoral, particularly on the river-facing streets below Lytton Road and along the elevated sections of Balmoral Road, tend to hold for extended periods. When those properties do appear, the buyer response is immediate and competitive.
 
 The suburb's defining physical feature is its position on the Brisbane River, with streets like Riverview Road and Esplanade carrying some of the most direct river frontage available in the inner east. Buyers who have been in the market for river-facing property in this part of Brisbane understand that Balmoral and Hawthorne represent the primary supply point for that product, and they are prepared to compete accordingly.
 

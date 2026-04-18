@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and surface vendor intent for Q4 2030; position Daniel as the spring market authority
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

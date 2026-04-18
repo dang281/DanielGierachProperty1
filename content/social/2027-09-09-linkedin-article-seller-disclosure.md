@@ -2,7 +2,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights and prepare vendors for Queensland disclosure requirements
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-09-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

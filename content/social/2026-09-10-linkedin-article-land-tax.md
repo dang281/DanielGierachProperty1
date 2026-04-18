@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the land tax article and prompt investors to review their hold-or-sell position
 **Content Pillar:** investor
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-09-10
 **Scheduled time:** 07:30
 **Visual status:** Draft

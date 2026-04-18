@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt inner east homeowners considering a 2027 sale to begin preparation conversations now; drive appraisal enquiries
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-12
 **Scheduled time:** 07:30
 **Visual status:** Draft

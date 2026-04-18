@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; year-end reflective poll; generate conversation about market experience
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-18
 **Scheduled time:** 07:30
 **Visual status:** Not needed

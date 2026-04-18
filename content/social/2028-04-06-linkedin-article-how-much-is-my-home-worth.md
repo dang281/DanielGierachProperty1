@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the valuation article on danielgierach.com; build authority on property pricing methodology
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-04-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help sellers understand how method of sale affects outcome
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-19
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

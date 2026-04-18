@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post; position Daniel as someone who reads market signals others overlook, driving enquiry from sellers planning 2027
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-29
 **Scheduled time:** 07:30
 **Visual status:** Draft

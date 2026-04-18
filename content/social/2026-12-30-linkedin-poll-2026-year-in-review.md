@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive end-of-year engagement; position Daniel as someone who tracks what actually moved the market
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-30
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand how audience views the drivers of the market
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-09-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

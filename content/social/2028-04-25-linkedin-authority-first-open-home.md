@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Convince sellers that first-week presentation and preparation is the highest-leverage decision in a campaign
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-04-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Convert vendors thinking about autumn 2032 campaigns into early conversations with Daniel
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-01-27
 **Scheduled time:** 07:30
 **Visual status:** suspended

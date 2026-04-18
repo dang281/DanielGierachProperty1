@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the selling-with-mortgage article and position Daniel as a thorough advisor for vendors carrying debt
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

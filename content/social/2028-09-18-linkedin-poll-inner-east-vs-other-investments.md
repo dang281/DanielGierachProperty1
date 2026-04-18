@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on the investment case for property; reach buyer and investor segments
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-09-18
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -13,7 +13,7 @@
 
 ## Caption
 
-The conversation about property versus other asset classes has been running at a different volume since interest rates moved. When borrowing costs were near zero, property's leverage advantage was significant. As rates normalised, the calculus became more interesting.
+The conversation about property versus other asset classes has been running at a different volume since interest rates moved. When borrowing costs were near zero, property's advantage from borrowed capital was significant. As rates normalised, the calculus became more interesting.
 
 In the inner east specifically, the investment case is less about yield and more about the intersection of land scarcity, population growth into a constrained geographic area, and the permanent infrastructure lift from the past decade of Cross River Rail and Olympic preparation work. That is a different proposition from residential property in general.
 

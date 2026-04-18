@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide an observational, pattern-based year-on-year comparison of the inner east winter market without invented statistics.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-08-25
 **Scheduled time:** 07:30
 **Visual status:** suspended

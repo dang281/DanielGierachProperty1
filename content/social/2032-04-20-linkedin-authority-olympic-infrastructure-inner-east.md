@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give an honest, grounded view of how Games infrastructure relates to inner east property values
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-04-20
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the REIQ contract article and build buyer-focused authority on contract conditions
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-10-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the body corporate article; help buyers understand body corporate levies and their impact on property finances
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

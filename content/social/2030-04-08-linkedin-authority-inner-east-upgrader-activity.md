@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's insight into the upgrader buyer segment; drive seller appraisal enquiries from inner east homeowners
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-04-08
 **Scheduled time:** 07:30
 **Visual status:** suspended

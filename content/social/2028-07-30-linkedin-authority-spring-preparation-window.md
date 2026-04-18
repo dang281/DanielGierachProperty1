@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Capture sellers considering a spring 2028 campaign; prompt early engagement with Daniel
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-07-30
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended
@@ -15,7 +15,7 @@
 
 The sellers who get the best outcomes from a spring campaign in Brisbane's inner east are the ones who started their preparation in August. Not September. Not the week before they listed.
 
-Here is what preparation in August actually involves. A building and pest inspection, so you know what buyers will find and you can address the fixable items before they become negotiating leverage. Decluttering and editing the furniture, so the photographer captures the property and not the accumulation of a decade of living. Minor repairs that every home has: the light that flickers, the door that sticks, the tap that drips. A conversation with your solicitor about the Form 6 and the disclosure statement.
+Here is what preparation in August actually involves. A building and pest inspection, so you know what buyers will find and you can address the fixable items before they affect the negotiation. Decluttering and editing the furniture, so the photographer captures the property and not the accumulation of a decade of living. Minor repairs that every home has: the light that flickers, the door that sticks, the tap that drips. A conversation with your solicitor about the Form 6 and the disclosure statement.
 
 None of this is dramatic. But compressing it into two weeks because you decided to list on a specific date means the campaign goes to market before the work is finished. Buyers notice. They notice in the photos. They notice at the open home. And they factor it into their offer.
 

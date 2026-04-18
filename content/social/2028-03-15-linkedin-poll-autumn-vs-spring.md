@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners and agents; surface timing preferences and generate conversation
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-15
 **Scheduled time:** 07:30
 **Visual status:** Not needed

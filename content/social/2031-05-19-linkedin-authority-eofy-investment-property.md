@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Alert investment property vendors to the practical capital gains timing consideration created by the 30 June financial year end.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-05-19
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/selling-tenanted-property-queensland; help landlord-vendors understand their obligations before listing
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-09-12
 **Scheduled time:** 07:30
 **Visual status:** suspended

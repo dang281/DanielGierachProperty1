@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post demonstrating Daniel's approach to honest pricing; attract vendors who want accuracy over flattery
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-02-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

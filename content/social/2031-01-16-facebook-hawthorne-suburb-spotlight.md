@@ -16,7 +16,7 @@
 
 Hawthorne sits between Bulimba and Balmoral in a way that gives it access to everything both suburbs offer without fully replicating either. The Oxford Street café and retail strip comes in from Bulimba to the south. The Hawthorne Ferry Terminal connects the suburb to the CBD without a car. The river proximity shapes the character of the lower streets. The Queenslanders on the upper sections are some of the most intact in the inner east.
 
-The suburb is tightly held. That is not marketing language. It is a structural fact about Hawthorne that every agent who works this corridor understands. Land does not come back to market quickly here. When it does, the buyer pool has generally been waiting through at least one previous missed opportunity. Multiple offers on well-presented character homes are not unusual. They are expected.
+Stock in Hawthorne turns over slowly. That is not marketing language. It is a structural fact about the suburb that every agent who works this corridor understands. Land does not come back to market quickly here. When it does, the buyer pool has generally been waiting through at least one previous missed opportunity. Multiple offers on well-presented character homes are not unusual. They are expected.
 
 The buyer profile in Hawthorne is experienced. These are not first-home buyers testing the market. They are buyers who have studied the inner east corridor for twelve to eighteen months, who know the difference between a home on a flat block and one that captures the afternoon easterly, and who arrive at inspections having already done their own comparable sales analysis.
 

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface suburb preferences across the inner east catchment
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-10-27
 **Scheduled time:** 07:30
 **Visual status:** Not needed

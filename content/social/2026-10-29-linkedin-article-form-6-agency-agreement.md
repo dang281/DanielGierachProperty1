@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a transparent and trustworthy agent; generate inbound from sellers who want a clear conversation before committing
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-10-29
 **Scheduled time:** 07:30
 **Visual status:** Draft

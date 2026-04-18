@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt vendors who are considering spring to evaluate whether listing in August instead could serve them better.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

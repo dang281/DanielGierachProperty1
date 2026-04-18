@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a credible, honest quarterly market observer
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-12-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

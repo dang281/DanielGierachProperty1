@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/capital-gains-tax-selling-home-brisbane; position Daniel as educational resource
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-01-29
 **Scheduled time:** 07:30
 **Visual status:** suspended

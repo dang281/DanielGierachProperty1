@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt sellers to consider their CGT position; educate on a common blind spot
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-10-16
 **Scheduled time:** 07:30
 **Visual status:** Not needed

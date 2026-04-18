@@ -20,7 +20,7 @@ The Coorparoo Square precinct on Cavendish Road anchors the commercial heart of 
 
 Transport is a strong card. The Coorparoo train station on the Beenleigh and Cleveland lines puts the CBD within a short commute, and bus services along Old Cleveland Road add further frequency. That combination of rail and bus access is something buyers in car-dependent suburbs genuinely envy.
 
-Character Queenslanders on elevated blocks with city glimpses attract particularly competitive campaigns. The buyer who missed out at Norman Park or Camp Hill often surfaces at the next Coorparoo campaign, and that cross-suburb demand keeps results robust. If you own in Coorparoo and want to understand what the current market means for your property, start at danielgierach.com/suburbs/coorparoo.
+Character Queenslanders on elevated blocks with city glimpses attract particularly competitive campaigns. The buyer who missed out at Norman Park or Camp Hill often surfaces at the next Coorparoo campaign, and that cross-suburb demand keeps results strong. If you own in Coorparoo and want to understand what the current market means for your property, start at danielgierach.com/suburbs/coorparoo.
 
 ## Hashtags
 

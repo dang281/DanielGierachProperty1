@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a knowledgeable local agent and help sellers understand the specific timing opportunity in Q2 2032
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-04-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

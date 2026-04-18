@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Address analysis paralysis among potential sellers, encourage action
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-11-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

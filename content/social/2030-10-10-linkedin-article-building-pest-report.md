@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/how-to-read-a-building-and-pest-report; educate buyers
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

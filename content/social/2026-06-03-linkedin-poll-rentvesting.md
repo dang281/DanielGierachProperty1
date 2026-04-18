@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface genuine sentiment on rentvesting from Daniel's audience; engage buyers priced out of lifestyle suburbs who are considering the strategy
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-03
 **Scheduled time:** 07:30
 **Visual status:** Not needed

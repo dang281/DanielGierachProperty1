@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the capital gains tax article; flag an important tax consideration for sellers who have previously rented their property
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-19
 **Scheduled time:** 07:30
 **Visual status:** Draft

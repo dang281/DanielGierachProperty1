@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Share Daniel's ground-level observations on how Olympic proximity influences buyer conversations at inner east open homes.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-07-22
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

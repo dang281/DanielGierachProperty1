@@ -20,7 +20,7 @@ Independent cafes, restaurants, and boutiques line the strip and draw people fro
 
 Buyers who come to Hawthorne are typically families upgrading from nearby suburbs, or buyers who looked at New Farm and Bulimba first and found that Hawthorne offers much of the same river-adjacent lifestyle at a price point that is slightly more accessible. Hawthorne State School holds a strong reputation, and the broader school network, including Lourdes Hill College and All Hallows, makes the suburb a consistent target for family buyers who want both public and private options close at hand.
 
-Supply in Hawthorne is tightly held. The suburb is small, the streets are few, and long-term owners tend to stay. When a well-positioned property does come to market, competition is real.
+Supply in Hawthorne is limited. The suburb is small, the streets are few, and long-term owners tend to stay. When a well-positioned property does come to market, competition is real.
 
 If you own in Hawthorne and want to understand what the market looks like right now, start at danielgierach.com/suburbs/hawthorne or reach out directly.
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help buyers use B&P reports effectively
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-05-08
 **Scheduled time:** 07:30
 **Visual status:** suspended

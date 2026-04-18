@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt vendors planning a spring campaign to contact Daniel now; demonstrate preparation expertise
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

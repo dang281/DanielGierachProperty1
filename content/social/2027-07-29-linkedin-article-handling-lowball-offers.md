@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and give vendors practical guidance on handling low offers without closing the door on a genuine buyer.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-29
 **Scheduled time:** 07:30
 **Visual status:** Draft

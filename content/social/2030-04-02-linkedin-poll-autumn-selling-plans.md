@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface active sellers for appraisal conversations
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-04-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and capture market sentiment to inform future content; build Daniel's voice as a market commentator
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-29
 **Scheduled time:** 07:30
 **Visual status:** Not needed

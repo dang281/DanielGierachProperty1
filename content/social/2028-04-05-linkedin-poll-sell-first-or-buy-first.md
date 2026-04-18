@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on a decision that affects most upgrading homeowners; build Daniel's voice as a practical adviser
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-04-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

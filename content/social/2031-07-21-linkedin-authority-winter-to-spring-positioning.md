@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Show vendors that launching in July can produce results comparable to spring when approached correctly.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-07-21
 **Scheduled time:** 07:30
 **Visual status:** suspended

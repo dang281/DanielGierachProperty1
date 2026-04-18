@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide an honest, credible Q1 review that positions Daniel as the informed authority and sets up Q2 seller conversations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-03-25
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

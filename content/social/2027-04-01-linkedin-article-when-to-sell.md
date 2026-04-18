@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive inbound from homeowners sitting on the fence about selling; position Daniel as a trusted voice on timing decisions
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-04-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

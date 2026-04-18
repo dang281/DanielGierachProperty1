@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on the ANZAC Day effect on autumn campaigns; demonstrate seasonal market knowledge
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-15
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

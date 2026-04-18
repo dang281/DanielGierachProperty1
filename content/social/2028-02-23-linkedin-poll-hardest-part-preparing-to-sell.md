@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners; surface pain points in the pre-sale preparation process
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-02-23
 **Scheduled time:** 07:30
 **Visual status:** Not needed

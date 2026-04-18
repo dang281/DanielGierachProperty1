@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand audience preferences for selling season; reinforce Daniel's autumn-is-underrated message
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-12-01
 **Scheduled time:** 07:30
 **Visual status:** Not needed

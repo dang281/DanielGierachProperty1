@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface 2031 property intent; generate early conversations with buyers and sellers planning the year ahead
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-12-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who understands buyer psychology, not just market statistics. Prompt vendors who are waiting for spring to reconsider.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-02
 **Scheduled time:** 07:30
 **Visual status:** suspended

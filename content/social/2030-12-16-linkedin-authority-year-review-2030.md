@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Year-in-review authority post; demonstrate Daniel's data-led perspective; attract 2031 vendors
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-12-16
 **Scheduled time:** 07:30
 **Visual status:** suspended

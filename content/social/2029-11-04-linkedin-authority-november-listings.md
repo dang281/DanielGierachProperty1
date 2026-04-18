@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Persuade inner east vendors who are considering waiting until autumn to evaluate whether November better fits their buyer pool.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-04
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

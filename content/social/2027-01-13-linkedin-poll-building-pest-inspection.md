@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Educate buyers on the value of the B&P clause; generate discussion about competitive market behaviour
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-13
 **Scheduled time:** 07:30
 **Visual status:** Not needed

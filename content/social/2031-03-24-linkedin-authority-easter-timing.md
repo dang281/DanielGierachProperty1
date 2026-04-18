@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors in late March a clear-eyed read of the Easter timing question so they can make an informed campaign decision.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-03-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/stamp-duty-queensland; position Daniel as an educator
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-04-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

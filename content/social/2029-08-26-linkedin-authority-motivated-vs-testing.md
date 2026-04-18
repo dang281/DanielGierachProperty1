@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers understand how buyer-side perception of vendor motivation affects campaign outcomes.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-08-26
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

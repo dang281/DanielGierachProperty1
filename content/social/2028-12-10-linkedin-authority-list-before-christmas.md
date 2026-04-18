@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give an honest, practical answer to the list-before-Christmas question; prompt year-end decisions
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-10
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

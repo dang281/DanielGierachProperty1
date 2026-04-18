@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educational authority post; drive traffic to danielgierach.com/insights and generate buyer/seller conversations
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-11-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

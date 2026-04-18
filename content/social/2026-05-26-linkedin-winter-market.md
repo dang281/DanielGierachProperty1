@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Counter the common objection that winter is a bad time to sell. Encourage homeowners sitting on the fence to act rather than defer to spring.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -20,7 +20,7 @@ Every year around May, I start hearing the same thing from sellers who are close
 
 It is one of the most persistent pieces of received wisdom in Australian real estate, and in Brisbane it is more wrong than it is right.
 
-Brisbane's winter is not Sydney's winter. It is not cold enough to make open homes uncomfortable or gardens look bare. The seasonal dip in stock that comes through June and July is real - but it works in sellers' favour. Fewer properties on the market means the buyers who are active have fewer choices. Serious buyers do not take winter off. They keep attending opens, they keep monitoring listings, and when the right property comes up they compete for it.
+Brisbane's winter is not Sydney's winter. It is not cold enough to make open homes uncomfortable or gardens look bare. The seasonal dip in stock that comes through June and July is real, and it works in sellers' favour. Fewer properties on the market means the buyers who are active have fewer choices. Serious buyers do not take winter off. They keep attending opens, they keep monitoring listings, and when the right property comes up they compete for it.
 
 What I see in the inner east through winter is not a market in pause. It is a market with lower supply and roughly comparable demand, which is a better environment for a seller than a crowded spring where buyers have options.
 

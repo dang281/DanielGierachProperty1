@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from first home buyers and those who know them; demonstrate Daniel's understanding of current entry conditions
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-01-08
 **Scheduled time:** 07:30
 **Visual status:** Not needed

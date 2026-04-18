@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Market observation post to open the spring season; demonstrate active knowledge of the current market
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-09-03
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

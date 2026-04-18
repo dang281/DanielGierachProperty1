@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Capture vendor attention at the peak of the autumn window and show Daniel understands the rhythm of the market.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-03-03
 **Scheduled time:** 07:30
 **Visual status:** suspended

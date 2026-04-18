@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface buyer and owner sentiment on suburb performance
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

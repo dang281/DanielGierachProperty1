@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post framing supply conditions for vendors and buyers heading into the key autumn window
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-01-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

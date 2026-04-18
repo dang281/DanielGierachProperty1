@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate mortgaged sellers on discharge, timing, and net proceeds
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-11-21
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

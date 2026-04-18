@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel as a credible on-the-ground market observer with a clear-eyed, experience-based read on the April through June quarter.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-06-30
 **Scheduled time:** 07:30
 **Visual status:** suspended

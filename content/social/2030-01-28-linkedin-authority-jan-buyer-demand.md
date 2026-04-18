@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Share Daniel's honest field observations about buyer demand in January to establish credibility with sellers and buyers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-01-28
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive end-of-Q2 reflection on market drivers; position Daniel as a balanced market commentator
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-06-25
 **Scheduled time:** 07:30
 **Visual status:** Not needed

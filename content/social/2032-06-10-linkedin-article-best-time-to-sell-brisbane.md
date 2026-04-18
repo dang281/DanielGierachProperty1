@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as trusted adviser
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-06-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

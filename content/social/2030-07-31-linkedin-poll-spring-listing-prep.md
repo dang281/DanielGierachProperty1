@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; position Daniel as the expert guide on campaign preparation
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-31
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Test audience understanding of auction terminology; educate buyers and sellers on a commonly misunderstood moment in the auction process
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-27
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -17,7 +17,7 @@ Auction terminology catches a lot of buyers off guard, especially when things do
 
 One worth understanding: in Queensland, unlike Victoria, there is no statutory right giving the highest bidder first right to negotiate after a passed-in auction. The vendor can choose to negotiate with anyone.
 
-But first - what do you think "passed in" at auction actually means?
+But first: what do you think "passed in" at auction actually means?
 
 Daniel Gierach
 Ray White Bulimba · Inner East Brisbane

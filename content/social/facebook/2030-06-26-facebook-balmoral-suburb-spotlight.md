@@ -20,7 +20,7 @@ For sellers in Balmoral, that buyer profile is an asset. A motivated, informed b
 
 The school catchment consideration in Balmoral has not diminished. Balmoral State High School continues to attract families who are thinking years ahead, and the combination of a reliable secondary school catchment and a genuinely premium residential suburb keeps the family buyer demand anchored even in market conditions that reduce broader activity.
 
-The tightly held character of the suburb means that supply in any given month is limited. When a property appears, buyers who have been waiting notice immediately. For sellers, that dynamic supports price, but only if the campaign is executed well.
+Supply in Balmoral in any given month is limited. When a property appears, buyers who have been waiting notice immediately. For sellers, that dynamic supports price, but only if the campaign is executed well.
 
 danielgierach.com/suburbs/balmoral
 

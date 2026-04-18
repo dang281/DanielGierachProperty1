@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt vendors who prepared in August to act now, and educate on why September outperforms November
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-09-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

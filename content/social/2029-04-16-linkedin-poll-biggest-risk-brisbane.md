@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface community sentiment on market risks; position Daniel as someone who takes a balanced, informed view of the market
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-16
 **Scheduled time:** 07:30
 **Visual status:** Not needed

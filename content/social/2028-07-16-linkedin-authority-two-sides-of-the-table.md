@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post demonstrating Daniel's perspective from working with both buyers and sellers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-07-16
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended
@@ -23,7 +23,7 @@ The result is two groups talking past each other through a process that should b
 
 The best outcomes I see come from sellers who have a clear, evidence-based price and buyers who have done their comparable sales research. When both sides of the table are working from the same data, the gap closes quickly.
 
-The agent's job is to close the gap faster, not to build leverage for either party.
+The agent's job is to close the gap faster, not to manufacture an advantage for either party.
 
 danielgierach.com
 

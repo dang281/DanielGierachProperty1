@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage agent and investor audience on the reliability of comparable sales as a valuation tool
 **Content Pillar:** market education
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-09-16
 **Scheduled time:** 07:30
 **Visual status:** Not needed

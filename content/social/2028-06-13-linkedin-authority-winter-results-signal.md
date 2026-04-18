@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Use winter clearance data as a signal of underlying demand and show sellers preparing for spring what they should be watching
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-06-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

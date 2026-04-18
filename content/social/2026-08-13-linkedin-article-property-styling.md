@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the property styling article and convince sellers that styling costs are a photography and buyer-volume investment
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

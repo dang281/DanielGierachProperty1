@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive spring vendor enquiries by giving a concrete reason to act now; reinforce Daniel's campaign preparation expertise
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-06-24
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

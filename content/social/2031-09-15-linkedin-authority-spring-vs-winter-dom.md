@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge the assumption that spring automatically produces faster sales, and give vendors a more accurate picture of what drives transaction speed.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-09-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

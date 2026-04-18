@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on a topic specific to Brisbane inner east buyers; surface real buyer attitudes about flood risk
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-07-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

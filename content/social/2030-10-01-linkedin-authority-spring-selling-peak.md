@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the authority on inner east spring market conditions; attract Q4 vendor enquiries
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-01
 **Scheduled time:** 07:30
 **Visual status:** suspended

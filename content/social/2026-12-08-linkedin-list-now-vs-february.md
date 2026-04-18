@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help fence-sitting sellers make a decision; demonstrate Daniel's ability to give direct, balanced advice rather than pushing for a listing
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

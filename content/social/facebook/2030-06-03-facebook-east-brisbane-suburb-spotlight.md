@@ -22,7 +22,7 @@ The Cross River Rail connection at Woolloongabba, a short walk from parts of Eas
 
 Winter in East Brisbane does not dramatically change the buyer profile. The buyers who want to live within walking distance of the CBD are not seasonal. They are looking year-round and respond to properties that meet their criteria when they appear.
 
-For sellers, the tightly held character of the suburb and the consistent depth of demand makes the decision about timing somewhat less critical than in suburbs where buyer pools are more seasonal.
+For sellers, the low listing volume and the consistent depth of demand makes the decision about timing somewhat less critical than in suburbs where buyer pools are more seasonal.
 
 danielgierach.com/suburbs/east-brisbane
 

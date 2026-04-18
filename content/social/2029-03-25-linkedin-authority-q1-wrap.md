@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Quarterly authority post summarising market conditions and signalling what Q2 looks like for sellers and buyers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-03-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

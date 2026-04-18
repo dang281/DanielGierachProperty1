@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/airbnb-vs-longterm; position Daniel as a trusted source for investment property decisions in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-04-29
 **Scheduled time:** 07:30
 **Visual status:** Draft

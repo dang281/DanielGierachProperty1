@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on November market dynamics; educate vendors on interpreting open home data
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-11-04
 **Scheduled time:** 07:30
 **Visual status:** suspended

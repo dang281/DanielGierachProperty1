@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build vendor and buyer trust by explaining why stale data creates pricing errors in early 2032
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-01-20
 **Scheduled time:** 07:30
 **Visual status:** suspended

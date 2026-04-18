@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an authority on inner east buyer psychology; prompt November sellers to act before the window closes
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-10-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

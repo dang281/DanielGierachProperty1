@@ -16,7 +16,7 @@
 
 Mt Gravatt's rental market is shaped by two institutions: Griffith University and The Prince Charles Hospital. That combination produces a demand base that is consistent regardless of the broader economic cycle. Students and medical professionals need housing close to where they work and study, and Mt Gravatt is well within the radius of both. For investors in this suburb, vacancy has not been a persistent problem.
 
-Westfield Garden City anchors the suburb's commercial identity. For owner-occupiers, it provides the full retail and convenience offer within a short drive, which matters for families who want suburban space without sacrificing urban convenience. The upper sections of the suburb, on and around the hill that gives the suburb its name, carry views toward the bay corridor and the ranges that elevate well-positioned properties above the standard residential offer.
+Westfield Garden City anchors the suburb's commercial identity. For owner-occupiers, it provides the full retail and convenience offer within a short drive, which matters for families who want suburban space without sacrificing urban convenience. The upper sections of the suburb, on and around the hill that gives the suburb its name, carry views toward the bay corridor and the ranges that lift well-positioned properties above the standard residential offer.
 
 The buyer profile here is dual. Owner-occupying families who want a settled south-side address with school access and proximity to the city's major healthcare and education precincts. And investors who understand that proximity to Griffith and to hospital employment creates a durable rental demand that does not depend on short-term economic conditions.
 

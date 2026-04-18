@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers, sellers and investors; position Daniel as someone tracking the debate, not generating hype
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-22
 **Scheduled time:** 07:30
 **Visual status:** Not needed

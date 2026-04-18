@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; establish educational authority
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-07-09
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -17,7 +17,7 @@
 
 In winter, the buyer pool is smaller but more decisive. Auction in winter requires a different calculation than auction in spring. Fewer competing bidders attend, but the bidders who do show up have typically already committed to the suburb. They are not browsing. They have done their research, arranged their finance, and chosen where they want to live. A winter auction with three serious registered bidders can produce a strong result. A spring auction with eight curious onlookers can produce a disappointing one.
 
-That distinction matters because vendors who are planning a late winter or spring campaign are making their sale method decision right now, in July and August. The choice of auction versus private treaty should follow the property type and the profile of its likely buyer, not the time of year. A tightly held street in Bulimba or Balmoral where comparable sales are limited favours auction regardless of the season, because the market is being asked to establish price in the absence of a clear guide. A property with strong comparable sales and a definable buyer profile can work well as a private treaty at any time of year.
+That distinction matters because vendors who are planning a late winter or spring campaign are making their sale method decision right now, in July and August. The choice of auction versus private treaty should follow the property type and the profile of its likely buyer, not the time of year. A street in Bulimba or Balmoral with low turnover and limited comparable sales favours auction regardless of the season, because the market is being asked to establish price in the absence of a clear guide. A property with strong comparable sales and a definable buyer profile can work well as a private treaty at any time of year.
 
 The tendency to assume auction is a spring tool and private treaty is a winter one is a simplification that can lead vendors to the wrong method for their specific property. The better question is not when to sell, but which method gives the right buyer the clearest path to purchase.
 

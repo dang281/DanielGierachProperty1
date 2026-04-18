@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Convert sellers who are waiting for spring; demonstrate Daniel's understanding of inner-east seasonal dynamics
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

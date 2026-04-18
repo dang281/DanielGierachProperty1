@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/selling-tenanted-property-queensland; position Daniel as educational resource
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-12-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

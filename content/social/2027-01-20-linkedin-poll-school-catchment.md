@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from family buyers and homeowners in catchment suburbs; reinforce Daniel's knowledge of inner east catchment premiums
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-20
 **Scheduled time:** 07:30
 **Visual status:** Not needed

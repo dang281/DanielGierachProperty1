@@ -2,7 +2,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt vendors to think about settlement as part of the offer, not just price
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-09-15
 **Scheduled time:** 07:30
 **Visual status:** Not needed

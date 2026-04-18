@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt pre-Christmas listing conversations; understand seller timing psychology
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-10-30
 **Scheduled time:** 07:30
 **Visual status:** Not needed

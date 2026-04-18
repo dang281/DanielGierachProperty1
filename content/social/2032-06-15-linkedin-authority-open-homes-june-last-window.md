@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Highlight the significance of June open homes as a market signal and reinforce Daniel's presence in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-06-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

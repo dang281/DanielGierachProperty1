@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/what-is-an-unconditional-offer-queensland; help both buyers and sellers understand the unconditional dynamic
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-09-19
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -21,7 +21,7 @@ A conditional offer includes a finance clause, a building and pest clause, or bo
 
 From the buyer's side, an unconditional offer requires genuine preparation. Finance pre-approval needs to be solid, not estimated. A pre-purchase building and pest inspection, done before the offer is submitted, removes the need for the clause entirely. Buyers who are ready to go unconditional are a different proposition to the agent and the vendor, and that changes the negotiation.
 
-There is a right time to use a conditional offer and a right time to go unconditional. Understanding the difference, and what each costs and saves, is the kind of thing that matters more in a competitive market. The full picture is at danielgierach.com/insights/what-is-an-unconditional-offer-queensland.
+There is a right time to use a conditional offer and a right time to go unconditional. Understanding the difference, and what each costs and saves, is the kind of thing that matters when other buyers are also making offers. The full picture is at danielgierach.com/insights/what-is-an-unconditional-offer-queensland.
 
 ---
 

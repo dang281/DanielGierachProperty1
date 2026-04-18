@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Frame the 2032 Olympic proximity as relevant context for inner east sellers and investors without making price predictions
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-09
 **Scheduled time:** 07:30
 **Visual status:** suspended

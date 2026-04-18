@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help buyers understand the winter market opportunity; explain why post-autumn listings behave differently
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-27
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

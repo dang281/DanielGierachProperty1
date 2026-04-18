@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate investors on land tax before they are surprised at assessment time
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

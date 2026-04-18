@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help buyers make informed decisions about strata/body corporate properties
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-19
 **Scheduled time:** 07:30
 **Visual status:** suspended

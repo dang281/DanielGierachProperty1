@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the renovate-before-selling article and help vendors focus spend where it actually pays
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-09-24
 **Scheduled time:** 07:30
 **Visual status:** Draft

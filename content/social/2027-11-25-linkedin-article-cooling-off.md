@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educational clarity on a commonly misunderstood QLD property law; drive insights traffic
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-11-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

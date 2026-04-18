@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive appraisal enquiries from homeowners considering a 2027 autumn campaign; reinforce that the preparation window is closing
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-02-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,13 +4,12 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a trusted, educational resource for Brisbane buyers
 **Content Pillar:** buyer
-**Status:** Ready for Review
-**Publish date:** 2026-04-16
+**Status:** posted
+**Publish date:** 2026-04-18
 **Scheduled time:** 07:30
-**Read time:** 5 MIN READ
 **Visual status:** Ready
-**Image:** content/social/images/2026-04-16-article-cover.png
-**Canva Thumbnail:** https://hmwulvvwsksuyqozuxvw.supabase.co/storage/v1/object/public/social-images/2026-04-16-article-cover.png
+**Image:** content/social/images/2026-04-18-article-cover.png
+**Series:** Field Guide Issue 01
 
 ---
 
@@ -45,7 +44,7 @@ danielgierach.com/insights/building-pest-report
 - Major defect vs minor defect: not the same thing
 - Active termites require a specialist quote, not an exit
 - Always call the inspector after reading the report
-**Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
+**Footer:** Daniel Gierach · Ray White Collective
 **Image direction:** Text-only design, no photo needed
 **Source line:** Not applicable
 

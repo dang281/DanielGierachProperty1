@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; prepare sellers for a step in the process that can generate anxiety if it is not understood.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -18,7 +18,7 @@ Most sellers treat the pre-settlement inspection as a formality. It is not.
 
 In Queensland, buyers are entitled to one pre-settlement inspection under standard contract conditions. The purpose is to confirm the property is in the same condition as when the contract was signed, that all inclusions listed in the contract are still present, and that the seller has vacated or is in the process of vacating.
 
-A buyer cannot use the inspection to delay settlement because they have changed their mind. But if the property has suffered material damage or change since the contract date, they have grounds to raise it. And if an inclusion listed in the contract - a dishwasher, a light fitting, an air conditioning unit - has been removed or damaged, they are entitled to a remedy before settlement proceeds.
+A buyer cannot use the inspection to delay settlement because they have changed their mind. But if the property has suffered material damage or change since the contract date, they have grounds to raise it. And if an inclusion listed in the contract, say a dishwasher, a light fitting, an air conditioning unit, has been removed or damaged, they are entitled to a remedy before settlement proceeds.
 
 What sellers sometimes get caught by: removing items they did not think were included, or changes that happened between exchange and settlement that they considered minor. A cracked window from a storm. A fence panel that came down. Damage that occurred during the move-out.
 

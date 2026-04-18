@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Year-end engagement; plant seeds for February listing and buyer enquiry
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-12-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed

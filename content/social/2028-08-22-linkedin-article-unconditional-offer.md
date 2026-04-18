@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help sellers and buyers understand the unconditional offer dynamic
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-08-22
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

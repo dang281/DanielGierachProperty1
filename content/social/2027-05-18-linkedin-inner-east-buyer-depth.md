@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the authority on current buyer conditions in the inner east, based on first-hand observation
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-05-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

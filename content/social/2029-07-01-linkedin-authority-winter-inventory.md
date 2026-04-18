@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's market knowledge by explaining what low winter inventory signals about seller motivation and buyer opportunity.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-07-01
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended
@@ -21,7 +21,7 @@ The vendors who list in winter are, almost without exception, people who need to
 
 That changes everything about how a winter campaign runs. Buyers in the inner east know this, and the serious ones pay close attention to what comes to market between July and August precisely because the signal-to-noise ratio is so much better than in spring. Fewer properties, more motivated vendors, less speculative pricing.
 
-For vendors considering a mid-year campaign, the calculus is worth understanding. Yes, buyer numbers at open homes are lower in winter than in September. But the buyers who do attend in July are not browsing. They have finance arranged. They are ready to move. A winter campaign in a tightly held suburb like Bulimba, Balmoral, or Hawthorne often produces a result that surprises vendors who were talked out of listing by the conventional wisdom about season.
+For vendors considering a mid-year campaign, the calculus is worth understanding. Yes, buyer numbers at open homes are lower in winter than in September. But the buyers who do attend in July are not browsing. They have finance arranged. They are ready to move. A winter campaign in a low-turnover suburb like Bulimba, Balmoral, or Hawthorne often produces a result that surprises vendors who were talked out of listing by the conventional wisdom about season.
 
 The best time to sell is when you have a well-prepared property and a motivated, qualified buyer pool. Winter delivers the second part of that equation consistently. The first part is up to you.
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on how to interpret days on market correctly so they can assess agent performance and campaign health.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-08-19
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

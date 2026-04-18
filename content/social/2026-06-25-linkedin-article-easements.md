@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help sellers understand a common source of buyer hesitation
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

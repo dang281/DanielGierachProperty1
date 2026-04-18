@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/how-to-handle-offers-when-selling; give vendors a practical principle for offer handling
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-09-05
 **Scheduled time:** 07:30
 **Visual status:** suspended

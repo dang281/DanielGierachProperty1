@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help investors make an informed decision about their rental strategy
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-07-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

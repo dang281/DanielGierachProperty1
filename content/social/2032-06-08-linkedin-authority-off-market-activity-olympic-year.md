@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's access to and knowledge of off-market activity in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-06-08
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -14,7 +14,7 @@
 
 ## Caption
 
-Norman Park is one of the inner east's most tightly held suburbs, and there is a simple reason for that. Whites Hill Reserve sits at the heart of the suburb as a defining green space, the character home profile throughout is intact and genuinely attractive, and the school catchment for Norman Park State School and Whites Hill State College is a consistent draw for families who plan ahead.
+Norman Park sees among the lowest listing volumes of any inner east suburb, and there is a simple reason for that. Whites Hill Reserve sits at the heart of the suburb as a defining green space, the character home profile throughout is intact and genuinely attractive, and the school catchment for Norman Park State School and Whites Hill State College is a consistent draw for families who plan ahead.
 
 The Norman Creek greenway connects the suburb to the river, which gives residents a green corridor that buyers in comparable suburbs do not have. Old Cleveland Road and the bus corridor provide reliable access to the CBD, and Camp Hill Marketplace and Morningside are both nearby for everyday amenity.
 

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement at the start of the year; gauge sentiment among buyers, sellers, and investors in Daniel's network
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-06
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Counter the assumption that December is a dead market, encourage late-listing vendors
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-11-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

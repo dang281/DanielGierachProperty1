@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a data-led market commentator with a credible, honest mid-year read on Brisbane property
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-06-29
 **Scheduled time:** 07:30
 **Visual status:** suspended

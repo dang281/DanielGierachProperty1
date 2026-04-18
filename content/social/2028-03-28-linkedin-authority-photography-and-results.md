@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority on campaign investment decisions; position Daniel as detail-oriented
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who helps sellers think clearly before they commit
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-07-09
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

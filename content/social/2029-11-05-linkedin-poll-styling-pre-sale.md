@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; position Daniel as informed and approachable
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

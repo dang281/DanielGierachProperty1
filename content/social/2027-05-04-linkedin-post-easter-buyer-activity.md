@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an authority on buyer behaviour patterns in the inner east post-Easter
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-05-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

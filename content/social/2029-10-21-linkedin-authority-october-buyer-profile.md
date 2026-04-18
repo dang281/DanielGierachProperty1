@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish authority on buyer behaviour and profile in Brisbane's inner east in spring
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-10-21
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

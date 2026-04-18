@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Quantify and articulate the real cost of the January delay; prompt year-end listing decisions
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-11-26
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

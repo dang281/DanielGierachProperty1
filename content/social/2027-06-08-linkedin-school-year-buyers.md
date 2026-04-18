@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's local knowledge of the inner east school catchment market and prompt enquiry from families planning their 2028 school year move.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-06-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

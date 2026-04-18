@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive high-engagement debate on property fundamentals
 **Content Pillar:** investor
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-09-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt year-end reflection; understand what resonated with the audience
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

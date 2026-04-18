@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority as the inner east's most observant agent by sharing direct market observations at the mid-year point.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-06-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

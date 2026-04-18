@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Create urgency around the closing pre-Olympic listing window without making unverifiable price claims
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-05-25
 **Scheduled time:** 07:30
 **Visual status:** suspended

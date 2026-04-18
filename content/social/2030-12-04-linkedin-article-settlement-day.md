@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/what-happens-on-settlement-day-queensland; calm vendor anxieties
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-12-04
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's on-the-ground knowledge of current buyer behaviour; give sellers confidence about the active buyer pool
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-10
 **Scheduled time:** 07:30
 **Visual status:** Draft

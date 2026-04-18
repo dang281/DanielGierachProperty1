@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to Daniel's negative gearing insights article and position him as an agent who understands investment property strategy beyond just the transaction.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-06-03
 **Scheduled time:** 07:30
 **Visual status:** Draft

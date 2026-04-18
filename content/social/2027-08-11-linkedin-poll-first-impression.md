@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and generate insight into buyer decision-making priorities.
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed

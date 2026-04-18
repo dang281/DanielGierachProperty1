@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post linking the Olympic 2032 infrastructure pipeline to inner east property fundamentals
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-03-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

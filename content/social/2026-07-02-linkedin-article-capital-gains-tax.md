@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help sellers with rental history understand their CGT position before listing
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-07-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

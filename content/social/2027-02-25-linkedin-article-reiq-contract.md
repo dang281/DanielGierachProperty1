@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the REIQ contract article; educate buyers on the clauses that actually matter before they sign
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-02-25
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -17,7 +17,7 @@
 
 The standard REIQ contract used in Queensland property transactions is twelve pages long. Most buyers sign it and call their solicitor second.
 
-That sequence is backwards, but it is understandable. In a competitive market, by the time a buyer has a solicitor review the contract, another buyer has already signed. The pressure to move quickly is real.
+That sequence is backwards, but it is understandable. When multiple buyers are competing, by the time a buyer has a solicitor review the contract, another buyer has already signed. The pressure to move quickly is real.
 
 The clauses that matter most are the ones buyers are most likely to miss.
 

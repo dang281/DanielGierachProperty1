@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and debate about inner-east suburbs; position Daniel as the inner-east expert
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-03-08
 **Scheduled time:** 07:30
 **Visual status:** Not needed

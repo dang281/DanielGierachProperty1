@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the cost of selling article; prompt sellers to think clearly about net proceeds before committing to a price expectation
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

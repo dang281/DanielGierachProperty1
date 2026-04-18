@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as an agent who understands the nuances of pricing. Help sellers and buyers think more clearly about valuation.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-19
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -18,7 +18,7 @@ When an agent gives you a price guide, they lean on comparable sales. Recent tra
 
 Here is what comparables cannot do.
 
-They cannot account for a market that has moved since the sale date. A comparable from six months ago in a rising market can be materially below where things are trading now. In the inner east, I have seen the gap between a six-month-old sale and current value run to 5% or more in tightly held streets.
+They cannot account for a market that has moved since the sale date. A comparable from six months ago in a rising market can be materially below where things are trading now. In the inner east, I have seen the gap between a six-month-old sale and current value run to 5% or more in streets with very low turnover.
 
 They cannot account for what was not disclosed. A comparable might sit below the street average because the building report was difficult, or the vendor needed a fast settlement, or the buyer was the neighbour and paid below market to avoid a campaign. You often do not know which of these applies.
 

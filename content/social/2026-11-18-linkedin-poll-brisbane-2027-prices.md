@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers, sellers, and investors thinking about the year ahead; surface sentiment data
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-18
 **Scheduled time:** 07:30
 **Visual status:** Not needed

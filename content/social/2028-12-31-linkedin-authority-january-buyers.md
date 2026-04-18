@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as ready for 2029; prompt January appraisal conversations; characterise the new year buyer pool
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-31
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

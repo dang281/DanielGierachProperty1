@@ -22,7 +22,7 @@ An access easement is a different matter. If a neighbour or a utility company ha
 
 Buyers who read the words "easement" on a title search and assume they know what it means without reading the registered terms carefully are taking a risk. The type matters. The location matters. What the easement holder is actually entitled to do matters.
 
-This is not a conversation to have at the coffee table after the open home. It is a solicitor conversation before you sign the contract, while you still have the leverage to ask questions, seek clarification, and decide whether the terms are acceptable.
+This is not a conversation to have at the coffee table after the open home. It is a solicitor conversation before you sign the contract, while you can still ask questions, seek clarification, and decide whether the terms are acceptable.
 
 More detail on how easements work in Queensland and what to look for before you sign.
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide data-led reassurance for homeowners watching the market; reinforce Daniel's understanding of inner east fundamentals
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-05-27
 **Scheduled time:** 07:30
 **Visual status:** suspended

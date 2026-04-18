@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and correct the common misunderstanding about how much vendors actually net after selling.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

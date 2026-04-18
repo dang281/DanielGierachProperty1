@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; protect buyers from costly contract misunderstandings
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-05-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

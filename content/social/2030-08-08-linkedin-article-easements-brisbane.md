@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/easements-property-brisbane-qld; help buyers understand a commonly misunderstood title issue
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-08
 **Scheduled time:** 07:30
 **Visual status:** suspended

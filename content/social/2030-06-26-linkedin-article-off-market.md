@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as an honest advocate for vendor outcomes
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-26
 **Scheduled time:** 07:30
 **Visual status:** suspended

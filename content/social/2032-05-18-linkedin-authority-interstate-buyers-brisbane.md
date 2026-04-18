@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers understand interstate buyer behaviour in the inner east and position Daniel as someone with firsthand knowledge of this buyer segment
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-05-18
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Share current market observations; build Daniel's reputation as someone who knows the data behind the headlines
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-08-20
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

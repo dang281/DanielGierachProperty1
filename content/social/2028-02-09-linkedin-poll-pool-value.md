@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers and homeowners; spark conversation about lifestyle features and value
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-02-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed

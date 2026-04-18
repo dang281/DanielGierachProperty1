@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Forward-looking authority post; prompt 2029 planning conversations; close the year on a confident, useful note
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-12-24
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

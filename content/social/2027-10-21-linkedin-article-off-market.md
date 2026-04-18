@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the off-market article and educate sellers on the true cost of bypassing competition
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-10-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; establish educational authority
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-04-02
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -19,7 +19,7 @@ Most buyers call their solicitor after signing the contract. That is the wrong s
 
 The contract review conversation typically happens after exchange in Queensland. A buyer signs, the cooling-off period begins, and then they call a legal professional to check what they have agreed to. By that point, the terms are set. Any missing inclusions, risky special conditions, or finance deadline timeframes that do not suit the buyer's circumstances are already locked in. Negotiating amendments after exchange is possible but it requires the vendor's cooperation, which is not guaranteed.
 
-A solicitor reviewing the contract before signature can identify those problems while the buyer still has leverage. That is the practical difference between reviewing a document you are being asked to sign and reviewing a document you have already signed. Conveyancers handle the mechanics of the property transfer competently, but their role is typically limited to the transactional process rather than advising on contract terms or negotiating amendments before the buyer is bound.
+A solicitor reviewing the contract before signature can identify those problems while the buyer still has room to walk away or renegotiate. That is the practical difference between reviewing a document you are being asked to sign and reviewing a document you have already signed. Conveyancers handle the mechanics of the property transfer competently, but their role is typically limited to the transactional process rather than advising on contract terms or negotiating amendments before the buyer is bound.
 
 Inner east character homes add a layer of complexity to this. Properties with easements, heritage overlays, or unusual special conditions attached to the contract are not uncommon in suburbs like Hawthorne, Balmoral, and New Farm. Those features are worth understanding before signing, not after.
 

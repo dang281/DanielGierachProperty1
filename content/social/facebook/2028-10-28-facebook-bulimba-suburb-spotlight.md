@@ -15,7 +15,7 @@
 
 Oxford Street is the anchor of Bulimba's identity, but the suburb's property market is driven by something less visible: the Bulimba Peninsula.
 
-The pocket bound by the river on three sides, from the Bulimba Ferry terminal north to the Dockside precinct and around to the Fig Tree Pocket side of the bend, is one of the most tightly held residential precincts in Brisbane. Properties here rarely come to market, and when they do they attract buyers who have been watching the suburb for years.
+The pocket bound by the river on three sides, from the Bulimba Ferry terminal north to the Dockside precinct and around to the Fig Tree Pocket side of the bend, is one of Brisbane's most infrequently traded residential precincts. Properties here rarely come to market, and when they do they attract buyers who have been watching the suburb for years.
 
 The broader Bulimba market beyond the peninsula operates on a different but still strong base. The character homes along the Oxford Street corridor and the streets that feed into it attract the lifestyle buyer: the couple or family who prioritises the café and restaurant strip, the ferry commute, and the character of a street-level suburban experience that Bulimba does better than almost any inner east suburb.
 

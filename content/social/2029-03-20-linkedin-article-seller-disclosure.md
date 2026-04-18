@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on their disclosure obligations under the Property Law Act 2023 (Qld)
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-03-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

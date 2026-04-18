@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/solicitor-vs-conveyancer-qld; position Daniel as educational resource
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-10-01
 **Scheduled time:** 07:30
 **Visual status:** suspended

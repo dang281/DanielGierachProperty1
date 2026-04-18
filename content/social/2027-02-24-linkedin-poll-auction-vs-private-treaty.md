@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyer segment of the network; inform understanding of buyer method preferences in the inner east
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-02-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed

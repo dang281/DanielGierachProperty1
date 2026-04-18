@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help property owners understand when CGT applies and when it does not
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-29
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

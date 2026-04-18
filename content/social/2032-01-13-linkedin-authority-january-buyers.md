@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Correct the misconception that January buyers are casual; position Daniel as an agent who understands buyer psychology
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-01-13
 **Scheduled time:** 07:30
 **Visual status:** suspended

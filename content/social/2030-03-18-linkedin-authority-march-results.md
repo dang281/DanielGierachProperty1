@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Share honest field observations from March campaigns to maintain credibility and prompt Q2 sellers to engage early
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-03-18
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

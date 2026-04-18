@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engagement from inner east audience; generate suburb-specific conversation
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-11-19
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive clicks to danielgierach.com/insights/airbnb-vs-longterm; position Daniel as educational authority
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-02-20
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

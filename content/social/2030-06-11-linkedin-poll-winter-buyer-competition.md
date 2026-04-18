@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand buyer experience in the current market
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed

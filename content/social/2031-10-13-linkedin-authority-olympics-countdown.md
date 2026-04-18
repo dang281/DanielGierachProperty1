@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a grounded, honest voice on the Olympics and property
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-10-13
 **Scheduled time:** 07:30
 **Visual status:** suspended

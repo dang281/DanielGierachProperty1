@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the unconditional offer article; help buyers understand what makes their offer competitive beyond price
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-12
 **Scheduled time:** 07:30
 **Visual status:** Draft

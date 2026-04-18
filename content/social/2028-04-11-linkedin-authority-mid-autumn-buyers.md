@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an expert on seasonal market dynamics in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-04-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

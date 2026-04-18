@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from investors and homeowners; surface sentiment about Brisbane long-term outlook
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-01-12
 **Scheduled time:** 07:30
 **Visual status:** Not needed

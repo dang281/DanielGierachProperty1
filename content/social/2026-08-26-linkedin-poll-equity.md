@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage investor and homeowner audience on equity access and portfolio building strategy
 **Content Pillar:** investor
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the credible, unsentimental voice on the inner east Olympic market in January 2032
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-01-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

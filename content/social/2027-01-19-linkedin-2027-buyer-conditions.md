@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on buyer behaviour in January 2027; useful for both sellers sizing up their buyer pool and buyers understanding the competition they face
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-19
 **Scheduled time:** 07:30
 **Visual status:** Draft

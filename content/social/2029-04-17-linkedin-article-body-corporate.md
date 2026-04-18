@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help buyers of units and townhouses understand body corporate before they commit
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-17
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

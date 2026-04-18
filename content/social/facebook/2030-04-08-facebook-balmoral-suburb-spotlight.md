@@ -14,7 +14,7 @@
 
 ## Caption
 
-Balmoral occupies a specific position in the inner east market: river-adjacent, tightly held, and genuinely hard to access for buyers who are not already watching the suburb closely.
+Balmoral occupies a specific position in the inner east market: river-adjacent, low in listing volume, and genuinely hard to access for buyers who are not already watching the suburb closely.
 
 The streets between Lytton Road and the river are where most of the competition concentrates. Properties here, particularly those with river glimpses or elevated outlooks across the Bulimba reach, attract buyers who have often been waiting for a specific type of property rather than browsing broadly. That depth of patient buyer demand is one of the reasons Balmoral properties perform well even in quieter market periods.
 

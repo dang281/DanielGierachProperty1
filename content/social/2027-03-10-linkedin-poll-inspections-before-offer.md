@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Generate relatable engagement from buyers and past buyers; understand research behaviour in Daniel's network
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

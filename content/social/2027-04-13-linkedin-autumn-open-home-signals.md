@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a market reader who gives sellers practical intelligence; drive appraisal conversations with homeowners considering a late-autumn campaign
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-04-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

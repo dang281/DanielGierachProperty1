@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface the real objections that stop homeowners from listing; helps Daniel understand his prospect base; generates conversations
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-04-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

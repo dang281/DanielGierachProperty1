@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's ground-level market intelligence and give his audience a practical mid-year read rather than another forecast
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-06-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

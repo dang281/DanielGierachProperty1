@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt vendors considering spring to re-examine whether a winter campaign might be the better choice for their specific property.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-06-29
 **Scheduled time:** 07:30
 **Visual status:** Draft

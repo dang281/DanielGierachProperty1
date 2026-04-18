@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the unconditional offer article; educate buyers on why offer structure matters as much as price
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

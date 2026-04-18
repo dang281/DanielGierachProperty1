@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge the conventional "don't list in December" assumption and position Daniel as a clear-eyed operator who knows the inner east market well enough to identify when the counter-conventional move is the right one.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-25
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

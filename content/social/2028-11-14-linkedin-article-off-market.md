@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on the true trade-offs of off-market sales
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-11-14
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

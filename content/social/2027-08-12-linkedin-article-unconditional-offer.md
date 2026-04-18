@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights and help sellers understand the real value of offer structure beyond the headline number.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-12
 **Scheduled time:** 07:30
 **Visual status:** Draft

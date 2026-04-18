@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on a buyer right they cannot control but should understand.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-05-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -20,7 +20,7 @@ Sellers cannot waive it. It is a buyer right under the Property Occupations Act 
 
 If a buyer exercises the right and terminates the contract within those 5 business days, they forfeit 0.25% of the purchase price as a penalty. On a $1 million property, that is $2,500. The vendor keeps it, but the property goes back on the market.
 
-Two things worth knowing. First, the cooling off period does not apply to auction purchases. A contract formed at the fall of the hammer in Queensland is unconditional at exchange - no cooling off, no exit clauses. This is one reason vendors choose auction: the certainty at the moment of sale is real.
+Two things worth knowing. First, the cooling off period does not apply to auction purchases. A contract formed at the fall of the hammer in Queensland is unconditional at exchange: no cooling off, no exit clauses. This is one reason vendors choose auction: the certainty at the moment of sale is real.
 
 Second, a buyer can choose to waive the cooling off period themselves on a private treaty sale, typically by signing a notice to that effect. Motivated buyers sometimes do this to signal intent and give the vendor confidence.
 

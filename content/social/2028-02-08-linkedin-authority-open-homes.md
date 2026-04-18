@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority on campaign management; position Daniel as detail-oriented and results-focused
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-02-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

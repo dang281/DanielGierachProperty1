@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage investors and property-aware professionals on EOFY timing; drive a timely conversation about tax and property strategy
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

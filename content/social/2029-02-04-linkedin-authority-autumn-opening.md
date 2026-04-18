@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post marking the start of the autumn selling season; attract vendors ready to launch in the next 4 to 6 weeks
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-02-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

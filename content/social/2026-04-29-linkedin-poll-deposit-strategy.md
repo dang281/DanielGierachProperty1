@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from first home buyers and parents of buyers; start a practical conversation about market entry
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-29
 **Scheduled time:** 07:30
 **Visual status:** Not needed

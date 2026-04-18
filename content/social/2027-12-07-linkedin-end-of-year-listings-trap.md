@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Warn vendors against poorly timed or underprepared December listings, protect Daniel's reputation as honest advisor
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-12-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

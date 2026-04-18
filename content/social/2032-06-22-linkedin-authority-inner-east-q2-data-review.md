@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Present Daniel as a data-informed local expert with a clear read on Q2 performance in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-06-22
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish authority on spring campaign timing decisions for vendors
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-10-14
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended
@@ -15,7 +15,7 @@
 
 ## Caption
 
-Every spring I watch the same pattern play out. Vendors who launch in the last two weeks of October run their first open homes at peak buyer engagement, build genuine competition through November, and reach settlement before Christmas. Vendors who wait until mid-November run campaigns that bump directly into the December calendar, with buyers distracted and negotiating leverage shifting.
+Every spring I watch the same pattern play out. Vendors who launch in the last two weeks of October run their first open homes at peak buyer engagement, build genuine competition through November, and reach settlement before Christmas. Vendors who wait until mid-November run campaigns that bump directly into the December calendar, with buyers distracted and the balance of the negotiation shifting.
 
 The difference in outcomes is not always dramatic. But it is consistent enough that when a vendor asks me whether to launch now or wait, my honest answer is: waiting past the first week of November is a timing cost, not a safety margin.
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate buyers and sellers on the micro-factors driving price variance in inner east suburbs; establish Daniel's local expertise
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-06
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

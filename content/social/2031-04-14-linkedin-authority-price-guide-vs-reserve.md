@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate inner east buyers and vendors on the legal and practical distinction between a price guide and an auction reserve.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-04-14
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on what drives price variance within the same inner east suburb.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-07-15
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

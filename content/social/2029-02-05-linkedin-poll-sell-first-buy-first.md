@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from owner-occupiers navigating the classic timing dilemma; generate conversations
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-02-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive mid-year engagement and reflection; surface community sentiment at the halfway point of 2029
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-06-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

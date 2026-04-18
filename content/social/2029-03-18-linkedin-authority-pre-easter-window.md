@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Timely authority content for vendors in active campaigns or deciding whether to launch before Easter
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-03-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

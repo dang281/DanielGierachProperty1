@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help inner east vendors understand the specific buyer psychology of November and make the case for well-timed late-October or early-November campaign launches.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-11-18
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

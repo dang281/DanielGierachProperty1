@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on transport infrastructure; surface how buyers and owners value the Cross River Rail network
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-07
 **Scheduled time:** 07:30
 **Visual status:** Not needed

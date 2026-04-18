@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Correct speculation-driven narratives about 2032 buyer motivations and demonstrate on-the-ground market knowledge
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-02-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Gauge intent in Daniel's audience heading into the new year; surface potential sellers and buyers for direct follow-up
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

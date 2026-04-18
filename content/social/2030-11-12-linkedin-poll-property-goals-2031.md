@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage audience on forward planning; surface 2031 buyer and seller intent
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-11-12
 **Scheduled time:** 07:30
 **Visual status:** Not needed

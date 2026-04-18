@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as trusted adviser
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-04-15
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -16,7 +16,7 @@
 
 When an offer comes in, most sellers focus on the number. That's understandable. But the number is often not the most important part of what's on the table.
 
-The terms of an offer can make a high price less attractive than it looks, or make a lower price the more sensible choice. Finance conditions with extended deadlines, building and pest clauses with broad termination rights, settlement periods that don't align with your own purchase, or buyers who ask for early access before settlement — each of these changes the actual value of the offer once you account for risk and timeline.
+The terms of an offer can make a high price less attractive than it looks, or make a lower price the more sensible choice. Finance conditions with extended deadlines, building and pest clauses with broad termination rights, settlement periods that don't align with your own purchase, or buyers who ask for early access before settlement: each of these changes the actual value of the offer once you account for risk and timeline.
 
 The other thing sellers often don't realise is that how you respond to an initial offer can shape the entire negotiation that follows. Countering too aggressively on price can end conversations that had more room in them. Not countering at all signals you're not motivated. There's a calibration to it that isn't instinctive, especially if you've only sold one or two properties in your life.
 

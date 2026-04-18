@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from investors; spark a debate about asset classes in the current environment
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -13,7 +13,7 @@
 
 ## Caption
 
-Property offers leverage, tangible assets, and rental income. Shares offer liquidity, diversification, and lower entry points.
+Property offers borrowing capacity, tangible assets, and rental income. Shares offer liquidity, diversification, and lower entry points.
 
 Both have produced serious wealth for Australian investors over the past two decades. But if you had $100,000 to invest today and had to commit it to one asset class for the next ten years, which would you choose?
 

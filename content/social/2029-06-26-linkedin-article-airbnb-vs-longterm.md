@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; give investors a realistic picture of the short-term vs long-term rental comparison
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-06-26
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

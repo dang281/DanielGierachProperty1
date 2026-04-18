@@ -3,6 +3,11 @@
 **Platform:** LinkedIn
 **Format:** Post
 **Goal:** Position Daniel as the honest, go-to agent for inner east Brisbane sellers. Drive appraisal enquiries.
+**Content Pillar:** seller
+**Status:** Ready for Review
+**Publish date:** 2026-04-11
+**Scheduled time:** 07:30
+**Visual status:** Draft
 
 ---
 
@@ -14,11 +19,11 @@ They have a number in their head. They want me to confirm it. And sometimes I ca
 
 That second conversation is the more important one.
 
-Selling a home in Bulimba, Hawthorne, Norman Park or anywhere in the inner east is a significant decision. Not just financially - the timing, the transition, what comes next. It involves real life, not just real estate.
+Selling a home in Bulimba, Hawthorne, Norman Park or anywhere in the inner east is a significant decision. Not just financially. The timing, the transition, what comes next all involve real life, not just real estate.
 
 What I've learned is that the sellers who make the best decisions are the ones who started with honest information, even when that information wasn't exactly what they hoped for. They planned around reality rather than around an optimistic estimate.
 
-My job isn't to tell you your home is worth what you want it to be worth. It's to give you an accurate picture of the current market, what your property can achieve, and what the process actually looks like - so you can decide what's right for your situation.
+My job isn't to tell you your home is worth what you want it to be worth. It's to give you an accurate picture of the current market, what your property can achieve, and what the process actually looks like, so you can decide what's right for your situation.
 
 If you're thinking about selling in the inner east and you want a straight conversation rather than a sales pitch, I'm happy to help.
 

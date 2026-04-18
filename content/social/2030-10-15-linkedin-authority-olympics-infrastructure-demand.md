@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority commentary on Olympic infrastructure effect on inner east; position Daniel as forward-looking market expert
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

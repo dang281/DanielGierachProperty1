@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Inform vendors on December buyer profile; generate late-season campaign conversations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-12-09
 **Scheduled time:** 07:30
 **Visual status:** suspended

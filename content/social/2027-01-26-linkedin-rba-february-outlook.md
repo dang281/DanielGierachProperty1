@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on the RBA schedule and borrowing capacity implications for inner east buyers; drive engagement from buyers and investor network
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-26
 **Scheduled time:** 07:30
 **Visual status:** Draft

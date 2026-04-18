@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a credible reader of inner east market trends heading into the end of spring
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-10-05
 **Scheduled time:** 07:30
 **Visual status:** Draft

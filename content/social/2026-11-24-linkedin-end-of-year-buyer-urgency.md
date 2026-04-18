@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Maintain urgency for sellers still considering listing; explain why late November is still a viable window
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-11-24
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -23,7 +23,7 @@ December does see fewer new listings. That is accurate. What that also means is 
 
 A property that launches on the last weekend of November and is priced correctly will still draw the buyers who have been watching Camp Hill, Hawthorne, or Morningside all year. Those buyers have not disappeared. They are still attending open homes. They have the Christmas break looming and a preference for having a purchase resolved before it starts.
 
-What changes in December is not buyer readiness. It is negotiating leverage. A seller listing in January is entering a market with three or four months of pent-up listings coming behind them. A seller who settles before Christmas avoids that competition entirely.
+What changes in December is not buyer readiness. It is the balance of supply. A seller listing in January is entering a market with three or four months of pent-up listings coming behind them. A seller who settles before Christmas avoids that competition entirely.
 
 If you have been sitting on the fence about whether to list this year or next, the question worth asking is: what do you actually gain by waiting until February?
 

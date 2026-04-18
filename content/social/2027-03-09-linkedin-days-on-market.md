@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on days on market as a market health indicator; prompt sellers to list while conditions favour them
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-09
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -17,11 +17,11 @@
 
 Median sale price gets most of the attention in property commentary. Days on market tells a more useful story.
 
-Days on market measures how long a property sits between listing and going under contract. When it is low, buyer demand is outpacing supply and sellers have leverage. When it rises, stock is accumulating and buyers can afford to be selective.
+Days on market measures how long a property sits between listing and going under contract. When it is low, buyer demand is outpacing supply and sellers hold the stronger hand. When it rises, stock is accumulating and buyers can afford to be selective.
 
 In the inner east, days on market in a strong autumn typically sits in the range of 14 to 28 days for well-priced houses in suburbs like Hawthorne, Bulimba, and Norman Park. Properties that are priced accurately and presented well go quickly. Properties that come to market with a vendor expectation ahead of what buyers will pay tend to sit, sometimes for months, and often settle for less than a correctly priced property would have achieved on day one.
 
-The relationship between days on market and final sale price is direct. Every week a property sits on market it loses negotiating leverage. Buyers notice the number. A property at 60 days is a different negotiation to a property at 14 days.
+The relationship between days on market and final sale price is direct. Every week a property sits on market the buyer's negotiating position strengthens. Buyers notice the number. A property at 60 days is a different negotiation to a property at 14 days.
 
 For sellers, the takeaway is straightforward: price correctly from day one. The market will tell you quickly whether the price is right, and adjusting it later costs more than setting it correctly at the start.
 

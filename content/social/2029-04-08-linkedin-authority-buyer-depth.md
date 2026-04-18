@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's on-the-ground market knowledge; educate sellers on what buyer depth means for their result
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-08
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

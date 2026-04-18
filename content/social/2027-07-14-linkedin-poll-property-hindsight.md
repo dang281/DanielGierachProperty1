@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; position Daniel as someone who understands the emotional and practical side of property decisions.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-14
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Identify vendors in Daniel's audience who are planning to sell, and prompt early-stage conversations
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-10-07
 **Scheduled time:** 07:30
 **Visual status:** Not needed

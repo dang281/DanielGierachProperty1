@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help vendors understand the December buyer profile so they approach late-year campaigns with the right strategy
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-12-02
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's depth of market analysis; help sellers and buyers read clearance data in context
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-16
 **Scheduled time:** 07:30
 **Visual status:** suspended

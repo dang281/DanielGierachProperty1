@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Educate sellers about the trade-offs of off-market sales; generate discussion among homeowners in Daniel's network
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-01-27
 **Scheduled time:** 07:30
 **Visual status:** Not needed

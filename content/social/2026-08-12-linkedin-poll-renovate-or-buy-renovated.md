@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage investor audience on renovation vs ready-to-rent strategy
 **Content Pillar:** investor
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-12
 **Scheduled time:** 07:30
 **Visual status:** Not needed

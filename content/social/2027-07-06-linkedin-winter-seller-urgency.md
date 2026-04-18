@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt vendors who have been sitting on the fence to consider a July or August campaign, and establish Daniel's authority on winter market dynamics.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-07-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

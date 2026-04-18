@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface seller psychology and anchor Daniel as the honest pricing authority
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-11-03
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Encourage vendors to consider launching in late August or early September rather than waiting for peak spring
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-27
 **Scheduled time:** 07:30
 **Visual status:** suspended

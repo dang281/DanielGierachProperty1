@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt seller thinking about presentation investment; educate on styling's role
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-11-06
 **Scheduled time:** 07:30
 **Visual status:** Not needed

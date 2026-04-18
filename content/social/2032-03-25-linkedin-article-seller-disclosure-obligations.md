@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/seller-disclosure-obligations-queensland
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-03-25
 **Scheduled time:** 07:30
 **Visual status:** suspended

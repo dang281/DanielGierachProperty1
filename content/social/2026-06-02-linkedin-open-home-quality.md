@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers understand that buyer volume is not the right metric for a campaign. Position Daniel as someone who qualifies buyers, not just counts them.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-06-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed
@@ -24,7 +24,7 @@ What I pay attention to during a campaign is the quality of follow-up conversati
 
 In the inner east, a tight campaign with 10 to 12 genuinely qualified parties is usually stronger than a busy campaign with 40 groups, half of whom are renovators looking for a distressed opportunity that will not arrive.
 
-If you are preparing to sell and want to understand how I assess buyer quality during a campaign - rather than just reporting foot traffic - that is a conversation worth having before you list.
+If you are preparing to sell and want to understand how I assess buyer quality during a campaign, rather than just reporting foot traffic, that is a conversation worth having before you list.
 
 danielgierach.com
 

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; reduce vendor anxiety about settlement by explaining how it actually works
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-03-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

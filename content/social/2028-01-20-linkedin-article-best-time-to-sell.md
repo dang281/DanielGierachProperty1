@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; challenge the spring-selling myth and build authority
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-01-20
 **Scheduled time:** 07:30
 **Visual status:** Draft
@@ -21,7 +21,7 @@ The spring-selling window is a Melbourne and Sydney concept. It was built around
 
 In Brisbane's inner east, the most consistent selling window is autumn: late February through to May. The weather is still comfortable, serious buyers are back from the Christmas break and have had time to organise finance, and the competition from other listings has not yet peaked. The combination of motivated buyers and relatively thin stock is what produces strong campaign outcomes.
 
-Spring in Brisbane tends to bring a surge of listings at the same time, which gives buyers more to compare and more negotiating leverage. More stock does not mean worse outcomes, but it does change the conditions sellers are working in.
+Spring in Brisbane tends to bring a surge of listings at the same time, which gives buyers more to compare and more room to negotiate. More stock does not mean worse outcomes, but it does change the conditions sellers are working in.
 
 The best time to sell is not about the season. It is about preparation. A well-prepared campaign launched in February will almost always outperform an underprepared one launched in September.
 

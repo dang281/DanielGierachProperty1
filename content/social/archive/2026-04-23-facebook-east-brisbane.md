@@ -17,7 +17,7 @@ East Brisbane sits in a genuinely rare position: it borders Kangaroo Point, is m
 
 The suburb occupies a compact pocket between Kangaroo Point Cliffs and Coorparoo, roughly 3km from the Brisbane CBD. It's closely connected to the Gabba precinct, which is undergoing significant development in the lead-up to the 2032 Olympic Games. Buyers who want inner-city access without full inner-city density have consistently come back to East Brisbane as a result.
 
-The market here is tightly held. Stock turns over infrequently, which means when a well-presented home does come to market, competition is genuine. Character homes with original features on larger blocks attract the premium end of buyer demand.
+The market here turns over infrequently, which means when a well-presented home does come to market, competition is genuine. Character homes with original features on larger blocks attract the premium end of buyer demand.
 
 For homeowners in East Brisbane, the combination of Olympic precinct proximity, inner-city access, and limited supply creates a strong position. If you're considering your options, a current market appraisal is a practical first step.
 

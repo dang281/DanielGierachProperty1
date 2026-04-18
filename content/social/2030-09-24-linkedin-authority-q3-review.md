@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's market perspective; give sellers and buyers useful context heading into Q4 2030
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-09-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

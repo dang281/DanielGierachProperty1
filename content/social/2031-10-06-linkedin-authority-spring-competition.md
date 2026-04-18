@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an authority on spring market dynamics in the inner east
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-10-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface buyers and sellers for auction campaign conversations
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-04-16
 **Scheduled time:** 07:30
 **Visual status:** Not needed

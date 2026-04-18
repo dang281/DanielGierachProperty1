@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help vendors understand that price is only one variable in an offer comparison
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-05-08
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

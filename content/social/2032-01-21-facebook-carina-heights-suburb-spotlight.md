@@ -16,7 +16,7 @@
 
 Carina Heights is a suburb that tends to attract buyers who have already done a broad search of the inner east and settled on it deliberately. It has a residential character that is comfortable and established without being overshadowed by more high-profile neighbours, and the blocks are generally generous by inner east standards.
 
-The suburb runs along the crest between Carina and the Whites Hill Reserve border, which gives some of the elevated properties on the western side genuine outlooks. Rialto Street and the streets running off Creek Road toward the reserve are among the more tightly held in the suburb. Families appreciate the proximity to Carina State School and the relatively easy access to the Gateway Motorway for those commuting to the airport precinct or south of the river.
+The suburb runs along the crest between Carina and the Whites Hill Reserve border, which gives some of the elevated properties on the western side genuine outlooks. Rialto Street and the streets running off Creek Road toward the reserve are among the most infrequently traded in the suburb. Families appreciate the proximity to Carina State School and the relatively easy access to the Gateway Motorway for those commuting to the airport precinct or south of the river.
 
 The housing stock is largely post-war lowset brick and weatherboard homes, with a renovation culture that has been building through the late 2020s. Buyers looking for a renovated home on a full suburban block, without competing with buyers in Coorparoo or Camp Hill for the same properties, find Carina Heights a consistent option.
 

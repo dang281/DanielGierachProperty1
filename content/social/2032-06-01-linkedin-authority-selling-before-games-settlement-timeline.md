@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide practical, honest guidance on the settlement calendar for sellers still considering listing in June
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-06-01
 **Scheduled time:** 07:30
 **Visual status:** suspended

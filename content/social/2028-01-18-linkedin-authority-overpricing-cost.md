@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority as a pricing expert; attract sellers who have been through or are considering overpriced campaigns
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-01-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

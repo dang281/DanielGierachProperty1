@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an inner east market specialist with granular knowledge of what drives pricing at the street level.
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-17
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand where Daniel's network sits in the property lifecycle; segment audience for future content and conversations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-02-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

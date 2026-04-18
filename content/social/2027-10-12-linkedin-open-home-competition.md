@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on how to interpret open home activity beyond raw attendance numbers
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-10-12
 **Scheduled time:** 07:30
 **Visual status:** Draft

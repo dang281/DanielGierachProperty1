@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/heritage-overlays-brisbane; correct the common misconception about what heritage overlay means for renovation
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-22
 **Scheduled time:** 07:30
 **Visual status:** suspended

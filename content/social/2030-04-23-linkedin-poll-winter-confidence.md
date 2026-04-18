@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface seller and buyer sentiment as market transitions from autumn to winter
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-04-23
 **Scheduled time:** 07:30
 **Visual status:** Not needed

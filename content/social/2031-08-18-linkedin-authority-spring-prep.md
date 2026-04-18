@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors a realistic picture of spring preparation lead times before it is too late to act.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2031-08-18
 **Scheduled time:** 07:30
 **Visual status:** suspended

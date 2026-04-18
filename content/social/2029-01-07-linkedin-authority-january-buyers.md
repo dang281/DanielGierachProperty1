@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who understands the quality of the January buyer pool , authority content to attract serious sellers
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-01-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

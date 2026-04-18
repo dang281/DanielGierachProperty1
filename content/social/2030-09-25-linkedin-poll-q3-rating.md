@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; gather audience feedback on Q3 market performance
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-09-25
 **Scheduled time:** 07:30
 **Visual status:** Not needed

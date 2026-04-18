@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the cost of selling article; help sellers understand the full picture before deciding to list
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-03
 **Scheduled time:** 07:30
 **Visual status:** Draft

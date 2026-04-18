@@ -2,7 +2,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as an agent who explains market metrics honestly, not just headline-chases
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-08-31
 **Scheduled time:** 07:30
 **Visual status:** Draft

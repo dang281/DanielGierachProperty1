@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demystify the negotiation process for buyers and sellers; build trust in Daniel's process transparency
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-09-10
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

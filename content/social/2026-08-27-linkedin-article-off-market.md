@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the off-market article and build Daniel's credibility through honest, counterintuitive advice
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-08-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the cooling-off article; clarify a right that first-home buyers often do not know they have
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-12-10
 **Scheduled time:** 07:30
 **Visual status:** Draft

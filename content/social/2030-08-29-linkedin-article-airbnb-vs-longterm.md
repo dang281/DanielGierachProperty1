@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/airbnb-vs-long-term-rental; give investors a more complete picture before choosing a rental strategy
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-29
 **Scheduled time:** 07:30
 **Visual status:** suspended

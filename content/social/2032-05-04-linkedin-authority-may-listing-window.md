@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who understands the Olympic-year calendar and can guide sellers through the pre-Games window
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-05-04
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -18,9 +18,9 @@ Most sellers think about timing in terms of seasons. In 2032, timing is about so
 
 Here is the practical reality. A property listed this week with a four-week campaign and a standard 30 to 45 day settlement sits comfortably clear of the Games period. That is not a guarantee of a better outcome, but it is a cleaner process. Buyers who are competing now are motivated and organised. They are not waiting to see what happens after the opening ceremony.
 
-The inner east has been running well this year. Clearance rates through the Bulimba, Hawthorne and Balmoral corridor have been solid, and I am seeing genuine buyer depth at well-priced listings. That is not a market to sit on the sidelines of, particularly when the alternative is listing into the post-Games period with an uncertain buyer pool.
+The inner east has been running well this year. Clearance rates through the Bulimba, Hawthorne and Balmoral corridor have been solid, and I am seeing genuine buyer depth at well-priced listings. That is not a market to sit on the sidelines of, particularly when the alternative is listing into the post-Games period with a less certain buyer pool.
 
-If you are thinking about selling and have been wondering whether to go now or wait, the calendar is worth looking at closely. May is not just another month in 2032. It is one of the last clean windows before Brisbane's most disruptive event in decades.
+If you are thinking about selling and have been wondering whether to go now or wait, the calendar is worth looking at closely. May is not just another month in 2032. It is one of the last clean windows before Brisbane's biggest logistical event in decades.
 
 Worth a conversation if you are on the fence. danielgierach.com
 

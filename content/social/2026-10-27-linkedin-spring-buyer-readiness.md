@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who understands buyer behaviour at depth; prompt sellers sitting on the fence to make contact before November
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-10-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

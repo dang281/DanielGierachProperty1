@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the stamp duty article; prompt buyers to factor transfer duty into their purchasing budget before they make an offer
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

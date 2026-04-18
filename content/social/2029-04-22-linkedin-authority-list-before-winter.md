@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give sellers a concrete reason to act in April/May rather than delaying; reinforce Daniel's seasonal expertise
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-04-22
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

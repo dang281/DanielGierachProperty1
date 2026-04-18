@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and position Daniel as an informed local expert on the rate environment
 **Content Pillar:** Authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-13
 **Scheduled time:** 07:30
 
@@ -12,13 +12,13 @@
 
 ## Caption
 
-The RBA raised the cash rate to 4.10% in March 2026 - a 25 basis point hike that divided the board, with five members voting to increase and four voting to hold. The decision cited inflation picking up in the second half of 2025 and rising fuel costs from the Middle East conflict as key factors.
+The RBA raised the cash rate to 4.10% in March 2026, a 25 basis point hike that divided the board, with five members voting to increase and four voting to hold. The decision cited inflation picking up in the second half of 2025 and rising fuel costs from the Middle East conflict as key factors.
 
 The next RBA meeting is May 5. Between now and then, Brisbane property keeps moving.
 
 The data paints an interesting picture. Listings are down 25.9% year-on-year according to CoreLogic. Brisbane houses are sitting around 28 to 30 days on market. Buyers with approved finance are still competing hard. But mortgage costs at 4.10% are real, and serviceability is front of mind for a lot of would-be buyers.
 
-With another potential decision a few weeks away - what do you think happens to Brisbane house prices over the next six months?
+With another potential decision a few weeks away: what do you think happens to Brisbane house prices over the next six months?
 
 ## Poll options
 

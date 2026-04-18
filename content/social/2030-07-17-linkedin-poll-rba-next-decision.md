@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage audience on rate expectations; gauge market sentiment
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-07-17
 **Scheduled time:** 07:30
 **Visual status:** Not needed

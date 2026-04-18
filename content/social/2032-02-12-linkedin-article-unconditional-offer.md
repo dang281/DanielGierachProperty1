@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/what-is-an-unconditional-offer-queensland
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2032-02-12
 **Scheduled time:** 07:30
 **Visual status:** suspended
@@ -15,7 +15,7 @@
 
 ## Caption
 
-There is a version of buyer negotiation that most people focus on, and it is the wrong one. The conversation about price dominates, while the conversation about conditions is treated as a formality. In a competitive market, that framing is expensive.
+There is a version of buyer negotiation that most people focus on, and it is the wrong one. The conversation about price dominates, while the conversation about conditions is treated as a formality. When other buyers are competing on the same property, that framing is expensive.
 
 Sellers will regularly accept a lower unconditional offer over a higher conditional one. This is not because sellers are irrational. It is because a finance condition and a building and pest condition create a 2 to 3 week window where the deal can fall apart. For a seller who has already had one contract collapse, that window represents real risk. An unconditional buyer eliminates it entirely.
 

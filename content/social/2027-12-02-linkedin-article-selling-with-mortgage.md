@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educational post for the large majority of vendors who still carry a mortgage; drive insights traffic
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-12-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and gauge sentiment among homeowners and investors at the start of the year
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-01-01
 **Scheduled time:** 07:30
 **Visual status:** Not needed

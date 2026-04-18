@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help buyers make an informed decision before signing a contract
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2028-08-15
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

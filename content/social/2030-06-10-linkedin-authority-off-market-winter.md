@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on the trade-off in off-market sales; position Daniel as a straight-talking advocate for seller outcomes
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-06-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

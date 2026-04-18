@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage vendor audience on seasonal timing decision; surface late-Q4 listing intent
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-10-30
 **Scheduled time:** 07:30
 **Visual status:** Not needed

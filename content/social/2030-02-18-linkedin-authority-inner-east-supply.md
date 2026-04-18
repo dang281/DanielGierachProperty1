@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority on inner east supply conditions with specific suburb observations
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-02-18
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended
@@ -15,7 +15,7 @@
 
 ## Caption
 
-Freestanding homes in the inner east sub-$1.5 million range remain tightly held. Sellers who bought in this segment five or more years ago are sitting on significant gains and, in many cases, choosing not to release that stock.
+Freestanding homes in the inner east sub-$1.5 million range turn over infrequently. Sellers who bought in this segment five or more years ago are sitting on significant gains and, in many cases, choosing not to release that stock.
 
 That constraint is structural. The supply side in suburbs like Camp Hill, Norman Park, and Carina does not respond quickly to buyer demand. There are no new lots. The character homes on 600-800 square metre blocks that define this part of Brisbane do not get replaced or added to.
 

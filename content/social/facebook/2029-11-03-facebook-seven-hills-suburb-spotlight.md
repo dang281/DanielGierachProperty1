@@ -14,7 +14,7 @@
 
 ## Caption
 
-Plenty of buyers find Seven Hills after being priced out of Camp Hill or Morningside and discover they should have been looking here first. The elevated position on the ridge gives many blocks genuine CBD views, and the suburb is quieter and more tightly held than its neighbours. That combination of scarcity and outlook keeps values firm.
+Plenty of buyers find Seven Hills after being priced out of Camp Hill or Morningside and discover they should have been looking here first. The elevated position on the ridge gives many blocks genuine CBD views, and the suburb is quieter, with far fewer listings than its neighbours. That combination of scarcity and outlook keeps values firm.
 
 The housing stock is predominantly Queenslanders and postwar character homes, and a significant portion of them still have renovation potential. That appeals to the buyer who wants to put their own stamp on a home in a suburb that already has its fundamentals right, rather than paying top dollar for someone else's renovation.
 

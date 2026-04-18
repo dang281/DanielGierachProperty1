@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help sellers plan accurately and start the conversation with Daniel earlier
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-07-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

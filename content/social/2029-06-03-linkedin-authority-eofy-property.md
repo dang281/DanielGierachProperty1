@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Connect EOFY timing to property decisions for investors and sellers; demonstrate Daniel's tax-aware market knowledge
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2029-06-03
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

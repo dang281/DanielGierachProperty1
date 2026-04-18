@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; reinforce the message that preparation order matters
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2030-08-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

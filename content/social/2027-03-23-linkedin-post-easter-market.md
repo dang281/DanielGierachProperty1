@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Manage expectations for sellers who did not sell before Easter; outline the post-Easter market outlook
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2027-03-23
 **Scheduled time:** 07:30
 **Visual status:** Draft
