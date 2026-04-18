@@ -413,6 +413,13 @@ Before every commit, verify:
 
 ---
 
+## WRITING CONSTRAINTS
+
+- **No em-dashes (—) ever.** They read as AI-generated. Use a colon, a full stop, or rewrite the sentence.
+- **No "—" in captions, article intros, notes, or any copy written for Daniel.**
+
+---
+
 ## BRAND CONSTRAINTS
 
 - **No red anywhere** — not in text, not in Canva designs
