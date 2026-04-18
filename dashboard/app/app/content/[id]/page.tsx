@@ -185,7 +185,7 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           ) : (
             <div className="flex items-center gap-2">
               <h1 className="text-[var(--color-cream)] font-serif text-xl">{item.title}</h1>
-              <CopyButton text={item.title} label="Copy title" />
+              <CopyButton text={item.title.includes(' - ') ? item.title.split(' - ').slice(1).join(' - ') : item.title} label="Copy title" />
             </div>
           )}
           <div className="flex flex-wrap gap-1.5">
