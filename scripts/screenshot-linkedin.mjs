@@ -224,7 +224,7 @@ function buildArticleCoverHtml() {
   .cover{
     width:1200px;height:627px;
     background:${CHARCOAL};color:${CREAM};
-    padding:56px 72px;
+    padding:72px 96px;
     display:flex;flex-direction:column;
     font-family:'Inter',-apple-system,sans-serif;
     position:relative;
