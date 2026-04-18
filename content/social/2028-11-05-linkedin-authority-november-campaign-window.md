@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Counter the narrative that November is too late; prompt sellers considering a late spring launch
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-11-05
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

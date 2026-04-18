@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand vendor pain points; build empathy and connection with the seller audience
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-05-21
 **Scheduled time:** 07:30
 **Visual status:** Not needed

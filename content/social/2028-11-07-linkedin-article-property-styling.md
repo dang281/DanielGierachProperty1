@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; give sellers a practical framework for the styling decision
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-11-07
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

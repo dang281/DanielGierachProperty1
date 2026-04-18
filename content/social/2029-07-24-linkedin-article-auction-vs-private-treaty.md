@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive article traffic and position Daniel as the most informed agent in the inner east
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-07-24
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

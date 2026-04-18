@@ -1,5 +1,5 @@
 export type Platform    = 'linkedin' | 'instagram' | 'facebook' | 'seo'
-export type Status      = 'idea' | 'ready' | 'scheduled' | 'posted' | 'rejected'
+export type Status      = 'idea' | 'ready' | 'scheduled' | 'posted' | 'rejected' | 'archived'
 export type Pillar      = 'seller' | 'authority' | 'suburb' | 'proof' | 'buyer'
 export type VisualStatus = 'needed' | 'draft' | 'needs_revision' | 'approved'
 
@@ -40,6 +40,7 @@ export const STATUS_LABEL: Record<Status, string> = {
   scheduled: 'Scheduled',
   posted:    'Posted',
   rejected:  'Rejected',
+  archived:  'Archived',
 }
 
 export const STATUS_COLOUR: Record<Status, string> = {
@@ -48,6 +49,7 @@ export const STATUS_COLOUR: Record<Status, string> = {
   scheduled: '#22c55e',
   posted:    '#60a5fa',
   rejected:  '#ef4444',
+  archived:  '#6b5a3e',
 }
 
 export const STATUS_BG: Record<Status, string> = {
@@ -56,6 +58,7 @@ export const STATUS_BG: Record<Status, string> = {
   scheduled: 'rgba(34,197,94,0.12)',
   posted:    'rgba(59,130,246,0.12)',
   rejected:  'rgba(239,68,68,0.1)',
+  archived:  'rgba(107,90,62,0.18)',
 }
 
 export const STATUS_BORDER: Record<Status, string> = {
@@ -64,6 +67,7 @@ export const STATUS_BORDER: Record<Status, string> = {
   scheduled: 'rgba(34,197,94,0.3)',
   posted:    'rgba(59,130,246,0.25)',
   rejected:  'rgba(239,68,68,0.25)',
+  archived:  'rgba(107,90,62,0.35)',
 }
 
 export const PLATFORM_COLOUR: Record<Platform, string> = {

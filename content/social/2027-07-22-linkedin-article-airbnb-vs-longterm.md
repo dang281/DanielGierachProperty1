@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and give investors a grounded comparison of short-term and long-term rental returns in the inner east.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-07-22
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand what buyer priorities look like in the current market; drive engagement from both active buyers and aspirational owners
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-06-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive seller enquiries from homeowners who have been thinking about listing; create urgency around the autumn window
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-02-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

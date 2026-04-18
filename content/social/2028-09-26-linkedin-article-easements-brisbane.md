@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate buyers on easement types and their practical impact
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-09-26
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

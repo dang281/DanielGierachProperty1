@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on their legal rights before they sign with an agent
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-03-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

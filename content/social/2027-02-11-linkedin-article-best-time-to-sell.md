@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the best time to sell article; correct the common misconception that spring is peak selling season in Brisbane
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-02-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

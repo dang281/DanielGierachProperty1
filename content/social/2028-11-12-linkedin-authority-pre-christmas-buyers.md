@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge the November-is-too-late narrative; make the case for late spring campaigns
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-11-12
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

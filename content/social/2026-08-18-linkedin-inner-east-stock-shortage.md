@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as the inner-east specialist and prompt sellers to understand their market position
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-08-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

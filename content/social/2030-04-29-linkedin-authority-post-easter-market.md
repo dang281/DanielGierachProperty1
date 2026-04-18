@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Maintain authority in the post-Easter period; drive seller conversations for the final autumn window
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-04-29
 **Scheduled time:** 07:30
 **Visual status:** suspended

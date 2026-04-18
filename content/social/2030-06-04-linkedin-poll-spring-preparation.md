@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Identify sellers planning a spring campaign; prompt early preparation conversations in June
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-06-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

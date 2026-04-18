@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from a broad audience; surface conversations about property decision-making under unusual circumstances
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-02-16
 **Scheduled time:** 07:30
 **Visual status:** Not needed

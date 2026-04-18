@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/easements-property-brisbane-qld
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-02-26
 **Scheduled time:** 07:30
 **Visual status:** suspended

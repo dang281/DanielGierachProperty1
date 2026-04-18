@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge the received wisdom that spring always outperforms winter for inner east vendors, using observable market patterns.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-06-16
 **Scheduled time:** 07:30
 **Visual status:** suspended

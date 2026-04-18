@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel as the go-to authority on Brisbane's inner east market using fresh milestone data to prompt seller conversations
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

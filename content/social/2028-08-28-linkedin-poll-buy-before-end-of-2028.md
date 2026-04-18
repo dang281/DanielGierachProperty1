@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Identify active buyers and sellers in Daniel's network; generate direct enquiry
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-08-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

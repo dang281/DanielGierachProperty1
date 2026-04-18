@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors a practical preparation framework and open the door to early-stage conversations about 2030 campaigns
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-12-16
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

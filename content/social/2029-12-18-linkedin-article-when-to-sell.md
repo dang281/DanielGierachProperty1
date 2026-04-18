@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the when-to-sell article and reframe the seasonal timing conversation for vendors
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-12-18
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on their legal obligations under Queensland's updated disclosure framework.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

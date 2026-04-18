@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/understanding-the-reiq-contract-of-sale; prevent buyer errors
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-11
 **Scheduled time:** 07:30
 **Visual status:** suspended

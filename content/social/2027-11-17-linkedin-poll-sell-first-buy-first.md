@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage upgraders and downsizers on one of the most common dilemmas; generate appraisal conversations
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-11-17
 **Scheduled time:** 07:30
 **Visual status:** Not needed

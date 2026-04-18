@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help investors understand the tax implications of selling a negatively geared property
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-06-05
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

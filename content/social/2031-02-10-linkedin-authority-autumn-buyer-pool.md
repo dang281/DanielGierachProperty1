@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors a clear picture of who is in the buyer pool during autumn, helping them understand why the timing matters.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-02-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

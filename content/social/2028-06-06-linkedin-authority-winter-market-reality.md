@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Counter the conventional wisdom that winter is a bad time to sell and position well-prepared winter listings as effective
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-06-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

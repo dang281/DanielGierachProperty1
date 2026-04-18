@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as an informed guide for buyers navigating the offer process in Queensland.
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

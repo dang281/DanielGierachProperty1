@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to Daniel's tenanted property selling article and demonstrate his knowledge of Queensland tenancy law as it applies to investment property sales.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-06-17
 **Scheduled time:** 07:30
 **Visual status:** Draft

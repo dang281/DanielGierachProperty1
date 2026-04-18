@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help investor vendors understand their obligations and the strategic implications of selling with a tenant in place
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-06-12
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/cooling-off-period-property-sale-queensland; correct common misunderstanding
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-25
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -2,7 +2,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface market sentiment as a discussion starter
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-22
 **Scheduled time:** 07:30
 **Visual status:** Not needed

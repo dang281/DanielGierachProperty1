@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate buyers and sellers on summer market conditions; attract January and February enquiries
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-02
 **Scheduled time:** 07:30
 **Visual status:** suspended

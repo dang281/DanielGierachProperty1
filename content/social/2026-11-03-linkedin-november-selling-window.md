@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt sellers sitting on the fence to commit before the Christmas market closes; position Daniel as the agent who understands campaign timing
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-11-03
 **Scheduled time:** 07:30
 **Visual status:** Draft

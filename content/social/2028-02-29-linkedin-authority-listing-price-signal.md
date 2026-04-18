@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority on pricing transparency; attract sellers who want to understand the market signal
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-02-29
 **Scheduled time:** 07:30
 **Visual status:** Draft

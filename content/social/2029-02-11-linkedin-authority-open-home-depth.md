@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate market intelligence using open home depth as a real-time indicator; useful for both buyers and sellers
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

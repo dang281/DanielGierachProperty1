@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engagement and reflection post; generates commentary on 2030 market performance
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-03
 **Scheduled time:** 07:30
 **Visual status:** Not needed

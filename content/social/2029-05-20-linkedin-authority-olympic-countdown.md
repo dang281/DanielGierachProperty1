@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Connect the 2032 Olympic infrastructure timeline to practical inner east property implications; position Daniel as an informed long-term market commentator
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-05-20
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

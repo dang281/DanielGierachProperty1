@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge the rush-to-market instinct in spring; reinforce the preparation message
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-09-17
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

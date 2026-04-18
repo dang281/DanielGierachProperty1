@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; challenge the accuracy of automated estimates
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-08-08
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

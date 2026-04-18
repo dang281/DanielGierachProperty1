@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from investors and aspiring investors; spark a genuine debate about portfolio strategy
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-07-29
 **Scheduled time:** 07:30
 **Visual status:** Not needed

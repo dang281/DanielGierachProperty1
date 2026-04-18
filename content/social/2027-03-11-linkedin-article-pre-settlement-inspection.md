@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the pre-settlement inspection article; help sellers understand their obligations in the final days before settlement
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-11
 **Scheduled time:** 07:30
 **Visual status:** Draft

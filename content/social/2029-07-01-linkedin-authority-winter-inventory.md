@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's market knowledge by explaining what low winter inventory signals about seller motivation and buyer opportunity.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-07-01
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

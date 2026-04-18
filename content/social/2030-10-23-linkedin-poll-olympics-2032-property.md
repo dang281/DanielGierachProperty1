@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engagement from property audience on Olympic sentiment; positions Daniel on Olympics and inner east
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-10-23
 **Scheduled time:** 07:30
 **Visual status:** Not needed

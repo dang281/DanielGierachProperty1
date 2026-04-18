@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand buyer priorities in the current inner east market
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

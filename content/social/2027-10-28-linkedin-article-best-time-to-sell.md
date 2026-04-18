@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the best-time-to-sell article and challenge conventional spring-selling assumptions
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-10-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

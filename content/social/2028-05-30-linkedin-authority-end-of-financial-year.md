@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a commercially aware agent who understands the financial considerations driving investor decisions around EOFY
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-05-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

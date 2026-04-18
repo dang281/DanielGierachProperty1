@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement around interest rate expectations; relevant to buyers, sellers, and investors
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-01-22
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and position Daniel as an informed local expert on the rate environment
 **Content Pillar:** Authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-13
 **Scheduled time:** 07:30
 

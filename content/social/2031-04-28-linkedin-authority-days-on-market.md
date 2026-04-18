@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors a clear-eyed framework for interpreting their own days on market and understanding how buyers read that figure.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-04-28
 **Scheduled time:** 07:30
 **Visual status:** suspended

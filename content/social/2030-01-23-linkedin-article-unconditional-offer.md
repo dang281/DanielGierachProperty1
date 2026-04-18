@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive clicks to danielgierach.com/insights/what-is-an-unconditional-offer-queensland; position Daniel as educational authority
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-01-23
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

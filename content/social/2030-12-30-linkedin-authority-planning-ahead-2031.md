@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Generate February vendor enquiries; establish Daniel as the first call for 2031 listing conversations
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-30
 **Scheduled time:** 07:30
 **Visual status:** suspended

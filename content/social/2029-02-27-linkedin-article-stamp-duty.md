@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; practical financial education for buyers calculating purchase costs
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

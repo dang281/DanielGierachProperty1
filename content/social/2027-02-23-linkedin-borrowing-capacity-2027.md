@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Practical authority post on borrowing capacity and the rate environment for buyers; drive engagement from buyers and investor segment of the network
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-02-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

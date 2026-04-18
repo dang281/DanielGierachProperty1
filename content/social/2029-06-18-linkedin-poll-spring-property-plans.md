@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Capture spring vendor and buyer intent; drive enquiry pipeline for the spring campaign season
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-06-18
 **Scheduled time:** 07:30
 **Visual status:** Not needed

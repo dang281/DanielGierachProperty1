@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive clicks to danielgierach.com/insights/capital-gains-tax-selling-home-brisbane; position Daniel as educational authority
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-01-01
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from investors; spark a debate about asset classes in the current environment
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed

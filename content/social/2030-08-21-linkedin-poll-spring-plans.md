@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Gauge vendor and buyer pipeline; start conversations with people planning to sell or buy
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-08-21
 **Scheduled time:** 07:30
 **Visual status:** Not needed

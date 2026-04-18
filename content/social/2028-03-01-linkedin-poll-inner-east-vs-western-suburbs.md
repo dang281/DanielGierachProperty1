@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and debate; position Daniel as a confident inner-east advocate
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-03-01
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the building and pest report article on danielgierach.com; position Daniel as the agent who educates buyers rather than glossing over the process
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-11-05
 **Scheduled time:** 07:30
 **Visual status:** Draft

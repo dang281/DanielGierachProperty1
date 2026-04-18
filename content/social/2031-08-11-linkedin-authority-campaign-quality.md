@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on what campaign quality really means before the spring listing window opens.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-08-11
 **Scheduled time:** 07:30
 **Visual status:** suspended

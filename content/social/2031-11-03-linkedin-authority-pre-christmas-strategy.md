@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a strategic adviser on pre-Christmas campaign timing
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-11-03
 **Scheduled time:** 07:30
 **Visual status:** suspended

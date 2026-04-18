@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the auction vs private treaty article; help sellers understand how method of sale is decided in the inner east
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-01-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

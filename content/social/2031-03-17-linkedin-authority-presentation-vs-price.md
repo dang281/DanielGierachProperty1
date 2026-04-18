@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help vendors understand that styling is a commercial decision, not an aesthetic one, and show Daniel understands what drives buyer competition.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-03-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

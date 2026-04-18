@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as market analyst; prompt seller and buyer enquiries around campaign strategy
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-04-15
 **Scheduled time:** 07:30
 **Visual status:** suspended

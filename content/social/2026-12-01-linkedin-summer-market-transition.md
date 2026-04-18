@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate buyers and sellers on how the inner east market actually behaves in December; correct the assumption that December is a dead month
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-12-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/airbnb-vs-longterm; position Daniel as educational resource
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-11-05
 **Scheduled time:** 07:30
 **Visual status:** suspended

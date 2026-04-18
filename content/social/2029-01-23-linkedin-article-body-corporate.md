@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate buyers considering townhouses and units in the inner east
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-01-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from first home buyers and investors weighing deposit size vs market entry timing; spark a genuine debate
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-07-22
 **Scheduled time:** 07:30
 **Visual status:** Not needed

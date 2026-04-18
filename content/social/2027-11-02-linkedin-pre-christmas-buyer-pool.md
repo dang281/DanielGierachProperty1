@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Motivate vendors sitting on the fence to understand the active November buyer pool
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-11-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

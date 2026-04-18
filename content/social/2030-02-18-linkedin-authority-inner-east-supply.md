@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority on inner east supply conditions with specific suburb observations
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-02-18
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

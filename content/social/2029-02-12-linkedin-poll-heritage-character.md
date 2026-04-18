@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers and homeowners interested in character properties; topical for inner east
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-12
 **Scheduled time:** 07:30
 **Visual status:** Not needed

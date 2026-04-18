@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a trusted strategic adviser for Brisbane sellers
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

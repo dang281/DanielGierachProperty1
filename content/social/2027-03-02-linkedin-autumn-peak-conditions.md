@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on autumn 2027 market conditions; signal to sellers and buyers that the peak window has arrived
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Seasonal engagement; understand when vendors in Daniel's audience plan to act
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-11-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed

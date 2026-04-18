@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's on-the-ground reading of a market condition most agents dismiss as quiet.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-01-13
 **Scheduled time:** 07:30
 **Visual status:** suspended

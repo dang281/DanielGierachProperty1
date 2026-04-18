@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Surface investor strategy preferences; engage the investment-focused segment of Daniel's audience
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-05-14
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Timely engagement poll for vendors deciding on Easter window timing
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-03-12
 **Scheduled time:** 07:30
 **Visual status:** Not needed

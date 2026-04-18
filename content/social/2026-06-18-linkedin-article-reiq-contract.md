@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a knowledgeable, process-literate agent
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

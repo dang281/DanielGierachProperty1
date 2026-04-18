@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Capture sellers considering a spring 2028 campaign; prompt early engagement with Daniel
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-30
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

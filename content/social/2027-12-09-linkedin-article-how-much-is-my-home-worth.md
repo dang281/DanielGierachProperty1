@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Hook vendors with the honest answer to their most common question; drive insights traffic
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-12-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

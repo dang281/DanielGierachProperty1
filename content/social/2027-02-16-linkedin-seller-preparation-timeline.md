@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Practical seller education post; drive appraisal enquiries by showing sellers what a well-run preparation looks like
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-02-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

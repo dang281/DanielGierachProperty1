@@ -71,6 +71,7 @@ function parsePillar(raw) {
 function parseStatus(raw) {
   if (!raw) return 'ready'
   const r = raw.toLowerCase()
+  if (r.includes('archived'))  return 'archived'
   if (r.includes('posted'))    return 'posted'
   if (r.includes('scheduled')) return 'scheduled'
   if (r.includes('idea'))      return 'idea'

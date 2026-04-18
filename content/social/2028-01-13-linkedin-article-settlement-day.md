@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; reassure sellers about the settlement process
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-01-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/stamp-duty-queensland; practical buyer education
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-10-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

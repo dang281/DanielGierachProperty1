@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as the agent who gives accurate valuations not flattering ones
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive appraisal enquiries from homeowners considering selling; position Daniel as the most informed local agent
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-04-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

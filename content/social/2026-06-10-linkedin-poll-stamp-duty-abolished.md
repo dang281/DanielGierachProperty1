@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on a topic that directly affects buyers in Daniel's market; position Daniel as someone engaged with policy conversations that affect his clients
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

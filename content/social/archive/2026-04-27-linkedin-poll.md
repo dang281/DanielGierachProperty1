@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from first home buyers and their families; position Daniel as an informed local expert on buyer conditions
 **Content Pillar:** Buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-29
 **Scheduled time:** 07:30
 

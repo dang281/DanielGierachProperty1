@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; challenge the spring-selling assumption with Brisbane-specific evidence
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-04-24
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

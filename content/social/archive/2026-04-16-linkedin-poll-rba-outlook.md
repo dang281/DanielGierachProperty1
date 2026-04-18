@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers, sellers, and investors; position Daniel as informed on macro conditions affecting the inner east market
 **Content Pillar:** Authority
-**Status:** Idea
+**Status:** archived
 **Publish date:** 2026-05-20
 **Scheduled time:** 07:30
 **Visual status:** Not needed

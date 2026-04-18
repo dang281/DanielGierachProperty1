@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the seller disclosure article; alert 2027 autumn sellers to the legal requirement they need to meet before listing
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-02-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

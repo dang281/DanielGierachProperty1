@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on why buyer competition matters more than price expectations; build Daniel's authority on campaign strategy
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-04-29
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

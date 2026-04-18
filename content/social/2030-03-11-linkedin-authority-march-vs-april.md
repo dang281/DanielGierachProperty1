@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Create urgency for sellers who are on the fence about timing and prompt immediate contact
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-03-11
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

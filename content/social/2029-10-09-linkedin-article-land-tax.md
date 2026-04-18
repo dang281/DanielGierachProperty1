@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the Queensland land tax article on danielgierach.com
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-10-09
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

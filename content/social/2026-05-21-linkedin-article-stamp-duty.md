@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help buyers understand a cost that is often underestimated in budgets.
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-21
 **Scheduled time:** 07:30
 **Visual status:** Not needed

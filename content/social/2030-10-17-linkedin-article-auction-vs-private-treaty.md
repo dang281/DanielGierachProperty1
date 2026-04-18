@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/auction-vs-private-treaty; educate vendors on sale method selection
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-10-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

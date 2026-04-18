@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers about Brisbane's seasonality vs generic advice
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-01-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

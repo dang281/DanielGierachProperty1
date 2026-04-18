@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help undecided sellers make a timing decision; drive appraisal enquiries from homeowners who have been sitting on the fence
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-03-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

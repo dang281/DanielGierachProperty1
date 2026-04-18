@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's appraisal expertise; prompt sellers to get an updated comparable sales review
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-10-08
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

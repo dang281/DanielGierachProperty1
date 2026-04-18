@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Test audience understanding of auction terminology; educate buyers and sellers on a commonly misunderstood moment in the auction process
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-27
 **Scheduled time:** 07:30
 **Visual status:** Not needed

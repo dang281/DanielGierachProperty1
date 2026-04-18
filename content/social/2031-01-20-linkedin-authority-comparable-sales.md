@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Show vendors why a skilled agent's interpretation of comparable sales is materially different from a portal search.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-01-20
 **Scheduled time:** 07:30
 **Visual status:** suspended

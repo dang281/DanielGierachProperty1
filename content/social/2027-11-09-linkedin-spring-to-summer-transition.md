@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who understands Brisbane's local selling seasons, not generic national advice
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-11-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

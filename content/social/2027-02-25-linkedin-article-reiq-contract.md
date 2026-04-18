@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the REIQ contract article; educate buyers on the clauses that actually matter before they sign
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-02-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Year-end market review; demonstrate Daniel's data-led perspective and knowledge of the specific suburbs he works in
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-12-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

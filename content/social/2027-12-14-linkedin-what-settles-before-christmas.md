@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on the realistic December settlement timeline so they can plan accurately
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-12-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

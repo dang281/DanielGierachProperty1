@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners and investors; position Daniel as empathetic and experienced on the timing question
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-04-07
 **Scheduled time:** 07:30
 **Visual status:** Not needed

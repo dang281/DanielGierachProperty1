@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate buyers and sellers on one of the most common pre-contract questions
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-04-03
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

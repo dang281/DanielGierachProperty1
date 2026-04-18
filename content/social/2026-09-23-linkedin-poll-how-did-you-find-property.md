@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Generate engagement and demonstrate the value of agent networks over pure portal search
 **Content Pillar:** market education
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-09-23
 **Scheduled time:** 07:30
 **Visual status:** Not needed

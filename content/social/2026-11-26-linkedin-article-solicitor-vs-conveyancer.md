@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the solicitor vs conveyancer article; correct a common buyer sequencing mistake
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-11-26
 **Scheduled time:** 07:30
 **Visual status:** Draft

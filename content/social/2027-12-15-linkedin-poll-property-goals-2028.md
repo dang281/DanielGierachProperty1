@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand where Daniel's audience is headed; generate appraisal and buyer conversations for January
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-12-15
 **Scheduled time:** 07:30
 **Visual status:** Not needed

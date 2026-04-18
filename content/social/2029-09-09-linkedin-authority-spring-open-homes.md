@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Explain how to interpret open home attendance patterns as a campaign health signal, not a vanity metric.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-09-09
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

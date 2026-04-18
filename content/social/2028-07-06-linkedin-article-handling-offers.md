@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a trusted adviser for sellers facing offer decisions
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

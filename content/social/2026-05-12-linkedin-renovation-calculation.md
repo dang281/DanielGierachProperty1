@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers think more clearly about pre-sale renovation spend. Build Daniel's authority as someone who gives honest advice rather than encouraging unnecessary cost.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-12
 **Scheduled time:** 07:30
 **Visual status:** Draft

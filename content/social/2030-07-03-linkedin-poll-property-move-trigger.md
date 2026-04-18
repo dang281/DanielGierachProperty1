@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface what motivates buyers and sellers in the inner east
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-07-03
 **Scheduled time:** 07:30
 **Visual status:** Not needed

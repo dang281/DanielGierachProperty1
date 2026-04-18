@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Characterise the December buyer; provide market context for sellers still to act or planning for 2029
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-12-03
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

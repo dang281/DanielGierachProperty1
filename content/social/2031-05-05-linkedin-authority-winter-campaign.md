@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors a realistic and evidence-grounded case for why winter can be a rational selling decision in Brisbane's inner east.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-05-05
 **Scheduled time:** 07:30
 **Visual status:** suspended

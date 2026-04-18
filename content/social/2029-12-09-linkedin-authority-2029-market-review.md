@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish year-end authority with an honest retrospective on the 2029 inner east market
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-12-09
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

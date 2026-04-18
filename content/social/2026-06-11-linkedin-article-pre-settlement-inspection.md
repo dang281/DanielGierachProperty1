@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; prepare sellers for a step in the process that can generate anxiety if it is not understood.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed

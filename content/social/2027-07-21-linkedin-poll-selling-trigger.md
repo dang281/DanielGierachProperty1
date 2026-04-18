@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; give Daniel intel on what is holding vendors back.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-07-21
 **Scheduled time:** 07:30
 **Visual status:** Not needed

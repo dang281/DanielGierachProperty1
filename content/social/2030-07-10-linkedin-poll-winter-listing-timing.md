@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand when Daniel's audience is planning to sell
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-07-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

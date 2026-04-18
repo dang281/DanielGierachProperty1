@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's campaign management depth; help vendors understand that the first 3 weeks are the critical window
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-09-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

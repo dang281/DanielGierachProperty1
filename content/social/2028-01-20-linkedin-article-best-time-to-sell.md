@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; challenge the spring-selling myth and build authority
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-01-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

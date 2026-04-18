@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate sellers on a buyer right they cannot control but should understand.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

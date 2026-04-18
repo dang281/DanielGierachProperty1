@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the informed local authority on inner east Brisbane property heading into 2030
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-01-07
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

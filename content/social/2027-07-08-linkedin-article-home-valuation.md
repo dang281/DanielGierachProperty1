@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and demonstrate Daniel's nuanced understanding of property valuation in the inner east.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-07-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

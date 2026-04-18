@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge generic spring-selling advice; demonstrate Daniel's local market expertise
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-08-27
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

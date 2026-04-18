@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and educate audience on QLD auction rules
 **Content Pillar:** buyer / market education
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-09-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed

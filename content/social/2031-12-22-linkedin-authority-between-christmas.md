@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a credible observer of the late-December and early-January property market
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-12-22
 **Scheduled time:** 07:30
 **Visual status:** suspended

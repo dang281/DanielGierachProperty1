@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand what is holding buyers back; useful for positioning Daniel's content to address the most common buyer concerns
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-24
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to Daniel's renovation before selling article and give vendors clear, practical guidance on where pre-sale spending is justified.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-06-24
 **Scheduled time:** 07:30
 **Visual status:** Draft

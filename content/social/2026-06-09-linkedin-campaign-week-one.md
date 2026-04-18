@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on the importance of launching a campaign at the right price. Attract sellers who are thinking about timing and market strategy.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed

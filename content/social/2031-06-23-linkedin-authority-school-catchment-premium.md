@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Explain the school catchment premium phenomenon as a structural market dynamic that Daniel observes regularly in inner east pricing.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-06-23
 **Scheduled time:** 07:30
 **Visual status:** suspended

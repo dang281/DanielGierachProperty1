@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help investors understand the practical and legal realities of selling with a tenant in place
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-03-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

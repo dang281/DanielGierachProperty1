@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a credible on-the-ground market observer with a grounded, pattern-based read on the Q2 character so far.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-06-02
 **Scheduled time:** 07:30
 **Visual status:** suspended

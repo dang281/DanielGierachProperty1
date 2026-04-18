@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Correct the "winter is dead" narrative; reassure sellers that motivated buyers are active; drive campaign enquiries
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-06-03
 **Scheduled time:** 07:30
 **Visual status:** suspended

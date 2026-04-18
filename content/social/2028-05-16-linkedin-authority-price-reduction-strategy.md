@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Explain why price reductions rarely solve slow campaigns and what actually works instead
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-05-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

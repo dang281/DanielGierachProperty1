@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build thought leadership; demonstrate Daniel's suburb-level nuance to professional and investor audience
 **Content Pillar:** Authority / Suburb
-**Status:** Idea
+**Status:** archived
 **Publish date:** 2026-06-13
 **Scheduled time:** 07:30
 

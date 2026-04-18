@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the local authority on seasonal strategy; attract sellers who are sitting on the fence
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

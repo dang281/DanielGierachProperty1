@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as an agent who understands the nuances of pricing. Help sellers and buyers think more clearly about valuation.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-19
 **Scheduled time:** 07:30
 **Visual status:** Not needed

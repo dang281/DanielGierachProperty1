@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors considering a June launch a clear picture of the late May buyer pool and why it favours well-prepared properties.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-05-26
 **Scheduled time:** 07:30
 **Visual status:** suspended

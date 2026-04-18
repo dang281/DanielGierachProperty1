@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the seller disclosure article; flag a legal change that many QLD sellers still do not know about
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-12-24
 **Scheduled time:** 07:30
 **Visual status:** Draft

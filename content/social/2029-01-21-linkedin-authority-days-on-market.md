@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post demonstrating Daniel's market intelligence; useful to both buyers and sellers
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-01-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

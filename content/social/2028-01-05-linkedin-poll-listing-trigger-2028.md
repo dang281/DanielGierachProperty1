@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners considering selling; start a conversation about market timing
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-01-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

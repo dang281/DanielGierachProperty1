@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners and investors; surface sentiment to inform content direction
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-01-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed

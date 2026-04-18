@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give sellers practical guidance on December timing; demonstrate Daniel's operational knowledge beyond just selling
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-11-17
 **Scheduled time:** 07:30
 **Visual status:** Draft

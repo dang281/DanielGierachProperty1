@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the Form 6 article and establish authority on the seller-agent relationship
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-10-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

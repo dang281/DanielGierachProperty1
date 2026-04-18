@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Shift vendors' focus from open home attendance volume to buyer quality as the meaningful measure of campaign health.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-05-12
 **Scheduled time:** 07:30
 **Visual status:** suspended

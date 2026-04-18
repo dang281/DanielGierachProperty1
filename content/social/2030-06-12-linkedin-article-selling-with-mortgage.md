@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help sellers calculate their real proceeds before they commit to next purchase
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-06-12
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on how buyers interpret pricing and why overpricing undermines a campaign
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-04-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

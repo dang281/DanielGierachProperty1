@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Convince vendors to invest in street presentation and arrival experience, not just interior staging
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-09-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

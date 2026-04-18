@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority content for peak autumn selling season; attract vendors still on the fence and educate buyers on competition
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-03-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

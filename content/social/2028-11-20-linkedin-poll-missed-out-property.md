@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand buyer experience; generate conversations about buyer preparedness
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-11-20
 **Scheduled time:** 07:30
 **Visual status:** Not needed

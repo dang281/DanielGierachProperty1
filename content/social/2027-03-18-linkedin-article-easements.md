@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the easements article; demystify a topic that causes unnecessary concern for buyers and sellers in the inner east
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

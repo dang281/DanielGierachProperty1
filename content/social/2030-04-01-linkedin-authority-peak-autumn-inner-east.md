@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the most informed observer of the inner east autumn market; drive appraisal conversations
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-04-01
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -2,7 +2,7 @@
 **Format:** Post
 **Goal:** Demonstrate market knowledge; give homeowners and investors a grounded Q3 assessment
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

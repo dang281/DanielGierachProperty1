@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/property-styling-staging-brisbane; educate vendors on staging ROI
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-18
 **Scheduled time:** 07:30
 **Visual status:** suspended

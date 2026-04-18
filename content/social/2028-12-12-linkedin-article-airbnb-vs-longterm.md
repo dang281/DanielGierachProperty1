@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; challenge the Airbnb gross income assumption with net return analysis
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-12-12
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

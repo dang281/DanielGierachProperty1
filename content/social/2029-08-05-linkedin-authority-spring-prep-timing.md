@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Motivate inner east sellers to begin spring preparation in August rather than waiting until September.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-08-05
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

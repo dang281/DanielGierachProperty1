@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; position Daniel as informed on the practical dilemmas buyers and sellers face.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-07-07
 **Scheduled time:** 07:30
 **Visual status:** Not needed

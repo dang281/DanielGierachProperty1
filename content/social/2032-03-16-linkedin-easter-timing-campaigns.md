@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on the real implications of Easter timing for inner east property campaigns
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-03-16
 **Scheduled time:** 07:30
 **Visual status:** suspended

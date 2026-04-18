@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers in catchment-relevant suburbs understand and frame the school catchment premium in their campaigns.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-09-23
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

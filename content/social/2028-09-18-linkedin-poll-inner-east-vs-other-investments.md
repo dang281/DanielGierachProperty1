@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on the investment case for property; reach buyer and investor segments
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-09-18
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -15,6 +15,7 @@ const STATUSES = [
   { value: 'posted',    label: 'Posted',    colour: '#3b82f6' },
   { value: 'idea',      label: 'Ideas',     colour: '#9ca3af' },
   { value: 'rejected',  label: 'Rejected',  colour: '#ef4444' },
+  { value: 'archived',  label: 'Archive',   colour: '#6b5a3e' },
 ]
 
 const PILLARS = [

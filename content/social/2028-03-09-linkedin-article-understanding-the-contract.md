@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; protect buyers and sellers from costly contract mistakes
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-03-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

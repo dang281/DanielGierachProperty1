@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; gauge market sentiment among Daniel's audience
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-08-21
 **Scheduled time:** 07:30
 **Visual status:** Not needed

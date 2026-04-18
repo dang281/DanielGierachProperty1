@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface sellers considering a spring or pre-Christmas campaign
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-08-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

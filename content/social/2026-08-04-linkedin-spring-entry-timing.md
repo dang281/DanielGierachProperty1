@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a strategic advisor on campaign timing, prompting sellers to get in touch before September listings peak
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-08-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

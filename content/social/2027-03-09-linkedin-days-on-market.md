@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on days on market as a market health indicator; prompt sellers to list while conditions favour them
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-09
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; identify sellers weighing up timing as autumn ends
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-04-30
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help vendors understand the financial mechanics of selling with an existing mortgage
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-05-15
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

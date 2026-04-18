@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the handling offers article and shift vendor thinking toward offer quality, not just offer price
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-10-01
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement and surface interstate buyer behaviour relevant to the Brisbane inner east market.
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-08-25
 **Scheduled time:** 07:30
 **Visual status:** Not needed

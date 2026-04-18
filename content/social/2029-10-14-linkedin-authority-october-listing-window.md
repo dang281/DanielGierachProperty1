@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish authority on spring campaign timing decisions for vendors
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-10-14
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

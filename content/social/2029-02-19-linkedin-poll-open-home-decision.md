@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; provide insight into buyer decision speed relevant to inner east campaigns
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-19
 **Scheduled time:** 07:30
 **Visual status:** Not needed

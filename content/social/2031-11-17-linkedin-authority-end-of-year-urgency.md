@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as someone who understands the late-year buyer psychology
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-11-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

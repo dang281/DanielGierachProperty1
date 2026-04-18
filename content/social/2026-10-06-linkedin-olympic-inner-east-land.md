@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority on Brisbane-specific demand drivers and prompt buyers thinking long-term to engage
 **Content Pillar:** market
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-10-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

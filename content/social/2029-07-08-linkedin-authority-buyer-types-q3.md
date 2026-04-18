@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Show Daniel's understanding of the Q3 buyer mix to help sellers know who they are marketing to.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-07-08
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

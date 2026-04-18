@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give sellers useful intelligence about February buyer conditions in the inner east to prompt pre-autumn campaign conversations
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-02-11
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate buyers and sellers on easements before they become a surprise
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-02-24
 **Scheduled time:** 07:30
 **Visual status:** Draft

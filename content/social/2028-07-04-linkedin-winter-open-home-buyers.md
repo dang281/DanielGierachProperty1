@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build seller confidence about winter campaigns; position Daniel as the agent who understands the real buyer pool
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

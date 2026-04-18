@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the capital gains tax article; flag a common misconception about the main residence exemption that affects inner east investors and owner-occupiers
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-01-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

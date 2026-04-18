@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Challenge the myth that winter is a poor time to sell and show vendors what the July market is actually producing.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-07-07
 **Scheduled time:** 07:30
 **Visual status:** suspended

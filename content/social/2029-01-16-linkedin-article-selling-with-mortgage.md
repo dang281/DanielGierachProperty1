@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights and position Daniel as the agent who gives vendors the full financial picture before they launch
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-01-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

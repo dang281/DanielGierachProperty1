@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; clarify a commonly misunderstood buyer protection
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-09-05
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

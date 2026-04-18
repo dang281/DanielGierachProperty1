@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate hyper-local market knowledge on catchment premiums and attract seller enquiry from catchment-adjacent suburbs
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-02-24
 **Scheduled time:** 07:30
 **Visual status:** suspended

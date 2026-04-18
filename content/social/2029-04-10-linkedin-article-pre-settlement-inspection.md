@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate vendors on what the pre-settlement inspection means for them
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-04-10
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

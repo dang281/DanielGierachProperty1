@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the capital gains tax article and establish authority on seller tax obligations
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-30
 **Scheduled time:** 07:30
 **Visual status:** Draft

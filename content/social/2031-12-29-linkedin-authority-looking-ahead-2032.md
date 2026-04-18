@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a clear-eyed, non-hype observer heading into the Olympic year
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-12-29
 **Scheduled time:** 07:30
 **Visual status:** suspended

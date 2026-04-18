@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish authority on inner east buyer behaviour in the peak spring window
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

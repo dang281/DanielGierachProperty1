@@ -2,7 +2,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; prompt reflection on property decisions and surface vendor learnings
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-01
 **Scheduled time:** 07:30
 **Visual status:** Not needed

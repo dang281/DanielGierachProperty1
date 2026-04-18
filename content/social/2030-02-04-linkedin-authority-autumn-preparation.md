@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Motivate sellers who are preparing for autumn to engage Daniel early in the preparation process
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-02-04
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

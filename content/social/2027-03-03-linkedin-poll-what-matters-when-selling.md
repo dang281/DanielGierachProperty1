@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from the seller segment; understand what homeowners prioritise when making a sale decision
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-03
 **Scheduled time:** 07:30
 **Visual status:** Not needed

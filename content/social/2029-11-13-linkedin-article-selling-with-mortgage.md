@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/selling-house-with-mortgage-brisbane by making vendors think more carefully about net proceeds before they sell.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-11-13
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

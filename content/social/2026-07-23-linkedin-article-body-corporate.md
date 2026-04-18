@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; help buyers and investors factor body corporate costs into their decision
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-07-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

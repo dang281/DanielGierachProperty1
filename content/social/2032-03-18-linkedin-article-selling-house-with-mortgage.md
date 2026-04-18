@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/selling-house-with-mortgage-brisbane
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-03-18
 **Scheduled time:** 07:30
 **Visual status:** suspended

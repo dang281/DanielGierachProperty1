@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand 2029 seller forward intent; generate early 2029 appraisal conversations
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-12-11
 **Scheduled time:** 07:30
 **Visual status:** Not needed

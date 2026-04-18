@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on the importance of August preparation to secure optimal spring campaign results.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-08-03
 **Scheduled time:** 07:30
 **Visual status:** Draft

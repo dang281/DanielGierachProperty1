@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority around inner-east market knowledge and prompt families to engage Daniel before the spring buyer surge
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-09-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

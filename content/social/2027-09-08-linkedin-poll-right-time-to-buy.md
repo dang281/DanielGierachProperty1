@@ -2,7 +2,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface buyer sentiment in the inner east
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-08
 **Scheduled time:** 07:30
 **Visual status:** Not needed

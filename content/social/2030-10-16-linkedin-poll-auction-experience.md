@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engagement from buyer and seller audience; surface auction attitudes ahead of spring peak
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-10-16
 **Scheduled time:** 07:30
 **Visual status:** Not needed

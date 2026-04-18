@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners in the consideration phase; surface what objections Daniel needs to address in future content
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-10-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's expertise and vendor management skills; attract sellers who want an informed agent, not a cheerleader
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-07-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

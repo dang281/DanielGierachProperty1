@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's market analysis depth; help vendors interpret clearance rate data in context
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-09-03
 **Scheduled time:** 07:30
 **Visual status:** suspended

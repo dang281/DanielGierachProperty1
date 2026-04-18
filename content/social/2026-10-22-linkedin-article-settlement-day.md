@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the settlement day article; reduce settlement anxiety for vendors; establish Daniel as the agent who explains the process clearly
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-10-22
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build local authority and drive appraisal enquiries from West End homeowners
 **Content Pillar:** Suburb
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-29
 **Scheduled time:** 07:30
 

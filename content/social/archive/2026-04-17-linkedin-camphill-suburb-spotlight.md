@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build local authority and drive appraisal enquiries from Camp Hill homeowners
 **Content Pillar:** Suburb
-**Status:** Idea
+**Status:** archived
 **Publish date:** 2026-05-23
 **Scheduled time:** 07:30
 

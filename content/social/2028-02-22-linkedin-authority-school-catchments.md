@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority on inner-east pricing nuance; attract families considering buying or selling
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-02-22
 **Scheduled time:** 07:30
 **Visual status:** Draft

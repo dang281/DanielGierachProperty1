@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give inner east buyers and vendors an honest, nuanced read on how much Olympic-related demand has actually influenced property values.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-06-09
 **Scheduled time:** 07:30
 **Visual status:** suspended

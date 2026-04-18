@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Data-led market update; establish Daniel as the most informed agent in the inner east
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-11-18
 **Scheduled time:** 07:30
 **Visual status:** suspended

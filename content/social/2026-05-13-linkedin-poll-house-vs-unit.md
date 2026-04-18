@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from investors and upgraders in Daniel's network; spark conversation about Brisbane's value case for houses vs units
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-13
 **Scheduled time:** 07:30
 **Visual status:** Not needed

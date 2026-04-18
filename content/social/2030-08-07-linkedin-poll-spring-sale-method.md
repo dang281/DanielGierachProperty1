@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand how vendors in the inner east think about method of sale
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-08-07
 **Scheduled time:** 07:30
 **Visual status:** Not needed

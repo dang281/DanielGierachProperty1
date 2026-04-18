@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Understand seller timing preferences; generate conversations with spring sellers
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-09-04
 **Scheduled time:** 07:30
 **Visual status:** Not needed

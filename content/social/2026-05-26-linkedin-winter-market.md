@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Counter the common objection that winter is a bad time to sell. Encourage homeowners sitting on the fence to act rather than defer to spring.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed

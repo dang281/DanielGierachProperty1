@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Signal the opening of spring campaign season and share Daniel's live observations from early September open homes.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-09-02
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

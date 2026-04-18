@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide an honest, data-grounded Q1 market summary that builds Daniel's authority as the most informed agent in the inner east
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-03-30
 **Scheduled time:** 07:30
 **Visual status:** suspended

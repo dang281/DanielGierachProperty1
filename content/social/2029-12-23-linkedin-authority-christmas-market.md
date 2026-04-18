@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Correct the assumption that real estate stops over Christmas and highlight the serious buyer activity that persists through January
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-12-23
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

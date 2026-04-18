@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the timeline article and shift vendor thinking toward early preparation
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-08-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

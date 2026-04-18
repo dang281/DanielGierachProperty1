@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the fixtures and fittings article; establish Daniel as the agent who catches the practical details other agents miss
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-10-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

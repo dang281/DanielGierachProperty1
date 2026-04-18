@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Close the year with a grounded, forward-looking assessment that builds Daniel's authority as the agent to speak to ahead of Q1 2030
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-12-30
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

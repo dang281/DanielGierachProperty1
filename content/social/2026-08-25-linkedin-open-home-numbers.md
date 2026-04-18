@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Set realistic vendor expectations around open home attendance and explain what qualified buyer interest looks like
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-08-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

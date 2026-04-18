@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's deep local knowledge by naming the specific features that drive genuine buyer competition
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-05-02
 **Scheduled time:** 07:30
 **Visual status:** Draft

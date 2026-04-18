@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post on interpreting market data; attract informed sellers and buyers
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-10-08
 **Scheduled time:** 07:30
 **Visual status:** suspended

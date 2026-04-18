@@ -2,7 +2,7 @@
 **Format:** Post
 **Goal:** Give sellers and buyers practical context for the September market open
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent to call in January for vendors targeting an autumn campaign.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-01-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

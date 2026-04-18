@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Authority post demonstrating Daniel's perspective from working with both buyers and sellers
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-16
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

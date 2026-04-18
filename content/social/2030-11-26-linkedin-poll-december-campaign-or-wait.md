@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage vendor audience on seasonal timing; generate listing intent conversations
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-11-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed

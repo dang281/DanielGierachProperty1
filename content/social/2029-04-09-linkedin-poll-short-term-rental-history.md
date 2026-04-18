@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement on a topic relevant to both buyers and investors; surface community sentiment
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-04-09
 **Scheduled time:** 07:30
 **Visual status:** Not needed

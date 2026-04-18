@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and position Daniel as a knowledgeable local agent for character property buyers
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-05-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

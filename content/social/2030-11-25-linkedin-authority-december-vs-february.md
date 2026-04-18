@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Inform vendors on Q4/Q1 timing trade-offs; generate appraisal enquiries from undecided homeowners
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-11-25
 **Scheduled time:** 07:30
 **Visual status:** suspended

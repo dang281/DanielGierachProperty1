@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage vendors preparing for 2028; anchor Daniel's expertise in the preparation process
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-12-08
 **Scheduled time:** 07:30
 **Visual status:** Not needed

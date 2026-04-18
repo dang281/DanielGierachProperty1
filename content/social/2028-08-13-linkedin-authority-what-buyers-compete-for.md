@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers understand what drives buyer competition; position Daniel as someone who understands the nuance
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-08-13
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

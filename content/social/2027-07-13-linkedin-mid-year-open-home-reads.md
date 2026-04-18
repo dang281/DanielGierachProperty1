@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's on-the-ground authority in the inner east by sharing direct, observational market intelligence.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-07-13
 **Scheduled time:** 07:30
 **Visual status:** Draft

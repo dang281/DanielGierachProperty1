@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Identify sellers at different stages of readiness; prompt early preparation conversations
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-05-28
 **Scheduled time:** 07:30
 **Visual status:** Not needed

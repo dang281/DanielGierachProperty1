@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help vendors still in campaign and those considering a late autumn launch understand the changed buyer pool that emerges after Easter.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-04-07
 **Scheduled time:** 07:30
 **Visual status:** suspended

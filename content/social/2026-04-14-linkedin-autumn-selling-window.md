@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as a market expert who understands inner east selling dynamics; attract sellers considering timing their campaign
 **Content Pillar:** Seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-14
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners; surface conversations about renovation decisions in the current cost environment
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-03-22
 **Scheduled time:** 07:30
 **Visual status:** Not needed

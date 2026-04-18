@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the cooling-off period article; clarify a common misconception about how buyer protections work in QLD
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-02-04
 **Scheduled time:** 07:30
 **Visual status:** Draft

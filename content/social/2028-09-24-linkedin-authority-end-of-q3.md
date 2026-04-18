@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Market update post closing the quarter; demonstrate active knowledge and set context for Q4
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-09-24
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

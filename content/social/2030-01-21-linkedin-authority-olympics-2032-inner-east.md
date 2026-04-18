@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the local authority on how Olympic infrastructure is playing out in the inner east precinct
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-01-21
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

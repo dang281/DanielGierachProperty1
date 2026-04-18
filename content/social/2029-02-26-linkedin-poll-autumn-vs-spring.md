@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from homeowners weighing up their selling window; generate leads through responses
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-26
 **Scheduled time:** 07:30
 **Visual status:** Not needed

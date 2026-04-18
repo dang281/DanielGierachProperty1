@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Create urgency for sellers who have not yet listed; explain why the pre-Easter window is critical in the inner east
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-03-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

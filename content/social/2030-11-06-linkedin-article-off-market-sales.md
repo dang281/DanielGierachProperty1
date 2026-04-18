@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/off-market-property-sales-brisbane; educate vendors
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-11-06
 **Scheduled time:** 07:30
 **Visual status:** suspended

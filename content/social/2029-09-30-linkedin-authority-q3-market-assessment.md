@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Deliver a grounded end-of-Q3 market assessment that builds trust and sets expectations for Q4.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-09-30
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

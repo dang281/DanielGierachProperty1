@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to Daniel's land tax insights article and establish him as an agent who helps investors understand their full cost position before they buy.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-06-10
 **Scheduled time:** 07:30
 **Visual status:** Draft

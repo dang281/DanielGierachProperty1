@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate buyers on negotiation strategy in competitive inner east market
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-04-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

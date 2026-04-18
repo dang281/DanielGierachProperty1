@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/best-time-to-sell-brisbane; position Daniel as an educator
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-06-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

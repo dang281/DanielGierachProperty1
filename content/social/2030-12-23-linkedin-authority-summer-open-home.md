@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Inform buyers and vendors on January market conditions; plant seeds for February enquiry
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-12-23
 **Scheduled time:** 07:30
 **Visual status:** suspended

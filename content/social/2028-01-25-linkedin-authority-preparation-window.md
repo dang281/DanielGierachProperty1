@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build authority around the preparation phase; attract sellers who are 2-3 months from listing
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-01-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

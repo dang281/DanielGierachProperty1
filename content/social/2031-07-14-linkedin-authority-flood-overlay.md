@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors and buyers a clear, honest framework for understanding flood overlay and its effect on price.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-07-14
 **Scheduled time:** 07:30
 **Visual status:** suspended

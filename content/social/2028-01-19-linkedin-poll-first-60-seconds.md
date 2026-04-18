@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers and homeowners; spark conversation about what drives property decisions
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-01-19
 **Scheduled time:** 07:30
 **Visual status:** Not needed

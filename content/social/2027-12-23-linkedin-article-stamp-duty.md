@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate buyers planning 2028 purchases on the true cost of stamp duty; drive insights traffic
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-12-23
 **Scheduled time:** 07:30
 **Visual status:** Draft

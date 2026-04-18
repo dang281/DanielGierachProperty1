@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Year-end authority post; position Daniel as a forward-thinking agent with a clear read on the coming year
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-12-22
 **Scheduled time:** 07:30
 **Visual status:** Draft

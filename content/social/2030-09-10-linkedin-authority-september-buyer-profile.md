@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help vendors understand the committed nature of September buyers; encourage early spring listings
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-09-10
 **Scheduled time:** 07:30
 **Visual status:** suspended

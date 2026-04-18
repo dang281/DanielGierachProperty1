@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as the agent who understands seasonal market dynamics; prompt early appraisal enquiries from sellers planning a 2027 campaign
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-01-05
 **Scheduled time:** 07:30
 **Visual status:** Draft

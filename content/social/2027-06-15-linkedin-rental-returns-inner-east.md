@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give investors a realistic picture of inner east rental yields and position Daniel as an agent who gives straight answers rather than optimistic projections.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-06-15
 **Scheduled time:** 07:30
 **Visual status:** Draft

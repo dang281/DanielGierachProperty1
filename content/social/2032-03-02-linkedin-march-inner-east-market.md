@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel's authority on current inner east market conditions at the start of the peak autumn campaign season
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-03-02
 **Scheduled time:** 07:30
 **Visual status:** suspended

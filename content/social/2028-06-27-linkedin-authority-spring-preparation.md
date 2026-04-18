@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive spring seller enquiries by showing that the best campaigns start in late June, not August
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-06-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

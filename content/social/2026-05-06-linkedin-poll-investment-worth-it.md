@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage investors and prospective investors in Daniel's network; surface genuine sentiment about the investment case right now
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-06
 **Scheduled time:** 07:30
 **Visual status:** Not needed

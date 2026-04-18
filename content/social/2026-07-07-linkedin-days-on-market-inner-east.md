@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's market knowledge; attract sellers researching the inner east; show the difference between surface-level and real market insight
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-07-07
 **Scheduled time:** 07:30
 **Visual status:** Draft

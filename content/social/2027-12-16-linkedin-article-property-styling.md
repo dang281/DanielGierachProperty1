@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help vendors planning for early 2028 understand the real ROI of styling; drive insights traffic
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-12-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as the agent who genuinely understands inner east buyer behaviour. Prompt sellers to think about their preparation differently.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

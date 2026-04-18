@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's interpretive skill and what vendors gain from working with an experienced open home operator.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-02-03
 **Scheduled time:** 07:30
 **Visual status:** suspended

@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; reveal suburb preference data among Daniel's network
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-17
 **Scheduled time:** 07:30
 **Visual status:** Not needed

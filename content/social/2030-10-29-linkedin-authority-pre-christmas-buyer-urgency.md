@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Inform vendors and buyers about late October market dynamics; attract Q4 vendor enquiries
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-10-29
 **Scheduled time:** 07:30
 **Visual status:** suspended

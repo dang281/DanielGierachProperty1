@@ -2,7 +2,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights and help vendors avoid last-minute settlement complications
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-09-16
 **Scheduled time:** 07:30
 **Visual status:** Draft

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide a grounded, honest market observation that serves first-home buyers and positions Daniel as a straight-talking authority.
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-02-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

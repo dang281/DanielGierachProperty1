@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/body-corporate by surfacing the sinking fund issue as the more important number most buyers miss when evaluating a unit or townhouse.
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-11-27
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

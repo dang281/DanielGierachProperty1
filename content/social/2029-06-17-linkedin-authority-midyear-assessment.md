@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Provide a mid-year market assessment from Daniel's perspective; reinforce his role as the informed local commentator
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-06-17
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give an honest, grounded assessment of the Olympic effect on inner east property values as the Games approach.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-07-28
 **Scheduled time:** 07:30
 **Visual status:** suspended

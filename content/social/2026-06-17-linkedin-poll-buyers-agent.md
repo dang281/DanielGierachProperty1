@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; surface buyer preferences; position Daniel as someone who understands the full buying landscape
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-17
 **Scheduled time:** 07:30
 **Visual status:** Not needed

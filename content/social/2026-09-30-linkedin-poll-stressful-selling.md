@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engage vendor audience on emotional aspects of selling, demonstrating Daniel understands the experience
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-09-30
 **Scheduled time:** 07:30
 **Visual status:** Not needed

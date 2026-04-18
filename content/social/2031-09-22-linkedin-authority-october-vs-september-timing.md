@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Give vendors an honest framework for choosing between a September and October launch date.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-09-22
 **Scheduled time:** 07:30
 **Visual status:** suspended

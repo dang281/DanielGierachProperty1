@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an informed local authority on Brisbane market conditions; relevant to sellers considering their timing
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-21
 **Scheduled time:** 07:30
 **Visual status:** Draft

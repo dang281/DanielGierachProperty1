@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as informed on long-term Brisbane market drivers; engage buyers and investors thinking about 2032
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-07-23
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

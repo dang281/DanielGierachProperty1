@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Profile the October buyer; position Daniel as the agent who knows the buyer pool
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-10-15
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

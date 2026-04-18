@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; educate investors on an often-overlooked holding cost that is growing in relevance
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-03-27
 **Scheduled time:** 07:30
 **Visual status:** Draft

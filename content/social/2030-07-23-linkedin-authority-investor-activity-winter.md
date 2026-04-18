@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Speak directly to investor buyers and to vendors whose property suits the investor market; demonstrate Daniel's knowledge of investor decision-making
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-07-23
 **Scheduled time:** 07:30
 **Visual status:** suspended

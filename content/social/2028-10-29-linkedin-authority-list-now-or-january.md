@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Prompt pre-Christmas listing decisions; address the January delay with honest market reasoning
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-10-29
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

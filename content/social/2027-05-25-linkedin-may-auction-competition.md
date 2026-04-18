@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Position Daniel as an authority on auction day dynamics in Brisbane's inner east
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-05-25
 **Scheduled time:** 07:30
 **Visual status:** Draft

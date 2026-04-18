@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement; understand how rate cuts have influenced buyer and vendor behaviour
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-10-13
 **Scheduled time:** 07:30
 **Visual status:** Not needed

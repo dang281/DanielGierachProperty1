@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the tenanted-property article and position Daniel as a knowledgeable advisor for investor-sellers
 **Content Pillar:** investor
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-09-17
 **Scheduled time:** 07:30
 **Visual status:** Draft

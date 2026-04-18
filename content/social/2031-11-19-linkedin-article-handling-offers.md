@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights/how-to-handle-offers-when-selling; position Daniel as educational resource
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-11-19
 **Scheduled time:** 07:30
 **Visual status:** suspended

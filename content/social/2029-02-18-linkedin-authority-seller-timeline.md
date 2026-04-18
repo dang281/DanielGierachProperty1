@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish Daniel as the agent who plans properly; attract vendors who want a structured, outcome-focused process
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-02-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

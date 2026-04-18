@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build local authority and drive appraisal enquiries from Carindale homeowners considering selling
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-05-05
 **Scheduled time:** 07:30
 **Visual status:** Draft

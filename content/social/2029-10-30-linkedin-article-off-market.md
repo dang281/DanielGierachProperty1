@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the off-market property sales article on danielgierach.com
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-10-30
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

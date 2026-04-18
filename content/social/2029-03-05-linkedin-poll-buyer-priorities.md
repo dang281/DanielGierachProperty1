@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Engagement poll for active autumn buyers; insights useful for both buyers and vendors
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-03-05
 **Scheduled time:** 07:30
 **Visual status:** Not needed

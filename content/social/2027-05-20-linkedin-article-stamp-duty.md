@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com and educate buyers on the real cash cost of transfer duty in Queensland
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-05-20
 **Scheduled time:** 07:30
 **Visual status:** Draft

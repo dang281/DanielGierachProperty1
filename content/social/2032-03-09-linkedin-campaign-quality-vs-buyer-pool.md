@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate vendors on why preparation and presentation are critical during the peak autumn buyer season
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-03-09
 **Scheduled time:** 07:30
 **Visual status:** suspended

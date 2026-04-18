@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educate sellers on how days on market signals campaign quality and pricing accuracy
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2032-02-17
 **Scheduled time:** 07:30
 **Visual status:** suspended

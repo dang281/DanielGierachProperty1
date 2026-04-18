@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive clicks to danielgierach.com/insights/solicitor-vs-conveyancer-qld; position Daniel as educational authority
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-01-09
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

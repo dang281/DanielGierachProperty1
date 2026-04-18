@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Convert sellers considering spring to start conversations with Daniel now; demonstrate that campaign preparation takes time
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-07-28
 **Scheduled time:** 07:30
 **Visual status:** Draft

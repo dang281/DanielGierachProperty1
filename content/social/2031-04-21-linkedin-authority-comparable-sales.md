@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate that automated property valuations and raw comparable sales data require expert interpretation to produce meaningful price conclusions.
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2031-04-21
 **Scheduled time:** 07:30
 **Visual status:** suspended

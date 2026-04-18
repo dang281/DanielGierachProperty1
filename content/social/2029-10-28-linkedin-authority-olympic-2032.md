@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Establish authority on Olympic infrastructure impact on inner east property values and buyer sentiment
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2029-10-28
 **Scheduled time:** 07:30
 **Visual status:** Pending - Canva suspended

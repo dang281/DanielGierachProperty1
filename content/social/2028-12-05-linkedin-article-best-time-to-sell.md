@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; correct the spring-selling assumption for Brisbane's inner east
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-12-05
 **Scheduled time:** 07:30
 **Visual status:** Canva suspended

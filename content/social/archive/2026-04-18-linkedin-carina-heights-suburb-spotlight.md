@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Demonstrate Daniel's specific knowledge of Carina Heights and attract sellers and buyers considering the suburb
 **Content Pillar:** Suburb
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-04-18
 **Scheduled time:** 07:30
 **Visual status:** Needed

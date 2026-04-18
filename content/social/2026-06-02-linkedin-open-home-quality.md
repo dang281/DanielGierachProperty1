@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Help sellers understand that buyer volume is not the right metric for a campaign. Position Daniel as someone who qualifies buyers, not just counts them.
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-06-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed

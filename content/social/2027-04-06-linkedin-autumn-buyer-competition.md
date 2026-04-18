@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build Daniel's authority with sellers and buyers through first-hand market observation; demonstrate local knowledge
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-04-06
 **Scheduled time:** 07:30
 **Visual status:** Draft

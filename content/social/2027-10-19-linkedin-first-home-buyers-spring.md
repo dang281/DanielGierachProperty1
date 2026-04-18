@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Build buyer-focused authority on first home buyer strategy in the inner east spring market
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-10-19
 **Scheduled time:** 07:30
 **Visual status:** Draft

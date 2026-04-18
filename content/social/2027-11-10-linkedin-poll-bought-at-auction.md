@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers and sellers; position Daniel as knowledgeable on auction process
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-11-10
 **Scheduled time:** 07:30
 **Visual status:** Not needed

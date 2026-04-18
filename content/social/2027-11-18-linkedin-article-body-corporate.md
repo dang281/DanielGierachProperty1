@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Educational post for unit/townhouse buyers; drive traffic to insights article
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2027-11-18
 **Scheduled time:** 07:30
 **Visual status:** Draft

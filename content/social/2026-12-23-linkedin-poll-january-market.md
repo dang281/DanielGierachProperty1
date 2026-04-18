@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Light end-of-year engagement poll; prompt thinking about the new year market
 **Content Pillar:** authority
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-12-23
 **Scheduled time:** 07:30
 **Visual status:** Not needed

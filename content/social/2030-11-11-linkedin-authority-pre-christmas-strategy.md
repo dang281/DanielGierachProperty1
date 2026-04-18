@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Vendor-facing authority post on Q4 campaign strategy; establish Daniel as the honest advisor
 **Content Pillar:** seller
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2030-11-11
 **Scheduled time:** 07:30
 **Visual status:** suspended

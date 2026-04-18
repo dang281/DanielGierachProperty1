@@ -4,7 +4,7 @@
 **Format:** Post
 **Goal:** Drive traffic to the negative gearing article and prompt investors to actively review their hold positions
 **Content Pillar:** investor
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2026-10-08
 **Scheduled time:** 07:30
 **Visual status:** Draft

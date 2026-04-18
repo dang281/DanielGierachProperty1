@@ -4,7 +4,7 @@
 **Format:** Poll
 **Goal:** Drive engagement from buyers and homeowners; spark conversation about post-pandemic lifestyle preferences
 **Content Pillar:** buyer
-**Status:** Ready for Review
+**Status:** archived
 **Publish date:** 2028-02-02
 **Scheduled time:** 07:30
 **Visual status:** Not needed
