@@ -7,6 +7,7 @@
 **Status:** Ready for Review
 **Publish date:** 2026-04-16
 **Scheduled time:** 07:30
+**Read time:** 5 MIN READ
 **Visual status:** Ready
 **Image:** content/social/images/2026-04-16-article-cover.png
 **Canva Thumbnail:** https://hmwulvvwsksuyqozuxvw.supabase.co/storage/v1/object/public/social-images/2026-04-16-article-cover.png
