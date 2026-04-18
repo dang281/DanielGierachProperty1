@@ -24,7 +24,6 @@ import { rescheduleItem, createItem } from '@/lib/actions/content'
 
 type ViewMode       = 'week' | 'twoweek' | 'month'
 type PlatformFilter = 'all' | Platform
-type StatusFilter   = 'all' | Status
 type PillarFilter   = 'all' | Pillar
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -102,6 +101,32 @@ const PILLAR_LABEL: Record<Pillar, string> = {
 }
 
 const DOW_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+// ─── Simplified 3-status display ─────────────────────────────────────────────
+
+type DisplayStatusFilter = 'all' | 'needs-attention' | 'scheduled' | 'posted'
+
+function getDisplayStatus(item: ContentItem): 'needs-attention' | 'scheduled' | 'posted' {
+  if (item.status === 'posted') return 'posted'
+  if (!item.visual_thumbnail) return 'needs-attention'
+  return 'scheduled'
+}
+
+const DS_COLOUR: Record<string, string> = {
+  'needs-attention': '#c4912a',
+  'scheduled':       '#22c55e',
+  'posted':          '#3b82f6',
+}
+const DS_BG: Record<string, string> = {
+  'needs-attention': 'rgba(196,145,42,0.1)',
+  'scheduled':       'rgba(34,197,94,0.08)',
+  'posted':          'rgba(59,130,246,0.08)',
+}
+const DS_LABEL: Record<string, string> = {
+  'needs-attention': 'Needs attention',
+  'scheduled':       'Scheduled',
+  'posted':          'Posted',
+}
 
 // ─── Chip ─────────────────────────────────────────────────────────────────────
 
@@ -308,6 +333,7 @@ function QuickComposeModal({ date, allItems, onClose, onCreated }: {
             <select value={platform} onChange={e => setPlatform(e.target.value as Platform)}
               className={inCls} style={inStyle}>
               <option value="linkedin">LinkedIn</option>
+              <option value="facebook">Facebook</option>
             </select>
           </div>
 
@@ -602,7 +628,11 @@ function WeekView({ items, weekDays, today, onHoverEnter, onHoverLeave, onCompos
 
 // ─── Month view ───────────────────────────────────────────────────────────────
 
-function MonthCard({ item }: { item: ContentItem }) {
+function MonthCard({ item, onHoverEnter, onHoverLeave }: {
+  item: ContentItem
+  onHoverEnter?: (item: ContentItem, rect: DOMRect) => void
+  onHoverLeave?: () => void
+}) {
   const pc = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
 
   if (item.platform === 'seo') {
@@ -622,22 +652,38 @@ function MonthCard({ item }: { item: ContentItem }) {
     )
   }
 
+  const ds = getDisplayStatus(item)
+
   return (
-    <Link href={`/app/content/${item.id}`}
-      className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans leading-tight truncate hover:opacity-80 transition-opacity border-l-2"
-      style={{ color: STATUS_COLOUR[item.status as Status], background: STATUS_BG[item.status as Status], borderColor: pc }}
-      title={`${item.title} — ${item.scheduled_time ?? ''}`}>
-      <span className="w-3 h-3 rounded text-[7px] font-bold flex items-center justify-center flex-shrink-0"
-        style={{ background: pc, color: '#fff' }}>
-        {PLATFORM_ICON[item.platform] ?? '?'}
-      </span>
-      <span className="truncate">{item.scheduled_time ? `${item.scheduled_time} ` : ''}{item.title}</span>
-    </Link>
+    <div
+      onMouseEnter={e => onHoverEnter?.(item, e.currentTarget.getBoundingClientRect())}
+      onMouseLeave={onHoverLeave}
+    >
+      <Link
+        href={`/app/content/${item.id}`}
+        className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans leading-tight truncate hover:opacity-80 transition-opacity border-l-2"
+        style={{ color: DS_COLOUR[ds], background: DS_BG[ds], borderColor: pc }}
+        title={`${item.title}${item.scheduled_time ? ' · ' + item.scheduled_time : ''}`}
+      >
+        {item.visual_thumbnail ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={item.visual_thumbnail} alt="" className="w-3 h-3 rounded object-cover flex-shrink-0" />
+        ) : (
+          <span className="w-3 h-3 rounded text-[7px] font-bold flex items-center justify-center flex-shrink-0"
+            style={{ background: pc, color: '#fff' }}>
+            {PLATFORM_ICON[item.platform] ?? '?'}
+          </span>
+        )}
+        <span className="truncate">{item.scheduled_time ? `${item.scheduled_time} ` : ''}{item.title}</span>
+      </Link>
+    </div>
   )
 }
 
-function MonthView({ items, year, month, today }: {
+function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave }: {
   items: ContentItem[]; year: number; month: number; today: string
+  onHoverEnter?: (item: ContentItem, rect: DOMRect) => void
+  onHoverLeave?: () => void
 }) {
   const byDate: Record<string, ContentItem[]> = {}
   for (const item of items) {
@@ -677,7 +723,9 @@ function MonthView({ items, year, month, today }: {
                   )}
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  {dayItems.slice(0, 4).map(item => <MonthCard key={item.id} item={item} />)}
+                  {dayItems.slice(0, 4).map(item => (
+                    <MonthCard key={item.id} item={item} onHoverEnter={onHoverEnter} onHoverLeave={onHoverLeave} />
+                  ))}
                   {dayItems.length > 4 && (
                     <span className="text-[9px] font-sans text-[var(--color-cream-x)] pl-1">+{dayItems.length - 4} more</span>
                   )}
@@ -693,20 +741,12 @@ function MonthView({ items, year, month, today }: {
 
 // ─── Filter options ───────────────────────────────────────────────────────────
 
-const PLATFORM_OPTIONS: { value: PlatformFilter; label: string; colour?: string }[] = [
+const PLATFORM_OPTIONS: { value: PlatformFilter; label: string; colour?: string; soon?: boolean }[] = [
   { value: 'all',       label: 'All' },
   { value: 'linkedin',  label: 'LinkedIn',  colour: '#0a66c2' },
-  { value: 'facebook',  label: 'Facebook',  colour: '#1877f2' },
+  { value: 'facebook',  label: 'Facebook',  colour: '#1877f2', soon: true },
   { value: 'instagram', label: 'Instagram', colour: '#e1306c' },
   { value: 'seo',       label: 'Website',   colour: '#10b981' },
-]
-
-const STATUS_OPTIONS: { value: StatusFilter; label: string; colour?: string }[] = [
-  { value: 'all',       label: 'All statuses' },
-  { value: 'ready',     label: 'Ready',     colour: '#a855f7' },
-  { value: 'scheduled', label: 'Scheduled', colour: '#22c55e' },
-  { value: 'posted',    label: 'Posted',    colour: '#60a5fa' },
-  { value: 'idea',      label: 'Idea',      colour: '#9ca3af' },
 ]
 
 const PILLAR_OPTIONS: { value: PillarFilter; label: string }[] = [
@@ -723,16 +763,18 @@ const PILLAR_OPTIONS: { value: PillarFilter; label: string }[] = [
 export default function CalendarClient({
   items: initialItems,
   today,
-  defaultView = 'week',
+  defaultView = 'month',
+  defaultPlatform = 'all',
 }: {
   items: ContentItem[]
   today: string
   defaultView?: ViewMode
+  defaultPlatform?: PlatformFilter
 }) {
   const [localItems, setLocalItems] = useState<ContentItem[]>(initialItems)
   const [view, setView]             = useState<ViewMode>(defaultView)
-  const [platform, setPlatform]     = useState<PlatformFilter>('all')
-  const [status, setStatus]         = useState<StatusFilter>('all')
+  const [platform, setPlatform]     = useState<PlatformFilter>(defaultPlatform ?? 'all')
+  const [dStatus, setDStatus]       = useState<DisplayStatusFilter>('all')
   const [pillar, setPillar]         = useState<PillarFilter>('all')
 
   const todayDate = new Date(today + 'T00:00:00')
@@ -775,10 +817,25 @@ export default function CalendarClient({
 
   const filtered = useMemo(() => localItems.filter(item => {
     if (platform !== 'all' && item.platform !== platform) return false
-    if (status !== 'all' && item.status !== status) return false
+    if (dStatus !== 'all' && getDisplayStatus(item) !== dStatus) return false
     if (pillar !== 'all' && item.content_pillar !== pillar) return false
     return true
-  }), [localItems, platform, status, pillar])
+  }), [localItems, platform, dStatus, pillar])
+
+  // Urgent items: LinkedIn posts needing attention within next 14 days
+  const urgentItems = useMemo(() => {
+    const todayMs  = new Date(today + 'T00:00:00').getTime()
+    const limitMs  = todayMs + 14 * 24 * 60 * 60 * 1000
+    return localItems.filter(item =>
+      item.platform === 'linkedin' &&
+      getDisplayStatus(item) === 'needs-attention' &&
+      item.scheduled_date !== null &&
+      (() => {
+        const d = new Date(item.scheduled_date! + 'T00:00:00').getTime()
+        return d >= todayMs && d <= limitMs
+      })()
+    ).sort((a, b) => (a.scheduled_date ?? '').localeCompare(b.scheduled_date ?? ''))
+  }, [localItems, today])
 
   // DnD handlers
   function handleDragStart(event: DragStartEvent) {
@@ -811,14 +868,38 @@ export default function CalendarClient({
   }
   function goToday() { setWeekAnchor(todayDate); setMonthYear(todayDate.getFullYear()); setMonthIdx(todayDate.getMonth()) }
 
-  const total     = filtered.filter(i => i.scheduled_date).length
-  const ready     = filtered.filter(i => i.status === 'ready').length
-  const scheduled = filtered.filter(i => i.status === 'scheduled').length
+  const needsAttentionCount = filtered.filter(i => getDisplayStatus(i) === 'needs-attention' && i.scheduled_date).length
+  const scheduledCount      = filtered.filter(i => getDisplayStatus(i) === 'scheduled').length
+  const postedCount         = filtered.filter(i => getDisplayStatus(i) === 'posted').length
   const draggingItem = draggingId ? localItems.find(i => i.id === draggingId) : null
 
   return (
     <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <div className="flex flex-col gap-4">
+
+        {/* ── Attention banner ── */}
+        {urgentItems.length > 0 && (
+          <div className="flex items-start gap-3 px-4 py-3 rounded-xl border"
+            style={{ background: 'rgba(196,145,42,0.06)', borderColor: 'rgba(196,145,42,0.3)' }}>
+            <span style={{ color: '#c4912a' }}>⚠</span>
+            <div>
+              <p className="text-[11px] font-sans font-semibold" style={{ color: '#c4912a' }}>
+                {urgentItems.length} post{urgentItems.length !== 1 ? 's' : ''} need attention in the next 14 days
+              </p>
+              <p className="text-[10px] font-sans mt-0.5" style={{ color: 'var(--color-cream-x)' }}>
+                {urgentItems.slice(0, 3).map(i =>
+                  new Date(i.scheduled_date! + 'T00:00:00').toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' })
+                ).join(' · ')}
+                {urgentItems.length > 3 ? ` · +${urgentItems.length - 3} more` : ''}
+                {' — '}
+                <button onClick={() => setDStatus('needs-attention')}
+                  className="text-[var(--color-gold)] hover:underline">
+                  filter to show only these
+                </button>
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* ── Toolbar ── */}
         <div className="flex flex-wrap items-center gap-3">
@@ -837,28 +918,47 @@ export default function CalendarClient({
 
           <div className="flex items-center gap-1.5">
             {PLATFORM_OPTIONS.map(opt => (
-              <Chip key={opt.value} active={platform === opt.value} colour={opt.colour} onClick={() => setPlatform(opt.value)}>
-                {opt.label}
-              </Chip>
+              opt.soon && platform !== opt.value ? (
+                <button
+                  key={opt.value}
+                  onClick={() => setPlatform(opt.value)}
+                  className="text-[11px] font-sans font-semibold px-2.5 py-1 rounded-lg border transition-all"
+                  style={{ background: 'transparent', borderColor: 'var(--color-border-w)', color: 'var(--color-cream-x)', opacity: 0.5 }}
+                >
+                  {opt.label} <span className="text-[9px] opacity-70">soon</span>
+                </button>
+              ) : (
+                <Chip key={opt.value} active={platform === opt.value} colour={opt.colour} onClick={() => setPlatform(opt.value)}>
+                  {opt.label}
+                </Chip>
+              )
             ))}
           </div>
 
           <div className="w-px h-5 bg-[var(--color-border-w)] hidden sm:block" />
 
+          {/* Display-status filter chips */}
           <div className="flex items-center gap-1.5 flex-wrap">
-            {STATUS_OPTIONS.map(opt => (
-              <Chip key={opt.value} active={status === opt.value} colour={opt.colour} onClick={() => setStatus(opt.value)}>
-                {opt.label}
-              </Chip>
-            ))}
+            <Chip active={dStatus === 'all'} onClick={() => setDStatus('all')}>
+              All
+            </Chip>
+            <Chip active={dStatus === 'needs-attention'} colour={DS_COLOUR['needs-attention']} onClick={() => setDStatus('needs-attention')}>
+              {DS_LABEL['needs-attention']}
+            </Chip>
+            <Chip active={dStatus === 'scheduled'} colour={DS_COLOUR['scheduled']} onClick={() => setDStatus('scheduled')}>
+              {DS_LABEL['scheduled']}
+            </Chip>
+            <Chip active={dStatus === 'posted'} colour={DS_COLOUR['posted']} onClick={() => setDStatus('posted')}>
+              {DS_LABEL['posted']}
+            </Chip>
           </div>
 
           <div className="flex-1" />
           <span className="text-[10px] font-sans text-[var(--color-cream-x)] px-2 py-1 rounded border border-[var(--color-border-w)]">AEST</span>
           <div className="hidden sm:flex items-center gap-3 text-[10px] font-sans">
-            <span style={{ color: 'var(--color-cream-dim)' }}>{total} posts</span>
-            <span style={{ color: '#a855f7' }}>{ready} ready</span>
-            <span style={{ color: '#22c55e' }}>{scheduled} scheduled</span>
+            <span style={{ color: DS_COLOUR['needs-attention'] }}>{needsAttentionCount} needs attention</span>
+            <span style={{ color: DS_COLOUR['scheduled'] }}>{scheduledCount} scheduled</span>
+            <span style={{ color: DS_COLOUR['posted'] }}>{postedCount} posted</span>
           </div>
         </div>
 
@@ -922,7 +1022,11 @@ export default function CalendarClient({
             onCompose={setComposingDate}
           />
         ) : (
-          <MonthView items={filtered} year={monthYear} month={monthIdx} today={today} />
+          <MonthView
+            items={filtered} year={monthYear} month={monthIdx} today={today}
+            onHoverEnter={(item, rect) => setHovered({ item, rect })}
+            onHoverLeave={() => setHovered(null)}
+          />
         )}
 
         {/* ── Legend ── */}
@@ -939,10 +1043,10 @@ export default function CalendarClient({
             </div>
           ))}
           <div className="w-px h-3 bg-[var(--color-border-w)]" />
-          {Object.entries(STATUS_COLOUR).map(([k, c]) => (
+          {Object.entries(DS_COLOUR).map(([k, c]) => (
             <div key={k} className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full" style={{ background: c }} />
-              <span className="text-[10px] font-sans text-[var(--color-cream-x)] capitalize">{k}</span>
+              <span className="text-[10px] font-sans text-[var(--color-cream-x)]">{DS_LABEL[k]}</span>
             </div>
           ))}
         </div>
