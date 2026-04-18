@@ -36,7 +36,7 @@ export default async function PlanningPage() {
     .select('*')
     .eq('platform', 'linkedin')
     .in('status', ['ready', 'idea'])
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: true })
 
   // Pre-filled: already-scheduled posts landing on one of the 6 slot dates
   const { data: preFilled } = await supabase
