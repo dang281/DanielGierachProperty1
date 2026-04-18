@@ -50,7 +50,7 @@ danielgierach.com/insights/building-pest-report
 
 ## Article Intro
 
-A building and pest report is one of the most important documents in a property purchase. New Field Guide issue: what the categories mean and how to work through what comes back.
+This issue of the Field Guide covers building and pest reports: what the different findings mean, how to approach major defects, and when it makes sense to negotiate rather than exit.
 
 ## Notes for Daniel
 
