@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useTransition } from 'react'
+import { useState, useMemo, useTransition, useCallback } from 'react'
 import Link from 'next/link'
 import {
   DndContext,
@@ -18,7 +18,7 @@ import type { ContentItem, Platform, Status, Pillar } from '@/types/content'
 import {
   PLATFORM_COLOUR, STATUS_COLOUR, STATUS_BG, STATUS_BORDER, PILLAR_COLOUR,
 } from '@/types/content'
-import { rescheduleItem, createItem } from '@/lib/actions/content'
+import { rescheduleItem, createItem, bulkMarkPosted } from '@/lib/actions/content'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -108,7 +108,7 @@ type DisplayStatusFilter = 'all' | 'needs-attention' | 'scheduled' | 'posted'
 
 function getDisplayStatus(item: ContentItem): 'needs-attention' | 'scheduled' | 'posted' {
   if (item.status === 'posted') return 'posted'
-  if (item.visual_status !== 'approved') return 'needs-attention'
+  if (!item.visual_thumbnail) return 'needs-attention'
   return 'scheduled'
 }
 
@@ -246,9 +246,7 @@ function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
                 {PILLAR_LABEL[item.content_pillar]}
               </span>
             )}
-            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">
-              Click to open{item.canva_url ? ' · Canva ↗' : ''}
-            </span>
+            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">Click to open</span>
           </div>
         </div>
       </div>
@@ -458,19 +456,9 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
             </p>
           )}
 
-          <div className="flex items-center justify-between gap-1 pt-0.5 border-t border-[rgba(255,255,255,0.05)]">
-            <div className="flex items-center gap-1" title={visual.label}>
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: visual.colour }} />
-              <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
-            </div>
-            {item.canva_url && (
-              <button
-                onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(item.canva_url!, '_blank', 'noreferrer') }}
-                className="text-[9px] font-sans font-bold rounded px-1.5 py-0.5 flex-shrink-0"
-                style={{ color: '#a78bfa', background: 'rgba(139,92,246,0.15)' }}>
-                Canva ↗
-              </button>
-            )}
+          <div className="flex items-center gap-1 pt-0.5 border-t border-[rgba(255,255,255,0.05)]">
+            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: visual.colour }} />
+            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
           </div>
         </div>
       </Link>
@@ -628,10 +616,13 @@ function WeekView({ items, weekDays, today, onHoverEnter, onHoverLeave, onCompos
 
 // ─── Month view ───────────────────────────────────────────────────────────────
 
-function MonthCard({ item, onHoverEnter, onHoverLeave }: {
+function MonthCard({ item, onHoverEnter, onHoverLeave, selectMode, selected, onSelect }: {
   item: ContentItem
   onHoverEnter?: (item: ContentItem, rect: DOMRect) => void
   onHoverLeave?: () => void
+  selectMode?: boolean
+  selected?: boolean
+  onSelect?: (id: string) => void
 }) {
   const pc = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
 
@@ -654,6 +645,49 @@ function MonthCard({ item, onHoverEnter, onHoverLeave }: {
 
   const ds = getDisplayStatus(item)
 
+  const inner = (
+    <>
+      {item.visual_thumbnail ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={item.visual_thumbnail} alt="" className="w-full object-cover flex-shrink-0"
+          style={{ aspectRatio: '1.91/1' }} />
+      ) : (
+        <div className="w-full flex items-center justify-center flex-shrink-0 py-1.5"
+          style={{ background: `${pc}18` }}>
+          <span className="w-4 h-4 rounded text-[8px] font-bold flex items-center justify-center"
+            style={{ background: pc, color: '#fff' }}>
+            {PLATFORM_ICON[item.platform] ?? '?'}
+          </span>
+        </div>
+      )}
+      <div className="px-1.5 py-1">
+        <span className="text-[10px] font-sans font-medium leading-snug line-clamp-2" style={{ color: DS_COLOUR[ds] }}>
+          {item.title}
+        </span>
+      </div>
+      {selectMode && (
+        <div className="absolute top-1 right-1 w-4 h-4 rounded-full border-2 flex items-center justify-center"
+          style={{ background: selected ? DS_COLOUR['posted'] : 'transparent',
+            borderColor: selected ? DS_COLOUR['posted'] : 'rgba(255,255,255,0.4)' }}>
+          {selected && <span className="text-[8px] text-white font-bold">✓</span>}
+        </div>
+      )}
+    </>
+  )
+
+  if (selectMode) {
+    return (
+      <div
+        onClick={() => onSelect?.(item.id)}
+        className="relative flex flex-col rounded overflow-hidden border-l-2 cursor-pointer transition-opacity hover:opacity-90"
+        style={{ background: selected ? `${DS_COLOUR['posted']}18` : DS_BG[ds], borderColor: pc }}
+        title={item.title}
+      >
+        {inner}
+      </div>
+    )
+  }
+
   return (
     <div
       onMouseEnter={e => onHoverEnter?.(item, e.currentTarget.getBoundingClientRect())}
@@ -661,37 +695,23 @@ function MonthCard({ item, onHoverEnter, onHoverLeave }: {
     >
       <Link
         href={`/app/content/${item.id}`}
-        className="flex flex-col rounded overflow-hidden hover:opacity-80 transition-opacity border-l-2"
+        className="relative flex flex-col rounded overflow-hidden hover:opacity-80 transition-opacity border-l-2"
         style={{ background: DS_BG[ds], borderColor: pc }}
-        title={`${item.title}${item.scheduled_time ? ' · ' + item.scheduled_time : ''}`}
+        title={item.title}
       >
-        {item.visual_thumbnail ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={item.visual_thumbnail} alt="" className="w-full object-cover flex-shrink-0"
-            style={{ aspectRatio: '1.91/1' }} />
-        ) : (
-          <div className="w-full flex items-center justify-center flex-shrink-0 py-1"
-            style={{ background: `${pc}18` }}>
-            <span className="w-4 h-4 rounded text-[8px] font-bold flex items-center justify-center"
-              style={{ background: pc, color: '#fff' }}>
-              {PLATFORM_ICON[item.platform] ?? '?'}
-            </span>
-          </div>
-        )}
-        <div className="flex items-center gap-1 px-1.5 py-0.5">
-          <span className="text-[9px] font-sans leading-tight truncate" style={{ color: DS_COLOUR[ds] }}>
-            {item.scheduled_time ? `${item.scheduled_time} ` : ''}{item.title}
-          </span>
-        </div>
+        {inner}
       </Link>
     </div>
   )
 }
 
-function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave }: {
+function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave, selectMode, selectedIds, onSelect }: {
   items: ContentItem[]; year: number; month: number; today: string
   onHoverEnter?: (item: ContentItem, rect: DOMRect) => void
   onHoverLeave?: () => void
+  selectMode?: boolean
+  selectedIds?: Set<string>
+  onSelect?: (id: string) => void
 }) {
   const byDate: Record<string, ContentItem[]> = {}
   for (const item of items) {
@@ -699,8 +719,12 @@ function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave }: {
     if (!byDate[item.scheduled_date]) byDate[item.scheduled_date] = []
     byDate[item.scheduled_date].push(item)
   }
-  const weeks = getMonthGrid(year, month)
-  const DOW   = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  // Only show weeks that contain at least one day >= today
+  const allWeeks = getMonthGrid(year, month)
+  const weeks = allWeeks.filter(week =>
+    week.some(d => d.toLocaleDateString('en-CA') >= today)
+  )
+  const DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
   return (
     <div className="rounded-xl border border-[var(--color-border-w)] overflow-hidden">
@@ -712,36 +736,40 @@ function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave }: {
       {weeks.map((week, wi) => (
         <div key={wi} className="grid grid-cols-7 border-b border-[var(--color-border-w)] last:border-b-0">
           {week.map((date, di) => {
-            const dateStr    = date.toLocaleDateString('en-CA')
+            const dateStr     = date.toLocaleDateString('en-CA')
             const isThisMonth = date.getMonth() === month
-            const isToday    = dateStr === today
-            const isPast     = dateStr < today
-            const dayItems   = (byDate[dateStr] ?? []).sort(
+            const isToday     = dateStr === today
+            const isPast      = dateStr < today
+
+            // Past days in the current-week row: render as empty invisible cell
+            if (isPast) {
+              return <div key={di} className="border-r border-[var(--color-border-w)] last:border-r-0" />
+            }
+
+            const dayItems = (byDate[dateStr] ?? []).sort(
               (a, b) => (a.scheduled_time ?? '').localeCompare(b.scheduled_time ?? ''),
             )
-            const cellBg = isToday
-              ? 'rgba(196,145,42,0.1)'
-              : isPast
-                ? 'rgba(0,0,0,0.18)'
-                : 'transparent'
+            const cellBg = isToday ? 'rgba(196,145,42,0.1)' : 'transparent'
             return (
               <div key={di}
-                className={`min-h-[100px] p-2 border-r border-[var(--color-border-w)] last:border-r-0 transition-colors ${!isThisMonth ? 'opacity-25' : ''}`}
+                className={`min-h-[120px] p-2 border-r border-[var(--color-border-w)] last:border-r-0 transition-colors ${!isThisMonth ? 'opacity-40' : ''}`}
                 style={{ background: cellBg }}>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className={`text-[11px] font-sans w-6 h-6 flex items-center justify-center rounded-full ${
                     isToday ? 'bg-[var(--color-gold)] text-[var(--color-bg)] font-bold' : 'text-[var(--color-cream-dim)]'
                   }`}>{date.getDate()}</span>
-                  {dayItems.length > 2 && (
+                  {dayItems.length > 3 && (
                     <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{dayItems.length}</span>
                   )}
                 </div>
-                <div className="flex flex-col gap-0.5">
-                  {dayItems.slice(0, 4).map(item => (
-                    <MonthCard key={item.id} item={item} onHoverEnter={onHoverEnter} onHoverLeave={onHoverLeave} />
+                <div className="flex flex-col gap-1">
+                  {dayItems.slice(0, 3).map(item => (
+                    <MonthCard key={item.id} item={item}
+                      onHoverEnter={onHoverEnter} onHoverLeave={onHoverLeave}
+                      selectMode={selectMode} selected={selectedIds?.has(item.id)} onSelect={onSelect} />
                   ))}
-                  {dayItems.length > 4 && (
-                    <span className="text-[9px] font-sans text-[var(--color-cream-x)] pl-1">+{dayItems.length - 4} more</span>
+                  {dayItems.length > 3 && (
+                    <span className="text-[9px] font-sans text-[var(--color-cream-x)] pl-1">+{dayItems.length - 3} more</span>
                   )}
                 </div>
               </div>
@@ -790,6 +818,9 @@ export default function CalendarClient({
   const [platform, setPlatform]     = useState<PlatformFilter>(defaultPlatform ?? 'all')
   const [dStatus, setDStatus]       = useState<DisplayStatusFilter>('all')
   const [pillar, setPillar]         = useState<PillarFilter>('all')
+  const [selectMode, setSelectMode] = useState(false)
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [isPosting, startPostTransition] = useTransition()
 
   const todayDate = new Date(today + 'T00:00:00')
   const [weekAnchor, setWeekAnchor] = useState<Date>(todayDate)
@@ -829,7 +860,25 @@ export default function CalendarClient({
   })()
   const monthLabel = new Date(monthYear, monthIdx).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })
 
+  const toggleSelect = useCallback((id: string) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }, [])
+
+  function handleBulkMarkPosted() {
+    const ids = Array.from(selectedIds)
+    setLocalItems(prev => prev.map(i => selectedIds.has(i.id) ? { ...i, status: 'posted' as const } : i))
+    setSelectedIds(new Set())
+    setSelectMode(false)
+    startPostTransition(() => bulkMarkPosted(ids))
+  }
+
   const filtered = useMemo(() => localItems.filter(item => {
+    if (item.status === 'archived') return false
     if (platform !== 'all' && item.platform !== platform) return false
     if (dStatus !== 'all' && getDisplayStatus(item) !== dStatus) return false
     if (pillar !== 'all' && item.content_pillar !== pillar) return false
@@ -968,6 +1017,14 @@ export default function CalendarClient({
           </div>
 
           <div className="flex-1" />
+          <button
+            onClick={() => { setSelectMode(s => !s); setSelectedIds(new Set()) }}
+            className="text-[11px] font-sans font-semibold px-3 py-1.5 rounded-lg border transition-all"
+            style={selectMode
+              ? { background: 'rgba(59,130,246,0.18)', borderColor: '#3b82f6', color: '#3b82f6' }
+              : { background: 'transparent', borderColor: 'var(--color-border-w)', color: 'var(--color-cream-dim)' }}>
+            {selectMode ? 'Cancel' : 'Select'}
+          </button>
           <span className="text-[10px] font-sans text-[var(--color-cream-x)] px-2 py-1 rounded border border-[var(--color-border-w)]">AEST</span>
           <div className="hidden sm:flex items-center gap-3 text-[10px] font-sans">
             <span style={{ color: DS_COLOUR['needs-attention'] }}>{needsAttentionCount} needs attention</span>
@@ -1038,9 +1095,35 @@ export default function CalendarClient({
         ) : (
           <MonthView
             items={filtered} year={monthYear} month={monthIdx} today={today}
-            onHoverEnter={(item, rect) => setHovered({ item, rect })}
-            onHoverLeave={() => setHovered(null)}
+            onHoverEnter={selectMode ? undefined : (item, rect) => setHovered({ item, rect })}
+            onHoverLeave={selectMode ? undefined : () => setHovered(null)}
+            selectMode={selectMode} selectedIds={selectedIds} onSelect={toggleSelect}
           />
+        )}
+
+        {/* ── Bulk action bar ── */}
+        {selectMode && (
+          <div className="flex items-center gap-3 px-4 py-3 rounded-xl border"
+            style={{ background: 'rgba(59,130,246,0.06)', borderColor: 'rgba(59,130,246,0.3)' }}>
+            <span className="text-[11px] font-sans text-[var(--color-cream-dim)]">
+              {selectedIds.size === 0 ? 'Click posts to select them' : `${selectedIds.size} post${selectedIds.size !== 1 ? 's' : ''} selected`}
+            </span>
+            <div className="flex-1" />
+            {selectedIds.size > 0 && (
+              <button
+                onClick={handleBulkMarkPosted}
+                disabled={isPosting}
+                className="text-[11px] font-sans font-semibold px-4 py-2 rounded-lg transition-opacity"
+                style={{ background: DS_COLOUR['posted'], color: '#fff', opacity: isPosting ? 0.6 : 1 }}>
+                {isPosting ? 'Updating…' : `Mark ${selectedIds.size} as Posted`}
+              </button>
+            )}
+            <button
+              onClick={() => { setSelectMode(false); setSelectedIds(new Set()) }}
+              className="text-[11px] font-sans text-[var(--color-cream-x)] hover:text-[var(--color-cream)]">
+              Cancel
+            </button>
+          </div>
         )}
 
         {/* ── Legend ── */}

@@ -175,3 +175,15 @@ export async function deleteItem(id: string) {
   revalidatePath('/app')
   revalidatePath('/app/calendar')
 }
+
+export async function bulkMarkPosted(ids: string[]): Promise<void> {
+  if (!ids.length) return
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ status: 'posted' as Status })
+    .in('id', ids)
+  if (error) throw error
+  revalidatePath('/app')
+  revalidatePath('/app/planning')
+}

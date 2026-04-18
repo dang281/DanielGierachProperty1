@@ -111,6 +111,7 @@ function parseVisualStatus(raw) {
   if (!raw) return 'needed'
   const r = raw.toLowerCase()
   if (r.includes('approved'))  return 'approved'
+  if (r.includes('ready'))     return 'approved'
   if (r.includes('revision'))  return 'needs_revision'
   if (r.includes('draft'))     return 'draft'
   return 'needed'
