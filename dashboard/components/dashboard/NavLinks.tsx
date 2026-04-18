@@ -8,11 +8,10 @@ const NAV = [
   { href: '/app/social',    label: 'Social' },
   { href: '/app/seo',       label: 'SEO' },
   { href: '/app/projects',  label: 'Projects' },
-  { href: '/app/calendar',  label: 'Calendar' },
   { href: '/app/brand',     label: 'Brand' },
   { href: '/app/workflow',  label: 'Workflow' },
   { href: '/app/templates', label: 'Templates' },
-  { href: '/app/planning',  label: 'Planning' },
+  { href: '/app/planning',  label: 'Schedule' },
 ]
 
 export default function NavLinks() {

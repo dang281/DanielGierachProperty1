@@ -4,6 +4,9 @@ import { useState, useMemo, useEffect, useTransition } from 'react'
 import Link from 'next/link'
 import type { ContentItem, Pillar } from '@/types/content'
 import { confirmSchedule, unscheduleItems } from '@/lib/actions/content'
+import CalendarClient from '../calendar/CalendarClient'
+
+type PageMode = 'plan' | 'calendar'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -115,14 +118,19 @@ function buildSeedSlots(
 export default function PlanningClient({
   libraryPosts,
   allScheduled,
+  calendarItems,
   baseDate,
+  today,
   nextFieldGuideIssue,
 }: {
   libraryPosts:        ContentItem[]
   allScheduled:        ContentItem[]
+  calendarItems:       ContentItem[]
   baseDate:            string
+  today:               string
   nextFieldGuideIssue: number
 }) {
+  const [pageMode, setPageMode] = useState<PageMode>('plan')
   const [weekOffset,   setWeekOffset]   = useState(0)
   const [activeSlot,   setActiveSlot]   = useState<SlotKey | null>(null)
   const [pillarFilter, setPillarFilter] = useState<Pillar | null>(null)
@@ -236,74 +244,103 @@ export default function PlanningClient({
         <div>
           <p className="text-[11px] font-sans font-bold tracking-[0.18em] uppercase mb-1"
             style={{ color: 'var(--color-gold)' }}>
-            Planning
+            Schedule
           </p>
           <h1 className="text-2xl font-serif font-normal" style={{ color: 'var(--color-cream)' }}>
-            Two-Week Schedule
+            {pageMode === 'plan' ? 'Two-Week Planner' : 'Content Calendar'}
           </h1>
-          <p className="text-xs mt-0.5 font-sans" style={{ color: 'var(--color-cream-x)' }}>
-            {fmtDate(currentDates.w1tue)}–{fmtDate(currentDates.w1thu)}
-            &nbsp;·&nbsp;
-            {fmtDate(currentDates.w2tue)}–{fmtDate(currentDates.w2thu)}
-            &nbsp;·&nbsp; LinkedIn
-          </p>
+          {pageMode === 'plan' && (
+            <p className="text-xs mt-0.5 font-sans" style={{ color: 'var(--color-cream-x)' }}>
+              {fmtDate(currentDates.w1tue)}–{fmtDate(currentDates.w1thu)}
+              &nbsp;·&nbsp;
+              {fmtDate(currentDates.w2tue)}–{fmtDate(currentDates.w2thu)}
+              &nbsp;·&nbsp; LinkedIn
+            </p>
+          )}
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
-          {/* Week navigation */}
-          <div className="flex items-center gap-1 rounded-xl overflow-hidden"
+          {/* Plan / Calendar toggle */}
+          <div className="flex rounded-xl overflow-hidden"
             style={{ border: '1px solid var(--color-border-w)' }}>
-            <button
-              onClick={() => setWeekOffset(o => o - 1)}
-              className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
-              style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
-            >
-              ← Prev
-            </button>
-            <button
-              onClick={() => setWeekOffset(0)}
-              className="px-3 py-1.5 text-xs font-sans border-l border-r transition-colors"
-              style={{
-                color: weekOffset === 0 ? 'var(--color-gold)' : 'var(--color-cream-x)',
-                background: weekOffset === 0 ? 'rgba(196,145,42,0.08)' : 'var(--color-card)',
-                borderColor: 'var(--color-border-w)',
-              }}
-            >
-              This Week
-            </button>
-            <button
-              onClick={() => setWeekOffset(o => o + 1)}
-              className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
-              style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
-            >
-              Next →
-            </button>
+            {(['plan', 'calendar'] as PageMode[]).map(m => (
+              <button
+                key={m}
+                onClick={() => setPageMode(m)}
+                className="px-4 py-1.5 text-xs font-sans font-semibold capitalize transition-colors"
+                style={pageMode === m
+                  ? { background: 'var(--color-gold)', color: '#0a0806' }
+                  : { background: 'var(--color-card)', color: 'var(--color-cream-dim)' }}
+              >
+                {m === 'plan' ? 'Plan' : 'Calendar'}
+              </button>
+            ))}
           </div>
 
-          {filledCount > 0 && (
+          {/* Plan-mode controls */}
+          {pageMode === 'plan' && (
             <>
-              <button
-                onClick={clearAllSlots}
-                className="px-4 py-2.5 rounded-xl text-sm font-sans font-medium transition-all"
-                style={{ color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)', background: 'var(--color-card)' }}
-              >
-                Clear all
-              </button>
-              <button
-                onClick={handleConfirm}
-                disabled={isPending}
-                className="px-5 py-2.5 rounded-xl text-sm font-sans font-semibold transition-all disabled:opacity-50"
-                style={{ background: 'var(--color-gold)', color: '#0a0806' }}
-              >
-                {isPending ? 'Scheduling…' : `Confirm ${filledCount} of 6 →`}
-              </button>
+              {/* Week navigation */}
+              <div className="flex items-center gap-1 rounded-xl overflow-hidden"
+                style={{ border: '1px solid var(--color-border-w)' }}>
+                <button
+                  onClick={() => setWeekOffset(o => o - 1)}
+                  className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
+                  style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
+                >
+                  ← Prev
+                </button>
+                <button
+                  onClick={() => setWeekOffset(0)}
+                  className="px-3 py-1.5 text-xs font-sans border-l border-r transition-colors"
+                  style={{
+                    color: weekOffset === 0 ? 'var(--color-gold)' : 'var(--color-cream-x)',
+                    background: weekOffset === 0 ? 'rgba(196,145,42,0.08)' : 'var(--color-card)',
+                    borderColor: 'var(--color-border-w)',
+                  }}
+                >
+                  This Week
+                </button>
+                <button
+                  onClick={() => setWeekOffset(o => o + 1)}
+                  className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
+                  style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
+                >
+                  Next →
+                </button>
+              </div>
+
+              {filledCount > 0 && (
+                <>
+                  <button
+                    onClick={clearAllSlots}
+                    className="px-4 py-2.5 rounded-xl text-sm font-sans font-medium transition-all"
+                    style={{ color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)', background: 'var(--color-card)' }}
+                  >
+                    Clear all
+                  </button>
+                  <button
+                    onClick={handleConfirm}
+                    disabled={isPending}
+                    className="px-5 py-2.5 rounded-xl text-sm font-sans font-semibold transition-all disabled:opacity-50"
+                    style={{ background: 'var(--color-gold)', color: '#0a0806' }}
+                  >
+                    {isPending ? 'Scheduling…' : `Confirm ${filledCount} of 6 →`}
+                  </button>
+                </>
+              )}
             </>
           )}
         </div>
       </div>
 
-      {/* ── Body: calendar + library ── */}
-      <div className="flex gap-5 items-start">
+      {/* ── Calendar mode ── */}
+      {pageMode === 'calendar' && (
+        <CalendarClient items={calendarItems} today={today} defaultView="twoweek" />
+      )}
+
+      {/* ── Plan mode body ── */}
+      {pageMode === 'plan' && <div className="flex gap-5 items-start">
 
         {/* ── Calendar ── */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
@@ -413,7 +450,7 @@ export default function PlanningClient({
             )}
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
