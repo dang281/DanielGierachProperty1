@@ -110,15 +110,15 @@ ls /Users/danielgierach/DanielGierachProperty/content/social/*linkedin*.md | \
   grep -oP '\d{4}-\d{2}-\d{2}' | sort | tail -1
 ```
 
-Then calculate Mon/Wed/Fri of the week AFTER that last date. **Never overwrite an existing file.**
+Then calculate Tue/Wed/Thu of the week AFTER that last date. **Never overwrite an existing file.**
 
-### Post 1 — Market Update (Monday 07:30)
+### Post 1 — Market/Authority Update (Tuesday 07:30)
 
 Search for the week's strongest insight using `WebSearch`. Same criteria as the daily scout.
 
 If nothing strong is found: write an evergreen authority post — Daniel's observations about the inner east market, based on his own experience. No external stats required. Use tone reference posts (see bottom of this file).
 
-Write file: `content/social/[NEXT_MON]-linkedin-[topic-slug].md`
+Write file: `content/social/[NEXT_TUE]-linkedin-[topic-slug].md`
 
 ### Post 2 — Poll (Wednesday 07:30)
 
@@ -132,7 +132,7 @@ Write file: `content/social/[NEXT_WED]-linkedin-poll-[topic-slug].md`
 
 No Canva design needed for polls.
 
-### Post 3 — Suburb Spotlight (Friday 07:30)
+### Post 3 — Article Feature (Thursday 07:30)
 
 Read `content/suburb-queue.md`. Pick the next suburb in the priority order that hasn't been covered yet.
 
@@ -307,7 +307,7 @@ One broad property tag (#BrisbaneProperty or #BrisbaneRealEstate — pick one on
 
 Do NOT use Canva for LinkedIn posts. All LinkedIn visuals are generated via the Puppeteer screenshot pipeline below. This produces pixel-perfect, brand-consistent 1080×1080 PNGs automatically.
 
-### LinkedIn Market/Authority post (Tuesday) — `--type market`
+### LinkedIn Market/Authority post (Tuesday 07:30) — `--type market`
 
 ```bash
 node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs \
@@ -327,7 +327,7 @@ node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs 
 - `AUTHORITY` — evergreen opinion or Daniel's direct experience
 - `RATE WATCH` — RBA or lending environment posts
 
-### LinkedIn Article Feature post (Thursday) — `--type article`
+### LinkedIn Article Feature post (Thursday 07:30) — `--type article`
 
 ```bash
 node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs \
@@ -407,7 +407,7 @@ Before every commit, verify:
 |------|------|
 | Every run | Check inbox → action assigned issues |
 | 06:00–09:00 AEST daily | LinkedIn news scout (POST or SKIP) |
-| Sunday 19:00–23:00 AEST | LinkedIn weekly batch (3 posts for next week) |
+| Sunday 19:00–23:00 AEST | LinkedIn weekly batch: Tue market/authority + Wed poll + Thu article feature |
 | As assigned via inbox | Facebook suburb spotlights, amendments, urgent posts |
 
 ---
