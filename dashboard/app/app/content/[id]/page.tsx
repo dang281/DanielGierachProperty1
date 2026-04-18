@@ -24,6 +24,7 @@ const STATUSES: { value: Status; label: string }[] = [
   { value: 'scheduled', label: 'Scheduled' },
   { value: 'posted',    label: 'Posted' },
   { value: 'rejected',  label: 'Rejected' },
+  { value: 'archived',  label: 'Archived' },
 ]
 
 export default function ContentDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -207,6 +208,37 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           )}
         </div>
       </div>
+
+      {/* Visual — image preview + download */}
+      {item.visual_thumbnail && (
+        <div className="bg-[var(--color-card)] border border-[var(--color-border-w)] rounded-xl overflow-hidden">
+          <img
+            src={item.visual_thumbnail}
+            alt="Post visual"
+            className="w-full object-contain max-h-80 bg-[#0a0806]"
+          />
+          <div className="flex items-center justify-between px-4 py-3 border-t border-[var(--color-border-w)]">
+            <span className="text-[11px] font-sans text-[var(--color-cream-x)]">
+              {item.visual_status === 'approved' ? 'Visual approved' : 'Visual ready — download to post'}
+            </span>
+            <a
+              href={item.visual_thumbnail}
+              download
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 text-xs font-sans font-semibold px-3 py-1.5 rounded-lg transition-all"
+              style={{ background: 'rgba(196,145,42,0.15)', color: 'var(--color-gold)', border: '1px solid rgba(196,145,42,0.3)' }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download image
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Status actions */}
       {!editing && (

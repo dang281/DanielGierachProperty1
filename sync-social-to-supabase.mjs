@@ -8,7 +8,7 @@
 
 import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
-import { existsSync } from 'fs'
+import { existsSync, readFileSync } from 'fs'
 
 // Load .env from repo root so the script works from git hooks too
 const envPath = new URL('./.env', import.meta.url).pathname
@@ -20,9 +20,37 @@ if (existsSync(envPath)) {
   }
 }
 
-const SUPABASE_URL  = 'https://hmwulvvwsksuyqozuxvw.supabase.co'
-const SUPABASE_KEY  = process.env.SUPABASE_KEY
-const SOCIAL_DIR    = new URL('./content/social/', import.meta.url).pathname
+const SUPABASE_URL    = 'https://hmwulvvwsksuyqozuxvw.supabase.co'
+const SUPABASE_KEY    = process.env.SUPABASE_KEY
+const SOCIAL_DIR      = new URL('./content/social/', import.meta.url).pathname
+const REPO_ROOT       = new URL('./', import.meta.url).pathname
+const STORAGE_BUCKET  = 'social-images'
+const STORAGE_BASE    = `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}`
+
+// Upload a local PNG to Supabase Storage and return its public URL.
+// Returns null if the file doesn't exist or upload fails.
+async function uploadImage(localPath) {
+  const absPath = join(REPO_ROOT, localPath)
+  if (!existsSync(absPath)) return null
+  const filename = localPath.split('/').pop()
+  const bytes = readFileSync(absPath)
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${STORAGE_BUCKET}/${filename}`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'image/png',
+      'x-upsert': 'true',
+    },
+    body: bytes,
+  })
+  if (!res.ok) {
+    const txt = await res.text()
+    console.warn(`  WARN  image upload failed for ${filename}: ${txt}`)
+    return null
+  }
+  return `${STORAGE_BASE}/${filename}`
+}
 
 if (!SUPABASE_KEY) {
   console.error('SUPABASE_KEY not set — aborting sync')
@@ -153,6 +181,15 @@ async function main() {
       ? pollOptionsSection.split('\n').map(l => l.replace(/^[-*]\s*/, '').trim()).filter(Boolean)
       : null
 
+    // If there's a local **Image:** PNG, upload it to Supabase Storage.
+    // The returned public URL overwrites any Canva Thumbnail for this post.
+    const localImagePath = field(md, 'Image')
+    let visualThumbnail  = field(md, 'Canva Thumbnail') ?? null
+    if (localImagePath && localImagePath.endsWith('.png')) {
+      const uploaded = await uploadImage(localImagePath)
+      if (uploaded) visualThumbnail = uploaded
+    }
+
     const row = {
       title,
       platform,
@@ -166,7 +203,7 @@ async function main() {
       visual_brief:      visualBrief ?? null,
       visual_status:     parseVisualStatus(field(md, 'Visual status')),
       canva_url:         field(md, 'Canva URL') ?? null,
-      visual_thumbnail:  field(md, 'Canva Thumbnail') ?? null,
+      visual_thumbnail:  visualThumbnail,
       platform_variants: pollOptions || null,
     }
 
