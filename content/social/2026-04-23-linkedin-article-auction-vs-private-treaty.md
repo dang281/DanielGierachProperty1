@@ -4,12 +4,11 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as a trusted strategic adviser for Brisbane sellers
 **Content Pillar:** seller
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-23
 **Scheduled time:** 07:30
 **Visual status:** Ready
 **Image:** content/social/images/2026-04-23-article-cover.png
-**Canva Thumbnail:** https://hmwulvvwsksuyqozuxvw.supabase.co/storage/v1/object/public/social-images/2026-04-23-article-cover.png
 **Series:** Field Guide Issue 02
 
 ---

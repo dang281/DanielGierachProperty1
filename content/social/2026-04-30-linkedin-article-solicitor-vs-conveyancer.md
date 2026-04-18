@@ -4,12 +4,12 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; position Daniel as an informed guide for buyers and sellers navigating the process.
 **Content Pillar:** buyer
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-30
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/CcwzH6z-NqOOVPE
-**Canva Thumbnail:** https://design-manipulation-download.canva.com/b2337304-b622-4f00-b115-df31aa5e62e8/0000-7393158977962770648.png
+**Visual status:** Ready
+**Image:** content/social/images/2026-04-30-article-cover.png
+**Series:** Field Guide Issue 03
 
 ---
 

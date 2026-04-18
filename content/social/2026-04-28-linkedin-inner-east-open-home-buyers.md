@@ -4,12 +4,11 @@
 **Format:** Post
 **Goal:** Build Daniel's authority as the agent who genuinely understands inner east buyer behaviour. Prompt sellers to think about their preparation differently.
 **Content Pillar:** authority
-**Status:** archived
+**Status:** scheduled
 **Publish date:** 2026-04-28
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/ZNfZ5KYi16LXAqj
-**Canva Thumbnail:** https://design-manipulation-download.canva.com/04b66faf-adfb-4be1-ad67-f6c12dbbada4/0000-3913002367119826668.png
+**Visual status:** Ready
+**Image:** content/social/images/2026-04-28-linkedin-market.png
 
 ---
 
