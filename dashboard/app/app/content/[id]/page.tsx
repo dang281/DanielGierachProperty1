@@ -330,7 +330,11 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         )}
 
         {/* Caption */}
-        <Field label="Caption">
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center justify-between">
+            <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">Caption</label>
+            {!editing && item.caption && <CopyButton text={item.caption} />}
+          </div>
           {editing ? (
             <textarea
               rows={6}
@@ -343,7 +347,7 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
               {item.caption ?? <span className="text-[var(--color-cream-x)]">No caption</span>}
             </p>
           )}
-        </Field>
+        </div>
 
         {/* Objective */}
         <Field label="Objective">
@@ -500,6 +504,41 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         </button>
       </div>
     </div>
+  )
+}
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
+  function copy() {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+  return (
+    <button
+      onClick={copy}
+      className="flex items-center gap-1 text-[11px] font-sans font-semibold px-2.5 py-1 rounded-lg transition-all"
+      style={copied
+        ? { background: 'rgba(34,197,94,0.15)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.3)' }
+        : { background: 'rgba(196,145,42,0.12)', color: 'var(--color-gold)', border: '1px solid rgba(196,145,42,0.25)' }
+      }
+    >
+      {copied ? (
+        <>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Copied!
+        </>
+      ) : (
+        <>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Copy caption
+        </>
+      )}
+    </button>
   )
 }
 
