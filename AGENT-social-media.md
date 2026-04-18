@@ -320,9 +320,10 @@ node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs 
 ```
 
 **`--label` options** (choose the most accurate):
-- `MARKET UPDATE` — price data, auction results, volume stats
-- `SELLER INSIGHT` — tips or strategy for sellers
-- `BUYER INSIGHT` — tips or strategy for buyers
+- `MARKET UPDATE` — price data, auction results, volume stats, RBA decisions
+- `FIELD GUIDE` — practical checklists, how-to guides, step-by-step advice
+- `SELLER INSIGHT` — tips or strategy specifically for sellers
+- `BUYER INSIGHT` — tips or strategy specifically for buyers
 - `INNER EAST` — suburb or area-specific observations
 - `AUTHORITY` — evergreen opinion or Daniel's direct experience
 - `RATE WATCH` — RBA or lending environment posts

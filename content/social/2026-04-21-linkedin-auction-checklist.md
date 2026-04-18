@@ -1,4 +1,4 @@
-# LinkedIn Market Update - Five Things to Do Before You Walk Into an Auction
+# LinkedIn Field Guide - Five Things to Do Before You Walk Into an Auction
 
 **Platform:** LinkedIn
 **Format:** Post
