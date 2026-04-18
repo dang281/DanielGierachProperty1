@@ -7,9 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2026-05-14
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/lru6yRLierEFnjt
-**Canva Thumbnail:** [refresh on next Friday run]
+**Visual status:** Ready
+**Image:** content/social/images/2026-05-14-linkedin-article.png
 
 ---
 
