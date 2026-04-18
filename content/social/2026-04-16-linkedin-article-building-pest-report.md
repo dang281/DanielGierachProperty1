@@ -50,7 +50,7 @@ danielgierach.com/insights/building-pest-report
 
 ## Article Intro
 
-This issue of the Field Guide covers building and pest reports: what the different findings mean, how to approach major defects, and when it makes sense to negotiate rather than exit.
+A building and pest report breaks a property's condition into categories. Knowing what each one means makes it much easier to decide your next step with confidence.
 
 ## Notes for Daniel
 
