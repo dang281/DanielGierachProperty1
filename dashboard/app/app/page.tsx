@@ -1,10 +1,8 @@
 import { getContentItems } from '@/lib/actions/content'
-import { getAgents, getIssues } from '@/lib/actions/paperclip'
 import AutoRefresh from '@/components/dashboard/AutoRefresh'
 import AttentionBar from '@/components/dashboard/AttentionBar'
-import AgentStatusPanel from '@/components/dashboard/AgentStatusPanel'
-import CompactProposals from '@/components/dashboard/CompactProposals'
 import WeeklyContentReview from '@/components/dashboard/WeeklyContentReview'
+import { getIssues } from '@/lib/actions/paperclip'
 
 function todayAEST(): string {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'Australia/Brisbane' })
@@ -26,9 +24,8 @@ function nextNSlots(today: string, n: number): string[] {
 }
 
 export default async function DashboardPage() {
-  const [allItems, agents, issues] = await Promise.all([
+  const [allItems, issues] = await Promise.all([
     getContentItems(),
-    getAgents(),
     getIssues(),
   ])
 
@@ -56,10 +53,8 @@ export default async function DashboardPage() {
         </h1>
       </div>
 
-      {/* Priority alerts */}
       <AttentionBar reviewItems={reviewItems} issues={issues} />
 
-      {/* Content gaps warning */}
       {gapDates.length > 0 && (
         <div className="flex items-start gap-3 px-4 py-3 rounded-xl border"
           style={{ background: 'rgba(249,115,22,0.06)', borderColor: 'rgba(249,115,22,0.3)' }}>
@@ -77,31 +72,7 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {/* ── Content workflow — primary focus ── */}
       <WeeklyContentReview initialItems={items} today={today} />
-
-      {/* ── Agent activity — secondary / collapsed ── */}
-      <details className="group">
-        <summary className="flex items-center gap-2 cursor-pointer list-none select-none">
-          <h2 className="text-[11px] font-sans font-semibold tracking-[0.1em] uppercase text-[var(--color-cream-dim)]">
-            Agent Activity
-          </h2>
-          <div className="flex-1 h-px bg-[var(--color-border-w)]" />
-          {agents.length > 0 && (
-            <span className="text-[10px] font-sans px-2 py-0.5 rounded-full"
-              style={{ color: '#22c55e', background: 'rgba(34,197,94,0.12)' }}>
-              {agents.filter((a: { status: string }) => a.status === 'active').length} active
-            </span>
-          )}
-          <span className="text-[10px] font-sans text-[var(--color-cream-x)] group-open:hidden">▸ Show</span>
-          <span className="text-[10px] font-sans text-[var(--color-cream-x)] hidden group-open:inline">▾ Hide</span>
-        </summary>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
-          <AgentStatusPanel agents={agents} issues={issues} />
-          <CompactProposals issues={issues} agents={agents} />
-        </div>
-      </details>
-
     </div>
   )
 }
