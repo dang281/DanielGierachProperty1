@@ -4,10 +4,9 @@ import { useState, useMemo, useEffect, useTransition } from 'react'
 import Link from 'next/link'
 import type { ContentItem, Pillar } from '@/types/content'
 import { confirmSchedule, unscheduleItems } from '@/lib/actions/content'
-import CalendarClient from '../calendar/CalendarClient'
 import WeeklyContentReview from '@/components/dashboard/WeeklyContentReview'
 
-type PageMode = 'plan' | 'calendar' | 'review'
+type PageMode = 'main' | 'review'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -24,18 +23,18 @@ const SLOT_CONFIG: Record<SlotKey, {
   typeLabel: string
   color: string
 }> = {
-  w1tue: { week: 1, day: 'Tuesday',   type: 'authority',   typeLabel: 'Market / Authority', color: '#8b5cf6' },
-  w1wed: { week: 1, day: 'Wednesday', type: 'poll',        typeLabel: 'Poll',               color: '#0a66c2' },
-  w1thu: { week: 1, day: 'Thursday',  type: 'field-guide', typeLabel: 'Field Guide',        color: '#c4912a' },
-  w2tue: { week: 2, day: 'Tuesday',   type: 'authority',   typeLabel: 'Market / Authority', color: '#8b5cf6' },
-  w2wed: { week: 2, day: 'Wednesday', type: 'poll',        typeLabel: 'Poll',               color: '#0a66c2' },
-  w2thu: { week: 2, day: 'Thursday',  type: 'field-guide', typeLabel: 'Field Guide',        color: '#c4912a' },
+  w1tue: { week: 1, day: 'Tue', type: 'authority',   typeLabel: 'Market / Authority', color: '#8b5cf6' },
+  w1wed: { week: 1, day: 'Wed', type: 'poll',        typeLabel: 'Poll',               color: '#0a66c2' },
+  w1thu: { week: 1, day: 'Thu', type: 'field-guide', typeLabel: 'Field Guide',        color: '#c4912a' },
+  w2tue: { week: 2, day: 'Tue', type: 'authority',   typeLabel: 'Market / Authority', color: '#8b5cf6' },
+  w2wed: { week: 2, day: 'Wed', type: 'poll',        typeLabel: 'Poll',               color: '#0a66c2' },
+  w2thu: { week: 2, day: 'Thu', type: 'field-guide', typeLabel: 'Field Guide',        color: '#c4912a' },
 }
 
-const WEEKS: { label: string; slots: SlotKey[] }[] = [
-  { label: 'Week 1', slots: ['w1tue', 'w1wed', 'w1thu'] },
-  { label: 'Week 2', slots: ['w2tue', 'w2wed', 'w2thu'] },
-]
+// Day index within week (0 = Mon … 6 = Sun) → slot suffix, or null
+const DAY_SLOT: (string | null)[] = [null, 'tue', 'wed', 'thu', null, null, null]
+
+const DOW_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 const PILLARS: { value: Pillar; label: string; color: string }[] = [
   { value: 'buyer',     label: 'Buyer',     color: '#14b8a6' },
@@ -47,34 +46,42 @@ const PILLARS: { value: Pillar; label: string; color: string }[] = [
 
 // ── Date helpers ──────────────────────────────────────────────────────────────
 
-// baseDate: Brisbane "today" as YYYY-MM-DD (UTC+10, computed server-side)
-// offset: week offset from the default window (0 = upcoming Mon week)
-function getTwoWeekDates(baseDate: string, offset: number): Dates {
+function getMondayUTC(baseDate: string, offset: number): Date {
   const [y, m, d] = baseDate.split('-').map(Number)
   const now = new Date(Date.UTC(y, m - 1, d))
   const dow   = now.getUTCDay()
   const toMon = dow === 0 ? 1 : dow === 1 ? 0 : 8 - dow
+  const mon = new Date(now)
+  mon.setUTCDate(mon.getUTCDate() + toMon + offset * 7)
+  return mon
+}
 
-  const add = (days: number): string => {
-    const dt = new Date(now)
-    dt.setUTCDate(dt.getUTCDate() + days + offset * 7)
-    return dt.toISOString().split('T')[0]
+// Returns [[7 ISO dates for week1], [7 ISO dates for week2]]
+function getTwoWeeks(baseDate: string, offset: number): [string[], string[]] {
+  const mon1 = getMondayUTC(baseDate, offset)
+  const mon2 = new Date(mon1); mon2.setUTCDate(mon1.getUTCDate() + 7)
+  const toISO = (mon: Date, di: number) => {
+    const d = new Date(mon); d.setUTCDate(mon.getUTCDate() + di)
+    return d.toISOString().split('T')[0]
   }
+  return [
+    Array.from({ length: 7 }, (_, i) => toISO(mon1, i)),
+    Array.from({ length: 7 }, (_, i) => toISO(mon2, i)),
+  ]
+}
 
+// Derive the 6-key Dates record from two full weeks
+function datesToSlots(weeks: [string[], string[]]): Dates {
   return {
-    w1tue: add(toMon + 1),
-    w1wed: add(toMon + 2),
-    w1thu: add(toMon + 3),
-    w2tue: add(toMon + 8),
-    w2wed: add(toMon + 9),
-    w2thu: add(toMon + 10),
+    w1tue: weeks[0][1], w1wed: weeks[0][2], w1thu: weeks[0][3],
+    w2tue: weeks[1][1], w2wed: weeks[1][2], w2thu: weeks[1][3],
   }
 }
 
 function fmtDate(iso: string): string {
-  const parts  = iso.split('-').map(Number)
+  const [, m, d] = iso.split('-').map(Number)
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  return `${parts[2]} ${months[parts[1] - 1]}`
+  return `${d} ${months[m - 1]}`
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -133,19 +140,20 @@ export default function PlanningClient({
   today:               string
   nextFieldGuideIssue: number
 }) {
-  const [pageMode, setPageMode] = useState<PageMode>('plan')
+  const [pageMode,     setPageMode]     = useState<PageMode>('main')
   const [weekOffset,   setWeekOffset]   = useState(0)
   const [activeSlot,   setActiveSlot]   = useState<SlotKey | null>(null)
   const [pillarFilter, setPillarFilter] = useState<Pillar | null>(null)
   const [confirmed,    setConfirmed]    = useState(false)
   const [isPending,    startTransition] = useTransition()
 
-  const currentDates = useMemo(
-    () => getTwoWeekDates(baseDate, weekOffset),
+  const currentWeeks = useMemo(
+    () => getTwoWeeks(baseDate, weekOffset),
     [baseDate, weekOffset],
   )
+  const currentDates = useMemo(() => datesToSlots(currentWeeks), [currentWeeks])
 
-  // Deduplicate library by title — prefer entry with visual_thumbnail
+  // Deduplicate library by title
   const deduplicatedLibrary = useMemo(() => {
     const seen = new Map<string, ContentItem>()
     for (const post of libraryPosts) {
@@ -158,7 +166,6 @@ export default function PlanningClient({
     return Array.from(seen.values())
   }, [libraryPosts])
 
-  // Pre-filled from allScheduled for current week's slot dates
   const preFilled = useMemo(() => {
     const slotDates = new Set(Object.values(currentDates))
     return allScheduled.filter(p => p.scheduled_date && slotDates.has(p.scheduled_date))
@@ -167,12 +174,11 @@ export default function PlanningClient({
   const initialSlots = useMemo(
     () => buildSeedSlots(currentDates, preFilled, deduplicatedLibrary),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [], // only for mount — weekOffset changes trigger the effect below
+    [],
   )
 
   const [slots, setSlots] = useState<Partial<Record<SlotKey, ContentItem>>>(initialSlots)
 
-  // Re-seed slots whenever the user navigates to a different week
   useEffect(() => {
     setSlots(buildSeedSlots(currentDates, preFilled, deduplicatedLibrary))
     setActiveSlot(null)
@@ -199,6 +205,18 @@ export default function PlanningClient({
   const suggestions = useMemo(() => filteredLibrary.slice(0, 3), [filteredLibrary])
   const rest        = useMemo(() => filteredLibrary.slice(3),    [filteredLibrary])
   const filledCount = Object.values(slots).filter(Boolean).length
+
+  // Calendar items indexed by date
+  const calByDate = useMemo(() => {
+    const m = new Map<string, ContentItem[]>()
+    for (const item of calendarItems) {
+      if (!item.scheduled_date) continue
+      const arr = m.get(item.scheduled_date) ?? []
+      arr.push(item)
+      m.set(item.scheduled_date, arr)
+    }
+    return m
+  }, [calendarItems])
 
   function assignPost(post: ContentItem) {
     if (!activeSlot) return
@@ -239,6 +257,30 @@ export default function PlanningClient({
     return <ConfirmedState slots={slots} dates={currentDates} onUndo={() => setConfirmed(false)} />
   }
 
+  if (pageMode === 'review') {
+    return (
+      <div className="flex flex-col gap-5 pb-16">
+        <div className="flex items-center gap-3 flex-wrap">
+          <div>
+            <p className="text-[11px] font-sans font-bold tracking-[0.18em] uppercase mb-1"
+              style={{ color: 'var(--color-gold)' }}>Schedule</p>
+            <h1 className="text-2xl font-serif font-normal" style={{ color: 'var(--color-cream)' }}>Post Review</h1>
+          </div>
+          <div className="ml-auto">
+            <button
+              onClick={() => setPageMode('main')}
+              className="px-4 py-1.5 rounded-xl text-xs font-sans font-semibold border transition-colors"
+              style={{ color: 'var(--color-cream-dim)', borderColor: 'var(--color-border-w)', background: 'var(--color-card)' }}
+            >
+              ← Back to Schedule
+            </button>
+          </div>
+        </div>
+        <WeeklyContentReview initialItems={reviewItems} today={today} />
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col gap-5 pb-16">
 
@@ -250,117 +292,86 @@ export default function PlanningClient({
             Schedule
           </p>
           <h1 className="text-2xl font-serif font-normal" style={{ color: 'var(--color-cream)' }}>
-            {pageMode === 'plan' ? 'Two-Week Planner' : pageMode === 'review' ? 'Post Review' : 'Content Calendar'}
+            Two-Week Planner
           </h1>
-          {pageMode === 'plan' && (
-            <p className="text-xs mt-0.5 font-sans" style={{ color: 'var(--color-cream-x)' }}>
-              {fmtDate(currentDates.w1tue)}–{fmtDate(currentDates.w1thu)}
-              &nbsp;·&nbsp;
-              {fmtDate(currentDates.w2tue)}–{fmtDate(currentDates.w2thu)}
-              &nbsp;·&nbsp; LinkedIn
-            </p>
-          )}
+          <p className="text-xs mt-0.5 font-sans" style={{ color: 'var(--color-cream-x)' }}>
+            {fmtDate(currentWeeks[0][0])} – {fmtDate(currentWeeks[1][6])} · LinkedIn
+          </p>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
-          {/* Plan / Calendar / Review toggle */}
-          <div className="flex rounded-xl overflow-hidden"
+          {/* Review button */}
+          <button
+            onClick={() => setPageMode('review')}
+            className="px-4 py-1.5 rounded-xl text-xs font-sans font-semibold border transition-colors"
+            style={{ color: 'var(--color-cream-dim)', borderColor: 'var(--color-border-w)', background: 'var(--color-card)' }}
+          >
+            {reviewItems.length > 0 ? `Review (${reviewItems.length})` : 'Review'}
+          </button>
+
+          {/* Week navigation */}
+          <div className="flex items-center gap-0 rounded-xl overflow-hidden"
             style={{ border: '1px solid var(--color-border-w)' }}>
-            {([
-              { m: 'plan',     label: 'Plan'     },
-              { m: 'calendar', label: 'Calendar' },
-              { m: 'review',   label: reviewItems.length > 0 ? `Review (${reviewItems.length})` : 'Review' },
-            ] as { m: PageMode; label: string }[]).map(({ m, label }) => (
-              <button
-                key={m}
-                onClick={() => setPageMode(m)}
-                className="px-4 py-1.5 text-xs font-sans font-semibold transition-colors"
-                style={pageMode === m
-                  ? { background: 'var(--color-gold)', color: '#0a0806' }
-                  : { background: 'var(--color-card)', color: 'var(--color-cream-dim)' }}
-              >
-                {label}
-              </button>
-            ))}
+            <button
+              onClick={() => setWeekOffset(o => o - 1)}
+              className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
+              style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
+            >
+              ← Prev
+            </button>
+            <button
+              onClick={() => setWeekOffset(0)}
+              className="px-3 py-1.5 text-xs font-sans border-l border-r transition-colors"
+              style={{
+                color: weekOffset === 0 ? 'var(--color-gold)' : 'var(--color-cream-x)',
+                background: weekOffset === 0 ? 'rgba(196,145,42,0.08)' : 'var(--color-card)',
+                borderColor: 'var(--color-border-w)',
+              }}
+            >
+              This Week
+            </button>
+            <button
+              onClick={() => setWeekOffset(o => o + 1)}
+              className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
+              style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
+            >
+              Next →
+            </button>
           </div>
 
-          {/* Plan-mode controls */}
-          {pageMode === 'plan' && (
+          {filledCount > 0 && (
             <>
-              {/* Week navigation */}
-              <div className="flex items-center gap-1 rounded-xl overflow-hidden"
-                style={{ border: '1px solid var(--color-border-w)' }}>
-                <button
-                  onClick={() => setWeekOffset(o => o - 1)}
-                  className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
-                  style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
-                >
-                  ← Prev
-                </button>
-                <button
-                  onClick={() => setWeekOffset(0)}
-                  className="px-3 py-1.5 text-xs font-sans border-l border-r transition-colors"
-                  style={{
-                    color: weekOffset === 0 ? 'var(--color-gold)' : 'var(--color-cream-x)',
-                    background: weekOffset === 0 ? 'rgba(196,145,42,0.08)' : 'var(--color-card)',
-                    borderColor: 'var(--color-border-w)',
-                  }}
-                >
-                  This Week
-                </button>
-                <button
-                  onClick={() => setWeekOffset(o => o + 1)}
-                  className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
-                  style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
-                >
-                  Next →
-                </button>
-              </div>
-
-              {filledCount > 0 && (
-                <>
-                  <button
-                    onClick={clearAllSlots}
-                    className="px-4 py-2.5 rounded-xl text-sm font-sans font-medium transition-all"
-                    style={{ color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)', background: 'var(--color-card)' }}
-                  >
-                    Clear all
-                  </button>
-                  <button
-                    onClick={handleConfirm}
-                    disabled={isPending}
-                    className="px-5 py-2.5 rounded-xl text-sm font-sans font-semibold transition-all disabled:opacity-50"
-                    style={{ background: 'var(--color-gold)', color: '#0a0806' }}
-                  >
-                    {isPending ? 'Scheduling…' : `Confirm ${filledCount} of 6 →`}
-                  </button>
-                </>
-              )}
+              <button
+                onClick={clearAllSlots}
+                className="px-4 py-2.5 rounded-xl text-sm font-sans font-medium transition-all"
+                style={{ color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)', background: 'var(--color-card)' }}
+              >
+                Clear all
+              </button>
+              <button
+                onClick={handleConfirm}
+                disabled={isPending}
+                className="px-5 py-2.5 rounded-xl text-sm font-sans font-semibold transition-all disabled:opacity-50"
+                style={{ background: 'var(--color-gold)', color: '#0a0806' }}
+              >
+                {isPending ? 'Scheduling…' : `Confirm ${filledCount} of 6 →`}
+              </button>
             </>
           )}
         </div>
       </div>
 
-      {/* ── Calendar mode ── */}
-      {pageMode === 'calendar' && (
-        <CalendarClient items={calendarItems} today={today} defaultView="twoweek" />
-      )}
+      {/* ── Main grid + library ── */}
+      <div className="flex gap-5 items-start">
 
-      {/* ── Review mode ── */}
-      {pageMode === 'review' && (
-        <WeeklyContentReview initialItems={reviewItems} today={today} />
-      )}
-
-      {/* ── Plan mode body ── */}
-      {pageMode === 'plan' && <div className="flex gap-5 items-start">
-
-        {/* ── Calendar ── */}
+        {/* ── Two-week grid ── */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
-          {WEEKS.map(({ label, slots: slotKeys }) => {
-            const d0 = currentDates[slotKeys[0]]
-            const d2 = currentDates[slotKeys[2]]
+          {currentWeeks.map((weekDates, wi) => {
+            const label = `Week ${wi + 1}`
+            const d0    = weekDates[0]
+            const d6    = weekDates[6]
             return (
-              <div key={label}
+              <div key={wi}
                 className="rounded-2xl overflow-hidden border border-[var(--color-border-w)]"
                 style={{ background: 'var(--color-card)' }}>
 
@@ -368,23 +379,43 @@ export default function PlanningClient({
                   <span className="text-[11px] font-sans font-bold tracking-[0.15em] uppercase"
                     style={{ color: 'var(--color-gold)' }}>{label}</span>
                   <span className="text-[11px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
-                    {fmtDate(d0)} – {fmtDate(d2)}
+                    {fmtDate(d0)} – {fmtDate(d6)}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-3 divide-x divide-[var(--color-border-w)]">
-                  {slotKeys.map(sk => (
-                    <SlotCard
-                      key={sk}
-                      slotKey={sk}
-                      date={currentDates[sk]}
-                      post={slots[sk] ?? null}
-                      isActive={activeSlot === sk}
-                      issueNum={issueFor(sk)}
-                      onToggle={() => toggleSlot(sk)}
-                      onRemove={() => removePost(sk)}
-                    />
-                  ))}
+                <div className="grid grid-cols-7 divide-x divide-[var(--color-border-w)]">
+                  {weekDates.map((isoDate, di) => {
+                    const suffix   = DAY_SLOT[di]
+                    const slotKey  = suffix ? (`w${wi + 1}${suffix}` as SlotKey) : null
+                    const isToday  = isoDate === today
+                    const calItems = calByDate.get(isoDate) ?? []
+
+                    if (slotKey) {
+                      return (
+                        <SlotCard
+                          key={di}
+                          slotKey={slotKey}
+                          date={isoDate}
+                          post={slots[slotKey] ?? null}
+                          isActive={activeSlot === slotKey}
+                          isToday={isToday}
+                          issueNum={issueFor(slotKey)}
+                          onToggle={() => toggleSlot(slotKey)}
+                          onRemove={() => removePost(slotKey)}
+                        />
+                      )
+                    }
+
+                    return (
+                      <DayCell
+                        key={di}
+                        label={DOW_LABELS[di]}
+                        date={isoDate}
+                        isToday={isToday}
+                        items={calItems}
+                      />
+                    )
+                  })}
                 </div>
               </div>
             )
@@ -392,7 +423,7 @@ export default function PlanningClient({
         </div>
 
         {/* ── Library ── */}
-        <div className="w-72 xl:w-80 flex-shrink-0 flex flex-col gap-3 sticky top-20"
+        <div className="w-64 xl:w-72 flex-shrink-0 flex flex-col gap-3 sticky top-20"
           style={{ maxHeight: 'calc(100vh - 120px)' }}>
 
           <div className="flex items-center justify-between">
@@ -437,9 +468,7 @@ export default function PlanningClient({
             {filteredLibrary.length === 0 ? (
               <div className="rounded-xl py-10 text-center"
                 style={{ border: '1px dashed var(--color-border-w)' }}>
-                <p className="text-xs font-sans" style={{ color: 'var(--color-cream-x)' }}>
-                  No posts match
-                </p>
+                <p className="text-xs font-sans" style={{ color: 'var(--color-cream-x)' }}>No posts match</p>
               </div>
             ) : (
               <>
@@ -462,104 +491,134 @@ export default function PlanningClient({
             )}
           </div>
         </div>
-      </div>}
+      </div>
+    </div>
+  )
+}
+
+// ── DayCell — non-posting day ─────────────────────────────────────────────────
+
+function DayCell({ label, date, isToday, items }: {
+  label:   string
+  date:    string
+  isToday: boolean
+  items:   ContentItem[]
+}) {
+  const dayNum = date.split('-')[2].replace(/^0/, '')
+  return (
+    <div className="flex flex-col p-2.5 min-h-[140px]"
+      style={{
+        background: isToday ? 'rgba(196,145,42,0.05)' : 'transparent',
+        opacity: 0.6,
+      }}>
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[10px] font-sans font-bold"
+          style={{ color: isToday ? 'var(--color-gold)' : 'var(--color-cream-x)' }}>
+          {label}
+        </span>
+        <span className="text-[10px] font-sans tabular-nums"
+          style={{ color: isToday ? 'var(--color-gold)' : 'var(--color-cream-x)' }}>
+          {dayNum}
+        </span>
+      </div>
+      {items.map((item, i) => (
+        <div key={i} className="mb-1">
+          <p className="text-[8px] font-sans leading-tight line-clamp-2"
+            style={{ color: 'var(--color-cream-dim)' }}>
+            {shortTitle(item.title)}
+          </p>
+        </div>
+      ))}
     </div>
   )
 }
 
 // ── SlotCard ──────────────────────────────────────────────────────────────────
 
-function SlotCard({ slotKey, date, post, isActive, issueNum, onToggle, onRemove }: {
+function SlotCard({ slotKey, date, post, isActive, isToday, issueNum, onToggle, onRemove }: {
   slotKey:  SlotKey
   date:     string
   post:     ContentItem | null
   isActive: boolean
+  isToday:  boolean
   issueNum: number | null
   onToggle: () => void
   onRemove: () => void
 }) {
   const cfg     = SLOT_CONFIG[slotKey]
   const isEmpty = !post
+  const dayNum  = date.split('-')[2].replace(/^0/, '')
 
   return (
     <div
-      className="flex flex-col p-4 transition-all"
+      className="flex flex-col p-2.5 transition-all min-h-[140px]"
       style={{
-        minHeight: 220,
         cursor: isEmpty ? 'pointer' : 'default',
-        background: isActive ? 'rgba(196,145,42,0.05)' : 'transparent',
+        background: isActive
+          ? 'rgba(196,145,42,0.05)'
+          : isToday
+          ? 'rgba(196,145,42,0.04)'
+          : 'transparent',
         outline: isActive ? '2px solid rgba(196,145,42,0.35)' : 'none',
         outlineOffset: -2,
       }}
       onClick={isEmpty ? onToggle : undefined}
     >
-      <div className="flex items-start justify-between gap-1 mb-2">
-        <div>
-          <p className="text-[11px] font-sans font-semibold" style={{ color: 'var(--color-cream)' }}>
-            {cfg.day}
-          </p>
-          <p className="text-[10px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
-            {fmtDate(date)} · 07:30
-          </p>
-        </div>
-        <span
-          className="text-[8px] font-sans font-bold tracking-wider uppercase px-1.5 py-0.5 rounded-full flex-shrink-0"
-          style={{ background: cfg.color + '18', color: cfg.color, border: `1px solid ${cfg.color}28` }}
-        >
-          {cfg.typeLabel.split(' ')[0]}
+      {/* Day header */}
+      <div className="flex items-center justify-between mb-1">
+        <span className="text-[10px] font-sans font-bold"
+          style={{ color: isToday ? 'var(--color-gold)' : 'var(--color-cream-dim)' }}>
+          {cfg.day}
+        </span>
+        <span className="text-[10px] font-sans tabular-nums"
+          style={{ color: isToday ? 'var(--color-gold)' : 'var(--color-cream-x)' }}>
+          {dayNum}
         </span>
       </div>
 
-      <p className="text-[9px] font-sans uppercase tracking-widest mb-3" style={{ color: cfg.color, opacity: 0.7 }}>
-        {cfg.typeLabel}{issueNum != null ? ` · Issue ${issueNum}` : ''}
-      </p>
+      {/* Type label */}
+      <span
+        className="text-[8px] font-sans font-bold tracking-wider uppercase px-1 py-0.5 rounded self-start mb-2"
+        style={{ background: cfg.color + '18', color: cfg.color }}>
+        {cfg.typeLabel.split(' ')[0]}{issueNum != null ? ` ${issueNum}` : ''}
+      </span>
 
       {post ? (
-        <div className="flex flex-col gap-2.5 flex-1">
+        <div className="flex flex-col gap-1.5 flex-1">
           {post.visual_thumbnail ? (
             <img
               src={post.visual_thumbnail}
               alt=""
-              className="w-full rounded-lg object-contain"
-              style={{ maxHeight: 100, background: '#0a0806' }}
+              className="w-full rounded object-contain"
+              style={{ maxHeight: 70, background: '#0a0806' }}
             />
           ) : (
-            <div className="w-full rounded-lg flex items-center justify-center"
-              style={{ height: 60, background: 'rgba(0,0,0,0.25)', border: '1px dashed rgba(240,236,228,0.1)' }}>
-              <span className="text-[9px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
-                Visual needed
-              </span>
+            <div className="w-full rounded flex items-center justify-center"
+              style={{ height: 40, background: 'rgba(0,0,0,0.2)', border: '1px dashed rgba(240,236,228,0.08)' }}>
+              <span className="text-[8px] font-sans" style={{ color: 'var(--color-cream-x)' }}>No visual</span>
             </div>
           )}
-          <p className="text-[11px] font-sans font-medium leading-snug flex-1"
-            style={{ color: 'var(--color-cream)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+          <p className="text-[10px] font-sans font-medium leading-snug flex-1"
+            style={{ color: 'var(--color-cream)', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
             {shortTitle(post.title)}
           </p>
           <button
             onClick={e => { e.stopPropagation(); onRemove() }}
-            className="text-[9px] font-sans font-semibold self-start px-2 py-0.5 rounded transition-colors"
+            className="text-[8px] font-sans font-semibold self-start px-1.5 py-0.5 rounded transition-colors"
             style={{ color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)' }}
           >
             Remove
           </button>
         </div>
       ) : (
-        <div className="flex-1 flex flex-col items-center justify-center gap-1.5 rounded-xl transition-all"
-          style={{ border: `1.5px dashed ${isActive ? 'rgba(196,145,42,0.5)' : 'rgba(240,236,228,0.08)'}` }}>
+        <div className="flex-1 flex flex-col items-center justify-center gap-1 rounded-lg transition-all"
+          style={{ border: `1px dashed ${isActive ? 'rgba(196,145,42,0.5)' : 'rgba(240,236,228,0.08)'}` }}>
           {isActive ? (
-            <>
-              <span className="text-lg">←</span>
-              <p className="text-[10px] font-sans text-center px-2" style={{ color: 'var(--color-gold)' }}>
-                Pick from library
-              </p>
-            </>
+            <p className="text-[9px] font-sans text-center px-1" style={{ color: 'var(--color-gold)' }}>
+              ← Pick
+            </p>
           ) : (
-            <>
-              <span className="text-xl font-light" style={{ color: 'rgba(240,236,228,0.15)' }}>+</span>
-              <p className="text-[10px] font-sans text-center" style={{ color: 'var(--color-cream-x)' }}>
-                Click to assign
-              </p>
-            </>
+            <p className="text-[9px] font-sans text-center" style={{ color: 'rgba(240,236,228,0.2)' }}>+</p>
           )}
         </div>
       )}
@@ -584,27 +643,22 @@ function LibraryCard({ post, onAssign, highlighted = false }: {
       className="w-full text-left rounded-xl p-3 transition-all hover:brightness-110"
       style={{
         background: highlighted ? 'rgba(196,145,42,0.06)' : 'var(--color-card)',
-        border: highlighted
-          ? '1px solid rgba(196,145,42,0.3)'
-          : '1px solid var(--color-border-w)',
+        border: highlighted ? '1px solid rgba(196,145,42,0.3)' : '1px solid var(--color-border-w)',
       }}
     >
       <div className="flex items-center gap-2.5">
         {post.visual_thumbnail ? (
-          <img
-            src={post.visual_thumbnail}
-            alt=""
-            className="w-14 h-14 rounded-lg object-contain flex-shrink-0"
-            style={{ background: '#0a0806' }}
-          />
+          <img src={post.visual_thumbnail} alt=""
+            className="w-12 h-12 rounded-lg object-contain flex-shrink-0"
+            style={{ background: '#0a0806' }} />
         ) : (
-          <div className="w-14 h-14 rounded-lg flex-shrink-0 flex items-center justify-center"
+          <div className="w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center"
             style={{ background: 'rgba(0,0,0,0.3)', border: '1px dashed rgba(240,236,228,0.1)' }}>
-            <span style={{ color: 'rgba(240,236,228,0.2)', fontSize: 18 }}>?</span>
+            <span style={{ color: 'rgba(240,236,228,0.2)', fontSize: 16 }}>?</span>
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <p className="text-[11px] font-sans font-medium leading-snug mb-1.5"
+          <p className="text-[11px] font-sans font-medium leading-snug mb-1"
             style={{ color: 'var(--color-cream)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
             {shortTitle(post.title)}
           </p>
@@ -703,7 +757,7 @@ function ConfirmedState({ slots, dates, onUndo }: {
             {needsVisual.length} post{needsVisual.length > 1 ? 's need' : ' needs'} a visual
           </p>
           <p className="text-[11px] font-sans mb-3" style={{ color: 'var(--color-cream-x)' }}>
-            Run the generation script in your terminal. The post details are in its markdown file.
+            Use the Review tab to generate visuals inline.
           </p>
           <div className="flex flex-col gap-2">
             {needsVisual.map(([key, post]) => (
