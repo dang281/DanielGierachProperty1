@@ -36,6 +36,8 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   const [reviewText, setReviewText] = useState('')
   const [reviewSent, setReviewSent] = useState(false)
   const [agentNotified, setAgentNotified] = useState<string | null>(null)
+  const [editingCaption, setEditingCaption] = useState(false)
+  const [captionDraft, setCaptionDraft] = useState('')
 
   useEffect(() => {
     params.then(({ id }) => {
@@ -81,6 +83,24 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
       setItem({ ...item!, ...form } as ContentItem)
       setEditing(false)
     })
+  }
+
+  function startEditCaption() {
+    setCaptionDraft(item!.caption ?? '')
+    setEditingCaption(true)
+  }
+
+  function saveCaption() {
+    startTransition(async () => {
+      await updateItem(item!.id, { caption: captionDraft || null })
+      setItem({ ...item!, caption: captionDraft || null })
+      setEditingCaption(false)
+    })
+  }
+
+  function cancelEditCaption() {
+    setEditingCaption(false)
+    setCaptionDraft('')
   }
 
   function handleDelete() {
@@ -336,13 +356,54 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
             <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">Caption</label>
-            {!editing && item.caption && <CopyButton text={item.caption} />}
+            <div className="flex items-center gap-2">
+              {!editing && item.caption && !editingCaption && <CopyButton text={item.caption} />}
+              {!editing && !editingCaption && (
+                <button
+                  onClick={startEditCaption}
+                  className="flex items-center gap-1 text-[11px] font-sans font-semibold px-2.5 py-1 rounded-lg transition-all"
+                  style={{ background: 'rgba(240,236,228,0.06)', color: 'var(--color-cream-dim)', border: '1px solid rgba(240,236,228,0.12)' }}
+                >
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  Edit
+                </button>
+              )}
+              {editingCaption && (
+                <>
+                  <button
+                    onClick={cancelEditCaption}
+                    className="text-[11px] font-sans px-2.5 py-1 rounded-lg border border-[var(--color-border-w)] text-[var(--color-cream-dim)] transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={saveCaption}
+                    disabled={isPending}
+                    className="text-[11px] font-sans font-semibold px-2.5 py-1 rounded-lg transition-all disabled:opacity-50"
+                    style={{ background: 'rgba(196,145,42,0.15)', color: 'var(--color-gold)', border: '1px solid rgba(196,145,42,0.3)' }}
+                  >
+                    {isPending ? 'Saving…' : 'Save'}
+                  </button>
+                </>
+              )}
+            </div>
           </div>
           {editing ? (
             <textarea
               rows={6}
               value={form.caption ?? ''}
               onChange={e => handleChange('caption', e.target.value || null)}
+              className={inputClass + ' resize-y'}
+            />
+          ) : editingCaption ? (
+            <textarea
+              rows={10}
+              autoFocus
+              value={captionDraft}
+              onChange={e => setCaptionDraft(e.target.value)}
               className={inputClass + ' resize-y'}
             />
           ) : (
