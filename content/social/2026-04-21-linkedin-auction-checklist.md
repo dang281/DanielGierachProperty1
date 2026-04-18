@@ -38,10 +38,6 @@ Any questions before auction day, danielgierach.com.
 #DanielGierach
 #InnerEastBrisbane
 
-## Article Intro
-
-Here's a little information to help when you're preparing for your next auction.
-
 ## Notes for Daniel
 
 **Confidence: Ready**
