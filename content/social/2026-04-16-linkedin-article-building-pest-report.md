@@ -32,12 +32,10 @@ danielgierach.com/insights/building-pest-report
 ## Hashtags
 
 #BrisbaneProperty
-#BrisbaneRealEstate
 #BuyingProperty
 #BuildingAndPest
 #DanielGierach
 #InnerEastBrisbane
-#BrisbaneBuyers
 
 ## Visual Brief
 

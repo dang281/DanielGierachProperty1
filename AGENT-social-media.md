@@ -178,12 +178,11 @@ Write file: `content/social/[NEXT_FRI]-linkedin-[suburb]-suburb-spotlight.md`
 
 ## Hashtags
 
-#BrisbaneProperty
-#BrisbaneRealEstate
-#InnerEastBrisbane
-#RayWhiteBulimba
-#DanielGierach
-[2–5 topic-specific tags]
+[Exactly 4–5 hashtags. No more. LinkedIn penalises posts with 6+ hashtags.
+Pick the most relevant — no duplicates of meaning (e.g. never use both
+#BrisbaneProperty and #BrisbaneRealEstate in the same post).
+Always include #DanielGierach. Always include one geographic tag.
+Always include one topic-specific tag directly relevant to this post.]
 
 ## Notes for Daniel
 
@@ -221,10 +220,9 @@ Write file: `content/social/[NEXT_FRI]-linkedin-[suburb]-suburb-spotlight.md`
 
 ## Hashtags
 
-#BrisbaneProperty
-#BrisbaneRealEstate
-#DanielGierach
-[2–3 topic-specific tags]
+[Exactly 4–5 hashtags. No more. LinkedIn penalises posts with 6+ hashtags.
+Always include #DanielGierach. Always include one geographic tag.
+Always include one topic-specific tag directly relevant to this post.]
 
 ## Notes for Daniel
 
@@ -257,14 +255,9 @@ Write file: `content/social/[NEXT_FRI]-linkedin-[suburb]-suburb-spotlight.md`
 
 ## Hashtags
 
-#[Suburb]
-#BrisbaneSouthSide (or #BrisbaneEastSide etc. — match the geography)
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+[Exactly 3–5 hashtags. Facebook rewards fewer, more specific tags.
+Always include #DanielGierach. Always include the suburb name as a tag.
+One broad property tag (#BrisbaneProperty or #BrisbaneRealEstate — pick one only).]
 
 ## Visual Brief
 
