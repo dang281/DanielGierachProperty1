@@ -357,7 +357,7 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           <div className="flex items-center justify-between">
             <label className="text-[var(--color-cream-dim)] text-xs tracking-wide uppercase font-sans">Caption</label>
             <div className="flex items-center gap-2">
-              {!editing && item.caption && !editingCaption && <CopyButton text={item.caption} />}
+              {!editing && item.caption && !editingCaption && <CopyButton text={item.caption} normalise />}
               {!editing && !editingCaption && (
                 <button
                   onClick={startEditCaption}
@@ -571,10 +571,31 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   )
 }
 
-function CopyButton({ text, label = 'Copy caption' }: { text: string; label?: string }) {
+// Normalise caption for clipboard: collapse hashtag lines into a single space-separated line
+function normaliseForCopy(text: string): string {
+  const lines = text.split('\n')
+  const out: string[] = []
+  const hashtagBlock: string[] = []
+  for (const line of lines) {
+    if (line.trim().startsWith('#')) {
+      hashtagBlock.push(line.trim())
+    } else {
+      if (hashtagBlock.length) {
+        out.push(hashtagBlock.join(' '))
+        hashtagBlock.length = 0
+      }
+      out.push(line)
+    }
+  }
+  if (hashtagBlock.length) out.push(hashtagBlock.join(' '))
+  // Collapse 3+ consecutive blank lines to 2
+  return out.join('\n').replace(/\n{3,}/g, '\n\n').trim()
+}
+
+function CopyButton({ text, label = 'Copy caption', normalise = false }: { text: string; label?: string; normalise?: boolean }) {
   const [copied, setCopied] = useState(false)
   function copy() {
-    navigator.clipboard.writeText(text)
+    navigator.clipboard.writeText(normalise ? normaliseForCopy(text) : text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
