@@ -14,37 +14,29 @@
 
 ## Caption
 
-Autumn and winter buyer activity in Carindale tends to be more focused than the spring rush, with fewer casual lookers and more buyers who have done their research and are ready to move. That shift in buyer quality through the cooler months is worth understanding if you are an owner considering when to come to market.
+Carindale's property market is driven largely by families, and understanding that buyer profile explains why the suburb performs the way it does. The buyer who is looking for a four-bedroom home with a pool, a double garage and a yard for children, within reach of a major shopping centre and without the price of a fully inner-suburban address, finds that Carindale consistently satisfies that search brief.
 
-Carindale's housing stock skews toward larger homes with multiple living areas, double garages, and outdoor entertaining spaces that were designed for family use. That makes the suburb particularly appealing to buyers who are upgrading from a smaller home in Carina or Camp Hill and need the extra square metres that Carindale's typical build size provides. The suburb's blocks also tend to be larger than what is available closer to the city at a comparable price, which is an ongoing draw.
+The Minnippi Parkland network running along Bulimba Creek is an amenity that residents use in ways that show up in how long they stay. Dog walkers, cyclists, weekend family users: the park draws daily and repeated use from the suburb's population, and that embedded habit of outdoor activity is part of what makes Carindale a suburb where buyers intend to stay rather than trade up from quickly.
 
-Bulimba Creek and its parkland corridor through Carindale provides a recreational asset that runs along the suburb's western and southern edges, with the linear park suitable for cycling and walking connections through to the Belmont area. The Gateway Motorway interchange nearby gives residents flexibility to travel north or south without navigating inner-suburban streets.
+Westfield Carindale's scale means the suburb is fully self-sufficient for retail, dining and services, and that convenience factor reduces the friction of everyday life in a way that buyers from less well-served suburbs find genuinely appealing. The combination of parkland and major retail in one suburb is not something the market takes for granted.
 
-If you own in Carindale and are weighing a sale against a renovation or hold strategy, understanding the current market value is the foundation of that decision. danielgierach.com/suburbs/carindale
+Homes on the quieter cul-de-sac streets around the eastern perimeter of the suburb attract buyers who want safety and low traffic for children without sacrificing the access that the suburb's main roads provide. Those properties sell on the specific quality of their setting, and buyers who find them are usually prepared to move decisively. If you are a Carindale homeowner thinking about timing this winter, begin at danielgierach.com/suburbs/carindale.
 
 ## Hashtags
 
-#Carindale
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Carindale #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** CARINDALE
 **Body text:**
-- Large family homes, Bulimba Creek parkland corridor
-- Strong upsizer demand from inner-east buyers
+- Minnippi Parkland creek trail and Westfield Carindale within the suburb
+- Family-focused cul-de-sac streets with low turnover and active buyer pools
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Carindale]
-[Boost targeting: upsizer families 38-58, Carindale, Carina Heights, Belmont]
+[VERIFY: Minnippi Parkland trail network current access points before posting]
+[First comment: this is a second Carindale post; angle is family buyer profile and liveability depth]

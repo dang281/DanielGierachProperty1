@@ -14,37 +14,29 @@
 
 ## Caption
 
-Holland Park has the kind of block sizes that inner-Brisbane buyers will drive half an hour to inspect. Lots of 600 to 800 square metres are common throughout the suburb's grid of residential streets, and at this distance from the CBD, that land size is increasingly competitive to find. The suburb sits on the south side of the Stanley Street corridor, roughly eight kilometres from the city, and its street appeal comes from the consistency of post-war brick and timber housing that has aged gracefully on wide, tree-lined streets.
+Holland Park occupies a comfortable position in Brisbane's inner-south property market, one where the land sizes are generous, the streets are quiet, and the price point remains accessible relative to neighbours like Coorparoo and Camp Hill. The streets around Cavendish Road East, Juliette Street and the elevated pockets near Marshall Road offer a mix of postwar character homes and more recent renovations that appeal to a broad buyer demographic.
 
-Marshall Road and Logan Road form the main commercial spines for residents, with cafes, butchers, and local service businesses creating a strip that feels neighbourhood-focused rather than destination-oriented. The proximity of Holland Park to Greenslopes and Coorparoo gives the suburb access to a broader retail and dining offer without being embedded in the traffic of busier centres.
+The suburb's proximity to Holland Park State High School is a meaningful factor for families. Secondary school catchments carry real weight in this part of Brisbane, and having one of the city's established state high schools within the suburb boundary influences both who buys and how long they stay. That residential stability is reflected in the condition of housing stock across the suburb.
 
-Holland Park State School is the primary catchment for much of the suburb, and Cavendish Road State High School is the secondary draw, with both schools consistently factoring into the decision-making of buying families. The suburb tends to attract a mix of long-term owner-occupiers, families upsizing from Greenslopes and Coorparoo, and investors drawn to the rental demand from hospital workers at nearby Greenslopes Private.
+Greenbank Street and the surrounding residential grid give buyers easy access to the Garden City shopping centre via Logan Road, while the Greenslopes private hospital precinct nearby adds relevance for healthcare workers who prioritise a short commute. That overlap of school, hospital and retail access in one suburb is not something every buyer consciously articulates, but it shapes the demand pool considerably.
 
-If you have owned in Holland Park for several years, the growth in underlying land value may be more than you have accounted for. danielgierach.com/suburbs/holland-park
+Buyers who have been searching in Tarragindi or Annerley and have not found the right property tend to broaden into Holland Park and frequently find what they want here. The depth of that secondary buyer pool is one reason campaigns in Holland Park tend to attract genuine competition. If you are a Holland Park homeowner thinking about the current market, more detail is at danielgierach.com/suburbs/holland-park.
 
 ## Hashtags
 
-#HollandPark
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#HollandPark #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** HOLLAND PARK
 **Body text:**
-- Large blocks, 8km from CBD, tree-lined streets
-- Holland Park SS and Cavendish Road SHS catchments
+- Generous blocks with Holland Park State High School catchment
+- Accessible price point drawing buyers from multiple adjacent suburbs
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Holland Park]
-[Boost targeting: homeowners 40-65, Holland Park, Holland Park West, Greenslopes]
+[VERIFY: Holland Park State High School catchment boundary includes core Holland Park streets before posting]
+[First comment: reference the Cavendish Road East character streetscape for local resonance]

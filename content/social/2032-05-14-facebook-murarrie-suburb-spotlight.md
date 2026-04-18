@@ -14,37 +14,29 @@
 
 ## Caption
 
-Murarrie's position along the Gateway Motorway corridor is its defining practical asset. Residents can reach the airport in under 15 minutes, access the Port of Brisbane logistics precinct to the east, and connect to the northern or southern motorway network without navigating inner-city congestion. For a significant proportion of the suburb's workforce, that means a daily commute that most inner-Brisbane residents would consider genuinely convenient.
+Murarrie's position on the southern bank of the Brisbane River at Bulimba Reach gives it a geographic story that many buyers are only beginning to properly account for. The streets closest to the water, including lower sections of Boundary Road and those bordering the Bulimba Creek outlet, carry an aspect and a natural edge that buyers increasingly seek as comparable properties in Bulimba and Hawthorne become harder to access.
 
-The residential section of Murarrie sits largely to the north of Murarrie Road, buffered from the industrial precinct to the south by the distance and the park network along Kedron Brook's lower reaches. Grinstead Park and the nearby sports fields provide recreational space that balances the suburb's relatively limited retail offering locally. The Cannon Hill Plaza at the western end of Murarrie Road fills that retail gap for most households.
+The suburb's industrial and mixed-use heritage has given way progressively to residential development that has brought new households and improved street presentation across large parts of the suburb. That transition means there is still genuine diversity in what Murarrie offers: established owner-occupier homes alongside newer residential builds, with land sizes that reflect a pre-densification era in the blocks that have remained intact.
 
-The suburb's housing stock offers buyers a reasonable range of choice, from smaller post-war houses suitable for investors seeking a yield-positive entry into the eastern suburbs, through to larger homes on better-positioned lots that appeal to families who want space and connectivity without the price of the established inner suburbs. Cannon Hill State School and Seven Hills State School both draw from different sections of Murarrie, depending on the street.
+The Murarrie Recreation Reserve functions as the suburb's lungs, providing open space and sporting facilities that complement the riverside amenity. Families with children in sport find the reserve a practical asset, and the network of paths connecting the reserve to the Bulimba Creek corridor extends the usable outdoor space considerably.
 
-If you own an investment property in Murarrie and are considering whether the timing suits a sale, the rental and capital growth picture is worth reviewing with current data. danielgierach.com/suburbs/murarrie
+For buyers who are weighing Murarrie against Morningside or Cannon Hill, the conversation usually comes down to land, aspect and price. Murarrie tends to deliver favourably on all three for a buyer who is willing to look carefully. Homeowners considering the timing of a sale in Murarrie will find the current market detail at danielgierach.com/suburbs/murarrie.
 
 ## Hashtags
 
-#Murarrie
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Murarrie #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** MURARRIE
 **Body text:**
-- Gateway Motorway and airport access under 15 minutes
-- Mixed owner-occupier and investor market
+- Riverside and creek-side positions with generous pre-densification land
+- Murarrie Recreation Reserve and Bulimba Creek corridor trail access
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Murarrie]
-[Boost targeting: investors and homeowners 35-60, Murarrie, Cannon Hill, Hemmant]
+[VERIFY: Murarrie Recreation Reserve current facilities and access points before posting]
+[First comment: this is a second Murarrie post; angle is transition story and land value versus neighbours]

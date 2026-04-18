@@ -14,37 +14,29 @@
 
 ## Caption
 
-Seven Hills covers less than two square kilometres, which means every sale in the suburb carries more weight than it would in a larger area. When a well-presented Queenslander sells on Rialto Street or Fernberg Road, the price evidence it sets flows quickly through the whole suburb's valuation landscape. That is worth understanding if you own here and have been tracking what comparable properties have achieved over the past few years.
+Seven Hills is not a suburb that appears on many buyers' initial shortlists, but it has a way of becoming the clear preference once they visit. The ridge position, the access to Whites Hill Reserve and the residential street quality around Broadhurst Avenue and Shand Street combine to create a suburb that delivers meaningfully on liveability in a way that a suburb comparison table cannot fully convey.
 
-The suburb's appeal is built on a combination of features that are difficult to replicate at this price point: elevated city views from the ridge, proximity to Toowong and the Western Freeway without being on a main road, and the leafy residential character that has been protected by the low density of housing throughout the suburb. That physical character has not changed, but buyer appetite for it has grown as inner-western suburbs further from the river have moved well beyond what many buyers can justify.
+The reserve is the defining feature. Mountain bike trails, walking tracks and a natural forest buffer within minutes of home is an amenity that residents actively use and that distinguishes Seven Hills from flat suburban alternatives at comparable price points. For buyers with children or dogs or both, that reserve access is a deciding factor, not an afterthought.
 
-The Ironside State School catchment is a consistent drawcard for families, and the walking distance to the school from streets across Seven Hills makes it practical for households without two cars at home. Access to the University of Queensland via the nearby Eleanor Schonell Bridge also means the suburb sits in the path of academic and professional buyers looking for character homes within cycling distance of the campus.
+Old Cleveland Road provides the suburb's main commercial connection, linking residents to both the Coorparoo retail strip and the broader inner-south network without requiring extensive travel. The school catchments in this pocket, including Seven Hills State School, draw families who are planning across multiple years and who value the community scale that a smaller local school can deliver.
 
-Winter is often when considered sellers do their preparation. If that is you, a current appraisal is a useful starting point. danielgierach.com/suburbs/seven-hills
+The buyer who has spent time in Coorparoo, Camp Hill or Carindale without finding the right property at the right price often arrives at Seven Hills and recalibrates. The ridge positions available here, particularly those with leafy northern aspects, represent a product that the more prominent suburbs rarely deliver at a comparable price point. If you are a Seven Hills homeowner considering your options this autumn, the detail is at danielgierach.com/suburbs/seven-hills.
 
 ## Hashtags
 
-#SevenHills
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#SevenHills #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** SEVEN HILLS
 **Body text:**
-- Compact enclave, elevated city views, limited stock
-- Ironside SS catchment, UQ proximity
+- Whites Hill Reserve mountain bike and walking trails on the doorstep
+- Elevated ridge character at an accessible inner-east price point
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Seven Hills]
-[Boost targeting: homeowners 40-65, Seven Hills, Toowong, Taringa, St Lucia]
+[VERIFY: Whites Hill Reserve trail network current status before posting]
+[First comment: this is a second Seven Hills post; angle is discovery and liveability rather than market data]

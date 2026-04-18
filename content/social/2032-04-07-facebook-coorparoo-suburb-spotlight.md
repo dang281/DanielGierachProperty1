@@ -14,37 +14,29 @@
 
 ## Caption
 
-Coorparoo has held its ground as one of Brisbane's most consistently transacted inner-south suburbs, and the depth of the buyer pool here is hard to argue with. The suburb is large enough to offer variety across price points, from entry-level units on Old Cleveland Road through to substantial family homes on the elevated streets running off Cavendish Road, where city glimpses add value and competition stiffens accordingly.
+Coorparoo is one of Brisbane's most consistently traded inner-south suburbs, and the depth of buyer demand here rarely wavers. Properties along Cornwall Street, Cavendish Road and the quieter residential pockets behind the Old Cleveland Road corridor draw a broad range of buyers because the suburb genuinely serves multiple life stages at once.
 
-The Coorparoo State School and Coorparoo State Secondary College catchments are a significant draw for families, giving the suburb a rare combination of a primary and secondary state school within walking distance for many residents. That catchment factor keeps demand from families consistent regardless of broader market conditions.
+The Coorparoo Square precinct on Cavendish Road anchors the commercial heart of the suburb and gives residents walkable access to groceries, cafes and services that many comparable suburbs lack. For families, the school options are a significant drawcard: Coorparoo State School and Coorparoo Secondary College both sit within the suburb, and buyers researching catchments often shortlist Coorparoo before they have even inspected a property.
 
-Connectivity is another reliable selling point. The Coorparoo bus corridor into the city is well-serviced, and the suburb's position midway between the CBD and the southeast arterials gives it a flexibility that buyers from a wide range of employment centres find useful. The dining and retail strip along Old Cleveland Road continues to anchor the suburb's walkable lifestyle offer.
+Transport is a strong card. The Coorparoo train station on the Beenleigh and Cleveland lines puts the CBD within a short commute, and bus services along Old Cleveland Road add further frequency. That combination of rail and bus access is something buyers in car-dependent suburbs genuinely envy.
 
-Owners in Coorparoo often underestimate what the market will bear for a well-presented home on a good street. If you are considering your options, starting with an appraisal costs nothing. danielgierach.com/suburbs/coorparoo
+Character Queenslanders on elevated blocks with city glimpses attract particularly competitive campaigns. The buyer who missed out at Norman Park or Camp Hill often surfaces at the next Coorparoo campaign, and that cross-suburb demand keeps results robust. If you own in Coorparoo and want to understand what the current market means for your property, start at danielgierach.com/suburbs/coorparoo.
 
 ## Hashtags
 
-#Coorparoo
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Coorparoo #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** COORPAROO
 **Body text:**
-- Primary and secondary state schools in-suburb
-- Strong buyer depth across all price points
+- Train station access on two lines, walkable retail precinct
+- Family-focused school catchment within suburb boundaries
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Coorparoo]
-[Boost targeting: families and upsizers 35-55, Coorparoo, Camp Hill, Greenslopes]
+[VERIFY: Coorparoo Secondary College name and current year levels before posting]
+[First comment: note Coorparoo Square tenancy mix as context for lifestyle appeal]

@@ -14,37 +14,29 @@
 
 ## Caption
 
-East Brisbane recorded among the lowest vacancy rates of any suburb within five kilometres of the Brisbane CBD in recent years, and that tightness in the rental market is a useful indicator of the underlying owner-occupier appeal. When a suburb holds both high rental demand and strong owner-occupier competition at the same time, the price floor tends to be resilient even when broader market conditions ease.
+East Brisbane is a suburb that rewards patient buyers, because the right property appearing at the right time requires patience. The suburb's small geographic footprint and predominantly character housing stock mean that the annual volume of quality homes coming to market is limited. When they do appear, buyers who have been researching the suburb for months tend to compete decisively.
 
-The Gabba is the suburb's most recognisable landmark, and the upgrades made to the precinct in the lead-up to the 2032 Brisbane Olympics transformed the area around it into a genuinely activated urban district. That urban energy now extends into the residential streets of East Brisbane in the form of walkability to hospitality, transport, and entertainment that most suburban addresses cannot replicate.
+Wellington Road is the suburban spine that most buyers navigate first, but the streets running perpendicular to it, including Lytton Road lower, Henry Street and the quieter residential blocks between the Gabba precinct and the river, carry a range of character homes that each occupy a distinct position within the suburb's price hierarchy. Buyers who understand that hierarchy buy with confidence rather than uncertainty.
 
-The streets running north from Vulture Street toward the river, including those closest to Mowbray Park, represent the premium end of the suburb's market. Properties on these streets, particularly those with timber and tin character features and some river view, attract buyers from a wide catchment who have specifically targeted East Brisbane as their first choice.
+The Gabba and its surrounding precinct have matured considerably as a dining and retail destination beyond major event days, and residents of East Brisbane benefit from that maturity in their everyday routines. The combination of that walkable activation and the suburb's proximity to the South Bank cultural precinct via an easy river crossing makes East Brisbane a suburb that is genuinely urban in character rather than simply close to the CBD by distance.
 
-Winter light hits well in the elevated sections of East Brisbane, and the cooler months often produce well-presented properties from owners who have prepared thoughtfully. If a sale is in your thinking for the second half of 2032, now is a good time to start the conversation. danielgierach.com/suburbs/east-brisbane
+Bus access along Wynnum Road and Lytton Road provides a practical public transport option, and the Captain Cook Bridge cycling infrastructure connects the suburb to the CBD network without requiring riders to share main road lanes. If you own in East Brisbane and are assessing the current market, the detail is at danielgierach.com/suburbs/east-brisbane.
 
 ## Hashtags
 
-#EastBrisbane
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#EastBrisbane #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** EAST BRISBANE
 **Body text:**
-- Gabba Olympic precinct, walkable inner-city lifestyle
-- Mowbray Park riverfront, low vacancy rates
+- Small footprint with limited annual stock and well-prepared buyer competition
+- Gabba precinct walkability and river crossing cycling infrastructure
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for East Brisbane]
-[Boost targeting: professionals and investors 35-60, East Brisbane, Woolloongabba, Kangaroo Point]
+[VERIFY: Captain Cook Bridge pedestrian and cycling access current status before posting]
+[First comment: this is a second East Brisbane post; angle is informed buyer behaviour and urban character]

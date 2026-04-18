@@ -14,37 +14,29 @@
 
 ## Caption
 
-Norman Park's riverfront is one of the finest stretches of public parkland in Brisbane's inner east. Norman Creek meets the Brisbane River at the suburb's northern tip, and the grassy reserves along Norman Crescent attract joggers, cyclists, and weekend picnickers who rarely live anywhere else once they settle here. That lifestyle amenity is a genuine factor in sale prices, and homes within walking distance of the waterfront consistently achieve premiums over comparable properties set back from it.
+Norman Park is one of the inner-east suburbs where buyers feel the scarcity most acutely. The suburb is tightly bounded, has a predominantly character housing stock that cannot be replicated in volume, and sits within a school catchment that draws families from a wide search radius. Those three factors combine to create a market where well-presented properties attract serious competition regardless of the broader conditions.
 
-The suburb itself is a mix of original character homes, many on the more elevated streets running up from the river toward Hawthorne Road, and a smaller number of modern builds and townhouses closer to the commercial activity around Norman Park train station. The Cleveland line provides reliable access to the city from here, which makes the suburb workable for households that commute frequently.
+The streets around Bennetts Road, Langata Street and the sloped sections of Norman Avenue carry some of the most considered residential architecture in Brisbane's inner east. Buyers who have done their homework on Norman Park know which streets offer elevated outlooks toward the river and the city, and they arrive at inspections with that knowledge already factored into their offer strategy.
 
-Norman Park State School draws families from across the suburb, and its size and community reputation make it a factor buyers raise early in conversations. The secondary catchment leads to Brisbane State High School for academically selected students, alongside Coorparoo State Secondary College as the local option.
+Norman Park State School is a key driver of demand from families, and the suburb's position in the catchment for Balmoral State High School adds further appeal for households buying with secondary school in mind. That stacked catchment profile is relatively rare in the inner east and is a genuine factor in Norman Park's sustained price performance.
 
-Properties in Norman Park tend to hold their value through softer market conditions because the demand here is dominated by committed owner-occupiers rather than speculative investors. If you are thinking about listing in the next twelve months, the lead time for preparation is worth factoring in. danielgierach.com/suburbs/norman-park
+Buyers active in Camp Hill and Hawthorne frequently extend their search to Norman Park when they encounter limited stock. The Cleveland line train station provides a reliable CBD connection, and walkable access to Churchie's sporting fields and the adjacent greenspace adds a dimension that photographs well in campaigns. If you are a Norman Park homeowner considering your next move, begin at danielgierach.com/suburbs/norman-park.
 
 ## Hashtags
 
-#NormanPark
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#NormanPark #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** NORMAN PARK
 **Body text:**
-- Riverfront parklands and Cleveland line train access
-- Norman Park SS catchment, strong owner-occupier demand
+- Tightly bounded suburb with character stock and dual school catchment appeal
+- Cleveland line train access and elevated river-facing positions
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Norman Park]
-[Boost targeting: homeowners 40-65, Norman Park, Balmoral, Hawthorne, Camp Hill]
+[VERIFY: Balmoral State High School catchment includes Norman Park before posting]
+[First comment: reference the Bennetts Road character streetscape as a point of pride]

@@ -14,37 +14,29 @@
 
 ## Caption
 
-Mt Gravatt East is a suburb that rewards buyers who look past the main arterial roads. Kessels Road and Creek Road carry plenty of traffic, but set back from those corridors you find quiet residential streets with generous blocks, established gardens, and a demographic that skews toward long-term ownership. Turnover here is lower than many comparable suburbs, which means when a property does come to market, the buyer pool is ready and motivated.
+Mt Gravatt East is a suburb that rewards buyers who look past the main arterials and explore the residential streets behind them. While Cavendish Road and Creek Road carry the through traffic, streets like Bunnerong Avenue, Whitmore Street and the hillside blocks off Hammonia Street offer elevated positions with genuine city views and land sizes that are increasingly difficult to find at this distance from the CBD.
 
-The suburb sits roughly 10 kilometres from the Brisbane CBD and benefits from the concentration of education infrastructure in the broader Mt Gravatt area. Griffith University's Nathan campus is close by, which contributes to rental demand from staff and postgraduate students. On the state school side, Mt Gravatt State School is the primary catchment for most of the suburb, with Mansfield State High School the secondary draw for families living in the eastern sections.
+Griffith University's Nathan campus sits adjacent to the suburb's western edge, and that proximity influences the rental market and the long-term owner-occupier base in different ways. Families who bought near the university corridor have often benefited from the area's infrastructure investment over consecutive decades, and those holdings tend to surface when life circumstances change rather than when markets peak.
 
-Westfield Garden City at Upper Mount Gravatt is less than five minutes by car, providing a major retail, dining, and entertainment anchor. The combination of everyday convenience and the lower-density suburban character of the streets is what buyers consistently cite as the reason they chose Mt Gravatt East over busier alternatives closer to the city.
+The Garden City shopping centre on Logan Road is the suburb's primary retail anchor, with Westfield providing the full range of services that reduce the need to travel for everyday needs. That convenience factor is something buyers from suburbs further east genuinely notice when they first inspect in Mt Gravatt East.
 
-If you own here and are thinking about a sale in the next twelve months, now is a good time to establish a baseline with an appraisal. danielgierach.com/suburbs/mt-gravatt-east
+Mt Gravatt State High School is the secondary school of record for this pocket, and its catchment is a genuine consideration for families working through suburb shortlists. Buyers who cannot achieve a result in Coorparoo or Holland Park regularly move their attention here, and the competitive dynamic that creates keeps the market active throughout the year. If you are a homeowner in Mt Gravatt East and want to understand your position, start with danielgierach.com/suburbs/mt-gravatt-east.
 
 ## Hashtags
 
-#MtGravattEast
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#MtGravattEast #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** MT GRAVATT EAST
 **Body text:**
-- Quiet streets, low turnover, strong family demand
-- Near Griffith University and Westfield Garden City
+- Hillside blocks with city views near Griffith University corridor
+- Garden City retail access and Mt Gravatt State High School catchment
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Mt Gravatt East]
-[Boost targeting: homeowners 40-65, Mt Gravatt East, Mansfield, Mackenzie]
+[VERIFY: Mt Gravatt State High School catchment includes Mt Gravatt East before posting]
+[First comment: reference the Hammonia Street ridge views as a conversation starter]

@@ -14,37 +14,29 @@
 
 ## Caption
 
-Coorparoo's land area and population density mean it generates more transaction data than most comparable inner-south suburbs, and that depth of evidence is actually useful for owners trying to understand where their property sits in the market. There is enough comparable sales activity here to give a well-researched appraisal genuine precision, which is not the case in smaller suburbs nearby.
+Coorparoo's depth as a property market is something that becomes apparent when you follow transaction data over time rather than just a single quarter. The suburb consistently records meaningful sales volume because it consistently attracts a meaningful buyer pool, and that relationship between supply and demand has remained stable across multiple economic cycles.
 
-The suburb's elevation varies considerably from the flat sections along Cavendish Road through to the ridge streets running toward Camp Hill and Norman Park. That topographic variety means properties in Coorparoo are not easily compared from one street to the next, and the price difference between a ground-level home and one with a city glimpse from the same block size can be substantial. Buyers factor this in, and so should sellers.
+The streets west of Old Cleveland Road, including Cornwall Street, Rialto Street and the quieter pockets around the Cavendish Road precinct, carry renovated Queenslanders and character homes that attract buyers in the range who have done extensive suburb comparison work. Those buyers arrive knowing what the suburb offers and they tend to be serious at campaign time rather than speculative.
 
-The dual school catchment story remains one of Coorparoo's strongest selling points. Both Coorparoo State School and Coorparoo State Secondary College are within the suburb, and the ability to cover primary and secondary state schooling without a change of area is rare in inner Brisbane. It keeps family demand from shifting to other suburbs as children age, which reinforces long-term owner retention and, when sales do happen, genuine buyer depth.
+Coorparoo's two-line train access at Coorparoo Station is a practical advantage that compounds with the walkable retail and hospitality offer along Cavendish Road. A suburb that delivers both rail frequency and a genuinely usable local strip is relatively rare in Brisbane at this price point, and buyers who have been searching in suburbs with only one of those attributes find Coorparoo appealing when they eventually expand their search.
 
-If you are in Coorparoo and have held your property for five years or more, a fresh look at the numbers is worth scheduling before the end of the financial year. danielgierach.com/suburbs/coorparoo
+The housing stock is also more varied than many buyers expect before they begin inspecting. Alongside the character homes there are postwar houses on full blocks, smaller homes on sub-divided sites, and a range of renovated properties that have benefited from sustained owner investment. That variety means the suburb serves multiple budget levels within a single market. If you own in Coorparoo and are thinking about selling in the coming months, the detail is at danielgierach.com/suburbs/coorparoo.
 
 ## Hashtags
 
-#Coorparoo
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Coorparoo #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** COORPAROO
 **Body text:**
-- Rare in-suburb primary and secondary state schools
-- High transaction volume, strong comparable sales data
+- Two-line train access combined with walkable Cavendish Road retail
+- Varied housing stock serving multiple buyer budgets within a single suburb
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Coorparoo]
-[Boost targeting: homeowners 38-65, Coorparoo, Camp Hill, Greenslopes]
+[VERIFY: Coorparoo Station line connections current status before posting]
+[First comment: this is a second Coorparoo post; angle is market depth and buyer variety rather than school catchment]

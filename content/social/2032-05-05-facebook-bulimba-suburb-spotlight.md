@@ -14,37 +14,29 @@
 
 ## Caption
 
-Oxford Street in Bulimba is one of the most walkable retail and dining streets in inner Brisbane, and its consistency over decades is part of what makes Bulimba resistant to the normal ebb and flow of property markets. Buyers who commit to Bulimba tend to stay, and the low turnover of properties here is both a reflection of owner satisfaction and, when homes do come to market, a driver of competition among buyers who have been waiting.
+Bulimba sits at the top of the inner-east property market for reasons that are straightforward to explain. The riverfront position, the Oxford Street precinct, the ferry connections to the CBD and the consistent depth of buyer demand at auction combine to create a market where results are driven by competition rather than optimism.
 
-The suburb sits on a peninsula formed by a bend in the Brisbane River, and that geography creates a natural boundary that has preserved its low-density residential character. The Bulimba ferry terminal connects residents to the CBD via the CityCat, and the suburb's position on the inner-east makes the ferry a practical daily commute option rather than a weekend leisure choice. The Bulimba to Teneriffe run is one of the most heavily used ferry corridors in the city.
+Oxford Street is the obvious anchor, but its influence extends well beyond retail convenience. The strip gives Bulimba a village quality that buyers from suburbs without an equivalent invariably respond to during open homes. Cafes, restaurants, independent retail and proximity to the Hawthorne cinema complex mean that residents have daily reasons to be on foot in their own suburb, and that pattern of use creates a community texture that shows up in conversations between buyers and locals.
 
-Bulimba State School is the primary catchment and carries a strong community reputation. The suburb's buyer demographic skews toward professional couples and families with above-average household incomes, and the price range for detached houses reflects the scarcity of land and the strength of that demand.
+The Bulimba Ferry Terminal connects the suburb to the CBD without requiring a car, and the proximity of the Bulimba Barracks land and the wider river precinct means that the green and water edges of the suburb are genuine, not token. Streets like Wynnum Road (lower), Riverview Terrace and the quieter residential pockets off Quay Street carry values that reflect those attributes consistently.
 
-If you own in Bulimba and are thinking about the next chapter, a property in this suburb deserves a properly considered sale strategy. A conversation is a good place to start. danielgierach.com/suburbs/bulimba
+Bulimba State School and the suburb's position in school catchments for Balmoral State High attract buyers planning years ahead. Those buyers are typically well-prepared at auction because they have been researching the suburb long before they begin actively inspecting. If you own in Bulimba and are considering a sale, the current detail is at danielgierach.com/suburbs/bulimba.
 
 ## Hashtags
 
-#Bulimba
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Bulimba #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** BULIMBA
 **Body text:**
-- Oxford Street lifestyle, CityCat ferry to CBD
-- Low turnover, high owner-occupier demand
+- Oxford Street village precinct and direct ferry access to the CBD
+- Riverfront and character homes driving sustained auction competition
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Bulimba]
-[Boost targeting: homeowners 40-65, Bulimba, Hawthorne, Balmoral, professional demographic]
+[VERIFY: Bulimba Ferry Terminal current service frequency and routes before posting]
+[First comment: consider referencing a specific Oxford Street landmark for local engagement]

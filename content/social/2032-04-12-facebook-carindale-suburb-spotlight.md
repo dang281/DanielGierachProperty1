@@ -14,37 +14,29 @@
 
 ## Caption
 
-Westfield Carindale is the obvious landmark, but what drives property values in Carindale is the suburb's layout: wide streets, large blocks, a high proportion of double-garage homes, and a level of quiet that is difficult to find at this distance from the Brisbane CBD. The suburb is roughly 12 kilometres from the city centre and yet feels distinctly suburban in a way that appeals to families who want space without sacrificing access.
+Carindale is a suburb built around family convenience, and that practical appeal has underpinned its property market for decades. The streets surrounding Westfield Carindale, from Creek Road through to Carindale Street and the quieter cul-de-sacs off Minnippi Parkway, house a predominantly owner-occupier base that turns over selectively rather than frequently.
 
-The Gateway Motorway interchange at Carindale gives residents direct north-south connectivity, and the combination of bus services and the proximity of the Cannon Hill train line via Whites Road creates workable commuting options for households where not everyone travels the same direction each morning.
+That selective turnover is significant for sellers. When a well-maintained family home in Carindale comes to market, the pool of active buyers is ready, because supply is genuinely constrained relative to demand. Buyers with children in the Mount Gravatt State High School catchment or at Padua College plan their moves around that education boundary, and Carindale sits squarely in a desirable catchment position.
 
-Belmont State School and Carindale State School serve the primary-aged catchment across different parts of the suburb, and Cavendish Road State High School is the secondary option that most families in the area plan around. That school infrastructure, alongside parks including the large Bulimba Creek parkland corridor, is a consistent theme in buyer conversations about the suburb.
+The suburb's access to the Minnippi Parkland network is an underrated amenity. The green space along Bulimba Creek provides walking and cycling paths that families use daily, and that connection to natural space adds a liveability dimension that does not show up in suburb descriptions but matters considerably to buyers inspecting on a weekend morning.
 
-Homes here that sit on 700-plus square metres and are within the better-regarded streets tend to attract genuine competition from upsizers priced out of Camp Hill and Coorparoo. If you own in Carindale and are weighing your timing, a current appraisal will give you something concrete to work with. danielgierach.com/suburbs/carindale
+Homes on larger blocks in the eastern pockets of the suburb, particularly around the Belmont Road side, attract interest from buyers who want room for a pool and outdoor entertaining without body corporate. That combination of space, school catchment and parkland access makes Carindale a suburb where values have historically moved steadily. If you own in Carindale and are considering your next step, danielgierach.com/suburbs/carindale has the current picture.
 
 ## Hashtags
 
-#Carindale
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Carindale #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** CARINDALE
 **Body text:**
-- Large blocks, family-scale homes, Gateway Motorway access
-- Westfield Carindale and Bulimba Creek parklands nearby
+- Owner-occupier suburb with constrained supply and active buyer demand
+- Minnippi Parkland creek corridor and major retail within reach
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Carindale]
-[Boost targeting: upsizer families 38-60, Carindale, Carina Heights, Belmont]
+[VERIFY: Mount Gravatt State High School catchment includes Carindale before posting]
+[First comment: reference Minnippi Parkland trail access for community engagement]

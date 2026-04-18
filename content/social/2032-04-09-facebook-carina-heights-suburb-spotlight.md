@@ -14,37 +14,29 @@
 
 ## Caption
 
-Carina Heights sits on the ridge above Carina, and that modest elevation translates into better breezes and views that buyers notice when they walk through a home. The suburb is predominantly owner-occupied, with the majority of properties being post-war and 1970s-era houses on generous blocks, many of which have been extended or renovated over the decades. That mix of original and updated stock gives buyers room to either move straight in or add their own work.
+Carina Heights offers something that many inner-east suburbs cannot: consistent land size on quiet residential streets, without the premium that comes with a Bulimba or Hawthorne postcode. The suburb's streets, particularly around the Centenary Drive corridor and the hillside pockets near Shelley Road, attract buyers who prioritise space and liveability over proximity to a specific café strip.
 
-The suburb shares the Citipointe area's eastern access to the Gateway Motorway and is well-placed for both city commuters and those working in the trade and industrial precincts to the east. Retailers at Westfield Carindale are less than five minutes by car, which matters for families weighing up convenience against the slightly quieter suburban feel that Carina Heights offers compared to the activity strip on Old Cleveland Road.
+The suburb borders Carindale and Carina, which gives it access to two distinct retail catchments without the traffic pressure of sitting directly on a main arterial. Westfield Carindale is within a short drive, and the quieter Carina Village strip serves everyday needs closer to home. That dual access is something residents appreciate and buyers factor into their shortlists.
 
-Cavendish Road State High School is the main secondary catchment for much of the area, alongside Carina State School for primary-aged children. These schools consistently attract families who have done their research and settled on the eastern suburbs as the right base.
+School catchments in this pocket include Carina State School and Padua College, and the presence of a well-regarded secondary option at Padua draws families who are planning ahead rather than just buying for now. That forward-planning buyer tends to hold longer and maintain properties well, which reflects in the overall condition of the suburb's housing stock.
 
-If you own in Carina Heights and want a clear picture of where values sit today, an appraisal is a straightforward next step. danielgierach.com/suburbs/carina-heights
+Properties on elevated blocks with northerly aspects along the ridge get strong interest from buyers coming out of unit markets who are making their first house purchase. The price point relative to neighbouring suburbs makes Carina Heights a practical landing spot for that group. If you own here and are weighing up your options, the details are at danielgierach.com/suburbs/carina-heights.
 
 ## Hashtags
 
-#CarinaHeights
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#CarinaHeights #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** CARINA HEIGHTS
 **Body text:**
-- Elevated blocks, generous land, owner-occupier suburb
-- Close to Westfield Carindale and Gateway Motorway
+- Generous land sizes with dual retail catchment access
+- Padua College and Carina State School within the suburb
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Carina Heights]
-[Boost targeting: homeowners 40-65, Carina Heights, Carina, Carindale]
+[VERIFY: Padua College campus location relative to Carina Heights boundary before posting]
+[First comment: reference the Centenary Drive ridge outlook as a point of local pride]

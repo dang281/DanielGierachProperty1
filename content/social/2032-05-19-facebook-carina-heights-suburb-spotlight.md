@@ -14,37 +14,29 @@
 
 ## Caption
 
-The ridge that gives Carina Heights its name is the feature buyers remark on first. Streets like Algester Road and the upper sections of Cavendish Road in this area capture a cross-breeze that becomes meaningful in Brisbane's autumn and winter months, and the elevation provides a visual separation from the busier flat sections of Carina below. Buyers who have inspected in both parts of the area consistently describe the difference in feel as significant.
+The case for Carina Heights is built on a combination of attributes that is harder to assemble in one suburb than it might appear. Generous land, quiet residential streets, proximity to two separate retail catchments, and a school profile that speaks to both primary and secondary planning. That is the set of things buyers are looking for, and it is increasingly difficult to find all of them at a price point that still makes practical sense.
 
-Carina Heights is largely free of through-traffic because the main arterials run through Carina rather than over the ridge, and that quieter street environment is one reason the suburb holds a slightly higher proportion of owner-occupiers than some of its neighbours. Long-term holders are common here, which keeps the annual sales volume relatively low and means properties, when they do come up, get genuine attention from buyers who have been monitoring the suburb.
+The elevated sections of the suburb, particularly around Shelley Road and the streets that border the Centenary Drive ridge, offer outlooks that buyers from the Carindale side of the market often discover late in their search. Those positions carry views that you would expect to pay more for elsewhere, and the relative value they offer is something buyers who are paying attention notice.
 
-The Carindale Westfield is close enough to be genuinely useful without being close enough to generate the retail-adjacent traffic that some buyers want to avoid. Carina State School and Cavendish Road State High School are the catchments that families in Carina Heights plan around, and the Cavendish Road high school's reputation is well-established in this part of Brisbane.
+Padua College continues to be a meaningful draw for Catholic family buyers specifically, and the co-educational campus structure at Padua means it serves a broader demographic than single-sex alternatives. For buyers mapping out a primary-to-secondary pathway, having Carina State School and Padua College within the suburb boundary removes a layer of catchment complexity from the decision.
 
-If you own in Carina Heights and have not had a formal assessment of your property's current value, the winter months tend to be when considered sellers do that groundwork. danielgierach.com/suburbs/carina-heights
+Autumn and winter are typically when the owner-occupier stock in Carina Heights turns over, as families who are settled through the school year make decisions about the following twelve months. If you are in that position now and want to understand what your property is worth in the current conditions, the starting point is danielgierach.com/suburbs/carina-heights.
 
 ## Hashtags
 
-#CarinaHeights
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#CarinaHeights #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** CARINA HEIGHTS
 **Body text:**
-- Ridge elevation, quieter streets, low annual turnover
-- Cavendish Road SHS catchment, Westfield Carindale nearby
+- Ridge outlooks and generous land at accessible south-east Brisbane prices
+- Padua College and Carina State School both within suburb boundaries
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Carina Heights]
-[Boost targeting: homeowners 40-65, Carina Heights, Carina, Camp Hill]
+[VERIFY: Padua College co-educational structure and year levels before posting]
+[First comment: this is a second Carina Heights post; angle is value proposition and seasonal timing]

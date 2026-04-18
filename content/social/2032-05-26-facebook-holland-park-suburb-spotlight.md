@@ -14,37 +14,29 @@
 
 ## Caption
 
-Holland Park's market tends to slow slightly in winter, not because demand falls, but because many owners in the suburb prefer to list in spring and fewer choose to bring properties forward in the cooler months. For buyers, that seasonal reduction in supply creates competition at every open home for the properties that are available. Sellers who understand this dynamic and choose to list between May and July often face less direct competition from neighbouring properties than they would in the spring peak.
+Holland Park's position in the inner-south property market reflects a consistent pattern: buyers who have searched in Coorparoo or Greenslopes and narrowed their budget arrive here and find that the suburb delivers on the key attributes without the premium of those addresses. Land sizes tend to be generous, the residential streets are quiet, and the connections to Logan Road's retail corridor and the Garden City precinct are practical.
 
-The suburb's street-level appeal holds up well in winter. The mature Poinciana and jacaranda trees along streets like Karawatha Street and Copperfield Drive are not in flower, but the established tree canopy still creates an amenity that buyers remark on throughout the year. Holland Park's green character is not seasonal; it is structural, built from decades of established planting that is now a defining feature of the suburb's look.
+The Holland Park West area and the streets around Cavendish Road East through to Marshall Road carry a mix of postwar and renovated character stock that appeals to buyers who are ready to move into something immediately rather than commit to an extended renovation. That ready-to-occupy buyer is active year-round and does not need seasonal conditions to motivate a purchase.
 
-For families, the Holland Park State School catchment draws consistently from across the suburb, with the school's size and community engagement making it a genuine factor in the buying decision for households with young children. Cavendish Road State High School remains the secondary option that most families in the area plan around.
+Holland Park State High School's catchment is a steady influence on demand from families, and buyers who have shortlisted the suburb because of the school often become the most motivated and well-prepared participants at campaign time. They have done the catchment research, they know the streets, and they move with purpose when the right property arrives.
 
-If you own in Holland Park and have been thinking about a sale but have not yet made a move, winter is worth considering as a window rather than a reason to wait. danielgierach.com/suburbs/holland-park
+The Greenslopes private hospital nearby, and the concentration of medical services along that corridor, makes Holland Park relevant for healthcare workers who value proximity to work alongside the family-suburb attributes. That overlap of two distinct buyer profiles, families and healthcare-adjacent households, keeps demand from multiple directions. If you are a Holland Park homeowner considering what your property is worth in the current market, the details are at danielgierach.com/suburbs/holland-park.
 
 ## Hashtags
 
-#HollandPark
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#HollandPark #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** HOLLAND PARK
 **Body text:**
-- Mature tree canopy, reduced winter competition
-- Holland Park SS and Cavendish Road SHS catchments
+- Generous land and state high school catchment drawing motivated family buyers
+- Dual buyer profile: families and healthcare-adjacent households
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Holland Park]
-[Boost targeting: homeowners 40-65, Holland Park, Holland Park West, Greenslopes]
+[VERIFY: Greenslopes Private Hospital location relative to Holland Park boundary before posting]
+[First comment: this is a second Holland Park post; angle is buyer profile diversity and value relative to neighbours]

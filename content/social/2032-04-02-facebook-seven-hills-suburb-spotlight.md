@@ -14,37 +14,29 @@
 
 ## Caption
 
-Seven Hills sits above the noise of inner Brisbane on the northern ridge of the Toowong-Taringa corridor, and that elevation is exactly what buyers pay for. The suburb is compact, with a land area under two square kilometres, yet it consistently draws strong competition at the upper end of the house market because of the combination of city views, quiet residential streets, and proximity to Toowong Village and the Western Freeway on-ramp.
+Seven Hills sits on one of Brisbane's most distinctive ridgelines, and the homes here reflect that. Properties along Broadhurst Avenue and Shand Street capture elevated outlooks that buyers from the inner south and east seek out specifically. It is a suburb that does not announce itself loudly, but the land values tell a consistent story.
 
-Families with school-aged children focus closely on the Ironside State School catchment, which covers parts of Seven Hills and carries a strong reputation for its selective stream. Access to the University of Queensland via the Eleanor Schonell Bridge also makes the suburb attractive to academics and university staff looking to own rather than rent.
+The suburb's proximity to Whites Hill Reserve gives families a genuine outdoor buffer, with mountain bike tracks and walking trails that are genuinely used by residents rather than just appearing on a brochure. Seven Hills State School draws buyers who might otherwise have been looking at Coorparoo or Camp Hill, and that school catchment is a real price driver in this pocket.
 
-The buyer pool here leans toward professionals who want a character home on a decent block without the full premium of Paddington or Bardon. Renovated Queenslanders along Fernberg Road and the surrounding streets have set strong sale benchmarks over the past several years. Owners who have held for a decade or more are sitting on substantial gains.
+Access is straightforward via Old Cleveland Road, and the suburb sits within a short drive of both Coorparoo's retail strip and the Westfield Carindale catchment. That dual convenience appeals to a buyer profile that values greenery without wanting to sacrifice connectivity.
 
-If you own in Seven Hills and are thinking about what your property is worth in the current market, a no-obligation appraisal is a good starting point. danielgierach.com/suburbs/seven-hills
+Homes on larger allotments along the ridge attract strong competition at campaign time. Buyers who miss out in Balmoral and Hawthorne frequently redirect their search here, and that competition tends to keep sale results firm. If you own in Seven Hills and are thinking about what your home is worth in the current market, the details are at danielgierach.com/suburbs/seven-hills.
 
 ## Hashtags
 
-#SevenHills
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#SevenHills #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** SEVEN HILLS
 **Body text:**
-- Elevated city views, compact residential enclave
-- Strong Ironside SS catchment draw
+- Elevated ridge positions with Whites Hill Reserve access
+- Strong school catchment driving consistent buyer demand
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Seven Hills]
-[Boost targeting: homeowners 40-65, Seven Hills and adjacent suburbs, household income $150k+]
+[VERIFY: Seven Hills State School catchment boundaries before posting]
+[Consider tagging Whites Hill Reserve in the first comment to boost local reach]

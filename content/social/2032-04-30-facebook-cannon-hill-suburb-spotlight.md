@@ -14,37 +14,29 @@
 
 ## Caption
 
-Cannon Hill Plaza has long been the commercial centre of this part of Brisbane's middle east, but what draws buyers to the suburb is not the shopping centre, it is the train. The Cannon Hill station on the Cleveland line gives residents a 15-minute trip to the Brisbane CBD, and that commute time at a price point that still sits below the inner-city bracket is the reason auction rooms in Cannon Hill fill quickly when the marketing is done well.
+Cannon Hill is a suburb that tends to hold its buyer pool well across different market conditions. The combination of a Cleveland line train station, the Cannon Hill Plaza retail precinct and a housing stock that skews toward family-sized homes on reasonable land keeps a consistent group of buyers active here across the year.
 
-The suburb has a mix of original post-war housing and more recent townhouse and dual-occupancy development, particularly on the blocks closest to the commercial strips. The residential streets away from Wynnum Road and Old Cleveland Road are noticeably quieter, with older homes on standard lots that have attracted renovation activity as buyers seek to add value to properties in a well-connected location.
+The streets around Doris Street, Cannon Hill Avenue and the pockets off Wynnum Road carry postwar and character homes that attract buyers who want space and a genuine sense of neighbourhood without committing to the price levels required in Morningside or Hawthorne. The suburb's position between those two markets means buyers who have been unsuccessful in either frequently arrive in Cannon Hill with realistic expectations and genuine intent.
 
-Cannon Hill State School is the primary catchment for most of the suburb, with the school's position within the neighbourhood making it genuinely walkable for families on nearby streets. Secondary students are predominantly zoned to Coorparoo State Secondary College, which is accessible by train from Cannon Hill station.
+Cannon Hill State School and the suburb's position in the catchment for Balmoral State High School make it a family suburb in the most practical sense. Parents buying ahead of a secondary school transition find Cannon Hill consistently delivers on that requirement, and the presence of that buyer cohort underpins demand across the market cycle.
 
-For owners who have been in Cannon Hill for a decade or more, the suburb's trajectory has been meaningful. If you are considering whether to sell, or simply want to know where values have landed, a current appraisal is the place to start. danielgierach.com/suburbs/cannon-hill
+The suburb's access to the Gateway Motorway via the Wynnum Road interchange also makes it well positioned for buyers with commitments in both the inner city and east Brisbane or the bayside. That accessibility in multiple directions is a practical advantage that buyers with complex commutes factor in carefully. If you own in Cannon Hill and want to understand what the current conditions mean for your property, begin at danielgierach.com/suburbs/cannon-hill.
 
 ## Hashtags
 
-#CannonHill
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#CannonHill #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** CANNON HILL
 **Body text:**
-- 15-min train to CBD, Cleveland line
-- Cannon Hill SS catchment, active buyer competition
+- Cleveland line access and family school catchments in both primary and secondary
+- Gateway Motorway connectivity for east and inner-city commuters
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Cannon Hill]
-[Boost targeting: homeowners 35-60, Cannon Hill, Morningside, Murarrie]
+[VERIFY: Balmoral State High School catchment includes Cannon Hill before posting]
+[First comment: reference Cannon Hill Plaza as a practical neighbourhood anchor]

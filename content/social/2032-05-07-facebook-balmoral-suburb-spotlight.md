@@ -14,37 +14,29 @@
 
 ## Caption
 
-Balmoral sits on a river bend east of Bulimba, and the stretch of waterfront along Balmoral Beach Road is one of the few genuinely accessible riverside public spaces in Brisbane's inner east. The grassed riverfront reserve, the fig trees, and the informal boat ramp at the end of Wynnum Road create a weekend draw for residents that is difficult to replicate in most other suburbs at this price point.
+Balmoral is among Brisbane's most tightly held residential suburbs, and the volume of stock that comes to market in any given year reflects that. Owners who buy in Balmoral, particularly on the river-facing streets below Lytton Road and along the elevated sections of Balmoral Road, tend to hold for extended periods. When those properties do appear, the buyer response is immediate and competitive.
 
-The suburb is predominantly detached housing on good-sized lots, with many of the character homes on the elevated streets running south from the river showing original timber and tin details that are increasingly rare. The buyer demographic in Balmoral leans toward established professional households and downsizers moving within the inner east, and that buyer type is persistent regardless of broader market cycles because they are typically not rate-sensitive in the same way as first-home buyers.
+The suburb's defining physical feature is its position on the Brisbane River, with streets like Riverview Road and Esplanade carrying some of the most direct river frontage available in the inner east. Buyers who have been in the market for river-facing property in this part of Brisbane understand that Balmoral and Hawthorne represent the primary supply point for that product, and they are prepared to compete accordingly.
 
-Balmoral State School is the primary catchment, and the school's community profile is a genuine factor for families choosing between Balmoral and its immediate neighbours. Norman Park State School also draws from some of the boundary streets. For secondary schooling, Coorparoo State Secondary College is the main public option.
+Balmoral State School and Balmoral State High School sit within the suburb's boundaries, a pairing that is genuinely rare in Brisbane and one that gives Balmoral a distinct advantage in family buyer discussions. Households who want to plan their children's full schooling journey through local state schools without navigating catchment transfers find that Balmoral delivers that continuity.
 
-Fewer than a handful of properties in Balmoral change hands in any given month, which means each sale carries significant weight in establishing the suburb's price evidence. If you are considering selling, the timing and preparation of a Balmoral campaign matters more than in higher-turnover suburbs. danielgierach.com/suburbs/balmoral
+Low turnover means buyer research is long and attentive. People who buy in Balmoral have usually attended multiple open homes over months or years, arriving at campaigns with a clear understanding of where a property sits. That informed buyer pool tends to produce results that accurately reflect a property's position. If you are a Balmoral homeowner considering timing, the current detail is at danielgierach.com/suburbs/balmoral.
 
 ## Hashtags
 
-#Balmoral
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Balmoral #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** BALMORAL
 **Body text:**
-- Riverside reserve and beach, low monthly turnover
-- Character homes, established professional buyer demographic
+- Direct Brisbane River frontage on Riverview Road and Esplanade
+- Both state primary and state high school within suburb boundaries
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Balmoral]
-[Boost targeting: homeowners 45-70, Balmoral, Bulimba, Norman Park, Hawthorne]
+[VERIFY: Balmoral State High School is located within Balmoral suburb boundary before posting]
+[First comment: reference the low annual turnover rate to contextualise scarcity for readers]

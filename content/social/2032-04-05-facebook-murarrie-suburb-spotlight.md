@@ -14,37 +14,29 @@
 
 ## Caption
 
-Murarrie is one of the few suburbs in Brisbane's inner east where buyers can still find a detached house on a full-size block without paying the premium of the more established neighbouring suburbs. Sitting between Cannon Hill and Hemmant along the Gateway Motorway corridor, it offers a practical address for households that need quick access to both the city and the airport, with the Murarrie train station providing a direct line to the CBD.
+Murarrie has moved well past the point where buyers need convincing. The suburb's riverside position along the Bulimba Reach has been progressively recognised by the market, and the results being achieved on streets like Murarrie Road and Boundary Road reflect a suburb that has found its footing.
 
-The suburb has seen steady residential development fill in around its older housing stock over the past decade, and that mix of original post-war homes alongside newer builds creates variety in the buyer pool. Investors have historically targeted Murarrie for yield, but the owner-occupier segment has grown as more families recognise the convenience.
+What draws buyers here is a combination that is genuinely hard to replicate elsewhere at comparable price points. The Murarrie Recreation Reserve provides a meaningful green corridor, and the Bulimba Ferry Terminal at the end of Bulimba Avenue gives residents a river crossing into the inner city that bypasses road traffic entirely. For households where one or both partners work in the CBD, that connectivity carries real weight.
 
-Grinstead Park along Murarrie Road provides green space and sporting facilities, and the proximity to Cannon Hill Plaza gives residents a major retail centre within a short drive. For families, the Seven Hills State School catchment covers some of the western reaches of Murarrie, while Cannon Hill State School also draws from the area.
+The suburb also benefits from its position between Cannon Hill and Bulimba, two markets that consistently attract competitive bidding. Buyers who have attended multiple auctions in those suburbs and narrowed their budget come to Murarrie and find that the price gap is closing. That dynamic has been consistent across multiple market cycles.
 
-If you own in Murarrie and want to understand where the market sits right now, a conversation is worth your time. danielgierach.com/suburbs/murarrie
+Larger homes on the Bulimba Creek side of the suburb appeal to a family buyer who wants space without the full Bulimba or Hawthorne premium. The street-to-river aspect on those blocks is a feature that photographs well and performs well at auction. If you are a Murarrie homeowner thinking about timing, the starting point is danielgierach.com/suburbs/murarrie.
 
 ## Hashtags
 
-#Murarrie
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#Murarrie #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** MURARRIE
 **Body text:**
-- Direct train access to CBD
-- Detached housing with strong rental history
+- Bulimba Ferry access connecting residents to the inner city
+- Riverside and creek-side positions attracting consistent buyer competition
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for Murarrie]
-[Boost targeting: homeowners 35-60, Murarrie, Cannon Hill, Hemmant, investors and owner-occupiers]
+[VERIFY: Bulimba Ferry Terminal name and current service frequency before posting]
+[First comment: mention the Murarrie Recreation Reserve trail access for local engagement]

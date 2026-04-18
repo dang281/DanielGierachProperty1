@@ -14,37 +14,29 @@
 
 ## Caption
 
-East Brisbane is one of the most centrally located suburbs in the inner-city ring, bordered by the river to the north and Kangaroo Point's cliffs to the west, with the Gabba precinct anchoring its southern boundary. That geography gives it a tightly bounded character: there is a finite number of properties here, and the combination of walkability, city proximity, and river access keeps demand from a consistent pool of buyers who know exactly what they are looking for.
+East Brisbane is one of the few inner-city suburbs that has retained its residential character while sitting within two kilometres of the CBD. The streets between Vulture Street and the river, particularly around Wellington Road, Henry Street and the lower Lytton Road precinct, carry a consistency of housing quality and land value that buyers from Fortitude Valley and New Farm frequently discover and do not leave empty-handed.
 
-The suburb's housing stock runs from original timber Queenslanders on elevated lots to terrace-style homes and modern townhouses, with some of the better streets running off Lytton Road towards Mowbray Park offering river views and established tree canopy. Mowbray Park itself, with its riverside boardwalk, is a feature that comes up in nearly every inspection conversation with buyers.
+The suburb's Gabba proximity is a genuine draw for a specific buyer, not just those interested in sport, but anyone who values the concentration of cafes, restaurants and independent retail that has built up around that precinct over the past decade. The cross-river access via the Captain Cook Bridge and the proximity to South Bank cultural infrastructure make East Brisbane a suburb where the city is genuinely close, not just close on paper.
 
-The catchment for Coorparoo State Secondary College covers this part of the inner-south, and Brisbane State High School is within practical reach for families who meet its selective entry criteria. The suburb also attracts a significant proportion of professionals who prioritise a short commute over a large backyard, and that buyer type competes hard for well-presented properties.
+School catchments include East Brisbane State School, a smaller school that tends to produce a tight community of parents and long-term residents. That community dynamic is something buyers notice during open homes, and it contributes to the suburb's low churn rate relative to suburbs with larger populations.
 
-For owners in East Brisbane considering a sale, the compactness of the suburb means that comparable sales data is worth examining closely. danielgierach.com/suburbs/east-brisbane
+Character homes on the river-facing side of the suburb achieve results that reflect the scarcity of what they offer. Buyers coming from Kangaroo Point or Woolloongabba with a house budget regularly end up at East Brisbane campaigns because the product they want simply appears here more often than in adjacent suburbs. If you own in East Brisbane and are thinking about timing, begin at danielgierach.com/suburbs/east-brisbane.
 
 ## Hashtags
 
-#EastBrisbane
-#BrisbaneProperty
-#RayWhiteBulimba
-#DanielGierach
-#BrisbaneRealEstate
-#SellBrisbane
-#HomeOwners
+#EastBrisbane #BrisbaneProperty #RayWhiteBulimba #DanielGierach #BrisbaneRealEstate #SellBrisbane #HomeOwners
 
 ## Visual Brief
 
 **Format:** 1080x1080 square, dark background (#0a0806)
-**Style:** Suburb spotlight
 **Headline text:** EAST BRISBANE
 **Body text:**
-- River-bordered inner-city suburb, limited stock
-- Mowbray Park riverside access and city walkability
+- Under 2km to the CBD with retained residential character
+- Gabba precinct retail and dining within walking distance
 **Footer:** Daniel Gierach · Ray White Bulimba · danielgierach.com
 
 ## Notes for Daniel
 
 **Confidence: Ready**
-⚠️ VERIFY all suburb stats before posting — median prices and growth figures change regularly.
-[Source suggestion: CoreLogic, Domain, or propertyvalue.com.au for East Brisbane]
-[Boost targeting: professionals and downsizers 35-65, East Brisbane, Kangaroo Point, Woolloongabba]
+[VERIFY: East Brisbane State School current enrolment status and catchment before posting]
+[First comment: mention the Wellington Road character streetscape as a visual anchor]
