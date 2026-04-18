@@ -7,9 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2026-05-05
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/re176AEj54cd0wk
-**Canva Thumbnail:** https://design.canva.ai/itBpeCh3hFgwMxg
+**Visual status:** Ready
+**Image:** content/social/images/2026-05-05-linkedin-market.png
 
 ---
 

@@ -7,9 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2026-05-07
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** https://www.canva.com/d/LhR--aTKQ9QQ1Dw
-**Canva Thumbnail:** https://design-manipulation-download.canva.com/9f733a3c-3e9b-4036-9ac9-9182c79cf65c/0000-1761407523459333897.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHYZOT325Q%2F20260414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260414T035221Z&X-Amz-Expires=16611&X-Amz-Signature=8aa9c55961fd50a9126ba4aa3e804dbc1e7473ac9cc273f1ec8a9fb8efe07258&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2014%20Apr%202026%2008%3A29%3A12%20GMT
+**Visual status:** Ready
+**Image:** content/social/images/2026-05-07-linkedin-article.png
 
 ---
 
