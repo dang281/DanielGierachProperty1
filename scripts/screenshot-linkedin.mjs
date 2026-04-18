@@ -293,7 +293,7 @@ function buildArticleCoverHtml() {
         <div class="avatar-dg">DG</div>
         <div>
           <div class="name">Daniel Gierach</div>
-          <div class="sub">Ray White Collective · ${esc(readMins)} min read</div>
+          <div class="sub">Ray White Collective</div>
         </div>
       </div>
       <div class="tag">${esc(tagline)}</div>
