@@ -1,0 +1,48 @@
+# Carindale Planning Amendment: Public Consultation Opens April 24
+
+**Platform:** LinkedIn
+**Format:** Post
+**Goal:** Alert Carindale property owners to the upcoming BCC planning amendment and position Daniel as the most informed agent in the suburb
+**Content Pillar:** authority
+**Status:** Ready for Review
+**Publish date:** 2026-04-21
+**Scheduled time:** 07:30
+**Visual status:** Ready
+**Image:** content/social/images/2026-04-21-linkedin-market.png
+
+---
+
+## Caption
+
+Brisbane City Council has confirmed a formal planning amendment for Carindale, with public consultation opening on 24 April 2026.
+
+The proposed changes fall under a tailored amendment package covering Carindale's major centre. The full details will not be released until consultation opens next Thursday, but amendments targeting major centres in Brisbane typically involve updated provisions around building height, land use mix, and commercial activity zones adjacent to residential streets.
+
+For property owners in Carindale, this is worth reading when the documents drop. Planning amendments near major centres can affect what gets built next door, what a property can be used for, and how the suburb changes character over the next decade. That is not always negative. In many cases updated zoning lifts long-term values by improving amenity. In others it brings density closer to established residential streets than owners would prefer.
+
+The public submission period is your window to formally respond. Council is required to consider all submissions. Most homeowners do not lodge one. The ones who do often shape the outcome.
+
+The consultation documents will be available at brisbane.qld.gov.au from 24 April. If you own property in Carindale and want a read on what these amendments could mean for your block specifically, danielgierach.com.
+
+## Hashtags
+
+#BrisbaneProperty
+#Carindale
+#UrbanPlanning
+#DanielGierach
+#InnerEastBrisbane
+
+## Notes for Daniel
+
+**Confidence: Check**
+
+⚠️ VERIFY before posting:
+1. Confirm the April 24 consultation opening date at brisbane.qld.gov.au/building-and-planning/planning-and-design/city-plan-amendments/tailored-amendment-package-indooroopilly-carindale-and-nundah
+2. Once consultation opens (April 24), read the actual amendment documents and update the post body if the scope differs from the general "major centre" description used here
+3. Consider whether to post Tuesday as written (before the documents drop) or wait until April 23 Thursday if you prefer to write with the actual details in hand. If waiting, swap this with the April 23 article feature.
+
+**Suggested first comment (post after publishing):**
+The submission process is open to any owner or resident in the affected area. If you want to understand the specific impacts before lodging a submission, feel free to reach out.
+
+**Source:**
+https://www.brisbane.qld.gov.au/building-and-planning/planning-and-design/city-plan-amendments/tailored-amendment-package-indooroopilly-carindale-and-nundah
