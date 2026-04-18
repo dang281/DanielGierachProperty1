@@ -184,6 +184,13 @@ Pick the most relevant — no duplicates of meaning (e.g. never use both
 Always include #DanielGierach. Always include one geographic tag.
 Always include one topic-specific tag directly relevant to this post.]
 
+## Article Intro
+
+[2–3 sentences only. This goes into LinkedIn's "Tell your network what your article is about…"
+field when sharing the article link. It is NOT the caption — it is a teaser above the article card.
+Write it in Daniel's voice: direct, no fluff. Hook the reader on the problem the article solves.
+End by referencing the article without restating the title.]
+
 ## Notes for Daniel
 
 [Every source URL used]

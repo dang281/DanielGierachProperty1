@@ -352,6 +352,22 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           </div>
         )}
 
+        {/* Article Intro */}
+        {item.objective && (
+          <div className="flex flex-col gap-1.5 rounded-xl px-4 py-3.5"
+            style={{ background: 'rgba(196,145,42,0.06)', border: '1px solid rgba(196,145,42,0.2)' }}>
+            <div className="flex items-center justify-between">
+              <label className="text-[var(--color-gold)] text-xs tracking-wide uppercase font-sans font-semibold">
+                Article intro — paste into LinkedIn's "Tell your network…" field
+              </label>
+              <CopyButton text={item.objective} label="Copy intro" />
+            </div>
+            <p className="text-[var(--color-cream)] text-sm font-sans leading-relaxed">
+              {item.objective}
+            </p>
+          </div>
+        )}
+
         {/* Caption */}
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">

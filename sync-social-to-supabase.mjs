@@ -174,6 +174,7 @@ async function main() {
     const visualBrief  = section(md, 'Visual Brief')
     const notes        = section(md, 'Notes for Daniel')
     const hashtags     = section(md, 'Hashtags')
+    const articleIntro = section(md, 'Article Intro')
 
     // Extract poll options → store as JSON array in platform_variants
     const pollOptionsSection = section(md, 'Poll [Oo]ptions?') ?? section(md, 'Poll options') ?? section(md, 'Poll Options')
@@ -200,6 +201,7 @@ async function main() {
       scheduled_date:    field(md, 'Publish date') ?? null,
       scheduled_time:    parseScheduledTime(field(md, 'Scheduled time')),
       notes:             notes ?? null,
+      objective:         articleIntro ?? null,
       visual_brief:      visualBrief ?? null,
       visual_status:     parseVisualStatus(field(md, 'Visual status')),
       canva_url:         field(md, 'Canva URL') ?? null,

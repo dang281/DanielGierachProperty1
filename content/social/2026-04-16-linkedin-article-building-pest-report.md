@@ -50,6 +50,10 @@ danielgierach.com/insights/building-pest-report
 **Image direction:** Text-only design, no photo needed
 **Source line:** Not applicable
 
+## Article Intro
+
+A building and pest report on a Brisbane Queenslander will almost always come back with a list of items. Most buyers either panic or miss the findings that actually matter. New issue of the Field Guide — what the categories mean, how to handle termite findings, and when to negotiate rather than walk away.
+
 ## Notes for Daniel
 
 **Confidence: Ready**
