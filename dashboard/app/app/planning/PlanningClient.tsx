@@ -5,8 +5,9 @@ import Link from 'next/link'
 import type { ContentItem, Pillar } from '@/types/content'
 import { confirmSchedule, unscheduleItems } from '@/lib/actions/content'
 import CalendarClient from '../calendar/CalendarClient'
+import WeeklyContentReview from '@/components/dashboard/WeeklyContentReview'
 
-type PageMode = 'plan' | 'calendar'
+type PageMode = 'plan' | 'calendar' | 'review'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -119,6 +120,7 @@ export default function PlanningClient({
   libraryPosts,
   allScheduled,
   calendarItems,
+  reviewItems,
   baseDate,
   today,
   nextFieldGuideIssue,
@@ -126,6 +128,7 @@ export default function PlanningClient({
   libraryPosts:        ContentItem[]
   allScheduled:        ContentItem[]
   calendarItems:       ContentItem[]
+  reviewItems:         ContentItem[]
   baseDate:            string
   today:               string
   nextFieldGuideIssue: number
@@ -247,7 +250,7 @@ export default function PlanningClient({
             Schedule
           </p>
           <h1 className="text-2xl font-serif font-normal" style={{ color: 'var(--color-cream)' }}>
-            {pageMode === 'plan' ? 'Two-Week Planner' : 'Content Calendar'}
+            {pageMode === 'plan' ? 'Two-Week Planner' : pageMode === 'review' ? 'Post Review' : 'Content Calendar'}
           </h1>
           {pageMode === 'plan' && (
             <p className="text-xs mt-0.5 font-sans" style={{ color: 'var(--color-cream-x)' }}>
@@ -260,19 +263,23 @@ export default function PlanningClient({
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
-          {/* Plan / Calendar toggle */}
+          {/* Plan / Calendar / Review toggle */}
           <div className="flex rounded-xl overflow-hidden"
             style={{ border: '1px solid var(--color-border-w)' }}>
-            {(['plan', 'calendar'] as PageMode[]).map(m => (
+            {([
+              { m: 'plan',     label: 'Plan'     },
+              { m: 'calendar', label: 'Calendar' },
+              { m: 'review',   label: reviewItems.length > 0 ? `Review (${reviewItems.length})` : 'Review' },
+            ] as { m: PageMode; label: string }[]).map(({ m, label }) => (
               <button
                 key={m}
                 onClick={() => setPageMode(m)}
-                className="px-4 py-1.5 text-xs font-sans font-semibold capitalize transition-colors"
+                className="px-4 py-1.5 text-xs font-sans font-semibold transition-colors"
                 style={pageMode === m
                   ? { background: 'var(--color-gold)', color: '#0a0806' }
                   : { background: 'var(--color-card)', color: 'var(--color-cream-dim)' }}
               >
-                {m === 'plan' ? 'Plan' : 'Calendar'}
+                {label}
               </button>
             ))}
           </div>
@@ -337,6 +344,11 @@ export default function PlanningClient({
       {/* ── Calendar mode ── */}
       {pageMode === 'calendar' && (
         <CalendarClient items={calendarItems} today={today} defaultView="twoweek" />
+      )}
+
+      {/* ── Review mode ── */}
+      {pageMode === 'review' && (
+        <WeeklyContentReview initialItems={reviewItems} today={today} />
       )}
 
       {/* ── Plan mode body ── */}

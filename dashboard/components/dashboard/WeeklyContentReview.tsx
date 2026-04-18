@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useCallback } from 'react'
 import Link from 'next/link'
 import type { ContentItem, Status } from '@/types/content'
 import { PLATFORM_COLOUR, PILLAR_COLOUR, STATUS_BG, STATUS_BORDER } from '@/types/content'
 import { updateStatus, updateItem } from '@/lib/actions/content'
+
+const VISUAL_SERVER = 'http://localhost:3033'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -146,12 +148,171 @@ function RevisionForm({
   )
 }
 
+// ─── Visual generation ────────────────────────────────────────────────────────
+
+type VisualState = 'idle' | 'pinging' | 'generating' | 'done' | 'error' | 'fallback'
+
+function buildVisualPayload(item: ContentItem): { type: string; params: Record<string, string> } {
+  const shortTitle = (t: string) => t.includes(' - ') ? t.split(' - ').slice(1).join(' - ') : t
+  const title   = shortTitle(item.title).slice(0, 80)
+  const caption = (item.caption ?? '').replace(/\n+/g, ' ')
+  const date    = item.scheduled_date ?? new Date().toISOString().split('T')[0]
+  const tl      = item.title.toLowerCase()
+  const isArticle   = tl.includes('article feature') || tl.includes('article:')
+  const isFieldGuide = tl.includes('field guide') || (item.content_type ?? '').toLowerCase().includes('field guide')
+  const LABEL_MAP: Record<string, string> = {
+    buyer: 'BUYER INSIGHT', seller: 'SELLER INSIGHT',
+    suburb: 'INNER EAST',   authority: 'AUTHORITY', proof: 'AUTHORITY',
+  }
+  if (isArticle && !isFieldGuide) {
+    const slug = (item.destination_url ?? '').split('/').filter(Boolean).pop()
+      ?? title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    return { type: 'article', params: {
+      headline: title,
+      excerpt: caption.split(/[.!?]/)[0].slice(0, 180),
+      slug,
+      date,
+    }}
+  }
+  return { type: 'market', params: {
+    label: isFieldGuide ? 'FIELD GUIDE' : (LABEL_MAP[item.content_pillar ?? ''] ?? 'MARKET UPDATE'),
+    headline: title,
+    body: caption.slice(0, 220),
+    date,
+  }}
+}
+
+function buildShellCommand(item: ContentItem): string {
+  const { type, params } = buildVisualPayload(item)
+  const date  = params.date ?? item.scheduled_date ?? 'YYYY-MM-DD'
+  const slug  = type === 'article' ? '-article' : '-market'
+  const out   = `content/social/images/${date}-linkedin${slug}.png`
+  const flags = Object.entries(params)
+    .map(([k, v]) => `  --${k} "${v}"`)
+    .join(' \\\n')
+  return `node scripts/screenshot-linkedin.mjs \\\n  --type ${type} \\\n${flags} \\\n  --out ${out}`
+}
+
+function GenerateVisualButton({ item, onGenerated }: {
+  item:        ContentItem
+  onGenerated: (url: string) => void
+}) {
+  const [state,   setState]   = useState<VisualState>('idle')
+  const [url,     setUrl]     = useState<string | null>(null)
+  const [errMsg,  setErrMsg]  = useState('')
+  const [copied,  setCopied]  = useState(false)
+
+  const run = useCallback(async () => {
+    setState('pinging')
+    try {
+      const ping = await fetch(`${VISUAL_SERVER}/ping`, {
+        signal: AbortSignal.timeout(1500),
+      })
+      if (!ping.ok) throw new Error('Server not OK')
+    } catch {
+      setState('fallback')
+      return
+    }
+
+    setState('generating')
+    try {
+      const { type, params } = buildVisualPayload(item)
+      const res = await fetch(`${VISUAL_SERVER}/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId: item.id, type, params }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.url) throw new Error(data.error ?? 'Generation failed')
+      setUrl(data.url)
+      onGenerated(data.url)
+      setState('done')
+    } catch (e: unknown) {
+      setErrMsg(e instanceof Error ? e.message : 'Generation failed')
+      setState('error')
+    }
+  }, [item, onGenerated])
+
+  function copyCmd() {
+    navigator.clipboard.writeText(buildShellCommand(item))
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  if (state === 'idle') {
+    return (
+      <button onClick={run}
+        className="px-3 py-1.5 rounded-lg text-[10px] font-sans font-semibold border transition-all"
+        style={{ color: '#818cf8', borderColor: 'rgba(129,140,248,0.35)', background: 'rgba(129,140,248,0.08)' }}>
+        Generate visual
+      </button>
+    )
+  }
+
+  if (state === 'pinging' || state === 'generating') {
+    return (
+      <span className="text-[10px] font-sans px-3 py-1.5 rounded-lg"
+        style={{ color: 'var(--color-cream-x)', background: 'rgba(0,0,0,0.15)' }}>
+        {state === 'pinging' ? 'Connecting…' : 'Generating…'}
+      </span>
+    )
+  }
+
+  if (state === 'done' && url) {
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-[10px] font-sans font-semibold" style={{ color: '#22c55e' }}>✓ Visual ready</span>
+        <img src={url} alt="" className="w-12 h-12 rounded object-contain" style={{ background: '#0a0806' }} />
+      </div>
+    )
+  }
+
+  if (state === 'error') {
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-[10px] font-sans" style={{ color: '#ef4444' }}>Error: {errMsg}</span>
+        <button onClick={() => setState('idle')} className="text-[9px] font-sans text-[var(--color-cream-x)] hover:underline">Retry</button>
+      </div>
+    )
+  }
+
+  // fallback — server not running
+  return (
+    <div className="flex flex-col gap-2 p-3 rounded-lg" style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid var(--color-border-w)' }}>
+      <p className="text-[10px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
+        Visual server not running. Start it with:
+      </p>
+      <code className="text-[9px] font-mono px-2 py-1 rounded" style={{ background: 'rgba(0,0,0,0.3)', color: '#818cf8' }}>
+        node scripts/visual-server.mjs
+      </code>
+      <p className="text-[10px] font-sans mt-1" style={{ color: 'var(--color-cream-x)' }}>
+        Or copy the command to run manually:
+      </p>
+      <pre className="text-[8px] font-mono leading-relaxed px-2 py-1.5 rounded overflow-x-auto"
+        style={{ background: 'rgba(0,0,0,0.3)', color: 'var(--color-cream-dim)' }}>
+        {buildShellCommand(item)}
+      </pre>
+      <div className="flex gap-2">
+        <button onClick={copyCmd}
+          className="text-[9px] font-sans font-semibold px-2 py-1 rounded"
+          style={{ background: 'rgba(129,140,248,0.15)', color: '#818cf8' }}>
+          {copied ? '✓ Copied' : 'Copy command'}
+        </button>
+        <button onClick={() => setState('idle')} className="text-[9px] font-sans text-[var(--color-cream-x)] hover:underline">
+          Try again
+        </button>
+      </div>
+    </div>
+  )
+}
+
 // ─── Review card ─────────────────────────────────────────────────────────────
 
 function ReviewCard({ item, onAction }: { item: ContentItem; onAction: (id: string, action: 'approve' | 'reject' | 'revise') => void }) {
   const [showRevision, setShowRevision] = useState(false)
   const [isPending, startTransition]    = useTransition()
   const [actionDone, setActionDone]     = useState<string | null>(null)
+  const [thumbUrl, setThumbUrl]         = useState<string | null>(item.visual_thumbnail ?? null)
   const pc     = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
   const visual = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
 
@@ -243,6 +404,12 @@ function ReviewCard({ item, onAction }: { item: ContentItem; onAction: (id: stri
               Canva ↗
             </a>
           )}
+          {thumbUrl && (
+            <a href={thumbUrl} target="_blank" rel="noreferrer" className="ml-1">
+              <img src={thumbUrl} alt="Visual preview" className="w-8 h-8 rounded object-contain"
+                style={{ background: '#0a0806', border: '1px solid var(--color-border-w)' }} />
+            </a>
+          )}
         </div>
 
         {/* Revision form */}
@@ -256,7 +423,7 @@ function ReviewCard({ item, onAction }: { item: ContentItem; onAction: (id: stri
 
         {/* Action buttons */}
         {!showRevision && (
-          <div className="flex items-center gap-2 ml-9">
+          <div className="flex flex-wrap items-center gap-2 ml-9">
             <button
               onClick={approve}
               disabled={isPending}
@@ -283,6 +450,12 @@ function ReviewCard({ item, onAction }: { item: ContentItem; onAction: (id: stri
             >
               Reject
             </button>
+            {item.visual_status !== 'approved' && (
+              <GenerateVisualButton
+                item={item}
+                onGenerated={url => setThumbUrl(url)}
+              />
+            )}
             <Link href={`/app/content/${item.id}`}
               className="ml-auto text-[9px] font-sans text-[var(--color-cream-x)] hover:text-[var(--color-gold)] transition-colors flex-shrink-0">
               Edit in full →
@@ -336,7 +509,7 @@ function ScheduleGrid({ allLinkedin, today }: { allLinkedin: ContentItem[]; toda
     byDate.set(item.scheduled_date, [...existing, item])
   })
 
-  const isTargetDay = (d: Date) => [1, 3, 5].includes(d.getDay()) // Mon/Wed/Fri
+  const isTargetDay = (d: Date) => [2, 3, 4].includes(d.getDay()) // Tue/Wed/Thu
 
   return (
     <div className="flex flex-col gap-3">
@@ -382,7 +555,7 @@ function ScheduleGrid({ allLinkedin, today }: { allLinkedin: ContentItem[]; toda
                     ))
                   ) : target ? (
                     <span className="text-[8px] font-sans text-[var(--color-cream-x)] opacity-50 mt-auto">
-                      {di === 0 ? 'Market update' : di === 2 ? 'Poll' : 'Spotlight'}
+                      {di === 1 ? 'Market / Authority' : di === 2 ? 'Poll' : di === 3 ? 'Field Guide' : ''}
                     </span>
                   ) : null}
                 </div>

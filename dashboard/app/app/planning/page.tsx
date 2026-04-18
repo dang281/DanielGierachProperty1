@@ -46,11 +46,16 @@ export default async function PlanningPage() {
   // Calendar view: all content items + SEO articles merged
   const calendarItems: ContentItem[] = [...socialItems, ...seoItems]
 
+  // Review tab: LinkedIn posts awaiting approval
+  const reviewItems = socialItems
+    .filter(i => i.platform === 'linkedin' && i.status === 'ready')
+
   return (
     <PlanningClient
       libraryPosts={(libraryResult.data ?? []) as ContentItem[]}
       allScheduled={(allScheduledResult.data ?? []) as ContentItem[]}
       calendarItems={calendarItems}
+      reviewItems={reviewItems}
       baseDate={baseDate}
       today={today}
       nextFieldGuideIssue={(fieldGuideResult.count ?? 0) + 1}
