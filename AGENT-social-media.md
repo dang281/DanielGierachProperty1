@@ -167,8 +167,8 @@ Write file: `content/social/[NEXT_FRI]-linkedin-[suburb]-suburb-spotlight.md`
 **Status:** Ready for Review
 **Publish date:** YYYY-MM-DD
 **Scheduled time:** 07:30
-**Visual status:** Draft
-**Canva URL:** [fill after creating design]
+**Visual status:** Ready
+**Image:** content/social/images/YYYY-MM-DD-linkedin-[topic-slug].png
 
 ---
 
@@ -304,36 +304,53 @@ Write file: `content/social/[NEXT_FRI]-linkedin-[suburb]-suburb-spotlight.md`
 
 ---
 
-## CANVA DESIGN INSTRUCTIONS
+## IMAGE GENERATION INSTRUCTIONS
 
-Required for: LinkedIn posts (not polls), Facebook suburb spotlights.
+Do NOT use Canva for LinkedIn posts. All LinkedIn visuals are generated via the Puppeteer screenshot pipeline below. This produces pixel-perfect, brand-consistent 1080×1080 PNGs automatically.
 
-### Step 1 — Generate
+### LinkedIn Market/Authority post (Tuesday) — `--type market`
 
-Call `mcp__claude_ai_Canva__generate-design` with:
-- `brand_kit_id`: `kAGjS7yZLr8`
-- `design_type`: `facebook_post` (square 1080x1080 — used for both platforms)
-- `query`: Write a detailed prompt specifying:
-
-```
-VIBRANT, BOLD, DYNAMIC Facebook post for Daniel Gierach, real estate agent Brisbane.
-[Suburb name or topic] as the dominant headline — large, all-caps, gold (#c4912a).
-Deep dark background: midnight navy (#0a1628) or charcoal (#0a0806). NOT grey.
-Key stats or insight in cream (#f0ece4) text below the headline.
-Vivid accent colour (amber, electric teal, or warm orange) for geometric shapes, 
-dividers, or background elements. High contrast. Premium editorial feel.
-"danielgierach.com" at the bottom in gold.
-Bold, dynamic layout — NOT flat or corporate. Square 1080x1080.
+```bash
+node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs \
+  --type market \
+  --label "[EYEBROW LABEL]" \
+  --headline "[POST TITLE OR KEY INSIGHT — max ~60 chars for clean layout]" \
+  --body "[First 1–2 sentences of the caption — max 220 chars]" \
+  --date "[YYYY-MM-DD]" \
+  --out /Users/danielgierach/DanielGierachProperty/content/social/images/[YYYY-MM-DD]-linkedin-market.png
 ```
 
-### Step 2 — Save
+**`--label` options** (choose the most accurate):
+- `MARKET UPDATE` — price data, auction results, volume stats
+- `SELLER INSIGHT` — tips or strategy for sellers
+- `BUYER INSIGHT` — tips or strategy for buyers
+- `INNER EAST` — suburb or area-specific observations
+- `AUTHORITY` — evergreen opinion or Daniel's direct experience
+- `RATE WATCH` — RBA or lending environment posts
 
-Call `mcp__claude_ai_Canva__create-design-from-candidate` on the first candidate returned.
+### LinkedIn Article Feature post (Thursday) — `--type article`
 
-### Step 3 — Update the file
+```bash
+node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs \
+  --type article \
+  --headline "[ARTICLE TITLE from the insights page]" \
+  --excerpt "[One punchy sentence from the article that hooks the reader — max 180 chars]" \
+  --slug "[article-slug-no-leading-slash]" \
+  --date "[YYYY-MM-DD]" \
+  --out /Users/danielgierach/DanielGierachProperty/content/social/images/[YYYY-MM-DD]-linkedin-article.png
+```
 
-Set `**Canva URL:**` to the `view_url` from the result.
-Set `**Visual status:**` to `Draft`.
+### After running the script
+
+1. Confirm the PNG exists at the output path
+2. In the post markdown file, set:
+   - `**Image:** content/social/images/[filename].png`
+   - `**Visual status:** Ready`
+   - Remove any `**Canva URL:**` field if present
+
+### Facebook suburb spotlights
+
+Facebook posts still use Canva. Call `mcp__claude_ai_Canva__generate-design` with brand kit `kAGjS7yZLr8` as before. Update `**Canva URL:**` and set `**Visual status:** Draft`.
 
 ---
 
