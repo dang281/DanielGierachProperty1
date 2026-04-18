@@ -144,12 +144,30 @@ async function supabaseFetch(path, options = {}) {
 
 async function main() {
   // Fetch existing records (id + title) to decide insert vs update
-  const existing = await supabaseFetch('/rest/v1/content_items?select=id,title&limit=1000')
+  const existing = await supabaseFetch('/rest/v1/content_items?select=id,title&limit=2000')
   if (!existing.ok || !Array.isArray(existing.data)) {
     console.error(`Failed to fetch existing records: ${existing.status} — ${JSON.stringify(existing.data)}`)
     process.exit(1)
   }
-  const existingMap = new Map(existing.data.map(r => [r.title, r.id]))
+
+  // Deduplicate: if multiple records share a title, keep the first and delete the rest
+  const seenTitles = new Map()  // title -> id to keep
+  const toDelete = []
+  for (const r of existing.data) {
+    if (seenTitles.has(r.title)) {
+      toDelete.push(r.id)
+    } else {
+      seenTitles.set(r.title, r.id)
+    }
+  }
+  if (toDelete.length > 0) {
+    console.log(`  DEDUP  Removing ${toDelete.length} duplicate record(s)...`)
+    for (const id of toDelete) {
+      await supabaseFetch(`/rest/v1/content_items?id=eq.${id}`, { method: 'DELETE' })
+    }
+  }
+
+  const existingMap = seenTitles
 
   const files = (await readdir(SOCIAL_DIR))
     .filter(f => f.endsWith('.md'))
