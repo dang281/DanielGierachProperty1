@@ -1,16 +1,15 @@
 'use client'
 
 import { useTransition } from 'react'
+import { updateOpportunityStatus, type GrowthOpportunity } from '@/lib/actions/growth'
 import {
-  updateOpportunityStatus,
-  type GrowthOpportunity,
   PRIORITY_LABEL,
   PRIORITY_STYLE,
   CATEGORY_LABEL,
   CATEGORY_STYLE,
   STATUS_LABEL,
   STATUS_STYLE,
-} from '@/lib/actions/growth'
+} from '@/lib/actions/growth-constants'
 
 interface Props {
   opportunity: GrowthOpportunity
