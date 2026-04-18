@@ -15,17 +15,15 @@
 
 ## Caption
 
-Most buyers get their building and pest report back and make one of two mistakes: they panic at a long list of items, or they skim past findings they should have taken seriously.
+A building and pest report on a Brisbane Queenslander will almost always come back with a list of items. The key is knowing how to read them.
 
-A report on a 50-year-old Queenslander in Camp Hill or Morningside will almost always come back with items on it. That is not the question. The question is what category they fall into.
+Reports are categorised for a reason. Major defects, things like active termite damage to structural timbers, significant foundation movement, or a failing roof structure, are findings that warrant a specialist quote before proceeding. They do not automatically mean the deal falls over. They mean you need a number. From that number you can negotiate a price reduction, ask the seller to rectify before settlement, or if the issue genuinely changes the picture, exit under your building and pest condition.
 
-Major defects, things like active termite damage to structural timbers, significant foundation movement, or a failing roof structure, are findings that require a specialist quote before you can make a sound decision. They do not automatically mean you walk away. They mean you need a number. From that number you can negotiate a price reduction, ask the seller to rectify before settlement, or if the issue genuinely changes the case for the purchase, exit under your building and pest condition.
+Minor defects and maintenance items sit in a different category. Aged silicone seals, stiff doors, minor render cracking, weathered timber on verandahs: these are normal wear on a property of that age. A report with 25 minor items tells a very different story from one identifying structural movement.
 
-Minor defects and maintenance items are different. Aged silicone seals, stiff doors, minor render cracking, weathered timber on verandahs: these are normal wear on a property of that age. A report listing 25 minor items is not the same as one identifying structural movement.
+One step worth taking after the report comes back: call the inspector directly. Good inspectors will walk you through their findings in plain language and help you understand which items carry weight. That conversation is often more useful than the written document itself.
 
-The other thing most buyers do not do: call the inspector after reading the report. Good inspectors will talk you through their findings in plain language and tell you which items they would prioritise. That call is often more useful than the written document itself.
-
-Full breakdown of what to look for, what is normal for Brisbane's inner-east housing stock, and how to handle termite findings at the link below.
+Full breakdown of what to look for, what is normal for Brisbane's inner-east housing stock, and how to read termite findings at the link below.
 
 danielgierach.com/insights/building-pest-report
 
@@ -52,7 +50,7 @@ danielgierach.com/insights/building-pest-report
 
 ## Article Intro
 
-Most buyers read a building and pest report and get it wrong in one of two directions. New Field Guide issue: what the findings actually mean and how to handle what comes back.
+A building and pest report is one of the most important documents in a property purchase. New Field Guide issue: what the categories mean and how to work through what comes back.
 
 ## Notes for Daniel
 
