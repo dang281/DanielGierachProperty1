@@ -878,7 +878,6 @@ export default function CalendarClient({
   }
 
   const filtered = useMemo(() => localItems.filter(item => {
-    if (item.status === 'archived') return false
     if (platform !== 'all' && item.platform !== platform) return false
     if (dStatus !== 'all' && getDisplayStatus(item) !== dStatus) return false
     if (pillar !== 'all' && item.content_pillar !== pillar) return false
