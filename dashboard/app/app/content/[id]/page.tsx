@@ -668,7 +668,14 @@ function VisualPanel({ url, status, title }: { url: string; status: string; titl
 
   return (
     <div className="bg-[var(--color-card)] border border-[var(--color-border-w)] rounded-xl overflow-hidden">
-      <img src={url} alt="Post visual" className="w-full object-contain max-h-80 bg-[#0a0806]" />
+      <div className="flex items-center justify-center bg-[#0a0806] py-6 px-4">
+        <img
+          src={url}
+          alt="Post visual"
+          className="w-full object-contain rounded"
+          style={{ maxWidth: 480 }}
+        />
+      </div>
       <div className="flex items-center justify-between px-4 py-3 border-t border-[var(--color-border-w)]">
         <span className="text-[11px] font-sans text-[var(--color-cream-x)]">
           {status === 'approved' ? 'Visual approved' : 'Visual ready — download to post'}
