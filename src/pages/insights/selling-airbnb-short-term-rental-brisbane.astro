@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const draft = true; // STAGED: remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need development approval to sell a Brisbane Airbnb property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Development approval is relevant to the ongoing operation of a short-term rental, not to the sale of the property itself. However, if your property has been operating as an unhosted short-term rental in a low-density residential zone without development approval, buyers' solicitors may raise this during due diligence. It is worth clarifying your regulatory position with your solicitor before you go to market so you understand what you are required to disclose and whether any rectification is needed before listing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I keep my Airbnb running while selling my Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most vendors in Brisbane's inner east find it easier to stop accepting new bookings once they commit to selling, honour existing confirmed bookings as the pipeline winds down, and run the property vacant for the active campaign period. This maximises flexibility for open homes and private inspections, and allows you to present the property in a way that appeals to owner-occupier buyers rather than guest-optimised short-term rental presentation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Airbnb income history help or hurt when selling a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your buyer pool. For investors specifically looking at short-term rental yield, documented Airbnb income history is a positive and should be presented clearly. For owner-occupier buyers, who make up a significant portion of inner Brisbane's demand, Airbnb income history is largely irrelevant. Your agent should understand the most likely buyer profile for your specific property and price point, and pitch the marketing accordingly. Trying to appeal to both segments with a property that does not clearly suit both often weakens the campaign."
+      }
+    }
+  ]
+};
+---
+<Layout title="Selling a Brisbane Property Used as an Airbnb or Short-Term Rental | Daniel Gierach Property" description="If your Brisbane property is listed on Airbnb or a short-term rental platform, selling it has a few extra moving parts around disclosure, presentation, and buyer targeting. Here is what to work through." draft={draft}>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Selling a Brisbane Property Used as an Airbnb or Short-Term Rental
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Selling a short-term rental is not complicated, but it requires a few decisions your standard vendor does not face. Get them right early and the campaign runs smoothly.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Properties operating as Airbnbs or short-term rentals have become a meaningful part of the inner Brisbane market, particularly in suburbs like Bulimba, Hawthorne, and Morningside where the combination of location, lifestyle amenity, and good short-term rental demand makes the economics work. When owners of these properties decide to sell, the process is largely the same as any residential sale, but with three additional dimensions that require upfront decisions: what to do about existing bookings, what Brisbane City Council's regulatory position means for your sale, and how to pitch the property to the right buyers.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Brisbane Council rules and what sellers need to disclose</h2>
+      <p>Brisbane City Council applies the City Plan 2014 to short-term accommodation. For properties in low-density residential zones, an unhosted short-term rental (where the owner does not live on the premises) operating on an ongoing basis generally requires development approval under the planning scheme. Hosted arrangements, where the owner is present, are treated differently and are typically exempt from the approval requirement.</p>
+
+      <p>If your property has been operating as an unhosted short-term rental without development approval, this is a disclosure consideration rather than an automatic barrier to sale. The sale of the property transfers the real estate asset, not the operating business. Buyers' solicitors conducting due diligence will assess the property's planning compliance position, and a buyer who intends to continue operating an Airbnb at the property will want clarity on whether the current use is compliant. Talk to your solicitor before listing. Understanding your regulatory position in advance lets you manage the disclosure process clearly rather than having it surface as a surprise during buyer due diligence.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Deciding what to do with existing bookings</h2>
+      <p>The most immediate practical question when selling an active short-term rental is what to do about confirmed bookings that extend beyond your expected settlement date. Airbnb bookings are commitments to guests. Cancelling confirmed bookings triggers platform penalties and guest refunds, and repeated short-notice cancellations affect your host standing on the platform. But allowing bookings to continue right up to your settlement date creates complications for your conveyancer and potential problems for the buyer.</p>
+
+      <p>The cleanest approach for most sellers is to stop accepting new bookings as soon as you commit to selling, honour existing confirmed bookings as the pipeline naturally winds down, and aim to have the property vacant for the core campaign period. This typically means a three to six week runway from decision to campaign start, which gives you time to wind down the STR pipeline without penalty while still launching the campaign on a reasonable timeline. If you have bookings that run close to your likely settlement date, discuss this with your solicitor early. Confirmed bookings that fall after settlement are a contractual issue that needs to be resolved in the contract of sale, not left to sort itself out after you sign.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Who buys an Airbnb property and how to target them</h2>
+      <p>The buyer pool for a former or active Airbnb in Brisbane's inner east is genuinely split between two quite different profiles. Investors looking at short-term rental yield represent one segment: they are assessing the property on the basis of demonstrated income, occupancy rates, seasonal demand, and the sustainability of the STR operation under current and future council regulations. For this buyer, your Airbnb income history, star rating, occupancy data, and any development approval you hold for the use are all relevant selling points.</p>
+
+      <p>Owner-occupier buyers represent a second, and often larger, segment in inner east suburbs. For an owner-occupier, Airbnb income history is largely irrelevant. They are buying a home, not a business. What matters to them is the quality of the property, the neighbourhood, the school catchments, the proximity to lifestyle amenity, and the price. They may be actively put off by an overly STR-optimised presentation: the generic wall art, the welcome folder on the bench, the clearly staged-for-guest photographs. For this buyer, your campaign needs to look and feel like a home sale, not a hospitality listing.</p>
+
+      <p>The right approach depends on which buyer profile is most likely for your specific property at your likely asking price. In most inner-east scenarios, the owner-occupier pool is larger and more competitive, which means higher prices. If your property can genuinely appeal to both profiles, your agent should understand how to pitch the listing and photography without alienating either. If it skews clearly toward one, lean into that segment rather than trying to straddle both.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Presenting a short-term rental property honestly</h2>
+      <p>Properties that have hosted hundreds or thousands of guest stays accumulate wear and tear in specific patterns. High-traffic areas near the entry, sofas and chairs that have seen intensive use, kitchen appliances at the end of their life, and consumable items replaced at guest-service frequency rather than residential longevity: these are the areas where a short-term rental often shows its age relative to an owner-occupied home of the same vintage.</p>
+
+      <p>Before launching your campaign, do a systematic walk-through with your agent and look at the property with fresh eyes from a buyer's perspective. The standard pre-sale investment in decluttering, addressing deferred maintenance, and refreshing presentation applies here as it does for any sale, but with a specific focus on the areas where STR use leaves the most visible evidence. This is not about hiding the property's history. It is about presenting honestly and ensuring that presentation wear does not become the story of your inspection experience, distracting buyers from the genuine qualities of the property.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Capital gains and financial considerations when selling an STR</h2>
+      <p>The capital gains tax implications of selling a property used as a short-term rental depend on your specific circumstances and are outside the scope of what a real estate agent can advise on. However, some aspects are worth flagging so you can raise them with your accountant before you sell. If the property has been your primary residence for part of the ownership period and an income-producing asset for the remainder, the main residence partial exemption may be available on a time-apportionment basis. If you have claimed depreciation on the property's furnishings and fittings while operating it as an STR, there may be depreciation recapture considerations.</p>
+
+      <p>These are not reasons to delay selling, but they are reasons to talk to your accountant before you sign the selling authority rather than after settlement. The timing of your sale and the structure of the contract can sometimes be arranged in ways that are more tax-efficient, but only if you have had the conversation early enough for it to make a practical difference. Most accountants who work with property investors will have handled STR sale scenarios before and can give you a clear picture of your likely CGT position in an hour-long consultation.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Thinking about selling your investment property?</strong> Daniel works with investors across Brisbane's inner east and can give you an honest read on what your property will achieve, which buyer segment is most likely for your price point, and how to time the campaign around your booking pipeline. No obligation. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+</Layout>

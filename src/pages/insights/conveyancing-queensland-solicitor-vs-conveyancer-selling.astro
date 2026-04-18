@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const draft = true; // STAGED: remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need a solicitor or a licensed conveyancer to sell property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a straightforward residential sale in Queensland, either a licensed conveyancer or a solicitor can handle the transaction competently. A licensed conveyancer is typically more cost-effective for standard sales. You should engage a solicitor if your sale involves complex title issues, caveats, family law matters, deceased estate complications, or any legal dispute that goes beyond the mechanics of contract and settlement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does conveyancing cost when selling property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Licensed conveyancer fees for a standard Queensland residential sale typically range from around $900 to $1,500 plus disbursements such as title searches and PEXA fees. Solicitor fees for the same transaction are generally higher, often $1,500 to $2,500 or more, though the premium is justified when your sale has legal complexity. Always request an itemised quote covering both professional fees and expected disbursements before engaging anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the seller's conveyancer actually do between contract signing and settlement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After contracts are signed, your conveyancer prepares the transfer documents, liaises with your mortgage lender to arrange discharge of your existing mortgage, responds to any requisitions raised by the buyer's solicitor, coordinates with PEXA for electronic settlement, calculates adjustments for rates and water, and ensures funds are disbursed correctly on settlement day. They are the administrative engine that moves a signed contract through to a completed settlement."
+      }
+    }
+  ]
+};
+---
+<Layout title="Conveyancing in Queensland: Solicitor or Licensed Conveyancer When Selling? | Daniel Gierach Property" description="When selling property in Queensland, you need a conveyancer or solicitor to handle the legal side. Here is how to choose the right one for your sale." draft={draft}>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Conveyancing in Queensland: Solicitor or Licensed Conveyancer When Selling?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Both can handle a standard sale. The difference matters when your property's legal situation is not straightforward.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>When you sell a property in Queensland, you are required to engage a legal representative to prepare the transfer documents, discharge your mortgage, and facilitate settlement. That representative is either a licensed conveyancer or a solicitor. For most vendors, the choice comes down to complexity and cost. For a small percentage, it comes down to what the law actually requires. Getting this decision right before you sign with an agent will save you time, money, and potential complications once the sale is underway.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What conveyancing actually involves when you sell</h2>
+      <p>Conveyancing is the legal process of transferring ownership of real property from one party to another. As a seller, your conveyancing work begins when a contract is signed and ends when settlement completes and the balance of the purchase price lands in your account. The practical tasks include reviewing and explaining the contract to you, preparing the Form 1 transfer of title document, corresponding with the buyer's legal representative about any requisitions or amendments, liaising with your mortgage lender to arrange a discharge of your existing home loan, calculating final adjustments for council rates and water, and managing the settlement process through PEXA, Queensland's electronic lodgement system.</p>
+
+      <p>In Queensland, contracts for the sale of residential property are typically prepared by the agent using the standard REIQ contract form. Unlike in some other states, Queensland agents are authorised to prepare contracts, so your conveyancer or solicitor often enters the picture after the contract is signed rather than before. This is a meaningful difference from how the process works in, say, New South Wales, and it means your choice of conveyancer or solicitor does not usually affect the contract you sign, though they can review it before you sign if you engage them early enough.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The difference between a licensed conveyancer and a solicitor in Queensland</h2>
+      <p>A licensed conveyancer is a specialist professional licensed under the Queensland property laws to handle the legal mechanics of property transfers. They are trained in property law and conveyancing procedure, and they are authorised to handle standard residential sales and purchases. They cannot provide general legal advice, represent you in a legal dispute, or advise on matters that fall outside property conveyancing. For a straightforward sale of a property with a clear title and no legal complications, a licensed conveyancer can handle everything competently and is typically more affordable than a solicitor.</p>
+
+      <p>A solicitor holds a full legal qualification and can handle conveyancing work as part of a broader legal practice. The practical advantage of a solicitor over a conveyancer is scope: a solicitor can advise on legal matters that arise in connection with the sale but extend beyond the mechanics of the transfer itself. If there is a caveat on your title, a dispute with a neighbour, a deceased estate component, a family law issue affecting ownership, or a title defect that requires negotiation or legal resolution, a solicitor has the qualifications to advise you fully and, if necessary, act for you in resolving the issue. A licensed conveyancer in the same situation would need to refer you to a solicitor for the parts outside their scope, which can create additional cost and delay.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When a solicitor is the right choice for a seller</h2>
+      <p>Most vendor transactions in Brisbane's inner east are straightforward and a licensed conveyancer handles them without any issue. But there are specific circumstances where engaging a solicitor is the sensible decision regardless of cost. Caveats on the title are one. If a third party has lodged a caveat over your property, for example a former partner, a lender claiming an interest, or a party asserting an equitable interest, a conveyancer cannot advise you on how to have it removed. A solicitor can assess the validity of the caveat and take action through the Land Registry if necessary.</p>
+
+      <p>Deceased estates are another situation where a solicitor's involvement is typically necessary. If the property is being sold as part of an estate administration, there is probate to consider, potential challenges from beneficiaries, and executor obligations that require legal rather than purely conveyancing advice. Similarly, if the sale is connected to family law proceedings, separation, or divorce, and there is a financial agreement or court order affecting the property, a solicitor with family law expertise should be part of the process. Other situations that warrant a solicitor include properties with encroachments onto neighbouring land, easement disputes, boundary issues, or title irregularities that need to be resolved before the property can be cleanly transferred.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What conveyancing typically costs when selling in Queensland</h2>
+      <p>Licensed conveyancer fees for a standard residential sale in Queensland typically range from around $900 to $1,500 in professional fees, plus disbursements. Disbursements include title search costs, PEXA platform fees, and any other out-of-pocket expenses incurred in the course of the transaction. These usually add another $200 to $400. So the total cost for a straightforward sale through a licensed conveyancer is generally in the range of $1,100 to $1,900.</p>
+
+      <p>Solicitor fees for the same transaction are usually higher. For a standard residential sale, most solicitors in Brisbane charge between $1,500 and $2,500 in professional fees, with the same disbursements on top. The premium over a conveyancer's fee reflects the broader scope of a solicitor's qualifications, not necessarily the additional complexity of what they will actually do on a simple transaction. If your sale has legal complexity, the additional cost of using a solicitor is money well spent. If it does not, either option is reasonable and the decision may come down to personal preference or a recommendation from your agent.</p>
+
+      <p>One practical note on cost: always ask for a written quote that separates professional fees from disbursements. Some conveyancers and solicitors quote a total that bundles everything together, which makes comparison difficult. An itemised quote lets you compare like for like and gives you a clear picture of your out-of-pocket settlement costs.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to choose and what to ask before you engage</h2>
+      <p>The most useful signal when choosing a conveyancer or solicitor is their familiarity with residential property transactions in Queensland and, ideally, with inner Brisbane specifically. PEXA processing, council rates adjustments for Brisbane City Council, and the specific requirements of Queensland standard contracts are things a local specialist will know well. An interstate firm handling your Queensland sale remotely is technically capable, but local practitioners who handle Brisbane transactions daily tend to run smoother processes.</p>
+
+      <p>Ask three things before you engage anyone. First, do they use PEXA for all settlements, or do they still conduct paper settlements in some circumstances? Electronic settlement through PEXA is the default in Queensland and is faster, but you want to confirm it rather than assume. Second, who specifically will handle your file? Some firms quote based on senior solicitor involvement but then handle the work through junior staff or paralegals. Know who you are actually dealing with. Third, what is their turnaround time for responding to requisitions from the buyer's solicitor? Delays in responding to requisitions are one of the most common causes of settlement being pushed back. A firm that commits to a clear response timeframe is telling you something useful about how they operate.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What your conveyancer does between contract and settlement</h2>
+      <p>Once contracts are signed, your conveyancer or solicitor is the administrative engine that moves the sale from agreement to completion. In the first week after signing, they will review the executed contract, identify any conditions that need to be satisfied, and make contact with your lender to initiate the discharge of your mortgage. Mortgage discharge can take anywhere from five days to three weeks depending on the lender, and your conveyancer manages the follow-up to make sure the discharge is ready for settlement.</p>
+
+      <p>In the middle weeks of the contract period, they respond to any requisitions from the buyer's legal representative, handle any issues that arise from searches, and coordinate with your lender on discharge payout figures. In the final days before settlement, they prepare the settlement adjustments, which are the calculations of exactly how much of the purchase price goes to your lender in discharge, how much is held for council rates and water adjustments, and how much reaches your account as the net proceeds of sale. On settlement day, the transaction is completed in PEXA, your mortgage is discharged on the title, and the balance of funds is transferred to your nominated account, typically within a few hours.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Thinking about selling?</strong> Daniel can connect you with trusted local conveyancers and solicitors who know Brisbane's inner-east market well, and give you an honest read on what your property is likely to achieve before you commit to anything. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+</Layout>
