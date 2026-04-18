@@ -108,7 +108,7 @@ type DisplayStatusFilter = 'all' | 'needs-attention' | 'scheduled' | 'posted'
 
 function getDisplayStatus(item: ContentItem): 'needs-attention' | 'scheduled' | 'posted' {
   if (item.status === 'posted') return 'posted'
-  if (!item.visual_thumbnail) return 'needs-attention'
+  if (item.visual_status !== 'approved') return 'needs-attention'
   return 'scheduled'
 }
 
@@ -661,20 +661,28 @@ function MonthCard({ item, onHoverEnter, onHoverLeave }: {
     >
       <Link
         href={`/app/content/${item.id}`}
-        className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-sans leading-tight truncate hover:opacity-80 transition-opacity border-l-2"
-        style={{ color: DS_COLOUR[ds], background: DS_BG[ds], borderColor: pc }}
+        className="flex flex-col rounded overflow-hidden hover:opacity-80 transition-opacity border-l-2"
+        style={{ background: DS_BG[ds], borderColor: pc }}
         title={`${item.title}${item.scheduled_time ? ' · ' + item.scheduled_time : ''}`}
       >
         {item.visual_thumbnail ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={item.visual_thumbnail} alt="" className="w-3 h-3 rounded object-cover flex-shrink-0" />
+          <img src={item.visual_thumbnail} alt="" className="w-full object-cover flex-shrink-0"
+            style={{ aspectRatio: '1.91/1' }} />
         ) : (
-          <span className="w-3 h-3 rounded text-[7px] font-bold flex items-center justify-center flex-shrink-0"
-            style={{ background: pc, color: '#fff' }}>
-            {PLATFORM_ICON[item.platform] ?? '?'}
-          </span>
+          <div className="w-full flex items-center justify-center flex-shrink-0 py-1"
+            style={{ background: `${pc}18` }}>
+            <span className="w-4 h-4 rounded text-[8px] font-bold flex items-center justify-center"
+              style={{ background: pc, color: '#fff' }}>
+              {PLATFORM_ICON[item.platform] ?? '?'}
+            </span>
+          </div>
         )}
-        <span className="truncate">{item.scheduled_time ? `${item.scheduled_time} ` : ''}{item.title}</span>
+        <div className="flex items-center gap-1 px-1.5 py-0.5">
+          <span className="text-[9px] font-sans leading-tight truncate" style={{ color: DS_COLOUR[ds] }}>
+            {item.scheduled_time ? `${item.scheduled_time} ` : ''}{item.title}
+          </span>
+        </div>
       </Link>
     </div>
   )
@@ -707,13 +715,19 @@ function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave }: {
             const dateStr    = date.toLocaleDateString('en-CA')
             const isThisMonth = date.getMonth() === month
             const isToday    = dateStr === today
+            const isPast     = dateStr < today
             const dayItems   = (byDate[dateStr] ?? []).sort(
               (a, b) => (a.scheduled_time ?? '').localeCompare(b.scheduled_time ?? ''),
             )
+            const cellBg = isToday
+              ? 'rgba(196,145,42,0.1)'
+              : isPast
+                ? 'rgba(0,0,0,0.18)'
+                : 'transparent'
             return (
               <div key={di}
                 className={`min-h-[100px] p-2 border-r border-[var(--color-border-w)] last:border-r-0 transition-colors ${!isThisMonth ? 'opacity-25' : ''}`}
-                style={isToday ? { background: 'rgba(196,145,42,0.06)' } : {}}>
+                style={{ background: cellBg }}>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className={`text-[11px] font-sans w-6 h-6 flex items-center justify-center rounded-full ${
                     isToday ? 'bg-[var(--color-gold)] text-[var(--color-bg)] font-bold' : 'text-[var(--color-cream-dim)]'

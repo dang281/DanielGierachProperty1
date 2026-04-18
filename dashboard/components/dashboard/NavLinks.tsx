@@ -7,6 +7,7 @@ const NAV = [
   { href: '/app/planning',  label: 'Social Media' },
   { href: '/app/seo',       label: 'SEO' },
   { href: '/app/projects',  label: 'CEO Agent' },
+  { href: '/app/workflow',  label: 'Workflow' },
   { href: '/app/brand',     label: 'Brand' },
   { href: '/app/templates', label: 'Templates' },
 ]
