@@ -152,6 +152,19 @@ export async function confirmSchedule(
   revalidatePath('/app/calendar')
 }
 
+export async function unscheduleItems(ids: string[]) {
+  const supabase = await createClient()
+  for (const id of ids) {
+    await supabase
+      .from('content_items')
+      .update({ status: 'ready', scheduled_date: null })
+      .eq('id', id)
+  }
+  revalidatePath('/app/planning')
+  revalidatePath('/app/social')
+  revalidatePath('/app/calendar')
+}
+
 export async function deleteItem(id: string) {
   const supabase = await createClient()
   const { error } = await supabase

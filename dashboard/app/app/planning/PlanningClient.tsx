@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useMemo, useTransition } from 'react'
+import { useState, useMemo, useEffect, useTransition } from 'react'
 import Link from 'next/link'
 import type { ContentItem, Pillar } from '@/types/content'
-import { confirmSchedule } from '@/lib/actions/content'
+import { confirmSchedule, unscheduleItems } from '@/lib/actions/content'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -41,6 +41,38 @@ const PILLARS: { value: Pillar; label: string; color: string }[] = [
   { value: 'proof',     label: 'Proof',     color: '#a855f7' },
 ]
 
+// ── Date helpers ──────────────────────────────────────────────────────────────
+
+// baseDate: Brisbane "today" as YYYY-MM-DD (UTC+10, computed server-side)
+// offset: week offset from the default window (0 = upcoming Mon week)
+function getTwoWeekDates(baseDate: string, offset: number): Dates {
+  const [y, m, d] = baseDate.split('-').map(Number)
+  const now = new Date(Date.UTC(y, m - 1, d))
+  const dow   = now.getUTCDay()
+  const toMon = dow === 0 ? 1 : dow === 1 ? 0 : 8 - dow
+
+  const add = (days: number): string => {
+    const dt = new Date(now)
+    dt.setUTCDate(dt.getUTCDate() + days + offset * 7)
+    return dt.toISOString().split('T')[0]
+  }
+
+  return {
+    w1tue: add(toMon + 1),
+    w1wed: add(toMon + 2),
+    w1thu: add(toMon + 3),
+    w2tue: add(toMon + 8),
+    w2wed: add(toMon + 9),
+    w2thu: add(toMon + 10),
+  }
+}
+
+function fmtDate(iso: string): string {
+  const parts  = iso.split('-').map(Number)
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+  return `${parts[2]} ${months[parts[1] - 1]}`
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function categorise(item: ContentItem): PostCategory {
@@ -55,26 +87,54 @@ function shortTitle(title: string): string {
   return title.includes(' - ') ? title.split(' - ').slice(1).join(' - ') : title
 }
 
-function fmtDate(iso: string): string {
-  const parts  = iso.split('-').map(Number)
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  return `${parts[2]} ${months[parts[1] - 1]}`
+function buildSeedSlots(
+  dates: Dates,
+  preFilled: ContentItem[],
+  library: ContentItem[],
+): Partial<Record<SlotKey, ContentItem>> {
+  const s: Partial<Record<SlotKey, ContentItem>> = {}
+  const used = new Set<string>()
+
+  for (const key of Object.keys(SLOT_CONFIG) as SlotKey[]) {
+    const match = preFilled.find(p => p.scheduled_date === dates[key])
+    if (match) { s[key] = match; used.add(match.id) }
+  }
+
+  for (const key of Object.keys(SLOT_CONFIG) as SlotKey[]) {
+    if (s[key]) continue
+    const slotType = SLOT_CONFIG[key].type
+    const best = library.find(p => !used.has(p.id) && categorise(p) === slotType)
+    if (best) { s[key] = best; used.add(best.id) }
+  }
+
+  return s
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function PlanningClient({
   libraryPosts,
-  preFilled,
-  dates,
+  allScheduled,
+  baseDate,
   nextFieldGuideIssue,
 }: {
-  libraryPosts: ContentItem[]
-  preFilled:    ContentItem[]
-  dates:        Dates
+  libraryPosts:        ContentItem[]
+  allScheduled:        ContentItem[]
+  baseDate:            string
   nextFieldGuideIssue: number
 }) {
-  // Deduplicate library by title — prefer the entry with a visual_thumbnail
+  const [weekOffset,   setWeekOffset]   = useState(0)
+  const [activeSlot,   setActiveSlot]   = useState<SlotKey | null>(null)
+  const [pillarFilter, setPillarFilter] = useState<Pillar | null>(null)
+  const [confirmed,    setConfirmed]    = useState(false)
+  const [isPending,    startTransition] = useTransition()
+
+  const currentDates = useMemo(
+    () => getTwoWeekDates(baseDate, weekOffset),
+    [baseDate, weekOffset],
+  )
+
+  // Deduplicate library by title — prefer entry with visual_thumbnail
   const deduplicatedLibrary = useMemo(() => {
     const seen = new Map<string, ContentItem>()
     for (const post of libraryPosts) {
@@ -87,41 +147,34 @@ export default function PlanningClient({
     return Array.from(seen.values())
   }, [libraryPosts])
 
-  // Seed slots: pre-scheduled first, then auto-populate remaining from library
-  const seedSlots = useMemo(() => {
-    const s: Partial<Record<SlotKey, ContentItem>> = {}
-    const used = new Set<string>()
+  // Pre-filled from allScheduled for current week's slot dates
+  const preFilled = useMemo(() => {
+    const slotDates = new Set(Object.values(currentDates))
+    return allScheduled.filter(p => p.scheduled_date && slotDates.has(p.scheduled_date))
+  }, [allScheduled, currentDates])
 
-    // Pre-scheduled posts take priority
-    for (const key of Object.keys(SLOT_CONFIG) as SlotKey[]) {
-      const match = preFilled.find(p => p.scheduled_date === dates[key])
-      if (match) { s[key] = match; used.add(match.id) }
-    }
-
-    // Auto-fill remaining slots (oldest-first library order)
-    for (const key of Object.keys(SLOT_CONFIG) as SlotKey[]) {
-      if (s[key]) continue
-      const slotType = SLOT_CONFIG[key].type
-      const best = deduplicatedLibrary.find(p => !used.has(p.id) && categorise(p) === slotType)
-      if (best) { s[key] = best; used.add(best.id) }
-    }
-
-    return s
-  }, [preFilled, dates, deduplicatedLibrary])
-
-  const [slots,       setSlots]       = useState<Partial<Record<SlotKey, ContentItem>>>(seedSlots)
-  const [activeSlot,  setActiveSlot]  = useState<SlotKey | null>(null)
-  const [pillarFilter,setPillarFilter]= useState<Pillar | null>(null)
-  const [confirmed,   setConfirmed]   = useState(false)
-  const [isPending,   startTransition]= useTransition()
-
-  const activeType  = activeSlot ? SLOT_CONFIG[activeSlot].type : null
-  const usedIds     = useMemo(() =>
-    new Set(Object.values(slots).map(p => p?.id).filter(Boolean) as string[]),
-    [slots]
+  const initialSlots = useMemo(
+    () => buildSeedSlots(currentDates, preFilled, deduplicatedLibrary),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [], // only for mount — weekOffset changes trigger the effect below
   )
 
-  // Library — filtered by active slot type + pillar
+  const [slots, setSlots] = useState<Partial<Record<SlotKey, ContentItem>>>(initialSlots)
+
+  // Re-seed slots whenever the user navigates to a different week
+  useEffect(() => {
+    setSlots(buildSeedSlots(currentDates, preFilled, deduplicatedLibrary))
+    setActiveSlot(null)
+    setConfirmed(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [weekOffset])
+
+  const activeType = activeSlot ? SLOT_CONFIG[activeSlot].type : null
+  const usedIds    = useMemo(() =>
+    new Set(Object.values(slots).map(p => p?.id).filter(Boolean) as string[]),
+    [slots],
+  )
+
   const filteredLibrary = useMemo(() =>
     deduplicatedLibrary.filter(p => {
       if (usedIds.has(p.id)) return false
@@ -129,13 +182,11 @@ export default function PlanningClient({
       if (pillarFilter && p.content_pillar !== pillarFilter) return false
       return true
     }),
-    [deduplicatedLibrary, usedIds, activeType, pillarFilter]
+    [deduplicatedLibrary, usedIds, activeType, pillarFilter],
   )
 
-  // Top 3 suggestions shown when a slot is active
   const suggestions = useMemo(() => filteredLibrary.slice(0, 3), [filteredLibrary])
   const rest        = useMemo(() => filteredLibrary.slice(3),    [filteredLibrary])
-
   const filledCount = Object.values(slots).filter(Boolean).length
 
   function assignPost(post: ContentItem) {
@@ -149,15 +200,19 @@ export default function PlanningClient({
   }
 
   function toggleSlot(key: SlotKey) {
-    // If slot is filled, clicking just deselects — don't open library for filled slots
     if (slots[key]) { setActiveSlot(null); return }
     setActiveSlot(k => k === key ? null : key)
+  }
+
+  function clearAllSlots() {
+    setSlots({})
+    setActiveSlot(null)
   }
 
   function handleConfirm() {
     const assignments = (Object.entries(slots) as [SlotKey, ContentItem][]).map(([key, post]) => ({
       id: post.id,
-      scheduled_date: dates[key],
+      scheduled_date: currentDates[key],
     }))
     startTransition(async () => {
       await confirmSchedule(assignments)
@@ -170,7 +225,7 @@ export default function PlanningClient({
     key === 'w2thu' ? nextFieldGuideIssue + 1 : null
 
   if (confirmed) {
-    return <ConfirmedState slots={slots} dates={dates} />
+    return <ConfirmedState slots={slots} dates={currentDates} onUndo={() => setConfirmed(false)} />
   }
 
   return (
@@ -187,21 +242,64 @@ export default function PlanningClient({
             Two-Week Schedule
           </h1>
           <p className="text-xs mt-0.5 font-sans" style={{ color: 'var(--color-cream-x)' }}>
-            {fmtDate(dates.w1tue)}–{fmtDate(dates.w1thu)} &nbsp;·&nbsp; {fmtDate(dates.w2tue)}–{fmtDate(dates.w2thu)}
+            {fmtDate(currentDates.w1tue)}–{fmtDate(currentDates.w1thu)}
+            &nbsp;·&nbsp;
+            {fmtDate(currentDates.w2tue)}–{fmtDate(currentDates.w2thu)}
             &nbsp;·&nbsp; LinkedIn
           </p>
         </div>
 
-        {filledCount > 0 && (
-          <button
-            onClick={handleConfirm}
-            disabled={isPending}
-            className="px-5 py-2.5 rounded-xl text-sm font-sans font-semibold transition-all disabled:opacity-50 flex items-center gap-2"
-            style={{ background: 'var(--color-gold)', color: '#0a0806' }}
-          >
-            {isPending ? 'Scheduling…' : `Confirm ${filledCount} of 6 posts →`}
-          </button>
-        )}
+        <div className="flex items-center gap-2 flex-wrap">
+          {/* Week navigation */}
+          <div className="flex items-center gap-1 rounded-xl overflow-hidden"
+            style={{ border: '1px solid var(--color-border-w)' }}>
+            <button
+              onClick={() => setWeekOffset(o => o - 1)}
+              className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
+              style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
+            >
+              ← Prev
+            </button>
+            <button
+              onClick={() => setWeekOffset(0)}
+              className="px-3 py-1.5 text-xs font-sans border-l border-r transition-colors"
+              style={{
+                color: weekOffset === 0 ? 'var(--color-gold)' : 'var(--color-cream-x)',
+                background: weekOffset === 0 ? 'rgba(196,145,42,0.08)' : 'var(--color-card)',
+                borderColor: 'var(--color-border-w)',
+              }}
+            >
+              This Week
+            </button>
+            <button
+              onClick={() => setWeekOffset(o => o + 1)}
+              className="px-3 py-1.5 text-xs font-sans transition-colors hover:brightness-110"
+              style={{ color: 'var(--color-cream-dim)', background: 'var(--color-card)' }}
+            >
+              Next →
+            </button>
+          </div>
+
+          {filledCount > 0 && (
+            <>
+              <button
+                onClick={clearAllSlots}
+                className="px-4 py-2.5 rounded-xl text-sm font-sans font-medium transition-all"
+                style={{ color: 'var(--color-cream-x)', border: '1px solid var(--color-border-w)', background: 'var(--color-card)' }}
+              >
+                Clear all
+              </button>
+              <button
+                onClick={handleConfirm}
+                disabled={isPending}
+                className="px-5 py-2.5 rounded-xl text-sm font-sans font-semibold transition-all disabled:opacity-50"
+                style={{ background: 'var(--color-gold)', color: '#0a0806' }}
+              >
+                {isPending ? 'Scheduling…' : `Confirm ${filledCount} of 6 →`}
+              </button>
+            </>
+          )}
+        </div>
       </div>
 
       {/* ── Body: calendar + library ── */}
@@ -210,14 +308,13 @@ export default function PlanningClient({
         {/* ── Calendar ── */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
           {WEEKS.map(({ label, slots: slotKeys }) => {
-            const d0 = dates[slotKeys[0]]
-            const d2 = dates[slotKeys[2]]
+            const d0 = currentDates[slotKeys[0]]
+            const d2 = currentDates[slotKeys[2]]
             return (
               <div key={label}
                 className="rounded-2xl overflow-hidden border border-[var(--color-border-w)]"
                 style={{ background: 'var(--color-card)' }}>
 
-                {/* Week header */}
                 <div className="px-5 py-3 border-b border-[var(--color-border-w)] flex items-center gap-3">
                   <span className="text-[11px] font-sans font-bold tracking-[0.15em] uppercase"
                     style={{ color: 'var(--color-gold)' }}>{label}</span>
@@ -226,13 +323,12 @@ export default function PlanningClient({
                   </span>
                 </div>
 
-                {/* 3-column slot grid */}
                 <div className="grid grid-cols-3 divide-x divide-[var(--color-border-w)]">
                   {slotKeys.map(sk => (
                     <SlotCard
                       key={sk}
                       slotKey={sk}
-                      date={dates[sk]}
+                      date={currentDates[sk]}
                       post={slots[sk] ?? null}
                       isActive={activeSlot === sk}
                       issueNum={issueFor(sk)}
@@ -244,20 +340,12 @@ export default function PlanningClient({
               </div>
             )
           })}
-
-          {/* Empty state prompt */}
-          {filledCount === 0 && (
-            <p className="text-xs font-sans text-center py-2" style={{ color: 'var(--color-cream-x)' }}>
-              Click a slot to open the library, then pick a post to assign.
-            </p>
-          )}
         </div>
 
         {/* ── Library ── */}
         <div className="w-72 xl:w-80 flex-shrink-0 flex flex-col gap-3 sticky top-20"
           style={{ maxHeight: 'calc(100vh - 120px)' }}>
 
-          {/* Library header */}
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-sans font-semibold" style={{ color: 'var(--color-cream)' }}>
@@ -280,7 +368,6 @@ export default function PlanningClient({
             )}
           </div>
 
-          {/* Pillar filters */}
           <div className="flex flex-wrap gap-1">
             <FilterChip active={!pillarFilter} color="var(--color-cream-dim)" onClick={() => setPillarFilter(null)}>
               All
@@ -297,7 +384,6 @@ export default function PlanningClient({
             ))}
           </div>
 
-          {/* Scrollable list */}
           <div className="overflow-y-auto flex flex-col gap-2" style={{ maxHeight: 'calc(100vh - 240px)' }}>
             {filteredLibrary.length === 0 ? (
               <div className="rounded-xl py-10 text-center"
@@ -358,7 +444,6 @@ function SlotCard({ slotKey, date, post, isActive, issueNum, onToggle, onRemove 
       }}
       onClick={isEmpty ? onToggle : undefined}
     >
-      {/* Slot header */}
       <div className="flex items-start justify-between gap-1 mb-2">
         <div>
           <p className="text-[11px] font-sans font-semibold" style={{ color: 'var(--color-cream)' }}>
@@ -376,15 +461,12 @@ function SlotCard({ slotKey, date, post, isActive, issueNum, onToggle, onRemove 
         </span>
       </div>
 
-      {/* Type + issue */}
       <p className="text-[9px] font-sans uppercase tracking-widest mb-3" style={{ color: cfg.color, opacity: 0.7 }}>
         {cfg.typeLabel}{issueNum != null ? ` · Issue ${issueNum}` : ''}
       </p>
 
-      {/* Content area */}
       {post ? (
         <div className="flex flex-col gap-2.5 flex-1">
-          {/* Visual */}
           {post.visual_thumbnail ? (
             <img
               src={post.visual_thumbnail}
@@ -400,12 +482,10 @@ function SlotCard({ slotKey, date, post, isActive, issueNum, onToggle, onRemove 
               </span>
             </div>
           )}
-          {/* Title */}
           <p className="text-[11px] font-sans font-medium leading-snug flex-1"
             style={{ color: 'var(--color-cream)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
             {shortTitle(post.title)}
           </p>
-          {/* Remove */}
           <button
             onClick={e => { e.stopPropagation(); onRemove() }}
             className="text-[9px] font-sans font-semibold self-start px-2 py-0.5 rounded transition-colors"
@@ -415,7 +495,6 @@ function SlotCard({ slotKey, date, post, isActive, issueNum, onToggle, onRemove 
           </button>
         </div>
       ) : (
-        /* Empty state */
         <div className="flex-1 flex flex-col items-center justify-center gap-1.5 rounded-xl transition-all"
           style={{ border: `1.5px dashed ${isActive ? 'rgba(196,145,42,0.5)' : 'rgba(240,236,228,0.08)'}` }}>
           {isActive ? (
@@ -462,7 +541,6 @@ function LibraryCard({ post, onAssign, highlighted = false }: {
       }}
     >
       <div className="flex items-center gap-2.5">
-        {/* Thumbnail */}
         {post.visual_thumbnail ? (
           <img
             src={post.visual_thumbnail}
@@ -476,8 +554,6 @@ function LibraryCard({ post, onAssign, highlighted = false }: {
             <span style={{ color: 'rgba(240,236,228,0.2)', fontSize: 18 }}>?</span>
           </div>
         )}
-
-        {/* Info */}
         <div className="flex-1 min-w-0">
           <p className="text-[11px] font-sans font-medium leading-snug mb-1.5"
             style={{ color: 'var(--color-cream)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
@@ -506,14 +582,24 @@ function LibraryCard({ post, onAssign, highlighted = false }: {
 
 // ── ConfirmedState ────────────────────────────────────────────────────────────
 
-function ConfirmedState({ slots, dates }: {
-  slots: Partial<Record<SlotKey, ContentItem>>
-  dates: Dates
+function ConfirmedState({ slots, dates, onUndo }: {
+  slots:  Partial<Record<SlotKey, ContentItem>>
+  dates:  Dates
+  onUndo: () => void
 }) {
+  const [undoing, startUndo] = useTransition()
   const scheduled = Object.entries(slots) as [SlotKey, ContentItem][]
   const needsVisual = scheduled.filter(([key, post]) =>
     SLOT_CONFIG[key].type !== 'poll' && !post.visual_thumbnail
   )
+
+  function handleUndo() {
+    const ids = scheduled.map(([, post]) => post.id)
+    startUndo(async () => {
+      await unscheduleItems(ids)
+      onUndo()
+    })
+  }
 
   return (
     <div className="flex flex-col gap-6 pb-16 max-w-3xl">
@@ -530,7 +616,6 @@ function ConfirmedState({ slots, dates }: {
         </p>
       </div>
 
-      {/* Grid of confirmed posts */}
       <div className="grid grid-cols-3 gap-3">
         {scheduled.map(([key, post]) => {
           const cfg = SLOT_CONFIG[key]
@@ -562,7 +647,6 @@ function ConfirmedState({ slots, dates }: {
         })}
       </div>
 
-      {/* Visual generation warnings */}
       {needsVisual.length > 0 && (
         <div className="rounded-xl p-5"
           style={{ background: 'rgba(196,145,42,0.06)', border: '1px solid rgba(196,145,42,0.25)' }}>
@@ -588,11 +672,21 @@ function ConfirmedState({ slots, dates }: {
         </div>
       )}
 
-      <Link href="/app/social"
-        className="text-sm font-sans font-semibold w-fit"
-        style={{ color: 'var(--color-gold)' }}>
-        View all social posts →
-      </Link>
+      <div className="flex items-center gap-4">
+        <Link href="/app/social"
+          className="text-sm font-sans font-semibold"
+          style={{ color: 'var(--color-gold)' }}>
+          View all social posts →
+        </Link>
+        <button
+          onClick={handleUndo}
+          disabled={undoing}
+          className="text-sm font-sans transition-all disabled:opacity-50"
+          style={{ color: 'var(--color-cream-x)' }}
+        >
+          {undoing ? 'Undoing…' : 'Undo schedule'}
+        </button>
+      </div>
     </div>
   )
 }
