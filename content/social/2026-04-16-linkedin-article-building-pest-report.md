@@ -50,7 +50,7 @@ danielgierach.com/insights/building-pest-report
 
 ## Article Intro
 
-A building and pest report breaks a property's condition into categories. Knowing what each one means makes it much easier to decide your next step with confidence.
+Here's a little information to help when you're reading your next Building and Pest Report.
 
 ## Notes for Daniel
 
