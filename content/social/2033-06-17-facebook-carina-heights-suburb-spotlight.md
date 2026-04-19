@@ -19,7 +19,7 @@ At nine kilometres from the CBD, Carina Heights offers families a price point th
 
 Access to Westfield Carindale is one of the suburb's most practical assets. The shopping centre is within easy reach and provides the kind of comprehensive retail and dining access that reduces the need to travel further afield. For families managing busy schedules, that convenience is genuinely valued.
 
-The housing stock is dominated by solid brick homes from the 1980s and 1990s, with good internal space and established outdoor areas. Many have been updated internally; some retain their original fit-out and present opportunity for buyers willing to modernise. Current medians in Carina Heights reflect a market that rewards well-presented, well-maintained property.
+The housing stock is dominated by solid brick homes from the 1980s and 1990s, with good internal space and established outdoor areas. Many have been updated internally; some retain their original fit-out and present opportunity for buyers willing to modernise.
 
 If you own in Carina Heights and are considering a sale, I would be happy to provide a market assessment.
 

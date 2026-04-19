@@ -18,9 +18,9 @@ Seven Hills is a suburb where the land speaks plainly. The buyers who end up her
 
 In November, the character of the buying decision sharpens. A family that has been looking since August and is still searching in late November is one that has had specific requirements that the broader spring market has not yet satisfied. Seven Hills, with its elevated position and full-size post-war blocks, resolves that search for buyers who have given up waiting for Camp Hill to deliver the land content they need at the price they can justify.
 
-Seven Hills State School is the catchment anchor for this buyer. The school enrolment deadline for the year starting in late January is a practical factor that converts a measured search into an urgent one. A buyer who identifies a Seven Hills property that satisfies their brief in the third week of November is working with very limited time before the pre-Christmas window closes.
+Seven Hills State School is the catchment anchor for this buyer. The school enrolment deadline for the year starting in late January is a practical factor that converts a measured search into an urgent one.
 
-The listing volume in Seven Hills is consistently low. That is partly because owners hold for long periods and partly because the suburb's profile does not produce the kind of speculative turnover seen in higher-profile neighbouring postcodes. When a well-presented home does come to market in late November, the buyer pool that arrives is drawn from months of watching and waiting. The competition tends to reflect that.
+The listing volume in Seven Hills is consistently low. That is partly because owners hold for long periods and partly because the suburb's profile does not produce the kind of speculative turnover seen in higher-profile neighbouring postcodes. When a well-presented home does come to market in late November, the buyer pool that arrives is drawn from months of watching and waiting.
 
 For Seven Hills homeowners who have been considering selling, listing now puts you in front of the most motivated buyers of the year.
 

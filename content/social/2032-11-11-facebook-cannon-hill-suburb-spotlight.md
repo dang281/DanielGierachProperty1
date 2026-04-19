@@ -20,7 +20,7 @@ The Cannon Hill Anglican College enrolment calendar is a real factor. Families w
 
 The train line is the other pre-Christmas driver specific to this suburb. Buyers who have spent the spring evaluating properties across the inner east, watching commute times and weighing up access against lifestyle, have usually concluded by November that Cannon Hill's rail access is a practical advantage that most comparable suburbs at this price point cannot match. The CBD is reachable without a car, and that commute logic does not diminish in value when fuel prices or traffic are part of the household budget calculation.
 
-Character homes on the quieter residential streets away from Wynnum Road are where the most competitive open homes have been running through the spring. The buyers attending these homes in November are not new to the suburb. They have been to previous inspections. They know what is on the market and what has sold. When a well-presented home comes to market at the right price, the decision to make an offer is not a slow one.
+Character homes on the quieter residential streets away from Wynnum Road are where the most competitive open homes have been running through the spring. The buyers attending these homes in November are not new to the suburb. They have been to previous inspections. They know what is on the market and what has sold.
 
 If you own a character home in Cannon Hill, this is the week to have a conversation.
 

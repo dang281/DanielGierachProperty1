@@ -17,7 +17,7 @@ Few suburbs in Brisbane's inner east have the geographic containment that Norman
 
 The riverside position means that some streets in Norman Park offer something genuinely rare in Brisbane: proximity to both the city and the river, in a quiet environment. Mowbray Park and the CityCat ferry terminal at Mowbray Park provide residents with a commute option that is more pleasant than sitting in traffic, and the ferry connection to South Bank and the CBD is a genuine lifestyle advantage.
 
-Character homes are the norm rather than the exception. Queenslanders and post-war homes, many in excellent condition, make up the majority of the housing stock. The suburb has not experienced the same density of infill development that has changed parts of the inner east, and that relative consistency of streetscape is a feature rather than a limitation for buyers who value it. Current medians in Norman Park reflect the suburb's status as one of the inner east's premium addresses.
+Character homes are the norm rather than the exception. Queenslanders and post-war homes, many in excellent condition, make up the majority of the housing stock. The suburb has not experienced the same density of infill development that has changed parts of the inner east, and that relative consistency of streetscape is a feature rather than a limitation for buyers who value it.
 
 Stock levels are consistently low, which means that when a well-presented property comes to market, it tends to attract a concentrated pool of serious buyers.
 

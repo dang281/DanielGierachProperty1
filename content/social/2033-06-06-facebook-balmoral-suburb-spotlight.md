@@ -19,8 +19,6 @@ The suburb sits below the Lytton Road ridge at around six kilometres from the CB
 
 Proximity to Bulimba's Oxford Street means residents can access one of Brisbane's better café and dining strips without a long drive. The CityCat ferry at Oxford Street extends that convenience to a riverfront commute option. These two elements, the proximity to Bulimba and the quiet of Balmoral's own streets, are the key arguments the suburb makes to buyers at this price point.
 
-Current medians in Balmoral reflect the suburb's premium positioning and the sustained demand from buyers who have specifically identified it as their target.
-
 If you own in Balmoral and want to explore what a sale might achieve, I would be happy to assist.
 
 Visit danielgierach.com/suburbs/balmoral

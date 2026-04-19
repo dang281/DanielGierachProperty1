@@ -19,8 +19,6 @@ Cavendish Road State High School remains a central driver of buyer behaviour in 
 
 The housing stock in Holland Park gives buyers options across a meaningful price range. Original post-war homes on large blocks offer renovation upside for buyers prepared to invest, while the growing number of renovated and updated properties cater to those who want to move in without a major project. Both buyer types are active in the market. Current medians in Holland Park represent a reasonable premium over comparable suburbs without the school catchment advantage, reflecting the value the market places on that access.
 
-Bus connections to the CBD along Cavendish Road are reliable, and road access to surrounding centres is straightforward.
-
 If you are considering selling in Holland Park, I would be glad to provide a current market assessment.
 
 Visit danielgierach.com/suburbs/holland-park

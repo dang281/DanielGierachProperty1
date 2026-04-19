@@ -19,8 +19,6 @@ The TAFE Queensland campus in the area contributes to the rental market and ensu
 
 The housing stock still includes a meaningful number of original post-war homes that have not been substantially updated. These attract buyers at the more affordable end of the market, as well as developers and renovators who see the opportunity to add value. The renovated segment has grown, reflecting investment in the suburb that has tracked its improving profile over recent years. Current medians show a market that has moved but still offers a genuine comparison with inner east alternatives.
 
-Road access to the CBD, Garden City and surrounding suburbs is direct. Bus services along Cavendish Road supplement the road network.
-
 If you own in Mt Gravatt East and want to understand where your property sits today, I would be happy to provide an assessment.
 
 Visit danielgierach.com/suburbs/mt-gravatt-east

@@ -19,7 +19,7 @@ Westfield Carindale is one of the city's larger regional shopping centres, and i
 
 The housing stock in Carindale tends toward detached homes on reasonable blocks, a product of the suburb's development era when land was available and density was not a priority. Many homes have been extended and updated over the years, reflecting owners who have invested in the property to suit a growing family. Others remain closer to their original form, offering buyers a more accessible entry point with upside through improvement.
 
-Current medians in Carindale offer a compelling comparison to the inner east, with buyers receiving more space for less money. The trade-off in distance is real, but for the family demographic the suburb attracts, it is often a trade-off they have consciously made.
+Current medians in Carindale offer a compelling comparison to the inner east, with buyers receiving more space for less money.
 
 If you are considering selling in Carindale, I am happy to provide a current and honest market assessment.
 

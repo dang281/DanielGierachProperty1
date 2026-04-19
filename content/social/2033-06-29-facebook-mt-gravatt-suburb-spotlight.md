@@ -19,7 +19,7 @@ The suburb draws buyers at different life stages in a way that few middle-ring s
 
 Griffith University's proximity means Mt Gravatt is also one of those suburbs where the employment and academic character of the institution bleeds into the residential market. Researchers, academics and professional staff often live within the suburb rather than commuting from further away, adding a segment of stable, high-quality tenants and owner-occupiers to the demographic mix.
 
-Current medians in Mt Gravatt reflect a stable and consistent market. Well-presented properties tend to attract competitive interest, and the suburb's reputation for broad functionality continues to support its position.
+Current medians in Mt Gravatt reflect a stable and consistent market.
 
 If you own in Mt Gravatt and want to know what the market currently holds for your property, I would be glad to help.
 

@@ -20,7 +20,7 @@ The buyers who have been watching Hawthorne through spring are, by November, a f
 
 The Oxford Street corridor in late November is busy with local foot traffic, outdoor dining, and the general lift in social activity that precedes Christmas. That context is visible at an open home inspection and it contributes to the buyer's sense of what daily life in Hawthorne actually looks like. The Hawthorne Cinema, the ferry, the proximity to Bulimba's retail strip from the southern end of the suburb: these become concrete rather than abstract when a buyer walks through on a Saturday morning in late November.
 
-The renovation completion rate in Hawthorne is part of what distinguishes the suburb's character. The homes that come to market here are often genuinely considered, and buyers who have been searching broadly across the inner east recognise the difference when they walk through a well-finished Hawthorne home. That recognition tends to compress the decision timeline.
+The renovation completion rate in Hawthorne is part of what distinguishes the suburb's character. The homes that come to market here are often genuinely considered, and buyers who have been searching broadly across the inner east recognise the difference when they walk through a well-finished Hawthorne home.
 
 If you own in Hawthorne and have been considering a sale, the final November listing opportunity is close.
 

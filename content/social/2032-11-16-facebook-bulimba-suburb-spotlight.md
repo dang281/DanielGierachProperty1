@@ -20,7 +20,7 @@ That sensory context matters more than it might seem. Buyers who have been evalu
 
 Bulimba State School enrolments for the year beginning in late January are a factor in November decision-making. The family buyer who has been searching for a home within the catchment is aware that the school year is not far away. Settlement, enrolment deadlines, and the logistics of a move take time. Buyers in this position are not indifferent to when they sign a contract.
 
-The supply of character homes in Bulimba is structurally limited. The suburb is established, the lots are held, and there is no significant pipeline of new stock. Sellers benefit from this because each home that comes to market is meeting a buyer pool that has been waiting for it with limited alternatives. That dynamic does not change with the season, but the urgency of pre-Christmas buyers adds a layer to it that the winter market does not carry.
+The supply of character homes in Bulimba is structurally limited. The suburb is established, the lots are held, and there is no significant pipeline of new stock. Sellers benefit from this because each home that comes to market is meeting a buyer pool that has been waiting for it with limited alternatives.
 
 If you have been considering selling your Bulimba home, this month is the one to act.
 

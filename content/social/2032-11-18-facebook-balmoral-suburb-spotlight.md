@@ -20,7 +20,7 @@ The upgrader buyer who arrives here from Hawthorne is typically the most financi
 
 November brings a particular variant of this buyer to the market: the family who wants to be settled before Christmas and enrolled in Balmoral State School for the year beginning in late January. That enrolment logic is the same motivation seen across the inner east, but it carries a different weight in Balmoral because the buyers here have longer settlement expectations and need to start the process earlier in the month rather than later.
 
-The river frontage blocks and the elevated lots above Wynnum Road are the product that this buyer is waiting for. These sell infrequently, have often been held for decades, and the decision to list represents a genuine opportunity for the buyer pool that has been patient.
+The river frontage blocks and the elevated lots above Wynnum Road are the product that this buyer is waiting for. These sell infrequently and have often been held for decades.
 
 If you own one of Balmoral's elevated or river-proximity properties and have been giving this thought, November is the time for that conversation.
 

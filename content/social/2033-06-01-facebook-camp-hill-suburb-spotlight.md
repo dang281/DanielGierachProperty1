@@ -19,7 +19,7 @@ The elevated terrain across parts of Camp Hill delivers something that matters i
 
 Coorparoo's café strip on Old Cleveland Road is accessible from Camp Hill, so residents can access the village atmosphere without living directly on top of the commercial activity. That balance of proximity and residential calm is part of what makes Camp Hill a popular destination for families at the second or third property stage of their buying journey.
 
-Stock levels tend to be tight in Camp Hill, partly because owners who have found their ideal position in the suburb are reluctant to leave. Current medians reflect a premium over Coorparoo, supported by the elevation, supply constraints and the consistent move-up buyer demand the suburb attracts.
+Stock levels tend to be tight in Camp Hill, partly because owners who have found their ideal position in the suburb are reluctant to leave.
 
 If you own in Camp Hill and want to understand what the current market means for your property, I am happy to assist.
 

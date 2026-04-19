@@ -19,7 +19,7 @@ At three kilometres from the CBD, the suburb's position is its most fundamental 
 
 The housing stock reflects the suburb's history: heritage character homes, compact Queenslanders and some post-war buildings across the older residential streets, with pockets of newer development in some areas. The character home remains the most sought-after product, and the market tends to price it accordingly.
 
-Current medians in East Brisbane place it at the premium end of the inner south-east ring but typically at a discount to New Farm and Teneriffe. That discount narrows consistently over time as buyers continue to identify East Brisbane as a rational alternative to those more expensive neighbours.
+Current medians in East Brisbane place it at the premium end of the inner south-east ring but typically at a discount to New Farm and Teneriffe.
 
 If you own in East Brisbane and want a clear and current view of your property's value, I would be glad to help.
 

@@ -19,8 +19,6 @@ The character home is the defining feature of Hawthorne's streetscape. Queenslan
 
 Proximity to Bulimba's Oxford Street and to New Farm means residents have access to two of Brisbane's most active café and restaurant precincts without those precincts being in Hawthorne itself. That balance of access and residential calm is a consistent theme in how buyers describe why they want to be in Hawthorne rather than in the more commercially active suburbs nearby.
 
-Current medians in Hawthorne sit at the premium end of the inner east, a reflection of sustained demand for a limited pool of stock.
-
 If you own in Hawthorne and are considering what a sale might look like, I would welcome the conversation.
 
 Visit danielgierach.com/suburbs/hawthorne

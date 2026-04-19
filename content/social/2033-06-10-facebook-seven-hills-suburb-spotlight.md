@@ -19,8 +19,6 @@ The character home is the suburb's dominant housing type. Queenslanders and post
 
 Whites Hill State College covers the secondary catchment for much of the suburb and is a genuine factor in purchasing decisions for families with teenagers. The security of knowing a well-regarded state secondary school is within catchment removes one variable from an already complex decision, and it keeps a steady stream of family buyers engaged with the market in Seven Hills.
 
-Current medians reflect the elevation premium and the character quality of the suburb. Stock availability is limited, which concentrates competition when good properties are available.
-
 If you own in Seven Hills and want to discuss your options, I am happy to help.
 
 Visit danielgierach.com/suburbs/seven-hills
