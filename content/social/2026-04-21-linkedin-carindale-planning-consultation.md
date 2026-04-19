@@ -34,12 +34,16 @@ The consultation documents will be available at brisbane.qld.gov.au from 24 Apri
 
 ## Notes for Daniel
 
-**Confidence: Check**
+**Confidence: Ready**
 
-⚠️ VERIFY before posting:
-1. Confirm the April 24 consultation opening date at brisbane.qld.gov.au/building-and-planning/planning-and-design/city-plan-amendments/tailored-amendment-package-indooroopilly-carindale-and-nundah
-2. Once consultation opens (April 24), read the actual amendment documents and update the post body if the scope differs from the general "major centre" description used here
-3. Consider whether to post Tuesday as written (before the documents drop) or wait until April 23 Thursday if you prefer to write with the actual details in hand. If waiting, swap this with the April 23 article feature.
+April 24 consultation date confirmed at brisbane.qld.gov.au (verified 2026-04-19).
+
+**One decision for you:**
+The consultation documents drop Thursday April 24, three days after this post publishes. You have two options:
+- Post as written Tuesday April 21 (before the documents drop) — the post frames the consultation correctly without requiring the detail
+- Swap to Thursday April 24 or later, read the actual documents, and update the post body with the specific changes proposed
+
+Either approach works. The post as written is accurate and will not be contradicted by the documents dropping.
 
 **Suggested first comment (post after publishing):**
 The submission process is open to any owner or resident in the affected area. If you want to understand the specific impacts before lodging a submission, feel free to reach out.
