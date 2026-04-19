@@ -32,11 +32,12 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   .lp-hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; padding: 7rem 1.5rem 4rem; }
 
   .lp-card {
-    max-width: 620px;
-    background: rgba(0,0,0,0.50);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(80,80,80,0.22);
-    padding: 2.75rem 3rem;
+    max-width: 640px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(72,72,72,0.2);
+    padding: 3rem 3.5rem;
   }
   .lp-avatar-badge { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.1rem; }
   .lp-avatar-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 10%; border: 1.5px solid rgba(197,160,60,0.55); flex-shrink: 0; }
@@ -47,34 +48,29 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
   .lp-sub { font-size: 0.95rem; color: rgba(240,236,228,0.70); line-height: 1.75; max-width: 44ch; margin-bottom: 1.5rem; }
 
-  /* Quick benefits row */
-  .lp-benefits { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .lp-benefit { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: rgba(240,236,228,0.65); letter-spacing: 0.04em; }
-  .lp-benefit-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-
-  /* Form */
-  .lp-form-stack { display: flex; flex-direction: column; gap: 0; max-width: 540px; }
+  /* Form — inline, matches homepage hero */
+  .lp-form-inline { display: flex; gap: 0; max-width: 540px; }
   .lp-input {
-    width: 100%; padding: 0.95rem 1.1rem;
-    background: rgba(255,255,255,0.09);
-    border: 1.5px solid rgba(255,255,255,0.20);
-    border-bottom: 1px solid rgba(255,255,255,0.10);
-    color: #f0ece4; font-family: var(--font-sans); font-size: 0.88rem;
+    flex: 1; min-width: 0;
+    padding: 0.9rem 1.1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-right: none;
+    color: #f0ece4; font-family: var(--font-sans); font-size: 0.85rem;
     outline: none; box-sizing: border-box; -webkit-appearance: none;
     transition: border-color 0.2s;
   }
   .lp-input:focus { border-color: rgba(197,160,60,0.6); }
   .lp-input::placeholder { color: rgba(240,236,228,0.38); }
-  .lp-input:last-of-type { border-bottom: 1.5px solid rgba(255,255,255,0.20); }
   .lp-submit {
-    padding: 1rem 1.5rem; background: #c5a03c; border: none; cursor: pointer;
-    font-family: var(--font-sans); font-size: 0.72rem; font-weight: 800;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark);
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem; background: #c5a03c; border: none; cursor: pointer;
+    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark);
+    display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
     transition: background 0.2s;
   }
   .lp-submit:hover { background: #d4af4a; }
-  .lp-trust { font-size: 0.68rem; color: rgba(240,236,228,0.45); margin-top: 0.65rem; letter-spacing: 0.04em; }
+  .lp-trust { font-size: 0.72rem; color: rgba(240,236,228,0.55); margin-top: 0.6rem; letter-spacing: 0.06em; }
 
   /* ── Stats bar ── */
   .lp-stats-bar { background: rgba(10,8,6,0.95); border-top: 1px solid rgba(197,160,60,0.12); border-bottom: 1px solid rgba(197,160,60,0.12); padding: 1.5rem; }
@@ -168,6 +164,9 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   @media (max-width: 640px) {
     .lp-bar { padding: 0.85rem 1.25rem; }
     .lp-card { padding: 2rem 1.25rem; }
+    .lp-form-inline { flex-direction: column; }
+    .lp-input { border-right: 1.5px solid rgba(255,255,255,0.18); border-bottom: none; }
+    .lp-submit { justify-content: center; }
     .lp-stats-inner { gap: 1.5rem; }
     .lp-stat-divider { display: none; }
     .lp-sold-grid { grid-template-columns: 1fr; }
@@ -212,24 +211,17 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
         <span class="lp-avatar-name">Daniel Gierach · Ray White</span>
       </div>
 
-      <h1 class="lp-h1">See what your<br/><em>Murarrie home<br/>is actually worth.</em></h1>
-      <p class="lp-sub">Based on real sales in your street. Most Murarrie owners are surprised — enter your email and we'll show you where yours sits.</p>
+      <h1 class="lp-h1">Curious what your<br/><em>Murarrie home<br/>could sell for?</em></h1>
+      <p class="lp-sub">Most homeowners underestimate what their property is worth. Find out where yours really sits.</p>
 
-      <div class="lp-benefits">
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Free</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>No obligation</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Takes 10 seconds</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>April 2026 data</span>
-      </div>
-
-      <form class="lp-form-stack" id="lpForm" action="/property-report" method="get">
-        <input class="lp-input" type="email" name="email" id="lpEmail" placeholder="Your email address…" autocomplete="email" required />
+      <form class="lp-form-inline" id="lpForm" action="/property-report" method="get">
+        <input class="lp-input" type="text" name="address" id="lpAddress" placeholder="Enter your property address…" autocomplete="off" required />
         <button type="submit" class="lp-submit">
-          Get My Free Valuation
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          What's Your Property Worth?
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
-      <p class="lp-trust">Free &nbsp;·&nbsp; Real sales data &nbsp;·&nbsp; We won't call unless you ask us to</p>
+      <p class="lp-trust">Free &nbsp;·&nbsp; You'll get an indicative value range based on recent comparable sales in your street.</p>
     </div>
   </div>
 </section>
@@ -475,7 +467,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
             form.appendChild(inp);
           });
         }
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Murarrie Property Report' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Murarrie Property Report', content_category: 'Address Submission' });
         if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { suburb: 'Murarrie', source: 'lp' });
       });
     }
