@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const draft = true; // STAGED: remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I get a title search on my Queensland property before selling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can obtain a title search directly from the Queensland Titles Registry online, or ask your solicitor to obtain one on your behalf. A standard title search costs around $18 to $25 and is available immediately in most cases. Your solicitor will obtain a search as part of their contract preparation process, but getting one early yourself lets you review it before any issues emerge during the sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is shown on a Queensland title search?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Queensland title search shows the registered owner's name, the lot and plan number, the local government area, any mortgages or encumbrances, caveats, easements, covenants, notifications, and other registered interests. It is the definitive legal record of who owns the land and what interests are registered against it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can title issues delay or prevent the sale of my property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Unresolved caveats, undischarged mortgages from old refinancing, or easements that have not been properly disclosed can cause delays at contract stage or give a buyer grounds to raise concerns. Most title issues can be resolved with your solicitor's assistance, but the earlier you identify them the better. Finding them before listing prevents last-minute settlement complications."
+      }
+    }
+  ]
+};
+---
+<Layout title="How to Read a Queensland Title Search: What Sellers Should Understand Before Listing | Daniel Gierach Property" description="Reviewing your title search before listing gives you full visibility of what is registered against your property. Here is what each section means and how to resolve common issues before they become contract problems." draft={draft}>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How to Read a Queensland Title Search: What Sellers Should Understand Before Listing
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Your title search is the definitive legal record of what is registered against your property. Understanding it before you list means fewer surprises at contract stage and a smoother path to settlement.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most sellers in Queensland have never read their own title search. They know they own the property, they pay rates and a mortgage, and beyond that the title is something their solicitor manages. This is fine when things are straightforward. But title searches sometimes contain easements the seller has forgotten about, old caveats from finance arrangements that were never properly discharged, or notations that will prompt questions from a buyer's solicitor. Reviewing your title search before you list is a simple step that gives you full visibility of what you are selling and eliminates last-minute complications at contract stage.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to obtain your title search</h2>
+      <p>You can obtain a current title search directly from the Queensland Titles Registry at titles.qld.gov.au. A standard title search costs around $18 to $25 and is available online within a short time of ordering. You will need your property's lot and plan number, which appears on your rates notice or on any previous contract of sale documentation you have.</p>
+
+      <p>Alternatively, your solicitor will obtain a title search as part of preparing your contract. If you ask them to do this early in the process, they can flag any issues before the property goes to market rather than discovering them once a buyer is under contract. This is worth doing. The cost is minimal and the benefit of knowing your title position before listing is significant.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the title search shows: section by section</h2>
+      <p>A Queensland title search is structured in a reasonably consistent format. The key sections are as follows.</p>
+
+      <p>The registered owner section shows who is recorded as the legal owner of the property. This should be you. If your name has changed since you purchased (through marriage or deed poll, for example), or if the property is held jointly with another person, confirm that the ownership details match what you expect. Any discrepancy needs to be resolved with your solicitor before you can settle.</p>
+
+      <p>The lot and plan details confirm the legal description of the land: the lot number, plan number, local government area, and the tenure (typically freehold in Brisbane). This information appears in the contract of sale and on any survey plans. Make sure it matches the property you are actually selling.</p>
+
+      <p>The encumbrances section is where most of the interesting material appears. An encumbrance is a registered interest held by a third party. The most common encumbrance is a mortgage. If you have an existing mortgage, it will appear here with the lender's name and the registration details. This is normal and expected. Your solicitor will arrange the discharge of the mortgage at settlement as part of the standard process.</p>
+
+      <p>An easement is a right held by another party to use part of your land for a specific purpose. Common easements include drainage easements in favour of a local council, access easements that allow a neighbour to cross part of your land, and services easements that allow utility providers to access infrastructure on or under your property. Easements run with the land, which means they transfer to the buyer on settlement. They must be disclosed in the contract. If you have an easement you did not know about, find out what it covers before listing so you can answer buyer questions accurately.</p>
+
+      <p>Covenants and notifications are recorded conditions on the use of the land. A covenant might restrict the type of structures that can be built, the materials that can be used, or the activities that can be conducted on the land. Some covenants are historic and no longer enforceable. Others remain binding. Your solicitor can advise on which covenants in your title are still operative and how to describe them in the contract.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Common title issues that surprise sellers</h2>
+      <p>The most frequent surprises on Queensland title searches fall into a small number of categories.</p>
+
+      <p>Undischarged mortgages are more common than sellers expect. When a property is refinanced, the old mortgage should be formally discharged from the title and a new one registered. Occasionally this discharge step is delayed or overlooked, and the old lender's mortgage remains on the title even though the loan has been repaid. This creates a complication at settlement because the seller's solicitor needs to obtain formal discharge documentation from the old lender, which can take several weeks. If you have refinanced in the last five to ten years, check whether any previous lender's mortgage remains on the title.</p>
+
+      <p>Old caveats sometimes appear on titles long after the circumstances that created them have been resolved. A caveat is a formal claim of interest in a property by a third party. It might have been lodged by a previous finance provider, a family member with a claim on the property, or in connection with an old legal dispute. Caveats prevent dealings with the title until they are removed. If there is a caveat on your title that should not be there, your solicitor can apply to have it removed, but this takes time. Discovering it before listing gives you the time to resolve it.</p>
+
+      <p>Easements that were granted during subdivision or as part of older development approvals are sometimes not known to current owners, particularly if the property has changed hands several times. If your title shows an easement you were not aware of, check whether it affects any part of the property that buyers will care about: a drainage easement that runs through the backyard, for example, affects what can be built in that area. Your agent should know about this so they can answer buyer questions accurately.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to resolve title issues before going to market</h2>
+      <p>The general principle is: the earlier you identify a title issue, the easier it is to resolve. Most issues that appear on a Queensland title search are resolvable with your solicitor's assistance. The complications arise when they surface at contract stage, when a buyer is waiting on clear advice and the pressure to settle quickly is high.</p>
+
+      <p>For undischarged mortgages, contact the previous lender to request formal discharge documentation and instruct your solicitor to register the discharge before listing. For caveats, your solicitor can assess whether the caveator has a legitimate continuing interest or whether the caveat should be removed, and can apply to the Queensland Titles Registry accordingly. For easements and covenants, the resolution is usually understanding and disclosure rather than removal, since most encumbrances of this type cannot be removed unilaterally.</p>
+
+      <p>Your solicitor's job is to prepare a contract of sale that accurately discloses all registered interests. The better informed you are going into that process, the fewer surprises will appear once a buyer and their solicitor start reviewing the title.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why reviewing your title early avoids contract delays</h2>
+      <p>The sequence of a property sale in Queensland means that title issues have the most disruptive effect at the worst possible moment: after exchange, when both buyer and seller are working toward a settlement date. A buyer's solicitor who discovers an undischarged mortgage or an unexpected caveat will raise a requisition, which is a formal inquiry requiring a written response and action from the seller's side. This adds time and uncertainty to a process that both parties want to complete as smoothly as possible.</p>
+
+      <p>Sellers who review their title search before listing and resolve any issues in advance present a clean title to buyers. The contract preparation is straightforward, the buyer's solicitor has fewer questions, and the settlement process runs without unnecessary friction. Given that a title search costs around $25 and your solicitor's time to review it is typically minimal, this is one of the most cost-effective pre-sale steps available to any Queensland seller.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Preparing to sell in Brisbane's inner east?</strong> Daniel works with sellers across Bulimba, Hawthorne, Morningside, and surrounding suburbs. If you want an honest view of where your property sits in the current market, <a href="/contact" style="color:#f5d07a;font-weight:600;">get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+</Layout>
