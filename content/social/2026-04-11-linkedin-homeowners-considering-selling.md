@@ -15,17 +15,17 @@
 
 Most of the conversations I have with homeowners before they list go the same way.
 
-They have a number in their head. They want me to confirm it. And sometimes I can, but sometimes I have to tell them something different.
+They want to know the number. That part is straightforward.
 
-That second conversation is the more important one.
+What takes longer to explain is everything that happens between "let's go to market" and a signed contract. The process is where outcomes are made.
 
-Selling a home in Bulimba, Hawthorne, Norman Park or anywhere in the inner east is a significant decision. Not just financially. The timing, the transition, what comes next all involve real life, not just real estate.
+My approach is thorough by design. Every buyer who should see this property sees it. Every inquiry gets followed up. Presentation is prepared properly. Pricing is set to attract genuine competition, not to test the market and adjust later.
 
-What I've learned is that the sellers who make the best decisions are the ones who started with honest information, even when that information wasn't exactly what they hoped for. They planned around reality rather than around an optimistic estimate.
+Competition between buyers is the single biggest lever on your final result. Getting there requires work before the first open home, not after. No stone is left unturned before the campaign launches.
 
-My job isn't to tell you your home is worth what you want it to be worth. It's to give you an accurate picture of the current market, what your property can achieve, and what the process actually looks like, so you can decide what's right for your situation.
+Sellers who get the best results usually understood the process before they listed. Not because they micromanaged it, but because they chose an agent whose approach matched what they actually wanted from the sale.
 
-If you're thinking about selling in the inner east and you want a straight conversation rather than a sales pitch, I'm happy to help.
+If you are thinking about selling in Brisbane's inner east and want to know exactly how I run a campaign, I am happy to walk you through it.
 
 danielgierach.com
 

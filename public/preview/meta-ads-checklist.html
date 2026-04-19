@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Meta Ads Setup — Murarrie Campaign Checklist</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;600;700;800&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#0f0d0b;color:#f0ece4;font-family:'Manrope',sans-serif;padding:3rem 1.5rem;line-height:1.6;}
+
+  .page{max-width:720px;margin:0 auto;}
+
+  .title-block{margin-bottom:3rem;}
+  .eyebrow{font-size:0.55rem;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;}
+  h1{font-family:'Noto Serif',serif;font-size:2rem;font-weight:400;color:#f0ece4;line-height:1.15;margin-bottom:0.5rem;}
+  .subtitle{font-size:0.82rem;color:rgba(240,236,228,0.5);font-weight:300;}
+
+  /* Phase block */
+  .phase{margin-bottom:2.5rem;}
+  .phase-header{
+    display:flex;align-items:center;gap:1rem;
+    padding:0.9rem 1.25rem;
+    background:#1c1917;
+    border-left:3px solid #c4912a;
+    margin-bottom:0;
+  }
+  .phase-num{font-family:'Noto Serif',serif;font-size:1.4rem;color:#c4912a;font-weight:300;line-height:1;flex-shrink:0;}
+  .phase-title{font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#f0ece4;}
+  .phase-sub{font-size:0.68rem;color:rgba(240,236,228,0.45);margin-top:0.15rem;}
+
+  /* Steps */
+  .steps{border:1px solid rgba(240,236,228,0.07);border-top:none;}
+  .step{
+    display:flex;align-items:flex-start;gap:1rem;
+    padding:1rem 1.25rem;
+    border-bottom:1px solid rgba(240,236,228,0.06);
+    cursor:pointer;
+    transition:background 0.15s;
+  }
+  .step:last-child{border-bottom:none;}
+  .step:hover{background:rgba(255,255,255,0.02);}
+  .step.done{opacity:0.5;}
+  .step.done .step-text{text-decoration:line-through;}
+
+  .checkbox{
+    width:20px;height:20px;flex-shrink:0;margin-top:1px;
+    border:1.5px solid rgba(196,145,42,0.4);
+    border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.15s,border-color 0.15s;
+  }
+  .step.done .checkbox{background:#c4912a;border-color:#c4912a;}
+  .checkmark{opacity:0;transition:opacity 0.15s;}
+  .step.done .checkmark{opacity:1;}
+
+  .step-body{flex:1;min-width:0;}
+  .step-text{font-size:0.82rem;font-weight:600;color:#f0ece4;margin-bottom:0.25rem;}
+  .step-detail{font-size:0.72rem;color:rgba(240,236,228,0.45);font-weight:300;line-height:1.6;}
+
+  /* Where label */
+  .where{
+    display:inline-block;margin-top:0.4rem;
+    font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+    color:#c4912a;background:rgba(196,145,42,0.1);border:1px solid rgba(196,145,42,0.25);
+    padding:2px 8px;
+  }
+
+  /* Value pills */
+  .val{
+    display:inline-block;
+    font-size:0.65rem;font-weight:700;
+    background:rgba(245,208,122,0.12);color:#f5d07a;
+    border:1px solid rgba(245,208,122,0.25);
+    padding:2px 9px;margin-left:6px;vertical-align:middle;
+  }
+
+  /* Progress bar */
+  .progress-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.06);z-index:100;}
+  .progress-bar{height:100%;background:linear-gradient(90deg,#c4912a,#f5d07a);width:0%;transition:width 0.3s ease;}
+
+  /* Done banner */
+  .done-banner{
+    display:none;margin-top:2rem;padding:1.5rem 1.75rem;
+    background:rgba(196,145,42,0.1);border:1px solid rgba(196,145,42,0.3);text-align:center;
+  }
+  .done-banner.show{display:block;}
+  .done-banner h2{font-family:'Noto Serif',serif;font-size:1.2rem;color:#f5d07a;font-weight:400;margin-bottom:0.4rem;}
+  .done-banner p{font-size:0.75rem;color:rgba(240,236,228,0.55);}
+
+  /* Reset */
+  .reset-btn{
+    display:block;margin:1.5rem auto 0;
+    font-family:'Manrope',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+    color:rgba(240,236,228,0.3);background:none;border:1px solid rgba(240,236,228,0.12);
+    padding:0.5rem 1.25rem;cursor:pointer;transition:border-color 0.15s,color 0.15s;
+  }
+  .reset-btn:hover{color:rgba(240,236,228,0.6);border-color:rgba(240,236,228,0.3);}
+</style>
+</head>
+<body>
+
+<div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+<div class="page">
+
+  <div class="title-block">
+    <div class="eyebrow">Daniel Gierach · Ray White Collective</div>
+    <h1>Meta Ads Setup<br/>Murarrie Campaign</h1>
+    <p class="subtitle">Click each step to check it off. Your progress saves automatically.</p>
+  </div>
+
+  <!-- ─── PHASE 1 ─── -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">01</div>
+      <div>
+        <div class="phase-title">Create the Campaign</div>
+        <div class="phase-sub">ads.facebook.com → Create → Guided creation</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Go to Ads Manager and click <span class="val">+ Create</span></div>
+          <div class="step-detail">Top left of the Ads Manager dashboard. Green button.</div>
+          <div class="where">ads.facebook.com</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Select objective: <span class="val">Leads</span></div>
+          <div class="step-detail">Do NOT select Sales or Awareness. Leads is the 4th option in the list. It unlocks Instant Forms and optimises delivery to people who submit details.</div>
+          <div class="where">Campaign level → Objective</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Name the campaign: <span class="val">Murarrie — Property Valuation — Apr 2026</span></div>
+          <div class="step-detail">Keep the naming consistent so you can identify it later in reporting.</div>
+          <div class="where">Campaign level → Campaign name</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Leave A/B test and Advantage campaign budget OFF</div>
+          <div class="step-detail">You will set budget at the ad set level instead. Click Next.</div>
+          <div class="where">Campaign level → bottom of page</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PHASE 2 ─── -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">02</div>
+      <div>
+        <div class="phase-title">Ad Set — Conversion &amp; Audience</div>
+        <div class="phase-sub">Where leads come from and who sees the ad</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Conversion location: <span class="val">Instant Forms</span></div>
+          <div class="step-detail">Click the "Instant Forms" tile — NOT Website. This is the native Facebook form. No landing page needed. Meta pre-fills name from the user's profile.</div>
+          <div class="where">Ad set → Conversion → Conversion location</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Performance goal: <span class="val">Maximise number of leads</span></div>
+          <div class="step-detail">This is the default when Leads objective is selected. Leave it.</div>
+          <div class="where">Ad set → Conversion → Performance goal</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Budget: <span class="val">$30 / day</span></div>
+          <div class="step-detail">Daily budget, not lifetime. Start here for 7 days then review cost per lead before adjusting.</div>
+          <div class="where">Ad set → Budget &amp; schedule</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Location: Add postcodes <span class="val">4172</span> <span class="val">4173</span> <span class="val">4174</span></div>
+          <div class="step-detail">4172 = Murarrie. 4173 = Tingalpa. 4174 = Hemmant. Same homeowner demographic, all within your territory. Delete the default country/state that Meta adds.</div>
+          <div class="where">Ad set → Audience → Locations</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Age: <span class="val">38</span> to <span class="val">65+</span></div>
+          <div class="step-detail">Homeowners skew older. Under 38 are renters or not yet in the sell cycle.</div>
+          <div class="where">Ad set → Audience → Age</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Placements: Manual → Stories &amp; Reels only</div>
+          <div class="step-detail">Click "Manual placements". Deselect everything. Re-select: Facebook Stories, Instagram Stories, Facebook Reels, Instagram Reels. Your 9:16 video is built for full-screen — do not run it in Feed on this test.</div>
+          <div class="where">Ad set → Placements</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PHASE 3 ─── -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">03</div>
+      <div>
+        <div class="phase-title">Create the Instant Form</div>
+        <div class="phase-sub">The form people fill in without leaving Facebook</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Click <span class="val">+ Create form</span></div>
+          <div class="step-detail">In the Instant Forms section that appears after selecting Instant Forms as conversion location.</div>
+          <div class="where">Ad set → Instant form → Create form</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Form type: <span class="val">Higher intent</span></div>
+          <div class="step-detail">NOT "More volume". Higher intent adds a review step before submitting. Fewer completions but far better lead quality — they actually meant to submit.</div>
+          <div class="where">Form → Form type</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Intro headline: <span class="val">What is your Murarrie home worth?</span></div>
+          <div class="step-detail">Short and direct. This is the first thing they read inside the form.</div>
+          <div class="where">Form → Intro</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Questions: <span class="val">First name</span> + <span class="val">Phone number</span> (pre-filled)</div>
+          <div class="step-detail">These are pre-filled from the user's Facebook profile. They just review and confirm. This is why native forms convert so much better than website forms.</div>
+          <div class="where">Form → Questions</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Add custom question: <span class="val">What is your property address?</span></div>
+          <div class="step-detail">Click "+ Add question" → Short answer. This is not pre-filled — they type it. You get phone to call them AND address to door knock if needed.</div>
+          <div class="where">Form → Questions → + Add question → Short answer</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Privacy policy URL: <span class="val">https://danielgierach.com/privacy</span></div>
+          <div class="step-detail">Required by Meta. Paste the URL into the privacy policy field.</div>
+          <div class="where">Form → Privacy</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Thank you screen message: <span class="val">Thanks. Daniel will be in touch within 24 hours.</span></div>
+          <div class="step-detail">Sets expectations so they are not surprised when you call.</div>
+          <div class="where">Form → Completion</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Click <span class="val">Save form</span> then click <span class="val">Next</span></div>
+          <div class="where">Form → bottom right</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PHASE 4 ─── -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">04</div>
+      <div>
+        <div class="phase-title">Ad Creative</div>
+        <div class="phase-sub">Upload the video and write the copy</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Format: <span class="val">Single video</span></div>
+          <div class="step-detail">Select Single image or video. Then click the video option (not image).</div>
+          <div class="where">Ad → Format</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Upload video: <span class="val">murarrie-v5-meta-ad-stories-and-reels.mp4</span></div>
+          <div class="step-detail">This is in your Downloads folder. Click "Add media" → "Upload" → select the file. It is 9:16 format at 4K resolution.</div>
+          <div class="where">Ad → Media → Add media</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Add captions: click <span class="val">Auto-generate</span></div>
+          <div class="step-detail">85% of people watch without sound. After uploading, click the captions option and let Meta auto-generate them. Review and correct if needed.</div>
+          <div class="where">Ad → Media → Captions</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Primary text: <span class="val">Most Murarrie homeowners underestimate what their property is worth. Based on real sales in your street, find out where yours sits. Takes 30 seconds.</span></div>
+          <div class="step-detail">Keep it to 3 sentences. No em dashes, no exclamation marks.</div>
+          <div class="where">Ad → Primary text</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Headline: <span class="val">What is your Murarrie home worth?</span></div>
+          <div class="step-detail">Short. Direct. Suburb-specific. Appears below the video in some placements.</div>
+          <div class="where">Ad → Headline</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">CTA button: <span class="val">Get Quote</span></div>
+          <div class="step-detail">From the dropdown, select "Get Quote". This is the button text that appears on the ad before someone taps to open the form.</div>
+          <div class="where">Ad → Call to action</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PHASE 5 ─── -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">05</div>
+      <div>
+        <div class="phase-title">Notifications — Get Leads Instantly</div>
+        <div class="phase-sub">So you can call within the hour</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Publish the ad — click <span class="val">Publish</span></div>
+          <div class="step-detail">The campaign goes into review. Meta typically approves within 1–24 hours.</div>
+          <div class="where">Bottom right of Ads Manager</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Go to Meta Business Suite → Instant Forms → your form → <span class="val">Notifications</span></div>
+          <div class="step-detail">Add your email: daniel.gierach@raywhite.com. Toggle on "Email me when I get a new lead."</div>
+          <div class="where">business.facebook.com → Instant Forms → Notifications</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Download leads: Ads Manager → Campaign → Leads Centre or export CSV</div>
+          <div class="step-detail">Lead data does not appear in your email — email just notifies you. Go to Leads Centre to see name, phone, and address for each lead.</div>
+          <div class="where">Ads Manager → your campaign → Leads Centre</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggle(this)">
+        <div class="checkbox"><svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#0a0806" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="step-body">
+          <div class="step-text">Review after 7 days — check cost per lead</div>
+          <div class="step-detail">A good cost per lead for this type of campaign is $15–$50. Under $15 is strong. Over $80 means something needs adjusting — usually the audience or the creative.</div>
+          <div class="where">Ads Manager → Campaign → Results column</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="done-banner" id="doneBanner">
+    <h2>Campaign is set up.</h2>
+    <p>All steps complete. Your ad is either in review or live. Check the Leads Centre daily.</p>
+  </div>
+
+  <button class="reset-btn" onclick="resetAll()">Reset checklist</button>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'meta-checklist-v1';
+
+  function getState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+  }
+  function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    persist();
+    updateProgress();
+  }
+
+  function persist() {
+    const steps = document.querySelectorAll('.step');
+    const state = {};
+    steps.forEach((s, i) => { state[i] = s.classList.contains('done'); });
+    saveState(state);
+  }
+
+  function updateProgress() {
+    const steps = document.querySelectorAll('.step');
+    const done = document.querySelectorAll('.step.done').length;
+    const pct = Math.round((done / steps.length) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('doneBanner').classList.toggle('show', done === steps.length);
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('done'));
+    saveState({});
+    updateProgress();
+  }
+
+  // Restore saved state
+  (function init() {
+    const state = getState();
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((s, i) => { if (state[i]) s.classList.add('done'); });
+    updateProgress();
+  })();
+</script>
+</body>
+</html>
