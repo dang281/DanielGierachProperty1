@@ -19,9 +19,9 @@ They want to know the number. That part is straightforward.
 
 What takes longer to explain is everything that happens between "let's go to market" and a signed contract. The process is where outcomes are made.
 
-My approach is thorough by design. Every buyer who should see this property sees it. Every inquiry gets followed up. Presentation is prepared properly. Pricing is set to attract genuine competition, not to test the market and adjust later.
+My job is to run the process properly, ensure no stone is unturned, and build as much competition on the property as possible. Every buyer who should see this home sees it. Every inquiry is followed up. Presentation is prepared properly. Pricing is set to generate genuine competition from the start, not to test the market and adjust later.
 
-Competition between buyers is the single biggest lever on your final result. Getting there requires work before the first open home, not after. No stone is left unturned before the campaign launches.
+Competition between buyers is the single biggest lever on your final result. Getting there requires work before the first open home, not after.
 
 Sellers who get the best results usually understood the process before they listed. Not because they micromanaged it, but because they chose an agent whose approach matched what they actually wanted from the sale.
 
