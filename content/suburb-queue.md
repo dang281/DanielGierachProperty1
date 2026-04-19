@@ -869,3 +869,47 @@ Next in Q3 2033: Morningside continuing from 2033-07-02
 - Murarrie (FB): 2033-12-26-facebook-murarrie-suburb-spotlight.md
 - Coorparoo (FB): 2033-12-29-facebook-coorparoo-suburb-spotlight.md
 - Carina Heights (FB): 2033-12-31-facebook-carina-heights-suburb-spotlight.md (END Q4 2033)
+
+### Facebook Suburb Spotlights: Q1 2034
+
+- Carindale (FB): 2034-01-02-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB): 2034-01-04-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB): 2034-01-06-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB): 2034-01-09-facebook-mt-gravatt-east-suburb-spotlight.md
+- Mt Gravatt (FB): 2034-01-11-facebook-mt-gravatt-suburb-spotlight.md
+- Morningside (FB): 2034-01-13-facebook-morningside-suburb-spotlight.md
+- Norman Park (FB): 2034-01-16-facebook-normanpark-suburb-spotlight.md
+- Carina (FB): 2034-01-18-facebook-carina-suburb-spotlight.md
+- Cannon Hill (FB): 2034-01-20-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB): 2034-01-23-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB): 2034-01-25-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB): 2034-01-27-facebook-balmoral-suburb-spotlight.md
+- Hawthorne (FB): 2034-01-30-facebook-hawthorne-suburb-spotlight.md (END cycle)
+- Seven Hills (FB): 2034-02-01-facebook-seven-hills-suburb-spotlight.md (new cycle)
+- Murarrie (FB): 2034-02-03-facebook-murarrie-suburb-spotlight.md
+- Coorparoo (FB): 2034-02-06-facebook-coorparoo-suburb-spotlight.md
+- Carina Heights (FB): 2034-02-08-facebook-carina-heights-suburb-spotlight.md
+- Carindale (FB): 2034-02-10-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB): 2034-02-13-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB): 2034-02-15-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB): 2034-02-17-facebook-mt-gravatt-east-suburb-spotlight.md
+- Mt Gravatt (FB): 2034-02-20-facebook-mt-gravatt-suburb-spotlight.md
+- Morningside (FB): 2034-02-22-facebook-morningside-suburb-spotlight.md
+- Norman Park (FB): 2034-02-24-facebook-normanpark-suburb-spotlight.md
+- Carina (FB): 2034-02-27-facebook-carina-suburb-spotlight.md
+- Cannon Hill (FB): 2034-03-01-facebook-cannon-hill-suburb-spotlight.md
+- Camp Hill (FB): 2034-03-03-facebook-camp-hill-suburb-spotlight.md
+- Bulimba (FB): 2034-03-06-facebook-bulimba-suburb-spotlight.md
+- Balmoral (FB): 2034-03-08-facebook-balmoral-suburb-spotlight.md
+- Hawthorne (FB): 2034-03-10-facebook-hawthorne-suburb-spotlight.md (END cycle)
+- Seven Hills (FB): 2034-03-13-facebook-seven-hills-suburb-spotlight.md (new cycle)
+- Murarrie (FB): 2034-03-15-facebook-murarrie-suburb-spotlight.md
+- Coorparoo (FB): 2034-03-17-facebook-coorparoo-suburb-spotlight.md
+- Carina Heights (FB): 2034-03-20-facebook-carina-heights-suburb-spotlight.md
+- Carindale (FB): 2034-03-22-facebook-carindale-suburb-spotlight.md
+- East Brisbane (FB): 2034-03-24-facebook-east-brisbane-suburb-spotlight.md
+- Holland Park (FB): 2034-03-27-facebook-holland-park-suburb-spotlight.md
+- Mt Gravatt East (FB): 2034-03-29-facebook-mt-gravatt-east-suburb-spotlight.md
+- Mt Gravatt (FB): 2034-03-31-facebook-mt-gravatt-suburb-spotlight.md (END Q1 2034)
+
+Next in Q2 2034: Morningside continuing from 2034-04-01
