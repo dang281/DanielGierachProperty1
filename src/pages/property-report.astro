@@ -718,7 +718,23 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
       method: 'POST',
       body: new FormData(this as HTMLFormElement),
       headers: { 'Accept': 'application/json' }
-    }).finally(() => { window.location.href = '/thank-you?from=report'; });
+    }).finally(() => {
+      // Show green tick confirmation before redirecting
+      const step2 = document.getElementById('step-2');
+      if (step2) {
+        step2.innerHTML = `
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:320px;text-align:center;gap:1.25rem;">
+            <div style="width:64px;height:64px;border-radius:50%;background:#1a3a1a;display:flex;align-items:center;justify-content:center;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <p style="font-family:var(--font-serif);font-size:1.5rem;color:var(--color-text-primary);margin-bottom:0.4rem;">Request received.</p>
+              <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Daniel will be in touch within a few hours.</p>
+            </div>
+          </div>`;
+      }
+      setTimeout(() => { window.location.href = '/thank-you?from=report'; }, 1800);
+    });
   });
 })();
 </script>
