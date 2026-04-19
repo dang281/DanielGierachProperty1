@@ -5,7 +5,7 @@
 **Goal:** Position Daniel as the honest, go-to agent for inner east Brisbane sellers. Drive appraisal enquiries.
 **Content Pillar:** seller
 **Status:** Ready for Review
-**Publish date:** 2026-04-11
+**Publish date:** 2026-04-27
 **Scheduled time:** 07:30
 **Visual status:** Draft
 
