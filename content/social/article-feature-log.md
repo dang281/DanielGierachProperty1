@@ -449,3 +449,16 @@
 | 2034-09-10 | how-long-does-it-take-to-sell-a-home-in-brisbane | Full timeline 10 to 16 weeks; preparation phase (4 to 8 weeks) is where the campaign is won or lost; days on market starts when you go live, not when you start preparing |
 | 2034-09-17 | heritage-overlays-brisbane | Heritage overlay does not prevent renovation; requires BCC approval for external character changes only; internal renovations typically proceed without heritage approval |
 | 2034-09-24 | easements-property-brisbane-qld | Drainage easement along rear boundary rarely affects resale value; access easement through the yard is materially different; most buyers cannot tell which type from the title search alone |
+| 2034-10-05 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; contract review before signing is when advice has most value |
+| 2034-10-12 | auction-vs-private-treaty-eoi | Sale method is the single biggest lever vendor has over how buyer competition develops |
+| 2034-10-19 | what-is-an-unconditional-offer-queensland | Vendors prefer lower unconditional over higher conditional; understanding why changes how to structure an offer |
+| 2034-10-26 | how-to-read-a-building-and-pest-report | Summary page is wrong place to start; active timber pest vs maintenance items require different responses |
+| 2034-11-02 | understanding-the-reiq-contract-of-sale | Finance condition deadline lapses on date even without bank approval; inclusions not excluded assumed to stay |
+| 2034-11-09 | stamp-duty-queensland | On a $1.1M owner-occupier purchase transfer duty adds approximately $43,350; most buyers underestimate by $10,000+ |
+| 2034-11-16 | cooling-off-period-property-sale-queensland | Five business days from contract; 0.25% penalty; auctions have no cooling-off at all |
+| 2034-11-23 | what-happens-on-settlement-day-queensland | Queensland uses PEXA for electronic settlement; keys released after funds confirmed, not before |
+| 2034-11-30 | seller-disclosure-obligations-queensland | Property Law Act 2023 requires Seller Disclosure Statement before any contract; failure can give buyer right to terminate |
+| 2034-12-07 | pre-settlement-inspection-seller-guide-qld | Property must be in same condition as at contract signing; removalist damage and missing inclusions most common disputes |
+| 2034-12-14 | body-corporate-what-it-is-and-what-it-costs | Sinking fund balance more important than levy rate; levies $2,000 to $14,000+/yr depending on complex size |
+| 2034-12-21 | capital-gains-tax-selling-home-brisbane | Main residence exemption not automatic if ever rented; settlement date not signing date determines financial year |
+| 2034-12-28 | selling-a-house-with-a-mortgage | Net equity not sale price minus loan balance; fixed-rate break cost must be confirmed before campaign launches |
