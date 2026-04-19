@@ -424,3 +424,16 @@
 | 2034-03-16 | capital-gains-tax-selling-home-brisbane | Main residence exemption not automatic if ever rented; settlement date not signing date determines the year |
 | 2034-03-23 | cooling-off-period-property-sale-queensland | Five business days from contract; 0.25% penalty; written notice before 5pm day five; auctions have no cooling-off |
 | 2034-03-30 | heritage-overlays-brisbane | Overlay constrains method and materials, not the outcome; inner east Queenslanders can still add value with calibrated approach |
+| 2034-04-06 | selling-tenanted-property-queensland | Fixed-term lease past settlement date means buyer takes over the lease, not vacant possession; match settlement to lease expiry before launching |
+| 2034-04-13 | selling-house-with-mortgage-brisbane | Net equity is not sale price minus loan balance; fixed-rate break cost must be confirmed with the lender before campaign launches |
+| 2034-04-20 | stamp-duty-queensland | On a $1.1M owner-occupier purchase, transfer duty adds approximately $43,350; most buyers underestimate the actual number by $10,000 or more |
+| 2034-04-27 | when-to-sell | Preparation is the variable the vendor controls; gap between well-prepared and rushed inner east campaign regularly $50,000 to $150,000 |
+| 2034-05-04 | solicitor-vs-conveyancer-qld | Most buyers sign first and call solicitor second; reviewing before signing catches missing inclusions and risky conditions while leverage still exists |
+| 2034-05-11 | what-is-an-unconditional-offer-queensland | Sellers often accept lower unconditional offer over higher conditional one; unconditional eliminates the 2 to 3 week finance and B&P risk window entirely |
+| 2034-05-18 | how-to-read-a-building-and-pest-report | Summary page is the wrong place to start; active timber pest activity and general maintenance items require completely different responses from a buyer |
+| 2034-05-25 | body-corporate | Sinking fund balance matters more than the levy rate; levies $2,000 to $4,000/yr for a small townhouse to $6,000 to $14,000+/yr for mid-rise |
+| 2034-06-01 | best-time-to-sell-brisbane | Spring-selling advice is built around Melbourne and Sydney; Brisbane inner east autumn (late February to May) is the most consistent window; preparation matters more than season |
+| 2034-06-08 | what-happens-on-settlement-day-queensland | Settlement funds arrive before keys change hands; buyer solicitor confirms receipt before agent releases keys; for most vendors the day is quiet and digital via PEXA |
+| 2034-06-15 | seller-disclosure-obligations-queensland | Property Law Act 2023 (Qld) requires Seller Disclosure Statement before any contract; failure to disclose can give buyer right to terminate at any time before settlement |
+| 2034-06-22 | airbnb-vs-longterm | Platform fees, cleaning, insurance and maintenance add $15,000 to $25,000 per year; net return often within a few thousand of a well-managed long-term tenancy with significantly more effort |
+| 2034-06-29 | negative-gearing-selling-investment-property-brisbane | Settlement timing relative to 30 June determines which financial year the capital gain falls into; getting it wrong by a few days can shift significant tax liability |
