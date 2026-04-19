@@ -432,24 +432,21 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   </a>
 </div>
 
-<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&loading=async"></script>
 <script is:inline>
-  // Google Places Autocomplete on address input
-  window.addEventListener('load', function() {
+  window.initMapsAutocomplete = function() {
     const input = document.getElementById('lpAddress');
-    if (!input || typeof google === 'undefined') return;
+    if (!input) return;
     const ac = new google.maps.places.Autocomplete(input, {
       types: ['address'],
       componentRestrictions: { country: 'au' },
     });
     ac.addListener('place_changed', function() {
       const place = ac.getPlace();
-      if (place && place.formatted_address) {
-        input.value = place.formatted_address;
-      }
+      if (place && place.formatted_address) input.value = place.formatted_address;
     });
-  });
+  };
 </script>
+<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initMapsAutocomplete"></script>
 <script>
   // UTM + pixel tracking
   (function() {
