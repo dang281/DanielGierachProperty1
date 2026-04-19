@@ -20,7 +20,7 @@ Strong demand. Limited stock. The cash rate is now at 4.10% after two consecutiv
 Where do you see Brisbane property prices heading over the rest of 2026?
 
 Daniel Gierach
-Ray White Bulimba · Inner East Brisbane
+Ray White The Collective · Inner East Brisbane
 
 ## Poll options
 
