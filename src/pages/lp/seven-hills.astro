@@ -3,8 +3,8 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 ---
 
 <LandingLayout
-  title="See What Your Seven Hills Home Is Worth | Free Report"
-  description="Find out what your Seven Hills property is worth based on real recent sales. Free, instant, no obligation. Daniel Gierach Property."
+  title="What Is Your Home Worth? | Free Property Estimate"
+  description="Find out what your Brisbane inner west property is worth based on recent comparable sales. Free, no obligation. Daniel Gierach, Ray White."
 >
 
 <style>
@@ -52,29 +52,29 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   .lp-benefit { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: rgba(240,236,228,0.65); letter-spacing: 0.04em; }
   .lp-benefit-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
-  /* Form */
-  .lp-form-stack { display: flex; flex-direction: column; gap: 0; max-width: 540px; }
+  /* Form — inline */
+  .lp-form-inline { display: flex; gap: 0; max-width: 540px; }
   .lp-input {
-    width: 100%; padding: 0.95rem 1.1rem;
-    background: rgba(255,255,255,0.09);
-    border: 1.5px solid rgba(255,255,255,0.20);
-    border-bottom: 1px solid rgba(255,255,255,0.10);
-    color: #f0ece4; font-family: var(--font-sans); font-size: 0.88rem;
+    flex: 1; min-width: 0;
+    padding: 0.9rem 1.1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-right: none;
+    color: #f0ece4; font-family: var(--font-sans); font-size: 0.85rem;
     outline: none; box-sizing: border-box; -webkit-appearance: none;
     transition: border-color 0.2s;
   }
   .lp-input:focus { border-color: rgba(197,160,60,0.6); }
   .lp-input::placeholder { color: rgba(240,236,228,0.38); }
-  .lp-input:last-of-type { border-bottom: 1.5px solid rgba(255,255,255,0.20); }
   .lp-submit {
-    padding: 1rem 1.5rem; background: #c5a03c; border: none; cursor: pointer;
-    font-family: var(--font-sans); font-size: 0.72rem; font-weight: 800;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark);
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem; background: #c5a03c; border: none; cursor: pointer;
+    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark);
+    display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
     transition: background 0.2s;
   }
   .lp-submit:hover { background: #d4af4a; }
-  .lp-trust { font-size: 0.68rem; color: rgba(240,236,228,0.45); margin-top: 0.65rem; letter-spacing: 0.04em; }
+  .lp-trust { font-size: 0.72rem; color: rgba(240,236,228,0.55); margin-top: 0.6rem; letter-spacing: 0.06em; }
 
   /* ── Stats bar ── */
   .lp-stats-bar { background: rgba(10,8,6,0.95); border-top: 1px solid rgba(197,160,60,0.12); border-bottom: 1px solid rgba(197,160,60,0.12); padding: 1.5rem; }
@@ -167,16 +167,29 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
   /* ── Responsive ── */
   @media (max-width: 720px) {
-    .lp-bar { padding: 0.85rem 1.25rem; }
-    .lp-card { padding: 2rem 1.5rem; }
+    .lp-bar { padding: 0.85rem 1.25rem; height: 60px; }
+    .lp-hero { min-height: 100dvh; }
+    .lp-hero-inner { padding: 5rem 1rem 7rem; }
+    .lp-card { padding: 1.75rem 1.25rem; max-width: 100%; }
+    .lp-h1 { font-size: clamp(1.9rem, 8vw, 2.5rem); }
+    .lp-sub { font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .lp-form-inline { flex-direction: column; }
+    .lp-input {
+      border-right: 1.5px solid rgba(255,255,255,0.18);
+      border-bottom: none;
+      font-size: 1rem;
+      padding: 1rem 1.1rem;
+    }
+    .lp-submit { justify-content: center; padding: 1rem 1.4rem; font-size: 0.75rem; min-height: 54px; }
     .lp-report-grid { grid-template-columns: 1fr; }
     .lp-sold-grid { grid-template-columns: 1fr; }
     .lp-steps { grid-template-columns: 1fr; gap: 2.5rem; }
     .lp-testimonials-grid { grid-template-columns: 1fr; }
     .lp-daniel-inner { flex-direction: column; gap: 1.5rem; }
+    .lp-call-btn { width: 100%; justify-content: center; min-height: 54px; }
     .lp-stats-inner { gap: 1.5rem; }
     .lp-stat-divider { display: none; }
-    .lp-sticky-cta { display: flex; }
+    .lp-sticky-cta { display: flex; min-height: 54px; }
     body { padding-bottom: 4rem; }
   }
 </style>
@@ -220,61 +233,30 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
         />
         <span class="lp-avatar-name">Daniel Gierach</span>
       </div>
-      <h1 class="lp-h1">See what your<br/><em>Seven Hills home<br/>is actually worth.</em></h1>
-      <p class="lp-sub">Based on real sales in your street. Most Seven Hills owners are surprised — enter your email and we'll show you where yours sits.</p>
+      <h1 class="lp-h1">Curious what your<br/><em>home could<br/>sell for?</em></h1>
+      <p class="lp-sub">Most homeowners underestimate what their property is worth. Find out where yours really sits.</p>
 
-      <div class="lp-benefits">
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Free</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>No obligation</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>Takes 10 seconds</span>
-        <span class="lp-benefit"><span class="lp-benefit-dot"></span>April 2026 data</span>
-      </div>
-
-      <form class="lp-form-stack" id="lpForm" action="/property-report" method="get">
+      <form class="lp-form-inline" id="lpForm" action="/property-report" method="get">
         <input
           class="lp-input"
-          type="email"
-          name="email"
-          id="lpEmail"
-          placeholder="Your email address…"
-          autocomplete="email"
+          type="text"
+          name="address"
+          id="lpAddress"
+          placeholder="Enter your property address…"
+          autocomplete="off"
           required
         />
         <button type="submit" class="lp-submit">
-          Get My Free Valuation
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          What's Your Property Worth?
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
 
-      <p class="lp-trust">We won't call unless you ask us to</p>
+      <p class="lp-trust">Free &nbsp;·&nbsp; You'll get an indicative value range based on recent comparable sales in your street.</p>
     </div>
   </div>
 </section>
 
-<!-- Stats bar -->
-<div class="lp-stats-bar">
-  <div class="lp-stats-inner">
-    <div class="lp-stat">
-      <div class="lp-stat-num">10+</div>
-      <div class="lp-stat-label">Years in Brisbane</div>
-    </div>
-    <div class="lp-stat-divider"></div>
-    <div class="lp-stat">
-      <div class="lp-stat-num">300+</div>
-      <div class="lp-stat-label">Properties Sold</div>
-    </div>
-    <div class="lp-stat-divider"></div>
-    <div class="lp-stat">
-      <div class="lp-stat-num">4.9★</div>
-      <div class="lp-stat-label">Google Rating</div>
-    </div>
-    <div class="lp-stat-divider"></div>
-    <div class="lp-stat">
-      <div class="lp-stat-num">Free</div>
-      <div class="lp-stat-label">No Cost, Ever</div>
-    </div>
-  </div>
-</div>
 
 <!-- What's in your report -->
 <section class="lp-report-preview">
@@ -295,12 +277,12 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
       <div class="lp-report-item">
         <div class="lp-report-icon">📅</div>
         <div class="lp-report-item-title">Days on Market</div>
-        <p class="lp-report-item-body">How long Seven Hills homes are taking to sell right now, so you can plan your timeline with confidence.</p>
+        <p class="lp-report-item-body">How long similar homes are taking to sell in your area right now, so you can plan your timeline with confidence.</p>
       </div>
       <div class="lp-report-item">
         <div class="lp-report-icon">📈</div>
         <div class="lp-report-item-title">Suburb Price Trend</div>
-        <p class="lp-report-item-body">Whether values in Seven Hills are rising, levelling, or softening — and what that means for your decision.</p>
+        <p class="lp-report-item-body">Whether values in your street are rising, levelling, or softening, and what that means for your decision.</p>
       </div>
     </div>
   </div>
@@ -310,8 +292,8 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 <section class="lp-sold">
   <div class="lp-sold-inner">
     <div class="lp-sold-header">
-      <span class="lp-sold-label">Recent Sales in Seven Hills</span>
-      <span class="lp-sold-hint">Prices blurred — enter your email above to unlock</span>
+      <span class="lp-sold-label">Recent Sales Nearby</span>
+      <span class="lp-sold-hint">Prices blurred — enter your address above to unlock</span>
     </div>
     <div class="lp-sold-grid">
       <div class="lp-sold-item">
@@ -343,8 +325,8 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     <div class="lp-steps">
       <div class="lp-step">
         <div class="lp-step-num">01</div>
-        <div class="lp-step-title">Enter your email</div>
-        <p class="lp-step-body">Just your email. Takes 10 seconds. No phone number, no commitment.</p>
+        <div class="lp-step-title">Enter your address</div>
+        <p class="lp-step-body">Just your property address. Takes 10 seconds. No commitment.</p>
       </div>
       <div class="lp-step">
         <div class="lp-step-num">02</div>
@@ -367,7 +349,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
     <div class="lp-faq-item">
       <div class="lp-faq-q">Is this actually free?</div>
-      <p class="lp-faq-a">Yes, completely. There is no charge, no hidden fee, and no obligation to list. The report is Daniel's way of introducing himself to Seven Hills homeowners who are thinking about their options.</p>
+      <p class="lp-faq-a">Yes, completely. There is no charge, no hidden fee, and no obligation to list. The report is Daniel's way of introducing himself to homeowners who are thinking about their options.</p>
     </div>
 
     <div class="lp-faq-item">
@@ -377,7 +359,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
     <div class="lp-faq-item">
       <div class="lp-faq-q">How accurate is the estimate?</div>
-      <p class="lp-faq-a">More accurate than any automated tool. It's based on recent sales of comparable homes in Seven Hills, interpreted by someone who has personally sold property in this area — not a black-box algorithm.</p>
+      <p class="lp-faq-a">More accurate than any automated tool. It's based on recent sales of comparable homes nearby, interpreted by someone who has personally sold property in this area, not a black-box algorithm.</p>
     </div>
 
     <div class="lp-faq-item">
@@ -387,7 +369,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
     <div class="lp-faq-item">
       <div class="lp-faq-q">How is this different from CoreLogic or Domain estimates?</div>
-      <p class="lp-faq-a">Those tools use automated models with no local knowledge. Daniel has sold over 300 properties across Brisbane's inner east and knows what Seven Hills buyers will actually pay — including features those tools can't measure, like aspect, elevation, and block size.</p>
+      <p class="lp-faq-a">Those tools use automated models with no local knowledge. Daniel has sold across Brisbane's inner west and knows what buyers will actually pay, including features those tools can't measure, like aspect, elevation, and block size.</p>
     </div>
   </div>
 </section>
@@ -434,13 +416,8 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     <div class="lp-avatar"></div>
     <div>
       <div class="lp-daniel-name">Daniel Gierach</div>
-      <div class="lp-daniel-role">Property Agent · Brisbane Inner East</div>
-      <p class="lp-daniel-body">Seven Hills sits elevated with larger blocks and river glimpses that buyers pay a premium for — and I've seen that premium first-hand across 10+ years selling in Brisbane's inner east. Backed by a degree in Property Economics, I approach every appraisal with data and a clear understanding of what actually drives value in this suburb.</p>
-      <div class="lp-credentials">
-        <div class="lp-cred"><strong>10+</strong>Years Local</div>
-        <div class="lp-cred"><strong>300+</strong>Sold</div>
-        <div class="lp-cred"><strong>B. Prop Econ</strong>Qualified</div>
-      </div>
+      <div class="lp-daniel-role">Ray White Collective</div>
+      <p class="lp-daniel-body">Brisbane's inner west is a market I know street by street. I know which pockets outperform, what buyers will pay a premium for, and where the real value gaps are. The report is a starting point. If you want a precise number, I'll walk through your home and give you one.</p>
       <a href="tel:+61412523821" class="lp-call-btn">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
         Call Daniel
@@ -452,7 +429,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 <!-- Footer -->
 <footer class="lp-footer">
   <p>
-    Daniel Gierach Property · Brisbane Inner East<br/>
+    Daniel Gierach · Ray White Collective · Brisbane Inner West<br/>
     <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">danielgierach.com</a>
   </p>
 </footer>
@@ -468,8 +445,8 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   const stickyCta = document.getElementById('stickyCta');
   if (stickyCta) {
     stickyCta.addEventListener('click', () => {
-      const email = document.getElementById('lpEmail');
-      if (email) { email.scrollIntoView({ behavior: 'smooth', block: 'center' }); email.focus(); }
+      const addr = document.getElementById('lpAddress');
+      if (addr) { addr.scrollIntoView({ behavior: 'smooth', block: 'center' }); addr.focus(); }
     });
   }
 
@@ -493,8 +470,8 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
             form.appendChild(inp);
           });
         }
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Seven Hills Property Report' });
-        if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { suburb: 'Seven Hills', source: 'lp' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Brisbane Inner West Property Report', content_category: 'Address Submission' });
+        if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { suburb: 'inner_west', source: 'lp' });
       });
     }
   })();
