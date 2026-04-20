@@ -7,8 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2026-05-26
 **Scheduled time:** 07:30
-**Visual status:** Not needed
-**Canva URL:** N/A (text-only post)
+**Visual status:** Ready
+**Image:** content/social/images/2026-05-26-linkedin-market.png
 
 ---
 
