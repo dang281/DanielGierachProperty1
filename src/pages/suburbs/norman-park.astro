@@ -101,13 +101,44 @@ import Layout from '../../layouts/Layout.astro';
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Norman Park is a firm favourite with families seeking inner-east character living. Wide streets, heritage Queenslanders, good schools and easy access to the CBD and river create consistent, strong demand from buyers who know exactly what they want. I have sold extensively in Norman Park and understand the nuances that separate a good result from an exceptional one. The right preparation and buyer targeting makes a real difference in a suburb this tightly held.
     </p>
+<!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Norman Park home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+    <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry - Norman Park" />
+    <input type="hidden" name="_source" value="norman-park" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    </div>
+    <input type="text" name="property_address" required placeholder="Your Norman Park address (street + number)"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        Request My Free Appraisal
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
 
     <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#1c1917; margin-bottom:0.75rem; margin-top:2rem;">Queenslander character homes: what actually drives the premium</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park has one of the highest concentrations of original and well-renovated Queenslanders in Brisbane's inner east. But not all Queenslanders are equal, and buyers in this suburb know the difference. The homes that draw the strongest competition are the ones that have kept their bones: VJ wall linings, pressed metal ceilings, wide wrap-around verandahs and elevated timber floors that still move with the seasons. These features are not cosmetic -- they are structural signatures that cannot be replicated in a renovation without significant cost.
+      Norman Park has one of the highest concentrations of original and well-renovated Queenslanders in Brisbane's inner east. But not all Queenslanders are equal, and buyers in this suburb know the difference. The homes that draw the strongest competition are the ones that have kept their bones: VJ wall linings, pressed metal ceilings, wide wrap-around verandahs and elevated timber floors that still move with the seasons. These features are not cosmetic, they are structural signatures that cannot be replicated in a renovation without significant cost.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      A Queenslander with original features in good condition versus a poorly renovated one on the same street can differ in sale price by $200,000 or more. The poorly renovated home often sells for less than it cost to renovate, because buyers discount heavily for work they will need to undo. The original home, presented well and with its character intact, attracts genuine competition from buyers who have been looking for months. Knowing which category your property falls into shapes everything -- the pricing strategy, the marketing, and the buyer pool you target.
+      A Queenslander with original features in good condition versus a poorly renovated one on the same street can differ in sale price by $200,000 or more. The poorly renovated home often sells for less than it cost to renovate, because buyers discount heavily for work they will need to undo. The original home, presented well and with its character intact, attracts genuine competition from buyers who have been looking for months. Knowing which category your property falls into shapes everything, the pricing strategy, the marketing, and the buyer pool you target.
     </p>
 
     <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#1c1917; margin-bottom:0.75rem; margin-top:2rem;">School catchments: walking distance is a meaningful distinction</h3>
@@ -128,17 +159,17 @@ import Layout from '../../layouts/Layout.astro';
       Norman Park regularly attracts two very different buyer profiles, and understanding which your property appeals to shapes the campaign significantly. The first group wants a fully renovated character home, ready to live in from settlement day. They will pay a premium for quality work and are often competing in multiple suburbs simultaneously. The second group wants an original home to renovate themselves. They are typically builders, architects, or owner-occupiers with a clear vision, and they are willing to move quickly because original Norman Park homes are increasingly rare.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      These are different buyers with different financing, different timelines, and different emotional triggers. Positioning a property to attract both groups -- and running a campaign that surfaces whoever will pay more -- is not something you work out on the day of the first open. It requires knowing the current buyer pool before the campaign launches.
+      These are different buyers with different financing, different timelines, and different emotional triggers. Positioning a property to attract both groups, and running a campaign that surfaces whoever will pay more, is not something you work out on the day of the first open. It requires knowing the current buyer pool before the campaign launches.
     </p>
 
     <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#1c1917; margin-bottom:0.75rem; margin-top:2rem;">Seven Hills Bushland Reserve and Norman Creek: lifestyle value with land implications</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park has direct trail access to the Seven Hills Bushland Reserve through several entry points along the suburb's southern edge. For families with children or dog owners, this is a genuine daily lifestyle asset -- not a park that gets visited twice a year but actual bushland that is walkable from the front door. Norman Creek and the adjoining parkland along the western edge serve a similar function, with the added benefit that homes backing onto the reserve corridor consistently attract a premium from buyers who understand the land value of that green buffer.
+      Norman Park has direct trail access to the Seven Hills Bushland Reserve through several entry points along the suburb's southern edge. For families with children or dog owners, this is a genuine daily lifestyle asset, not a park that gets visited twice a year but actual bushland that is walkable from the front door. Norman Creek and the adjoining parkland along the western edge serve a similar function, with the added benefit that homes backing onto the reserve corridor consistently attract a premium from buyers who understand the land value of that green buffer.
     </p>
 
     <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#1c1917; margin-bottom:0.75rem; margin-top:2rem;">Street-level price variation: the ridge matters</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park is not a flat suburb. The elevated streets along the ridge, particularly those with city or hinterland views, attract a meaningfully different buyer to the lower streets near the creek corridor. Homes on the ridge carry a view premium that compounds with character home appeal. Lower streets near the creek have their own value proposition -- reserve access, established gardens, quieter settings -- but the price ceiling differs. Sellers on elevated streets with views should understand their position relative to the suburb's median, and should be pushing to establish a new ceiling, not just meeting it.
+      Norman Park is not a flat suburb. The elevated streets along the ridge, particularly those with city or hinterland views, attract a meaningfully different buyer to the lower streets near the creek corridor. Homes on the ridge carry a view premium that compounds with character home appeal. Lower streets near the creek have their own value proposition, reserve access, established gardens, quieter settings, but the price ceiling differs. Sellers on elevated streets with views should understand their position relative to the suburb's median, and should be pushing to establish a new ceiling, not just meeting it.
     </p>
 
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">

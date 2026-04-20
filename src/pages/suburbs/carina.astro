@@ -128,8 +128,39 @@ import Layout from '../../layouts/Layout.astro';
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Carina sits immediately south of Camp Hill, one of Brisbane's most sought-after inner-east suburbs. That geography matters more than anything else when you are trying to understand what drives demand here. Camp Hill regularly trades at a $150,000 to $250,000 premium over Carina for a comparable home on a comparable block. Most buyers who end up purchasing in Carina started their search in Camp Hill. They come through Camp Hill open homes, check the prices, recalibrate, and then discover that Carina offers nearly the same lifestyle at a meaningfully lower entry point. The shopping at Camp Hill Marketplace is five minutes away. The school corridor is largely the same. The block sizes are similar. The price is not.
     </p>
+<!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Carina home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+    <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry - Carina" />
+    <input type="hidden" name="_source" value="carina" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    </div>
+    <input type="text" name="property_address" required placeholder="Your Carina address (street + number)"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        Request My Free Appraisal
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      School catchments are one of the primary reasons families choose a suburb before they choose a street. Carina State School is a strong state primary with good community standing. St Anthony's Catholic Primary on Creek Road is the main Catholic option and draws families from across the local catchment. The high school story is important: Cavendish Road State High School serves Carina and it is specifically sought out by families who research state high school options in Brisbane's east. Buyers with children approaching high school age frequently name Cavendish Road as a reason they shortlisted Carina at all. This is not a generic preference for "good schools" -- it is a deliberate choice made by informed buyers who have done their homework.
+      School catchments are one of the primary reasons families choose a suburb before they choose a street. Carina State School is a strong state primary with good community standing. St Anthony's Catholic Primary on Creek Road is the main Catholic option and draws families from across the local catchment. The high school story is important: Cavendish Road State High School serves Carina and it is specifically sought out by families who research state high school options in Brisbane's east. Buyers with children approaching high school age frequently name Cavendish Road as a reason they shortlisted Carina at all. This is not a generic preference for "good schools", it is a deliberate choice made by informed buyers who have done their homework.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       The Carina Leagues Club on Creek Road is one of the most underrated community assets in Brisbane's inner east. It is a genuine social hub for the suburb: families use it for sport, events and dining, and its presence contributes meaningfully to the settled, community-oriented character that Carina is known for. Combined with the Clem Jones Centre sporting facilities, the local cricket and football grounds, and easy access to Westfield Carindale for retail and dining, Carina has a lifestyle amenity offering that punches well above its price point. Buyers who move here from further out often say this surprises them most. They expected good value. They did not expect the suburb to feel this complete.

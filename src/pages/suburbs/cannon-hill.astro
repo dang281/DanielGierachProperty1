@@ -128,13 +128,44 @@ import Layout from '../../layouts/Layout.astro';
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Cannon Hill is a tightly held suburb with a strong sense of community and consistent buyer interest. Its accessibility, well-regarded schools and leafy character streets make it a firm favourite with families relocating to Brisbane's inner east. The conversations I have with buyers week to week tell me something consistent: this suburb punches above its weight for liveability at its price point, and the families who buy here rarely leave.
     </p>
+<!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Cannon Hill home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+    <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry - Cannon Hill" />
+    <input type="hidden" name="_source" value="cannon-hill" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    </div>
+    <input type="text" name="property_address" required placeholder="Your Cannon Hill address (street + number)"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        Request My Free Appraisal
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       With an active buyer database and deep knowledge of this market, I understand exactly how to create competition for properties in Cannon Hill and the surrounding suburbs.
     </p>
 
     <h3 style="font-family:var(--font-serif); font-size:1.35rem; font-weight:400; color:#1c1917; margin-top:2rem; margin-bottom:0.75rem;">The Cannon Hill Anglican College catchment premium</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Cannon Hill Anglican College is the single most important value driver in this suburb. Families with children aged five to twelve actively target Cannon Hill specifically because of CHAC, and the buyer competition that creates is concentrated and predictable. Streets within comfortable walking distance of the school -- Wynnum Road, Homestead Street, Morcom Street and the surrounding residential grid -- consistently attract a broader and better-qualified pool of buyers than equivalent homes further from the catchment boundary.
+      Cannon Hill Anglican College is the single most important value driver in this suburb. Families with children aged five to twelve actively target Cannon Hill specifically because of CHAC, and the buyer competition that creates is concentrated and predictable. Streets within comfortable walking distance of the school, Wynnum Road, Homestead Street, Morcom Street and the surrounding residential grid, consistently attract a broader and better-qualified pool of buyers than equivalent homes further from the catchment boundary.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       If you are selling a home that falls within or near the CHAC catchment, that is a material selling point and it should be front and centre in your campaign. I know which buyers on my database are actively searching for catchment properties and I reach them directly before the wider market even sees the listing.
@@ -142,15 +173,15 @@ import Layout from '../../layouts/Layout.astro';
 
     <h3 style="font-family:var(--font-serif); font-size:1.35rem; font-weight:400; color:#1c1917; margin-top:2rem; margin-bottom:0.75rem;">Who buys in Cannon Hill</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      The typical Cannon Hill buyer is a family on their second or third home. Many come from Carina, Tingalpa or Carindale, upgrading to a suburb with stronger school options and more established streetscapes. A meaningful share relocate from suburbs with weaker access to private schooling -- they have done the research and Cannon Hill is on a short list for a reason.
+      The typical Cannon Hill buyer is a family on their second or third home. Many come from Carina, Tingalpa or Carindale, upgrading to a suburb with stronger school options and more established streetscapes. A meaningful share relocate from suburbs with weaker access to private schooling, they have done the research and Cannon Hill is on a short list for a reason.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      These are buyers who prioritise liveability over CBD proximity. They want a proper backyard, a suburb that feels settled, and schools they can walk to. They are not in a hurry but they are motivated -- and when the right property comes to market they move quickly. Understanding the buyer before the campaign starts is what separates a good result from a great one.
+      These are buyers who prioritise liveability over CBD proximity. They want a proper backyard, a suburb that feels settled, and schools they can walk to. They are not in a hurry but they are motivated, and when the right property comes to market they move quickly. Understanding the buyer before the campaign starts is what separates a good result from a great one.
     </p>
 
     <h3 style="font-family:var(--font-serif); font-size:1.35rem; font-weight:400; color:#1c1917; margin-top:2rem; margin-bottom:0.75rem;">Amenity that holds value</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      The Cannon Hill Plaza precinct on Wynnum Road anchors the suburb's everyday convenience. Supermarket, specialty retail, cafes and services -- it covers the basics without needing to leave the suburb. Combined with Cannon Hill train station on the Cleveland line, the suburb has a level of amenity that family buyers genuinely value. Fifteen minutes to the CBD by train is a number that features in every buyer conversation I have about this suburb.
+      The Cannon Hill Plaza precinct on Wynnum Road anchors the suburb's everyday convenience. Supermarket, specialty retail, cafes and services, it covers the basics without needing to leave the suburb. Combined with Cannon Hill train station on the Cleveland line, the suburb has a level of amenity that family buyers genuinely value. Fifteen minutes to the CBD by train is a number that features in every buyer conversation I have about this suburb.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       The Morningside restaurant and cafe strip on Wynnum Road is a five-minute drive, which means Cannon Hill gets the benefit of that precinct without paying Morningside prices. The Gateway Motorway is also accessible without having to cut through heavy traffic, making the suburb practical for families where one or both parents commute outside the inner east.
@@ -166,7 +197,7 @@ import Layout from '../../layouts/Layout.astro';
 
     <h3 style="font-family:var(--font-serif); font-size:1.35rem; font-weight:400; color:#1c1917; margin-top:2rem; margin-bottom:0.75rem;">Price growth and where the market sits</h3>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Cannon Hill has recorded consistent growth above the Brisbane median over the past several years. The sub-$1.3 million family home segment is where buyer competition is most intense -- multiple offers are common when the property is well presented and correctly priced. As Morningside and Bulimba have moved beyond $1.5 million for median house values, Cannon Hill continues to attract buyers who want the same inner-east lifestyle at a more accessible entry point. That dynamic is not going to change quickly, and it is what continues to underpin strong results for sellers in this suburb.
+      Cannon Hill has recorded consistent growth above the Brisbane median over the past several years. The sub-$1.3 million family home segment is where buyer competition is most intense, multiple offers are common when the property is well presented and correctly priced. As Morningside and Bulimba have moved beyond $1.5 million for median house values, Cannon Hill continues to attract buyers who want the same inner-east lifestyle at a more accessible entry point. That dynamic is not going to change quickly, and it is what continues to underpin strong results for sellers in this suburb.
     </p>
     <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
       <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
