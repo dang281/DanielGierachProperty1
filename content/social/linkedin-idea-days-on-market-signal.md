@@ -7,6 +7,8 @@
 **Status:** Idea
 **Publish date:** TBD
 **Scheduled time:** 07:30
+**Visual status:** Ready
+**Image:** content/social/images/linkedin-idea-days-on-market-signal.png
 
 ---
 
