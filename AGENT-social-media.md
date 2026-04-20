@@ -133,7 +133,7 @@ For each update found, ask:
 
 If SKIP: note "No newsworthy signal — LinkedIn scout skipped" and move on. Do NOT force content.
 
-If POST TODAY: write one LinkedIn post (format below), create Canva design, commit.
+If POST TODAY: write one LinkedIn post (format below), generate visual, commit.
 
 ---
 
@@ -171,7 +171,7 @@ After selecting, update `content/polls.md`: move the poll title to the "✅ Used
 
 Write file: `content/social/[NEXT_WED]-linkedin-poll-[topic-slug].md`
 
-No Canva design needed for polls.
+No visual needed for polls.
 
 ### Post 3 — Article Feature (Thursday 07:30)
 
@@ -292,7 +292,6 @@ Always include one topic-specific tag directly relevant to this post.]
 **Publish date:** YYYY-MM-DD
 **Scheduled time:** 08:30
 **Visual status:** Draft
-**Canva URL:** [fill after creating design]
 
 ---
 
@@ -396,11 +395,9 @@ node /Users/danielgierach/DanielGierachProperty/scripts/screenshot-linkedin.mjs 
 2. In the post markdown file, set:
    - `**Image:** content/social/images/[filename].png`
    - `**Visual status:** Ready`
-   - Remove any `**Canva URL:**` field if present
-
 ### Facebook suburb spotlights
 
-Facebook posts still use Canva. Call `mcp__claude_ai_Canva__generate-design` with brand kit `kAGjS7yZLr8` as before. Update `**Canva URL:**` and set `**Visual status:** Draft`.
+Generate visuals using `scripts/screenshot-linkedin.mjs` same as LinkedIn posts. Set `**Visual status:** Draft` in the post file.
 
 ---
 
@@ -445,7 +442,6 @@ Before every commit, verify:
 - [ ] Every stat has a source URL in Notes for Daniel
 - [ ] Every unverified stat has a ⚠️ VERIFY flag
 - [ ] Publish dates are correct (next week for weekly planner)
-- [ ] Canva URL filled in where required
 - [ ] `content/polls.md` updated if a poll was used
 - [ ] `content/suburb-queue.md` updated if a suburb spotlight was written
 - [ ] Status is `Ready for Review`
@@ -473,9 +469,8 @@ Before every commit, verify:
 
 ## BRAND CONSTRAINTS
 
-- **No red anywhere** — not in text, not in Canva designs
+- **No red anywhere** — not in text, not in visuals
 - **Daniel's palette:** Charcoal `#0a0806` · Cream `#f0ece4` · Gold `#c4912a`
-- **Canva brand kit:** `kAGjS7yZLr8`
 - **No Ray White corporate colours** in any design
 - Always post from Daniel's personal profile (not the Ray White agency page)
 - LinkedIn posts: personal voice, first-person ("I"), not agency voice

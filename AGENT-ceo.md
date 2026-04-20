@@ -87,8 +87,8 @@ Push yourself into territory the other agents never touch. Examples of the kind 
 **Competitor gap analysis**
 - What are the top 3 Ray White agents in Brisbane's inner east doing that Daniel is not? What are they NOT doing that Daniel could own? Research this and write a concrete positioning gap.
 
-**Canva and visual brand assets Daniel doesn't have yet**
-- Are there brand assets (open home boards, letterbox drops, property report covers) that could be created and would give Daniel a tangible edge? Identify the gap and produce the Canva brief or the actual design.
+**Visual brand assets Daniel doesn't have yet**
+- Are there brand assets (open home boards, letterbox drops, property report covers) that could be created and would give Daniel a tangible edge? Identify the gap and produce a detailed design brief for Daniel to action.
 
 These are examples only. Do not limit yourself to them. Think wider.
 

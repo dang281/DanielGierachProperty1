@@ -102,30 +102,6 @@ export default function ContentRow({ item, showActions = false }: Props) {
         </div>
       </div>
 
-      {/* Canva button — always visible when canva_url exists */}
-      {item.canva_url ? (
-        <a
-          href={item.canva_url}
-          target="_blank"
-          rel="noreferrer"
-          onClick={e => e.stopPropagation()}
-          className="flex items-center gap-1.5 px-3 py-1.5 mx-2 rounded-lg text-[11px] font-sans font-bold whitespace-nowrap flex-shrink-0 border transition-all"
-          style={{
-            color: '#a78bfa',
-            background: 'rgba(139,92,246,0.12)',
-            borderColor: 'rgba(139,92,246,0.3)',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(139,92,246,0.22)'; e.currentTarget.style.borderColor = 'rgba(139,92,246,0.5)' }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(139,92,246,0.12)'; e.currentTarget.style.borderColor = 'rgba(139,92,246,0.3)' }}
-        >
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
-          </svg>
-          Open in Canva ↗
-        </a>
-      ) : (
-        <div className="w-[130px] flex-shrink-0" />
-      )}
 
       {/* Actions */}
       {showActions && item.status === 'ready' && (

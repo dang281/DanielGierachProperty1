@@ -44,15 +44,13 @@ function VisualSection({ item }: { item: ContentItem }) {
     <div className="border-t border-[var(--color-border-w)] mt-1">
       {/* Visual thumbnail */}
       {item.visual_thumbnail && (
-        <a href={item.canva_url ?? '#'} target="_blank" rel="noreferrer">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.visual_thumbnail}
-            alt="Visual preview"
-            className="w-full object-cover"
-            style={{ maxHeight: 140 }}
-          />
-        </a>
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={item.visual_thumbnail}
+          alt="Visual preview"
+          className="w-full object-cover"
+          style={{ maxHeight: 140 }}
+        />
       )}
 
       <div className="px-4 py-2.5 flex flex-col gap-2">
@@ -65,18 +63,7 @@ function VisualSection({ item }: { item: ContentItem }) {
             {cfg.label}
           </span>
           <div className="flex items-center gap-2">
-            {item.canva_url && (
-              <a
-                href={item.canva_url}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[10px] font-sans font-semibold"
-                style={{ color: '#818cf8' }}
-              >
-                Open in Canva ↗
-              </a>
-            )}
-            {item.visual_brief && !item.canva_url && (
+            {item.visual_brief && (
               <button
                 onClick={() => setShowBrief(v => !v)}
                 className="text-[10px] font-sans font-semibold"

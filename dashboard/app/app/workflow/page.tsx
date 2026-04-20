@@ -68,7 +68,7 @@ export default function WorkflowPage() {
           { actor: 'social', icon: '✍',  label: 'Writes 3 posts', note: 'Tue: Market/Authority. Wed: Poll. Thu: Article Feature linking to danielgierach.com/insights.' },
           { actor: 'social', icon: '📤', label: 'Staged by Sunday 17:00', note: 'All 3 committed to dashboard marked Ready for Review.' },
           { actor: 'daniel', icon: '☀',  label: 'Monday morning review', note: 'Open Social tab. Read all 3 posts. Approve or leave a one-line amendment note.' },
-          { actor: 'daniel', icon: '📲', label: 'You post manually', note: 'Copy caption into LinkedIn. Attach Canva PNG. Schedule for Tue/Wed/Thu 07:30.' },
+          { actor: 'daniel', icon: '📲', label: 'You post manually', note: 'Copy caption into LinkedIn. Attach the generated PNG. Schedule for Tue/Wed/Thu 07:30.' },
           { actor: 'social', icon: '🔄', label: 'Amendments picked up next run', note: 'If you left a note, agent revises and resubmits for next Monday review.' },
         ]}
       />

@@ -197,14 +197,13 @@ After generating, add `**Series:** Field Guide Issue 04` to the post markdown fi
 
 ## VISUAL GENERATION — RULES
 
-- Do not use Canva for LinkedIn posts. Use `scripts/screenshot-linkedin.mjs` only.
-- Facebook posts still use Canva with brand kit `kAGjS7yZLr8`.
+- All LinkedIn and Facebook visuals are generated via `scripts/screenshot-linkedin.mjs`. Do not use Canva.
 - Never pass em-dashes, markdown formatting, or HTML tags to the screenshot script arguments.
 - Body text passed to `--body` or `--excerpt` must be plain prose, maximum 220 characters for `--body` and 180 characters for `--excerpt`.
 - For `--type market` posts, always pass `--keyword` with one important word from the headline (a noun or adjective, not a stop word). That word will render in gold italic in the visual. Choose the most specific or meaningful word — e.g. `--keyword "unconditional"` or `--keyword "settlement"`. Never pass a short or generic word like "the", "what", or "how".
 - After generating a PNG, confirm the file exists before updating the markdown file.
 - Set `**Visual status:** Ready` and `**Image:** content/social/images/[filename].png` in the post file.
-- Remove any `**Canva URL:**` field from LinkedIn post files.
+- Remove any `**Canva URL:**` field from post files.
 
 ### TEMPLATE SELECTION BY DAY — MANDATORY
 

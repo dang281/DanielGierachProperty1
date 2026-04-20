@@ -47,9 +47,9 @@ Professional, honest, data-led, local. The agent who genuinely knows Brisbane's 
 
 ## Typography
 
-**Headings:** Serif typeface — dignified, editorial, premium. Use Cormorant Garamond, Playfair Display, or Canva's equivalent serif. Weight: Regular or Light for large sizes, Semibold for small.
+**Headings:** Serif typeface — dignified, editorial, premium. Use Cormorant Garamond or Playfair Display. Weight: Regular or Light for large sizes, Semibold for small.
 
-**Body:** Clean sans-serif. Inter, DM Sans, or Canva's default sans. Weight: Regular 400 for body, Semibold 600 for emphasis.
+**Body:** Clean sans-serif. Inter or DM Sans. Weight: Regular 400 for body, Semibold 600 for emphasis.
 
 **Data / Stats:** Bold sans, oversized. Let the number breathe — white space around stats is intentional. Pair with small label text in cream-dim.
 
@@ -84,7 +84,7 @@ Professional, honest, data-led, local. The agent who genuinely knows Brisbane's 
 - Body zone: 3–5 bullet points in Cream (`#f0ece4`), regular weight, clear line spacing
 - Source line: Tiny, cream-dim — "Source: [organisation]"
 - Footer: `Daniel Gierach · Ray White Bulimba · danielgierach.com`
-- **Canva template:** Use brand kit `kAGjS7yZLr8` when generating
+- **Visual generation:** Use `scripts/screenshot-linkedin.mjs` — see IMAGE GENERATION INSTRUCTIONS in AGENT-social-media.md
 
 **Dimensions:** 1080x1080px (square) for LinkedIn and Facebook feed
 
@@ -133,14 +133,6 @@ A complete Visual Brief includes:
 7. **Source line (if applicable):** e.g. "Source: CoreLogic, April 2026"
 
 ---
-
-## Canva Resources
-
-- **Brand kit:** `kAGjS7yZLr8`
-- **News-reactive post template (Facebook/LinkedIn):** Design ID `DAHGjv8sW3w` — edit at https://www.canva.com/d/GPqiM2gkn-aMsWW
-  - Dark charcoal background, gold headline, cream bullet points, Daniel footer
-  - Duplicate this for every news-reactive post — never publish over the master
-- **Existing designs:** See Canva root folder for templates and past work
 
 ## Photo Guidelines
 

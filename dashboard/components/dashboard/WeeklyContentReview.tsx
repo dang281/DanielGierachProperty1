@@ -397,13 +397,6 @@ function ReviewCard({ item, onAction }: { item: ContentItem; onAction: (id: stri
         <div className="flex items-center gap-1.5 ml-9">
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: visual.colour }} />
           <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
-          {item.canva_url && (
-            <a href={item.canva_url} target="_blank" rel="noreferrer"
-              className="text-[9px] font-sans font-bold rounded px-1.5 py-0.5 ml-1"
-              style={{ color: '#a78bfa', background: 'rgba(139,92,246,0.15)' }}>
-              Canva ↗
-            </a>
-          )}
           {thumbUrl && (
             <a href={thumbUrl} target="_blank" rel="noreferrer" className="ml-1">
               <img src={thumbUrl} alt="Visual preview" className="w-8 h-8 rounded object-contain"

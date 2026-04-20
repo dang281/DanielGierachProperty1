@@ -65,11 +65,11 @@ export default function PriorityPanel({
     healthDescription = `${overdue[0].title} — was ${new Date(overdue[0].scheduled_date! + 'T00:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}`
   }
 
-  // ── 3. Canva backlog ──────────────────────────────────────────────────────
+  // ── 3. Visuals backlog ──────────────────────────────────────────────────────
   const upcoming30 = new Date(today + 'T00:00:00')
   upcoming30.setDate(upcoming30.getDate() + 30)
   const upcoming30Str = upcoming30.toLocaleDateString('en-CA')
-  const missingCanva = items.filter(
+  const missingVisual = items.filter(
     i =>
       i.visual_status === 'needed' &&
       (i.status === 'ready' || i.status === 'scheduled') &&
@@ -77,15 +77,15 @@ export default function PriorityPanel({
       i.scheduled_date >= today &&
       i.scheduled_date <= upcoming30Str,
   )
-  const canvaUrgent = missingCanva.length > 0
-  const mostUrgentCanva = missingCanva[0]
-  let canvaLabel       = 'All Canva designs ready'
-  let canvaDescription = 'Every upcoming post has a design attached.'
-  if (missingCanva.length > 0) {
-    canvaLabel       = `${missingCanva.length} design${missingCanva.length > 1 ? 's' : ''} needed`
-    canvaDescription = mostUrgentCanva
-      ? `${mostUrgentCanva.title}${missingCanva.length > 1 ? ` + ${missingCanva.length - 1} more` : ''}`
-      : `${missingCanva.length} post${missingCanva.length > 1 ? 's' : ''} missing visuals`
+  const visualsUrgent = missingVisual.length > 0
+  const mostUrgentVisual = missingVisual[0]
+  let visualLabel       = 'All visuals ready'
+  let visualDescription = 'Every upcoming post has a visual attached.'
+  if (missingVisual.length > 0) {
+    visualLabel       = `${missingVisual.length} visual${missingVisual.length > 1 ? 's' : ''} needed`
+    visualDescription = mostUrgentVisual
+      ? `${mostUrgentVisual.title}${missingVisual.length > 1 ? ` + ${missingVisual.length - 1} more` : ''}`
+      : `${missingVisual.length} post${missingVisual.length > 1 ? 's' : ''} missing visuals`
   }
 
   const cards: PriorityCard[] = [
@@ -110,14 +110,14 @@ export default function PriorityPanel({
       cta:         healthUrgent ? 'Fix now →' : 'View calendar →',
     },
     {
-      colour:      canvaUrgent ? '#f97316' : '#22c55e',
-      urgent:      canvaUrgent,
-      icon:        canvaUrgent ? '🎨' : '✓',
-      label:       canvaLabel,
-      value:       missingCanva.length > 0 ? missingCanva.length : '✓',
-      description: canvaDescription,
-      href:        mostUrgentCanva ? `/app/content/${mostUrgentCanva.id}` : '/app/social',
-      cta:         canvaUrgent ? 'Open first →' : 'View social →',
+      colour:      visualsUrgent ? '#f97316' : '#22c55e',
+      urgent:      visualsUrgent,
+      icon:        visualsUrgent ? '🎨' : '✓',
+      label:       visualLabel,
+      value:       missingVisual.length > 0 ? missingVisual.length : '✓',
+      description: visualDescription,
+      href:        mostUrgentVisual ? `/app/content/${mostUrgentVisual.id}` : '/app/social',
+      cta:         visualsUrgent ? 'Open first →' : 'View social →',
     },
   ]
 

@@ -4,51 +4,45 @@ import { useState } from 'react'
 
 const SUPABASE = 'https://hmwulvvwsksuyqozuxvw.supabase.co/storage/v1/object/public/social-images'
 
+type Platform = 'LinkedIn' | 'Facebook' | 'Website'
+
 const TEMPLATES = [
   {
-    id: 'authority',
+    id: 'market',
     day: 'TUESDAY',
     time: '07:30',
-    platform: 'LinkedIn',
+    platform: 'LinkedIn' as Platform,
     name: 'Market / Authority Post',
-    description: 'A numbered list of 5 points on a single theme. Works for buyer checklists, seller tips, market observations, or any topic where a structured breakdown adds authority.',
-    size: '1080 × 1350 px',
+    description: 'A single insight or observation with a short body excerpt. Works for market data, buyer/seller tips, area observations, or any post where one clear idea is the focus.',
+    size: '1080 × 1080 px',
     generator: 'Puppeteer — screenshot-linkedin.mjs',
-    example: `${SUPABASE}/2026-04-21-linkedin-market.png`,
-    exampleAlt: 'Example: Five things to do before you walk into an auction',
+    example: `${SUPABASE}/2026-04-28-linkedin-market.png`,
+    exampleAlt: 'Example: What Inner East Buyers Actually Make Offers On',
     pillars: ['buyer', 'seller', 'authority'],
-    visualNote: 'Dark background · Gold numbered list · Fraunces / Inter / JetBrains Mono · DG footer circle',
+    visualNote: 'Dark background · Gold eyebrow label · Noto Serif headline · Gold italic keyword · Manrope body · DG footer',
     command: `node scripts/screenshot-linkedin.mjs \\
-  --type authority \\
-  --label "BUYER'S CHECKLIST" \\
-  --headline "Five things to do before you walk into an auction." \\
-  --keyword "auction" \\
-  --p1t "Check the flood overlay." \\
-  --p1b "Brisbane City Council publishes flood maps for free." \\
-  --p2t "Read the contract, then re-read." \\
-  --p2b "Special conditions are where money quietly disappears." \\
-  --p3t "Get pre-approved, not pre-qualified." \\
-  --p3b "Pre-qualified is a guess. Pre-approved is a commitment." \\
-  --p4t "Inspect twice: alone, then with a builder." \\
-  --p4b "Your first visit is emotional. The second is forensic." \\
-  --p5t "Write your ceiling on paper." \\
-  --p5b "Auction rooms are designed to push past your number." \\
+  --type market \\
+  --label "BUYER INSIGHT" \\
+  --headline "What Inner East Buyers Actually Make Offers On" \\
+  --keyword "offers" \\
+  --body "At open homes in the inner east, buyers almost always say the same things. What they actually offer on tells a different story." \\
   --date "YYYY-MM-DD" \\
   --out content/social/images/YYYY-MM-DD-linkedin-market.png`,
     labelOptions: [
       'MARKET UPDATE',
-      'SELLER INSIGHT',
-      'BUYER\'S CHECKLIST',
       'INNER EAST',
+      'SELLER INSIGHT',
+      'BUYER INSIGHT',
       'AUTHORITY',
       'RATE WATCH',
     ],
+    fileFormat: null,
   },
   {
     id: 'poll',
     day: 'WEDNESDAY',
     time: '07:30',
-    platform: 'LinkedIn',
+    platform: 'LinkedIn' as Platform,
     name: 'Poll',
     description: 'A short question with 4 options. Drives engagement and signals that Daniel is curious about how his audience thinks. Keep the setup concise and the question genuinely interesting.',
     size: 'No image needed',
@@ -59,12 +53,13 @@ const TEMPLATES = [
     visualNote: 'LinkedIn\'s native poll UI — no image required',
     command: null,
     labelOptions: null,
+    fileFormat: null,
   },
   {
     id: 'article',
     day: 'THURSDAY',
     time: '07:30',
-    platform: 'LinkedIn',
+    platform: 'LinkedIn' as Platform,
     name: 'Article Feature',
     description: 'Links to an article on danielgierach.com/insights. The caption gives one strong reason to click through. The cover image is generated from the article\'s details using the article-cover template.',
     size: '1200 × 627 px (article cover)',
@@ -82,57 +77,164 @@ const TEMPLATES = [
   --date "YYYY-MM-DD" \\
   --out content/social/images/YYYY-MM-DD-article-cover.png`,
     labelOptions: null,
+    fileFormat: null,
   },
   {
     id: 'facebook',
     day: 'AS ASSIGNED',
     time: '08:30',
-    platform: 'Facebook',
+    platform: 'Facebook' as Platform,
     name: 'Suburb Spotlight',
     description: 'A data-led snapshot of one suburb in the inner east. Median price, growth, days on market, lifestyle notes, and what buyers are competing for. Warmer tone than LinkedIn — still professional and specific.',
     size: '1080 × 1080 px',
-    generator: 'Canva — brand kit kAGjS7yZLr8',
+    generator: 'screenshot-linkedin.mjs — same pipeline as LinkedIn',
     example: null,
     exampleAlt: null,
     pillars: ['suburb'],
-    visualNote: 'Suburb name large in header · 2–3 data stats · CTA: danielgierach.com · Brand kit kAGjS7yZLr8',
+    visualNote: 'Suburb name large in header · 2–3 data stats · CTA: danielgierach.com',
     command: null,
     labelOptions: null,
+    fileFormat: null,
+  },
+  {
+    id: 'seo-article',
+    day: 'AS SCHEDULED',
+    time: '07:00',
+    platform: 'Website' as Platform,
+    name: 'Insights Article',
+    description: 'A long-form, SEO-targeted article published to danielgierach.com/insights. Each article answers one specific question a Brisbane buyer or seller would search for. 800–1,400 words. No fluff. No padding.',
+    size: 'danielgierach.com/insights/[slug]',
+    generator: 'Written by SEO agent → staged in Astro repo → deployed on publish date',
+    example: null,
+    exampleAlt: null,
+    pillars: ['buyer', 'seller', 'authority'],
+    visualNote: 'No custom image needed — page uses site typography and layout. Deployed via Astro/Vercel.',
+    command: null,
+    labelOptions: null,
+    fileFormat: `---
+title: "How to Read a Building and Pest Report"
+description: "What to look for, what's serious, and when to walk away."
+publishDate: YYYY-MM-DD
+slug: how-to-read-building-pest-report
+type: insights
+draft: true
+---
+
+## [Section heading — one clear idea per section]
+
+[Paragraph. Short. Specific to Brisbane. No filler.]
+
+## What to look for
+
+[Numbered list only where sequence matters. Prose otherwise.]
+
+## The bottom line
+
+[One direct takeaway. Daniel's voice — calm, honest, precise.]`,
+  },
+  {
+    id: 'seo-tool',
+    day: 'AS SCHEDULED',
+    time: '07:00',
+    platform: 'Website' as Platform,
+    name: 'Interactive Tool',
+    description: 'A calculator or interactive page on danielgierach.com — stamp duty calculator, borrowing capacity guide, suburb comparison, etc. Tools rank for high-intent searches and generate repeat visits from buyers doing research.',
+    size: 'danielgierach.com/tools/[slug]',
+    generator: 'Built in Astro → deployed to Vercel → linked from relevant articles',
+    example: null,
+    exampleAlt: null,
+    pillars: ['buyer', 'seller'],
+    visualNote: 'Each tool has a title, one-line description, and a call to action linking to danielgierach.com. Indexed on launch date.',
+    command: null,
+    labelOptions: null,
+    fileFormat: `---
+title: "Queensland Stamp Duty Calculator 2026"
+description: "Calculate transfer duty for your Brisbane property purchase."
+publishDate: YYYY-MM-DD
+slug: queensland-stamp-duty-calculator
+type: tool
+draft: true
+---
+
+## What this tool does
+
+[One sentence. What the user inputs, what they get back.]
+
+## How stamp duty is calculated in Queensland
+
+[2–3 paragraphs. Plain language. Link to QLD Revenue Office.]
+
+## First home buyer concessions
+
+[Accurate rates. Source: QLD Revenue Office. VERIFY before publish.]`,
   },
 ]
 
 const DAY_COLOR: Record<string, string> = {
-  TUESDAY:      '#8b5cf6',
-  WEDNESDAY:    '#8b5cf6',
-  THURSDAY:     '#8b5cf6',
-  'AS ASSIGNED':'#c4912a',
+  TUESDAY:        '#8b5cf6',
+  WEDNESDAY:      '#8b5cf6',
+  THURSDAY:       '#8b5cf6',
+  'AS ASSIGNED':  '#c4912a',
+  'AS SCHEDULED': '#10b981',
 }
 
-const PLATFORM_COLOR: Record<string, string> = {
+const PLATFORM_COLOR: Record<Platform, string> = {
   LinkedIn: '#0a66c2',
   Facebook: '#1877f2',
+  Website:  '#10b981',
+}
+
+const PLATFORM_SUBTITLE: Record<Platform, string> = {
+  LinkedIn: 'Three post types, each with a fixed format. Every image is generated by running the command below in the repo root.',
+  Facebook: 'Facebook suburb spotlight — visual generated via the screenshot-linkedin.mjs pipeline.',
+  Website:  'SEO content published to danielgierach.com — insights articles and interactive tools.',
 }
 
 export default function TemplatesPage() {
+  const [platform, setPlatform] = useState<Platform>('LinkedIn')
+  const visible = TEMPLATES.filter(t => t.platform === platform)
+
   return (
     <div className="space-y-10 pb-16 max-w-6xl">
 
       {/* Header */}
-      <div>
-        <p className="text-[11px] font-sans font-bold tracking-[0.18em] uppercase mb-2" style={{ color: 'var(--color-gold)' }}>
-          Post Templates
-        </p>
-        <h1 className="text-2xl font-serif font-normal" style={{ color: 'var(--color-cream)' }}>
-          Content Templates
-        </h1>
-        <p className="text-sm mt-1" style={{ color: 'var(--color-cream-x)' }}>
-          Four post types, each with a fixed format. Every image is generated by running the command below in the repo root.
-        </p>
+      <div className="flex items-start justify-between gap-6 flex-wrap">
+        <div>
+          <p className="text-[11px] font-sans font-bold tracking-[0.18em] uppercase mb-2" style={{ color: 'var(--color-gold)' }}>
+            Post Templates
+          </p>
+          <h1 className="text-2xl font-serif font-normal" style={{ color: 'var(--color-cream)' }}>
+            Content Templates
+          </h1>
+          <p className="text-sm mt-1" style={{ color: 'var(--color-cream-x)' }}>
+            {PLATFORM_SUBTITLE[platform]}
+          </p>
+        </div>
+
+        {/* Platform toggle */}
+        <div
+          className="flex items-center gap-1 p-1 rounded-xl border border-[var(--color-border-w)] self-start mt-1"
+          style={{ background: 'var(--color-card)' }}
+        >
+          {(['LinkedIn', 'Facebook', 'Website'] as Platform[]).map(p => (
+            <button
+              key={p}
+              onClick={() => setPlatform(p)}
+              className="px-4 py-1.5 rounded-lg text-[12px] font-sans font-semibold transition-all"
+              style={platform === p
+                ? { background: PLATFORM_COLOR[p], color: '#fff' }
+                : { color: 'var(--color-cream-x)', background: 'transparent' }
+              }
+            >
+              {p}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Template cards */}
       <div className="grid grid-cols-1 gap-8">
-        {TEMPLATES.map(t => (
+        {visible.map(t => (
           <TemplateCard key={t.id} template={t} />
         ))}
       </div>
@@ -146,16 +248,16 @@ export default function TemplatesPage() {
             <span>Platform</span>
             <span>Time</span>
             <span>Post Type</span>
-            <span>Visual</span>
+            <span>Visual / Size</span>
           </div>
-          {TEMPLATES.map((t, i) => (
+          {visible.map((t, i) => (
             <div
               key={t.id}
-              className={`grid grid-cols-[100px_120px_120px_1fr_160px] px-5 py-3 text-xs font-sans items-center ${i < TEMPLATES.length - 1 ? 'border-b border-[var(--color-border-w)]' : ''}`}
+              className={`grid grid-cols-[100px_120px_120px_1fr_160px] px-5 py-3 text-xs font-sans items-center ${i < visible.length - 1 ? 'border-b border-[var(--color-border-w)]' : ''}`}
               style={{ background: i % 2 === 0 ? 'var(--color-card)' : 'transparent' }}
             >
               <span className="font-semibold" style={{ color: DAY_COLOR[t.day] ?? 'var(--color-cream-dim)' }}>{t.day}</span>
-              <span style={{ color: PLATFORM_COLOR[t.platform] ?? 'var(--color-cream-dim)' }}>{t.platform}</span>
+              <span style={{ color: PLATFORM_COLOR[t.platform] }}>{t.platform}</span>
               <span style={{ color: 'var(--color-cream-dim)' }}>{t.time}</span>
               <span style={{ color: 'var(--color-cream)' }}>{t.name}</span>
               <span style={{ color: 'var(--color-cream-x)' }}>{t.size}</span>
@@ -203,6 +305,7 @@ function CopyButton({ text }: { text: string }) {
 }
 
 function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
+  const pc = PLATFORM_COLOR[t.platform]
   return (
     <div className="rounded-2xl overflow-hidden border border-[var(--color-border-w)]" style={{ background: 'var(--color-card)' }}>
 
@@ -217,7 +320,7 @@ function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
           </span>
           <span
             className="text-[9px] font-sans font-bold tracking-[0.15em] uppercase px-2.5 py-1 rounded-full flex-shrink-0"
-            style={{ background: `${PLATFORM_COLOR[t.platform]}18`, color: PLATFORM_COLOR[t.platform] }}
+            style={{ background: `${pc}18`, color: pc }}
           >
             {t.platform}
           </span>
@@ -228,10 +331,10 @@ function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
         </h2>
       </div>
 
-      {/* Body: image + details */}
+      {/* Body: preview + details */}
       <div className="flex flex-col lg:flex-row gap-0">
 
-        {/* Image preview */}
+        {/* Preview pane */}
         {t.example ? (
           <div
             className="lg:w-72 flex-shrink-0 flex items-center justify-center p-4 border-b lg:border-b-0 lg:border-r border-[var(--color-border-w)]"
@@ -244,6 +347,26 @@ function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
               style={{ border: '1px solid rgba(245,208,122,0.15)' }}
             />
           </div>
+        ) : t.fileFormat ? (
+          /* File format preview for website templates */
+          <div
+            className="lg:w-80 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-[var(--color-border-w)] overflow-hidden"
+            style={{ background: 'rgba(0,0,0,0.45)', minHeight: 200 }}
+          >
+            <div className="px-3 py-2 border-b border-[rgba(255,255,255,0.06)] flex items-center gap-2"
+              style={{ background: 'rgba(0,0,0,0.3)' }}>
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#ef4444' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f59e0b' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#22c55e' }} />
+              <span className="text-[10px] font-mono ml-2" style={{ color: 'rgba(240,236,228,0.3)' }}>
+                {t.id === 'seo-article' ? 'article.md' : 'tool.md'}
+              </span>
+            </div>
+            <pre className="text-[10px] font-mono leading-relaxed p-4 overflow-x-hidden whitespace-pre-wrap"
+              style={{ color: 'rgba(240,236,228,0.55)' }}>
+              {t.fileFormat}
+            </pre>
+          </div>
         ) : (
           <div
             className="lg:w-72 flex-shrink-0 flex flex-col items-center justify-center p-6 border-b lg:border-b-0 lg:border-r border-[var(--color-border-w)] gap-3"
@@ -255,7 +378,7 @@ function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
             <p className="text-[11px] font-sans text-center leading-relaxed" style={{ color: 'rgba(240,236,228,0.35)' }}>
               {t.id === 'poll'
                 ? 'No image — LinkedIn native poll'
-                : 'Canva design — no generated example'}
+                : 'Visual generated via screenshot pipeline'}
             </p>
           </div>
         )}
@@ -284,13 +407,15 @@ function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
             </span>
           </div>
 
-          {/* Visual note */}
-          <div className="rounded-lg px-4 py-3" style={{ background: 'rgba(245,208,122,0.05)', border: '1px solid rgba(245,208,122,0.12)' }}>
-            <p className="text-[10px] font-sans font-semibold uppercase tracking-widest mb-1" style={{ color: 'var(--color-gold)' }}>Visual</p>
+          {/* Visual / deploy note */}
+          <div className="rounded-lg px-4 py-3" style={{ background: `${pc}08`, border: `1px solid ${pc}22` }}>
+            <p className="text-[10px] font-sans font-semibold uppercase tracking-widest mb-1" style={{ color: pc }}>
+              {t.platform === 'Website' ? 'Deploy' : 'Visual'}
+            </p>
             <p className="text-[11px] font-sans leading-relaxed" style={{ color: 'var(--color-cream-x)' }}>{t.visualNote}</p>
           </div>
 
-          {/* Label options (authority only) */}
+          {/* Label options (market post only) */}
           {t.labelOptions && (
             <div>
               <p className="text-[10px] font-sans font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--color-cream-x)' }}>--label options</p>
@@ -304,7 +429,7 @@ function TemplateCard({ template: t }: { template: typeof TEMPLATES[number] }) {
             </div>
           )}
 
-          {/* Command */}
+          {/* Puppeteer command */}
           {t.command && (
             <div>
               <div className="flex items-center justify-between mb-2">

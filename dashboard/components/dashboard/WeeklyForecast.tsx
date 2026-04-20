@@ -103,29 +103,15 @@ export default function WeeklyForecast({ items, days }: Props) {
                         {item.title}
                       </p>
 
-                      {/* Visual status + Canva link */}
-                      <div className="flex items-center justify-between gap-1 mt-0.5">
-                        <div className="flex items-center gap-1" title={visual.label}>
-                          <span
-                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                            style={{ background: visual.colour }}
-                          />
-                          <span className="text-[9px] font-sans text-[var(--color-cream-x)] truncate">
-                            {visual.label}
-                          </span>
-                        </div>
-                        {item.canva_url && (
-                          <a
-                            href={item.canva_url}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={e => e.stopPropagation()}
-                            className="text-[9px] font-sans font-bold rounded px-1 py-0.5 flex-shrink-0"
-                            style={{ color: '#a78bfa', background: 'rgba(139,92,246,0.15)' }}
-                          >
-                            Canva ↗
-                          </a>
-                        )}
+                      {/* Visual status */}
+                      <div className="flex items-center gap-1 mt-0.5">
+                        <span
+                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ background: visual.colour }}
+                        />
+                        <span className="text-[9px] font-sans text-[var(--color-cream-x)] truncate">
+                          {visual.label}
+                        </span>
                       </div>
                     </Link>
                   )

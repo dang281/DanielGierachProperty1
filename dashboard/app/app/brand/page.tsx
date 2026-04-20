@@ -31,7 +31,6 @@ const POST_TYPES = [
     accent: '#f5d07a',
     layout: 'Dark background · Gold headline stat · Cream bullets · Source line · Daniel footer',
     size: '1080×1080px',
-    canva: { id: 'DAHGjv8sW3w', url: 'https://www.canva.com/d/GPqiM2gkn-aMsWW' },
   },
   {
     type: 'Suburb spotlight',
@@ -40,7 +39,6 @@ const POST_TYPES = [
     accent: '#0a0806',
     layout: 'Light or dark background · Suburb name large in serif · Key data in gold · 2–3 sentence context · Photo optional',
     size: '1080×1080px',
-    canva: null,
   },
   {
     type: 'LinkedIn poll',
@@ -49,7 +47,6 @@ const POST_TYPES = [
     accent: '#0a66c2',
     layout: 'Minimal design · Large question text · 4 balanced options · Daniel branding in footer',
     size: '1200×627px',
-    canva: null,
   },
 ]
 
@@ -61,7 +58,7 @@ const VISUAL_BRIEF_FIELDS = [
   { field: 'Footer',        example: 'Daniel Gierach · Ray White Bulimba · danielgierach.com' },
   { field: 'Source line',   example: 'Source: CoreLogic, April 2026 — or "N/A"' },
   { field: 'Image',         example: 'Describe any photo, or "Text only — no photo needed"' },
-  { field: 'Canva brand kit', example: 'kAGjS7yZLr8' },
+  { field: 'Script command', example: 'node scripts/screenshot-linkedin.mjs --type market --headline "..." ...' },
 ]
 
 function SectionHeader({ label }: { label: string }) {
@@ -202,17 +199,6 @@ export default function BrandPage() {
                 <p className="text-[10px] font-sans text-[var(--color-cream-x)] leading-relaxed flex-1">{p.when}</p>
                 <p className="text-[10px] font-sans text-[var(--color-cream-dim)] leading-relaxed">{p.layout}</p>
                 <p className="text-[10px] font-sans text-[var(--color-cream-x)]">{p.size}</p>
-                {p.canva && (
-                  <a
-                    href={p.canva.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-[10px] font-sans font-semibold mt-1"
-                    style={{ color: '#818cf8' }}
-                  >
-                    Open template in Canva ↗
-                  </a>
-                )}
               </div>
             </div>
           ))}
@@ -236,28 +222,6 @@ export default function BrandPage() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Canva resources */}
-      <div>
-        <SectionHeader label="Canva Resources" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            { label: 'Brand Kit', value: 'kAGjS7yZLr8', url: null, note: 'Use for all AI-generated designs' },
-            { label: 'News-reactive template', value: 'DAHGjv8sW3w', url: 'https://www.canva.com/d/GPqiM2gkn-aMsWW', note: 'Duplicate — never publish over master' },
-          ].map(r => (
-            <div key={r.label} className="rounded-xl p-4 bg-[var(--color-card)] border border-[var(--color-border-w)] flex flex-col gap-1.5">
-              <p className="text-[10px] font-sans uppercase tracking-widest text-[var(--color-cream-x)]">{r.label}</p>
-              <code className="text-sm font-mono text-[var(--color-cream)]">{r.value}</code>
-              <p className="text-[10px] font-sans text-[var(--color-cream-x)]">{r.note}</p>
-              {r.url && (
-                <a href={r.url} target="_blank" rel="noreferrer" className="text-[10px] font-sans font-semibold mt-1" style={{ color: '#818cf8' }}>
-                  Open in Canva ↗
-                </a>
-              )}
-            </div>
-          ))}
         </div>
       </div>
 

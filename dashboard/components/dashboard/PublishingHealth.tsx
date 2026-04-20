@@ -78,7 +78,7 @@ export default function PublishingHealth({ items }: { items: ContentItem[] }) {
       i.status !== 'rejected',
   )
 
-  // ── 3. Upcoming posts missing Canva designs (next 30 days, ready/scheduled) ──
+  // ── 3. Upcoming posts missing visuals (next 30 days, ready/scheduled) ──
   const thirtyDays = new Date(today + 'T00:00:00')
   thirtyDays.setDate(thirtyDays.getDate() + 30)
   const thirtyStr = thirtyDays.toLocaleDateString('en-CA')
@@ -252,7 +252,7 @@ export default function PublishingHealth({ items }: { items: ContentItem[] }) {
             {/* Missing visuals */}
             <ActionBlock
               colour={missingVisuals.length > 0 ? '#f97316' : '#22c55e'}
-              label="Missing Canva designs"
+              label="Missing visuals"
               description={
                 missingVisuals.length > 0
                   ? `${missingVisuals.length} upcoming post${missingVisuals.length > 1 ? 's' : ''} need a design`
