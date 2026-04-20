@@ -97,14 +97,15 @@ function parsePillar(raw) {
 }
 
 function parseStatus(raw) {
-  if (!raw) return 'ready'
+  if (!raw) return 'idea'
   const r = raw.toLowerCase()
   if (r.includes('archived'))  return 'archived'
   if (r.includes('posted'))    return 'posted'
   if (r.includes('scheduled')) return 'scheduled'
-  if (r.includes('idea'))      return 'idea'
   if (r.includes('rejected'))  return 'rejected'
-  return 'ready'
+  // 'draft', 'needs review', 'idea', 'ready' → all map to 'idea' (the "Needs Review" state)
+  // Once the DB constraint is updated to allow 'draft', this will return 'draft' instead
+  return 'idea'
 }
 
 function parseVisualStatus(raw) {
@@ -144,21 +145,28 @@ async function supabaseFetch(path, options = {}) {
 // --- Main --------------------------------------------------------------------
 
 async function main() {
-  // Fetch existing records (id + title) to decide insert vs update
-  const existing = await supabaseFetch('/rest/v1/content_items?select=id,title&limit=2000')
-  if (!existing.ok || !Array.isArray(existing.data)) {
-    console.error(`Failed to fetch existing records: ${existing.status} — ${JSON.stringify(existing.data)}`)
-    process.exit(1)
+  // Fetch ALL existing records (id + title + status) using pagination to bypass the 1000-row server limit
+  let allExisting = []
+  const PAGE = 1000
+  for (let offset = 0; ; offset += PAGE) {
+    const page = await supabaseFetch(`/rest/v1/content_items?select=id,title,status&limit=${PAGE}&offset=${offset}&order=id.asc`)
+    if (!page.ok || !Array.isArray(page.data)) {
+      console.error(`Failed to fetch existing records: ${page.status} — ${JSON.stringify(page.data)}`)
+      process.exit(1)
+    }
+    allExisting = allExisting.concat(page.data)
+    if (page.data.length < PAGE) break  // last page
   }
+  const existing = { ok: true, data: allExisting }
 
   // Deduplicate: if multiple records share a title, keep the first and delete the rest
-  const seenTitles = new Map()  // title -> id to keep
+  const seenTitles = new Map()   // title -> { id, status }
   const toDelete = []
   for (const r of existing.data) {
     if (seenTitles.has(r.title)) {
       toDelete.push(r.id)
     } else {
-      seenTitles.set(r.title, r.id)
+      seenTitles.set(r.title, { id: r.id, status: r.status })
     }
   }
   if (toDelete.length > 0) {
@@ -168,7 +176,17 @@ async function main() {
     }
   }
 
-  const existingMap = seenTitles
+  // Build a simple title→id map; also track which titles are calendar-archived.
+  // Archived records are the calendar's authoritative "deleted" signal —
+  // the sync must never overwrite them back to a live status.
+  const existingMap = new Map(
+    [...seenTitles.entries()].map(([title, { id }]) => [title, id])
+  )
+  const archivedTitles = new Set(
+    [...seenTitles.entries()]
+      .filter(([, { status }]) => status === 'archived')
+      .map(([title]) => title)
+  )
 
   const files = (await readdir(SOCIAL_DIR))
     .filter(f => f.endsWith('.md'))
@@ -217,7 +235,7 @@ async function main() {
       caption:           [caption, hashtags].filter(Boolean).join('\n\n') || null,
       status:            parseStatus(field(md, 'Status')),
       content_pillar:    parsePillar(field(md, 'Content Pillar')),
-      scheduled_date:    field(md, 'Publish date') ?? null,
+      scheduled_date:    (field(md, 'Publish date') || '').match(/^\d{4}-\d{2}-\d{2}$/) ? field(md, 'Publish date') : null,
       scheduled_time:    parseScheduledTime(field(md, 'Scheduled time')),
       notes:             notes ?? null,
       objective:         articleIntro ?? null,
@@ -231,10 +249,27 @@ async function main() {
     const existingId = existingMap.get(title)
     let res
     if (existingId) {
-      // Update existing record
+      // Archived = calendar deleted by Daniel. Never restore — the calendar is authoritative.
+      // But do actively null the scheduled_date so it never bleeds back into the calendar grid.
+      if (archivedTitles.has(title)) {
+        // Ensure scheduled_date is cleared (belt-and-suspenders in case it wasn't nulled at delete time)
+        await supabaseFetch(`/rest/v1/content_items?id=eq.${existingId}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ scheduled_date: null, scheduled_time: null }),
+        })
+        console.log(`  SKIP  ${file} — archived (date cleared)`)
+        skipped++
+        continue
+      }
+      // Update existing record — content fields only.
+      // status, scheduled_date, scheduled_time are CALENDAR-AUTHORITATIVE:
+      // whatever Daniel set in the dashboard takes precedence over the markdown.
+      // Never let the sync overwrite these, otherwise dashboard changes get
+      // silently reverted on the next agent commit.
+      const { status: _s, scheduled_date: _d, scheduled_time: _t, ...contentRow } = row
       res = await supabaseFetch(`/rest/v1/content_items?id=eq.${existingId}`, {
         method: 'PATCH',
-        body: JSON.stringify(row),
+        body: JSON.stringify(contentRow),
       })
       if (res.ok) { console.log(`  UPDATE ${file}`); updated++ }
       else { console.log(`  ERROR  ${file} — ${res.status}: ${JSON.stringify(res.data)}`); errored++ }
