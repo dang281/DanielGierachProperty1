@@ -429,20 +429,34 @@
   .obs-select {
     height: 52px;
     padding: 0 1rem;
-    background: var(--color-surface-4);
-    border: 1px solid rgba(28,25,23,0.18);
-    color: var(--color-text-secondary);
+    background-color: #ffffff;
+    border: 1.5px solid rgba(28,25,23,0.35);
+    color: var(--color-text-primary);
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     outline: none;
     cursor: pointer;
-    transition: border-color 0.25s cubic-bezier(0.4,0,0.2,1);
+    transition: border-color 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1);
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2378716c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    /* Force native picker UI to light mode so iOS doesn't render a dark overlay
+       against this cream-and-gold site. */
+    color-scheme: light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231c1917' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     padding-right: 2.5rem;
+  }
+  .obs-select:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(196,145,42,0.18);
+  }
+  /* Native <option> styling is limited but most browsers respect color/background */
+  .obs-select option {
+    color: var(--color-text-primary);
+    background-color: #ffffff;
+    font-weight: 500;
   }
 
   /* Label pill */
