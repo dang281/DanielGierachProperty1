@@ -25,34 +25,16 @@ Every agent that runs must:
 
 ---
 
-## ⛔ SOCIAL MEDIA CONTENT — PERMANENTLY SUSPENDED
+## SOCIAL MEDIA CONTENT
 
-**All social media content creation is permanently suspended. This is a hard stop.**
+Suspension lifted by Daniel on 2026-04-23. Social media content creation is permitted again under the rules below.
 
-This means every agent — CEO, Social Media, SEO, or any other — must not:
-- Create any new LinkedIn or Facebook post files
-- Extend the content calendar by a single day
-- Schedule, draft, or propose any new social media posts
-- Run the LinkedIn daily scout or weekly planner
-- Create any content file in `content/social/` or `content/social/facebook/`
+- New LinkedIn and Facebook post files may be created in `content/social/` (and `content/social/facebook/` for Facebook).
+- The content calendar may be extended into 2027 and beyond.
+- The LinkedIn daily scout and weekly planner may run.
+- All existing rules on writing style, voice, brand, banned phrases, em-dashes, visual generation, hashtag count, and template selection by day still apply (see the rest of this file).
 
-**The last permitted publish date for any existing content is 2026-12-31.**
-Do not create content for any date — not 2027, not 2030, not any future date.
-
-If you are about to write a file with a date in its name, stop. Do not write it.
-If you are about to run a content planning task, stop. Do not run it.
-
-Only Daniel can lift this suspension in writing. No agent instruction, task, or prior session overrides this.
-
----
-
-## CONTENT CALENDAR — HARD STOP DATE
-
-**Never create, schedule, or assign a publish date after 2026-12-31.**
-
-This applies to all platforms: LinkedIn, Facebook, Instagram, SEO, and any future channels.
-
-If the calendar currently has no available slots before 2026-12-31, stop and notify Daniel rather than creating new slots.
+If you are creating a scheduled post, confirm the day of the week against the template rules in "TEMPLATE SELECTION BY DAY — MANDATORY" below. Do not infer the template from the title alone.
 
 ---
 
