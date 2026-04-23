@@ -79,9 +79,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const rentMonths = Number((document.getElementById('rent-months') as HTMLInputElement).value) || 0;
     const moving = Number((document.getElementById('moving') as HTMLInputElement).value) || 0;
 
-    // Peak debt = existing mortgage + new purchase - current property net sale
-    const saleNet = curr * 0.97 - mortgage; // rough 3% sale costs excluded
-    const peakDebt = mortgage + next - saleNet;
+    // Peak debt = existing mortgage + new purchase. You owe both while you own both.
+    // Interest accrues on peak debt until the sale settles and proceeds pay down the loan.
+    const saleNet = curr * 0.97 - mortgage; // net sale proceeds after ~3% sale costs and mortgage discharge
+    const peakDebt = mortgage + next;
+    // Approximate interest across the bridging period using peak debt.
+    // Real banks calculate daily on outstanding balance, so this is a conservative upper-bound estimate.
     const bridgingInterest = peakDebt * brate * (weeks / 52);
 
     // Option A: Buy first with bridging, 1 move, bridging interest

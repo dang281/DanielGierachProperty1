@@ -79,8 +79,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   function holdScenario(years: number, value: number, loan: number, rent: number, expenses: number, rate: number, mtr: number, growth: number) {
     const annualInterest = loan * rate;
     const cashFlowAnnual = (rent * 52) - expenses - annualInterest;
-    const taxRelief = cashFlowAnnual < 0 ? -cashFlowAnnual * mtr : 0;
-    const netCashAnnual = cashFlowAnnual + taxRelief;
+    // If cashflow is negative (negatively geared): tax relief at MTR.
+    // If cashflow is positive (positively geared): tax payable at MTR.
+    // Either way, the after-tax cashflow = cashflow * (1 - mtr).
+    const netCashAnnual = cashFlowAnnual * (1 - mtr);
     const totalCash = netCashAnnual * years;
     const futureValue = value * Math.pow(1 + growth, years);
     const equityIncrease = futureValue - value;
