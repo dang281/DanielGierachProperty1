@@ -120,6 +120,7 @@ const pages = [
   { path: '/insights/queensland-brisbane-zoning-explained',             changefreq: 'monthly', priority: '0.75' },
   { path: '/insights/types-of-build-project-custom-modular-prefab',     changefreq: 'monthly', priority: '0.7' },
   { path: '/insights/first-home-buyer-help-history-and-current-options', changefreq: 'monthly', priority: '0.85' },
+  { path: '/insights/selling-tenanted-investment-property-queensland-guide', changefreq: 'monthly', priority: '0.85' },
 
   // Insights index + articles (content marketing / organic search)
   { path: '/insights',                              changefreq: 'weekly',  priority: '0.8' },
