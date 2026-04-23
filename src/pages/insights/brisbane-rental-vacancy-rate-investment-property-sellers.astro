@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const draft = true; // STAGED: remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the rental vacancy rate and why does it matter to investment property sellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The rental vacancy rate is the percentage of available rental properties that are currently unoccupied. For investment property sellers, it is the most direct indicator of rental demand in a suburb. Investor buyers use it to assess risk: a low vacancy rate (under 2%) signals strong tenant demand and supports a higher price, while a high vacancy rate (above 3 to 4%) introduces uncertainty that depresses what investors will pay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good rental vacancy rate in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane's inner east has historically maintained low vacancy rates, generally under 2%, due to proximity to the CBD, strong public transport, and high lifestyle amenity. This is a genuine competitive advantage when selling investment properties in suburbs such as Bulimba, Hawthorne, Norman Park, and Camp Hill. Always verify current figures through SQM Research or the Real Estate Institute of Queensland before using them in marketing materials."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I find reliable rental vacancy rate data for Brisbane suburbs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SQM Research (sqmresearch.com.au) publishes suburb-level vacancy rate data updated monthly. The Real Estate Institute of Queensland publishes quarterly rental market reports covering Brisbane and regional areas. Use these sources rather than anecdotal estimates when preparing an investment property for sale."
+      }
+    }
+  ]
+};
+---
+<Layout title="Brisbane Rental Vacancy Rates and What They Mean for Investment Property Sellers | Daniel Gierach Property" description="The rental vacancy rate is one of the most useful data points an investment property seller can include in their marketing. Here is how to use it and why it matters to investor buyers." draft={draft}>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 5 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Brisbane Rental Vacancy Rates and What They Mean for Investment Property Sellers
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The rental vacancy rate is one of the most useful and underused data points available to sellers of investment properties. Here is how it affects investor buyer decisions and how to use it effectively in your campaign.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>When you sell an investment property, your buyer pool is different from the owner-occupier market. Investors are not buying a lifestyle or a family home. They are buying a cash-generating asset, and the question they are trying to answer is: how confident can I be that this property will have a tenant, and what rent can I expect? The rental vacancy rate in your suburb is the single most direct answer to that question, and most sellers never mention it.</p>
+
+      <p>That is a missed opportunity. Including accurate vacancy rate data in your investment property campaign is one of the few things you can do that directly addresses the risk calculation your buyer is working through before they decide what to offer.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the vacancy rate actually measures</h2>
+      <p>The rental vacancy rate is expressed as a percentage of total available rental stock that is currently unoccupied and listed for rent. A vacancy rate of 1% means that of all rental properties in the suburb, 1% are currently empty and seeking a tenant. A vacancy rate of 4% means 4% are empty.</p>
+
+      <p>The difference between 1% and 4% is significant for an investor. At 1%, new listings are absorbed quickly, rents hold firm or rise, and the risk of a prolonged void period is low. At 4%, there is more competition for tenants, rents are under pressure, and the probability of carrying an empty property for several weeks after settlement or at lease renewal is meaningfully higher. Investors price that risk into their offers.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How vacancy rate affects the price investors will pay</h2>
+      <p>In a suburb with a vacancy rate under 2%, an investor buying a well-located property with an existing tenant can have reasonable confidence that the tenancy will be maintained, and that a comparable tenant can be found quickly if the current one vacates. This reduces the perceived risk of the purchase and supports a price closer to what an owner-occupier might pay.</p>
+
+      <p>In a suburb where the vacancy rate sits above 3% to 4%, the investor's yield calculation changes. They factor in a higher probability of void periods, which directly reduces the effective annual yield. A property yielding 4.5% gross sounds reasonable; a property yielding 4.5% gross with a realistic expectation of 8 weeks' vacancy per year has an effective yield closer to 3.8%. At a given purchase price, that difference matters. Investors either offer less or walk away in favour of suburbs with stronger rental fundamentals.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Brisbane's inner east context</h2>
+      <p>Brisbane's inner east suburbs, including Bulimba, Hawthorne, Norman Park, Morningside, Camp Hill, and Coorparoo, have historically maintained low vacancy rates relative to the broader Brisbane market. The reasons are structural rather than cyclical: proximity to the CBD, high-frequency bus and ferry connections, school catchment quality, and lifestyle amenity consistently attract tenants. This is not a temporary condition created by one rate cycle or one period of undersupply. It reflects genuine long-run demand for rental accommodation in this corridor.</p>
+
+      <p>For sellers of investment properties in the inner east, this structural advantage is worth communicating explicitly. Buyers researching multiple markets across Brisbane or comparing inner east properties to outer ring suburbs will weight vacancy rate data alongside yield. A verified low vacancy rate in Bulimba or Hawthorne is a meaningful differentiator that supports the price you are asking.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to use vacancy data in your campaign</h2>
+      <p>The most effective use of vacancy rate data is in the investment analysis section of your marketing materials. Rather than simply quoting a gross yield, present the current vacancy rate alongside it. A statement like "current gross yield of 4.2%, with a suburb vacancy rate of 1.3% as at [month/year] per SQM Research" is substantially more compelling to a sophisticated investor buyer than a yield figure alone, because it contextualises the risk.</p>
+
+      <p>Include the source and the date. Investors who take vacancy rates seriously will verify the figure independently; giving them the source saves them the step and signals that you are dealing in verifiable data rather than marketing language. Unverified claims about rental demand are easy to ignore. A cited figure from SQM Research or the Real Estate Institute of Queensland is not.</p>
+
+      <p>If your property has a sitting tenant, include the current rent, the lease expiry date, and the time since the last rent review. A tenant paying below-market rent on a low-vacancy suburb is actually a feature for some investors: the low vacancy rate signals the buyer can reset the rent to market on lease renewal without meaningful risk of a vacancy. Presenting this context clearly is more persuasive than leaving the buyer to work it out themselves.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Where to find reliable vacancy data</h2>
+      <p>SQM Research (sqmresearch.com.au) publishes suburb-level vacancy rate data updated monthly. The Real Estate Institute of Queensland publishes quarterly rental market reports covering Brisbane and regional markets. Both are publicly available and are the sources used by property analysts, mortgage brokers, and buyer's agents when assessing rental markets. Use these rather than estimates or anecdote when preparing your campaign materials.</p>
+
+      <p>Your property manager, if you have one, can also provide context on how quickly comparable properties in the suburb have been leasing recently. That anecdotal layer is a useful complement to the statistical figure, particularly if recent months have seen particularly fast or slow absorption in your specific street or price bracket.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The relationship between vacancy rate and achievable rent</h2>
+      <p>Low vacancy and rent growth are directly connected. When vacancy is low, tenants competing for available properties accept higher rents and are less likely to negotiate existing rents down at renewal. Over time, this produces genuine real rent growth in low-vacancy suburbs, which compounds the yield advantage for buyers who acquire properties there.</p>
+
+      <p>For sellers whose current tenant has been in place for several years at a stable rent, there is often a useful story to tell about market rent versus current rent. If market rent is 15% above what your current tenant is paying, a buyer entering the suburb at current vacancy levels can reasonably expect to capture that gap on the next lease renewal or re-let. Presenting that opportunity clearly, with suburb vacancy data to support the confidence of the projection, is a more sophisticated pitch than simply advertising the current yield.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling an investment property in Brisbane's inner east?</strong> Daniel can help you present the rental fundamentals of your property in a way that resonates with investor buyers and supports your asking price. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+</Layout>

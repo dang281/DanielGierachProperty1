@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const draft = true; // STAGED: remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the seller pay stamp duty (transfer duty) in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. In Queensland, transfer duty (commonly called stamp duty) is paid by the buyer, not the seller. The seller's costs include agent commission, legal and conveyancing fees, marketing, compliance certificates, and any mortgage discharge fee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost to sell a property in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a $1 million Brisbane property, total seller costs typically range from $30,000 to $45,000. This includes agent commission (2 to 2.5% plus GST), legal and conveyancing fees ($1,500 to $2,800), marketing and vendor paid advertising ($3,000 to $12,000), compliance certificates, and mortgage discharge fees if applicable. Capital gains tax may also apply if the property is not your main residence."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is transfer duty in Queensland and who pays it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transfer duty (the Queensland term for stamp duty) is a state government tax calculated on the purchase price of a property. It is paid by the buyer to the Queensland Office of State Revenue. On a $1 million property purchase, the buyer pays approximately $38,025 in transfer duty under the general rate."
+      }
+    }
+  ]
+};
+---
+<Layout title="Does the Seller Pay Stamp Duty When Selling a Brisbane Property? | Daniel Gierach Property" description="Transfer duty (stamp duty) in Queensland is paid by the buyer, not the seller. Here is what sellers actually pay and how to calculate your net proceeds." draft={draft}>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 5 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Does the Seller Pay Stamp Duty When Selling a Brisbane Property?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Transfer duty (stamp duty) is one of the most misunderstood costs in Queensland real estate. The short answer: the seller does not pay it. Here is what you actually pay when you sell, and how to model your net proceeds accurately.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>One of the most common misconceptions among sellers preparing to list is that they will need to budget for stamp duty. They will not. In Queensland, transfer duty (the formal name for what most people call stamp duty) is a buyer cost, not a seller cost. The buyer pays it to the Queensland Office of State Revenue. The seller pays nothing in transfer duty at all.</p>
+
+      <p>The confusion is understandable. Transfer duty is a large number, it is discussed constantly in property coverage, and sellers who purchased their current home in recent years paid it themselves. It is easy to assume the liability runs in both directions. It does not.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the buyer pays</h2>
+      <p>When your buyer purchases your property, they pay transfer duty to the Queensland government based on the purchase price. The rate is calculated on a sliding scale. On a $1 million sale, a buyer purchasing at the general rate (not a first home buyer or owner-occupier concession recipient) pays approximately $38,025. On a $1.5 million sale, that figure rises to approximately $62,525.</p>
+
+      <p>First home buyers may qualify for a full exemption on properties up to $800,000 or a partial concession up to $1,000,000. Owner-occupiers who meet the residency requirements may qualify for a home concession that reduces the general rate. These are buyer-side entitlements that affect what your buyer pays, but they have no bearing on your costs as the seller.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the seller actually pays</h2>
+      <p>Your costs as the seller are different in nature. They are service costs, compliance costs, and tax obligations rather than a government duty on the transaction itself. The main categories are:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Agent commission.</strong> The most significant seller cost. Typically 2% to 2.5% plus GST in Brisbane's inner east, calculated on the sale price. On a $1 million sale at 2.2% plus GST, commission is approximately $24,200. Some agents charge differently for auction campaigns. Clarify the fee structure before you sign an authority.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Legal and conveyancing fees.</strong> You will need a solicitor or licensed conveyancer to prepare the contract of sale, handle title searches, and manage the settlement process. Typical fees in Queensland range from $1,500 to $2,800 depending on the complexity of the transaction. A leasehold or body corporate title, or a sale with special conditions, will sit at the higher end.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Marketing and vendor paid advertising (VPA).</strong> Depending on your campaign, digital listing fees on realestate.com.au and Domain, signboard, photography, floor plan, and copywriting typically range from $3,000 to $12,000. A standard campaign in Brisbane's inner east sits around $4,000 to $6,000. A premium campaign with a larger digital spend and additional photography will push toward the upper end. VPA is negotiable, but cheaper is not always better: underinvesting in marketing on a $900,000 property to save $2,000 is rarely rational.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Compliance certificates.</strong> Queensland requires sellers to provide a pool safety certificate if the property has a swimming pool. A smoke alarm compliance certificate is also required. Pool safety inspections typically cost $150 to $250; smoke alarm compliance varies by provider. Budget $300 to $500 for both.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Mortgage discharge fee.</strong> If you have a home loan being repaid at settlement, your lender will charge a discharge fee for releasing the mortgage from title. This varies by lender but typically ranges from $150 to $400. Some lenders also charge a break cost if you are on a fixed rate and the loan is being discharged before the fixed term ends. For fixed rate loans, this can be significant depending on the remaining term and current rates. Check with your lender before signing an authority to sell.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Capital gains tax.</strong> Not applicable to the sale of your main residence, provided the property meets the principal place of residence exemption criteria under Australian tax law. If the property is an investment property, rental property, or a former main residence that has been rented out, CGT may apply on the gain made since your cost base. This is a matter for your accountant, not your real estate agent. Get specific advice on your situation before assuming an exemption applies.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to calculate your net proceeds</h2>
+      <p>The formula is straightforward. Start with your expected sale price. Subtract agent commission (plus GST), legal fees, marketing costs, compliance certificate costs, and any mortgage discharge fee. If CGT applies, subtract the after-tax CGT liability. The result is your net proceeds: the amount that lands in your account at settlement.</p>
+
+      <p>On a $1 million Brisbane sale with a 2.2% commission plus GST, $2,200 in legal fees, $5,000 in VPA, $400 in compliance certificates, and a $250 discharge fee, total seller costs excluding CGT come to approximately $29,620. Net proceeds before CGT: approximately $970,380. That is the number that should inform any purchase you are planning to make next.</p>
+
+      <p>Sellers who skip this modelling step and assume their gross sale price equals available funds often find themselves short when it comes to funding a purchase. The gap between the gross price and net proceeds is real and needs to be planned for before you go to market.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why this matters before you decide to sell</h2>
+      <p>Understanding your actual cost to sell is not just a post-sale accounting exercise. It is a pre-sale decision input. If you are considering selling an investment property where CGT applies, the after-tax net proceeds may look very different from the gross price. If you are selling to fund a purchase at a higher price point, the difference between an accurate net proceeds estimate and a rough guess can affect whether you can afford the property you are targeting.</p>
+
+      <p>Get the numbers right before you list. Your agent can help you model gross-to-net proceeds. Your accountant can advise on CGT. Your lender can confirm discharge costs. Taking an hour to pull these three figures together is time well spent before you commit to a campaign.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want to model your net proceeds?</strong> Daniel can walk you through the costs specific to your property and your circumstances, so you know exactly what you are working with before you make a decision. No obligation. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+</Layout>
