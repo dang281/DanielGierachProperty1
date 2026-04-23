@@ -448,17 +448,36 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   let buyerType   = 'owner';
   const MISC_COSTS = 3500;
 
-  // ── QLD Stamp Duty ─────────────────────────────────────────────────
+  // ── QLD Stamp Duty (home concession rates, owner-occupier) ─────────
+  // Standard bracket rates from QRO updated 12 March 2026.
+  function calcStandardDuty(price: number): number {
+    if (price <= 5000) return 0;
+    if (price <= 75000) return (price - 5000) * 0.015;
+    if (price <= 540000) return 1050 + (price - 75000) * 0.035;
+    if (price <= 1000000) return 17325 + (price - 540000) * 0.045;
+    return 38025 + (price - 1000000) * 0.0575;
+  }
   function calcStampDuty(price: number, buyer: string): number {
+    // Home concession rates (owner-occupier baseline).
     let duty = 0;
     if (price <= 350000)       duty = price * 0.01;
     else if (price <= 540000)  duty = 3500 + (price - 350000) * 0.035;
     else if (price <= 1000000) duty = 10150 + (price - 540000) * 0.045;
     else                       duty = 30850 + (price - 1000000) * 0.0575;
 
+    // First Home Concession (from 9 June 2024):
+    // Full concession (duty = $0) up to $709,999.99.
+    // Taper from $710,000 to $799,999.99 (concession from $17,350 tapering down).
+    // At $800,000+, first home concession is nil; home concession above still applies.
     if (buyer === 'fhb') {
-      if (price <= 500000)       duty = 0;
-      else if (price <= 550000)  duty = duty * ((price - 500000) / 50000);
+      if (price <= 709999.99) {
+        duty = 0;
+      } else if (price < 800000) {
+        const standardDuty = calcStandardDuty(price);
+        const maxConcession = 17350;
+        const concession = maxConcession * (800000 - price) / 90000;
+        duty = Math.max(0, standardDuty - concession);
+      }
     }
     return Math.round(duty);
   }
@@ -782,7 +801,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       blank(9, 5);
 
       const stdDuty = `IF(C5<=5000,0,IF(C5<=75000,(C5-5000)*0.015,IF(C5<=540000,1050+(C5-75000)*0.035,IF(C5<=1000000,17325+(C5-540000)*0.045,38025+(C5-1000000)*0.0575))))`;
-      const fhbDuty = `IF(C5<=500000,0,IF(C5<=550000,${stdDuty}*(C5-500000)/50000,${stdDuty}))`;
+      const homeDuty = `IF(C5<=350000,C5*0.01,IF(C5<=540000,3500+(C5-350000)*0.035,IF(C5<=1000000,10150+(C5-540000)*0.045,30850+(C5-1000000)*0.0575)))`;
+      // First Home Concession from 9 June 2024: full to $709,999, taper $710k-$800k, nil at $800k+.
+      const fhbDuty = `IF(C5<=709999.99,0,IF(C5<800000,MAX(0,${stdDuty}-17350*(800000-C5)/90000),${homeDuty}))`;
       const dutyF   = `IF(C7="First Home Buyer",${fhbDuty},${stdDuty})`;
       const lmiF    = `IF(C6>=0.2,0,IF(1-C6<=0.85,C5*(1-C6)*0.01,IF(1-C6<=0.9,C5*(1-C6)*0.02,C5*(1-C6)*0.04)))`;
 

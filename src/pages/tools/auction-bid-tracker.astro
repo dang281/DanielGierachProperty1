@@ -92,7 +92,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const gap = reserve - current;
     const toReservePct = reserve ? current / reserve : 0;
 
-    document.getElementById('current')!.textContent = current ? fmt(current) : ',';
+    document.getElementById('current')!.textContent = current ? fmt(current) : 'No bids yet';
     document.getElementById('gap')!.textContent = !current
       ? ''
       : gap > 0 ? fmt(gap) + ' below reserve'
