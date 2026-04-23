@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-const SITE_URL = 'https://www.danielgierach.com';
+const SITE_URL = 'https://danielgierach.com';
 
 const pages = [
   // Core pages, highest priority
@@ -165,7 +165,6 @@ const pages = [
   // Legal, low priority
   { path: '/privacy',    changefreq: 'yearly', priority: '0.2' },
   { path: '/terms',      changefreq: 'yearly', priority: '0.2' },
-  { path: '/thank-you',  changefreq: 'yearly', priority: '0.1' },
 ];
 
 const today = new Date().toISOString().split('T')[0];

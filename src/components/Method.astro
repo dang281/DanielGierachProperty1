@@ -1,0 +1,149 @@
+---
+// The Three-Phase Method section.
+// Used on homepage (no suburb), /about, and every suburb page (with suburb prop).
+// When `suburb` is passed, each phase gets a suburb-specific tactic line.
+
+interface Props {
+  suburb?: string;
+  variant?: 'light' | 'dark';
+  showCta?: boolean;
+}
+
+const { suburb, variant = 'light', showCta = true } = Astro.props;
+
+const isDark = variant === 'dark';
+const bg = isDark ? '#0a0806' : 'var(--color-surface-0)';
+const textPrimary = isDark ? '#f0ece4' : 'var(--color-text-primary)';
+const textSecondary = isDark ? 'rgba(240,236,228,0.65)' : 'var(--color-text-secondary)';
+const textMuted = isDark ? 'rgba(240,236,228,0.35)' : '#78716c';
+const border = isDark ? 'rgba(240,236,228,0.1)' : 'rgba(28,25,23,0.1)';
+const gold = isDark ? '#f5d07a' : '#c4912a';
+
+// Per-suburb tactics. Keyed by slug form of the suburb name.
+const suburbTactics: Record<string, { positioning: string; competition: string; protection: string }> = {
+  'cannon-hill': {
+    positioning: 'Benchmark against the last six months of sales between Cannon Hill and Morningside, not against outdated CBA valuations.',
+    competition: 'Campaign targets the owner-occupier upgrader pool across Bulimba, Balmoral and Norman Park, not investors.',
+    protection: 'Most Cannon Hill buyers lean on finance timelines. Protect the price by managing finance clauses hard on day one.',
+  },
+  'norman-park': {
+    positioning: 'Character premium on Norman Park ridge streets is real. Price the catchment and the topography, not just the build.',
+    competition: 'Run open homes mid-week as well as Saturday. Inner-east buyer families inspect twice before they offer.',
+    protection: 'Control the price conversation at the first offer. Norman Park sellers regret saying yes too early more than saying no too late.',
+  },
+  'camp-hill': {
+    positioning: 'Whites Hill catchment is the price floor. A Camp Hill home outside a good primary catchment needs a different strategy.',
+    competition: 'Stage the home for the 30-something family buyer. Most Camp Hill offers come from buyers upgrading from Coorparoo units.',
+    protection: 'Multiple-offer scenarios are common in Camp Hill. Set a clear offer deadline to force genuine commitment, not exploratory bids.',
+  },
+  'coorparoo': {
+    positioning: 'Unit and house markets in Coorparoo behave differently. Pick the strategy that fits the product, not the suburb average.',
+    competition: 'New-build unit stock pulls buyers out of the house market. Position a Coorparoo house against the alternative, not just the comparables.',
+    protection: 'Contract conditions matter more than price in Coorparoo. Push for clean finance terms and short settlement windows.',
+  },
+  'morningside': {
+    positioning: 'Post-code borders with Cannon Hill and Bulimba shape buyer expectations. Lean into the Morningside identity, not against it.',
+    competition: 'Cross River Rail and Bulimba ferry proximity are Morningside\'s two biggest competition levers. Use both in the campaign brief.',
+    protection: 'Morningside buyers shop Cannon Hill in parallel. Close the comparison early so you are not negotiating against the neighbour.',
+  },
+  'seven-hills': {
+    positioning: 'Elevated streets with city views carry a measurable premium. Ground-level Seven Hills homes need a different pricing anchor.',
+    competition: 'Market on video and drone. Seven Hills rewards buyers who see the view before they inspect in person.',
+    protection: 'Seven Hills campaigns attract out-of-area buyers. Manage building and pest conditions tightly so distant buyers cannot stall the process.',
+  },
+  'murarrie': {
+    positioning: 'Price the value case explicitly: what the buyer saves by choosing Murarrie over Cannon Hill, and what they get for it.',
+    competition: 'Target the priced-out Cannon Hill and Morningside buyer pool directly. Murarrie is where that search ends.',
+    protection: 'First-home and second-home buyers dominate Murarrie. Confirm finance pre-approval before accepting, not after.',
+  },
+  'carina': {
+    positioning: 'Proximity to the Camp Hill border and school catchment quality sets the Carina price. Price the location, then the land.',
+    competition: 'Carina rewards private-treaty campaigns. Family buyers need time to run pest, building and catchment checks before they offer.',
+    protection: 'Pest and building reports surface often in Carina. Address known issues or price around them before listing, not during.',
+  },
+};
+
+const slug = suburb ? suburb.toLowerCase().replace(/\s+/g, '-') : null;
+const tactics = slug && suburbTactics[slug] ? suburbTactics[slug] : null;
+const displayName = suburb ?? '';
+
+const phases = [
+  {
+    number: '01',
+    label: 'Positioning',
+    body: 'Before a single buyer sees the home, the price, the presentation and the story are locked in. Evidence-based pricing from recent comparable sales. Presentation decisions that earn their cost. A clear market narrative the campaign can carry.',
+    suburbTactic: tactics?.positioning,
+  },
+  {
+    number: '02',
+    label: 'Creating Competition',
+    body: 'Campaigns are built to surface qualified buyers early and hold them close. Targeted buyer outreach across the Ray White Collective network. Inspection structure designed to generate real urgency, not the performative kind.',
+    suburbTactic: tactics?.competition,
+  },
+  {
+    number: '03',
+    label: 'Protecting the Result',
+    body: 'Negotiation is where weeks of preparation either pay out or leak. Commercial discipline at the offer stage. Contract terms that protect the price through to settlement. No result is real until the deal holds.',
+    suburbTactic: tactics?.protection,
+  },
+];
+---
+
+<section class="method-section" style={`background:${bg};padding:6rem 0;border-top:1px solid ${border};`}>
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+      <!-- Left column: heading -->
+      <div class="lg:col-span-4 reveal">
+        <p style={`font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:${gold};margin-bottom:1rem;`}>
+          The Three-Phase Method
+        </p>
+        <h2 style={`font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;color:${textPrimary};line-height:1.18;letter-spacing:-0.015em;margin-bottom:1.1rem;`}>
+          {suburb ? (
+            <>How a sale runs in <em style={`font-style:italic;color:${gold};`}>{displayName}</em>.</>
+          ) : (
+            <>A documented approach to <em style={`font-style:italic;color:${gold};`}>every campaign</em>.</>
+          )}
+        </h2>
+        <p style={`font-size:0.9rem;color:${textSecondary};line-height:1.85;max-width:42ch;`}>
+          {suburb
+            ? `Every ${displayName} campaign runs through the same three phases. Same discipline, same sequence. What changes is the suburb-specific tactics inside each one.`
+            : 'Every campaign runs through the same three phases. The tactics inside each phase are tuned to the property and the suburb. The discipline does not change.'}
+        </p>
+        {showCta && (
+          <a href="/walkthrough" class="btn-gold" style="margin-top:1.75rem;">
+            Book a Free Walkthrough
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        )}
+      </div>
+
+      <!-- Right column: three phases -->
+      <div class="lg:col-span-8 reveal" data-delay="80">
+        {phases.map((p, i) => (
+          <div style={`padding:1.75rem 0;border-top:1px solid ${border};display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:baseline;${i === phases.length - 1 ? `border-bottom:1px solid ${border};` : ''}`}>
+            <span style={`font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;color:${gold};padding-top:0.15rem;`}>
+              {p.number}
+            </span>
+            <div>
+              <p style={`font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:${textPrimary};margin-bottom:0.6rem;`}>
+                {p.label}
+              </p>
+              <p style={`font-size:0.88rem;color:${textSecondary};line-height:1.85;${p.suburbTactic ? 'margin-bottom:0.85rem;' : ''}`}>
+                {p.body}
+              </p>
+              {p.suburbTactic && (
+                <p style={`font-size:0.82rem;color:${textMuted};line-height:1.75;padding-left:0.9rem;border-left:2px solid ${gold};`}>
+                  <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${gold};display:block;margin-bottom:0.35rem;`}>In {displayName}</span>
+                  {p.suburbTactic}
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

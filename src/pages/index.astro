@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Method from '../components/Method.astro';
 
 // ── Daniel's listings: update as properties come on/off market ───────────────
 // Source: raywhitebulimba.com.au/agents/daniel-gierach/177117
@@ -110,16 +111,12 @@ const reasons = [
 const toolPhaseColors: Record<string, string> = { Seller: '#ffdd79', Buyer: '#7ec8e3', Investor: '#a8e6a3', Market: '#c8c6c8' };
 
 const showcaseTools = [
-  { href: '/tools/selling-costs',    phase: 'Seller',   label: 'Selling Cost Calculator', desc: 'See your true net proceeds after all selling costs.' },
-  { href: '/tools/stamp-duty',       phase: 'Buyer',    label: 'Stamp Duty Calculator',   desc: 'QLD stamp duty, FHB concessions & upfront costs.' },
-  { href: '/tools/mortgage',         phase: 'Buyer',    label: 'Mortgage Calculator',     desc: 'Weekly or monthly repayments + amortisation chart.' },
-  { href: '/tools/investment-yield', phase: 'Investor', label: 'Investment Yield',        desc: 'Net yield, cash flow & 10-year capital projection.' },
-  { href: '/tools/renovation-roi',   phase: 'Seller',   label: 'Renovation ROI',          desc: 'Which upgrades add the most value before you sell.' },
-  { href: '/tools/suburb-match',     phase: 'Buyer',    label: 'Suburb Match Quiz',       desc: 'Answer 8 questions to find your ideal Brisbane suburb.' },
-  { href: '/tools/valuation',        phase: 'Seller',   label: 'Instant Valuation',       desc: 'Get an indicative property value in minutes.' },
-  { href: '/tools/heatmap',          phase: 'Market',   label: 'Price Heatmap',           desc: 'Visual median price & growth map across Brisbane.' },
-  { href: '/tools/borrowing-power',  phase: 'Buyer',    label: 'Borrowing Power',         desc: 'Estimate how much you can borrow based on income and expenses.' },
-  { href: '/tools/equity-calculator', phase: 'Seller',  label: 'Home Equity Calculator',  desc: 'See your equity position and how much you could access or take forward.' },
+  { href: '/tools/valuation',        phase: 'Seller', label: 'Instant Valuation',       desc: 'Get an indicative property value in minutes.' },
+  { href: '/tools/selling-costs',    phase: 'Seller', label: 'Selling Cost Calculator', desc: 'See your true net proceeds after all selling costs.' },
+  { href: '/tools/renovation-roi',   phase: 'Seller', label: 'Renovation ROI',          desc: 'Which upgrades add the most value before you sell.' },
+  { href: '/tools/equity-calculator', phase: 'Seller', label: 'Home Equity Calculator', desc: 'See your equity position and how much you could access.' },
+  { href: '/tools/stamp-duty',       phase: 'Buyer',  label: 'Stamp Duty Calculator',   desc: 'QLD stamp duty, FHB concessions & upfront costs.' },
+  { href: '/tools/mortgage',         phase: 'Buyer',  label: 'Mortgage Calculator',     desc: 'Weekly or monthly repayments + amortisation chart.' },
 ];
 
 const faqSchema = {
@@ -150,7 +147,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title="Daniel Gierach | Real Estate Agent Brisbane Inner East" description="Specialist real estate agent across Brisbane inner east. Camp Hill, Norman Park, Hawthorne, Morningside and surrounds. Free property valuation." schema={faqSchema} preloadImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format">
+<Layout title="Real Estate Agent Brisbane Inner East | Daniel Gierach" description="Brisbane inner-east specialist. A documented three-phase method to position your home, create buyer competition and protect your sale price. Free walkthrough appraisal." schema={faqSchema} preloadImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format">
 
 <!-- ════════════════════════════════════════════
      HERO
@@ -268,6 +265,12 @@ const faqSchema = {
     ))}
   </div>
 </div>
+
+
+<!-- ════════════════════════════════════════════
+     THE THREE-PHASE METHOD
+════════════════════════════════════════════ -->
+<Method />
 
 
 <!-- ════════════════════════════════════════════

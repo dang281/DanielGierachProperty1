@@ -1,23 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Method from '../../components/Method.astro';
 ---
 
 <Layout
-  title="Selling in Carina | Real Estate Agent | Daniel Gierach"
-  description="Thinking of selling in Carina? Strong family fundamentals and growing buyer demand. Free appraisal with Daniel Gierach, Ray White Bulimba. Call 0412 523 821."
->
+  title="Real Estate Agent Carina Brisbane | Daniel Gierach"
+  description="Selling in Carina? Family-buyer campaigns, school-catchment pricing and pest/building preparation guidance. Free walkthrough with Daniel Gierach.">
 
 <script type="application/ld+json">{JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Carina Brisbane",
   "description": "Daniel Gierach is a specialist real estate agent in Carina Brisbane, serving the inner-east corridor.",
-  "url": "https://www.danielgierach.com/suburbs/carina",
+  "url": "https://danielgierach.com/suburbs/carina",
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.danielgierach.com" },
-      { "@type": "ListItem", "position": 2, "name": "Carina", "item": "https://www.danielgierach.com/suburbs/carina" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://danielgierach.com" },
+      { "@type": "ListItem", "position": 2, "name": "Carina", "item": "https://danielgierach.com/suburbs/carina" }
     ]
   }
 })}</script>
@@ -29,7 +29,7 @@ import Layout from '../../layouts/Layout.astro';
   ],
   "name": "Daniel Gierach, Ray White The Collective",
   "description": "Specialist real estate agent in Carina and Brisbane's inner east and south. Selling property in Carina, Camp Hill, Cannon Hill, Carina Heights and surrounding suburbs.",
-  "url": "https://www.danielgierach.com/suburbs/carina",
+  "url": "https://danielgierach.com/suburbs/carina",
   "telephone": "+61412523821",
   "address": {
     "@type": "PostalAddress",
@@ -133,7 +133,7 @@ import Layout from '../../layouts/Layout.astro';
   <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
   <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Carina home is worth.</h3>
   <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
-    <input type="hidden" name="_next" value="https://www.danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
     <input type="hidden" name="_subject" value="Appraisal enquiry - Carina" />
     <input type="hidden" name="_source" value="carina" />
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
@@ -272,38 +272,16 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 4: HOW I CAN HELP YOU SELL
-════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
-  <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Selling in Carina</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem;">What selling with Daniel looks like.</h2>
-    <div style="display:flex; flex-direction:column; gap:2.5rem; margin-bottom:3rem;">
-      <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
-        <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Free appraisal</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I'll walk you through what your property is worth and what buyers are currently paying in your area.</p>
-        </div>
-      </div>
-      <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
-        <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Tailored campaign</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Every property is different. I build a strategy around your home, your timeline and your buyer profile.</p>
-        </div>
-      </div>
-      <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">3</span>
-        <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Managed negotiation</p>
-          <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I manage every offer with commercial discipline to protect your final result.</p>
-        </div>
-      </div>
-    </div>
-    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request a Free Appraisal</a>
-    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;margin-top:1.75rem;">Planning to sell? Read the full guide: <a href="/insights/selling-in-carina" style="color:#c4912a;font-weight:600;">What to Expect When Selling in Carina →</a></p>
+<!-- THE THREE-PHASE METHOD -->
+<Method suburb="Carina" />
+
+<!-- CROSS-LINK TO SELLING GUIDE -->
+<section style="background:var(--color-surface-0);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;">
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;">
+      Planning to sell? Read the full guide:
+      <a href="/insights/selling-in-carina" style="color:#c4912a;font-weight:600;">How to Sell Your Home in Carina &rarr;</a>
+    </p>
   </div>
 </section>
 

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Method from '../components/Method.astro';
 
 const values = [
   {
@@ -15,24 +16,9 @@ const values = [
     body: "I work with a limited number of clients to ensure your campaign receives the attention, strategy and negotiation it deserves.",
   },
 ];
-
-const howIWork = [
-  {
-    label: "Positioning",
-    text: "Establishing the right price, presentation and market narrative before launch. How a property enters the market shapes everything that follows.",
-  },
-  {
-    label: "Creating competition",
-    text: "Targeting qualified buyers early and structuring the campaign to generate genuine urgency. Strong results come from multiple motivated parties, not one.",
-  },
-  {
-    label: "Protecting the result",
-    text: "Negotiating with commercial discipline at the critical moment. The preparation is only as valuable as the outcome it produces.",
-  },
-];
 ---
 
-<Layout preloadImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format" title="About Daniel Gierach | Ray White Bulimba" description="Daniel Gierach - Brisbane inner-east real estate specialist at Ray White Bulimba. Bachelor in Property Economics, 10+ years experience. Selling homes across Camp Hill, Norman Park and Hawthorne.">
+<Layout preloadImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format" title="About Daniel Gierach | Real Estate Agent Brisbane Inner East" description="Brisbane inner-east real estate specialist at Ray White Bulimba. A documented three-phase method built for sellers across Camp Hill, Norman Park, Hawthorne and surrounds.">
 
 
 <!-- ════════════════════════════════════════════
@@ -152,39 +138,9 @@ const howIWork = [
 
 
 <!-- ════════════════════════════════════════════
-     HOW I WORK, numbered steps
+     THE THREE-PHASE METHOD
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-base);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
-  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-
-      <div class="lg:col-span-4 reveal">
-        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">How I Work</p>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;color:#1c1917;line-height:1.3;letter-spacing:-0.01em;margin-bottom:1rem;">
-          A structured process,<br/>
-          <em style="font-style:italic;color:#c4912a;">start to finish.</em>
-        </h2>
-        <p style="font-size:0.85rem;color:#78716c;line-height:1.8;">
-          Most of the outcome is determined before a property hits the market.
-        </p>
-      </div>
-
-      <div class="lg:col-span-8 reveal" data-delay="80">
-        {howIWork.map((item, i) => (
-          <div style={`padding:1.5rem 0;border-top:1px solid rgba(28,25,23,0.1);display:flex;gap:2rem;align-items:baseline;${i === howIWork.length - 1 ? 'border-bottom:1px solid rgba(28,25,23,0.1);' : ''}`}>
-            <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;color:#c4912a;flex-shrink:0;padding-top:0.1rem;">0{i + 1}</span>
-            <div>
-              <p style="font-family:var(--font-serif);font-size:0.98rem;font-style:italic;color:#1c1917;margin-bottom:0.4rem;">{item.label}</p>
-              <p style="font-size:0.85rem;color:#78716c;line-height:1.8;">{item.text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </div>
-</section>
+<Method showCta={false} />
 
 
 <!-- ════════════════════════════════════════════
