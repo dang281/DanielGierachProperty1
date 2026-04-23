@@ -52,7 +52,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   .lp-benefit { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: rgba(240,236,228,0.65); letter-spacing: 0.04em; }
   .lp-benefit-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
-  /* Form — inline */
+  /* Form: inline */
   .lp-form-inline { display: flex; gap: 0; max-width: 540px; }
   .lp-input {
     flex: 1; min-width: 0;
@@ -154,17 +154,6 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   .lp-footer p { font-size: 0.6rem; color: rgba(242,239,233,0.25); letter-spacing: 0.06em; line-height: 1.8; }
   .lp-footer a { color: rgba(242,239,233,0.4); text-decoration: none; }
 
-  /* ── Mobile sticky CTA ── */
-  .lp-sticky-cta {
-    display: none;
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-    background: var(--gold); padding: 1rem 1.5rem;
-    align-items: center; justify-content: center; gap: 0.5rem;
-    font-family: var(--font-sans); font-size: 0.78rem; font-weight: 800;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark);
-    cursor: pointer; border: none; width: 100%;
-  }
-
   /* ── Responsive ── */
   @media (max-width: 720px) {
     .lp-bar { padding: 0.85rem 1.25rem; height: 60px; }
@@ -189,8 +178,6 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     .lp-call-btn { width: 100%; justify-content: center; min-height: 54px; }
     .lp-stats-inner { gap: 1.5rem; }
     .lp-stat-divider { display: none; }
-    .lp-sticky-cta { display: flex; min-height: 54px; }
-    body { padding-bottom: 4rem; }
   }
 </style>
 
@@ -200,7 +187,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     <span class="lp-bar-logo-name">Daniel Gierach</span>
     <span class="lp-bar-logo-sub">
       <span class="lp-bar-logo-line"></span>
-      <span class="lp-bar-logo-agency">Property</span>
+      <span class="lp-bar-logo-agency">Ray White · The Collective</span>
     </span>
   </a>
   <a href="tel:+61412523821" class="lp-bar-phone">
@@ -233,7 +220,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
         />
         <span class="lp-avatar-name">Daniel Gierach</span>
       </div>
-      <h1 class="lp-h1">Curious what your<br/><em>home could<br/>sell for?</em></h1>
+      <h1 class="lp-h1">What's your<br/><em>property<br/>worth?</em></h1>
       <p class="lp-sub">Most homeowners underestimate what their property is worth. Find out where yours really sits.</p>
 
       <form class="lp-form-inline" id="lpForm" action="/property-report" method="get">
@@ -247,12 +234,12 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
           required
         />
         <button type="submit" class="lp-submit">
-          What's Your Property Worth?
+          Search
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
 
-      <p class="lp-trust">Free &nbsp;·&nbsp; You'll get an indicative value range based on recent comparable sales in your street.</p>
+      <p class="lp-trust">Free &nbsp;·&nbsp; You'll get an indicative value range based on recent comparable sales in your area.</p>
     </div>
   </div>
 </section>
@@ -261,16 +248,10 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 <!-- Footer -->
 <footer class="lp-footer">
   <p>
-    Daniel Gierach · Ray White Collective · Brisbane Inner West<br/>
+    Daniel Gierach · Ray White Collective · Brisbane Inner East<br/>
     <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">danielgierach.com</a>
   </p>
 </footer>
-
-<!-- Mobile sticky CTA -->
-<button class="lp-sticky-cta" id="stickyCta">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  Get My Free Valuation
-</button>
 
 <script is:inline>
   window.initMapsAutocomplete = function() {

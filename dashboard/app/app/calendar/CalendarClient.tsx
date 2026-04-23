@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useTransition, useCallback } from 'react'
+import { useState, useMemo, useEffect, useTransition, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import {
   DndContext,
@@ -18,7 +18,8 @@ import type { ContentItem, Platform, Status, Pillar } from '@/types/content'
 import {
   PLATFORM_COLOUR, STATUS_COLOUR, STATUS_BG, STATUS_BORDER, PILLAR_COLOUR,
 } from '@/types/content'
-import { rescheduleItem, createItem, bulkMarkPosted } from '@/lib/actions/content'
+import { rescheduleItem, createItem, bulkMarkPosted, regenerateVisual, getNextSameTypePost, swapPost, updateItemStatus, getPostForDate, scheduleLibraryPost } from '@/lib/actions/content'
+import { requestFactCheck, requestNewPostForDate } from '@/lib/actions/paperclip'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -84,6 +85,51 @@ function nextAvailableSlot(items: ContentItem[], platform: Platform): string {
   return new Date().toLocaleDateString('en-CA')
 }
 
+// ─── Title helpers ────────────────────────────────────────────────────────────
+
+function cleanTitle(raw: string): string {
+  return raw
+    .replace(/^LinkedIn\s+(Field Guide\s*[-–]\s*|Article Feature\s*[-–]\s*|Post[:\s-]+|Poll[:\s-]+)/i, '')
+    .trim()
+}
+
+type PostType = 'Poll' | 'Article' | 'Authority' | 'Market' | 'Post'
+
+const POST_TYPE_COLOUR: Record<PostType, string> = {
+  Poll:      '#8b5cf6',
+  Article:   '#f59e0b',
+  Authority: '#06b6d4',
+  Market:    '#10b981',
+  Post:      '#6b7280',
+}
+
+function getPostType(item: ContentItem): PostType {
+  const t = item.title.toLowerCase()
+  const notes = (item.notes ?? '').toLowerCase()
+  const vb = (item.visual_brief ?? '').toLowerCase()
+
+  // Poll check — overrides everything
+  if (t.includes('poll') || (item.content_type ?? '').toLowerCase().includes('poll')) return 'Poll'
+
+  // Day-of-week is authoritative for LinkedIn posts:
+  // Tuesday = market/authority post, Thursday = article feature
+  if (item.scheduled_date && item.platform === 'linkedin') {
+    const dow = new Date(item.scheduled_date + 'T12:00:00').getDay() // 0=Sun,2=Tue,4=Thu
+    if (dow === 4) return 'Article'   // Thursday → always Article
+    if (dow === 2) {                  // Tuesday → market or authority
+      if (item.content_pillar === 'authority' || vb.includes('checklist')) return 'Authority'
+      return 'Market'
+    }
+  }
+
+  // Fallback: title/notes keyword detection for posts without a scheduled date
+  if (t.includes('field guide') || notes.includes('field guide')) return 'Article'
+  if (t.includes('article feature') || t.includes('article')) return 'Article'
+  if (item.content_pillar === 'authority' || vb.includes('checklist')) return 'Authority'
+  if (vb.includes('market update') || vb.includes('inner east') || t.includes('market')) return 'Market'
+  return 'Post'
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const PLATFORM_ICON: Record<string, string>  = { linkedin: 'in', facebook: 'f', instagram: '✦', seo: '↗' }
@@ -108,6 +154,9 @@ type DisplayStatusFilter = 'all' | 'needs-attention' | 'scheduled' | 'posted'
 
 function getDisplayStatus(item: ContentItem): 'needs-attention' | 'scheduled' | 'posted' {
   if (item.status === 'posted') return 'posted'
+  // Needs Review (idea/draft) = always needs attention regardless of visual
+  if (item.status === 'idea' || item.status === 'draft') return 'needs-attention'
+  // Scheduled with no visual = still needs attention
   if (!item.visual_thumbnail) return 'needs-attention'
   return 'scheduled'
 }
@@ -148,28 +197,136 @@ function Chip({ active, colour, onClick, children }: {
 
 // ─── Hover Preview ────────────────────────────────────────────────────────────
 
-function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
+const QUICK_STATUSES: { value: Status; label: string }[] = [
+  { value: 'idea',      label: 'Needs Review' },
+  { value: 'scheduled', label: 'Scheduled'    },
+  { value: 'posted',    label: 'Posted'       },
+  { value: 'rejected',  label: 'Rejected'     },
+]
+
+function HoverPreview({ item: initialItem, rect, onRegenerate, onSwap, onStatusChange, onMouseEnter, onMouseLeave }: {
+  item: ContentItem
+  rect: DOMRect
+  onRegenerate: (id: string, mode: 'primary' | 'alternate') => Promise<string | null>
+  onSwap: (currentId: string, incomingId: string, date: string, incoming: ContentItem) => Promise<void>
+  onStatusChange: (id: string, status: Status) => Promise<void>
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+}) {
+  const [item, setItem]             = useState(initialItem)
+  const [regenError, setRegenError] = useState<string | null>(null)
+  const [regenerating, setRegenerating] = useState(false)
+  // Swap flow
+  const [candidate, setCandidate]   = useState<ContentItem | null>(null)
+  const [swapLoading, setSwapLoading] = useState(false)
+  const [swapError, setSwapError]   = useState<string | null>(null)
+  // Fact-check
+  const [factChecking, setFactChecking] = useState(false)
+  const [factCheckId, setFactCheckId]   = useState<string | null>(null)
+  // Status change
+  const [statusChanging, setStatusChanging] = useState(false)
   const W = 320
-  const screenW = typeof window !== 'undefined' ? window.innerWidth : 1400
-  const screenH = typeof window !== 'undefined' ? window.innerHeight : 900
-  const left    = rect.right + 12 + W > screenW ? rect.left - W - 12 : rect.right + 12
-  const top     = Math.max(8, Math.min(rect.top, screenH - 560))
-  const pc      = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
-  const visual  = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
+  const screenW  = typeof window !== 'undefined' ? window.innerWidth  : 1400
+  const screenH  = typeof window !== 'undefined' ? window.innerHeight : 900
+  const left     = rect.right + W > screenW ? rect.left - W : rect.right
+  const maxH     = screenH - 16
+  const top      = Math.max(8, Math.min(rect.top, screenH - maxH))
+  const pc       = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
+  const visual   = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
+
+  // Keep in sync if the parent item changes (e.g. after regen updates parent state)
+  if (item.id !== initialItem.id) setItem(initialItem)
+
+  async function handleCreate() {
+    setRegenError(null)
+    setRegenerating(true)
+    try {
+      const newUrl = await onRegenerate(item.id, 'primary')
+      if (newUrl) setItem(prev => ({ ...prev, visual_thumbnail: newUrl, visual_status: 'approved' }))
+    } catch (e) {
+      setRegenError(e instanceof Error ? e.message : 'Generation failed')
+    } finally {
+      setRegenerating(false)
+    }
+  }
+
+  // Step 1: find the candidate post to swap in
+  async function handleAlternate() {
+    setRegenError(null)
+    setSwapError(null)
+    setSwapLoading(true)
+    try {
+      const dow = item.scheduled_date
+        ? new Date(item.scheduled_date + 'T12:00:00').getDay()
+        : -1
+      const isArticle = dow === 4
+      const found = await getNextSameTypePost(item.id, isArticle)
+      if (!found) {
+        setSwapError('No other posts available in the queue.')
+      } else {
+        setCandidate(found as ContentItem)
+      }
+    } catch (e) {
+      setSwapError(e instanceof Error ? e.message : 'Could not find a candidate')
+    } finally {
+      setSwapLoading(false)
+    }
+  }
+
+  async function handleStatusChange(newStatus: Status) {
+    if (newStatus === item.status || statusChanging) return
+    setStatusChanging(true)
+    try {
+      await onStatusChange(item.id, newStatus)
+      setItem(prev => ({ ...prev, status: newStatus }))
+    } finally {
+      setStatusChanging(false)
+    }
+  }
+
+  async function handleFactCheck() {
+    setFactChecking(true)
+    try {
+      const result = await requestFactCheck(item.id, item.title)
+      setFactCheckId(result.identifier ?? 'sent')
+    } catch { /* silently ignore */ } finally {
+      setFactChecking(false)
+    }
+  }
+
+  // Step 2: confirm the swap
+  async function handleConfirmSwap() {
+    if (!candidate || !item.scheduled_date) return
+    setSwapLoading(true)
+    setSwapError(null)
+    try {
+      await onSwap(item.id, candidate.id, item.scheduled_date, candidate as ContentItem)
+    } catch (e) {
+      setSwapError(e instanceof Error ? e.message : 'Swap failed')
+    } finally {
+      setSwapLoading(false)
+    }
+  }
 
   return (
     <div
-      className="fixed z-50 rounded-xl border shadow-2xl overflow-hidden flex flex-col pointer-events-none"
-      style={{ left, top, width: W, background: 'var(--color-bg)', borderColor: pc,
+      className="fixed z-50 rounded-xl border shadow-2xl flex flex-col"
+      style={{ left, top, width: W, maxHeight: maxH, overflowY: 'auto', background: 'var(--color-bg)', borderColor: pc,
         boxShadow: `0 0 0 1px ${pc}33, 0 24px 48px rgba(0,0,0,0.65)` }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
-      {/* Design preview — shown when Canva thumbnail available */}
+      {/* Design preview */}
       {item.visual_thumbnail ? (
         <div className="relative w-full" style={{ aspectRatio: '1.91/1', background: '#111' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={item.visual_thumbnail} alt="Post visual"
-            className="w-full h-full object-cover" />
-          {/* Platform badge overlay */}
+            className="w-full h-full object-cover" style={{ opacity: regenerating ? 0.4 : 1, transition: 'opacity 0.2s' }} />
+          {regenerating && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[11px] font-sans font-semibold" style={{ color: '#c4912a' }}>Generating…</span>
+            </div>
+          )}
           <div className="absolute top-2 left-2 flex items-center gap-1.5 rounded-full px-2 py-1"
             style={{ background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)' }}>
             <span className="w-4 h-4 rounded text-[9px] font-bold flex items-center justify-center"
@@ -180,7 +337,6 @@ function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
               {PLATFORM_LABEL[item.platform]}
             </span>
           </div>
-          {/* Status badge overlay */}
           <span className="absolute top-2 right-2 text-[9px] font-sans font-semibold px-2 py-0.5 rounded-full capitalize"
             style={{ color: STATUS_COLOUR[item.status as Status], background: 'rgba(0,0,0,0.65)',
               backdropFilter: 'blur(4px)', border: `1px solid ${STATUS_COLOUR[item.status as Status]}44` }}>
@@ -188,16 +344,15 @@ function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
           </span>
         </div>
       ) : (
-        /* No thumbnail — placeholder banner with platform colour */
         <div className="w-full flex items-center justify-center" style={{ height: 72, background: `${pc}18` }}>
-          <span className="text-[10px] font-sans font-semibold opacity-50" style={{ color: pc }}>
-            No visual yet
-          </span>
+          {regenerating
+            ? <span className="text-[10px] font-sans font-semibold" style={{ color: '#c4912a' }}>Generating…</span>
+            : <span className="text-[10px] font-sans font-semibold opacity-50" style={{ color: pc }}>No visual yet</span>
+          }
         </div>
       )}
 
       <div className="flex flex-col gap-2.5 p-4">
-        {/* Platform + status (only when no thumbnail) */}
         {!item.visual_thumbnail && (
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
@@ -216,7 +371,7 @@ function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
           </div>
         )}
 
-        <p className="text-[13px] font-sans font-semibold text-[var(--color-cream)] leading-snug">{item.title}</p>
+        <p className="text-[13px] font-sans font-semibold text-[var(--color-cream)] leading-snug">{cleanTitle(item.title)}</p>
 
         {item.scheduled_date && (
           <p className="text-[10px] font-sans text-[var(--color-cream-x)]">
@@ -246,9 +401,342 @@ function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
                 {PILLAR_LABEL[item.content_pillar]}
               </span>
             )}
-            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">Click to open</span>
           </div>
         </div>
+
+        {/* ── Status picker ── */}
+        <div className="pt-2 border-t border-[rgba(255,255,255,0.06)]">
+          <p className="text-[9px] font-sans font-semibold uppercase tracking-wider mb-1.5" style={{ color: 'var(--color-cream-x)' }}>
+            Set status
+          </p>
+          <div className="flex gap-1">
+            {QUICK_STATUSES.map(({ value, label }) => (
+              <button
+                key={value}
+                onClick={() => handleStatusChange(value)}
+                disabled={statusChanging}
+                className="flex-1 py-1 rounded text-[9px] font-sans font-semibold capitalize transition-all disabled:opacity-50"
+                style={item.status === value
+                  ? { background: `${STATUS_COLOUR[value]}22`, color: STATUS_COLOUR[value], border: `1px solid ${STATUS_COLOUR[value]}66` }
+                  : { background: 'transparent', color: 'var(--color-cream-dim)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }
+                }
+              >
+                {statusChanging && item.status !== value ? '' : label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Visual action buttons — only for LinkedIn posts */}
+        {item.platform === 'linkedin' && (
+          <>
+            {candidate ? (
+              /* Step 2: show candidate and ask to confirm */
+              <div className="flex flex-col gap-2 mt-1 pt-2 border-t border-[rgba(255,255,255,0.06)]">
+                <p className="text-[9px] font-sans font-semibold uppercase tracking-wider" style={{ color: '#c4912a' }}>
+                  Replacing with:
+                </p>
+                <p className="text-[12px] font-sans font-semibold text-[var(--color-cream)] leading-snug">
+                  {candidate.title.replace(/^LinkedIn\s+(Field Guide\s*[-–]\s*|Article Feature\s*[-–]\s*|Post[:\s\-]+|Poll[:\s\-]+)/i, '').trim()}
+                </p>
+                {candidate.caption && (
+                  <p className="text-[10px] font-sans text-[var(--color-cream-dim)] leading-relaxed line-clamp-2">
+                    {candidate.caption.slice(0, 120)}…
+                  </p>
+                )}
+                {swapLoading ? (
+                  <div className="text-[10px] font-sans text-center py-1" style={{ color: '#c4912a' }}>Swapping…</div>
+                ) : (
+                  <div className="flex gap-1.5">
+                    <button
+                      onClick={handleConfirmSwap}
+                      className="flex-1 py-1.5 rounded-lg text-[11px] font-sans font-semibold border"
+                      style={{ borderColor: 'rgba(196,145,42,0.5)', color: '#c4912a', background: 'rgba(196,145,42,0.12)', cursor: 'pointer' }}>
+                      Confirm swap
+                    </button>
+                    <button
+                      onClick={() => { setCandidate(null); setSwapError(null) }}
+                      className="flex-1 py-1.5 rounded-lg text-[11px] font-sans font-semibold border"
+                      style={{ borderColor: 'rgba(255,255,255,0.1)', color: 'var(--color-cream-dim)', background: 'transparent', cursor: 'pointer' }}>
+                      Cancel
+                    </button>
+                  </div>
+                )}
+                {swapError && <p className="text-[10px] font-sans" style={{ color: '#f97316' }}>{swapError}</p>}
+              </div>
+            ) : regenerating || swapLoading ? (
+              <div className="w-full py-1.5 rounded-lg text-[11px] font-sans font-semibold text-center border mt-0.5"
+                style={{ borderColor: 'rgba(196,145,42,0.3)', color: '#c4912a', background: 'rgba(196,145,42,0.06)' }}>
+                {swapLoading ? 'Finding next post…' : 'Generating visual…'}
+              </div>
+            ) : (
+              /* Step 1: normal action buttons */
+              <div className="flex flex-col gap-1.5 mt-0.5">
+                <div className="flex gap-1.5">
+                  <button
+                    onClick={handleCreate}
+                    className="flex-1 py-1.5 rounded-lg text-[11px] font-sans font-semibold border transition-all"
+                    style={{ borderColor: 'rgba(196,145,42,0.5)', color: '#c4912a', background: 'rgba(196,145,42,0.12)', cursor: 'pointer' }}>
+                    Create Visual
+                  </button>
+                  <button
+                    onClick={handleAlternate}
+                    className="flex-1 py-1.5 rounded-lg text-[11px] font-sans font-semibold border transition-all"
+                    style={{ borderColor: 'rgba(196,145,42,0.3)', color: 'var(--color-cream-dim)', background: 'transparent', cursor: 'pointer' }}>
+                    Give another option
+                  </button>
+                </div>
+                {factCheckId ? (
+                  <div className="w-full py-1.5 rounded-lg text-[11px] font-sans font-semibold text-center border"
+                    style={{ borderColor: 'rgba(34,197,94,0.3)', color: '#22c55e', background: 'rgba(34,197,94,0.06)' }}>
+                    Fact-check sent · {factCheckId}
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleFactCheck}
+                    disabled={factChecking}
+                    className="w-full py-1.5 rounded-lg text-[11px] font-sans font-semibold border transition-all disabled:opacity-50"
+                    style={{ borderColor: 'rgba(34,197,94,0.3)', color: '#22c55e', background: 'rgba(34,197,94,0.06)', cursor: 'pointer' }}>
+                    {factChecking ? 'Sending…' : 'Check accuracy'}
+                  </button>
+                )}
+              </div>
+            )}
+            {(regenError || (swapError && !candidate)) && (
+              <p className="text-[10px] font-sans mt-1" style={{ color: '#f97316' }}>
+                {regenError || swapError}
+              </p>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Smart Day Modal ──────────────────────────────────────────────────────────
+
+const DAY_TYPE_META: Record<string, { label: string; colour: string; hint: string }> = {
+  authority: { label: 'Market / Authority', colour: '#10b981', hint: 'Tuesday post — market update or authority take' },
+  poll:      { label: 'Poll',               colour: '#8b5cf6', hint: 'Wednesday post — LinkedIn poll' },
+  article:   { label: 'Field Guide',        colour: '#f59e0b', hint: 'Thursday post — field guide or article feature' },
+}
+
+function getDayType(dateStr: string): string | null {
+  const dow = new Date(dateStr + 'T12:00:00').getDay()
+  if (dow === 2) return 'authority'
+  if (dow === 3) return 'poll'
+  if (dow === 4) return 'article'
+  return null
+}
+
+function SmartDayModal({ date, onClose, onScheduled }: {
+  date: string
+  onClose: () => void
+  onScheduled: (item: ContentItem) => void
+}) {
+  const dayType = getDayType(date)
+  const meta    = dayType ? DAY_TYPE_META[dayType] : null
+
+  type Phase = 'loading' | 'found' | 'empty' | 'generating' | 'done' | 'error'
+  const [phase, setPhase]         = useState<Phase>('loading')
+  const [candidate, setCandidate] = useState<ContentItem | null>(null)
+  const [seenIds, setSeenIds]     = useState<string[]>([])
+  const [errMsg, setErrMsg]       = useState<string | null>(null)
+  const [taskId, setTaskId]       = useState<string | null>(null)
+
+  const dayLabel = new Date(date + 'T12:00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' })
+
+  useEffect(() => { fetchCandidate([]) }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function fetchCandidate(exclude: string[]) {
+    setPhase('loading')
+    setCandidate(null)
+    try {
+      const found = await getPostForDate(date, exclude)
+      if (found) {
+        setCandidate(found)
+        setSeenIds(prev => [...prev, found.id])
+        setPhase('found')
+      } else {
+        setPhase('empty')
+      }
+    } catch {
+      setPhase('error')
+      setErrMsg('Could not load library posts.')
+    }
+  }
+
+  async function handleSchedule() {
+    if (!candidate) return
+    setPhase('loading')
+    try {
+      const item = await scheduleLibraryPost(candidate.id, date)
+      onScheduled(item)
+      setPhase('done')
+    } catch {
+      setPhase('error')
+      setErrMsg('Failed to schedule post.')
+    }
+  }
+
+  async function handleTryAnother() {
+    fetchCandidate(seenIds)
+  }
+
+  async function handleGenerate() {
+    setPhase('generating')
+    try {
+      const typeLabel = meta?.label ?? 'LinkedIn'
+      const result = await requestNewPostForDate(date, typeLabel)
+      if (result.success) {
+        setTaskId(result.identifier ?? 'sent')
+        setPhase('done')
+      } else {
+        setPhase('error')
+        setErrMsg('Could not reach the agent. Try again.')
+      }
+    } catch {
+      setPhase('error')
+      setErrMsg('Could not reach the agent.')
+    }
+  }
+
+  const overlay = 'fixed inset-0 z-50 flex items-center justify-center p-4'
+  const card    = 'rounded-2xl border w-full max-w-sm flex flex-col gap-4 p-5'
+
+  return (
+    <div className={overlay} style={{ background: 'rgba(0,0,0,0.7)' }}
+      onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+      <div className={card} style={{ background: 'var(--color-card)', borderColor: 'var(--color-border)' }}>
+
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-sans font-bold uppercase tracking-widest mb-0.5"
+              style={{ color: meta?.colour ?? 'var(--color-gold)' }}>
+              {meta?.label ?? 'Add post'}
+            </p>
+            <p className="text-[var(--color-cream)] font-serif text-sm leading-snug">{dayLabel}</p>
+            {meta && (
+              <p className="text-[10px] font-sans mt-0.5" style={{ color: 'var(--color-cream-x)' }}>{meta.hint}</p>
+            )}
+          </div>
+          <button onClick={onClose} className="text-[var(--color-cream-x)] hover:text-[var(--color-cream)] text-xl leading-none flex-shrink-0">×</button>
+        </div>
+
+        {/* Body */}
+        {phase === 'loading' && (
+          <div className="flex items-center justify-center py-8">
+            <span className="text-[11px] font-sans" style={{ color: 'var(--color-cream-x)' }}>Searching library…</span>
+          </div>
+        )}
+
+        {phase === 'found' && candidate && (
+          <div className="flex flex-col gap-3">
+            <div className="rounded-xl border p-3 flex flex-col gap-2"
+              style={{ borderColor: 'rgba(196,145,42,0.3)', background: 'rgba(196,145,42,0.05)' }}>
+              <p className="text-[10px] font-sans font-semibold uppercase tracking-wider" style={{ color: 'var(--color-gold)' }}>
+                From library
+              </p>
+              {candidate.visual_thumbnail && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={candidate.visual_thumbnail} alt="" className="w-full rounded-lg object-cover"
+                  style={{ maxHeight: 120, background: '#0a0806' }} />
+              )}
+              <p className="text-[12px] font-sans font-medium leading-snug" style={{ color: 'var(--color-cream)' }}>
+                {candidate.title.replace(/^LinkedIn\s+(Field Guide\s*[-–]\s*|Article Feature\s*[-–]\s*|Post[:\s-]+|Poll[:\s-]+)/i, '').trim()}
+              </p>
+              {candidate.caption && (
+                <p className="text-[10px] font-sans leading-relaxed line-clamp-3" style={{ color: 'var(--color-cream-x)' }}>
+                  {candidate.caption.slice(0, 160)}…
+                </p>
+              )}
+            </div>
+            <button onClick={handleSchedule}
+              className="w-full py-2.5 rounded-xl text-[12px] font-sans font-semibold transition-all"
+              style={{ background: 'var(--color-gold)', color: '#1c1917' }}>
+              Schedule this post
+            </button>
+            <div className="flex gap-2">
+              <button onClick={handleTryAnother}
+                className="flex-1 py-2 rounded-xl text-[11px] font-sans font-semibold border transition-all"
+                style={{ borderColor: 'var(--color-border-w)', color: 'var(--color-cream-dim)', background: 'transparent' }}>
+                Try another
+              </button>
+              <button onClick={handleGenerate}
+                className="flex-1 py-2 rounded-xl text-[11px] font-sans font-semibold border transition-all"
+                style={{ borderColor: 'rgba(139,92,246,0.4)', color: '#8b5cf6', background: 'rgba(139,92,246,0.06)' }}>
+                Generate new
+              </button>
+            </div>
+          </div>
+        )}
+
+        {phase === 'empty' && (
+          <div className="flex flex-col gap-3">
+            <div className="rounded-xl border border-dashed p-4 text-center"
+              style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+              <p className="text-[11px] font-sans mb-1" style={{ color: 'var(--color-cream-x)' }}>
+                No unscheduled {meta?.label ?? 'posts'} in the library.
+              </p>
+              <p className="text-[10px] font-sans" style={{ color: 'var(--color-cream-x)', opacity: 0.6 }}>
+                The agent will write a fresh one and add it to Needs Review.
+              </p>
+            </div>
+            <button onClick={handleGenerate}
+              className="w-full py-2.5 rounded-xl text-[12px] font-sans font-semibold border transition-all"
+              style={{ borderColor: 'rgba(139,92,246,0.4)', color: '#8b5cf6', background: 'rgba(139,92,246,0.06)' }}>
+              Generate new post
+            </button>
+          </div>
+        )}
+
+        {phase === 'generating' && (
+          <div className="flex items-center justify-center py-8">
+            <span className="text-[11px] font-sans" style={{ color: '#8b5cf6' }}>Sending to agent…</span>
+          </div>
+        )}
+
+        {phase === 'done' && (
+          <div className="flex flex-col gap-3">
+            {taskId ? (
+              <div className="rounded-xl border p-4 text-center"
+                style={{ borderColor: 'rgba(139,92,246,0.3)', background: 'rgba(139,92,246,0.06)' }}>
+                <p className="text-[12px] font-sans font-semibold mb-1" style={{ color: '#8b5cf6' }}>
+                  Request sent
+                </p>
+                <p className="text-[10px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
+                  The agent will write a {meta?.label ?? 'post'} for {dayLabel} and mark it Needs Review.
+                </p>
+              </div>
+            ) : (
+              <div className="rounded-xl border p-4 text-center"
+                style={{ borderColor: 'rgba(34,197,94,0.3)', background: 'rgba(34,197,94,0.06)' }}>
+                <p className="text-[12px] font-sans font-semibold mb-1" style={{ color: '#22c55e' }}>Scheduled</p>
+                <p className="text-[10px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
+                  Post added to {dayLabel}.
+                </p>
+              </div>
+            )}
+            <button onClick={onClose}
+              className="w-full py-2 rounded-xl text-[11px] font-sans font-semibold border"
+              style={{ borderColor: 'var(--color-border-w)', color: 'var(--color-cream-dim)', background: 'transparent' }}>
+              Close
+            </button>
+          </div>
+        )}
+
+        {phase === 'error' && (
+          <div className="flex flex-col gap-3">
+            <p className="text-[11px] font-sans text-center" style={{ color: '#f97316' }}>{errMsg}</p>
+            <button onClick={onClose}
+              className="w-full py-2 rounded-xl text-[11px] font-sans font-semibold border"
+              style={{ borderColor: 'var(--color-border-w)', color: 'var(--color-cream-dim)', background: 'transparent' }}>
+              Close
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -256,17 +744,27 @@ function HoverPreview({ item, rect }: { item: ContentItem; rect: DOMRect }) {
 
 // ─── Quick Compose Modal ──────────────────────────────────────────────────────
 
+// Derive the expected post type for a given date based on day-of-week guidelines
+function getDayGuideline(dateStr: string): { label: string; pillar: Pillar | ''; contentType: string; hint: string } | null {
+  const dow = new Date(dateStr + 'T12:00:00').getDay() // 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
+  if (dow === 2) return { label: 'Market / Authority', pillar: 'seller',    contentType: 'Post', hint: 'Tuesday — market update or authority post (07:30 AEST)' }
+  if (dow === 3) return { label: 'Poll',               pillar: 'authority', contentType: 'Poll', hint: 'Wednesday — LinkedIn poll (07:30 AEST)' }
+  if (dow === 4) return { label: 'Field Guide',        pillar: 'authority', contentType: 'Post', hint: 'Thursday — field guide or article feature (07:30 AEST)' }
+  return null
+}
+
 function QuickComposeModal({ date, allItems, onClose, onCreated }: {
   date: string
   allItems: ContentItem[]
   onClose: () => void
   onCreated: (item: ContentItem) => void
 }) {
+  const guideline = getDayGuideline(date)
   const [title, setTitle]         = useState('')
   const [platform, setPlatform]   = useState<Platform>('linkedin')
-  const [pillar, setPillar]       = useState<Pillar | ''>('suburb')
+  const [pillar, setPillar]       = useState<Pillar | ''>(guideline?.pillar ?? 'suburb')
   const [schedDate, setSchedDate] = useState(date)
-  const [schedTime, setSchedTime] = useState('08:00')
+  const [schedTime, setSchedTime] = useState('07:30')
   const [caption, setCaption]     = useState('')
   const [error, setError]         = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
@@ -318,6 +816,18 @@ function QuickComposeModal({ date, allItems, onClose, onCreated }: {
           <h2 className="text-[var(--color-cream)] font-serif text-base">Quick Compose</h2>
           <button onClick={onClose} className="text-[var(--color-cream-x)] hover:text-[var(--color-cream)] text-xl leading-none">×</button>
         </div>
+        {guideline && (
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
+            style={{ background: 'rgba(196,145,42,0.08)', border: '1px solid rgba(196,145,42,0.25)' }}>
+            <span className="text-[9px] font-sans font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
+              style={{ background: 'rgba(196,145,42,0.2)', color: '#c4912a' }}>
+              {guideline.label}
+            </span>
+            <span className="text-[10px] font-sans" style={{ color: 'var(--color-cream-x)' }}>
+              {guideline.hint}
+            </span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
@@ -398,8 +908,10 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
   onHoverEnter?: (item: ContentItem, rect: DOMRect) => void
   onHoverLeave?: () => void
 }) {
-  const pc     = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
-  const visual = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
+  const pc       = PLATFORM_COLOUR[item.platform] ?? '#9ca3af'
+  const visual   = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
+  const postType = getPostType(item)
+  const typCol   = POST_TYPE_COLOUR[postType]
 
   return (
     <div
@@ -414,7 +926,7 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
           borderLeft: `3px solid ${pc}` }}
       >
         {item.visual_thumbnail && (
-          <div className="w-full overflow-hidden" style={{ aspectRatio: '1.91/1' }}>
+          <div className="w-full overflow-hidden" style={{ aspectRatio: '1/1' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={item.visual_thumbnail} alt=""
               className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
@@ -440,7 +952,7 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
           </div>
 
           <p className="text-[11px] font-sans font-semibold text-[var(--color-cream)] leading-tight line-clamp-2 group-hover:text-[var(--color-gold)] transition-colors">
-            {item.title}
+            {cleanTitle(item.title)}
           </p>
 
           {item.content_pillar && (
@@ -456,9 +968,15 @@ function WeekCard({ item, onHoverEnter, onHoverLeave }: {
             </p>
           )}
 
-          <div className="flex items-center gap-1 pt-0.5 border-t border-[rgba(255,255,255,0.05)]">
-            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: visual.colour }} />
-            <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
+          <div className="flex items-center justify-between gap-1 pt-0.5 border-t border-[rgba(255,255,255,0.05)]">
+            <div className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: visual.colour }} />
+              <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{visual.label}</span>
+            </div>
+            <span className="text-[8px] font-sans font-bold uppercase tracking-wide px-1 py-0.5 rounded flex-shrink-0"
+              style={{ color: typCol, background: `${typCol}22` }}>
+              {postType}
+            </span>
           </div>
         </div>
       </Link>
@@ -643,26 +1161,45 @@ function MonthCard({ item, onHoverEnter, onHoverLeave, selectMode, selected, onS
     )
   }
 
-  const ds = getDisplayStatus(item)
+  const ds       = getDisplayStatus(item)
+  const postType = getPostType(item)
+  const typCol   = POST_TYPE_COLOUR[postType]
 
+  const visual   = VISUAL_DOT[item.visual_status] ?? VISUAL_DOT.needed
   const inner = (
     <>
       {item.visual_thumbnail ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={item.visual_thumbnail} alt="" className="w-full object-cover flex-shrink-0"
-          style={{ aspectRatio: '1.91/1' }} />
+        <div className="relative w-full flex-shrink-0" style={{ aspectRatio: '1/1' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={item.visual_thumbnail} alt="" className="w-full h-full object-cover" />
+          {/* Status dot overlay */}
+          <span className="absolute top-1 right-1 w-2 h-2 rounded-full border border-[rgba(0,0,0,0.4)]"
+            style={{ background: STATUS_COLOUR[item.status as Status] }} title={item.status} />
+          {/* Visual status dot */}
+          <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full"
+            style={{ background: visual.colour }} title={visual.label} />
+        </div>
       ) : (
-        <div className="w-full flex items-center justify-center flex-shrink-0 py-1.5"
+        <div className="relative w-full flex items-center justify-center flex-shrink-0 py-1.5"
           style={{ background: `${pc}18` }}>
           <span className="w-4 h-4 rounded text-[8px] font-bold flex items-center justify-center"
             style={{ background: pc, color: '#fff' }}>
             {PLATFORM_ICON[item.platform] ?? '?'}
           </span>
+          {/* Status dot (no thumbnail state) */}
+          <span className="absolute top-1 right-1 w-2 h-2 rounded-full border border-[rgba(0,0,0,0.2)]"
+            style={{ background: STATUS_COLOUR[item.status as Status] }} title={item.status} />
         </div>
       )}
-      <div className="px-1.5 py-1">
+      <div className="px-1.5 pt-1 pb-0.5">
         <span className="text-[10px] font-sans font-medium leading-snug line-clamp-2" style={{ color: DS_COLOUR[ds] }}>
-          {item.title}
+          {cleanTitle(item.title)}
+        </span>
+      </div>
+      <div className="px-1.5 pb-1">
+        <span className="text-[8px] font-sans font-bold uppercase tracking-wide px-1 py-0.5 rounded"
+          style={{ color: typCol, background: `${typCol}22` }}>
+          {postType}
         </span>
       </div>
       {selectMode && (
@@ -705,13 +1242,14 @@ function MonthCard({ item, onHoverEnter, onHoverLeave, selectMode, selected, onS
   )
 }
 
-function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave, selectMode, selectedIds, onSelect }: {
+function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave, selectMode, selectedIds, onSelect, onCompose }: {
   items: ContentItem[]; year: number; month: number; today: string
   onHoverEnter?: (item: ContentItem, rect: DOMRect) => void
   onHoverLeave?: () => void
   selectMode?: boolean
   selectedIds?: Set<string>
   onSelect?: (id: string) => void
+  onCompose?: (date: string) => void
 }) {
   const byDate: Record<string, ContentItem[]> = {}
   for (const item of items) {
@@ -719,11 +1257,7 @@ function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave, sele
     if (!byDate[item.scheduled_date]) byDate[item.scheduled_date] = []
     byDate[item.scheduled_date].push(item)
   }
-  // Only show weeks that contain at least one day >= today
-  const allWeeks = getMonthGrid(year, month)
-  const weeks = allWeeks.filter(week =>
-    week.some(d => d.toLocaleDateString('en-CA') >= today)
-  )
+  const weeks = getMonthGrid(year, month)
   const DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
   return (
@@ -741,26 +1275,37 @@ function MonthView({ items, year, month, today, onHoverEnter, onHoverLeave, sele
             const isToday     = dateStr === today
             const isPast      = dateStr < today
 
-            // Past days in the current-week row: render as empty invisible cell
-            if (isPast) {
-              return <div key={di} className="border-r border-[var(--color-border-w)] last:border-r-0" />
-            }
-
             const dayItems = (byDate[dateStr] ?? []).sort(
               (a, b) => (a.scheduled_time ?? '').localeCompare(b.scheduled_time ?? ''),
             )
-            const cellBg = isToday ? 'rgba(196,145,42,0.1)' : 'transparent'
+            const cellBg = isToday
+              ? 'rgba(196,145,42,0.1)'
+              : isPast
+                ? 'rgba(0,0,0,0.18)'
+                : 'transparent'
             return (
               <div key={di}
                 className={`min-h-[120px] p-2 border-r border-[var(--color-border-w)] last:border-r-0 transition-colors ${!isThisMonth ? 'opacity-40' : ''}`}
-                style={{ background: cellBg }}>
-                <div className="flex items-center justify-between mb-1.5">
+                style={{ background: cellBg, opacity: isPast && isThisMonth ? 0.55 : undefined }}>
+                <div className="flex items-center justify-between mb-1.5 group/cell">
                   <span className={`text-[11px] font-sans w-6 h-6 flex items-center justify-center rounded-full ${
                     isToday ? 'bg-[var(--color-gold)] text-[var(--color-bg)] font-bold' : 'text-[var(--color-cream-dim)]'
                   }`}>{date.getDate()}</span>
-                  {dayItems.length > 3 && (
-                    <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{dayItems.length}</span>
-                  )}
+                  <div className="flex items-center gap-1">
+                    {dayItems.length > 3 && (
+                      <span className="text-[9px] font-sans text-[var(--color-cream-x)]">{dayItems.length}</span>
+                    )}
+                    {onCompose && !selectMode && (
+                      <button
+                        onClick={() => onCompose(dateStr)}
+                        className="w-5 h-5 rounded flex items-center justify-center opacity-0 group-hover/cell:opacity-100 transition-opacity"
+                        style={{ color: 'var(--color-gold)', border: '1px solid rgba(196,145,42,0.4)', background: 'rgba(196,145,42,0.08)' }}
+                        title="Add post"
+                      >
+                        <span className="text-[11px] leading-none">+</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   {dayItems.slice(0, 3).map(item => (
@@ -833,11 +1378,67 @@ export default function CalendarClient({
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
   )
 
-  // Hover
+  // Hover — with delay so mouse can travel from card to preview without it closing
   const [hovered, setHovered] = useState<{ item: ContentItem; rect: DOMRect } | null>(null)
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Compose
+  function handleCardHoverEnter(item: ContentItem, rect: DOMRect) {
+    if (hideTimerRef.current) { clearTimeout(hideTimerRef.current); hideTimerRef.current = null }
+    setHovered({ item, rect })
+  }
+  function handleCardHoverLeave() {
+    hideTimerRef.current = setTimeout(() => { setHovered(null) }, 400)
+  }
+  function handlePreviewEnter() {
+    if (hideTimerRef.current) { clearTimeout(hideTimerRef.current); hideTimerRef.current = null }
+  }
+  function handlePreviewLeave() {
+    setHovered(null)
+  }
+
+  async function handleRegenerate(id: string, mode: 'primary' | 'alternate'): Promise<string | null> {
+    const newUrl = await regenerateVisual(id, mode)
+    if (newUrl) {
+      setLocalItems(prev => prev.map(i =>
+        i.id === id ? { ...i, visual_thumbnail: newUrl, visual_status: 'approved' } : i
+      ))
+    }
+    return newUrl
+  }
+
+  async function handleStatusChange(id: string, newStatus: Status): Promise<void> {
+    setLocalItems(prev => prev.map(i => i.id === id ? { ...i, status: newStatus } : i))
+    await updateItemStatus(id, newStatus)
+  }
+
+  async function handleSwap(
+    currentId: string,
+    incomingId: string,
+    date: string,
+    incoming: ContentItem,
+  ): Promise<void> {
+    await swapPost(currentId, incomingId, date)
+    // Update local state: unschedule current, schedule incoming
+    setLocalItems(prev => prev.map(i => {
+      if (i.id === currentId) return { ...i, scheduled_date: null, status: 'ready' as Status }
+      if (i.id === incomingId) return { ...i, scheduled_date: date, status: 'scheduled' as Status }
+      return i
+    }))
+    setHovered(null)
+    // If the incoming post has no visual, generate one now
+    if (!incoming.visual_thumbnail) {
+      const newUrl = await regenerateVisual(incomingId, 'primary').catch(() => null)
+      if (newUrl) {
+        setLocalItems(prev => prev.map(i =>
+          i.id === incomingId ? { ...i, visual_thumbnail: newUrl, visual_status: 'approved' } : i
+        ))
+      }
+    }
+  }
+
+  // Compose — week view "+" opens quick compose; month view "+" opens smart modal
   const [composingDate, setComposingDate] = useState<string | null>(null)
+  const [smartDate,     setSmartDate]     = useState<string | null>(null)
 
   // Derived
   const weekDays = getWeekDays(weekAnchor)
@@ -1067,8 +1668,8 @@ export default function CalendarClient({
               </p>
               <WeekView
                 items={filtered} weekDays={thisWeekDays} today={today}
-                onHoverEnter={(item, rect) => setHovered({ item, rect })}
-                onHoverLeave={() => setHovered(null)}
+                onHoverEnter={handleCardHoverEnter}
+                onHoverLeave={handleCardHoverLeave}
                 onCompose={setComposingDate}
               />
             </div>
@@ -1078,8 +1679,8 @@ export default function CalendarClient({
               </p>
               <WeekView
                 items={filtered} weekDays={nextWeekDays} today={today}
-                onHoverEnter={(item, rect) => setHovered({ item, rect })}
-                onHoverLeave={() => setHovered(null)}
+                onHoverEnter={handleCardHoverEnter}
+                onHoverLeave={handleCardHoverLeave}
                 onCompose={setComposingDate}
               />
             </div>
@@ -1087,16 +1688,17 @@ export default function CalendarClient({
         ) : view === 'week' ? (
           <WeekView
             items={filtered} weekDays={weekDays} today={today}
-            onHoverEnter={(item, rect) => setHovered({ item, rect })}
-            onHoverLeave={() => setHovered(null)}
+            onHoverEnter={handleCardHoverEnter}
+            onHoverLeave={handleCardHoverLeave}
             onCompose={setComposingDate}
           />
         ) : (
           <MonthView
             items={filtered} year={monthYear} month={monthIdx} today={today}
-            onHoverEnter={selectMode ? undefined : (item, rect) => setHovered({ item, rect })}
-            onHoverLeave={selectMode ? undefined : () => setHovered(null)}
+            onHoverEnter={selectMode ? undefined : handleCardHoverEnter}
+            onHoverLeave={selectMode ? undefined : handleCardHoverLeave}
             selectMode={selectMode} selectedIds={selectedIds} onSelect={toggleSelect}
+            onCompose={selectMode ? undefined : setSmartDate}
           />
         )}
 
@@ -1125,27 +1727,6 @@ export default function CalendarClient({
           </div>
         )}
 
-        {/* ── Legend ── */}
-        <div className="flex flex-wrap items-center gap-4 pt-3 border-t border-[var(--color-border-w)]">
-          <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-sm" style={{ background: '#0a66c2' }} />
-            <span className="text-[10px] font-sans text-[var(--color-cream-x)]">LinkedIn</span>
-          </div>
-          <div className="w-px h-3 bg-[var(--color-border-w)]" />
-          {Object.entries(VISUAL_DOT).map(([k, v]) => (
-            <div key={k} className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ background: v.colour }} />
-              <span className="text-[10px] font-sans text-[var(--color-cream-x)]">{v.label}</span>
-            </div>
-          ))}
-          <div className="w-px h-3 bg-[var(--color-border-w)]" />
-          {Object.entries(DS_COLOUR).map(([k, c]) => (
-            <div key={k} className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ background: c }} />
-              <span className="text-[10px] font-sans text-[var(--color-cream-x)]">{DS_LABEL[k]}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── DnD ghost ── */}
@@ -1159,16 +1740,40 @@ export default function CalendarClient({
 
       {/* ── Hover preview ── */}
       {hovered && !draggingId && (
-        <HoverPreview item={hovered.item} rect={hovered.rect} />
+        <HoverPreview
+          item={hovered.item}
+          rect={hovered.rect}
+          onRegenerate={handleRegenerate}
+          onSwap={handleSwap}
+          onStatusChange={handleStatusChange}
+          onMouseEnter={handlePreviewEnter}
+          onMouseLeave={handlePreviewLeave}
+        />
       )}
 
-      {/* ── Quick compose ── */}
+      {/* ── Quick compose (week view) ── */}
       {composingDate && (
         <QuickComposeModal
           date={composingDate}
           allItems={localItems}
           onClose={() => setComposingDate(null)}
           onCreated={newItem => setLocalItems(prev => [...prev, newItem])}
+        />
+      )}
+
+      {/* ── Smart day modal (month view "+") ── */}
+      {smartDate && (
+        <SmartDayModal
+          date={smartDate}
+          onClose={() => setSmartDate(null)}
+          onScheduled={item => {
+            setLocalItems(prev => {
+              const exists = prev.find(i => i.id === item.id)
+              if (exists) return prev.map(i => i.id === item.id ? item : i)
+              return [...prev, item]
+            })
+            setSmartDate(null)
+          }}
         />
       )}
     </DndContext>

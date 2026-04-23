@@ -3,7 +3,7 @@
 import { useState, useTransition, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { getContentItem, updateItem, updateStatus, deleteItem, saveReviewRequest, clearReviewRequest } from '@/lib/actions/content'
+import { getContentItem, updateItem, updateStatus, deleteItem, saveReviewRequest, clearReviewRequest, regenerateVisual } from '@/lib/actions/content'
 import { notifyAgentOfStatusChange } from '@/lib/actions/paperclip'
 import type { ContentItem, Platform, Pillar, Status } from '@/types/content'
 import StatusBadge from '@/components/dashboard/StatusBadge'
@@ -38,6 +38,9 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   const [agentNotified, setAgentNotified] = useState<string | null>(null)
   const [editingCaption, setEditingCaption] = useState(false)
   const [captionDraft, setCaptionDraft] = useState('')
+  const [generatingVisual, setGeneratingVisual] = useState(false)
+  const [visualMode, setVisualMode] = useState<'primary' | 'alternate' | null>(null)
+  const [visualError, setVisualError] = useState<string | null>(null)
 
   useEffect(() => {
     params.then(({ id }) => {
@@ -139,8 +142,11 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   function submitReview() {
     if (!reviewText.trim()) return
     startTransition(async () => {
-      await saveReviewRequest(item!.id, reviewText.trim())
-      setItem({ ...item!, visual_feedback: reviewText.trim() } as ContentItem)
+      const text = reviewText.trim()
+      await saveReviewRequest(item!.id, text)
+      // Notify the agent so it picks this up on the next run
+      await notifyAgentOfStatusChange(item!.title, 'ready', text)
+      setItem({ ...item!, visual_feedback: text } as ContentItem)
       setReviewText('')
       setReviewSent(true)
       setTimeout(() => setReviewSent(false), 3000)
@@ -152,6 +158,36 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
       await clearReviewRequest(item!.id)
       setItem({ ...item!, visual_feedback: null } as ContentItem)
     })
+  }
+
+  async function handleCreateVisual() {
+    setVisualError(null)
+    setVisualMode('primary')
+    setGeneratingVisual(true)
+    try {
+      const url = await regenerateVisual(item!.id, 'primary')
+      if (url) setItem(prev => prev ? { ...prev, visual_thumbnail: url, visual_status: 'approved' } : prev)
+    } catch (e) {
+      setVisualError(e instanceof Error ? e.message : 'Visual generation failed')
+    } finally {
+      setGeneratingVisual(false)
+      setVisualMode(null)
+    }
+  }
+
+  async function handleAlternateVisual() {
+    setVisualError(null)
+    setVisualMode('alternate')
+    setGeneratingVisual(true)
+    try {
+      const url = await regenerateVisual(item!.id, 'alternate')
+      if (url) setItem(prev => prev ? { ...prev, visual_thumbnail: url, visual_status: 'approved' } : prev)
+    } catch (e) {
+      setVisualError(e instanceof Error ? e.message : 'Visual generation failed')
+    } finally {
+      setGeneratingVisual(false)
+      setVisualMode(null)
+    }
   }
 
   return (
@@ -196,15 +232,7 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         </div>
 
         <div className="flex gap-2 shrink-0">
-          {item.canva_url && !editing && (
-            <button
-              onClick={() => window.open(item.canva_url!, '_blank', 'noreferrer')}
-              className="text-xs font-sans px-3 py-1.5 rounded-lg font-semibold transition-colors"
-              style={{ background: 'rgba(139,92,246,0.15)', color: '#a78bfa', border: '1px solid rgba(139,92,246,0.3)' }}
-            >
-              Open in Canva ↗
-            </button>
-          )}
+
           {editing ? (
             <>
               <button
@@ -235,6 +263,35 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
       {/* Visual — image preview + download */}
       {item.visual_thumbnail && (
         <VisualPanel url={item.visual_thumbnail} status={item.visual_status} title={item.title} />
+      )}
+
+      {/* Visual action buttons */}
+      {!editing && (
+        <>
+          <div className="flex gap-2">
+            <button
+              onClick={handleCreateVisual}
+              disabled={generatingVisual}
+              className="text-xs font-sans px-3 py-1.5 rounded-lg font-semibold transition-colors disabled:opacity-50"
+              style={{ background: 'rgba(196,145,42,0.15)', color: '#c4912a', border: '1px solid rgba(196,145,42,0.35)' }}
+            >
+              {generatingVisual && visualMode === 'primary' ? 'Generating...' : 'Create Visual'}
+            </button>
+            <button
+              onClick={handleAlternateVisual}
+              disabled={generatingVisual}
+              className="text-xs font-sans px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+              style={{ background: 'rgba(196,145,42,0.07)', color: '#c4912a', border: '1px solid rgba(196,145,42,0.2)' }}
+            >
+              {generatingVisual && visualMode === 'alternate' ? 'Generating...' : 'Give another option'}
+            </button>
+          </div>
+          {visualError && (
+            <p className="text-[11px] font-sans mt-1" style={{ color: '#f97316' }}>
+              {visualError}
+            </p>
+          )}
+        </>
       )}
 
       {/* Status actions */}

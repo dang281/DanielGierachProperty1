@@ -144,6 +144,7 @@ export default function PlanningClient({
   const [weekOffset,   setWeekOffset]   = useState(0)
   const [activeSlot,   setActiveSlot]   = useState<SlotKey | null>(null)
   const [pillarFilter, setPillarFilter] = useState<Pillar | null>(null)
+  const [typeFilter,   setTypeFilter]   = useState<PostCategory | null>(null)
   const [confirmed,    setConfirmed]    = useState(false)
   const [isPending,    startTransition] = useTransition()
 
@@ -196,10 +197,11 @@ export default function PlanningClient({
     deduplicatedLibrary.filter(p => {
       if (usedIds.has(p.id)) return false
       if (activeType && categorise(p) !== activeType) return false
+      if (typeFilter && categorise(p) !== typeFilter) return false
       if (pillarFilter && p.content_pillar !== pillarFilter) return false
       return true
     }),
-    [deduplicatedLibrary, usedIds, activeType, pillarFilter],
+    [deduplicatedLibrary, usedIds, activeType, typeFilter, pillarFilter],
   )
 
   const suggestions = useMemo(() => filteredLibrary.slice(0, 3), [filteredLibrary])
@@ -434,7 +436,7 @@ export default function PlanningClient({
               <p className="text-[10px] font-sans mt-0.5" style={{ color: 'var(--color-cream-x)' }}>
                 {activeSlot
                   ? `${SLOT_CONFIG[activeSlot].day} · ${SLOT_CONFIG[activeSlot].typeLabel}`
-                  : `${deduplicatedLibrary.length} posts available`
+                  : `${filteredLibrary.length}${typeFilter ? '' : ` of ${deduplicatedLibrary.length}`} posts`
                 }
               </p>
             </div>
@@ -448,21 +450,44 @@ export default function PlanningClient({
             )}
           </div>
 
-          <div className="flex flex-wrap gap-1">
-            <FilterChip active={!pillarFilter} color="var(--color-cream-dim)" onClick={() => setPillarFilter(null)}>
-              All
-            </FilterChip>
-            {PILLARS.map(p => (
-              <FilterChip
-                key={p.value}
-                active={pillarFilter === p.value}
-                color={p.color}
-                onClick={() => setPillarFilter(f => f === p.value ? null : p.value)}
+          {/* Type tabs */}
+          <div className="flex rounded-lg overflow-hidden border" style={{ borderColor: 'var(--color-border-w)' }}>
+            {([
+              { value: null,          label: 'All',       color: 'var(--color-cream-dim)' },
+              { value: 'authority',   label: 'Market',    color: '#10b981' },
+              { value: 'poll',        label: 'Poll',      color: '#8b5cf6' },
+              { value: 'field-guide', label: 'Article',   color: '#f59e0b' },
+            ] as { value: PostCategory | null; label: string; color: string }[]).map((t, i) => (
+              <button
+                key={t.label}
+                onClick={() => { setTypeFilter(t.value); setPillarFilter(null) }}
+                className="flex-1 py-1.5 text-[10px] font-sans font-semibold transition-all"
+                style={{
+                  borderLeft: i > 0 ? '1px solid var(--color-border-w)' : undefined,
+                  background: typeFilter === t.value ? `${t.color}22` : 'transparent',
+                  color: typeFilter === t.value ? t.color : 'var(--color-cream-x)',
+                }}
               >
-                {p.label}
-              </FilterChip>
+                {t.label}
+              </button>
             ))}
           </div>
+
+          {/* Pillar chips — hidden when a slot is active (slot type overrides) */}
+          {!activeSlot && !typeFilter && (
+            <div className="flex flex-wrap gap-1">
+              {PILLARS.map(p => (
+                <FilterChip
+                  key={p.value}
+                  active={pillarFilter === p.value}
+                  color={p.color}
+                  onClick={() => setPillarFilter(f => f === p.value ? null : p.value)}
+                >
+                  {p.label}
+                </FilterChip>
+              ))}
+            </div>
+          )}
 
           <div className="overflow-y-auto flex flex-col gap-2" style={{ maxHeight: 'calc(100vh - 240px)' }}>
             {filteredLibrary.length === 0 ? (

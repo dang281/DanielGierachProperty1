@@ -11,7 +11,7 @@
   *{margin:0;padding:0;box-sizing:border-box;}
 
   body{
-    background:#111;
+    background:#0a0806;
     display:flex;align-items:center;justify-content:center;
     min-height:100vh;
     font-family:'Manrope',sans-serif;
@@ -29,13 +29,13 @@
   .s1{
     position:absolute;inset:0;
     display:flex;flex-direction:column;
-    opacity:1;transition:opacity 0.55s ease;
+    opacity:1;transition:opacity 0.7s ease-in-out;
   }
   .s1.out{opacity:0;pointer-events:none;}
 
   .s1-bg{
     position:absolute;inset:0;z-index:0;
-    background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&fm=webp') center/cover no-repeat;
+    background:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80&fm=webp') center/cover no-repeat;
     filter:brightness(0.3) grayscale(8%);
   }
   .s1-overlay{
@@ -160,10 +160,9 @@
     position:absolute;inset:0;background:#0a0806;
     display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
     padding-top:155px;gap:18px;
-    opacity:0;pointer-events:none;transition:opacity 0.4s ease;
+    opacity:0;pointer-events:none;transition:opacity 0.45s ease-in-out;
   }
   .s2.in{opacity:1;}
-  .s2.out{opacity:0;}
   .s2-addr{
     font-family:'Noto Serif',serif;font-size:0.98rem;
     color:#f0ece4;text-align:center;padding:0 40px;font-style:italic;
@@ -184,7 +183,7 @@
   ══════════════════════════ */
   .s3{
     position:absolute;inset:0;background:#f2efe9;
-    overflow-y:hidden;opacity:0;pointer-events:none;transition:opacity 0.5s ease;
+    overflow-y:hidden;opacity:0;pointer-events:none;transition:opacity 0.7s ease-in-out;
   }
   .s3.in{opacity:1;pointer-events:auto;}
 
@@ -215,7 +214,7 @@
   .est-mid{font-size:0.68rem;color:rgba(240,236,228,0.55);margin-top:4px;filter:blur(5px);}
   .est-mid strong{color:#f5d07a;}
   .bar-track{height:5px;background:rgba(240,236,228,0.1);border-radius:3px;overflow:hidden;margin-top:12px;}
-  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,#c4912a,#f5d07a);border-radius:3px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+  .bar-fill{height:100%;width:100%;background:linear-gradient(90deg,#c4912a,#f5d07a);border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.4,0,.2,1);}
   .bar-labels{display:flex;justify-content:space-between;margin-top:5px;}
   .bar-lbl{font-size:0.5rem;color:rgba(240,236,228,0.35);}
 
@@ -278,7 +277,7 @@
       </div>
 
       <h1 class="h1">Curious what your<br/><em>home could sell for?</em></h1>
-      <p class="sub">Most homeowners underestimate what their property is worth. Find out where yours really sits for free.</p>
+      <p class="sub">Most homeowners underestimate what their property is worth. Find out where yours really sits.</p>
 
       <div class="input-block">
         <!-- Text field -->
@@ -294,23 +293,23 @@
           <div class="dd-item" id="dd0">
             <svg class="dd-pin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div>
-              <div class="dd-main">5 Collingwood Road</div>
-              <div class="dd-sub">Murarrie QLD 4172</div>
+              <div class="dd-main">8 Bunya Street</div>
+              <div class="dd-sub">Seven Hills QLD 4170</div>
             </div>
             <div class="dd-badge">Best match</div>
           </div>
           <div class="dd-item" id="dd1">
             <svg class="dd-pin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div>
-              <div class="dd-main">5 Collingwood Street</div>
-              <div class="dd-sub">Hemmant QLD 4174</div>
+              <div class="dd-main">8 Bunya Road</div>
+              <div class="dd-sub">Morningside QLD 4170</div>
             </div>
           </div>
           <div class="dd-item" id="dd2">
             <svg class="dd-pin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div>
-              <div class="dd-main">5 Collingwood Court</div>
-              <div class="dd-sub">Tingalpa QLD 4173</div>
+              <div class="dd-main">8 Bunya Court</div>
+              <div class="dd-sub">Norman Park QLD 4170</div>
             </div>
           </div>
         </div>
@@ -322,7 +321,7 @@
         </button>
       </div>
 
-      <p class="note">Free · You'll get an indicative value range based on recent comparable sales in your area.</p>
+      <p class="note">You'll get an indicative value range based on recent comparable sales in your area.</p>
 
 
     </div>
@@ -343,28 +342,28 @@
     </div>
     <div class="rpt-body">
       <div>
-        <div class="rpt-suburb">Murarrie QLD 4172</div>
-        <div class="rpt-street">5 Collingwood Road</div>
+        <div class="rpt-suburb">Seven Hills QLD 4170</div>
+        <div class="rpt-street">8 Bunya Street</div>
         <div class="rpt-date">Estimated market value · April 2026</div>
       </div>
       <div class="est-card" id="estCard">
         <div class="est-lbl">Estimated Value Range</div>
-        <div class="est-range">$1.32M – $1.55M</div>
-        <div class="est-mid">Midpoint estimate: <strong>$1,435,000</strong></div>
+        <div class="est-range">$1.68M – $2.02M</div>
+        <div class="est-mid">Midpoint estimate: <strong>$1,850,000</strong></div>
         <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
         <div class="bar-labels">
-          <span class="bar-lbl">$1.32M</span>
-          <span class="bar-lbl">$1.44M</span>
-          <span class="bar-lbl">$1.55M</span>
+          <span class="bar-lbl">$1.68M</span>
+          <span class="bar-lbl">$1.85M</span>
+          <span class="bar-lbl">$2.02M</span>
         </div>
       </div>
       <div class="section-hd" id="compHd">Comparable Sales</div>
       <div class="comps" id="comps">
-        <div class="comp-col"><div class="comp-val">$880K</div><div class="comp-bar" style="--h:52px;background:#1c1917;"></div><div class="comp-addr">2 Murarrie Rd</div></div>
-        <div class="comp-col"><div class="comp-val">$960K</div><div class="comp-bar" style="--h:68px;background:#c4912a;"></div><div class="comp-addr">14 Tingal Rd</div></div>
-        <div class="comp-col"><div class="comp-val">$905K</div><div class="comp-bar" style="--h:58px;background:#1c1917;"></div><div class="comp-addr">8 Holdom St</div></div>
-        <div class="comp-col"><div class="comp-val">$1.01M</div><div class="comp-bar" style="--h:76px;background:#c4912a;"></div><div class="comp-addr">31 Creek Rd</div></div>
-        <div class="comp-col"><div class="comp-val">$845K</div><div class="comp-bar" style="--h:44px;background:#1c1917;"></div><div class="comp-addr">6 Grass Tree Ct</div></div>
+        <div class="comp-col"><div class="comp-val">$1.18M</div><div class="comp-bar" style="--h:48px;background:#1c1917;"></div><div class="comp-addr">3 Bunya St</div></div>
+        <div class="comp-col"><div class="comp-val">$1.31M</div><div class="comp-bar" style="--h:68px;background:#c4912a;"></div><div class="comp-addr">11 Pandanus St</div></div>
+        <div class="comp-col"><div class="comp-val">$1.24M</div><div class="comp-bar" style="--h:58px;background:#1c1917;"></div><div class="comp-addr">6 Kauri Ct</div></div>
+        <div class="comp-col"><div class="comp-val">$1.38M</div><div class="comp-bar" style="--h:76px;background:#c4912a;"></div><div class="comp-addr">19 Hoop Pine St</div></div>
+        <div class="comp-col"><div class="comp-val">$1.12M</div><div class="comp-bar" style="--h:42px;background:#1c1917;"></div><div class="comp-addr">27 Gum Tree Rd</div></div>
       </div>
       <div class="stats" id="stats">
         <div class="stat-box"><div class="stat-v">24<span> days</span></div><div class="stat-l">Avg. on Market</div></div>
@@ -457,7 +456,7 @@
       const url = URL.createObjectURL(blob);
       wrap.style.display = '';
       btn.style.display = 'none';
-      status.innerHTML = `Recording complete! <a href="${url}" download="daniel-gierach-property-ad-murarrie.${ext}" style="color:#f5d07a;font-weight:700;text-decoration:underline;">Click here to save the video</a>`;
+      status.innerHTML = `Recording complete! <a href="${url}" download="daniel-gierach-property-ad-seven-hills.${ext}" style="color:#f5d07a;font-weight:700;text-decoration:underline;">Click here to save the video</a>`;
       status.style.fontSize = '0.72rem';
     };
 
@@ -466,8 +465,8 @@
     setTimeout(() => { if (recorder.state === 'recording') recorder.stop(); }, LOOP_MS);
   }
 
-  const PARTIAL   = '5 Collingwood';
-  const FULL      = '5 Collingwood Road, Murarrie';
+  const PARTIAL   = '8 Bunya';
+  const FULL      = '8 Bunya Street, Seven Hills';
 
   const s1       = document.getElementById('s1');
   const s2       = document.getElementById('s2');
@@ -489,16 +488,17 @@
 
   const wait = ms => new Promise(r => setTimeout(r, ms));
 
-  async function typeText(str, speed = 55) {
+  // Tighter random variation: ±5ms instead of ±12ms for smoother typing feel
+  async function typeText(str, speed = 42) {
     for (let i = 0; i < str.length; i++) {
       typedEl.textContent = str.slice(0, i + 1);
-      await wait(speed + Math.random() * 25 - 12);
+      await wait(speed + Math.random() * 10 - 5);
     }
   }
 
   function resetReport() {
     estCard.classList.remove('show');
-    barFill.style.width = '0';
+    barFill.style.transform = 'scaleX(0)';
     compHd.classList.remove('show');
     comps.classList.remove('show');
     comps.querySelectorAll('.comp-bar').forEach(b => b.classList.remove('grow'));
@@ -510,7 +510,7 @@
     await wait(150);
     estCard.classList.add('show');
     await wait(350);
-    barFill.style.width = '68%';
+    barFill.style.transform = 'scaleX(0.68)';
     await wait(500);
     compHd.classList.add('show');
     comps.classList.add('show');
@@ -529,7 +529,7 @@
     caretEl.style.display = 'none';
     goBtn.classList.remove('clicked');
     s1.classList.remove('out');
-    s2.classList.remove('in', 'out');
+    s2.classList.remove('in');
     s3.classList.remove('in');
     dropdown.classList.remove('open');
     fieldRow.classList.remove('dropdown-open');
@@ -542,13 +542,13 @@
     if (gen === undefined) gen = animGeneration;
     const alive = () => gen === animGeneration;
 
-    // Hold on the form at rest for 1s so viewers can read the headline before typing starts
+    // Hold on the form so viewers can read the headline before typing starts
     await wait(1000); if (!alive()) return;
 
     phEl.style.display = 'none';
     caretEl.style.display = 'inline-block';
     await wait(400); if (!alive()) return;
-    await typeText(PARTIAL, 38); if (!alive()) return;
+    await typeText(PARTIAL, 42); if (!alive()) return;
 
     await wait(200); if (!alive()) return;
     fieldRow.classList.add('dropdown-open');
@@ -568,31 +568,33 @@
     goBtn.classList.add('clicked');
     await wait(200); if (!alive()) return;
 
+    // Crossfade S1 → S2: both transitions fire simultaneously, no dark gap
     s2addr.textContent = '"' + FULL + '"';
     s1.classList.add('out');
-    await wait(250); if (!alive()) return;
     s2.classList.add('in');
-    await wait(600); if (!alive()) return;
+    await wait(550); if (!alive()) return;
 
-    s2.classList.add('out');
-    await wait(200); if (!alive()) return;
-    s2.classList.remove('in','out');
+    // Crossfade S2 → S3: S3 fades IN over S2, then S2 is removed (covered, invisible)
     s3.classList.add('in');
     animateReport();
+    await wait(700); if (!alive()) return;
+    s2.classList.remove('in');             // S3 covers it — no visible change
 
-    await wait(6800); if (!alive()) return;
+    // Hold on report screen
+    await wait(6300); if (!alive()) return;
 
+    // Crossfade S3 → S1: both transitions fire simultaneously, no dark gap
+    s1.classList.remove('out');
     s3.classList.remove('in');
-    await wait(450); if (!alive()) return;
+    await wait(700); if (!alive()) return;  // wait for both crossfades to complete
     resetReport();
 
     typedEl.textContent = '';
     phEl.style.display = '';
     caretEl.style.display = 'none';
     goBtn.classList.remove('clicked');
-    s1.classList.remove('out');
 
-    await wait(600); if (!alive()) return;
+    await wait(300); if (!alive()) return;
     run(gen);
   }
 

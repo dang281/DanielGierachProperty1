@@ -82,7 +82,7 @@ export async function notifyAgentOfStatusChange(
   ].join('')
 
   try {
-    const res = await fetch(`${API}/api/issues`, {
+    const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -90,12 +90,108 @@ export async function notifyAgentOfStatusChange(
         body,
         assigneeId: SOCIAL_AGENT_ID,
         status:     'todo',
-        priority:   newStatus === 'rejected' ? 'high' : 'medium',
+        priority:   'high',
       }),
     })
     return res.ok
   } catch {
     return false
+  }
+}
+
+export async function sendChangeRequestToAgent(
+  postId: string,
+  postTitle: string,
+  feedback: string,
+): Promise<{ success: boolean; identifier?: string }> {
+  const body = [
+    `Daniel has requested changes to: "${postTitle}"`,
+    `\nChange request: ${feedback.trim()}`,
+    `\nAction required: open the post in the dashboard at /app/content/${postId}, read the full change request, and amend the post accordingly. Reply in this issue when done.`,
+  ].join('')
+
+  try {
+    const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title:      `Change request: "${postTitle}"`,
+        body,
+        assigneeId: SOCIAL_AGENT_ID,
+        status:     'todo',
+        priority:   'high',
+      }),
+    })
+    if (!res.ok) return { success: false }
+    const data = await res.json()
+    return { success: true, identifier: data.identifier }
+  } catch {
+    return { success: false }
+  }
+}
+
+export async function requestFactCheck(
+  postId: string,
+  postTitle: string,
+): Promise<{ success: boolean; identifier?: string }> {
+  const body = [
+    `Daniel has requested a fact-check on: "${postTitle}"`,
+    `\nAction required: open the post at /app/content/${postId}, re-verify all statistics, claims, dates, and time-sensitive information in the caption and notes.`,
+    `\nIf any stats have changed: update the caption and add a ⚠️ VERIFY note so Daniel can re-approve. Set Status back to "Ready for Review" when done.`,
+    `\nIf everything checks out: add a brief confirmation note and leave Status as-is.`,
+  ].join('')
+
+  try {
+    const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title:      `Fact-check requested: "${postTitle}"`,
+        body,
+        assigneeId: SOCIAL_AGENT_ID,
+        status:     'todo',
+        priority:   'high',
+      }),
+    })
+    if (!res.ok) return { success: false }
+    const data = await res.json()
+    return { success: true, identifier: data.identifier }
+  } catch {
+    return { success: false }
+  }
+}
+
+export async function requestNewPostForDate(
+  dateStr: string,
+  postTypeLabel: string,
+): Promise<{ success: boolean; identifier?: string }> {
+  const dow = new Date(dateStr + 'T12:00:00').getDay()
+  const dayName = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dow]
+  const body = [
+    `Daniel has requested a new ${postTypeLabel} post for ${dayName} ${dateStr}.`,
+    `\nAction required: write a new LinkedIn ${postTypeLabel} post following all brand guidelines.`,
+    `\nSchedule it for ${dateStr} at 07:30.`,
+    `\nDo not reuse an existing post — this must be fresh content.`,
+    `\nMark status as "Needs Review" when done so Daniel can approve it.`,
+  ].join('')
+
+  try {
+    const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title:      `Write new ${postTypeLabel} post for ${dateStr}`,
+        body,
+        assigneeId: SOCIAL_AGENT_ID,
+        status:     'todo',
+        priority:   'high',
+      }),
+    })
+    if (!res.ok) return { success: false }
+    const data = await res.json()
+    return { success: true, identifier: data.identifier }
+  } catch {
+    return { success: false }
   }
 }
 

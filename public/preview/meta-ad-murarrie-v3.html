@@ -11,7 +11,7 @@
   *{margin:0;padding:0;box-sizing:border-box;}
 
   body{
-    background:#111;
+    background:#0a0806;
     display:flex;align-items:center;justify-content:center;
     min-height:100vh;
     font-family:'Manrope',sans-serif;
@@ -29,7 +29,7 @@
   .s1{
     position:absolute;inset:0;
     display:flex;flex-direction:column;
-    opacity:1;transition:opacity 0.55s ease;
+    opacity:1;transition:opacity 0.7s ease-in-out;
   }
   .s1.out{opacity:0;pointer-events:none;}
 
@@ -160,10 +160,9 @@
     position:absolute;inset:0;background:#0a0806;
     display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
     padding-top:155px;gap:18px;
-    opacity:0;pointer-events:none;transition:opacity 0.4s ease;
+    opacity:0;pointer-events:none;transition:opacity 0.45s ease-in-out;
   }
   .s2.in{opacity:1;}
-  .s2.out{opacity:0;}
   .s2-addr{
     font-family:'Noto Serif',serif;font-size:0.98rem;
     color:#f0ece4;text-align:center;padding:0 40px;font-style:italic;
@@ -184,7 +183,7 @@
   ══════════════════════════ */
   .s3{
     position:absolute;inset:0;background:#f2efe9;
-    overflow-y:hidden;opacity:0;pointer-events:none;transition:opacity 0.5s ease;
+    overflow-y:hidden;opacity:0;pointer-events:none;transition:opacity 0.7s ease-in-out;
   }
   .s3.in{opacity:1;pointer-events:auto;}
 
@@ -489,10 +488,11 @@
 
   const wait = ms => new Promise(r => setTimeout(r, ms));
 
-  async function typeText(str, speed = 55) {
+  // Tighter random variation: ±5ms instead of ±12ms for smoother typing feel
+  async function typeText(str, speed = 42) {
     for (let i = 0; i < str.length; i++) {
       typedEl.textContent = str.slice(0, i + 1);
-      await wait(speed + Math.random() * 25 - 12);
+      await wait(speed + Math.random() * 10 - 5);
     }
   }
 
@@ -529,7 +529,7 @@
     caretEl.style.display = 'none';
     goBtn.classList.remove('clicked');
     s1.classList.remove('out');
-    s2.classList.remove('in', 'out');
+    s2.classList.remove('in');
     s3.classList.remove('in');
     dropdown.classList.remove('open');
     fieldRow.classList.remove('dropdown-open');
@@ -542,13 +542,13 @@
     if (gen === undefined) gen = animGeneration;
     const alive = () => gen === animGeneration;
 
-    // Hold on the form at rest for 1s so viewers can read the headline before typing starts
+    // Hold on the form so viewers can read the headline before typing starts
     await wait(1000); if (!alive()) return;
 
     phEl.style.display = 'none';
     caretEl.style.display = 'inline-block';
     await wait(400); if (!alive()) return;
-    await typeText(PARTIAL, 38); if (!alive()) return;
+    await typeText(PARTIAL, 42); if (!alive()) return;
 
     await wait(200); if (!alive()) return;
     fieldRow.classList.add('dropdown-open');
@@ -568,31 +568,33 @@
     goBtn.classList.add('clicked');
     await wait(200); if (!alive()) return;
 
+    // Crossfade S1 → S2: both transitions fire simultaneously, no dark gap
     s2addr.textContent = '"' + FULL + '"';
     s1.classList.add('out');
-    await wait(250); if (!alive()) return;
     s2.classList.add('in');
-    await wait(600); if (!alive()) return;
+    await wait(550); if (!alive()) return;
 
-    s2.classList.add('out');
-    await wait(200); if (!alive()) return;
-    s2.classList.remove('in','out');
+    // Crossfade S2 → S3: S3 fades IN over S2, then S2 is removed (covered, invisible)
     s3.classList.add('in');
     animateReport();
+    await wait(700); if (!alive()) return;
+    s2.classList.remove('in');             // S3 covers it — no visible change
 
-    await wait(6800); if (!alive()) return;
+    // Hold on report screen
+    await wait(6300); if (!alive()) return;
 
+    // Crossfade S3 → S1: both transitions fire simultaneously, no dark gap
+    s1.classList.remove('out');
     s3.classList.remove('in');
-    await wait(450); if (!alive()) return;
+    await wait(700); if (!alive()) return;  // wait for both crossfades to complete
     resetReport();
 
     typedEl.textContent = '';
     phEl.style.display = '';
     caretEl.style.display = 'none';
     goBtn.classList.remove('clicked');
-    s1.classList.remove('out');
 
-    await wait(600); if (!alive()) return;
+    await wait(300); if (!alive()) return;
     run(gen);
   }
 

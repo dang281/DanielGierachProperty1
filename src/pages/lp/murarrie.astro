@@ -48,7 +48,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
   .lp-sub { font-size: 0.95rem; color: rgba(240,236,228,0.70); line-height: 1.75; max-width: 44ch; margin-bottom: 1.5rem; }
 
-  /* Form — inline, matches homepage hero */
+  /* Form: inline, matches homepage hero */
   .lp-form-inline { display: flex; gap: 0; max-width: 540px; }
   .lp-input {
     flex: 1; min-width: 0;
@@ -151,15 +151,6 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   .lp-footer p { font-size: 0.58rem; color: rgba(242,239,233,0.22); letter-spacing: 0.06em; line-height: 2; }
   .lp-footer a { color: rgba(242,239,233,0.35); text-decoration: none; }
 
-  /* ── Mobile sticky bar ── */
-  .lp-sticky {
-    display: none;
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-    background: #c5a03c; padding: 0.95rem 1.25rem;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
-  }
-  .lp-sticky a { display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #0a0806; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
-
   /* ── Mobile ── */
   @media (max-width: 640px) {
     .lp-bar { padding: 0.85rem 1.25rem; height: 60px; }
@@ -189,8 +180,6 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     .lp-report-items { grid-template-columns: 1fr; }
     .lp-daniel-inner { flex-direction: column; gap: 1.5rem; }
     .lp-call-btn { width: 100%; justify-content: center; min-height: 54px; font-size: 0.75rem; }
-    .lp-sticky { display: block; }
-    .lp-sticky a { min-height: 54px; font-size: 0.78rem; }
   }
 </style>
 
@@ -236,7 +225,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
-      <p class="lp-trust">Free &nbsp;·&nbsp; You'll get an indicative value range based on recent comparable sales in your street.</p>
+      <p class="lp-trust">Free &nbsp;·&nbsp; You'll get an indicative value range based on recent comparable sales in your area.</p>
     </div>
   </div>
 </section>
@@ -249,14 +238,6 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">danielgierach.com</a>
   </p>
 </footer>
-
-<!-- Mobile sticky CTA -->
-<div class="lp-sticky">
-  <a href="#lpAddress" onclick="document.getElementById('lpAddress').focus();return false;">
-    Get My Free Valuation
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
 
 <script is:inline>
   window.initMapsAutocomplete = function() {

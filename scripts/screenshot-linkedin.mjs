@@ -107,6 +107,7 @@ const FONT_URL_COVER    = 'https://fonts.googleapis.com/css2?family=Fraunces:ita
 
 function esc(s) {
   return String(s)
+    .replace(/\u2014/g,'')   // strip em-dashes
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
@@ -114,6 +115,18 @@ function esc(s) {
 // ── Market/Authority template — 1080×1080 ────────────────────────────────────
 function buildMarketHtml() {
   const truncBody = body.length > 230 ? body.slice(0, 227) + '…' : body;
+
+  // Optionally italicise one keyword in the headline (gold italic, same as authority template).
+  // Case-insensitive: --keyword "offers" matches "Offers" in the headline and preserves its casing.
+  let headlineHtml = esc(headline);
+  if (keyword) {
+    const escapedKw = esc(keyword);
+    headlineHtml = headlineHtml.replace(
+      new RegExp(`\\b${escapedKw}\\b`, 'i'),
+      m => `<em style="color:${GOLD_WARM};font-style:italic;">${m}</em>`
+    );
+  }
+
   return `<!DOCTYPE html><html><head>
 <meta charset="UTF-8"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -121,30 +134,34 @@ function buildMarketHtml() {
 <link href="${FONT_URL_STANDARD}" rel="stylesheet"/>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:1080px;height:1080px;overflow:hidden;background:${CHARCOAL};}
+  html,body{
+    width:1080px;height:1080px;overflow:hidden;
+    background-color:${CHARCOAL};
+    background-image:
+      repeating-linear-gradient(-45deg,transparent 0px,transparent 28px,rgba(240,236,228,0.045) 28px,rgba(240,236,228,0.045) 29px),
+      radial-gradient(ellipse 80% 60% at 8% 4%,rgba(196,145,42,0.11) 0%,transparent 70%);
+  }
   body{font-family:'Manrope',sans-serif;display:flex;flex-direction:column;}
   .top-rule{height:5px;flex-shrink:0;background:linear-gradient(90deg,${GOLD} 0%,rgba(196,145,42,0.2) 100%);}
   .main{flex:1;padding:72px 88px 60px;display:flex;flex-direction:column;justify-content:space-between;min-height:0;}
   .upper{display:flex;flex-direction:column;gap:44px;}
-  .eyebrow{display:flex;align-items:center;gap:14px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.24em;text-transform:uppercase;color:${GOLD};}
+  .eyebrow{display:flex;align-items:center;gap:14px;font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;letter-spacing:0.24em;text-transform:uppercase;color:${GOLD};}
   .eyebrow-line{width:32px;height:1.5px;background:${GOLD};flex-shrink:0;}
   .headline{font-family:'Noto Serif',serif;font-size:60px;font-weight:400;line-height:1.1;color:${CREAM};letter-spacing:-0.015em;max-width:880px;}
   .lower{display:flex;flex-direction:column;gap:32px;}
   .divider{width:56px;height:2px;background:${GOLD};}
-  .body{font-family:'Manrope',sans-serif;font-size:19px;font-weight:400;line-height:1.8;color:${CREAM_DIM};max-width:840px;}
+  .body{font-family:'Manrope',sans-serif;font-size:29px;font-weight:400;line-height:1.8;color:${CREAM_DIM};max-width:840px;}
   .footer{flex-shrink:0;border-top:1px solid rgba(196,145,42,0.18);padding:28px 88px;display:flex;align-items:center;justify-content:space-between;}
   .footer-left{display:flex;align-items:center;gap:18px;}
-  .avatar{width:50px;height:50px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:1.5px solid rgba(196,145,42,0.45);}
-  .name{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
-  .title{font-family:'Manrope',sans-serif;font-size:11.5px;font-weight:400;color:${CREAM_DIM};margin-top:3px;letter-spacing:0.02em;}
-  .url{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:${GOLD};}
+  .avatar{width:75px;height:75px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:1.5px solid rgba(196,145,42,0.45);}
+  .name{font-family:'Manrope',sans-serif;font-size:21px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
+  .title{font-family:'Manrope',sans-serif;font-size:17px;font-weight:400;color:${CREAM_DIM};margin-top:3px;letter-spacing:0.02em;}
 </style>
 </head><body>
   <div class="top-rule"></div>
   <div class="main">
     <div class="upper">
-      <div class="eyebrow"><span class="eyebrow-line"></span>${esc(label)}</div>
-      <div class="headline">${esc(headline)}</div>
+      <div class="headline">${headlineHtml}</div>
     </div>
     <div class="lower">
       <div class="divider"></div>
@@ -156,10 +173,9 @@ function buildMarketHtml() {
       <div class="avatar"></div>
       <div>
         <div class="name">Daniel Gierach</div>
-        <div class="title">Licensed Real Estate Agent · Ray White Bulimba</div>
+        <div class="title">Ray White Collective</div>
       </div>
     </div>
-    <div class="url">danielgierach.com</div>
   </div>
 </body></html>`;
 }
@@ -193,9 +209,9 @@ function buildArticleHtml() {
   .cta-url{font-family:'Manrope',sans-serif;font-size:12px;font-weight:400;color:${CREAM_DIM};margin-top:4px;letter-spacing:0.02em;}
   .footer{flex-shrink:0;border-top:1px solid rgba(196,145,42,0.18);padding:28px 88px;display:flex;align-items:center;justify-content:space-between;}
   .footer-left{display:flex;align-items:center;gap:18px;}
-  .avatar{width:50px;height:50px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:1.5px solid rgba(196,145,42,0.45);}
-  .name{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
-  .title{font-family:'Manrope',sans-serif;font-size:11.5px;font-weight:400;color:${CREAM_DIM};margin-top:3px;letter-spacing:0.02em;}
+  .avatar{width:75px;height:75px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:1.5px solid rgba(196,145,42,0.45);}
+  .name{font-family:'Manrope',sans-serif;font-size:21px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
+  .title{font-family:'Manrope',sans-serif;font-size:17px;font-weight:400;color:${CREAM_DIM};margin-top:3px;letter-spacing:0.02em;}
   .insights-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(196,145,42,0.45);}
 </style>
 </head><body>
@@ -223,7 +239,7 @@ function buildArticleHtml() {
       <div class="avatar"></div>
       <div>
         <div class="name">Daniel Gierach</div>
-        <div class="title">Licensed Real Estate Agent · Ray White Bulimba</div>
+        <div class="title">Ray White Collective</div>
       </div>
     </div>
     <div class="insights-label">Insights</div>
@@ -361,7 +377,13 @@ function buildAuthorityHtml() {
 <link href="${FONT_URL_COVER}" rel="stylesheet"/>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:1080px;height:1350px;overflow:hidden;background:${CHARCOAL};}
+  html,body{
+    width:1080px;height:1350px;overflow:hidden;
+    background-color:${CHARCOAL};
+    background-image:
+      repeating-linear-gradient(-45deg,transparent 0px,transparent 28px,rgba(240,236,228,0.045) 28px,rgba(240,236,228,0.045) 29px),
+      radial-gradient(ellipse 80% 60% at 8% 4%,rgba(196,145,42,0.11) 0%,transparent 70%);
+  }
   body{
     font-family:'Inter',sans-serif;
     display:flex;flex-direction:column;
@@ -452,7 +474,7 @@ function buildAuthorityHtml() {
       <div class="dg-circle">DG</div>
       <div>
         <div class="f-name">Daniel Gierach</div>
-        <div class="f-sub">Licensed Real Estate Agent · Ray White Bulimba</div>
+        <div class="f-sub">Ray White Collective</div>
       </div>
     </div>
   </div>

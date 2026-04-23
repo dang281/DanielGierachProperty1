@@ -158,7 +158,8 @@
   ══════════════════════════ */
   .s2{
     position:absolute;inset:0;background:#0a0806;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    padding-top:155px;gap:18px;
     opacity:0;pointer-events:none;transition:opacity 0.4s ease;
   }
   .s2.in{opacity:1;}
@@ -541,37 +542,40 @@
     if (gen === undefined) gen = animGeneration;
     const alive = () => gen === animGeneration;
 
+    // Hold on the form at rest for 1s so viewers can read the headline before typing starts
+    await wait(1000); if (!alive()) return;
+
     phEl.style.display = 'none';
     caretEl.style.display = 'inline-block';
-    await wait(1800); if (!alive()) return;
-    await typeText(PARTIAL); if (!alive()) return;
+    await wait(400); if (!alive()) return;
+    await typeText(PARTIAL, 38); if (!alive()) return;
 
-    await wait(300); if (!alive()) return;
+    await wait(200); if (!alive()) return;
     fieldRow.classList.add('dropdown-open');
     dropdown.classList.add('open');
 
-    await wait(700); if (!alive()) return;
+    await wait(350); if (!alive()) return;
     dd0.classList.add('active');
 
-    await wait(600); if (!alive()) return;
+    await wait(300); if (!alive()) return;
     typedEl.textContent = FULL;
     dropdown.classList.remove('open');
     fieldRow.classList.remove('dropdown-open');
     dd0.classList.remove('active');
 
-    await wait(550); if (!alive()) return;
+    await wait(300); if (!alive()) return;
     caretEl.style.display = 'none';
     goBtn.classList.add('clicked');
-    await wait(280); if (!alive()) return;
+    await wait(200); if (!alive()) return;
 
     s2addr.textContent = '"' + FULL + '"';
     s1.classList.add('out');
-    await wait(380); if (!alive()) return;
+    await wait(250); if (!alive()) return;
     s2.classList.add('in');
-    await wait(1700); if (!alive()) return;
+    await wait(600); if (!alive()) return;
 
     s2.classList.add('out');
-    await wait(350); if (!alive()) return;
+    await wait(200); if (!alive()) return;
     s2.classList.remove('in','out');
     s3.classList.add('in');
     animateReport();
