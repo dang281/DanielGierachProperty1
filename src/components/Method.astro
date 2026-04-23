@@ -130,12 +130,12 @@ const phases = [
               <p style={`font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:${textPrimary};margin-bottom:0.6rem;`}>
                 {p.label}
               </p>
-              <p style={`font-size:0.88rem;color:${textSecondary};line-height:1.85;${p.suburbTactic ? 'margin-bottom:0.85rem;' : ''}`}>
+              <p class="phase-body" style={`font-size:0.88rem;color:${textSecondary};line-height:1.85;${p.suburbTactic ? 'margin-bottom:0.85rem;' : ''}`}>
                 {p.body}
               </p>
               {p.suburbTactic && (
-                <p style={`font-size:0.82rem;color:${textMuted};line-height:1.75;padding-left:0.9rem;border-left:2px solid ${gold};`}>
-                  <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${gold};display:block;margin-bottom:0.35rem;`}>In {displayName}</span>
+                <p class="phase-tactic" style={`font-size:0.82rem;color:${textMuted};line-height:1.75;padding-left:0.9rem;border-left:2px solid ${gold};`}>
+                  <span class="phase-tactic-label" style={`font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:${gold};display:block;margin-bottom:0.35rem;`}>In {displayName}</span>
                   {p.suburbTactic}
                 </p>
               )}

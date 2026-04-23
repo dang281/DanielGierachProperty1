@@ -572,12 +572,22 @@
 
 /* ─────────────────────────────────────────
    MOBILE TYPOGRAPHY
+   Base html font-size stays at the browser default on mobile.
+   Scaling html down would hurt readability. Individual components
+   use clamp() or explicit overrides where they need to be smaller.
 ───────────────────────────────────────── */
 @media (max-width: 640px) {
-  html {
-    font-size: 0.9rem;
-  }
   .eyebrow {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
+  }
+
+  /* Ensure inputs never trigger iOS zoom on focus (needs >= 16px). */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
   }
 }
