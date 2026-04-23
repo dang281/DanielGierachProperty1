@@ -1,0 +1,205 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Buyer Profile Predictor"
+  description="Who is actually going to buy your house? Get the realistic buyer archetype for your property and suburb, plus how to present for them."
+  tool="Buyer Profile"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Suburb</label>
+        <select id="suburb" class="obs-select" style="width:100%;">
+          <option value="bulimba">Bulimba</option>
+          <option value="hawthorne">Hawthorne</option>
+          <option value="balmoral">Balmoral</option>
+          <option value="norman-park">Norman Park</option>
+          <option value="camp-hill" selected>Camp Hill</option>
+          <option value="seven-hills">Seven Hills</option>
+          <option value="morningside">Morningside</option>
+          <option value="cannon-hill">Cannon Hill</option>
+          <option value="murarrie">Murarrie</option>
+          <option value="carina">Carina</option>
+          <option value="coorparoo">Coorparoo</option>
+          <option value="carindale">Carindale</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Property Type</label>
+        <select id="type" class="obs-select" style="width:100%;">
+          <option value="house-char">Character Queenslander</option>
+          <option value="house-modern" selected>Modern / renovated house</option>
+          <option value="house-postwar">Post-war brick</option>
+          <option value="townhouse">Townhouse</option>
+          <option value="unit">Unit / apartment</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Price Band</label>
+        <select id="band" class="obs-select" style="width:100%;">
+          <option value="u800">Under $800k</option>
+          <option value="800-1200" selected>$800k - $1.2m</option>
+          <option value="1200-1600">$1.2m - $1.6m</option>
+          <option value="1600-2200">$1.6m - $2.2m</option>
+          <option value="2200+">$2.2m+</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Beds</label>
+        <select id="beds" class="obs-select" style="width:100%;">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+          <option value="4" selected>4</option><option value="5">5</option><option value="6">6+</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">School Catchment Strength</label>
+        <select id="catchment" class="obs-select" style="width:100%;">
+          <option value="strong">Strong (in-demand primary or high)</option>
+          <option value="average" selected>Average</option>
+          <option value="weak">Weak / not a driver</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Position</label>
+        <select id="position" class="obs-select" style="width:100%;">
+          <option value="quiet" selected>Quiet street / mid-block</option>
+          <option value="elevated">Elevated / views</option>
+          <option value="main">Main road / busy</option>
+          <option value="riverfront">Riverfront / waterfront</option>
+          <option value="corner">Corner block</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Likely Buyer
+      </h2>
+      <div id="arch" style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);margin-bottom:1rem;"></div>
+      <div id="priorities" style="margin-bottom:1rem;"></div>
+      <div id="presentation" style="background:var(--color-surface-4);padding:1rem;"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Pattern-based prediction, not a guarantee. Your real buyer pool includes the expected archetype plus adjacent buyer types.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Prepare for Your Buyer</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  function calc() {
+    const s = (document.getElementById('suburb') as HTMLSelectElement).value;
+    const t = (document.getElementById('type') as HTMLSelectElement).value;
+    const b = (document.getElementById('band') as HTMLSelectElement).value;
+    const beds = Number((document.getElementById('beds') as HTMLSelectElement).value);
+    const cat = (document.getElementById('catchment') as HTMLSelectElement).value;
+    const pos = (document.getElementById('position') as HTMLSelectElement).value;
+
+    let name = '';
+    let age = '';
+    let origin = '';
+    let priorities: string[] = [];
+    let presentation: string[] = [];
+
+    // Prestige segment
+    if (b === '2200+') {
+      if (pos === 'riverfront' || pos === 'elevated') {
+        name = 'Established executive or downsizer';
+        age = '45 to 65';
+        origin = 'Sydney or Melbourne relocators, or inner-east upgraders from Bulimba and Hawthorne';
+        priorities = ['Position (view, privacy, prestige address)', 'Finish level and material quality', 'Low-maintenance lifestyle'];
+        presentation = ['Styled cohesively to a sophisticated adult aesthetic', 'Landscape and views hero of the campaign', 'High-end photography and video essential'];
+      } else {
+        name = 'Family upgrader at the prestige end';
+        age = '40 to 55';
+        origin = 'Hawthorne, Bulimba, New Farm, Ascot';
+        priorities = ['Private family space', 'School catchment (even if not the primary driver)', 'Entertainer layout'];
+        presentation = ['Scale and flow must read in photos', 'Outdoor entertaining showcased', 'Premium finish details highlighted'];
+      }
+    } else if (b === '1600-2200') {
+      if (cat === 'strong' && beds >= 4) {
+        name = 'Inner-east family upgrader';
+        age = '38 to 50';
+        origin = 'Coorparoo, Camp Hill, Morningside, upgrading for the school catchment';
+        priorities = ['School catchment', 'Flat block with usable backyard', 'Four bedrooms plus study or guest'];
+        presentation = ['Kitchen and family-living hero shots', 'Backyard set up for kids', 'Styled to feel lived-in but not cluttered'];
+      } else if (t === 'house-char') {
+        name = 'Character-home family';
+        age = '35 to 50';
+        origin = 'Inner east upgraders wanting VJs, fretwork, and period features';
+        priorities = ['Original features preserved', 'Catchment access', 'Elevation or views add materially'];
+        presentation = ['Lean into the character, do not over-modernise', 'Period details photographed specifically', 'Keep the listing narrative about the era and the restoration quality'];
+      } else {
+        name = 'Established family upgrader';
+        age = '38 to 50';
+        origin = 'Inner east and inner south upgraders';
+        priorities = ['Family-sized block', 'Good school catchment', 'Renovation level matches price'];
+        presentation = ['Family-living spaces front and centre', 'Outdoor entertaining shown at night shots too'];
+      }
+    } else if (b === '1200-1600') {
+      name = 'Mid-tier inner-east family';
+      age = '35 to 45';
+      origin = 'Morningside, Cannon Hill, Norman Park upgraders, or first-upsize from Coorparoo units';
+      priorities = [cat === 'strong' ? 'School catchment' : 'Proximity to city and transport', 'Four bedrooms', 'Move-in ready condition'];
+      presentation = ['Kitchen and bathrooms matter', 'Outdoor space shown on both day and evening', 'De-clutter aggressively, family buyers read the whole house'];
+    } else if (b === '800-1200') {
+      if (t === 'unit' || t === 'townhouse') {
+        name = 'First-home or investor buyer';
+        age = '28 to 40';
+        origin = 'First-home buyers qualifying for the Federal First Home Guarantee ($1M Brisbane cap), plus SMSF or private investors';
+        priorities = ['Price at or near the FHG cap matters', 'Body corporate health and levies', 'Rental potential (for investor buyers)'];
+        presentation = ['Light and space in every photo', 'Body corporate documentation ready', 'Neutral styling, this buyer imagines themselves in'];
+      } else if (beds >= 3) {
+        name = 'Young family entering the inner east';
+        age = '30 to 40';
+        origin = 'Unit upgraders from Coorparoo, Woolloongabba, or Kangaroo Point';
+        priorities = ['Entry to inner-east corridor', 'School catchment (primary school years)', 'Quiet street over main road'];
+        presentation = ['Safe, family-friendly street presentation', 'Any outdoor space maximised', 'Catchment call-out in copy'];
+      } else {
+        name = 'Downsizer or first-home buyer';
+        age = 'Split, 30 to 40 or 60+';
+        origin = 'Downsizers from family homes in Carindale, or first-home buyers';
+        priorities = ['Lock-up-and-leave practicality', 'Low maintenance', 'Walking distance to cafes and transport'];
+        presentation = ['Focus on convenience and low upkeep', 'Highlight small luxury details'];
+      }
+    } else {
+      name = 'First-home buyer using the Federal First Home Guarantee';
+      age = '25 to 35';
+      origin = 'Inner Brisbane renters, saving a 5% deposit and using the $1M Brisbane FHG cap';
+      priorities = ['Price inside FHG cap', 'Body corporate health', 'Carpark and storage'];
+      presentation = ['Reduce clutter drastically', 'Highlight proximity to transport and work', 'Keep styling neutral, they imagine themselves in'];
+    }
+
+    document.getElementById('arch')!.innerHTML = `
+      <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.3rem;">Archetype</p>
+      <p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);line-height:1.3;">${name}</p>
+      <p style="font-size:0.8rem;color:var(--color-text-secondary);margin-top:0.4rem;line-height:1.6;">Age: ${age}<br>Typically coming from: ${origin}</p>
+    `;
+    document.getElementById('priorities')!.innerHTML = `
+      <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Top Priorities (in order)</p>
+      <ol style="padding-left:1.2rem;color:var(--color-text-secondary);font-size:0.85rem;line-height:1.7;">
+        ${priorities.map(p => `<li>${p}</li>`).join('')}
+      </ol>
+    `;
+    document.getElementById('presentation')!.innerHTML = `
+      <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Presentation Implications</p>
+      <ul style="padding-left:1.2rem;color:var(--color-text-primary);font-size:0.82rem;line-height:1.7;">
+        ${presentation.map(p => `<li>${p}</li>`).join('')}
+      </ul>
+    `;
+  }
+
+  document.querySelectorAll('select').forEach(el => el.addEventListener('change', calc));
+  calc();
+</script>

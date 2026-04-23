@@ -1,0 +1,115 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Body Corporate Disclosure Readiness"
+  description="Selling a unit or townhouse in Queensland? Check the body corporate disclosure pack required at contract. Flags missing items before your campaign stalls."
+  tool="BC Disclosure Readiness"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Building Type</label>
+        <select id="btype" class="obs-select" style="width:100%;">
+          <option value="unit" selected>Unit / Apartment</option>
+          <option value="townhouse">Townhouse</option>
+          <option value="duplex">Duplex</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Managed by</label>
+        <select id="mgmt" class="obs-select" style="width:100%;">
+          <option value="committee">Committee only (self-managed)</option>
+          <option value="professional" selected>Professional Body Corporate Manager</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;">Tick what you have</h3>
+      <div id="checklist" class="flex flex-col gap-3"></div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Readiness Status
+      </h2>
+      <div id="summary"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Estimated Total Cost</p>
+        <p id="cost" style="font-family:var(--font-serif);font-size:1.5rem;color:var(--color-gold);line-height:1;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Requirements reflect the Body Corporate and Community Management Act 1997 (Qld) and current industry practice. Confirm specific disclosure items with your solicitor before relying on this list.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Sort Before You List</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const items = [
+    { id: 'form13',     label: 'Body Corporate Information Certificate (Form 13)', cost: 150, leadTimeDays: 14, req: true },
+    { id: 'records',    label: 'Current body corporate records search', cost: 200, leadTimeDays: 7, req: true },
+    { id: 'insurance',  label: 'Certificate of insurance (building + public liability)', cost: 0, leadTimeDays: 3, req: true },
+    { id: 'bylaws',     label: 'Current by-laws (consolidated)', cost: 0, leadTimeDays: 3, req: true },
+    { id: 'minutes',    label: 'AGM minutes (last 2 years)', cost: 0, leadTimeDays: 3, req: true },
+    { id: 'budget',     label: 'Current year budget and levies schedule', cost: 0, leadTimeDays: 3, req: true },
+    { id: 'sinking',    label: 'Sinking fund forecast (9-year)', cost: 200, leadTimeDays: 21, req: true },
+    { id: 'levies',     label: 'Any special levies or resolved works', cost: 0, leadTimeDays: 3, req: true },
+    { id: 'cms',        label: 'Community Management Statement (CMS)', cost: 80, leadTimeDays: 5, req: true },
+    { id: 'planpremises', label: 'Survey / plan of premises', cost: 80, leadTimeDays: 7, req: false },
+    { id: 'disclosure', label: 'Disputes or legal action disclosure', cost: 0, leadTimeDays: 3, req: true },
+    { id: 'combustible', label: 'Combustible cladding report (if applicable)', cost: 0, leadTimeDays: 14, req: false },
+  ];
+
+  function render() {
+    document.getElementById('checklist')!.innerHTML = items.map(i => `
+      <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;">
+        <input type="checkbox" data-id="${i.id}" style="accent-color:var(--color-gold);width:18px;height:18px;cursor:pointer;margin-top:0.2rem;flex-shrink:0;" />
+        <span style="font-size:0.85rem;color:var(--color-text-primary);line-height:1.5;">
+          ${i.label}${i.req ? '' : ' <span style="color:var(--color-text-muted);font-size:0.75rem;">(if applicable)</span>'}
+          <span style="display:block;font-size:0.7rem;color:var(--color-text-muted);margin-top:0.1rem;">Lead time: ~${i.leadTimeDays} days${i.cost ? ' &middot; est. cost $' + i.cost : ' &middot; no cost'}</span>
+        </span>
+      </label>
+    `).join('');
+    document.querySelectorAll('#checklist input').forEach(el => el.addEventListener('change', calc));
+  }
+
+  function calc() {
+    const missing = items.filter(i => !(document.querySelector(`[data-id="${i.id}"]`) as HTMLInputElement)?.checked && i.req);
+    const totalCost = missing.reduce((s, i) => s + i.cost, 0);
+    const maxLead = missing.reduce((m, i) => Math.max(m, i.leadTimeDays), 0);
+
+    const summary = document.getElementById('summary')!;
+    if (missing.length === 0) {
+      summary.innerHTML = `<p style="color:#4a9e4a;font-size:0.9rem;font-weight:600;">Disclosure pack complete. Safe to list.</p>`;
+    } else {
+      summary.innerHTML = `
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:0.75rem;">Missing ${missing.length} item(s). Earliest launch: ${maxLead} days from now once requested.</p>
+        <div style="max-height:220px;overflow-y:auto;">
+          ${missing.map(i => `
+            <div style="display:flex;justify-content:space-between;padding:0.45rem 0;border-bottom:1px solid rgba(72,72,72,0.12);gap:0.75rem;">
+              <span style="font-size:0.75rem;color:var(--color-text-muted);">${i.label}</span>
+              <span style="font-size:0.75rem;color:var(--color-text-primary);font-weight:600;flex-shrink:0;">${i.cost ? '$' + i.cost : 'Free'}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+    document.getElementById('cost')!.textContent = '$' + totalCost.toLocaleString();
+  }
+
+  render();
+  calc();
+</script>

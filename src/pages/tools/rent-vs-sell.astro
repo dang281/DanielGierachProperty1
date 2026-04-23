@@ -1,0 +1,138 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Rent vs Sell: Investor Decision Tool"
+  description="You own an investment property. Should you hold it or sell now and redeploy the capital? Models both over 5 and 10 years with CGT, cash flow, and opportunity cost."
+  tool="Rent vs Sell"
+  phase="Investor Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Current Property Value</label>
+        <input type="number" id="value" value="900000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Current Loan Balance</label>
+        <input type="number" id="loan" value="450000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Weekly Rent</label>
+        <input type="number" id="rent" value="650" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Annual Expenses (rates, insurance, PM, maintenance)</label>
+        <input type="number" id="expenses" value="8500" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Loan Rate %</label>
+        <input type="number" id="rate" value="6.2" step="0.1" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Marginal Tax Rate %</label>
+        <input type="number" id="mtr" value="37" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Cost Base (for CGT)</label>
+        <input type="number" id="costbase" value="550000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Capital Growth % (annual)</label>
+        <input type="number" id="growth" value="4.5" step="0.1" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Alternative Return % (if you sell)</label>
+        <input type="number" id="alt" value="7" step="0.1" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        5 and 10 year outcomes
+      </h2>
+      <div id="results" class="flex flex-col gap-2"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Recommendation</p>
+        <p id="rec" style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);line-height:1.4;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Default growth rate is Brisbane inner-east long-term average. CGT uses the 50% discount. Not tax advice.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Get a Current Sale-Price Read</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+
+  function holdScenario(years: number, value: number, loan: number, rent: number, expenses: number, rate: number, mtr: number, growth: number) {
+    const annualInterest = loan * rate;
+    const cashFlowAnnual = (rent * 52) - expenses - annualInterest;
+    const taxRelief = cashFlowAnnual < 0 ? -cashFlowAnnual * mtr : 0;
+    const netCashAnnual = cashFlowAnnual + taxRelief;
+    const totalCash = netCashAnnual * years;
+    const futureValue = value * Math.pow(1 + growth, years);
+    const equityIncrease = futureValue - value;
+    return { totalCash, futureValue, equityGain: equityIncrease, total: totalCash + equityIncrease };
+  }
+
+  function sellScenario(years: number, value: number, loan: number, costbase: number, mtr: number, altReturn: number) {
+    const saleNet = value * 0.97 - loan;
+    const gain = Math.max(0, (value * 0.97) - costbase);
+    const cgt = gain * 0.5 * mtr;
+    const afterTaxProceeds = saleNet - cgt;
+    const futureValue = afterTaxProceeds * Math.pow(1 + altReturn, years);
+    return { afterTaxProceeds, futureValue, gain: futureValue - afterTaxProceeds, total: futureValue };
+  }
+
+  function calc() {
+    const value = Number((document.getElementById('value') as HTMLInputElement).value) || 0;
+    const loan = Number((document.getElementById('loan') as HTMLInputElement).value) || 0;
+    const rent = Number((document.getElementById('rent') as HTMLInputElement).value) || 0;
+    const expenses = Number((document.getElementById('expenses') as HTMLInputElement).value) || 0;
+    const rate = Number((document.getElementById('rate') as HTMLInputElement).value) / 100;
+    const mtr = Number((document.getElementById('mtr') as HTMLInputElement).value) / 100;
+    const costbase = Number((document.getElementById('costbase') as HTMLInputElement).value) || 0;
+    const growth = Number((document.getElementById('growth') as HTMLInputElement).value) / 100;
+    const alt = Number((document.getElementById('alt') as HTMLInputElement).value) / 100;
+
+    const h5 = holdScenario(5, value, loan, rent, expenses, rate, mtr, growth);
+    const s5 = sellScenario(5, value, loan, costbase, mtr, alt);
+    const h10 = holdScenario(10, value, loan, rent, expenses, rate, mtr, growth);
+    const s10 = sellScenario(10, value, loan, costbase, mtr, alt);
+
+    document.getElementById('results')!.innerHTML = `
+      <div style="background:var(--color-surface-4);padding:1rem;">
+        <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">5 years</p>
+        <div style="display:flex;justify-content:space-between;margin-top:0.3rem;"><span style="font-size:0.8rem;color:var(--color-text-primary);">Hold</span><span style="font-size:0.85rem;font-weight:600;color:var(--color-gold);">${fmt(h5.total)}</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="font-size:0.8rem;color:var(--color-text-primary);">Sell + redeploy</span><span style="font-size:0.85rem;font-weight:600;color:var(--color-gold);">${fmt(s5.total)}</span></div>
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.2rem;">Delta: ${fmt(h5.total - s5.total)} in favour of ${h5.total > s5.total ? 'hold' : 'sell'}</p>
+      </div>
+      <div style="background:var(--color-surface-4);padding:1rem;">
+        <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">10 years</p>
+        <div style="display:flex;justify-content:space-between;margin-top:0.3rem;"><span style="font-size:0.8rem;color:var(--color-text-primary);">Hold</span><span style="font-size:0.85rem;font-weight:600;color:var(--color-gold);">${fmt(h10.total)}</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="font-size:0.8rem;color:var(--color-text-primary);">Sell + redeploy</span><span style="font-size:0.85rem;font-weight:600;color:var(--color-gold);">${fmt(s10.total)}</span></div>
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.2rem;">Delta: ${fmt(h10.total - s10.total)} in favour of ${h10.total > s10.total ? 'hold' : 'sell'}</p>
+      </div>
+    `;
+
+    const rec = h10.total > s10.total
+      ? `Hold wins over 10 years by ${fmt(h10.total - s10.total)}, driven by property compounding at ${(growth*100).toFixed(1)}% vs alternative at ${(alt*100).toFixed(1)}%. Hold only makes sense if you can service the loan and tolerate the concentration risk.`
+      : `Selling wins over 10 years by ${fmt(s10.total - h10.total)}. The alternative return (${(alt*100).toFixed(1)}%) outperforms property growth (${(growth*100).toFixed(1)}%) after accounting for CGT. Sense-check the alternative return assumption before acting.`;
+    document.getElementById('rec')!.textContent = rec;
+  }
+
+  document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

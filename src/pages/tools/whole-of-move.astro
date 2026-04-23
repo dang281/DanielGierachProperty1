@@ -1,0 +1,145 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Whole-of-Move Maths"
+  description="Sell your home, buy the next, move, settle in. How much do you actually have left once every cost is counted? Runs sale + duty + moving + lost income."
+  tool="Whole-of-Move Maths"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Sale Price</label>
+        <input type="number" id="sale" value="1400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Sale Costs (commission + marketing + legals)</label>
+        <input type="number" id="sale-costs" value="45000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Current Mortgage to Pay Out</label>
+        <input type="number" id="mortgage" value="400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Next Purchase Price</label>
+        <input type="number" id="purchase" value="1750000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Buyer Type (Next Property)</label>
+        <select id="buyer" class="obs-select" style="width:100%;">
+          <option value="owner" selected>Owner-occupier (home concession)</option>
+          <option value="investor">Investor (standard rate)</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Next Purchase Legals</label>
+        <input type="number" id="buy-legals" value="2200" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Moving Cost (each move)</label>
+        <input type="number" id="moving" value="4000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Moves Required</label>
+        <input type="number" id="moves" value="1" min="1" max="2" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Lost Income / Days Off</label>
+        <input type="number" id="lost-income" value="0" class="obs-input" style="font-size:1rem;" placeholder="0" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:1.5rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Settling-In Budget (painting, blinds, carpet, etc)</label>
+      <input type="number" id="settle-in" value="0" class="obs-input" style="font-size:1rem;" />
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        End-to-End Maths
+      </h2>
+      <div id="breakdown"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Net Cash After Move</p>
+        <p id="final" style="font-family:var(--font-serif);font-size:1.7rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Uses QLD transfer duty home-concession rates where applicable. Break costs and CGT excluded &mdash; see the Net Proceeds Deep Dive for those.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Model Your Move with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => n < 0 ? '-$' + Math.abs(Math.round(n)).toLocaleString() : '$' + Math.round(n).toLocaleString();
+
+  // QLD transfer duty rates (April 2026, QRO).
+  function baseDuty(p: number) {
+    if (p <= 5000) return 0;
+    if (p <= 75000) return (p - 5000) * 0.015;
+    if (p <= 540000) return 1050 + (p - 75000) * 0.035;
+    if (p <= 1000000) return 17325 + (p - 540000) * 0.045;
+    return 38025 + (p - 1000000) * 0.0575;
+  }
+  function homeDuty(p: number) {
+    if (p <= 350000) return p * 0.01;
+    if (p <= 540000) return 3500 + (p - 350000) * 0.035;
+    if (p <= 1000000) return 10150 + (p - 540000) * 0.045;
+    return 30850 + (p - 1000000) * 0.0575;
+  }
+
+  function calc() {
+    const sale = Number((document.getElementById('sale') as HTMLInputElement).value) || 0;
+    const saleCosts = Number((document.getElementById('sale-costs') as HTMLInputElement).value) || 0;
+    const mortgage = Number((document.getElementById('mortgage') as HTMLInputElement).value) || 0;
+    const purchase = Number((document.getElementById('purchase') as HTMLInputElement).value) || 0;
+    const buyer = (document.getElementById('buyer') as HTMLSelectElement).value;
+    const buyLegals = Number((document.getElementById('buy-legals') as HTMLInputElement).value) || 0;
+    const moving = Number((document.getElementById('moving') as HTMLInputElement).value) || 0;
+    const moves = Number((document.getElementById('moves') as HTMLInputElement).value) || 1;
+    const lost = Number((document.getElementById('lost-income') as HTMLInputElement).value) || 0;
+    const settleIn = Number((document.getElementById('settle-in') as HTMLInputElement).value) || 0;
+
+    const saleNet = sale - saleCosts - mortgage;
+    const duty = buyer === 'owner' ? homeDuty(purchase) : baseDuty(purchase);
+    const movesCost = moving * moves;
+    const total = saleNet - duty - buyLegals - movesCost - lost - settleIn;
+
+    const rows = [
+      { label: 'Sale price', value: sale, plus: true },
+      { label: 'Sale costs', value: -saleCosts },
+      { label: 'Mortgage payout', value: -mortgage },
+      { label: 'Sale net', value: saleNet, plus: true, bold: true },
+      { label: `Transfer duty on $${(purchase/1000).toFixed(0)}k (${buyer === 'owner' ? 'home' : 'standard'})`, value: -duty },
+      { label: 'Next purchase legals', value: -buyLegals },
+      { label: `Moving x ${moves}`, value: -movesCost },
+      ...(lost ? [{ label: 'Lost income', value: -lost }] : []),
+      ...(settleIn ? [{ label: 'Settling in', value: -settleIn }] : []),
+    ];
+
+    document.getElementById('breakdown')!.innerHTML = rows.map(r => `
+      <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);${r.bold ? 'font-weight:700;' : ''}">
+        <span style="font-size:0.78rem;color:${r.bold ? 'var(--color-text-primary)' : 'var(--color-text-muted)'};">${r.label}</span>
+        <span style="font-size:0.85rem;font-weight:600;color:${r.plus ? 'var(--color-text-primary)' : '#d95f5f'};">${fmt(r.value)}</span>
+      </div>
+    `).join('');
+    document.getElementById('final')!.textContent = fmt(total);
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

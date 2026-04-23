@@ -1,0 +1,129 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Auction Reserve-Setting Framework"
+  description="Structured framework for setting your auction reserve. Weighs registered bidders, pre-auction interest, comp median and campaign signals."
+  tool="Reserve Setting"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Price Guide Low</label>
+        <input type="number" id="low" value="1400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Price Guide High</label>
+        <input type="number" id="high" value="1550000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Comp Median (90 days)</label>
+        <input type="number" id="comp" value="1480000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Registered Bidders</label>
+        <input type="number" id="bidders" value="3" min="0" max="20" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Highest Pre-Auction Offer</label>
+        <input type="number" id="pre" value="0" class="obs-input" style="font-size:1rem;" placeholder="0 if none" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Callbacks in Final Week</label>
+        <input type="number" id="callbacks" value="2" min="0" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Building &amp; Pest Reports Pulled</label>
+        <input type="number" id="bps" value="3" min="0" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Campaign Weeks Run</label>
+        <input type="number" id="weeks" value="4" min="2" max="8" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Reserve Recommendation
+      </h2>
+      <div style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p id="rec-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.3rem;">Recommended</p>
+        <p id="reserve" style="font-family:var(--font-serif);font-size:1.8rem;color:var(--color-gold);line-height:1;"></p>
+        <p id="explain" style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.6;margin-top:0.75rem;"></p>
+      </div>
+      <div id="outcomes" style="margin-top:1rem;"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Framework output. Final reserve is decided on auction morning with your agent, factoring qualitative signals the tool cannot see.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Discuss Your Reserve</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+
+  function calc() {
+    const low = Number((document.getElementById('low') as HTMLInputElement).value) || 0;
+    const high = Number((document.getElementById('high') as HTMLInputElement).value) || 0;
+    const comp = Number((document.getElementById('comp') as HTMLInputElement).value) || 0;
+    const bidders = Number((document.getElementById('bidders') as HTMLInputElement).value) || 0;
+    const pre = Number((document.getElementById('pre') as HTMLInputElement).value) || 0;
+    const callbacks = Number((document.getElementById('callbacks') as HTMLInputElement).value) || 0;
+    const bps = Number((document.getElementById('bps') as HTMLInputElement).value) || 0;
+
+    let demandScore = 0;
+    if (bidders >= 4) demandScore += 2; else if (bidders >= 2) demandScore += 1;
+    if (pre >= low) demandScore += 2; else if (pre > 0) demandScore += 1;
+    if (callbacks >= 3) demandScore += 1;
+    if (bps >= 4) demandScore += 1;
+
+    let reserve = comp;
+    let explain = '';
+    let floor = comp * 0.97;
+    let stretch = comp * 1.08;
+
+    if (demandScore >= 5) {
+      reserve = low;
+      explain = 'Strong demand signals (bidders, pre-auction activity, callbacks). Set reserve at the low end of the guide to put it on the market early and let competition do the work.';
+      stretch = high * 1.05;
+    } else if (demandScore >= 3) {
+      reserve = (low + comp) / 2;
+      explain = 'Moderate demand. Reserve at midpoint between guide low and comp median. Enough room for the market to find the price without passing in on a technicality.';
+    } else if (demandScore >= 1) {
+      reserve = Math.min(low, comp) * 0.98;
+      explain = 'Thin demand. Reserve needs to reflect the buyers actually in the room. Below guide low, at or slightly under the comp median, to hold the auction rather than pass in.';
+      floor = comp * 0.94;
+    } else {
+      reserve = comp * 0.94;
+      explain = 'Very thin demand (no registered bidders, no pre-auction activity). Reserve should be set to hold the auction open. Plan for passing in and post-auction negotiation with the reserve moving down.';
+      floor = comp * 0.90;
+    }
+
+    document.getElementById('reserve')!.textContent = fmt(reserve);
+    document.getElementById('explain')!.textContent = explain;
+    document.getElementById('outcomes')!.innerHTML = `
+      <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">Pass-in threshold</span>
+        <span style="font-size:0.8rem;font-weight:600;color:var(--color-text-primary);">${fmt(floor)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:0.5rem 0;">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">Stretch outcome</span>
+        <span style="font-size:0.8rem;font-weight:600;color:var(--color-text-primary);">${fmt(stretch)}</span>
+      </div>
+    `;
+  }
+
+  document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

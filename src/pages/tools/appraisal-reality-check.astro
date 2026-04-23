@@ -1,0 +1,167 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Appraisal Reality Check"
+  description="Three agents, three different numbers. Which one is honest? Enter the ranges and your property's specifics and get a structured read on which appraisal is anchored to recent evidence."
+  tool="Appraisal Reality Check"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);margin-bottom:0.75rem;">Your property</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div><label style="font-size:0.62rem;color:var(--color-text-muted);">Suburb</label>
+          <select id="suburb" class="obs-select" style="width:100%;">
+            <option value="bulimba">Bulimba</option><option value="hawthorne">Hawthorne</option><option value="balmoral">Balmoral</option>
+            <option value="norman-park">Norman Park</option><option value="camp-hill" selected>Camp Hill</option><option value="seven-hills">Seven Hills</option>
+            <option value="morningside">Morningside</option><option value="cannon-hill">Cannon Hill</option><option value="murarrie">Murarrie</option>
+            <option value="carina">Carina</option><option value="coorparoo">Coorparoo</option>
+          </select></div>
+        <div><label style="font-size:0.62rem;color:var(--color-text-muted);">Property type</label>
+          <select id="type" class="obs-select" style="width:100%;">
+            <option value="char">Character home</option><option value="house" selected>Standard house</option>
+            <option value="unit">Unit</option><option value="townhouse">Townhouse</option>
+          </select></div>
+        <div><label style="font-size:0.62rem;color:var(--color-text-muted);">Beds</label><input type="number" id="beds" value="4" class="obs-input" style="width:100%;" /></div>
+        <div><label style="font-size:0.62rem;color:var(--color-text-muted);">Land size (sqm)</label><input type="number" id="land" value="610" class="obs-input" style="width:100%;" /></div>
+        <div><label style="font-size:0.62rem;color:var(--color-text-muted);">Renovation level</label>
+          <select id="reno" class="obs-select" style="width:100%;">
+            <option value="unren">Unrenovated / original</option>
+            <option value="partial" selected>Partly renovated</option>
+            <option value="full">Fully renovated</option>
+          </select></div>
+        <div><label style="font-size:0.62rem;color:var(--color-text-muted);">Position</label>
+          <select id="pos" class="obs-select" style="width:100%;">
+            <option value="quiet" selected>Quiet street</option>
+            <option value="elevated">Elevated / views</option>
+            <option value="main">Main road</option>
+          </select></div>
+        <div class="sm:col-span-2"><label style="font-size:0.62rem;color:var(--color-text-muted);">Recent comp median (last 90 days, from CoreLogic/PriceFinder/office data)</label>
+          <input type="number" id="comp" value="1450000" class="obs-input" style="width:100%;" /></div>
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);margin-bottom:0.75rem;">The three appraisal ranges</h3>
+      <div class="grid grid-cols-1 gap-3" id="appraisals">
+        ${[1,2,3].map(() => '').join('')}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Verdict
+      </h2>
+      <div id="verdicts"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.3rem;">Most-Credible Range</p>
+        <p id="credible" style="font-family:var(--font-serif);font-size:1.5rem;color:var(--color-gold);line-height:1;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Verdicts compare each appraisal range to your comp median, with an adjustment band based on renovation and position. This tool does not replace a written appraisal &mdash; it pressure-tests the numbers in front of you.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Add a Fourth Data Point</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+
+  function renderAppraisals() {
+    const wrap = document.getElementById('appraisals')!;
+    wrap.innerHTML = [1,2,3].map(i => `
+      <div style="background:var(--color-surface-4);padding:1rem;">
+        <p style="font-family:var(--font-serif);font-size:1rem;color:var(--color-gold);margin-bottom:0.5rem;">Agent ${i}</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:0.5rem;">
+          <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Low</label><input type="number" id="l${i}" class="obs-input" style="width:100%;font-size:0.9rem;" placeholder="0" /></div>
+          <div><label style="font-size:0.6rem;color:var(--color-text-muted);">High</label><input type="number" id="h${i}" class="obs-input" style="width:100%;font-size:0.9rem;" placeholder="0" /></div>
+          <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Agency (optional)</label><input type="text" id="a${i}" class="obs-input" style="width:100%;font-size:0.9rem;" placeholder="" /></div>
+        </div>
+      </div>
+    `).join('');
+    wrap.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+  }
+
+  function calc() {
+    const comp = Number((document.getElementById('comp') as HTMLInputElement).value) || 0;
+    const reno = (document.getElementById('reno') as HTMLSelectElement).value;
+    const pos = (document.getElementById('pos') as HTMLSelectElement).value;
+
+    // Adjustments
+    let adjust = 1.0;
+    if (reno === 'full') adjust += 0.06;
+    if (reno === 'unren') adjust -= 0.06;
+    if (pos === 'elevated') adjust += 0.04;
+    if (pos === 'main') adjust -= 0.04;
+    const target = comp * adjust;
+    const tolerance = 0.08; // ±8%
+
+    const lows: number[] = [];
+    const highs: number[] = [];
+    const verdicts: any[] = [];
+
+    for (let i = 1; i <= 3; i++) {
+      const l = Number((document.getElementById(`l${i}`) as HTMLInputElement)?.value) || 0;
+      const h = Number((document.getElementById(`h${i}`) as HTMLInputElement)?.value) || 0;
+      const a = (document.getElementById(`a${i}`) as HTMLInputElement)?.value || `Agent ${i}`;
+      if (!l && !h) continue;
+      const mid = (l + h) / 2;
+      lows.push(l); highs.push(h);
+      let verdict = '';
+      let colour = '';
+      if (mid > target * (1 + tolerance)) {
+        verdict = 'Above evidence';
+        colour = '#d95f5f';
+      } else if (mid < target * (1 - tolerance)) {
+        verdict = 'Below evidence';
+        colour = '#b77a1a';
+      } else {
+        verdict = 'Anchored to evidence';
+        colour = '#4a9e4a';
+      }
+      verdicts.push({ i, a, l, h, mid, verdict, colour });
+    }
+
+    const verdictsEl = document.getElementById('verdicts')!;
+    if (!verdicts.length) {
+      verdictsEl.innerHTML = '<p style="color:var(--color-text-muted);font-size:0.85rem;">Enter at least one appraisal to see a verdict.</p>';
+    } else {
+      verdictsEl.innerHTML = verdicts.map(v => `
+        <div style="padding:0.7rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-family:var(--font-serif);font-size:0.95rem;color:var(--color-text-primary);">${v.a}</span>
+            <span style="font-size:0.75rem;font-weight:700;color:${v.colour};">${v.verdict}</span>
+          </div>
+          <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.2rem;">${fmt(v.l)} &ndash; ${fmt(v.h)} (mid ${fmt(v.mid)})</p>
+        </div>
+      `).join('');
+    }
+
+    // Credible range: the intersection of evidence band and the appraisal ranges labelled anchored
+    const anchored = verdicts.filter((v: any) => v.verdict === 'Anchored to evidence');
+    if (anchored.length) {
+      const credLow = Math.max(...anchored.map((v: any) => v.l), target * (1 - tolerance));
+      const credHigh = Math.min(...anchored.map((v: any) => v.h), target * (1 + tolerance));
+      document.getElementById('credible')!.textContent = `${fmt(credLow)} to ${fmt(credHigh)}`;
+    } else if (verdicts.length) {
+      document.getElementById('credible')!.textContent = `${fmt(target * 0.96)} to ${fmt(target * 1.04)}`;
+    } else {
+      document.getElementById('credible')!.textContent = '';
+    }
+  }
+
+  renderAppraisals();
+  document.querySelectorAll('#suburb, #type, #beds, #land, #reno, #pos, #comp').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

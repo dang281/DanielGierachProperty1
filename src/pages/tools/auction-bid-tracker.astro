@@ -1,0 +1,142 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Auction Day Bid Tracker"
+  description="Track bids live during your auction. See the trajectory to reserve, get a prompt when bidding stalls, and be ready for the reserve conversation."
+  tool="Auction Bid Tracker"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Reserve</label>
+        <input type="number" id="reserve" value="1500000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Guide Low</label>
+        <input type="number" id="guide-low" value="1400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Guide High</label>
+        <input type="number" id="guide-high" value="1550000" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Enter Latest Bid</label>
+      <div class="flex gap-2">
+        <input type="number" id="new-bid" placeholder="e.g. 1450000" class="obs-input" style="flex:1;font-size:1rem;" />
+        <button id="add-bid" class="btn-gold" type="button">Add</button>
+        <button id="undo-bid" type="button" style="background:var(--color-surface-4);padding:0.75rem 1rem;font-size:0.75rem;color:var(--color-text-muted);border:none;cursor:pointer;">Undo</button>
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);margin-bottom:1rem;">Bid History</h3>
+      <div id="bid-list" style="max-height:300px;overflow-y:auto;"></div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Status
+      </h2>
+      <div id="status" style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);margin-bottom:1rem;">
+        <p id="status-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.3rem;">Ready</p>
+        <p id="current" style="font-family:var(--font-serif);font-size:1.8rem;color:var(--color-text-primary);line-height:1;"></p>
+        <p id="gap" style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.5rem;"></p>
+      </div>
+      <div id="prompt" style="padding:1rem;background:var(--color-surface-4);font-size:0.85rem;color:var(--color-text-primary);line-height:1.6;display:none;"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Keep this open on your phone during auction. Your agent handles the bidding; this tool supports your reserve conversation at the critical moment.
+      </p>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+  const bids: number[] = [];
+
+  function render() {
+    const list = document.getElementById('bid-list')!;
+    if (bids.length === 0) {
+      list.innerHTML = '<p style="color:var(--color-text-muted);font-size:0.85rem;">No bids yet.</p>';
+    } else {
+      list.innerHTML = bids.map((b, i) => {
+        const prev = i > 0 ? bids[i-1] : 0;
+        const delta = i > 0 ? b - prev : 0;
+        return `
+          <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.12);">
+            <span style="font-size:0.78rem;color:var(--color-text-muted);">Bid ${i + 1}</span>
+            <div style="text-align:right;">
+              <span style="font-size:0.9rem;font-weight:600;color:var(--color-text-primary);">${fmt(b)}</span>
+              ${i > 0 ? `<span style="font-size:0.7rem;color:var(--color-gold);margin-left:0.5rem;">+${fmt(delta)}</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const reserve = Number((document.getElementById('reserve') as HTMLInputElement).value) || 0;
+    const current = bids[bids.length - 1] || 0;
+    const gap = reserve - current;
+    const toReservePct = reserve ? current / reserve : 0;
+
+    document.getElementById('current')!.textContent = current ? fmt(current) : ',';
+    document.getElementById('gap')!.textContent = !current
+      ? ''
+      : gap > 0 ? fmt(gap) + ' below reserve'
+      : gap === 0 ? 'At reserve'
+      : fmt(-gap) + ' above reserve';
+
+    const label = document.getElementById('status-label')!;
+    const prompt = document.getElementById('prompt')!;
+    if (!current) {
+      label.textContent = 'Ready';
+      label.style.color = 'var(--color-gold)';
+      prompt.style.display = 'none';
+    } else if (toReservePct >= 1) {
+      label.textContent = 'On the market';
+      label.style.color = '#4a9e4a';
+      prompt.style.display = 'block';
+      prompt.textContent = 'Bidding is on the market. Let it run. Last bidder wins.';
+    } else if (bids.length >= 3 && bids.slice(-3).every((b, j, a) => j === 0 || (b - a[j-1]) < 10000) && toReservePct < 0.98) {
+      label.textContent = 'Bidding stalled';
+      label.style.color = '#d95f5f';
+      prompt.style.display = 'block';
+      prompt.textContent = 'Three small increments in a row below reserve. Time to pause and consider dropping the reserve to meet the market, or accept the property will pass in.';
+    } else if (toReservePct >= 0.95) {
+      label.textContent = 'Close to reserve';
+      label.style.color = 'var(--color-gold)';
+      prompt.style.display = 'block';
+      prompt.textContent = 'Within 5% of reserve. If bidding slows here, consider dropping the reserve by 2 to 3% to put it on the market.';
+    } else {
+      label.textContent = 'Building';
+      label.style.color = 'var(--color-gold)';
+      prompt.style.display = 'none';
+    }
+  }
+
+  document.getElementById('add-bid')!.addEventListener('click', () => {
+    const input = document.getElementById('new-bid') as HTMLInputElement;
+    const v = Number(input.value);
+    if (v > 0) {
+      bids.push(v);
+      input.value = '';
+      render();
+    }
+  });
+  document.getElementById('undo-bid')!.addEventListener('click', () => { bids.pop(); render(); });
+  document.querySelectorAll('#reserve, #guide-low, #guide-high').forEach(el => el.addEventListener('input', render));
+  render();
+</script>

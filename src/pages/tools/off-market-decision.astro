@@ -1,0 +1,136 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Off-Market vs On-Market Decision"
+  description="An agent has a buyer ready to go off-market. Is the offer strong, or is running a campaign the better play? Structured decision with a reasoned recommendation."
+  tool="Off-Market vs On-Market"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Off-Market Offer</label>
+        <input type="number" id="offer" value="1300000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Recent Comp Median</label>
+        <input type="number" id="comp" value="1380000" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Privacy Sensitivity</label>
+      <select id="privacy" class="obs-select" style="width:100%;">
+        <option value="low" selected>Low, happy for a public campaign</option>
+        <option value="medium">Medium, prefer discretion but can run a campaign</option>
+        <option value="high">High, public campaign is a real issue</option>
+      </select>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Time Pressure</label>
+      <select id="time" class="obs-select" style="width:100%;">
+        <option value="flexible" selected>Flexible, can run a 4 to 6 week campaign</option>
+        <option value="moderate">Moderate, settlement needed within 2 months</option>
+        <option value="urgent">Urgent, must be under contract in 2 weeks</option>
+      </select>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Property Characteristics</label>
+      <select id="property" class="obs-select" style="width:100%;">
+        <option value="standard" selected>Standard inner-east family home</option>
+        <option value="unique">Unique / hard-to-market (prestige, unusual layout, strong views)</option>
+        <option value="difficult">Difficult (tenancy, condition issues, hard access)</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Recommendation
+      </h2>
+      <div id="rec-box" style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p id="rec-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;"></p>
+        <p id="rec-title" style="font-family:var(--font-serif);font-size:1.35rem;color:var(--color-text-primary);line-height:1.3;"></p>
+        <p id="rec-reason" style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;margin-top:0.75rem;"></p>
+      </div>
+      <div id="analysis" style="margin-top:1rem;"></div>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Discuss with Daniel First</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+  function pct(a: number, b: number) { return ((a - b) / b) * 100; }
+
+  function calc() {
+    const offer = Number((document.getElementById('offer') as HTMLInputElement).value) || 0;
+    const comp = Number((document.getElementById('comp') as HTMLInputElement).value) || 0;
+    const privacy = (document.getElementById('privacy') as HTMLSelectElement).value;
+    const time = (document.getElementById('time') as HTMLSelectElement).value;
+    const prop = (document.getElementById('property') as HTMLSelectElement).value;
+
+    const deltaPct = pct(offer, comp);
+    const deltaDollar = offer - comp;
+
+    let rec = '';
+    let title = '';
+    let reason = '';
+
+    if (privacy === 'high' && deltaPct >= -5) {
+      rec = 'accept';
+      title = 'Accept the off-market offer';
+      reason = 'High privacy sensitivity plus an offer within 5% of recent comps. The privacy premium justifies foregoing campaign competition.';
+    } else if (time === 'urgent' && deltaPct >= -6) {
+      rec = 'accept';
+      title = 'Accept the off-market offer';
+      reason = 'Urgent timing leaves no room for a 4-to-6 week campaign. The offer is within the range a tight campaign would likely produce.';
+    } else if (prop === 'difficult' && deltaPct >= -4) {
+      rec = 'accept';
+      title = 'Accept, difficult property';
+      reason = 'Hard-to-market properties often sell for less publicly than a direct-to-buyer offer. This is an acceptable outcome given the property characteristics.';
+    } else if (deltaPct <= -8) {
+      rec = 'campaign';
+      title = 'Run a full campaign';
+      reason = 'Offer is ' + Math.abs(deltaPct).toFixed(1) + '% below recent comps (' + fmt(Math.abs(deltaDollar)) + ' below). Real campaign competition should recover most or all of that gap.';
+    } else if (deltaPct <= -4) {
+      rec = 'counter';
+      title = 'Counter the off-market offer';
+      reason = 'Offer is below comps by ' + Math.abs(deltaPct).toFixed(1) + '%. Counter back toward the comp median. If the buyer walks, go to campaign.';
+    } else {
+      rec = 'campaign-or-negotiate';
+      title = 'Campaign likely produces more';
+      reason = 'Even accounting for campaign costs and time, a well-run campaign is likely to produce a stronger result unless privacy or timing constraints apply.';
+    }
+
+    const labelMap: Record<string,string> = { accept: 'Accept', counter: 'Counter', campaign: 'Campaign', 'campaign-or-negotiate': 'Go to market' };
+    document.getElementById('rec-label')!.textContent = labelMap[rec];
+    document.getElementById('rec-title')!.textContent = title;
+    document.getElementById('rec-reason')!.textContent = reason;
+
+    document.getElementById('analysis')!.innerHTML = `
+      <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">Offer vs comps</span>
+        <span style="font-size:0.85rem;font-weight:600;color:${deltaPct >= 0 ? '#4a9e4a' : '#d95f5f'};">${deltaPct >= 0 ? '+' : ''}${deltaPct.toFixed(1)}% (${fmt(deltaDollar)})</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">Expected campaign range</span>
+        <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${fmt(comp * 0.97)} &ndash; ${fmt(comp * 1.06)}</span>
+      </div>
+    `;
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

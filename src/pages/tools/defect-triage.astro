@@ -1,0 +1,149 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Pre-Sale Defect Triage"
+  description="For every defect found in your pre-sale inspection, get a Fix / Disclose / Leave recommendation based on cost, visibility, and Queensland disclosure law."
+  tool="Defect Triage"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);margin-bottom:1rem;">Add defects from your inspection report</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Category</label>
+          <select id="cat" class="obs-select" style="width:100%;font-size:0.9rem;">
+            <option value="structural">Structural</option>
+            <option value="moisture">Moisture / Damp</option>
+            <option value="pest-active">Pest (active)</option>
+            <option value="pest-old">Pest (old, treated)</option>
+            <option value="electrical">Electrical</option>
+            <option value="plumbing">Plumbing</option>
+            <option value="roof">Roof</option>
+            <option value="cosmetic">Cosmetic</option>
+            <option value="safety-pool">Safety: pool fence</option>
+            <option value="safety-smoke">Safety: smoke alarm</option>
+            <option value="safety-asbestos">Safety: asbestos</option>
+          </select></div>
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Fix Cost ($)</label><input type="number" id="cost" placeholder="1500" class="obs-input" style="width:100%;font-size:0.9rem;" /></div>
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Description</label><input type="text" id="desc" placeholder="e.g. cracked tile, back bathroom" class="obs-input" style="width:100%;font-size:0.9rem;" /></div>
+      </div>
+      <button id="add" type="button" class="btn-gold" style="margin-top:1rem;">Add Defect</button>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-text-primary);margin-bottom:1rem;">Defects List</h3>
+      <div id="list"></div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Summary
+      </h2>
+      <div id="summary"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Safety items (smoke alarm, pool, asbestos) carry QLD disclosure obligations. Discuss any statutory item with your solicitor.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Walk Through with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+  interface Defect { id: number; cat: string; cost: number; desc: string; action: string; reason: string; }
+  const defects: Defect[] = [];
+  let seq = 0;
+
+  function triage(cat: string, cost: number): { action: string; reason: string } {
+    // Statutory, always Fix (or formal disclosure with documented rectification plan)
+    if (cat === 'safety-smoke') return { action: 'Fix', reason: 'Interconnected photoelectric smoke alarms are required on sale under QLD law from 2022. Non-compliance is disclosed on the Form 24; buyer can claim a capped price reduction (0.15%).' };
+    if (cat === 'safety-pool') return { action: 'Fix', reason: 'Pool safety certificate required at sale (or Form 36 notice issued to buyer). Non-compliance visible at inspection; fix before listing avoids buyer renegotiation.' };
+    if (cat === 'safety-asbestos') return { action: 'Disclose', reason: 'Asbestos presence must be disclosed. Removal is expensive and rarely worth it before sale; professional disclosure with a management plan is standard practice.' };
+
+    // Major structural / active pest
+    if (cat === 'pest-active') return { action: 'Fix', reason: 'Active termite or pest activity will be found by any buyer\'s building-and-pest inspector and will cost more in renegotiation than in treatment. Treat and disclose.' };
+    if (cat === 'structural' && cost > 5000) return { action: 'Disclose', reason: 'Major structural items rarely earn back their cost at sale. Disclose with a licensed builder\'s opinion. Buyers prefer priced-in to hidden.' };
+    if (cat === 'structural') return { action: 'Fix', reason: 'Small structural items at this price are cheaper to fix than to negotiate around.' };
+    if (cat === 'roof' && cost > 6000) return { action: 'Disclose', reason: 'Full roof replacement rarely recouped at sale. Disclose with quotes so buyers can price it into their offer.' };
+    if (cat === 'roof') return { action: 'Fix', reason: 'Minor roof items are inspection-visible and cheap to address before listing.' };
+
+    if (cat === 'pest-old') return { action: 'Disclose', reason: 'Old, treated pest activity is disclosure territory with treatment paperwork. Do not try to hide it, inspectors will find it anyway.' };
+    if (cat === 'moisture') return { action: cost < 2000 ? 'Fix' : 'Disclose', reason: cost < 2000 ? 'Small moisture issue is cheaper to fix than renegotiate.' : 'Ongoing moisture is a material defect that must be disclosed and investigated by a licensed trade.' };
+
+    if (cat === 'electrical' || cat === 'plumbing') {
+      if (cost < 1500) return { action: 'Fix', reason: 'Small fixes in this category are typically cheap and prevent safety-related report flags.' };
+      return { action: 'Disclose', reason: 'Larger trade items should be quoted and disclosed; buyers will commission their own assessments.' };
+    }
+
+    // Cosmetic
+    if (cat === 'cosmetic' && cost < 1000) return { action: 'Fix', reason: 'Small cosmetic items are presentation items, not repair items. Almost always worth it.' };
+    if (cat === 'cosmetic') return { action: 'Leave', reason: 'Cosmetic work at this cost rarely earns back. Buyers want to personalise anyway.' };
+
+    return { action: 'Review', reason: 'Defect needs a case-by-case call.' };
+  }
+
+  function render() {
+    const list = document.getElementById('list')!;
+    if (defects.length === 0) {
+      list.innerHTML = '<p style="color:var(--color-text-muted);font-size:0.85rem;">No defects added yet.</p>';
+    } else {
+      list.innerHTML = defects.map(d => {
+        const colour = d.action === 'Fix' ? '#d95f5f' : d.action === 'Disclose' ? 'var(--color-gold)' : d.action === 'Leave' ? '#4a9e4a' : 'var(--color-text-muted)';
+        return `
+          <div style="padding:0.75rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem;">
+              <div><p style="font-size:0.85rem;color:var(--color-text-primary);">${d.desc || d.cat}</p>
+                <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.15rem;">${d.cat} &middot; ${fmt(d.cost)}</p></div>
+              <span style="font-size:0.78rem;font-weight:700;color:${colour};white-space:nowrap;">${d.action}</span>
+            </div>
+            <p style="font-size:0.72rem;color:var(--color-text-muted);margin-top:0.35rem;line-height:1.5;">${d.reason}</p>
+            <button data-remove="${d.id}" type="button" style="margin-top:0.3rem;font-size:0.65rem;color:var(--color-gold);background:none;border:none;cursor:pointer;">Remove</button>
+          </div>
+        `;
+      }).join('');
+      list.querySelectorAll('[data-remove]').forEach(el => el.addEventListener('click', () => {
+        const id = Number((el as HTMLElement).dataset.remove);
+        const idx = defects.findIndex(d => d.id === id);
+        if (idx >= 0) defects.splice(idx, 1);
+        render();
+      }));
+    }
+
+    const fix = defects.filter(d => d.action === 'Fix');
+    const disclose = defects.filter(d => d.action === 'Disclose');
+    const leave = defects.filter(d => d.action === 'Leave');
+    const fixCost = fix.reduce((s, d) => s + d.cost, 0);
+
+    document.getElementById('summary')!.innerHTML = `
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:0.5rem;">
+        <div style="background:rgba(217,95,95,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#d95f5f;">Fix</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${fix.length}</p></div>
+        <div style="background:rgba(196,145,42,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Disclose</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${disclose.length}</p></div>
+        <div style="background:rgba(74,158,74,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#4a9e4a;">Leave</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${leave.length}</p></div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-top:0.75rem;">Total Fix spend: <strong>${fmt(fixCost)}</strong></p>
+    `;
+  }
+
+  document.getElementById('add')!.addEventListener('click', () => {
+    const cat = (document.getElementById('cat') as HTMLSelectElement).value;
+    const cost = Number((document.getElementById('cost') as HTMLInputElement).value) || 0;
+    const desc = (document.getElementById('desc') as HTMLInputElement).value;
+    const t = triage(cat, cost);
+    defects.push({ id: ++seq, cat, cost, desc, action: t.action, reason: t.reason });
+    (document.getElementById('cost') as HTMLInputElement).value = '';
+    (document.getElementById('desc') as HTMLInputElement).value = '';
+    render();
+  });
+
+  render();
+</script>

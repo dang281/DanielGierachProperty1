@@ -1,0 +1,122 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="CGT-Optimised Sale Timing"
+  description="Does it matter whether you settle this financial year or next? Compares CGT liability across two settlement years given your income forecast."
+  tool="CGT Timing"
+  phase="Investor Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Expected Sale Price</label>
+        <input type="number" id="sale" value="1100000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Cost Base</label>
+        <input type="number" id="costbase" value="650000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Held 12+ Months?</label>
+        <select id="twelve" class="obs-select" style="width:100%;">
+          <option value="yes" selected>Yes (50% discount applies)</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Property Type</label>
+        <select id="type" class="obs-select" style="width:100%;">
+          <option value="investment" selected>Investment, full CGT</option>
+          <option value="partial">Part main residence, apportion manually</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Taxable Income THIS FY (ex gain)</label>
+        <input type="number" id="income-a" value="130000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Forecast Income NEXT FY (ex gain)</label>
+        <input type="number" id="income-b" value="80000" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Settlement year comparison
+      </h2>
+      <div id="compare"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Recommendation</p>
+        <p id="rec" style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);line-height:1.4;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Uses 2025-26 Stage-3 brackets. The CGT event falls on contract date, not settlement. Always confirm with an accountant.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Discuss Timing with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+
+  // 2025-26 Stage-3 resident tax
+  function tax(income: number): number {
+    if (income <= 18200) return 0;
+    if (income <= 45000) return (income - 18200) * 0.16;
+    if (income <= 135000) return 4288 + (income - 45000) * 0.30;
+    if (income <= 190000) return 31288 + (income - 135000) * 0.37;
+    return 51638 + (income - 190000) * 0.45;
+  }
+
+  function calc() {
+    const sale = Number((document.getElementById('sale') as HTMLInputElement).value) || 0;
+    const cb = Number((document.getElementById('costbase') as HTMLInputElement).value) || 0;
+    const twelve = (document.getElementById('twelve') as HTMLSelectElement).value === 'yes';
+    const iA = Number((document.getElementById('income-a') as HTMLInputElement).value) || 0;
+    const iB = Number((document.getElementById('income-b') as HTMLInputElement).value) || 0;
+
+    const rawGain = Math.max(0, sale * 0.97 - cb);
+    const taxableGain = twelve ? rawGain * 0.5 : rawGain;
+
+    const taxA = tax(iA + taxableGain) - tax(iA);
+    const taxB = tax(iB + taxableGain) - tax(iB);
+    const diff = taxA - taxB;
+
+    document.getElementById('compare')!.innerHTML = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <div style="background:var(--color-surface-4);padding:1rem;">
+          <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">Settle this FY</p>
+          <p style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-text-primary);margin:0.3rem 0;">${fmt(taxA)}</p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);">on taxable gain ${fmt(taxableGain)}</p>
+        </div>
+        <div style="background:var(--color-surface-4);padding:1rem;">
+          <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">Settle next FY</p>
+          <p style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-text-primary);margin:0.3rem 0;">${fmt(taxB)}</p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);">on taxable gain ${fmt(taxableGain)}</p>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--color-text-secondary);margin-top:0.75rem;">Difference: ${fmt(Math.abs(diff))} in favour of ${diff > 0 ? 'NEXT FY' : 'THIS FY'}</p>
+    `;
+
+    const rec = Math.abs(diff) < 500
+      ? 'Timing has negligible tax impact. Make the call based on non-tax factors (campaign conditions, personal readiness).'
+      : diff > 0
+        ? `Settling next financial year saves approximately ${fmt(diff)}. Contract exchange after 1 July is the key date (CGT event is contract date).`
+        : `Settling this financial year saves approximately ${fmt(-diff)}. Next year's income is forecast higher, pushing more of the gain into a higher bracket.`;
+    document.getElementById('rec')!.textContent = rec;
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,128 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Multiple Offer Evaluation"
+  description="Score up to four offers on price, conditionality, finance risk, deposit and settlement fit. The highest offer is rarely the strongest."
+  tool="Multiple Offer Evaluation"
+  phase="Seller Tools"
+>
+<div class="flex flex-col gap-6 pt-8">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="offer-grid">
+    <!-- populated by JS -->
+  </div>
+
+  <div style="background:var(--color-surface-3);padding:2rem;">
+    <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;">Scores</h2>
+    <div id="scores" class="grid grid-cols-1 md:grid-cols-4 gap-3"></div>
+    <div style="margin-top:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+      <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Recommended</p>
+      <p id="recommend" style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-gold);line-height:1.3;"></p>
+    </div>
+    <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+      Weights: 50% price, 20% finance risk, 15% conditionality, 10% settlement fit, 5% deposit. Always review the actual contract with your solicitor before accepting.
+    </p>
+    <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Discuss Your Offers with Daniel</a>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
+  function renderInputs() {
+    const grid = document.getElementById('offer-grid')!;
+    grid.innerHTML = '';
+    for (let i = 1; i <= 4; i++) {
+      grid.innerHTML += `
+        <div style="background:var(--color-surface-3);padding:1.5rem;display:flex;flex-direction:column;gap:0.85rem;">
+          <p style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-gold);">Offer ${i}</p>
+          <div><label style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Price</label>
+            <input type="number" id="p${i}" placeholder="1200000" class="obs-input" style="width:100%;font-size:0.9rem;margin-top:0.25rem;" /></div>
+          <div><label style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Deposit %</label>
+            <input type="number" id="d${i}" placeholder="10" class="obs-input" style="width:100%;font-size:0.9rem;margin-top:0.25rem;" /></div>
+          <div><label style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Finance</label>
+            <select id="f${i}" class="obs-select" style="width:100%;font-size:0.9rem;">
+              <option value="cash">Cash / Pre-approved</option>
+              <option value="standard" selected>Standard 21-day finance</option>
+              <option value="extended">Extended finance (>21)</option>
+              <option value="subject-sale">Subject to sale</option>
+            </select></div>
+          <div><label style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Building/Pest</label>
+            <select id="b${i}" class="obs-select" style="width:100%;font-size:0.9rem;">
+              <option value="waived">Waived</option>
+              <option value="done">Already done</option>
+              <option value="standard" selected>Standard 14-day</option>
+              <option value="extended">Extended</option>
+            </select></div>
+          <div><label style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Settlement fit</label>
+            <select id="s${i}" class="obs-select" style="width:100%;font-size:0.9rem;">
+              <option value="perfect">Matches my timing</option>
+              <option value="close" selected>Close to my timing</option>
+              <option value="off">Off by weeks</option>
+            </select></div>
+        </div>
+      `;
+    }
+    grid.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  }
+
+  function scoreOffer(i: number, maxPrice: number) {
+    const price = Number((document.getElementById(`p${i}`) as HTMLInputElement).value) || 0;
+    if (!price) return null;
+    const dep = Number((document.getElementById(`d${i}`) as HTMLInputElement).value) || 0;
+    const fin = (document.getElementById(`f${i}`) as HTMLSelectElement).value;
+    const bp = (document.getElementById(`b${i}`) as HTMLSelectElement).value;
+    const settle = (document.getElementById(`s${i}`) as HTMLSelectElement).value;
+
+    const pricePts = maxPrice > 0 ? (price / maxPrice) * 50 : 0;
+    const finPts = { cash: 20, standard: 14, extended: 8, 'subject-sale': 2 }[fin];
+    const bpPts = { waived: 15, done: 14, standard: 10, extended: 5 }[bp];
+    const settlePts = { perfect: 10, close: 7, off: 2 }[settle];
+    const depPts = Math.min(5, (dep / 20) * 5);
+
+    return {
+      price,
+      total: Math.round(pricePts + finPts + bpPts + settlePts + depPts),
+      parts: { price: Math.round(pricePts), fin: finPts, bp: bpPts, settle: settlePts, deposit: Math.round(depPts) },
+    };
+  }
+
+  function calc() {
+    const prices = [1,2,3,4].map(i => Number((document.getElementById(`p${i}`) as HTMLInputElement)?.value) || 0);
+    const maxPrice = Math.max(...prices);
+    const results: any[] = [];
+    for (let i = 1; i <= 4; i++) {
+      const r = scoreOffer(i, maxPrice);
+      if (r) results.push({ i, ...r });
+    }
+
+    const scores = document.getElementById('scores')!;
+    scores.innerHTML = results.map(r => `
+      <div style="background:var(--color-surface-4);padding:1rem;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Offer ${r.i}: ${fmt(r.price)}</p>
+        <p style="font-family:var(--font-serif);font-size:1.8rem;color:var(--color-gold);line-height:1;margin:0.4rem 0;">${r.total}<span style="font-size:0.9rem;color:var(--color-text-muted);"> / 100</span></p>
+        <p style="font-size:0.7rem;color:var(--color-text-muted);">Price ${r.parts.price} &middot; Finance ${r.parts.fin} &middot; B/P ${r.parts.bp} &middot; Settle ${r.parts.settle} &middot; Dep ${r.parts.deposit}</p>
+      </div>
+    `).join('') || '<p style="color:var(--color-text-muted);font-size:0.85rem;">Enter at least one offer above.</p>';
+
+    const rec = document.getElementById('recommend')!;
+    if (results.length) {
+      const winner = results.reduce((a, b) => a.total > b.total ? a : b);
+      const highestPrice = results.reduce((a, b) => a.price > b.price ? a : b);
+      if (winner.i !== highestPrice.i) {
+        rec.innerHTML = `Take Offer ${winner.i} (${fmt(winner.price)}). Higher net strength than the highest-price offer (Offer ${highestPrice.i} at ${fmt(highestPrice.price)}) once finance risk and conditions are included.`;
+      } else {
+        rec.innerHTML = `Offer ${winner.i} (${fmt(winner.price)}) is both highest on price and strongest on conditions.`;
+      }
+    } else {
+      rec.innerHTML = 'Enter offers to see a recommendation.';
+    }
+  }
+
+  renderInputs();
+  calc();
+</script>

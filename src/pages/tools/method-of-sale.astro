@@ -1,0 +1,158 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Method of Sale Recommender"
+  description="Auction, private treaty, or expressions of interest? Six questions decide the right method for your property, with reasoning."
+  tool="Method of Sale"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Property Type</label>
+        <select id="type" class="obs-select" style="width:100%;">
+          <option value="house" selected>Standard house</option>
+          <option value="character">Character Queenslander</option>
+          <option value="prestige">Prestige / premium home</option>
+          <option value="unit">Unit / apartment</option>
+          <option value="townhouse">Townhouse</option>
+          <option value="land">Land / development site</option>
+        </select>
+      </div>
+
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Uniqueness (1 = same as all the others, 5 = one of a kind)</label>
+        <div class="flex items-center gap-3">
+          <input type="range" id="unique" min="1" max="5" step="1" value="2" style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+          <span id="unique-display" style="background:var(--color-surface-4);padding:0.5rem 0.75rem;font-size:1rem;font-weight:700;color:var(--color-text-primary);">2</span>
+        </div>
+      </div>
+
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Your Timeline</label>
+        <select id="timeline" class="obs-select" style="width:100%;">
+          <option value="tight">Tight, need contract in 4 weeks</option>
+          <option value="standard" selected>Standard, can run 4-6 weeks</option>
+          <option value="flexible">Flexible, can wait for right buyer</option>
+        </select>
+      </div>
+
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Need Unconditional Offer?</label>
+        <select id="uncond" class="obs-select" style="width:100%;">
+          <option value="need" selected>Yes, clean contract important (buying elsewhere)</option>
+          <option value="prefer">Prefer but not critical</option>
+          <option value="no">No, conditional is fine</option>
+        </select>
+      </div>
+
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Risk Tolerance</label>
+        <select id="risk" class="obs-select" style="width:100%;">
+          <option value="low">Low, need certainty</option>
+          <option value="medium" selected>Medium, comfortable with some uncertainty</option>
+          <option value="high">High, chase the best result</option>
+        </select>
+      </div>
+
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Local Market Stage</label>
+        <select id="market" class="obs-select" style="width:100%;">
+          <option value="rising">Rising, buyer pool growing</option>
+          <option value="stable" selected>Stable</option>
+          <option value="softening">Softening, fewer buyers, longer days on market</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Recommendation
+      </h2>
+      <div style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);margin-bottom:1rem;">
+        <p id="rec-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.3rem;">Method</p>
+        <p id="rec-method" style="font-family:var(--font-serif);font-size:1.7rem;color:var(--color-text-primary);line-height:1.2;"></p>
+        <p id="rec-confidence" style="font-size:0.72rem;color:var(--color-text-muted);margin-top:0.3rem;"></p>
+      </div>
+      <div id="why"></div>
+      <div id="campaign-shape" style="margin-top:1rem;background:var(--color-surface-4);padding:1rem;font-size:0.8rem;color:var(--color-text-primary);line-height:1.6;"></div>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Stress-test with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  function calc() {
+    const type = (document.getElementById('type') as HTMLSelectElement).value;
+    const unique = Number((document.getElementById('unique') as HTMLInputElement).value);
+    const timeline = (document.getElementById('timeline') as HTMLSelectElement).value;
+    const uncond = (document.getElementById('uncond') as HTMLSelectElement).value;
+    const risk = (document.getElementById('risk') as HTMLSelectElement).value;
+    const market = (document.getElementById('market') as HTMLSelectElement).value;
+
+    (document.getElementById('unique-display') as HTMLElement).textContent = String(unique);
+
+    let method = '';
+    let confidence = 'Medium';
+    const reasons: string[] = [];
+
+    // Hard overrides
+    if (type === 'unit' && unique <= 3) {
+      method = 'Private Treaty';
+      confidence = 'High';
+      reasons.push('Units under $1m almost always perform better private treaty. Auction pool is too thin.');
+    } else if (unique >= 4 && market !== 'softening') {
+      method = 'Auction';
+      confidence = 'High';
+      reasons.push('Highly unique properties benefit from auction pressure, the buyer pool is smaller but more motivated.');
+      if (timeline === 'tight') reasons.push('Auction timeline suits your window.');
+    } else if (type === 'prestige' && market !== 'softening') {
+      method = 'Expressions of Interest';
+      confidence = 'High';
+      reasons.push('Prestige property usually warrants a closed-campaign EOI so buyers don\'t anchor on a public guide.');
+    } else if (timeline === 'tight' && uncond === 'need') {
+      method = 'Auction';
+      reasons.push('Tight timeline plus need for unconditional offer, auction delivers a clean contract.');
+    } else if (market === 'softening' || risk === 'low') {
+      method = 'Private Treaty';
+      confidence = market === 'softening' ? 'High' : 'Medium';
+      reasons.push(market === 'softening' ? 'In a softening market auction clearance rates drop. Private treaty controls the price conversation.' : 'Low risk tolerance suits private treaty, no pass-in exposure.');
+    } else if (unique >= 3 && market === 'rising') {
+      method = 'Auction';
+      reasons.push('Rising market plus above-average uniqueness rewards auction competition.');
+    } else {
+      method = 'Private Treaty';
+      reasons.push('Standard property in a stable market, private treaty typically produces the strongest result for a broad buyer pool.');
+    }
+
+    if (timeline === 'flexible' && method !== 'Expressions of Interest' && unique >= 3) {
+      reasons.push('Flexible timing also supports EOI as a backup method if a strong private offer does not land in week two.');
+    }
+
+    document.getElementById('rec-method')!.textContent = method;
+    document.getElementById('rec-confidence')!.textContent = `${confidence} confidence`;
+    document.getElementById('why')!.innerHTML = reasons.map(r => `
+      <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.6;padding:0.4rem 0;border-top:1px solid rgba(72,72,72,0.12);">&bull; ${r}</p>
+    `).join('');
+
+    const shape = method === 'Auction'
+      ? 'Recommended campaign: 4 weeks, launch Wednesday/Thursday, 3 open homes, auction in week 4.'
+      : method === 'Expressions of Interest'
+        ? 'Recommended campaign: 4-5 weeks, closed listing or private database first, EOI close date.'
+        : 'Recommended campaign: 4 weeks, launch Wednesday/Thursday, offers welcomed from week 2.';
+    document.getElementById('campaign-shape')!.textContent = shape;
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

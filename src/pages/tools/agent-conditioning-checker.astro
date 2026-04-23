@@ -1,0 +1,123 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Agent Conditioning Pattern Checker"
+  description="Is your agent gradually walking you down on price? Compare their initial appraisal, written appraisal, and current campaign language to see if the framing is trending down."
+  tool="Conditioning Checker"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Initial Verbal Appraisal Mid</label>
+        <input type="number" id="initial" value="1600000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Written Appraisal Mid</label>
+        <input type="number" id="written" value="1550000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Campaign Price Guide Mid</label>
+        <input type="number" id="guide" value="1500000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Latest Suggested Reserve / Expectation</label>
+        <input type="number" id="latest" value="1450000" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Market Since Appraisal</label>
+      <select id="market" class="obs-select" style="width:100%;">
+        <option value="rising">Rising</option>
+        <option value="flat" selected>Flat</option>
+        <option value="softening">Softening (rates up, fewer buyers)</option>
+      </select>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.5rem;">Genuine market movement justifies some price drift. The tool isolates drift beyond what the market explains.</p>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Conditioning Trend
+      </h2>
+      <div id="verdict" style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);margin-bottom:1rem;">
+        <p id="trend-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Analysing</p>
+        <p id="trend-summary" style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);line-height:1.3;"></p>
+      </div>
+      <div id="stages"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        This tool identifies patterns consistent with price conditioning. Genuine market shifts can mimic conditioning. Discuss any flagged pattern with your agent openly.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Get an Independent Opinion</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  function fmt(n: number) { return '$' + Math.round(n).toLocaleString(); }
+  function pct(a: number, b: number) { return ((a - b) / b) * 100; }
+
+  function calc() {
+    const initial = Number((document.getElementById('initial') as HTMLInputElement).value) || 0;
+    const written = Number((document.getElementById('written') as HTMLInputElement).value) || 0;
+    const guide = Number((document.getElementById('guide') as HTMLInputElement).value) || 0;
+    const latest = Number((document.getElementById('latest') as HTMLInputElement).value) || 0;
+    const market = (document.getElementById('market') as HTMLSelectElement).value;
+    const marketAllowed = market === 'softening' ? 4 : market === 'flat' ? 0 : -2;
+
+    const totalDrop = pct(latest, initial);
+    const unexplained = totalDrop - (marketAllowed * -1);
+
+    let label = 'None';
+    let summary = '';
+    if (totalDrop >= -2) {
+      label = 'None';
+      summary = 'Framing has held steady. No conditioning pattern visible.';
+    } else if (unexplained >= -4) {
+      label = 'Mild';
+      summary = 'Small drift (' + totalDrop.toFixed(1) + '%). Most of the movement is explained by market conditions. Worth raising, not alarming.';
+    } else if (unexplained >= -8) {
+      label = 'Moderate';
+      summary = 'Drift of ' + totalDrop.toFixed(1) + '% exceeds what market conditions explain. Classic mid-campaign conditioning pattern. Ask for specific comps that support the new position.';
+    } else {
+      label = 'Strong';
+      summary = 'Drift of ' + totalDrop.toFixed(1) + '% from initial. Even allowing for market, this is a sustained talk-down. Time to get an independent opinion.';
+    }
+
+    document.getElementById('trend-label')!.textContent = label;
+    document.getElementById('trend-summary')!.textContent = summary;
+
+    const stages = [
+      { label: 'Initial verbal', value: initial },
+      { label: 'Written appraisal', value: written },
+      { label: 'Price guide', value: guide },
+      { label: 'Latest position', value: latest },
+    ];
+    document.getElementById('stages')!.innerHTML = stages.map((s, i) => {
+      const delta = i === 0 ? null : pct(s.value, stages[i-1].value);
+      const color = delta === null ? 'var(--color-text-muted)' : delta >= 0 ? '#4a9e4a' : '#d95f5f';
+      return `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+          <span style="font-size:0.78rem;color:var(--color-text-muted);">${s.label}</span>
+          <div style="text-align:right;">
+            <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${fmt(s.value)}</span>
+            ${delta !== null ? `<span style="font-size:0.7rem;color:${color};margin-left:0.5rem;">${delta > 0 ? '+' : ''}${delta.toFixed(1)}%</span>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

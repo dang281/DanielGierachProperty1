@@ -1,0 +1,138 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Holding Costs While On Market"
+  description="See the real weekly dollar cost of every extra week your property sits on market. Mortgage interest, rates, insurance, body corp, styling, opportunity cost."
+  tool="Holding Costs Calculator"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Property Value</label>
+      <div class="flex items-center gap-4 mb-3">
+        <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="value-display">$1,400,000</span>
+      </div>
+      <input type="range" id="value" min="400000" max="10000000" step="25000" value="1400000" style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Mortgage Balance</label>
+        <input type="number" id="mortgage" value="600000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Interest Rate %</label>
+        <input type="number" id="rate" value="6.2" step="0.05" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Annual Council Rates</label>
+        <input type="number" id="rates" value="3200" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Annual Insurance</label>
+        <input type="number" id="insurance" value="2200" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Annual Body Corp</label>
+        <input type="number" id="bodycorp" value="0" class="obs-input" style="font-size:1rem;" placeholder="Unit only" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Monthly Styling</label>
+        <input type="number" id="styling" value="0" class="obs-input" style="font-size:1rem;" placeholder="0" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Opportunity Cost on Equity %</label>
+      <div class="flex items-center gap-3">
+        <input type="range" id="opp" min="0" max="10" step="0.25" value="5" style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4rem;text-align:center;">
+          <span id="opp-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">5.00%</span>
+        </div>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.5rem;">What you could earn on your net equity if it were already deployed elsewhere. Set to 0 to exclude.</p>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
+        Running Cost
+      </h2>
+      <div id="results" class="flex flex-col gap-0"></div>
+      <div style="margin-top:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Per Week</p>
+        <p id="per-week" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Brisbane inner-east houses typically sell within 20 to 30 days when well positioned. Beyond that, this cost compounds.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">Book a Free Appraisal</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
+  function calc() {
+    const value    = Number((document.getElementById('value') as HTMLInputElement).value);
+    const mort     = Number((document.getElementById('mortgage') as HTMLInputElement).value) || 0;
+    const rate     = Number((document.getElementById('rate') as HTMLInputElement).value) / 100;
+    const rates    = Number((document.getElementById('rates') as HTMLInputElement).value) || 0;
+    const ins      = Number((document.getElementById('insurance') as HTMLInputElement).value) || 0;
+    const bc       = Number((document.getElementById('bodycorp') as HTMLInputElement).value) || 0;
+    const stylMo   = Number((document.getElementById('styling') as HTMLInputElement).value) || 0;
+    const opp      = Number((document.getElementById('opp') as HTMLInputElement).value) / 100;
+
+    const equity   = Math.max(0, value - mort);
+    const intAnn   = mort * rate;
+    const oppAnn   = equity * opp;
+    const stylAnn  = stylMo * 12;
+    const annual   = intAnn + rates + ins + bc + stylAnn + oppAnn;
+    const weekly   = annual / 52;
+    const monthly  = annual / 12;
+
+    const rows = [
+      { label: 'Mortgage interest', value: intAnn },
+      { label: 'Council rates',     value: rates },
+      { label: 'Insurance',         value: ins },
+      ...(bc ? [{ label: 'Body corp', value: bc }] : []),
+      ...(stylMo ? [{ label: 'Styling (annual)', value: stylAnn }] : []),
+      ...(opp ? [{ label: `Opportunity cost (${(opp*100).toFixed(2)}% on $${equity.toLocaleString()} equity)`, value: oppAnn }] : []),
+    ];
+
+    document.getElementById('results')!.innerHTML = rows.map(r => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">${r.label}</span>
+        <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${fmt(r.value)}</span>
+      </div>
+    `).join('') + `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1rem;">
+        <div style="background:var(--color-surface-4);padding:0.9rem;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">4 weeks</p>
+          <p style="font-family:var(--font-serif);font-size:1.15rem;color:var(--color-text-primary);">${fmt(weekly*4)}</p>
+        </div>
+        <div style="background:var(--color-surface-4);padding:0.9rem;">
+          <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">12 weeks</p>
+          <p style="font-family:var(--font-serif);font-size:1.15rem;color:var(--color-text-primary);">${fmt(weekly*12)}</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('per-week')!.textContent = fmt(weekly) + ' / wk';
+    document.getElementById('value-display')!.textContent = fmt(value);
+    document.getElementById('opp-display')!.textContent = (opp*100).toFixed(2) + '%';
+  }
+
+  document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

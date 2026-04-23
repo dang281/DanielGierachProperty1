@@ -1,0 +1,155 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Net Proceeds Deep Dive"
+  description="A full settlement-statement-style breakdown of what lands in your bank account. Includes fixed-rate break cost, pro-rata rates, compliance, and CGT where applicable."
+  tool="Net Proceeds Deep Dive"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Expected Sale Price</label>
+      <input type="number" id="sale" value="1400000" class="obs-input" style="font-size:1rem;width:100%;" />
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Commission %</label>
+        <input type="number" id="comm" value="2.5" step="0.1" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Marketing</label>
+        <input type="number" id="marketing" value="5000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Legal / Conveyancing</label>
+        <input type="number" id="legal" value="1800" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Mortgage Payout</label>
+        <input type="number" id="mortgage" value="400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1rem;color:var(--color-text-primary);margin-bottom:1rem;">Fixed-rate break cost</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <label style="display:flex;gap:0.5rem;align-items:center;font-size:0.85rem;color:var(--color-text-primary);">
+          <input type="checkbox" id="fixed-on" style="accent-color:var(--color-gold);width:18px;height:18px;" />
+          On fixed rate
+        </label>
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Rate differential %</label><input type="number" id="diff" value="1.5" step="0.1" class="obs-input" style="width:100%;font-size:0.9rem;" /></div>
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Fixed months remaining</label><input type="number" id="months-left" value="18" class="obs-input" style="width:100%;font-size:0.9rem;" /></div>
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <h3 style="font-family:var(--font-serif);font-size:1rem;color:var(--color-text-primary);margin-bottom:1rem;">CGT (investor / part-rented only)</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <label style="display:flex;gap:0.5rem;align-items:center;font-size:0.85rem;color:var(--color-text-primary);">
+          <input type="checkbox" id="cgt-on" style="accent-color:var(--color-gold);width:18px;height:18px;" />
+          CGT applies
+        </label>
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Capital gain</label><input type="number" id="gain" value="200000" class="obs-input" style="width:100%;font-size:0.9rem;" /></div>
+        <div><label style="font-size:0.6rem;color:var(--color-text-muted);">Marginal rate %</label><input type="number" id="mtr" value="37" class="obs-input" style="width:100%;font-size:0.9rem;" /></div>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.5rem;">50% discount applied if held 12 months or more. Not tax advice.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Pool Safety Cert</label>
+        <input type="number" id="pool" value="0" class="obs-input" style="font-size:1rem;" placeholder="0" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Smoke Alarm Upgrade</label>
+        <input type="number" id="smoke" value="600" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Rates adjustment (paid by you)</label>
+        <input type="number" id="rates" value="0" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Settlement Statement
+      </h2>
+      <div id="rows" class="flex flex-col gap-0"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Net Proceeds in Bank</p>
+        <p id="net" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+        <p id="cents" style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.4rem;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Break cost uses a simplified formula &mdash; your lender will issue the exact figure on discharge. CGT is estimate only, not tax advice.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Tighten the Sale Price with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => n < 0 ? '-$' + Math.abs(Math.round(n)).toLocaleString() : '$' + Math.round(n).toLocaleString();
+
+  function calc() {
+    const sale = Number((document.getElementById('sale') as HTMLInputElement).value) || 0;
+    const comm = sale * (Number((document.getElementById('comm') as HTMLInputElement).value) / 100) * 1.1;
+    const mkt = Number((document.getElementById('marketing') as HTMLInputElement).value) || 0;
+    const legal = Number((document.getElementById('legal') as HTMLInputElement).value) || 0;
+    const mortgage = Number((document.getElementById('mortgage') as HTMLInputElement).value) || 0;
+
+    const fixedOn = (document.getElementById('fixed-on') as HTMLInputElement).checked;
+    const diff = Number((document.getElementById('diff') as HTMLInputElement).value) / 100;
+    const monthsLeft = Number((document.getElementById('months-left') as HTMLInputElement).value) || 0;
+    const breakCost = fixedOn ? (mortgage * diff * (monthsLeft/12)) / 2 : 0;
+
+    const cgtOn = (document.getElementById('cgt-on') as HTMLInputElement).checked;
+    const gain = Number((document.getElementById('gain') as HTMLInputElement).value) || 0;
+    const mtr = Number((document.getElementById('mtr') as HTMLInputElement).value) / 100;
+    const cgt = cgtOn ? gain * 0.5 * mtr : 0;
+
+    const pool = Number((document.getElementById('pool') as HTMLInputElement).value) || 0;
+    const smoke = Number((document.getElementById('smoke') as HTMLInputElement).value) || 0;
+    const rates = Number((document.getElementById('rates') as HTMLInputElement).value) || 0;
+
+    const total = comm + mkt + legal + mortgage + breakCost + cgt + pool + smoke + rates;
+    const net = sale - total;
+
+    const rows = [
+      { l: 'Gross sale price', v: sale, plus: true },
+      { l: 'Commission (incl. GST)', v: -comm },
+      { l: 'Marketing', v: -mkt },
+      { l: 'Legal / conveyancing', v: -legal },
+      { l: 'Mortgage payout', v: -mortgage },
+      ...(fixedOn ? [{ l: 'Fixed-rate break cost (est.)', v: -breakCost }] : []),
+      ...(cgtOn ? [{ l: 'Capital gains tax (est.)', v: -cgt }] : []),
+      ...(pool ? [{ l: 'Pool safety cert', v: -pool }] : []),
+      ...(smoke ? [{ l: 'Smoke alarm compliance', v: -smoke }] : []),
+      ...(rates ? [{ l: 'Rates adjustment', v: -rates }] : []),
+    ];
+
+    document.getElementById('rows')!.innerHTML = rows.map(r => `
+      <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">${r.l}</span>
+        <span style="font-size:0.85rem;font-weight:600;color:${r.plus ? 'var(--color-text-primary)' : '#d95f5f'};">${fmt(r.v)}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('net')!.textContent = fmt(net);
+    document.getElementById('cents')!.textContent = sale ? ((net/sale*100).toFixed(1) + '% of gross sale price') : '';
+  }
+
+  document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

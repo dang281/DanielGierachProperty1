@@ -1,0 +1,142 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Price Reduction Decision Tool"
+  description="Week four of your campaign, no offers. Hold firm, reduce, or relaunch. Built around the signals an agent should be reading."
+  tool="Price Reduction Decision"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Current Price Guide</label>
+        <input type="number" id="guide" value="1300000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Weeks on Market</label>
+        <input type="number" id="weeks" value="4" min="1" max="30" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Total Inspection Attendance</label>
+        <input type="number" id="inspections" value="22" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Callbacks / Repeat Inspections</label>
+        <input type="number" id="callbacks" value="3" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Written Offers Received</label>
+        <input type="number" id="offers" value="0" min="0" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Highest Offer Received</label>
+        <input type="number" id="highest" value="0" min="0" class="obs-input" style="font-size:1rem;" placeholder="If any" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Market Since Launch</label>
+      <select id="market" class="obs-select" style="width:100%;">
+        <option value="rising">Rising</option>
+        <option value="flat" selected>Flat</option>
+        <option value="softening">Softening</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Recommendation
+      </h2>
+      <div id="rec-box" style="padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p id="rec-label" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Hold</p>
+        <p id="rec-title" style="font-family:var(--font-serif);font-size:1.4rem;color:var(--color-text-primary);line-height:1.3;"></p>
+        <p id="rec-reason" style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;margin-top:0.75rem;"></p>
+      </div>
+      <div id="signals" style="margin-top:1.25rem;display:flex;flex-direction:column;gap:0.5rem;"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Diagnostic only. Final reduction calls should be made with your agent, who has the qualitative buyer feedback this tool cannot see.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Get a Second Opinion from Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  function calc() {
+    const guide = Number((document.getElementById('guide') as HTMLInputElement).value) || 0;
+    const weeks = Number((document.getElementById('weeks') as HTMLInputElement).value) || 0;
+    const insp = Number((document.getElementById('inspections') as HTMLInputElement).value) || 0;
+    const cb = Number((document.getElementById('callbacks') as HTMLInputElement).value) || 0;
+    const offers = Number((document.getElementById('offers') as HTMLInputElement).value) || 0;
+    const highest = Number((document.getElementById('highest') as HTMLInputElement).value) || 0;
+    const market = (document.getElementById('market') as HTMLSelectElement).value;
+
+    const inspPerWeek = weeks ? insp / weeks : 0;
+
+    let rec = 'hold';
+    let title = '';
+    let reason = '';
+    const signals: string[] = [];
+
+    if (weeks <= 2) {
+      rec = 'hold';
+      title = 'Too early';
+      reason = 'Campaigns in Brisbane inner-east routinely see their first offer in weeks 2 to 4. Signals below 2 weeks are noise, not data.';
+    } else if (offers && highest >= guide * 0.97) {
+      rec = 'hold';
+      title = 'Hold, close offer in hand';
+      reason = 'You already have an offer within 3% of the guide. Negotiate that offer up rather than reduce the guide.';
+    } else if (inspPerWeek < 4 && cb < 1 && weeks >= 3) {
+      rec = 'reduce';
+      title = 'Reduce 5 to 7%';
+      reason = 'Inspection volume and callback activity are both low. The guide is filtering buyers out before they see the home. A meaningful reduction resets the buyer pool.';
+    } else if (inspPerWeek >= 6 && cb >= 2 && !offers && weeks >= 3) {
+      rec = 'review-presentation';
+      title = 'Price looks right, check presentation or condition';
+      reason = 'High inspection volume and multiple callbacks with zero offers usually signals a building or presentation issue that is losing buyers after they inspect. Defect triage before reducing.';
+    } else if (market === 'softening' && weeks >= 3 && !offers) {
+      rec = 'reduce';
+      title = 'Reduce 2 to 3%';
+      reason = 'Softening market plus no offers means the comp set has moved against the guide. A modest reduction brings the listing back into the market.';
+    } else if (weeks >= 6 && !offers) {
+      rec = 'relaunch';
+      title = 'Relaunch with fresh photography and new price';
+      reason = 'Six weeks with no offers means buyers scrolling portals now see a stale listing. Fresh launch + new price + new open home structure.';
+    } else {
+      rec = 'hold';
+      title = 'Hold, early-to-mid campaign';
+      reason = 'Signals are within normal range for a campaign at this stage. Give the current guide another one to two weeks before moving.';
+    }
+
+    if (inspPerWeek >= 6) signals.push('Healthy inspection volume (' + inspPerWeek.toFixed(1) + '/week)');
+    else if (weeks >= 2) signals.push('Low inspection volume (' + inspPerWeek.toFixed(1) + '/week)');
+    if (cb >= 2) signals.push('Callbacks present: ' + cb);
+    else if (weeks >= 2) signals.push('Few callbacks: ' + cb);
+    if (market === 'softening') signals.push('Market softening, comp set is moving');
+    else if (market === 'rising') signals.push('Market rising, can justify holding the guide');
+
+    document.getElementById('rec-label')!.textContent = ({
+      hold: 'Hold', reduce: 'Reduce', relaunch: 'Relaunch', 'review-presentation': 'Review',
+    } as any)[rec];
+    document.getElementById('rec-title')!.textContent = title;
+    document.getElementById('rec-reason')!.textContent = reason;
+    document.getElementById('signals')!.innerHTML = signals.map(s => `
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.78rem;color:var(--color-text-muted);">
+        <span style="color:var(--color-gold);margin-top:0.15rem;">&#8226;</span><span>${s}</span>
+      </div>
+    `).join('');
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,117 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Campaign Outcome Benchmarker"
+  description="What result should you actually expect? Typical campaign outcomes (days on market, offer count, above-guide rate) for your property class in your suburb."
+  tool="Campaign Benchmarker"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Suburb</label>
+        <select id="suburb" class="obs-select" style="width:100%;">
+          <option value="bulimba">Bulimba</option><option value="hawthorne">Hawthorne</option><option value="balmoral">Balmoral</option>
+          <option value="norman-park">Norman Park</option><option value="camp-hill" selected>Camp Hill</option><option value="seven-hills">Seven Hills</option>
+          <option value="morningside">Morningside</option><option value="cannon-hill">Cannon Hill</option><option value="murarrie">Murarrie</option>
+          <option value="carina">Carina</option><option value="coorparoo">Coorparoo</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Property Type</label>
+        <select id="type" class="obs-select" style="width:100%;">
+          <option value="house" selected>House</option>
+          <option value="townhouse">Townhouse</option>
+          <option value="unit">Unit</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Price Band</label>
+        <select id="band" class="obs-select" style="width:100%;">
+          <option value="u800">Under $800k</option>
+          <option value="800-1200" selected>$800k - $1.2m</option>
+          <option value="1200-1600">$1.2m - $1.6m</option>
+          <option value="1600-2200">$1.6m - $2.2m</option>
+          <option value="2200+">$2.2m+</option>
+        </select>
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Method of Sale</label>
+        <select id="method" class="obs-select" style="width:100%;">
+          <option value="pt" selected>Private treaty</option>
+          <option value="auction">Auction</option>
+          <option value="eoi">Expressions of interest</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Typical Outcome
+      </h2>
+      <div id="metrics"></div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Benchmarks based on Daniel's office data and publicly-available CoreLogic figures for inner-east Brisbane. Your specific property can and does outperform (or underperform) these averages.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Get a Specific Read for Your Street</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  // Benchmark heuristic. Broad suburb tier + type + band + method.
+  const premiumSuburbs = ['bulimba','hawthorne','balmoral','norman-park','camp-hill'];
+
+  function calc() {
+    const s = (document.getElementById('suburb') as HTMLSelectElement).value;
+    const t = (document.getElementById('type') as HTMLSelectElement).value;
+    const b = (document.getElementById('band') as HTMLSelectElement).value;
+    const m = (document.getElementById('method') as HTMLSelectElement).value;
+
+    const premium = premiumSuburbs.includes(s);
+    let dom = 28; // baseline days on market
+    let firstOffer = 12;
+    let aboveGuide = 25; // % chance
+    let passedIn = 12; // % if auction
+
+    if (premium) { dom -= 4; firstOffer -= 3; aboveGuide += 10; passedIn -= 4; }
+    if (t === 'unit') { dom += 8; aboveGuide -= 15; }
+    if (t === 'townhouse') { dom += 3; aboveGuide -= 5; }
+    if (b === 'u800') { dom -= 2; aboveGuide += 5; }
+    if (b === '1600-2200' || b === '2200+') { dom += 6; aboveGuide -= 5; }
+    if (m === 'auction') { dom = Math.min(dom, 28); firstOffer -= 2; passedIn = premium ? 10 : 18; aboveGuide += 5; }
+    if (m === 'eoi') { dom += 5; aboveGuide -= 5; }
+
+    dom = Math.max(10, dom);
+    firstOffer = Math.max(5, firstOffer);
+    aboveGuide = Math.max(5, Math.min(60, aboveGuide));
+    passedIn = m === 'auction' ? Math.max(5, Math.min(35, passedIn)) : 0;
+
+    const metrics: { label: string; value: string }[] = [
+      { label: 'Median days on market', value: `${dom} days` },
+      { label: 'Typical days to first offer', value: `${firstOffer} days` },
+      { label: 'Chance of selling above guide', value: `${aboveGuide}%` },
+    ];
+    if (m === 'auction') metrics.push({ label: 'Typical pass-in rate', value: `${passedIn}%` });
+
+    document.getElementById('metrics')!.innerHTML = metrics.map(mt => `
+      <div style="display:flex;justify-content:space-between;padding:0.7rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.82rem;color:var(--color-text-muted);">${mt.label}</span>
+        <span style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-gold);">${mt.value}</span>
+      </div>
+    `).join('');
+  }
+
+  document.querySelectorAll('select').forEach(el => el.addEventListener('change', calc));
+  calc();
+</script>

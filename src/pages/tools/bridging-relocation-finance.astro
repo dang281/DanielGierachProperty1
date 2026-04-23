@@ -1,0 +1,121 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Bridging / Relocation Finance Scenario Modeller"
+  description="Compare three relocation timing options side by side: buy first with bridging, sell first and rent, or settle simultaneously. Cost and risk of each."
+  tool="Bridging / Relocation Finance"
+  phase="Seller Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Current Property Value</label>
+        <input type="number" id="curr" value="1400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Current Mortgage Balance</label>
+        <input type="number" id="mortgage" value="400000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Next Purchase Price</label>
+        <input type="number" id="next" value="1750000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Expected Sale Time (weeks)</label>
+        <input type="number" id="weeks" value="8" min="2" max="52" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Bridging Rate %</label>
+        <input type="number" id="brate" value="7.5" step="0.1" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Rent per Week (if sell first)</label>
+        <input type="number" id="rent" value="800" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Rent Months (if sell first)</label>
+        <input type="number" id="rent-months" value="3" min="0" max="12" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Moving Cost (per move)</label>
+        <input type="number" id="moving" value="4000" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Three Scenarios
+      </h2>
+      <div id="scenarios" class="flex flex-col gap-3"></div>
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Recommendation</p>
+        <p id="rec" style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);line-height:1.4;"></p>
+      </div>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Model with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+
+  function calc() {
+    const curr = Number((document.getElementById('curr') as HTMLInputElement).value) || 0;
+    const mortgage = Number((document.getElementById('mortgage') as HTMLInputElement).value) || 0;
+    const next = Number((document.getElementById('next') as HTMLInputElement).value) || 0;
+    const weeks = Number((document.getElementById('weeks') as HTMLInputElement).value) || 0;
+    const brate = Number((document.getElementById('brate') as HTMLInputElement).value) / 100;
+    const rent = Number((document.getElementById('rent') as HTMLInputElement).value) || 0;
+    const rentMonths = Number((document.getElementById('rent-months') as HTMLInputElement).value) || 0;
+    const moving = Number((document.getElementById('moving') as HTMLInputElement).value) || 0;
+
+    // Peak debt = existing mortgage + new purchase - current property net sale
+    const saleNet = curr * 0.97 - mortgage; // rough 3% sale costs excluded
+    const peakDebt = mortgage + next - saleNet;
+    const bridgingInterest = peakDebt * brate * (weeks / 52);
+
+    // Option A: Buy first with bridging, 1 move, bridging interest
+    const optA = { cost: bridgingInterest + moving, risk: weeks > 12 ? 'high' : weeks > 6 ? 'medium' : 'low', label: 'Buy first + bridging' };
+
+    // Option B: Sell first + rent, 2 moves + rent
+    const optB = { cost: (rent * 52/12) * rentMonths + moving * 2, risk: 'low', label: 'Sell first + rent' };
+
+    // Option C: Simultaneous settlement, 1 move, coordination risk, minimal cost
+    const optC = { cost: moving, risk: 'medium-high', label: 'Simultaneous settlement' };
+
+    const options = [optA, optB, optC].sort((a, b) => a.cost - b.cost);
+    document.getElementById('scenarios')!.innerHTML = [optA, optB, optC].map(o => `
+      <div style="background:var(--color-surface-4);padding:1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:var(--font-serif);font-size:1rem;color:var(--color-text-primary);">${o.label}</span>
+          <span style="font-size:1.1rem;font-weight:700;color:var(--color-gold);">${fmt(o.cost)}</span>
+        </div>
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.25rem;">Risk: ${o.risk}</p>
+      </div>
+    `).join('');
+
+    const cheapest = options[0];
+    let recText = '';
+    if (cheapest.label === optA.label && weeks <= 8) {
+      recText = `Bridging wins on cost (${fmt(optA.cost)}) when the property sells within ${weeks} weeks. If sale stretches to 16 weeks, rent option becomes competitive.`;
+    } else if (cheapest.label === optB.label) {
+      recText = `Sell first and rent. Lowest cost and lowest risk. Costs two moves but avoids bridging interest exposure if the property takes longer to sell than expected.`;
+    } else {
+      recText = `Simultaneous settlement is cheapest on cost but carries coordination risk. Best if you can line up two cooperative solicitors and both parties can be flexible.`;
+    }
+    document.getElementById('rec')!.textContent = recText;
+  }
+
+  document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>

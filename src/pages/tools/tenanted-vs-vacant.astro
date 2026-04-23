@@ -1,0 +1,139 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Tenanted vs Vacant Campaign Impact"
+  description="Should you end the tenancy before you sell, or leave the tenants in place? The trade-off between retained rent and likely price impact, with a recommendation."
+  tool="Tenanted vs Vacant"
+  phase="Investor Tools"
+>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <div class="lg:col-span-3 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Expected Sale Price (Vacant)</label>
+        <input type="number" id="vacant-price" value="1100000" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Weekly Rent</label>
+        <input type="number" id="rent" value="750" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Campaign Length (weeks)</label>
+        <input type="number" id="weeks" value="4" min="2" max="12" class="obs-input" style="font-size:1rem;" />
+      </div>
+      <div style="background:var(--color-surface-3);padding:1.5rem;">
+        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Vacate Prep (weeks)</label>
+        <input type="number" id="prep" value="2" min="0" max="8" class="obs-input" style="font-size:1rem;" />
+      </div>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Tenant Cooperation</label>
+      <select id="tenant" class="obs-select" style="width:100%;">
+        <option value="cooperative">Cooperative, tidy, accommodating with opens</option>
+        <option value="neutral" selected>Neutral, standard tenant behaviour</option>
+        <option value="uncooperative">Uncooperative, messy, restrictive access</option>
+        <option value="hostile">Hostile, actively against sale</option>
+      </select>
+    </div>
+
+    <div style="background:var(--color-surface-3);padding:2rem;">
+      <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Property Type</label>
+      <select id="proptype" class="obs-select" style="width:100%;">
+        <option value="house">House / Queenslander</option>
+        <option value="unit">Unit / Apartment</option>
+        <option value="townhouse">Townhouse</option>
+      </select>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:0.5rem;">Owner-occupier buyers (typical for houses) are more presentation-sensitive. Investor buyers (typical for units) care less about vacant possession.</p>
+    </div>
+
+  </div>
+
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">
+        Trade-off
+      </h2>
+      <div id="comparison"></div>
+      <div style="margin-top:1rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Recommendation</p>
+        <p id="rec" style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);line-height:1.4;"></p>
+      </div>
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Price differentials are estimates based on Brisbane inner-east patterns. Your actual result depends on the specific property and buyer pool.
+      </p>
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Run the Scenario with Daniel</a>
+    </div>
+  </div>
+
+</div>
+</ToolLayout>
+
+<script>
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+
+  // Price impact estimates for selling tenanted, by tenant cooperation and property type.
+  const IMPACT: Record<string, Record<string, number>> = {
+    house:      { cooperative: -0.01, neutral: -0.025, uncooperative: -0.05, hostile: -0.08 },
+    townhouse:  { cooperative: -0.005, neutral: -0.02, uncooperative: -0.04, hostile: -0.07 },
+    unit:       { cooperative:  0,     neutral: -0.01, uncooperative: -0.025, hostile: -0.05 },
+  };
+
+  function calc() {
+    const vacantPrice = Number((document.getElementById('vacant-price') as HTMLInputElement).value) || 0;
+    const rent = Number((document.getElementById('rent') as HTMLInputElement).value) || 0;
+    const weeks = Number((document.getElementById('weeks') as HTMLInputElement).value) || 4;
+    const prep = Number((document.getElementById('prep') as HTMLInputElement).value) || 0;
+    const tenant = (document.getElementById('tenant') as HTMLSelectElement).value;
+    const prop = (document.getElementById('proptype') as HTMLSelectElement).value;
+
+    const impactPct = IMPACT[prop][tenant];
+    const tenantedPrice = vacantPrice * (1 + impactPct);
+    const priceImpact = vacantPrice - tenantedPrice;
+    const rentRetained = rent * (weeks + prep);
+
+    const tenantedNet = tenantedPrice + rentRetained;
+    const vacantNet = vacantPrice - (rent * prep);
+    const diff = vacantNet - tenantedNet;
+
+    document.getElementById('comparison')!.innerHTML = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
+        <div style="background:var(--color-surface-4);padding:1rem;">
+          <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">Tenanted</p>
+          <p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);margin:0.3rem 0;">${fmt(tenantedPrice)}</p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);">+ ${fmt(rentRetained)} rent retained</p>
+        </div>
+        <div style="background:var(--color-surface-4);padding:1rem;">
+          <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">Vacant</p>
+          <p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);margin:0.3rem 0;">${fmt(vacantPrice)}</p>
+          <p style="font-size:0.7rem;color:var(--color-text-muted);">${fmt(rent*prep)} rent foregone during prep</p>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-top:1px solid rgba(72,72,72,0.15);margin-top:0.5rem;">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">Tenanted net position</span>
+        <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${fmt(tenantedNet)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
+        <span style="font-size:0.78rem;color:var(--color-text-muted);">Vacant net position</span>
+        <span style="font-size:0.85rem;font-weight:600;color:var(--color-text-primary);">${fmt(vacantNet)}</span>
+      </div>
+    `;
+
+    let recText = '';
+    if (diff > 10000) {
+      recText = 'Sell vacant. The likely price uplift (' + fmt(-priceImpact) + ') outweighs the retained rent (' + fmt(rentRetained) + '). Net gain about ' + fmt(diff) + '.';
+    } else if (diff < -5000) {
+      recText = 'Sell tenanted. Rent retained outweighs the likely price impact. Particularly true for units and cooperative tenants.';
+    } else {
+      recText = 'Close call. Non-financial factors decide: your tolerance for a drawn-out campaign, tenant relationship, and access control during inspections.';
+    }
+    document.getElementById('rec')!.textContent = recText;
+  }
+
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+  calc();
+</script>
