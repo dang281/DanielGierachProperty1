@@ -64,9 +64,9 @@ const tagColors: Record<string, string> = {
 };
 
 function filterCount(f: string): number {
-  if (f === 'All')     return articles.length;
-  if (f === 'Buyers')  return articles.filter(a => a.tag === 'Buyers'  || a.tag === 'Buyers & Sellers').length;
-  if (f === 'Sellers') return articles.filter(a => a.tag === 'Sellers' || a.tag === 'Buyers & Sellers').length;
+  if (f === 'All') return articles.length;
+  // Exclusive counts so they sum to the Show All total. Articles tagged "Buyers & Sellers"
+  // are counted only under that bucket, not double-counted under Buyers and Sellers.
   return articles.filter(a => a.tag === f).length;
 }
 ---
@@ -261,8 +261,6 @@ function filterCount(f: string): number {
 
   function insightMatches(tag: string, filter: string): boolean {
     if (filter === 'All') return true;
-    if (filter === 'Buyers')  return tag === 'Buyers'  || tag === 'Buyers & Sellers';
-    if (filter === 'Sellers') return tag === 'Sellers' || tag === 'Buyers & Sellers';
     return tag === filter;
   }
 
