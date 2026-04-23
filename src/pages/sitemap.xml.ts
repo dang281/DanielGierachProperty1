@@ -119,6 +119,7 @@ const pages = [
   { path: '/insights/build-process-with-architect-step-by-step',        changefreq: 'monthly', priority: '0.7' },
   { path: '/insights/queensland-brisbane-zoning-explained',             changefreq: 'monthly', priority: '0.75' },
   { path: '/insights/types-of-build-project-custom-modular-prefab',     changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights/first-home-buyer-help-history-and-current-options', changefreq: 'monthly', priority: '0.85' },
 
   // Insights index + articles (content marketing / organic search)
   { path: '/insights',                              changefreq: 'weekly',  priority: '0.8' },
