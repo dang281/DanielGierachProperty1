@@ -71,7 +71,7 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
     <a href="https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032" target="_blank" rel="noopener" style="color:var(--color-gold);">QLD Government</a> ·
     <a href="https://crossriverrail.qld.gov.au" target="_blank" rel="noopener" style="color:var(--color-gold);">Cross River Rail</a> ·
     <a href="https://www.economic.qld.gov.au/projects/northshore" target="_blank" rel="noopener" style="color:var(--color-gold);">Northshore Hamilton</a>.
-    Venue plan reflects updates as of 2024. The Gabba stadium rebuild was cancelled in February 2024; athletics events relocated to QSAC.
+    Venue plan updated to reflect the 5 January 2026 confirmation of Victoria Park as the primary Olympic stadium (63,000 seats, $3.8 billion, construction from June 2026, completion 2031).
   </p>
 
 </div>
@@ -80,10 +80,18 @@ const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 const places = [
   // ── Olympic Venues ──────────────────────────────────────────────────────
   {
+    name: 'Victoria Park Olympic Stadium (primary venue)',
+    cat: 'venue',
+    lat: -27.4492, lng: 153.0298,
+    desc: 'Primary Olympic Stadium, Opening and Closing Ceremonies, Athletics and Paralympic Athletics. 63,000 seats. $3.8 billion build. Construction commences 1 June 2026; completion targeted 2031. Architects Cox, Hassell and Azusa Sekkei (consortium selected 5 January 2026). Post-Games becomes the new AFL and cricket home ground for Brisbane, replacing the Gabba.',
+    link: 'https://www.delivering2032.com.au/legacy-for-queensland/venues',
+    status: 'Confirmed (construction June 2026)',
+  },
+  {
     name: 'Suncorp Stadium (Lang Park)',
     cat: 'venue',
     lat: -27.4652, lng: 153.0097,
-    desc: 'Main Olympic Stadium, Opening and Closing Ceremonies, Football. Capacity 52,500. No rebuild required; confirmed as primary venue after the Gabba rebuild was cancelled in 2024.',
+    desc: 'Football (soccer) and Rugby Sevens. Capacity 52,500. No rebuild required.',
     link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
     status: 'Confirmed',
   },
@@ -91,9 +99,9 @@ const places = [
     name: 'Queensland Sport & Athletics Centre (QSAC)',
     cat: 'venue',
     lat: -27.5524, lng: 153.0127,
-    desc: 'Athletics and Paralympic Athletics. Located at Nathan, adjacent to Griffith University. Took over athletics events after the Gabba rebuild plan was abandoned.',
+    desc: 'Training and legacy athletics venue at Nathan, adjacent to Griffith University. Athletics competition has moved to the new Victoria Park stadium.',
     link: 'https://www.olympic.org/brisbane-2032',
-    status: 'Confirmed',
+    status: 'Legacy and training',
   },
   {
     name: 'Sleeman Sports Complex, Chandler',
@@ -207,9 +215,9 @@ const places = [
     name: 'Victoria Park / Herston Precinct',
     cat: 'precinct',
     lat: -27.4528, lng: 153.0218,
-    desc: 'Inner-city precinct earmarked for Olympics-related development and increased green space. Adjacent to QUT Kelvin Grove, the RBWH health precinct, and Herston. Victoria Park golf course area under review for future public use.',
-    link: 'https://www.qld.gov.au/about/developments-in-queensland/sporting-events/brisbane-2032',
-    status: 'Planning',
+    desc: 'Inner-city precinct now confirmed as the host site for the primary Olympic Stadium (see Victoria Park Olympic Stadium venue entry). The former Victoria Park golf course closes in mid-2026 to allow earthworks to commence. Adjacent to QUT Kelvin Grove, the RBWH health precinct, Herston, Bowen Hills and Spring Hill, which will see the strongest proximity-driven property demand through the construction and delivery period.',
+    link: 'https://www.delivering2032.com.au/legacy-for-queensland/venues',
+    status: 'Under development (stadium + precinct)',
   },
   {
     name: 'Queens Wharf Brisbane',

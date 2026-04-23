@@ -208,32 +208,43 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     }
   }
 
-  // Transfer duty (standard QLD rates)
+  // Transfer duty (standard QLD rates, non-concessional)
   function calcDuty(price: number): number {
     if (price <= 5000)    return 0;
     if (price <= 75000)   return (price - 5000) * 0.015;
     if (price <= 540000)  return 1050 + (price - 75000) * 0.035;
-    if (price <= 980000)  return 17325 + (price - 540000) * 0.045;
-    return 37125 + (price - 980000) * 0.0575;
+    if (price <= 1000000) return 17325 + (price - 540000) * 0.045;
+    return 38025 + (price - 1000000) * 0.0575;
   }
 
-  // First home concession on established home (threshold $700k)
-  // Full concession (duty = $0) for homes <= $500k
-  // Partial: concession = fullDuty * ((700000 - price) / 200000) for $500k-$700k
-  function calcEstablishedConcession(price: number): number {
-    if (price > 700000) return 0;
-    const duty = calcDuty(price);
-    if (price <= 500000) return duty; // full concession
-    return duty * ((700000 - price) / 200000);
+  // Home concession (owner-occupier, from 30 April 2025)
+  function calcHomeDuty(price: number): number {
+    if (price <= 350000)  return price * 0.01;
+    if (price <= 540000)  return 3500  + (price - 350000) * 0.035;
+    if (price <= 1000000) return 10150 + (price - 540000) * 0.045;
+    return 30850 + (price - 1000000) * 0.0575;
   }
 
-  // First home concession on new home (threshold $800k)
-  // Full concession for <= $550k, partial for $550k-$800k
-  function calcNewHomeConcession(price: number): number {
-    if (price > 800000) return 0;
-    const duty = calcDuty(price);
-    if (price <= 550000) return duty;
-    return duty * ((800000 - price) / 250000);
+  // First Home Concession (applies to both new and established homes, from 9 June 2024).
+  // Full concession (duty = $0) up to $709,999.99.
+  // Taper from $710k to $800k, concession phases from $17,350 down to $0.
+  // Nil first home concession at $800k+, but general home concession still applies.
+  function calcFirstHomeConcession(price: number): number {
+    if (price <= 709999.99) return calcDuty(price); // refund full duty
+    if (price < 800000) {
+      const homeDuty = calcHomeDuty(price);
+      const standardDuty = calcDuty(price);
+      const maxConcession = 17350;
+      const concession = maxConcession * (800000 - price) / 90000;
+      return Math.max(0, standardDuty - Math.max(0, homeDuty - concession));
+    }
+    // $800k+: no first home concession, standard minus home concession (owner-occupier saving)
+    return Math.max(0, calcDuty(price) - calcHomeDuty(price));
+  }
+
+  // First Home Vacant Land Concession (from 1 May 2025): full concession, no cap.
+  function calcVacantLandConcession(price: number): number {
+    return calcDuty(price); // full refund of standard duty
   }
 
   function showResults() {
@@ -254,7 +265,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       fhogBlock.innerHTML = `
         <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.4rem;">First Home Owner Grant (FHOG)</p>
         <p style="font-family:var(--font-serif);font-size:1.75rem;font-weight:300;color:var(--color-text-primary);">$30,000</p>
-        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">You appear eligible for the Queensland $30,000 First Home Owner Grant. This was increased from $15,000 on 20 November 2023. The grant is paid directly to your lender at settlement or on the first progressive payment for new builds.</p>`;
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">You appear eligible for the Queensland $30,000 First Home Owner Grant on new homes. The $30,000 rate applies to contracts signed between 20 November 2023 and 30 June 2026. After 30 June 2026 the grant reverts to $15,000. The grant is paid directly to your lender at settlement or on the first progressive payment for new builds.</p>`;
     } else if (!firstHome) {
       fhogBlock.className = 'result-block negative';
       fhogBlock.innerHTML = `
@@ -278,7 +289,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     // Transfer duty
     const standardDuty = calcDuty(price);
     const concession = concessionEligible
-      ? (isNew ? calcNewHomeConcession(price) : calcEstablishedConcession(price))
+      ? calcFirstHomeConcession(price)
       : 0;
     const dutyPayable = Math.max(0, standardDuty - concession);
 

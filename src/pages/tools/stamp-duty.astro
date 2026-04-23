@@ -78,7 +78,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           </label>
           <label class="flex items-center gap-3" style="cursor:pointer;">
             <input type="checkbox" id="incl-mortgage-reg" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
-            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Mortgage Registration <span style="color:var(--color-text-muted);">(est. $160)</span></span>
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Mortgage Registration <span style="color:var(--color-text-muted);">(est. $212)</span></span>
           </label>
           <label class="flex items-center gap-3" style="cursor:pointer;">
             <input type="checkbox" id="incl-lenders" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
@@ -155,26 +155,26 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       return { duty: calcBaseDuty(price), label: 'Investor Rate' };
     }
     if (buyerType === 'fhb') {
-      // FHB established: exempt under $500K, tapered $500K-$550K
-      if (propType === 'established') {
-        if (price <= 500000) return { duty: 0, label: 'FHB Exempt' };
-        if (price < 550000) {
-          const full = calcHomeDuty(price);
-          const concession = full * (550000 - price) / 50000;
-          return { duty: full - concession, label: 'FHB Concessional' };
-        }
+      // FHB Vacant Land Concession: full concession, no cap, from 1 May 2025
+      if (propType === 'land') {
+        return { duty: 0, label: 'FHB Vacant Land Full Concession' };
       }
-      // FHB new home: exempt under $750K, tapered $750K-$800K
-      if (propType === 'new') {
-        if (price <= 750000) return { duty: 0, label: 'FHB New Home Exempt' };
-        if (price < 800000) {
-          const full = calcHomeDuty(price);
-          const concession = full * (800000 - price) / 50000;
-          return { duty: full - concession, label: 'FHB New Home Concessional' };
-        }
+      // First Home Concession (applies to both new and established, from 9 June 2024):
+      // Full concession (duty = $0) up to $709,999.99
+      // Taper from $710,000 to $799,999.99
+      // Nil first home concession at $800,000 and above (general home concession applies)
+      if (price <= 709999.99) {
+        return { duty: 0, label: 'FHB Full Concession' };
       }
-      // Vacant land: use home concession rate
-      return { duty: calcHomeDuty(price), label: 'FHB Home Rate' };
+      if (price < 800000) {
+        const homeDuty = calcHomeDuty(price);
+        // Concession tapers from $17,350 at $710k to $0 at $800k, linear approximation
+        const maxConcession = 17350;
+        const concession = maxConcession * (800000 - price) / 90000;
+        return { duty: Math.max(0, homeDuty - concession), label: 'FHB Partial Concession' };
+      }
+      // $800k and above: no first home concession, home concession still applies
+      return { duty: calcHomeDuty(price), label: 'Home Concession Rate' };
     }
     // Standard owner-occupier: home concession rate
     return { duty: calcHomeDuty(price), label: 'Home Concession Rate' };
@@ -205,7 +205,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const { duty, label } = calcStampDuty(price, buyerType, propType);
     const legal     = inclLegal   ? 2000 : 0;
     const inspection= inclInsp    ? 700  : 0;
-    const mortReg   = inclMortReg ? 160  : 0;
+    const mortReg   = inclMortReg ? 212  : 0;
     const lmi       = inclLMI     ? calcLMI(price, depositPct) : 0;
 
     const total = duty + legal + inspection + mortReg + lmi;

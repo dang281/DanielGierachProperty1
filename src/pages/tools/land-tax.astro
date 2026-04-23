@@ -6,7 +6,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   title="Queensland Land Tax Calculator"
   tool="Queensland Land Tax Calculator"
   phase="Investor Tools"
-  description="Calculate your annual Queensland land tax liability based on your total taxable land value. Uses current QRO rates including the 2024-25 thresholds."
+  description="Calculate your annual Queensland land tax liability based on your total taxable land value. Uses current QRO rates including the 2025-26 thresholds."
 >
 
 <style>
@@ -100,7 +100,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <!-- Result -->
   <div id="result-wrap" style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
     <div style="padding:1.25rem 1.5rem;background:#f9f7f4;border-bottom:1px solid rgba(28,25,23,0.08);">
-      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Land Tax Assessment (2024-25)</p>
+      <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Land Tax Assessment (2025-26)</p>
     </div>
     <div style="padding:1.5rem;">
       <div id="exempt-msg" style="display:none;"></div>
@@ -122,7 +122,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   <!-- Rate table -->
   <div>
-    <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.75rem;">Individual Rates (2024-25)</p>
+    <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.75rem;">Individual Rates (2025-26)</p>
     <div id="rate-table" style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;"></div>
   </div>
 
@@ -133,7 +133,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <p style="font-size:0.72rem;color:#a8a29e;line-height:1.6;">
-    This calculator is a guide only and uses 2024-25 rates. Land tax is assessed annually on 30 June. Properties used as your primary residence, primary production, and certain charitable uses may be exempt. Consult a registered tax agent for advice specific to your situation.
+    This calculator is a guide only and uses 2025-26 rates. Land tax is assessed annually on 30 June. Properties used as your primary residence, primary production, and certain charitable uses may be exempt. Consult a registered tax agent for advice specific to your situation.
   </p>
 
 </div>
@@ -150,7 +150,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const ltBreakdown= document.getElementById('lt-breakdown')!;
   const rateTableEl= document.getElementById('rate-table')!;
 
-  // QLD Land Tax 2024-25 rates, individual
+  // QLD Land Tax 2025-26 rates, individual
   // Source: Queensland Revenue Office (qro.qld.gov.au)
   const INDIVIDUAL_BANDS = [
     { from: 0,         to: 599999,   base: 0,      rate: 0,      label: 'Under $600,000', desc: 'Nil' },
