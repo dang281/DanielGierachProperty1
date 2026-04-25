@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SuburbMap from '../../components/SuburbMap.astro';
 
 const suburbs = [
   { name: 'Annerley',            href: '/suburbs/annerley',            desc: 'Character inner south with relative value' },
@@ -80,25 +81,28 @@ const schema = {
 ---
 
 <Layout
-  title="Suburbs Covered | Daniel Gierach Real Estate Brisbane"
-  description="Daniel Gierach is a specialist real estate agent covering 30+ suburbs across Brisbane's inner east and south, from Hawthorne and Balmoral to Camp Hill, Norman Park, Woolloongabba and beyond. Ray White Bulimba."
+  title="Brisbane Suburbs | Daniel Gierach Real Estate"
+  description="Daniel Gierach takes real estate campaigns across all of Brisbane. The inner east and south is home patch, with deep suburb pages on Hawthorne, Balmoral, Camp Hill, Norman Park, Woolloongabba and many more. Find your suburb on the map."
 >
 
 <script type="application/ld+json">{JSON.stringify(schema)}</script>
 
 <!-- HERO -->
 <section style="background:#1c1917; color:#f2efe9; padding:100px 24px 80px;">
-  <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Service Area</p>
+  <div style="max-width:880px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Brisbane real estate</p>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
-      Real estate agent covering Brisbane's inner east and south.
+      Real estate agent. Brisbane.
     </h1>
-    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
-      Daniel Gierach sells property across 30+ suburbs from the riverfront prestige of Hawthorne and Balmoral to the growing family suburbs of Camp Hill, Norman Park, Morningside and beyond.
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:620px; margin:0 auto 2.5rem;">
+      Daniel takes campaigns across the city. The inner east and south is where most recent sales sit, but the same documented method runs anywhere in Brisbane. Find your suburb on the map below, or request an appraisal for any address.
     </p>
-    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Get a Free Appraisal</a>
+    <a href="/get-an-appraisal" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request an appraisal</a>
   </div>
 </section>
+
+<!-- INTERACTIVE MAP -->
+<SuburbMap />
 
 <!-- SUBURB GRID -->
 <section style="background:var(--color-base, #f2efe9); padding:80px 24px;">

@@ -292,6 +292,16 @@ async function main() {
     return false;
   }
 
+  // Inner-metro Brisbane bounding box. Excludes far-western acreage suburbs
+  // like Kholo, Mt Crosby, Brookfield, Pinjarra Hills, Anstead, Bellbowrie
+  // and far-north / far-south LGA outliers. Matches the area locals think
+  // of as "Brisbane" — roughly 20km radius from the CBD.
+  const INNER_BBOX = { south: -27.62, north: -27.30, west: 152.92, east: 153.20 };
+  function inInnerBrisbane([lon, lat]) {
+    return lat >= INNER_BBOX.south && lat <= INNER_BBOX.north
+        && lon >= INNER_BBOX.west && lon <= INNER_BBOX.east;
+  }
+
   for (const rel of allRelations) {
     const name = rel.tags.name;
     if (!name) continue;
@@ -303,6 +313,9 @@ async function main() {
     // Drop suburbs whose centroid sits outside the Brisbane LGA polygon
     const centroid = ringCentroid(outer[0]);
     if (!pointInPolygon(centroid, lgaOuter)) continue;
+
+    // Drop suburbs outside the inner-metro Brisbane area (acreage/rural fringes)
+    if (!inInnerBrisbane(centroid)) continue;
 
     seen.add(name);
     const slug = slugify(name);
@@ -331,24 +344,26 @@ async function main() {
     console.warn(`  ! river fetch failed: ${e.message}`);
   }
 
-  // Crop river to data bounds (river is a long way; we only want the local stretch)
-  let minLon = Infinity, maxLon = -Infinity, minLat = Infinity, maxLat = -Infinity;
-  for (const [lon, lat] of allCoords.filter((_, i) => i < (allCoords.length - riverSegments.flat().length))) {
-    if (lon < minLon) minLon = lon;
-    if (lon > maxLon) maxLon = lon;
-    if (lat < minLat) minLat = lat;
-    if (lat > maxLat) maxLat = lat;
-  }
-  const PAD = 0.01;
-  const inBox = ([lon, lat]) => lon >= minLon - PAD && lon <= maxLon + PAD && lat >= minLat - PAD && lat <= maxLat + PAD;
-  riverSegments = riverSegments
-    .map(seg => seg.filter(inBox))
-    .filter(seg => seg.length >= 2);
+  // Don't crop the river — let the SVG viewBox clip it naturally so the
+  // full urban stretch winds through the rendered map. We do drop ways
+  // that have zero overlap with the rendered area (e.g. far-upstream
+  // tributaries) so we don't render off-screen geometry.
+  const PAD = 0.05;
+  const overlaps = (seg) => seg.some(([lon, lat]) =>
+    lon >= INNER_BBOX.west - PAD &&
+    lon <= INNER_BBOX.east + PAD &&
+    lat >= INNER_BBOX.south - PAD &&
+    lat <= INNER_BBOX.north + PAD
+  );
+  riverSegments = riverSegments.filter(overlaps);
 
   // Rebuild allCoords for projection bounds (exclude any river tail outside the area)
+  // Bounds calculated from SUBURBS only. River points outside the
+  // suburb bbox would otherwise extend the projection range and squish
+  // the inner map. River segments that project outside the viewBox get
+  // clipped by SVG's overflow:hidden.
   const boundsCoords = [];
   for (const s of suburbs) for (const ring of s.outer) for (const p of ring) boundsCoords.push(p);
-  for (const seg of riverSegments) for (const p of seg) boundsCoords.push(p);
 
   const VIEW_W = 900, VIEW_H = 700;
   const project = buildProjection(boundsCoords, VIEW_W, VIEW_H);
