@@ -183,13 +183,13 @@ const faqSchema = {
       </div>
 
       <h1 class="hero-h1 reveal" data-delay="380"
-        style="font-family:var(--font-serif);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;">
+        style="font-family:var(--font-serif);font-size:clamp(1.9rem,3.2vw,2.75rem);font-weight:400;line-height:1.15;letter-spacing:-0.01em;color:#f0ece4;margin-bottom:1.5rem;">
         Curious what your Brisbane home could sell for?
       </h1>
 
       <p class="reveal hero-p2" data-delay="560"
         style="font-size:1rem;color:rgba(240,236,228,0.72);line-height:1.8;max-width:46ch;margin-bottom:0.75rem;">
-        Most homeowners underestimate what their home could sell for. Find out where yours really sits in today's market.
+        Find out where yours sits in today's market.
       </p>
 
       <div class="reveal" data-delay="820">
@@ -209,24 +209,9 @@ const faqSchema = {
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </form>
-        <p style="font-size:0.72rem;color:rgba(240,236,228,0.55);margin-top:0.6rem;letter-spacing:0.06em;">Free · You'll get an indicative value range based on recent comparable sales in your area.</p>
+        <p style="font-size:0.72rem;color:rgba(240,236,228,0.55);margin-top:0.6rem;letter-spacing:0.06em;">Free. Based on recent comparable sales.</p>
       </div>
 
-      <!-- Stats -->
-      <div class="flex justify-between mt-10 pt-8 reveal" data-delay="980"
-        style="border-top:1px solid rgba(255,255,255,0.12);">
-        {stats.map((s) => (
-          <div class="flex-1 text-center">
-            <p class="stat-counter" data-value={s.value} data-suffix={s.suffix} data-prefix={s.prefix}
-              style="font-family:var(--font-serif);font-size:1.8rem;font-weight:400;color:#f0ece4;line-height:1;letter-spacing:-0.02em;">
-              {s.prefix}0{s.suffix}
-            </p>
-            <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.7);margin-top:0.4rem;">
-              {s.label}
-            </p>
-          </div>
-        ))}
-      </div>
     </div>
   </div>
 
