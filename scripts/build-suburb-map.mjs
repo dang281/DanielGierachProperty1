@@ -90,6 +90,32 @@ async function fetchOverpass(query) {
   throw lastErr ?? new Error('All Overpass mirrors failed');
 }
 
+// Chain open polylines together by matching endpoints. Useful for OSM
+// coastline ways which arrive as many small disconnected segments.
+function stitchLines(segments, eps = 0.00005) {
+  const segs = segments.filter(s => s.length >= 2).map(s => s.slice());
+  const eq = (a, b) => Math.abs(a[0] - b[0]) < eps && Math.abs(a[1] - b[1]) < eps;
+  const result = [];
+  while (segs.length) {
+    let cur = segs.shift();
+    let extended = true;
+    while (extended) {
+      extended = false;
+      for (let i = 0; i < segs.length; i++) {
+        const o = segs[i];
+        const head = cur[0], tail = cur[cur.length - 1];
+        const oHead = o[0], oTail = o[o.length - 1];
+        if (eq(tail, oHead))      { cur = cur.concat(o.slice(1)); segs.splice(i,1); extended = true; break; }
+        else if (eq(tail, oTail)) { cur = cur.concat(o.slice(0,-1).reverse()); segs.splice(i,1); extended = true; break; }
+        else if (eq(head, oTail)) { cur = o.concat(cur.slice(1)); segs.splice(i,1); extended = true; break; }
+        else if (eq(head, oHead)) { cur = o.slice(1).reverse().concat(cur); segs.splice(i,1); extended = true; break; }
+      }
+    }
+    result.push(cur);
+  }
+  return result;
+}
+
 async function fetchCoastline(bbox) {
   // Coastline ways trace the boundary between land and Moreton Bay along
   // Brisbane's eastern edge (Manly, Lota, Wynnum, Hemmant). Used to visually
@@ -445,6 +471,10 @@ async function main() {
   }
   riverLines = clipLines(riverLines);
   coastlineSegments = clipLines(coastlineSegments);
+  // Chain coastline segments into longer continuous polylines. The OSM data
+  // arrives as many small disconnected ways (one per node update / island)
+  // which would produce a fragmented bay outline.
+  coastlineSegments = stitchLines(coastlineSegments);
 
   // OSM sometimes tags huge polygons "Brisbane River" that actually cover
   // Moreton Bay or include the full river system upstream. The inner-city
@@ -488,6 +518,25 @@ async function main() {
       return [...outerPaths, ...innerPaths].join(' ');
     }).filter(Boolean),
     coastline: coastlineSegments.map(seg => lineToPath(seg, project)).filter(Boolean),
+    // Bay polygons: each stitched coastline turned into a closed shape that
+    // follows the coast on its west edge and the right viewBox edge on its
+    // east, so the rendered fill follows the actual coast curvature.
+    bay: (() => {
+      const polys = [];
+      for (const seg of coastlineSegments) {
+        const pts = seg.map(project);
+        if (pts.length < 2) continue;
+        const start = pts[0];
+        const end = pts[pts.length - 1];
+        let d = `M${start[0]} ${start[1]}`;
+        for (let i = 1; i < pts.length; i++) d += `L${pts[i][0]} ${pts[i][1]}`;
+        d += `L${VIEW_W} ${end[1]}`;
+        d += `L${VIEW_W} ${start[1]}`;
+        d += 'Z';
+        polys.push(d);
+      }
+      return polys;
+    })(),
     suburbs: suburbs
       .map(s => {
         const outerPaths = s.outer.map(r => ringToPath(r, project)).filter(Boolean);
@@ -526,6 +575,7 @@ export const SUBURB_MAP = {
   river: ${JSON.stringify(out.river, null, 2)},
   riverBody: ${JSON.stringify(out.riverBody, null, 2)},
   coastline: ${JSON.stringify(out.coastline, null, 2)},
+  bay: ${JSON.stringify(out.bay, null, 2)},
   suburbs: ${JSON.stringify(out.suburbs, null, 2)} as SuburbShape[],
 };
 `;

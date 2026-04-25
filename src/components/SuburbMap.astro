@@ -85,10 +85,12 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
           role="img"
           preserveAspectRatio="xMidYMid meet"
         >
-          <!-- Moreton Bay water fill. Covers only the eastern strip of the
-               viewBox; suburbs render on top, masking the parts that are land.
-               The bay shows through east of the bayside suburbs. -->
-          <rect x="540" y="0" width="360" height="700" fill="#cfe0eb" opacity="0.7" />
+          <!-- Moreton Bay water fill. Each polygon follows the actual
+               coastline on its west edge and the right viewBox edge on its
+               east, so the bay outline traces the real coast curvature. -->
+          {SUBURB_MAP.bay?.map(d => (
+            <path d={d} fill="#cfe0eb" opacity="0.85" />
+          ))}
 
           <!-- Suburb polygons. Featured ones render last so they sit visually
                on top of the standard ones. -->
