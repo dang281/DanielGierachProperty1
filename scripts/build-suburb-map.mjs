@@ -377,15 +377,42 @@ async function main() {
     console.warn(`  ! river fetch failed: ${e.message}`);
   }
 
-  // Drop geometry that has zero overlap with the rendered area (e.g.
-  // far-upstream tributaries) so we don't render off-screen shapes.
-  const PAD = 0.05;
+  // Compute the actual lat/lon bbox of the suburbs we're showing. Anything
+  // outside this is outside the rendered map and just visually confusing.
+  let subMinLon = Infinity, subMaxLon = -Infinity, subMinLat = Infinity, subMaxLat = -Infinity;
+  for (const s of suburbs) {
+    for (const ring of s.outer) {
+      for (const [lon, lat] of ring) {
+        if (lon < subMinLon) subMinLon = lon;
+        if (lon > subMaxLon) subMaxLon = lon;
+        if (lat < subMinLat) subMinLat = lat;
+        if (lat > subMaxLat) subMaxLat = lat;
+      }
+    }
+  }
+  const PAD = 0.005;
   const pointInBox = ([lon, lat]) =>
-    lon >= INNER_BBOX.west - PAD &&
-    lon <= INNER_BBOX.east + PAD &&
-    lat >= INNER_BBOX.south - PAD &&
-    lat <= INNER_BBOX.north + PAD;
-  riverLines = riverLines.filter(seg => seg.some(pointInBox));
+    lon >= subMinLon - PAD &&
+    lon <= subMaxLon + PAD &&
+    lat >= subMinLat - PAD &&
+    lat <= subMaxLat + PAD;
+
+  // Clip lines to the suburb extent. A single river line may have an upstream
+  // tail outside the rendered area; we only want the in-bounds runs.
+  const clippedLines = [];
+  for (const seg of riverLines) {
+    let current = [];
+    for (const p of seg) {
+      if (pointInBox(p)) {
+        current.push(p);
+      } else {
+        if (current.length >= 2) clippedLines.push(current);
+        current = [];
+      }
+    }
+    if (current.length >= 2) clippedLines.push(current);
+  }
+  riverLines = clippedLines;
 
   // OSM sometimes tags huge polygons "Brisbane River" that actually cover
   // Moreton Bay or include the full river system upstream. The inner-city
