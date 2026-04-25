@@ -51,6 +51,15 @@ const pages = [
   { path: '/suburbs/red-hill',           changefreq: 'monthly', priority: '0.85' },
   { path: '/suburbs/stones-corner',      changefreq: 'monthly', priority: '0.85' },
   { path: '/suburbs/west-end',           changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/toowong',            changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/auchenflower',       changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/milton',             changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/bardon',             changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/spring-hill',        changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/bowen-hills',        changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/highgate-hill',      changefreq: 'monthly', priority: '0.85' },
+  { path: '/suburbs/indooroopilly',      changefreq: 'monthly', priority: '0.85' },
+  { path: '/get-an-appraisal',           changefreq: 'monthly', priority: '0.9' },
   { path: '/contact',             changefreq: 'monthly', priority: '0.8' },
 
   // Tools index + individual tools (long-tail keyword traffic)

@@ -15,6 +15,15 @@
   --color-gold-dim:    #b07e22;
   --color-gold-muted:  rgba(196,145,42,0.1);
 
+  /* ── Secondary accent ──
+     Default: deep ink. To flip to forest green, change to #2d4a3a.
+     Used sparingly: footer band, suburb-report section, occasional pull-out. */
+  --color-accent:        #1a2238;
+  --color-accent-soft:   #2a3556;
+
+  /* ── Eyebrow (de-AI: was gold on every section, now quiet stone) ── */
+  --color-eyebrow:     #78716c;
+
   /* ── Text ── */
   --color-text-primary:   #1c1917;
   --color-text-secondary: #44403c;
@@ -36,6 +45,10 @@
   }
 
   html {
+    /* 17px base reads more editorial than the default 16px without breaking
+       layouts. Every rem-based size grows ~6%, body copy reads as considered
+       prose rather than a tight web layout. */
+    font-size: 17px;
     font-family: var(--font-sans);
     background-color: var(--color-base);
     color: var(--color-text-primary);
@@ -472,14 +485,14 @@
     padding: 0.3rem 0.75rem;
   }
 
-  /* Eyebrow */
+  /* Eyebrow, quiet stone-grey, not gold. Gold is reserved for CTAs / badges. */
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--color-eyebrow);
     display: block;
   }
 

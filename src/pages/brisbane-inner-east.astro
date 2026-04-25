@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SuburbMap from '../components/SuburbMap.astro';
 ---
 
 <Layout
-  title="Real Estate Agent Brisbane Inner East | Daniel Gierach"
-  description="Daniel Gierach - specialist real estate agent in Brisbane's inner east. Selling homes in Camp Hill, Norman Park, Hawthorne, Balmoral, Seven Hills and Bulimba. Ray White Bulimba. Call 0412 523 821."
+  title="Real Estate Agent Brisbane | Daniel Gierach"
+  description="Daniel Gierach takes real estate campaigns across all of Brisbane. Home patch is the inner east and south. A documented three-phase method, anywhere in the city. Call 0412 523 821."
 >
 
 <script type="application/ld+json">{JSON.stringify({
@@ -26,20 +27,25 @@ import Layout from '../layouts/Layout.astro';
      SECTION 1: HERO
 ════════════════════════════════════════════════ -->
 <section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
-  <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Brisbane Inner East</p>
+  <div style="max-width:880px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Brisbane Real Estate</p>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
-      Real Estate Agent<br/><em style="color:#f5d07a;">Brisbane Inner East.</em>
+      Real estate agent. Brisbane, all of it.
     </h1>
-    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
-      Specialist property sales across Brisbane's inner east and south.
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:620px; margin:0 auto 2.5rem;">
+      Daniel takes campaigns across Brisbane. His home patch is the inner east and south. The same documented method runs every campaign, anywhere in the city.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
-      <a href="/walkthrough" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request an Appraisal</a>
+      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View current listings</a>
+      <a href="/get-an-appraisal" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request an appraisal</a>
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════
+     SUBURB MAP
+════════════════════════════════════════════════ -->
+<SuburbMap />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 2: WHY THIS AREA

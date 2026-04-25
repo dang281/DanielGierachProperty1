@@ -81,7 +81,7 @@ const prestige = [
     price: 'Auction 18 April at The Calile Hotel',
     beds: 3, baths: 2, cars: 2,
     desc: 'A fully rebuilt three-bedroom home featuring engineered oak floors, skylights, and a designer kitchen with premium finishes, plus a swimming pool on a 405m² block.',
-    tag: 'Forthcoming Auction',
+    tag: 'Auction',
     href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/hawthorne-4171/house/3480857',
   },
   {
@@ -91,7 +91,7 @@ const prestige = [
     price: 'For Sale by Negotiation',
     beds: 3, baths: 2, cars: 6,
     desc: 'An elevated 607m² hilltop allotment surrounded by multi-million-dollar acreage homes, a rare opportunity to landbank or rebuild in one of Brisbane\'s most prestigious pockets.',
-    tag: 'Blue-Chip Land',
+    tag: 'For Sale',
     href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/bridgeman-downs-4035/house/3474534',
   },
 ];
@@ -103,7 +103,7 @@ const stats = [
 ];
 
 const reasons = [
-  { n: '01', title: 'Inner East Specialist', body: 'Daniel focuses exclusively on Brisbane\'s inner east and south. Every comparable sale, every street price movement, every buyer pool shift across Camp Hill, Seven Hills, Carina, Hawthorne and surrounds is territory he knows closely.' },
+  { n: '01', title: 'Local From Day One', body: 'Daniel\'s home patch is Brisbane\'s inner east and south, where most recent sales sit and the local knowledge is deepest. The same documented method runs anywhere across Brisbane, with the local research done up front for every campaign.' },
   { n: '02', title: 'Campaigns Built on Evidence', body: 'Every campaign is built around what buyers in your suburb are actually searching for right now. Pricing strategy, marketing timing and targeting are grounded in current market data, not assumption.' },
   { n: '03', title: 'Access to 607,000+ Buyers', body: 'When your home goes to market, it is seen by over 607,000 pre-registered buyers through the Ray White Collective network from day one. That reach creates genuine competition and stronger results.' },
 ];
@@ -147,26 +147,28 @@ const faqSchema = {
 };
 ---
 
-<Layout title="Real Estate Agent Brisbane Inner East | Daniel Gierach" description="Brisbane inner-east specialist. A documented three-phase method to position your home, create buyer competition and protect your sale price. Free walkthrough appraisal." schema={faqSchema} preloadImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format">
+<Layout title="Daniel Gierach | Real Estate Agent Brisbane" description="Brisbane real estate agent. A documented three-phase method to position your home, create buyer competition and protect your sale price. Free walkthrough appraisal anywhere across the city." schema={faqSchema} preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/b7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG">
 
 <!-- ════════════════════════════════════════════
      HERO
+     NOTE: Hero image is currently 64 Valaria Ave Seven Hills (a real
+     Daniel listing). Replace with an owned street/portrait photo when one
+     is available, Brisbane streetscape, open-home shot, etc.
 ════════════════════════════════════════════ -->
 <section class="relative min-h-dvh sm:min-h-dvh flex items-center overflow-hidden hero-section" style="background:#0a0806;">
 
   <!-- Parallax bg -->
   <div class="absolute inset-0 z-0" id="hero-bg">
     <img
-      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format"
-      srcset="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=640&q=80&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&fm=webp&auto=format 1200w, https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1440&q=70&fm=webp&auto=format 1440w"
+      src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/b7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG"
       sizes="100vw"
-      alt="Brisbane inner east property, Daniel Gierach, real estate agent Ray White Bulimba"
+      alt="64 Valaria Avenue Seven Hills, listed by Daniel Gierach, Ray White Bulimba"
       class="w-full h-full object-cover"
-      style="filter:grayscale(8%) brightness(0.58);"
+      style="filter:grayscale(8%) brightness(0.55);"
       fetchpriority="high"
       width="1920" height="1080"
     />
-    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.55) 0%,rgba(10,8,6,0.15) 100%);"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.62) 0%,rgba(10,8,6,0.2) 100%);"></div>
   </div>
 
   <!-- Glass card -->
@@ -182,8 +184,7 @@ const faqSchema = {
 
       <h1 class="hero-h1 reveal" data-delay="380"
         style="font-family:var(--font-serif);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;">
-        Curious what your Brisbane<br />
-        <em style="font-style:italic;color:var(--color-gold);">home could sell for?</em>
+        Curious what your Brisbane home could sell for?
       </h1>
 
       <p class="reveal hero-p2" data-delay="560"
@@ -235,36 +236,6 @@ const faqSchema = {
     <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,221,121,0.4),transparent);"></div>
   </div>
 </section>
-
-
-<!-- ════════════════════════════════════════════
-     MARQUEE RIBBON
-════════════════════════════════════════════ -->
-<div style="background:#1c1917;padding:1.1rem 0;overflow:hidden;">
-  <div class="marquee-track">
-    {[
-      'Family Homes',
-      'Units & Townhomes',
-      'Prestige & Luxury',
-      'Riverfront Properties',
-      'New Developments',
-      'Land & Development Sites',
-      'Off-Market Access',
-      'Family Homes',
-      'Units & Townhomes',
-      'Prestige & Luxury',
-      'Riverfront Properties',
-      'New Developments',
-      'Land & Development Sites',
-      'Off-Market Access',
-    ].map((item, i) => (
-      <span class="flex items-center gap-5 flex-shrink-0 px-10" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;">
-        {item}
-        <span style="display:inline-block;width:4px;height:4px;background:rgba(196,145,42,0.35);border-radius:50%;"></span>
-      </span>
-    ))}
-  </div>
-</div>
 
 
 <!-- ════════════════════════════════════════════
@@ -385,7 +356,7 @@ const faqSchema = {
     <div class="reveal mt-6 p-10 lg:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
       style="background:var(--color-gold-muted);border:1px solid rgba(196,145,42,0.15);" data-delay="100">
       <div>
-        <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;font-style:italic;">
+        <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.5rem;">
           Looking for Something Specific?
         </h3>
         <p style="font-size:0.85rem;color:var(--color-text-muted);max-width:52ch;line-height:1.75;">
@@ -438,37 +409,76 @@ const faqSchema = {
 
       <!-- Content -->
       <div class="reveal-right">
-        <span class="eyebrow mb-5">Why Choose Daniel</span>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;margin-bottom:2.5rem;">
-          Brisbane's Inner East<br /><em style="font-style:italic;">Property Specialist</em>
+        <span class="eyebrow mb-5">About Daniel</span>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;margin-bottom:2rem;">
+          Brisbane's Inner East Property Specialist
         </h2>
 
-        <div class="flex flex-col gap-10">
-          {reasons.map((r, i) => (
-            <div class="flex gap-6 reveal" data-delay={`${i * 100}`}>
-              <span style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);opacity:0.35;flex-shrink:0;line-height:1;margin-top:0.2rem;">
-                {r.n}
-              </span>
-              <div>
-                <h3 style="font-family:var(--font-sans);font-size:0.8rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:0.6rem;">
-                  {r.title}
-                </h3>
-                <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;">
-                  {r.body}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <p style="font-size:1.05rem;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.5rem;font-family:var(--font-serif);">
+          Daniel takes campaigns across Brisbane. His home patch is the inner east and south, Camp Hill, Seven Hills, Carina, Hawthorne, Bulimba and the surrounding suburbs, where most recent sales sit and the local knowledge is deepest.
+        </p>
+        <p style="font-size:0.95rem;color:var(--color-text-secondary);line-height:1.85;margin-bottom:1.5rem;">
+          Every campaign he runs is built on what buyers in your specific suburb are searching for right now. Pricing, marketing timing, and the shortlist of buyers he calls first all come from current data, not from a generic playbook.
+        </p>
+        <p style="font-size:0.95rem;color:var(--color-text-secondary);line-height:1.85;margin-bottom:2rem;">
+          Through Ray White Bulimba and the Ray White Collective network, your property is exposed to more than 607,000 pre-registered buyers from day one. That reach is what creates genuine competition and protects the result.
+        </p>
 
-        <div class="mt-10 reveal" data-delay="300">
-          <a href="/about" class="btn-outline-gold">About Daniel</a>
+        <div class="reveal" data-delay="300">
+          <a href="/about" class="btn-outline-gold">More about Daniel</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+
+
+<!-- ════════════════════════════════════════════
+     IN THE FIELD, placeholder strip
+     Replace these three image src values with real photos of Daniel
+     working: open home, kitchen-table appraisal, on the phone, on a
+     veranda, signing contracts, etc. Plain, mid-action, not glossy.
+     Until real shots exist, the strip uses listing exteriors as a
+     visual stand-in.
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:5rem 0 6rem;">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+
+    <div class="reveal" style="max-width:42rem;margin-bottom:3rem;">
+      <span class="eyebrow mb-3">In the field</span>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;color:var(--color-text-primary);line-height:1.2;letter-spacing:-0.01em;">
+        Out across the inner east, week in week out.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-1">
+      <div class="reveal" style="aspect-ratio:4/5;overflow:hidden;background:#1c1917;">
+        <img src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/93d1-H3480857-194603639__1774840446-82684-03-2226DuttonstreetHawthorne20.jpg"
+             alt="Daniel Gierach at a Hawthorne campaign"
+             loading="lazy" width="800" height="1000"
+             style="width:100%;height:100%;object-fit:cover;filter:grayscale(20%);" />
+      </div>
+      <div class="reveal" data-delay="80" style="aspect-ratio:4/5;overflow:hidden;background:#1c1917;">
+        <img src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg"
+             alt="Brisbane open home"
+             loading="lazy" width="800" height="1000"
+             style="width:100%;height:100%;object-fit:cover;filter:grayscale(20%);" />
+      </div>
+      <div class="reveal" data-delay="160" style="aspect-ratio:4/5;overflow:hidden;background:#1c1917;">
+        <img src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8882-H3460518-188820850__1771981392-42467-AMY5833.jpg"
+             alt="Inner east street appraisal"
+             loading="lazy" width="800" height="1000"
+             style="width:100%;height:100%;object-fit:cover;filter:grayscale(20%);" />
+      </div>
+    </div>
+
+    <p class="reveal" data-delay="240" style="font-size:0.78rem;color:var(--color-text-muted);margin-top:1.5rem;letter-spacing:0.04em;">
+      Photos from recent Brisbane campaigns. Replace with on-the-job photography when available.
+    </p>
+
+  </div>
+</section>
 
 
 <!-- ════════════════════════════════════════════
@@ -572,8 +582,7 @@ const faqSchema = {
 <section id="home-worth" class="relative overflow-hidden" style="padding:7rem 0;">
   <div class="absolute inset-0">
     <img
-      src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=55&fm=webp&auto=format"
-      srcset="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=640&q=50&fm=webp&auto=format 640w, https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=55&fm=webp&auto=format 1200w"
+      src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7149-H3442687-184436620__1769558771-34622-FJD9608.jpg"
       sizes="100vw"
       alt="Premium property"
       class="hw-bg-img w-full h-full object-cover"
@@ -590,7 +599,7 @@ const faqSchema = {
       <span class="eyebrow mb-5 reveal" style="display:block;text-align:center;color:#f5d07a;">What's Your Property Worth?</span>
       <h2 class="reveal" data-delay="80"
         style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
-        Find out in three ways.<br/><em style="font-style:italic;color:#c5a03c;">Choose yours.</em>
+        Find out in three ways. Choose yours.
       </h2>
       <p class="reveal" data-delay="160"
         style="font-size:0.9375rem;color:rgba(240,236,228,0.65);max-width:52ch;margin:0 auto;line-height:1.8;">
@@ -730,15 +739,15 @@ const faqSchema = {
 <!-- ════════════════════════════════════════════
      MARKET UPDATES, EMAIL CAPTURE
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-2);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:var(--color-accent);padding:5rem 0;">
   <div class="max-w-[700px] mx-auto px-8 text-center">
-    <span class="eyebrow mb-4 reveal" style="display:block;">Not Ready Yet?</span>
+    <span class="eyebrow mb-4 reveal" style="display:block;color:rgba(240,236,228,0.55);">Not ready yet?</span>
     <h2 class="reveal" data-delay="60"
-      style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.25rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;margin-bottom:0.75rem;">
-      Get a Free Quarterly<br/><em style="font-style:italic;">Suburb Report</em>
+      style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.25rem);font-weight:400;color:#f0ece4;letter-spacing:-0.01em;line-height:1.15;margin-bottom:0.75rem;">
+      Get a free quarterly suburb report
     </h2>
     <p class="reveal" data-delay="120"
-      style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-bottom:2rem;">
+      style="font-size:0.875rem;color:rgba(240,236,228,0.75);line-height:1.8;margin-bottom:2rem;">
       One email per quarter. What sold in your suburb, what it sold for, and what it means for your property's value. No spam, no fluff.
     </p>
     <form class="reveal" data-delay="180"
@@ -762,8 +771,8 @@ const faqSchema = {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </form>
-    <p class="reveal" data-delay="220" style="font-size:0.72rem;color:var(--color-text-muted);margin-top:1rem;">
-      Free. No spam. Unsubscribe at any time. <a href="/privacy" style="color:var(--color-gold);text-decoration:underline;">Privacy Policy</a>
+    <p class="reveal" data-delay="220" style="font-size:0.72rem;color:rgba(240,236,228,0.55);margin-top:1rem;">
+      Free. No spam. Unsubscribe at any time. <a href="/privacy" style="color:rgba(240,236,228,0.85);text-decoration:underline;">Privacy Policy</a>
     </p>
   </div>
 </section>
@@ -786,7 +795,7 @@ const faqSchema = {
       <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
         <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           What suburbs does Daniel service?
-          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+          <span style="color:var(--color-text-muted);font-size:1.4rem;flex-shrink:0;font-weight:300;">+</span>
         </summary>
         <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
           Daniel works across the inner east and south corridor from Bulimba through to Carina. Every suburb page on the site has the specific buyer-pool notes, recent sold activity, and the current campaign approach for that pocket. Daniel operates through Ray White Bulimba and the Ray White Collective network.
@@ -796,7 +805,7 @@ const faqSchema = {
       <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
         <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           How long does it take to sell in Brisbane's inner east?
-          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+          <span style="color:var(--color-text-muted);font-size:1.4rem;flex-shrink:0;font-weight:300;">+</span>
         </summary>
         <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
           Daniel's median days on market is 20 days. Well-positioned homes typically sell within 2-4 weeks when priced accurately and supported by a targeted buyer campaign.
@@ -806,7 +815,7 @@ const faqSchema = {
       <details style="border-bottom:1px solid rgba(28,25,23,0.1);padding:1.35rem 0;">
         <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           Should I sell by auction or private treaty?
-          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+          <span style="color:var(--color-text-muted);font-size:1.4rem;flex-shrink:0;font-weight:300;">+</span>
         </summary>
         <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
           The best method depends on your property type, price point and buyer demand. Auction creates urgency and competition; private treaty suits homes where buyers need more consideration time. Daniel will recommend the right approach.
@@ -816,10 +825,10 @@ const faqSchema = {
       <details style="padding:1.35rem 0;">
         <summary style="font-family:var(--font-serif);font-size:1.05rem;cursor:pointer;color:var(--color-text-primary);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           How do I get a free property appraisal with Daniel?
-          <span style="color:#c4912a;font-size:1.4rem;flex-shrink:0;">+</span>
+          <span style="color:var(--color-text-muted);font-size:1.4rem;flex-shrink:0;font-weight:300;">+</span>
         </summary>
         <p style="font-size:0.875rem;color:var(--color-text-secondary);line-height:1.8;margin-top:0.85rem;padding-right:2rem;">
-          Fill in the <a href="/walkthrough" style="color:var(--color-gold);text-decoration:underline;">appraisal request form</a> or call Daniel directly on <a href="tel:+61412523821" style="color:var(--color-gold);text-decoration:underline;">0412 523 821</a>. There's no obligation and Daniel will typically be in touch within 24 hours to arrange a time that suits you.
+          Fill in the <a href="/walkthrough" style="color:var(--color-text-primary);text-decoration:underline;text-decoration-color:rgba(28,25,23,0.3);">appraisal request form</a> or call Daniel directly on <a href="tel:+61412523821" style="color:var(--color-text-primary);text-decoration:underline;text-decoration-color:rgba(28,25,23,0.3);">0412 523 821</a>. There's no obligation and Daniel will typically be in touch within 24 hours to arrange a time that suits you.
         </p>
       </details>
 
@@ -854,7 +863,7 @@ const faqSchema = {
       </div>
       <div>
         <p class="reveal" data-delay="120" style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;max-width:46ch;">
-          Make smarter decisions at every stage of your property journey. Free tools built for buying, selling, and investing across Brisbane's inner east and south.
+          Make smarter decisions at every stage of your property journey. Free tools built for buying, selling, and investing across Brisbane.
         </p>
         <a href="/tools" class="btn-outline-gold reveal" data-delay="200" style="display:inline-flex;margin-top:1.5rem;">
           View All Tools →
@@ -912,7 +921,7 @@ const faqSchema = {
     <div class="reveal" style="max-width:42rem;margin-bottom:3.5rem;">
       <span class="eyebrow mb-4" style="display:block;">Areas Covered</span>
       <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
-        Selling across Brisbane's inner east and south.
+        Selling across Brisbane.
       </h2>
       <p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:1rem;line-height:1.8;max-width:48ch;">
         Deep local knowledge across every suburb in the corridor. Click your suburb to see recent sales, market conditions and what your home could be worth.

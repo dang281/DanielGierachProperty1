@@ -1,0 +1,588 @@
+---
+import { SUBURB_MAP } from '../data/suburb-map';
+
+const featured = SUBURB_MAP.suburbs.filter(s => s.featured).sort((a, b) => a.name.localeCompare(b.name));
+const totalCount = SUBURB_MAP.suburbs.length;
+
+const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string }[] = [
+  { id: 'all',   label: 'All Brisbane' },
+  { id: 'east',  label: 'East' },
+  { id: 'south', label: 'South' },
+  { id: 'north', label: 'North' },
+  { id: 'west',  label: 'West' },
+];
+---
+
+<section class="suburb-map-wrap" style="background:var(--color-surface-0); padding:5rem 0 6rem; border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-12">
+
+    <div class="reveal" style="max-width:46rem; margin-bottom:2rem;">
+      <span class="eyebrow mb-3" style="display:block;">Where Daniel works</span>
+      <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.2vw, 2.4rem); font-weight:400; color:var(--color-text-primary); line-height:1.2; letter-spacing:-0.01em; margin-bottom:0.85rem;">
+        Brisbane, all of it.
+      </h2>
+      <p style="font-size:0.95rem; color:var(--color-text-secondary); line-height:1.85; max-width:58ch;">
+        The same documented method runs every campaign Daniel takes across all {totalCount} Brisbane suburbs. Pick a region or search for yours.
+      </p>
+    </div>
+
+    <!-- Region toggle -->
+    <div class="region-tabs" role="tablist" aria-label="Filter suburbs by Brisbane region">
+      {regions.map(r => (
+        <button
+          type="button"
+          role="tab"
+          data-region={r.id}
+          class={`region-tab ${r.id === 'all' ? 'is-active' : ''}`}
+          aria-selected={r.id === 'all' ? 'true' : 'false'}
+        >{r.label}</button>
+      ))}
+    </div>
+
+    <div class="suburb-map-grid">
+      <!-- Sidebar: search + featured suburbs -->
+      <aside class="suburb-aside">
+        <div class="suburb-search-wrap">
+          <input
+            type="text"
+            id="suburb-search"
+            placeholder="Search any Brisbane suburb…"
+            autocomplete="off"
+            spellcheck="false"
+            class="suburb-search-input"
+          />
+          <ul id="suburb-search-results" class="suburb-search-results" hidden></ul>
+        </div>
+
+        <p class="suburb-aside-eyebrow">Suburb profiles</p>
+        <ol class="suburb-list" id="suburb-list" role="list">
+          {featured.map(s => (
+            <li data-region={s.region}>
+              <a
+                href={`/suburbs/${s.slug}`}
+                data-slug={s.slug}
+                class="suburb-list-item"
+              >
+                <span class="suburb-list-name">{s.name}</span>
+                <span class="suburb-list-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+          <li id="suburb-list-empty" class="suburb-list-empty" hidden>
+            No suburb profiles yet in this region. Daniel still works here. <a href="/get-an-appraisal" style="color:var(--color-text-primary);text-decoration:underline;">Request an appraisal</a>.
+          </li>
+        </ol>
+        <p class="suburb-aside-foot">
+          Suburb not on the list? <a href="/get-an-appraisal" style="color:var(--color-text-primary);text-decoration:underline;">Request an appraisal</a> for any Brisbane address.
+        </p>
+      </aside>
+
+      <!-- The map -->
+      <div class="suburb-map-canvas" aria-label="Map of Brisbane suburbs">
+        <svg
+          viewBox={SUBURB_MAP.viewBox}
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <!-- Brisbane River, drawn as a wide soft halo + sharper core for orientation. -->
+          {SUBURB_MAP.river.map(d => (
+            <path d={d} fill="none" stroke="#7ba1bd" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.35" />
+          ))}
+          {SUBURB_MAP.river.map(d => (
+            <path d={d} fill="none" stroke="#5b87a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" />
+          ))}
+
+          <!-- Suburb polygons. Featured ones are sorted last in the data, so
+               they render on top of the standard ones (z-order via DOM order). -->
+          <g id="suburb-shapes">
+            {SUBURB_MAP.suburbs.map(s => {
+              const href = s.featured ? `/suburbs/${s.slug}` : `/get-an-appraisal?suburb=${encodeURIComponent(s.name)}`;
+              return (
+                <a href={href} aria-label={`${s.name}${s.featured ? ' suburb profile' : ', request appraisal'}`} data-slug={s.slug} data-name={s.name} data-featured={s.featured ? '1' : '0'} data-region={s.region} class="suburb-shape-link">
+                  <path
+                    d={s.d}
+                    data-slug={s.slug}
+                    data-name={s.name}
+                    data-featured={s.featured ? '1' : '0'}
+                    data-region={s.region}
+                    class={`suburb-shape ${s.featured ? 'is-featured' : ''}`}
+                    fill-rule="evenodd"
+                  />
+                </a>
+              );
+            })}
+          </g>
+
+          <!-- Single floating label, repositioned per active suburb. -->
+          <g id="suburb-active-label" pointer-events="none" opacity="0">
+            <rect class="active-label-bg" rx="2" ry="2"></rect>
+            <text class="active-label-text" text-anchor="middle" dominant-baseline="middle"></text>
+          </g>
+        </svg>
+
+        <!-- Active suburb readout -->
+        <div class="suburb-readout" id="suburb-readout" aria-live="polite">
+          <span class="suburb-readout-eyebrow" id="suburb-readout-eyebrow">Hover any suburb</span>
+          <span class="suburb-readout-name" id="suburb-readout-name">Brisbane</span>
+          <span class="suburb-readout-meta" id="suburb-readout-meta">{totalCount} suburbs across the city</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Region toggle bar */
+  .region-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.75rem;
+    border: 1px solid rgba(28,25,23,0.18);
+    background: var(--color-surface-3);
+    width: fit-content;
+    flex-wrap: wrap;
+  }
+
+  .region-tab {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.1rem;
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(28,25,23,0.12);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .region-tab:last-child { border-right: none; }
+  .region-tab:hover { color: var(--color-text-primary); background: rgba(26,34,56,0.04); }
+  .region-tab.is-active { background: var(--color-accent); color: #f0ece4; }
+
+  .suburb-map-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .suburb-list-empty {
+    padding: 1rem 0.5rem;
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+  }
+
+  /* Region filter dimming on the map, visible but clearly secondary */
+  .suburb-map-canvas.region-filtered .suburb-shape:not(.is-region-active):not(.is-active) {
+    fill: var(--color-surface-3);
+    stroke: rgba(28,25,23,0.18);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 880px) {
+    .suburb-map-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .suburb-list { max-height: 360px !important; }
+  }
+
+  .suburb-aside-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.5rem;
+  }
+
+  .suburb-aside-foot {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin-top: 1.25rem;
+  }
+
+  .suburb-search-wrap {
+    position: relative;
+  }
+
+  .suburb-search-input {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid rgba(28,25,23,0.18);
+    background: var(--color-surface-3);
+    color: var(--color-text-primary);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .suburb-search-input:focus {
+    border-color: var(--color-accent);
+  }
+
+  .suburb-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface-3);
+    border: 1px solid rgba(28,25,23,0.18);
+    border-top: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 260px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+
+  .suburb-search-results li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.55rem 0.9rem;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    font-size: 0.9rem;
+  }
+
+  .suburb-search-results li a:hover {
+    background: rgba(26,34,56,0.06);
+  }
+
+  .suburb-search-results .result-tag {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .suburb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(28,25,23,0.12);
+    max-height: 540px;
+    overflow-y: auto;
+  }
+
+  .suburb-list-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+    text-decoration: none;
+    color: var(--color-text-primary);
+    transition: background 0.15s ease, padding-left 0.15s ease;
+  }
+
+  .suburb-list-item:hover,
+  .suburb-list-item.is-active {
+    background: rgba(26,34,56,0.06);
+    padding-left: 0.85rem;
+  }
+
+  .suburb-list-name {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .suburb-list-arrow {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .suburb-list-item:hover .suburb-list-arrow,
+  .suburb-list-item.is-active .suburb-list-arrow,
+  .suburb-list-item:focus .suburb-list-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .suburb-map-canvas {
+    position: relative;
+    background: var(--color-surface-1);
+    border: 1px solid rgba(28,25,23,0.1);
+    aspect-ratio: 9 / 7;
+    overflow: hidden;
+  }
+
+  .suburb-map-canvas svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .suburb-shape {
+    fill: var(--color-surface-3);
+    stroke: rgba(28,25,23,0.45);
+    stroke-width: 0.6;
+    transition: fill 0.18s ease, stroke 0.18s ease;
+    cursor: pointer;
+  }
+
+  .suburb-shape-link:hover .suburb-shape,
+  .suburb-shape.is-active {
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
+  }
+
+  /* When any shape is hovered/active, non-active suburbs stay visible at
+     reduced contrast, don't wash them out so much they read as deselected. */
+  .suburb-map-canvas.has-active .suburb-shape:not(.is-active) {
+    fill: var(--color-surface-3);
+    stroke: rgba(28,25,23,0.3);
+  }
+
+  .active-label-text {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    fill: var(--color-accent);
+  }
+
+  .active-label-bg {
+    fill: rgba(247,245,240,0.96);
+    stroke: rgba(28,25,23,0.18);
+    stroke-width: 0.5;
+  }
+
+  #suburb-active-label {
+    transition: opacity 0.15s ease;
+  }
+
+  .suburb-readout {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(247,245,240,0.96);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 0.85rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 200px;
+    pointer-events: none;
+  }
+
+  .suburb-readout-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .suburb-readout-name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .suburb-readout-meta {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+  }
+</style>
+
+<script>
+  type SuburbDatum = { name: string; slug: string; featured: boolean };
+
+  (() => {
+    const root = document.querySelector<HTMLElement>('.suburb-map-wrap');
+    if (!root) return;
+    const canvas = root.querySelector<HTMLElement>('.suburb-map-canvas');
+    const shapes = root.querySelectorAll<SVGPathElement>('.suburb-shape');
+    const listItems = root.querySelectorAll<HTMLAnchorElement>('.suburb-list-item');
+    const readoutName = root.querySelector<HTMLElement>('#suburb-readout-name');
+    const readoutMeta = root.querySelector<HTMLElement>('#suburb-readout-meta');
+    const readoutEyebrow = root.querySelector<HTMLElement>('#suburb-readout-eyebrow');
+    const labelGroup = root.querySelector<SVGGElement>('#suburb-active-label');
+    const labelText = labelGroup?.querySelector<SVGTextElement>('.active-label-text');
+    const labelBg = labelGroup?.querySelector<SVGRectElement>('.active-label-bg');
+    const defaultName = readoutName?.textContent ?? '';
+    const defaultMeta = readoutMeta?.textContent ?? '';
+    const defaultEyebrow = readoutEyebrow?.textContent ?? '';
+
+    // Build a directory of every suburb (featured + standard) for the search.
+    const allSuburbs: SuburbDatum[] = [];
+    shapes.forEach(s => {
+      allSuburbs.push({
+        name: s.dataset.name ?? '',
+        slug: s.dataset.slug ?? '',
+        featured: s.dataset.featured === '1',
+      });
+    });
+    allSuburbs.sort((a, b) => a.name.localeCompare(b.name));
+    const slugToShape = new Map<string, SVGPathElement>();
+    shapes.forEach(s => { if (s.dataset.slug) slugToShape.set(s.dataset.slug, s); });
+
+    function positionLabel(shape: SVGPathElement) {
+      if (!labelGroup || !labelText || !labelBg) return;
+      const name = shape.dataset.name ?? '';
+      labelText.textContent = name;
+      const bbox = shape.getBBox();
+      const cx = bbox.x + bbox.width / 2;
+      const cy = bbox.y - 8;
+      labelText.setAttribute('x', String(cx));
+      labelText.setAttribute('y', String(cy));
+      requestAnimationFrame(() => {
+        const tBox = labelText.getBBox();
+        const padX = 6, padY = 3;
+        labelBg.setAttribute('x', String(tBox.x - padX));
+        labelBg.setAttribute('y', String(tBox.y - padY));
+        labelBg.setAttribute('width', String(tBox.width + padX * 2));
+        labelBg.setAttribute('height', String(tBox.height + padY * 2));
+      });
+      labelGroup.setAttribute('opacity', '1');
+    }
+
+    function clearLabel() {
+      labelGroup?.setAttribute('opacity', '0');
+    }
+
+    function setActive(slug: string | null) {
+      if (!canvas) return;
+      if (slug) canvas.classList.add('has-active'); else canvas.classList.remove('has-active');
+      let activeShape: SVGPathElement | null = null;
+      shapes.forEach(s => {
+        const isActive = s.dataset.slug === slug;
+        s.classList.toggle('is-active', isActive);
+        if (isActive) activeShape = s;
+      });
+      listItems.forEach(li => {
+        li.classList.toggle('is-active', li.dataset.slug === slug);
+      });
+      if (slug && activeShape) {
+        positionLabel(activeShape);
+        const sub = allSuburbs.find(s => s.slug === slug);
+        if (readoutName && sub) readoutName.textContent = sub.name;
+        if (readoutEyebrow) readoutEyebrow.textContent = sub?.featured ? 'Suburb profile' : 'Daniel works here';
+        if (readoutMeta) readoutMeta.textContent = sub?.featured ? 'Click to view profile →' : 'Click to request an appraisal →';
+      } else {
+        clearLabel();
+        if (readoutName) readoutName.textContent = defaultName;
+        if (readoutMeta) readoutMeta.textContent = defaultMeta;
+        if (readoutEyebrow) readoutEyebrow.textContent = defaultEyebrow;
+      }
+    }
+
+    listItems.forEach(item => {
+      item.addEventListener('mouseenter', () => setActive(item.dataset.slug ?? null));
+      item.addEventListener('focus', () => setActive(item.dataset.slug ?? null));
+    });
+    const list = root.querySelector('.suburb-list');
+    list?.addEventListener('mouseleave', () => setActive(null));
+
+    shapes.forEach(shape => {
+      shape.addEventListener('mouseenter', () => setActive(shape.dataset.slug ?? null));
+    });
+    canvas?.addEventListener('mouseleave', () => setActive(null));
+
+    // Suburb search
+    const searchInput = root.querySelector<HTMLInputElement>('#suburb-search');
+    const searchResults = root.querySelector<HTMLUListElement>('#suburb-search-results');
+
+    function renderSearchResults(query: string) {
+      if (!searchResults) return;
+      const q = query.trim().toLowerCase();
+      if (!q) { searchResults.hidden = true; return; }
+      const matches = allSuburbs
+        .filter(s => s.name.toLowerCase().includes(q))
+        .slice(0, 12);
+      if (!matches.length) {
+        searchResults.innerHTML = '<li><a href="/get-an-appraisal" style="color:var(--color-text-muted);"><span>No match · request an appraisal</span><span class="result-tag">→</span></a></li>';
+        searchResults.hidden = false;
+        return;
+      }
+      searchResults.innerHTML = matches.map(s => {
+        const href = s.featured
+          ? `/suburbs/${s.slug}`
+          : `/get-an-appraisal?suburb=${encodeURIComponent(s.name)}`;
+        const tag = s.featured ? 'Profile' : 'Appraisal';
+        return `<li><a href="${href}" data-slug="${s.slug}"><span>${s.name}</span><span class="result-tag">${tag}</span></a></li>`;
+      }).join('');
+      searchResults.hidden = false;
+
+      // Hover any result → highlight on the map
+      searchResults.querySelectorAll<HTMLAnchorElement>('a[data-slug]').forEach(a => {
+        a.addEventListener('mouseenter', () => setActive(a.dataset.slug ?? null));
+      });
+    }
+
+    searchInput?.addEventListener('input', e => {
+      renderSearchResults((e.target as HTMLInputElement).value);
+    });
+    searchInput?.addEventListener('focus', () => {
+      if (searchInput.value) renderSearchResults(searchInput.value);
+    });
+    document.addEventListener('click', e => {
+      if (!searchInput?.contains(e.target as Node) && !searchResults?.contains(e.target as Node)) {
+        if (searchResults) searchResults.hidden = true;
+      }
+    });
+
+    // Region toggle
+    const regionTabs = root.querySelectorAll<HTMLButtonElement>('.region-tab');
+    const listLis = root.querySelectorAll<HTMLLIElement>('#suburb-list > li[data-region]');
+    const emptyMsg = root.querySelector<HTMLLIElement>('#suburb-list-empty');
+
+    function setRegion(region: string) {
+      regionTabs.forEach(t => {
+        const active = t.dataset.region === region;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      if (region === 'all') {
+        canvas?.classList.remove('region-filtered');
+        shapes.forEach(s => s.classList.remove('is-region-active'));
+      } else {
+        canvas?.classList.add('region-filtered');
+        shapes.forEach(s => {
+          s.classList.toggle('is-region-active', s.dataset.region === region);
+        });
+      }
+
+      // Filter sidebar list
+      let visibleCount = 0;
+      listLis.forEach(li => {
+        const visible = region === 'all' || li.dataset.region === region;
+        li.hidden = !visible;
+        if (visible) visibleCount++;
+      });
+      if (emptyMsg) emptyMsg.hidden = visibleCount > 0;
+    }
+
+    regionTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const region = tab.dataset.region ?? 'all';
+        setRegion(region);
+      });
+    });
+  })();
+</script>
