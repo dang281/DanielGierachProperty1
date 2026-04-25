@@ -296,49 +296,8 @@ import Layout from '../layouts/Layout.astro';
   }
 </style>
 
-<style is:global>
-  /* Force nav into cream/glass state on the contact page.
-     Must be global so it reaches the Nav component outside this page's scope.
-     !important beats the Nav's inline style overrides set by the scroll handler. */
-  body.contact-page #site-header {
-    background: rgba(247,245,240,0.96) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(28,25,23,0.08) !important;
-    box-shadow: 0 4px 24px rgba(28,25,23,0.08) !important;
-  }
-  body.contact-page #logo-name {
-    color: var(--color-text-primary) !important;
-  }
-  body.contact-page #nav-links .nav-link-mono,
-  body.contact-page #nav-cta .nav-link-mono {
-    color: var(--color-text-secondary) !important;
-  }
-</style>
-
 <script>
-  document.body.dataset.lightNav = 'true';
-  // Mark body so global CSS above can target the nav on this page only
   document.body.classList.add('contact-page');
-
-  const header = document.getElementById('site-header')!;
-  const logoName = document.getElementById('logo-name')!;
-  const navLinkEls = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
-
-  // Apply glass state immediately
-  header.classList.add('glass-nav');
-  logoName.style.color = 'var(--color-text-primary)';
-  navLinkEls.forEach(el => el.style.color = '');
-
-  // Re-apply after every scroll event (runs after Nav's handler via setTimeout)
-  window.addEventListener('scroll', () => {
-    setTimeout(() => {
-      header.classList.add('glass-nav');
-      header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
-      logoName.style.color = 'var(--color-text-primary)';
-      navLinkEls.forEach(el => el.style.color = '');
-    }, 0);
-  });
 
   const btns = document.querySelectorAll<HTMLButtonElement>('.intent-btn');
   const intentInput = document.getElementById('intent-value') as HTMLInputElement;
