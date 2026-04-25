@@ -91,15 +91,46 @@ async function fetchOverpass(query) {
 }
 
 async function fetchRiver() {
+  // Brisbane River exists in OSM in two forms:
+  //   1. waterway=river ways: thin centerline geometry (mostly upstream).
+  //   2. natural=water polygons / multipolygon relations: the actual water
+  //      body for the wide CBD / inner-city stretch.
+  // We fetch both and return both as { lines: [...], polygons: [...] }.
   const q = `
 [out:json][timeout:60];
-way["name"="Brisbane River"]["waterway"="river"](-27.7,152.6,-27.0,153.4);
+(
+  way["name"="Brisbane River"]["waterway"="river"](-27.7,152.6,-27.0,153.4);
+  relation["name"="Brisbane River"](-27.7,152.6,-27.0,153.4);
+  way["name"="Brisbane River"]["natural"="water"](-27.7,152.6,-27.0,153.4);
+);
 out geom;
 `;
   const data = await fetchOverpass(q);
-  const ways = data.elements.filter(e => e.type === 'way' && e.geometry);
-  const segments = ways.map(w => w.geometry.map(p => [p.lon, p.lat]));
-  return segments;
+  const lines = [];
+  const polygons = [];
+
+  for (const el of data.elements) {
+    if (el.type === 'way' && el.geometry) {
+      const coords = el.geometry.map(p => [p.lon, p.lat]);
+      const isClosed = coords.length > 2 &&
+        coords[0][0] === coords[coords.length - 1][0] &&
+        coords[0][1] === coords[coords.length - 1][1];
+      const tags = el.tags || {};
+      if (isClosed && (tags.natural === 'water' || tags.water)) {
+        polygons.push({ outer: [coords], inner: [] });
+      } else if (tags.waterway === 'river') {
+        lines.push(coords);
+      }
+    } else if (el.type === 'relation' && el.members) {
+      const outerWays = el.members.filter(m => m.type === 'way' && m.role !== 'inner' && m.geometry);
+      const innerWays = el.members.filter(m => m.type === 'way' && m.role === 'inner' && m.geometry);
+      const outer = stitchRings(outerWays);
+      const inner = stitchRings(innerWays);
+      if (outer.length) polygons.push({ outer, inner });
+    }
+  }
+
+  return { lines, polygons };
 }
 
 function relationToPolygons(rel) {
@@ -335,29 +366,30 @@ async function main() {
   console.log(`  → kept ${suburbs.length} polygon suburbs (${suburbs.filter(s => s.featured).length} featured)`);
 
   console.log('Fetching Brisbane River geometry...');
-  let riverSegments = [];
+  let riverLines = [];
+  let riverPolygons = [];
   try {
-    riverSegments = await fetchRiver();
-    console.log(`  → got ${riverSegments.length} river segments`);
-    for (const seg of riverSegments) for (const p of seg) allCoords.push(p);
+    const r = await fetchRiver();
+    riverLines = r.lines;
+    riverPolygons = r.polygons;
+    console.log(`  → got ${riverLines.length} river lines, ${riverPolygons.length} river polygons`);
   } catch (e) {
     console.warn(`  ! river fetch failed: ${e.message}`);
   }
 
-  // Don't crop the river — let the SVG viewBox clip it naturally so the
-  // full urban stretch winds through the rendered map. We do drop ways
-  // that have zero overlap with the rendered area (e.g. far-upstream
-  // tributaries) so we don't render off-screen geometry.
+  // Drop geometry that has zero overlap with the rendered area (e.g.
+  // far-upstream tributaries) so we don't render off-screen shapes.
   const PAD = 0.05;
-  const overlaps = (seg) => seg.some(([lon, lat]) =>
+  const pointInBox = ([lon, lat]) =>
     lon >= INNER_BBOX.west - PAD &&
     lon <= INNER_BBOX.east + PAD &&
     lat >= INNER_BBOX.south - PAD &&
-    lat <= INNER_BBOX.north + PAD
+    lat <= INNER_BBOX.north + PAD;
+  riverLines = riverLines.filter(seg => seg.some(pointInBox));
+  riverPolygons = riverPolygons.filter(poly =>
+    poly.outer.some(ring => ring.some(pointInBox))
   );
-  riverSegments = riverSegments.filter(overlaps);
 
-  // Rebuild allCoords for projection bounds (exclude any river tail outside the area)
   // Bounds calculated from SUBURBS only. River points outside the
   // suburb bbox would otherwise extend the projection range and squish
   // the inner map. River segments that project outside the viewBox get
@@ -370,7 +402,12 @@ async function main() {
 
   const out = {
     viewBox: `0 0 ${VIEW_W} ${VIEW_H}`,
-    river: riverSegments.map(seg => lineToPath(seg, project)).filter(Boolean),
+    river: riverLines.map(seg => lineToPath(seg, project)).filter(Boolean),
+    riverBody: riverPolygons.map(poly => {
+      const outerPaths = poly.outer.map(r => ringToPath(r, project)).filter(Boolean);
+      const innerPaths = poly.inner.map(r => ringToPath(r, project)).filter(Boolean);
+      return [...outerPaths, ...innerPaths].join(' ');
+    }).filter(Boolean),
     suburbs: suburbs
       .map(s => {
         const outerPaths = s.outer.map(r => ringToPath(r, project)).filter(Boolean);
@@ -407,13 +444,14 @@ export interface SuburbShape {
 export const SUBURB_MAP = {
   viewBox: ${JSON.stringify(out.viewBox)},
   river: ${JSON.stringify(out.river, null, 2)},
+  riverBody: ${JSON.stringify(out.riverBody, null, 2)},
   suburbs: ${JSON.stringify(out.suburbs, null, 2)} as SuburbShape[],
 };
 `;
 
   const target = path.join(ROOT, 'src/data/suburb-map.ts');
   fs.writeFileSync(target, tsOut);
-  console.log(`Wrote ${target} (${suburbs.length} suburbs, ${riverSegments.length} river segments)`);
+  console.log(`Wrote ${target} (${suburbs.length} suburbs, ${riverLines.length} river lines, ${riverPolygons.length} river polygons)`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
