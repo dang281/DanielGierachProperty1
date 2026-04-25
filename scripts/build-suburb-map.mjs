@@ -386,9 +386,29 @@ async function main() {
     lat >= INNER_BBOX.south - PAD &&
     lat <= INNER_BBOX.north + PAD;
   riverLines = riverLines.filter(seg => seg.some(pointInBox));
-  riverPolygons = riverPolygons.filter(poly =>
-    poly.outer.some(ring => ring.some(pointInBox))
-  );
+
+  // OSM sometimes tags huge polygons "Brisbane River" that actually cover
+  // Moreton Bay or include the full river system upstream. The inner-city
+  // river spans ~0.10° lon and ~0.06° lat, so 0.13° is a safe ceiling for
+  // any single inner-city river polygon.
+  const MAX_SPAN = 0.13;
+  function ringBboxSpan(ring) {
+    let minLon = Infinity, maxLon = -Infinity, minLat = Infinity, maxLat = -Infinity;
+    for (const [lon, lat] of ring) {
+      if (lon < minLon) minLon = lon;
+      if (lon > maxLon) maxLon = lon;
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+    }
+    return { lonSpan: maxLon - minLon, latSpan: maxLat - minLat };
+  }
+  riverPolygons = riverPolygons.filter(poly => {
+    if (!poly.outer.some(ring => ring.some(pointInBox))) return false;
+    return poly.outer.every(ring => {
+      const { lonSpan, latSpan } = ringBboxSpan(ring);
+      return lonSpan <= MAX_SPAN && latSpan <= MAX_SPAN;
+    });
+  });
 
   // Bounds calculated from SUBURBS only. River points outside the
   // suburb bbox would otherwise extend the projection range and squish
