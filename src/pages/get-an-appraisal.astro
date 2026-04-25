@@ -48,7 +48,8 @@ import Layout from '../layouts/Layout.astro';
         Daniel will respond within 24 hours.
       </h2>
 
-      <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.85rem;">
+      <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.85rem;"
+        onsubmit="if(typeof gtag!=='undefined'){gtag('event','appraisal_form_submit',{event_category:'lead',event_label:'Get An Appraisal',form_source:'wider-brisbane'});}">
         <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=appraisal-anywhere" />
         <input type="hidden" name="_subject" value="Appraisal request, wider Brisbane" />
         <input type="hidden" name="_source" value="get-an-appraisal" />

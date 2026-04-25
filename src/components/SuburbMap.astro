@@ -503,6 +503,22 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
     });
     canvas?.addEventListener('mouseleave', () => setActive(null));
 
+    // GA4: track suburb map clicks so we can see which suburbs drive enquiry
+    function trackMapClick(slug: string, featured: string) {
+      // @ts-expect-error gtag is global from Layout
+      if (typeof gtag !== 'undefined') {
+        // @ts-expect-error
+        gtag('event', 'map_suburb_click', {
+          event_category: 'engagement',
+          event_label: slug,
+          suburb_has_profile: featured === '1' ? 'yes' : 'no',
+        });
+      }
+    }
+    root.querySelectorAll<HTMLAnchorElement>('.suburb-shape-link').forEach(a => {
+      a.addEventListener('click', () => trackMapClick(a.dataset.slug ?? '', a.dataset.featured ?? '0'));
+    });
+
     // Suburb search
     const searchInput = root.querySelector<HTMLInputElement>('#suburb-search');
     const searchResults = root.querySelector<HTMLUListElement>('#suburb-search-results');

@@ -44,8 +44,8 @@ import Layout from '../../layouts/Layout.astro';
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is the median house price in Milton Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Milton's median house price reflects its scarcity: the suburb is small and detached homes are tightly held. Pricing varies significantly with block size, position relative to Park Road, and catchment access. An appraisal will give you a precise read on where your home sits relative to current sales." } },
-    { "@type": "Question", "name": "How long does it take to sell a home in Milton?", "acceptedAnswer": { "@type": "Answer", "text": "Well-presented Milton homes typically sell within 25 to 35 days, and apartments tend to track 30 to 45 days depending on building and view. Demand is consistent thanks to the suburb's commute, lifestyle and catchment combination." } },
+    { "@type": "Question", "name": "What is the median house price in Milton Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Milton's median house price sits around $1.55 million for detached homes and $750,000 for units as of early 2026, with strong annual growth of around 21% on houses and 20% on units. Detached stock is small and contested whenever quality property comes up. An appraisal will give you a precise read on where your home sits." } },
+    { "@type": "Question", "name": "How long does it take to sell a home in Milton?", "acceptedAnswer": { "@type": "Answer", "text": "Well-presented Milton houses typically sell within 25 to 35 days, and apartments tend to track 30 to 45 days depending on building and view. Demand is consistent thanks to the suburb's commute, lifestyle and catchment combination." } },
     { "@type": "Question", "name": "What is the lifestyle like in Milton Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Milton is one of Brisbane's most genuinely walkable suburbs. The Park Road precinct, the riverside bike path along Coronation Drive, and rapid CBD access via train, bus or ferry all sit within a tight footprint. It attracts buyers who want city-edge living with established character." } },
     { "@type": "Question", "name": "What types of homes are in Milton?", "acceptedAnswer": { "@type": "Answer", "text": "Milton has a mix of small-block character cottages, terrace and townhouse stock, and an active apartment market. The detached home segment is small and contested whenever quality stock comes up, particularly in the Brisbane State High catchment." } }
   ]
@@ -82,7 +82,7 @@ import Layout from '../../layouts/Layout.astro';
   <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Milton home is worth.</h3>
   <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
     <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
-    <input type="hidden" name="_subject" value="Appraisal enquiry - Milton" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry: Milton" />
     <input type="hidden" name="_source" value="milton" />
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
       <input type="text" name="name" required placeholder="Your name" autocomplete="name"
@@ -135,14 +135,14 @@ import Layout from '../../layouts/Layout.astro';
           What is the median house price in Milton Brisbane?
           <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
-        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Milton's median house price reflects its scarcity: the suburb is small and detached homes are tightly held. Pricing varies significantly with block size, position relative to Park Road, and catchment access. An appraisal will give you a precise read on where your home sits relative to current sales.</p>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Milton's median house price sits around $1.55 million for detached homes and $750,000 for units as of early 2026, with strong annual growth of around 21% on houses and 20% on units. Detached stock is small and contested whenever quality property comes up. An appraisal will give you a precise read on where your home sits.</p>
       </details>
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
         <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
           How long does it take to sell a home in Milton?
           <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
-        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-presented Milton homes typically sell within 25 to 35 days, and apartments tend to track 30 to 45 days depending on building and view. Demand is consistent thanks to the suburb's commute, lifestyle and catchment combination.</p>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-presented Milton houses typically sell within 25 to 35 days, and apartments tend to track 30 to 45 days depending on building and view. Demand is consistent thanks to the suburb's commute, lifestyle and catchment combination.</p>
       </details>
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
         <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
