@@ -85,35 +85,13 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
           role="img"
           preserveAspectRatio="xMidYMid meet"
         >
-          <!-- Moreton Bay coastline. Drawn as a thick soft blue line so users
-               can see where the eastern bay edge is. -->
-          {SUBURB_MAP.coastline?.map(d => (
-            <path d={d} fill="none" stroke="#9bbdd4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
-          ))}
-          {SUBURB_MAP.coastline?.map(d => (
-            <path d={d} fill="none" stroke="#5b87a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" />
-          ))}
+          <!-- Moreton Bay water fill. Covers only the eastern strip of the
+               viewBox; suburbs render on top, masking the parts that are land.
+               The bay shows through east of the bayside suburbs. -->
+          <rect x="540" y="0" width="360" height="700" fill="#cfe0eb" opacity="0.7" />
 
-          <!-- Brisbane River. Filled water body (CBD / inner-city wide stretch)
-               plus stroked centerline (upstream narrow stretch) for orientation. -->
-          {SUBURB_MAP.riverBody?.map(d => (
-            <path d={d} fill="#9bbdd4" stroke="#5b87a8" stroke-width="0.7" opacity="0.9" />
-          ))}
-          {SUBURB_MAP.river.map(d => (
-            <path d={d} fill="none" stroke="#7ba1bd" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" />
-          ))}
-          {SUBURB_MAP.river.map(d => (
-            <path d={d} fill="none" stroke="#5b87a8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" />
-          ))}
-
-          <!-- Moreton Bay label, placed east of suburbs to orient the user. -->
-          <text x="850" y="180" text-anchor="end" fill="#5b87a8" opacity="0.55"
-            style="font-family:var(--font-serif);font-size:18px;font-style:italic;letter-spacing:0.04em;pointer-events:none;">
-            Moreton Bay
-          </text>
-
-          <!-- Suburb polygons. Featured ones are sorted last in the data, so
-               they render on top of the standard ones (z-order via DOM order). -->
+          <!-- Suburb polygons. Featured ones render last so they sit visually
+               on top of the standard ones. -->
           <g id="suburb-shapes">
             {SUBURB_MAP.suburbs.map(s => {
               const href = s.featured ? `/suburbs/${s.slug}` : `/get-an-appraisal?suburb=${encodeURIComponent(s.name)}`;
@@ -132,6 +110,34 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
               );
             })}
           </g>
+
+          <!-- Brisbane River, drawn ON TOP of suburbs so it visibly cuts
+               through the city. pointer-events disabled so suburb hovers
+               still work where the river overlays. -->
+          <g pointer-events="none">
+            {SUBURB_MAP.riverBody?.map(d => (
+              <path d={d} fill="#7ba8c4" stroke="#5b87a8" stroke-width="0.6" opacity="0.95" />
+            ))}
+            {SUBURB_MAP.river.map(d => (
+              <path d={d} fill="none" stroke="#7ba8c4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" />
+            ))}
+            {SUBURB_MAP.river.map(d => (
+              <path d={d} fill="none" stroke="#5b87a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+            ))}
+          </g>
+
+          <!-- Coastline edge stroke for definition along the bay coast. -->
+          <g pointer-events="none">
+            {SUBURB_MAP.coastline?.map(d => (
+              <path d={d} fill="none" stroke="#5b87a8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" />
+            ))}
+          </g>
+
+          <!-- Moreton Bay label, placed in the bay area east of the suburbs. -->
+          <text x="850" y="180" text-anchor="end" fill="#3f6987" opacity="0.7"
+            style="font-family:var(--font-serif);font-size:20px;font-style:italic;letter-spacing:0.04em;pointer-events:none;">
+            Moreton Bay
+          </text>
 
           <!-- Single floating label, repositioned per active suburb. -->
           <g id="suburb-active-label" pointer-events="none" opacity="0">
