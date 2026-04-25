@@ -111,21 +111,6 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
             })}
           </g>
 
-          <!-- Brisbane River, drawn ON TOP of suburbs so it visibly cuts
-               through the city. pointer-events disabled so suburb hovers
-               still work where the river overlays. -->
-          <g pointer-events="none">
-            {SUBURB_MAP.riverBody?.map(d => (
-              <path d={d} fill="#7ba8c4" stroke="#5b87a8" stroke-width="0.6" opacity="0.95" />
-            ))}
-            {SUBURB_MAP.river.map(d => (
-              <path d={d} fill="none" stroke="#7ba8c4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" />
-            ))}
-            {SUBURB_MAP.river.map(d => (
-              <path d={d} fill="none" stroke="#5b87a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
-            ))}
-          </g>
-
           <!-- Coastline edge stroke for definition along the bay coast. -->
           <g pointer-events="none">
             {SUBURB_MAP.coastline?.map(d => (
