@@ -90,6 +90,20 @@ async function fetchOverpass(query) {
   throw lastErr ?? new Error('All Overpass mirrors failed');
 }
 
+async function fetchCoastline(bbox) {
+  // Coastline ways trace the boundary between land and Moreton Bay along
+  // Brisbane's eastern edge (Manly, Lota, Wynnum, Hemmant). Used to visually
+  // indicate where the bay is.
+  const q = `
+[out:json][timeout:60];
+way["natural"="coastline"](${bbox.south},${bbox.west},${bbox.north},${bbox.east});
+out geom;
+`;
+  const data = await fetchOverpass(q);
+  const ways = data.elements.filter(e => e.type === 'way' && e.geometry);
+  return ways.map(w => w.geometry.map(p => [p.lon, p.lat]));
+}
+
 async function fetchRiver() {
   // Brisbane River exists in OSM in two forms:
   //   1. waterway=river ways: thin centerline geometry (mostly upstream).
@@ -377,6 +391,20 @@ async function main() {
     console.warn(`  ! river fetch failed: ${e.message}`);
   }
 
+  console.log('Fetching Moreton Bay coastline...');
+  let coastlineSegments = [];
+  try {
+    coastlineSegments = await fetchCoastline({
+      south: INNER_BBOX.south - 0.05,
+      west:  INNER_BBOX.west  - 0.05,
+      north: INNER_BBOX.north + 0.05,
+      east:  INNER_BBOX.east  + 0.05,
+    });
+    console.log(`  → got ${coastlineSegments.length} coastline segments`);
+  } catch (e) {
+    console.warn(`  ! coastline fetch failed: ${e.message}`);
+  }
+
   // Compute the actual lat/lon bbox of the suburbs we're showing. Anything
   // outside this is outside the rendered map and just visually confusing.
   let subMinLon = Infinity, subMaxLon = -Infinity, subMinLat = Infinity, subMaxLat = -Infinity;
@@ -397,22 +425,26 @@ async function main() {
     lat >= subMinLat - PAD &&
     lat <= subMaxLat + PAD;
 
-  // Clip lines to the suburb extent. A single river line may have an upstream
-  // tail outside the rendered area; we only want the in-bounds runs.
-  const clippedLines = [];
-  for (const seg of riverLines) {
-    let current = [];
-    for (const p of seg) {
-      if (pointInBox(p)) {
-        current.push(p);
-      } else {
-        if (current.length >= 2) clippedLines.push(current);
-        current = [];
+  // Clip lines to the suburb extent. A single river/coastline line may extend
+  // far beyond the rendered area; we only want the in-bounds runs.
+  function clipLines(segments) {
+    const out = [];
+    for (const seg of segments) {
+      let current = [];
+      for (const p of seg) {
+        if (pointInBox(p)) {
+          current.push(p);
+        } else {
+          if (current.length >= 2) out.push(current);
+          current = [];
+        }
       }
+      if (current.length >= 2) out.push(current);
     }
-    if (current.length >= 2) clippedLines.push(current);
+    return out;
   }
-  riverLines = clippedLines;
+  riverLines = clipLines(riverLines);
+  coastlineSegments = clipLines(coastlineSegments);
 
   // OSM sometimes tags huge polygons "Brisbane River" that actually cover
   // Moreton Bay or include the full river system upstream. The inner-city
@@ -455,6 +487,7 @@ async function main() {
       const innerPaths = poly.inner.map(r => ringToPath(r, project)).filter(Boolean);
       return [...outerPaths, ...innerPaths].join(' ');
     }).filter(Boolean),
+    coastline: coastlineSegments.map(seg => lineToPath(seg, project)).filter(Boolean),
     suburbs: suburbs
       .map(s => {
         const outerPaths = s.outer.map(r => ringToPath(r, project)).filter(Boolean);
@@ -492,13 +525,14 @@ export const SUBURB_MAP = {
   viewBox: ${JSON.stringify(out.viewBox)},
   river: ${JSON.stringify(out.river, null, 2)},
   riverBody: ${JSON.stringify(out.riverBody, null, 2)},
+  coastline: ${JSON.stringify(out.coastline, null, 2)},
   suburbs: ${JSON.stringify(out.suburbs, null, 2)} as SuburbShape[],
 };
 `;
 
   const target = path.join(ROOT, 'src/data/suburb-map.ts');
   fs.writeFileSync(target, tsOut);
-  console.log(`Wrote ${target} (${suburbs.length} suburbs, ${riverLines.length} river lines, ${riverPolygons.length} river polygons)`);
+  console.log(`Wrote ${target} (${suburbs.length} suburbs, ${riverLines.length} river lines, ${riverPolygons.length} river polygons, ${coastlineSegments.length} coastline segments)`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
