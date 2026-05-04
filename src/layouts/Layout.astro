@@ -282,6 +282,26 @@ const globalSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    <!-- Fallback Article JSON-LD for insights articles without a specific schema prop -->
+    {_isInsightsArticle && !schema && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": {
+          "@type": "Person",
+          "name": "Daniel Gierach",
+          "url": "https://danielgierach.com/about"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Daniel Gierach Property",
+          "url": "https://danielgierach.com"
+        },
+        "url": canonicalURL
+      })} />
+    )}
     <!-- BreadcrumbList JSON-LD, generated automatically from URL path -->
     {showBreadcrumbs && <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -521,6 +541,19 @@ const globalSchema = {
           (icon as HTMLElement).style.transform = details.open ? 'rotate(0deg)' : '';
         });
       });
+    </script>
+
+    <!-- Tawk.to live chat (free). Sign up at tawk.to, then replace TAWK_PROPERTY_ID and TAWK_WIDGET_ID below with the values from Admin → Channels → Chat Widget. -->
+    <script is:inline>
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/TAWK_PROPERTY_ID/TAWK_WIDGET_ID';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+      })();
     </script>
   </body>
 </html>
