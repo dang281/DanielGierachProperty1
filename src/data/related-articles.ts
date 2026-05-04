@@ -391,9 +391,9 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "selling-in-newstead": [
-    { title: "Auction Strategy: How to Get the Best Result at Auction", slug: "auction-strategy", label: "Auction" },
-    { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
-    { title: "How to Choose a Real Estate Agent in Brisbane", slug: "how-to-choose-a-real-estate-agent-brisbane", label: "Agents" },
+    { title: "What to Expect When Selling in Teneriffe", slug: "selling-in-teneriffe", label: "Selling" },
+    { title: "What to Expect When Selling in New Farm", slug: "selling-in-new-farm", label: "Selling" },
+    { title: "What Is Body Corporate and What Does It Actually Cost?", slug: "body-corporate", label: "Body Corporate" },
   ],
   "selling-in-norman-park": [
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
