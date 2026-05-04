@@ -61,6 +61,201 @@ const suburbTactics: Record<string, { positioning: string; competition: string; 
     competition: 'Carina rewards private-treaty campaigns. Family buyers need time to run pest, building and catchment checks before they offer.',
     protection: 'Pest and building reports surface often in Carina. Address known issues or price around them before listing, not during.',
   },
+  'annerley': {
+    positioning: 'Annerley is transitional. Price from the Dutton Park and Greenslopes comparables, not Moorooka. Buyers pay for the inner-south address when the case is made clearly.',
+    competition: 'The buyer pool is dominated by young renovators and first families upgrading from units. Target the Coorparoo and Greenslopes overflow market to build fast competition.',
+    protection: 'Annerley buyers often carry construction or renovation finance conditions. Hold the price firm and manage any conditions tightly from day one.',
+  },
+  'ascot': {
+    positioning: 'Ascot premium is driven by the school catchment and the street, not the suburb alone. Price the Ascot State School catchment and the topography before anything else.',
+    competition: 'Ascot buyers rarely need urgency manufactured for them. The task is managing multiple genuine buyers in the same window so they compete against each other, not against history.',
+    protection: 'Prestige negotiation requires patience. Ascot sellers who hold their price and stay quiet consistently outperform those who counter every offer aggressively.',
+  },
+  'auchenflower': {
+    positioning: 'River views and proximity to the Milton train station define the Auchenflower premium. Price relative to West End and Milton, which attract the same buyer pool.',
+    competition: 'The Auchenflower buyer often shops Paddington and Red Hill in parallel. Campaign early and set a timeline that forces a decision before they settle on their second choice.',
+    protection: 'Finance conditions are standard here. Tighten settlement and inspection timelines to prevent extended due diligence from cooling buyer commitment.',
+  },
+  'balmoral': {
+    positioning: 'The Balmoral esplanade and top streets carry a true river premium. Benchmark the position against Hawthorne and Bulimba, where the same buyer pool sets the water-view price.',
+    competition: 'Balmoral family buyers inspect carefully before they offer. Limit inspection windows and use buyer-agent outreach to concentrate competition in the first ten days.',
+    protection: 'Balmoral buyers are often moving from within the suburb and know local values well. Hold firm on price and let competing buyers do the work rather than giving ground early.',
+  },
+  'bardon': {
+    positioning: 'Federation character on elevated blocks with city views is Bardon\'s clearest price argument. Price from the top of the Paddington comparable range, not below it.',
+    competition: 'The Bardon buyer is often a family priced out of Ascot or Hamilton who still wants prestige character. Target that search pool by emphasising permanence and scarcity.',
+    protection: 'Bardon campaigns can attract out-of-area buyers unfamiliar with local values. Anchor the price narrative early so the first offer is not treated as the market ceiling.',
+  },
+  'belmont': {
+    positioning: 'Belmont sits at the eastern edge of the inner-east premium. Price from the Carina and Carindale sold data, emphasising land size and accessibility over suburb prestige.',
+    competition: 'The Belmont buyer is pragmatic. Competing offers come from families tracking multiple suburbs across the eastern corridor. A clear price story and short campaign window drives decisions.',
+    protection: 'Pest and building conditions are common in Belmont. Address known issues before listing or build contingency into the price, rather than negotiating around surprises.',
+  },
+  'bowen-hills': {
+    positioning: 'Bowen Hills is defined by its proximity to the CBD and Inner City Bypass access. Price against New Farm and Spring Hill benchmarks, not against traditional residential suburbs.',
+    competition: 'The buyer pool is mostly investors and downsizers. Competition comes from yield comparisons, not emotional attachment. Run a tight campaign with clear rental return data in the brief.',
+    protection: 'Settlement conditions and sunset clauses matter more than price movement here. Protect the result by negotiating clean contracts with short finance windows.',
+  },
+  'brisbane-cbd': {
+    positioning: 'CBD apartment pricing is driven by floor level, view corridor, and building quality. Price from recent settled sales in the same tower, not from the suburb median.',
+    competition: 'Interstate and international buyers form part of the pool. Make the asset case clearly: yield, proximity, and lifestyle in a single brief that works for remote buyers.',
+    protection: 'Body corporate costs and building defects are the two most common price reducers in CBD stock. Address both proactively in the information memorandum, not during negotiation.',
+  },
+  'bulimba': {
+    positioning: 'Oxford Street and the river ferry access define buyer expectation in Bulimba. Price the lifestyle premium before the land size. Bulimba buyers pay for the address.',
+    competition: 'Bulimba campaigns attract owner-occupier buyers who have been tracking the suburb for months. Launch with full preparation and set an offer deadline early to catch buyers ready to commit.',
+    protection: 'Bulimba buyers move quickly but also know their market. Counter at price, not conditions. Giving ground on price early in Bulimba is rarely recovered.',
+  },
+  'carina-heights': {
+    positioning: 'Carina Heights sits between Carina and Mount Gravatt East in buyer perception. Anchor the price to Carina comparables while highlighting the land size advantage that Carina proper rarely offers.',
+    competition: 'Family buyers here track Carina, Camp Hill and Carindale simultaneously. A professional campaign targeting that search behaviour will surface competition from across the eastern family corridor.',
+    protection: 'Building and pest reports often surface older pool and roof issues in this area. Prepare a vendor statement or independent report before listing to remove ammunition from the negotiation.',
+  },
+  'carindale': {
+    positioning: 'Carindale rewards land size and presentation. Buyers come for the block, not just the suburb address. Price from recent comparable land and house sales, not from the suburb median alone.',
+    competition: 'Carindale attracts a mix of upgrading families and downsizers from further east. Campaign timing aligned with school catchment enrolment windows sharpens competition in spring and autumn.',
+    protection: 'Carindale buyers typically want long settlement windows. Protect the price by setting clear contract terms upfront and resisting any push for extended finance periods.',
+  },
+  'dutton-park': {
+    positioning: 'Dutton Park is repricing fast as West End and South Brisbane buyers move east. Benchmark against West End sales data and make the case for value relative to an established suburb at lower prices.',
+    competition: 'The buyer pool is young professionals and couples from adjacent inner-south suburbs. Social media and digital targeting outperforms traditional portals for this demographic.',
+    protection: 'Dutton Park buyers often carry construction or renovation debt. Verify finance pre-approval before accepting an offer, not after exchanging contracts.',
+  },
+  'east-brisbane': {
+    positioning: 'East Brisbane is defined by its proximity to the GABBA and walkability to the CBD. Price the position, not the property size. This is a location premium and buyers pay for it explicitly.',
+    competition: 'Small land and unit products attract investors alongside owner-occupiers. Competing buyers come from Woolloongabba and Kangaroo Point. A tight two-week campaign window keeps both pools active.',
+    protection: 'Body corporate fees and strata levies are often the first tool buyers use to reduce price on East Brisbane apartments. Prepare body corporate records in advance so they become a selling point, not a negotiating lever.',
+  },
+  'fortitude-valley': {
+    positioning: 'Fortitude Valley apartment pricing tracks building quality, floor plan, and proximity to the entertainment precinct versus the residential pocket. Separate the two clearly in the price analysis.',
+    competition: 'Investors dominate this market. The competition lever is rental yield and vacancy rate data. A property with current rental income and a quality tenant outperforms vacant stock at comparable price points.',
+    protection: 'Body corporate, defects liability, and building quality are the top three price reducers here. Commission a strata report before listing and present it as evidence of quality, not liability.',
+  },
+  'greenslopes': {
+    positioning: 'Greenslopes Private Hospital and Griffith University proximity influence the buyer pool. Price from the Coorparoo and Holland Park comparables and make the case for value relative to those inner-south benchmarks.',
+    competition: 'The Greenslopes buyer is often a medical or allied health professional looking for access without paying Coorparoo prices. Position against Coorparoo directly in the campaign brief.',
+    protection: 'Finance timelines from professional buyers can be long. Hold the price firm and use the inspection period rather than the finance clause as the key leverage point in negotiation.',
+  },
+  'hamilton': {
+    positioning: 'Hamilton Hill streets carry a price premium that is real and persistent. Price from the Ascot precedent, not from the Hamilton average, when the property sits on or near the ridge.',
+    competition: 'Hamilton buyers compare against Ascot and New Farm. A premium, evidenced campaign that closes the comparison gap will attract buyers who need confidence to spend at the top of their range.',
+    protection: 'Prestige buyers take time. Protect the price by running a structured campaign with a clear offer close date. Hamilton sellers who wait for the right buyer consistently outperform those who accept early.',
+  },
+  'hawthorne': {
+    positioning: 'Hawthorne\'s price is built on the esplanade, the ferry, and the Bulimba catchment proximity. Price from the last six months of Balmoral and Bulimba sales, not from Hawthorne alone.',
+    competition: 'Hawthorne buyer families often have children in or approaching school entry. Campaign timing aligned with term start and end windows extracts maximum competition from that pool.',
+    protection: 'Hawthorne buyers are well-researched and often have a broker ready. Counter quickly and hold on price. Delayed responses allow buyers to reset their comparison against alternative suburbs.',
+  },
+  'hemmant': {
+    positioning: 'Hemmant is a semi-rural eastern fringe suburb where land size and zoning drive value more than suburb comparables. Price from recent sales in the acreage and semi-rural corridor, not from inner-east benchmarks.',
+    competition: 'The buyer pool is a mix of owner-occupiers seeking space and investors watching industrial zoning. Identify which pool is dominant for the specific property and run the campaign accordingly.',
+    protection: 'Hemmant buyers often require longer due diligence for land-use and council approvals. Set a clear due diligence deadline in the contract and resist open-ended inspection periods.',
+  },
+  'highgate-hill': {
+    positioning: 'Highgate Hill\'s price is driven by elevation and river views. The best streets offer CBD, river, and Mt Coot-tha views simultaneously. Price the view premium explicitly against comparable South Brisbane and West End stock.',
+    competition: 'The buyer pool overlaps with West End, Dutton Park and South Brisbane buyers. Campaign reach should extend across all three adjacent suburbs to surface competition from the widest relevant pool.',
+    protection: 'Heritage overlay and character requirements create negotiating uncertainty around renovation costs. Commission a heritage consultant brief before listing if applicable, and present it proactively to remove the uncertainty lever.',
+  },
+  'holland-park': {
+    positioning: 'Holland Park is a reliable family suburb between Greenslopes and Mount Gravatt. Price from the most recent Greenslopes sales at the upper end and from Mount Gravatt data at the lower end, depending on street quality and land size.',
+    competition: 'The Holland Park buyer is practical and research-driven. Competition comes from families tracking adjacent suburbs. A clear price story with a defined close date will surface qualified offers.',
+    protection: 'Holland Park buyers frequently use building and pest inspections as a price reduction tool. Conduct a vendor-commissioned report before listing to take that leverage away.',
+  },
+  'holland-park-west': {
+    positioning: 'Holland Park West prices slightly below Holland Park for equivalent land. Use that as a buyer value argument, not an apology. The same land size for less is a genuine selling point.',
+    competition: 'Families tracking Holland Park who have been outbid will move to Holland Park West. Run the campaign brief to capture that search overflow explicitly.',
+    protection: 'Comparable sales in Holland Park West can vary widely between streets. Defend the price with a street-level, not suburb-level, comparable analysis.',
+  },
+  'indooroopilly': {
+    positioning: 'Indooroopilly SHS catchment commands a real premium that extends well beyond the suburb boundary. Price catchment properties against the top of the Toowong and Taringa comparable range.',
+    competition: 'The Indooroopilly buyer is almost always a family with school-age or pre-school children. Campaign timing in February and July, aligned with school enrolment windows, is the highest-competition time of year.',
+    protection: 'Indooroopilly buyers rely on school catchment as a core purchase justification. Lock in the catchment confirmation from Education Queensland before listing, then use it to hold the price through negotiation.',
+  },
+  'kangaroo-point': {
+    positioning: 'Kangaroo Point cliff-top apartments carry a specific view premium that is not replicated anywhere else in Brisbane. Price from floor level and view corridor, not from the suburb median.',
+    competition: 'The buyer pool includes interstate buyers and downsizers attracted by lifestyle. Drone and video content that sells the cliff-top setting creates competition from buyers who have not yet inspected in person.',
+    protection: 'Heritage overlay and strata complexity are the two most common price reduction tools in Kangaroo Point. Prepare a current strata report and, where applicable, a heritage report before listing.',
+  },
+  'milton': {
+    positioning: 'Milton is undersupplied in quality detached housing. When a house comes to market, price it against Paddington and Auchenflower benchmarks, not against the Milton unit market.',
+    competition: 'The Milton buyer pool is small but deep. Buyers have often been waiting for the right property for months. Personal outreach through the Ray White buyer database ahead of the public launch is the most reliable way to build early competition.',
+    protection: 'Milton buyers in the house market are typically high-net-worth owner-occupiers. Protect the price by controlling information flow: do not discuss price adjustments publicly before the offer deadline.',
+  },
+  'mount-gravatt': {
+    positioning: 'Mount Gravatt pricing is anchored by land size and school catchment. TAFE and Griffith proximity brings a rental and investor component that can dilute the owner-occupier price. Price for the owner-occupier market first.',
+    competition: 'Family buyers are the dominant pool. Campaign timing aligned with school term and enrolment windows produces the most competition. Align the launch date accordingly.',
+    protection: 'Mount Gravatt has a wide price range across streets and positions. Defend the price with street-level comparable evidence. Suburb medians are not a reliable benchmark for any individual property here.',
+  },
+  'mount-gravatt-east': {
+    positioning: 'Mount Gravatt East sits between Carindale and Mount Gravatt in buyer perception. Price from the Camp Hill and Carina precedent when the property is close to those suburb borders.',
+    competition: 'Buyers track Mount Gravatt East, Carindale, and Carina simultaneously. Campaign positioning that separates the property from the eastern corridor pack, rather than competing within it, produces better results.',
+    protection: 'Buyers here are methodical and use comparable sales research extensively. Pre-arm the price case with a written comparable analysis before the campaign launches.',
+  },
+  'new-farm': {
+    positioning: 'New Farm pricing is driven by street, house type, and proximity to Brunswick Street and New Farm Park. Character Queenslanders on top streets can price well above the suburb median. Never use the suburb average as the price anchor.',
+    competition: 'New Farm attracts national buyers, expats returning to Brisbane, and inner-city upgraders simultaneously. Campaign reach beyond Queensland portals adds genuine competition from that national pool.',
+    protection: 'New Farm is a high-value market where buyers expect to negotiate. Protect the price by running a structured campaign with a defined offer close date, not an open-ended private treaty that invites lowball anchoring.',
+  },
+  'newstead': {
+    positioning: 'Newstead apartment pricing is driven by the Gasworks precinct, walkability, and building quality. Price from settled sales in comparable buildings, not from suburb-wide medians that include older and inferior stock.',
+    competition: 'Investors and young professional owner-occupiers both compete in this market. The competition lever is rental yield for investors and lifestyle for owner-occupiers. The campaign brief needs to speak to both.',
+    protection: 'Newstead developers sometimes list competing stock simultaneously. Monitor the new-build pipeline and launch timing carefully to avoid competing with developer incentives that undercut the resale market.',
+  },
+  'paddington': {
+    positioning: 'Paddington character homes on elevated blocks with city views carry a premium that has been consistent for a decade. Price from the Bardon and Red Hill precedent at the top end, not from the Paddington average.',
+    competition: 'Paddington buyers are often professionals who have rented in the suburb for years before buying. Personal outreach and buyer-agency connections are more effective than portal advertising alone.',
+    protection: 'Paddington buyers are experienced and well-researched. Protect the price by controlling the narrative from the first day of campaign. Inconsistent price messaging in Paddington is quickly exploited by buyers.',
+  },
+  'red-hill': {
+    positioning: 'Red Hill\'s price is set by elevation, city view, and proximity to Paddington and Kelvin Grove. North-facing elevated blocks price from the top of the Paddington range. Lower-lying streets need a different anchor.',
+    competition: 'The Red Hill buyer pool overlaps significantly with Paddington and Auchenflower. Campaign reach across those three suburbs surfaces the maximum pool of competing buyers.',
+    protection: 'Red Hill properties vary significantly in presentation and condition. Commission a pre-sale building report to remove the most common negotiation lever before the first offer arrives.',
+  },
+  'spring-hill': {
+    positioning: 'Spring Hill is the closest residential suburb to the CBD and prices accordingly. Terrace and apartment stock needs to be priced against Fortitude Valley and Bowen Hills comparables, not against detached residential benchmarks.',
+    competition: 'Spring Hill attracts CBD workers who want to walk to work. Make the walkability case explicitly in the campaign brief. Buyers from interstate and from suburban Brisbane respond differently to the same product.',
+    protection: 'Heritage overlay affects most Spring Hill stock. Prepare a building report that addresses heritage compliance and condition together, so buyers cannot use unknown heritage obligations as a negotiating lever.',
+  },
+  'stones-corner': {
+    positioning: 'Stones Corner is Coorparoo adjacent and its price story is defined by that proximity. Price from the Coorparoo lower range and the Greenslopes comparables. The Logan Road streetscape is a distinguishing feature, not a liability.',
+    competition: 'Stones Corner attracts buyers priced out of Coorparoo. Campaign to that search pool directly. A buyer who missed out in Coorparoo last month is the most likely buyer for a Stones Corner property today.',
+    protection: 'Stones Corner\'s boutique commercial strip creates zoning questions for some buyers. Address any dual-use or commercial overlay proactively in the contract paperwork before it becomes a reason to renegotiate.',
+  },
+  'tarragindi': {
+    positioning: 'Tarragindi offers larger land at a discount to Holland Park and Greenslopes. Price from those benchmarks and make the case explicitly: same inner-south address, more land, lower entry price.',
+    competition: 'The Tarragindi buyer is typically a family making a value-driven decision. Competing offers come from buyers who have been outbid in Holland Park. A two-week campaign with a defined close date is the most effective structure.',
+    protection: 'Tarragindi buyers are price-conscious by design. Vendor-commissioned pre-sale reports and a written comparable analysis remove the most common post-inspection price reduction arguments before they arise.',
+  },
+  'teneriffe': {
+    positioning: 'Teneriffe wool-store conversions are a unique product that prices above the inner-north median. Benchmark against comparable heritage conversion apartments in Newstead and New Farm, not against standard apartment stock.',
+    competition: 'Teneriffe attracts downsizers from Ascot and Hamilton who are selling larger homes for equivalent or higher prices. That buyer pool is time-flexible but quality-conscious. Create urgency through scarcity positioning, not price movement.',
+    protection: 'Teneriffe body corporate structures can be complex in heritage conversion buildings. Commission a strata report and present it proactively. Informed buyers in prestige stock are more likely to commit than buyers left to discover surprises.',
+  },
+  'tingalpa': {
+    positioning: 'Tingalpa sits east of Cannon Hill with larger land blocks and lower entry prices. Price from the Cannon Hill lower range and Murarrie comparables, and make the land-size argument explicitly.',
+    competition: 'The Tingalpa buyer is typically priced out of Cannon Hill or buying an investment. Target both pools separately: personal outreach to the Cannon Hill buyer database and investment-yield data for the investor audience.',
+    protection: 'Tingalpa has industrial and commercial zoning adjacent to residential areas. Address any easements or industrial-neighbour issues before listing, not at the contract review stage.',
+  },
+  'toowong': {
+    positioning: 'Toowong pricing varies sharply between the UQ rental corridor and the family residential streets near Indooroopilly. Price from the correct micro-market. A family street in Toowong prices from the Indooroopilly precedent, not from the student-unit average.',
+    competition: 'Toowong attracts UQ academics, young professionals, and families simultaneously. Identify the primary buyer type and build the campaign around their decision criteria, not around a generic suburb story.',
+    protection: 'Toowong rental yields can create a false price floor when investors and owner-occupiers compete. Separate the yield case from the owner-occupier case clearly in the campaign to avoid mixed signals at the offer stage.',
+  },
+  'upper-mount-gravatt': {
+    positioning: 'Upper Mount Gravatt offers larger land south of the inner ring at prices well below Greenslopes or Holland Park equivalents. Make that comparison explicit and the value case is strong.',
+    competition: 'The buyer pool is predominantly families and investors tracking the southern suburbs corridor. A private treaty campaign with a tight two-week window works well for the dominant buyer type.',
+    protection: 'Upper Mount Gravatt has a wide range of property ages and conditions. Vendor-commissioned pre-sale reports that clearly document condition and any remediation already done protect against post-inspection price reduction requests.',
+  },
+  'west-end': {
+    positioning: 'West End prices from its cultural identity and inner-city proximity, not from land size. Character homes near Boundary Street and Davies Park command premiums that are not visible in suburb-wide data.',
+    competition: 'West End attracts a national buyer pool including interstate buyers moving to Brisbane for lifestyle. Campaign reach on social media and interstate property portals produces competition that local buyers cannot see coming.',
+    protection: 'West End heritage overlays and council character protections affect renovation potential and buyer confidence. Prepare a heritage and planning overlay report before listing. Informed buyers do not use planning complexity as a negotiating lever.',
+  },
+  'woolloongabba': {
+    positioning: 'Woolloongabba is repricing rapidly around the GABBA and Cross River Rail corridor. Price from the East Brisbane and Kangaroo Point precedent for properties closest to the infrastructure, not from the suburb average.',
+    competition: 'The Woolloongabba buyer pool includes investors tracking the infrastructure lift and families attracted by GABBA proximity. A campaign that speaks to both needs dual positioning: infrastructure upside for investors, lifestyle for owner-occupiers.',
+    protection: 'Development sites and character homes occupy the same suburb. Price each category from its own comparable set. Selling a character home against development site comparables leaves money on the table.',
+  },
 };
 
 const slug = suburb ? suburb.toLowerCase().replace(/\s+/g, '-') : null;
