@@ -130,15 +130,24 @@ function filterCount(f: string): number {
       </div>
       <!-- Search -->
       <div style="position:relative;flex-shrink:0;">
-        <svg style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <label for="insight-search" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;">Search articles</label>
+        <svg style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input
           id="insight-search"
           type="search"
-          placeholder="Search articles..."
-          style="padding:0.55rem 1rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);outline:none;width:200px;transition:border-color 0.15s,box-shadow 0.15s;"
+          placeholder="Search articles (e.g. auction, settlement, agent fees)"
+          aria-label="Search articles"
+          style="padding:0.55rem 2rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);outline:none;width:320px;transition:border-color 0.15s,box-shadow 0.15s;"
           onfocus="this.style.borderColor='#c4912a';this.style.boxShadow='0 0 0 3px rgba(196,145,42,0.12)'"
           onblur="this.style.borderColor='rgba(28,25,23,0.22)';this.style.boxShadow='none'"
         />
+        <button
+          id="search-clear"
+          aria-label="Clear search"
+          style="display:none;position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0.2rem;color:#78716c;line-height:1;"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -183,7 +192,7 @@ function filterCount(f: string): number {
       ))}
     </div>
 
-    <p id="no-articles" style="display:none;text-align:center;padding:4rem 0;font-size:0.9rem;color:#78716c;">No articles in this category.</p>
+    <p id="no-articles" style="display:none;text-align:center;padding:4rem 0;font-size:0.9rem;color:#78716c;">No articles found. Try a different search term.</p>
 
   </div>
 </section>
@@ -276,10 +285,11 @@ function filterCount(f: string): number {
     return tag === filter;
   }
 
-  const pills      = document.querySelectorAll<HTMLButtonElement>('.fpill');
-  const cards      = document.querySelectorAll<HTMLElement>('.insight-card');
-  const noEl       = document.getElementById('no-articles')!;
+  const pills       = document.querySelectorAll<HTMLButtonElement>('.fpill');
+  const cards       = document.querySelectorAll<HTMLElement>('.insight-card');
+  const noEl        = document.getElementById('no-articles')!;
   const searchInput = document.getElementById('insight-search') as HTMLInputElement;
+  const clearBtn    = document.getElementById('search-clear') as HTMLButtonElement;
 
   let activeFilter = 'All';
 
@@ -303,6 +313,7 @@ function filterCount(f: string): number {
 
   function applyVisibility() {
     const query = searchInput.value.trim().toLowerCase();
+    clearBtn.style.display = query ? 'block' : 'none';
     let visible = 0;
     cards.forEach(c => {
       const tagMatch = insightMatches(c.dataset.tag!, activeFilter);
@@ -315,6 +326,12 @@ function filterCount(f: string): number {
     });
     noEl.style.display = visible === 0 ? 'block' : 'none';
   }
+
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchInput.focus();
+    applyVisibility();
+  });
 
   pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter!)));
   searchInput.addEventListener('input', applyVisibility);
