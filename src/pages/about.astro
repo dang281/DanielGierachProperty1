@@ -2,6 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import Method from '../components/Method.astro';
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Daniel Gierach",
+  "jobTitle": "Real Estate Agent",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Ray White The Collective",
+    "url": "https://raywhite.com.au"
+  },
+  "areaServed": "Brisbane Inner East",
+  "url": "https://danielgierach.com/about",
+  "sameAs": [
+    "https://www.linkedin.com/in/danielgierach"
+  ]
+};
+
 const values = [
   {
     title: "Clear, honest guidance.",
@@ -18,7 +35,7 @@ const values = [
 ];
 ---
 
-<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/41af-H3456024-187652428__1771374332-50487-FJD9386.jpg" title="About Daniel Gierach | Real Estate Agent Brisbane" description="Brisbane real estate agent at Ray White Bulimba. A documented three-phase method built for sellers anywhere across the city, with deep local knowledge across the inner east and south.">
+<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/41af-H3456024-187652428__1771374332-50487-FJD9386.jpg" title="About Daniel Gierach | Real Estate Agent Brisbane" description="Brisbane real estate agent at Ray White Bulimba. A documented three-phase method built for sellers anywhere across the city, with deep local knowledge across the inner east and south." schema={personSchema}>
 
 
 <!-- ════════════════════════════════════════════

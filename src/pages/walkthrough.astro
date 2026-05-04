@@ -1,8 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Free Property Appraisal and Walkthrough",
+  "provider": {
+    "@type": "Person",
+    "name": "Daniel Gierach",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Ray White The Collective"
+    }
+  },
+  "serviceType": "Property Appraisal",
+  "areaServed": "Brisbane Inner East",
+  "url": "https://danielgierach.com/walkthrough"
+};
 ---
 
-<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg" title="Book a Walk Through | Daniel Gierach Property" description="Book a free in-person property walkthrough with Daniel Gierach. A frank, well-researched appraisal of your home's value. No obligation, no call centres.">
+<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg" title="Book a Walk Through | Daniel Gierach Property" description="Book a free in-person property walkthrough with Daniel Gierach. A frank, well-researched appraisal of your home's value. No obligation, no call centres." schema={serviceSchema}>
 
 <!-- ════════════════════════════════════════════
      FULL-VIEWPORT SPLIT LAYOUT

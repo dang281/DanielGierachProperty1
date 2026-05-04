@@ -1,8 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Daniel Gierach Property",
+  "agent": {
+    "@type": "Person",
+    "name": "Daniel Gierach"
+  },
+  "areaServed": "Brisbane Inner East",
+  "url": "https://danielgierach.com",
+  "telephone": "+61412523821"
+};
 ---
 
-<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/93d1-H3480857-194603639__1774840446-82684-03-2226DuttonstreetHawthorne20.jpg" title="Contact | Daniel Gierach Property" description="Contact Daniel Gierach, Brisbane inner-east real estate agent at Ray White Bulimba. Call 0412 523 821 or send a message to discuss your property.">
+<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/93d1-H3480857-194603639__1774840446-82684-03-2226DuttonstreetHawthorne20.jpg" title="Contact | Daniel Gierach Property" description="Contact Daniel Gierach, Brisbane inner-east real estate agent at Ray White Bulimba. Call 0412 523 821 or send a message to discuss your property." schema={contactSchema}>
 
 <!-- ════════════════════════════════════════════
      FULL-VIEWPORT SPLIT LAYOUT
