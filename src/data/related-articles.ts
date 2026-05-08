@@ -677,6 +677,16 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
   ],
+  "open-home-tips-for-sellers-brisbane": [
+    { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
+    { title: "How Does a Marketing Campaign Work When Selling Your Home in Brisbane?", slug: "marketing-campaign-when-selling", label: "Marketing" },
+    { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timing" },
+  ],
+  "how-to-change-real-estate-agents-brisbane": [
+    { title: "How to Choose a Real Estate Agent in Brisbane", slug: "how-to-choose-a-real-estate-agent-brisbane", label: "Agents" },
+    { title: "What Does a Real Estate Agent Actually Do for You?", slug: "how-to-choose-a-real-estate-agent", label: "Agents" },
+    { title: "How Does a Marketing Campaign Work When Selling Your Home in Brisbane?", slug: "marketing-campaign-when-selling", label: "Marketing" },
+  ],
 };
 
 // Default fallback for pages not in the map
