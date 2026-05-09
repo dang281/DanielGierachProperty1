@@ -2,6 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 import { suburbs } from '../data/suburbs';
 const suburbsJson = JSON.stringify(suburbs);
+
+const appraisalSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Free Property Appraisal, Brisbane Inner East",
+  "description": "Get a free property appraisal from Daniel Gierach. Instant report, free in-person walkthrough, or direct consultation. No obligation.",
+  "provider": {
+    "@type": "RealEstateAgent",
+    "name": "Daniel Gierach",
+    "url": "https://danielgierach.com"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Brisbane Inner East, Queensland"
+  },
+  "url": "https://danielgierach.com/property-worth",
+  "serviceType": "Property Appraisal"
+};
 ---
 
 <Layout
@@ -9,6 +27,7 @@ const suburbsJson = JSON.stringify(suburbs);
   title="What's Your Property Worth? | Daniel Gierach Property"
   description="Find out what your home is worth. Instant report, free in-person walkthrough, or call Daniel directly. No obligation."
   hideMobileCta={true}
+  schema={appraisalSchema}
 >
 
 <style>

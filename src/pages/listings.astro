@@ -125,9 +125,22 @@ const tagColors: Record<string, string> = {
   'Blue-Chip Land': '#c8c6c8',
   'Sold': 'rgba(240,236,228,0.35)',
 };
+
+const listingsSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brisbane Inner East Property Listings | Daniel Gierach",
+  "description": "Current listings and recently sold homes in Brisbane's inner east.",
+  "url": "https://danielgierach.com/listings",
+  "author": {
+    "@type": "Person",
+    "name": "Daniel Gierach",
+    "url": "https://danielgierach.com/about"
+  }
+};
 ---
 
-<Layout title="Listings | Daniel Gierach Property" description="Current listings and recently sold homes in Brisbane's inner east. View Daniel Gierach's sales results across Camp Hill, Norman Park, Hawthorne, and Balmoral.">
+<Layout title="Listings | Daniel Gierach Property" description="Current listings and recently sold homes in Brisbane's inner east. View Daniel Gierach's sales results across Camp Hill, Norman Park, Hawthorne, and Balmoral." schema={listingsSchema}>
 
 <!-- Hero -->
 <section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
