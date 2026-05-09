@@ -5,6 +5,16 @@ No exceptions. No overrides.
 
 ---
 
+## 🔵 VOICE CALIBRATION — READ BEFORE WRITING ANY POST
+
+Before drafting or editing any social media post, read:
+
+**`content/daniel-voice-calibration.md`**
+
+This file is updated from Daniel's actual change requests and contains his real editorial preferences — fee ranges vs single examples, softening definitive claims, renovation nuance, east-specific geography, preparation ROI framing, and more. Applying these patterns proactively avoids change requests being raised in the first place.
+
+---
+
 ## 🔴 CHANGE REQUESTS — ALWAYS FIRST
 
 **Any open change request from Daniel takes priority over all scheduled or planned work. No exceptions.**
@@ -22,6 +32,31 @@ Every agent that runs must:
 7. Only proceed with scheduled work once the change request queue is empty.
 
 **Why this rule exists:** Agents checking only `/api/agents/me/inbox-lite` miss change requests assigned to Daniel directly (these have `assigneeAgentId: null`). This caused open requests to sit ignored for days. Both calls are mandatory on every run. The full board scan is what catches Daniel's directly-created change requests.
+
+---
+
+## 🔴 PUBLISHED POSTS — NEVER MODIFY
+
+**Never edit any post that has already been published.** A post is published if:
+- `**Status:** Published` appears in the file, OR
+- `**Publish date:**` is a date in the past (before today's date)
+
+These posts have already gone out to LinkedIn or Facebook. Editing the file does not change what was posted, and modifying published content creates confusion between what was sent and what is in the repo. Leave them exactly as they are.
+
+This rule applies to all agents, all bulk review tasks, and all voice calibration passes. Even if the copy would benefit from improvement, do not touch published posts.
+
+---
+
+## ARTICLE IDEA FILES — NO PRE-GENERATED VISUALS
+
+Files named `linkedin-idea-article-*.md` are **reusable idea templates**, not single-use posts. They do not get a permanent visual assigned.
+
+Every time Daniel schedules one of these articles, he generates the visual fresh at that point in time. The article-cover template uses a sequential issue number that must be calculated from current repo state. Pre-assigning a visual locks in the wrong issue number.
+
+For all `linkedin-idea-article-*.md` files:
+- `**Visual status:**` must always be `Not yet generated`
+- Never add an `**Image:**` line to these files
+- Never set `**Visual status:** Ready` on an idea file
 
 ---
 
@@ -108,6 +143,26 @@ The following are prohibited in any output:
 
 ---
 
+## POLL RULES (LinkedIn)
+
+LinkedIn enforces hard character limits. Violating these causes the post to fail at publish time.
+
+- **Poll question:** Maximum 140 characters (goes in LinkedIn's "Your question" field)
+- **Poll options:** Maximum 30 characters each — no exceptions, no long phrases
+- **Number of options:** 2 to 4
+
+Before writing any poll option, count the characters. If it exceeds 30, rewrite it — do not truncate mid-word. Good poll options are short, punchy, and mutually exclusive. Test: read each option aloud in one breath.
+
+**Character-counting examples:**
+- "Used one, worth every cent" = 26 ✓
+- "Would consider it for the right property" = 40 ✗ → rewrite as "Maybe, for the right property" = 29 ✓
+
+The poll question in the caption should be self-contained (mention the topic explicitly, not "it" or "one"). The same question is pasted into LinkedIn's native poll creator, so it must make sense without reading the caption first.
+
+**Hashtags on polls:** Use 2 only — #DanielGierach and one geo tag (#BrisbaneProperty or #InnerEastBrisbane). Polls get strong organic reach from engagement signals (every vote pushes the post to more feeds), so hashtags are secondary. Do not use topic tags like #BuyersAgent or #PropertyStyling — these attract the wrong audience (buyers, other agents, or industry people) rather than Daniel's target market of inner east homeowners thinking about selling.
+
+---
+
 ## CAPTION RULES (LinkedIn and Facebook)
 
 **Do:**
@@ -186,6 +241,18 @@ After generating, add `**Series:** Field Guide Issue 04` to the post markdown fi
 - After generating a PNG, confirm the file exists before updating the markdown file.
 - Set `**Visual status:** Ready` and `**Image:** content/social/images/[filename].png` in the post file.
 - Remove any `**Canva URL:**` field from post files.
+
+### VISUAL QUALITY STANDARDS (updated 2026-05-04)
+
+The script renders at `deviceScaleFactor: 2` — output is 2160×2160px for square posts, 2400×1254px for article-covers. Do not override this.
+
+All templates use Daniel's real headshot photo in the footer avatar — NOT the "DG" gold initials. The photo URL is already baked into the script. Do not pass a custom avatar URL.
+
+Footer text sizes are: name 26px / title 20px for market and article templates; larger in the article-cover and authority templates. Do not reduce these.
+
+If a visual looks blurry or the footer is hard to read, the fix is to re-run the script (not to manually edit the PNG).
+
+**Market template layout:** Content (headline, body, divider) must anchor to the bottom of the card with intentional dark space above. The script uses `justify-content: flex-end` in `.main` to achieve this. Do not pass layout overrides that would push content to the top or centre. The editorial dark space at the top is deliberate.
 
 ### TEMPLATE SELECTION BY DAY — MANDATORY
 
