@@ -236,6 +236,21 @@ const globalSchema = {
         }
       }
     ]
+  },
+  {
+    "@type": "WebSite",
+    "@id": "https://danielgierach.com/#website",
+    "url": "https://danielgierach.com",
+    "name": "Daniel Gierach Property",
+    "publisher": { "@id": "https://danielgierach.com/#business" },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://danielgierach.com/insights?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
   }
   ]
 };
