@@ -3,6 +3,24 @@ import Layout from '../layouts/Layout.astro';
 
 // Suburb name comes through as ?suburb=Indooroopilly
 // We don't trust it, just display it. The form sends to Formspree.
+
+const appraisalSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Free Property Appraisal, Brisbane",
+  "description": "Request a free property appraisal anywhere across Brisbane. Daniel Gierach will follow up within 24 hours. No obligation.",
+  "provider": {
+    "@type": "RealEstateAgent",
+    "name": "Daniel Gierach",
+    "url": "https://danielgierach.com"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Brisbane, Queensland"
+  },
+  "url": "https://danielgierach.com/get-an-appraisal",
+  "serviceType": "Property Appraisal"
+};
 ---
 
 <Layout
@@ -10,6 +28,7 @@ import Layout from '../layouts/Layout.astro';
   description="Request a free property appraisal anywhere across Brisbane. Daniel will follow up within 24 hours."
   preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg"
   hideMobileCta={true}
+  schema={appraisalSchema}
 >
 
 <section class="get-appraisal-hero" style="position:relative; min-height:60vh; background:#0a0806; display:flex; align-items:center; padding:6rem 1.5rem 3rem;">
