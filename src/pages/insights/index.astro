@@ -226,6 +226,40 @@ function filterCount(f: string): number {
   </div>
 </section>
 
+<!-- Browse by Topic -->
+<section style="background:#f2efe9;padding:4rem 0 4.5rem;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;display:block;margin-bottom:0.75rem;">Browse by Topic</span>
+      <h2 style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;color:#1c1917;letter-spacing:-0.02em;line-height:1.2;margin-bottom:0.5rem;">Browse all guides by topic.</h2>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:52ch;">Every article in this library belongs to one of these topic clusters. Pick the area that matches where you are in the selling process.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;" class="topic-cluster-grid">
+      {[
+        { href: '/insights/preparing-your-home-for-sale',   label: 'Preparing to Sell',           count: 12, desc: 'Presentation, pest reports, compliance certificates' },
+        { href: '/insights/property-pricing-and-valuation', label: 'Pricing and Valuation',        count: 9,  desc: 'Appraisals, comparable sales, timing and market read' },
+        { href: '/insights/marketing-and-selling-methods',  label: 'Marketing and Auctions',       count: 14, desc: 'Campaigns, auction, private treaty, EOI, choosing an agent' },
+        { href: '/insights/contracts-and-settlement',       label: 'Contracts and Settlement',     count: 11, desc: 'Conditions, disclosure obligations, settlement process' },
+        { href: '/insights/costs-taxes-and-finance',        label: 'Costs, Taxes and Finance',     count: 6,  desc: 'Selling costs, CGT, stamp duty, mortgage discharge' },
+        { href: '/insights/investment-property-selling',    label: 'Investment Properties',        count: 7,  desc: 'Tenanted sales, landlord obligations, investor tax' },
+        { href: '/insights/brisbane-property-types',        label: 'Property Types',               count: 15, desc: 'Queenslanders, post-war, units, architectural periods' },
+        { href: '/insights/brisbane-inner-east-market',     label: 'Brisbane Inner East',          count: 8,  desc: 'Zoning, Cross River Rail, school catchments, overlays' },
+        { href: '/insights/selling-in-brisbane-suburbs',    label: 'Suburb Selling Guides',        count: 47, desc: 'One detailed guide per suburb across greater Brisbane' },
+      ].map(c => (
+        <a href={c.href}
+          style="display:block;padding:1.5rem;background:#ffffff;border:1px solid rgba(28,25,23,0.1);text-decoration:none;transition:border-color 0.15s,box-shadow 0.15s;"
+          onmouseover="this.style.borderColor='rgba(196,145,42,0.4)';this.style.boxShadow='0 2px 12px rgba(28,25,23,0.07)'"
+          onmouseout="this.style.borderColor='rgba(28,25,23,0.1)';this.style.boxShadow='none'"
+        >
+          <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;display:block;margin-bottom:0.5rem;">{c.count} articles</span>
+          <p style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.5rem;">{c.label}</p>
+          <p style="font-size:0.75rem;color:#78716c;line-height:1.6;margin:0;">{c.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- Selling Guides by Suburb -->
 <section style="background:#f7f5f0;padding:4rem 0 5rem;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -238,7 +272,11 @@ function filterCount(f: string): number {
       {[
         { slug: 'selling-in-annerley',         name: 'Annerley' },
         { slug: 'selling-in-ascot',             name: 'Ascot' },
+        { slug: 'selling-in-auchenflower',      name: 'Auchenflower' },
         { slug: 'selling-in-balmoral',          name: 'Balmoral' },
+        { slug: 'selling-in-bardon',            name: 'Bardon' },
+        { slug: 'selling-in-belmont',           name: 'Belmont' },
+        { slug: 'selling-in-bowen-hills',       name: 'Bowen Hills' },
         { slug: 'selling-in-belmont',           name: 'Belmont' },
         { slug: 'selling-in-brisbane-cbd',      name: 'Brisbane CBD' },
         { slug: 'selling-in-bulimba',           name: 'Bulimba' },
@@ -255,22 +293,28 @@ function filterCount(f: string): number {
         { slug: 'selling-in-hamilton',          name: 'Hamilton' },
         { slug: 'selling-in-hawthorne',         name: 'Hawthorne' },
         { slug: 'selling-in-hemmant',           name: 'Hemmant' },
+        { slug: 'selling-in-highgate-hill',     name: 'Highgate Hill' },
         { slug: 'selling-in-holland-park',      name: 'Holland Park' },
         { slug: 'selling-in-holland-park-west', name: 'Holland Park West' },
+        { slug: 'selling-in-indooroopilly',     name: 'Indooroopilly' },
         { slug: 'selling-in-kangaroo-point',    name: 'Kangaroo Point' },
+        { slug: 'selling-in-milton',            name: 'Milton' },
         { slug: 'selling-in-morningside',       name: 'Morningside' },
         { slug: 'selling-in-mount-gravatt',     name: 'Mount Gravatt' },
         { slug: 'selling-in-mount-gravatt-east',name: 'Mount Gravatt East' },
         { slug: 'selling-in-murarrie',          name: 'Murarrie' },
         { slug: 'selling-in-new-farm',          name: 'New Farm' },
+        { slug: 'selling-in-newstead',          name: 'Newstead' },
         { slug: 'selling-in-norman-park',       name: 'Norman Park' },
         { slug: 'selling-in-paddington',        name: 'Paddington' },
         { slug: 'selling-in-red-hill',          name: 'Red Hill' },
         { slug: 'selling-in-seven-hills',       name: 'Seven Hills' },
+        { slug: 'selling-in-spring-hill',       name: 'Spring Hill' },
         { slug: 'selling-in-stones-corner',     name: 'Stones Corner' },
         { slug: 'selling-in-tarragindi',        name: 'Tarragindi' },
         { slug: 'selling-in-teneriffe',         name: 'Teneriffe' },
         { slug: 'selling-in-tingalpa',          name: 'Tingalpa' },
+        { slug: 'selling-in-toowong',           name: 'Toowong' },
         { slug: 'selling-in-upper-mount-gravatt',name: 'Upper Mount Gravatt' },
         { slug: 'selling-in-west-end',          name: 'West End' },
         { slug: 'selling-in-woolloongabba',     name: 'Woolloongabba' },
@@ -372,3 +416,12 @@ function filterCount(f: string): number {
   }
   applyFilter('All');
 </script>
+
+<style>
+  @media (max-width: 900px) {
+    .topic-cluster-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 500px) {
+    .topic-cluster-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
