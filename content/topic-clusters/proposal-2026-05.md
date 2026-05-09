@@ -219,3 +219,36 @@ Scope: 117 live articles (408 articles excluded as draft). Based on article topi
 **Clusters at the minimum threshold.** Clusters 6 and 7 each have exactly 6 articles. They justify a hub page but have limited depth. Prioritise staging 2 to 3 articles from the draft pipeline into each of these clusters before building hub pages, so the hub has room to grow after launch.
 
 **Draft pipeline watch.** Several high-volume draft topics, including body corporate records, auction reserve prices, and CGT partial exemptions, align strongly with clusters 5, 6 and 7. As those drafts publish, the cluster balance will shift.
+
+---
+
+## Addendum: 12 articles added after initial proposal (2026-05-10)
+
+Assigned to existing clusters:
+
+| Article slug | Cluster |
+|---|---|
+| selling-in-newstead | 1. Suburb Selling Guides |
+| open-home-tips-for-sellers-brisbane | 2. Preparing Your Home for Sale |
+| property-styling-staging-brisbane | 2. Preparing Your Home for Sale |
+| property-appraisal-vs-valuation-brisbane | 3. Pricing, Timing and Valuation |
+| downsizing-property-brisbane | 3. Pricing, Timing and Valuation |
+| auction-vs-private-treaty-eoi-brisbane | 4. Marketing, Auctions and Selling Methods |
+| how-to-change-real-estate-agents-brisbane | 4. Marketing, Auctions and Selling Methods |
+| off-market-property-sales-brisbane | 4. Marketing, Auctions and Selling Methods |
+| private-sale-vs-real-estate-agent-brisbane | 4. Marketing, Auctions and Selling Methods |
+| free-property-tools-brisbane-sellers | 4. Marketing, Auctions and Selling Methods |
+| cooling-off-period-property-sale-queensland | 5. Contracts, Settlement and Legal Obligations |
+| selling-deceased-estate-queensland | 7. Investment Properties and Renting |
+
+Updated cluster totals:
+- Cluster 1: 47 articles
+- Cluster 2: 12 articles
+- Cluster 3: 9 articles
+- Cluster 4: 14 articles
+- Cluster 5: 11 articles
+- Cluster 6: 6 articles (still at minimum threshold)
+- Cluster 7: 7 articles
+- Cluster 8: 15 articles
+- Cluster 9: 8 articles
+- **Total: 129 articles**
