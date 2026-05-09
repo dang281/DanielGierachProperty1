@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const clusterSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Selling Property in Brisbane Suburbs",
+  "description": "One article per suburb covering local market conditions, what drives value, and how to sell in each specific Brisbane area.",
+  "url": "https://danielgierach.com/insights/selling-in-brisbane-suburbs",
+  "author": { "@type": "Person", "name": "Daniel Gierach", "url": "https://danielgierach.com/about" }
+};
+
+const suburbs = [
+  { slug: 'selling-in-annerley',          name: 'Annerley',           summary: "Annerley's proximity to Dutton Park, the PA Hospital precinct, and its mix of character homes and subdivisible blocks create a buyer pool that rewards well-positioned listings." },
+  { slug: 'selling-in-ascot',             name: 'Ascot',              summary: "Ascot's prestige market, racecourse aspect, and tightly held heritage streetscape set the conditions for Brisbane's strongest repeat performer in the upper price bracket." },
+  { slug: 'selling-in-auchenflower',      name: 'Auchenflower',       summary: "Auchenflower's hospital precinct location and strong school catchments create a buyer pool unlike any other inner-west suburb. Here is what sellers need to know before listing in 2026." },
+  { slug: 'selling-in-balmoral',          name: 'Balmoral',           summary: "Balmoral's riverfront position, Queenslander streetscape, and limited land supply make it one of the inner east's most consistent premium markets for sellers." },
+  { slug: 'selling-in-bardon',            name: 'Bardon',             summary: "Bardon's large blocks, leafy streetscape and school catchments make it one of Brisbane's most consistent family markets. Here is what sellers need to know before listing in 2026." },
+  { slug: 'selling-in-belmont',           name: 'Belmont',            summary: "Belmont's position between Carindale and the Gateway Motorway, combined with its family-sized blocks, underpins consistent demand from upgraders looking east of the CBD." },
+  { slug: 'selling-in-bowen-hills',       name: 'Bowen Hills',        summary: "Bowen Hills has evolved from a transitional precinct to an established inner-city address. Here is what apartment and property sellers need to know about the King Street precinct market in 2026." },
+  { slug: 'selling-in-brisbane-cbd',      name: 'Brisbane CBD',       summary: "Selling in the CBD is almost entirely an apartment market. Strata records, body corporate health, and comparative stock levels drive outcomes more than presentation in this market." },
+  { slug: 'selling-in-bulimba',           name: 'Bulimba',            summary: "Bulimba's Oxford Street village, ferry access, and Queenslander stock continue to command premiums that outperform the inner east average. Here is what sellers should know." },
+  { slug: 'selling-in-camp-hill',         name: 'Camp Hill',          summary: "Camp Hill sits at the convergence of strong school catchments, post-war character stock, and easy motorway access. Here is what drives value and timing for Camp Hill sellers." },
+  { slug: 'selling-in-cannon-hill',       name: 'Cannon Hill',        summary: "Cannon Hill's airport precinct proximity, Cross River Rail access, and affordable entry point make it one of the inner east's fastest-moving family markets." },
+  { slug: 'selling-in-carina',            name: 'Carina',             summary: "Carina offers the inner east's most affordable family market with solid block sizes and good motorway access. Here is what drives days-on-market and price in this suburb." },
+  { slug: 'selling-in-carina-heights',    name: 'Carina Heights',     summary: "Carina Heights sits between Carindale and Carina, with a buyer pool drawn from both suburbs. Here is what sellers need to know about positioning and timing in 2026." },
+  { slug: 'selling-in-carindale',         name: 'Carindale',          summary: "Carindale's large blocks, Westfield access, and family demographic make it a consistent performer at the upper end of the south-east Brisbane family market." },
+  { slug: 'selling-in-coorparoo',         name: 'Coorparoo',          summary: "Coorparoo's school catchments, village feel, and proximity to the CBD underpin one of the inner south's most competitive markets for family homes." },
+  { slug: 'selling-in-dutton-park',       name: 'Dutton Park',        summary: "Dutton Park's PA Hospital proximity, character stock, and tight supply make it one of inner Brisbane's most undersupplied markets for quality detached homes." },
+  { slug: 'selling-in-east-brisbane',     name: 'East Brisbane',      summary: "East Brisbane's CBD walkability and Kangaroo Point proximity make it one of the most sought-after addresses for professional owner-occupiers buying in the inner east." },
+  { slug: 'selling-in-fortitude-valley',  name: 'Fortitude Valley',   summary: "Fortitude Valley's apartment market is driven by investor demand and lifestyle buyers. Understanding the body corporate landscape and rental yield data is essential for sellers here." },
+  { slug: 'selling-in-greenslopes',       name: 'Greenslopes',        summary: "Greenslopes punches above its price bracket with Greenslopes Private Hospital nearby, renovated post-war stock, and a buyer pool extending from Annerley to Coorparoo." },
+  { slug: 'selling-in-hamilton',          name: 'Hamilton',           summary: "Hamilton's prestige riverfront position, Portside precinct, and new apartment developments sit alongside tightly held character homes. Here is what sellers need to know." },
+  { slug: 'selling-in-hawthorne',         name: 'Hawthorne',          summary: "Hawthorne combines riverfront access, a sought-after village café strip, and Queenslander character stock that consistently outperforms comparable inner-east prices." },
+  { slug: 'selling-in-hemmant',           name: 'Hemmant',            summary: "Hemmant's large industrial-adjacent blocks and gateway access attract a specific buyer type. Here is what drives value and how to position correctly when selling in 2026." },
+  { slug: 'selling-in-highgate-hill',     name: 'Highgate Hill',      summary: "Highgate Hill's elevated position, large Federation-era blocks and Brisbane State High catchment underpin some of inner-south Brisbane's strongest prices. Here is what sellers need to know in 2026." },
+  { slug: 'selling-in-holland-park',      name: 'Holland Park',       summary: "Holland Park's Mount Gravatt High School catchment, large post-war blocks, and easy southside motorway access create reliable family buyer demand throughout the year." },
+  { slug: 'selling-in-holland-park-west', name: 'Holland Park West',  summary: "Holland Park West shares Holland Park's school catchments and offers larger blocks at slightly lower entry prices. Here is what sellers need to know about positioning in 2026." },
+  { slug: 'selling-in-indooroopilly',     name: 'Indooroopilly',      summary: "Indooroopilly's train station, shopping centre and sought-after high school catchment make it one of the inner west's fastest-moving family markets. Here is what sellers need to know in 2026." },
+  { slug: 'selling-in-kangaroo-point',    name: 'Kangaroo Point',     summary: "Kangaroo Point's cliffs, river access, and CBD walkability make it a dual-market suburb: apartments for professional buyers and the rare detached home for long-term holders." },
+  { slug: 'selling-in-milton',            name: 'Milton',             summary: "Milton's Park Road precinct, walkability and structural scarcity of detached stock make it one of Brisbane's tightest inner-west markets. Here is what sellers need to know in 2026." },
+  { slug: 'selling-in-morningside',       name: 'Morningside',        summary: "Morningside's cafe strip, Coorparoo Square proximity, and Queenslander character stock make it one of the inner east's most competitive family markets. Here is what sellers need to know." },
+  { slug: 'selling-in-mount-gravatt',     name: 'Mount Gravatt',      summary: "Mount Gravatt's central southside position, Westfield access, and school catchments make it the inner south's most active family market outside Coorparoo." },
+  { slug: 'selling-in-mount-gravatt-east',name: 'Mount Gravatt East', summary: "Mount Gravatt East offers larger blocks and quieter streets than the centre while retaining access to the same catchments and amenity. Here is what sellers need to know." },
+  { slug: 'selling-in-murarrie',          name: 'Murarrie',           summary: "Murarrie's gateway position, newer housing stock, and improving infrastructure make it one of the inner east's best-value family suburbs for sellers to capitalise on in 2026." },
+  { slug: 'selling-in-new-farm',          name: 'New Farm',           summary: "New Farm's riverfront position, Merthyr Road village, and heritage cottage stock put it consistently among Brisbane's top-performing inner-city suburbs for vendors." },
+  { slug: 'selling-in-newstead',          name: 'Newstead',           summary: "Gasworks precinct, river view premiums, body corporate considerations, and how to position an apartment or townhouse in Newstead's competitive inner-city market." },
+  { slug: 'selling-in-norman-park',       name: 'Norman Park',        summary: "Norman Park's school catchments, Queenslander stock, and high owner-occupier rate make it one of the inner east's most stable and consistent markets for sellers." },
+  { slug: 'selling-in-paddington',        name: 'Paddington',         summary: "Paddington's character terrace and cottage market, Given Terrace café strip, and strong heritage overlay presence create one of inner Brisbane's most distinctive selling environments." },
+  { slug: 'selling-in-red-hill',          name: 'Red Hill',           summary: "Red Hill's elevated position, city views, and tightly held character stock attract buyers willing to pay a premium for scarcity. Here is what sellers need to know in 2026." },
+  { slug: 'selling-in-seven-hills',       name: 'Seven Hills',        summary: "Seven Hills' elevated position, large allotments, and proximity to Morningside and Camp Hill make it one of the inner east's most competitive renovation and rebuild markets." },
+  { slug: 'selling-in-spring-hill',       name: 'Spring Hill',        summary: "Spring Hill's CBD walkability and character cottage market are increasingly sought after by professional buyers. Here is what sellers need to know about this inner-city market in 2026." },
+  { slug: 'selling-in-stones-corner',     name: 'Stones Corner',      summary: "Stones Corner's village centre, heritage buildings, and improving amenity attract a growing buyer pool that values character and walkability over land size." },
+  { slug: 'selling-in-tarragindi',        name: 'Tarragindi',         summary: "Tarragindi's quiet family streetscape, post-war block sizes, and affordable entry relative to Annerley and Greenslopes give sellers a strong story to tell buyer-upgraders." },
+  { slug: 'selling-in-teneriffe',         name: 'Teneriffe',          summary: "Teneriffe's woolstore conversions, riverfront apartments, and proximity to New Farm position it as one of Brisbane's premium inner-city markets for apartment vendors." },
+  { slug: 'selling-in-tingalpa',          name: 'Tingalpa',           summary: "Tingalpa's large blocks, gateway access, and value position relative to Murarrie and Cannon Hill attract a specific family buyer who prioritises space over inner-city proximity." },
+  { slug: 'selling-in-toowong',           name: 'Toowong',            summary: "Toowong's river access, transit connections and proximity to UQ and Wesley Hospital underpin one of Brisbane's most consistent inner-west family markets. Here is what sellers need to know in 2026." },
+  { slug: 'selling-in-upper-mount-gravatt',name: 'Upper Mount Gravatt',summary: "Upper Mount Gravatt's greenspace access, large family blocks, and Westfield proximity make it a reliable performer at the upper end of the southside family market." },
+  { slug: 'selling-in-west-end',          name: 'West End',           summary: "West End's inner-south multicultural character, character worker's cottages, and Boundary Street strip attract a diverse buyer pool that includes both investors and owner-occupiers." },
+  { slug: 'selling-in-woolloongabba',     name: 'Woolloongabba',      summary: "Woolloongabba's ongoing regeneration, Gabba precinct, and improving amenity are reshaping its buyer profile. Here is what sellers need to know about this transitioning market in 2026." },
+];
+---
+<Layout title="Selling Property in Brisbane Suburbs | Daniel Gierach Property" description="Suburb-by-suburb guides to selling property in Brisbane. Covering 47 suburbs with local market conditions, what drives value, and selling strategy." schema={clusterSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Suburb Directory &middot; 47 Guides</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Selling Property in Brisbane Suburbs
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:58ch;">
+        Every Brisbane suburb sells differently. School catchments, days-on-market data, what drives buyer competition, and what the current market looks like in your street all vary at the suburb level. Find your suburb below for a specific, data-led guide.
+      </p>
+    </div>
+  </div>
+
+  <!-- Suburb Directory -->
+  <div style="padding:3.5rem 0 5rem;background:var(--color-base);">
+    <div class="max-w-[1100px] mx-auto px-8">
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;">
+        {suburbs.map(s => (
+          <a href={`/insights/${s.slug}`}
+            style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:1.5rem;display:flex;flex-direction:column;gap:0.6rem;text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
+            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(28,25,23,0.09)'"
+            onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          >
+            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#f5d07a;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <h2 style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;line-height:1.2;">{s.name}</h2>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <p style="font-size:0.78rem;color:#78716c;line-height:1.7;">{s.summary}</p>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
+    <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#1c1917;">Not sure how your suburb is performing right now?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:44ch;">Daniel can give you a current read on days-on-market, clearance rates, and what comparable sales suggest about your property's value. No cost, no obligation.</p>
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+        Get a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>
