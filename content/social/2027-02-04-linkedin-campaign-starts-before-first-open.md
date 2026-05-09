@@ -13,17 +13,17 @@
 
 ## Caption
 
-A property campaign does not start when the listing goes live. It starts four to eight weeks before.
+A property campaign does not start when the listing goes live. It starts four to six weeks before.
 
-The preparation weeks are where the price is actually made. Pricing strategy, method of sale, photography, styling decisions, Form 6, pre-market comparable sales analysis, seller disclosure, pest and building readiness. The vendors who rush this phase pay for it later, and the discount is almost always bigger than the saving.
+Most vendors understand this in principle. Fewer understand what the preparation phase actually decides.
 
-Photography is the item most under-spent on and most under-prepared for. In the inner east, 80% of buyer shortlisting happens on a phone before a single Saturday inspection. The photographs are the shortlist.
+Buyers in active Brisbane suburbs have been watching specific streets, specific floor plans, and specific blocks for months before a property appears on realestate.com.au. An agent working that patch actively knows which buyers are primed for a specific property before it is listed. That intelligence shapes the launch price, the method of sale, and the timing. It is not available when a vendor signs a contract on a Monday and photographs on a Wednesday.
 
-A campaign that works in this corridor runs a tight operational rhythm: four to six weeks of preparation, launch Wednesday or Thursday, two to three open homes across the first two weekends, offers by the end of weekend two or three.
+The preparation phase also decides the photography. Buyer shortlisting happens on a phone, well before Saturday morning. Properties that do not make the shortlist on screen are not being walked through at inspections, regardless of how well they present in person.
 
-The first two weekends carry the campaign. Buyer interest peaks at launch and does not come back at the same level. A property that has no offer by the end of weekend three is almost always dealing with a price or preparation problem that should have been solved before launch.
+Buyer interest peaks at launch. It does not return at the same level. A property that reaches the market under-prepared does not get a second first impression. The correction, when it comes, costs more than the preparation would have.
 
-That conversation is the one to have before you pick a launch date.
+That is the conversation to have before you pick a launch date.
 
 danielgierach.com
 

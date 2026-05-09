@@ -17,11 +17,11 @@ There is one number on a campaign plan that decides whether you get three offers
 
 It is not the commission. It is not the marketing spend. It is the price you launch at.
 
-Launch at the market, and inner-east buyers who have been searching since January turn up at the first open ready to compete. Launch above the market, and those buyers keep watching from their phones, waiting for the price reduction they know is coming.
+Launch at the market, and buyers who have been watching for months turn up at the first open ready to compete. Launch above the market, and those buyers keep watching from their phones, waiting for the price reduction they know is coming.
 
-The gap between those two campaigns is usually visible by the end of weekend two. A property that does not have an offer by weekend three is almost always dealing with a launch price that was set for the vendor's wish, not for the buyers actually in the room.
+The gap between those two campaigns is usually visible by the end of weekend two. A property that does not have an offer by weekend three is often dealing with a launch price that was set for the vendor's wish, not for the buyers actually in the room.
 
-Pricing to create competition is not the same as underquoting. It is setting the number where the right pool of buyers treats the property as accessible. Done properly, it produces bidding at or above the guide. Done carelessly, it invites a slow campaign and a reduction.
+Pricing to create competition is not the same as underquoting. It is setting the number where the right pool of buyers treats the property as accessible. Done properly, it can produce bidding at or above the guide. Done carelessly, it invites a slow campaign and a reduction.
 
 If you are weighing up a sale, the price conversation is the first one, not the last.
 

@@ -15,7 +15,7 @@
 
 Days on market is the cleanest signal in any property listing.
 
-Inner-east houses that sold in the last six months tell a consistent story. Under 21 days usually means the price was right, the photography did its job, and there were multiple buyers in the first two opens. Forty-five days plus usually means one of three things: the launch price did not reflect the market, a building condition is turning buyers away at inspection, or the campaign never reached the right buyer pool.
+Houses in Brisbane that sold in the last six months tell a consistent story. Under 21 days usually means the price was right, the photography did its job, and there were multiple buyers in the first two opens. Forty-five days plus usually means one of three things: the launch price did not reflect the market, a building condition is turning buyers away at inspection, or the campaign never reached the right buyer pool.
 
 For a buyer looking at a property on day 60, the useful question is not "what is wrong with it" but "what made buyers walk away." Sometimes the answer is a fixable price issue on a sound property. That is an opportunity.
 

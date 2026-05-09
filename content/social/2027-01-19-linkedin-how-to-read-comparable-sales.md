@@ -13,11 +13,11 @@
 
 ## Caption
 
-A comparable sales report is the single most useful document in a listing conversation. Most of them are read the wrong way.
+A comparable sales report is one of the most useful documents in a listing conversation. Most of them are read the wrong way.
 
-Not every sale is a comparable. A renovated house on an elevated quiet street in Balmoral is not the same as the unrenovated floor plan on a main road in the same postcode. A sale from 2024 is not a read on the market in April 2026. A three-bedder on a 600sqm block is not a proxy for the same three-bedder on 405sqm.
+Not every sale is a comparable. A renovated house on an elevated quiet street in Balmoral is not the same as the unrenovated floor plan on a main road in the same postcode. A sale from two years ago is not a reliable read on today's market. A three-bedder on a 600sqm block is not a proxy for the same three-bedder on 405sqm.
 
-The comparables that matter share the same position (elevated or flat, quiet street or main road), the same configuration, the same renovation level, and settled in the last 90 days. In the inner east, that filter often leaves three or four sales, not thirty.
+The comparables that matter share the same position (elevated or flat, quiet street or main road), the same configuration, the same renovation level, and settled in the last 90 days. In most Brisbane suburbs, that filter often leaves three or four sales, not thirty.
 
 When a suburb does not have strong recent comparables, the analysis moves to the next suburb with similar characteristics. Bulimba and Hawthorne borrow from each other. So do Norman Park and Camp Hill. Each adjustment has to be quantified and explained.
 

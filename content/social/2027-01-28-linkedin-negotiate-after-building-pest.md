@@ -19,7 +19,7 @@ Two categories of findings matter, and they are treated differently.
 
 Active defects are things failing now: timber pest activity, significant structural movement, a failing roof. If the report finds one of these and it was not disclosed, the buyer has reasonable grounds to open a conversation about price or remediation.
 
-General maintenance is aged paint, minor weathering, small cracks in render, worn gutters, flaking window sills. These are features of every 1950s Queenslander in Hawthorne and every post-war brick in Carina. Using them to ask for a price reduction is not a negotiation, it is a reason for the vendor to walk to the next buyer.
+General maintenance is aged paint, minor weathering, small cracks in render, worn gutters, flaking window sills. These are features of every established Queenslander and post-war brick home in Brisbane. Using them to ask for a price reduction is not a negotiation, it is a reason for the vendor to walk to the next buyer.
 
 The buyers who negotiate well after a report bring a specific defect, a specific quote from a licensed tradesperson, and a specific ask. The buyers who lose the property bring a generic list.
 
