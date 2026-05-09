@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedArticles from '../components/RelatedArticles.astro';
+import scheduleData from '../../dashboard/seo-schedule.json';
 
 interface Props {
   title?: string;
@@ -53,6 +54,13 @@ const _insightSuburbName = _insightSuburbSlug ? _insightSuburbSlug.replace(/-/g,
 
 // Email capture: show on all insights article pages (not the index)
 const _isInsightsArticle = _bParts[0] === 'insights' && _bParts.length >= 2;
+
+// Look up publish date from seo-schedule for Article JSON-LD datePublished
+const _articleSlug = _bParts[1] ?? null;
+const _scheduleEntry = _isInsightsArticle && _articleSlug
+  ? (scheduleData as any).articles.find((a: any) => a.slug === _articleSlug && !a.draft)
+  : null;
+const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
 
 const globalSchema = {
   "@context": "https://schema.org",
@@ -299,7 +307,8 @@ const globalSchema = {
           "name": "Daniel Gierach Property",
           "url": "https://danielgierach.com"
         },
-        "url": canonicalURL
+        "url": canonicalURL,
+        ...(_datePublished ? { "datePublished": _datePublished } : {})
       })} />
     )}
     <!-- BreadcrumbList JSON-LD, generated automatically from URL path -->
