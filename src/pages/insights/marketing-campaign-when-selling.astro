@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What should I expect in the first week of my property campaign in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first week of a campaign is the most important. Properties are freshest to the market at launch, and serious buyers who have been watching the area will engage immediately. The listing should appear simultaneously on realestate.com.au and domain.com.au. Your agent should be personally following up with every registered open home attendee and keeping motivated buyers engaged. Inquiry volume, inspection registrations, and buyer feedback in week one tells you more about whether the campaign is working than anything else."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a real estate pre-launch phase involve when selling in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The pre-launch phase (two to three weeks before listing) is when professional photography, floor plans, and listing presentation are finalised. Before the listing goes live, a good agent contacts their existing buyer database to alert registered buyers who have been searching in your area, particularly those who have missed out on comparable properties and are highly motivated. This pre-launch contact can lead to off-market interest or ensure motivated buyers are in the market on day one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do open homes matter when selling a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open homes serve two purposes. First, they give buyers a genuine experience of the property that photographs cannot convey: the feel of spaces, natural light quality, and street character. Second, they create a social proof environment where multiple buyers see each other's interest simultaneously, which creates competitive urgency even among deliberate buyers. Open homes should be well-managed and well-presented, with private inspection availability also offered for buyers who cannot attend scheduled times."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How Does a Marketing Campaign Work When Selling Your Home in Brisbane? | Daniel Gierach Property" description="From photography to portal listings to open homes, here is exactly how a Brisbane property marketing campaign works and what you should expect from yours.">
+<Layout title="How Does a Marketing Campaign Work When Selling Your Home in Brisbane? | Daniel Gierach Property" description="From photography to portal listings to open homes, here is exactly how a Brisbane property marketing campaign works and what you should expect from yours." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

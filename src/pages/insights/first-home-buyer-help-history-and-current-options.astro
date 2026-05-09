@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What first home buyer grants are available in Queensland in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As at April 2026, Queensland first home buyers can access: the Queensland First Home Owner Grant of $30,000 for new homes under the relevant cap; the federal Home Guarantee Scheme allowing eligible buyers to purchase with a 5% deposit and avoid Lenders Mortgage Insurance; the First Home Super Saver Scheme allowing voluntary super contributions to be withdrawn for a deposit; and Queensland transfer duty concessions for homes under the relevant thresholds. These schemes can be stacked together subject to eligibility. Check the current article for complete updated figures and caps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the First Home Owner Grant to buy an established home in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. From October 2012, Queensland's First Home Owner Grant was restructured to apply only to new homes and off-the-plan purchases. It no longer applies to established (existing) homes. Buyers of established homes in Queensland can still access the Home Guarantee Scheme (5% deposit without LMI), the First Home Super Saver Scheme, and stamp duty concessions if eligible, but the FHOG itself is restricted to new construction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Home Guarantee Scheme and who qualifies in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The federal Home Guarantee Scheme (previously the First Home Loan Deposit Scheme) allows eligible first home buyers to purchase with as little as a 5% deposit, with the federal government guaranteeing the shortfall to avoid Lenders Mortgage Insurance. In 2026, eligible buyers must be Australian citizens, meet income thresholds (singles and couples), and purchase within the relevant property price cap for their region. Places are limited each financial year and allocated through participating lenders on a first-come, first-served basis."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Every First Home Buyer Grant and Scheme: History (2000 to 2026) and Current Options | Daniel Gierach Property" description="A complete record of every Australian first home buyer grant, concession, and scheme from the start in 2000 through to April 2026. Includes every current option and how to stack them.">
+<Layout title="Every First Home Buyer Grant and Scheme: History (2000 to 2026) and Current Options | Daniel Gierach Property" description="A complete record of every Australian first home buyer grant, concession, and scheme from the start in 2000 through to April 2026. Includes every current option and how to stack them." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

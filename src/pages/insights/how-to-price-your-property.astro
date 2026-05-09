@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I price my Brisbane property correctly for sale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with comparable sales, not asking prices. Sold prices tell you what buyers were willing to pay; asking prices tell you what vendors hoped to achieve. Relevant comparables are recent (within 90 days), geographically proximate (ideally within one kilometre), and genuinely comparable in configuration, condition, land size, and buyer appeal. Three to five comparable sales is usually enough to establish a defensible range. Your agent should then adjust explicitly for your property's specific differences from those comparables."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I overprice my Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Overpricing is the most common reason a property campaign underperforms. A property listed too high fails to attract the buyer volume needed to create competition. After two or three weeks without serious offers, the listing starts to feel stale and buyers assume something is wrong with it. By the time the price is corrected, the premium of a fresh listing is gone and motivated buyers have moved on. In a healthy market, a well-priced Brisbane inner-east property should attract strong inquiry within the first week and serious offer activity within two to three weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an auction guide and a private treaty asking price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An auction guide signals where bidding is expected to start, not a ceiling and not a guaranteed sale price. It is not the same as a private treaty asking price, which is a fixed or range price for a direct sale. At the upper end of a suburb's price range, a transparent price guide tends to work better than an undisclosed auction reserve, because buyers at that level are more deliberate and want price certainty. In Brisbane's inner east, both methods are used depending on buyer depth and property type."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How to Price Your Property for Sale in Brisbane | Daniel Gierach Property" description="Pricing is the most consequential decision you make when selling. Here is how to set a price that attracts the right buyers and maximises your result.">
+<Layout title="How to Price Your Property for Sale in Brisbane | Daniel Gierach Property" description="Pricing is the most consequential decision you make when selling. Here is how to set a price that attracts the right buyers and maximises your result." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

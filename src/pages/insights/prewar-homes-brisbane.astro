@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What counts as a prewar home in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prewar means built before the Second World War, broadly taken as pre-1940, though some use pre-1945 as the boundary. The most important prewar styles in Brisbane's inner east are the Federation Queenslander (roughly 1895 to 1915), the Interwar Queenslander (1915 to 1930), and the Californian Bungalow (1920 to 1940). All were constructed in hardwood timber, elevated on stumps, with corrugated iron roofs and deep covered verandahs. This construction method has proven extraordinarily durable when maintained."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do prewar homes hold a price premium in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prewar homes command a premium because they cannot be replicated. Queensland hardwood used in prewar construction is exceptionally dense and durable. The floor plans with their high ceilings, cross-ventilation design, and large verandahs are genuinely well-adapted to Brisbane's subtropical climate. Prewar homes typically occupy the older, wider allotments from original suburb subdivisions, and the character of the streetscape and tree canopy reflects this era. Character Residential zone protections also cap supply by restricting demolition."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What building defects should I look for when buying a prewar Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Key items to check: stump condition (differential movement, decay, or termite damage), subfloor moisture and joist condition (not just stump condition), electrical wiring (original cloth-insulated wiring creates fire risk and needs full rewire), roof condition including ridgecapping and rust, and termite status (past activity is common and manageable if treated; live activity requires immediate specialist assessment). A prewar home with recently restumped subfloor, updated electrical wiring, and a sound roof is structurally low risk regardless of cosmetic condition."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Buying a Prewar Home in Brisbane: What to Know | Daniel Gierach Property" description="Prewar homes dominate Brisbane's inner east. Here is what defines them, what to check before you buy, and how to think about their value compared to newer builds.">
+<Layout title="Buying a Prewar Home in Brisbane: What to Know | Daniel Gierach Property" description="Prewar homes dominate Brisbane's inner east. Here is what defines them, what to check before you buy, and how to think about their value compared to newer builds." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

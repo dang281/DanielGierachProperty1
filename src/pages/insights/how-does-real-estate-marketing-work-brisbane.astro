@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does marketing affect the sale price of a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marketing quality directly affects your sale price. Properties with professional photography and well-written copy consistently achieve stronger enquiry rates and sell faster than poorly presented listings at the same price point. Fewer enquiries means a smaller buyer pool, and a smaller buyer pool means less competition and lower prices. In Brisbane's inner east, the gap between well-presented and poorly-presented listings is visible in comparable sale data, particularly in competitive markets where buyers have more choices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it worth paying for a Premiere listing on realestate.com.au in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most properties in Brisbane's inner-east suburbs, a Premiere listing on realestate.com.au is a justified spend. Premiere placement puts your listing at the top of suburb search results, dramatically increasing the number of buyers who see it, particularly in the first week of the campaign when buyer interest is highest. The first two weeks of a campaign are when buyer competition is greatest. Your agent should be able to show you the difference in impression numbers between listing tiers based on comparable campaigns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should a Brisbane real estate marketing campaign include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A complete Brisbane real estate campaign should include professional photography (including drone photography for properties where land or position is a feature), a floor plan, portal listings on both realestate.com.au and domain.com.au at appropriate premium tiers, specific and well-written listing copy, pre-launch contact with the agent's existing buyer database, and managed open homes and private inspections. Social media advertising on Facebook and Instagram plays a supplementary role for reaching buyers who are not yet actively searching."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How Does Real Estate Marketing Work in Brisbane? | Daniel Gierach Property" description="Most vendors know they need to market their home but have no idea what a modern Brisbane real estate campaign actually looks like. Here's what happens, why it matters, and what to look for.">
+<Layout title="How Does Real Estate Marketing Work in Brisbane? | Daniel Gierach Property" description="Most vendors know they need to market their home but have no idea what a modern Brisbane real estate campaign actually looks like. Here's what happens, why it matters, and what to look for." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

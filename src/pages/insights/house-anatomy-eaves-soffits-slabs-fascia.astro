@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between an eave, a soffit, and a fascia on a Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The eave is the part of the roof that projects beyond the external wall line, sheltering walls from rain and shading windows. The fascia is the vertical board running along the lower edge of the roof to which the gutter is attached. The soffit is the horizontal underside of the eave. On Queenslanders, the soffit is typically VJ timber; on modern homes it is often fibre-cement sheet. Rotting timber fascia is a common finding in building inspection reports on older Brisbane homes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are bearers and joists in a Brisbane highset home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a highset Brisbane home, bearers are the heavy horizontal timbers sitting on top of the stumps, running parallel to the primary load path. Joists are the horizontal timbers running perpendicular to the bearers at roughly 450mm spacing, and they support the floorboards. The space between the underside of the joists and the ground is the subfloor. Adequate subfloor ventilation is critical to prevent moisture and pest issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a building inspection mean by 'subfloor moisture' in a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subfloor moisture means the underfloor space of the highset home has elevated moisture levels, often caused by pooling water, poor drainage, dense vegetation against the house, or inadequate ventilation. This creates conditions for decay in the floor joists and bearers and is favourable for termites. If a building report notes subfloor moisture, ask specifically about the condition of the floor joists and bearers, whether stumps show active decay, and what the recommended rectification involves."
+      }
+    }
+  ]
+};
 ---
-<Layout title="House Anatomy: Eaves, Soffits, Fascia, Slabs, Bearers, Joists | Daniel Gierach Property" description="A glossary of the parts of a Brisbane house. What each item is, what it does, and what it means when a builder's quote or inspection report names it.">
+<Layout title="House Anatomy: Eaves, Soffits, Fascia, Slabs, Bearers, Joists | Daniel Gierach Property" description="A glossary of the parts of a Brisbane house. What each item is, what it does, and what it means when a builder's quote or inspection report names it." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

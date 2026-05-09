@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a real estate agent actually do to earn their commission?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A good agent earns their commission through six core activities: setting a well-supported pricing strategy using granular comparable sales data; advising on pre-campaign preparation that can add tens of thousands to your result; producing and managing the marketing campaign including photography, copy, and portal listings; managing the buyer experience at open homes and private inspections; running ongoing buyer follow-up and relationship management; and negotiating offers or managing the auction to maximise competition and price. The visible parts of the job, running open homes and being at auctions, are not where most of the value is created."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I choose the right real estate agent to sell my Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose an agent based on their demonstrated knowledge of comparable sales in your specific suburb at your price point, not suburb-wide commentary. Ask them to show you the comparable sales that support their price estimate and explain the adjustments. Ask about their current listing volume and how many clients they are personally managing. The agent who is most persuasive or most socially skilled is not necessarily the best negotiator for your property. Look for evidence of results, not just enthusiasm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the risk of overpricing my Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Overpricing is the most common reason a property campaign underperforms. A property listed too high fails to attract the buyer volume needed to create competition, sits on the market, and starts to feel stale. The longer it sits, the more buyers assume something is wrong with it. By the time the price is corrected, the premium of a fresh listing is gone and motivated buyers have moved on. In Brisbane's inner east, a well-priced property should attract strong inquiry within the first week and serious offer activity within two to three weeks of launch."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What Does a Real Estate Agent Actually Do for You? | Daniel Gierach Property" description="Beyond the open homes and the marketing, here is exactly what a good agent does to earn their commission, and how to tell the difference.">
+<Layout title="What Does a Real Estate Agent Actually Do for You? | Daniel Gierach Property" description="Beyond the open homes and the marketing, here is exactly what a good agent does to earn their commission, and how to tell the difference." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

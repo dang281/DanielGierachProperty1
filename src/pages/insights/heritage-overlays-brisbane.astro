@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a heritage overlay in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A heritage overlay is a designation applied under Brisbane City Council's CityPlan 2014 that identifies places of cultural, historical, architectural, or aesthetic significance. Properties with a heritage overlay are subject to greater council control over changes. Brisbane has more than 1,000 individual heritage places listed, plus numerous heritage precincts in inner suburbs including New Farm, Fortitude Valley, and parts of the inner east. Heritage overlays apply to individual properties, precincts, and streets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between local heritage and state heritage in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Local heritage places are identified in Brisbane City Council's CityPlan 2014 and assessed under the Heritage Overlay Code. They represent places of local historical or architectural significance and are the most common type in Brisbane's inner east. State heritage places are listed on the Queensland Heritage Register under the Queensland Heritage Act 1992 and carry the strongest protections, including controls on interiors and significant constraints on any development, demolition, or alterations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a heritage overlay add or reduce property value in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A heritage overlay generally adds to the value of a well-maintained property by signalling scarcity and architectural significance. Properties in heritage precincts in suburbs like New Farm, Balmoral, and Norman Park consistently attract premiums from buyers who value original character. The overlay does restrict what can be changed, which limits renovation and development options, but this same restriction caps supply and protects the character of the streetscape. The premium depends heavily on the condition and presentation of the property."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="Understanding Heritage Overlays in Brisbane | Daniel Gierach"
   description="Heritage overlays in Brisbane restrict what you can build, demolish, and renovate. Here is how they work under BCC CityPlan 2014, what they mean for value, and what to check before you buy."
+  schema={faqSchema}
 >
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">

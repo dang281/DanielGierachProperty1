@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What should I look for when choosing a mortgage broker in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Look for genuine independence: a good broker should have access to at least 20 to 30 lenders including major banks, second-tier lenders, non-bank lenders, and credit unions. All mortgage brokers must hold an Australian Credit Licence (ACL) or operate as a credit representative, and must be MFAA or FBAA members. You can verify licence status through the ASIC Connect register. Ask how many lenders are on their panel, how they are paid, and whether they have arranged finance for buyers in your specific situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a mortgage pre-approval and a pre-qualification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A genuine pre-approval requires a full assessment of your financial position including payslips or tax returns, bank statements, all existing debts and liabilities, and identification. The lender reviews this information and provides written conditional approval for a specified loan amount. A pre-qualification is simply an estimate based on unverified numbers. In Brisbane's inner east where good properties move quickly, you need genuine written pre-approval in hand before you start seriously attending inspections."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to use a mortgage broker or go direct to my bank in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For straightforward PAYG borrowers with clean credit history, going directly to your existing bank can be competitive, particularly if you have a long relationship with them. For self-employed buyers, those with irregular income, buyers who have recently changed employment, or first home buyers navigating grants and concessions, a good broker adds genuine value because they understand which lenders are most receptive to different income types and which will be fastest to issue formal approval."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Which Mortgage Broker Should I Use? | Daniel Gierach Property" description="Not all brokers are equal. Here's what to look for, what to ask, and the red flags that should send you elsewhere.">
+<Layout title="Which Mortgage Broker Should I Use? | Daniel Gierach Property" description="Not all brokers are equal. Here's what to look for, what to ask, and the red flags that should send you elsewhere." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

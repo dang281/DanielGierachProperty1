@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I prepare my Brisbane home for sale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with decluttering and depersonalising: remove personal photographs, excess furniture, and anything that makes rooms feel smaller or overly personalised. Address minor repairs buyers notice: fill wall scuffs, replace cracked switch plates, fix sticking doors, reseal showers, and re-grout discoloured tiles. Repaint rooms with scuffed or strongly coloured walls. Engage a property stylist for key rooms if your existing furniture is dated or mismatched. Have the property photography-ready before the photographer arrives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I renovate my kitchen or bathroom before selling in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically, no. A functional kitchen with dated finishes does not need replacing before sale. Buyers in the $1 million to $2 million range expect to make their own choices. However, a kitchen with broken cabinetry, a cracked benchtop, or a failing dishwasher will cost more in buyer discounting than the cost of basic repairs. The rule is: fix anything genuinely broken or neglected, but avoid full cosmetic renovations unless comparable sales evidence shows buyers at your price point expect a turnkey finish."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is professional styling worth the cost when selling a Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For mid-to-upper price points in Brisbane's inner east, professional property styling is often worth the investment. Partial styling, covering the living area and master bedroom, typically costs $2,000 to $5,000 for a three to four bedroom home and is routinely recovered multiple times over through stronger photography and buyer engagement. For vacant investment properties being sold, styling is strongly advisable as empty rooms are hard to photograph and difficult for buyers to connect with emotionally."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How to Prepare Your Home for Sale in Brisbane | Daniel Gierach Property" description="The gap between deciding to sell and going to market is where price outcomes are made or lost. A practical guide to preparing your Brisbane home for sale.">
+<Layout title="How to Prepare Your Home for Sale in Brisbane | Daniel Gierach Property" description="The gap between deciding to sell and going to market is where price outcomes are made or lost. A practical guide to preparing your Brisbane home for sale." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

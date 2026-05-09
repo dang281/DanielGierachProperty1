@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I check if my Brisbane property is in a flood zone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane City Council maintains a free interactive Flood Awareness Map at fam.brisbane.qld.gov.au. Search by address to see whether the property falls within mapped river flooding, creek flooding, or overland flow flooding areas at different event levels including the 1-in-100-year scenario. For a formally reliable assessment, request a Planning and Development Certificate (PDC) from Brisbane City Council, which is the document your solicitor and lender will rely on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does flood mapping mean a Brisbane property will flood regularly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Being within a mapped flood area does not automatically mean a property floods regularly or that habitable areas are at risk. The overlay identifies areas potentially affected under modelled conditions. The floor level of the dwelling relative to the defined flood level for the specific lot is the critical factor. A property with its habitable floor well above the 1-in-100-year flood level may have the flood mapping on its title with no practical impact on the dwelling, while a neighbour at a lower ground level faces genuinely elevated risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does flood mapping affect property insurance in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flood insurance in Australia is assessed property-by-property. The difference in premiums between a flood-exposed property and a comparable property outside the overlay can be substantial. Before exchanging contracts on any property with flood mapping, contact at least two or three insurers directly for an indicative quote for the specific address. Do not assume standard home and contents insurance automatically includes flood cover. In Queensland, flood cover is a specific product that must be explicitly confirmed."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Is Your Property in a Flood Zone? | Daniel Gierach Property" description="Brisbane's flood mapping affects insurance, value, and what you can build. Here's how to check your property and what to do with the results.">
+<Layout title="Is Your Property in a Flood Zone? | Daniel Gierach Property" description="Brisbane's flood mapping affects insurance, value, and what you can build. Here's how to check your property and what to do with the results." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

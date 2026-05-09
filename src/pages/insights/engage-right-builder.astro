@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I check if a Brisbane builder is licensed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Search the builder's licence on the QBCC website at qbcc.qld.gov.au. You are looking for a current licence, the correct licence category for the type of work, and whether there is any disciplinary history, conditions on the licence, or outstanding complaints. In Queensland, all builders undertaking work valued over $3,300 must hold a current QBCC licence. A clean licence search does not guarantee quality, but an unlicensed builder or one with a significant complaints history is a clear reason to look elsewhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Home Warranty Insurance and do I need it for Brisbane renovation work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For residential construction work over $3,300 in Queensland, the builder is required by law to obtain Queensland Home Warranty Insurance through the QBCC before work begins. This protects you if the builder fails to complete the work, becomes insolvent, abandons the project, or produces defective work they fail to remedy. Ask your builder for the certificate of insurance before any work starts. The cover extends to subsequent owners if you sell the property, making it relevant if you are renovating before a sale campaign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should I be cautious of the cheapest builder quote in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A quote that is 20% or 30% below the field is not a bargain. It either prices a narrower scope than you think, signals a builder who has underpriced the job and will recover costs through variations throughout the project, or indicates a builder without the experience or resources to deliver the work properly. Low-ball quotes that win jobs on price and accumulate variations throughout the project are one of the most common and costly experiences in Brisbane residential construction."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How to Engage the Right Builder | Daniel Gierach Property" description="Choosing the wrong builder is an expensive mistake. Here's how to verify licences, read contracts, and protect yourself before work starts.">
+<Layout title="How to Engage the Right Builder | Daniel Gierach Property" description="Choosing the wrong builder is an expensive mistake. Here's how to verify licences, read contracts, and protect yourself before work starts." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

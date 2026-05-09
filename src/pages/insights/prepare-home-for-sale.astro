@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the most important steps to prepare a home for sale in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most important steps are: declutter and depersonalise thoroughly, removing personal photographs and excess furniture; address the minor repairs that signal deferred maintenance including sticking doors, dripping taps, stained grout, and cracked switch plates; repaint scuffed or strongly coloured interior walls; tidy the garden and external surfaces; and ensure professional photography is done with the property presentation-ready. In Brisbane's inner east, buyers compare multiple properties and notice the difference between a well-maintained home and one that has been left to drift."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is professional property staging worth the cost in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For mid-to-upper price points in Brisbane's inner east, professional staging is often worth the investment. Partial staging (living area and master bedroom) typically costs $2,000 to $5,000 for a three to four bedroom home and is routinely recovered many times over. A well-staged home photographs significantly better and generates more enquiry. For vacant investment properties, styling is strongly advisable as empty rooms are hard to photograph and difficult for buyers to emotionally connect with."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What maintenance items should I fix before selling my Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fix the items that buyers use to form a judgement about how well the property has been maintained: cracked light switch plates, sticking doors, loose handles, staining or mould in bathrooms, dripping taps, and overdue exterior paint. Walk through the property as if you were a buyer looking for reasons to offer less. Get a handyman and relevant tradespeople in two to three weeks before listing. Items that are typically not worth addressing are cosmetic upgrades to kitchens and bathrooms that buyers will change to their own taste anyway."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How to Prepare Your Home for Sale | Daniel Gierach Property" description="First impressions drive price. A focused pre-sale plan with the right repairs and the right styling can add tens of thousands to your result.">
+<Layout title="How to Prepare Your Home for Sale | Daniel Gierach Property" description="First impressions drive price. A focused pre-sale plan with the right repairs and the right styling can add tens of thousands to your result." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
