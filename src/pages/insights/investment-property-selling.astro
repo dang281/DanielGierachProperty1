@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const clusterSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Selling Investment and Rental Properties",
+  "description": "Guidance for landlords and investors: selling tenanted properties, short-term rental decisions, deceased estates, and tax considerations specific to investment holdings.",
+  "url": "https://danielgierach.com/insights/investment-property-selling",
+  "author": { "@type": "Person", "name": "Daniel Gierach", "url": "https://danielgierach.com/about" }
+};
+
+const articles = [
+  {
+    slug: 'selling-rental-property-brisbane',
+    title: 'Selling a Rental Property in Brisbane',
+    summary: 'The decisions investors face when selling a tenanted Brisbane property: tenant rights, access for open homes, vacant possession versus tenanted sale, and what Queensland law actually requires.',
+    tag: 'Sellers',
+  },
+  {
+    slug: 'selling-tenanted-investment-property-queensland-guide',
+    title: 'Selling an Investment Property with a Tenant in It: The Queensland Guide',
+    summary: 'Every legal step for selling a tenanted property in Queensland under the 2022 and 2024 reforms, covering Forms 9, 10 and 12, entry and photography rules, and sale with tenant in situ versus vacant possession.',
+    tag: 'Sellers',
+  },
+  {
+    slug: 'selling-tenanted-property-queensland',
+    title: 'Selling a Tenanted Property in Queensland: What Landlords Need to Know',
+    summary: 'Selling with tenants in residence in Queensland involves specific RTA obligations and timing decisions. Here is how to manage the campaign, the tenants, and the settlement.',
+    tag: 'Sellers',
+  },
+  {
+    slug: 'buying-with-tenant',
+    title: 'How to Buy a Property With a Tenant Already In It',
+    summary: 'Queensland tenancy law is strict. Here is what you need to know about lease types, notice periods, open home rights, and what transfers to you at settlement.',
+    tag: 'Buyers',
+  },
+  {
+    slug: 'airbnb-vs-longterm',
+    title: 'Airbnb vs Long-Term Rental: The Real Numbers in Brisbane',
+    summary: "Short-term rental can generate higher gross income but the true net return is often worse than long-term. Here are the real cost and income comparisons for Brisbane's inner east.",
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'land-tax-queensland-investment-property',
+    title: 'Land Tax in Queensland: What Property Investors Need to Know',
+    summary: 'Queensland land tax explained for property investors, current thresholds, how it affects your rental yield, and when rising land tax tips the balance toward selling.',
+    tag: 'Sellers',
+  },
+  {
+    slug: 'selling-deceased-estate-queensland',
+    title: 'How to Sell a Deceased Estate Property in Queensland',
+    summary: 'A practical guide for executors and family members navigating the sale of a deceased estate property in Queensland, the legal process, who has authority, and how to manage the campaign.',
+    tag: 'Sellers',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  'Sellers':          '#f5d07a',
+  'Buyers':           '#7ec8e3',
+  'Buyers & Sellers': '#f5d07a',
+};
+---
+<Layout title="Selling Investment and Rental Properties | Daniel Gierach Property" description="Guidance for landlords and investors: selling tenanted properties, short-term rental decisions, deceased estates, and land tax. Seven guides for Queensland property investors." schema={clusterSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Topic Guide &middot; 7 Articles</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Selling Investment and Rental Properties
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:58ch;">
+        Selling an investment property in Queensland involves tenant rights, RTA notice obligations, land tax considerations, and CGT exposure that owner-occupier sales do not. This guide covers every scenario from selling with a tenant in place to deceased estates and the short-term rental decision.
+      </p>
+    </div>
+  </div>
+
+  <!-- Article Grid -->
+  <div style="padding:3.5rem 0 5rem;background:var(--color-base);">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {articles.map(a => (
+          <a href={`/insights/${a.slug}`}
+            style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s,border-color 0.25s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
+            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(28,25,23,0.09)'"
+            onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          >
+            <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${tagColors[a.tag] || '#c4912a'};`}></div>
+            <div style="display:flex;align-items:center;padding-top:0.25rem;">
+              <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${tagColors[a.tag] || '#c4912a'};display:inline-flex;align-items:center;gap:0.35rem;`}>
+                <span style={`width:5px;height:5px;border-radius:50%;background:${tagColors[a.tag] || '#c4912a'};flex-shrink:0;`}></span>
+                {a.tag}
+              </span>
+            </div>
+            <div style="flex:1;">
+              <h2 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.75rem;">{a.title}</h2>
+              <p style="font-size:0.82rem;color:#78716c;line-height:1.75;">{a.summary}</p>
+            </div>
+            <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">Read Article &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
+    <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#1c1917;">Thinking about selling your investment property?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:44ch;">Daniel works with investors regularly and understands the tenant management, tax sequencing, and timing considerations that differ from owner-occupier sales. Get a straight appraisal.</p>
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+        Get a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>
