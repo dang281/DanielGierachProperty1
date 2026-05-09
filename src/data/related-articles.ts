@@ -687,6 +687,11 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "What Does a Real Estate Agent Actually Do for You?", slug: "how-to-choose-a-real-estate-agent", label: "Agents" },
     { title: "How Does a Marketing Campaign Work When Selling Your Home in Brisbane?", slug: "marketing-campaign-when-selling", label: "Marketing" },
   ],
+  "free-property-tools-brisbane-sellers": [
+    { title: "What Does It Cost to Sell a House in Brisbane?", slug: "cost-of-selling-house-brisbane", label: "Costs" },
+    { title: "Capital Gains Tax When Selling Your Home in Brisbane 2026", slug: "capital-gains-tax-selling-home-brisbane", label: "Tax" },
+    { title: "Private Sale vs Using a Real Estate Agent in Brisbane", slug: "private-sale-vs-real-estate-agent-brisbane", label: "Strategy" },
+  ],
 };
 
 // Default fallback for pages not in the map

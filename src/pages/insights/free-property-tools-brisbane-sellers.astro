@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are these property calculators free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every tool listed in this article is completely free and requires no account or registration. They are provided by Daniel Gierach Property to help Brisbane sellers model their numbers before speaking with an agent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the instant property valuation tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The instant valuation uses comparable sales data and automated modelling to produce a price range estimate. It is a useful starting point for calibrating expectations, but it cannot account for property-specific factors like presentation quality, renovation value, aspect, or land configuration. A formal agent appraisal will always be more accurate for your specific property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the selling costs calculator include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The selling costs calculator covers agent commission, marketing costs, conveyancing fees, and optional preparation expenses. It produces an estimated net proceeds figure so sellers understand how much they will realistically walk away with after all costs are deducted from the sale price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I still need to speak with an agent after using these tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. These tools help you model your numbers and arrive at an informed starting position, but they cannot replace a professional appraisal. Knowing your figures in advance means the agent conversation is more productive and you are less likely to accept advice that does not stack up."
+      }
+    }
+  ]
+};
+---
+<Layout
+  title="8 Free Property Calculators for Brisbane Sellers (And What Each One Tells You) | Daniel Gierach Property"
+  description="Brisbane sellers can model costs, equity, CGT, and net proceeds before calling an agent. Here are 8 free property calculators and exactly what each one tells you."
+>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 7 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        8 Free Property Calculators for Brisbane Sellers (And What Each One Tells You)
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Brisbane sellers often pay for advice they could model themselves before ever calling an agent. Here are the eight free tools that let you run the numbers first.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>The most common feedback Daniel gets after an appraisal is not about price. It is about surprise. Sellers who had not modelled their costs, their equity position, or their tax liability in advance often find the actual numbers harder to act on than they expected. The good news is that none of these calculations require a paid service or a professional consultation to get started. The eight tools below are free, require no account, and give you a working figure you can test before you commit to anything.</p>
+
+      <p>This is not a replacement for professional advice on tax or legal matters. What it is: a way to walk into those conversations already knowing your rough position, so you are asking the right questions rather than hearing numbers for the first time.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">1. Selling costs calculator</h2>
+      <p>The selling costs calculator lets you enter a sale price and see a full breakdown of what comes off the top before you receive your net proceeds. It covers agent commission at various rates, estimated marketing spend, conveyancing fees, and any preparation costs you choose to include. Most sellers underestimate at least one of these categories, and the cumulative effect can be $20,000 to $40,000 on a typical inner Brisbane property. Running this calculation early means you go into agent conversations with a realistic expectation of what you will actually walk away with, rather than anchoring to the headline sale figure.</p>
+      <p><a href="/tools/selling-costs" style="color:#c4912a;font-weight:600;">Try the selling costs calculator &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">2. Instant property valuation</h2>
+      <p>The instant valuation tool produces an automated estimate of your property's market value based on comparable sales data in your area. It is not a formal appraisal, and it cannot account for the things that matter most at the individual property level: your specific renovation quality, aspect, floor plan, or the condition of comparable sales used in the model. What it gives you is a price range and a starting point. Sellers who arrive at an appraisal having already seen a valuation range are better placed to ask whether the comparable sales the agent uses are genuinely comparable, rather than accepting the number at face value.</p>
+      <p><a href="/tools/valuation" style="color:#c4912a;font-weight:600;">Try the instant property valuation &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">3. Equity calculator</h2>
+      <p>Your equity position is the figure that actually matters for planning your next move: it is what you have left after the mortgage is discharged and selling costs are deducted. The equity calculator asks for your estimated property value, your current loan balance, and a selling cost figure (you can pull this straight from the selling costs calculator). The output tells you your likely net equity, which is the deposit or purchase budget you are working with if you are buying again. This is the number that determines what you can afford, and sellers are often surprised to find it is either larger than they assumed or smaller than the sale price headline suggested.</p>
+      <p><a href="/tools/equity-calculator" style="color:#c4912a;font-weight:600;">Try the equity calculator &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">4. Stamp duty calculator</h2>
+      <p>If you are selling to buy somewhere else, transfer duty on the new purchase is one of the largest costs you will face. Queensland stamp duty is calculated on a tiered scale and varies significantly depending on whether the property is your primary residence, an investment, and whether any concessions apply. The stamp duty calculator works out exactly what you will owe on a given purchase price so there are no surprises at settlement. It also covers the first home owner concession and owner-occupier rate, which is worth checking even if you think you already know your position. Many sellers focus entirely on the proceeds side without modelling the entry cost on the other end.</p>
+      <p><a href="/tools/stamp-duty" style="color:#c4912a;font-weight:600;">Try the stamp duty calculator &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">5. CGT timing calculator</h2>
+      <p>Capital gains tax is the most common source of unmodelled risk for investment property sellers. The CGT timing calculator lets you input your purchase price, cost base, and intended sale price, then model how selling in the current financial year compares to holding into the next. It applies the 50% CGT discount for assets held longer than 12 months and shows how your marginal rate affects the outcome. For some sellers, crossing a tax year boundary makes a material difference. For others, the benefit of selling sooner outweighs any tax saving from waiting. This tool lets you see which situation you are in before a conversation with your accountant, not after.</p>
+      <p><a href="/tools/cgt-timing" style="color:#c4912a;font-weight:600;">Try the CGT timing calculator &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">6. Rent vs sell comparison</h2>
+      <p>Sellers who are vacating a property but unsure whether to sell or hold it as a rental face a question that is harder to answer than it looks. The rent vs sell tool models both scenarios over a chosen timeframe: rental income less holding costs and management fees on one side, versus the net proceeds from selling and the return you could generate by deploying that equity elsewhere. It accounts for vacancy, maintenance reserves, and projected capital growth at whatever rate you choose to input. The output is not a definitive answer, because growth assumptions are uncertain, but it gives you a structured comparison rather than a gut feel.</p>
+      <p><a href="/tools/rent-vs-sell" style="color:#c4912a;font-weight:600;">Try the rent vs sell comparison &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">7. Method of sale comparison</h2>
+      <p>Auction and private treaty are the two dominant sale methods in Brisbane's inner east, and the choice between them affects your marketing spend, your campaign timeline, and how price negotiation works. The method of sale comparison tool lays out the cost and risk profile of each approach side by side. It covers typical auction marketing costs versus private treaty costs, the different timelines involved, how conditional offers work under private treaty, and the circumstances where each method tends to produce better outcomes. Sellers who arrive at this decision after running the numbers are less likely to be talked into an approach that suits the agent's preference rather than their own situation.</p>
+      <p><a href="/tools/method-of-sale" style="color:#c4912a;font-weight:600;">Try the method of sale comparison &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">8. Net proceeds deep dive</h2>
+      <p>The net proceeds deep dive is the most comprehensive of the eight tools. It builds a complete settlement worksheet: you enter the sale price, then work through every deduction in sequence. Agent commission, marketing budget, conveyancing, mortgage discharge fees, any rates or body corporate adjustments, and any additional costs you want to include. The output is a line-by-line breakdown of what moves from your sale price to your bank account. This is the tool to use when you want a precise picture before you set a walk-away price or agree to a marketing budget. It removes the ambiguity that usually sits between the headline figure and what you actually receive.</p>
+      <p><a href="/tools/net-proceeds-deep-dive" style="color:#c4912a;font-weight:600;">Try the net proceeds deep dive &rarr;</a></p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to use these tools together</h2>
+      <p>The most useful sequence for sellers who are actively planning a sale is to start with the instant valuation to set a price range, then run the selling costs and net proceeds calculators to see what that range translates to in actual money. If you are buying simultaneously, add the stamp duty calculator so you have the full picture on both transactions. If your property is an investment, add the CGT timing and rent vs sell tools before you decide on a timeline. None of these tools require more than a few minutes each, and together they give you a picture that most sellers only get after they have already committed to a campaign.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want a walkthrough with your actual numbers?</strong> Daniel can take you through all eight tools with your specific property, giving you a complete picture of costs, equity, and net proceeds before you make any decisions. No obligation, no pressure. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<AuthorBio />
+</Layout>
