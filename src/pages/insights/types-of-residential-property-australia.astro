@@ -75,6 +75,39 @@ const faqSchema = {
       <p>A self-contained dwelling on the same lot as a principal home. In Queensland the Brisbane City Plan permits a secondary dwelling in most residential zones subject to size and siting rules. Rents separately but cannot usually be sold separately because it sits on the main lot.</p>
       <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why the label matters on contract</h2>
       <p>The contract of sale will name the title type. Torrens title = straightforward, one lot, one title. Strata title = owner owns the individual unit plus a proportional share of common property. Community title = owner owns a lot within a community titles scheme, with body-corporate obligations. Mis-identifying the title type at contract stage is a common and expensive mistake.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How title type affects resale in Brisbane's inner east</h2>
+      <p>Title type shapes resale in practical ways beyond the legal definitions. Torrens-title detached houses attract the widest buyer pool in Brisbane's inner east: investors, owner-occupiers, families, upgraders, and developers. There is no body corporate, no levy schedule, and no building management risk for buyers to assess. Renovation, extension, and subdivision are governed only by Brisbane City Council's planning rules, which gives buyers confidence in the flexibility they are acquiring. Detached Torrens-title properties consistently achieve the strongest prices per square metre of any residential property type in the inner east, largely because that breadth of buyer demand creates genuine competition at every price point.</p>
+      <p>Strata-title units and apartments attract a narrower buyer pool. Investors and first-home buyers make up a disproportionate share of apartment purchasers in inner Brisbane. The body corporate is a significant resale variable: a building with a healthy sinking fund, professional strata management, and no known structural defects presents well and finances cleanly. A building with chronic underfunding, known defects (cladding issues, waterproofing failures, deferred painting programs), or a history of special levies creates buyer hesitation and can affect lender valuations. Buyers considering strata property should request the last two years of AGM minutes and the current levy schedule before proceeding.</p>
+      <p>Community-title townhouses sit in the middle. Body corporate levies are typically lower than high-rise strata, and the product type attracts a broader demographic including families who are priced out of detached houses in the same suburb. In suburbs like Morningside, Bulimba, and Camp Hill, well-run townhouse complexes sell strongly because they offer an entry point at a meaningful discount to a detached house in the same street. The resale risk in community title centres on complex condition: a body corporate with deferred maintenance, governance disputes, or upcoming capital works will see buyer interest soften and prices adjust accordingly.</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+          <thead>
+            <tr style="background:#f2efe9;">
+              <th style="padding:0.75rem 1rem;text-align:left;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;border-bottom:1px solid rgba(28,25,23,0.1);">Feature</th>
+              <th style="padding:0.75rem 1rem;text-align:left;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;border-bottom:1px solid rgba(28,25,23,0.1);">Torrens (detached)</th>
+              <th style="padding:0.75rem 1rem;text-align:left;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;border-bottom:1px solid rgba(28,25,23,0.1);">Strata (unit/apt)</th>
+              <th style="padding:0.75rem 1rem;text-align:left;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;border-bottom:1px solid rgba(28,25,23,0.1);">Community (townhouse)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <Fragment set:html={[
+              ['Body corporate', 'No', 'Yes', 'Yes'],
+              ['Land ownership', 'Full lot', 'Share of common property', 'Lot within scheme'],
+              ['Renovation approval', 'Council only', 'Council and BC approval', 'Council and BC approval'],
+              ['Buyer pool (inner east)', 'Widest', 'Narrower', 'Moderate'],
+              ['Typical entry price (inner east)', '$900k plus', '$420k plus', '$650k plus'],
+              ['Key resale risk', 'Zone overlay, land size', 'BC sinking fund, building age', 'BC health, complex condition'],
+            ].map(([feature, torrens, strata, community]) => `
+              <tr>
+                <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);font-weight:600;color:#1c1917;">${feature}</td>
+                <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${torrens}</td>
+                <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${strata}</td>
+                <td style="padding:0.7rem 1rem;border-bottom:1px solid rgba(28,25,23,0.06);color:#44403c;">${community}</td>
+              </tr>
+            `).join('')} />
+          </tbody>
+        </table>
+      </div>
       <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
         <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Planning a project or getting ready to sell?</strong> Daniel can point you to the right tradespeople and introduce you to local architects, engineers and building designers who work across the inner east. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
       </div>

@@ -206,6 +206,48 @@ const faqSchema = {
       Many buyers sign at the open home and then engage legal help. That sequence is the wrong way around. Most solicitors and conveyancers will review a contract for a small fee or as part of their engagement.
     </p>
 
+    <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">Questions to ask when choosing your legal representative</h2>
+    <p style="font-size:0.95rem;color:#44403c;line-height:1.85;margin-bottom:1.25rem;">
+      Whether you are engaging a solicitor or a conveyancer, these five questions give you a meaningful basis for comparison:
+    </p>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;">
+      <Fragment set:html={[
+        ['Who will actually handle my file?', 'Some firms quote a senior name but allocate the work to a junior. Ask directly who manages day-to-day correspondence and who will be available at settlement.'],
+        ['What is included in your fixed fee, and what falls outside it?', 'Most quotes include standard conveyancing but exclude searches and disbursements, which add $500 to $1,200. Also ask what triggers additional charges: extended finance conditions, a dispute arising, or unusual special conditions in the contract.'],
+        ['Do you use PEXA for settlement?', 'Almost all Queensland residential settlements now use the PEXA electronic platform. If a firm is not on PEXA, ask why. Paper settlements are slower, more error-prone, and increasingly unusual.'],
+        ['What searches do you conduct as standard?', 'At minimum: title search, council rates certificate, land tax clearance, and body corporate certificate if applicable. Ask whether flood mapping and contamination register searches are included or quoted separately.'],
+        ['What is your turnaround for reviewing a contract before I sign?', 'A 24 to 48 hour turnaround is reasonable for a pre-contract review. Some firms charge a modest fee for this and credit it against their engagement fee if you proceed.'],
+      ].map(([q, a]) => `
+        <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);padding:1.1rem 1.5rem;">
+          <p style="font-weight:700;font-size:0.85rem;color:#1c1917;margin:0 0 0.35rem;">${q}</p>
+          <p style="font-size:0.82rem;color:#78716c;margin:0;line-height:1.7;">${a}</p>
+        </div>
+      `).join('')} />
+    </div>
+
+    <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#1c1917;margin:2.5rem 0 1rem;">What to expect on the timeline</h2>
+    <p style="font-size:0.95rem;color:#44403c;line-height:1.85;margin-bottom:1.25rem;">
+      Standard Queensland residential settlements typically run 30 to 45 business days from exchange, though 20-day settlements are possible when buyers have pre-approval and no complex conditions. Here is the usual sequence:
+    </p>
+    <div style="display:flex;flex-direction:column;gap:0;margin-bottom:2rem;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+      <Fragment set:html={[
+        ['Days 1-2', 'Contract received', 'Your legal representative confirms key deadlines: finance condition, building and pest inspection, and settlement date. Any issues with the contract are flagged immediately.'],
+        ['Days 2-10', 'Searches ordered', 'Title, council rates, land tax, body corporate (if applicable), flood mapping, and contamination searches are ordered and begin returning.'],
+        ['Days 7-21', 'Conditions satisfied', 'Finance approval is obtained and the finance condition is formally satisfied in writing. Building and pest inspection is completed. Any defects are negotiated before conditions are waived.'],
+        ['Days 25-40', 'Transfer documents', 'The transfer of land is prepared and sent to you for signing. Transfer duty (stamp duty) is assessed and must be paid before settlement in Queensland.'],
+        ['Settlement day', 'Electronic settlement', 'Funds and documents are exchanged via PEXA. The transfer is lodged with the Queensland Titles Registry on the same day.'],
+        ['Post-settlement', 'Registration confirmed', 'Title registration is confirmed within 1 to 2 business days. Your legal representative notifies you and provides copies of registered documents.'],
+      ].map(([timing, label, desc]) => `
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;padding:1.1rem 1.5rem;border-bottom:1px solid rgba(28,25,23,0.06);">
+          <div style="min-width:90px;flex-shrink:0;">
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;margin:0 0 0.2rem;">${timing}</p>
+            <p style="font-size:0.78rem;font-weight:700;color:#1c1917;margin:0;">${label}</p>
+          </div>
+          <p style="font-size:0.82rem;color:#44403c;margin:0;line-height:1.7;">${desc}</p>
+        </div>
+      `).join('')} />
+    </div>
+
     <div style="border-left:3px solid #c4912a;padding:1.1rem 1.5rem;background:rgba(196,145,42,0.05);margin-top:3rem;">
       <p style="font-size:0.9rem;color:#1c1917;margin:0 0 0.5rem;font-weight:700;">Need a referral?</p>
       <p style="font-size:0.88rem;color:#44403c;margin:0;line-height:1.75;">
