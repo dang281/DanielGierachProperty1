@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const clusterSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Contracts, Settlement and Legal Obligations",
+  "description": "What Queensland property contracts contain, seller disclosure requirements, the settlement process, and when to engage a solicitor.",
+  "url": "https://danielgierach.com/insights/contracts-and-settlement",
+  "author": { "@type": "Person", "name": "Daniel Gierach", "url": "https://danielgierach.com/about" }
+};
+
+const articles = [
+  {
+    slug: 'seller-disclosure-obligations-queensland',
+    title: 'Seller Disclosure Obligations When Selling a House in Queensland',
+    summary: 'What you must legally disclose when selling a house in Queensland under the Property Law Act 2023, including the Mandatory Seller Disclosure Statement, pool safety certificates, and smoke alarm compliance.',
+  },
+  {
+    slug: 'understanding-the-contract',
+    title: 'Understanding the REIQ Contract of Sale',
+    summary: "The standard Queensland contract is straightforward once you know what to look for. Here's what every buyer and seller should understand before signing.",
+  },
+  {
+    slug: 'fixtures-fittings-inclusions-property-sale-qld',
+    title: 'Fixtures, Fittings and Inclusions When Selling a House in Queensland',
+    summary: "What stays and what goes when you sell in Queensland? Understanding the fixture vs chattel distinction avoids disputes and contract complications at settlement.",
+  },
+  {
+    slug: 'unconditional-offer',
+    title: 'What Is an Unconditional Offer?',
+    summary: "An unconditional offer is one of the most powerful tools in property and one of the most misunderstood. Here's what it means and when to use it.",
+  },
+  {
+    slug: 'subject-to-finance-clause-queensland-sellers',
+    title: 'Subject to Finance: What Sellers Need to Know in Queensland',
+    summary: 'Most private treaty offers include a finance condition. Here is how it works, what happens if finance fails, and how to protect yourself during the conditional period.',
+  },
+  {
+    slug: 'cooling-off-period-property-sale-queensland',
+    title: 'Cooling Off Period When Selling in Queensland',
+    summary: "How Queensland's 5-business-day cooling off period works for vendors, when it applies, and the buyer penalty for exercising it.",
+  },
+  {
+    slug: 'pre-settlement-inspection-seller-guide-qld',
+    title: "Pre-Settlement Inspection: A Seller's Guide for Queensland 2026",
+    summary: 'What Queensland sellers need to know about the pre-settlement inspection, what buyers are checking, how to prepare, and how disputes are handled before settlement day.',
+  },
+  {
+    slug: 'what-happens-at-settlement',
+    title: 'What Happens at Settlement?',
+    summary: "Settlement day can feel like a black box. Here's exactly what happens, who does what, and how to make sure nothing goes wrong at the last minute.",
+  },
+  {
+    slug: 'what-happens-on-settlement-day-queensland',
+    title: 'What Happens on Settlement Day When Selling in Queensland',
+    summary: "Settlement day finalises your sale. Here's what happens in the lead-up, what your role is on the day, and what to do if something goes wrong.",
+  },
+  {
+    slug: 'solicitor-vs-conveyancer-qld',
+    title: 'Solicitor vs Conveyancer in Queensland: What Is the Difference?',
+    summary: 'Both can handle your property settlement in Queensland. Here is what each does, what they cost, and when you genuinely need the full weight of a property solicitor.',
+  },
+  {
+    slug: 'easements-property-brisbane-qld',
+    title: 'Easements on Property in Brisbane: What Sellers Need to Know 2026',
+    summary: 'A practical guide to easements on Brisbane properties in 2026, covering types of easements, disclosure obligations, how buyers react, and what sellers need to do before listing.',
+  },
+];
+---
+<Layout title="Contracts, Settlement and Legal Obligations | Daniel Gierach Property" description="What Queensland property contracts contain, seller disclosure requirements, the settlement process, and when to engage a solicitor." schema={clusterSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Topic Guide &middot; 11 Articles</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Contracts, Settlement and Legal Obligations
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:58ch;">
+        The contract and settlement phase is where Queensland's specific rules matter most. This guide covers seller disclosure obligations, what the REIQ contract actually says, how finance clauses and unconditional offers work, and exactly what happens on settlement day.
+      </p>
+    </div>
+  </div>
+
+  <!-- Article Grid -->
+  <div style="padding:3.5rem 0 5rem;background:var(--color-base);">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {articles.map(a => (
+          <a href={`/insights/${a.slug}`}
+            style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s,border-color 0.25s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
+            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(28,25,23,0.09)'"
+            onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          >
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#f5d07a;"></div>
+            <div style="display:flex;align-items:center;padding-top:0.25rem;">
+              <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#f5d07a;display:inline-flex;align-items:center;gap:0.35rem;">
+                <span style="width:5px;height:5px;border-radius:50%;background:#f5d07a;flex-shrink:0;"></span>
+                Sellers
+              </span>
+            </div>
+            <div style="flex:1;">
+              <h2 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.75rem;">{a.title}</h2>
+              <p style="font-size:0.82rem;color:#78716c;line-height:1.75;">{a.summary}</p>
+            </div>
+            <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">Read Article &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
+    <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#1c1917;">Questions about the contract process?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:44ch;">Daniel walks every vendor through the contract and settlement process before listing. No surprises at exchange, no confusion on settlement day.</p>
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+        Get a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>
