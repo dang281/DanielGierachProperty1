@@ -7,6 +7,8 @@
 **Status:** Idea
 **Publish date:** TBD
 **Scheduled time:** 07:30
+**Visual status:** Ready
+**Image:** content/social/images/linkedin-idea-article-off-market-vs-on-market.png
 
 ---
 
@@ -16,7 +18,7 @@ Off-market sales happen regularly in Brisbane's inner east. A buyer who has been
 
 The thing being traded is buyer competition, and that trade is rarely in the vendor's favour.
 
-A full marketing campaign exposes a property to the broadest pool of qualified buyers the market can produce. Competition between buyers produces results that no single motivated buyer can replicate alone. The inner east's most significant sale results, the ones that set suburb records or exceed the vendor's expectation, happen at public campaigns where multiple buyers compete to secure a property they want.
+A full marketing campaign exposes a property to the broadest pool of qualified buyers the market can produce. Competition between buyers produces results that no single motivated buyer can replicate alone. Brisbane's most significant sale results, the ones that set suburb records or exceed the vendor's expectation, happen at public campaigns where multiple buyers compete to secure a property they want.
 
 Off-market results reflect what one buyer is prepared to pay without competition. That number is usually lower than what a competitive campaign would have produced, sometimes by a small margin and sometimes by a significant one.
 

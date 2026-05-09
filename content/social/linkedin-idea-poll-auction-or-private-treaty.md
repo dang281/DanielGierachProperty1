@@ -13,7 +13,7 @@
 
 ## Caption
 
-If you were selling a well-presented home in Brisbane's inner east at a price in the $1.2M to $1.6M range, which method of sale would you prefer? Assuming a healthy buyer pool and a competitive market.
+If you were selling a well-presented home in Brisbane, which method of sale would you prefer? Assuming a healthy buyer pool and a competitive market.
 
 ## Poll options
 
@@ -25,10 +25,7 @@ If you were selling a well-presented home in Brisbane's inner east at a price in
 ## Hashtags
 
 #BrisbaneProperty
-#BrisbaneRealEstate
 #DanielGierach
-#AuctionBrisbane
-#SellingProperty
 
 ## Notes for Daniel
 

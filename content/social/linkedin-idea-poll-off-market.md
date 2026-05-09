@@ -25,10 +25,7 @@ An agent calls you and says they have a buyer ready to go for your property. No 
 ## Hashtags
 
 #BrisbaneProperty
-#BrisbaneRealEstate
 #DanielGierach
-#SellingProperty
-#InnerEastBrisbane
 
 ## Notes for Daniel
 

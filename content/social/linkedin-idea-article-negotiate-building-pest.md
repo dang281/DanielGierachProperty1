@@ -7,6 +7,8 @@
 **Status:** Idea
 **Publish date:** TBD
 **Scheduled time:** 07:30
+**Visual status:** Ready
+**Image:** content/social/images/linkedin-idea-article-negotiate-building-pest.png
 
 ---
 
@@ -14,7 +16,7 @@
 
 A building and pest report is one of the most misused documents in a property transaction. Buyers who use it correctly get better outcomes. Buyers who use it as a blanket renegotiation lever often lose the property.
 
-The starting point is understanding what the report is actually saying. Every building and pest report has a section on active defects, things that are failing now, and a section on general maintenance items. A 50-year-old home in Norman Park will almost certainly have maintenance items. Worn gutters, dated electrical, some movement in the stumps, these are expected in a home of that age and should already be reflected in the price. Using them to renegotiate is not a strategy; it signals to the vendor that the buyer is looking for an exit, not a resolution.
+The starting point is understanding what the report is actually saying. Every building and pest report has a section on active defects, things that are failing now, and a section on general maintenance items. A 50-year-old established home in Brisbane will typically have maintenance items. Worn gutters, dated electrical, some movement in the stumps, these are expected in a home of that age and should already be reflected in the price. Using them to renegotiate is not a strategy; it signals to the vendor that the buyer is looking for an exit, not a resolution.
 
 Active defects are different. Active timber pest activity, significant structural movement, a failing roof, or a drainage issue that causes recurring damage, these are material findings that were not apparent at inspection and that affect the price the buyer agreed to pay. A specific adjustment, backed by remediation quotes from licensed tradespeople, is a reasonable response.
 

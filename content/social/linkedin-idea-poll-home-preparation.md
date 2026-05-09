@@ -25,10 +25,7 @@ You are preparing your home for sale and have $8,000 to spend on presentation. W
 ## Hashtags
 
 #BrisbaneProperty
-#BrisbaneRealEstate
 #DanielGierach
-#SellingProperty
-#InnerEastBrisbane
 
 ## Notes for Daniel
 

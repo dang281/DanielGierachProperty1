@@ -25,10 +25,7 @@ You receive a building and pest report on a property you have signed a condition
 ## Hashtags
 
 #BrisbaneProperty
-#BrisbaneRealEstate
 #DanielGierach
-#PropertyBuying
-#InnerEastBrisbane
 
 ## Notes for Daniel
 

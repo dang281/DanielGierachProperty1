@@ -25,10 +25,7 @@ When your agent presents a comparable sales report to help you understand what a
 ## Hashtags
 
 #BrisbaneProperty
-#BrisbaneRealEstate
 #DanielGierach
-#PropertyMarket
-#InnerEastBrisbane
 
 ## Notes for Daniel
 
