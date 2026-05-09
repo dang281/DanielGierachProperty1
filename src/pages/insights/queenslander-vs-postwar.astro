@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do Queenslanders hold value better than post-war homes in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A polished Queenslander consistently achieves prices above comparable builds because its supply is permanently fixed. You cannot build a new Queenslander. The character, height, proportions, and materials are a product of their era. Heritage overlay protection and character zone protection under BCC CityPlan 2014 further constrain supply. Post-war homes offer a relative entry discount and strong renovation upside, but the Queenslander's scarcity means its premium is more durable over the long term."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the main risks of buying a post-war Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The main risks are asbestos in fibro-clad properties built before 1990, original corrugated iron roofs with lifespan issues if not replaced, and electrical wiring in homes of this era that may need upgrading. Post-war homes are often underestimated: a well-maintained 1960s brick low-set can be renovated to a high standard at lower cost than a timber Queenslander, with less ongoing maintenance risk. Build quality of the postwar period was often superior to its reputation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is land content more important than the dwelling type when comparing Brisbane homes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Across all three eras, the single most reliable driver of long-term capital growth in Brisbane's inner east is land, not the dwelling on it. A 700m2 block in Coorparoo has compounded at rates that dwarf the contribution of any building on it. When comparing properties across eras, calculate the land-to-value ratio. A post-war home on 650m2 is often a better long-term wealth vehicle than a new townhouse on 200m2, even if the townhouse looks better and requires less work today."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="Queenslander vs Post-War vs Contemporary: Which Holds Value Best? | Daniel Gierach"
   description="The three dominant housing eras in Brisbane's inner east each have a different value proposition. Here is how Queenslanders, post-war homes, and contemporary builds compare on price growth, maintenance, and resale."
+  schema={faqSchema}
 >
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">

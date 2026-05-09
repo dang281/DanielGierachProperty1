@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What happens at a property appraisal in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A thorough appraisal takes 30 to 60 minutes. The agent walks through every room including the garage, laundry, and outdoor areas, assessing condition, configuration, and presentation. After the walk-through, they should sit down with you and present specific comparable recent sales that support their estimate. A credible appraisal is always anchored to specific transactions, not to general market commentary or a number pulled from a database."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I tell if an agent's property appraisal is inflated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask the agent to show you the specific comparable sales that support their number. Ask what specifically sold and when, what the differences are between those properties and yours, and how those differences translate to the estimate. If the agent cannot answer those questions clearly, or if the comparable sales are not genuinely comparable in location, size, and condition, treat the number with considerable scepticism. A second agent appraisal is worth doing to compare evidence, not to average the numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I prepare before a property appraisal in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do not need to do anything major. The agent wants an accurate read on your property as it currently stands. Giving the house a tidy and ensuring all rooms are accessible is sufficient. What is genuinely useful is knowing when the property was built, what work has been done since you purchased it, any known structural or drainage issues, and current council rates or body corporate fees if applicable. Having these answers ready helps the agent give you more accurate advice."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What to Expect at a Property Appraisal in Brisbane | Daniel Gierach Property" description="A property appraisal is your first step toward selling. Here's exactly what happens, what an agent looks at, and how to get the most out of the meeting.">
+<Layout title="What to Expect at a Property Appraisal in Brisbane | Daniel Gierach Property" description="A property appraisal is your first step toward selling. Here's exactly what happens, what an agent looks at, and how to get the most out of the meeting." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

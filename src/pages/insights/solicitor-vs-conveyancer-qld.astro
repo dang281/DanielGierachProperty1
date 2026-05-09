@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can a licensed conveyancer handle my Queensland property sale or purchase?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Both solicitors and licensed conveyancers can legally handle a standard residential property transaction in Queensland. A licensed conveyancer holds a licence under Queensland's conveyancing licensing framework, is regulated by the Office of Fair Trading, and specialises in standard residential property transactions. They typically charge $700 to $1,200 for a standard sale and $800 to $1,200 for a standard purchase, compared to $1,200 to $2,200 for a solicitor. The choice depends on the complexity of your transaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I use a solicitor instead of a conveyancer in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a solicitor for: buying off-the-plan (complex sunset clauses and developer amendments require legal advice), purchasing through a trust, SMSF, or corporate entity, deceased estate or probate sales, complex special conditions in the contract, any dispute or potential rescission, development sites, or high-value transactions where the cost of legal error is material. For a standard purchase of an established residential property in your own name with no complex conditions, a licensed conveyancer is typically sufficient."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does conveyancing cost in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typical professional fees, excluding searches and disbursements which add $500 to $1,200: licensed conveyancer $800 to $1,200 for a standard purchase and $700 to $1,100 for a standard sale; property solicitor $1,500 to $2,200 for a standard purchase and $1,200 to $1,800 for a standard sale. Off-the-plan purchases cost more with a solicitor, typically $1,800 to $3,000 plus. Engage your legal representative before you sign the contract, not after. The 5-business-day cooling-off period is not the ideal time to review a contract."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="Solicitor vs Conveyancer in Queensland: What Is the Difference? | Daniel Gierach"
   description="Both solicitors and licensed conveyancers can handle your property settlement in Queensland. Here is what each does, what they cost, and when you need the full weight of a solicitor."
+  schema={faqSchema}
 >
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">

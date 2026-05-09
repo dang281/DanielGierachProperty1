@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I sell my Brisbane rental property while tenants are still in it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can sell a tenanted property in Brisbane, but the Queensland RTRA Act gives tenants specific protections. You must give your tenant written notice that the property is being listed for sale, provide at least 24 hours written notice for each inspection, and conduct inspections at reasonable times between 8am and 6pm. The buyer pool will be limited to investors if you sell tenanted. In owner-occupier-dominated suburbs like Morningside, Camp Hill, and Hawthorne, seeking vacant possession before selling will typically produce a better result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What notice do I need to give a tenant when selling in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a periodic (month-to-month) tenancy, you can end the tenancy using the 'sale of premises' ground with at least two months written notice. For a fixed-term lease, you cannot force the tenant to vacate before the lease expires unless they agree. The property must actually be listed for sale when using the sale ground. The old 'without grounds' termination was removed by the Stage 2 reforms in 2024 and is no longer available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does selling a rental property with tenants affect the sale price in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most owner-occupier-dominated inner-east Brisbane markets, selling with vacant possession will typically produce a better result. A tenanted property in these suburbs closes off the owner-occupier buyer pool and will achieve a price that is usually 2 to 5 percent below vacant possession. In some unit and townhouse markets with stronger investor demand, the gap is smaller. The retained rent during the campaign partially offsets the price gap but rarely fully covers it."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Selling a Rental Property in Brisbane | What Investors Need to Know | Daniel Gierach Property" description="Selling a tenanted property in Brisbane is a different process to selling your own home. Here's what Queensland law requires, and how to manage the sale without compromising your result.">
+<Layout title="Selling a Rental Property in Brisbane | What Investors Need to Know | Daniel Gierach Property" description="Selling a tenanted property in Brisbane is a different process to selling your own home. Here's what Queensland law requires, and how to manage the sale without compromising your result." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

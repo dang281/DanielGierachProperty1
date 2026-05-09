@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What must a seller legally disclose when selling a house in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the Property Law Act 2023 (Qld), which commenced 1 August 2025, sellers must provide a completed Seller Disclosure Statement to buyers before a contract is entered into. This covers title and encumbrances, planning and zoning designations, environmental matters (including contaminated land registers), pool safety certificate status, smoke alarm compliance, neighbourhood disputes, and body corporate information for strata-titled properties. Sellers must also disclose any material facts that a reasonable buyer would consider important in deciding whether to purchase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does a Queensland seller need a pool safety certificate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your property has a pool, you must have a current pool safety certificate before you can sell it, or alternatively provide the buyer with a Form 36 notice that a certificate does not exist, giving the buyer 90 days after settlement to obtain it. Most sellers choose to get the certificate before selling. A pool safety certificate is issued by a licensed pool safety inspector and is valid for two years for non-shared pools. Budget at least two to three weeks to arrange an inspection, address any defects, and receive the certificate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the smoke alarm requirements when selling a property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When selling, you must provide the buyer with a Form 24 that includes a declaration about smoke alarm compliance. Queensland requires interconnected photoelectric smoke alarms on each storey and in each bedroom or the hallway outside bedrooms. Older ionisation alarms do not comply. If the property does not comply, the buyer may reduce the purchase price by an amount equivalent to the compliance cost, capped at 0.15% of the purchase price under the legislation. A smoke alarm compliance specialist can inspect, supply, and install within a few days for typically a few hundred dollars."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Seller Disclosure Obligations When Selling a House in Queensland | Daniel Gierach Property" description="What you must legally disclose when selling a house in Queensland under the Property Law Act 2023, including the Mandatory Seller Disclosure Statement, pool safety certificates, and smoke alarm compliance.">
+<Layout title="Seller Disclosure Obligations When Selling a House in Queensland | Daniel Gierach Property" description="What you must legally disclose when selling a house in Queensland under the Property Law Act 2023, including the Mandatory Seller Disclosure Statement, pool safety certificates, and smoke alarm compliance." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

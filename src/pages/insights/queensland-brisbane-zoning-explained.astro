@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does LMR mean on a Brisbane property listing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LMR stands for Low-Medium Density Residential under the Brisbane City Plan 2014. It allows duplexes, small lot houses, terraces, row houses, and in some sub-zones townhouses, typically up to a 9.5m height limit. An LMR lot carries development potential that a standard Low Density Residential (LDR) lot does not, which often supports a higher land value. 'Zoned LMR, STCA' on a listing means the development is subject to council approval and site-specific constraints."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Character Residential zone in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Character Residential (CR) is Low Density Residential with a Character overlay applied. Most inner-east Brisbane streets built pre-1946 are character-protected. Demolition of a pre-1946 house is prohibited in CR unless structurally compromised. Alterations must respect character and materials. Properties in CR carry an identifiable buyer pool of people who want the character home, but a smaller renovation market than unprotected LDR properties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does STCA mean on a property listing in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "STCA stands for Subject to Council Approval. It is shorthand used in agent copy to signal that a described use or development depends on council approval that has not yet been secured. A listing that says 'duplex potential STCA' means the zoning permits consideration of a duplex, but it is not pre-approved and depends on a Development Application being submitted and assessed. Pre-purchase advice from a town planner is worth the $3,000 to $5,000 fee on any site where development upside is part of the purchase thesis."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Queensland / Brisbane Zoning Explained: LMR, MDR, HDR, Character, CR | Daniel Gierach Property" description="Brisbane City Plan 2014 zoning codes. What LMR, MDR, HDR, Character and CR allow you to do, plus acronyms like DA, CC, STCA, NCC.">
+<Layout title="Queensland / Brisbane Zoning Explained: LMR, MDR, HDR, Character, CR | Daniel Gierach Property" description="Brisbane City Plan 2014 zoning codes. What LMR, MDR, HDR, Character and CR allow you to do, plus acronyms like DA, CC, STCA, NCC." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Form 10 in Queensland tenancy and when must I serve it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Form 10 is the Notice of Lessor's Intention to Sell Premises under the Queensland RTRA Act. It must be served on the tenant before or at the same time as the first Form 9 Entry Notice for a prospective purchaser. Serving a Form 9 before a Form 10 is invalid. Form 10 must include the name and contact details of the sales agent and the intended marketing approach. If the owner lists within the first two months of a tenancy and this was not disclosed in the lease, the tenant has a statutory right to end the agreement without penalty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I hold an open home at a tenanted property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An open home is not a prescribed reason for entry under section 192 of the RTRA Act. A Form 9 Entry Notice is sufficient for a private inspection but not for an open home. Under section 204, the lessor or agent must obtain the tenant's written consent to hold an open home. The tenant can refuse without providing a reason, and a refused open home cannot go ahead. Similarly, an on-site auction requires the tenant's written consent. Off-site auctions do not require tenant consent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the bond handled when selling a tenanted property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At settlement, the lease assigns to the buyer as the new lessor. The bond held at the RTA must be transferred to the new lessor via the RTA's Form 4 (Bond Transfer) after settlement. The tenant does not need to consent to the lease assigning. Rent paid in advance of settlement is apportioned between seller and buyer on the settlement statement. The tenant should be notified in writing of the new lessor's identity and new payment details within a reasonable time after settlement."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Selling an Investment Property with a Tenant in It: Complete Queensland Legal Guide for Owners and Agents | Daniel Gierach Property" description="Every legal step for selling a tenanted property in Queensland. Forms 9, 10 and 12 explained. Stage 2 reforms, entry rules, tenant consent, photography, open homes, settlement handover. For owners and agents.">
+<Layout title="Selling an Investment Property with a Tenant in It: Complete Queensland Legal Guide for Owners and Agents | Daniel Gierach Property" description="Every legal step for selling a tenanted property in Queensland. Forms 9, 10 and 12 explained. Stage 2 reforms, entry rules, tenant consent, photography, open homes, settlement handover. For owners and agents." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

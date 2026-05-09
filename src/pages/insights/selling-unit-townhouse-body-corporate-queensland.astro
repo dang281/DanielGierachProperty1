@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What body corporate documents does a seller need to provide in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From 1 August 2025, under the Property Law Act 2023 (Qld), sellers must provide a Mandatory Seller Disclosure Statement before a contract is entered into. For strata properties, this includes body corporate information as a mandatory component. In addition, the contract of sale for community title schemes requires the seller to attach a Body Corporate Information Certificate obtained from the body corporate manager. The certificate confirms current levy amounts, outstanding levies, any special levies approved or pending, and any proceedings affecting the lot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a sinking fund forecast and why do buyers care about it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A sinking fund forecast shows whether the building's maintenance reserve is adequately funded for major capital works anticipated over the next 10 years, including roof replacement, external painting, lift maintenance, and common area refurbishment. A well-funded sinking fund means buyers are unlikely to face a special levy shortly after purchase. An underfunded sinking fund is a red flag that experienced buyers notice immediately, and it will be reflected in offers. Body corporate records and the sinking fund forecast are available through a specialist body corporate search."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do body corporate levies affect buyers when purchasing a unit or townhouse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lenders factor ongoing body corporate levies into their serviceability assessment. In older inner Brisbane complexes or buildings with lifts, pools, and significant common areas, levies can be substantial, which may reduce a buyer's borrowing capacity even if they look pre-approved on paper. As a vendor, having accurate and current levy figures ready for enquiries during the campaign speeds up conversations and avoids the scenario where a buyer discovers the levies during due diligence and reassesses their offer."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Selling a Unit or Townhouse in a Body Corporate in Queensland | Daniel Gierach Property" description="Selling strata-titled property in Queensland involves disclosure obligations, body corporate records, and buyer questions that freehold sales don't. Here's what you need to know.">
+<Layout title="Selling a Unit or Townhouse in a Body Corporate in Queensland | Daniel Gierach Property" description="Selling strata-titled property in Queensland involves disclosure obligations, body corporate records, and buyer questions that freehold sales don't. Here's what you need to know." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

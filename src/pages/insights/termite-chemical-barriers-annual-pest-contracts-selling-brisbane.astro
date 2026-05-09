@@ -2,8 +2,38 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 export const publishDate = '2028-03-13';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What termite documentation do buyers expect when purchasing a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buyers and building inspectors expect: the original chemical barrier installation certificate showing date applied and product used, annual inspection reports for the most recent three to five years, any active termite warranty or service agreement transferring with the property, and evidence of any past termite damage along with the remediation work undertaken to address it. The strongest position for a seller is to produce all of this on request as part of the standard property pack before the buyer's inspector sets the agenda."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a termite chemical barrier last in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A termite chemical barrier typically lasts five to eight years before re-treatment is required, though the actual life depends on the product, soil type, moisture conditions, and whether the treated zone has been disturbed by landscaping or works around the perimeter. Common products include Termidor and Premise, applied as a continuous treated zone or via reticulation systems built into the slab edge. Re-treatment typically costs $1,800 to $3,500. If the barrier is approaching the end of its labelled life, consider re-treatment before listing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to disclose termite history when selling a property in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Known active termite damage is a material fact and must be disclosed. Previously remediated damage should also be disclosed where it could reasonably affect the buyer's decision. Concealing termite history is a significant legal risk, with consequences ranging from loss of the contract to claims for damages or rescission after settlement. The right approach is full disclosure alongside the documentation that demonstrates the issue has been properly addressed. A buyer who sees the history alongside the remediation evidence is reassured."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Termite Chemical Barriers and Annual Pest Contracts When Selling a Brisbane Property: What Sellers Must Know | Daniel Gierach Property" description="In termite-prone Brisbane, an active chemical barrier and a clean inspection history are sale-critical. Here is what to compile, what to disclose, and how to use a pre-sale inspection to your advantage.">
+<Layout title="Termite Chemical Barriers and Annual Pest Contracts When Selling a Brisbane Property: What Sellers Must Know | Daniel Gierach Property" description="In termite-prone Brisbane, an active chemical barrier and a clean inspection history are sale-critical. Here is what to compile, what to disclose, and how to use a pre-sale inspection to your advantage." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

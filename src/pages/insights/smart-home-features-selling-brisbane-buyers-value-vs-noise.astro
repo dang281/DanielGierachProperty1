@@ -2,8 +2,38 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 export const publishDate = '2028-03-09';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do smart home features add value when selling a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some do and quite a lot do not. Features that consistently land well are smart locks, video doorbells, smart thermostat or split system Wi-Fi control, smart smoke alarms that comply with Queensland legislation, and smart garage door openers. What unites these is that each provides a benefit buyers can use immediately without setup or subscriptions. Platform-locked lighting, voice assistants, and personalised automation routines consistently underperform because buyers see them as maintenance liabilities or someone else's mess."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which smart home devices should I leave with the property when selling in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leave devices that are widely useful and easy to hand over: smart locks set up so they can be reset to factory settings before handover, video doorbells with the storage card removed and ready for re-pairing, hardwired smart smoke alarms, and smart garage door openers configured for a clean reset. Remove subscription-locked devices, personalised automation routines, and any device tied to a personal user account that cannot be transferred. Provide a short written list of remaining devices and reset instructions in the property pack."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it worth installing smart home features before selling a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Resist the temptation to install smart home features purely to support a sale. The return on investment is unreliable, the buyer pool is too varied for any single setup to land universally, and the cost can easily exceed the marginal price lift. Where smart home features already exist, present them well and document them clearly. Where they do not, the pre-sale budget is almost always better spent on kitchen, bathroom, paint, or styling."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Smart Home Features and Selling a Brisbane Property: Which Integrations Buyers Value and Which Are Noise | Daniel Gierach Property" description="Smart locks and video doorbells add value at sale. Platform-locked lighting and personal automation routines do not. Here is how Brisbane sellers should treat smart home features when listing.">
+<Layout title="Smart Home Features and Selling a Brisbane Property: Which Integrations Buyers Value and Which Are Noise | Daniel Gierach Property" description="Smart locks and video doorbells add value at sale. Platform-locked lighting and personal automation routines do not. Here is how Brisbane sellers should treat smart home features when listing." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

@@ -2,8 +2,38 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 export const publishDate = '2028-03-10';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does storage affect property value in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Storage is one of the most consistently scrutinised elements by buyers and one of the most undervalued by sellers. Homes with insufficient storage feel cramped almost immediately, even when the floor area is generous. Missing the storage benchmark in key areas like the master bedroom or kitchen can compound into a strong negative impression of the home overall. Adding built-in wardrobes to bedrooms that lack them typically costs $1,500 to $4,500 per room and almost always returns its cost at sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Brisbane buyers expect built-in wardrobes in all bedrooms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All bedrooms should have built-in wardrobes in Brisbane properties above the entry level. Freestanding wardrobes in secondary bedrooms feel like a workaround. The minimum buyers are looking for is around 1.5m wide with panel or mirror doors and an internal fit-out beyond a single rail. For the master bedroom in a four-bedroom family home, a walk-in robe is now the expected standard, or at minimum a wide built-in wardrobe with a quality fit-out. A master bedroom with no built-in storage is a meaningful negative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cheapest way to improve storage before listing a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cheapest improvement is decluttering. Storage that is overflowing reads as inadequate even when the dimensions are above standard. Buyers see contents, not capacity. Resetting wardrobes and pantries so each shelf is about two-thirds full lifts perceived capacity throughout the home. Beyond decluttering, cheap shelving inserts in bedrooms with poor wardrobes cost $150 to $400 each. Garage organisation with shelving or pegboards transforms a chaotic photograph. These are low-cost, high-impact changes well within any seller's pre-sale budget."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Storage in Brisbane Homes: Built-in Wardrobes, Walk-in Robes, and How Storage Affects Value | Daniel Gierach Property" description="Storage is one of the cheapest ways to lift perceived value before listing. Here is how built-in wardrobes, walk-in robes, pantries, and external storage shape buyer impressions in Brisbane.">
+<Layout title="Storage in Brisbane Homes: Built-in Wardrobes, Walk-in Robes, and How Storage Affects Value | Daniel Gierach Property" description="Storage is one of the cheapest ways to lift perceived value before listing. Here is how built-in wardrobes, walk-in robes, pantries, and external storage shape buyer impressions in Brisbane." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

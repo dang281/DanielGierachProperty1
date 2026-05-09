@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What access rights does a landlord have during a property sale in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the RTRA Act, a landlord must give the tenant at least 24 hours written notice for each inspection. Entry must occur between 8am and 6pm on a day that is not a Sunday or public holiday. The Act does not give a landlord unlimited access simply because the property is listed for sale. Each inspection requires its own compliant notice. Open homes require the tenant's separate written consent under section 204 and cannot proceed if the tenant refuses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I end a fixed-term lease to sell with vacant possession in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. If a tenant is on a fixed-term lease that has not yet ended, the owner cannot force the tenant out to sell. The lease runs to its end date. Realistic options are to sell with the tenant in place (subject to the existing tenancy), negotiate an early end by mutual agreement with the tenant, or wait for the fixed-term lease to expire before listing. A buyer who wants vacant possession cannot be given it if the tenant has a valid fixed-term lease extending beyond the settlement date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the financial difference between selling tenanted and selling with vacant possession in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In owner-occupier-dominated inner Brisbane suburbs like Camp Hill, Morningside, and Hawthorne, a tenanted sale will typically achieve 2 to 5 percent less than a vacant-possession sale. Owner-occupier buyers are unwilling to purchase a tenanted property at a comparable price. In suburbs with a stronger investor buyer pool, such as unit-dominated precincts, the gap is smaller. The retained rent during the campaign partially offsets the price difference but rarely fully covers it."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Selling a Tenanted Property in Queensland | What Landlords Need to Know | Daniel Gierach Property" description="Selling with tenants in residence in Queensland involves specific RTA obligations and timing decisions. Here's how to manage the campaign, the tenants, and the settlement.">
+<Layout title="Selling a Tenanted Property in Queensland | What Landlords Need to Know | Daniel Gierach Property" description="Selling with tenants in residence in Queensland involves specific RTA obligations and timing decisions. Here's how to manage the campaign, the tenants, and the settlement." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

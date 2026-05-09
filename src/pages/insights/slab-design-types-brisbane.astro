@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What type of slab do most Brisbane homes have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most post-war brick Brisbane homes and mid-tier 1970s to 2000s project homes have a conventional stiffened raft slab: a concrete slab with edge beams and integral footings, typically 100mm thick with 400 to 600mm perimeter beams. Waffle pod slabs became common from the early 2000s on house-and-land builds. Older pre-war homes typically have no slab at all, sitting on pier and stump construction. Some sloping sites use suspended slabs supported by walls, columns, or piers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does differential movement mean in a Brisbane building inspection report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Differential movement means different parts of the slab or structure are settling at different rates or in different directions. Common signs are diagonal step-cracking in brick cladding, cracks wider than 2mm, lintel cracks above doorways, or floor slopes. 'Differential movement between original slab and extension' means the two parts of the house have not been tied together correctly and are settling independently. Remediation cost ranges from minor crack sealing to significant underpinning depending on cause and severity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a waffle pod slab and how does it perform?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A waffle pod slab has polystyrene pods forming a grid of voids under the concrete, creating a rib-and-beam structure. It is quick to construct and requires minimal soil preparation, which is why it became popular from the early 2000s on house-and-land builds. It performs well on stable ground but is more sensitive to reactive or expansive soils. Extensions on existing waffle pod slabs require careful structural detailing to avoid movement cracking at the junction of old and new."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Slab Design Types: Waffle, Raft, Conventional, Suspended | Daniel Gierach Property" description="Brisbane slabs come in several types. How to identify yours, the typical cost of repair or modification, and what an inspection report means when it flags a slab issue.">
+<Layout title="Slab Design Types: Waffle, Raft, Conventional, Suspended | Daniel Gierach Property" description="Brisbane slabs come in several types. How to identify yours, the typical cost of repair or modification, and what an inspection report means when it flags a slab issue." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
