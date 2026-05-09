@@ -1,0 +1,763 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="True Cost to Buy Calculator"
+  tool="True Cost to Buy"
+  phase="Buyer Tools · Queensland"
+  description="The purchase price is one number. The total cost to buy is another. Add up every upfront cost before you commit."
+>
+
+<style>
+  .tcb-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .tcb-input:focus { border-color: var(--color-gold); }
+
+  .tcb-select {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2378716c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  .tcb-select:focus { border-color: var(--color-gold); }
+
+  .tcb-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .tcb-section {
+    background: var(--color-surface-3);
+    padding: 1.75rem 2rem;
+  }
+
+  .tcb-section-title {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .tcb-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(72,72,72,0.12);
+    gap: 1rem;
+  }
+  .tcb-row:last-child { border-bottom: none; }
+  .tcb-row-label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    flex: 1;
+    min-width: 0;
+  }
+  .tcb-row-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tcb-section-header-row {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.75rem 0 0.35rem;
+    border-bottom: none;
+  }
+
+  .tcb-divider {
+    height: 1px;
+    background: rgba(196,145,42,0.3);
+    margin: 0.75rem 0;
+  }
+
+  .tcb-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.65rem 0 0.2rem;
+    gap: 1rem;
+  }
+  .tcb-total-label {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    flex: 1;
+  }
+  .tcb-total-value {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-gold);
+    white-space: nowrap;
+  }
+
+  .tooltip-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(196,145,42,0.2);
+    color: var(--color-gold);
+    font-size: 0.6rem;
+    font-weight: 800;
+    cursor: help;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .tooltip-text {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1c1917;
+    color: rgba(240,236,228,0.9);
+    font-size: 0.7rem;
+    line-height: 1.5;
+    padding: 0.6rem 0.85rem;
+    white-space: normal;
+    width: 220px;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .tooltip-wrap:hover .tooltip-text,
+  .tooltip-wrap:focus-within .tooltip-text { display: block; }
+
+  .lmi-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin-top: 0.5rem;
+  }
+
+  .fhbg-flag {
+    display: none;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(168,230,163,0.08);
+    border-left: 3px solid #a8e6a3;
+  }
+  .fhbg-flag p { margin: 0; font-size: 0.78rem; color: var(--color-text-secondary); line-height: 1.65; }
+  .fhbg-flag-title { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #a8e6a3; display: block; margin-bottom: 0.3rem; }
+
+  .cash-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+  .cash-breakdown-row.total-line {
+    border-top: 1px solid rgba(72,72,72,0.2);
+    margin-top: 0.4rem;
+    padding-top: 0.6rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .editable-cost-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(72,72,72,0.12);
+  }
+  .editable-cost-row:last-child { border-bottom: none; }
+  .editable-cost-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .editable-cost-label {
+    flex: 1;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+  }
+  .editable-cost-input {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 110px;
+    flex-shrink: 0;
+    text-align: right;
+    box-sizing: border-box;
+  }
+  .editable-cost-input:focus { border-color: var(--color-gold); }
+
+  .deposit-slider-wrap {
+    margin-top: 0.75rem;
+  }
+  .deposit-display-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+  }
+  .deposit-pct-big {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+  }
+  .deposit-dollar {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+  .deposit-lvr {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .tcb-section { padding: 1.25rem 1.25rem; }
+    .tcb-total-value { font-size: 1.35rem; }
+  }
+</style>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+  <!-- LEFT: Inputs -->
+  <div class="lg:col-span-3 flex flex-col gap-5">
+
+    <!-- Purchase price -->
+    <div class="tcb-section">
+      <span class="tcb-section-title">Purchase Price</span>
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+        <span style="font-family:var(--font-sans);font-size:1rem;color:var(--color-text-muted);font-weight:600;">$</span>
+        <input type="number" id="tcb-price" class="tcb-input" value="750000" min="100000" max="10000000" step="10000"
+          style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;padding:0.5rem 0.75rem;border-width:0;border-bottom:2px solid rgba(28,25,23,0.2);background:transparent;width:100%;" />
+      </div>
+      <input type="range" id="tcb-price-slider" min="100000" max="5000000" step="10000" value="750000"
+        style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+      <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.62rem;color:var(--color-text-muted);">
+        <span>$100K</span><span>$5M</span>
+      </div>
+    </div>
+
+    <!-- Property type + Buyer type + Occupancy -->
+    <div class="tcb-section">
+      <span class="tcb-section-title">Property Details</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;">
+        <div>
+          <label class="tcb-label" for="tcb-property-type">Property Type</label>
+          <select id="tcb-property-type" class="tcb-select">
+            <option value="house">House / Townhouse</option>
+            <option value="unit">Unit / Apartment</option>
+          </select>
+        </div>
+        <div>
+          <label class="tcb-label" for="tcb-buyer-type">Buyer Type</label>
+          <select id="tcb-buyer-type" class="tcb-select">
+            <option value="fhb">First Home Buyer</option>
+            <option value="standard" selected>Standard Purchaser</option>
+            <option value="foreign">Foreign Investor</option>
+          </select>
+        </div>
+        <div>
+          <label class="tcb-label" for="tcb-occupancy">Purpose</label>
+          <select id="tcb-occupancy" class="tcb-select">
+            <option value="owner">Owner-occupier</option>
+            <option value="investor">Investor</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deposit / LVR -->
+    <div class="tcb-section">
+      <span class="tcb-section-title">Deposit</span>
+      <div class="deposit-display-row">
+        <div>
+          <span class="deposit-pct-big" id="deposit-pct-display">20%</span>
+          <span class="deposit-dollar" id="deposit-dollar-display"> = $150,000</span>
+        </div>
+        <span class="deposit-lvr" id="deposit-lvr-display" style="color:var(--color-text-muted);">LVR 80%</span>
+      </div>
+      <div class="deposit-slider-wrap">
+        <input type="range" id="tcb-deposit-pct" min="5" max="40" step="1" value="20"
+          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
+        <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.62rem;color:var(--color-text-muted);">
+          <span>5%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span>
+        </div>
+      </div>
+      <div id="lmi-applies-note" style="display:none;" class="lmi-note">
+        LMI applies. Your LVR is above 80% so the lender will require Lenders Mortgage Insurance. This cost is included in the breakdown below.
+      </div>
+      <div id="fhbg-flag" class="fhbg-flag">
+        <span class="fhbg-flag-title">First Home Guarantee (FHBG)</span>
+        <p>As a first home buyer with a 5% deposit, you may be eligible for the Federal Government's First Home Guarantee scheme, which lets you avoid LMI on a 5% deposit. Caps and eligibility conditions apply. Ask Daniel for details.</p>
+      </div>
+    </div>
+
+    <!-- Editable professional costs -->
+    <div class="tcb-section">
+      <span class="tcb-section-title">Professional Fees</span>
+      <div class="editable-cost-row">
+        <div class="editable-cost-inner">
+          <span class="editable-cost-label">
+            Legal / Conveyancing
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Average for a standard QLD purchase. Adjust if you have a quote.</span>
+            </span>
+          </span>
+          <input type="number" id="tcb-legal" class="editable-cost-input" value="1800" min="0" step="100" />
+        </div>
+      </div>
+      <div class="editable-cost-row">
+        <div class="editable-cost-inner">
+          <span class="editable-cost-label">
+            Building &amp; Pest Inspection
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Typical range $400 to $900 for Brisbane metro.</span>
+            </span>
+          </span>
+          <input type="number" id="tcb-inspection" class="editable-cost-input" value="600" min="0" step="50" />
+        </div>
+      </div>
+      <div class="editable-cost-row">
+        <div class="editable-cost-inner">
+          <span class="editable-cost-label">
+            Loan Establishment Fee
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Most lenders do not charge this on standard loans. Check your offer document.</span>
+            </span>
+          </span>
+          <input type="number" id="tcb-loan-fee" class="editable-cost-input" value="0" min="0" step="100" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Moving and setup costs -->
+    <div class="tcb-section">
+      <span class="tcb-section-title">Moving and Setup</span>
+      <div class="editable-cost-row">
+        <div class="editable-cost-inner">
+          <span class="editable-cost-label">Removalist / Moving Costs</span>
+          <input type="number" id="tcb-moving" class="editable-cost-input" value="2500" min="0" step="100" />
+        </div>
+      </div>
+      <div class="editable-cost-row">
+        <div class="editable-cost-inner">
+          <span class="editable-cost-label">
+            Rates and Body Corp Adjustment
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Allow for council rates and body corporate levies to be adjusted at settlement. Typically $500 to $2,500 depending on time of year.</span>
+            </span>
+          </span>
+          <input type="number" id="tcb-rates-adj" class="editable-cost-input" value="1500" min="0" step="100" />
+        </div>
+      </div>
+      <div class="editable-cost-row">
+        <div class="editable-cost-inner">
+          <span class="editable-cost-label">
+            Post-purchase Buffer
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Repairs, locks, urgent fixes, and small items in the first weeks. Defaults to 0.5% of purchase price.</span>
+            </span>
+          </span>
+          <input type="number" id="tcb-buffer" class="editable-cost-input" value="3750" min="0" step="100" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Results -->
+  <div class="lg:col-span-2">
+    <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+
+      <h2 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;letter-spacing:-0.01em;">
+        Settlement Statement
+      </h2>
+
+      <div id="tcb-breakdown"></div>
+
+      <!-- Total cash required -->
+      <div style="margin-top:1.25rem;padding:1.25rem;background:rgba(196,145,42,0.07);border-left:3px solid var(--color-gold);">
+        <div class="tcb-total-row">
+          <span class="tcb-total-label">Total Cash Required</span>
+          <span class="tcb-total-value" id="tcb-grand-total">$0</span>
+        </div>
+        <p id="tcb-costs-pct" style="font-size:0.72rem;color:var(--color-text-muted);margin:0.3rem 0 0;"></p>
+      </div>
+
+      <!-- Cash breakdown -->
+      <div id="tcb-cash-breakdown" style="margin-top:1.25rem;padding:1rem;background:rgba(72,72,72,0.06);"></div>
+
+      <!-- LMI capitalise note -->
+      <div id="tcb-lmi-capitalise" style="display:none;margin-top:0.75rem;padding:0.75rem 1rem;background:rgba(196,145,42,0.06);border-left:2px solid rgba(196,145,42,0.4);">
+        <p style="font-size:0.72rem;color:var(--color-text-secondary);line-height:1.6;margin:0;">LMI can often be capitalised into your loan rather than paid upfront. Check with your lender. Adding it to the loan increases your total debt and your repayments.</p>
+      </div>
+
+      <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
+        Estimate only. QLD transfer duty rates current as of 2025-26. Confirm all figures with your solicitor and the Queensland Revenue Office before exchange.
+      </p>
+
+      <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;display:flex;">
+        Book a Free Walk Through
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- What most buyers underestimate -->
+<div style="margin-top:4rem;max-width:680px;">
+  <h2 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;margin-bottom:2rem;border-bottom:1px solid rgba(72,72,72,0.15);padding-bottom:1rem;">
+    What most buyers underestimate
+  </h2>
+  <div style="display:flex;flex-direction:column;gap:1.5rem;">
+    <p style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;margin:0;">
+      Transfer duty is the largest variable cost in this calculator. It scales with purchase price and changes significantly depending on whether you qualify for first home buyer concessions. A standard purchaser buying at $750,000 pays roughly $24,000 in transfer duty. A first home buyer at the same price pays nothing. That gap is real money.
+    </p>
+    <p style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;margin:0;">
+      Lenders Mortgage Insurance is widely misunderstood. It protects the lender, not you. If you are borrowing more than 80% of the property value, you are paying a premium that insures the lender against the risk of you defaulting. At 90% LVR on a $750,000 purchase, that premium can exceed $11,000. It can be added to your loan, which means you are also paying interest on it for the life of the mortgage.
+    </p>
+    <p style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;margin:0;">
+      Legal and inspection costs are committed before you know whether a deal proceeds. A conveyancer's bill arrives at settlement whether or not the contract was straightforward. A building and pest report is paid at the time of inspection, before you have made any decision. Budget for both before you make an offer, not after.
+    </p>
+    <p style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;margin:0;">
+      The post-purchase buffer matters more than most buyers plan for. A property that cleared building inspection will still need locks changed on day one. Gardens need attention. Tap washers leak. Smoke alarms need new batteries at the worst time. The first months of ownership carry small costs that arrive in a cluster. Setting aside 0.5% of the purchase price is a reasonable starting point.
+    </p>
+  </div>
+</div>
+
+</ToolLayout>
+
+<script>
+  // ---- Formatters ----
+  function fmt(n: number): string {
+    return '$' + Math.round(n).toLocaleString('en-AU');
+  }
+  function fmtRaw(n: number): string {
+    return Math.round(n).toLocaleString('en-AU');
+  }
+
+  // ---- QLD Transfer Duty (standard/investor rate) ----
+  function calcBaseDuty(price: number): number {
+    if (price <= 5000)    return 0;
+    if (price <= 75000)   return (price - 5000) * 0.015;
+    if (price <= 540000)  return 1050  + (price - 75000)  * 0.035;
+    if (price <= 1000000) return 17325 + (price - 540000) * 0.045;
+    return 38025 + (price - 1000000) * 0.0575;
+  }
+
+  // ---- QLD Transfer Duty (home concession rate, owner-occupier non-FHB) ----
+  function calcHomeDuty(price: number): number {
+    if (price <= 350000)  return price * 0.01;
+    if (price <= 540000)  return 3500  + (price - 350000) * 0.035;
+    if (price <= 1000000) return 10150 + (price - 540000) * 0.045;
+    return 30850 + (price - 1000000) * 0.0575;
+  }
+
+  // ---- QLD Transfer Duty full calculation ----
+  interface DutyResult {
+    duty: number;
+    label: string;
+  }
+
+  function calcTransferDuty(price: number, buyerType: string, occupancy: string): DutyResult {
+    // Foreign investor: base rate + 8% surcharge on dutiable value
+    if (buyerType === 'foreign') {
+      const base = calcBaseDuty(price);
+      const surcharge = price * 0.08;
+      return { duty: base + surcharge, label: 'Transfer Duty (incl. 8% foreign surcharge)' };
+    }
+
+    // First Home Buyer
+    if (buyerType === 'fhb') {
+      // Full concession at or below $500k
+      if (price <= 500000) {
+        return { duty: 0, label: 'Transfer Duty (FHB full concession)' };
+      }
+      // Partial concession $500k to $550k: duty tapers from $0 to full home rate
+      if (price <= 550000) {
+        const homeDuty = calcHomeDuty(price);
+        // Linear taper: at $500k concession is 100%, at $550k concession is 0%
+        const concessionFraction = (550000 - price) / 50000;
+        const duty = homeDuty * (1 - concessionFraction);
+        return { duty: Math.max(0, duty), label: 'Transfer Duty (FHB partial concession)' };
+      }
+      // Above $550k: home concession rate (no FHB benefit)
+      return { duty: calcHomeDuty(price), label: 'Transfer Duty (home concession rate)' };
+    }
+
+    // Standard purchaser, owner-occupier: home concession rate
+    if (occupancy === 'owner') {
+      return { duty: calcHomeDuty(price), label: 'Transfer Duty (home concession)' };
+    }
+
+    // Standard purchaser, investor: base rate, no concession
+    return { duty: calcBaseDuty(price), label: 'Transfer Duty (investor rate)' };
+  }
+
+  // ---- LMI calculation ----
+  function calcLMI(price: number, depositPct: number): number {
+    const lvr = 100 - depositPct;
+    if (lvr <= 80) return 0;
+    const loanAmount = price * (lvr / 100);
+    if (lvr <= 85) return loanAmount * 0.0066;
+    if (lvr <= 90) return loanAmount * 0.0169;
+    if (lvr <= 95) return loanAmount * 0.0330;
+    // 95%+ not modelled; return -1 as sentinel
+    return -1;
+  }
+
+  // ---- Main calc ----
+  function calc(): void {
+    const priceInput      = document.getElementById('tcb-price')         as HTMLInputElement;
+    const buyerTypeEl     = document.getElementById('tcb-buyer-type')    as HTMLSelectElement;
+    const occupancyEl     = document.getElementById('tcb-occupancy')     as HTMLSelectElement;
+    const depositPctEl    = document.getElementById('tcb-deposit-pct')   as HTMLInputElement;
+    const legalEl         = document.getElementById('tcb-legal')         as HTMLInputElement;
+    const inspectionEl    = document.getElementById('tcb-inspection')    as HTMLInputElement;
+    const loanFeeEl       = document.getElementById('tcb-loan-fee')      as HTMLInputElement;
+    const movingEl        = document.getElementById('tcb-moving')        as HTMLInputElement;
+    const ratesAdjEl      = document.getElementById('tcb-rates-adj')     as HTMLInputElement;
+    const bufferEl        = document.getElementById('tcb-buffer')        as HTMLInputElement;
+
+    const price       = Math.max(0, Number(priceInput.value)    || 750000);
+    const buyerType   = buyerTypeEl.value;
+    const occupancy   = occupancyEl.value;
+    const depositPct  = Number(depositPctEl.value);
+    const legal       = Math.max(0, Number(legalEl.value)       || 0);
+    const inspection  = Math.max(0, Number(inspectionEl.value)  || 0);
+    const loanFee     = Math.max(0, Number(loanFeeEl.value)     || 0);
+    const moving      = Math.max(0, Number(movingEl.value)      || 0);
+    const ratesAdj    = Math.max(0, Number(ratesAdjEl.value)    || 0);
+    const buffer      = Math.max(0, Number(bufferEl.value)      || 0);
+
+    const depositAmt  = price * depositPct / 100;
+    const lvr         = 100 - depositPct;
+    const loanAmt     = price - depositAmt;
+
+    // Deposit display
+    const depositPctDisp  = document.getElementById('deposit-pct-display')!;
+    const depositDolDisp  = document.getElementById('deposit-dollar-display')!;
+    const depositLvrDisp  = document.getElementById('deposit-lvr-display')!;
+    depositPctDisp.textContent = `${depositPct}%`;
+    depositDolDisp.textContent = ` = ${fmt(depositAmt)}`;
+    depositLvrDisp.textContent = `LVR ${lvr}%`;
+    if (lvr > 80) {
+      (depositLvrDisp as HTMLElement).style.color = '#c0392b';
+    } else {
+      (depositLvrDisp as HTMLElement).style.color = 'var(--color-text-muted)';
+    }
+
+    // Sync number input to slider when slider moves (handled in event listeners)
+    // Sync slider to price input value
+    const priceSlider = document.getElementById('tcb-price-slider') as HTMLInputElement;
+    if (priceSlider) {
+      priceSlider.value = String(Math.min(Math.max(price, 100000), 5000000));
+    }
+
+    // LMI
+    const lmiRaw = calcLMI(price, depositPct);
+    const lmiOver95 = lmiRaw === -1;
+    const lmi = lmiOver95 ? 0 : lmiRaw;
+
+    const lmiNote    = document.getElementById('lmi-applies-note')!;
+    const lmiCapNote = document.getElementById('tcb-lmi-capitalise')!;
+    if (lvr > 80 && !lmiOver95) {
+      lmiNote.style.display = 'block';
+      lmiCapNote.style.display = 'block';
+    } else {
+      lmiNote.style.display = 'none';
+      lmiCapNote.style.display = 'none';
+    }
+
+    // FHBG flag: FHB, 5% deposit, price <= $900k (scheme cap)
+    const fhbgFlag = document.getElementById('fhbg-flag')!;
+    if (buyerType === 'fhb' && depositPct === 5 && price <= 900000) {
+      fhbgFlag.style.display = 'block';
+    } else {
+      fhbgFlag.style.display = 'none';
+    }
+
+    // Duty
+    const { duty, label: dutyLabel } = calcTransferDuty(price, buyerType, occupancy);
+
+    const MORTGAGE_REG = 204;
+
+    // Build breakdown
+    interface BreakdownItem {
+      group?: string;
+      label: string;
+      value: number | null;
+      note?: string;
+    }
+
+    const items: BreakdownItem[] = [
+      { group: 'PURCHASE COSTS', label: '', value: null },
+      { label: 'Purchase price', value: price },
+      { label: dutyLabel, value: duty },
+      { label: 'Mortgage registration', value: MORTGAGE_REG },
+      { label: 'Loan establishment fee', value: loanFee },
+      { label: 'Lenders Mortgage Insurance', value: lmiOver95 ? null : lmi, note: lmiOver95 ? 'LVR over 95% - not modelled' : undefined },
+
+      { group: 'PROFESSIONAL FEES', label: '', value: null },
+      { label: 'Legal / conveyancing', value: legal },
+      { label: 'Building and pest inspection', value: inspection },
+
+      { group: 'MOVING AND SETUP', label: '', value: null },
+      { label: 'Removalist', value: moving },
+      { label: 'Rates and body corp adjustment', value: ratesAdj },
+      { label: 'Post-purchase buffer', value: buffer },
+    ];
+
+    const breakdown = document.getElementById('tcb-breakdown')!;
+    let html = '';
+    items.forEach(item => {
+      if (item.group) {
+        html += `<div style="font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);padding:0.8rem 0 0.3rem;">${item.group}</div>`;
+        return;
+      }
+      if (item.value === null) {
+        // Show as N/A row
+        const noteText = item.note || '';
+        html += `
+          <div class="tcb-row">
+            <span class="tcb-row-label">${item.label}</span>
+            <span class="tcb-row-value" style="color:var(--color-text-muted);font-size:0.72rem;">${noteText}</span>
+          </div>`;
+        return;
+      }
+      const isZero = item.value === 0;
+      html += `
+        <div class="tcb-row">
+          <span class="tcb-row-label">${item.label}</span>
+          <span class="tcb-row-value" style="${isZero ? 'color:var(--color-text-muted);' : ''}">${fmt(item.value)}</span>
+        </div>`;
+    });
+    breakdown.innerHTML = html;
+
+    // Grand total
+    const costsAbovePrice = duty + MORTGAGE_REG + loanFee + lmi + legal + inspection + moving + ratesAdj + buffer;
+    const totalCashNeeded = depositAmt + costsAbovePrice;
+    const totalWithPrice  = price + costsAbovePrice;
+
+    const grandTotalEl   = document.getElementById('tcb-grand-total')!;
+    const costsPctEl     = document.getElementById('tcb-costs-pct')!;
+    grandTotalEl.textContent = fmt(totalCashNeeded);
+    const extraPct = price > 0 ? (costsAbovePrice / price) * 100 : 0;
+    costsPctEl.textContent = `Costs above purchase price add approximately ${extraPct.toFixed(1)}% of the purchase price`;
+
+    // Cash breakdown
+    const cashBreakdown = document.getElementById('tcb-cash-breakdown')!;
+    cashBreakdown.innerHTML = `
+      <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);margin:0 0 0.6rem;">Cash Breakdown</p>
+      <div class="cash-breakdown-row">
+        <span>Deposit (${depositPct}%)</span>
+        <span style="font-weight:600;">${fmt(depositAmt)}</span>
+      </div>
+      <div class="cash-breakdown-row">
+        <span>Costs above purchase price</span>
+        <span style="font-weight:600;">${fmt(costsAbovePrice)}</span>
+      </div>
+      <div class="cash-breakdown-row total-line">
+        <span>Total cash needed</span>
+        <span>${fmt(totalCashNeeded)}</span>
+      </div>
+      <div style="margin-top:0.75rem;padding-top:0.5rem;border-top:1px solid rgba(72,72,72,0.12);">
+        <div class="cash-breakdown-row" style="font-size:0.72rem;color:var(--color-text-muted);">
+          <span>Loan amount</span>
+          <span>${fmt(loanAmt)}</span>
+        </div>
+        <div class="cash-breakdown-row" style="font-size:0.72rem;color:var(--color-text-muted);">
+          <span>Total property cost (incl. costs)</span>
+          <span>${fmt(totalWithPrice)}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // ---- Event listeners ----
+  const priceInput  = document.getElementById('tcb-price')        as HTMLInputElement;
+  const priceSlider = document.getElementById('tcb-price-slider') as HTMLInputElement;
+  const depositSlider = document.getElementById('tcb-deposit-pct') as HTMLInputElement;
+  const bufferInput = document.getElementById('tcb-buffer')       as HTMLInputElement;
+
+  // Keep price input and slider in sync
+  priceInput.addEventListener('input', () => {
+    const v = Number(priceInput.value) || 750000;
+    priceSlider.value = String(Math.min(Math.max(v, 100000), 5000000));
+    // Auto-update buffer to 0.5% of price
+    bufferInput.value = String(Math.round(v * 0.005));
+    calc();
+  });
+  priceSlider.addEventListener('input', () => {
+    priceInput.value = priceSlider.value;
+    bufferInput.value = String(Math.round(Number(priceSlider.value) * 0.005));
+    calc();
+  });
+
+  depositSlider.addEventListener('input', calc);
+
+  document.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+    '#tcb-buyer-type, #tcb-occupancy, #tcb-property-type, #tcb-legal, #tcb-inspection, #tcb-loan-fee, #tcb-moving, #tcb-rates-adj, #tcb-buffer'
+  ).forEach(el => el.addEventListener('input', calc));
+
+  // Initial render
+  calc();
+</script>

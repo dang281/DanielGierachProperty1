@@ -1,0 +1,1152 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Federal Budget 2026: Property Scenario Calculator"
+  description="Model the financial impact of proposed 2026 Federal Budget changes to negative gearing, CGT discounts, and the Help to Buy scheme. Indicative figures only."
+  tool="Federal Budget 2026 Calculator"
+  phase="Investor Tools"
+>
+
+<style is:global>
+  /* ── Shared card / section styles ─────────── */
+  .fb-card {
+    background: var(--color-surface-3);
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .fb-section-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Disclaimer box ────────────────────────── */
+  .fb-disclaimer {
+    padding: 1.1rem 1.4rem;
+    border: 1.5px solid rgba(196,145,42,0.45);
+    background: rgba(196,145,42,0.05);
+    margin-bottom: 2rem;
+  }
+  .fb-disclaimer p {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .fb-disclaimer strong { color: var(--color-text-primary); }
+
+  /* ── Section divider ───────────────────────── */
+  .fb-section-divider {
+    border: none;
+    border-top: 1px solid rgba(28,25,23,0.1);
+    margin: 2.5rem 0;
+  }
+
+  /* ── Section heading row ───────────────────── */
+  .fb-section-heading {
+    margin-bottom: 1.5rem;
+  }
+  .fb-section-heading h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0 0 0.35rem;
+    letter-spacing: -0.01em;
+  }
+  .fb-section-heading p {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.65;
+    max-width: 64ch;
+  }
+
+  /* ── Input rows ─────────────────────────────── */
+  .fb-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.07);
+    gap: 0.75rem;
+  }
+  .fb-row:last-child { border-bottom: none; }
+  .fb-row label {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .fb-row label small {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+    margin-top: 0.15rem;
+    line-height: 1.4;
+  }
+
+  /* ── Inputs ─────────────────────────────────── */
+  .fb-input {
+    width: 140px;
+    text-align: right;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: var(--color-surface-4);
+    border: 1.5px solid rgba(28,25,23,0.12);
+    padding: 0.45rem 0.75rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .fb-input:focus { border-color: var(--color-gold); }
+
+  .fb-input-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .fb-input-wrap .fb-prefix {
+    position: absolute;
+    left: 0.6rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+  .fb-input-wrap .fb-input { padding-left: 1.5rem; }
+
+  .fb-select {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: var(--color-surface-4);
+    border: 1.5px solid rgba(28,25,23,0.12);
+    padding: 0.45rem 2rem 0.45rem 0.75rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-color: var(--color-surface-4);
+    flex-shrink: 0;
+  }
+  .fb-select:focus { border-color: var(--color-gold); }
+
+  /* Checkbox row */
+  .fb-check-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.07);
+  }
+  .fb-check-row:last-child { border-bottom: none; }
+  .fb-check-row label {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    user-select: none;
+  }
+  .fb-check-row input[type="checkbox"] {
+    accent-color: var(--color-gold);
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  /* ── Three-column comparison table ─────────── */
+  .fb-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(28,25,23,0.1);
+    margin-top: 1rem;
+  }
+  @media (max-width: 600px) {
+    .fb-compare { grid-template-columns: 1fr; }
+  }
+  .fb-compare-col {
+    background: var(--color-surface-3);
+    padding: 1.1rem;
+    text-align: center;
+  }
+  .fb-compare-col.current {
+    background: rgba(197,160,60,0.06);
+  }
+  .fb-compare-col.worst {
+    background: rgba(192,57,43,0.03);
+  }
+  .fb-col-label {
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .fb-col-label.highlight { color: var(--color-gold); }
+  .fb-col-val {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+    display: block;
+  }
+  .fb-col-val.red { color: #c0392b; }
+  .fb-col-sub {
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+    margin-top: 0.3rem;
+    line-height: 1.45;
+  }
+  .fb-col-diff {
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-top: 0.4rem;
+    display: block;
+  }
+  .fb-col-diff.worse { color: #c0392b; }
+  .fb-col-diff.same  { color: var(--color-text-muted); }
+
+  /* ── Line items ─────────────────────────────── */
+  .fb-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(28,25,23,0.07);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    gap: 0.5rem;
+  }
+  .fb-line:last-child { border-bottom: none; }
+  .fb-line .val {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    white-space: nowrap;
+  }
+  .fb-line.total {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-text-primary);
+    border-top: 1.5px solid rgba(28,25,23,0.15);
+    padding-top: 0.65rem;
+    margin-top: 0.2rem;
+    border-bottom: none;
+  }
+  .fb-line.total .val { color: var(--color-gold); font-size: 0.95rem; }
+  .fb-line.saving .val { color: #4a9e4a; }
+  .fb-line.loss-line .val { color: #c0392b; }
+
+  /* ── Alert / note boxes ─────────────────────── */
+  .fb-alert {
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid var(--color-gold);
+    background: rgba(197,160,60,0.06);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .fb-alert strong { color: var(--color-text-primary); }
+  .fb-warn {
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid #c0392b;
+    background: rgba(192,57,43,0.05);
+    font-size: 0.78rem;
+    color: #c0392b;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+  .fb-note {
+    padding: 0.75rem 0.9rem;
+    background: rgba(197,160,60,0.04);
+    border: 1px solid rgba(197,160,60,0.13);
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-top: 0.75rem;
+  }
+  .fb-note strong { color: var(--color-text-primary); }
+
+  /* ── Eligibility badge ──────────────────────── */
+  .fb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+  .fb-badge.eligible   { background: rgba(74,158,74,0.1); color: #4a9e4a; border: 1px solid rgba(74,158,74,0.3); }
+  .fb-badge.ineligible { background: rgba(192,57,43,0.07); color: #c0392b; border: 1px solid rgba(192,57,43,0.2); }
+
+  /* ── Result sub-heading ─────────────────────── */
+  .fb-result-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .fb-result-value {
+    font-family: var(--font-serif);
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1;
+  }
+  .fb-result-value.gold { color: var(--color-gold); }
+  .fb-result-sub {
+    font-size: 0.71rem;
+    color: var(--color-text-muted);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+
+  /* ── Layout grid ────────────────────────────── */
+  .fb-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 700px) {
+    .fb-two-col { grid-template-columns: 1fr; }
+  }
+
+  /* Assumptions */
+  .fb-assumptions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .fb-assumptions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.71rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+  .fb-assumptions li::before {
+    content: '·';
+    color: var(--color-gold);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+</style>
+
+<!-- ══ TOP DISCLAIMER ═════════════════════════════════════════════ -->
+<div class="fb-disclaimer" style="margin-top:2rem;">
+  <p>
+    <strong>Important:</strong> These proposals were announced ahead of the May 12, 2026 Federal Budget.
+    Nothing below is law until legislation passes parliament. Treat all figures as indicative modelling only.
+    Speak to a qualified accountant before making any decisions.
+  </p>
+</div>
+
+
+<!-- ══ SECTION 1: NEGATIVE GEARING ═══════════════════════════════ -->
+<div class="fb-section-heading">
+  <span class="fb-section-title">Section 1</span>
+  <h2>Negative Gearing Impact Calculator</h2>
+  <p>
+    Currently, losses from investment properties can offset any personal income. The proposed change would
+    quarantine losses from a third or more properties so they can only offset rental income, not wages or
+    salary. An expected start date of around July 2027 has been flagged, but nothing is confirmed.
+  </p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;" class="fb-ng-grid">
+  <!-- Inputs -->
+  <div class="fb-card" style="margin-bottom:0;">
+    <span class="fb-section-title">Your details</span>
+
+    <div class="fb-row">
+      <label>Number of investment properties<small>Properties you own or are modelling</small></label>
+      <select id="ng-num-props" class="fb-select">
+        <option value="1">1 property</option>
+        <option value="2">2 properties</option>
+        <option value="3" selected>3 properties</option>
+        <option value="4">4 properties</option>
+        <option value="5">5 properties</option>
+        <option value="6">6 or more</option>
+      </select>
+    </div>
+
+    <div class="fb-row">
+      <label>Total annual gross rental income<small>Rent received across all properties</small></label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="ng-income" class="fb-input" value="52,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row">
+      <label>Total annual deductible expenses<small>Interest, rates, insurance, repairs, depreciation</small></label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="ng-expenses" class="fb-input" value="74,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row" style="border-bottom:none;">
+      <label>Your marginal tax rate<small>Including 2% Medicare Levy</small></label>
+      <select id="ng-tax-rate" class="fb-select">
+        <option value="0">0% (under $18,200)</option>
+        <option value="0.21">21% ($18,201 to $45,000)</option>
+        <option value="0.345" selected>34.5% ($45,001 to $120,000)</option>
+        <option value="0.39">39% ($120,001 to $180,000)</option>
+        <option value="0.47">47% ($180,001+)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Net position summary -->
+  <div class="fb-card" style="margin-bottom:0;">
+    <span class="fb-section-title">Your current position</span>
+    <div id="ng-position-box">
+      <div style="margin-bottom:1.1rem;">
+        <span class="fb-result-label">Total rental income</span>
+        <span class="fb-result-value" id="ng-disp-income">$52,000</span>
+      </div>
+      <div style="margin-bottom:1.1rem;">
+        <span class="fb-result-label">Total deductible expenses</span>
+        <span class="fb-result-value" id="ng-disp-expenses">$74,000</span>
+      </div>
+      <div>
+        <span class="fb-result-label">Net position (income minus expenses)</span>
+        <span class="fb-result-value gold" id="ng-disp-net">-$22,000</span>
+        <p class="fb-result-sub" id="ng-net-label">Negatively geared</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  @media (max-width: 700px) {
+    .fb-ng-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- Three scenario columns -->
+<div style="margin-top:1.5rem;">
+  <div class="fb-compare" id="ng-compare">
+    <!-- Col 1: Current law -->
+    <div class="fb-compare-col current">
+      <span class="fb-col-label highlight">Current law</span>
+      <span class="fb-col-val" id="ng-cur-benefit">$7,590</span>
+      <p class="fb-col-sub">Annual tax benefit (full loss offsets personal income)</p>
+      <span class="fb-col-diff same" id="ng-cur-oop">Net cost: $14,410 / yr</span>
+    </div>
+    <!-- Col 2: 2-property cap -->
+    <div class="fb-compare-col">
+      <span class="fb-col-label">Proposed: 2-property cap</span>
+      <span class="fb-col-val" id="ng-cap-benefit">$7,590</span>
+      <p class="fb-col-sub">Tax benefit (losses from 3rd+ property quarantined)</p>
+      <span class="fb-col-diff" id="ng-cap-oop">Net cost: $14,410 / yr</span>
+    </div>
+    <!-- Col 3: Full abolition -->
+    <div class="fb-compare-col worst">
+      <span class="fb-col-label">Scenario: Full abolition</span>
+      <span class="fb-col-val red" id="ng-abol-benefit">$0</span>
+      <p class="fb-col-sub">No losses offset personal income at all</p>
+      <span class="fb-col-diff worse" id="ng-abol-oop">Net cost: $22,000 / yr</span>
+    </div>
+  </div>
+</div>
+
+<div class="fb-card" style="margin-top:1rem;">
+  <span class="fb-section-title">Impact summary</span>
+  <div class="fb-line">
+    <span>Under current law: annual tax benefit</span>
+    <span class="val" id="ng-sum-cur">$7,590</span>
+  </div>
+  <div class="fb-line">
+    <span>Under 2-property cap: annual tax benefit</span>
+    <span class="val" id="ng-sum-cap">$7,590</span>
+  </div>
+  <div class="fb-line">
+    <span>Annual difference (current vs. 2-property cap)</span>
+    <span class="val loss-line" id="ng-sum-diff-cap">$0</span>
+  </div>
+  <div class="fb-line total">
+    <span>Cost increase if gearing fully abolished</span>
+    <span class="val" id="ng-sum-diff-abol">$7,590 / year more</span>
+  </div>
+</div>
+
+<div id="ng-note-no-impact" class="fb-alert" style="display:none;">
+  <strong>No impact on your situation.</strong> With 1 or 2 properties, the proposed 2-property cap does not
+  affect your negative gearing deductions under the current proposal. Only a full abolition scenario would change your position.
+</div>
+
+<div class="fb-note">
+  <ul class="fb-assumptions">
+    <li>Losses split evenly across properties for the quarantine calculation.</li>
+    <li>The 2-property cap quarantines losses from properties 3 and above. Those losses can still offset future rental profits from those same properties.</li>
+    <li>Marginal rates: 0%, 21% (19%+ML), 34.5% (32.5%+ML), 39% (37%+ML), 47% (45%+ML).</li>
+    <li>Proposed effective date approximately July 2027. No legislation has passed.</li>
+  </ul>
+</div>
+
+<hr class="fb-section-divider">
+
+
+<!-- ══ SECTION 2: CGT IMPACT ══════════════════════════════════════ -->
+<div class="fb-section-heading">
+  <span class="fb-section-title">Section 2</span>
+  <h2>Capital Gains Tax Impact Calculator</h2>
+  <p>
+    Currently, assets held for more than 12 months attract a 50% CGT discount. Two proposals have been flagged:
+    Option A reduces the discount to 25%, Option B to 33%. Gains accrued before budget night (May 12, 2026)
+    are expected to be grandfathered at the existing 50% discount rate.
+  </p>
+</div>
+
+<div class="fb-two-col" style="align-items:start;">
+  <!-- Inputs -->
+  <div class="fb-card" style="margin-bottom:0;">
+    <span class="fb-section-title">Property details</span>
+
+    <div class="fb-row">
+      <label>Purchase price</label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="cgt-purchase" class="fb-input" value="600,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row">
+      <label>Purchase timing<small>Was it bought before or after budget night?</small></label>
+      <select id="cgt-timing" class="fb-select">
+        <option value="pre" selected>Before May 12, 2026</option>
+        <option value="post">On or after May 12, 2026</option>
+      </select>
+    </div>
+
+    <div class="fb-row">
+      <label>Sale price<small>Expected or actual sale price</small></label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="cgt-sale" class="fb-input" value="950,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row">
+      <label>Held for 12+ months?<small>Required for any CGT discount to apply</small></label>
+      <select id="cgt-held" class="fb-select">
+        <option value="yes" selected>Yes, held 12+ months</option>
+        <option value="no">No, held under 12 months</option>
+      </select>
+    </div>
+
+    <div class="fb-row" style="border-bottom:none;">
+      <label>Your marginal tax rate<small>Including 2% Medicare Levy</small></label>
+      <select id="cgt-tax-rate" class="fb-select">
+        <option value="0">0% (under $18,200)</option>
+        <option value="0.21">21% ($18,201 to $45,000)</option>
+        <option value="0.345" selected>34.5% ($45,001 to $120,000)</option>
+        <option value="0.39">39% ($120,001 to $180,000)</option>
+        <option value="0.47">47% ($180,001+)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Raw gain summary -->
+  <div class="fb-card" style="margin-bottom:0;">
+    <span class="fb-section-title">Capital gain</span>
+    <div style="margin-bottom:1.1rem;">
+      <span class="fb-result-label">Total capital gain</span>
+      <span class="fb-result-value" id="cgt-disp-gain">$350,000</span>
+    </div>
+    <div id="cgt-timing-note" class="fb-alert" style="margin-bottom:0;">
+      <strong>Pre-budget purchase:</strong> Because you bought before May 12, 2026, gains accrued
+      up to budget night are expected to be grandfathered at the 50% discount. Gains from budget night
+      forward would be subject to the new, lower discount rate.
+    </div>
+    <div id="cgt-post-note" class="fb-alert" style="display:none;margin-bottom:0;">
+      <strong>Post-budget purchase:</strong> The full gain falls under any new discount rate. No
+      grandfathering applies.
+    </div>
+  </div>
+</div>
+
+<!-- Three scenario columns -->
+<div style="margin-top:1.5rem;">
+  <div class="fb-compare" id="cgt-compare">
+    <div class="fb-compare-col current">
+      <span class="fb-col-label highlight">Current: 50% discount</span>
+      <span class="fb-col-val" id="cgt-cur-taxable">$175,000</span>
+      <p class="fb-col-sub">Taxable capital gain</p>
+      <span class="fb-col-diff same" id="cgt-cur-tax">CGT payable: $60,375</span>
+    </div>
+    <div class="fb-compare-col">
+      <span class="fb-col-label">Option A: 25% discount</span>
+      <span class="fb-col-val" id="cgt-a-taxable">$262,500</span>
+      <p class="fb-col-sub">Taxable capital gain</p>
+      <span class="fb-col-diff worse" id="cgt-a-tax">CGT payable: $90,563</span>
+    </div>
+    <div class="fb-compare-col">
+      <span class="fb-col-label">Option B: 33% discount</span>
+      <span class="fb-col-val" id="cgt-b-taxable">$234,500</span>
+      <p class="fb-col-sub">Taxable capital gain</p>
+      <span class="fb-col-diff worse" id="cgt-b-tax">CGT payable: $80,903</span>
+    </div>
+  </div>
+</div>
+
+<div class="fb-card" style="margin-top:1rem;">
+  <span class="fb-section-title">Dollar difference at a glance</span>
+  <div class="fb-line">
+    <span>CGT payable: current law (50% discount)</span>
+    <span class="val" id="cgt-sum-cur">$60,375</span>
+  </div>
+  <div class="fb-line">
+    <span>CGT payable: Option A (25% discount)</span>
+    <span class="val" id="cgt-sum-a">$90,563</span>
+  </div>
+  <div class="fb-line">
+    <span>Extra tax under Option A vs. current</span>
+    <span class="val loss-line" id="cgt-sum-diff-a">$30,188</span>
+  </div>
+  <div class="fb-line">
+    <span>CGT payable: Option B (33% discount)</span>
+    <span class="val" id="cgt-sum-b">$80,903</span>
+  </div>
+  <div class="fb-line total">
+    <span>Extra tax under Option B vs. current</span>
+    <span class="val" id="cgt-sum-diff-b">$20,528</span>
+  </div>
+</div>
+
+<div id="cgt-no-discount" class="fb-warn" style="display:none;">
+  Because the property was held for less than 12 months, no CGT discount applies under any scenario. The full
+  capital gain is taxed at your marginal rate.
+</div>
+
+<div class="fb-note">
+  <ul class="fb-assumptions">
+    <li>For pre-budget purchases, gains are assumed to accrue evenly over a notional holding period.
+        The grandfathered portion (pre-budget night) retains the 50% discount. The remainder is split pro-rata
+        and shown under the new discount. This is a simplification: your accountant will calculate the exact split.</li>
+    <li>No main residence exemption modelled here. If this is your home, you may be fully exempt.</li>
+    <li>No state land tax, stamp duty, or selling costs included.</li>
+    <li>No legislation has passed. Discount rates are as proposed ahead of the May 12, 2026 budget.</li>
+  </ul>
+</div>
+
+<hr class="fb-section-divider">
+
+
+<!-- ══ SECTION 3: HELP TO BUY ════════════════════════════════════ -->
+<div class="fb-section-heading">
+  <span class="fb-section-title">Section 3</span>
+  <h2>Help to Buy Eligibility Check</h2>
+  <p>
+    The Help to Buy scheme allows the federal government to co-invest in your property: 40% of the purchase
+    price for new builds, 30% for existing properties. You need only a 2% deposit. Around 10,000 places
+    are available each year. Income caps are approximately $100,000 for singles and $160,000 for couples
+    (expected to increase before the scheme launches).
+  </p>
+</div>
+
+<div class="fb-two-col" style="align-items:start;">
+  <div class="fb-card" style="margin-bottom:0;">
+    <span class="fb-section-title">Your details</span>
+
+    <div class="fb-row">
+      <label>Gross annual household income<small>Before tax, all applicants combined</small></label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="h2b-income" class="fb-input" value="85,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row">
+      <label>Number of applicants<small>Single or couple/joint</small></label>
+      <select id="h2b-applicants" class="fb-select">
+        <option value="1" selected>1 (single)</option>
+        <option value="2">2 (couple / joint)</option>
+      </select>
+    </div>
+
+    <div class="fb-row">
+      <label>Target purchase price<small>Property you want to buy</small></label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="h2b-price" class="fb-input" value="650,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row">
+      <label>Available deposit ($)<small>Cash savings you can contribute</small></label>
+      <div class="fb-input-wrap">
+        <span class="fb-prefix">$</span>
+        <input type="text" id="h2b-deposit" class="fb-input" value="20,000" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="fb-row">
+      <label>Property type</label>
+      <select id="h2b-prop-type" class="fb-select">
+        <option value="existing" selected>Existing property</option>
+        <option value="new">New build</option>
+      </select>
+    </div>
+
+    <div class="fb-check-row" style="border-bottom:none;margin-top:0.25rem;">
+      <input type="checkbox" id="h2b-fhb" checked>
+      <label for="h2b-fhb">I am a first home buyer or do not currently own property</label>
+    </div>
+  </div>
+
+  <!-- Results panel -->
+  <div class="fb-card" style="margin-bottom:0;" id="h2b-results">
+    <span class="fb-section-title">Eligibility result</span>
+
+    <div id="h2b-eligible-block">
+      <span class="fb-badge eligible" id="h2b-badge">Likely eligible</span>
+
+      <div class="fb-line" style="margin-top:0.25rem;">
+        <span>Purchase price</span>
+        <span class="val" id="h2b-r-price">$650,000</span>
+      </div>
+      <div class="fb-line">
+        <span>Government equity contribution</span>
+        <span class="val saving" id="h2b-r-govt">$195,000 (30%)</span>
+      </div>
+      <div class="fb-line">
+        <span>Your deposit</span>
+        <span class="val" id="h2b-r-deposit">$20,000</span>
+      </div>
+      <div class="fb-line total">
+        <span>Your loan amount</span>
+        <span class="val" id="h2b-r-loan">$435,000</span>
+      </div>
+
+      <div style="margin-top:1rem;">
+        <span class="fb-result-label">Estimated monthly repayment</span>
+        <span class="fb-result-value gold" id="h2b-r-repayment">$2,329</span>
+        <p class="fb-result-sub">P&amp;I, 6% rate, 30-year term, on reduced loan amount</p>
+      </div>
+
+      <div id="h2b-deposit-warn" class="fb-warn" style="display:none;margin-top:0.85rem;">
+        Your deposit is below the minimum 2% of the purchase price required under the scheme.
+      </div>
+    </div>
+
+    <div id="h2b-ineligible-block" style="display:none;">
+      <span class="fb-badge ineligible">Not eligible</span>
+      <div id="h2b-fail-reasons" style="margin-top:0.5rem;">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fb-note" style="margin-top:1rem;">
+  <ul class="fb-assumptions">
+    <li>Income caps: $100,000 single / $160,000 couple. These are expected to be revised upward before the scheme opens.</li>
+    <li>Government equity: 40% for new builds, 30% for existing properties.</li>
+    <li>Minimum deposit: 2% of purchase price.</li>
+    <li>Repayment estimate uses a 6% annual interest rate over 30 years (P&amp;I). Actual rate will depend on your lender.</li>
+    <li>You will need to repay the government's equity share when you sell or refinance. The government's share grows or shrinks with property values.</li>
+    <li>Around 10,000 places are available each year nationally. Demand is expected to exceed supply.</li>
+    <li>Help to Buy has not yet passed parliament. Treat eligibility checks as indicative only.</li>
+  </ul>
+</div>
+
+<hr class="fb-section-divider">
+
+
+<!-- ══ BOTTOM DISCLAIMER ════════════════════════════════════════ -->
+<div class="fb-disclaimer">
+  <p>
+    <strong>Reminder:</strong> The negative gearing cap, CGT discount changes, and Help to Buy scheme described
+    above are budget proposals only. Nothing is law until legislation passes both houses of parliament. Figures
+    produced by this calculator are indicative modelling based on publicly available proposal details. They do
+    not constitute financial, tax, or legal advice. Speak to a qualified accountant or financial adviser before
+    making any investment, sale, or purchase decisions.
+  </p>
+</div>
+
+
+<!-- ══ JAVASCRIPT ══════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── Helpers ─────────────────────────────────────────────────── */
+
+  function parseNum(str: string): number {
+    return parseFloat((str || '0').replace(/[^0-9.-]/g, '')) || 0;
+  }
+
+  function fmt(n: number, decimals: number = 0): string {
+    if (isNaN(n)) return '$0';
+    const abs = Math.abs(n);
+    const formatted = abs.toLocaleString('en-AU', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+    return (n < 0 ? '-$' : '$') + formatted;
+  }
+
+  function fmtPlain(n: number): string {
+    return fmt(Math.abs(n));
+  }
+
+  /* Allow only digits in $ inputs, format on blur */
+  function bindDollarInput(id: string, onUpdate: () => void) {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return;
+    el.addEventListener('input', function () {
+      onUpdate();
+    });
+    el.addEventListener('blur', function () {
+      const val = parseNum(el.value);
+      el.value = val > 0 ? val.toLocaleString('en-AU') : '0';
+      onUpdate();
+    });
+  }
+
+  function bindSelect(id: string, onUpdate: () => void) {
+    const el = document.getElementById(id) as HTMLSelectElement | null;
+    if (!el) return;
+    el.addEventListener('change', onUpdate);
+  }
+
+  function setText(id: string, text: string) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  function show(id: string, visible: boolean) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = visible ? '' : 'none';
+  }
+
+  function setClass(id: string, className: string, add: boolean) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (add) el.classList.add(className);
+    else el.classList.remove(className);
+  }
+
+
+  /* ════════════════════════════════════════════
+     SECTION 1: NEGATIVE GEARING
+  ════════════════════════════════════════════ */
+
+  function calcNG() {
+    const numProps = parseInt((document.getElementById('ng-num-props') as HTMLSelectElement).value, 10) || 1;
+    const income   = parseNum((document.getElementById('ng-income') as HTMLInputElement).value);
+    const expenses = parseNum((document.getElementById('ng-expenses') as HTMLInputElement).value);
+    const taxRate  = parseFloat((document.getElementById('ng-tax-rate') as HTMLSelectElement).value) || 0;
+
+    const netLoss = income - expenses; // negative = loss
+    const totalLoss = Math.max(-netLoss, 0); // loss amount (positive number)
+
+    /* Display position */
+    setText('ng-disp-income',   fmt(income));
+    setText('ng-disp-expenses', fmt(expenses));
+    setText('ng-disp-net',      fmt(netLoss));
+
+    const netLabel = document.getElementById('ng-net-label');
+    if (netLabel) {
+      if (netLoss < 0) {
+        netLabel.textContent = 'Negatively geared';
+        netLabel.style.color = 'var(--color-gold)';
+      } else if (netLoss === 0) {
+        netLabel.textContent = 'Neutral cash flow';
+        netLabel.style.color = 'var(--color-text-muted)';
+      } else {
+        netLabel.textContent = 'Positively geared';
+        netLabel.style.color = '#4a9e4a';
+      }
+    }
+
+    /* Current law: full loss offsets personal income */
+    const curBenefit = totalLoss * taxRate;
+    const curOop     = totalLoss - curBenefit;
+
+    /* 2-property cap: losses from 3rd+ property quarantined */
+    let capLoss = 0;
+    if (numProps <= 2) {
+      capLoss = totalLoss; // no change
+    } else {
+      /* assume losses split evenly across all properties */
+      const lossPerProp = numProps > 0 ? totalLoss / numProps : 0;
+      capLoss = lossPerProp * 2; // only first 2 properties deductible
+    }
+    const capBenefit = capLoss * taxRate;
+    const capOop     = totalLoss - capBenefit;
+
+    /* Full abolition: no personal income offset */
+    const abolBenefit = 0;
+    const abolOop     = totalLoss;
+
+    /* Update columns */
+    setText('ng-cur-benefit',  fmt(curBenefit));
+    const curOopEl = document.getElementById('ng-cur-oop');
+    if (curOopEl) curOopEl.textContent = 'Net cost: ' + fmt(curOop) + ' / yr';
+
+    setText('ng-cap-benefit',  fmt(capBenefit));
+    const capOopEl = document.getElementById('ng-cap-oop');
+    if (capOopEl) {
+      capOopEl.textContent = 'Net cost: ' + fmt(capOop) + ' / yr';
+      capOopEl.className = 'fb-col-diff' + (capBenefit < curBenefit ? ' worse' : ' same');
+    }
+
+    setText('ng-abol-benefit', fmt(abolBenefit));
+    const abolOopEl = document.getElementById('ng-abol-oop');
+    if (abolOopEl) abolOopEl.textContent = 'Net cost: ' + fmt(abolOop) + ' / yr';
+
+    /* Summary lines */
+    const diffCap  = curBenefit - capBenefit;
+    const diffAbol = curBenefit - abolBenefit;
+
+    setText('ng-sum-cur',       fmt(curBenefit));
+    setText('ng-sum-cap',       fmt(capBenefit));
+    setText('ng-sum-diff-cap',  diffCap > 0 ? '-' + fmtPlain(diffCap) + ' less benefit' : 'No change');
+    setText('ng-sum-diff-abol', fmtPlain(diffAbol) + ' / year more');
+
+    /* No-impact note */
+    show('ng-note-no-impact', numProps <= 2);
+  }
+
+  bindDollarInput('ng-income',   calcNG);
+  bindDollarInput('ng-expenses', calcNG);
+  bindSelect('ng-num-props', calcNG);
+  bindSelect('ng-tax-rate',  calcNG);
+  calcNG();
+
+
+  /* ════════════════════════════════════════════
+     SECTION 2: CGT
+  ════════════════════════════════════════════ */
+
+  function calcCGT() {
+    const purchase = parseNum((document.getElementById('cgt-purchase') as HTMLInputElement).value);
+    const sale     = parseNum((document.getElementById('cgt-sale') as HTMLInputElement).value);
+    const timing   = (document.getElementById('cgt-timing') as HTMLSelectElement).value;
+    const held     = (document.getElementById('cgt-held') as HTMLSelectElement).value;
+    const taxRate  = parseFloat((document.getElementById('cgt-tax-rate') as HTMLSelectElement).value) || 0;
+
+    const totalGain = sale - purchase;
+    setText('cgt-disp-gain', fmt(totalGain));
+
+    /* Show/hide timing notes */
+    show('cgt-timing-note', timing === 'pre');
+    show('cgt-post-note',   timing === 'post');
+
+    /* No-discount path */
+    const noDiscount = held === 'no';
+    show('cgt-no-discount', noDiscount && totalGain > 0);
+
+    if (totalGain <= 0) {
+      /* Capital loss: no CGT in any scenario */
+      setText('cgt-cur-taxable', fmt(0));
+      setText('cgt-a-taxable',   fmt(0));
+      setText('cgt-b-taxable',   fmt(0));
+      const noCgt = 'CGT payable: $0 (capital loss or no gain)';
+      const curTaxEl = document.getElementById('cgt-cur-tax');
+      const aTaxEl   = document.getElementById('cgt-a-tax');
+      const bTaxEl   = document.getElementById('cgt-b-tax');
+      if (curTaxEl) curTaxEl.textContent = noCgt;
+      if (aTaxEl)   aTaxEl.textContent   = noCgt;
+      if (bTaxEl)   bTaxEl.textContent   = noCgt;
+      setText('cgt-sum-cur', '$0');
+      setText('cgt-sum-a',   '$0');
+      setText('cgt-sum-b',   '$0');
+      setText('cgt-sum-diff-a', '$0');
+      setText('cgt-sum-diff-b', '$0');
+      return;
+    }
+
+    let curTaxable: number;
+    let aTaxable: number;
+    let bTaxable: number;
+
+    if (noDiscount) {
+      /* Under 12 months: no discount in any scenario */
+      curTaxable = totalGain;
+      aTaxable   = totalGain;
+      bTaxable   = totalGain;
+    } else if (timing === 'post') {
+      /* Post-budget purchase: new rates apply to entire gain */
+      curTaxable = totalGain * 0.50; // 50% discount = taxable on 50%
+      aTaxable   = totalGain * 0.75; // 25% discount = taxable on 75%
+      bTaxable   = totalGain * 0.67; // 33% discount = taxable on 67%
+    } else {
+      /* Pre-budget purchase: grandfathering
+         Simplification: assume 50% of the gain was accrued before budget night
+         and retains the 50% discount. The other 50% is subject to the new rate.
+         (User's accountant will calculate the true split based on holding period.)
+      */
+      const prePortion  = totalGain * 0.5; // notional pre-budget gain
+      const postPortion = totalGain * 0.5; // notional post-budget gain
+
+      curTaxable = totalGain * 0.50; // all at 50% under current rules
+
+      // Option A: pre at 50%, post at 25% discount
+      aTaxable = (prePortion * 0.50) + (postPortion * 0.75);
+      // Option B: pre at 50%, post at 33% discount
+      bTaxable = (prePortion * 0.50) + (postPortion * 0.67);
+    }
+
+    const curTax = curTaxable * taxRate;
+    const aTax   = aTaxable   * taxRate;
+    const bTax   = bTaxable   * taxRate;
+
+    setText('cgt-cur-taxable', fmt(curTaxable));
+    setText('cgt-a-taxable',   fmt(aTaxable));
+    setText('cgt-b-taxable',   fmt(bTaxable));
+
+    const curTaxEl = document.getElementById('cgt-cur-tax');
+    const aTaxEl   = document.getElementById('cgt-a-tax');
+    const bTaxEl   = document.getElementById('cgt-b-tax');
+    if (curTaxEl) curTaxEl.textContent = 'CGT payable: ' + fmt(curTax);
+    if (aTaxEl) {
+      aTaxEl.textContent  = 'CGT payable: ' + fmt(aTax);
+      aTaxEl.className    = 'fb-col-diff' + (aTax > curTax ? ' worse' : ' same');
+    }
+    if (bTaxEl) {
+      bTaxEl.textContent  = 'CGT payable: ' + fmt(bTax);
+      bTaxEl.className    = 'fb-col-diff' + (bTax > curTax ? ' worse' : ' same');
+    }
+
+    const diffA = aTax - curTax;
+    const diffB = bTax - curTax;
+
+    setText('cgt-sum-cur',    fmt(curTax));
+    setText('cgt-sum-a',      fmt(aTax));
+    setText('cgt-sum-b',      fmt(bTax));
+    setText('cgt-sum-diff-a', diffA > 0 ? '+' + fmtPlain(diffA) + ' more tax' : 'No change');
+    setText('cgt-sum-diff-b', diffB > 0 ? '+' + fmtPlain(diffB) + ' more tax' : 'No change');
+  }
+
+  bindDollarInput('cgt-purchase', calcCGT);
+  bindDollarInput('cgt-sale',     calcCGT);
+  bindSelect('cgt-timing',        calcCGT);
+  bindSelect('cgt-held',          calcCGT);
+  bindSelect('cgt-tax-rate',      calcCGT);
+  calcCGT();
+
+
+  /* ════════════════════════════════════════════
+     SECTION 3: HELP TO BUY
+  ════════════════════════════════════════════ */
+
+  function calcH2B() {
+    const income     = parseNum((document.getElementById('h2b-income') as HTMLInputElement).value);
+    const applicants = parseInt((document.getElementById('h2b-applicants') as HTMLSelectElement).value, 10) || 1;
+    const price      = parseNum((document.getElementById('h2b-price') as HTMLInputElement).value);
+    const deposit    = parseNum((document.getElementById('h2b-deposit') as HTMLInputElement).value);
+    const propType   = (document.getElementById('h2b-prop-type') as HTMLSelectElement).value;
+    const isFHB      = (document.getElementById('h2b-fhb') as HTMLInputElement).checked;
+
+    const incomeCap    = applicants === 1 ? 100000 : 160000;
+    const govtPct      = propType === 'new' ? 0.40 : 0.30;
+    const minDeposit   = price * 0.02;
+
+    const failReasons: string[] = [];
+
+    if (income > incomeCap) {
+      failReasons.push(
+        'Income of ' + fmt(income) + ' exceeds the cap of ' + fmt(incomeCap) +
+        ' for ' + (applicants === 1 ? 'singles' : 'couples') + '.'
+      );
+    }
+    if (!isFHB) {
+      failReasons.push('You must be a first home buyer or not currently own property.');
+    }
+    if (deposit < minDeposit) {
+      failReasons.push(
+        'Deposit of ' + fmt(deposit) + ' is below the minimum 2% required (' + fmt(minDeposit) + ').'
+      );
+    }
+
+    const isEligible = failReasons.length === 0;
+
+    show('h2b-eligible-block',   isEligible);
+    show('h2b-ineligible-block', !isEligible);
+
+    if (!isEligible) {
+      const failEl = document.getElementById('h2b-fail-reasons');
+      if (failEl) {
+        failEl.innerHTML = failReasons
+          .map(r => '<div class="fb-warn" style="margin-bottom:0.5rem;">' + r + '</div>')
+          .join('');
+      }
+      return;
+    }
+
+    /* Eligible: compute figures */
+    const govtContrib = price * govtPct;
+    const loanAmt     = price - deposit - govtContrib;
+    const loanSafe    = Math.max(loanAmt, 0);
+
+    /* Monthly P&I repayment at 6% over 30 years */
+    const monthlyRate = 0.06 / 12;
+    const numPayments = 30 * 12;
+    let monthlyRepay = 0;
+    if (loanSafe > 0 && monthlyRate > 0) {
+      monthlyRepay = loanSafe * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+                     (Math.pow(1 + monthlyRate, numPayments) - 1);
+    }
+
+    const badgeEl = document.getElementById('h2b-badge');
+    if (badgeEl) badgeEl.textContent = 'Likely eligible';
+
+    setText('h2b-r-price',    fmt(price));
+    setText('h2b-r-govt',     fmt(govtContrib) + ' (' + Math.round(govtPct * 100) + '%)');
+    setText('h2b-r-deposit',  fmt(deposit));
+    setText('h2b-r-loan',     fmt(loanSafe));
+    setText('h2b-r-repayment', fmt(monthlyRepay, 0) + ' / month');
+
+    show('h2b-deposit-warn', deposit < minDeposit);
+  }
+
+  bindDollarInput('h2b-income',   calcH2B);
+  bindDollarInput('h2b-price',    calcH2B);
+  bindDollarInput('h2b-deposit',  calcH2B);
+  bindSelect('h2b-applicants',    calcH2B);
+  bindSelect('h2b-prop-type',     calcH2B);
+
+  const h2bFhb = document.getElementById('h2b-fhb');
+  if (h2bFhb) h2bFhb.addEventListener('change', calcH2B);
+
+  calcH2B();
+
+})();
+</script>
+
+</ToolLayout>

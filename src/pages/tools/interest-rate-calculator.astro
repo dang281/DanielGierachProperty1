@@ -1,0 +1,296 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Interest Rate Calculator"
+  tool="Interest Rate Calculator"
+  phase="Buyer Tools"
+  description="See exactly how your repayments change with every RBA rate movement. Model cuts and increases from your current rate."
+>
+
+<style>
+  .irc-input {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(28,25,23,0.2);
+    background: #fff;
+    color: #1c1917;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .irc-input:focus { border-color: var(--color-gold); }
+
+  .irc-row {
+    display: grid;
+    grid-template-columns: 1.6fr 0.9fr 1.1fr 1.1fr 1.2fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+    align-items: stretch;
+  }
+  .irc-row:last-child { border-bottom: none; }
+  .irc-cell {
+    padding: 0.85rem 1.1rem;
+    font-size: 0.82rem;
+    color: #1c1917;
+    border-right: 1px solid rgba(28,25,23,0.08);
+  }
+  .irc-cell:last-child { border-right: none; }
+
+  .irc-row.header .irc-cell {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #78716c;
+    background: #f9f7f4;
+  }
+
+  .irc-row.current-row {
+    background: rgba(196,145,42,0.09);
+  }
+  .irc-row.current-row .irc-cell {
+    font-weight: 700;
+  }
+
+  .irc-row.cut-row {
+    background: rgba(34,139,34,0.04);
+  }
+
+  .irc-row.rise-high-row {
+    background: rgba(192,57,43,0.04);
+  }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .summary-card {
+    background: #fff;
+    border: 1px solid rgba(28,25,23,0.1);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  @media (max-width: 680px) {
+    .irc-row {
+      grid-template-columns: 1.4fr 0.9fr 1fr;
+    }
+    .irc-cell:nth-child(4),
+    .irc-cell:nth-child(5) {
+      display: none;
+    }
+    .irc-row.header .irc-cell:nth-child(4),
+    .irc-row.header .irc-cell:nth-child(5) {
+      display: none;
+    }
+  }
+</style>
+
+<div style="display:flex;flex-direction:column;gap:2rem;max-width:900px;">
+
+  <!-- Inputs -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.25rem;">
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Loan Amount ($)</label>
+      <input id="irc-loan" class="irc-input" type="number" placeholder="600000" value="600000" min="50000" max="5000000" step="10000" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Current Interest Rate (%)</label>
+      <input id="irc-rate" class="irc-input" type="number" placeholder="6.00" value="6.00" min="0.5" max="20" step="0.05" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Loan Term (years)</label>
+      <input id="irc-term" class="irc-input" type="number" placeholder="30" value="30" min="5" max="30" step="1" />
+    </div>
+    <div>
+      <label style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Loan Type</label>
+      <select id="irc-type" class="irc-input" style="appearance:none;cursor:pointer;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;">
+        <option value="pi">Principal and Interest</option>
+        <option value="io">Interest Only</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- RBA note -->
+  <div style="background:rgba(28,25,23,0.03);border-left:3px solid rgba(28,25,23,0.15);padding:0.9rem 1.25rem;">
+    <p style="font-size:0.8rem;color:#78716c;line-height:1.7;margin:0;">
+      The RBA meets eight times per year. Each standard movement is 0.25%. This calculator shows the cumulative effect of one to eight consecutive moves.
+    </p>
+  </div>
+
+  <!-- Results table -->
+  <div style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;">
+    <div style="padding:1.1rem 1.4rem;border-bottom:1px solid rgba(28,25,23,0.08);background:#f9f7f4;">
+      <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;margin:0;">Rate Impact Analysis</p>
+    </div>
+
+    <div class="irc-row header">
+      <div class="irc-cell">Scenario</div>
+      <div class="irc-cell">Rate</div>
+      <div class="irc-cell">Monthly</div>
+      <div class="irc-cell">Weekly</div>
+      <div class="irc-cell">Change vs Now</div>
+    </div>
+
+    <div id="irc-rows"></div>
+  </div>
+
+  <!-- Summary cards -->
+  <div class="summary-cards" id="irc-summary"></div>
+
+  <!-- APRA callout -->
+  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
+    <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0;">
+      <strong>APRA serviceability buffer:</strong> Lenders assess new borrowers at the current rate plus a 3% serviceability buffer. If your rate is 6.00%, your lender checks you can service the loan at 9.00%.
+    </p>
+  </div>
+
+  <p style="font-size:0.75rem;color:#a8a29e;line-height:1.6;">
+    Figures are indicative only and do not include fees, charges, lenders mortgage insurance, or offset account effects. Principal and interest calculations use standard amortisation. Always consult a licensed mortgage broker or your lender for personalised advice.
+  </p>
+
+</div>
+
+<script>
+  const loanInput = document.getElementById('irc-loan') as HTMLInputElement;
+  const rateInput = document.getElementById('irc-rate') as HTMLInputElement;
+  const termInput = document.getElementById('irc-term') as HTMLInputElement;
+  const typeInput = document.getElementById('irc-type') as HTMLSelectElement;
+  const rowsWrap  = document.getElementById('irc-rows')!;
+  const summaryWrap = document.getElementById('irc-summary')!;
+
+  // All scenarios: negative = cuts, positive = rises
+  const SCENARIOS: number[] = [-1.5, -1.25, -1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1, 1.5, 2];
+
+  function calcPI(principal: number, annualRate: number, termYears: number): number {
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    if (r === 0) return principal / n;
+    return principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  }
+
+  function calcIO(principal: number, annualRate: number): number {
+    return principal * (annualRate / 100) / 12;
+  }
+
+  function calcRepayment(principal: number, annualRate: number, termYears: number, type: string): number {
+    if (type === 'io') return calcIO(principal, annualRate);
+    return calcPI(principal, annualRate, termYears);
+  }
+
+  function fmt(n: number): string {
+    return '$' + Math.round(Math.abs(n)).toLocaleString('en-AU');
+  }
+
+  function fmtSigned(n: number): string {
+    const prefix = n < 0 ? '-' : '+';
+    return prefix + fmt(n);
+  }
+
+  function render(): void {
+    const loan     = parseFloat(loanInput.value) || 600000;
+    const baseRate = parseFloat(rateInput.value) || 6.0;
+    const term     = parseInt(termInput.value)   || 30;
+    const loanType = typeInput.value;
+
+    const baseMonthly = calcRepayment(loan, baseRate, term, loanType);
+
+    rowsWrap.innerHTML = '';
+
+    SCENARIOS.forEach((delta: number) => {
+      const rate    = baseRate + delta;
+      if (rate <= 0) return; // skip nonsensical negative rates
+      const monthly = calcRepayment(loan, rate, term, loanType);
+      const weekly  = monthly * 12 / 52;
+      const change  = monthly - baseMonthly;
+
+      const isCurrent = delta === 0;
+      const isCut     = delta < 0;
+      const isHighRise = delta >= 1;
+
+      const row = document.createElement('div');
+      let rowClass = 'irc-row';
+      if (isCurrent)   rowClass += ' current-row';
+      else if (isCut)  rowClass += ' cut-row';
+      else if (isHighRise) rowClass += ' rise-high-row';
+      row.className = rowClass;
+
+      // Scenario label
+      let scenarioLabel: string;
+      if (isCurrent) {
+        scenarioLabel = 'Current rate';
+      } else if (isCut) {
+        const moves = Math.round(Math.abs(delta) / 0.25);
+        scenarioLabel = `${delta.toFixed(2)}% (${moves} cut${moves !== 1 ? 's' : ''})`;
+      } else {
+        const moves = Math.round(delta / 0.25);
+        scenarioLabel = `+${delta.toFixed(2)}% (${moves} rise${moves !== 1 ? 's' : ''})`;
+      }
+
+      // Change column
+      let changeHtml: string;
+      if (isCurrent) {
+        changeHtml = `<span style="color:#78716c;">Baseline</span>`;
+      } else if (isCut) {
+        changeHtml = `<span style="color:#228b22;font-weight:700;">${fmt(change)}/mo saving</span>`;
+      } else {
+        const color = isHighRise ? '#c0392b' : '#c4912a';
+        changeHtml = `<span style="color:${color};font-weight:700;">+${fmt(change)}/mo extra</span>`;
+      }
+
+      row.innerHTML = `
+        <div class="irc-cell">${scenarioLabel}</div>
+        <div class="irc-cell">${rate.toFixed(2)}%</div>
+        <div class="irc-cell" style="font-variant-numeric:tabular-nums;">${fmt(monthly)}</div>
+        <div class="irc-cell" style="font-variant-numeric:tabular-nums;">${fmt(weekly)}</div>
+        <div class="irc-cell">${changeHtml}</div>
+      `;
+      rowsWrap.appendChild(row);
+    });
+
+    // Summary cards
+    summaryWrap.innerHTML = '';
+
+    const summaryScenarios: Array<{ delta: number; label: string; type: 'cut' | 'rise' }> = [
+      { delta: -0.5,  label: 'If rates fall 0.50%', type: 'cut'  },
+      { delta: -1.0,  label: 'If rates fall 1.00%', type: 'cut'  },
+      { delta:  0.5,  label: 'If rates rise 0.50%', type: 'rise' },
+    ];
+
+    summaryScenarios.forEach(({ delta, label, type }) => {
+      const rate    = baseRate + delta;
+      if (rate <= 0) return;
+      const monthly = calcRepayment(loan, rate, term, loanType);
+      const change  = Math.abs(monthly - baseMonthly);
+      const annual  = change * 12;
+      const isCut   = type === 'cut';
+
+      const eyebrowColor = isCut ? '#228b22' : '#c0392b';
+      const eyebrowText  = isCut ? 'Rate cut scenario' : 'Rate rise scenario';
+      const amountLabel  = isCut ? 'monthly saving' : 'monthly extra';
+
+      const card = document.createElement('div');
+      card.className = 'summary-card';
+      card.innerHTML = `
+        <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${eyebrowColor};">${eyebrowText}</span>
+        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#1c1917;margin-top:0.2rem;">${label}</span>
+        <span style="font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:${eyebrowColor};margin-top:0.25rem;">${fmt(change)}<span style="font-size:0.9rem;"> /mo</span></span>
+        <span style="font-size:0.78rem;color:#78716c;">${fmt(annual)} per year ${isCut ? 'saved' : 'extra'}</span>
+      `;
+      summaryWrap.appendChild(card);
+    });
+  }
+
+  [loanInput, rateInput, termInput].forEach((el: HTMLInputElement) => el.addEventListener('input', render));
+  typeInput.addEventListener('change', render);
+  render();
+</script>
+
+</ToolLayout>
