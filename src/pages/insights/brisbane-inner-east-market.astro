@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const clusterSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brisbane Inner East Property Market",
+  "description": "Suburb-level market context for the inner east: infrastructure, overlays, zoning, school catchments, and what drives long-term value in this corridor.",
+  "url": "https://danielgierach.com/insights/brisbane-inner-east-market",
+  "author": { "@type": "Person", "name": "Daniel Gierach", "url": "https://danielgierach.com/about" }
+};
+
+const articles = [
+  {
+    slug: 'brisbane-inner-east-value',
+    title: 'What Makes Brisbane Inner East Suburbs Hold Value',
+    summary: 'Hawthorne, Morningside, Coorparoo, and Cannon Hill have consistently outperformed the Brisbane average. Here are the structural reasons why.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'crossriver-rail-property-values-brisbane-inner-east',
+    title: "Cross River Rail and Property Values in Brisbane's Inner East",
+    summary: "Cross River Rail is Brisbane's most significant transport infrastructure in a generation. Here is which inner east suburbs benefit most and what it means for sellers near the new stations.",
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'development-potential-property-brisbane-inner-east',
+    title: "Development Potential When Selling Property in Brisbane's Inner East",
+    summary: 'A lot with genuine development potential can attract a wider buyer pool and a higher price. Here is how to assess subdivision, duplex, and knockdown-rebuild potential accurately.',
+    tag: 'Sellers',
+  },
+  {
+    slug: 'flood-mapping',
+    title: 'Is Your Property in a Flood Zone?',
+    summary: "Brisbane's flood mapping affects insurance, value, and what you can build. Here's how to check your property and what to do with the results.",
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'heritage-overlays-brisbane',
+    title: 'Understanding Heritage Overlays in Brisbane',
+    summary: 'A heritage overlay restricts what you can build and demolish but also signals scarcity and value. Here is how they work under BCC CityPlan 2014 and what to check before you buy.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'queensland-brisbane-zoning-explained',
+    title: 'Queensland / Brisbane Zoning Explained',
+    summary: 'Brisbane City Plan 2014 zoning codes in plain English: what LDR, LMR, MDR, HDR, and Character Residential allow you to do, and why knowing your zone changes what you can build and what buyers will pay.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'school-catchments-property-brisbane-inner-east',
+    title: "School Catchments and Property Values in Brisbane's Inner East",
+    summary: 'School catchment access is one of the most consistent drivers of buyer competition in the inner east. Here is which catchments matter most and how sellers should market catchment access.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'upgrading-property-brisbane-inner-east',
+    title: 'Upgrading Property in Brisbane Inner East: Sell First or Buy First?',
+    summary: 'Moving from one inner east home to a larger one involves a sequencing decision that most buyers underestimate. Here is how to navigate bridging finance, simultaneous settlement, and the current Brisbane market.',
+    tag: 'Sellers',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  'Buyers & Sellers': '#f5d07a',
+  'Sellers':          '#f5d07a',
+};
+---
+<Layout title="Brisbane Inner East Property Market | Daniel Gierach Property" description="Infrastructure, zoning, school catchments, heritage overlays, and what drives long-term value in Brisbane's inner east. Eight guides for buyers and sellers." schema={clusterSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Topic Guide &middot; 8 Articles</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Brisbane Inner East Property Market
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:58ch;">
+        Brisbane's inner east corridor from Kangaroo Point through Morningside to Cannon Hill is one of the most fundamentally sound property markets in Australia. This guide explains what drives that consistency: infrastructure investment, school catchments, zoning, flood mapping, and heritage overlays that protect scarcity.
+      </p>
+    </div>
+  </div>
+
+  <!-- Article Grid -->
+  <div style="padding:3.5rem 0 5rem;background:var(--color-base);">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {articles.map(a => (
+          <a href={`/insights/${a.slug}`}
+            style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s,border-color 0.25s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
+            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(28,25,23,0.09)'"
+            onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          >
+            <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${tagColors[a.tag] || '#c4912a'};`}></div>
+            <div style="display:flex;align-items:center;padding-top:0.25rem;">
+              <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${tagColors[a.tag] || '#c4912a'};display:inline-flex;align-items:center;gap:0.35rem;`}>
+                <span style={`width:5px;height:5px;border-radius:50%;background:${tagColors[a.tag] || '#c4912a'};flex-shrink:0;`}></span>
+                {a.tag}
+              </span>
+            </div>
+            <div style="flex:1;">
+              <h2 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.75rem;">{a.title}</h2>
+              <p style="font-size:0.82rem;color:#78716c;line-height:1.75;">{a.summary}</p>
+            </div>
+            <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">Read Article &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
+    <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#1c1917;">What is your inner east property worth right now?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:44ch;">Daniel works exclusively in Brisbane's inner east. His appraisals are grounded in current comparable sales, not a platform estimate that cannot see your land configuration, aspect, or school catchment position.</p>
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+        Get a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>
