@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to attend settlement in person in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Settlement in Queensland is handled electronically through the PEXA (Property Exchange Australia) platform for the vast majority of residential transactions. Your solicitor or conveyancer manages the process on your behalf: preparing transfer documents, coordinating with lenders, calculating financial adjustments, and lodging the transfer with the Queensland Titles Registry. You do not need to be present. Your solicitor will notify you when settlement is complete."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a pre-settlement inspection and when should I do it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A pre-settlement inspection is a buyer's right to inspect the property in the 24 to 48 hours before settlement to confirm it is in the same condition as at the time of contract, that all inclusions listed in the contract are present, and that no damage has occurred after exchange. Do not skip it. If you discover at the inspection that a fixture has been removed or there is new damage, notify your solicitor immediately so they can negotiate before funds are released. Once settlement completes, recourse is considerably more limited."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What financial adjustments are made at settlement in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rates, water charges, and body corporate levies are apportioned at settlement based on the settlement date. The seller pays for the period they owned the property and the buyer takes responsibility from the day ownership passes. Your solicitor produces a settlement statement in advance showing the adjusted balance payable on the day. For sellers with a mortgage, the lender must also formally discharge the mortgage, and the discharge amount is deducted from the sale proceeds before the net balance is transferred to the seller's account."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What Happens at Settlement? | Daniel Gierach Property" description="Settlement day can feel like a black box. Here's exactly what happens, who does what, and how to make sure nothing goes wrong at the last minute.">
+<Layout title="What Happens at Settlement? | Daniel Gierach Property" description="Settlement day can feel like a black box. Here's exactly what happens, who does what, and how to make sure nothing goes wrong at the last minute." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

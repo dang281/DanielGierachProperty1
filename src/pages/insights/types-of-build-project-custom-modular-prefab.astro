@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the cheapest way to build a home in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A project home is the most cost-effective build path: typically $2,200 to $3,200 per square metre, with a timeline of 10 to 14 months from signed contract to handover. You choose from a builder's catalogue of designs with limited customisation. Builders operating in Brisbane include Metricon, GJ Gardner, Clarendon, Stroud, and Coral Homes. Trade-offs are less adaptability to difficult sites and a more uniform feel at resale compared to a custom architect-designed home."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a custom home build take in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A custom architect-designed home in Brisbane typically takes 24 to 36 months from the start of the design process through to handover. This includes the design phase, development application if required, documentation, builder selection, and construction. Costs typically run $4,000 to $8,000 or more per square metre in inner Brisbane depending on the finish level. The advantage is a home optimised for the site and brief, which typically commands the strongest resale premium in premium inner-east suburbs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I knock down and rebuild in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on whether the property is in a Character Residential zone. Most inner-east streets built pre-1946 carry character overlay protection, which prohibits demolition of pre-1946 homes unless the structure is compromised. Outside character-protected areas, knockdown-rebuild is permitted. Demolition costs $25,000 to $60,000 depending on construction type, plus the new build cost. Total timeline is typically two to three years for a custom knockdown-rebuild."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Types of Build: Project Home, Custom, Modular, Prefab, Renovation, Knockdown-Rebuild | Daniel Gierach Property" description="The six main build paths for a residential project. Costs per square metre, duration, buyer pool at resale, and which path suits which block.">
+<Layout title="Types of Build: Project Home, Custom, Modular, Prefab, Renovation, Knockdown-Rebuild | Daniel Gierach Property" description="The six main build paths for a residential project. Costs per square metre, duration, buyer pool at resale, and which path suits which block." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

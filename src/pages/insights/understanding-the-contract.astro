@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the cooling-off period when buying a property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For private treaty sales, residential buyers in Queensland have a statutory 5-business-day cooling-off period beginning when the buyer receives a copy of the fully signed contract. The buyer can withdraw for any reason, but forfeits 0.25% of the purchase price as a termination penalty paid to the seller. On a $1.2 million purchase, that is $3,000. The cooling-off period is a safety net, not a substitute for proper due diligence before signing. Properties sold by auction have no cooling-off period."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a fixture and a chattel in a Queensland property contract?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Queensland, fixtures are generally included in the sale unless specifically excluded. Chattels (freestanding, removable items) are not included unless specifically listed. Light fittings, built-in wardrobes, fixed air conditioning units, and wall-mounted window furnishings are typically fixtures. Freestanding appliances and freestanding furniture are typically chattels. Ambiguous items, such as a freestanding outdoor kitchen or a garden shed on a concrete slab, should be written explicitly into the contract to avoid pre-settlement disputes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a finance condition work in a Queensland property contract?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A finance condition gives the buyer a specified number of days (commonly 14 to 21 days from the contract date) to obtain formal lender approval. If approved, the condition is satisfied and the contract becomes unconditional. If the lender declines, the buyer can terminate by giving written notice within the timeframe and recover the deposit in full. If the buyer fails to give notice within the deadline, the condition lapses and the contract becomes unconditional by default, binding the buyer regardless of finance status. Written notice is essential: verbal or text communication does not constitute valid notice."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Understanding the REIQ Contract of Sale | Daniel Gierach Property" description="The standard Queensland contract is straightforward once you know what to look for. Here's what every buyer and seller should understand before signing.">
+<Layout title="Understanding the REIQ Contract of Sale | Daniel Gierach Property" description="The standard Queensland contract is straightforward once you know what to look for. Here's what every buyer and seller should understand before signing." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is the best time of year to sell a property in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spring is widely assumed to be the best time, but it brings both more buyers and more competing listings. Many inner Brisbane suburbs see the strongest results from campaigns launched in late summer and early autumn (late January to March), when genuine buyer demand is still strong but the volume of competing listings has not yet climbed. Low inventory in high-demand conditions consistently produces strong prices. The local clearance rates and days-on-market in your specific suburb matter more than the season."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does property preparation matter more than timing when selling in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The data across comparable sales is consistent: the gap between a well-prepared property and a poorly prepared one is almost always larger than the gap between selling in a good month versus a softer one. In Brisbane's inner east, the difference between a well-prepared campaign and a rushed one regularly amounts to $50,000 to $150,000 at comparable price points. Spending two to four weeks on focused pre-sale preparation consistently produces a better outcome than rushing to market because an agent has told you buyers are ready right now."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do interest rates affect the decision to sell a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Interest rates influence buyer sentiment and borrowing capacity, but the effect is rarely as immediate or as dramatic as media coverage suggests. Owner-occupiers with existing equity and stable employment continue to transact through rate cycles. Higher rates reduce first home buyers and highly leveraged purchasers from the market but have less impact on the equity-rich buyers who dominate Brisbane's inner-east market. If you are selling to buy, the market conditions you are selling into are generally the same conditions you are buying into, so the net effect on your financial position is smaller than the headline numbers suggest."
+      }
+    }
+  ]
+};
 ---
-<Layout title="When Is the Right Time to Sell? | Daniel Gierach Property" description="Timing a property sale well can make a significant difference to your result. Here's how to think about market conditions, personal timing, and what actually drives price.">
+<Layout title="When Is the Right Time to Sell? | Daniel Gierach Property" description="Timing a property sale well can make a significant difference to your result. Here's how to think about market conditions, personal timing, and what actually drives price." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

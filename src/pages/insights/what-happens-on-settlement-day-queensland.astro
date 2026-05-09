@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do I need to do as a seller on settlement day in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As a seller, your main obligation is to have vacated the property and ensured all agreed inclusions are present by settlement day. Have all keys, remotes, access codes, security fobs, and any items listed in the contract ready to hand to your real estate agent before the settlement date. Your solicitor handles the actual settlement electronically through PEXA. Be responsive to your solicitor in the days before settlement if they need signatures or information. Once your solicitor confirms settlement is complete, the agent releases the keys to the buyer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What causes settlement delays when selling a property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most frequent causes are: the buyer's lender not having funds ready on time, unresolved pre-settlement inspection issues requiring last-minute negotiations, a mortgage discharge not processed by the lender on time, or a discrepancy in settlement figures requiring correction. If settlement is delayed through one party's fault, the other party may be entitled to claim penalty interest on the outstanding purchase price for each day's delay, as specified in the contract. Most delays are resolved within one to two days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does the buyer receive the keys on settlement day in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keys are released to the buyer through the real estate agent once the agent receives confirmation from the solicitors that settlement has been completed in PEXA. Settlement is typically booked for 10am to 2pm. The funds transfer and title lodgement happen electronically and usually take only minutes once all parties are ready. The buyer typically receives the keys by mid to late afternoon on the settlement date. The seller should leave all keys, remotes, and access codes with the agent before settlement day to avoid delays."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What Happens on Settlement Day When Selling in Queensland | Daniel Gierach Property" description="Settlement day finalises your sale. Here's what happens in the lead-up, what your role is on the day, and what to do if something goes wrong.">
+<Layout title="What Happens on Settlement Day When Selling in Queensland | Daniel Gierach Property" description="Settlement day finalises your sale. Here's what happens in the lead-up, what your role is on the day, and what to do if something goes wrong." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

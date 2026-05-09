@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between Torrens, strata, and community title in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Torrens title means one lot, one title, one owner and is the standard title for a detached freestanding house. Strata title means the owner holds the individual unit plus a proportional share of the common property, used for multi-unit apartment buildings. Community title is used for townhouse and villa complexes within a community titles scheme, where each owner holds a separate lot and shares an obligation to the body corporate for common property. Misidentifying the title type at contract stage is a common and expensive mistake."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a townhouse have a body corporate in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Townhouses in Queensland are almost always community or strata title and have a body corporate. The body corporate manages common property including driveways, gardens, and any shared facilities. Ongoing levies are payable by each lot owner, split between an administrative fund for day-to-day maintenance and a sinking fund for capital works. Buyers should request the current levy schedule and body corporate records before purchasing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a dual occupancy property in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A dual occupancy is a single lot with two dwellings, typically a main house plus a secondary dwelling or granny flat, permitted under the Brisbane City Plan 2014 in most residential zones subject to size and siting rules. The secondary dwelling rents separately but cannot usually be sold separately because it sits on the same lot. Rental yield is attractive to investors, but the resale market is narrower than for a standard detached house because some owner-occupiers prefer not to have a second dwelling on the lot."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Types of Residential Property in Australia | Daniel Gierach Property" description="Detached house, townhouse, duplex, unit, apartment, terrace, villa, dual-occupancy. The definitions, the buyer pool for each, and what the term actually means on a contract.">
+<Layout title="Types of Residential Property in Australia | Daniel Gierach Property" description="Detached house, townhouse, duplex, unit, apartment, terrace, villa, dual-occupancy. The definitions, the buyer pool for each, and what the term actually means on a contract." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
