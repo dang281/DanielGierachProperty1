@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do Brisbane inner east suburbs hold their value better than outer suburbs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane's inner east (suburbs like Hawthorne, Morningside, and Coorparoo) holds value due to several structural factors: proximity to the CBD without inner-city density (3km to 10km out), character housing stock protected by heritage overlays that cannot be replicated, high-demand school catchments that anchor buyer demand, predominantly flood-free elevated positions, and ongoing infrastructure investment including Cross River Rail and Brisbane 2032 Olympics. These factors combine to create genuine scarcity that underpins long-term value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do school catchments affect property values in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "School catchments in Brisbane's inner east are among the most sought-after in the city. Families specifically buy within catchment boundaries for schools such as Coorparoo State School, Cannon Hill Anglican College, Balmoral State High, and East Brisbane State School and will pay a premium to do so. This creates a consistent floor of demand that persists regardless of broader market conditions, and means properties in high-demand catchments sell faster and hold value better through market downturns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What impact have Brisbane floods had on inner east property values?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 2011 and 2022 Brisbane floods fundamentally changed how buyers approach flood risk. Elevated properties in suburbs like Seven Hills, Morningside, and Cannon Hill that avoided flooding entirely now attract a documented premium over flood-affected properties. Post-2022, insurance costs for flood-affected properties have risen sharply, making flood-free land a tangible financial advantage. The premium for documented flood-free properties has widened, and buyers now actively prioritise elevation in their property search."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="What Makes Brisbane Inner East Suburbs Hold Value | Daniel Gierach"
   description="Why do suburbs like Hawthorne, Coorparoo, and Morningside consistently outperform the Brisbane average? Here are the structural factors that protect and drive value in the inner east."
+  schema={faqSchema}
 >
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">

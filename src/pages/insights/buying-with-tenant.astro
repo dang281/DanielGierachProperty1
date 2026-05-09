@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I make a tenant leave when I buy a property in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the lease type. If a fixed-term lease is in place, the tenant has the right to remain until the lease end date regardless of the sale, and you cannot issue a notice to leave during a fixed term simply because you want to move in. The lease carries over to you as the new owner. If the tenancy is periodic (month-to-month), you have more flexibility to end the tenancy, but specific notice periods under the Residential Tenancies and Rooming Accommodation Act 2008 (Qld) still apply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What rights do tenants have when their rental property is sold in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Queensland, a sale does not override or cancel a tenancy agreement. Tenants are protected under the Residential Tenancies and Rooming Accommodation Act 2008 (Qld) regardless of whether the property changes hands. The new owner inherits all obligations of the previous landlord, including the existing lease terms, the bond held by the RTA, and the obligation to provide reasonable entry notice for inspections during the sales campaign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is buying a tenanted property a good idea in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buying a tenanted property in Brisbane's inner east is common for investors and can be an advantage: you have immediate rental income from settlement and can assess the quality of the existing tenancy. For buyers who want to occupy the property, the timing depends on when the lease ends. Before purchasing, check the lease type and expiry date, review the existing rent relative to market, confirm the bond is lodged with the RTA, and understand whether the tenant has been maintaining the property well."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="How to Buy a Property With a Tenant Already In It | Daniel Gierach"
   description="Buying a tenanted property in Queensland? Here is what you need to know about tenant rights, lease obligations, notice periods, and how to handle settlement."
+  schema={faqSchema}
 >
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">

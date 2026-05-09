@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the main Brisbane house styles from the 1870s to the 1960s?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane's main residential housing eras are: Late Colonial (1870s to 1880s), Federation Queenslander (1890s to 1915), Interwar Californian Bungalow, Interwar Queenslander (1915 to 1940), Ashgrovian, Post-war Fibrous Plaster, Post-war Timber Bungalow (1945 to 1960), and Post-war Brick (1950s to 1960s). Most homes in Brisbane's inner east fall within one of these 14 categories, many of which have been extended or modified over the decades."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I identify a Queenslander home in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Queenslander is typically highset on timber stumps with a full-length front verandah, steep pitched corrugated iron roof, decorative timber fretwork on the verandah, VJ (vertical joint) timber internal walls, high ceilings, and casement windows. The Federation Queenslander era spans roughly 1890 to 1915 while the Interwar Queenslander spans 1915 to 1940, with the later version often showing Art Nouveau and Art Deco influences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the architectural era matter when buying or selling a Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The era of a home determines which heritage overlays and Character Residential zone protections may apply, what renovations are permitted, what the typical buyer pool looks like, and how comparable sales data should be read. A Late Colonial cottage in Balmoral, for example, is among the most significant properties on the street from a heritage perspective and attracts buyers who value original character. The structural expectations, typical defects, and renovation costs also differ significantly between eras."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Brisbane House Styles: A Field Guide to Every Era | Daniel Gierach Property" description="How to identify the architectural era of any Brisbane home. A practical field guide to all 14 major house styles, from Late Colonial cottages to postwar bungalows, with accurate diagrams.">
+<Layout title="Brisbane House Styles: A Field Guide to Every Era | Daniel Gierach Property" description="How to identify the architectural era of any Brisbane home. A practical field guide to all 14 major house styles, from Late Colonial cottages to postwar bungalows, with accurate diagrams." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

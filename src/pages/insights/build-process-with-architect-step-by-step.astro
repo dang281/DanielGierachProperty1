@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does an architect-designed build take in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An architect-led custom home build takes 24 to 36 months from first brief to moving in, for a residential Brisbane project of moderate complexity. The main phases are: pre-design (2 to 6 weeks), site analysis and concept design (6 to 10 weeks), schematic design (6 to 10 weeks), design development (10 to 14 weeks), DA lodgement and approval (3 to 6 months), construction documentation (10 to 14 weeks), tender (4 to 8 weeks), and construction (10 to 18 months). Any faster and something has been cut."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do architect fees cost for a residential build in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Architect fees for a full service typically run 8 to 15% of the construction cost. Adding structural engineering, surveying, certification, and town planning brings total professional fees to roughly 12 to 18% of the build cost. Budget the build first, then add this figure on top before furniture. The most expensive stage to change your mind is during construction; the cheapest is during concept design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most common reasons architect-led projects go over budget or schedule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The top three failure modes are: first, a brief that changes mid-design, which can double the design fee and delay the timeline. Second, a budget that is never pressure-tested until the tender stage, when discovering the design is 20% over budget is a serious problem. Third, skipping DA pre-lodgement advice on a site with an overlay or character restriction, which can result in a council knockback after six months of design work. A good architect addresses all three risks upfront."
+      }
+    }
+  ]
+};
 ---
-<Layout title="The Build Process with an Architect, Step by Step | Daniel Gierach Property" description="From first brief to handover, what actually happens on an architect-designed build. The stages, the typical duration, the fee portion for each, and the decisions you make.">
+<Layout title="The Build Process with an Architect, Step by Step | Daniel Gierach Property" description="From first brief to handover, what actually happens on an architect-designed build. The stages, the typical duration, the fee portion for each, and the decisions you make." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

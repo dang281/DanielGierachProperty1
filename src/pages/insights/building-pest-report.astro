@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a major defect in a building and pest report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A major defect is a significant defect in a primary load-bearing component that could cause the building to be unsafe or require substantial costly rectification. Examples include cracked retaining walls, significant roof structure damage, major subsidence, active termite damage to structural timber, or serious deterioration of sub-floor stumps and bearers. A major defect does not automatically mean you should walk away, but it requires a specialist cost estimate before you can make a sound decision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it normal for a building report on a Brisbane Queenslander to have many items?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most reports on Brisbane inner-east properties aged 40 to 80 years will contain a substantial list of minor defects and maintenance items. Cracked render, minor rust on roof sheets, weathered timber on verandahs, stiff doors, aging silicone seals, and overdue paintwork are entirely normal. A report listing 25 minor items is a very different document from one identifying major structural movement or active termite infestation. Read the category assigned to each finding, not just the length of the list."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if my building report finds active termites in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Active termite infestation requires a licensed termite management company to attend, assess the full extent of activity and damage, and provide a written treatment and management plan with a cost estimate before you proceed with purchase. Past termite activity (a previous infestation that has been treated) is common in Brisbane homes and is far less alarming, provided treatment is documented and a current management program (chemical barrier or baiting system) is in place. Ask the vendor for all treatment documentation."
+      }
+    }
+  ]
+};
 ---
-<Layout title="How to Read a Building and Pest Report | Daniel Gierach Property" description="A building and pest report can be overwhelming. Here's what the findings actually mean and which issues are dealbreakers versus normal wear.">
+<Layout title="How to Read a Building and Pest Report | Daniel Gierach Property" description="A building and pest report can be overwhelming. Here's what the findings actually mean and which issues are dealbreakers versus normal wear." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a buyer's agent do that a selling agent does not?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A buyer's agent works exclusively for the buyer, while a selling agent is paid by and represents the vendor. A buyer's agent can provide a full search service including off-market properties, coordinates due diligence such as building and pest inspection and solicitor review, and negotiates or bids at auction on the buyer's behalf. Their access to off-market listings and established relationships with local selling agents can provide early access to properties before they are listed publicly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a buyer's agent cost in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buyer's agent fees in Queensland typically range from 1.5% to 3% of the purchase price, or a fixed fee between $8,000 and $20,000 or more depending on the service level and price range. On a $1.2 million property at 2%, that is $24,000. Buyer's agent fees are not tax-deductible for owner-occupiers but may be deductible as a capital cost when you eventually sell an investment property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is a buyer's agent most worth the cost in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buyer's agents add the most value when you are purchasing from interstate or overseas, when you are time-poor and competing in a fast-moving market, or when emotional involvement might compromise your negotiation position. In Brisbane's inner east, properties in suburbs like Bulimba, Hawthorne, and Norman Park can attract ten or fifteen enquiries within 24 hours of listing. Buyers with clear criteria and preparation may find a buyer's agent less necessary, but even experienced buyers can benefit from independent auction representation."
+      }
+    }
+  ]
+};
 ---
-<Layout title="What Is a Buyer's Agent? | Daniel Gierach Property" description="A buyer's agent works exclusively for you, not the vendor. Understanding what they do and what they cost helps you decide if it's worth it.">
+<Layout title="What Is a Buyer's Agent? | Daniel Gierach Property" description="A buyer's agent works exclusively for you, not the vendor. Understanding what they do and what they cost helps you decide if it's worth it." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

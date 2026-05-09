@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the main house styles in Brisbane's inner east?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane's inner east contains several distinct housing eras: pre-war worker's cottages (1880s to 1918), highset Queenslanders (1900 to 1940), the uniquely Brisbane Ashgrovian subtype, post-war timber homes (1945 to 1960), post-war brick veneer (1950 to 1970), mid-century modern (1955 to 1975), 1970s to 1980s split-levels, and contemporary rebuilds from around 2000 onward. Each era has distinct identifying features."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I identify the architectural era of a Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Key identifiers by era: pre-war worker's cottages are small, single-level, on stumps with VJ timber walls and a simple front verandah. Highset Queenslanders have a full-length front verandah, steep pitched roof, decorative fretwork, and high ceilings. Post-war timber homes are simpler in form with chamferboard cladding. Post-war brick homes are single-level with brick veneer and tiled roofs. Mid-century modern homes have flat or low-pitched rooflines, open-plan living, and large windows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the architectural era of a home affect its sale price in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The era of a home directly affects its heritage overlay status, demolition rules, renovation feasibility, buyer appeal, and price ceiling. A 1910 Queenslander in Camp Hill is almost certainly demolition-protected, which limits supply and supports value. Character overlays restrict multi-unit development on pre-1947 buildings. Knowing the era of your home shapes marketing copy, identifies the buyer pool, and determines what renovations are possible before sale."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Brisbane House Styles and Architectural Periods | Daniel Gierach Property" description="Queenslander, post-war brick, mid-century, split-level, contemporary. The identifying features of each, where they appear in Brisbane's inner east, and what matters at sale.">
+<Layout title="Brisbane House Styles and Architectural Periods | Daniel Gierach Property" description="Queenslander, post-war brick, mid-century, split-level, contemporary. The identifying features of each, where they appear in Brisbane's inner east, and what matters at sale." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

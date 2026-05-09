@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best cladding for a Brisbane home renovation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The best cladding depends on the era and zone of your home. In Brisbane's Character Residential (CR) zone, original cladding must be replaced like-for-like: chamferboard with chamferboard, VJs with VJs. For contemporary builds, fibre-cement products like Hardie Linea and Axon are mid-tier in cost and low in maintenance. Rendered brick and Colorbond sheet are also popular. Wholesale re-cladding rarely earns back its cost at sale unless the existing facade is genuinely a negative to buyers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I paint face brick on my Brisbane home before selling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can paint face brick but it is almost irreversible and is a divisive decision at resale. Buyers either love a white-painted brick home or see it as a permanent maintenance obligation. Before painting face brick, consider that it cannot be undone without significant cost. The highest-return facade work at sale is usually cleaning, repainting existing painted surfaces in a photogenic neutral colour, and addressing visible damage such as rotted boards, cracked render, or failed flashings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What heritage rules apply to facade changes in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your property is in Brisbane's Character Residential (CR) zone or subject to a heritage overlay, any facade change typically requires council approval. The default position is to maintain original materials: chamferboard must be replaced with chamferboard, VJ boards must remain, and fundamental changes such as adding a second storey or replacing timber cladding with render usually require a development application. Colour changes are generally permitted without approval."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Cladding and Facade Types with Design Examples | Daniel Gierach Property" description="From face brick to chamferboard, Hardie Linea to Colorbond. How each facade type presents, what it costs to maintain, and which heritage rules constrain choices.">
+<Layout title="Cladding and Facade Types with Design Examples | Daniel Gierach Property" description="From face brick to chamferboard, Hardie Linea to Colorbond. How each facade type presents, what it costs to maintain, and which heritage rules constrain choices." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

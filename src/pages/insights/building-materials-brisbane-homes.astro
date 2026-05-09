@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the most common building materials used in Brisbane homes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane homes span several material eras. Queenslanders and post-war timber homes use VJ (vertical joint) timber boards and chamferboard cladding. Post-war brick homes from the 1950s to 1980s use face brick or brick veneer. Contemporary builds from 2000 onward commonly use rendered brick or Hebel (AAC), fibre-cement products such as Hardie Linea and Axon, Colorbond metal cladding, and composite cladding. Pre-1987 fibre-cement sheets may contain asbestos and should be identified in any inspection report."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do VJ boards differ from chamferboard in a Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "VJ (vertical joint) boards are narrow tongue-and-groove hardwood timber boards set vertically, typically used as the internal lining of Queenslanders and sometimes as external cladding above the window line. Chamferboard is a horizontal external cladding with a chamfered (angled) edge along the top of each board, used as the exterior of most post-war Brisbane timber homes. VJs run vertically; chamferboard runs horizontally. Both require repainting every 8 to 12 years on external surfaces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does building material affect the resale value of a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Building material affects maintenance costs, buyer perception, and renovation feasibility. A full repaint on a 250 square metre chamferboard home costs $8,000 to $14,000. Replacing cladding runs $80,000 to $150,000 or more on a full elevation. In character zones, cladding must be replaced like-for-like (chamferboard with chamferboard, VJs with VJs), which affects renovation costs. For sellers, the key question is what the buyer's inspector will note and what the remediation cost is, knowing the material gets you to that number quickly."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Building Materials Explained: Timber, Brick, Chamferboard, Render, Weatherboard | Daniel Gierach Property" description="The materials that Brisbane homes are built of. How to identify each, typical lifespan and maintenance, and when they add or subtract from resale value.">
+<Layout title="Building Materials Explained: Timber, Brick, Chamferboard, Render, Weatherboard | Daniel Gierach Property" description="The materials that Brisbane homes are built of. How to identify each, typical lifespan and maintenance, and when they add or subtract from resale value." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

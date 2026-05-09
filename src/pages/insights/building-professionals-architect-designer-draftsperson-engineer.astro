@@ -1,8 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between an architect and a building designer in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An architect is licensed with the Board of Architects Queensland (BoAQ) and provides full design, documentation, council approval, tender, and construction supervision services. Fees typically run 8 to 15% of the build cost. A building designer is licensed through the QBCC and can design and document most residential projects at a lower fee of 3 to 6% of build cost. An architect suits complex sites, heritage properties, and high-end custom homes. A building designer is the most cost-effective option for most Brisbane residential projects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do I need a structural engineer for a residential project in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A structural engineer is required on almost every residential build that includes anything non-trivial. They design and certify the load-carrying elements: footings, slabs, beams, posts, and portal frames. Typical fees run $1,500 to $5,000 on a residential project, higher for complex geotechnical situations. You will also typically need a geotechnical engineer to classify the soil (from $1,200 to $2,500) and a cadastral surveyor to establish lot boundaries and prepare a contour plan (from $1,500 to $3,500)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 'STCA' mean on a Brisbane property listing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "STCA stands for Subject to Council Approval. It is shorthand used by listing agents to indicate that a described use or potential development is subject to council approval and is not guaranteed. A DA (Development Approval) is the council approval required for works outside the permitted Code Assessable pathway. Obtaining a DA can take 3 to 6 months. STCA wording does not indicate that approval is likely, only that the agent believes the use is worth investigating."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Building Professionals: Architect, Designer, Draftsperson, Engineer, Surveyor | Daniel Gierach Property" description="Architect vs building designer vs draftsperson vs engineer vs surveyor vs town planner. What each one is licensed to do, typical fees, and when to engage each.">
+<Layout title="Building Professionals: Architect, Designer, Draftsperson, Engineer, Surveyor | Daniel Gierach Property" description="Architect vs building designer vs draftsperson vs engineer vs surveyor vs town planner. What each one is licensed to do, typical fees, and when to engage each." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

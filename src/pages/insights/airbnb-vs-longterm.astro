@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Airbnb more profitable than long-term rental in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Airbnb typically generates higher gross income than long-term rental in Brisbane's inner east, but the net return after all costs is often worse. Additional annual costs on a short-term listing including cleaning, utilities, furnishing amortisation, higher management fees, and platform commissions can add $15,000 to $25,000 per year compared to long-term rental, eroding most of the gross income advantage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the extra costs of running an Airbnb compared to long-term rental in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Short-term rental attracts higher costs across almost every category: platform and management commission of 15 to 20% versus 8 to 10% for long-term, cleaning fees of $80 to $180 per turnover, $15,000 to $30,000 upfront furnishing cost, utilities paid by the owner (around $3,000 to $5,000 per year), specialist short-term rental insurance, and faster wear and tear requiring more frequent maintenance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I convert my Brisbane investment property to short-term rental?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Converting to short-term rental suits properties with strong tourist or corporate appeal, owners who can manage the higher operational complexity, and locations where occupancy is reliably above 70%. Before converting, model the net cash flow carefully, check your council zoning and body corporate rules, and factor in the time cost of management. For most investors with a standard Brisbane inner-east home, long-term rental delivers comparable net income with far less management burden."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="Airbnb vs Long-Term Rental: The Real Numbers in Brisbane | Daniel Gierach"
   description="Short-term rental can generate higher gross income but the true net return is often worse than long-term. Here are the real numbers for Brisbane inner-east properties."
+  schema={faqSchema}
 >
 
 <section class="relative flex items-center overflow-hidden" style="min-height:52vh;background:#0a0806;">

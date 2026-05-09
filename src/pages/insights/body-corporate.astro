@@ -1,11 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is body corporate in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Queensland, a body corporate (officially the Body Corporate for a Community Title Scheme) is the legal entity that manages a complex of units, townhouses, or lots that share common areas. Every owner of a lot within the scheme is automatically a member. The framework is governed by the Body Corporate and Community Management Act 1997 (Qld), and the body corporate is responsible for maintaining common property, managing finances, and making collective decisions about the scheme."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does body corporate cost in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Body corporate levies vary widely based on complex age, size, facilities, and management history. Approximate annual figures for Brisbane's inner east: a small townhouse complex (4 to 8 lots) runs $2,000 to $4,000 per year; a standard unit block (10 to 30 lots) $4,000 to $8,000; a mid-rise unit with lift, gym, and pool $6,000 to $14,000; and a large high-rise complex $10,000 to $30,000 or more. Older complexes often run higher due to capital works backlogs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between the administrative fund and sinking fund?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every lot owner pays quarterly levies split between two funds. The administrative fund covers day-to-day running costs: building insurance, cleaning, garden maintenance, pest control, management fees, and minor repairs. The sinking fund covers long-term capital works: repainting the exterior, roof repairs, replacing lifts, resurfacing carparks, and pool equipment. A depleted sinking fund is a serious red flag, as it often leads to unexpected special levies charged to all owners."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="What Is Body Corporate and What Does It Actually Cost? | Daniel Gierach"
   description="Body corporate levies in Brisbane can add thousands to your holding costs. Here is how they work, what the money pays for, and what to check before you buy a unit."
+  schema={faqSchema}
 >
 
 <!-- Hero -->
