@@ -52,8 +52,10 @@ const _insightMatch      = _bPath.match(/^\/insights\/selling-in-(.+)$/);
 const _insightSuburbSlug = _insightMatch ? _insightMatch[1] : null;
 const _insightSuburbName = _insightSuburbSlug ? _insightSuburbSlug.replace(/-/g,' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()) : null;
 
-// Email capture: show on all insights article pages (not the index)
-const _isInsightsArticle = _bParts[0] === 'insights' && _bParts.length >= 2;
+// Hub pages pass schema with @type CollectionPage -- exclude from article treatment
+const _isHubPage = schema?.["@type"] === "CollectionPage";
+// Email capture: show on all insights article pages (not the index or hub pages)
+const _isInsightsArticle = _bParts[0] === 'insights' && _bParts.length >= 2 && !_isHubPage;
 
 // Look up publish date from seo-schedule for Article JSON-LD datePublished
 const _articleSlug = _bParts[1] ?? null;
