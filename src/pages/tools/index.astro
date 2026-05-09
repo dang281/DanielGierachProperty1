@@ -69,10 +69,23 @@ const phaseColors: Record<string, string> = {
 
 const counts: Record<string, number> = { All: tools.length };
 for (const t of tools) counts[t.phase] = (counts[t.phase] || 0) + 1;
+
+const toolsSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Property Tools and Calculators for Brisbane Buyers and Sellers",
+  "description": "Free property tools and calculators for Brisbane buyers, sellers and investors. Mortgage, stamp duty, selling costs, borrowing power and more.",
+  "url": "https://danielgierach.com/tools",
+  "author": {
+    "@type": "Person",
+    "name": "Daniel Gierach",
+    "url": "https://danielgierach.com/about"
+  }
+};
 ---
 
 
-<Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage, stamp duty, selling costs, borrowing power and more. Inner-east Brisbane.">
+<Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage, stamp duty, selling costs, borrowing power and more. Inner-east Brisbane." schema={toolsSchema}>
 
 <!-- Hero -->
 <section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
