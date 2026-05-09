@@ -13,6 +13,7 @@ const pages = [
   { path: '/about',               changefreq: 'monthly', priority: '0.8' },
   { path: '/reviews',             changefreq: 'monthly', priority: '0.8' },
   { path: '/brisbane-inner-east', changefreq: 'monthly', priority: '0.9' },
+  { path: '/suburbs',                 changefreq: 'monthly', priority: '0.85' },
   { path: '/suburbs/seven-hills',    changefreq: 'weekly',  priority: '0.92' },
   { path: '/suburbs/carina',         changefreq: 'weekly',  priority: '0.92' },
   { path: '/suburbs/morningside',    changefreq: 'weekly',  priority: '0.92' },
