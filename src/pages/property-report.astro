@@ -1,12 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
+
+const reportSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Instant Property Report, Brisbane",
+  "description": "Find out what your Brisbane property is worth. Get a free sales or rental appraisal report from Daniel Gierach, Ray White Bulimba.",
+  "provider": {
+    "@type": "RealEstateAgent",
+    "name": "Daniel Gierach",
+    "url": "https://danielgierach.com"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Brisbane, Queensland"
+  },
+  "url": "https://danielgierach.com/property-report",
+  "serviceType": "Property Valuation Report"
+};
 ---
 
 <Layout
   title="Instant Property Report | Daniel Gierach Property"
   description="Find out what your Brisbane property is worth. Get a free sales or rental appraisal report from Daniel Gierach, Ray White Bulimba."
   preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/e543-H3474534-192843678__1773807208-74050-IMG2700p.jpg"
+  schema={reportSchema}
 >
 
 <style>
