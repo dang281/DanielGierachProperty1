@@ -4,10 +4,10 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; demystify settlement for vendors and purchasers
 **Content Pillar:** seller
-**Status:** Idea
+**Status:** Ready for Review
 **Publish date:** TBD
 **Scheduled time:** 07:30
-**Visual status:** Not yet generated
+**Visual status:** Not needed
 
 ---
 
@@ -23,7 +23,7 @@ The funds sequence also matters. The vendor's discharge of mortgage needs to be 
 
 The full settlement timeline, including the specific steps in Queensland and what both parties need to have in place, is at the link below.
 
-danielgierach.com/insights/what-happens-on-settlement-day
+danielgierach.com/insights/what-happens-on-settlement-day-queensland
 
 ## Hashtags
 
@@ -37,4 +37,15 @@ danielgierach.com/insights/what-happens-on-settlement-day
 ## Notes for Daniel
 
 **Confidence: Ready**
-No external statistics. Evergreen education on settlement process. No time-sensitive references. Verify insight article exists at the linked slug before scheduling.
+- Ready = article URL verified, no external stats, evergreen content
+
+**1. Nothing to verify before posting.** No statistics used. All content reflects the settlement process as described in the linked article, which exists at the corrected slug below.
+
+**2. Suggested first comment (post this as your reply):**
+One thing that catches vendors by surprise: the discharge of mortgage needs to be lodged by your lender, not your solicitor. Give your lender plenty of notice. Most want at least 10 business days.
+
+**3. Approve or flag:**
+Approve as-is. Publish date TBD pending scheduling resumption.
+
+**All sources:**
+- danielgierach.com/insights/what-happens-on-settlement-day-queensland
