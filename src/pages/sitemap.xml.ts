@@ -117,6 +117,9 @@ const pages = [
   { path: '/tools/cgt-timing',                 changefreq: 'monthly', priority: '0.75' },
   { path: '/tools/settlement-date',            changefreq: 'monthly', priority: '0.7'  },
   { path: '/tools/body-corp-disclosure',       changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/federal-budget-2026',        changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/interest-rate-calculator',   changefreq: 'monthly', priority: '0.75' },
+  { path: '/tools/true-cost-to-buy',           changefreq: 'monthly', priority: '0.75' },
   // Building / architecture / planning education articles (April 2026)
   { path: '/insights/types-of-residential-property-australia',          changefreq: 'monthly', priority: '0.7' },
   { path: '/insights/brisbane-house-styles-architectural-periods',      changefreq: 'monthly', priority: '0.7' },
