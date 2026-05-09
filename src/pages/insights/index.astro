@@ -364,5 +364,11 @@ function filterCount(f: string): number {
 
   pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter!)));
   searchInput.addEventListener('input', applyVisibility);
+
+  // Pre-fill search from ?q= URL parameter (supports WebSite SearchAction)
+  const urlQ = new URLSearchParams(window.location.search).get('q');
+  if (urlQ) {
+    searchInput.value = urlQ;
+  }
   applyFilter('All');
 </script>
