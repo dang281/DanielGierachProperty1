@@ -7,7 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2027-02-02
 **Scheduled time:** 07:30
-**Visual status:** Not needed
+**Visual status:** Ready
+**Image:** content/social/images/2027-02-02-linkedin-market.png
 
 ---
 
@@ -15,9 +16,9 @@
 
 One of the most expensive mistakes in a pre-sale conversation is confusing presentation with renovation.
 
-Presentation is the property looking its best at inspection and in the photos. Decluttered. Professionally cleaned. Styled where it earns its cost. Gardens tidy. Taps that do not drip, lights that work, a fresh coat of paint on scuffed walls. This level of preparation almost always earns back more than it costs.
+Presentation is the property looking its best at inspection and in the photos. Decluttered. Professionally cleaned. Styled where it earns its cost. Gardens tidy. Taps that do not drip, lights that work, a fresh coat of paint on scuffed walls. This level of preparation often earns back more than it costs.
 
-Renovation is a new kitchen, a bathroom rebuilt from the studs, a structural extension. A full kitchen in Brisbane is $40k to $80k and almost never earns back the spend at sale. Inner-east buyers who pay $1.4M for a home can also afford to renovate it to their own taste. They are not paying full price for your taste.
+Renovation is a new kitchen, a bathroom rebuilt from the studs, a structural extension. A full kitchen in Brisbane can cost $40,000 to $80,000, and may not earn back the full spend at sale. Some buyers specifically want a property they can renovate to their own specifications. A buyer intending to redo the kitchen is not paying a premium for your renovation.
 
 The exception is defects. A cracked roof, a failing retaining wall, active pest damage. These are not presentation issues, they are condition issues, and they will show up in the buyer's building and pest report whether or not you mention them. Fixing real defects protects the value you already have. Ignoring them hands the buyer a renegotiation after contract.
 

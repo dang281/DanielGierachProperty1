@@ -7,7 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2027-01-12
 **Scheduled time:** 07:30
-**Visual status:** Not needed
+**Visual status:** Ready
+**Image:** content/social/images/2027-01-12-linkedin-market.png
 
 ---
 

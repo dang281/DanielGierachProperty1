@@ -7,21 +7,24 @@
 **Status:** scheduled
 **Publish date:** 2027-01-21
 **Scheduled time:** 07:30
-**Visual status:** Not needed
+**Visual status:** Ready
+**Image:** content/social/images/2027-01-21-linkedin-article.png
 
 ---
 
 ## Caption
 
-A buyer's agent works for the buyer, and their fee on a $1.2M inner-east purchase lands around $18,000. If you are a vendor, understanding what they do (and what they cannot do) changes how you read an offer.
+Buyer's agents are not all the same service. Understanding what they do shapes how you evaluate whether one is right for you, and what it means when an offer arrives through one.
 
-A buyer's agent has time, distance from the emotion, and a track record negotiating. They do not have access to off-market stock a diligent buyer could not find themselves with a few weekends and a network.
+Some buyer's agents run the traditional model: property search, due diligence, negotiation, and settlement. Others specialise in building investment portfolios, working through return on investment, long-term capital growth, and where infrastructure spend in Brisbane is creating underlying demand. They develop a strategy based on your outcomes, not just find you a property.
 
-They add genuine value for interstate buyers who are searching blind, first-home buyers who have never been through a real negotiation, and time-poor professionals who will miss the right property otherwise. They add less value for experienced local buyers who have already done a few transactions and know their patch.
+What most share is a network of agent relationships that provides access to pre-market and off-market properties before they appear on the portals. In a market where good stock moves quickly, that access can make a difference.
 
-When a buyer's agent presents an offer on your property, their brief is to get it for the lowest number that gets it across the line. That is the job. It does not mean the offer is bad, but it does mean you should assume the first number is not the ceiling.
+They add clear value for time-poor buyers who will otherwise miss opportunities, investors who want the analysis done properly, and interstate buyers purchasing without the ability to inspect consistently. Flat fees typically run from $10,000 to $25,000. Percentage-based fees generally sit between 1% and 2.5% of the purchase price.
 
-If you are a vendor and the offer comes through a buyer's agent, the useful question to ask your own agent is: what signals are they giving us about the real ceiling?
+If you are a vendor and an offer comes through a buyer's agent, assume the first number is not the ceiling. Their brief is to secure the property at the lowest number that crosses the line.
+
+If you would like a recommendation on a buyer's agent, reach out.
 
 danielgierach.com
 

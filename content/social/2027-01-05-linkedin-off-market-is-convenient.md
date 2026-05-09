@@ -7,7 +7,8 @@
 **Status:** scheduled
 **Publish date:** 2027-01-05
 **Scheduled time:** 07:30
-**Visual status:** Not needed
+**Visual status:** Ready
+**Image:** content/social/images/2027-01-05-linkedin-market.png
 
 ---
 
@@ -17,7 +18,7 @@ An agent rings you with a buyer ready to go. No campaign, no open homes, quick s
 
 The question the pitch does not answer is what that buyer becomes competitive at when they know another three buyers want the same house.
 
-Off-market works with one buyer making one offer based on what they are prepared to pay alone. A campaign works with three or four serious buyers each committing to their best number because they know they are competing. On a standard inner-east house the gap between those two results is often $40k to $80k. On a riverfront or a large character block it is higher.
+Off-market works with one buyer making one offer based on what they are prepared to pay alone. A campaign works with three or four serious buyers each committing to their best number because they know they are competing. On a standard Brisbane house the gap between those two results is often $40k to $80k. On a riverfront or a large character block it is higher.
 
 There are real off-market scenarios. Privacy. A neighbour relationship. A property where a public campaign is genuinely difficult. In those cases the trade-off is deliberate and the price is set with both parties' eyes open.
 
