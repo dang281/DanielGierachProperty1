@@ -504,11 +504,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   // ---- QLD Transfer Duty (home concession rate, owner-occupier non-FHB) ----
+  // QRO 2024-25 schedule: upper threshold for home concession is $980,000, not $1,000,000
   function calcHomeDuty(price: number): number {
     if (price <= 350000)  return price * 0.01;
     if (price <= 540000)  return 3500  + (price - 350000) * 0.035;
-    if (price <= 1000000) return 10150 + (price - 540000) * 0.045;
-    return 30850 + (price - 1000000) * 0.0575;
+    if (price <= 980000)  return 10150 + (price - 540000) * 0.045;
+    return 29950 + (price - 980000) * 0.0575;
   }
 
   // ---- QLD Transfer Duty full calculation ----

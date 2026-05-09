@@ -169,7 +169,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     cursor: pointer;
   }
 
-  /* ── Three-column comparison table ─────────── */
+  /* ── Comparison table (3 or 4 columns) ─────── */
   .fb-compare {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -177,8 +177,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     background: rgba(28,25,23,0.1);
     margin-top: 1rem;
   }
+  .fb-compare.four-col {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
   @media (max-width: 600px) {
-    .fb-compare { grid-template-columns: 1fr; }
+    .fb-compare,
+    .fb-compare.four-col { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 900px) and (min-width: 601px) {
+    .fb-compare.four-col { grid-template-columns: 1fr 1fr; }
   }
   .fb-compare-col {
     background: var(--color-surface-3);
@@ -377,9 +384,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <span class="fb-section-title">Section 1</span>
   <h2>Negative Gearing Impact Calculator</h2>
   <p>
-    Currently, losses from investment properties can offset any personal income. The proposed change would
-    quarantine losses from a third or more properties so they can only offset rental income, not wages or
-    salary. An expected start date of around July 2027 has been flagged, but nothing is confirmed.
+    Currently, losses from investment properties offset any personal income. Two credible models have been reported ahead of the May 12 budget. The first is a two-property cap: losses from a third or more properties quarantined to rental income only. The second is full abolition for new investments from budget night, with existing investments grandfathered. The Crikey and CommBank budget previews (May 2026) treat full abolition as the more likely outcome. New builds may retain negative gearing under either model, consistent with Labor's 2019 policy.
   </p>
 </div>
 
@@ -512,7 +517,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <li>Losses split evenly across properties for the quarantine calculation.</li>
     <li>The 2-property cap quarantines losses from properties 3 and above. Those losses can still offset future rental profits from those same properties.</li>
     <li>Marginal rates: 0%, 21% (19%+ML), 34.5% (32.5%+ML), 39% (37%+ML), 47% (45%+ML).</li>
-    <li>Proposed effective date approximately July 2027. No legislation has passed.</li>
+    <li>Proposed effective date: budget night May 12 or July 2027. No legislation has passed. Two models credibly reported: 2-property cap or full abolition for new investments.</li>
+    <li>New builds may be exempt from changes, consistent with Labor's 2019 election policy. No confirmation either way.</li>
   </ul>
 </div>
 
@@ -524,9 +530,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <span class="fb-section-title">Section 2</span>
   <h2>Capital Gains Tax Impact Calculator</h2>
   <p>
-    Currently, assets held for more than 12 months attract a 50% CGT discount. Two proposals have been flagged:
-    Option A reduces the discount to 25%, Option B to 33%. Gains accrued before budget night (May 12, 2026)
-    are expected to be grandfathered at the existing 50% discount rate.
+    Currently, assets held more than 12 months attract a 50% CGT discount. Three models have been credibly reported for the May 12 budget. Option A reduces the discount to 25% (Labor's 2016 and 2019 election policy). Option B reduces it to 33%. Option C, flagged by Corrs Chambers Westgarth and CommBank as the leading candidate, replaces the flat discount entirely with inflation indexation: you pay CGT only on the real gain above CPI, not the nominal gain. Gains accrued before budget night are expected to be grandfathered.
   </p>
 </div>
 
@@ -560,10 +564,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
 
     <div class="fb-row">
-      <label>Held for 12+ months?<small>Required for any CGT discount to apply</small></label>
+      <label>Years held<small>Used for 12-month test and inflation indexation</small></label>
       <select id="cgt-held" class="fb-select">
-        <option value="yes" selected>Yes, held 12+ months</option>
-        <option value="no">No, held under 12 months</option>
+        <option value="0">Under 12 months (no discount)</option>
+        <option value="1">1 year</option>
+        <option value="2">2 years</option>
+        <option value="3">3 years</option>
+        <option value="5" selected>5 years</option>
+        <option value="7">7 years</option>
+        <option value="10">10 years</option>
+        <option value="15">15 years</option>
+        <option value="20">20 years</option>
+        <option value="25">25 years</option>
+        <option value="30">30 years</option>
       </select>
     </div>
 
@@ -598,9 +611,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 </div>
 
-<!-- Three scenario columns -->
+<!-- Four scenario columns -->
 <div style="margin-top:1.5rem;">
-  <div class="fb-compare" id="cgt-compare">
+  <div class="fb-compare four-col" id="cgt-compare">
     <div class="fb-compare-col current">
       <span class="fb-col-label highlight">Current: 50% discount</span>
       <span class="fb-col-val" id="cgt-cur-taxable">$175,000</span>
@@ -618,6 +631,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <span class="fb-col-val" id="cgt-b-taxable">$234,500</span>
       <p class="fb-col-sub">Taxable capital gain</p>
       <span class="fb-col-diff worse" id="cgt-b-tax">CGT payable: $80,903</span>
+    </div>
+    <div class="fb-compare-col worst">
+      <span class="fb-col-label" style="color:#c4912a;font-weight:800;">Option C: Indexation</span>
+      <span class="fb-col-val" id="cgt-c-taxable">$261,000</span>
+      <p class="fb-col-sub">Taxable gain (nominal gain minus CPI, assumed 3%/yr)</p>
+      <span class="fb-col-diff worse" id="cgt-c-tax">CGT payable: $90,045</span>
     </div>
   </div>
 </div>
@@ -640,9 +659,17 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <span>CGT payable: Option B (33% discount)</span>
     <span class="val" id="cgt-sum-b">$80,903</span>
   </div>
-  <div class="fb-line total">
+  <div class="fb-line">
     <span>Extra tax under Option B vs. current</span>
-    <span class="val" id="cgt-sum-diff-b">$20,528</span>
+    <span class="val loss-line" id="cgt-sum-diff-b">$20,528</span>
+  </div>
+  <div class="fb-line">
+    <span>CGT payable: Option C (inflation indexation, 3%/yr assumed)</span>
+    <span class="val" id="cgt-sum-c">$90,045</span>
+  </div>
+  <div class="fb-line total">
+    <span>Extra tax under Option C vs. current</span>
+    <span class="val" id="cgt-sum-diff-c">$29,670</span>
   </div>
 </div>
 
@@ -653,12 +680,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <div class="fb-note">
   <ul class="fb-assumptions">
-    <li>For pre-budget purchases, gains are assumed to accrue evenly over a notional holding period.
-        The grandfathered portion (pre-budget night) retains the 50% discount. The remainder is split pro-rata
-        and shown under the new discount. This is a simplification: your accountant will calculate the exact split.</li>
-    <li>No main residence exemption modelled here. If this is your home, you may be fully exempt.</li>
+    <li>For pre-budget purchases, gains are assumed to accrue evenly over the holding period. The grandfathered portion retains the 50% discount. The post-budget portion is subject to the new rate. This is a simplification: your accountant will calculate the exact split based on valuations.</li>
+    <li>Option C (inflation indexation) uses 3% annual CPI, the midpoint of the RBA's 2-3% target band. Your actual result depends on CPI at purchase and sale dates. Indexed cost base = purchase price multiplied by (1.03) to the power of years held.</li>
+    <li>Under indexation there is no flat discount. You pay CGT on the real gain only. If the nominal gain is less than CPI growth, no CGT applies.</li>
+    <li>No main residence exemption modelled. If this is your principal home you may be fully exempt.</li>
     <li>No state land tax, stamp duty, or selling costs included.</li>
-    <li>No legislation has passed. Discount rates are as proposed ahead of the May 12, 2026 budget.</li>
+    <li>No legislation has passed. All three options are credibly reported. Indexation flagged by Corrs Chambers Westgarth and CommBank (May 2026) as the leading candidate.</li>
   </ul>
 </div>
 
@@ -670,10 +697,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <span class="fb-section-title">Section 3</span>
   <h2>Help to Buy Eligibility Check</h2>
   <p>
-    The Help to Buy scheme allows the federal government to co-invest in your property: 40% of the purchase
-    price for new builds, 30% for existing properties. You need only a 2% deposit. Around 10,000 places
-    are available each year. Income caps are approximately $100,000 for singles and $160,000 for couples
-    (expected to increase before the scheme launches).
+    The Help to Buy scheme allows the government to co-invest in your property: 40% for new builds, 30% for existing. You need a minimum 2% deposit. The income caps have been officially confirmed for the 2026-27 budget: $100,000 for singles (raised from $90,000) and $160,000 for couples and single parents (raised from $120,000). An additional $800 million has been committed, bringing total scheme funding to $6.3 billion. Property price caps have also been increased and indexed.
   </p>
 </div>
 
@@ -957,7 +981,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const purchase = parseNum((document.getElementById('cgt-purchase') as HTMLInputElement).value);
     const sale     = parseNum((document.getElementById('cgt-sale') as HTMLInputElement).value);
     const timing   = (document.getElementById('cgt-timing') as HTMLSelectElement).value;
-    const held     = (document.getElementById('cgt-held') as HTMLSelectElement).value;
+    const yearsStr = (document.getElementById('cgt-held') as HTMLSelectElement).value;
+    const years    = parseInt(yearsStr, 10) || 0;
     const taxRate  = parseFloat((document.getElementById('cgt-tax-rate') as HTMLSelectElement).value) || 0;
 
     const totalGain = sale - purchase;
@@ -967,90 +992,100 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     show('cgt-timing-note', timing === 'pre');
     show('cgt-post-note',   timing === 'post');
 
-    /* No-discount path */
-    const noDiscount = held === 'no';
+    /* Under 12 months: no discount */
+    const noDiscount = years < 1;
     show('cgt-no-discount', noDiscount && totalGain > 0);
 
+    /* Inflation indexation (Option C): indexed cost base using 3% CPI per year */
+    const INFLATION_RATE = 0.03;
+    const indexedCostBase  = purchase * Math.pow(1 + INFLATION_RATE, years);
+    const indexedGain      = Math.max(sale - indexedCostBase, 0);
+
+    const zeroText = 'CGT payable: $0';
+
     if (totalGain <= 0) {
-      /* Capital loss: no CGT in any scenario */
       setText('cgt-cur-taxable', fmt(0));
       setText('cgt-a-taxable',   fmt(0));
       setText('cgt-b-taxable',   fmt(0));
-      const noCgt = 'CGT payable: $0 (capital loss or no gain)';
-      const curTaxEl = document.getElementById('cgt-cur-tax');
-      const aTaxEl   = document.getElementById('cgt-a-tax');
-      const bTaxEl   = document.getElementById('cgt-b-tax');
-      if (curTaxEl) curTaxEl.textContent = noCgt;
-      if (aTaxEl)   aTaxEl.textContent   = noCgt;
-      if (bTaxEl)   bTaxEl.textContent   = noCgt;
-      setText('cgt-sum-cur', '$0');
-      setText('cgt-sum-a',   '$0');
-      setText('cgt-sum-b',   '$0');
-      setText('cgt-sum-diff-a', '$0');
-      setText('cgt-sum-diff-b', '$0');
+      setText('cgt-c-taxable',   fmt(0));
+      [document.getElementById('cgt-cur-tax'), document.getElementById('cgt-a-tax'),
+       document.getElementById('cgt-b-tax'),  document.getElementById('cgt-c-tax')]
+        .forEach(el => { if (el) el.textContent = zeroText; });
+      ['cgt-sum-cur','cgt-sum-a','cgt-sum-b','cgt-sum-c',
+       'cgt-sum-diff-a','cgt-sum-diff-b','cgt-sum-diff-c']
+        .forEach(id => setText(id, '$0'));
       return;
     }
 
     let curTaxable: number;
     let aTaxable: number;
     let bTaxable: number;
+    let cTaxable: number; // inflation indexation
 
     if (noDiscount) {
-      /* Under 12 months: no discount in any scenario */
       curTaxable = totalGain;
       aTaxable   = totalGain;
       bTaxable   = totalGain;
+      cTaxable   = totalGain; // no indexation benefit if held under 12 months
     } else if (timing === 'post') {
-      /* Post-budget purchase: new rates apply to entire gain */
-      curTaxable = totalGain * 0.50; // 50% discount = taxable on 50%
-      aTaxable   = totalGain * 0.75; // 25% discount = taxable on 75%
-      bTaxable   = totalGain * 0.67; // 33% discount = taxable on 67%
+      curTaxable = totalGain * 0.50;
+      aTaxable   = totalGain * 0.75;
+      bTaxable   = totalGain * 0.67;
+      cTaxable   = indexedGain; // full indexation applies
     } else {
-      /* Pre-budget purchase: grandfathering
-         Simplification: assume 50% of the gain was accrued before budget night
-         and retains the 50% discount. The other 50% is subject to the new rate.
-         (User's accountant will calculate the true split based on holding period.)
-      */
-      const prePortion  = totalGain * 0.5; // notional pre-budget gain
-      const postPortion = totalGain * 0.5; // notional post-budget gain
+      /* Pre-budget purchase: gains split 50/50 for grandfathering estimate */
+      const prePortion  = totalGain * 0.5;
+      const postPortion = totalGain * 0.5;
 
-      curTaxable = totalGain * 0.50; // all at 50% under current rules
-
-      // Option A: pre at 50%, post at 25% discount
-      aTaxable = (prePortion * 0.50) + (postPortion * 0.75);
-      // Option B: pre at 50%, post at 33% discount
-      bTaxable = (prePortion * 0.50) + (postPortion * 0.67);
+      curTaxable = totalGain * 0.50;
+      aTaxable   = (prePortion * 0.50) + (postPortion * 0.75);
+      bTaxable   = (prePortion * 0.50) + (postPortion * 0.67);
+      /* Option C: pre-budget portion keeps 50% discount; post-budget portion uses indexation.
+         For the post-budget portion, apply half the indexed gain as an approximation. */
+      const postIndexedGain = Math.max((sale - indexedCostBase) * 0.5, 0);
+      cTaxable = (prePortion * 0.50) + postIndexedGain;
     }
 
     const curTax = curTaxable * taxRate;
     const aTax   = aTaxable   * taxRate;
     const bTax   = bTaxable   * taxRate;
+    const cTax   = cTaxable   * taxRate;
 
     setText('cgt-cur-taxable', fmt(curTaxable));
     setText('cgt-a-taxable',   fmt(aTaxable));
     setText('cgt-b-taxable',   fmt(bTaxable));
+    setText('cgt-c-taxable',   fmt(cTaxable));
 
     const curTaxEl = document.getElementById('cgt-cur-tax');
     const aTaxEl   = document.getElementById('cgt-a-tax');
     const bTaxEl   = document.getElementById('cgt-b-tax');
+    const cTaxEl   = document.getElementById('cgt-c-tax');
+
     if (curTaxEl) curTaxEl.textContent = 'CGT payable: ' + fmt(curTax);
     if (aTaxEl) {
-      aTaxEl.textContent  = 'CGT payable: ' + fmt(aTax);
-      aTaxEl.className    = 'fb-col-diff' + (aTax > curTax ? ' worse' : ' same');
+      aTaxEl.textContent = 'CGT payable: ' + fmt(aTax);
+      aTaxEl.className   = 'fb-col-diff' + (aTax > curTax ? ' worse' : ' same');
     }
     if (bTaxEl) {
-      bTaxEl.textContent  = 'CGT payable: ' + fmt(bTax);
-      bTaxEl.className    = 'fb-col-diff' + (bTax > curTax ? ' worse' : ' same');
+      bTaxEl.textContent = 'CGT payable: ' + fmt(bTax);
+      bTaxEl.className   = 'fb-col-diff' + (bTax > curTax ? ' worse' : ' same');
+    }
+    if (cTaxEl) {
+      cTaxEl.textContent = 'CGT payable: ' + fmt(cTax) + (years > 0 ? ' (' + years + ' yr hold)' : '');
+      cTaxEl.className   = 'fb-col-diff' + (cTax > curTax ? ' worse' : cTax < curTax ? ' same' : ' same');
     }
 
     const diffA = aTax - curTax;
     const diffB = bTax - curTax;
+    const diffC = cTax - curTax;
 
     setText('cgt-sum-cur',    fmt(curTax));
     setText('cgt-sum-a',      fmt(aTax));
     setText('cgt-sum-b',      fmt(bTax));
+    setText('cgt-sum-c',      fmt(cTax));
     setText('cgt-sum-diff-a', diffA > 0 ? '+' + fmtPlain(diffA) + ' more tax' : 'No change');
     setText('cgt-sum-diff-b', diffB > 0 ? '+' + fmtPlain(diffB) + ' more tax' : 'No change');
+    setText('cgt-sum-diff-c', diffC > 0 ? '+' + fmtPlain(diffC) + ' more tax' : diffC < 0 ? fmtPlain(Math.abs(diffC)) + ' less tax' : 'No change');
   }
 
   bindDollarInput('cgt-purchase', calcCGT);
