@@ -282,8 +282,8 @@ const globalSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
-    <!-- Fallback Article JSON-LD for insights articles without a specific schema prop -->
-    {_isInsightsArticle && !schema && (
+    <!-- Article JSON-LD for all insights articles (alongside any passed schema prop) -->
+    {_isInsightsArticle && (
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
