@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const clusterSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brisbane Property Types and Architecture",
+  "description": "Architectural styles, building materials, construction methods, and the differences between Queensland property types from Queenslanders to modern units.",
+  "url": "https://danielgierach.com/insights/brisbane-property-types",
+  "author": { "@type": "Person", "name": "Daniel Gierach", "url": "https://danielgierach.com/about" }
+};
+
+const articles = [
+  {
+    slug: 'types-of-residential-property-australia',
+    title: 'Types of Residential Property in Australia',
+    summary: 'Detached house, townhouse, duplex, unit, apartment, terrace, villa: the legal and practical differences between each residential property type and what they mean for buyer pool, ownership costs, and resale.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'brisbane-house-styles',
+    title: 'Brisbane House Styles: A Field Guide to Every Era',
+    summary: 'From Late Colonial cottages to postwar bungalows: how to identify the architectural era of any Brisbane home, and what that means when buying or selling.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'brisbane-house-styles-architectural-periods',
+    title: 'Brisbane House Styles and Architectural Periods',
+    summary: 'Queenslander, post-war brick, mid-century, split-level, contemporary: identifying the period and style of any Brisbane home, and what that means when buying, selling, or renovating.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'queenslander-vs-postwar',
+    title: 'Queenslander vs Post-War vs Contemporary: Which Holds Value Best?',
+    summary: 'The three dominant housing eras in Brisbane each have a different value proposition. Here is how they compare on price growth, maintenance cost, and long-term land content.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'prewar-homes-brisbane',
+    title: 'Buying a Prewar Home in Brisbane',
+    summary: 'Prewar homes dominate the inner east and command serious premiums. Here is what defines them, what to check before you buy, and how to think about value against newer builds.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'house-anatomy-eaves-soffits-slabs-fascia',
+    title: 'House Anatomy: Eaves, Soffits, Fascia, Slabs, Bearers, Joists',
+    summary: 'A complete glossary of Brisbane house anatomy: what every term in a builder\'s quote or inspection report actually refers to, from ridge and fascia down to stump and bearer.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'building-materials-brisbane-homes',
+    title: 'Building Materials Explained',
+    summary: 'From VJ boards to Hardiflex, chamferboard to rendered brick: a practical guide to identifying the materials your Brisbane home is built from and what each means for maintenance and resale.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'cladding-facade-types-brisbane',
+    title: 'Cladding and Facade Types with Design Examples',
+    summary: 'From face brick to Hardie Linea, a Brisbane-specific guide to the external cladding options available, what each signals to buyers, and what heritage rules constrain when preparing a property for sale.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'slab-design-types-brisbane',
+    title: 'Slab Design Types: Waffle, Raft, Conventional, Suspended',
+    summary: 'The four slab types found in Brisbane homes, how to identify yours, and what it means when an inspection report flags slab movement, cracking, or distress.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'body-corporate',
+    title: 'What Is Body Corporate and What Does It Actually Cost?',
+    summary: 'Body corporate levies in Brisbane can add thousands to your holding costs. Here is how they work, what the money pays for, and what to check before you buy a unit.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'selling-unit-townhouse-body-corporate-queensland',
+    title: 'Selling a Unit or Townhouse in a Body Corporate in Queensland',
+    summary: 'Selling strata-titled property in Queensland involves disclosure obligations, body corporate records, and buyer questions that freehold sales do not. Here is what you need to know before listing.',
+    tag: 'Sellers',
+  },
+  {
+    slug: 'types-of-build-project-custom-modular-prefab',
+    title: 'Types of Build: Six Paths from Block to Home',
+    summary: 'Project home, custom architect, modular, prefab panel, renovation, knockdown-rebuild: the six build paths compared on cost per square metre, timeline, and resale appeal.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'build-process-with-architect-step-by-step',
+    title: 'The Build Process with an Architect, Step by Step',
+    summary: 'Most knockdown-rebuild owners underestimate the timeline by 12 months and the decisions by a factor of ten. Here is every stage from first brief to handover, with fees and durations for each.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'building-professionals-architect-designer-draftsperson-engineer',
+    title: 'Building Professionals: Which One Do You Actually Need?',
+    summary: 'Architect, building designer, draftsperson, structural engineer, surveyor: what each one is licensed to do, what they typically cost, and how to choose the right professional for your residential project.',
+    tag: 'Buyers & Sellers',
+  },
+  {
+    slug: 'engage-right-builder',
+    title: 'How to Engage the Right Builder',
+    summary: 'Choosing the wrong builder is an expensive mistake. Here is how to verify licences, read contracts, and protect yourself before work starts.',
+    tag: 'Owners',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  'Buyers & Sellers': '#f5d07a',
+  'Sellers':          '#f5d07a',
+  'Owners':           '#a8e6a3',
+};
+---
+<Layout title="Brisbane Property Types and Architecture | Daniel Gierach Property" description="Architectural styles, building materials, construction methods, and the differences between Queensland property types. 15 guides for Brisbane buyers, sellers, and owners." schema={clusterSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Topic Guide &middot; 15 Articles</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Brisbane Property Types and Architecture
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:58ch;">
+        Understanding what a Brisbane property is built from, how old it is, and how its architectural era shapes value is essential knowledge for buyers, sellers, and owners. This cluster covers everything from identifying a Queenslander to understanding body corporate, slab types, and the build process.
+      </p>
+    </div>
+  </div>
+
+  <!-- Article Grid -->
+  <div style="padding:3.5rem 0 5rem;background:var(--color-base);">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {articles.map(a => (
+          <a href={`/insights/${a.slug}`}
+            style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s,border-color 0.25s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
+            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(28,25,23,0.09)'"
+            onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          >
+            <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${tagColors[a.tag] || '#c4912a'};`}></div>
+            <div style="display:flex;align-items:center;padding-top:0.25rem;">
+              <span style={`font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${tagColors[a.tag] || '#c4912a'};display:inline-flex;align-items:center;gap:0.35rem;`}>
+                <span style={`width:5px;height:5px;border-radius:50%;background:${tagColors[a.tag] || '#c4912a'};flex-shrink:0;`}></span>
+                {a.tag}
+              </span>
+            </div>
+            <div style="flex:1;">
+              <h2 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.75rem;">{a.title}</h2>
+              <p style="font-size:0.82rem;color:#78716c;line-height:1.75;">{a.summary}</p>
+            </div>
+            <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">Read Article &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
+    <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#1c1917;">Want to know what your property type is worth?</p>
+      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:44ch;">Whether it is a Queenslander, a post-war brick, or a contemporary unit, Daniel can give you an accurate picture of current market value and what buyers in your price range are actually paying.</p>
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+        Get a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>
