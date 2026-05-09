@@ -262,6 +262,17 @@ const pages = [
   { path: '/insights/upgrading-property-brisbane-inner-east',                changefreq: 'monthly', priority: '0.65' },
   { path: '/insights/what-happens-on-settlement-day-queensland',             changefreq: 'monthly', priority: '0.65' },
 
+  // Topic cluster hub pages
+  { path: '/insights/selling-in-brisbane-suburbs',   changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/preparing-your-home-for-sale',  changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/property-pricing-and-valuation',changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/marketing-and-selling-methods', changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/contracts-and-settlement',      changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/costs-taxes-and-finance',       changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/investment-property-selling',   changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/brisbane-property-types',       changefreq: 'weekly',  priority: '0.80' },
+  { path: '/insights/brisbane-inner-east-market',    changefreq: 'weekly',  priority: '0.80' },
+
   // Legal, low priority
   { path: '/privacy',    changefreq: 'yearly', priority: '0.2' },
   { path: '/terms',      changefreq: 'yearly', priority: '0.2' },
