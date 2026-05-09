@@ -4,8 +4,8 @@
 **Format:** Post
 **Goal:** Drive traffic to danielgierach.com/insights; reduce vendor anxiety around settlement; position Daniel as a trusted, educational resource for Brisbane sellers
 **Content Pillar:** seller
-**Status:** scheduled
-**Publish date:** 2026-05-07
+**Status:** Ready for Review
+**Publish date:** 2026-05-11
 **Scheduled time:** 07:30
 **Visual status:** Ready
 **Image:** content/social/images/2026-05-07-linkedin-article.png
