@@ -851,6 +851,63 @@ const faqSchema = {
 
 
 <!-- ════════════════════════════════════════════
+     FREE FIELD RESOURCES (printable PDFs)
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1280px] mx-auto px-8 sm:px-12 lg:px-16">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-12">
+      <div>
+        <span class="eyebrow mb-4 reveal" style="display:block;">Field Resources</span>
+        <h2 class="reveal" data-delay="80"
+          style="font-family:var(--font-serif);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.15;">
+          Free Printable Guides<br />for Brisbane Sellers
+        </h2>
+      </div>
+      <div>
+        <p class="reveal" data-delay="120" style="font-size:0.9rem;color:var(--color-text-secondary);line-height:1.8;max-width:46ch;">
+          Practical, single-source PDF guides written for Queensland sellers. Print one, work through it, share it with your conveyancer. Free, no email required.
+        </p>
+        <a href="/resources" class="btn-outline-gold reveal" data-delay="200" style="display:inline-flex;margin-top:1.5rem;">
+          View All Resources →
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {[
+        { slug: 'complete-home-selling-checklist', title: 'Complete Home Selling Checklist', cat: 'Master checklist', pages: 14 },
+        { slug: 'preparing-your-house-to-sell',    title: 'Preparing Your House to Sell',    cat: 'Pre-listing',      pages: 8  },
+        { slug: 'auction-day-playbook',            title: 'Auction Day Playbook',            cat: 'Auction',          pages: 7  },
+        { slug: 'building-pest-report-explainer',  title: 'Building & Pest Report Explainer',cat: 'Inspections',      pages: 7  },
+        { slug: 'settlement-moving-checklist',     title: 'Settlement & Moving Checklist',   cat: 'Settlement',       pages: 6  },
+        { slug: 'comparable-sales-worksheet',      title: 'Comparable Sales Worksheet',      cat: 'Pricing',          pages: 5  },
+      ].map((r, i) => (
+        <a href={`/resources/${r.slug}`}
+          class="reveal"
+          data-delay={String(i * 60)}
+          style="background:var(--color-surface-3);padding:2rem;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;transition:background 0.25s,transform 0.25s;position:relative;overflow:hidden;"
+          onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
+        >
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#c4912a;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-top:0.25rem;">
+            <span style="display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">
+              <span style="width:5px;height:5px;border-radius:50%;background:#c4912a;"></span>
+              {r.cat}
+            </span>
+            <span style="font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);font-weight:700;">PDF · {r.pages}p</span>
+          </div>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);line-height:1.25;">{r.title}</h3>
+          <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);margin-top:auto;">Read &amp; Download →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
      SUBURBS SERVED
 ════════════════════════════════════════════ -->
 <section style="background:var(--color-surface-0);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">

@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { resources } from '../../data/resources/index.js';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Resources for Brisbane Sellers",
+  "description": "Free, downloadable PDF guides and checklists for Brisbane homeowners considering a sale.",
+  "url": "https://danielgierach.com/resources",
+  "author": { "@type": "Person", "name": "Daniel Gierach", "url": "https://danielgierach.com/about" }
+};
+---
+<Layout
+  title="Free Resources for Brisbane Sellers | Daniel Gierach"
+  description="Free, downloadable PDF guides and checklists for Brisbane homeowners. Preparation, auction, settlement, building and pest, and more."
+  schema={schema}
+>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Free Resources</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Field Resources for Brisbane Sellers
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:62ch;">
+        Downloadable PDF guides and checklists, written for Queensland homeowners. Each one is a single-source reference you can print and work through. Free, no email required.
+      </p>
+    </div>
+  </div>
+
+  <!-- Resource Grid -->
+  <div style="padding:3.5rem 0 5rem;background:var(--color-base);">
+    <div class="max-w-[1100px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {resources.map(r => (
+          <a href={`/resources/${r.slug}`}
+            style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s,border-color 0.25s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
+            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(28,25,23,0.09)'"
+            onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          >
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c4912a;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
+              <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;display:inline-flex;align-items:center;gap:0.35rem;">
+                <span style="width:5px;height:5px;border-radius:50%;background:#c4912a;flex-shrink:0;"></span>
+                {r.category}
+              </span>
+              <span style="font-size:0.6rem;color:#a8a29e;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">PDF · {r.pages} pages</span>
+            </div>
+            <div style="flex:1;">
+              <h2 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:#1c1917;line-height:1.25;margin-bottom:0.75rem;">{r.title}</h2>
+              <p style="font-size:0.82rem;color:#78716c;line-height:1.7;">{r.description}</p>
+            </div>
+            <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">Read &amp; Download &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
+    <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <p style="font-family:var(--font-serif);font-size:1.4rem;font-style:italic;color:#1c1917;">Want a personal, property-specific plan?</p>
+      <p style="font-size:0.9rem;color:#78716c;line-height:1.75;max-width:48ch;">These resources cover the general principles. Daniel can walk through your home and give you a specific plan based on your property, your suburb, and the current buyer pool.</p>
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+        Book a Free Appraisal
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>

@@ -1,0 +1,142 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+import ResourceCTA from '../../components/ResourceCTA.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How accurate are online property valuation tools in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CoreLogic, which powers most major Australian valuation tools including realestate.com.au's PropertyValue and propertyvalue.com.au, reports that since early 2024 close to 90 percent of its automated valuation estimates fall within 15 percent of the eventual sale price. That is a useful starting point for typical, recently sold homes in homogeneous estates. For Brisbane inner east properties involving heritage overlays, character homes, post-renovation upgrades, or micro-pocket variation between streets, the variability is materially wider. The 15 percent band on a $1.5 million Bulimba home is a $450,000 spread, which is the difference between a strong result and a poor one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do Domain and realestate.com.au give different estimates for the same Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Domain and realestate.com.au use different underlying data and different model weightings. Realestate.com.au's estimates are powered by CoreLogic data. Domain runs its own model. They draw on different comparable sets, weight recency differently, and treat property attributes (renovation level, land size, view) differently. In Brisbane inner east, where the housing stock is mixed and renovations are common, gaps of 10 to 25 percent between the two estimates are not unusual. Neither figure is a substitute for a comparable sales analysis run on your specific property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I rely on an online estimate to set my asking price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. An online estimate is a useful sanity check and a reasonable starting point for general research. It is not a basis for setting an asking price or making a decision about whether to sell. Asking price should be built from a comparable sales analysis run on your specific property, by an agent who can walk through it and adjust for the things an algorithm cannot see: condition, aspect, position within the street, renovation quality, flood overlay, and the buyer pool currently active for your property type."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When are AVMs useful for a Brisbane homeowner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AVMs are useful for early-stage research: getting a rough sense of value before deciding to sell, tracking how your suburb has moved over time, or comparing your home against recent sales nearby. They are useful for lenders running credit checks and for portfolio investors monitoring multiple properties at scale. They are not useful as the basis for an asking price, a tax valuation, a settlement decision, or any moment where the difference between a confident estimate and the real number actually matters."
+      }
+    }
+  ]
+};
+---
+<Layout title="AI Valuation Tools vs a Real Agent Appraisal in Brisbane 2026 | Daniel Gierach Property" description="Online property estimates from CoreLogic, Domain and realestate.com.au are useful starting points but get a lot wrong about Brisbane inner east homes. What AVMs miss and when to trust them." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Pricing &middot; 9 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        AI Valuation Tools vs a Real Agent Appraisal: What Online Estimates Get Wrong in Brisbane 2026
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Online estimates are a reasonable place to start your research and a poor place to end it. A practical look at how AVMs work, what they miss, and when an inner east homeowner needs a real number.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most Brisbane homeowners researching their property's value start the same way: type the address into realestate.com.au, Domain, or propertyvalue.com.au, and read the number. Sometimes the three estimates broadly agree. Often they do not. By April 2026, with Brisbane's median dwelling value sitting at roughly $1.12 million according to Cotality (formerly CoreLogic), the spread between AVM estimates on the same property can be six figures. For a homeowner trying to work out whether it is the right year to sell, that spread matters.</p>
+
+      <p>Automated valuation models, or AVMs, sit behind almost every online property estimate you can read for free. They are powerful tools used by banks, lenders, and large institutional investors. They are also blunt instruments when applied to individual homes in Brisbane's inner east, where the housing stock is mixed, the overlays are complex, and small differences in position or condition produce large differences in value. This article walks through what AVMs actually do, where they hold up well, and where Brisbane sellers should treat them with caution.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How AVMs actually calculate a value</h2>
+
+      <p>An AVM is a statistical model that estimates a property's market value from data, without any human inspection of the property itself. The two main techniques behind every commercial AVM are the comparable sales approach and hedonic regression. The comparable sales approach identifies recent transactions of similar properties nearby, applies systematic adjustments for differences in size, age, and condition, and produces a weighted average. Hedonic regression assigns a dollar value to each individual feature of a property, things like an extra bathroom, a garage, or an additional 100 square metres of land, then sums those features to a total.</p>
+
+      <p>Modern AVMs blend both approaches and increasingly layer machine learning techniques on top: gradient-boosted decision trees, neural networks, and ensemble models that learn complex non-linear patterns from millions of historical sales. CoreLogic, whose AVM powers realestate.com.au's PropertyValue feature and propertyvalue.com.au, has invested heavily in this area through its Smart Data Platform initiative. Domain runs its own model on its own data. The major online tools differ less in their underlying methodology than in the breadth and recency of the data they ingest.</p>
+
+      <p>The inputs are typically: prior sale price of your property, recent sales of comparable nearby homes, broad property attributes from council records (land size, building approvals, bedroom and bathroom count where known), and suburb-level market trend data. What an AVM does not see: the inside of your home, the quality of any renovation, the specific aspect of your block, the presence of overshadowing from a neighbouring development, or whether the front fence is falling down.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What AVMs get right</h2>
+
+      <p>It is worth being fair to the technology. AVMs are not snake oil. CoreLogic publishes that close to 90 percent of its AVM estimates fall within 15 percent of the actual sale price, and over 80 percent of Australia's top 50 residential lenders use its AVM as a first-pass valuation tool. For brick-veneer homes in newer estates, where the housing stock is uniform and recent sales data is plentiful, the models perform well. For typical units in larger complexes with multiple recent comparable sales in the same building, the estimates are usually reasonable.</p>
+
+      <p>Where the underlying conditions are favourable, AVMs are particularly good at three things: tracking the broad direction of a suburb over time, providing a rough order of magnitude for early research, and flagging when a property is significantly above or below its comparable set. If your AVM estimate has moved 18 percent over twelve months and Brisbane has recorded around 19.7 percent annual growth to April 2026 according to Cotality, that is consistent with the broader market and the model is working as intended.</p>
+
+      <p>For lenders running credit checks at scale, for institutional investors monitoring large portfolios, and for general homeowner research, AVMs do their job. The trouble starts when an individual seller treats the estimate as a price.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What AVMs get wrong, and why Brisbane inner east is hard</h2>
+
+      <p>The Brisbane inner east is exactly the kind of market where AVMs struggle. The housing stock is mixed: pre-1911 workers' cottages sit beside post-war timber lowsets, beside 1990s renovations, beside contemporary architectural rebuilds. Block sizes vary from 405 square metre infill lots to 800 square metre original parcels. Heritage and character overlays restrict what can be done with one home and not the next. The river runs through the suburbs, with flood overlays affecting some streets and not others. Two homes on the same street can be 25 percent apart in value for reasons no algorithm can read from data alone.</p>
+
+      <p><strong>Heritage and character overlays.</strong> Brisbane City Council protects homes built in or before 1946 through the Traditional Building Character Overlay, with stricter restrictions for pre-1911 homes. These overlays materially affect what a buyer can do with a property: an extension might be limited to the rear, a second storey may not be permitted, and the front facade and front rooms cannot be altered. An AVM that treats two side-by-side homes identically because they have the same land size and bedroom count will miss this entirely. Buyers shopping in Bulimba, Hawthorne, or Norman Park are intensely aware of overlay status. Estimates that ignore it are estimates of a property that is not actually for sale.</p>
+
+      <p><strong>Renovation level.</strong> A 1930s Queenslander that has been raised, restumped, and fully renovated to a contemporary finish can sell for 15 to 25 percent above an equivalent unrenovated home next door. The AVM sees the same land size, the same building footprint, and often the same number of bedrooms. The renovation work, the kitchen finish, the bathroom quality, and the indoor-outdoor flow are invisible to the model unless they triggered a council development application large enough to show up in the data. Many quality renovations do not.</p>
+
+      <p><strong>Position within a micro-pocket.</strong> In the inner east, the difference between a street that backs onto Norman Creek parkland and a street two blocks away near Wynnum Road traffic is real and well-understood by buyers. The same applies to streets near the Bulimba ferry, the Hawthorne cinema strip, the Cannon Hill train station, or any of the school catchments that drive premiums for buyers with young families. AVMs apply suburb-level averages and may pick up some of this through nearby comparable sales, but the granularity is rarely sharp enough to capture the $50,000 to $150,000 swing between two streets that look almost identical on a map.</p>
+
+      <p><strong>Flood overlay and elevation.</strong> The 2011 and 2022 Brisbane floods are still in living memory and still pricing decisions today. A home on the higher side of a street in Morningside is treated very differently by buyers than the equivalent home on the lower side, where flood overlay may apply. AVMs do incorporate flood data where it exists in council records, but the practical buyer reaction to flood risk, the insurance implications, and the financing implications are not always reflected in model output with the precision they deserve.</p>
+
+      <p><strong>Mixed sales evidence.</strong> The Brisbane inner east has thinner sales evidence than a uniform outer-ring estate. In a quiet quarter, a pocket of five streets might record only two or three sales of similar homes. AVMs that need a deep comparable set to produce a confident estimate either widen the geographic search (pulling in less relevant comparables) or extend the time window (pulling in stale comparables in a market that has moved sharply, with REIQ Q1 2026 data showing quarterly Brisbane house growth of around 4.9 percent). Both approaches degrade accuracy in exactly the situations where homeowners most want a precise number.</p>
+
+      <p><strong>Stale prior sale data.</strong> Where your home last traded in 2014 or 2017, the AVM is extrapolating that figure forward through a decade of compounding suburb-level growth. The growth has not been uniform across streets, across renovation conditions, or across property types. The output is a confident-looking number with significant uncertainty baked in.</p>
+
+      <p>The cumulative effect is that two homes the AVM treats as equivalent can transact a quarter of a million dollars apart, and an AVM estimate sitting in the middle of that range is wrong about both of them. CoreLogic's stated 15 percent accuracy band is calculated across all property types nationally. For a $1.5 million Bulimba character home, that band is a $450,000 spread. That is the difference between a result the owner is satisfied with and one they are not.</p>
+
+      <ResourceCTA slug="comparable-sales-worksheet" />
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When AVMs are good enough, and when you need an agent</h2>
+
+      <p>An AVM is genuinely useful for early-stage research. If you are eighteen months from selling, idly curious about whether your home has moved with the market, or comparing how your suburb has performed against neighbouring ones, an AVM gives you a directional answer that is good enough for the question you are asking. It is also useful as a sanity check on an agent appraisal: if three AVMs cluster around $1.4 million and an agent walks in and tells you $1.7 million with no comparable sales evidence, that is information you can use.</p>
+
+      <p>An AVM is not good enough when the difference between a confident estimate and the actual number affects a decision. Choosing whether to sell this year or next, setting an asking price or auction reserve, deciding how much to spend on pre-sale preparation, negotiating with a buyer, evaluating an off-market offer, or working out whether to upgrade or downsize all require a real number, not an algorithmic one. The same applies to estate planning, divorce settlements, and any context where the figure ends up in a contract or a tax filing.</p>
+
+      <p>For everything in that second category, the right tool is a <a href="/insights/comparative-market-analysis-seller-guide-brisbane" style="color:#c4912a;font-weight:600;">comparative market analysis</a> built by an agent who can walk through the property, see what the algorithm cannot see, and pick the genuinely comparable sales rather than the geographically nearby ones.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to get a better number</h2>
+
+      <p>A meaningful property valuation is built from a small number of strong comparable sales, adjusted carefully for the differences between those sales and your home. Three to six well-chosen comparables, sold within the last three to six months, in the same pocket of the same suburb, with similar land size, similar internal area, similar condition, and a similar method of sale, produce a more reliable range than any AVM. The work is structured but not technical. A homeowner can do most of it with public sales data and an afternoon.</p>
+
+      <p>The agent's value, beyond access to data, is in the adjustments. A comparable that sold three months ago in a market that has since moved 4 percent should be adjusted up. An unrenovated comparable on a similar block where your home has been refreshed should be adjusted up. A flood-affected comparable when your home is above the line should be adjusted up. A comparable on a smaller block of land at the same general size should be adjusted down. These judgements are where an agent who knows the inner east streets, the buyer pool, and what is currently transacting earns their place. An AVM cannot make them.</p>
+
+      <p>If you want to read a comparable sales analysis critically and check that your agent's appraisal is built on real data rather than an inflated number designed to win the listing, the <a href="/insights/how-much-is-my-home-worth-brisbane" style="color:#c4912a;font-weight:600;">how much is my home worth in Brisbane</a> guide is a useful companion, and the comparable sales worksheet above is the same template Daniel uses when he prepares an appraisal.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The honest summary</h2>
+
+      <p>AVMs are a useful first input and a poor final answer. They are accurate enough for the broad purposes they were built for: lender credit checks, portfolio monitoring, market research at scale. They are not accurate enough to set an asking price for a Brisbane inner east home, and they were never designed to be. The 90 percent within 15 percent figure that CoreLogic publishes is a reasonable summary of the technology working at its best across the national property stock. It is also, on a $1.5 million home, an admission that the model can be wrong by $225,000 in either direction nine times out of ten, and wrong by more than that one time in ten.</p>
+
+      <p>For Brisbane homeowners deciding whether and when to sell, the sensible approach is to use online estimates as research and treat them as research. The price decision should be built from comparable sales evidence, an agent walkthrough, and the kind of granular knowledge of streets, schools, and overlays that no algorithm can synthesise from public data alone.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want a real number, not an algorithmic one?</strong> Daniel offers a no-obligation appraisal of your Brisbane inner east home, built from comparable sales, a walkthrough of the property, and an honest read on what the buyer pool is currently paying. <a href="/get-an-appraisal" style="color:#f5d07a;font-weight:600;">Request an appraisal.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="font-size:0.8rem;color:var(--color-text-secondary);max-width:780px;margin:0 auto;padding:0 2rem;">Part of: <a href="/insights/how-much-is-my-home-worth-brisbane" style="color:#f5d07a;">How Much Is My Home Worth in Brisbane</a></p>
+<AuthorBio />
+
+</Layout>

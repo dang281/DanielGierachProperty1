@@ -1,0 +1,60 @@
+---
+// Inline CTA promoting a downloadable PDF resource. Drop into any article body.
+// Usage: <ResourceCTA slug="preparing-your-house-to-sell" />
+
+import { resourceBySlug } from '../data/resources/index.js';
+
+interface Props {
+  slug: string;
+  variant?: 'inline' | 'banner';
+}
+
+const { slug, variant = 'inline' } = Astro.props as Props;
+const r = resourceBySlug[slug];
+if (!r) return null;
+
+const pdfUrl = `/downloads/${r.slug}.pdf`;
+const pageUrl = `/resources/${r.slug}`;
+---
+
+{variant === 'inline' ? (
+  <aside style="margin:2.5rem 0;padding:1.75rem 2rem;background:#0a0806;color:#f0ece4;display:flex;flex-direction:column;gap:1rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c4912a;"></div>
+    <div>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:0.5rem;">Free Resource &middot; PDF</span>
+      <h3 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;line-height:1.2;color:#f0ece4;margin:0 0 0.5rem 0;">{r.title}</h3>
+      <p style="font-size:0.88rem;color:rgba(240,236,228,0.7);line-height:1.65;margin:0;">{r.description}</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-top:0.25rem;">
+      <a
+        href={pdfUrl}
+        download
+        data-pdf-download={r.slug}
+        style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#c4912a;color:#0a0806;font-family:var(--font-sans);font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+        onmouseover="this.style.background='#f5d07a'" onmouseout="this.style.background='#c4912a'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download PDF
+      </a>
+      <a
+        href={pageUrl}
+        style="display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#f5d07a;text-decoration:none;border-bottom:1px solid rgba(245,208,122,0.4);padding-bottom:2px;"
+      >
+        Read on Site &rarr;
+      </a>
+    </div>
+  </aside>
+) : (
+  <aside style="margin:2.5rem 0;padding:1.5rem 1.75rem;background:rgba(196,145,42,0.05);border-left:3px solid #c4912a;">
+    <p style="font-family:var(--font-serif);font-size:1rem;color:#1c1917;margin:0 0 0.5rem 0;"><strong style="color:#c4912a;">Take this with you.</strong></p>
+    <p style="font-size:0.88rem;color:#78716c;line-height:1.65;margin:0 0 0.75rem 0;">Daniel’s <em>{r.title}</em> guide as a free downloadable PDF.</p>
+    <a
+      href={pdfUrl}
+      download
+      data-pdf-download={r.slug}
+      style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;text-decoration:none;border-bottom:2px solid #c4912a;padding-bottom:2px;"
+    >
+      Download PDF &rarr;
+    </a>
+  </aside>
+)}
