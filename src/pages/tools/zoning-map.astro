@@ -660,28 +660,43 @@ window.ZONES = {
       });
   }
 
-  // ── Server-side point-in-polygon identify (always accurate) ───────────
+  // ── Server-side point-in-polygon identify, with buffered fallback ─────
+  // Roads aren't zoned, so when a geocoded address (or click) lands on a
+  // road centreline the exact-point query returns nothing. Fall back to
+  // the nearest parcel within 25 m and flag the result as "nearest".
   function identifyZone(lat, lon) {
     const status = document.getElementById('status-msg');
     status.textContent = 'Identifying zone…';
-    const params = new URLSearchParams({
-      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
-      geometryType: 'esriGeometryPoint',
-      inSR: '4326',
-      spatialRel: 'esriSpatialRelIntersects',
-      outFields: 'ZONE_CODE,ZONE_PREC_NO,LVL1_ZONE,LVL2_ZONE,ZONE_PREC,ZONE_PREC_DESC,LOT_PLAN',
-      returnGeometry: 'false',
-      f: 'json',
-    });
-    fetch(`${ZONING_URL}/query?${params.toString()}`)
-      .then(r => r.json())
+
+    function queryWithBuffer(distance) {
+      const params = new URLSearchParams({
+        geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+        geometryType: 'esriGeometryPoint',
+        inSR: '4326',
+        spatialRel: 'esriSpatialRelIntersects',
+        outFields: 'ZONE_CODE,ZONE_PREC_NO,LVL1_ZONE,LVL2_ZONE,ZONE_PREC,ZONE_PREC_DESC,LOT_PLAN',
+        returnGeometry: 'false',
+        f: 'json',
+      });
+      if (distance > 0) {
+        params.set('distance', String(distance));
+        params.set('units', 'esriSRUnit_Meter');
+      }
+      return fetch(`${ZONING_URL}/query?${params.toString()}`).then(r => r.json());
+    }
+
+    queryWithBuffer(0)
       .then(d => {
+        if (d.features && d.features.length) return { d, buffered: false };
+        return queryWithBuffer(25).then(d2 => ({ d: d2, buffered: true }));
+      })
+      .then(({ d, buffered }) => {
         const f = d.features && d.features[0];
         if (f && f.attributes) {
           showZoneFromAttributes(f.attributes);
-          status.textContent = 'Zone identified.';
+          status.textContent = buffered ? 'Showing nearest parcel (geocode landed on road).' : 'Zone identified.';
         } else {
-          status.textContent = 'No zone polygon at that point. Try clicking on a property.';
+          status.textContent = 'No zone polygon nearby. Try clicking on a property.';
         }
         updateBCCLink(lat, lon);
       })
