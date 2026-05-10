@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a seller's settlement statement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A settlement statement is the document prepared by your conveyancer that calculates exactly what you receive at settlement, after all adjustments, payouts, and fees. It lists the contract price, any deposit already paid, council rates and water adjustments, body corporate adjustments if applicable, mortgage payouts, agent commission, conveyancing fees, and any other deductions. The bottom line is the net proceeds being deposited into your nominated account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do I receive the settlement statement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most conveyancers send a draft settlement statement two to five business days before the settlement date. Final figures are confirmed on the morning of settlement, when adjustments are recalculated to the actual settlement date. You should review both versions carefully and raise any questions before settlement is booked in."
+      }
+    }
+  ]
+};
+---
+<Layout title="Settlement Statement Review: Pre-Settlement Seller Checklist | Daniel Gierach Property" description="The settlement statement is the document that decides exactly what hits your bank account. Here is the line-by-line review checklist Brisbane sellers should run before signing off." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Settlement · 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Settlement Statement Review: Pre-Settlement Seller Checklist
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The settlement statement is the document that decides exactly what hits your bank account. Here is the line-by-line review checklist before you sign off.
+      </p>
+    </div>
+  </div>
+
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most sellers focus their attention on the contract price and the deposit. By the time settlement comes around, the focus has often shifted to the next property and the move-out logistics. The settlement statement arrives in your inbox a few days before settlement, gets a cursory glance, and gets approved.</p>
+
+      <p>This is the wrong moment to switch off. Settlement statements include a long list of adjustments, payouts, and deductions. Most are correct. Some have errors. A small number include deductions that should not be there at all. The five minutes spent reading the statement carefully is the best return on time you will have all month.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What a settlement statement actually contains</h2>
+
+      <p>A standard Queensland settlement statement is built in three sections.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Section 1: the contract calculation.</strong> Contract price, less the deposit already paid, less any contract-specific allowances or adjustments agreed in the contract (for example, a price reduction agreed after a building inspection finding).</p>
+
+      <p><strong style="color:var(--color-text-primary);">Section 2: outgoings adjustments.</strong> Council rates, water charges, body corporate levies (for units), and land tax (for investment properties or unrelated owners). These are calculated to the settlement date so the seller pays for the period of ownership and the buyer pays for the period from settlement.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Section 3: payouts and deductions.</strong> Mortgage payout figure provided by your bank, agent commission, marketing reimbursement (if applicable), conveyancer's fee, and any other agreed deductions.</p>
+
+      <p>The bottom line is the net amount being remitted to your nominated bank account on settlement day.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The line-by-line checklist</h2>
+
+      <p>Run through each line of the statement and confirm:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Contract price.</strong> Matches the contract document exactly. Watch for transposition errors where the figures have been retyped.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Deposit credited.</strong> Matches the deposit you actually received in trust, including any second deposit instalment that was paid during the contract period.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Settlement date.</strong> Matches the date being settled, not a placeholder date that was never updated when the date moved.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Council rates.</strong> Quarter dates align with the actual billing period from your most recent rates notice. The amount being adjusted is the gross amount before any pensioner concessions or interest.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Water charges.</strong> Brisbane City Council and Urban Utilities adjust separately. Both should appear if both apply. The most recent meter reading or billed period should be the basis.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Body corporate (units only).</strong> Quarterly levy adjustments based on the date of the last paid levy. If a special levy was raised during your ownership and you paid it, it should not be re-adjusted to the buyer's account.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Land tax (where applicable).</strong> Only relevant for properties not eligible for the principal place of residence exemption. The adjustment can be substantial and is sometimes calculated incorrectly if your overall land tax position has changed during the year.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Mortgage payout figure.</strong> Matches the figure provided by your bank in writing. Banks include a payout fee, sometimes interest to a future date, and any break fees on fixed-rate loans. If the figure looks higher than expected, request the bank's payout calculation in writing and reconcile.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Agent commission.</strong> Matches the agency agreement (Form 6) you signed. The commission percentage and the basis (whether GST is shown separately or included) should be exactly as agreed. Marketing reimbursements should be itemised with supporting invoices if requested.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Conveyancing fee.</strong> Matches the quote your conveyancer provided. Disbursements (title searches, lodgement fees, photocopying) should be itemised, not bundled.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Other deductions.</strong> Anything else listed should be matched against an underlying instruction or invoice. Common legitimate deductions include unpaid utility accounts, body corporate arrears that the seller agreed to clear, and any contract-specific items.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Foreign resident capital gains withholding</h2>
+
+      <p>For property sales above the relevant threshold, an ATO clearance certificate must be obtained by the seller and provided to the buyer at settlement. If the certificate is not provided, the buyer is required to withhold a percentage of the contract price and remit it to the ATO. The settlement statement will show this withholding as a deduction from your proceeds.</p>
+
+      <p>If you are an Australian tax resident and have obtained the clearance certificate in time, no withholding applies and this line should not appear. Confirm this directly with your conveyancer if you see a withholding line.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">GST on the sale (specific cases)</h2>
+
+      <p>Most residential sales are GST-free. There are exceptions: new residential property within five years of construction, properties used in an enterprise (such as commercial residential), and certain property types where the seller is registered for GST. If the contract has GST clauses, ensure the statement reflects the contractually correct treatment.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Bank account for proceeds</h2>
+
+      <p>The bank account number for the net proceeds appears on the statement. Confirm this matches the account you actually want the funds sent to. If you have moved banks during the contract period, this is the line that needs updating.</p>
+
+      <p>Pay particular attention if a partner, family member, or accountant has provided you with bank details. Settlement-day bank fraud is a real and growing problem, and the safest practice is to confirm bank details verbally with your conveyancer using a phone number you sourced independently, not a number from an email.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Common errors to watch for</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Wrong settlement date used for adjustments.</strong> If the settlement date moved (extended or brought forward), the adjustments need to be recalculated to the new date.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Body corporate adjustment based on wrong levy quarter.</strong> Especially common when a quarter ended very close to settlement.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Mortgage payout figure not refreshed.</strong> The bank's payout figure is only valid for a few days. If settlement is delayed, the figure needs to be updated.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Agent commission percentage applied incorrectly.</strong> Particularly when there is a tiered commission structure where higher rates apply above a threshold price.</p>
+
+      <p><strong style="color:var(--color-text-primary);">GST treatment incorrect.</strong> Sometimes a residential sale is incorrectly flagged as a taxable supply, which can affect both the price and the agent commission calculation.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Outdated bank account.</strong> Especially if any prior version of your settlement instructions had a different account.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">If something looks wrong</h2>
+
+      <p>Email your conveyancer with the specific line that is in question and ask for the underlying calculation or supporting document. A good conveyancer will respond within hours, often with a corrected statement attached. Most discrepancies are minor and easily fixed before settlement.</p>
+
+      <p>The point of the review is to catch errors while they can still be addressed without delaying settlement. Once settlement has occurred and funds have been disbursed, recovering an over-deduction is much harder than preventing one in the first place.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Approaching settlement on a Brisbane sale?</strong> Daniel can walk through the settlement statement with you alongside your conveyancer if anything looks unusual. Free, no obligation. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <AuthorBio />
+
+</article>
+
+</Layout>

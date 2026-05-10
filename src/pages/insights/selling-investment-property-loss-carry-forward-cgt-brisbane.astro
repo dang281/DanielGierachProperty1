@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use prior year capital losses to offset a gain on my Brisbane investment property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Capital losses (from any source, not just property) carried forward from prior years can be applied against the capital gain in the year you sell. The loss reduces the gross capital gain before the 50 percent CGT discount is applied (where eligible), so the order of calculation matters significantly. Carried forward losses do not expire and can be applied against gains in any future year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I sell underperforming shares before selling my investment property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes. Realising a capital loss on shares or other assets in the same financial year as the property sale lets you offset that loss against the property gain immediately. Whether this is the right move depends on your investment thesis on those shares (selling losers because of tax timing alone can backfire if they recover) and your wider tax position. This is a conversation to have with your accountant before settlement is booked."
+      }
+    }
+  ]
+};
+---
+<Layout title="Investment Property Sale: Capital Losses and CGT Strategy | Daniel Gierach Property" description="Selling an investment property in Brisbane and have prior capital losses carried forward? Here is how loss carry-forward works, the calculation order, and the strategy questions to take to your accountant." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Tax · 7 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Investment Property Sale: Capital Losses and CGT Strategy
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Carried forward capital losses can substantially reduce the tax on a Brisbane investment property sale. Here is how the calculation works and the questions to take to your accountant before settlement.
+      </p>
+    </div>
+  </div>
+
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most investment property owners in Brisbane's inner east bought their property to hold long-term. When the time comes to sell, the focus tends to be on the contract price and the agent commission. The tax position on the gain often gets attention only when the next year's tax return is being prepared, by which time it is too late to manage.</p>
+
+      <p>Carried forward capital losses are one of the more useful levers available. Used well, they can reduce the assessable capital gain by tens of thousands. Used poorly, or forgotten about altogether, they sit unused on the tax record indefinitely.</p>
+
+      <p style="padding:1rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;font-size:0.88rem;"><strong style="color:#f5d07a;">⚠️ This is general information, not tax advice.</strong> Your specific tax position depends on your marginal rate, the structure that owns the property, your other capital gains and losses, and the contract dates. Always work with a registered tax agent on your specific position before relying on this material.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What is a carried forward capital loss</h2>
+
+      <p>A capital loss arises when you sell or otherwise dispose of a CGT asset for less than its cost base. Examples include selling shares for less than the purchase price, selling an investment property for less than the cost base after improvements and acquisition costs, or having a managed fund unit redeemed at a loss.</p>
+
+      <p>If your total capital losses in a year exceed your total capital gains in that year, the net loss cannot offset other income (such as your salary). It is carried forward to future years, where it sits as a "carried forward capital loss" on your tax record. There is no expiry. The loss can be used against any future capital gain.</p>
+
+      <p>If you do not know whether you have any carried forward losses, your accountant or your most recent personal tax return will show the balance. The carried forward loss appears under capital gains in the supplementary section.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The calculation order matters</h2>
+
+      <p>This is where many sellers (and surprisingly many tax preparers) miscalculate. The order of operations on a CGT calculation is specific:</p>
+
+      <p>1. Calculate the gross capital gain on the asset sold (sale proceeds less cost base).</p>
+
+      <p>2. Apply current year capital losses against current year capital gains in the order that produces the best outcome (offsetting against non-discounted gains first).</p>
+
+      <p>3. Apply any carried forward capital losses against the remaining capital gains, again offsetting against non-discounted gains first.</p>
+
+      <p>4. Apply the 50 percent CGT discount (if eligible) to the remaining net capital gain.</p>
+
+      <p>The result is that a $1 of carried forward loss is worth $1 of pre-discount gain offset. After the 50 percent discount, this is effectively worth more than $1 of post-discount gain. This is why losses are applied before the discount, not after.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Worked example</h2>
+
+      <p>Take a Brisbane investment property held for more than 12 months by an Australian-resident individual. The property sells for $1,200,000 with a cost base (including acquisition costs and capital improvements) of $850,000. The owner also has carried forward capital losses of $80,000 from a previous share sale.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Without using the loss:</strong> Gross gain $350,000. After 50 percent discount, net assessable capital gain $175,000.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Using the loss correctly:</strong> Gross gain $350,000, less carried forward loss $80,000, equals $270,000. After 50 percent discount, net assessable capital gain $135,000.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Using the loss incorrectly (after the discount):</strong> Gross gain $350,000, after 50 percent discount $175,000, less loss $80,000, equals $95,000. This produces a lower assessable gain but is the wrong calculation order. The ATO will recalculate using the correct order.</p>
+
+      <p>The correctly-calculated net gain is added to the owner's other taxable income for the year. At a 47 percent marginal rate (top tax bracket plus Medicare levy), the tax saved by using the carried forward loss is approximately $40,000 below using the loss correctly versus not using the loss at all in this example.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Realising additional losses in the same year</h2>
+
+      <p>If you have other investments sitting at a loss (shares, managed funds, other property), you can choose to realise some of those losses in the same financial year as the property sale. The realised losses then offset the property gain.</p>
+
+      <p>This strategy makes sense when:</p>
+
+      <p>The investments at a loss are ones you would consider exiting anyway based on the underlying investment thesis, not just for tax reasons.</p>
+
+      <p>The transaction costs of selling are modest relative to the tax benefit.</p>
+
+      <p>Reinvestment options exist that maintain your overall portfolio exposure without crystallising the same position back into your name (CGT rules around "wash sales" can disqualify the loss if you immediately repurchase the same security).</p>
+
+      <p>The strategy does not make sense when:</p>
+
+      <p>You are selling a winning position to avoid losing further (the underlying investment thesis is still sound).</p>
+
+      <p>The transaction costs (brokerage, spread, exit fees) erode the tax benefit.</p>
+
+      <p>You expect to have larger capital gains in future years where the carried forward loss would be more valuable.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Timing the contract date</h2>
+
+      <p>For CGT purposes, the disposal date is the date of the contract, not the date of settlement. A contract signed on 28 June puts the gain in that financial year. A contract signed on 5 July puts the gain in the following financial year.</p>
+
+      <p>This timing decision can matter when:</p>
+
+      <p>You expect a different income picture in the two years (a year with high salary income vs a year with reduced income).</p>
+
+      <p>You have realised gains in one year that the property loss can offset (or vice versa).</p>
+
+      <p>Your overall capital position in one year is more favourable for using the discount.</p>
+
+      <p>Note that the buyer also cares about the timing for their land tax position, transfer duty, and finance arrangements. Coordinating contract dates with both sides' interests is a negotiation, not a unilateral decision.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Cost base: things owners often forget to include</h2>
+
+      <p>The cost base reduces the gross gain. Maximising the cost base is the second-largest lever after using losses. Items often missed:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Original acquisition costs:</strong> stamp duty, legal fees, registration fees on purchase.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Capital improvements:</strong> renovations, extensions, landscaping additions, structural repairs that improve rather than maintain. Repairs claimed as deductions in your tax return are excluded from the cost base.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Selling costs:</strong> agent commission, marketing, conveyancing on the sale.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Holding costs (only for properties acquired after 20 August 1991 and where not deductible as rental expenses):</strong> rates, interest, insurance, repairs and maintenance not otherwise claimed. This is rare for income-producing investment properties because these costs were generally claimed as deductions while the property was rented.</p>
+
+      <p>Assemble all the receipts and statements before talking to your accountant. The longer you have owned the property, the more cost base items there are likely to be, and the harder they are to recover years after the fact.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Questions for your accountant before settlement</h2>
+
+      <p>1. What carried forward capital losses do I have on my tax record, and how much would offset the gain on this sale?</p>
+
+      <p>2. Is there a strategic reason to bring forward or push back the contract date by a few weeks across the financial year boundary?</p>
+
+      <p>3. Are any of my other investments sitting at unrealised losses that would make sense to realise in the same year?</p>
+
+      <p>4. Have I captured all eligible cost base items (acquisition, capital improvements, selling costs)?</p>
+
+      <p>5. What is the estimated tax position so I can plan for the cash payment in the next BAS or annual return?</p>
+
+      <p>Asking these questions before the contract is signed gives time to act. After the contract is signed, the structural decisions are largely locked in.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling an investment property in the inner east?</strong> Daniel works regularly with investors and can coordinate with your accountant on contract timing where it matters. <a href="/walkthrough" style="color:#f5d07a;font-weight:600;">Book a walkthrough.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <AuthorBio />
+
+</article>
+
+</Layout>
