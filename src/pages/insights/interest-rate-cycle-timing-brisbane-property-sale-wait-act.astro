@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 const draft = true; // STAGED, remove this line on publish date
 ---
 <Layout title="Interest Rate Cycle Timing for Brisbane Property Sales: Wait or Act? | Daniel Gierach Property" description="The RBA cash rate moves buyer demand, but timing the cycle perfectly is a losing strategy for most sellers. Here's a practical framework for deciding when to wait and when to act." draft={draft}>
@@ -9,8 +10,8 @@ const draft = true; // STAGED, remove this line on publish date
   <!-- Hero -->
   <div style="background:#0a0806;padding:8rem 0 3rem;">
     <div class="max-w-[780px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         ← All Articles
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 9 min read</span>
@@ -51,7 +52,7 @@ const draft = true; // STAGED, remove this line on publish date
       <p>The least useful inputs to a timing decision are the loudest. Media headlines forecasting market crashes or booms are reliably wrong at turning points. Single-month price movements are volatile and noisy and rarely predict the next month. Predictions from sources without economic credentials should be treated as entertainment, not analysis. The honest reality is that even professional economists get rate-cycle calls wrong regularly. Building your sale strategy around someone else's forecast is building it on sand.</p>
 
       <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The upgrader's specific math</h2>
-      <p>If you are selling and buying in the same market, rate effects largely cancel out. Your home will sell for less in a soft market, but the home you buy will also cost less. Your primary concern is the relative gap between the two transactions, and that gap is often more favourable in slower markets when buyers are scarce and you have negotiating leverage on the purchase side. Many upgraders who waited for 'better conditions' did worse than upgraders who acted in the slow market they were in.</p>
+      <p>If you are selling and buying in the same market, rate effects largely cancel out. Your home will sell for less in a soft market, but the home you buy will also cost less. Your primary concern is the relative gap between the two transactions, and that gap is often more favourable in slower markets when buyers are scarce and you have negotiating use on the purchase side. Many upgraders who waited for 'better conditions' did worse than upgraders who acted in the slow market they were in.</p>
 
       <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The investor's specific math</h2>
       <p>For investors selling, the calculation is different. Rates affect both the selling price and the buyer's investment yield calculation. High rates compress buyer yields and may discount the property below the level a confident buyer would pay in lower-rate conditions. Investors with flexibility on timing can often gain by selling into improving rather than peak-rate markets. But the personal circumstances test still applies, and the holding cost of waiting must be priced in.</p>
@@ -72,4 +73,6 @@ const draft = true; // STAGED, remove this line on publish date
     </div>
   </div>
 </article>
+
+<RelatedContent currentSlug="interest-rate-cycle-timing-brisbane-property-sale-wait-act" />
 </Layout>

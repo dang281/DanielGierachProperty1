@@ -12,7 +12,10 @@ export default defineConfig({
         !page.includes('/thank-you') &&
         !page.includes('/privacy') &&
         !page.includes('/terms') &&
-        !page.includes('/404'),
+        !page.includes('/404') &&
+        !page.includes('/dashboard') &&
+        !page.includes('/lp/') &&
+        !page.includes('/social-preview'),
     }),
   ],
   vite: {

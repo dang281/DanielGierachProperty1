@@ -4,6 +4,13 @@ import Layout from '../layouts/Layout.astro';
 // Real testimonials from clients.
 // DANIEL: Replace the placeholder blocks below with real client quotes.
 // Organise by suburb so visitors see results from their own area.
+//
+// TRUST-007 (audit 2026-05-10): Google Business Profile lists 10 verified
+// reviews at 5.0 stars. Only 2 are republished here, leaving 8 visible on
+// Google but absent from this page. Daniel: copy the remaining 8 reviews
+// from Google (with author consent or anonymised as below) into the
+// testimonials array so the on-site social proof matches the global
+// AggregateRating count of 10.
 const testimonials = [
   {
     suburb: 'Bulimba',
@@ -39,6 +46,12 @@ const testimonials = [
 
 const liveTestimonials = testimonials.filter(t => t.real);
 
+// AggregateRating reflects the verified Google Business Profile reviews
+// (10 reviews at 5.0 stars). The on-page testimonials are a curated subset
+// republished here with client consent.
+const GBP_REVIEW_COUNT = 10;
+const GBP_RATING_VALUE = "5.0";
+
 const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -46,9 +59,10 @@ const reviewSchema = {
   "name": "Daniel Gierach Property",
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": String(liveTestimonials.length),
-    "bestRating": "5"
+    "ratingValue": GBP_RATING_VALUE,
+    "reviewCount": String(GBP_REVIEW_COUNT),
+    "bestRating": "5",
+    "worstRating": "1"
   },
   "review": liveTestimonials.map(t => ({
     "@type": "Review",
@@ -135,7 +149,32 @@ const reviewSchema = {
 <section style="background:var(--color-surface-0);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
-    <p class="reveal" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:3rem;">Client Reviews</p>
+    <p class="reveal" style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Client Reviews</p>
+
+    {/* TODO Daniel: replace the generic Google search URL with the direct Google Business Profile reviews link once available */}
+    <div class="reveal" style="margin-bottom:3rem;padding:1.5rem 1.75rem;background:var(--color-base);border-left:3px solid #c4912a;display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.5rem;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:0.4rem;">
+          {Array.from({length: 5}).map(() => (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#c4912a" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          ))}
+        </div>
+        <div>
+          <p style="font-family:var(--font-serif);font-size:1rem;color:#1c1917;line-height:1.4;margin-bottom:0.15rem;">{GBP_RATING_VALUE} from {GBP_REVIEW_COUNT} verified Google reviews.</p>
+          <p style="font-size:0.78rem;color:#78716c;line-height:1.5;">A small sample is reproduced below. Read the full set on Daniel's Google Business Profile.</p>
+        </div>
+      </div>
+      <a
+        href="https://www.google.com/search?q=Daniel+Gierach+Real+Estate"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-gold"
+        style="flex-shrink:0;"
+      >
+        Read on Google
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
 
     {liveTestimonials.length === 0 ? (
       <p style="font-size:0.9rem;color:#78716c;">Reviews are being added. Check back soon, or visit RateMyAgent for the latest.</p>
@@ -300,16 +339,16 @@ const reviewSchema = {
       <div class="reveal" data-delay="80" style="display:flex;flex-direction:column;gap:2rem;">
         <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
           <div>
-            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Phone</p>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.6);margin-bottom:0.4rem;">Phone</p>
             <a href="tel:+61412523821"
               style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
               onmouseover="this.style.color='#f5d07a'"
               onmouseout="this.style.color='#f0ece4'">0412 523 821</a>
-            <p style="font-size:0.62rem;color:rgba(240,236,228,0.35);margin-top:0.25rem;letter-spacing:0.06em;">Available 7 days</p>
+            <p style="font-size:0.62rem;color:rgba(240,236,228,0.6);margin-top:0.25rem;letter-spacing:0.06em;">Available 7 days</p>
           </div>
           <div style="width:1px;height:44px;background:rgba(240,236,228,0.12);"></div>
           <div>
-            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Email</p>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.6);margin-bottom:0.4rem;">Email</p>
             <a href="mailto:daniel.gierach@raywhite.com"
               style="font-family:var(--font-sans);font-size:0.83rem;font-weight:500;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
               onmouseover="this.style.color='#f5d07a'"

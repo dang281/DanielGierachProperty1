@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 const draft = true; // STAGED -- remove this line on publish date
 ---
 <Layout title="Ceiling Heights in Brisbane Homes 2028: How Extra Height Changes Buyer Perception and Value | Daniel Gierach Property" description="Ceiling height is one of the strongest indirect signals of property quality, particularly in Brisbane heritage homes. Here is what counts as standard, what counts as premium, and how to market and stage for height." draft={draft}>
@@ -9,8 +10,8 @@ const draft = true; // STAGED -- remove this line on publish date
   <!-- Hero -->
   <div style="background:#0a0806;padding:8rem 0 3rem;">
     <div class="max-w-[780px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         All Articles
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 7 min read</span>
@@ -71,4 +72,6 @@ const draft = true; // STAGED -- remove this line on publish date
     </div>
   </div>
 </article>
+
+<RelatedContent currentSlug="ceiling-heights-brisbane-homes-buyer-perception-value" />
 </Layout>

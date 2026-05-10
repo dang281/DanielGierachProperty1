@@ -155,6 +155,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.7;">Enter your details to receive your estimated property value and a tailored market report.</p>
 
         <form method="POST" action="https://formspree.io/f/xnjgedwp" class="flex flex-col gap-4">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
           <input type="hidden" name="_next" value="https://danielgierach.com/thank-you" />
           <input type="hidden" name="_subject" value="New valuation request - danielgierach.com" />
           <div class="grid grid-cols-2 gap-4">
@@ -196,7 +197,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div style="background:rgba(255,221,121,0.06);border:1px solid rgba(255,221,121,0.2);padding:2rem;">
         <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">Want a precise appraisal?</p>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.7;">This is an automated estimate. For an accurate, obligation-free appraisal from Dan with a full comparable sales report, book below.</p>
-        <a href="/walkthrough" class="btn-gold" style="justify-content:center;display:inline-flex;">Book a Free Appraisal →</a>
+        <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold" style="justify-content:center;display:inline-flex;">Book a Free Appraisal →</a>
       </div>
     </div>
 

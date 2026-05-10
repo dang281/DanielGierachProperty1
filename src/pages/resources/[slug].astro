@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 import { resources, resourceBySlug } from '../../data/resources/index.js';
 
 export function getStaticPaths() {
@@ -11,6 +12,29 @@ const r = resourceBySlug[slug];
 if (!r) return Astro.redirect('/resources');
 
 const pdfUrl = `/downloads/${r.slug}.pdf`;
+
+// Map resource category to insight-topics topic key for cross-linking.
+const categoryTopicMap = {
+  'Auction': 'auction',
+  'Brisbane reference': 'overlays',
+  'Buyers': 'buyer',
+  'Inspections': 'inspections',
+  'Investors': 'investor',
+  'Life events': 'life-events',
+  'Marketing': 'marketing',
+  'Master checklist': 'general',
+  'Pre-listing': 'presentation',
+  'Pricing': 'pricing',
+  'Renovations': 'renovation',
+  'Settlement': 'settlement',
+  'Vendor handout': 'general',
+};
+const relatedTopic = categoryTopicMap[r.category] || 'general';
+
+// Up to 3 cross-link resources from the same category, excluding current.
+const relatedResources = resources
+  .filter((x) => x.category === r.category && x.slug !== r.slug)
+  .slice(0, 3);
 
 const schema = {
   "@context": "https://schema.org",
@@ -33,8 +57,8 @@ const schema = {
   <!-- Hero -->
   <div style="background:#0a0806;padding:8rem 0 3.5rem;">
     <div class="max-w-[860px] mx-auto px-8">
-      <a href="/resources" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+      <a href="/resources" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         &larr; All Resources
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Field Resource &middot; {r.category}</span>
@@ -136,15 +160,36 @@ const schema = {
       <div style="padding:2rem;border-left:3px solid #c4912a;background:rgba(196,145,42,0.04);">
         <p style="font-family:var(--font-serif);font-size:1.05rem;color:#1c1917;margin-bottom:0.5rem;"><strong style="color:#c4912a;">Want a personal walkthrough?</strong></p>
         <p style="font-size:0.92rem;line-height:1.7;color:#78716c;margin-bottom:1rem;">Daniel can visit your property and give you a tailored plan based on your suburb, your buyer pool, and the current market.</p>
-        <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;text-decoration:none;border-bottom:2px solid #c4912a;padding-bottom:2px;">
+        <a href="/get-an-appraisal" data-cta="resource_to_walkthrough" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;text-decoration:none;border-bottom:2px solid #c4912a;padding-bottom:2px;">
           Book a Free Appraisal &rarr;
         </a>
       </div>
+
+      {relatedResources.length > 0 && (
+        <div style="margin-top:1.5rem;padding-top:2rem;border-top:1px solid rgba(28,25,23,0.08);">
+          <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.85rem;">Related resources</p>
+          <p style="font-size:0.92rem;color:#78716c;line-height:1.65;margin-bottom:1.25rem;">Other Brisbane field guides in the {r.category.toLowerCase()} category.</p>
+          <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;">
+            {relatedResources.map((rr) => (
+              <li>
+                <a href={`/resources/${rr.slug}`} style="display:flex;flex-direction:column;gap:0.4rem;padding:1rem 1.1rem;background:#f7f5f0;border:1px solid rgba(28,25,23,0.08);text-decoration:none;color:#1c1917;transition:border-color 0.2s;"
+                  onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.08)'">
+                  <span style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;">{rr.category}</span>
+                  <span style="font-family:var(--font-serif);font-size:0.95rem;line-height:1.35;">{rr.title}</span>
+                  <span style="font-family:var(--font-sans);font-size:0.7rem;color:#c4912a;margin-top:auto;">Open guide &rarr;</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
     </div>
   </div>
 
 </article>
+
+<RelatedContent currentSlug={r.slug} category={r.category} topic={relatedTopic} />
 
 <!-- Fire Meta Pixel Lead event on PDF download -->
 <script is:inline>

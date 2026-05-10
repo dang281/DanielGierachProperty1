@@ -1,16 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 const draft = true; // STAGED, remove this line on publish date
 ---
-<Layout title="Landlord Insurance When Selling a Tenanted Brisbane Property: How to Maintain Cover Through to Settlement | Daniel Gierach Property" description="In Queensland, the risk of loss stays with the seller until settlement. Cancelling landlord insurance early to save premium leaves the property exposed at the worst possible time. Here is how to maintain cover through the campaign, the vacant period, and the handover." draft={draft}>
+<Layout title="Landlord Insurance When Selling in Brisbane | Daniel Gierach Property" description="In Queensland, the risk of loss stays with the seller until settlement. Cancelling landlord insurance early to save premium leaves the property exposed at the worst possible time. Here is how to maintain cover through the campaign, the vacant period, and the handover." draft={draft}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
   <!-- Hero -->
   <div style="background:#0a0806;padding:8rem 0 3rem;">
     <div class="max-w-[780px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         &larr; All Articles
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Owners &middot; 9 min read</span>
@@ -101,4 +102,6 @@ const draft = true; // STAGED, remove this line on publish date
     </div>
   </div>
 </article>
+
+<RelatedContent currentSlug="landlord-insurance-selling-tenanted-brisbane-property-through-settlement" />
 </Layout>

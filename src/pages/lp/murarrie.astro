@@ -61,7 +61,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     transition: border-color 0.2s;
   }
   .lp-input:focus { border-color: rgba(197,160,60,0.6); }
-  .lp-input::placeholder { color: rgba(240,236,228,0.38); }
+  .lp-input::placeholder { color: rgba(240,236,228,0.6); }
   .lp-submit {
     padding: 0.9rem 1.4rem; background: #c5a03c; border: none; cursor: pointer;
     font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
@@ -77,7 +77,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
   .lp-stats-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
   .lp-stat { text-align: center; }
   .lp-stat-num { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold-light); line-height: 1; margin-bottom: 0.2rem; }
-  .lp-stat-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,236,228,0.4); }
+  .lp-stat-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,236,228,0.6); }
   .lp-stat-divider { width: 1px; height: 2.5rem; background: rgba(197,160,60,0.18); }
 
   /* ── What's in your report ── */
@@ -219,7 +219,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
       <p class="lp-sub">Most homeowners underestimate what their property is worth. Find out where yours really sits.</p>
 
       <form class="lp-form-inline" id="lpForm" action="/property-report" method="get">
-        <input class="lp-input" type="text" name="address" id="lpAddress" placeholder="Enter your property address…" autocomplete="off" required />
+        <input class="lp-input" type="text" name="address" id="lpAddress" placeholder="Enter your property address…" autocomplete="off" required aria-label="Property address" />
         <button type="submit" class="lp-submit">
           What's Your Property Worth?
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

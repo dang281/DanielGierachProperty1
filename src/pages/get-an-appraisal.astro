@@ -69,21 +69,22 @@ const appraisalSchema = {
 
       <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.85rem;"
         onsubmit="if(typeof gtag!=='undefined'){gtag('event','appraisal_form_submit',{event_category:'lead',event_label:'Get An Appraisal',form_source:'wider-brisbane'});}">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
         <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=appraisal-anywhere" />
         <input type="hidden" name="_subject" value="Appraisal request, wider Brisbane" />
         <input type="hidden" name="_source" value="get-an-appraisal" />
 
-        <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        <input type="text" name="name" required placeholder="Your name" autocomplete="name" aria-label="Your name"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
-        <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        <input type="email" name="email" required placeholder="Email address" autocomplete="email" aria-label="Email address"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
-        <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel"
+        <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" aria-label="Phone, optional"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
-        <input id="appraisal-suburb" type="text" name="suburb" required placeholder="Suburb"
+        <input id="appraisal-suburb" type="text" name="suburb" required placeholder="Suburb" aria-label="Suburb"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
-        <input type="text" name="property_address" required placeholder="Property address (street + number)"
+        <input type="text" name="property_address" required placeholder="Property address (street + number)" aria-label="Property address"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
-        <textarea name="notes" rows="3" placeholder="Anything Daniel should know? (timing, situation, target price)"
+        <textarea name="notes" rows="3" placeholder="Anything Daniel should know? (timing, situation, target price)" aria-label="Notes, timing, situation, target price"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box; resize:vertical;"></textarea>
 
         <button type="submit" class="btn-gold" style="margin-top:0.5rem; justify-content:center;">

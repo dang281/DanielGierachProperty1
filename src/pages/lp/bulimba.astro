@@ -114,7 +114,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     color: #f0ece4; font-family: var(--font-sans); font-size: 0.85rem;
     outline: none; box-sizing: border-box; -webkit-appearance: none;
   }
-  .lp-input::placeholder { color: rgba(240,236,228,0.4); }
+  .lp-input::placeholder { color: rgba(240,236,228,0.6); }
 
   .pac-container {
     background: #1c1917;
@@ -280,6 +280,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
             placeholder="Start typing your address..."
             autocomplete="off"
             required
+            aria-label="Property address"
           />
         </div>
         <button type="submit" class="lp-submit">

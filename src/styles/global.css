@@ -76,16 +76,46 @@
     display: block;
     max-width: 100%;
   }
+
+  /* ── Global keyboard focus indicator ──
+     Wins specificity over the many inline `outline:none` declarations because
+     `:focus-visible` is more specific than the implicit `:focus` selector that
+     a bare style="outline:none" applies on focus. Keyboard-only, never on click. */
+  *:focus-visible {
+    outline: 3px solid var(--color-gold, #c4912a);
+    outline-offset: 2px;
+  }
+
+  /* ── Skip-to-content link ── */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px 12px;
+    z-index: 100;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
 }
 
 /* ─────────────────────────────────────────
    SCROLL REVEAL ANIMATIONS
+   PERF-009: will-change removed from all reveal selectors. The animations
+   are one-shot (run once when the IntersectionObserver fires), so a
+   permanent compositor layer per element is wasted GPU memory. The
+   transitions still run smoothly without the hint.
 ───────────────────────────────────────── */
 @layer base {
   .reveal {
     opacity: 0;
     transform: translateY(14px);
-    will-change: transform, opacity;
     transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
                 transform 0.65s cubic-bezier(0.16,1,0.3,1);
   }
@@ -97,7 +127,6 @@
   .reveal-left {
     opacity: 0;
     transform: translateX(-32px);
-    will-change: transform, opacity;
     transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
                 transform 0.8s cubic-bezier(0.16,1,0.3,1);
   }
@@ -109,7 +138,6 @@
   .reveal-right {
     opacity: 0;
     transform: translateX(32px);
-    will-change: transform, opacity;
     transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
                 transform 0.8s cubic-bezier(0.16,1,0.3,1);
   }
@@ -121,7 +149,6 @@
   .reveal-scale {
     opacity: 0;
     transform: scale(0.96);
-    will-change: transform, opacity;
     transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
                 transform 0.7s cubic-bezier(0.16,1,0.3,1);
   }
@@ -347,11 +374,10 @@
     box-shadow: 0 1px 4px rgba(28,25,23,0.05);
   }
 
-  /* Staggered card entrance */
+  /* Staggered card entrance, PERF-009: will-change removed (one-shot animation) */
   .card-reveal {
     opacity: 0;
     transform: translateY(48px) scale(0.97);
-    will-change: transform, opacity;
     transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
                 transform 0.7s cubic-bezier(0.16,1,0.3,1);
   }
@@ -616,5 +642,41 @@
   textarea,
   select {
     font-size: 16px !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE TOUCH TARGETS (WCAG 2.5.8)
+   Boost vertical padding on small tap controls to clear the 44px minimum
+   on phones. Desktop is unaffected.
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Filter pills (.fpill) used on tools-index and insights-index */
+  .fpill {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    min-height: 44px;
+  }
+
+  /* Tool radio cards: term-label, freq-label and similar pill pickers */
+  .term-label,
+  .freq-label {
+    padding-top: 0.95rem !important;
+    padding-bottom: 0.95rem !important;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Property report selectors (radio-card pattern) */
+  .report-type-btn,
+  .bed-btn,
+  .bath-btn,
+  .car-btn,
+  .block-btn,
+  .pool-btn,
+  .intent-btn {
+    min-height: 44px;
   }
 }

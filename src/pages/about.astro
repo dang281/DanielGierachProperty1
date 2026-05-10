@@ -2,22 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Method from '../components/Method.astro';
 
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Daniel Gierach",
-  "jobTitle": "Real Estate Agent",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Ray White Bulimba",
-    "url": "https://raywhite.com.au"
-  },
-  "areaServed": "Brisbane Inner East",
-  "url": "https://danielgierach.com/about",
-  "sameAs": [
-    "https://www.linkedin.com/in/danielgierach"
-  ]
-};
+// Page-level Person schema removed (LSEO-004): the global @graph in
+// Layout.astro already declares the canonical Person + RealEstateAgent
+// entities at https://danielgierach.com/#person and /#business.
 
 const values = [
   {
@@ -35,7 +22,7 @@ const values = [
 ];
 ---
 
-<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/41af-H3456024-187652428__1771374332-50487-FJD9386.jpg" title="About Daniel Gierach | Real Estate Agent Brisbane" description="Brisbane real estate agent at Ray White Bulimba. Specialist in the inner east, with a documented three-phase method for Brisbane sellers." schema={personSchema}>
+<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/41af-H3456024-187652428__1771374332-50487-FJD9386.jpg" title="About Daniel Gierach | Real Estate Agent Brisbane" description="Brisbane real estate agent at Ray White Bulimba. Specialist in the inner east, with a documented three-phase method for Brisbane sellers.">
 
 
 <!-- ════════════════════════════════════════════
@@ -216,16 +203,16 @@ const values = [
       <div class="reveal" data-delay="80" style="display:flex;flex-direction:column;gap:2rem;">
         <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
           <div>
-            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Phone</p>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.6);margin-bottom:0.4rem;">Phone</p>
             <a href="tel:+61412523821"
               style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
               onmouseover="this.style.color='#f5d07a'"
               onmouseout="this.style.color='#f0ece4'">0412 523 821</a>
-            <p style="font-size:0.62rem;color:rgba(240,236,228,0.35);margin-top:0.25rem;letter-spacing:0.06em;">Available 7 days</p>
+            <p style="font-size:0.62rem;color:rgba(240,236,228,0.6);margin-top:0.25rem;letter-spacing:0.06em;">Available 7 days</p>
           </div>
           <div style="width:1px;height:44px;background:rgba(240,236,228,0.12);"></div>
           <div>
-            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.35);margin-bottom:0.4rem;">Email</p>
+            <p style="font-family:var(--font-sans);font-size:0.55rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,236,228,0.6);margin-bottom:0.4rem;">Email</p>
             <a href="mailto:daniel.gierach@raywhite.com"
               style="font-family:var(--font-sans);font-size:0.83rem;font-weight:500;color:#f0ece4;text-decoration:none;transition:color 0.2s;"
               onmouseover="this.style.color='#f5d07a'"

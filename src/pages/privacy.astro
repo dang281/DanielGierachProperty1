@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const lastUpdated = "23 March 2026";
+const lastUpdated = "10 May 2026";
 
 const sections = [
   {
@@ -74,20 +74,31 @@ const sections = [
     ],
   },
   {
-    title: "10. Links to Third-Party Websites",
+    title: "10. Tracking and Analytics Tools",
+    content: [
+      "In line with Australian Privacy Principle 1.4, we name the specific third-party tools that may collect information when you use this website:",
+      "Google Analytics 4 (GA4): measures aggregated, anonymised page views, time on page, traffic sources, and basic device data so we can understand which pages are useful. GA4 does not collect names, phone numbers or email addresses. You can opt out by installing the Google Analytics Opt-out Browser Add-on at tools.google.com/dlpage/gaoptout.",
+      "Meta (Facebook) Pixel: tracks page views and form submissions to measure the performance of Facebook and Instagram advertising. The Pixel sets cookies that may be linked to your Meta account if you are logged in. You can opt out via your Meta ad preferences at facebook.com/adpreferences and instagram.com/accounts/privacy_and_security.",
+      "Formspree: processes contact, appraisal and walk-through form submissions on our behalf. When you submit a form, the data you enter (name, email, phone, message and any property details) is transmitted to Formspree's servers in the United States and forwarded to Daniel by email. See formspree.io/legal/privacy-policy for their privacy practices.",
+      "Google Maps and Places (address autocomplete): used on the property worth, walk-through and landing-page forms to help you select a verified address. Google receives the partial address you type so it can return suggestions. See policies.google.com/privacy for Google's privacy practices.",
+      "You can also block these tools at the browser level by enabling tracking protection (built into Safari, Firefox and Brave) or by installing a content blocker such as uBlock Origin.",
+    ],
+  },
+  {
+    title: "11. Links to Third-Party Websites",
     content: [
       "This website may contain links to external websites including Ray White's platforms and property listing portals. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies independently.",
     ],
   },
   {
-    title: "11. Complaints",
+    title: "12. Complaints",
     content: [
       "If you believe we have breached the Australian Privacy Principles or handled your personal information inappropriately, please contact us in the first instance so we can attempt to resolve your concern.",
       "If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at www.oaic.gov.au.",
     ],
   },
   {
-    title: "12. Changes to This Policy",
+    title: "13. Changes to This Policy",
     content: [
       "We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. The current version will always be available on this page with the date of last update noted above.",
     ],
@@ -95,7 +106,7 @@ const sections = [
 ];
 ---
 
-<Layout title="Privacy Policy | Daniel Gierach Property" description="Privacy Policy for Daniel Gierach Property, compliant with the Australian Privacy Act 1988 and Australian Privacy Principles.">
+<Layout title="Privacy Policy | Daniel Gierach Property" description="Privacy Policy for Daniel Gierach Property, compliant with the Australian Privacy Act 1988 and Australian Privacy Principles." draft={true}>
 
 
 <!-- ════════════════════════════════════════════
@@ -107,7 +118,7 @@ const sections = [
     <h1 style="font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,3.5rem);font-weight:400;color:#f0ece4;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1rem;">
       Privacy Policy
     </h1>
-    <p style="font-size:0.85rem;color:rgba(240,236,228,0.45);letter-spacing:0.06em;">Last updated: {lastUpdated}</p>
+    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);letter-spacing:0.06em;">Last updated: {lastUpdated}</p>
   </div>
 </section>
 
@@ -146,7 +157,7 @@ const sections = [
 
       <!-- Contact -->
       <div style="padding:2.5rem 0;border-top:1px solid rgba(28,25,23,0.1);border-bottom:1px solid rgba(28,25,23,0.1);">
-        <h2 style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#1c1917;margin-bottom:1rem;">13. Contact Us</h2>
+        <h2 style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#1c1917;margin-bottom:1rem;">14. Contact Us</h2>
         <p style="font-size:0.88rem;color:#44403c;line-height:1.9;margin-bottom:1.5rem;">
           For any privacy-related enquiries, access requests or complaints, please contact:
         </p>

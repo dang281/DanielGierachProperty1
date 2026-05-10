@@ -65,10 +65,20 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
       }
       html { scroll-behavior: smooth; }
       body { background: var(--dark); color: var(--cream); font-family: var(--font-sans); }
+      *:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+      .skip-link {
+        position: absolute; top: -40px; left: 0; background: #000; color: #fff;
+        padding: 8px 12px; z-index: 100; text-decoration: none;
+        font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700;
+      }
+      .skip-link:focus { top: 0; }
     </style>
   </head>
   <body>
-    <slot />
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <main id="main">
+      <slot />
+    </main>
 
     <!-- Google Analytics 4 -->
     <script is:inline defer src="https://www.googletagmanager.com/gtag/js?id=G-K1P37GL73K"></script>

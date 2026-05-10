@@ -123,7 +123,7 @@ const tagColors: Record<string, string> = {
   'Forthcoming Auction': '#7ec8e3',
   'Under Contract': '#f4a261',
   'Blue-Chip Land': '#c8c6c8',
-  'Sold': 'rgba(240,236,228,0.35)',
+  'Sold': 'rgba(240,236,228,0.6)',
 };
 
 const listingsSchema = {
@@ -171,8 +171,9 @@ const listingsSchema = {
 <section style="background:var(--color-base);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
+      {/* TODO Daniel: confirm whether these listings are exclusively your own or office-wide. If exclusive to you, change eyebrow to "For Sale by Daniel Gierach"; if these are network listings handled across the Bulimba team, "Ray White Bulimba" is the accurate label. Left as office-network framing pending confirmation. */}
       <div class="reveal">
-        <span class="eyebrow mb-3" style="display:block;">For Sale by The Collective</span>
+        <span class="eyebrow mb-3" style="display:block;">For Sale via Ray White Bulimba</span>
         <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#1c1917;letter-spacing:-0.01em;">
           For Sale
         </h2>
@@ -229,7 +230,7 @@ const listingsSchema = {
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
       <div class="reveal">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Recently Sold by The Collective</p>
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Recently Sold via Ray White Bulimba</p>
         <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#1c1917;letter-spacing:-0.01em;">
           Recently Sold
         </h2>

@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Page Not Found | Daniel Gierach Property" description="The page you're looking for doesn't exist. Get in touch with Daniel Gierach, Ray White Bulimba.">
+<Layout title="Page Not Found | Daniel Gierach Property" description="The page you're looking for doesn't exist. Get in touch with Daniel Gierach, Ray White Bulimba." draft={true}>
 
 <section style="min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;background:#0a0806;">
 
@@ -36,7 +36,15 @@ import Layout from '../layouts/Layout.astro';
       </a>
     </div>
 
-    <p style="margin-top:3rem;font-family:var(--font-sans);font-size:0.75rem;color:rgba(240,236,228,0.35);letter-spacing:0.08em;">
+    <!-- Secondary nav: helpful destinations -->
+    <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(240,236,228,0.08);display:flex;gap:1.75rem;justify-content:center;flex-wrap:wrap;">
+      <a href="/listings" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c5a03c'" onmouseout="this.style.color='rgba(240,236,228,0.55)'">Listings</a>
+      <a href="/insights" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c5a03c'" onmouseout="this.style.color='rgba(240,236,228,0.55)'">Insights</a>
+      <a href="/suburbs" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c5a03c'" onmouseout="this.style.color='rgba(240,236,228,0.55)'">Suburbs</a>
+      <a href="/about" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c5a03c'" onmouseout="this.style.color='rgba(240,236,228,0.55)'">About</a>
+    </div>
+
+    <p style="margin-top:3rem;font-family:var(--font-sans);font-size:0.75rem;color:rgba(240,236,228,0.6);letter-spacing:0.08em;">
       Or call <a href="tel:+61412523821" style="color:rgba(197,160,60,0.7);text-decoration:none;">0412 523 821</a>
     </p>
 

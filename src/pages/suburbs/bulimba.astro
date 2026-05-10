@@ -6,7 +6,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
 ---
 
 <Layout
-  title="Selling in Bulimba | Real Estate Agent | Daniel Gierach"
+  title="Selling in Bulimba 2026 | Daniel Gierach Property"
   description="Thinking of selling in Bulimba? Riverside lifestyle, strong demand and 5km from the CBD. Free appraisal with Daniel Gierach, Ray White Bulimba."
 >
 
@@ -30,6 +30,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
     "LocalBusiness",
     "RealEstateAgent"
   ],
+  "@id": "https://danielgierach.com/#business",
   "name": "Daniel Gierach, Ray White Bulimba",
   "description": "Specialist real estate agent in Bulimba and Brisbane's inner east and south. Selling property in Bulimba, Hawthorne, Morningside, Cannon Hill and surrounding suburbs.",
   "url": "https://danielgierach.com/suburbs/bulimba",
@@ -41,6 +42,11 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
     "postalCode": "4171",
     "addressCountry": "AU"
   },
+  "email": "daniel.gierach@raywhite.com",
+  "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+  "priceRange": "$$",
+  "geo": { "@type": "GeoCoordinates", "latitude": -27.45, "longitude": 153.0667 },
+  "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "20:00" },
   "areaServed": [
     {
       "@type": "Place",
@@ -69,7 +75,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
     "Bulimba riverside homes",
     "inner east Brisbane agent"
   ],
-  "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915"]
+  "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
 })}</script>
 
 
@@ -107,7 +113,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
   <div style="max-width:800px; margin:0 auto; text-align:center;">
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Bulimba</p>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
-      Real Estate Agent Bulimba.
+      Selling in Bulimba.
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
       Specialist property sales in Bulimba and Brisbane's inner east.
@@ -134,6 +140,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
   <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
   <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Bulimba home is worth.</h3>
   <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
     <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
     <input type="hidden" name="_subject" value="Appraisal enquiry: Bulimba" />
     <input type="hidden" name="_source" value="bulimba" />

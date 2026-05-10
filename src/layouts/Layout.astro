@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedArticles from '../components/RelatedArticles.astro';
 import scheduleData from '../../dashboard/seo-schedule.json';
+import { GLOBAL_SCHEMA_JSON } from '../data/site-schema.js';
 
 interface Props {
   title?: string;
@@ -57,205 +58,21 @@ const _isHubPage = schema?.["@type"] === "CollectionPage";
 // Email capture: show on all insights article pages (not the index or hub pages)
 const _isInsightsArticle = _bParts[0] === 'insights' && _bParts.length >= 2 && !_isHubPage;
 
-// Look up publish date from seo-schedule for Article JSON-LD datePublished
+// Look up publish date from seo-schedule for Article JSON-LD datePublished.
+// The file existing under src/pages/insights/ is the source of truth for "published";
+// the schedule's `draft` flag is an editorial planning state, not a publish gate.
+// Match by slug regardless of the draft flag so every scheduled article gets datePublished.
 const _articleSlug = _bParts[1] ?? null;
 const _scheduleEntry = _isInsightsArticle && _articleSlug
-  ? (scheduleData as any).articles.find((a: any) => a.slug === _articleSlug && !a.draft)
+  ? (scheduleData as any).articles.find((a: any) => a.slug === _articleSlug)
   : null;
 const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
 
-const globalSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-  {
-  "@type": ["RealEstateAgent", "LocalBusiness"],
-  "@id": "https://danielgierach.com/#business",
-  "name": "Daniel Gierach",
-  "description": "Brisbane real estate agent at Ray White Bulimba. A documented three-phase method for selling homes across Brisbane, with deep local knowledge across the inner east and south.",
-  "url": "https://danielgierach.com",
-  "telephone": "+61412523821",
-  "email": "daniel.gierach@raywhite.com",
-  "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Unit 6, 57-59 Oxford Street",
-    "addressLocality": "Bulimba",
-    "addressRegion": "QLD",
-    "postalCode": "4171",
-    "addressCountry": "AU"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -27.4568,
-    "longitude": 153.0523
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Brisbane" },
-    { "@type": "City", "name": "Balmoral" },
-    { "@type": "City", "name": "Belmont" },
-    { "@type": "City", "name": "Brisbane CBD" },
-    { "@type": "City", "name": "Bulimba" },
-    { "@type": "City", "name": "Camp Hill" },
-    { "@type": "City", "name": "Cannon Hill" },
-    { "@type": "City", "name": "Carina" },
-    { "@type": "City", "name": "Carina Heights" },
-    { "@type": "City", "name": "Carindale" },
-    { "@type": "City", "name": "Coorparoo" },
-    { "@type": "City", "name": "East Brisbane" },
-    { "@type": "City", "name": "Fortitude Valley" },
-    { "@type": "City", "name": "Greenslopes" },
-    { "@type": "City", "name": "Hawthorne" },
-    { "@type": "City", "name": "Hemmant" },
-    { "@type": "City", "name": "Holland Park" },
-    { "@type": "City", "name": "Holland Park West" },
-    { "@type": "City", "name": "Kangaroo Point" },
-    { "@type": "City", "name": "Morningside" },
-    { "@type": "City", "name": "Mount Gravatt" },
-    { "@type": "City", "name": "Mount Gravatt East" },
-    { "@type": "City", "name": "Murarrie" },
-    { "@type": "City", "name": "New Farm" },
-    { "@type": "City", "name": "Norman Park" },
-    { "@type": "City", "name": "Seven Hills" },
-    { "@type": "City", "name": "Tarragindi" },
-    { "@type": "City", "name": "Teneriffe" },
-    { "@type": "City", "name": "Tingalpa" },
-    { "@type": "City", "name": "Upper Mount Gravatt" },
-    { "@type": "City", "name": "Woolloongabba" }
-  ],
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-      "author": { "@type": "Person", "name": "Seller" },
-      "reviewBody": "Dan's professionalism and genuine approach stood out immediately. He explained every step clearly, set expectations up front, and kept me updated without me ever having to chase. The result went well above and beyond expectations."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-      "author": { "@type": "Person", "name": "Buyer" },
-      "reviewBody": "We had a great experience working with Daniel through our buying process. He was super honest, never pushy, and made the whole process way less stressful. Daniel is a genuinely solid, trustworthy person. Highly recommend."
-    }
-  ],
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "07:00",
-    "closes": "20:00"
-  },
-  "sameAs": [
-    "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
-    "https://www.linkedin.com/in/daniel-gierach",
-    "https://www.facebook.com/danielgierachproperty",
-    "https://www.instagram.com/danielgierach",
-    "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach"
-  ]
-  },
-  {
-    "@type": "Person",
-    "@id": "https://danielgierach.com/#person",
-    "name": "Daniel Gierach",
-    "givenName": "Daniel",
-    "familyName": "Gierach",
-    "alternateName": ["Dan Gierach", "danielgierach", "Daniel Gierach Property"],
-    "jobTitle": "Licensed Real Estate Agent",
-    "description": "Daniel Gierach is a Brisbane inner-east real estate agent at Ray White Bulimba. He specialises in property sales across Camp Hill, Hawthorne, Bulimba, Norman Park, Balmoral, Seven Hills, Morningside, Cannon Hill, Murarrie and Carina. Not to be confused with Daniel Giersch, the German entrepreneur.",
-    "disambiguatingDescription": "Australian real estate agent based in Brisbane, Queensland. Distinct from Daniel Giersch, the German entrepreneur and former husband of Kelly Rutherford.",
-    "url": "https://danielgierach.com",
-    "telephone": "+61412523821",
-    "email": "daniel.gierach@raywhite.com",
-    "nationality": "Australian",
-    "homeLocation": {
-      "@type": "Place",
-      "name": "Brisbane, Queensland, Australia"
-    },
-    "image": {
-      "@type": "ImageObject",
-      "url": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
-      "width": 400,
-      "height": 400
-    },
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Ray White Bulimba",
-      "url": "https://raywhitebulimba.com.au"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Unit 6, 57-59 Oxford Street",
-      "addressLocality": "Bulimba",
-      "addressRegion": "QLD",
-      "postalCode": "4171",
-      "addressCountry": "AU"
-    },
-    "knowsAbout": [
-      "Real Estate",
-      "Property Sales",
-      "Brisbane Property Market",
-      "Inner East Brisbane Real Estate",
-      "Queensland Property Market",
-      "Property Valuation",
-      "Auction Strategy",
-      "Character Home Sales",
-      "Queenslander Home Sales"
-    ],
-    "sameAs": [
-      "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
-      "https://raywhitebulimba.com.au/agents/daniel-gierach/177117",
-      "https://www.linkedin.com/in/daniel-gierach",
-      "https://www.facebook.com/danielgierachproperty",
-      "https://www.instagram.com/danielgierach",
-      "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach",
-      "https://danielgierach.com"
-    ]
-  },
-  {
-    "@type": "FAQPage",
-    "@id": "https://danielgierach.com/#identity-faq",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Who is Daniel Gierach?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Daniel Gierach is a Brisbane real estate agent at Ray White Bulimba. He specialises in residential property sales across Brisbane's inner east and south, including Bulimba, Hawthorne, Balmoral, Norman Park, Camp Hill, Seven Hills, Morningside, Murarrie, Cannon Hill and Carina. Daniel Gierach is not the same person as Daniel Giersch, the German entrepreneur and former husband of Kelly Rutherford."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where is Daniel Gierach based?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Daniel Gierach is based in Bulimba, Brisbane, Queensland, Australia. His office is at Unit 6, 57-59 Oxford Street, Bulimba QLD 4171 (Ray White Bulimba)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I contact Daniel Gierach?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Daniel Gierach can be contacted on 0412 523 821, at daniel.gierach@raywhite.com, or through the contact form at danielgierach.com."
-        }
-      }
-    ]
-  },
-  {
-    "@type": "WebSite",
-    "@id": "https://danielgierach.com/#website",
-    "url": "https://danielgierach.com",
-    "name": "Daniel Gierach Property",
-    "publisher": { "@id": "https://danielgierach.com/#business" },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://danielgierach.com/insights?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  }
-  ]
-};
+// PERF-010 + LSEO-004: globalSchema lives in src/data/site-schema.js,
+// pre-stringified once at module load. See GLOBAL_SCHEMA_JSON import above.
+// LSEO-004 also added aggregateRating (5.0/10) and the realestate.com.au
+// sameAs entry to that file. The inline copy that previously lived here
+// has been removed entirely.
 ---
 
 <!DOCTYPE html>
@@ -272,7 +89,10 @@ const globalSchema = {
     {preloadImage && <link rel="preload" as="image" href={preloadImage} imagesrcset={`${preloadImage.replace(/w=\d+/, 'w=640')} 640w, ${preloadImage.replace(/w=\d+/, 'w=1200')} 1200w, ${preloadImage.replace(/w=\d+/, 'w=1440')} 1440w`} imagesizes="100vw" fetchpriority="high" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn6.ep.dynamics.net" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://connect.facebook.net" />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;600;700&display=swap"
@@ -307,8 +127,8 @@ const globalSchema = {
     <meta name="geo.placename" content="Brisbane" />
     <meta name="geo.position" content="-27.4568;153.0523" />
     <meta name="ICBM" content="-27.4568, 153.0523" />
-    <!-- Global JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
+    <!-- Global JSON-LD (pre-stringified at module load, see PERF-010) -->
+    <script type="application/ld+json" set:html={GLOBAL_SCHEMA_JSON} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <!-- Article JSON-LD for all insights articles (alongside any passed schema prop) -->
@@ -350,6 +170,7 @@ const globalSchema = {
     </script>
   </head>
   <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <Nav />
     {showBreadcrumbs && (
       <nav aria-label="Breadcrumb" style="background:#1c1917;padding:calc(76px + 0.6rem) 1.5rem 0.6rem;border-bottom:1px solid rgba(196,145,42,0.1);">
@@ -369,7 +190,7 @@ const globalSchema = {
         </ol>
       </nav>
     )}
-    <main>
+    <main id="main">
       <slot />
     </main>
 
@@ -388,6 +209,7 @@ const globalSchema = {
             method="POST" action="https://formspree.io/f/xnjgedwp"
             style="display:flex;gap:0.6rem;max-width:480px;margin:0 auto;flex-wrap:wrap;"
           >
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
             <input type="hidden" name="_subject" value="Market update signup - insights article" />
             <input type="hidden" name="form_type" value="insights_market_update_signup" />
             <input
@@ -521,6 +343,20 @@ const globalSchema = {
             }
           });
         });
+      });
+    </script>
+    <!-- Global CTA click tracking, ANLY-003 -->
+    <script is:inline>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('[data-cta]');
+        if (!link) return;
+        var ctaName = link.getAttribute('data-cta');
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'CTAClick', { cta_name: ctaName });
+        }
+        if (typeof gtag === 'function') {
+          gtag('event', 'cta_click', { cta_name: ctaName });
+        }
       });
     </script>
     <!-- Formspree → /thank-you redirect -->

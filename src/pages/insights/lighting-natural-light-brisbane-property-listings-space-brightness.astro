@@ -1,8 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 const draft = true; // STAGED -- remove this line on publish date
 ---
-<Layout title="Lighting and Natural Light in Brisbane Property Listings 2028: Maximising Space and Brightness | Daniel Gierach Property" description="Light is one of the most undervalued levers in property marketing. Brisbane's sunshine is abundant year-round, but tired lighting setups and dark interior treatments still cost sellers value. Here is what to do before listing." draft={draft}>
+<Layout title="Lighting and Natural Light in Listings | Daniel Gierach Property" description="Light is one of the most undervalued levers in property marketing. Brisbane's sunshine is abundant year-round, but tired lighting setups and dark interior treatments still cost sellers value. Here is what to do before listing." draft={draft}>
 
 <script type="application/ld+json">
 {
@@ -42,8 +43,8 @@ const draft = true; // STAGED -- remove this line on publish date
   <!-- Hero -->
   <div style="background:#0a0806;padding:8rem 0 3rem;">
     <div class="max-w-[780px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         ← All Articles
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 8 min read</span>
@@ -110,4 +111,6 @@ const draft = true; // STAGED -- remove this line on publish date
     </div>
   </div>
 </article>
+
+<RelatedContent currentSlug="lighting-natural-light-brisbane-property-listings-space-brightness" />
 </Layout>

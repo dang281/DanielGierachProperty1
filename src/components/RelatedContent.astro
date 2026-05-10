@@ -1,0 +1,111 @@
+---
+// Shared cross-linking block for insight, suburb, and resource pages.
+// Renders related insights, related tools, related resources, and a walkthrough CTA.
+//
+// Usage:
+//   import RelatedContent from '../../components/RelatedContent.astro';
+//   <RelatedContent currentSlug="auction-strategy" topic="auction" />
+//
+// If `topic` is omitted, the component infers the topic from the slug pattern.
+// `category` is optional and currently informational only.
+import { selectRelated } from '../data/insight-topics';
+
+interface Props {
+  currentSlug: string;
+  category?: string;
+  topic?: string;
+}
+
+const { currentSlug, topic } = Astro.props as Props;
+const { label, articles, tools, resources } = selectRelated(currentSlug, topic);
+---
+
+<aside aria-label="Related reading and tools" style="background:#0a0806;color:#f0ece4;padding:4rem 0;border-top:1px solid rgba(245,208,122,0.12);">
+  <div class="max-w-[980px] mx-auto px-8">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:0.75rem;">
+      Related reading
+    </p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;letter-spacing:-0.01em;color:#f0ece4;margin-bottom:2.25rem;line-height:1.2;">
+      More on {label.toLowerCase()}
+    </h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2.5rem;">
+      {articles.map((a) => (
+        <a
+          href={`/insights/${a.slug}`}
+          style="display:flex;flex-direction:column;gap:0.5rem;padding:1.25rem;background:rgba(240,236,228,0.03);border:1px solid rgba(245,208,122,0.18);text-decoration:none;transition:border-color 0.2s, background 0.2s;"
+          onmouseover="this.style.borderColor='#f5d07a';this.style.background='rgba(245,208,122,0.06)'"
+          onmouseout="this.style.borderColor='rgba(245,208,122,0.18)';this.style.background='rgba(240,236,228,0.03)'"
+        >
+          <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#f5d07a;">{a.label}</span>
+          <span style="font-family:var(--font-serif);font-size:0.95rem;font-weight:400;color:#f0ece4;line-height:1.4;">{a.title}</span>
+          <span style="font-family:var(--font-sans);font-size:0.72rem;color:#f5d07a;margin-top:auto;letter-spacing:0.06em;">Read &rarr;</span>
+        </a>
+      ))}
+    </div>
+
+    {(tools.length > 0 || resources.length > 0) && (
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2.5rem;">
+        {tools.length > 0 && (
+          <div style="padding:1.5rem;background:rgba(240,236,228,0.03);border-left:3px solid #f5d07a;">
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;margin-bottom:0.85rem;">
+              Tools you can use now
+            </p>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.55rem;">
+              {tools.map((t) => (
+                <li>
+                  <a
+                    href={`/tools/${t.slug}`}
+                    style="font-family:var(--font-sans);font-size:0.85rem;color:#f0ece4;text-decoration:none;border-bottom:1px solid rgba(245,208,122,0.3);padding-bottom:1px;transition:border-color 0.2s, color 0.2s;"
+                    onmouseover="this.style.color='#f5d07a';this.style.borderColor='#f5d07a'"
+                    onmouseout="this.style.color='#f0ece4';this.style.borderColor='rgba(245,208,122,0.3)'"
+                  >{t.title} &rarr;</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {resources.length > 0 && (
+          <div style="padding:1.5rem;background:rgba(240,236,228,0.03);border-left:3px solid #f5d07a;">
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;margin-bottom:0.85rem;">
+              Free PDF guides
+            </p>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.55rem;">
+              {resources.map((r) => (
+                <li>
+                  <a
+                    href={`/resources/${r.slug}`}
+                    style="font-family:var(--font-sans);font-size:0.85rem;color:#f0ece4;text-decoration:none;border-bottom:1px solid rgba(245,208,122,0.3);padding-bottom:1px;transition:border-color 0.2s, color 0.2s;"
+                    onmouseover="this.style.color='#f5d07a';this.style.borderColor='#f5d07a'"
+                    onmouseout="this.style.color='#f0ece4';this.style.borderColor='rgba(245,208,122,0.3)'"
+                  >{r.title} &rarr;</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    )}
+
+    <div style="margin-top:1rem;padding:1.75rem 2rem;background:rgba(245,208,122,0.08);border:1px solid rgba(245,208,122,0.25);display:flex;flex-direction:column;gap:0.85rem;">
+      <p style="font-family:var(--font-serif);font-style:italic;font-size:1.05rem;color:#f0ece4;margin:0;line-height:1.5;">
+        Want a personal walkthrough of your specific situation?
+      </p>
+      <p style="font-size:0.88rem;color:rgba(240,236,228,0.7);line-height:1.65;margin:0;">
+        Daniel can sit at your kitchen table and walk you through what selling looks like for your property. Honest answers, no pressure.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.85rem;margin-top:0.35rem;">
+        <a
+          href="/walkthrough"
+          style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.6rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+          onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'"
+        >Book a walkthrough &rarr;</a>
+        <a
+          href="/property-worth"
+          style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.6rem;background:transparent;color:#f5d07a;border:1px solid #f5d07a;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;"
+        >What is my property worth? &rarr;</a>
+      </div>
+    </div>
+  </div>
+</aside>

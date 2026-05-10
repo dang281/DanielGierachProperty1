@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 const draft = true;
 ---
 <Layout title="Garage and Car Accommodation in Brisbane Real Estate: How Parking Impacts Property Value | Daniel Gierach Property" description="Parking is one of the most undervalued features by Brisbane sellers. Here is how garages, carports, tandem spaces, and on-street parking actually influence buyer behaviour and price." draft={draft}>
@@ -8,8 +9,8 @@ const draft = true;
 
   <div style="background:#0a0806;padding:8rem 0 3rem;">
     <div class="max-w-[780px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         ← All Articles
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 8 min read</span>
@@ -118,4 +119,6 @@ const draft = true;
     </div>
   </div>
 </article>
+
+<RelatedContent currentSlug="garage-car-accommodation-brisbane-real-estate-parking-property-value" />
 </Layout>
