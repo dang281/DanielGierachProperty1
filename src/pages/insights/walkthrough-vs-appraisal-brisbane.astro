@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a walkthrough and an appraisal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An appraisal is a sales-focused meeting that ends with a price estimate and usually a pitch to list. A walkthrough is a longer conversation that covers the price, the practical steps to get to market, the recommended method of sale, and your timing. Walkthroughs are designed for owners who are not necessarily ready to list, including those still 6 to 12 months out from selling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I get a price estimate at a walkthrough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every walkthrough includes an indicative price range with three to five recent comparable sales that support it. The range is sent in writing afterwards. Where a walkthrough differs from an appraisal is that the price is one part of a wider conversation, not the entire purpose of the meeting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a walkthrough a registered valuation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Neither a walkthrough nor a sales appraisal is a registered valuation. A registered valuation is a sworn document produced by a certified property valuer, used for bank lending, family law, deceased estates, and disputes. Walkthroughs and appraisals are agent estimates of likely market price for a sales campaign."
+      }
+    }
+  ]
+};
+---
+<Layout title="Walkthrough vs Appraisal: What is the Difference? | Daniel Gierach Property" description="A walkthrough and an appraisal are not the same thing. Here is what each meeting covers, when to book which one, and what you walk away with." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Walkthrough · 5 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Walkthrough vs Appraisal: What is the Difference?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Most owners use these two terms interchangeably. They are not the same meeting. Here is what each one covers, when each one makes sense, and which to ask for.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>If you ring three Brisbane agents and ask for a property appraisal, you will get three meetings that look quite different. One will be a 30-minute drive-by with a price written on a single page. Another will be a polished pitch with a glossy listing presentation. The third will be a two-hour conversation that barely touches on the price and ends without anyone trying to close you.</p>
+
+      <p>None of these are wrong. They are different products with different purposes. Calling all of them an "appraisal" is what creates confusion. The walkthrough is the most useful version of the meeting if you are not yet sure when, or whether, you want to list.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What an appraisal is</h2>
+
+      <p>A property appraisal in the standard real estate sense is a sales meeting. The agent comes to your home, walks through, sits down with you, presents an indicative price, and (most often) asks for the listing. The whole meeting is structured around closing the gap between you having a property and them having an authority to sell it.</p>
+
+      <p>That is not a criticism. It is the meeting most owners ask for and most agents are trained to deliver. If you are clearly weeks away from listing and you are choosing between agents, an appraisal is the right format. You compare numbers, you compare evidence, you compare how each agent presented themselves, and you make a call.</p>
+
+      <p>Where appraisals fall down is for the much larger group of owners who are six, nine, or twelve months from a possible sale. The pressure of a sales meeting changes the conversation. The owner ends up either signing earlier than they wanted to or quietly avoiding agents for another year.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What a walkthrough is</h2>
+
+      <p>A walkthrough is built for the longer planning horizon. The agenda is wider than just the price. It still includes a thorough walk of the property and an indicative price range with comparable sales evidence, but the bulk of the conversation is about the practical path to a strong result, the things that would actually move the number, and the timing that suits your life rather than the agent's calendar.</p>
+
+      <p>The other practical difference is what happens afterwards. After an appraisal, you usually get a follow-up call within 48 hours and a second one a week later. After a walkthrough, you get a written summary and the next contact is when you reach out. There is no chase, no tactical follow-up, no quiet pressure.</p>
+
+      <p>The trade-off is that a walkthrough takes longer to book and longer to run. It is roughly 60 to 75 minutes plus the written summary that follows. The reason it is structured this way is that the most expensive mistake in selling a Brisbane inner east home is not the agent commission or the marketing spend. It is the price discount that comes from rushing into market without a proper plan.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The price estimate is the same</h2>
+
+      <p>Both meetings should produce an indicative price range based on the same comparable sales evidence. There is no version where the walkthrough number is "softer" or the appraisal number is "harder" because the agent is trying to win a listing. If two estimates are widely different from the same agent on the same property, that is a problem with the agent, not with the format of the meeting.</p>
+
+      <p>What does change between the two formats is how much of the meeting is spent on the price. In an appraisal, the price is the centrepiece. In a walkthrough, it is one of four or five things that matter, and arguably not the most important one if you are still nine months out.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When to book a walkthrough instead of an appraisal</h2>
+
+      <p><strong style="color:var(--color-text-primary);">You are exploring the idea, not committing.</strong> A walkthrough lets you have a substantial conversation about the property and the market without being asked for the listing.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You are six months or more from selling.</strong> The advice on what to focus on now and what to leave alone is more valuable when you have time to act on it.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You have done some work and want a sense check.</strong> Whether you have spent on a kitchen, a bathroom, or landscaping, the walkthrough is a good time to find out whether the next dollar is worth spending.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You have an existing relationship with another agent.</strong> A walkthrough does not put you in a position of having to choose between agents. It is a parallel conversation that does not interfere with anything you may already be planning.</p>
+
+      <p><strong style="color:var(--color-text-primary);">A change of life is on the horizon.</strong> Upgrading, downsizing, separating, an estate to settle. The walkthrough format gives space for the broader conversation about the move, not just the property.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When to ask for a standard appraisal</h2>
+
+      <p>If you are weeks away from going to market and the only thing you need is a number and a plan to compare across two or three agents, the standard appraisal is the right format. Book three appraisals in the same fortnight, ask each agent to show you the comparable sales, and use the differences in their evidence and recommendations to make a decision.</p>
+
+      <p>The honest answer is that the walkthrough format is overkill at that stage. The appraisal is faster, more focused, and gives you what you need to choose.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Either is a useful first step</h2>
+
+      <p>The point is not that one is better than the other. The point is that owners who walk into a 30-minute appraisal expecting a wide planning conversation come away frustrated, and owners who walk into a 75-minute walkthrough expecting to be pitched come away confused. Knowing which one you actually want changes the meeting.</p>
+
+      <p>If you are unsure, default to the walkthrough. It does everything an appraisal does and adds the wider context. The reverse is not true.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Book a walkthrough with Daniel.</strong> A free, in-home conversation about your property and your options, with a written summary to follow. No follow-up campaign, no pressure to list. <a href="/walkthrough" style="color:#f5d07a;font-weight:600;">Book your walkthrough.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <AuthorBio />
+
+</article>
+
+</Layout>

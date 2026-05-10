@@ -1,0 +1,136 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does an experienced agent actually look at during a walkthrough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The four big categories are land and position, property type and condition, configuration and functionality, and presentation. Beyond those, an experienced agent in Brisbane's inner east is also reading the street, the buyer pool currently active in the price range, and which features in your specific property will widen or narrow the price spread on auction or campaign day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the single biggest factor in a Brisbane inner east valuation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For houses, it is land. Block size, orientation, slope, street position, and development potential drive most of the variation between properties in the same suburb. The improvements on the land matter, but they do not move the number nearly as much as people expect. For units, it is the building first and the unit second."
+      }
+    }
+  ]
+};
+---
+<Layout title="What Daniel Looks for at a Property Walkthrough | Daniel Gierach Property" description="The four big categories an experienced inner east agent assesses during a walkthrough, and what each one means for your final sale price." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Walkthrough · 8 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        What Daniel Looks for at a Property Walkthrough
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Twenty minutes of walking through a property is enough to form an honest view, if you know what to look at and how to weight what you find. Here is the actual checklist.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Owners often ask whether the walkthrough is more an art than a science. The honest answer is that it is structured. There is a checklist, and the checklist is built from years of seeing which features show up in the comparable sales spread and which ones get talked about but do not move the price. This article runs through what Daniel is actually thinking about as he walks the property.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">1. Land and position</h2>
+
+      <p>For houses in the inner east, land is the first and biggest variable. Two homes in the same street with the same number of bedrooms and bathrooms can sell for several hundred thousand dollars apart purely on block characteristics.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Block size and shape.</strong> The headline number on the contract is square metres, but a 600 square metre rectangle and a 600 square metre wedge are not equivalent. Usable yard space, the proportion that is buildable under current planning, and how the front and back are split all matter.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Orientation.</strong> A north-facing rear yard in Brisbane is consistently worth a premium because it gives sun on the deck and lounge in winter without overheating the house in summer. East-facing rear is the next best. South-facing rear is a discount on equivalent properties because the entertaining areas sit in shade.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Slope and access.</strong> Flat blocks build cheaper and live easier. Steep blocks cost more to build on but can offer views and privacy that flat blocks cannot. The question is not whether the slope is good or bad, it is whether the slope is being used well.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Street position.</strong> A position three houses in from a main road usually sells differently to a position halfway down a quiet cul-de-sac. School catchments, bus routes, and through-traffic patterns all show up in the comparable sales evidence.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Development and elevation potential.</strong> Even owners who would never develop should know what the planning overlays say their land could do. Buyers absolutely look at this, and a property with clear room to lift, raise, or build under is valued higher than an equivalent home where those options are restricted.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">2. Property type and condition</h2>
+
+      <p>The inner east has a broad housing stock. Pre-war Queenslanders, post-war timber and tin, 1970s and 1980s low-set brick, contemporary architectural builds, and an increasing number of high-end townhouses and units. The buyer pool for each is different, and so is the renovation cost curve, the maintenance pattern, and the way each style ages.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Era and original materials.</strong> A Queenslander on original stumps with a tin roof and casement windows tells a different story to a Queenslander on steel stumps with a renovated kitchen and modernised wiring. Both are saleable, and both have a buyer, but the price advice differs.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Condition flags.</strong> Movement in the floors, hairline cracks above doors, sagging roof lines, water staining around windows, damp patches near showers. None of these on their own are a problem, but they go on the list of things to assess against the rest of the picture.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Service items.</strong> The age of the hot water system, switchboard, oven, dishwasher, air conditioning. These do not change the price band but they affect the buyer's mental list of work-to-do, which affects offers.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Drainage and water.</strong> In Brisbane, this is non-negotiable. Where does the water go in heavy rain, where are the gutters and downpipes, and is there any sign of pooling near the foundations. A property with obvious drainage issues will be priced for them whether the owner discloses or not.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">3. Configuration and functionality</h2>
+
+      <p>The floor plan that works well in 2026 is not the floor plan that worked in 1986. Family life has moved towards an open kitchen and living area that connects to the outdoors, dedicated home office space, and a second bathroom positioned for kids or guests rather than as an ensuite afterthought.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Kitchen and living flow.</strong> Where does the kitchen sit relative to the main living space, the dining area, and the outdoor entertaining. Is there a sightline from the cooktop to where children would be playing. Is the fridge, oven, and prep triangle workable.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Bedroom configuration.</strong> The fourth bedroom in particular is worth real money in Brisbane's inner east, but only if it functions as a fourth bedroom. A small windowless internal room counted as the fourth is often valued by buyers as a study at best.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Bathroom positioning.</strong> Two bathrooms beats one. Three beats two, but only when the third is well placed (not when it is a powder room squeezed into a corner of the laundry).</p>
+
+      <p><strong style="color:var(--color-text-primary);">Storage and parking.</strong> Buyers consistently underrate this when they tour, and overrate it when they own. A garage with internal access, a usable laundry, and a linen cupboard on each level all show up in feedback after the open homes.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Outdoor connection.</strong> The single biggest functional shift in Brisbane housing over the past decade. A property where the living room opens to a covered outdoor area that opens to the lawn outperforms an equivalent home with a closed-in back wall.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">4. Presentation and kerb appeal</h2>
+
+      <p>This is the category most within your control between now and listing. A property does not need to be renovated to present well. It needs to be clean, decluttered, and clearly looked-after.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Kerb.</strong> What does the property look like in the first three seconds when a buyer drives past on the way to an open home. The fence, the front garden, the colour and condition of the front door, the path. These set the expectation for everything that follows.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Front entry.</strong> The first 30 seconds inside set the price ceiling. Light, smell, sightline through to the back of the property, the floor surface underfoot.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Decluttering.</strong> The most common single recommendation. Reducing what is on benches, shelves, and walls makes rooms photograph and present larger, and lets buyers see the property rather than the family.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Paint and small repairs.</strong> A neutral repaint of a tired room is one of the highest return-on-investment moves in property sale preparation. Repairing flyscreens, sticky doors, scuffed skirtings, and loose cabinetry sits in the same category.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Garden.</strong> The garden does not need to be designed. It needs to look like someone is keeping it. A mow, an edge, a mulch, a clean of the leaves out of the gutters. Maybe a handful of new plants in the front garden bed.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What does not get the weighting people expect</h2>
+
+      <p>A few items consistently get more attention from owners than they deserve in the price advice.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Solar panels.</strong> They reduce running costs but rarely add a measurable premium beyond modest goodwill, especially on older systems.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Pools.</strong> A pool is a tie-breaker for some buyers and a deterrent for others. The net effect on price is often close to zero, with the bigger consideration being maintenance disclosure.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Recent expensive renovations to one room.</strong> A high-spec bathroom in an otherwise dated home reads as overcapitalised, not as a price uplift across the board.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Smart home tech.</strong> Voice control, integrated lighting, app-controlled blinds. These rarely show up in sale price. Buyers expect to swap out anything they did not pick.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The conversation that follows</h2>
+
+      <p>By the end of the walk, Daniel has a working view across the four categories, with a sense of which ones are the lift in your particular property and which ones are the drag. The kitchen-bench conversation that follows turns that working view into an indicative price range, a short list of things to focus on, and a practical view of what the campaign should look like when the time is right.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">See it applied to your home.</strong> Book a free walkthrough with Daniel. You will get the same checklist run across your property and a written summary that turns the observations into a short, prioritised list. <a href="/walkthrough" style="color:#f5d07a;font-weight:600;">Book your walkthrough.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <AuthorBio />
+
+</article>
+
+</Layout>

@@ -1,0 +1,180 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the walkthrough actually free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. There is no charge for the walkthrough or for the written summary that follows. Daniel does these as a free service to owners across Brisbane's inner east. The reason is straightforward: the agents who get the long-term referrals and listings in this market are the ones who give straight advice early, before there is any commercial relationship."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What suburbs does Daniel cover for walkthroughs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daniel covers Brisbane's inner east: Bulimba, Hawthorne, Balmoral, Morningside, Cannon Hill, Carina, Camp Hill, Coorparoo, Norman Park, East Brisbane, Murarrie, Hemmant, Tingalpa, Seven Hills, and surrounding suburbs. If your property is on the edge of this area, ask anyway. He will travel to neighbouring suburbs where it makes sense."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can a walkthrough be booked?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most walkthroughs are booked within the same week and can be done weekday evenings or Saturday mornings. If your timing is urgent because of a settlement or a personal deadline, mention it on the booking form and Daniel will work to fit you in earlier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my information be shared with anyone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The walkthrough is a confidential conversation. Your address, your timing, and any details about your situation stay between you and Daniel. The information is not shared with the Ray White office, with the broader agent network, or with anyone else, including a partner who is not on the booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I am also speaking to other agents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is encouraged. A walkthrough does not put you in any obligation, and comparing notes from two or three agents is the right thing to do. Daniel will not ask whether you are also speaking to others, and the conversation will not change based on your answer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I am thinking of selling but have not told my partner or family?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is more common than people realise. The walkthrough is confidential, and Daniel will adjust how the meeting runs if discretion is important. Some owners want the walkthrough and the written summary so they can have a more informed conversation at home before the wider family knows anything is being considered."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a walkthrough happen over video if I am interstate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you cannot be in Brisbane, Daniel can do the walk in person and the conversation by video afterwards. This is common for owners who have moved interstate, are settling an estate from another city, or are managing a tenanted property. The written summary is the same."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I be added to a mailing list after the walkthrough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Daniel does not run an automated nurture sequence after walkthroughs. The next contact is when you reach out. The reason is reputational: the inner east is small, and owners who feel pursued tell other owners. Slow and quiet works better here than fast and loud."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the walkthrough convinces me not to sell?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is a perfectly valid outcome and happens regularly. Walkthroughs are not designed to push owners towards selling, they are designed to make the decision clearer. If the conversation ends with you choosing to hold for another two years, that is a successful walkthrough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a walkthrough commit me to listing with Daniel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not at all. There is no contract, no exclusivity, no implied obligation. If and when you decide to list, you choose the agent. Many owners who book a walkthrough end up listing with someone else, and that is fine. The walkthrough is delivered the same way regardless."
+      }
+    }
+  ]
+};
+---
+<Layout title="Free Property Walkthrough Brisbane: FAQ | Daniel Gierach Property" description="Common questions about Daniel's free in-home property walkthrough in Brisbane's inner east. Suburbs covered, timing, what is included, and what to expect." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.35);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Walkthrough · 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Free Property Walkthrough Brisbane: FAQ
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Common questions before booking a walkthrough with Daniel, including suburbs covered, timing, what is included, and what to expect afterwards.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>This page collects the questions owners ask most often before booking a walkthrough. If something here is unclear, the easiest way to ask is to call Daniel directly on 0412 523 821 or to fill in the booking form on the walkthrough page.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Is the walkthrough actually free?</h2>
+
+      <p>Yes. There is no charge for the walkthrough, no charge for the written summary that follows, and no charge for any of the follow-up conversations afterwards. Daniel does these as a free service across Brisbane's inner east. The reason is straightforward. The agents who get the long-term referrals and listings in this market are the ones who give straight advice early, before there is any commercial relationship. The economics work over years, not over a single conversation.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What suburbs does Daniel cover?</h2>
+
+      <p>Brisbane's inner east, primarily: Bulimba, Hawthorne, Balmoral, Morningside, Cannon Hill, Carina, Carina Heights, Camp Hill, Coorparoo, Norman Park, East Brisbane, Murarrie, Hemmant, Tingalpa, Seven Hills, Carindale, Mount Gravatt East, Holland Park, and Stones Corner. If your property is on the edge of this area, ask. Daniel travels to neighbouring suburbs where it makes sense.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How quickly can it be booked?</h2>
+
+      <p>Most walkthroughs are booked within the same week. Weekday evenings (4pm onwards) and Saturday mornings tend to be the easiest slots. If your timing is urgent because of a settlement, an interstate move, or a personal deadline, mention it on the booking form. Daniel will work to fit you in earlier where possible.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How long does it take?</h2>
+
+      <p>The walk itself is 20 to 30 minutes. The kitchen-bench conversation that follows is another 30 to 45 minutes. Total time on site is usually around an hour, sometimes a bit longer if there is a lot to talk through. The written summary follows within two to three days.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Do I need to prepare anything?</h2>
+
+      <p>A quick tidy is plenty. Anything you can do to make sure all rooms are accessible (including the garage and any storage areas) is helpful. You do not need to clean professionally, declutter for inspections, or stage anything. Real advice is built on what is really there.</p>
+
+      <p>Documents that are useful but not essential: council rates notice, body corporate notices, prior building or pest reports, any prior appraisals, and a survey or site plan if you have one. None are required for the walkthrough to go ahead.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Will my information be shared?</h2>
+
+      <p>No. The walkthrough is confidential. Your address, your timing, and any personal context stays between you and Daniel. The information is not shared with the Ray White office, with the broader agent network, or with anyone else.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What if I am also speaking to other agents?</h2>
+
+      <p>That is the right thing to do, and it is encouraged. A walkthrough does not put you in any obligation. Daniel will not ask whether you are also speaking to others, and the conversation will not change based on your answer.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Can a walkthrough happen over video?</h2>
+
+      <p>If you cannot be in Brisbane in person, Daniel can do the walk on site (with permission to enter) and the conversation by video afterwards. This is common for interstate owners, deceased estates, and tenanted properties where the owner is not local. The written summary is the same.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Will I be added to a mailing list?</h2>
+
+      <p>No. Daniel does not run an automated nurture sequence after walkthroughs. The next contact is when you reach out. The reason is reputational: the inner east is small, and owners who feel pursued tell other owners.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What if I decide not to sell?</h2>
+
+      <p>A perfectly valid outcome. Many walkthroughs end with the owner deciding to hold for another year or two, often with a clearer view of what to focus on in the meantime. That is a successful walkthrough.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Does it commit me to listing with Daniel?</h2>
+
+      <p>Not at all. There is no contract, no exclusivity, no implied obligation. If and when you decide to list, you choose the agent. Many owners who book a walkthrough end up listing with someone else, and that is fine. The walkthrough is delivered the same way regardless.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What about a tenanted property?</h2>
+
+      <p>The walkthrough still works. You will need to give the legally required notice to the tenants under the residential tenancy act (24 hours minimum, in writing). Daniel can be flexible on timing to suit the tenants where possible. If access is limited, the walk can be shorter and the conversation longer.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Book a walkthrough.</strong> The booking form takes under a minute and Daniel will be in touch promptly to confirm a time. <a href="/walkthrough" style="color:#f5d07a;font-weight:600;">Book your walkthrough.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <AuthorBio />
+
+</article>
+
+</Layout>
