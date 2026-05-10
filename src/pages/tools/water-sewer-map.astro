@@ -114,6 +114,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       left: 12px; right: 150px; max-width: none;
       font-size: 0.66rem; padding: 0.4rem 0.65rem;
     }
+    #ws-result { padding: 0.7rem 0.9rem; }
+    .ws-close { width: 38px; height: 38px; }
+    #ws-result h3 { font-size: 0.95rem; line-height: 1.2; }
+    .ws-attrs { font-size: 0.74rem; gap: 0.25rem 0.7rem; }
+    .ws-result-note { font-size: 0.7rem; line-height: 1.55; }
+    .ws-eduline { font-size: 0.66rem; padding: 0.4rem 0.7rem; }
+    .ws-eduline strong { font-size: 0.58rem; }
   }
 
   /* Layer toggle */
@@ -267,7 +274,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <!-- Search -->
   <div class="ws-search-bar">
     <div id="ws-search-wrap">
-      <input type="text" id="ws-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" />
+      <input type="text" id="ws-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
       <div id="ws-autocomplete" style="display:none;"></div>
     </div>
     <button id="ws-search-btn">Search</button>
@@ -346,7 +353,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
       Daniel can help you read the QUU plans, understand the easement implications, and decide whether to proceed.
     </p>
-    <a href="/contact"
+    <a href="/contact" data-cta="tool_to_contact"
       style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
       onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
       Ask Daniel
@@ -355,8 +362,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 </div>
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- Preconnect to data hosts so DNS+TLS happen during HTML parse. -->
+<link rel="preconnect" href="https://services3.arcgis.com" crossorigin />
+<link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
+<link rel="preconnect" href="https://photon.komoot.io" crossorigin />
+<link rel="preconnect" href="https://nominatim.openstreetmap.org" crossorigin />
+
+<!-- Self-hosted Leaflet -->
+<link rel="stylesheet" href="/lib/leaflet/leaflet.css" />
+<link rel="preload" as="script" href="/lib/leaflet/leaflet.js" />
+<script is:inline defer src="/lib/leaflet/leaflet.js"></script>
 
 <script>
 (function () {
@@ -390,7 +405,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   // Active layers (default)
   const active = { sewerMain: true, waterMain: true, manhole: false, hydrant: false };
 
-  let map, layers = {}, pinMarker, fetchAborts = {};
+  let map, layers = {}, pinMarker, fetchAborts = {}, canvasRenderer;
   let acDebounce;
 
   // ── Init Leaflet ──────────────────────────────────────────────────
@@ -407,6 +422,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       maxZoom: 19,
     }).addTo(map);
 
+    // Shared canvas renderer for many lines + circle markers.
+    canvasRenderer = L.canvas({ padding: 0.2 });
     Object.keys(SVC).forEach(k => { layers[k] = L.layerGroup(); if (active[k]) layers[k].addTo(map); });
 
     map.on('moveend', loadVisible);
@@ -417,7 +434,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   // ── Style helpers ─────────────────────────────────────────────────
   function styleLine(key) { return STYLE[key]; }
-  function styleMarker(key, latlng) { return L.circleMarker(latlng, STYLE[key]); }
+  function styleMarker(key, latlng) { return L.circleMarker(latlng, { ...STYLE[key], renderer: canvasRenderer }); }
 
   // ── Fetch visible features for a layer ────────────────────────────
   function loadOne(key) {
@@ -448,6 +465,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         layers[key].clearLayers();
         const isPoint = key === 'manhole' || key === 'hydrant';
         L.geoJSON(geo, {
+          renderer: canvasRenderer,
           style: isPoint ? null : () => styleLine(key),
           pointToLayer: isPoint ? (f, latlng) => styleMarker(key, latlng) : undefined,
           onEachFeature(f, layer) {
@@ -760,10 +778,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   // ── Boot, load Leaflet then init ─────────────────────────────────
-  const s = document.createElement('script');
-  s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  s.onload = initMap;
-  document.head.appendChild(s);
+  // Boot: wait for the deferred Leaflet script to land, then init.
+  function whenLeafletReady() {
+    if (window.L) initMap();
+    else requestAnimationFrame(whenLeafletReady);
+  }
+  whenLeafletReady();
 })();
 </script>
 

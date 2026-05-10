@@ -131,6 +131,14 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
       left: 12px; right: 150px; max-width: none;
       font-size: 0.66rem; padding: 0.4rem 0.65rem;
     }
+    /* Tighter drawer + bigger close button (44x44 touch target) */
+    #zone-result { padding: 0.7rem 0.9rem; }
+    .zm-result-close { width: 38px; height: 38px; }
+    #result-name { font-size: 0.92rem; line-height: 1.2; }
+    #result-summary { font-size: 0.74rem; line-height: 1.55; }
+    #result-buyers { font-size: 0.7rem; line-height: 1.5; }
+    .zm-eduline { font-size: 0.66rem; padding: 0.4rem 0.7rem; }
+    .zm-eduline strong { font-size: 0.58rem; }
   }
 
   /* Opacity slider */
@@ -400,7 +408,7 @@ window.ZONES = {
   <!-- Search -->
   <div class="zm-search-bar">
     <div id="search-wrap">
-      <input type="text" id="zone-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" />
+      <input type="text" id="zone-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
       <div id="autocomplete-list" style="display:none;"></div>
     </div>
     <button id="search-btn">Search</button>
@@ -469,7 +477,7 @@ window.ZONES = {
     <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:52ch;margin:0 auto 1.5rem;line-height:1.75;">
       Whether a site sits in LMR with development potential, or Character residential that protects heritage value, Daniel can talk you through the implications.
     </p>
-    <a href="/contact"
+    <a href="/contact" data-cta="tool_to_contact"
       style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
       onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
       Ask Daniel
@@ -478,8 +486,18 @@ window.ZONES = {
   </div>
 </div>
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- Preconnect to the data hosts so DNS+TLS happen during HTML parse,
+     not when the first map fetch fires. -->
+<link rel="preconnect" href="https://services2.arcgis.com" crossorigin />
+<link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
+<link rel="preconnect" href="https://photon.komoot.io" crossorigin />
+<link rel="preconnect" href="https://nominatim.openstreetmap.org" crossorigin />
+
+<!-- Self-hosted Leaflet (same-origin, edge-cached, HTTP/2 multiplexed with HTML).
+     Switching from unpkg to /lib/leaflet shaves ~150 kB cross-origin transfer on cold load. -->
+<link rel="stylesheet" href="/lib/leaflet/leaflet.css" />
+<link rel="preload" as="script" href="/lib/leaflet/leaflet.js" />
+<script is:inline defer src="/lib/leaflet/leaflet.js"></script>
 
 <script>
 (function () {
@@ -501,7 +519,7 @@ window.ZONES = {
     return COLOR_LOOKUP.get(rendererKey(p)) || { hex: '#cccccc', a: 0.4 };
   }
 
-  let map, pinMarker, zoningLayer;
+  let map, pinMarker, zoningLayer, canvasRenderer;
   let currentLat, currentLon;
   let acDebounce, fetchAbort;
   let overlayOpacity = 0.65;
@@ -583,6 +601,9 @@ window.ZONES = {
       maxZoom: 19,
     }).addTo(map);
 
+    // Single shared canvas renderer for all polygons. Canvas is several times
+    // faster than SVG when painting hundreds of features, especially on mobile.
+    canvasRenderer = L.canvas({ padding: 0.2 });
     zoningLayer = L.layerGroup().addTo(map);
     map.on('moveend', loadVisibleZones);
     map.on('click', e => identifyZone(e.latlng.lat, e.latlng.lng));
@@ -640,6 +661,7 @@ window.ZONES = {
       .then(geo => {
         zoningLayer.clearLayers();
         L.geoJSON(geo, {
+          renderer: canvasRenderer,
           style: styleFor,
           onEachFeature(f, layer) {
             layer.on('click', () => {
@@ -871,11 +893,12 @@ window.ZONES = {
     }).observe(status, { childList: true, characterData: true, subtree: true });
   }
 
-  // ── Boot, load Leaflet then init ─────────────────────────────────────
-  const s = document.createElement('script');
-  s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  s.onload = initMap;
-  document.head.appendChild(s);
+  // ── Boot: wait for the deferred Leaflet script to land, then init ────
+  function whenLeafletReady() {
+    if (window.L) initMap();
+    else requestAnimationFrame(whenLeafletReady);
+  }
+  whenLeafletReady();
 })();
 </script>
 
