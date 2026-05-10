@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Method from '../components/Method.astro';
+import { resources as allResources } from '../data/resources/index.js';
+const homeResources = allResources.slice(0, 6);
 
 // ── Daniel's listings: update as properties come on/off market ───────────────
 // Source: raywhitebulimba.com.au/agents/daniel-gierach/177117
@@ -875,14 +877,7 @@ const faqSchema = {
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {[
-        { slug: 'complete-home-selling-checklist', title: 'Complete Home Selling Checklist', cat: 'Master checklist', pages: 14 },
-        { slug: 'preparing-your-house-to-sell',    title: 'Preparing Your House to Sell',    cat: 'Pre-listing',      pages: 8  },
-        { slug: 'auction-day-playbook',            title: 'Auction Day Playbook',            cat: 'Auction',          pages: 7  },
-        { slug: 'building-pest-report-explainer',  title: 'Building & Pest Report Explainer',cat: 'Inspections',      pages: 7  },
-        { slug: 'settlement-moving-checklist',     title: 'Settlement & Moving Checklist',   cat: 'Settlement',       pages: 6  },
-        { slug: 'comparable-sales-worksheet',      title: 'Comparable Sales Worksheet',      cat: 'Pricing',          pages: 5  },
-      ].map((r, i) => (
+      {homeResources.map((r, i) => (
         <a href={`/resources/${r.slug}`}
           class="reveal"
           data-delay={String(i * 60)}
@@ -894,7 +889,7 @@ const faqSchema = {
           <div style="display:flex;justify-content:space-between;align-items:center;padding-top:0.25rem;">
             <span style="display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">
               <span style="width:5px;height:5px;border-radius:50%;background:#c4912a;"></span>
-              {r.cat}
+              {r.category}
             </span>
             <span style="font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);font-weight:700;">PDF · {r.pages}p</span>
           </div>

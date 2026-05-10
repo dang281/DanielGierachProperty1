@@ -59,7 +59,7 @@ function renderHTML(r) {
 <html lang="en-AU">
 <head>
 <meta charset="utf-8" />
-<title>${escapeHtml(r.title)} — Daniel Gierach</title>
+<title>${escapeHtml(r.title)} | Daniel Gierach</title>
 <style>
   @page {
     size: A4;

@@ -8,7 +8,7 @@ export default {
   intro: 'Selling a home in Queensland involves more moving parts than most people realise on the first time through. This is the master checklist: every meaningful step in the process, in the order they happen, with the items you should personally tick off and the items your team should handle for you. Print this and tape it to the fridge.',
   sections: [
     {
-      heading: '01 — Decide and plan',
+      heading: '01. Decide and plan',
       body: 'Before you contact any agent, get clear on your timing, your financial position, and what success looks like for your sale.',
       items: [
         'Decide your honest reason for selling: upsizing, downsizing, relocation, financial restructure, or estate. The reason shapes everything that follows.',
@@ -21,7 +21,7 @@ export default {
       ],
     },
     {
-      heading: '02 — Build your team',
+      heading: '02. Build your team',
       body: 'You will work with three professionals through the sale: your agent, your conveyancer or solicitor, and (if you have a mortgage) your bank or broker. Choose them deliberately.',
       items: [
         'Choose a real estate agent. Compare at least two. Look at recent sales in your suburb, the agent’s personal track record (not just the office), and how they communicate during the appraisal.',
@@ -33,7 +33,7 @@ export default {
       ],
     },
     {
-      heading: '03 — Documents to gather',
+      heading: '03. Documents to gather',
       body: 'Your agent and conveyancer will request these progressively. Gathering them before you list saves weeks of delay later.',
       items: [
         'Certificate of title or recent title search.',
@@ -49,7 +49,7 @@ export default {
       ],
     },
     {
-      heading: '04 — Property preparation',
+      heading: '04. Property preparation',
       body: 'Preparation determines a meaningful portion of your final sale price. The work falls into four buckets: repairs, declutter, styling, photography.',
       items: [
         'Walk through the property with your agent and agree on a written prep list with priorities and a budget.',
@@ -62,7 +62,7 @@ export default {
       ],
     },
     {
-      heading: '05 — Pricing and method',
+      heading: '05. Pricing and method',
       body: 'You will choose a sale method (auction, private treaty, or expressions of interest) and a price guide or reserve. Both decisions are strategic and should be made with your agent based on the buyer pool.',
       items: [
         'Discuss sale method with your agent. Auction works best in active, comparable-rich markets with strong buyer demand. Private treaty works in slower markets or for unusual properties. EOI works for premium or off-market sales.',
@@ -74,7 +74,7 @@ export default {
       ],
     },
     {
-      heading: '06 — Campaign launch and open homes',
+      heading: '06. Campaign launch and open homes',
       body: 'Once the campaign goes live, your job is to keep the property presentation-ready and let your agent run the buyer engagement.',
       items: [
         'Confirm all listings are live: realestate.com.au, Domain, your agent’s website, social media.',
@@ -87,7 +87,7 @@ export default {
       ],
     },
     {
-      heading: '07 — Offers and negotiation',
+      heading: '07. Offers and negotiation',
       body: 'Offers may come in throughout the campaign. Each one is a data point about the buyer pool, not just a number to accept or reject.',
       items: [
         'Ask for every offer in writing, with conditions, deposit, and settlement timing clearly stated.',
@@ -100,7 +100,7 @@ export default {
       ],
     },
     {
-      heading: '08 — Under contract',
+      heading: '08. Under contract',
       body: 'In Queensland, most contracts have a five business day cooling-off period for the buyer (auction sales are unconditional with no cooling-off). The contract usually has finance and building/pest conditions that the buyer must satisfy.',
       items: [
         'The buyer pays a small initial deposit (often $1,000) on signing, with the balance due on contract becoming unconditional or on a date specified in the contract.',
@@ -113,7 +113,7 @@ export default {
       ],
     },
     {
-      heading: '09 — Pre-settlement (the four weeks before)',
+      heading: '09. Pre-settlement (the four weeks before)',
       body: 'Once the contract is unconditional, settlement is set. This phase is logistics: bank, conveyancer, utilities, removalists, and final inspection.',
       items: [
         'Confirm the settlement date in writing with your conveyancer.',
@@ -128,7 +128,7 @@ export default {
       ],
     },
     {
-      heading: '10 — The week of settlement',
+      heading: '10. The week of settlement',
       body: 'The final week is detail-heavy but should run smoothly if the previous steps were done. Your conveyancer will manage the transaction; your job is to be ready to hand over.',
       items: [
         'The buyer is entitled to a pre-settlement inspection in the seven days before settlement. Be ready to make the property accessible.',
@@ -141,7 +141,7 @@ export default {
       ],
     },
     {
-      heading: '11 — Settlement day',
+      heading: '11. Settlement day',
       body: 'Settlement is the legal transfer of title and the day you receive the sale proceeds. In Queensland, most settlements are now electronic via PEXA.',
       items: [
         'Your conveyancer attends settlement on your behalf. You do not need to be present.',
@@ -153,7 +153,7 @@ export default {
       ],
     },
     {
-      heading: '12 — After settlement',
+      heading: '12. After settlement',
       body: 'A handful of administrative tasks remain in the weeks after settlement. Most are short but should not be skipped.',
       items: [
         'Confirm the discharge of your mortgage with your bank in writing.',

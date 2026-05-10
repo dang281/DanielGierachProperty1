@@ -107,7 +107,7 @@ export default {
         'Highest adjusted comparable: $___________',
         'My implied value range: $___________ to $___________',
         'Most likely value (mid-point or weighted): $___________',
-        'Confidence: low / moderate / high — based on how closely the comparables match my property.',
+        'Confidence (low, moderate, or high) based on how closely the comparables match my property.',
       ],
     },
   ],
