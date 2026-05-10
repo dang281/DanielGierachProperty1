@@ -277,7 +277,7 @@ Agents must check `**Publish date:**` and derive the day of week before selectin
 - Colours: Charcoal `#0a0806` · Cream `#f0ece4` · Gold `#c4912a`
 - No red anywhere
 - No Ray White corporate colours in any visual
-- Footer text: "Ray White Collective" (not "Ray White Bulimba", not "Licensed Real Estate Agent · Ray White Bulimba")
+- Footer text: "Ray White Bulimba" (matches Google Business Profile, REIQ register, and BRAND.md)
 - Website: `danielgierach.com` (no trailing slash, no www)
 - Always post from Daniel's personal LinkedIn profile, not the agency page
 
@@ -291,7 +291,7 @@ Run through this check mentally on every file you write or edit:
 - [ ] No banned phrases from the AI slop list above
 - [ ] No unverified stats without a ⚠️ VERIFY flag
 - [ ] Tone matches Daniel: calm, specific, no hype
-- [ ] Footer says "Ray White Collective"
+- [ ] Footer says "Ray White Bulimba"
 - [ ] Article-cover visuals use the correct next issue number (run the grep first)
 - [ ] PNG file confirmed to exist before marking Visual status as Ready
 - [ ] `content/polls.md` updated if a poll was used

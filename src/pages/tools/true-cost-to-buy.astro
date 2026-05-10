@@ -511,12 +511,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   // ---- QLD Transfer Duty (home concession rate, owner-occupier non-FHB) ----
-  // QRO 2024-25 schedule: upper threshold for home concession is $980,000, not $1,000,000
+  // Verified 2026-05-10 against QRO home concession schedule:
+  // https://qro.qld.gov.au/duties/transfer-duty/calculate/concession-rates/
+  // Upper bracket break is $1,000,000 with $30,850 base, then 5.75% above.
   function calcHomeDuty(price: number): number {
     if (price <= 350000)  return price * 0.01;
     if (price <= 540000)  return 3500  + (price - 350000) * 0.035;
-    if (price <= 980000)  return 10150 + (price - 540000) * 0.045;
-    return 29950 + (price - 980000) * 0.0575;
+    if (price <= 1000000) return 10150 + (price - 540000) * 0.045;
+    return 30850 + (price - 1000000) * 0.0575;
   }
 
   // ---- QLD Transfer Duty full calculation ----
@@ -534,20 +536,21 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     }
 
     // First Home Buyer
+    // Verified 2026-05-10 against QRO First Home Concession (post-9-June-2024 schedule):
+    // https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home/
+    // Full concession up to $709,999.99, partial $710k to $799,999.99 with a $17,350
+    // taper over the $90k window, no first home concession at $800k and above.
     if (buyerType === 'fhb') {
-      // Full concession at or below $500k
-      if (price <= 500000) {
+      if (price <= 709999.99) {
         return { duty: 0, label: 'Transfer Duty (FHB full concession)' };
       }
-      // Partial concession $500k to $550k: duty tapers from $0 to full home rate
-      if (price <= 550000) {
+      if (price < 800000) {
         const homeDuty = calcHomeDuty(price);
-        // Linear taper: at $500k concession is 100%, at $550k concession is 0%
-        const concessionFraction = (550000 - price) / 50000;
-        const duty = homeDuty * (1 - concessionFraction);
-        return { duty: Math.max(0, duty), label: 'Transfer Duty (FHB partial concession)' };
+        const maxConcession = 17350;
+        const concession = maxConcession * (800000 - price) / 90000;
+        return { duty: Math.max(0, homeDuty - concession), label: 'Transfer Duty (FHB partial concession)' };
       }
-      // Above $550k: home concession rate (no FHB benefit)
+      // $800k and above: no first home concession, home concession rate applies
       return { duty: calcHomeDuty(price), label: 'Transfer Duty (home concession rate)' };
     }
 
@@ -635,9 +638,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       lmiCapNote.style.display = 'none';
     }
 
-    // FHBG flag: FHB, 5% deposit, price <= $900k (scheme cap)
+    // FHBG flag: FHB, 5% deposit, price <= Brisbane scheme cap.
+    // Verified 2026-05-10 against Housing Australia: from 1 October 2025 the Brisbane
+    // and regional centres cap rose to $1,000,000 with no places limit and no income test.
+    // https://www.housingaustralia.gov.au/media/unlimited-places-higher-property-price-caps-first-home-buyers-1-october-2025
     const fhbgFlag = document.getElementById('fhbg-flag')!;
-    if (buyerType === 'fhb' && depositPct === 5 && price <= 900000) {
+    if (buyerType === 'fhb' && depositPct === 5 && price <= 1000000) {
       fhbgFlag.style.display = 'block';
     } else {
       fhbgFlag.style.display = 'none';

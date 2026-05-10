@@ -195,7 +195,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const type    = typeEl.value;
     const bracket = parseFloat(bracketEl.value) || 0.37;
     const isNew   = type === 'new';
-    const currentYear = 2025;
+    const currentYear = new Date().getFullYear();
     const age     = currentYear - year;
 
     // Division 43 eligibility: built after 15 Sep 1987

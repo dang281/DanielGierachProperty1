@@ -28,7 +28,7 @@ const suburbs = [
     medianPrice: '$1.8 million to $2 million',
     medianContext: 'West End\'s strong lifestyle credentials, walkable CBD proximity and limited housing supply underpin consistent demand from professionals and families seeking inner-city character living.',
     days: '20 to 35',
-    daysContext: 'The suburb\'s diverse buyer pool — professionals, downsizers and investors — creates active competition at sale.',
+    daysContext: 'The suburb\'s diverse buyer pool , professionals, downsizers and investors , creates active competition at sale.',
     q3: 'What makes West End attractive to buyers?',
     a3: 'West End offers a rare combination of walkable inner-city lifestyle, independent café culture on Boundary Street, direct access to South Bank and the river, and a strong sense of community identity. Buyers are typically professionals and couples seeking inner-city proximity with more character than a CBD apartment provides.',
     q4: 'Is West End a good suburb to sell in?',
@@ -43,7 +43,7 @@ const suburbs = [
     metaDesc: 'Daniel Gierach, real estate agent in Hamilton Brisbane. Prestige riverfront suburb with exceptional lifestyle appeal and blue-chip buyer demand. Ray White Bulimba. Call 0412 523 821.',
     h2: 'Prestige riverfront living at the top of the market.',
     intro: 'Hamilton is one of Brisbane\'s most prestigious suburbs, known for its grand character homes, riverfront position and blue-chip buyer profile. Located approximately 5km from the CBD on the north bank of the Brisbane River, it consistently ranks among Brisbane\'s top addresses.',
-    body: 'Hamilton\'s appeal is anchored by its elevated ridge streets with river and city views, the Portside Wharf precinct with fine dining and retail, and the suburb\'s historic character homes ranging from Federation bungalows to grand inter-war residences. The suburb attracts buyers at the top of the market — executives, downsizers from the northside prestige corridor and interstate migrants seeking a premium lifestyle address. Racecourse Road provides the suburb\'s retail and dining spine, and the Brisbane Riverwalk connection along the foreshore adds a significant lifestyle amenity. Hamilton has consistently outperformed broader Brisbane market growth due to its scarcity of stock and depth of prestige buyer demand.',
+    body: 'Hamilton\'s appeal is anchored by its elevated ridge streets with river and city views, the Portside Wharf precinct with fine dining and retail, and the suburb\'s historic character homes ranging from Federation bungalows to grand inter-war residences. The suburb attracts buyers at the top of the market , executives, downsizers from the northside prestige corridor and interstate migrants seeking a premium lifestyle address. Racecourse Road provides the suburb\'s retail and dining spine, and the Brisbane Riverwalk connection along the foreshore adds a significant lifestyle amenity. Hamilton has consistently outperformed broader Brisbane market growth due to its scarcity of stock and depth of prestige buyer demand.',
     badge1: 'Prestige River Suburb', badge1sub: 'Blue-chip buyer demand',
     badge2: 'Character Homes', badge2sub: 'Federation and inter-war prestige',
     nearby: [{ name: 'Ascot', href: '/suburbs/ascot' }, { name: 'Bulimba', href: '/suburbs/bulimba' }, { name: 'New Farm', href: '/suburbs/new-farm' }],
@@ -152,7 +152,7 @@ const suburbs = [
     q3: 'What makes Dutton Park appealing to buyers?',
     a3: 'Dutton Park offers a rare combination of riverside parkland, ferry access to South Bank and the CBD, walkable proximity to the Princess Alexandra and Mater Hospitals, and a quiet residential character at odds with its inner-city location. The suburb is particularly sought-after by medical and academic professionals working in the adjacent hospital and university precincts.',
     q4: 'How often do properties come to market in Dutton Park?',
-    a4: 'Dutton Park is a very small suburb with limited housing stock, meaning properties come to market infrequently. This scarcity is a structural driver of price performance — buyers who want to be in this suburb have few options and typically compete strongly when something does come up. Working with an agent who tracks off-market opportunities is particularly valuable here.',
+    a4: 'Dutton Park is a very small suburb with limited housing stock, meaning properties come to market infrequently. This scarcity is a structural driver of price performance , buyers who want to be in this suburb have few options and typically compete strongly when something does come up. Working with an agent who tracks off-market opportunities is particularly valuable here.',
     areaServed: ['Dutton Park QLD 4102', 'West End QLD', 'Annerley QLD', 'Woolloongabba QLD', 'South Brisbane QLD'],
     knowsAbout: ['Dutton Park real estate', 'Brisbane inner south riverside homes', 'Dutton Park house prices', 'character homes inner Brisbane'],
   },
@@ -163,7 +163,7 @@ const suburbs = [
     metaDesc: 'Daniel Gierach, real estate agent in Ascot Brisbane. Prestigious northside suburb with grand homes and strong blue-chip buyer demand. Ray White Bulimba. Call 0412 523 821.',
     h2: 'One of Brisbane\'s most prestigious addresses.',
     intro: 'Ascot is among Brisbane\'s most prestigious suburbs, known for its grand character homes, the Eagle Farm and Doomben racecourses, and its position in the city\'s established northside prestige corridor. Located approximately 7km from the CBD, it attracts a blue-chip buyer profile seeking a premium lifestyle address.',
-    body: 'Ascot\'s character is defined by its wide, tree-lined streets and the concentration of some of Brisbane\'s finest residences — from grand Federation and Queenslander homes to contemporary prestige builds on large allotments. Racecourse Road provides an upmarket retail and dining precinct that serves as the suburb\'s social centre. The suburb\'s northside positioning, proximity to Eagle Farm and the Hamilton area, and its strong school catchments including St Margaret\'s and Clayfield College underpin its consistent appeal to Brisbane\'s most discerning buyers. Ascot has historically been a top performer in Brisbane\'s prestige market, with limited stock and strong emotional buyer appeal contributing to resilient values across market cycles.',
+    body: 'Ascot\'s character is defined by its wide, tree-lined streets and the concentration of some of Brisbane\'s finest residences , from grand Federation and Queenslander homes to contemporary prestige builds on large allotments. Racecourse Road provides an upmarket retail and dining precinct that serves as the suburb\'s social centre. The suburb\'s northside positioning, proximity to Eagle Farm and the Hamilton area, and its strong school catchments including St Margaret\'s and Clayfield College underpin its consistent appeal to Brisbane\'s most discerning buyers. Ascot has historically been a top performer in Brisbane\'s prestige market, with limited stock and strong emotional buyer appeal contributing to resilient values across market cycles.',
     badge1: 'Prestige Northside Suburb', badge1sub: 'Blue-chip buyer profile',
     badge2: 'Grand Character Homes', badge2sub: 'Racecourse Road lifestyle precinct',
     nearby: [{ name: 'Hamilton', href: '/suburbs/hamilton' }, { name: 'New Farm', href: '/suburbs/new-farm' }, { name: 'Teneriffe', href: '/suburbs/teneriffe' }],
@@ -207,7 +207,7 @@ function generatePage(s) {
   const LocalBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'RealEstateAgent'],
-    name: 'Daniel Gierach — Ray White The Collective',
+    name: 'Daniel Gierach, Ray White Bulimba',
     description: `Specialist real estate agent in ${s.name} and Brisbane's inner east and south. Selling property in ${s.name}, ${s.areaServed.slice(1, 4).map(a => a.split(' QLD')[0]).join(', ')} and surrounding suburbs.`,
     url: `https://www.danielgierach.com/suburbs/${s.slug}`,
     telephone: '+61412523821',
@@ -230,7 +230,7 @@ function generatePage(s) {
       {
         '@type': 'Question',
         name: `Who is the best real estate agent in ${s.name}?`,
-        acceptedAnswer: { '@type': 'Answer', text: `Daniel Gierach of Ray White The Collective is an active agent across Brisbane's inner east and south, including ${s.name}. He brings local market knowledge, a targeted buyer database and a proven track record of results across the inner south and east corridor. Call 0412 523 821 for a no-obligation appraisal.` },
+        acceptedAnswer: { '@type': 'Answer', text: `Daniel Gierach of Ray White Bulimba is an active agent across Brisbane's inner east and south, including ${s.name}. He brings local market knowledge, a targeted buyer database and a proven track record of results across the inner south and east corridor. Call 0412 523 821 for a no-obligation appraisal.` },
       },
       {
         '@type': 'Question',
@@ -333,7 +333,7 @@ import Layout from '../../layouts/Layout.astro';
           Who is the best real estate agent in ${s.name}?
           <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
-        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Daniel Gierach of Ray White The Collective is an active agent across Brisbane's inner east and south, including ${s.name}. He brings local market knowledge, a targeted buyer database and a proven track record of results. Call 0412 523 821 for a no-obligation appraisal.</p>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Daniel Gierach of Ray White Bulimba is an active agent across Brisbane's inner east and south, including ${s.name}. He brings local market knowledge, a targeted buyer database and a proven track record of results. Call 0412 523 821 for a no-obligation appraisal.</p>
       </details>
 
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">

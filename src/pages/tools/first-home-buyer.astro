@@ -225,7 +225,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return 30850 + (price - 1000000) * 0.0575;
   }
 
-  // First Home Concession (applies to both new and established homes, from 9 June 2024).
+  // First Home Concession (applies to established homes, and to new homes
+  // before 1 May 2025; thresholds in effect since 9 June 2024).
+  // Source: https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home/
   // Full concession (duty = $0) up to $709,999.99.
   // Taper from $710k to $800k, concession phases from $17,350 down to $0.
   // Nil first home concession at $800k+, but general home concession still applies.
@@ -242,7 +244,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return Math.max(0, calcDuty(price) - calcHomeDuty(price));
   }
 
+  // First Home (New Home) Concession (contracts dated on or after 1 May 2025):
+  // full transfer duty concession with NO value cap for first home buyers
+  // purchasing a new home or off-the-plan dwelling.
+  // Source: https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home-new-home/
+  function calcFirstHomeNewHomeConcession(price: number): number {
+    return calcDuty(price); // full refund of standard duty, no cap
+  }
+
   // First Home Vacant Land Concession (from 1 May 2025): full concession, no cap.
+  // Source: https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home-vacant-land/
   function calcVacantLandConcession(price: number): number {
     return calcDuty(price); // full refund of standard duty
   }
@@ -288,8 +299,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Transfer duty
     const standardDuty = calcDuty(price);
+    // First Home Buyers buying a new home / off-the-plan from 1 May 2025 receive
+    // the First Home (New Home) Concession: full duty refund, no cap.
+    // All other FHB transactions use the standard First Home Concession ($700k full,
+    // $700k-$800k partial taper).
+    const usesNewHomeConcession = concessionEligible && isNew;
     const concession = concessionEligible
-      ? calcFirstHomeConcession(price)
+      ? (usesNewHomeConcession
+          ? calcFirstHomeNewHomeConcession(price)
+          : calcFirstHomeConcession(price))
       : 0;
     const dutyPayable = Math.max(0, standardDuty - concession);
 
@@ -316,20 +334,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (concessionEligible && concession > 0) {
       concBlock.className = 'result-block positive';
       concBlock.innerHTML = `
-        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.4rem;">First Home Transfer Duty Concession</p>
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#4a9e4a;margin-bottom:0.4rem;">${usesNewHomeConcession ? 'First Home (New Home) Concession' : 'First Home Transfer Duty Concession'}</p>
         <p style="font-family:var(--font-serif);font-size:1.75rem;font-weight:300;color:var(--color-text-primary);">${fmt(concession)} saved</p>
         <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">
-          ${isNew
-            ? `New home concession applies. Full concession (no duty) for new homes up to $550,000. Partial concession for $550,000-$800,000.`
-            : `Established home concession applies. Full concession (no duty) for homes up to $500,000. Partial concession for $500,000-$700,000.`
+          ${usesNewHomeConcession
+            ? `First Home (New Home) Concession applies. Eligible new home and off-the-plan contracts dated 1 May 2025 or later receive a full transfer duty concession with no value cap. Duty payable is $0.`
+            : `First Home Concession applies. Full concession (no duty) for homes up to $700,000. Partial concession tapers from $700,000 to $800,000. Thresholds in effect since 9 June 2024.`
           }
         </p>`;
-    } else if (concessionEligible && concession === 0 && price > (isNew ? 800000 : 700000)) {
+    } else if (concessionEligible && concession === 0 && !isNew && price >= 800000) {
       concBlock.className = 'result-block negative';
       concBlock.innerHTML = `
         <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#d95f5f;margin-bottom:0.4rem;">First Home Transfer Duty Concession</p>
         <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);">No concession, price exceeds threshold</p>
-        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">The first home concession threshold is ${isNew ? '$800,000 for new homes' : '$700,000 for established homes'}. Standard transfer duty applies at ${fmt(standardDuty)}.</p>`;
+        <p style="font-size:0.83rem;color:var(--color-text-muted);line-height:1.7;margin-top:0.4rem;">The first home concession threshold is $800,000 for established homes. Full concession applies up to $700,000, with a partial concession tapering to $800,000. Standard transfer duty applies at ${fmt(standardDuty)}.</p>`;
     } else {
       concBlock.style.display = 'none';
     }

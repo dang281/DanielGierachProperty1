@@ -58,7 +58,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <p id="rec" style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);line-height:1.4;"></p>
       </div>
       <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
-        Uses 2025-26 Stage-3 brackets. The CGT event falls on contract date, not settlement. Always confirm with an accountant.
+        Uses 2025-26 brackets for sales contracted before 1 July 2026 and the legislated 2026-27 brackets (lowest rate 15%) for sales contracted on or after 1 July 2026. The CGT event falls on contract date, not settlement. Always confirm with an accountant.
       </p>
       <a href="/walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Discuss Timing with Daniel</a>
     </div>
@@ -86,8 +86,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 <script>
   const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
 
-  // 2025-26 Stage-3 resident tax
-  function tax(income: number): number {
+  // 2025-26 resident tax (Stage 3, lowest bracket 16%)
+  function tax2526(income: number): number {
     if (income <= 18200) return 0;
     if (income <= 45000) return (income - 18200) * 0.16;
     if (income <= 135000) return 4288 + (income - 45000) * 0.30;
@@ -95,6 +95,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return 51638 + (income - 190000) * 0.45;
   }
 
+  // 2026-27 resident tax (legislated cut: lowest bracket drops 16% to 15% from 1 July 2026)
+  // Bases: 26800 * 0.15 = 4020; 4020 + 90000 * 0.30 = 31020; 31020 + 55000 * 0.37 = 51370.
+  function tax2627(income: number): number {
+    if (income <= 18200) return 0;
+    if (income <= 45000) return (income - 18200) * 0.15;
+    if (income <= 135000) return 4020 + (income - 45000) * 0.30;
+    if (income <= 190000) return 31020 + (income - 135000) * 0.37;
+    return 51370 + (income - 190000) * 0.45;
+  }
+
+  // Pick bracket schedule by FY. CGT event = contract date.
+  // Settling this FY (FY25-26) uses 2025-26 brackets; settling next FY (FY26-27) uses 2026-27 brackets.
   function calc() {
     const sale = Number((document.getElementById('sale') as HTMLInputElement).value) || 0;
     const cb = Number((document.getElementById('costbase') as HTMLInputElement).value) || 0;
@@ -105,8 +117,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const rawGain = Math.max(0, sale * 0.97 - cb);
     const taxableGain = twelve ? rawGain * 0.5 : rawGain;
 
-    const taxA = tax(iA + taxableGain) - tax(iA);
-    const taxB = tax(iB + taxableGain) - tax(iB);
+    // Determine which schedule applies to "this FY" vs "next FY" given today's date.
+    // If today is on/after 1 July, "this FY" rolls forward by one year.
+    const today = new Date();
+    const fyStartYear = today.getMonth() >= 6 ? today.getFullYear() : today.getFullYear() - 1;
+    const taxThisFY = fyStartYear >= 2026 ? tax2627 : tax2526;
+    const taxNextFY = (fyStartYear + 1) >= 2026 ? tax2627 : tax2526;
+
+    const taxA = taxThisFY(iA + taxableGain) - taxThisFY(iA);
+    const taxB = taxNextFY(iB + taxableGain) - taxNextFY(iB);
     const diff = taxA - taxB;
 
     document.getElementById('compare')!.innerHTML = `

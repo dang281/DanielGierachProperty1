@@ -70,7 +70,7 @@ for (const [slug, data] of Object.entries(suburbData)) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'RealEstateAgent'],
-    name: 'Daniel Gierach — Ray White The Collective',
+    name: 'Daniel Gierach, Ray White Bulimba',
     description: `Specialist real estate agent in ${data.name} and Brisbane's inner east and south. Selling property in ${data.name}, ${data.nearby.slice(0, 3).join(', ')} and surrounding suburbs.`,
     url: `https://www.danielgierach.com/suburbs/${slug}`,
     telephone: '+61412523821',

@@ -4,7 +4,7 @@
  *
  * Generates PNG images for LinkedIn posts using Puppeteer.
  *
- * Usage — market/authority post (Tuesday):
+ * Usage : market/authority post (Tuesday):
  *   node scripts/screenshot-linkedin.mjs \
  *     --type market \
  *     --label "MARKET UPDATE" \
@@ -13,7 +13,7 @@
  *     --date "2027-01-05" \
  *     --out content/social/images/2027-01-05-linkedin-market.png
  *
- * Usage — article LinkedIn post (Thursday):
+ * Usage : article LinkedIn post (Thursday):
  *   node scripts/screenshot-linkedin.mjs \
  *     --type article \
  *     --headline "How to Handle a Building and Pest Report as a Seller in Brisbane" \
@@ -22,7 +22,7 @@
  *     --date "2027-01-07" \
  *     --out content/social/images/2027-01-07-linkedin-article.png
  *
- * Usage — article cover image (Field Guide series, 1200×627):
+ * Usage : article cover image (Field Guide series, 1200×627):
  *   node scripts/screenshot-linkedin.mjs \
  *     --type article-cover \
  *     --issue "01" \
@@ -32,7 +32,7 @@
  *     --date "2026-04-23" \
  *     --out content/social/images/2026-04-23-article-cover.png
  *
- * Usage — authority/market numbered-list post (Tuesday 07:30), 1080×1350:
+ * Usage : authority/market numbered-list post (Tuesday 07:30), 1080×1350:
  *   node scripts/screenshot-linkedin.mjs \
  *     --type authority \
  *     --label "BUYER'S CHECKLIST" \
@@ -62,8 +62,8 @@
  *   --issue     Issue number for article-cover (e.g. "01", "02")
  *   --tagline   Tagline for article-cover (bottom-right italic text)
  *   --readtime  Read time for article-cover (e.g. "5 MIN READ")
- *   --p1t–p5t  Title for each numbered point (authority type)
- *   --p1b–p5b  Body text for each numbered point (authority type)
+ *   --p1t to p5t  Title for each numbered point (authority type)
+ *   --p1b to p5b  Body text for each numbered point (authority type)
  *   --date      ISO date YYYY-MM-DD
  *   --out       Output path (relative to cwd or absolute)
  */
@@ -112,7 +112,7 @@ function esc(s) {
     .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-// ── Market/Authority template — 1080×1080 ────────────────────────────────────
+// ── Market/Authority template : 1080×1080 ────────────────────────────────────
 function buildMarketHtml() {
   const truncBody = body.length > 230 ? body.slice(0, 227) + '…' : body;
 
@@ -143,19 +143,19 @@ function buildMarketHtml() {
   }
   body{font-family:'Manrope',sans-serif;display:flex;flex-direction:column;}
   .top-rule{height:5px;flex-shrink:0;background:linear-gradient(90deg,${GOLD} 0%,rgba(196,145,42,0.2) 100%);}
-  .main{flex:1;padding:72px 88px 60px;display:flex;flex-direction:column;justify-content:space-between;min-height:0;}
-  .upper{display:flex;flex-direction:column;gap:44px;}
+  .main{flex:1;padding:88px 88px 56px;display:flex;flex-direction:column;justify-content:flex-end;min-height:0;}
+  .upper{display:flex;flex-direction:column;gap:0;}
   .eyebrow{display:flex;align-items:center;gap:14px;font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;letter-spacing:0.24em;text-transform:uppercase;color:${GOLD};}
   .eyebrow-line{width:32px;height:1.5px;background:${GOLD};flex-shrink:0;}
-  .headline{font-family:'Noto Serif',serif;font-size:60px;font-weight:400;line-height:1.1;color:${CREAM};letter-spacing:-0.015em;max-width:880px;}
-  .lower{display:flex;flex-direction:column;gap:32px;}
+  .headline{font-family:'Noto Serif',serif;font-size:64px;font-weight:400;line-height:1.08;color:${CREAM};letter-spacing:-0.015em;max-width:880px;}
+  .lower{display:flex;flex-direction:column;gap:28px;margin-top:52px;}
   .divider{width:56px;height:2px;background:${GOLD};}
-  .body{font-family:'Manrope',sans-serif;font-size:29px;font-weight:400;line-height:1.8;color:${CREAM_DIM};max-width:840px;}
-  .footer{flex-shrink:0;border-top:1px solid rgba(196,145,42,0.18);padding:28px 88px;display:flex;align-items:center;justify-content:space-between;}
-  .footer-left{display:flex;align-items:center;gap:18px;}
-  .avatar{width:75px;height:75px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:1.5px solid rgba(196,145,42,0.45);}
-  .name{font-family:'Manrope',sans-serif;font-size:21px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
-  .title{font-family:'Manrope',sans-serif;font-size:17px;font-weight:400;color:${CREAM_DIM};margin-top:3px;letter-spacing:0.02em;}
+  .body{font-family:'Manrope',sans-serif;font-size:27px;font-weight:400;line-height:1.75;color:${CREAM_DIM};max-width:840px;}
+  .footer{flex-shrink:0;border-top:1px solid rgba(196,145,42,0.18);padding:30px 88px 44px;display:flex;align-items:center;justify-content:space-between;}
+  .footer-left{display:flex;align-items:center;gap:20px;}
+  .avatar{width:92px;height:92px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:2px solid rgba(196,145,42,0.55);}
+  .name{font-family:'Manrope',sans-serif;font-size:26px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
+  .title{font-family:'Manrope',sans-serif;font-size:20px;font-weight:400;color:${CREAM_DIM};margin-top:4px;letter-spacing:0.02em;}
 </style>
 </head><body>
   <div class="top-rule"></div>
@@ -173,14 +173,14 @@ function buildMarketHtml() {
       <div class="avatar"></div>
       <div>
         <div class="name">Daniel Gierach</div>
-        <div class="title">Ray White Collective</div>
+        <div class="title">Ray White Bulimba</div>
       </div>
     </div>
   </div>
 </body></html>`;
 }
 
-// ── Article LinkedIn post template — 1080×1080 ────────────────────────────────
+// ── Article LinkedIn post template : 1080×1080 ────────────────────────────────
 function buildArticleHtml() {
   const truncExcerpt = excerpt.length > 180 ? excerpt.slice(0, 177) + '…' : excerpt;
   const articleUrl   = `danielgierach.com/insights/${slug}`;
@@ -209,9 +209,9 @@ function buildArticleHtml() {
   .cta-url{font-family:'Manrope',sans-serif;font-size:12px;font-weight:400;color:${CREAM_DIM};margin-top:4px;letter-spacing:0.02em;}
   .footer{flex-shrink:0;border-top:1px solid rgba(196,145,42,0.18);padding:28px 88px;display:flex;align-items:center;justify-content:space-between;}
   .footer-left{display:flex;align-items:center;gap:18px;}
-  .avatar{width:75px;height:75px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:1.5px solid rgba(196,145,42,0.45);}
-  .name{font-family:'Manrope',sans-serif;font-size:21px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
-  .title{font-family:'Manrope',sans-serif;font-size:17px;font-weight:400;color:${CREAM_DIM};margin-top:3px;letter-spacing:0.02em;}
+  .avatar{width:92px;height:92px;border-radius:50%;flex-shrink:0;background:url('${AVATAR}') center 15%/cover;border:2px solid rgba(196,145,42,0.55);}
+  .name{font-family:'Manrope',sans-serif;font-size:26px;font-weight:700;color:${CREAM};letter-spacing:0.01em;line-height:1.3;}
+  .title{font-family:'Manrope',sans-serif;font-size:20px;font-weight:400;color:${CREAM_DIM};margin-top:4px;letter-spacing:0.02em;}
   .insights-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(196,145,42,0.45);}
 </style>
 </head><body>
@@ -239,7 +239,7 @@ function buildArticleHtml() {
       <div class="avatar"></div>
       <div>
         <div class="name">Daniel Gierach</div>
-        <div class="title">Ray White Collective</div>
+        <div class="title">Ray White Bulimba</div>
       </div>
     </div>
     <div class="insights-label">Insights</div>
@@ -247,7 +247,7 @@ function buildArticleHtml() {
 </body></html>`;
 }
 
-// ── Article Cover (Field Guide series) — 1200×627 ─────────────────────────────
+// ── Article Cover (Field Guide series) : 1200×627 ─────────────────────────────
 // Matches the exact design from the Canva Code template (V1 Article Cover)
 function buildArticleCoverHtml() {
   const issueNum  = issue.padStart(2, '0');
@@ -304,14 +304,12 @@ function buildArticleCoverHtml() {
   .foot{margin-top:20px;display:flex;justify-content:space-between;align-items:center;}
   .byline{display:flex;align-items:center;gap:12px;}
   .avatar-dg{
-    width:42px;height:42px;border-radius:50%;
-    background:${GOLD_WARM};color:${CHARCOAL};
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Fraunces',serif;font-size:16px;font-weight:500;
-    flex-shrink:0;
+    width:58px;height:58px;border-radius:50%;flex-shrink:0;
+    background:url('${AVATAR}') center 15%/cover;
+    border:2px solid rgba(196,145,42,0.55);
   }
-  .name{font-size:18px;font-weight:600;color:${CREAM};}
-  .sub{font-size:15px;color:rgba(240,236,228,0.55);margin-top:3px;}
+  .name{font-size:25px;font-weight:600;color:${CREAM};}
+  .sub{font-size:19px;color:rgba(240,236,228,0.65);margin-top:4px;}
   .tag{
     font-family:'Fraunces',serif;font-style:italic;
     font-size:24px;color:${CREAM};
@@ -330,10 +328,10 @@ function buildArticleCoverHtml() {
     <div class="rule"></div>
     <div class="foot">
       <div class="byline">
-        <div class="avatar-dg">DG</div>
+        <div class="avatar-dg"></div>
         <div>
           <div class="name">Daniel Gierach</div>
-          <div class="sub">Ray White Collective</div>
+          <div class="sub">Ray White Bulimba</div>
         </div>
       </div>
       <div class="tag">${esc(tagline)}</div>
@@ -342,7 +340,7 @@ function buildArticleCoverHtml() {
 </body></html>`;
 }
 
-// ── Authority/Market numbered-list template — 1080×1350 ─────────────────────
+// ── Authority/Market numbered-list template : 1080×1350 ─────────────────────
 // Replicates the N3 "Two-column numbered list" Canva design.
 function buildAuthorityHtml() {
   // Collect up to 5 points from --p1t/--p1b ... --p5t/--p5b
@@ -449,20 +447,18 @@ function buildAuthorityHtml() {
   }
   .footer-left{display:flex;align-items:center;gap:16px;}
   .dg-circle{
-    width:52px;height:52px;border-radius:50%;
-    background:${GOLD_WARM};color:${CHARCOAL};
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Fraunces',serif;font-size:18px;font-weight:500;
-    flex-shrink:0;
+    width:72px;height:72px;border-radius:50%;flex-shrink:0;
+    background:url('${AVATAR}') center 15%/cover;
+    border:2px solid rgba(196,145,42,0.55);
   }
   .f-name{
     font-family:'Inter',sans-serif;
-    font-size:18px;font-weight:600;color:${CREAM};line-height:1.3;
+    font-size:24px;font-weight:600;color:${CREAM};line-height:1.3;
   }
   .f-sub{
     font-family:'Inter',sans-serif;
-    font-size:13px;font-weight:400;color:rgba(240,236,228,0.5);
-    margin-top:3px;
+    font-size:18px;font-weight:400;color:rgba(240,236,228,0.65);
+    margin-top:4px;
   }
 </style>
 </head><body>
@@ -471,10 +467,10 @@ function buildAuthorityHtml() {
   <div class="list">${pointsHtml}</div>
   <div class="footer">
     <div class="footer-left">
-      <div class="dg-circle">DG</div>
+      <div class="dg-circle"></div>
       <div>
         <div class="f-name">Daniel Gierach</div>
-        <div class="f-sub">Ray White Collective</div>
+        <div class="f-sub">Ray White Bulimba</div>
       </div>
     </div>
   </div>
@@ -506,7 +502,7 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox', '--disable-setuid-sandbox'],
 });
 const page = await browser.newPage();
-await page.setViewport({ width: vpWidth, height: vpHeight, deviceScaleFactor: 1 });
+await page.setViewport({ width: vpWidth, height: vpHeight, deviceScaleFactor: 2 });
 await page.setContent(html, { waitUntil: 'networkidle0' });
 await new Promise(r => setTimeout(r, 600));
 await page.screenshot({ path: outPath, type: 'png' });

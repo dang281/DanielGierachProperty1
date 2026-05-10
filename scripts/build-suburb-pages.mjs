@@ -203,7 +203,7 @@ const SUBURBS = [
     intro:
       "Bowen Hills is the apartment-led growth corridor at the inner-north edge of the CBD. Its position around the RNA Showgrounds, the Bowen Hills train station, and the King Street precinct has made it one of Brisbane's most active development zones over the past decade. It attracts buyers who want inner-city access at a different price point to the CBD or Newstead.",
     body:
-      "The Bowen Hills market is dominated by apartments — mid-rise, high-rise, and a smaller layer of mixed-use stock around King Street. Older detached cottages still exist on a few elevated streets but are tightly held. Buyer profiles split between owner-occupier professionals, downsizers from Brisbane's outer suburbs, and investors targeting yield. Building selection matters enormously here: older 1990s and 2000s stock trades very differently to newer well-managed buildings, and the King Street precinct's ground-floor amenity gives certain buildings a permanent edge.",
+      "The Bowen Hills market is dominated by apartments , mid-rise, high-rise, and a smaller layer of mixed-use stock around King Street. Older detached cottages still exist on a few elevated streets but are tightly held. Buyer profiles split between owner-occupier professionals, downsizers from Brisbane's outer suburbs, and investors targeting yield. Building selection matters enormously here: older 1990s and 2000s stock trades very differently to newer well-managed buildings, and the King Street precinct's ground-floor amenity gives certain buildings a permanent edge.",
     body2:
       "Proximity to the Royal Brisbane and Women's Hospital, the Inner City Bypass, and the upcoming Cross River Rail Bowen Hills station all support medium-term capital growth. The suburb's reputation has evolved meaningfully over the past five years from a transitional precinct to an established inner-city address, and that repositioning continues to play out in pricing.",
     cards: [
@@ -332,7 +332,7 @@ import Layout from '../../layouts/Layout.astro';
 <script type="application/ld+json">{JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
-  "name": "Daniel Gierach, Ray White The Collective",
+  "name": "Daniel Gierach, Ray White Bulimba",
   "description": "Real estate agent serving ${s.name} and ${s.region}. ${s.headline}",
   "url": "https://danielgierach.com/suburbs/${s.slug}",
   "telephone": "+61412523821",

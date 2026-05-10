@@ -11,7 +11,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Mount Gravatt?',
-        a: 'Daniel Gierach of Ray White The Collective is a specialist agent across Brisbane\'s inner east and south, including Mount Gravatt. He brings data-driven campaigns, deep local buyer knowledge and a proven track record of results in the southern suburbs. Call Daniel on 0412 523 821 for a free appraisal.',
+        a: 'Daniel Gierach of Ray White Bulimba is a specialist agent across Brisbane\'s inner east and south, including Mount Gravatt. He brings data-driven campaigns, deep local buyer knowledge and a proven track record of results in the southern suburbs. Call Daniel on 0412 523 821 for a free appraisal.',
       },
       {
         q: 'What is the median house price in Mount Gravatt?',
@@ -32,7 +32,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Mount Gravatt East?',
-        a: 'Daniel Gierach of Ray White The Collective is an active agent across Brisbane\'s south and inner east, including Mount Gravatt East. He understands the buyer profile in this suburb and builds targeted campaigns that attract motivated buyers. Call 0412 523 821 for a no-obligation appraisal.',
+        a: 'Daniel Gierach of Ray White Bulimba is an active agent across Brisbane\'s south and inner east, including Mount Gravatt East. He understands the buyer profile in this suburb and builds targeted campaigns that attract motivated buyers. Call 0412 523 821 for a no-obligation appraisal.',
       },
       {
         q: 'What is the median house price in Mount Gravatt East?',
@@ -53,7 +53,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in New Farm?',
-        a: 'Daniel Gierach of Ray White The Collective operates across Brisbane\'s inner east and premium inner-city suburbs, including New Farm. He brings a strong understanding of the prestige buyer profile active in New Farm and tailors campaigns accordingly. Call 0412 523 821 to discuss your property.',
+        a: 'Daniel Gierach of Ray White Bulimba operates across Brisbane\'s inner east and premium inner-city suburbs, including New Farm. He brings a strong understanding of the prestige buyer profile active in New Farm and tailors campaigns accordingly. Call 0412 523 821 to discuss your property.',
       },
       {
         q: 'What is the median house price in New Farm?',
@@ -74,7 +74,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Norman Park?',
-        a: 'Daniel Gierach of Ray White The Collective is a specialist agent in Norman Park and Brisbane\'s broader inner east. He has sold extensively in Norman Park and understands the character home buyer profile that drives competition in this suburb. Call 0412 523 821 for a free appraisal.',
+        a: 'Daniel Gierach of Ray White Bulimba is a specialist agent in Norman Park and Brisbane\'s broader inner east. He has sold extensively in Norman Park and understands the character home buyer profile that drives competition in this suburb. Call 0412 523 821 for a free appraisal.',
       },
       {
         q: 'What is the median house price in Norman Park?',
@@ -95,7 +95,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Tarragindi?',
-        a: 'Daniel Gierach of Ray White The Collective is an active agent across Brisbane\'s inner south, including Tarragindi. He understands the family buyer profile in this suburb and builds campaigns that attract motivated, qualified buyers. Call 0412 523 821 for a free property appraisal.',
+        a: 'Daniel Gierach of Ray White Bulimba is an active agent across Brisbane\'s inner south, including Tarragindi. He understands the family buyer profile in this suburb and builds campaigns that attract motivated, qualified buyers. Call 0412 523 821 for a free property appraisal.',
       },
       {
         q: 'What is the median house price in Tarragindi?',
@@ -116,7 +116,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Tingalpa?',
-        a: 'Daniel Gierach of Ray White The Collective sells across Brisbane\'s east, including Tingalpa. He knows the buyer profile active in this suburb and delivers targeted campaigns that generate genuine interest. Call 0412 523 821 to find out what your Tingalpa property could achieve.',
+        a: 'Daniel Gierach of Ray White Bulimba sells across Brisbane\'s east, including Tingalpa. He knows the buyer profile active in this suburb and delivers targeted campaigns that generate genuine interest. Call 0412 523 821 to find out what your Tingalpa property could achieve.',
       },
       {
         q: 'What is the median house price in Tingalpa?',
@@ -137,7 +137,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Upper Mount Gravatt?',
-        a: 'Daniel Gierach of Ray White The Collective is a specialist agent across Brisbane\'s south, including Upper Mount Gravatt. He understands the elevated lifestyle appeal that drives buyer demand in this suburb. Call 0412 523 821 for a free, no-obligation property appraisal.',
+        a: 'Daniel Gierach of Ray White Bulimba is a specialist agent across Brisbane\'s south, including Upper Mount Gravatt. He understands the elevated lifestyle appeal that drives buyer demand in this suburb. Call 0412 523 821 for a free, no-obligation property appraisal.',
       },
       {
         q: 'What is the median house price in Upper Mount Gravatt?',
@@ -158,7 +158,7 @@ const faqData = {
     faqs: [
       {
         q: 'Who is the best real estate agent in Woolloongabba?',
-        a: 'Daniel Gierach of Ray White The Collective sells across Brisbane\'s inner south, including Woolloongabba. He understands the evolving buyer profile in this rapidly transforming suburb. Call 0412 523 821 to discuss what your Woolloongabba property could achieve in today\'s market.',
+        a: 'Daniel Gierach of Ray White Bulimba sells across Brisbane\'s inner south, including Woolloongabba. He understands the evolving buyer profile in this rapidly transforming suburb. Call 0412 523 821 to discuss what your Woolloongabba property could achieve in today\'s market.',
       },
       {
         q: 'What is the median house price in Woolloongabba?',

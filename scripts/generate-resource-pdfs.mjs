@@ -328,7 +328,7 @@ function renderHTML(r) {
   <div class="cover__bottom">
     <div>
       <div class="cover__sig">Daniel Gierach</div>
-      <div class="cover__sig-sub">Ray White Collective</div>
+      <div class="cover__sig-sub">Ray White Bulimba</div>
     </div>
     <div class="cover__site">danielgierach.com</div>
   </div>
@@ -345,7 +345,7 @@ function renderHTML(r) {
   <div class="signoff">
     <div>
       <div class="signoff__name">Daniel Gierach</div>
-      <div class="signoff__title">Ray White Collective</div>
+      <div class="signoff__title">Ray White Bulimba</div>
     </div>
     <div class="signoff__contact">
       <strong>0412 523 821</strong><br/>
