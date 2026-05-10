@@ -11,9 +11,6 @@ import renovationRoiGuide from './renovation-roi-guide-brisbane.js';
 import gardenFourWeekends from './garden-and-outdoor-four-weekends.js';
 import photographyDayPrep from './photography-day-prep.js';
 
-// Choosing the agent
-import twelveAgentQuestions from './12-questions-to-ask-your-real-estate-agent.js';
-
 // Marketing & living through it
 import openHomeDayPlaybook from './open-home-day-playbook.js';
 import sellingWhileYouLive from './selling-while-you-live-there.js';
@@ -56,7 +53,6 @@ export const resources = [
   preparingHouseToSell,
   renovationRoiGuide,
   preListingDocuments,
-  twelveAgentQuestions,
   photographyDayPrep,
   gardenFourWeekends,
 
