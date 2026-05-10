@@ -1,0 +1,103 @@
+---
+// Suburb deep-dive sections rendered from content/suburbs/{slug}-narrative.md
+// Reads the seven-section narrative file at build time and renders each
+// section as a styled block. If the narrative file is missing, the component
+// renders nothing (so suburbs that don't yet have a deep-dive degrade silently).
+
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  slug: string;
+  name: string;
+}
+
+const { slug, name } = Astro.props;
+
+const narrativePath = path.resolve(process.cwd(), 'content/suburbs', `${slug}-narrative.md`);
+
+interface Section {
+  key: string;
+  title: string;
+  body: string;
+}
+
+const SECTION_TITLES: Record<string, string> = {
+  transport: 'Getting around',
+  schools: 'Schools',
+  pockets: 'Pockets and character',
+  lifestyle: 'Lifestyle and amenity',
+  'buyer profile': "Who's buying here",
+  'selling approach': `Selling in ${name}`,
+  'comparable suburbs': 'Compare with surrounding suburbs',
+};
+
+const SECTION_ORDER = [
+  'transport',
+  'schools',
+  'pockets',
+  'lifestyle',
+  'buyer profile',
+  'selling approach',
+  'comparable suburbs',
+];
+
+let sections: Section[] = [];
+
+if (fs.existsSync(narrativePath)) {
+  const raw = fs.readFileSync(narrativePath, 'utf8');
+  const body = raw.replace(/^---[\s\S]*?---\n/, '');
+  const blocks = body.split(/^## section: /m).slice(1);
+  const parsed: Record<string, string> = {};
+  for (const block of blocks) {
+    const newlineIdx = block.indexOf('\n');
+    const key = block.slice(0, newlineIdx).trim();
+    const content = block.slice(newlineIdx + 1).trim();
+    parsed[key] = content;
+  }
+  sections = SECTION_ORDER
+    .filter((key) => parsed[key])
+    .map((key) => ({
+      key,
+      title: SECTION_TITLES[key] ?? key,
+      body: parsed[key],
+    }));
+}
+
+// Convert markdown links [text](url) and basic paragraph breaks to HTML.
+// Also styles the ⚠️ VERIFY: callout as a small note box.
+function renderParagraph(text: string): string {
+  return text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color:#c4912a;font-weight:600;">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+}
+
+function renderBody(content: string): string {
+  const paras = content.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+  return paras
+    .map((p) => {
+      if (p.startsWith('⚠️ VERIFY:')) {
+        const inner = p.replace(/^⚠️ VERIFY:\s*/, '');
+        return `<p style="font-family:var(--font-sans);font-size:0.82rem;font-weight:400;line-height:1.7;color:#6b6560;background:#faf6ec;border-left:3px solid #c4912a;padding:0.85rem 1.1rem;margin:1.25rem 0 0;">⚠️ Verify: ${renderParagraph(inner)}</p>`;
+      }
+      return `<p style="font-family:var(--font-sans);font-size:1rem;font-weight:300;line-height:1.8;color:#4a4540;margin-bottom:1.1rem;">${renderParagraph(p)}</p>`;
+    })
+    .join('\n');
+}
+---
+
+{sections.length > 0 && (
+  <section style="background:#fff;padding:80px 24px;border-top:1px solid rgba(28,25,23,0.08);">
+    <div style="max-width:800px;margin:0 auto;">
+      <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Suburb deep-dive</p>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(1.8rem, 3.5vw, 2.6rem);font-weight:300;line-height:1.2;color:#1c1917;margin-bottom:2rem;">A practical guide to {name}.</h2>
+
+      {sections.map((s) => (
+        <div style="margin-bottom:2.5rem;">
+          <h3 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:#1c1917;margin-bottom:1rem;">{s.title}</h3>
+          <div set:html={renderBody(s.body)}></div>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
