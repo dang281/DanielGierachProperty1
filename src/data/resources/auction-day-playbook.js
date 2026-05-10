@@ -13,7 +13,7 @@ export default {
       items: [
         'Your agent should give you a written buyer engagement summary by Wednesday: how many groups inspected, how many requested contracts, how many had a building and pest done.',
         'Set the reserve price with your agent in a calm, private meeting, not on the morning of the auction. The reserve is a number you commit to, not a number you negotiate from.',
-        'Confirm the contract has been issued to all serious buyers. Buyers cannot bid at auction without a signed Form 6 acknowledgement.',
+        'Confirm the contract has been issued to all serious buyers. Buyers must register with the auctioneer (under the Property Occupations Regulation 2014) before they can bid, and serious buyers will want to have reviewed the contract well before auction day.',
         'Confirm pre-auction offers have been handled in writing and you have decided in advance whether you will consider an offer the day before.',
         'Walk through the home one final time. Make sure it presents exactly as it did during the campaign. Any deterioration in presentation between launch and auction reads as a warning sign to buyers.',
         'Decide where you will be during the auction. Many vendors prefer to stay inside or away from the crowd to avoid being identified or watched.',

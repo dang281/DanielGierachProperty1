@@ -1,0 +1,91 @@
+export default {
+  slug: 'brisbane-flood-overlay-reference',
+  title: 'Brisbane Flood Overlay Reference',
+  subtitle: 'Q100, Q1000, and what they mean for sellers and buyers',
+  description: 'A practical reference to how Brisbane City Council maps flood risk, how to read a FloodWise Property Report, what each flood scenario means, and how flood overlays affect insurance, disclosure, and buyer perception.',
+  category: 'Brisbane reference',
+  pages: 4,
+  intro: 'Flood mapping is the single most-checked piece of due diligence on a Brisbane property. The terminology can sound technical, but the fundamentals are straightforward once you know what each overlay represents and where to find it. This reference covers how Brisbane City Council and the Queensland Government map flood risk, what the AEP categories mean, how flood status affects insurance and disclosure, and how to present a property that sits in a partial overlay.',
+  sections: [
+    {
+      heading: 'The two systems sellers and buyers actually use',
+      body: 'Two separate portals matter. One is run by Brisbane City Council and works at property level. The other is run by the Queensland Government and works at regional level. Use both.',
+      items: [
+        'FloodWise Property Report (Brisbane City Council). Generated free from Council\'s Flood Information Online portal at fwpr.brisbane.qld.gov.au. Returns a property-specific PDF showing modelled flood likelihood for river, creek, overland flow, and storm tide, plus the minimum habitable floor level used to assess development.',
+        'Flood Awareness Map (Brisbane City Council). The interactive layer at fam.brisbane.qld.gov.au. Useful for street-level context and for seeing how a flood event sits across a whole block, not just one lot.',
+        'FloodCheck Queensland (Queensland Government). Available at floodcheck.information.qld.gov.au. Provides historic flood imagery, modelled flood plain mapping, and statewide reports. Best used alongside the Council reports, not instead of them.',
+        'Source: Brisbane City Council, FloodWise Property Report and Flood Awareness Map; Queensland Government, FloodCheck Queensland (qld.gov.au).',
+      ],
+    },
+    {
+      heading: 'AEP, Q100, and the language of flood likelihood',
+      body: 'The right vocabulary saves arguments. Brisbane uses Annual Exceedance Probability (AEP), which describes the chance of a flood of a given size occurring in any single year. The older "1 in 100 year" phrasing is misleading because it implies once-per-century, which is not what the figure means.',
+      items: [
+        '1% AEP. A flood of that size or larger has a 1% chance of occurring in any given year. This is the same event commonly referred to as Q100. Two 1% AEP floods can occur in consecutive years, the probability resets each year.',
+        '0.2% AEP. A 1 in 500 chance in any year. Often referred to as Q500. Used in some plans alongside Q1000.',
+        '0.1% AEP. A 1 in 1000 chance in any year. The Q1000 reference. This represents a rare, very large event.',
+        '2%, 5%, and 20% AEP. Smaller, more frequent floods. The 20% AEP event has a 1 in 5 chance in any year and is useful for understanding how often a low-lying section of a property may be wet.',
+        'Defined Flood Event (DFE) and Defined Flood Level (DFL). The flood event Council adopts to manage development. For Brisbane River flooding the DFL sits at 3.7m AHD at the Brisbane City Gauge, based on a flow of 6,800 cubic metres per second. Habitable floors of new builds are required to sit above this level plus a freeboard.',
+        'Source: Brisbane City Council, Understanding flood likelihood and impact; FloodWise Property Report.',
+      ],
+    },
+    {
+      heading: 'The four flood types Brisbane maps separately',
+      body: 'A property can sit in one overlay, several, or none. Each flood type behaves differently and the buyer perception of each is different. Read all four lines on the FloodWise report, not just the river line.',
+      items: [
+        'Brisbane River flooding. Modelled flood from the river itself. Mapped using Brisbane River Flood Planning Areas 1 through 5. This is the overlay most often associated with the 2011 and 2022 events.',
+        'Creek and waterway flooding. Modelled flood from local creeks such as Bulimba Creek, Norman Creek, and Kedron Brook. Council runs a rolling program of catchment studies, so creek mapping is updated more often than river mapping.',
+        'Overland flow. Surface run-off during heavy rainfall, before water reaches a creek or drain. Often shallow and short in duration, but can affect garages, basements, and lower yards. A small overland flow notation does not carry the same weight with buyers as a river overlay.',
+        'Storm tide. Coastal inundation from a storm surge combined with a high tide. Relevant for low-lying riverside and bayside pockets in Brisbane.',
+        'Source: Brisbane City Council, City Plan 2014 Flood overlay; Council Open Data flood overlay datasets.',
+      ],
+    },
+    {
+      heading: 'How to read a FloodWise Property Report',
+      body: 'The report is two to three pages. Most of the value is in the first summary table.',
+      items: [
+        'Flood likelihood table. Shows the modelled flood level at the property for the 0.2%, 1%, 2%, 5%, and 20% AEP events, broken out by source (river, creek, storm tide). A "no result" against an AEP and source means the property is not modelled to be inundated by that scenario.',
+        'Minimum habitable floor level. The level Council requires for new habitable rooms. If your floor level today sits above this number, that is a useful presentation point.',
+        'Flood Planning Area. The numbered FPA the property sits in. FPA 1 represents the most frequent flood likelihood, FPA 5 the rarest.',
+        'Historic flood overlay. Shows whether the lot was inundated in the 1974 and 2011 events, based on Council records.',
+        'Always check the report date. Council updates overlays as catchment studies are completed. A FloodWise report more than 12 months old should be regenerated before a campaign starts.',
+        'Source: Brisbane City Council, FloodWise Property Report.',
+      ],
+    },
+    {
+      heading: 'Insurance implications',
+      body: 'Insurance is where overlay status translates into real annual cost. Buyers will obtain quotes during their due diligence. Sellers should know what those quotes are likely to show.',
+      items: [
+        'Standard flood definition. Since 2012, Australian home and contents policies use a single definition of flood: water escaping from the normal confines of any lake, river, creek, or natural watercourse. This is the definition the Insurance Council of Australia and insurers apply.',
+        'Storm and rainwater cover. Even policies that exclude flood usually still cover storm and rainwater damage. The two are separate perils on most policies, which matters when a property has overland flow exposure but no river or creek overlay.',
+        'NFID. Insurers price flood risk using the National Flood Information Database, an industry tool that overlays government flood mapping onto more than 13 million addresses. A change in Council mapping flows through to insurer pricing within months.',
+        'Quote-shop early. Annual flood premiums in higher-risk pockets of Brisbane can range from a few hundred dollars to several thousand. Two or three quotes from different insurers will produce a wide spread.',
+        'Source: Insurance Council of Australia, Flood insurance explained; Queensland Government, Flood insurance guidance.',
+      ],
+    },
+    {
+      heading: 'Seller disclosure under the new Form 2',
+      body: 'Queensland\'s statutory seller disclosure regime took effect on 1 August 2025 under the Property Law Act 2023. The Form 2 changed what sellers must hand over, but it did not solve flood disclosure on its own.',
+      items: [
+        'Form 2 does not require disclosure of a property\'s flooding history or inherent flood risk. That is not a loophole, it is by design. The regime relies on buyers using Council and State flood portals for that check.',
+        'A clean Form 2 is not a flood-safe certificate. Buyers should be told plainly to generate a current FloodWise report and review FloodCheck before signing.',
+        'Sellers who have done remediation work after a past flood event (raised floor levels, rebuilt under-house space, regraded yards) should keep records and provide them voluntarily. This protects the seller and reassures the buyer.',
+        'Honesty is the strategy that works. In a market where every serious buyer pulls a FloodWise report anyway, hiding history damages trust without hiding the risk.',
+        'Source: Queensland Government, Seller disclosure scheme; Queensland Law Society, Property Law Act 2023 forms.',
+      ],
+    },
+    {
+      heading: 'Selling a property with a partial overlay',
+      body: 'Many Brisbane homes sit in partial overlays. A back corner of the yard catches overland flow. A creek overlay clips a fence line. The lower level of an older Queenslander sits below the DFL but the habitable floor sits well above it. These properties sell every week. Presentation and information control the outcome.',
+      items: [
+        'Lead with the FloodWise report, do not bury it. Make a current report available with the contract pack from day one. Buyers who find it themselves treat it as a discovery. Buyers who receive it from the agent treat it as transparency.',
+        'Show the floor level. If habitable floors sit above the 1% AEP level, that fact deserves a line in the marketing notes and a clear answer at the open home. Photograph the floor-to-ground relationship on a sloped block.',
+        'Separate the overlays. A 5% AEP overland flow notation is not the same as a 1% AEP river overlay. Brief buyers on which overlay applies and what it means at this specific lot.',
+        'Document remediation. If under-house storage has been waterproofed, drainage upgraded, or yard regraded, show the receipts and dated photos.',
+        'Insurance quotes in the contract pack. For higher-overlay properties, two current quotes give buyers certainty and stop their finance brokers from pricing in worst-case flood premiums.',
+        'Pricing strategy. Properties with meaningful overlay exposure should be priced against comparable sales of similarly affected homes, not against dry-block neighbours. Buyers will do this comparison themselves, the only question is whether the campaign price reflects it.',
+      ],
+    },
+  ],
+  footerNote: 'Flood overlays are information, not verdicts. The Brisbane River runs through the inner east, and a meaningful share of well-sold homes carry some overlay notation. Vendors who present clearly and price honestly consistently outperform vendors who hope the buyer will not check.',
+};
