@@ -3,9 +3,9 @@
  * Records both Meta ad animations as MP4 files using Puppeteer + ffmpeg.
  *
  * Produces per ad:
- *   ~/Downloads/[suburb]-meta-ad-1080x1920.mp4   — 9:16 portrait (Stories / Reels)
- *   ~/Downloads/[suburb]-meta-ad-1080x1080.mp4   — 1:1 square (Feed)
- *   ~/Downloads/[suburb]-meta-ad-1080x1350.mp4   — 4:5 (Carousel / Feed preferred)
+ *   ~/Downloads/[suburb]-meta-ad-1080x1920.mp4   , 9:16 portrait (Stories / Reels)
+ *   ~/Downloads/[suburb]-meta-ad-1080x1080.mp4   , 1:1 square (Feed)
+ *   ~/Downloads/[suburb]-meta-ad-1080x1350.mp4   , 4:5 (Carousel / Feed preferred)
  *
  * Requirements: ffmpeg must be on PATH.
  * Usage: node scripts/record-meta-ads.mjs
@@ -30,64 +30,64 @@ const VIEWPORT = { width: 390, height: 693, deviceScaleFactor: 5.538 }
 // How long to record in ms. Animation loop is ~21s; capture 22s to be safe.
 const RECORD_MS = 22000
 
-// ffmpeg encoding quality — CRF 10 = very high quality, bigger file
+// ffmpeg encoding quality , CRF 10 = very high quality, bigger file
 const CRF = 10
 
-// CDP screencast quality — 100 = maximum JPEG quality, minimal compression
+// CDP screencast quality , 100 = maximum JPEG quality, minimal compression
 const SCREENCAST_QUALITY = 100
 
-// Output frame rate — 60fps (Meta's max, smooth on all devices).
+// Output frame rate , 60fps (Meta's max, smooth on all devices).
 const OUTPUT_FPS = 60
 
 // ── Ad definitions ────────────────────────────────────────────────────────────
 
 const ADS = {
   murarrie: {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-murarrie-v2.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-murarrie-v2.html'),
     slug: 'murarrie',
   },
   'seven-hills': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills.html'),
     slug: 'seven-hills',
   },
   'murarrie-v3': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-murarrie-v3.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-murarrie-v3.html'),
     slug: 'murarrie-v3',
   },
   'seven-hills-v2': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v2.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v2.html'),
     slug: 'seven-hills-v2',
   },
   'seven-hills-v3': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v3.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v3.html'),
     slug: 'seven-hills-v3',
   },
   'seven-hills-v4': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v4.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v4.html'),
     slug: 'seven-hills-v4',
   },
   'seven-hills-v5': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v5.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v5.html'),
     slug: 'seven-hills-v5',
   },
   'seven-hills-v6': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v6.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v6.html'),
     slug: 'seven-hills-v6',
   },
   'seven-hills-v7': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v7.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v7.html'),
     slug: 'seven-hills-v7',
   },
   'seven-hills-v8': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v8.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v8.html'),
     slug: 'seven-hills-v8',
   },
   'murarrie-v4': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-murarrie-v4.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-murarrie-v4.html'),
     slug: 'murarrie-v4',
   },
   'murarrie-v5': {
-    html: join(REPO_ROOT, 'public/preview/meta-ad-murarrie-v5.html'),
+    html: join(REPO_ROOT, 'ad-drafts/meta-ad-murarrie-v5.html'),
     slug: 'murarrie-v5',
   },
 }
@@ -96,7 +96,7 @@ const ADS = {
 
 function checkFfmpeg() {
   try { execSync('ffmpeg -version', { stdio: 'ignore' }) }
-  catch { console.error('ffmpeg not found — install with: brew install ffmpeg'); process.exit(1) }
+  catch { console.error('ffmpeg not found , install with: brew install ffmpeg'); process.exit(1) }
 }
 
 function framesToVideo(framesDir, outputPath, vfFilter, inputFps, trimSecs) {
@@ -150,7 +150,7 @@ async function recordAd({ html, slug }) {
   // Strip the page chrome: hide the download button and force the body to show
   // only the .frame element with no extra layout space around it.
   await page.evaluate(() => {
-    // Hide the "Record & Download" button — it must never appear in recordings
+    // Hide the "Record & Download" button , it must never appear in recordings
     const dlWrap = document.getElementById('dlWrap')
     if (dlWrap) dlWrap.style.display = 'none'
 
@@ -188,7 +188,7 @@ async function recordAd({ html, slug }) {
 
   // Wait for either: animation signals done (data-recording-done="1") or max time
   await Promise.race([
-    // Poll for the done signal — fires when CTA transition completes
+    // Poll for the done signal , fires when CTA transition completes
     (async () => {
       while (true) {
         await new Promise(r => setTimeout(r, 100))
@@ -227,16 +227,16 @@ async function recordAd({ html, slug }) {
   const downloads = os.homedir() + '/Downloads'
   const base      = join(downloads, `${slug}-meta-ad`)
 
-  // 9:16 portrait 4K (2160×3840) — Stories & Reels
-  console.log('  Encoding 9:16 4K — Stories & Reels...')
+  // 9:16 portrait 4K (2160×3840) , Stories & Reels
+  console.log('  Encoding 9:16 4K , Stories & Reels...')
   const pathStories = `${base}-stories-and-reels.mp4`
   await framesToVideo(tmpDir, pathStories, 'scale=2160:3840', inputFps, trimSecs)
   console.log(`  ✓ ${pathStories}`)
   execSync(`open "${pathStories}"`)
 
-  // 4:5 portrait 4K (2160×2700) — Feed Preferred
+  // 4:5 portrait 4K (2160×2700) , Feed Preferred
   // Scales full 9:16 ad to fit within 4:5 frame, pillared with brand charcoal
-  console.log('  Encoding 4:5 4K — Feed Preferred...')
+  console.log('  Encoding 4:5 4K , Feed Preferred...')
   const pathFeedPref = `${base}-feed-preferred.mp4`
   await framesToVideo(tmpDir, pathFeedPref,
     'scale=2160:2700:force_original_aspect_ratio=decrease,pad=2160:2700:(ow-iw)/2:(oh-ih)/2:color=0x0a0806',
@@ -244,9 +244,9 @@ async function recordAd({ html, slug }) {
   console.log(`  ✓ ${pathFeedPref}`)
   execSync(`open "${pathFeedPref}"`)
 
-  // 1:1 square 4K (2160×2160) — Feed Square / Carousel
+  // 1:1 square 4K (2160×2160) , Feed Square / Carousel
   // Scales full 9:16 ad to fit within square frame, pillared with brand charcoal
-  console.log('  Encoding 1:1 4K — Feed Square / Carousel...')
+  console.log('  Encoding 1:1 4K , Feed Square / Carousel...')
   const pathSquare = `${base}-feed-square-carousel.mp4`
   await framesToVideo(tmpDir, pathSquare,
     'scale=2160:2160:force_original_aspect_ratio=decrease,pad=2160:2160:(ow-iw)/2:(oh-ih)/2:color=0x0a0806',
@@ -257,7 +257,7 @@ async function recordAd({ html, slug }) {
   // ── Cleanup temp frames ────────────────────────────────────────────────────
   for (const f of readdirSync(tmpDir)) unlinkSync(join(tmpDir, f))
 
-  console.log(`  Done — files saved to ~/Downloads/`)
+  console.log(`  Done , files saved to ~/Downloads/`)
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────

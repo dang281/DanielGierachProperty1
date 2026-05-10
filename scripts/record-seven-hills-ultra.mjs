@@ -14,10 +14,10 @@ import { join } from 'path'
 import os from 'os'
 
 const REPO_ROOT    = new URL('../', import.meta.url).pathname
-const HTML         = join(REPO_ROOT, 'public/preview/meta-ad-seven-hills-v8.html')
+const HTML         = join(REPO_ROOT, 'ad-drafts/meta-ad-seven-hills-v8.html')
 const OUTPUT_FILE  = join(os.homedir(), 'Downloads', 'seven-hills-v8-4k-stories-and-reels.mp4')
 
-// 2160×3840 — 4K portrait for Stories
+// 2160×3840 , 4K portrait for Stories
 const VIEWPORT     = { width: 390, height: 693, deviceScaleFactor: 5.538 }
 const CRF          = 10
 const OUTPUT_FPS   = 60
@@ -48,7 +48,7 @@ function framesToVideo(framesDir, outputPath, inputFps, trimSecs) {
 }
 
 async function main() {
-  console.log('── Seven Hills v8 — Ultra Stories (2304×4096) ──')
+  console.log('── Seven Hills v8 , Ultra Stories (2304×4096) ──')
   console.log(`  Output: ${OUTPUT_FILE}`)
 
   const tmpDir = join(os.tmpdir(), `seven-hills-ultra-${Date.now()}`)
@@ -81,7 +81,7 @@ async function main() {
   const frames = []
   let frameIndex = 0
 
-  // PNG = lossless — eliminates JPEG compression artefacts during transitions
+  // PNG = lossless , eliminates JPEG compression artefacts during transitions
   await cdp.send('Page.startScreencast', { format: 'png', everyNthFrame: 1 })
 
   cdp.on('Page.screencastFrame', async event => {
@@ -116,7 +116,7 @@ async function main() {
   const inputFps = Math.max(24, Math.round(frames.length / (recordedMs / 1000)))
   const trimSecs = Math.max(1, (recordedMs / 1000) - 1.0).toFixed(2)
 
-  console.log('  Encoding 2304×4096 — please wait…')
+  console.log('  Encoding 2304×4096 , please wait…')
   await framesToVideo(tmpDir, OUTPUT_FILE, inputFps, trimSecs)
   console.log(`  ✓ Done: ${OUTPUT_FILE}`)
 
