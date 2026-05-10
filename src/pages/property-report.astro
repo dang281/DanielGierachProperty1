@@ -765,4 +765,23 @@ const reportSchema = {
 })();
 </script>
 
+<!-- Fire Meta Pixel Lead + GA4 generate_lead on property-report form submit -->
+<script is:inline>
+  (function() {
+    function attachLead() {
+      var form = document.getElementById('report-form');
+      if (!form) return;
+      form.addEventListener('submit', function() {
+        try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'property_report' }); } catch (e) {}
+        try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { content_name: 'property_report' }); } catch (e) {}
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attachLead);
+    } else {
+      attachLead();
+    }
+  })();
+</script>
+
 </Layout>

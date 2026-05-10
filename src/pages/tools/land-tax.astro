@@ -128,7 +128,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
     <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0;">
-      <strong>Company / Trust:</strong> No tax-free threshold applies. Absentee surcharge adds an additional 2% above the standard rate. Foreign companies and trusts pay higher rates again. Always confirm with a tax accountant for complex structures. Source: <a href="https://www.qro.qld.gov.au/land-tax/" target="_blank" style="color:#c4912a;">Queensland Revenue Office</a>.
+      <strong>Company / Trust:</strong> Threshold is $350,000. Absentee surcharge adds 3% on the portion of land value above $350,000. Foreign companies and trusts pay higher rates again. Always confirm with a tax accountant for complex structures. Source: <a href="https://www.qro.qld.gov.au/land-tax/" target="_blank" style="color:#c4912a;">Queensland Revenue Office</a>.
     </p>
   </div>
 
@@ -151,20 +151,24 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const rateTableEl= document.getElementById('rate-table')!;
 
   // QLD Land Tax 2025-26 rates, individual
-  // Source: Queensland Revenue Office (qro.qld.gov.au)
+  // Source: Queensland Revenue Office, https://qro.qld.gov.au/land-tax/calculate/individual/
   const INDIVIDUAL_BANDS = [
-    { from: 0,         to: 599999,   base: 0,      rate: 0,      label: 'Under $600,000', desc: 'Nil' },
-    { from: 600000,    to: 999999,   base: 500,    rate: 0.01,   label: '$600,000, $999,999', desc: '$500 + 1c per $1 over $600,000' },
-    { from: 1000000,   to: 2999999,  base: 4500,   rate: 0.0165, label: '$1,000,000, $2,999,999', desc: '$4,500 + 1.65c per $1 over $1,000,000' },
-    { from: 3000000,   to: 4999999,  base: 37500,  rate: 0.0125, label: '$3,000,000, $4,999,999', desc: '$37,500 + 1.25c per $1 over $3,000,000' },
-    { from: 5000000,   to: Infinity, base: 62500,  rate: 0.0175, label: '$5,000,000 and over', desc: '$62,500 + 1.75c per $1 over $5,000,000' },
+    { from: 0,         to: 599999,   base: 0,       rate: 0,      label: 'Under $600,000', desc: 'Nil' },
+    { from: 600000,    to: 999999,   base: 500,     rate: 0.01,   label: '$600,000, $999,999', desc: '$500 + 1c per $1 over $600,000' },
+    { from: 1000000,   to: 2999999,  base: 4500,    rate: 0.0165, label: '$1,000,000, $2,999,999', desc: '$4,500 + 1.65c per $1 over $1,000,000' },
+    { from: 3000000,   to: 4999999,  base: 37500,   rate: 0.0125, label: '$3,000,000, $4,999,999', desc: '$37,500 + 1.25c per $1 over $3,000,000' },
+    { from: 5000000,   to: 9999999,  base: 62500,   rate: 0.0175, label: '$5,000,000, $9,999,999', desc: '$62,500 + 1.75c per $1 over $5,000,000' },
+    { from: 10000000,  to: Infinity, base: 150000,  rate: 0.0225, label: '$10,000,000 and over', desc: '$150,000 + 2.25c per $1 over $10,000,000' },
   ];
 
-  // Company/Trust: no threshold, different rates
+  // Company/Trust: threshold $350,000, different rates
+  // Source: Queensland Revenue Office, https://qro.qld.gov.au/land-tax/calculate/company-trust/
   const COMPANY_BANDS = [
-    { from: 0,         to: 349999,   base: 0,      rate: 0.01,   label: 'Under $350,000', desc: '1c per $1' },
-    { from: 350000,    to: 2249999,  base: 3500,   rate: 0.0165, label: '$350,000, $2,249,999', desc: '$3,500 + 1.65c per $1 over $350,000' },
-    { from: 2250000,   to: Infinity, base: 34500,  rate: 0.0125, label: '$2,250,000 and over', desc: '$34,500 + 1.25c per $1 over $2,250,000' },
+    { from: 0,         to: 349999,   base: 0,       rate: 0,      label: 'Under $350,000', desc: 'Nil' },
+    { from: 350000,    to: 2249999,  base: 1450,    rate: 0.017,  label: '$350,000, $2,249,999', desc: '$1,450 + 1.7c per $1 over $350,000' },
+    { from: 2250000,   to: 4999999,  base: 33750,   rate: 0.015,  label: '$2,250,000, $4,999,999', desc: '$33,750 + 1.5c per $1 over $2,250,000' },
+    { from: 5000000,   to: 9999999,  base: 75000,   rate: 0.0225, label: '$5,000,000, $9,999,999', desc: '$75,000 + 2.25c per $1 over $5,000,000' },
+    { from: 10000000,  to: Infinity, base: 187500,  rate: 0.0275, label: '$10,000,000 and over', desc: '$187,500 + 2.75c per $1 over $10,000,000' },
   ];
 
   function calcTax(value: number, bands: typeof INDIVIDUAL_BANDS): { tax: number; band: (typeof INDIVIDUAL_BANDS)[0] } {
@@ -198,7 +202,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const type    = typeSelect.value;
     const absentee= type === 'absentee';
     const bands   = (type === 'company') ? COMPANY_BANDS : INDIVIDUAL_BANDS;
-    const threshold = (type === 'company') ? 0 : 600000;
+    const threshold = (type === 'company') ? 350000 : 600000;
 
     homeNote.style.display = homeCheck.checked ? 'block' : 'none';
 
@@ -220,15 +224,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     let { tax, band } = calcTax(value, bands);
 
-    // Absentee surcharge: additional 2% of the taxable land value on top of standard tax
-    const surcharge = absentee ? value * 0.02 : 0;
+    // Absentee surcharge: 3% of taxable land value above $350,000
+    // Source: Queensland Revenue Office, https://qro.qld.gov.au/land-tax/calculate/absentee/
+    const surcharge = absentee ? Math.max(0, value - 350000) * 0.03 : 0;
     const totalTax  = tax + surcharge;
 
     ltAnnual.textContent = fmt(totalTax);
     ltEffRate.textContent = ((totalTax / value) * 100).toFixed(3) + '%';
 
     let breakdown = `Taxable land value: <strong>${fmt(value)}</strong><br>Band: ${band.label}<br>Base tax: <strong>${fmt(tax)}</strong>`;
-    if (absentee) breakdown += `<br>Absentee surcharge (2% of land value): <strong>${fmt(surcharge)}</strong><br><strong>Total: ${fmt(totalTax)}</strong>`;
+    if (absentee) breakdown += `<br>Absentee surcharge (3% of land value above $350,000): <strong>${fmt(surcharge)}</strong><br><strong>Total: ${fmt(totalTax)}</strong>`;
 
     ltBreakdown.innerHTML = breakdown;
     renderTable(bands, band.from);

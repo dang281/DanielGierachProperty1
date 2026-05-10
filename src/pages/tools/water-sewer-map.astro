@@ -109,6 +109,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pointer-events: none;
     transition: opacity 0.3s;
   }
+  @media (max-width: 768px) {
+    #ws-status { max-width: 160px; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
+  }
 
   /* Layer toggle */
   .ws-layer-toggle {
@@ -478,7 +481,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     Promise.all(tasks).then(results => {
       const hits = results.filter(Boolean);
-      if (!hits.length) { status.textContent = 'No QUU asset within ~10 m. Try clicking closer to a road.'; return; }
+      if (!hits.length) { status.textContent = 'No QUU asset within 30 m. Try clicking on the road.'; return; }
       // Pick the closest
       hits.sort((a, b) => a.feature._dist - b.feature._dist);
       showResult(hits[0].key, hits[0].feature.attributes);
@@ -487,7 +490,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   function fetchNearest(key, lat, lon) {
-    const distance = 12;     // metres
+    // 30 m matches the typical distance from a residential address centroid
+    // to the under-road main. Smaller buffers miss most sewer/water mains.
+    const distance = 30;     // metres
     const params = new URLSearchParams({
       geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
       geometryType: 'esriGeometryPoint',

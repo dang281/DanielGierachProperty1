@@ -10,7 +10,7 @@ const serviceSchema = {
     "name": "Daniel Gierach",
     "worksFor": {
       "@type": "Organization",
-      "name": "Ray White The Collective"
+      "name": "Ray White Bulimba"
     }
   },
   "serviceType": "Property Appraisal",
@@ -760,6 +760,25 @@ const serviceSchema = {
   } else {
     attachWalkthroughSubmit();
   }
+</script>
+
+<!-- Fire Meta Pixel Lead + GA4 generate_lead on walkthrough form submit -->
+<script is:inline>
+  (function() {
+    function attachLead() {
+      var form = document.getElementById('walkthrough-form');
+      if (!form) return;
+      form.addEventListener('submit', function() {
+        try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'walkthrough' }); } catch (e) {}
+        try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { content_name: 'walkthrough' }); } catch (e) {}
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attachLead);
+    } else {
+      attachLead();
+    }
+  })();
 </script>
 
 </Layout>

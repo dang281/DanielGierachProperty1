@@ -123,6 +123,10 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
     max-width: 280px;
     pointer-events: none;
   }
+  /* Avoid overlap with the legend button on narrow viewports */
+  @media (max-width: 768px) {
+    #status-msg { max-width: 160px; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
+  }
 
   /* Opacity slider */
   .zm-opacity-label {

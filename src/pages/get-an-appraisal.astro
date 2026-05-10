@@ -116,4 +116,23 @@ const appraisalSchema = {
   })();
 </script>
 
+<!-- Fire Meta Pixel Lead + GA4 generate_lead on appraisal form submit -->
+<script is:inline>
+  (function() {
+    function attachLead() {
+      var form = document.querySelector('form[action*="formspree.io"]');
+      if (!form) return;
+      form.addEventListener('submit', function() {
+        try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'appraisal' }); } catch (e) {}
+        try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { content_name: 'appraisal' }); } catch (e) {}
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attachLead);
+    } else {
+      attachLead();
+    }
+  })();
+</script>
+
 </Layout>

@@ -108,6 +108,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pointer-events: none;
     transition: opacity 0.3s;
   }
+  @media (max-width: 768px) {
+    #sw-status { max-width: 160px; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
+  }
 
   .sw-layer-toggle {
     display: inline-flex; align-items: center; gap: 0.45rem;
@@ -484,7 +487,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     Promise.all(tasks).then(results => {
       const hits = results.filter(Boolean);
-      if (!hits.length) { status.textContent = 'No stormwater asset within ~12 m. Try clicking closer to a road or pipe.'; return; }
+      if (!hits.length) { status.textContent = 'No stormwater asset within 30 m. Try clicking on the road.'; return; }
       hits.sort((a, b) => a.feature._dist - b.feature._dist);
       showResult(hits[0].key, hits[0].feature.attributes);
       status.textContent = 'Asset identified.';
@@ -492,11 +495,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   function fetchNearest(key, lat, lon) {
+    // 30 m catches under-road pipes from a residential address centroid.
     const params = new URLSearchParams({
       geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
       geometryType: 'esriGeometryPoint',
       inSR: '4326', outSR: '4326',
-      distance: '12',
+      distance: '30',
       units: 'esriSRUnit_Meter',
       spatialRel: 'esriSpatialRelIntersects',
       outFields: OUT_FIELDS[key],
