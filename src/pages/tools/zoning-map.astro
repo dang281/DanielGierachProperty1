@@ -1,5 +1,6 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
+import bccZoneColors from '../../data/bcc-zone-colors.json';
 ---
 
 <ToolLayout
@@ -11,76 +12,308 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 
 <style>
+  /* ── Shell & search ─────────────────────────────────────────────── */
+  .zm-shell { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+  @media (min-width: 1024px) { .zm-shell { padding: 1.5rem 2rem 4rem; } }
+
+  .zm-eduline {
+    margin-bottom: 0.6rem;
+    padding: 0.5rem 0.85rem;
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+  .zm-eduline strong {
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-size: 0.62rem;
+    margin-right: 0.4rem;
+  }
+
+  .zm-search-bar {
+    display: flex; gap: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+  #search-wrap { position: relative; flex: 1; }
   #zone-search {
     width: 100%;
     font-family: var(--font-sans);
     font-size: 0.95rem;
-    padding: 0.9rem 1.1rem;
-    border: 1px solid rgba(28,25,23,0.2);
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(28,25,23,0.18);
     background: var(--color-surface-4);
     color: var(--color-text-primary);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  #zone-search:focus { border-color: var(--color-gold); }
+  #zone-search:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+  }
   #zone-search::placeholder { color: var(--color-text-muted); }
-
-  #zone-map { height: 500px; width: 100%; border: 1px solid rgba(28,25,23,0.1); }
-
-  #search-wrap { position: relative; flex: 1; }
+  #search-btn {
+    padding: 0 1.5rem;
+    background: var(--color-gold);
+    color: #0a0806;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  #search-btn:hover { background: #d4af4a; }
+  #search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #autocomplete-list {
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--color-surface-4);
     border: 1px solid rgba(28,25,23,0.18); border-top: none;
-    z-index: 1000; max-height: 220px; overflow-y: auto;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    z-index: 1100; max-height: 240px; overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   }
   .ac-item {
     padding: 0.65rem 1rem; font-size: 0.85rem;
     color: var(--color-text-primary); cursor: pointer;
-    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4; transition: background 0.15s;
+    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4;
+    transition: background 0.15s;
   }
   .ac-item:last-child { border-bottom: none; }
   .ac-item:hover, .ac-item.highlighted { background: rgba(197,160,60,0.08); }
 
-  #zone-result {
-    border-left: 3px solid var(--color-gold);
-    background: rgba(197,160,60,0.05);
-    padding: 1.25rem 1.5rem;
+  /* ── Map shell & floating controls ─────────────────────────────── */
+  .zm-map-wrap { position: relative; }
+  #zone-map {
+    height: 700px; width: 100%;
+    border: 1px solid rgba(28,25,23,0.1);
   }
-  #zone-result.zone-cr  { border-color: #6a8f5a; background: rgba(106,143,90,0.07); }
-  #zone-result.zone-ldr { border-color: #b8a84a; background: rgba(184,168,74,0.07); }
-  #zone-result.zone-lmr { border-color: #d4843c; background: rgba(212,132,60,0.07); }
-  #zone-result.zone-mdr { border-color: #c05a2a; background: rgba(192,90,42,0.07); }
-  #zone-result.zone-hdr { border-color: #9a2a1a; background: rgba(154,42,26,0.07); }
-  #zone-result.zone-mu  { border-color: #7a5acd; background: rgba(122,90,205,0.07); }
-  #zone-result.zone-nc  { border-color: #5a7acd; background: rgba(90,122,205,0.07); }
-  #zone-result.zone-lc  { border-color: #3a5aad; background: rgba(58,90,173,0.07); }
-  #zone-result.zone-dc  { border-color: #2a3a8d; background: rgba(42,58,141,0.07); }
-  #zone-result.zone-os  { border-color: #3a9a5a; background: rgba(58,154,90,0.07); }
-  #zone-result.zone-sp  { border-color: #888; background: rgba(136,136,136,0.07); }
+  @media (max-width: 768px) { #zone-map { height: 540px; } }
 
-  .zone-swatch {
-    width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; margin-top: 3px;
+  .zm-control {
+    position: absolute;
+    z-index: 500;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(28,25,23,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .zm-control-top-right { top: 12px; right: 12px; }
+  .zm-control-bottom-left { bottom: 14px; left: 14px; padding: 0.55rem 0.9rem; width: 230px; }
+  @media (max-width: 480px) {
+    .zm-control-bottom-left { width: calc(100% - 28px); }
+  }
+
+  /* Status pill (top-left) */
+  #status-msg {
+    position: absolute; top: 12px; left: 12px;
+    z-index: 500;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(28,25,23,0.08);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    max-width: 280px;
+    pointer-events: none;
+  }
+
+  /* Opacity slider */
+  .zm-opacity-label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.35rem;
+  }
+  .zm-opacity-label span { color: var(--color-gold); letter-spacing: 0.04em; }
+  .opacity-slider {
+    width: 100%; accent-color: var(--color-gold); cursor: pointer; height: 3px;
+  }
+
+  /* Legend panel */
+  .zm-legend-toggle {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.55rem 0.85rem;
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+  }
+  .zm-legend-toggle:hover { background: rgba(197,160,60,0.08); }
+  .zm-legend-toggle .toggle-arrow {
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .zm-legend-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
+  .zm-legend-panel {
+    display: none;
+    border-top: 1px solid rgba(28,25,23,0.08);
+    width: 320px;
+    max-height: 460px;
+    overflow-y: auto;
+    padding: 0.4rem 0;
+  }
+  .zm-legend-panel.open { display: block; }
+  @media (max-width: 480px) {
+    .zm-legend-panel { width: 280px; max-height: 360px; }
   }
   .legend-row {
-    display: flex; align-items: flex-start; gap: 0.75rem;
-    padding: 0.85rem 1rem;
-    border-bottom: 1px solid rgba(28,25,23,0.06);
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.5rem 0.9rem;
     cursor: pointer; transition: background 0.15s;
   }
-  .legend-row:last-child { border-bottom: none; }
-  .legend-row:hover { background: rgba(197,160,60,0.05); }
-  .legend-row.active { background: rgba(197,160,60,0.08); }
-
-  #status-msg { font-size: 0.82rem; color: var(--color-text-muted); font-style: italic; }
-
-  .opacity-slider { width: 100%; accent-color: var(--color-gold); cursor: pointer; height: 3px; }
-
-  @media (max-width: 768px) {
-    #zone-map { height: 360px; }
+  .legend-row:hover, .legend-row.active { background: rgba(197,160,60,0.08); }
+  .zone-swatch {
+    width: 14px; height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.1);
   }
+  .legend-code {
+    font-family: var(--font-sans);
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.04em;
+    color: var(--color-text-primary);
+    flex-shrink: 0; min-width: 32px;
+  }
+  .legend-name {
+    font-size: 0.74rem;
+    color: var(--color-text-secondary);
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  /* ── Result drawer ─────────────────────────────────────────────── */
+  #zone-result {
+    position: absolute;
+    left: 14px; bottom: 14px;
+    z-index: 600;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-left: 3px solid var(--color-gold);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+    padding: 0.95rem 1.15rem;
+    max-width: 440px;
+    width: calc(100% - 28px);
+    transform: translate3d(0, calc(100% + 24px), 0);
+    transition: transform 0.28s cubic-bezier(0.2,0.7,0.2,1), border-left-color 0.2s;
+    visibility: hidden;
+  }
+  #zone-result.open { transform: translate3d(0,0,0); visibility: visible; }
+  @media (min-width: 768px) {
+    #zone-result { width: 440px; }
+  }
+  #zone-result.zone-cr  { border-left-color: #ff80c0; }
+  #zone-result.zone-ldr { border-left-color: #f0b870; }
+  #zone-result.zone-lmr { border-left-color: #ff8a8a; }
+  #zone-result.zone-mdr { border-left-color: #ff5555; }
+  #zone-result.zone-hdr { border-left-color: #aa0000; }
+  #zone-result.zone-mu  { border-left-color: #b070d0; }
+  #zone-result.zone-nc  { border-left-color: #ff9966; }
+  #zone-result.zone-lc  { border-left-color: #ff7733; }
+  #zone-result.zone-dc  { border-left-color: #cc4400; }
+  #zone-result.zone-pc  { border-left-color: #aa2200; }
+  #zone-result.zone-os  { border-left-color: #98c860; }
+  #zone-result.zone-cn  { border-left-color: #4f8a3a; }
+  #zone-result.zone-sp  { border-left-color: #cccc00; }
+  #zone-result.zone-lii { border-left-color: #b09080; }
+  #zone-result.zone-ru  { border-left-color: #d8c8a0; }
+
+  .zm-result-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.5rem; margin-bottom: 0.45rem;
+  }
+  .zm-result-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  .zm-result-close {
+    background: transparent; border: none; cursor: pointer;
+    width: 26px; height: 26px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--color-text-muted); padding: 0;
+    transition: color 0.15s, background 0.15s;
+  }
+  .zm-result-close:hover { color: var(--color-text-primary); background: rgba(28,25,23,0.06); }
+  .zm-result-name-row {
+    display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem;
+  }
+  .zm-result-swatch {
+    width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  #result-name {
+    font-family: var(--font-serif);
+    font-size: 1rem; font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.25;
+  }
+  #result-height {
+    font-family: var(--font-sans);
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--color-gold);
+    margin-bottom: 0.55rem;
+  }
+  #result-summary {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0.55rem;
+  }
+  #result-buyers {
+    font-size: 0.74rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-style: italic;
+    border-top: 1px solid rgba(28,25,23,0.08);
+    padding-top: 0.55rem;
+    margin-bottom: 0.6rem;
+  }
+  #result-buyers:empty { display: none; }
+  #bcc-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none;
+  }
+  #bcc-link:hover { color: #d4af4a; }
+
+  /* Footer note */
+  .zm-foot {
+    margin-top: 0.85rem;
+    display: flex; flex-wrap: wrap; gap: 0.85rem 1.5rem; align-items: baseline;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .zm-foot a {
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none;
+    white-space: nowrap;
+  }
+  .zm-foot a:hover { color: #d4af4a; }
 </style>
+
+<!-- BCC official ZONE_CODE+ZONE_PREC_NO+LVL2_ZONE → fill colour, scraped from the Brisbane City Council
+     Zoning_opendata FeatureServer renderer at build time. Used to paint each polygon in the same
+     colour the official CityPlan map uses. -->
+<script is:inline define:vars={{ bccZoneColors }}>
+window.BCC_ZONE_COLORS = bccZoneColors;
+</script>
 
 <!-- Zone data, Brisbane CityPlan 2014 -->
 <script>
@@ -148,99 +381,87 @@ window.ZONES = {
 };
 </script>
 
-<div class="max-w-[1400px] mx-auto px-4 lg:px-8 py-10">
-  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+<div class="zm-shell">
 
-    <!-- Left column -->
-    <div class="lg:col-span-2 flex flex-col gap-5">
+  <!-- Educational use line -->
+  <p class="zm-eduline">
+    <strong>Educational use only</strong> Indicative information drawn from BCC open data. Always verify with Brisbane City Council before any planning decision. Overlays (flood, character, heritage) apply in addition to the base zone.
+  </p>
 
-      <!-- Search -->
-      <div style="background:var(--color-surface-3);padding:1.75rem;">
-        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
-          Property Address
-        </label>
-        <div style="display:flex;gap:0.5rem;">
-          <div id="search-wrap">
-            <input type="text" id="zone-search" placeholder="e.g. 12 Oxford St, Bulimba" autocomplete="off" />
-            <div id="autocomplete-list" style="display:none;"></div>
-          </div>
-          <button id="search-btn"
-            style="padding:0.9rem 1.25rem;background:var(--color-gold);color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;"
-            onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='var(--color-gold)'">
-            Search
-          </button>
-        </div>
-        <p id="status-msg" style="margin-top:0.75rem;">Enter an address or click the map to identify a zone.</p>
-      </div>
-
-      <!-- Zone result panel -->
-      <div id="zone-result" style="display:none;">
-        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.5rem;">Zone Identified</p>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
-          <div id="result-swatch" style="width:18px;height:18px;border-radius:3px;flex-shrink:0;"></div>
-          <p id="result-name" style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:var(--color-text-primary);line-height:1.2;"></p>
-        </div>
-        <p id="result-height" style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;color:var(--color-gold);margin-bottom:0.75rem;"></p>
-        <p id="result-summary" style="font-size:0.82rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:0.75rem;"></p>
-        <p id="result-buyers" style="font-size:0.78rem;color:var(--color-text-muted);line-height:1.7;font-style:italic;border-top:1px solid rgba(28,25,23,0.08);padding-top:0.75rem;"></p>
-        <a id="bcc-link" href="#" target="_blank" rel="noopener"
-          style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
-          Verify on BCC CityPlan
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-      </div>
-
-      <!-- Layer opacity -->
-      <div style="background:var(--color-surface-3);padding:1.5rem;">
-        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">
-          Zone Overlay Opacity: <span id="opacity-label">65%</span>
-        </label>
-        <input type="range" class="opacity-slider" id="opacity-slider" min="0" max="100" step="5" value="65" />
-      </div>
-
-      <!-- Disclaimer -->
-      <div style="border:1px solid rgba(197,160,60,0.25);background:rgba(197,160,60,0.04);padding:1.25rem 1.5rem;">
-        <p style="font-size:0.75rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:0.75rem;">
-          <strong style="color:var(--color-text-primary);">Indicative only.</strong> Zone data is sourced from Brisbane City Council's CityPlan 2014. Always verify with BCC before making planning decisions. Overlays (flood, character, heritage) apply in addition to the base zone.
-        </p>
-        <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener"
-          style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">
-          Open BCC CityPlan Official Tool →
-        </a>
-      </div>
-
+  <!-- Search -->
+  <div class="zm-search-bar">
+    <div id="search-wrap">
+      <input type="text" id="zone-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" />
+      <div id="autocomplete-list" style="display:none;"></div>
     </div>
+    <button id="search-btn">Search</button>
+  </div>
 
-    <!-- Right: map + legend -->
-    <div class="lg:col-span-3 flex flex-col gap-6">
+  <!-- Map + floating controls -->
+  <div class="zm-map-wrap">
+    <div id="zone-map"></div>
 
-      <!-- Map -->
-      <div id="zone-map"></div>
+    <!-- Status (top-left) -->
+    <div id="status-msg">Click a property or search an address to identify the zone.</div>
 
-      <!-- Legend -->
-      <div style="background:var(--color-surface-3);">
-        <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(28,25,23,0.08);">
-          <p style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);">
-            Zone Legend
-            <span style="font-weight:400;margin-left:0.5rem;text-transform:none;letter-spacing:0;">click any zone to learn more</span>
-          </p>
-        </div>
+    <!-- Legend (top-right) -->
+    <div class="zm-control zm-control-top-right">
+      <button class="zm-legend-toggle" id="legend-toggle" aria-expanded="false" aria-controls="legend-panel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Legend
+        <svg class="toggle-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="zm-legend-panel" id="legend-panel">
         <div id="legend-list"></div>
       </div>
+    </div>
 
+    <!-- Opacity (bottom-left) -->
+    <div class="zm-control zm-control-bottom-left">
+      <div class="zm-opacity-label">
+        Zone overlay <span id="opacity-label">65%</span>
+      </div>
+      <input type="range" class="opacity-slider" id="opacity-slider" min="0" max="100" step="5" value="65" />
+    </div>
+
+    <!-- Result drawer (bottom-left, slides up) -->
+    <div id="zone-result" role="region" aria-label="Zone information">
+      <div class="zm-result-head">
+        <span class="zm-result-eyebrow">Zone identified</span>
+        <button class="zm-result-close" id="result-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="zm-result-name-row">
+        <div class="zm-result-swatch" id="result-swatch"></div>
+        <p id="result-name"></p>
+      </div>
+      <p id="result-height"></p>
+      <p id="result-summary"></p>
+      <p id="result-buyers"></p>
+      <a id="bcc-link" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">
+        Verify on BCC CityPlan
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
     </div>
   </div>
 
+  <!-- Footer note -->
+  <div class="zm-foot">
+    <span><strong style="color:var(--color-text-secondary);">For educational purposes only.</strong> Live data from Brisbane City Council City Plan 2014. Always verify with BCC before any planning decision. Overlays (flood, character, heritage) apply in addition to the base zone.</span>
+    <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">Open official BCC tool →</a>
+  </div>
+
   <!-- CTA -->
-  <div style="margin-top:4rem;background:#1c1917;padding:3rem 2.5rem;text-align:center;">
-    <p style="font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:400;color:#f0ece4;line-height:1.25;margin-bottom:1rem;">
-      Zoning directly affects what a property is worth, and what it could become.
+  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+      Zoning shapes what a property is worth, and what it could become.
     </p>
-    <p style="font-size:0.875rem;color:rgba(240,236,228,0.6);max-width:52ch;margin:0 auto 1.5rem;line-height:1.8;">
-      Daniel can tell you whether a property sits in an LMR zone with development potential, or a Character zone that protects its heritage value.
+    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:52ch;margin:0 auto 1.5rem;line-height:1.75;">
+      Whether a site sits in LMR with development potential, or Character residential that protects heritage value, Daniel can talk you through the implications.
     </p>
     <a href="/contact"
-      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.75rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
       onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
       Ask Daniel
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -254,9 +475,26 @@ window.ZONES = {
 <script>
 (function () {
   const ZONES = window.ZONES;
-  let map, pinMarker, zoningOverlay;
+  // Brisbane City Council "City Plan 2014 Zoning overlay" feature service (open data, ArcGIS Online).
+  const ZONING_URL = 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Zoning_opendata/FeatureServer/0';
+
+  // Build a Map<rendererKey, { hex, a }> from the BCC color table baked into the page.
+  // Renderer Arcade expression: $feature.ZONE_CODE + $feature.ZONE_PREC_NO + $feature.LVL2_ZONE
+  const COLOR_LOOKUP = (function () {
+    const m = new Map();
+    for (const e of (window.BCC_ZONE_COLORS || [])) m.set(e.value, { hex: e.hex, a: e.a });
+    return m;
+  })();
+  function rendererKey(p) {
+    return (p.ZONE_CODE || '') + (p.ZONE_PREC_NO == null ? '' : p.ZONE_PREC_NO) + (p.LVL2_ZONE || '');
+  }
+  function colorFor(p) {
+    return COLOR_LOOKUP.get(rendererKey(p)) || { hex: '#cccccc', a: 0.4 };
+  }
+
+  let map, pinMarker, zoningLayer;
   let currentLat, currentLon;
-  let acDebounce;
+  let acDebounce, fetchAbort;
   let overlayOpacity = 0.65;
 
   // Gold pin icon (Leaflet divIcon)
@@ -294,25 +532,22 @@ window.ZONES = {
     return null;
   }
 
-  // ── Show zone result panel ────────────────────────────────────────────
-  function showZone(zoneKey, rawName) {
-    const panel = document.getElementById('zone-result');
+  // ── Show panel from a curated ZONES entry (used by legend clicks) ─────
+  function showZone(zoneKey) {
     const z = ZONES[zoneKey];
-    const displayName = z ? `${z.short}: ${z.name}` : (rawName || 'Unknown Zone');
-    const color = z ? z.color : '#888';
-    panel.style.display = 'block';
-    panel.className = z ? `zone-${zoneKey.toLowerCase().replace(/\s/g,'-')}` : '';
-    panel.style.borderLeftColor = color;
-    panel.style.background = `${color}10`;
-    document.getElementById('result-swatch').style.background = color;
-    document.getElementById('result-name').textContent = displayName;
-    document.getElementById('result-height').textContent = z ? z.height : '';
-    document.getElementById('result-summary').textContent = z ? z.summary : (rawName || '');
-    document.getElementById('result-buyers').textContent = z ? z.forBuyers : '';
+    if (!z) return;
+    const panel = document.getElementById('zone-result');
+    panel.className = `zone-${zoneKey.toLowerCase()}`;
+    panel.classList.add('open');
+    document.getElementById('result-swatch').style.background = z.color;
+    document.getElementById('result-name').textContent = `${z.short}: ${z.name}`;
+    document.getElementById('result-height').textContent = z.height;
+    document.getElementById('result-summary').textContent = z.summary;
+    document.getElementById('result-buyers').textContent = z.forBuyers;
     document.querySelectorAll('.legend-row').forEach(r => r.classList.toggle('active', r.dataset.zone === zoneKey));
   }
 
-  // ── Build legend ──────────────────────────────────────────────────────
+  // ── Build legend (compact chips: swatch + code + short name) ──────────
   function buildLegend() {
     const list = document.getElementById('legend-list');
     Object.entries(ZONES).forEach(([key, z]) => {
@@ -320,13 +555,9 @@ window.ZONES = {
       row.className = 'legend-row';
       row.dataset.zone = key;
       row.innerHTML = `
-        <div class="zone-swatch" style="background:${z.color};margin-top:4px;"></div>
-        <div style="flex:1;min-width:0;">
-          <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;color:var(--color-text-primary);margin-bottom:0.1rem;">
-            <span style="color:${z.color};">${z.short}</span> &nbsp;${z.name}
-          </p>
-          <p style="font-size:0.72rem;color:var(--color-text-muted);line-height:1.5;">${z.height}</p>
-        </div>`;
+        <div class="zone-swatch" style="background:${z.color};"></div>
+        <span class="legend-code">${z.short}</span>
+        <span class="legend-name">${z.name}</span>`;
       row.addEventListener('click', () => showZone(key));
       list.appendChild(row);
     });
@@ -336,77 +567,153 @@ window.ZONES = {
   function initMap() {
     map = L.map('zone-map').setView([-27.46, 153.04], 13);
 
-    // Dark base tiles, free, no API key
+    // Free CARTO Voyager basemap, no API key required
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO &middot; Zones: Brisbane City Council',
       subdomains: 'abcd',
       maxZoom: 19,
     }).addTo(map);
 
-    buildZoningOverlay();
+    zoningLayer = L.layerGroup().addTo(map);
+    map.on('moveend', loadVisibleZones);
     map.on('click', e => identifyZone(e.latlng.lat, e.latlng.lng));
     buildLegend();
     wireUpControls();
-    document.getElementById('status-msg').textContent = 'Zone overlay loaded. Enter an address or click the map.';
+    loadVisibleZones();
   }
 
-  // ── BCC ArcGIS zoning overlay via Leaflet custom TileLayer ───────────
-  function buildZoningOverlay() {
-    const BccZoningLayer = L.TileLayer.extend({
-      getTileUrl(coords) {
-        function tile2lon(x, z) { return (x / Math.pow(2, z)) * 360 - 180; }
-        function tile2lat(y, z) {
-          const n = Math.PI - 2 * Math.PI * y / Math.pow(2, z);
-          return (180 / Math.PI) * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n)));
-        }
-        const west  = tile2lon(coords.x,     coords.z);
-        const east  = tile2lon(coords.x + 1, coords.z);
-        const north = tile2lat(coords.y,     coords.z);
-        const south = tile2lat(coords.y + 1, coords.z);
-        const extent = `${west},${south},${east},${north}`;
-        return `https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer/export`
-          + `?bbox=${encodeURIComponent(extent)}&bboxSR=4326&imageSR=4326`
-          + `&size=256,256&f=image&format=png32&transparent=true&dpi=96`;
-      },
+  // ── Style for a polygon, using BCC's official renderer colour ─────────
+  function styleFor(feature) {
+    const c = colorFor(feature.properties || {});
+    return {
+      color: 'rgba(28,25,23,0.55)',
+      weight: 0.4,
+      fillColor: c.hex,
+      fillOpacity: c.a * overlayOpacity,
+    };
+  }
+
+  // ── Fetch zone polygons in the current map viewport (GeoJSON) ─────────
+  function loadVisibleZones() {
+    if (!map) return;
+    const z = map.getZoom();
+    const status = document.getElementById('status-msg');
+    if (z < 13) {
+      zoningLayer.clearLayers();
+      status.textContent = 'Zoom in to load zone overlay (level 13+).';
+      return;
+    }
+    if (fetchAbort) fetchAbort.abort();
+    fetchAbort = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest();
+    const ne = b.getNorthEast();
+    // Server-side geometry simplification: tighter offset at higher zooms
+    const offset = z >= 17 ? 0 : z >= 15 ? 0.00003 : z >= 13 ? 0.0001 : 0.0003;
+
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326',
+      outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'ZONE_CODE,ZONE_PREC_NO,LVL1_ZONE,LVL2_ZONE,ZONE_PREC,ZONE_PREC_DESC',
+      returnGeometry: 'true',
+      maxAllowableOffset: String(offset),
+      resultRecordCount: '4000',
+      f: 'geojson',
     });
-    zoningOverlay = new BccZoningLayer('', { opacity: overlayOpacity, maxZoom: 19, tileSize: 256 });
-    zoningOverlay.addTo(map);
+
+    status.textContent = 'Loading zones…';
+    fetch(`${ZONING_URL}/query?${params.toString()}`, { signal: fetchAbort.signal })
+      .then(r => r.json())
+      .then(geo => {
+        zoningLayer.clearLayers();
+        L.geoJSON(geo, {
+          style: styleFor,
+          onEachFeature(f, layer) {
+            layer.on('click', () => {
+              const p = f.properties || {};
+              showZoneFromAttributes(p);
+              if (currentLat == null) {
+                const c = layer.getBounds().getCenter();
+                updateBCCLink(c.lat, c.lng);
+              }
+            });
+          },
+        }).addTo(zoningLayer);
+        status.textContent = 'Zones loaded. Click a parcel or search an address.';
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') return;
+        status.textContent = 'Zones service unreachable. Try the official BCC CityPlan link.';
+      });
   }
 
-  // ── Identify zone via BCC ArcGIS ──────────────────────────────────────
+  // ── Server-side point-in-polygon identify (always accurate) ───────────
   function identifyZone(lat, lon) {
-    document.getElementById('status-msg').textContent = 'Identifying zone…';
-    const bounds = map.getBounds();
-    const ne = bounds.getNorthEast();
-    const sw = bounds.getSouthWest();
-    const mapDiv = document.getElementById('zone-map');
-    const w = mapDiv.offsetWidth || 800;
-    const h = mapDiv.offsetHeight || 500;
-    const extent = `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`;
-    const url = `https://maps.brisbane.qld.gov.au/arcgis/rest/services/CityPlan/CityPlan2014/MapServer/identify`
-      + `?geometry=${lon},${lat}&geometryType=esriGeometryPoint&layers=all`
-      + `&tolerance=3&mapExtent=${extent}&imageDisplay=${w},${h},96`
-      + `&returnGeometry=false&f=json`;
-
-    fetch(url)
+    const status = document.getElementById('status-msg');
+    status.textContent = 'Identifying zone…';
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint',
+      inSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'ZONE_CODE,ZONE_PREC_NO,LVL1_ZONE,LVL2_ZONE,ZONE_PREC,ZONE_PREC_DESC,LOT_PLAN',
+      returnGeometry: 'false',
+      f: 'json',
+    });
+    fetch(`${ZONING_URL}/query?${params.toString()}`)
       .then(r => r.json())
-      .then(data => {
-        if (data.results && data.results.length > 0) {
-          const r = data.results[0];
-          const rawZone = r.attributes?.zone_code || r.attributes?.Zone_Code || r.attributes?.ZONE_CODE
-                       || r.attributes?.zone || r.attributes?.Zone || r.attributes?.ZONE
-                       || r.attributes?.planning_zone || r.layerName || '';
-          showZone(matchZone(rawZone) || 'SP', rawZone);
-          document.getElementById('status-msg').textContent = 'Zone identified.';
+      .then(d => {
+        const f = d.features && d.features[0];
+        if (f && f.attributes) {
+          showZoneFromAttributes(f.attributes);
+          status.textContent = 'Zone identified.';
         } else {
-          document.getElementById('status-msg').textContent = 'No zone data at this point. Try clicking on a residential area.';
+          status.textContent = 'No zone polygon at that point. Try clicking on a property.';
         }
         updateBCCLink(lat, lon);
       })
       .catch(() => {
-        document.getElementById('status-msg').textContent = 'Could not load zone data. Use the BCC CityPlan link below.';
+        status.textContent = 'Could not load zone data. Use the BCC CityPlan link below.';
         updateBCCLink(lat, lon);
       });
+  }
+
+  // ── Map BCC ZONE_CODE → friendly key in window.ZONES ──────────────────
+  function zoneFamily(code) {
+    if (!code) return null;
+    // Strip trailing digits: LMR1 → LMR, CR2 → CR, MU3 → MU, HDR1 → HDR
+    const base = code.replace(/[0-9]+$/, '').toUpperCase();
+    if (ZONES[base]) return base;
+    if (base === 'IN' || base === 'LII') return 'LII';
+    if (base === 'SR' || base === 'OS' || base === 'PR') return 'OS';
+    if (base === 'ESP' || base === 'CN') return 'CN';
+    if (base === 'CC' || base === 'SC' || base === 'MC') return 'DC';
+    if (base === 'EC' || base === 'TO') return 'SP';
+    return null;
+  }
+
+  // ── Show panel from a real BCC feature row ────────────────────────────
+  function showZoneFromAttributes(p) {
+    const code = (p.ZONE_CODE || '').toUpperCase();
+    const family = zoneFamily(code) || matchZone(p.LVL2_ZONE) || matchZone(p.LVL1_ZONE) || 'SP';
+    const z = ZONES[family];
+    const officialLabel = p.ZONE_PREC_DESC || p.LVL2_ZONE || p.LVL1_ZONE || code;
+
+    const panel = document.getElementById('zone-result');
+    panel.className = `zone-${family.toLowerCase()}`;
+    panel.classList.add('open');
+
+    const swatchColor = colorFor(p).hex;
+    document.getElementById('result-swatch').style.background = swatchColor;
+    document.getElementById('result-name').textContent = code ? `${code}  ${officialLabel}` : officialLabel;
+    document.getElementById('result-height').textContent = z ? z.height : '';
+    document.getElementById('result-summary').textContent = z ? z.summary : (officialLabel || '');
+    document.getElementById('result-buyers').textContent = z ? z.forBuyers : '';
+    document.querySelectorAll('.legend-row').forEach(r => r.classList.toggle('active', r.dataset.zone === family));
   }
 
   function updateBCCLink(lat, lon) {
@@ -453,7 +760,7 @@ window.ZONES = {
         map.setView([lat, lon], 16);
         identifyZone(lat, lon);
         updateBCCLink(lat, lon);
-        document.getElementById('zone-result').style.display = 'block';
+        // identifyZone() handles opening the drawer once the BCC query returns
       });
       list.appendChild(item);
     });
@@ -506,8 +813,38 @@ window.ZONES = {
       const val = parseInt(this.value);
       document.getElementById('opacity-label').textContent = val + '%';
       overlayOpacity = val / 100;
-      if (zoningOverlay) zoningOverlay.setOpacity(overlayOpacity);
+      if (zoningLayer) {
+        zoningLayer.eachLayer(child => {
+          if (child.setStyle && child.eachLayer) child.eachLayer(p => p.setStyle && p.setStyle(styleFor(p.feature)));
+        });
+      }
     });
+
+    // Legend toggle
+    const toggle = document.getElementById('legend-toggle');
+    const panel = document.getElementById('legend-panel');
+    toggle.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Result drawer close
+    document.getElementById('result-close').addEventListener('click', () => {
+      document.getElementById('zone-result').classList.remove('open');
+      document.querySelectorAll('.legend-row.active').forEach(r => r.classList.remove('active'));
+    });
+
+    // Auto-hide status pill once a "stable" message lands (zones loaded / identified).
+    // Loading and error messages stay visible.
+    const status = document.getElementById('status-msg');
+    let fadeTimer;
+    new MutationObserver(() => {
+      clearTimeout(fadeTimer);
+      status.style.opacity = '1';
+      const t = status.textContent || '';
+      const stable = /loaded|identified/i.test(t);
+      if (stable) fadeTimer = setTimeout(() => { status.style.opacity = '0'; }, 1800);
+    }).observe(status, { childList: true, characterData: true, subtree: true });
   }
 
   // ── Boot, load Leaflet then init ─────────────────────────────────────

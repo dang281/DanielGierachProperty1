@@ -1,0 +1,752 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Brisbane Stormwater Map"
+  tool="Stormwater Map"
+  phase="Buyer Tools"
+  description="See Brisbane City Council stormwater pipes, manholes, kerb inlets and surface drains under any address. Useful for understanding drainage easements, runoff paths and what you can build."
+>
+
+<style>
+  /* ── Shell & search ────────────────────────────────────────────── */
+  .sw-shell { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+  @media (min-width: 1024px) { .sw-shell { padding: 1.5rem 2rem 4rem; } }
+
+  .sw-eduline {
+    margin-bottom: 0.6rem;
+    padding: 0.5rem 0.85rem;
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+  .sw-eduline strong {
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-size: 0.62rem;
+    margin-right: 0.4rem;
+  }
+
+  .sw-search-bar { display: flex; gap: 0.4rem; margin-bottom: 0.85rem; }
+  #sw-search-wrap { position: relative; flex: 1; }
+  #sw-search {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(28,25,23,0.18);
+    background: var(--color-surface-4);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #sw-search:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+  }
+  #sw-search::placeholder { color: var(--color-text-muted); }
+  #sw-search-btn {
+    padding: 0 1.5rem;
+    background: var(--color-gold);
+    color: #0a0806;
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  #sw-search-btn:hover { background: #d4af4a; }
+  #sw-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  #sw-autocomplete {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.18); border-top: none;
+    z-index: 1100; max-height: 240px; overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .sw-ac-item {
+    padding: 0.65rem 1rem; font-size: 0.85rem;
+    color: var(--color-text-primary); cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4;
+  }
+  .sw-ac-item:last-child { border-bottom: none; }
+  .sw-ac-item:hover { background: rgba(197,160,60,0.08); }
+
+  /* ── Map shell & floating controls ─────────────────────────────── */
+  .sw-map-wrap { position: relative; }
+  #sw-map { height: 700px; width: 100%; border: 1px solid rgba(28,25,23,0.1); }
+  @media (max-width: 768px) { #sw-map { height: 540px; } }
+
+  .sw-control {
+    position: absolute;
+    z-index: 500;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(28,25,23,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .sw-control-tr { top: 12px; right: 12px; }
+
+  #sw-status {
+    position: absolute; top: 12px; left: 12px;
+    z-index: 500;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(28,25,23,0.08);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    max-width: 300px;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .sw-layer-toggle {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.55rem 0.85rem;
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+  }
+  .sw-layer-toggle:hover { background: rgba(197,160,60,0.08); }
+  .sw-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
+  .sw-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
+  .sw-layer-panel {
+    display: none;
+    border-top: 1px solid rgba(28,25,23,0.08);
+    width: 280px;
+    padding: 0.5rem 0.5rem 0.7rem;
+  }
+  .sw-layer-panel.open { display: block; }
+  @media (max-width: 480px) { .sw-layer-panel { width: 240px; } }
+
+  .sw-layer-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    cursor: pointer; user-select: none;
+    transition: background 0.15s;
+  }
+  .sw-layer-row:hover { background: rgba(197,160,60,0.06); }
+  .sw-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
+  .sw-swatch {
+    width: 24px; height: 14px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .sw-swatch-line { width: 24px; height: 3px; }
+  .sw-swatch-dash { width: 24px; height: 0; border-top: 3px dashed currentColor; }
+  .sw-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid white; box-shadow: 0 0 0 1px rgba(0,0,0,0.2); }
+  .sw-layer-name {
+    font-family: var(--font-sans);
+    font-size: 0.74rem; font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3; flex: 1;
+  }
+  .sw-layer-hint {
+    display: block; font-weight: 400;
+    font-size: 0.66rem; color: var(--color-text-muted);
+    margin-top: 0.1rem;
+  }
+
+  /* Result drawer */
+  #sw-result {
+    position: absolute;
+    left: 14px; bottom: 14px;
+    z-index: 600;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-left: 3px solid var(--color-gold);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+    padding: 0.95rem 1.15rem;
+    max-width: 460px;
+    width: calc(100% - 28px);
+    transform: translate3d(0, calc(100% + 24px), 0);
+    transition: transform 0.28s cubic-bezier(0.2,0.7,0.2,1), border-left-color 0.2s;
+    visibility: hidden;
+  }
+  #sw-result.open { transform: translate3d(0,0,0); visibility: visible; }
+  @media (min-width: 768px) { #sw-result { width: 460px; } }
+
+  #sw-result.kind-pipe    { border-left-color: #2a8c9c; }
+  #sw-result.kind-manhole { border-left-color: #1f6f7d; }
+  #sw-result.kind-gully   { border-left-color: #d77b32; }
+  #sw-result.kind-drain   { border-left-color: #4dadb8; }
+
+  .sw-result-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.5rem; margin-bottom: 0.55rem;
+  }
+  .sw-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  .sw-close {
+    background: transparent; border: none; cursor: pointer;
+    width: 26px; height: 26px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--color-text-muted); padding: 0;
+    transition: color 0.15s, background 0.15s;
+  }
+  .sw-close:hover { color: var(--color-text-primary); background: rgba(28,25,23,0.06); }
+  #sw-result h3 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem; font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.25; margin-bottom: 0.5rem;
+  }
+  .sw-attrs {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.3rem 0.85rem;
+    font-size: 0.78rem; line-height: 1.55;
+  }
+  .sw-attrs dt {
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    align-self: center;
+  }
+  .sw-attrs dd { color: var(--color-text-primary); margin: 0; }
+  .sw-result-note {
+    margin-top: 0.65rem;
+    font-size: 0.74rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-style: italic;
+    border-top: 1px solid rgba(28,25,23,0.08);
+    padding-top: 0.55rem;
+  }
+
+  /* Footer */
+  .sw-foot {
+    margin-top: 0.85rem;
+    display: flex; flex-wrap: wrap; gap: 0.85rem 1.5rem;
+    align-items: baseline; justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .sw-foot a {
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none;
+    white-space: nowrap;
+  }
+  .sw-foot a:hover { color: #d4af4a; }
+</style>
+
+<div class="sw-shell">
+
+  <!-- Educational use line -->
+  <p class="sw-eduline">
+    <strong>Educational use only</strong> Indicative information drawn from BCC open data. Always verify with Brisbane City Council and a Dial Before You Dig (1100) search before any decision.
+  </p>
+
+  <!-- Search -->
+  <div class="sw-search-bar">
+    <div id="sw-search-wrap">
+      <input type="text" id="sw-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" />
+      <div id="sw-autocomplete" style="display:none;"></div>
+    </div>
+    <button id="sw-search-btn">Search</button>
+  </div>
+
+  <!-- Map + floating controls -->
+  <div class="sw-map-wrap">
+    <div id="sw-map"></div>
+
+    <div id="sw-status">Click any pipe or feature, or search an address.</div>
+
+    <!-- Layer toggle (top-right) -->
+    <div class="sw-control sw-control-tr">
+      <button class="sw-layer-toggle" id="sw-layer-toggle" aria-expanded="false" aria-controls="sw-layer-panel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l10 6-10 6L2 8l10-6zM2 16l10 6 10-6M2 12l10 6 10-6"/></svg>
+        Layers
+        <svg class="toggle-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="sw-layer-panel" id="sw-layer-panel">
+        <label class="sw-layer-row">
+          <input type="checkbox" data-layer="pipe" checked />
+          <span class="sw-swatch"><span class="sw-swatch-line" style="background:#2a8c9c;"></span></span>
+          <span class="sw-layer-name">Stormwater pipes
+            <span class="sw-layer-hint">Underground drainage running through the catchment</span>
+          </span>
+        </label>
+        <label class="sw-layer-row">
+          <input type="checkbox" data-layer="manhole" checked />
+          <span class="sw-swatch"><span class="sw-swatch-dot" style="background:#1f6f7d;"></span></span>
+          <span class="sw-layer-name">Stormwater manholes
+            <span class="sw-layer-hint">Access chambers along the pipe network</span>
+          </span>
+        </label>
+        <label class="sw-layer-row">
+          <input type="checkbox" data-layer="gully" />
+          <span class="sw-swatch"><span class="sw-swatch-dot" style="background:#d77b32;"></span></span>
+          <span class="sw-layer-name">Gullies and kerb inlets
+            <span class="sw-layer-hint">Where surface water enters the system</span>
+          </span>
+        </label>
+        <label class="sw-layer-row">
+          <input type="checkbox" data-layer="drain" />
+          <span class="sw-swatch"><span class="sw-swatch-line" style="background:#4dadb8;"></span></span>
+          <span class="sw-layer-name">Surface drains
+            <span class="sw-layer-hint">Open drains, gutters, and channels</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Result drawer -->
+    <div id="sw-result" role="region" aria-label="Asset information">
+      <div class="sw-result-head">
+        <span class="sw-eyebrow" id="sw-result-eyebrow">Asset</span>
+        <button class="sw-close" id="sw-result-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <h3 id="sw-result-title"></h3>
+      <dl class="sw-attrs" id="sw-result-attrs"></dl>
+      <p class="sw-result-note" id="sw-result-note"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="sw-foot">
+    <span><strong style="color:var(--color-text-secondary);">For educational purposes only.</strong> Live data from Brisbane City Council open data. Stormwater easements may apply over privately-owned land where pipes cross. Always verify with BCC and call Dial Before You Dig (1100) before any excavation.</span>
+    <a href="https://www.brisbane.qld.gov.au/clean-and-green/natural-environment-and-water/water/stormwater" target="_blank" rel="noopener">BCC stormwater info →</a>
+  </div>
+
+  <!-- CTA -->
+  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+      A council stormwater pipe through the back yard can change what you can build.
+    </p>
+    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
+      Daniel can help you read the easement, understand what BCC will and won't allow over the line, and decide how it affects the price.
+    </p>
+    <a href="/contact"
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      Ask Daniel
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<script>
+(function () {
+  // BCC Stormwater open data feature services on ArcGIS Online
+  const SVC = {
+    pipe:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Pipe_Existing/FeatureServer/0',
+    manhole: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Manhole_Existing/FeatureServer/0',
+    gully:   'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Gully_Existing/FeatureServer/0',
+    drain:   'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Surface_Drain_Existing/FeatureServer/0',
+  };
+
+  const STYLE = {
+    pipe:    { color: '#2a8c9c', weight: 2.4, opacity: 0.9 },
+    manhole: { radius: 4,  fillColor: '#1f6f7d', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
+    gully:   { radius: 3.5, fillColor: '#d77b32', color: '#fff', weight: 1.3, fillOpacity: 0.95 },
+    drain:   { color: '#4dadb8', weight: 2, opacity: 0.9, dashArray: '5 4' },
+  };
+
+  const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
+
+  const OUT_FIELDS = {
+    pipe:    'OBJECTID,ASSETID,PIPETYPE,DIAMETER,WIDTH,USIL,DSIL,UPSTREAMDEPTHINVERT,DOWNSTREAMDEPTHINVERT,AVERAGEDEPTH,MEASUREDLENGTH,OWNER,STATUS',
+    manhole: 'OBJECTID,ASSETID,MANHOLETYPE,DIAMETER,LENGTH,WIDTH,SL,IL,OWNER,STATUS',
+    gully:   'OBJECTID,ASSETID,INLETTYPE,OUTLETTYPE,DIAMETER,LENGTH,WIDTH,SL,OWNER,STATUS',
+    drain:   'OBJECTID,ASSETID,SURFACEDRAINTYPE,AVERAGEBASE,LOWFLOW,USSL,USIL,OWNER,STATUS',
+  };
+
+  const TITLES = {
+    pipe: 'Stormwater pipe',
+    manhole: 'Stormwater manhole',
+    gully: 'Gully / kerb inlet',
+    drain: 'Surface drain',
+  };
+  const NOTES = {
+    pipe:    'Where a council stormwater pipe runs through private land, an easement is usually registered. The easement footprint is wider than the pipe and limits what can be built above it.',
+    manhole: 'Manholes mark stormwater alignment and access. They are usually located at pipe junctions, bends, or changes of grade.',
+    gully:   'Gullies and kerb inlets are where surface water enters the underground network. Their location influences how stormwater flows on and off the property in heavy rain.',
+    drain:   'Surface drains are the visible part of the stormwater network. They define the path of overland flow during heavy rain.',
+  };
+  const KIND_FOR = { pipe:'pipe', manhole:'manhole', gully:'gully', drain:'drain' };
+
+  const active = { pipe: true, manhole: true, gully: false, drain: false };
+  let map, layers = {}, pinMarker, fetchAborts = {}, acDebounce;
+
+  // ── Init Leaflet ──────────────────────────────────────────────────
+  function initMap() {
+    map = L.map('sw-map', {
+      maxBounds: BNE_BOUNDS,
+      minZoom: 11,
+      maxBoundsViscosity: 0.5,
+    }).setView([-27.46, 153.04], 13);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO &middot; Stormwater: Brisbane City Council open data',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    Object.keys(SVC).forEach(k => { layers[k] = L.layerGroup(); if (active[k]) layers[k].addTo(map); });
+
+    map.on('moveend', loadVisible);
+    map.on('click', e => identifyAt(e.latlng.lat, e.latlng.lng));
+    wireUpControls();
+    loadVisible();
+  }
+
+  function styleLine(key) { return STYLE[key]; }
+  function styleMarker(key, latlng) { return L.circleMarker(latlng, STYLE[key]); }
+
+  function loadOne(key) {
+    if (!active[key]) { layers[key].clearLayers(); return; }
+    const z = map.getZoom();
+    if (z < 14) { layers[key].clearLayers(); return; }
+    if (fetchAborts[key]) fetchAborts[key].abort();
+    fetchAborts[key] = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest(); const ne = b.getNorthEast();
+
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326', outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: OUT_FIELDS[key],
+      returnGeometry: 'true',
+      resultRecordCount: '4000',
+      f: 'geojson',
+    });
+
+    fetch(`${SVC[key]}/query?${params.toString()}`, { signal: fetchAborts[key].signal })
+      .then(r => r.json())
+      .then(geo => {
+        layers[key].clearLayers();
+        const isPoint = key === 'manhole' || key === 'gully';
+        L.geoJSON(geo, {
+          style: isPoint ? null : () => styleLine(key),
+          pointToLayer: isPoint ? (f, latlng) => styleMarker(key, latlng) : undefined,
+          onEachFeature(f, layer) {
+            layer.on('click', e => {
+              L.DomEvent.stopPropagation(e);
+              showResult(key, f.properties || {});
+            });
+          },
+        }).addTo(layers[key]);
+      })
+      .catch(err => { if (err.name !== 'AbortError') {
+        const status = document.getElementById('sw-status');
+        if (status) status.textContent = 'Some layers could not load. Try refreshing.';
+      } });
+  }
+
+  function loadVisible() {
+    const status = document.getElementById('sw-status');
+    const z = map.getZoom();
+    if (z < 14) {
+      Object.keys(layers).forEach(k => layers[k].clearLayers());
+      status.textContent = 'Zoom in to load stormwater data (level 14+).';
+      return;
+    }
+    status.textContent = 'Loading stormwater assets…';
+    Object.keys(SVC).forEach(loadOne);
+    setTimeout(() => {
+      if (map.getZoom() >= 14) status.textContent = 'Stormwater loaded. Click any pipe or feature.';
+    }, 700);
+  }
+
+  function identifyAt(lat, lon) {
+    const status = document.getElementById('sw-status');
+    status.textContent = 'Identifying…';
+    const tasks = Object.keys(SVC)
+      .filter(k => active[k])
+      .map(k => fetchNearest(k, lat, lon).then(f => f && { key: k, feature: f }));
+
+    Promise.all(tasks).then(results => {
+      const hits = results.filter(Boolean);
+      if (!hits.length) { status.textContent = 'No stormwater asset within ~12 m. Try clicking closer to a road or pipe.'; return; }
+      hits.sort((a, b) => a.feature._dist - b.feature._dist);
+      showResult(hits[0].key, hits[0].feature.attributes);
+      status.textContent = 'Asset identified.';
+    });
+  }
+
+  function fetchNearest(key, lat, lon) {
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint',
+      inSR: '4326', outSR: '4326',
+      distance: '12',
+      units: 'esriSRUnit_Meter',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: OUT_FIELDS[key],
+      returnGeometry: 'true',
+      f: 'json',
+      resultRecordCount: '5',
+    });
+    return fetch(`${SVC[key]}/query?${params.toString()}`)
+      .then(r => r.json())
+      .then(d => {
+        const feats = d.features || [];
+        if (!feats.length) return null;
+        let best = feats[0]; best._dist = featDist(best, lat, lon);
+        for (const f of feats.slice(1)) {
+          const dd = featDist(f, lat, lon);
+          if (dd < best._dist) { best = f; best._dist = dd; }
+        }
+        return best;
+      })
+      .catch(() => null);
+  }
+
+  function featDist(feature, lat, lon) {
+    const g = feature.geometry || {};
+    if (g.x != null && g.y != null) return distSq(g.y, g.x, lat, lon);
+    if (Array.isArray(g.paths) && g.paths.length) {
+      let min = Infinity;
+      for (const path of g.paths) for (const [x, y] of path) {
+        const d = distSq(y, x, lat, lon);
+        if (d < min) min = d;
+      }
+      return min;
+    }
+    return Infinity;
+  }
+  function distSq(lat1, lon1, lat2, lon2) {
+    const dy = (lat1 - lat2) * 111320;
+    const dx = (lon1 - lon2) * 111320 * Math.cos((lat1 + lat2) / 2 * Math.PI / 180);
+    return dx * dx + dy * dy;
+  }
+
+  function showResult(key, attrs) {
+    const el = document.getElementById('sw-result');
+    el.className = `kind-${KIND_FOR[key]}`;
+    el.classList.add('open');
+    document.getElementById('sw-result-eyebrow').textContent = TITLES[key];
+    document.getElementById('sw-result-title').textContent = headlineFor(key, attrs);
+
+    const rows = renderAttrs(key, attrs);
+    document.getElementById('sw-result-attrs').innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${escape(v)}</dd>`).join('');
+    document.getElementById('sw-result-note').textContent = NOTES[key] || '';
+  }
+
+  function num(v) { return (v == null || v === '') ? null : v; }
+  function fmtNum(v, d=2) { return v == null || v === '' ? null : Number(v).toFixed(d); }
+
+  // BCC stormwater stores DIAMETER/WIDTH as strings that often already include "MM".
+  // Strip any unit suffix so we can format consistently.
+  function sizeStr(v) {
+    if (v == null || v === '') return null;
+    const s = String(v).trim();
+    const m = s.match(/^(\d+(?:\.\d+)?)\s*(?:mm|MM)?$/);
+    return m ? `${m[1]} mm` : s;
+  }
+
+  function headlineFor(key, a) {
+    if (key === 'pipe') {
+      const dia = sizeStr(a.DIAMETER) || sizeStr(a.WIDTH);
+      const type = a.PIPETYPE || '';
+      return [dia, type].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'manhole') {
+      const type = a.MANHOLETYPE || '';
+      const depth = (a.SL != null && a.IL != null) ? `${(+a.SL - +a.IL).toFixed(1)} m deep` : '';
+      return [type, depth].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'gully') {
+      return [a.INLETTYPE, a.OUTLETTYPE].filter(Boolean).join(' / ') || TITLES[key];
+    }
+    if (key === 'drain') {
+      return a.SURFACEDRAINTYPE || TITLES[key];
+    }
+    return TITLES[key];
+  }
+
+  function renderAttrs(key, a) {
+    const rows = [];
+    const push = (k, v) => { if (v != null && v !== '') rows.push([k, v]); };
+    if (key === 'pipe') {
+      push('Diameter', sizeStr(a.DIAMETER));
+      push('Width', sizeStr(a.WIDTH));
+      push('Pipe type', a.PIPETYPE);
+      push('Length', fmtNum(a.MEASUREDLENGTH, 1) ? `${fmtNum(a.MEASUREDLENGTH, 1)} m` : null);
+      push('Average depth', fmtNum(a.AVERAGEDEPTH, 2) ? `${fmtNum(a.AVERAGEDEPTH, 2)} m` : null);
+      push('US invert', fmtNum(a.USIL, 2) ? `${fmtNum(a.USIL, 2)} mAHD` : null);
+      push('DS invert', fmtNum(a.DSIL, 2) ? `${fmtNum(a.DSIL, 2)} mAHD` : null);
+      push('Owner', a.OWNER);
+      push('Status', a.STATUS);
+      push('Asset ID', a.ASSETID);
+    } else if (key === 'manhole') {
+      push('Type', a.MANHOLETYPE);
+      push('Diameter', sizeStr(a.DIAMETER));
+      push('Surface level', fmtNum(a.SL, 2) ? `${fmtNum(a.SL, 2)} mAHD` : null);
+      push('Invert level', fmtNum(a.IL, 2) ? `${fmtNum(a.IL, 2)} mAHD` : null);
+      push('Owner', a.OWNER);
+      push('Status', a.STATUS);
+      push('Asset ID', a.ASSETID);
+    } else if (key === 'gully') {
+      push('Inlet type', a.INLETTYPE);
+      push('Outlet type', a.OUTLETTYPE);
+      push('Diameter', sizeStr(a.DIAMETER));
+      push('Surface level', fmtNum(a.SL, 2) ? `${fmtNum(a.SL, 2)} mAHD` : null);
+      push('Owner', a.OWNER);
+      push('Status', a.STATUS);
+      push('Asset ID', a.ASSETID);
+    } else if (key === 'drain') {
+      push('Drain type', a.SURFACEDRAINTYPE);
+      push('Average base', sizeStr(a.AVERAGEBASE));
+      push('Low flow', a.LOWFLOW);
+      push('US invert', fmtNum(a.USIL, 2) ? `${fmtNum(a.USIL, 2)} mAHD` : null);
+      push('Owner', a.OWNER);
+      push('Status', a.STATUS);
+      push('Asset ID', a.ASSETID);
+    }
+    return rows;
+  }
+
+  function escape(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ── Address search (Photon + Nominatim) ──────────────────────────
+  async function geocode(addr) {
+    const u = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addr + ', Brisbane, Australia')}&format=json&limit=1&countrycodes=au`;
+    const data = await fetch(u, { headers: { 'Accept-Language': 'en' } }).then(r => r.json());
+    if (!data.length) throw new Error('not found');
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+  }
+  function suggestions(q) {
+    return fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`)
+      .then(r => r.json()).then(d => d.features || []);
+  }
+  function renderSuggestions(features) {
+    const list = document.getElementById('sw-autocomplete');
+    list.innerHTML = '';
+    if (!features.length) { list.style.display = 'none'; return; }
+    features.forEach(f => {
+      const p = f.properties;
+      const label = [p.name, p.street && p.housenumber ? p.street + ' ' + p.housenumber : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const item = document.createElement('div');
+      item.className = 'sw-ac-item';
+      item.textContent = label;
+      item.addEventListener('mousedown', () => {
+        const lat = f.geometry.coordinates[1], lon = f.geometry.coordinates[0];
+        document.getElementById('sw-search').value = label;
+        list.style.display = 'none';
+        flyAndIdentify(lat, lon);
+      });
+      list.appendChild(item);
+    });
+    list.style.display = 'block';
+  }
+
+  function dropPin(lat, lon) {
+    if (pinMarker) map.removeLayer(pinMarker);
+    pinMarker = L.marker([lat, lon], {
+      icon: L.divIcon({
+        className: '',
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        iconSize: [28, 36], iconAnchor: [14, 36],
+      }),
+    }).addTo(map);
+  }
+  function flyAndIdentify(lat, lon) {
+    dropPin(lat, lon);
+    map.setView([lat, lon], 18);
+    setTimeout(() => identifyAt(lat, lon), 800);
+  }
+  async function doSearch() {
+    const v = document.getElementById('sw-search').value.trim();
+    if (!v) return;
+    const status = document.getElementById('sw-status');
+    status.textContent = 'Locating address…';
+    const btn = document.getElementById('sw-search-btn');
+    btn.disabled = true;
+    document.getElementById('sw-autocomplete').style.display = 'none';
+    try {
+      const { lat, lon } = await geocode(v);
+      flyAndIdentify(lat, lon);
+    } catch {
+      status.textContent = 'Address not found. Add the suburb (e.g. 12 Main St, Camp Hill).';
+    }
+    btn.disabled = false;
+  }
+
+  function wireUpControls() {
+    const search = document.getElementById('sw-search');
+    document.getElementById('sw-search-btn').addEventListener('click', doSearch);
+    search.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+      if (e.key === 'Escape') document.getElementById('sw-autocomplete').style.display = 'none';
+    });
+    search.addEventListener('input', () => {
+      clearTimeout(acDebounce);
+      const q = search.value.trim();
+      if (q.length < 3) { document.getElementById('sw-autocomplete').style.display = 'none'; return; }
+      acDebounce = setTimeout(() => suggestions(q).then(renderSuggestions), 130);
+    });
+    document.addEventListener('click', e => {
+      if (!document.getElementById('sw-search-wrap').contains(e.target)) {
+        document.getElementById('sw-autocomplete').style.display = 'none';
+      }
+    });
+
+    const toggle = document.getElementById('sw-layer-toggle');
+    const panel = document.getElementById('sw-layer-panel');
+    toggle.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    panel.querySelectorAll('input[data-layer]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const k = cb.dataset.layer;
+        active[k] = cb.checked;
+        if (active[k]) { layers[k].addTo(map); loadOne(k); }
+        else { map.removeLayer(layers[k]); }
+      });
+    });
+
+    document.getElementById('sw-result-close').addEventListener('click', () => {
+      document.getElementById('sw-result').classList.remove('open');
+    });
+
+    const status = document.getElementById('sw-status');
+    let fadeTimer;
+    new MutationObserver(() => {
+      clearTimeout(fadeTimer);
+      status.style.opacity = '1';
+      const t = status.textContent || '';
+      const stable = /loaded|identified/i.test(t);
+      if (stable) fadeTimer = setTimeout(() => { status.style.opacity = '0'; }, 1800);
+    }).observe(status, { childList: true, characterData: true, subtree: true });
+  }
+
+  const s = document.createElement('script');
+  s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  s.onload = initMap;
+  document.head.appendChild(s);
+})();
+</script>
+
+</ToolLayout>

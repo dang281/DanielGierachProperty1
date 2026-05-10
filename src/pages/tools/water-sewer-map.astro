@@ -1,0 +1,762 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="Brisbane Water & Sewer Map"
+  tool="Water & Sewer Map"
+  phase="Buyer Tools"
+  description="See Queensland Urban Utilities (QUU) water and sewer mains under any Brisbane address. Useful for understanding sewer easements, connection points and infrastructure access before buying or developing."
+>
+
+<style>
+  /* ── Shell & search (mirrors zoning-map) ───────────────────────── */
+  .ws-shell { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+  @media (min-width: 1024px) { .ws-shell { padding: 1.5rem 2rem 4rem; } }
+
+  .ws-eduline {
+    margin-bottom: 0.6rem;
+    padding: 0.5rem 0.85rem;
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+  .ws-eduline strong {
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-size: 0.62rem;
+    margin-right: 0.4rem;
+  }
+
+  .ws-search-bar { display: flex; gap: 0.4rem; margin-bottom: 0.85rem; }
+  #ws-search-wrap { position: relative; flex: 1; }
+  #ws-search {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(28,25,23,0.18);
+    background: var(--color-surface-4);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #ws-search:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+  }
+  #ws-search::placeholder { color: var(--color-text-muted); }
+  #ws-search-btn {
+    padding: 0 1.5rem;
+    background: var(--color-gold);
+    color: #0a0806;
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  #ws-search-btn:hover { background: #d4af4a; }
+  #ws-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  #ws-autocomplete {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.18); border-top: none;
+    z-index: 1100; max-height: 240px; overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .ws-ac-item {
+    padding: 0.65rem 1rem; font-size: 0.85rem;
+    color: var(--color-text-primary); cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4;
+  }
+  .ws-ac-item:last-child { border-bottom: none; }
+  .ws-ac-item:hover { background: rgba(197,160,60,0.08); }
+
+  /* ── Map shell & floating controls ─────────────────────────────── */
+  .ws-map-wrap { position: relative; }
+  #ws-map { height: 700px; width: 100%; border: 1px solid rgba(28,25,23,0.1); }
+  @media (max-width: 768px) { #ws-map { height: 540px; } }
+
+  .ws-control {
+    position: absolute;
+    z-index: 500;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(28,25,23,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .ws-control-tr { top: 12px; right: 12px; }
+
+  /* Status pill */
+  #ws-status {
+    position: absolute; top: 12px; left: 12px;
+    z-index: 500;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(28,25,23,0.08);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    max-width: 280px;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  /* Layer toggle */
+  .ws-layer-toggle {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.55rem 0.85rem;
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+  }
+  .ws-layer-toggle:hover { background: rgba(197,160,60,0.08); }
+  .ws-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
+  .ws-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
+  .ws-layer-panel {
+    display: none;
+    border-top: 1px solid rgba(28,25,23,0.08);
+    width: 280px;
+    padding: 0.5rem 0.5rem 0.7rem;
+  }
+  .ws-layer-panel.open { display: block; }
+  @media (max-width: 480px) { .ws-layer-panel { width: 240px; } }
+
+  .ws-layer-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    cursor: pointer; user-select: none;
+    transition: background 0.15s;
+  }
+  .ws-layer-row:hover { background: rgba(197,160,60,0.06); }
+  .ws-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
+  .ws-swatch {
+    width: 24px; height: 14px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .ws-swatch-line { width: 24px; height: 3px; }
+  .ws-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid white; box-shadow: 0 0 0 1px rgba(0,0,0,0.2); }
+  .ws-layer-name {
+    font-family: var(--font-sans);
+    font-size: 0.74rem; font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3; flex: 1;
+  }
+  .ws-layer-hint {
+    display: block;
+    font-weight: 400;
+    font-size: 0.66rem;
+    color: var(--color-text-muted);
+    margin-top: 0.1rem;
+  }
+
+  /* Result drawer */
+  #ws-result {
+    position: absolute;
+    left: 14px; bottom: 14px;
+    z-index: 600;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-left: 3px solid var(--color-gold);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+    padding: 0.95rem 1.15rem;
+    max-width: 440px;
+    width: calc(100% - 28px);
+    transform: translate3d(0, calc(100% + 24px), 0);
+    transition: transform 0.28s cubic-bezier(0.2,0.7,0.2,1), border-left-color 0.2s;
+    visibility: hidden;
+  }
+  #ws-result.open { transform: translate3d(0,0,0); visibility: visible; }
+  @media (min-width: 768px) { #ws-result { width: 440px; } }
+
+  #ws-result.kind-sewer { border-left-color: #8a6e2f; }
+  #ws-result.kind-water { border-left-color: #2c7fc4; }
+  #ws-result.kind-manhole { border-left-color: #6c5320; }
+  #ws-result.kind-hydrant { border-left-color: #c43a3a; }
+
+  .ws-result-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.5rem; margin-bottom: 0.55rem;
+  }
+  .ws-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  .ws-close {
+    background: transparent; border: none; cursor: pointer;
+    width: 26px; height: 26px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--color-text-muted); padding: 0;
+    transition: color 0.15s, background 0.15s;
+  }
+  .ws-close:hover { color: var(--color-text-primary); background: rgba(28,25,23,0.06); }
+  #ws-result h3 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem; font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.25; margin-bottom: 0.5rem;
+  }
+  .ws-attrs {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.3rem 0.85rem;
+    font-size: 0.78rem; line-height: 1.55;
+  }
+  .ws-attrs dt {
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    align-self: center;
+  }
+  .ws-attrs dd { color: var(--color-text-primary); margin: 0; }
+  .ws-result-note {
+    margin-top: 0.65rem;
+    font-size: 0.74rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-style: italic;
+    border-top: 1px solid rgba(28,25,23,0.08);
+    padding-top: 0.55rem;
+  }
+
+  /* Footer */
+  .ws-foot {
+    margin-top: 0.85rem;
+    display: flex; flex-wrap: wrap; gap: 0.85rem 1.5rem;
+    align-items: baseline; justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .ws-foot a {
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none;
+    white-space: nowrap;
+  }
+  .ws-foot a:hover { color: #d4af4a; }
+</style>
+
+<div class="ws-shell">
+
+  <!-- Educational use line -->
+  <p class="ws-eduline">
+    <strong>Educational use only</strong> Indicative information drawn from QUU open data. Always commission a Dial Before You Dig (1100) search before any excavation, and order official QUU plans before any connection or development decision.
+  </p>
+
+  <!-- Search -->
+  <div class="ws-search-bar">
+    <div id="ws-search-wrap">
+      <input type="text" id="ws-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" />
+      <div id="ws-autocomplete" style="display:none;"></div>
+    </div>
+    <button id="ws-search-btn">Search</button>
+  </div>
+
+  <!-- Map + floating controls -->
+  <div class="ws-map-wrap">
+    <div id="ws-map"></div>
+
+    <div id="ws-status">Click any pipe or feature, or search an address.</div>
+
+    <!-- Layer toggle (top-right) -->
+    <div class="ws-control ws-control-tr">
+      <button class="ws-layer-toggle" id="layer-toggle" aria-expanded="false" aria-controls="layer-panel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l10 6-10 6L2 8l10-6zM2 16l10 6 10-6M2 12l10 6 10-6"/></svg>
+        Layers
+        <svg class="toggle-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="ws-layer-panel" id="layer-panel">
+        <label class="ws-layer-row">
+          <input type="checkbox" data-layer="sewerMain" checked />
+          <span class="ws-swatch"><span class="ws-swatch-line" style="background:#8a6e2f;"></span></span>
+          <span class="ws-layer-name">Sewer mains
+            <span class="ws-layer-hint">Gravity sewer running underground</span>
+          </span>
+        </label>
+        <label class="ws-layer-row">
+          <input type="checkbox" data-layer="waterMain" checked />
+          <span class="ws-swatch"><span class="ws-swatch-line" style="background:#2c7fc4;"></span></span>
+          <span class="ws-layer-name">Water mains
+            <span class="ws-layer-hint">Pressure mains supplying drinking water</span>
+          </span>
+        </label>
+        <label class="ws-layer-row">
+          <input type="checkbox" data-layer="manhole" />
+          <span class="ws-swatch"><span class="ws-swatch-dot" style="background:#6c5320;"></span></span>
+          <span class="ws-layer-name">Sewer manholes
+            <span class="ws-layer-hint">Access chambers along sewer mains</span>
+          </span>
+        </label>
+        <label class="ws-layer-row">
+          <input type="checkbox" data-layer="hydrant" />
+          <span class="ws-swatch"><span class="ws-swatch-dot" style="background:#c43a3a;"></span></span>
+          <span class="ws-layer-name">Hydrants
+            <span class="ws-layer-hint">Fire hydrants on the water network</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Result drawer -->
+    <div id="ws-result" role="region" aria-label="Asset information">
+      <div class="ws-result-head">
+        <span class="ws-eyebrow" id="ws-result-eyebrow">Asset</span>
+        <button class="ws-close" id="ws-result-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <h3 id="ws-result-title"></h3>
+      <dl class="ws-attrs" id="ws-result-attrs"></dl>
+      <p class="ws-result-note" id="ws-result-note"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ws-foot">
+    <span><strong style="color:var(--color-text-secondary);">For educational purposes only.</strong> Live data from Queensland Urban Utilities open data. Always commission a Dial Before You Dig (1100) search before excavating, and order official QUU plans before any connection or development decision.</span>
+    <a href="https://urbanutilities.com.au/help-and-advice/manage-your-property/property-information" target="_blank" rel="noopener">Order official plans →</a>
+  </div>
+
+  <!-- CTA -->
+  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+      A sewer easement can change what you can build, and what the land is worth.
+    </p>
+    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
+      Daniel can help you read the QUU plans, understand the easement implications, and decide whether to proceed.
+    </p>
+    <a href="/contact"
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      Ask Daniel
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<script>
+(function () {
+  // QUU open data feature services on ArcGIS Online
+  const SVC = {
+    sewerMain:  'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/18',
+    waterMain:  'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/21',
+    manhole:    'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/20',
+    hydrant:    'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/15',
+  };
+
+  // Visual config per layer
+  const STYLE = {
+    sewerMain:  { color: '#8a6e2f', weight: 2.6, opacity: 0.9 },
+    waterMain:  { color: '#2c7fc4', weight: 2.2, opacity: 0.9 },
+    manhole:    { radius: 4, fillColor: '#6c5320', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
+    hydrant:    { radius: 4, fillColor: '#c43a3a', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
+  };
+
+  // Brisbane LGA bounds (loose box, sufficient for Daniel's market)
+  const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
+
+  // Output fields by layer
+  const OUT_FIELDS = {
+    sewerMain:  'OBJECTID,ASSETID,MATERIAL,DIAMETER,SEGMENTTYPE,GRADE,USIL,DSIL,STATUS,OWNER',
+    waterMain:  'OBJECTID,ASSETID,MATERIAL,DIAMETER,WATERTYPE,SUBTYPECD,OWNER',
+    manhole:    'OBJECTID,ASSETID,MANHOLEUSE,SL,IL,DEPTH,OWNER',
+    hydrant:    'OBJECTID,ASSETID,HYDRANTTYPE,WATERTYPE,OWNER',
+  };
+
+  // Active layers (default)
+  const active = { sewerMain: true, waterMain: true, manhole: false, hydrant: false };
+
+  let map, layers = {}, pinMarker, fetchAborts = {};
+  let acDebounce;
+
+  // ── Init Leaflet ──────────────────────────────────────────────────
+  function initMap() {
+    map = L.map('ws-map', {
+      maxBounds: BNE_BOUNDS,
+      minZoom: 11,
+      maxBoundsViscosity: 0.5,
+    }).setView([-27.46, 153.04], 13);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO &middot; Assets: Urban Utilities open data',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    Object.keys(SVC).forEach(k => { layers[k] = L.layerGroup(); if (active[k]) layers[k].addTo(map); });
+
+    map.on('moveend', loadVisible);
+    map.on('click', e => identifyAt(e.latlng.lat, e.latlng.lng));
+    wireUpControls();
+    loadVisible();
+  }
+
+  // ── Style helpers ─────────────────────────────────────────────────
+  function styleLine(key) { return STYLE[key]; }
+  function styleMarker(key, latlng) { return L.circleMarker(latlng, STYLE[key]); }
+
+  // ── Fetch visible features for a layer ────────────────────────────
+  function loadOne(key) {
+    if (!active[key]) { layers[key].clearLayers(); return; }
+    const z = map.getZoom();
+    if (z < 14) { layers[key].clearLayers(); return; }
+    if (fetchAborts[key]) fetchAborts[key].abort();
+    fetchAborts[key] = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest(); const ne = b.getNorthEast();
+
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326',
+      outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: OUT_FIELDS[key],
+      returnGeometry: 'true',
+      resultRecordCount: '4000',
+      f: 'geojson',
+    });
+
+    fetch(`${SVC[key]}/query?${params.toString()}`, { signal: fetchAborts[key].signal })
+      .then(r => r.json())
+      .then(geo => {
+        layers[key].clearLayers();
+        const isPoint = key === 'manhole' || key === 'hydrant';
+        L.geoJSON(geo, {
+          style: isPoint ? null : () => styleLine(key),
+          pointToLayer: isPoint ? (f, latlng) => styleMarker(key, latlng) : undefined,
+          onEachFeature(f, layer) {
+            layer.on('click', e => {
+              L.DomEvent.stopPropagation(e);
+              showResult(key, f.properties || {});
+            });
+          },
+        }).addTo(layers[key]);
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') return;
+        const status = document.getElementById('ws-status');
+        if (status) status.textContent = 'Some layers could not load. Try refreshing.';
+      });
+  }
+
+  function loadVisible() {
+    const status = document.getElementById('ws-status');
+    const z = map.getZoom();
+    if (z < 14) { Object.keys(layers).forEach(k => layers[k].clearLayers()); status.textContent = 'Zoom in to load infrastructure (level 14+).'; return; }
+    status.textContent = 'Loading assets…';
+    Object.keys(SVC).forEach(loadOne);
+    setTimeout(() => { status.textContent = 'Assets loaded. Click any pipe or feature.'; }, 600);
+  }
+
+  // ── Click identify: query nearest feature within ~10m, across visible layers ─
+  function identifyAt(lat, lon) {
+    const status = document.getElementById('ws-status');
+    status.textContent = 'Identifying…';
+    const tasks = Object.keys(SVC)
+      .filter(k => active[k])
+      .map(k => fetchNearest(k, lat, lon).then(f => f && { key: k, feature: f }));
+
+    Promise.all(tasks).then(results => {
+      const hits = results.filter(Boolean);
+      if (!hits.length) { status.textContent = 'No QUU asset within ~10 m. Try clicking closer to a road.'; return; }
+      // Pick the closest
+      hits.sort((a, b) => a.feature._dist - b.feature._dist);
+      showResult(hits[0].key, hits[0].feature.attributes);
+      status.textContent = 'Asset identified.';
+    });
+  }
+
+  function fetchNearest(key, lat, lon) {
+    const distance = 12;     // metres
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint',
+      inSR: '4326',
+      distance: String(distance),
+      units: 'esriSRUnit_Meter',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: OUT_FIELDS[key],
+      returnGeometry: 'true',
+      outSR: '4326',
+      f: 'json',
+      resultRecordCount: '5',
+    });
+    return fetch(`${SVC[key]}/query?${params.toString()}`)
+      .then(r => r.json())
+      .then(d => {
+        const feats = d.features || [];
+        if (!feats.length) return null;
+        // Compute approximate distance to the click for ranking
+        let best = feats[0]; best._dist = featureDistanceTo(best, lat, lon);
+        for (const f of feats.slice(1)) {
+          const dd = featureDistanceTo(f, lat, lon);
+          if (dd < best._dist) { best = f; best._dist = dd; }
+        }
+        return best;
+      })
+      .catch(() => null);
+  }
+
+  // Approximate distance (degrees), fine for "closest of N within 12 m" ranking
+  function featureDistanceTo(feature, lat, lon) {
+    const g = feature.geometry || {};
+    if (g.x != null && g.y != null) {
+      return haversineSq(g.y, g.x, lat, lon);
+    }
+    if (Array.isArray(g.paths) && g.paths.length) {
+      let min = Infinity;
+      for (const path of g.paths) for (const [x, y] of path) {
+        const d = haversineSq(y, x, lat, lon);
+        if (d < min) min = d;
+      }
+      return min;
+    }
+    return Infinity;
+  }
+  function haversineSq(lat1, lon1, lat2, lon2) {
+    // Squared chordal distance is enough for ordering (no sqrt)
+    const dy = (lat1 - lat2) * 111320;
+    const dx = (lon1 - lon2) * 111320 * Math.cos((lat1 + lat2) / 2 * Math.PI / 180);
+    return dx * dx + dy * dy;
+  }
+
+  // ── Result drawer ────────────────────────────────────────────────
+  const TITLES = {
+    sewerMain: 'Sewer main',
+    waterMain: 'Water main',
+    manhole:   'Sewer manhole',
+    hydrant:   'Hydrant',
+  };
+  const NOTES = {
+    sewerMain: 'Sewer mains carry sewer easements over private land. The easement footprint is wider than the pipe (typically 3 m total). Council and QUU restrict what can be built within the easement.',
+    waterMain: 'Water mains run beneath the road or footpath in most cases. Connection to the property is via a service line at the kerb.',
+    manhole:   'Manholes mark sewer access points. They indicate the sewer alignment and depth at this location.',
+    hydrant:   'Hydrants are spaced for fire-fighting access. Their presence is a code requirement, not a property feature.',
+  };
+  const KIND_FOR = {
+    sewerMain: 'sewer', waterMain: 'water', manhole: 'manhole', hydrant: 'hydrant',
+  };
+
+  function showResult(key, attrs) {
+    const el = document.getElementById('ws-result');
+    el.className = `kind-${KIND_FOR[key]}`;
+    el.classList.add('open');
+    document.getElementById('ws-result-eyebrow').textContent = TITLES[key];
+    document.getElementById('ws-result-title').textContent = headlineFor(key, attrs);
+
+    const rows = renderAttrs(key, attrs);
+    const dl = document.getElementById('ws-result-attrs');
+    dl.innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${escape(v)}</dd>`).join('');
+
+    document.getElementById('ws-result-note').textContent = NOTES[key] || '';
+  }
+
+  function headlineFor(key, a) {
+    const num = (v) => (v == null || v === '') ? null : v;
+    if (key === 'sewerMain' || key === 'waterMain') {
+      const dia = num(a.DIAMETER) ? `DN${a.DIAMETER}` : '';
+      const mat = a.MATERIAL || '';
+      return [dia, mat].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'manhole') {
+      const depth = num(a.DEPTH) ? `${(+a.DEPTH).toFixed(1)} m deep` : '';
+      const use = a.MANHOLEUSE || '';
+      return [use, depth].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'hydrant') {
+      return a.HYDRANTTYPE || TITLES[key];
+    }
+    return TITLES[key] || 'Asset';
+  }
+
+  function renderAttrs(key, a) {
+    const rows = [];
+    const push = (k, v) => { if (v != null && v !== '') rows.push([k, v]); };
+    if (key === 'sewerMain') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Material', a.MATERIAL);
+      push('Type', a.SEGMENTTYPE);
+      push('Grade', a.GRADE != null ? `${a.GRADE}` : null);
+      push('Upstream invert', a.USIL != null ? `${(+a.USIL).toFixed(2)} mAHD` : null);
+      push('Downstream invert', a.DSIL != null ? `${(+a.DSIL).toFixed(2)} mAHD` : null);
+      push('Owner', a.OWNER);
+      push('Asset ID', a.ASSETID);
+    } else if (key === 'waterMain') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Material', a.MATERIAL);
+      push('Water type', a.WATERTYPE);
+      push('Owner', a.OWNER);
+      push('Asset ID', a.ASSETID);
+    } else if (key === 'manhole') {
+      push('Use', a.MANHOLEUSE);
+      push('Surface level', a.SL != null ? `${(+a.SL).toFixed(2)} mAHD` : null);
+      push('Invert level', a.IL != null ? `${(+a.IL).toFixed(2)} mAHD` : null);
+      push('Depth', a.DEPTH != null ? `${(+a.DEPTH).toFixed(2)} m` : null);
+      push('Owner', a.OWNER);
+      push('Asset ID', a.ASSETID);
+    } else if (key === 'hydrant') {
+      push('Type', a.HYDRANTTYPE);
+      push('Water type', a.WATERTYPE);
+      push('Owner', a.OWNER);
+      push('Asset ID', a.ASSETID);
+    }
+    return rows;
+  }
+
+  function escape(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ── Address search (Photon + Nominatim) ──────────────────────────
+  async function geocode(addr) {
+    const u = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addr + ', Brisbane, Australia')}&format=json&limit=1&countrycodes=au`;
+    const data = await fetch(u, { headers: { 'Accept-Language': 'en' } }).then(r => r.json());
+    if (!data.length) throw new Error('not found');
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+  }
+
+  function suggestions(q) {
+    return fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`)
+      .then(r => r.json()).then(d => d.features || []);
+  }
+
+  function renderSuggestions(features) {
+    const list = document.getElementById('ws-autocomplete');
+    list.innerHTML = '';
+    if (!features.length) { list.style.display = 'none'; return; }
+    features.forEach(f => {
+      const p = f.properties;
+      const label = [p.name, p.street && p.housenumber ? p.street + ' ' + p.housenumber : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const item = document.createElement('div');
+      item.className = 'ws-ac-item';
+      item.textContent = label;
+      item.addEventListener('mousedown', () => {
+        const lat = f.geometry.coordinates[1], lon = f.geometry.coordinates[0];
+        document.getElementById('ws-search').value = label;
+        list.style.display = 'none';
+        flyAndIdentify(lat, lon);
+      });
+      list.appendChild(item);
+    });
+    list.style.display = 'block';
+  }
+
+  function dropPin(lat, lon) {
+    if (pinMarker) map.removeLayer(pinMarker);
+    pinMarker = L.marker([lat, lon], {
+      icon: L.divIcon({
+        className: '',
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        iconSize: [28, 36], iconAnchor: [14, 36],
+      }),
+    }).addTo(map);
+  }
+
+  function flyAndIdentify(lat, lon) {
+    dropPin(lat, lon);
+    map.setView([lat, lon], 18);
+    // Wait for tiles + features to load before identifying
+    setTimeout(() => identifyAt(lat, lon), 800);
+  }
+
+  async function doSearch() {
+    const v = document.getElementById('ws-search').value.trim();
+    if (!v) return;
+    const status = document.getElementById('ws-status');
+    status.textContent = 'Locating address…';
+    const btn = document.getElementById('ws-search-btn');
+    btn.disabled = true;
+    document.getElementById('ws-autocomplete').style.display = 'none';
+    try {
+      const { lat, lon } = await geocode(v);
+      flyAndIdentify(lat, lon);
+    } catch {
+      status.textContent = 'Address not found. Add the suburb (e.g. 12 Main St, Camp Hill).';
+    }
+    btn.disabled = false;
+  }
+
+  // ── Wire up controls ─────────────────────────────────────────────
+  function wireUpControls() {
+    const search = document.getElementById('ws-search');
+    document.getElementById('ws-search-btn').addEventListener('click', doSearch);
+    search.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+      if (e.key === 'Escape') document.getElementById('ws-autocomplete').style.display = 'none';
+    });
+    search.addEventListener('input', () => {
+      clearTimeout(acDebounce);
+      const q = search.value.trim();
+      if (q.length < 3) { document.getElementById('ws-autocomplete').style.display = 'none'; return; }
+      acDebounce = setTimeout(() => suggestions(q).then(renderSuggestions), 130);
+    });
+    document.addEventListener('click', e => {
+      if (!document.getElementById('ws-search-wrap').contains(e.target)) {
+        document.getElementById('ws-autocomplete').style.display = 'none';
+      }
+    });
+
+    // Layers toggle
+    const toggle = document.getElementById('layer-toggle');
+    const panel = document.getElementById('layer-panel');
+    toggle.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Per-layer checkboxes
+    panel.querySelectorAll('input[data-layer]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const k = cb.dataset.layer;
+        active[k] = cb.checked;
+        if (active[k]) { layers[k].addTo(map); loadOne(k); }
+        else { map.removeLayer(layers[k]); }
+      });
+    });
+
+    // Result drawer close
+    document.getElementById('ws-result-close').addEventListener('click', () => {
+      document.getElementById('ws-result').classList.remove('open');
+    });
+
+    // Auto-fade status pill on stable messages
+    const status = document.getElementById('ws-status');
+    let fadeTimer;
+    new MutationObserver(() => {
+      clearTimeout(fadeTimer);
+      status.style.opacity = '1';
+      const t = status.textContent || '';
+      const stable = /loaded|identified/i.test(t);
+      if (stable) fadeTimer = setTimeout(() => { status.style.opacity = '0'; }, 1800);
+    }).observe(status, { childList: true, characterData: true, subtree: true });
+  }
+
+  // ── Boot, load Leaflet then init ─────────────────────────────────
+  const s = document.createElement('script');
+  s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  s.onload = initMap;
+  document.head.appendChild(s);
+})();
+</script>
+
+</ToolLayout>
