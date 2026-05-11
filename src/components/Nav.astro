@@ -4,7 +4,6 @@ const navLinks = [
   { label: 'Property Tools', href: '/tools' },
   { label: 'Suburbs', href: '/suburbs' },
   { label: 'Insights', href: '/insights' },
-  { label: 'Resources', href: '/resources' },
   { label: 'About', href: '/about' },
 ];
 
@@ -31,9 +30,9 @@ const suburbs = [
         <span id="logo-name" style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;font-style:italic;color:#f0ece4;letter-spacing:0.02em;transition:color 0.3s;">
           Daniel Gierach
         </span>
-        <span style="display:flex;align-items:center;gap:0.5rem;">
-          <span style="display:block;height:1px;width:1.25rem;background:var(--color-gold);opacity:0.8;"></span>
-          <span style="font-family:var(--font-sans);font-size:0.625rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);opacity:0.85;">Ray White Bulimba</span>
+        <span class="flex items-start xl:items-center" style="gap:0.5rem;">
+          <span class="mt-[0.3rem] xl:mt-0" style="display:block;height:1px;width:1.25rem;background:var(--color-gold);opacity:0.8;"></span>
+          <span style="font-family:var(--font-sans);font-size:0.625rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);opacity:0.85;"><span>Ray White Bulimba</span><span class="hidden xl:inline"> | </span><span class="block xl:inline agency-collective">The Collective</span></span>
         </span>
       </a>
 
@@ -88,6 +87,21 @@ const suburbs = [
   </div>
 </header>
 
+<style>
+  .agency-collective {
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    opacity: 0.75;
+  }
+  @media (min-width: 1280px) {
+    .agency-collective {
+      font-size: 0.625rem;
+      letter-spacing: 0.22em;
+      opacity: 1;
+    }
+  }
+</style>
+
 <script>
   const header       = document.getElementById('site-header')!;
   const navLinksEl   = document.getElementById('nav-links')!;
@@ -104,7 +118,7 @@ const suburbs = [
 
   // ── Responsive layout (pure JS, no CSS classes) ──────────────────────────
   function applyLayout() {
-    const desktop = window.innerWidth >= 1024;
+    const desktop = window.innerWidth >= 1280;
     navLinksEl.style.display   = desktop ? 'flex' : 'none';
     navCtaEl.style.display     = desktop ? 'flex' : 'none';
     mobileToggle.style.display = desktop ? 'none' : 'flex';

@@ -77,24 +77,24 @@ const listings = [
 
 const prestige = [
   {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/93d1-H3480857-194603639__1774840446-82684-03-2226DuttonstreetHawthorne20.jpg',
-    suburb: 'Hawthorne',
-    address: '26 Dutton Street',
-    price: 'Auction 18 April at The Calile Hotel',
-    beds: 3, baths: 2, cars: 2,
-    desc: 'A fully rebuilt three-bedroom home featuring engineered oak floors, skylights, and a designer kitchen with premium finishes, plus a swimming pool on a 405m² block.',
-    tag: 'Auction',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/hawthorne-4171/house/3480857',
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7783-H3502736-200045322__1778022110-20631-Photo-3-Web.jpg',
+    suburb: 'Balmoral',
+    address: '42 Barton Parade',
+    price: 'Best Offers by 30 May at 2pm',
+    beds: 5, baths: 3, cars: 2,
+    desc: 'A newly built five-bedroom luxury home in one of Balmoral\'s most premier streets, presenting three bathrooms and a double garage.',
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/balmoral-4171/other/3502736',
   },
   {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/e543-H3474534-192843678__1773807208-74050-IMG2700p.jpg',
-    suburb: 'Bridgeman Downs',
-    address: '5 Neville Road',
-    price: 'For Sale by Negotiation',
-    beds: 3, baths: 2, cars: 6,
-    desc: 'An elevated 607m² hilltop allotment surrounded by multi-million-dollar acreage homes, a rare opportunity to landbank or rebuild in one of Brisbane\'s most prestigious pockets.',
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg',
+    suburb: 'Cannon Hill',
+    address: '12/76 Minnippi Boulevard',
+    price: 'Best Offers by 2 June at 11am',
+    beds: 4, baths: 2, cars: 2,
+    desc: 'A refined four-bedroom townhouse positioned in the heart of the Minnippi Boulevard precinct, with two bathrooms and a double garage.',
     tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/bridgeman-downs-4035/house/3474534',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/cannon-hill-4170/townhouse/3505222',
   },
 ];
 
@@ -299,12 +299,12 @@ const faqSchema = {
 
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-8 mb-16">
       <div class="reveal" style="max-width:36rem;">
-        <span class="eyebrow mb-4">Ray White Bulimba</span>
+        <span class="eyebrow mb-4">Ray White The Collective</span>
         <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
           Recent Listings
         </h2>
         <p style="font-size:0.875rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:48ch;line-height:1.75;">
-          A selection of recent and current properties listed by Daniel across Brisbane's inner east.
+          A selection of recent and current properties listed by Ray White The Collective.
         </p>
       </div>
       <a href="https://raywhitecollective.com.au" target="_blank" rel="noopener noreferrer" class="btn-outline-gold reveal self-end" data-delay="100">View All Collective Listings</a>
@@ -314,7 +314,7 @@ const faqSchema = {
       {prestige.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener noreferrer"
           class={`prop-card reveal${i === 1 ? '-right' : '-left'}`} data-delay={`${i * 80}`}
-          style="display:block;text-decoration:none;background:var(--color-surface-0);">
+          style="display:flex;flex-direction:column;text-decoration:none;background:var(--color-surface-0);height:100%;">
           <div class="img-wrap relative" style="aspect-ratio:3/2;">
             <img src={p.image} alt={p.address} width="1200" height="800" loading="lazy"
               style="filter:grayscale(25%) brightness(0.75);" />
@@ -322,11 +322,11 @@ const faqSchema = {
             <div class="absolute inset-0 pointer-events-none"
               style="background:linear-gradient(to top,rgba(14,14,14,0.92) 0%,transparent 55%);"></div>
           </div>
-          <div style="padding:1.75rem;">
+          <div style="padding:1.75rem;display:flex;flex-direction:column;flex:1;">
             <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.4rem;">{p.suburb}</span>
             <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.6rem;">{p.address}</h3>
             <p style="font-size:0.825rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:1.25rem;max-width:52ch;">{p.desc}</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);margin-top:auto;">
               <div style="display:flex;gap:1.25rem;">
                 <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.beds} Bed</span>
                 <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.baths} Bath</span>

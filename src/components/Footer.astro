@@ -3,6 +3,34 @@ const year = new Date().getFullYear();
 ---
 
 <footer style="background:var(--color-surface-0);border-top:1px solid rgba(72,72,72,0.15);">
+
+  <!-- Dark CTA strip -->
+  <div style="background:#0a0806;padding:4rem 0 4.25rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent 0%,rgba(196,145,42,0.6) 50%,transparent 100%);"></div>
+    <div class="max-w-[1280px] mx-auto px-8 lg:px-12">
+      <div class="grid gap-10 lg:gap-12 items-center" style="grid-template-columns:1fr;">
+        <div class="lg:col-span-1" style="grid-column:1;">
+          <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Free Walk Through</span>
+          <h3 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:400;color:#f0ece4;line-height:1.15;margin:0 0 1rem 0;letter-spacing:-0.01em;">
+            Curious what your home would sell for?
+          </h3>
+          <p style="font-size:0.92rem;color:rgba(240,236,228,0.7);line-height:1.7;margin:0 0 1.75rem 0;max-width:54ch;">
+            Daniel walks through your property, reviews recent sold results on your street, and gives you a clear number. Thirty minutes, no obligation.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/walkthrough" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.95rem 1.75rem;background:#c4912a;color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#f5d07a'" onmouseout="this.style.background='#c4912a'">
+              Book a Walk Through →
+            </a>
+            <a href="tel:+61412523821" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.95rem 1.5rem;border:1px solid rgba(245,208,122,0.4);color:#f5d07a;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,border-color 0.2s;white-space:nowrap;" onmouseover="this.style.background='rgba(245,208,122,0.08)';this.style.borderColor='rgba(245,208,122,0.7)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245,208,122,0.4)'">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+              0412 523 821
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12 py-16 lg:py-20">
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
 
@@ -18,11 +46,7 @@ const year = new Date().getFullYear();
           </span>
         </div>
         <p style="font-size:0.825rem;line-height:1.75;color:var(--color-text-muted);max-width:26ch;">
-          Data-driven campaigns. Clear communication. Exceptional outcomes across Brisbane's inner east and south.
-        </p>
-        {/* TODO Daniel: replace [TBD] with actual QLD OFT licence number */}
-        <p style="font-size:0.7rem;line-height:1.6;color:var(--color-text-muted);margin-top:0.75rem;letter-spacing:0.04em;">
-          QLD Real Estate Licence: [TBD]
+          A documented three-phase method that runs anywhere across Brisbane. Based in Bulimba.
         </p>
         <div class="flex gap-5 mt-6">
           {[
@@ -60,6 +84,7 @@ const year = new Date().getFullYear();
             { label: 'Suburb Price Guide', href: '/tools/heatmap' },
             { label: 'What Is My Home Worth?', href: '/tools/valuation' },
             { label: 'Insights & Articles', href: '/insights' },
+            { label: 'Free Guides & Resources', href: '/resources' },
             { label: 'All Suburbs Covered', href: '/suburbs' },
             { label: 'Book a Call', href: '/contact' },
           ].map(item => (
@@ -139,7 +164,7 @@ const year = new Date().getFullYear();
         <ul class="flex flex-col gap-5">
           <li>
             <p style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Office</p>
-            <p style="font-size:0.825rem;color:var(--color-text-secondary);line-height:1.65;">Unit 6, 57-59 Oxford Street<br/>Bulimba QLD 4171</p>
+            <p style="font-size:0.825rem;color:var(--color-text-secondary);line-height:1.65;">2A, 57-59 Oxford Street<br/>Bulimba QLD 4171</p>
           </li>
           <li>
             <p style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;">Mobile</p>
