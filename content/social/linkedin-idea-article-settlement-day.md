@@ -7,7 +7,7 @@
 **Status:** Ready for Review
 **Publish date:** TBD
 **Scheduled time:** 07:30
-**Visual status:** Not needed
+**Visual status:** Draft
 
 ---
 
@@ -35,6 +35,8 @@ danielgierach.com/insights/what-happens-on-settlement-day-queensland
 #RayWhiteBulimba
 
 ## Notes for Daniel
+
+**Visual note:** Daniel has selected visual option 2 (alternate template). Generate the alternate thumbnail before scheduling.
 
 **Confidence: Ready**
 - Ready = article URL verified, no external stats, evergreen content
