@@ -264,7 +264,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           </span>
         </label>
         <label class="im-layer-row">
-          <input type="checkbox" data-layer="gully" />
+          <input type="checkbox" data-layer="gully" checked />
           <span class="im-swatch"><span class="im-swatch-dot" style="background:#d77b32;"></span></span>
           <span class="im-layer-name">Gullies / kerb inlets
             <span class="im-layer-hint">Where runoff enters the underground network</span>
@@ -291,6 +291,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           <span class="im-swatch"><span class="im-swatch-line" style="background:#2c7fc4;"></span></span>
           <span class="im-layer-name">Water mains
             <span class="im-layer-hint">Pressure mains supplying drinking water</span>
+          </span>
+        </label>
+        <label class="im-layer-row">
+          <input type="checkbox" data-layer="sewerService" checked />
+          <span class="im-swatch"><span class="im-swatch-line" style="background:#b8904a;opacity:0.7;"></span></span>
+          <span class="im-layer-name">Sewer connections
+            <span class="im-layer-hint">Individual property sewer laterals</span>
+          </span>
+        </label>
+        <label class="im-layer-row">
+          <input type="checkbox" data-layer="waterService" checked />
+          <span class="im-swatch"><span class="im-swatch-line" style="background:#6fb5e0;opacity:0.7;"></span></span>
+          <span class="im-layer-name">Water connections
+            <span class="im-layer-hint">Individual property water service lines</span>
           </span>
         </label>
         <label class="im-layer-row">
@@ -369,7 +383,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     surfaceDrain: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Surface_Drain_Existing/FeatureServer/0',
     // QUU Water & Sewer
     sewerMain:    'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/18',
+    sewerService: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/30',
     waterMain:    'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/21',
+    waterService: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/28',
     sewerManhole: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/20',
     hydrant:      'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/15',
   };
@@ -380,7 +396,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     gully:        { radius: 3.5, fillColor: '#d77b32', color: '#fff', weight: 1.3, fillOpacity: 0.95 },
     surfaceDrain: { color: '#4dadb8', weight: 2, opacity: 0.9, dashArray: '5 4' },
     sewerMain:    { color: '#8a6e2f', weight: 2.6, opacity: 0.9 },
+    sewerService: { color: '#b8904a', weight: 1.4, opacity: 0.75 },
     waterMain:    { color: '#2c7fc4', weight: 2.2, opacity: 0.9 },
+    waterService: { color: '#6fb5e0', weight: 1.4, opacity: 0.75 },
     sewerManhole: { radius: 4,   fillColor: '#6c5320', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
     hydrant:      { radius: 4,   fillColor: '#c43a3a', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
   };
@@ -393,7 +411,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     gully:        'OBJECTID,ASSETID,INLETTYPE,OUTLETTYPE,DIAMETER,LENGTH,WIDTH,SL,OWNER,STATUS',
     surfaceDrain: 'OBJECTID,ASSETID,SURFACEDRAINTYPE,AVERAGEBASE,LOWFLOW,USSL,USIL,OWNER,STATUS',
     sewerMain:    'OBJECTID,ASSETID,MATERIAL,DIAMETER,SEGMENTTYPE,GRADE,USIL,DSIL,STATUS,OWNER',
+    sewerService: 'OBJECTID,ASSETID,DIAMETER,OWNER',
     waterMain:    'OBJECTID,ASSETID,MATERIAL,DIAMETER,WATERTYPE,SUBTYPECD,OWNER',
+    waterService: 'OBJECTID,ASSETID,DIAMETER,SERVICETYPE,WATERTYPE,OWNER',
     sewerManhole: 'OBJECTID,ASSETID,MANHOLEUSE,SL,IL,DEPTH,OWNER',
     hydrant:      'OBJECTID,ASSETID,HYDRANTTYPE,WATERTYPE,OWNER',
   };
@@ -404,7 +424,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     gully:        'Gully / kerb inlet',
     surfaceDrain: 'Surface drain',
     sewerMain:    'Sewer main',
+    sewerService: 'Sewer connection',
     waterMain:    'Water main',
+    waterService: 'Water connection',
     sewerManhole: 'Sewer manhole',
     hydrant:      'Hydrant',
   };
@@ -415,7 +437,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     gully:        'Gullies and kerb inlets are where surface water enters the underground network. Their location influences how stormwater flows on and off the property in heavy rain.',
     surfaceDrain: 'Surface drains are the visible part of the stormwater network. They define the path of overland flow during heavy rain.',
     sewerMain:    'Sewer mains carry sewer easements over private land. The easement footprint is wider than the pipe (typically 3 m total). Council and QUU restrict what can be built within the easement.',
+    sewerService: 'The sewer service connection runs from the property boundary to the gravity main in the road. Its location determines where the sanitary drain exits the property.',
     waterMain:    'Water mains run beneath the road or footpath in most cases. Connection to the property is via a service line at the kerb.',
+    waterService: 'The water service connection runs from the water main to the property meter at the boundary. Diameter indicates the service capacity available to the property.',
     sewerManhole: 'Manholes mark sewer access points. They indicate the sewer alignment and depth at this location.',
     hydrant:      'Hydrants are spaced for fire-fighting access. Their presence is a code requirement, not a property feature.',
   };
@@ -423,8 +447,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
 
   const active: Record<string,boolean> = {
-    stormPipe: true, stormManhole: false, gully: false, surfaceDrain: false,
-    sewerMain: true, waterMain: true, sewerManhole: false, hydrant: false,
+    stormPipe: true, stormManhole: false, gully: true, surfaceDrain: false,
+    sewerMain: true, sewerService: true, waterMain: true, waterService: true,
+    sewerManhole: false, hydrant: false,
   };
 
   let map: any, layers: Record<string,any> = {}, pinMarker: any;
@@ -584,6 +609,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       const dia = num(a.DIAMETER) ? `DN${a.DIAMETER}` : '';
       return [dia, a.PIPETYPE].filter(Boolean).join(' · ') || TITLES[key];
     }
+    if (key === 'sewerService') {
+      return a.DIAMETER ? `DN${a.DIAMETER} sewer connection` : TITLES[key];
+    }
+    if (key === 'waterService') {
+      return a.SERVICETYPE ? `${a.SERVICETYPE} water connection${a.DIAMETER ? ` DN${a.DIAMETER}` : ''}` : (a.DIAMETER ? `DN${a.DIAMETER} water connection` : TITLES[key]);
+    }
     if (key === 'sewerMain' || key === 'waterMain') {
       const dia = num(a.DIAMETER) ? `DN${a.DIAMETER}` : '';
       return [dia, a.MATERIAL].filter(Boolean).join(' · ') || TITLES[key];
@@ -622,6 +653,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
     } else if (key === 'surfaceDrain') {
       push('Type', a.SURFACEDRAINTYPE);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'sewerService') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'waterService') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Type', a.SERVICETYPE); push('Water type', a.WATERTYPE);
       push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
     } else if (key === 'sewerMain') {
       push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
