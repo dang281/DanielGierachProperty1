@@ -77,9 +77,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-ac-item:hover { background: rgba(197,160,60,0.08); }
 
   .im-map-wrap { position: relative; }
-  #im-map { height: 700px; width: 100%; border: 1px solid rgba(28,25,23,0.1); }
+  #im-map {
+    height: 700px; width: 100%; border: 1px solid rgba(28,25,23,0.1);
+    /* Hand ALL touch events to Leaflet; without this the browser intercepts
+       pinch gestures and zooms the page instead of the map. */
+    touch-action: none;
+    overscroll-behavior: contain;
+  }
   @media (max-width: 768px) {
-    #im-map { height: max(420px, calc(100dvh - 260px)); }
+    #im-map { height: max(460px, calc(100dvh - 200px)); touch-action: none; overscroll-behavior: contain; }
     /* Larger Leaflet zoom controls for touch */
     .leaflet-control-zoom a {
       width: 44px !important; height: 44px !important;
@@ -107,7 +113,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pointer-events: none; transition: opacity 0.3s;
   }
   @media (max-width: 768px) {
-    #im-status { left: 12px; right: 150px; max-width: none; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
+    #im-status { left: 12px; right: 60px; max-width: none; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
   }
 
   .im-layer-toggle {
@@ -129,10 +135,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   .im-layer-panel.open { display: block; }
 
-  /* Mobile: layer panel becomes a full-width bottom sheet */
+  /* Mobile: layer panel becomes a full-width bottom sheet fixed to viewport */
   @media (max-width: 640px) {
+    /* Fixed to viewport so it never affects page layout or scroll */
     .im-control-tr {
+      position: fixed !important;
       top: auto !important; bottom: 0; right: 0; left: 0;
+      z-index: 1000;
       border-top: 1px solid rgba(28,25,23,0.12);
       box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
     }
@@ -143,17 +152,23 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       width: 100%;
       display: none;
       grid-template-columns: 1fr 1fr;
-      max-height: 55vh;
+      max-height: 50vh;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       padding: 0.5rem 0.75rem 0.75rem;
     }
     .im-layer-panel.open { display: grid; }
     .im-layer-group-head { grid-column: 1 / -1; }
     .im-layer-row { padding: 0.55rem 0.4rem; }
     .im-layer-row input { width: 18px; height: 18px; }
-    /* push result drawer above the bottom control bar */
-    #im-result { bottom: 60px; }
-    #im-result.open ~ * {}
+    /* Result drawer also fixed to viewport, sits above the layer bar */
+    #im-result {
+      position: fixed !important;
+      left: 12px; right: 12px; bottom: 64px;
+      width: auto !important; max-width: none !important;
+    }
+    /* Reserve space at map bottom so fixed controls don't cover features */
+    .im-map-wrap { padding-bottom: 0; }
   }
 
   .im-layer-group-head {
@@ -516,6 +531,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   function initMap() {
     map = L.map('im-map', {
       maxBounds: BNE_BOUNDS, minZoom: 11, maxBoundsViscosity: 0.5,
+      tap: false,
     }).setView([-27.46, 153.04], 13);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
