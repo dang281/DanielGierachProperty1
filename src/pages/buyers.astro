@@ -97,18 +97,25 @@ const buyerSchema = {
 
     <div class="reveal" data-delay="80" style="max-width:500px;width:100%;">
 
+      <!-- Mobile-only brand anchor — shown when hero is scrolled away -->
+      <div class="wz-mobile-brand">
+        <span>Daniel Gierach</span>
+        <span class="wz-mobile-brand-sep">·</span>
+        <span>Ray White Bulimba</span>
+      </div>
+
       <!-- Step progress indicator -->
       <div class="wz-indicator" id="wz-indicator" style="margin-bottom:2.25rem;">
         <div class="wz-dot-wrap active" data-step="1">
           <div class="wz-dot"></div>
           <span class="wz-dot-lbl">Where</span>
         </div>
-        <div class="wz-connector"></div>
+        <div class="wz-connector" data-after="1"></div>
         <div class="wz-dot-wrap" data-step="2">
           <div class="wz-dot"></div>
           <span class="wz-dot-lbl">Property</span>
         </div>
-        <div class="wz-connector"></div>
+        <div class="wz-connector" data-after="2"></div>
         <div class="wz-dot-wrap" data-step="3">
           <div class="wz-dot"></div>
           <span class="wz-dot-lbl">Contact</span>
@@ -123,6 +130,7 @@ const buyerSchema = {
       <p id="wz-subhead" style="font-size:0.85rem;color:#78716c;line-height:1.7;margin-bottom:1.75rem;transition:opacity 0.25s;">
         Select the suburbs you're searching in. Add as many as you like.
       </p>
+      <!-- Note: wz-subhead text is overwritten by setStep() for steps 2 and 3 -->
 
       <form id="buyer-form" method="POST" action="https://formspree.io/f/meedzvyv">
 
@@ -259,16 +267,19 @@ const buyerSchema = {
             <label for="buyer-inspo" class="field-label">
               A property you love <span class="field-opt">(optional)</span>
             </label>
-            <p style="font-size:0.72rem;color:#78716c;margin-bottom:0.5rem;line-height:1.6;">Paste a link from realestate.com.au to a property that matches what you're after. Helps Daniel understand your style.</p>
             <input type="url" id="buyer-inspo" name="inspiration_property_link"
-              placeholder="https://www.realestate.com.au/property/..."
+              placeholder="Paste a realestate.com.au link that matches your style"
               class="obs-input" />
           </div>
 
-          <div class="wz-footer wz-footer-split" style="margin-top:0.5rem;">
+          <p style="font-size:0.72rem;color:#78716c;line-height:1.7;margin-top:0.25rem;">
+            Daniel works with buyers across 30+ Brisbane suburbs. Most hear back the same day.
+          </p>
+
+          <div class="wz-footer wz-footer-split" style="margin-top:0.25rem;">
             <button type="button" class="wz-back-btn" data-to="2">← Back</button>
             <button type="submit" id="buyer-submit" class="btn-gold" style="flex:1;justify-content:center;">
-              <span id="buyer-submit-label">Register My Search</span>
+              <span id="buyer-submit-label">Send my brief to Daniel</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
@@ -530,6 +541,27 @@ const buyerSchema = {
     height: 1.5px;
     background: rgba(196,145,42,0.16);
     margin: 6px 0.75rem 0;
+    transition: background 0.3s;
+  }
+  .wz-connector.done {
+    background: #c4912a;
+  }
+
+  /* ── Mobile brand anchor (hidden on desktop) ──────────────────────────────── */
+  .wz-mobile-brand {
+    display: none;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(28,25,23,0.38);
+    margin-bottom: 1.25rem;
+  }
+  .wz-mobile-brand-sep { margin: 0 0.35rem; }
+  @media (max-width: 860px) {
+    .wz-mobile-brand { display: flex; }
   }
 
   /* ── Desktop: left panel sticky ─────────────────────────────────────────── */
@@ -924,7 +956,7 @@ const buyerSchema = {
 
   const stepContent: Record<StepNum, { h: string; s: string }> = {
     1: { h: 'Where are you looking?',         s: 'Select the suburbs you\'re searching in. Add as many as you like.' },
-    2: { h: 'What are you after?',             s: 'All optional. The more detail, the better the match.' },
+    2: { h: 'What are you after?',             s: 'The more specific your brief, the fewer calls you\'ll get. Only properties that genuinely fit.' },
     3: { h: 'How should Daniel reach you?',    s: 'Daniel reviews every registration personally.' }
   };
 
@@ -946,6 +978,12 @@ const buyerSchema = {
       dot.classList.remove('active', 'done');
       if (n === to)   dot.classList.add('active');
       if (n < to)     dot.classList.add('done');
+    });
+
+    // Fill connector lines gold for completed segments
+    document.querySelectorAll<HTMLElement>('.wz-connector').forEach(c => {
+      const after = Number(c.dataset.after);
+      c.classList.toggle('done', after < to);
     });
 
     // Fade heading/subhead/counter
@@ -997,7 +1035,7 @@ const buyerSchema = {
 
   // Submit
   document.getElementById('buyer-form')?.addEventListener('submit', function() {
-    (document.getElementById('buyer-submit-label') as HTMLElement).textContent = 'Sending…';
+    (document.getElementById('buyer-submit-label') as HTMLElement).textContent = 'Sending...';
   });
 </script>
 
