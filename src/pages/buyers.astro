@@ -136,6 +136,9 @@ const buyerSchema = {
         <div id="step-1" class="wz-step" style="display:flex;flex-direction:column;gap:1.1rem;">
 
           <div>
+            <!-- Selected tags — always visible at top so choices are clear -->
+            <div id="selected-suburbs-display" class="suburb-tags-row" style="min-height:0;margin-bottom:0.75rem;"></div>
+
             <!-- Search + add -->
             <div class="suburb-search-wrap" style="margin-bottom:1rem;">
               <div class="suburb-search-row">
@@ -162,9 +165,6 @@ const buyerSchema = {
                 <button type="button" class="quick-chip" data-suburb={s}>{s}</button>
               ))}
             </div>
-
-            <!-- Selected tags -->
-            <div id="selected-suburbs-display" class="suburb-tags-row"></div>
 
             <input type="hidden" name="areas" id="areas-value" />
             <div id="areas-error" style="display:none;margin-top:0.6rem;padding:0.7rem 1rem;background:rgba(196,145,42,0.1);border-left:3px solid #c4912a;">
