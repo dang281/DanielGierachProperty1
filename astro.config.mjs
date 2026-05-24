@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://danielgierach.com',
   output: 'static',
+  trailingSlash: 'always',
   integrations: [
     sitemap({
       filter: (page) =>

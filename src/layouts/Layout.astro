@@ -24,7 +24,11 @@ const {
   draft = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').href;
+// Vercel serves static pages at /path/ (trailing slash). Normalise so the canonical
+// always matches the actual served URL, the sitemap, and Google's chosen canonical.
+const _rawPath = Astro.url.pathname;
+const _canonPath = _rawPath === '/' ? '/' : (_rawPath.endsWith('/') ? _rawPath : `${_rawPath}/`);
+const canonicalURL = new URL(_canonPath, 'https://danielgierach.com').href;
 
 // Breadcrumb computation (moved out of template to avoid IIFE/JSX issues)
 const _bPath = Astro.url.pathname.replace(/\/$/, '');
@@ -377,6 +381,39 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
         });
       });
     </script>
+    <!-- Global form field validation tick — targets any .form-field input/textarea -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll<HTMLElement>('.form-field').forEach(field => {
+          // Skip if already wrapped (e.g. contact/walkthrough pages add their own)
+          if (field.parentElement?.classList.contains('field-wrap')) return;
+
+          const wrap = document.createElement('div');
+          wrap.className = 'field-wrap';
+          field.parentNode!.insertBefore(wrap, field);
+          wrap.appendChild(field);
+
+          const tick = document.createElement('span');
+          tick.className = 'field-tick';
+          tick.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+          wrap.appendChild(tick);
+
+          function check() {
+            const el = field as HTMLInputElement;
+            const valid = el.value.trim() !== '' && (!el.checkValidity || el.checkValidity());
+            field.classList.toggle('valid', valid);
+            tick.classList.toggle('show', valid);
+          }
+
+          field.addEventListener('blur', check);
+          field.addEventListener('focus', () => {
+            field.classList.remove('valid');
+            tick.classList.remove('show');
+          });
+        });
+      });
+    </script>
+
     <!-- Global scroll reveal -->
     <script>
       const observer = new IntersectionObserver(
