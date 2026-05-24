@@ -580,11 +580,11 @@ const buyerSchema = {
 
   .quick-chip {
     font-family: var(--font-serif);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 400;
     font-style: italic;
-    padding: 0.6rem 0.75rem;
-    min-height: 44px;
+    padding: 0 0.5rem;
+    height: 44px;
     background: transparent;
     border: 1px solid rgba(196,145,42,0.28);
     color: #57534e;
@@ -592,6 +592,9 @@ const buyerSchema = {
     transition: all 0.2s;
     text-align: center;
     letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: flex;
     align-items: center;
     justify-content: center;
