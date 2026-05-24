@@ -136,7 +136,23 @@ const buyerSchema = {
         <div id="step-1" class="wz-step" style="display:flex;flex-direction:column;gap:1.1rem;">
 
           <div>
+            <!-- Search + add -->
+            <div class="suburb-search-wrap" style="margin-bottom:1rem;">
+              <div class="suburb-search-row">
+                <svg class="suburb-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="suburb-search"
+                  placeholder="Search any suburb…"
+                  autocomplete="off" />
+                <button type="button" id="suburb-add-btn" aria-label="Add suburb">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  <span>Add</span>
+                </button>
+              </div>
+              <div id="suburb-dropdown"></div>
+            </div>
+
             <!-- Quick-select chips -->
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a8a29e;margin-bottom:0.6rem;">Or select from Daniel's areas</p>
             <div id="quick-chips" class="suburb-chip-grid">
               {['Balmoral','Bulimba','Camp Hill','Cannon Hill','Carina',
                 'Coorparoo','East Brisbane','Hamilton','Hawthorne','Holland Park',
@@ -145,21 +161,6 @@ const buyerSchema = {
               ].map(s => (
                 <button type="button" class="quick-chip" data-suburb={s}>{s}</button>
               ))}
-            </div>
-
-            <!-- Search + add -->
-            <div class="suburb-search-wrap">
-              <div class="suburb-search-row">
-                <svg class="suburb-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                <input type="text" id="suburb-search"
-                  placeholder="Search to add another suburb…"
-                  autocomplete="off" />
-                <button type="button" id="suburb-add-btn" aria-label="Add suburb">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-                  <span>Add</span>
-                </button>
-              </div>
-              <div id="suburb-dropdown"></div>
             </div>
 
             <!-- Selected tags -->
@@ -621,7 +622,7 @@ const buyerSchema = {
   }
 
   /* ── Search row ────────────────────────────────────────────────────────── */
-  .suburb-search-wrap { position: relative; margin-bottom: 0.75rem; }
+  .suburb-search-wrap { position: relative; }
   .suburb-search-row {
     display: flex;
     align-items: center;
