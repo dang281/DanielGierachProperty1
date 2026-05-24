@@ -581,13 +581,14 @@ const buyerSchema = {
     .buyers-split { grid-template-columns: 1fr !important; }
     .buyers-hero-panel {
       min-height: 0;
-      max-height: 28vh;
-      padding: 4.5rem 1.5rem 1.5rem !important;
+      max-height: 22vh;
+      padding: 4.5rem 1.25rem 1.25rem !important;
       overflow: hidden;
     }
     .buyers-hero-panel h1 {
-      font-size: clamp(1.4rem, 5vw, 2rem) !important;
+      font-size: clamp(1.25rem, 5vw, 1.8rem) !important;
       margin-bottom: 0 !important;
+      line-height: 1.15 !important;
     }
     .buyers-form-panel { padding: 2rem 1.25rem 4rem !important; }
     .buyers-hero-desc,
@@ -595,10 +596,27 @@ const buyerSchema = {
     .buyers-hero-contact { display: none !important; }
   }
 
+  /* ── Mobile: prevent iOS auto-zoom (needs 16px+ on all inputs) ─── */
+  @media (max-width: 860px) {
+    #suburb-search          { font-size: 1rem !important; }
+    #buyer-name,
+    #buyer-phone,
+    #buyer-email,
+    #buyer-inspo            { font-size: 1rem !important; height: 56px !important; }
+    .obs-input              { font-size: 1rem !important; }
+    #suburb-add-btn         { min-height: 52px !important; }
+    .btn-gold               { padding-top: 1rem !important; padding-bottom: 1rem !important; font-size: 0.72rem !important; }
+    .wz-next-btn            { min-height: 52px !important; }
+    .quick-chip             { height: 48px !important; font-size: 0.82rem !important; }
+    .selector-btn           { height: 3.25rem !important; }
+    #wz-heading             { font-size: 1.35rem !important; }
+    #wz-subhead             { font-size: 0.875rem !important; }
+  }
+
   @media (max-width: 540px) {
     #budget-group { grid-template-columns: repeat(2, 1fr) !important; }
-    #beds-group button { font-size: 0.65rem !important; }
-    #type-group button { font-size: 0.58rem !important; line-height: 1.3 !important; padding: 0 0.3rem !important; }
+    #type-group { grid-template-columns: 1fr 1fr !important; }
+    .buyers-form-panel { padding: 1.5rem 1rem 4rem !important; }
   }
 
   /* ── Suburb chip grid ──────────────────────────────────────────────────── */

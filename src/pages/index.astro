@@ -699,6 +699,74 @@ const faqSchema = {
 
 
 <!-- ════════════════════════════════════════════
+     BUYERS CTA
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base);padding:0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;" class="buyers-cta-grid">
+
+    <!-- Left: dark hero -->
+    <div style="background:#0a0806;padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;opacity:0.15;background:radial-gradient(ellipse at 30% 60%, #c4912a 0%, transparent 65%);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <span style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Off-Market Access · Inner East</span>
+        <h2 class="reveal" style="font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:#f0ece4;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+          Find your next home before it's listed.
+        </h2>
+        <p style="font-size:0.9rem;color:rgba(240,236,228,0.72);line-height:1.85;max-width:42ch;margin-bottom:1.75rem;">
+          The best properties in Bulimba, Hawthorne, Morningside and the wider inner east are often spoken for before a sign goes up. Register your buying criteria and Daniel will contact you when something matches.
+        </p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.6rem;">
+          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(240,236,228,0.7);line-height:1.6;">
+            <span style="color:#c4912a;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Pre-market and off-market properties before they hit realestate.com.au
+          </li>
+          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(240,236,228,0.7);line-height:1.6;">
+            <span style="color:#c4912a;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Daniel matches buyers to properties personally. No call centre, no database blasts
+          </li>
+          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(240,236,228,0.7);line-height:1.6;">
+            <span style="color:#c4912a;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            No obligation. You hear about a property only when it genuinely fits
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right: CTA card -->
+    <div style="background:var(--color-surface-1);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;">
+      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Takes 2 minutes</p>
+      <h3 style="font-family:var(--font-serif);font-size:clamp(1.3rem,2.2vw,1.75rem);font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:0.85rem;">
+        Register your buying criteria.
+      </h3>
+      <p style="font-size:0.875rem;color:#57534e;line-height:1.8;max-width:44ch;margin-bottom:2rem;">
+        Tell Daniel which suburbs, what size, and your budget. Three quick steps. He reviews every registration personally and will follow up the same day.
+      </p>
+      <a href="/buyers"
+        style="display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;align-self:flex-start;"
+        onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'"
+        onclick="gtag('event','buyers_cta_click',{event_category:'buyer',event_label:'Homepage CTA'})">
+        Register My Search
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p style="font-size:0.72rem;color:#a8a29e;margin-top:1rem;line-height:1.6;">
+        30+ Brisbane suburbs covered. Most buyers hear back the same day.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .buyers-cta-grid { }
+  @media (max-width: 760px) {
+    .buyers-cta-grid { grid-template-columns: 1fr !important; }
+    .buyers-cta-grid > div { padding: 3rem 1.5rem !important; }
+    .buyers-cta-grid > div:first-child { padding-bottom: 2.5rem !important; }
+  }
+</style>
+
+
+<!-- ════════════════════════════════════════════
      MARKET UPDATES, EMAIL CAPTURE
 ════════════════════════════════════════════ -->
 <section style="background:var(--color-surface-2);padding:5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
