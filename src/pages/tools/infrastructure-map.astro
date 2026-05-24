@@ -12,6 +12,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 <style>
   .im-shell { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
   @media (min-width: 1024px) { .im-shell { padding: 1.5rem 2rem 4rem; } }
+  @media (max-width: 768px) {
+    .im-shell { padding: 0.75rem 0.75rem 2rem; }
+    .im-eduline { font-size: 0.64rem; padding: 0.4rem 0.7rem; }
+    .im-eduline strong { font-size: 0.58rem; }
+  }
 
   .im-eduline {
     margin-bottom: 0.6rem;
@@ -33,7 +38,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-search-wrap { position: relative; flex: 1; }
   #im-search {
     width: 100%;
-    font-family: var(--font-sans); font-size: 0.95rem;
+    font-family: var(--font-sans); font-size: 1rem;
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
     background: var(--color-surface-4);
@@ -73,7 +78,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   .im-map-wrap { position: relative; }
   #im-map { height: 700px; width: 100%; border: 1px solid rgba(28,25,23,0.1); }
-  @media (max-width: 768px) { #im-map { height: 540px; } }
+  @media (max-width: 768px) {
+    #im-map { height: max(420px, calc(100dvh - 260px)); }
+    /* Larger Leaflet zoom controls for touch */
+    .leaflet-control-zoom a {
+      width: 44px !important; height: 44px !important;
+      line-height: 44px !important; font-size: 1.2rem !important;
+    }
+  }
 
   .im-control {
     position: absolute; z-index: 500;
@@ -113,9 +125,36 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-layer-panel {
     display: none; border-top: 1px solid rgba(28,25,23,0.08);
     width: 300px; padding: 0.4rem 0.5rem 0.7rem;
+    max-height: 70vh; overflow-y: auto;
   }
   .im-layer-panel.open { display: block; }
-  @media (max-width: 480px) { .im-layer-panel { width: 250px; } }
+
+  /* Mobile: layer panel becomes a full-width bottom sheet */
+  @media (max-width: 640px) {
+    .im-control-tr {
+      top: auto !important; bottom: 0; right: 0; left: 0;
+      border-top: 1px solid rgba(28,25,23,0.12);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+    }
+    .im-layer-toggle {
+      width: 100%; justify-content: center; padding: 0.75rem 1rem; font-size: 0.72rem;
+    }
+    .im-layer-panel {
+      width: 100%;
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      max-height: 55vh;
+      overflow-y: auto;
+      padding: 0.5rem 0.75rem 0.75rem;
+    }
+    .im-layer-panel.open { display: grid; }
+    .im-layer-group-head { grid-column: 1 / -1; }
+    .im-layer-row { padding: 0.55rem 0.4rem; }
+    .im-layer-row input { width: 18px; height: 18px; }
+    /* push result drawer above the bottom control bar */
+    #im-result { bottom: 60px; }
+    #im-result.open ~ * {}
+  }
 
   .im-layer-group-head {
     font-family: var(--font-sans);
@@ -159,6 +198,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #im-result.open { transform: translate3d(0,0,0); visibility: visible; }
   @media (min-width: 768px) { #im-result { width: 440px; } }
+  #im-result.kind-propertyBoundary { border-left-color: #9e8c6a; }
   #im-result.kind-stormPipe    { border-left-color: #2a8c9c; }
   #im-result.kind-stormManhole { border-left-color: #1f6f7d; }
   #im-result.kind-gully        { border-left-color: #d77b32; }
@@ -248,7 +288,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </button>
       <div class="im-layer-panel" id="im-layer-panel">
 
-        <p class="im-layer-group-head">Stormwater (BCC)</p>
+        <p class="im-layer-group-head">Cadastre (BCC)</p>
+        <label class="im-layer-row">
+          <input type="checkbox" data-layer="propertyBoundary" checked />
+          <span class="im-swatch"><span class="im-swatch-line" style="background:#9e8c6a;border-top:1px dashed #9e8c6a;height:1px;"></span></span>
+          <span class="im-layer-name">Property boundaries
+            <span class="im-layer-hint">Cadastral parcel outlines</span>
+          </span>
+        </label>
+
+        <p class="im-layer-group-head" style="margin-top:0.4rem;border-top:1px solid rgba(28,25,23,0.07);padding-top:0.7rem;">Stormwater (BCC)</p>
         <label class="im-layer-row">
           <input type="checkbox" data-layer="stormPipe" checked />
           <span class="im-swatch"><span class="im-swatch-line" style="background:#2a8c9c;"></span></span>
@@ -376,6 +425,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 (function () {
   // ── Data sources ──────────────────────────────────────────────────────────
   const SVC = {
+    // BCC Cadastre (rendered first — sits under all infrastructure lines)
+    propertyBoundary: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/property_boundaries_parcel/FeatureServer/0',
     // BCC Stormwater
     stormPipe:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Pipe_Existing/FeatureServer/0',
     stormManhole: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Manhole_Existing/FeatureServer/0',
@@ -390,7 +441,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     hydrant:      'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/15',
   };
 
-  const STYLE = {
+  const IS_POLYGON = new Set(['propertyBoundary']);
+
+  const STYLE: Record<string,any> = {
+    propertyBoundary: { color: '#9e8c6a', weight: 1.2, opacity: 0.5, fillColor: '#c4912a', fillOpacity: 0.04 },
     stormPipe:    { color: '#2a8c9c', weight: 2.4, opacity: 0.9 },
     stormManhole: { radius: 4,   fillColor: '#1f6f7d', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
     gully:        { radius: 3.5, fillColor: '#d77b32', color: '#fff', weight: 1.3, fillOpacity: 0.95 },
@@ -406,6 +460,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const IS_POINT = new Set(['stormManhole','gully','sewerManhole','hydrant']);
 
   const OUT_FIELDS: Record<string,string> = {
+    propertyBoundary: 'OBJECTID,LOTPLAN,LOT,PLAN_,HOUSE_NUMBER,CORRIDOR_NAME,SUBURB,LOT_AREA,TENURE_DESC,PARCEL_TYP_DESC',
     stormPipe:    'OBJECTID,ASSETID,PIPETYPE,DIAMETER,WIDTH,USIL,DSIL,UPSTREAMDEPTHINVERT,DOWNSTREAMDEPTHINVERT,AVERAGEDEPTH,MEASUREDLENGTH,OWNER,STATUS',
     stormManhole: 'OBJECTID,ASSETID,MANHOLETYPE,DIAMETER,LENGTH,WIDTH,SL,IL,OWNER,STATUS',
     gully:        'OBJECTID,ASSETID,INLETTYPE,OUTLETTYPE,DIAMETER,LENGTH,WIDTH,SL,OWNER,STATUS',
@@ -419,6 +474,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   };
 
   const TITLES: Record<string,string> = {
+    propertyBoundary: 'Property parcel',
     stormPipe:    'Stormwater pipe',
     stormManhole: 'Stormwater manhole',
     gully:        'Gully / kerb inlet',
@@ -432,6 +488,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   };
 
   const NOTES: Record<string,string> = {
+    propertyBoundary: 'Cadastral parcel boundaries from BCC open data. These are the legal lot boundaries, not necessarily fence lines. Cross-reference with a survey or title search before relying on any boundary for construction or fencing decisions.',
     stormPipe:    'Where a council stormwater pipe runs through private land, an easement is usually registered. The easement footprint is wider than the pipe and limits what can be built above it.',
     stormManhole: 'Manholes mark stormwater alignment and access. They are usually located at pipe junctions, bends, or changes of grade.',
     gully:        'Gullies and kerb inlets are where surface water enters the underground network. Their location influences how stormwater flows on and off the property in heavy rain.',
@@ -447,6 +504,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
 
   const active: Record<string,boolean> = {
+    propertyBoundary: true,
     stormPipe: true, stormManhole: false, gully: true, surfaceDrain: false,
     sewerMain: true, sewerService: true, waterMain: true, waterService: true,
     sewerManhole: false, hydrant: false,
@@ -605,6 +663,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   function headlineFor(key: string, a: Record<string,any>) {
     const num = (v: any) => (v == null || v === '') ? null : v;
+    if (key === 'propertyBoundary') {
+      const addr = [a.HOUSE_NUMBER, a.CORRIDOR_NAME].filter(Boolean).join(' ');
+      return addr || a.LOTPLAN || TITLES[key];
+    }
     if (key === 'stormPipe') {
       const dia = num(a.DIAMETER) ? `DN${a.DIAMETER}` : '';
       return [dia, a.PIPETYPE].filter(Boolean).join(' · ') || TITLES[key];
@@ -637,7 +699,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   function renderAttrs(key: string, a: Record<string,any>): [string,string][] {
     const rows: [string,string][] = [];
     const push = (k: string, v: any) => { if (v != null && v !== '') rows.push([k, String(v)]); };
-    if (key === 'stormPipe') {
+    if (key === 'propertyBoundary') {
+      push('Lot/Plan', a.LOTPLAN);
+      const addr = [a.HOUSE_NUMBER, a.CORRIDOR_NAME].filter(Boolean).join(' ');
+      if (addr) push('Address', addr);
+      push('Suburb', a.SUBURB);
+      push('Area', a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : null);
+      push('Tenure', a.TENURE_DESC);
+      push('Type', a.PARCEL_TYP_DESC);
+    } else if (key === 'stormPipe') {
       push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
       push('Type', a.PIPETYPE);
       push('Length', a.MEASUREDLENGTH ? `${(+a.MEASUREDLENGTH).toFixed(1)} m` : null);
