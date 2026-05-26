@@ -327,6 +327,83 @@ const buyerSchema = {
   </div>
 </section>
 
+<!-- SEO: indexable suburb list + buyer FAQ -->
+<section style="background:var(--color-surface-0);padding:4rem 1.5rem 5rem;">
+  <div style="max-width:780px;margin:0 auto;">
+
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin:0 0 0.5rem;">Suburbs covered</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:#1c1917;margin:0 0 1rem;line-height:1.2;">Off-market and pre-market access across Brisbane's inner east</h2>
+    <p style="font-size:0.9rem;color:#57534e;line-height:1.8;max-width:58ch;margin:0 0 1.75rem;">Daniel works with buyers across the following suburbs. Properties are matched to registered buyers before any public listing is created.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem 0.6rem;margin-bottom:3rem;">
+      {['Balmoral','Bulimba','Camp Hill','Cannon Hill','Carina','Carina Heights','Carindale','Coorparoo','East Brisbane','Eight Mile Plains','Greenslopes','Hamilton','Hawthorne','Holland Park','Holland Park West','Hemmant','Morningside','Mount Gravatt East','Murarrie','New Farm','Newstead','Norman Park','Tingalpa','Teneriffe','Woolloongabba'].map(s => (
+        <span style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;color:#57534e;background:var(--color-surface-1);border:1px solid rgba(28,25,23,0.1);padding:0.3rem 0.7rem;">{s}</span>
+      ))}
+    </div>
+
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin:0 0 1.25rem;">Common questions</p>
+
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          What is an off-market property?
+          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">An off-market property is sold without ever being listed on realestate.com.au or Domain. The agent approaches a small group of registered buyers directly and the transaction completes quietly, often without a sign or open homes.</p>
+      </details>
+
+      <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          What is a pre-market property?
+          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">A pre-market property is one being prepared for sale that has not yet been publicly listed. Registered buyers get access in the days or weeks before the campaign launches. If someone makes an acceptable offer in that window, the sale is done before the portals are ever involved.</p>
+      </details>
+
+      <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          How does Daniel's buyer matching service work?
+          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">You register your brief: the suburbs you want, the property type, your bedroom requirement and your budget. When a property that fits comes up, Daniel contacts you directly before it is publicly listed. There is no cost and no obligation to proceed.</p>
+      </details>
+
+      <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          Is there any cost to registering?
+          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">No. Registering your search is free. Daniel is paid by the vendor when a sale completes, not by buyers. There is no commitment required and you can update or cancel your brief at any time by contacting Daniel directly.</p>
+      </details>
+
+      <details style="border-top:1px solid rgba(28,25,23,0.1);border-bottom:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          Which suburbs have the most off-market activity?
+          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">Bulimba, Hawthorne, Balmoral and Morningside see the most consistent off-market and pre-market activity. Supply in these suburbs is limited and buyer demand is strong, which means vendors can often transact quietly without needing a full public campaign.</p>
+      </details>
+    </div>
+
+    <p style="font-size:0.8rem;color:#78716c;line-height:1.7;margin:2rem 0 0;">
+      For more context on how off-market and pre-market selling works in Brisbane, read:
+      <a href="/insights/off-market-pre-market-properties-brisbane-inner-east" style="color:#c4912a;font-weight:600;">How to Access Off-Market and Pre-Market Properties in Brisbane's Inner East &rarr;</a>
+    </p>
+
+  </div>
+</section>
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is an off-market property?", "acceptedAnswer": { "@type": "Answer", "text": "An off-market property is sold without being listed on realestate.com.au or Domain. The agent contacts a small group of registered buyers directly and the transaction completes without a public listing." } },
+    { "@type": "Question", "name": "What is a pre-market property?", "acceptedAnswer": { "@type": "Answer", "text": "A pre-market property is one being prepared for sale that has not yet been publicly listed. Registered buyers get access in the days or weeks before the public campaign launches." } },
+    { "@type": "Question", "name": "How does Daniel's buyer matching service work?", "acceptedAnswer": { "@type": "Answer", "text": "Register your suburb, property type, bedrooms and budget. When a property that matches comes up, Daniel contacts you before it is publicly listed. There is no cost and no obligation." } },
+    { "@type": "Question", "name": "Is there any cost to registering as a buyer?", "acceptedAnswer": { "@type": "Answer", "text": "No. Registering is free. Daniel is paid by the vendor on a completed sale, not by buyers." } }
+  ]
+})}</script>
+
 <style is:global>
   .resources-grid { }
   @media (max-width: 640px) {
