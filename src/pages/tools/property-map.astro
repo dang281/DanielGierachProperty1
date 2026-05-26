@@ -466,6 +466,67 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
   }
   #pm-search { background: #ffffff !important; color: #1c1917 !important; }
   #pm-search::placeholder { color: #a8a29e !important; }
+
+  /* Result body: injected via innerHTML so must be global to avoid Astro scope hash */
+  #pm-result-body .pm-zone-name-row { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem; }
+  #pm-result-body .pm-zone-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.2); }
+  #pm-result-body .pm-result-name {
+    font-family: Georgia, serif; font-size: 1rem; font-weight: 400;
+    color: rgba(240,236,228,0.95) !important; line-height: 1.25; margin: 0;
+  }
+  #pm-result-body .pm-result-height {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+    color: #c4912a !important; margin-bottom: 0.5rem; display: block;
+  }
+  #pm-result-body .pm-result-summary {
+    font-size: 0.78rem; color: rgba(240,236,228,0.78) !important;
+    line-height: 1.65; margin-bottom: 0.5rem; display: block;
+  }
+  #pm-result-body .pm-result-buyers {
+    font-size: 0.74rem; color: rgba(240,236,228,0.55) !important;
+    line-height: 1.6; font-style: italic;
+    border-top: 1px solid rgba(240,236,228,0.1);
+    padding-top: 0.5rem; margin-bottom: 0.6rem; display: block;
+  }
+  #pm-result-body .pm-bcc-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #c4912a !important; text-decoration: none;
+  }
+  #pm-result-body .pm-result-title {
+    font-family: Georgia, serif; font-size: 1.05rem; font-weight: 400;
+    color: rgba(240,236,228,0.95) !important; line-height: 1.25; margin-bottom: 0.5rem; display: block;
+  }
+  #pm-result-body .pm-result-interp {
+    font-size: 0.84rem; color: rgba(240,236,228,0.78) !important; line-height: 1.65;
+    margin-bottom: 0.65rem; padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(240,236,228,0.08); display: block;
+  }
+  #pm-result-body .pm-attrs {
+    display: grid; grid-template-columns: max-content 1fr;
+    gap: 0.3rem 0.85rem; font-size: 0.78rem; line-height: 1.55;
+  }
+  #pm-result-body .pm-attrs dt {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(240,236,228,0.42) !important; align-self: center;
+  }
+  #pm-result-body .pm-attrs dd { color: rgba(240,236,228,0.85) !important; margin: 0; }
+
+  /* Leaflet attribution: minimise so it doesn't overlap mobile call bar */
+  .leaflet-control-attribution {
+    font-size: 0.55rem !important;
+    background: rgba(10,8,6,0.75) !important;
+    color: rgba(240,236,228,0.5) !important;
+    padding: 2px 6px !important;
+    max-width: calc(100vw - 1rem) !important;
+  }
+  .leaflet-control-attribution a { color: #c4912a !important; }
+  /* On mobile push attribution above the fixed LAYERS bar */
+  @media (max-width: 640px) {
+    .leaflet-bottom.leaflet-right {
+      bottom: calc(78px + env(safe-area-inset-bottom) + 48px) !important;
+    }
+  }
 </style>
 
 <!-- Inject BCC zone color table and zone definitions -->
@@ -892,8 +953,9 @@ window.PM_ZONES = {
       maxBounds: BNE_BOUNDS, minZoom: 11, maxBoundsViscosity: 0.5, tap: false,
     }).setView([-27.46, 153.04], 13);
 
+    map.attributionControl.setPrefix('');
     (window as any).L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO &middot; BCC &amp; QUU open data',
+      attribution: '&copy; OSM &middot; CARTO &middot; BCC &middot; QUU',
       subdomains: 'abcd', maxZoom: 19,
     }).addTo(map);
 
