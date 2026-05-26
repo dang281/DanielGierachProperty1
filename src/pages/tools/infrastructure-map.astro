@@ -43,7 +43,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
     background: var(--color-surface-4);
-    color: var(--color-text-primary);
+    color: #44403c;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -158,7 +158,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     border: 1px solid rgba(196,145,42,0.18);
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
-  .im-control-tr { top: 12px; right: 12px; }
+  /* Shift layers left to leave room for the compass (52px wide + 8px gap) */
+  .im-control-tr { top: 12px; right: 72px; }
+
+  /* Compass: top-right corner of the map */
+  #im-compass {
+    position: absolute; top: 12px; right: 12px; z-index: 500;
+    width: 48px; height: 48px;
+    background: rgba(10,8,6,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(196,145,42,0.18);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
 
   #im-status {
     position: absolute; top: 12px; left: 12px; z-index: 500;
@@ -195,6 +208,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   /* Mobile: layer panel becomes a full-width bottom sheet fixed to viewport */
   @media (max-width: 640px) {
+    /* Compass stays top-right on mobile, reset layers offset */
+    .im-control-tr { right: 12px !important; }
+    #im-compass { position: absolute; top: 12px; right: 12px; }
+
     /* Fixed to viewport so it never affects page layout or scroll.
        bottom offset clears the mobile call bar (78px + safe-area) */
     .im-control-tr {
@@ -432,6 +449,24 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </div>
 
     <div id="im-status">Click any pipe or feature, or search an address.</div>
+
+    <!-- Compass rose (top-right) -->
+    <div id="im-compass" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- North pointer (gold) -->
+        <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
+        <!-- South pointer (muted) -->
+        <polygon points="18,32 21,18 18,21 15,18" fill="rgba(240,236,228,0.25)"/>
+        <!-- East pointer (muted) -->
+        <polygon points="32,18 18,15 21,18 18,21" fill="rgba(240,236,228,0.18)"/>
+        <!-- West pointer (muted) -->
+        <polygon points="4,18 18,15 15,18 18,21" fill="rgba(240,236,228,0.18)"/>
+        <!-- Centre dot -->
+        <circle cx="18" cy="18" r="2" fill="rgba(240,236,228,0.6)"/>
+        <!-- N label -->
+        <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#c4912a" letter-spacing="0.05em">N</text>
+      </svg>
+    </div>
 
     <!-- Layer toggle (top-right) -->
     <div class="im-control im-control-tr">
