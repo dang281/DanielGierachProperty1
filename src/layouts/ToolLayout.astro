@@ -8,12 +8,13 @@ interface Props {
   tool: string;
   phase?: string;
   resourceSlug?: string;
+  manifest?: string;
 }
 
-const { title, description, tool, phase = 'Seller Tools', resourceSlug } = Astro.props;
+const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest } = Astro.props;
 ---
 
-<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true}>
+<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest}>
 
 <style is:global>
   /* Tool pages lock the nav into its scrolled (dark glass) state from first paint */

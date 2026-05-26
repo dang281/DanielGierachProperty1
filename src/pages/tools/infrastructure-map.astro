@@ -7,6 +7,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   tool="Infrastructure Map"
   phase="Buyer Tools"
   description="See stormwater pipes, sewer mains and water mains overlaid on one map for any Brisbane address. Useful for understanding easements, drainage paths and infrastructure constraints before buying or developing."
+  manifest="/manifest-infrastructure-map.webmanifest"
 >
 
 <style>
@@ -73,9 +74,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #im-gps-btn.locating { color: var(--color-gold); }
   .im-result-interp {
-    font-size: 0.84rem; color: var(--color-text-primary); line-height: 1.65;
+    font-size: 0.84rem; color: rgba(240,236,228,0.78); line-height: 1.65;
     margin-bottom: 0.65rem; padding-bottom: 0.65rem;
-    border-bottom: 1px solid rgba(28,25,23,0.08);
+    border-bottom: 1px solid rgba(240,236,228,0.08);
   }
   #im-share-btn {
     display: inline-flex; align-items: center; gap: 0.4rem;
@@ -108,22 +109,24 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     #im-gps-btn { width: 48px; height: 48px; }
     .im-ac-item { padding: 1rem 1rem; min-height: 48px; font-size: 0.92rem; }
     .im-eduline { display: none; }
+    /* With tool-header hidden, map gets more screen. 72px nav + 61px search = 133px. */
+    #im-map { height: calc(100svh - 133px) !important; }
   }
   #im-autocomplete {
     position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--color-surface-4);
-    border: 1px solid rgba(28,25,23,0.18); border-top: none;
+    background: rgba(10,8,6,0.97);
+    border: 1px solid rgba(196,145,42,0.2); border-top: none;
     z-index: 1100; max-height: 240px; overflow-y: auto;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
   }
   .im-ac-item {
     padding: 0.85rem 1rem; font-size: 0.85rem;
-    color: var(--color-text-primary); cursor: pointer;
-    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4;
+    color: rgba(240,236,228,0.85); cursor: pointer;
+    border-bottom: 1px solid rgba(240,236,228,0.07); line-height: 1.4;
     min-height: 44px; display: flex; align-items: center;
   }
   .im-ac-item:last-child { border-bottom: none; }
-  .im-ac-item:hover, .im-ac-item:active { background: rgba(197,160,60,0.08); }
+  .im-ac-item:hover, .im-ac-item:active { background: rgba(196,145,42,0.1); }
 
   .im-map-wrap { position: relative; }
   #im-map {
@@ -145,20 +148,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   .im-control {
     position: absolute; z-index: 500;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(28,25,23,0.1);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    background: rgba(10,8,6,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(196,145,42,0.18);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
   .im-control-tr { top: 12px; right: 12px; }
 
   #im-status {
     position: absolute; top: 12px; left: 12px; z-index: 500;
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(28,25,23,0.08);
+    background: rgba(10,8,6,0.88);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(196,145,42,0.15);
     padding: 0.45rem 0.85rem;
-    font-size: 0.72rem; color: var(--color-text-secondary);
+    font-size: 0.72rem; color: rgba(240,236,228,0.65);
     line-height: 1.4; max-width: 280px;
     pointer-events: none; transition: opacity 0.3s;
   }
@@ -172,14 +175,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     background: transparent; border: none; cursor: pointer;
     font-family: var(--font-sans);
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--color-text-primary);
+    text-transform: uppercase; color: rgba(240,236,228,0.85);
   }
-  .im-layer-toggle:hover { background: rgba(197,160,60,0.08); }
+  .im-layer-toggle:hover { background: rgba(196,145,42,0.1); }
   .im-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
   .im-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
 
   .im-layer-panel {
-    display: none; border-top: 1px solid rgba(28,25,23,0.08);
+    display: none; border-top: 1px solid rgba(240,236,228,0.08);
     width: 300px; padding: 0.4rem 0.5rem 0.7rem;
     max-height: 70vh; overflow-y: auto;
   }
@@ -224,7 +227,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-layer-group-head {
     font-family: var(--font-sans);
     font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--color-text-muted);
+    text-transform: uppercase; color: rgba(196,145,42,0.8);
     padding: 0.55rem 0.6rem 0.25rem;
   }
 
@@ -233,33 +236,33 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.45rem 0.6rem;
     cursor: pointer; user-select: none; transition: background 0.15s;
   }
-  .im-layer-row:hover { background: rgba(197,160,60,0.06); }
+  .im-layer-row:hover { background: rgba(196,145,42,0.07); }
   .im-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
   .im-swatch { width: 24px; height: 14px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
   .im-swatch-line { width: 24px; height: 3px; }
   .im-swatch-line-dash { width: 24px; height: 3px; background-image: repeating-linear-gradient(90deg, currentColor 0, currentColor 5px, transparent 5px, transparent 9px); }
-  .im-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid white; box-shadow: 0 0 0 1px rgba(0,0,0,0.2); }
+  .im-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(240,236,228,0.6); box-shadow: 0 0 0 1px rgba(0,0,0,0.3); }
   .im-layer-name {
     font-family: var(--font-sans);
     font-size: 0.74rem; font-weight: 600;
-    color: var(--color-text-primary); line-height: 1.3; flex: 1;
+    color: rgba(240,236,228,0.9); line-height: 1.3; flex: 1;
   }
   .im-layer-hint {
     display: block; font-weight: 400;
-    font-size: 0.66rem; color: var(--color-text-muted); margin-top: 0.1rem;
+    font-size: 0.66rem; color: rgba(240,236,228,0.42); margin-top: 0.1rem;
   }
 
   #im-result {
     position: absolute; left: 14px; bottom: 14px; z-index: 600;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: rgba(10,8,6,0.96);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-left: 3px solid var(--color-gold);
-    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
-    padding: 0.95rem 1.15rem; max-width: 440px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    padding: 0 1.15rem 1.0rem; max-width: 440px;
     width: calc(100% - 28px);
     transform: translate3d(0, calc(100% + 24px), 0);
     transition: transform 0.28s cubic-bezier(0.2,0.7,0.2,1), border-left-color 0.2s;
-    visibility: hidden;
+    visibility: hidden; overflow: hidden;
   }
   #im-result.open { transform: translate3d(0,0,0); visibility: visible; }
   @media (min-width: 768px) { #im-result { width: 440px; } }
@@ -273,26 +276,55 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-result.kind-waterMain    { border-left-color: #2c7fc4; }
   #im-result.kind-hydrant      { border-left-color: #c43a3a; }
 
+  /* Header bleeds to the edges of the drawer for a colour-band effect */
   .im-result-head {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 0.5rem; margin-bottom: 0.55rem;
+    gap: 0.5rem;
+    margin: 0 -1.15rem 0.7rem;
+    padding: 0.7rem 1.15rem;
+    border-bottom: 1px solid rgba(240,236,228,0.06);
   }
+  /* Per-kind header tints */
+  #im-result.kind-propertyBoundary .im-result-head { background: rgba(158,140,106,0.14); }
+  #im-result.kind-stormPipe    .im-result-head { background: rgba(42,140,156,0.14); }
+  #im-result.kind-stormManhole .im-result-head { background: rgba(31,111,125,0.14); }
+  #im-result.kind-gully        .im-result-head { background: rgba(215,123,50,0.14); }
+  #im-result.kind-surfaceDrain .im-result-head { background: rgba(77,173,184,0.14); }
+  #im-result.kind-sewerMain    .im-result-head { background: rgba(138,110,47,0.16); }
+  #im-result.kind-sewerService .im-result-head { background: rgba(184,144,74,0.12); }
+  #im-result.kind-sewerManhole .im-result-head { background: rgba(108,83,32,0.16); }
+  #im-result.kind-waterMain    .im-result-head { background: rgba(44,127,196,0.14); }
+  #im-result.kind-waterService .im-result-head { background: rgba(111,181,224,0.1); }
+  #im-result.kind-hydrant      .im-result-head { background: rgba(196,58,58,0.14); }
+  /* Per-kind eyebrow colors */
+  #im-result.kind-propertyBoundary .im-eyebrow { color: #b8a27c; }
+  #im-result.kind-stormPipe    .im-eyebrow { color: #3ab8ca; }
+  #im-result.kind-stormManhole .im-eyebrow { color: #2a9aaa; }
+  #im-result.kind-gully        .im-eyebrow { color: #e0894a; }
+  #im-result.kind-surfaceDrain .im-eyebrow { color: #5ac8d4; }
+  #im-result.kind-sewerMain    .im-eyebrow { color: #c4a054; }
+  #im-result.kind-sewerService .im-eyebrow { color: #c4a054; }
+  #im-result.kind-sewerManhole .im-eyebrow { color: #a07840; }
+  #im-result.kind-waterMain    .im-eyebrow { color: #4a9fd4; }
+  #im-result.kind-waterService .im-eyebrow { color: #6ab8e0; }
+  #im-result.kind-hydrant      .im-eyebrow { color: #e05050; }
+
   .im-eyebrow {
     font-family: var(--font-sans);
     font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--color-text-muted);
+    text-transform: uppercase; color: rgba(240,236,228,0.5);
   }
   .im-close {
     background: transparent; border: none; cursor: pointer;
-    width: 26px; height: 26px;
+    width: 32px; height: 32px;
     display: inline-flex; align-items: center; justify-content: center;
-    color: var(--color-text-muted); padding: 0;
+    color: rgba(240,236,228,0.4); padding: 0;
     transition: color 0.15s, background 0.15s;
   }
-  .im-close:hover { color: var(--color-text-primary); background: rgba(28,25,23,0.06); }
+  .im-close:hover { color: rgba(240,236,228,0.9); background: rgba(240,236,228,0.08); }
   #im-result h3 {
     font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400;
-    color: var(--color-text-primary); line-height: 1.25; margin-bottom: 0.5rem;
+    color: rgba(240,236,228,0.95); line-height: 1.25; margin-bottom: 0.5rem;
   }
   .im-attrs {
     display: grid; grid-template-columns: max-content 1fr;
@@ -301,15 +333,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-attrs dt {
     font-family: var(--font-sans);
     font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--color-text-muted); align-self: center;
+    text-transform: uppercase; color: rgba(240,236,228,0.42); align-self: center;
   }
-  .im-attrs dd { color: var(--color-text-primary); margin: 0; }
-  .im-result-note {
-    margin-top: 0.65rem; font-size: 0.74rem;
-    color: var(--color-text-muted); line-height: 1.6;
-    font-style: italic;
-    border-top: 1px solid rgba(28,25,23,0.08); padding-top: 0.55rem;
-  }
+  .im-attrs dd { color: rgba(240,236,228,0.85); margin: 0; }
 
   .im-foot {
     margin-top: 0.85rem;
@@ -323,6 +349,48 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     color: var(--color-gold); text-decoration: none; white-space: nowrap;
   }
   .im-foot a:hover { color: #d4af4a; }
+
+  /* ── First-load guidance card ───────────────────────────────────────────── */
+  #im-guide {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 599;
+    background: rgba(10,8,6,0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(196,145,42,0.2);
+    box-shadow: 0 8px 36px rgba(0,0,0,0.5);
+    padding: 1.75rem 2rem;
+    text-align: center;
+    width: min(300px, calc(100% - 3rem));
+    transition: opacity 0.35s, transform 0.35s;
+    pointer-events: auto;
+  }
+  #im-guide svg { color: var(--color-gold); margin-bottom: 0.85rem; display: block; margin-left: auto; margin-right: auto; }
+  #im-guide p {
+    font-family: var(--font-sans); font-size: 0.82rem;
+    color: rgba(240,236,228,0.72); line-height: 1.65; margin-bottom: 1.1rem;
+  }
+  #im-guide-dismiss {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--color-gold); color: #0a0806;
+    font-family: var(--font-sans); font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; padding: 0.6rem 1.35rem;
+    transition: background 0.2s;
+  }
+  #im-guide-dismiss:hover { background: #d4af4a; }
+  #im-guide.hidden {
+    opacity: 0; pointer-events: none;
+    transform: translate(-50%, calc(-50% + 8px));
+  }
+</style>
+
+<style is:global>
+  /* App-mode on mobile: hide the tool page header so nav leads straight to search */
+  @media (max-width: 640px) {
+    body.tool-page .tool-header { display: none; }
+    body.tool-page .tool-content { padding-top: 0 !important; }
+  }
 </style>
 
 <div class="im-shell">
@@ -346,6 +414,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   <div class="im-map-wrap">
     <div id="im-map"></div>
+
+    <!-- First-load guidance card -->
+    <div id="im-guide" role="status" aria-live="polite">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v3M11 14h.01"/></svg>
+      <p>Search a Brisbane address above, or zoom in past suburb level to load pipes and easements.</p>
+      <button id="im-guide-dismiss">Start exploring</button>
+    </div>
 
     <div id="im-status">Click any pipe or feature, or search an address.</div>
 
@@ -454,7 +529,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <h3 id="im-result-title"></h3>
       <p class="im-result-interp" id="im-result-interp"></p>
       <dl class="im-attrs" id="im-result-attrs"></dl>
-      <p class="im-result-note" id="im-result-note"></p>
     </div>
   </div>
 
@@ -624,6 +698,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const pLat = sp.get('lat'), pLng = sp.get('lng'), pZ = sp.get('z');
     if (pLat && pLng) {
       map.setView([parseFloat(pLat), parseFloat(pLng)], pZ ? parseInt(pZ) : 17);
+      dismissGuide();
     }
 
     map.on('moveend', loadVisible);
@@ -675,6 +750,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       });
   }
 
+  function dismissGuide() {
+    document.getElementById('im-guide')?.classList.add('hidden');
+  }
+
   function loadVisible() {
     const s = document.getElementById('im-status')!;
     const z = map.getZoom();
@@ -683,6 +762,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       s.textContent = 'Zoom in to load infrastructure (level 14+).';
       return;
     }
+    dismissGuide();
     s.textContent = 'Loading assets...';
     Object.keys(SVC).forEach(loadOne);
     setTimeout(() => { if (map.getZoom() >= 14) s.textContent = 'Assets loaded. Click any pipe or feature.'; }, 700);
@@ -756,7 +836,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const rows = renderAttrs(key, attrs);
     document.getElementById('im-result-attrs')!.innerHTML =
       rows.map(([k, v]: [string,string]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
-    document.getElementById('im-result-note')!.textContent = NOTES[key] || '';
 
     // Close layer panel if open so the result drawer isn't obscured
     const panel = document.getElementById('im-layer-panel');
@@ -922,6 +1001,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const btn = document.getElementById('im-search-btn') as HTMLButtonElement;
     s.textContent = 'Locating address...';
     btn.disabled = true;
+    dismissGuide();
     document.getElementById('im-autocomplete')!.style.display = 'none';
     try {
       const { lat, lon } = await geocode(v);
@@ -949,6 +1029,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       if (!(e.target as Element).closest('#im-search-wrap'))
         document.getElementById('im-autocomplete')!.style.display = 'none';
     });
+
+    document.getElementById('im-guide-dismiss')?.addEventListener('click', dismissGuide);
 
     const toggle = document.getElementById('im-layer-toggle')!;
     const panel  = document.getElementById('im-layer-panel')!;
@@ -985,6 +1067,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           pos => {
             gpsBtn.disabled = false;
             gpsBtn.classList.remove('locating');
+            dismissGuide();
             flyAndIdentify(pos.coords.latitude, pos.coords.longitude);
           },
           () => {
