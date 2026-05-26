@@ -29,37 +29,66 @@ const globalSchema = {
         "longitude": 153.0523
       },
       "areaServed": [
-        { "@type": "City", "name": "Brisbane" },
-        { "@type": "City", "name": "Balmoral" },
-        { "@type": "City", "name": "Belmont" },
-        { "@type": "City", "name": "Brisbane CBD" },
-        { "@type": "City", "name": "Bulimba" },
-        { "@type": "City", "name": "Camp Hill" },
-        { "@type": "City", "name": "Cannon Hill" },
-        { "@type": "City", "name": "Carina" },
-        { "@type": "City", "name": "Carina Heights" },
-        { "@type": "City", "name": "Carindale" },
-        { "@type": "City", "name": "Coorparoo" },
-        { "@type": "City", "name": "East Brisbane" },
-        { "@type": "City", "name": "Fortitude Valley" },
-        { "@type": "City", "name": "Greenslopes" },
-        { "@type": "City", "name": "Hawthorne" },
-        { "@type": "City", "name": "Hemmant" },
-        { "@type": "City", "name": "Holland Park" },
-        { "@type": "City", "name": "Holland Park West" },
-        { "@type": "City", "name": "Kangaroo Point" },
-        { "@type": "City", "name": "Morningside" },
-        { "@type": "City", "name": "Mount Gravatt" },
-        { "@type": "City", "name": "Mount Gravatt East" },
-        { "@type": "City", "name": "Murarrie" },
-        { "@type": "City", "name": "New Farm" },
-        { "@type": "City", "name": "Norman Park" },
-        { "@type": "City", "name": "Seven Hills" },
-        { "@type": "City", "name": "Tarragindi" },
-        { "@type": "City", "name": "Teneriffe" },
-        { "@type": "City", "name": "Tingalpa" },
-        { "@type": "City", "name": "Upper Mount Gravatt" },
-        { "@type": "City", "name": "Woolloongabba" }
+        { "@type": "Place", "name": "Brisbane" },
+        { "@type": "Place", "name": "Annerley QLD" },
+        { "@type": "Place", "name": "Ascot QLD" },
+        { "@type": "Place", "name": "Ashgrove QLD" },
+        { "@type": "Place", "name": "Auchenflower QLD" },
+        { "@type": "Place", "name": "Balmoral QLD" },
+        { "@type": "Place", "name": "Bardon QLD" },
+        { "@type": "Place", "name": "Belmont QLD" },
+        { "@type": "Place", "name": "Bowen Hills QLD" },
+        { "@type": "Place", "name": "Brisbane CBD QLD" },
+        { "@type": "Place", "name": "Bulimba QLD" },
+        { "@type": "Place", "name": "Camp Hill QLD" },
+        { "@type": "Place", "name": "Cannon Hill QLD" },
+        { "@type": "Place", "name": "Carina QLD" },
+        { "@type": "Place", "name": "Carina Heights QLD" },
+        { "@type": "Place", "name": "Carindale QLD" },
+        { "@type": "Place", "name": "Chelmer QLD" },
+        { "@type": "Place", "name": "Clayfield QLD" },
+        { "@type": "Place", "name": "Coorparoo QLD" },
+        { "@type": "Place", "name": "Corinda QLD" },
+        { "@type": "Place", "name": "Dutton Park QLD" },
+        { "@type": "Place", "name": "East Brisbane QLD" },
+        { "@type": "Place", "name": "Fortitude Valley QLD" },
+        { "@type": "Place", "name": "Graceville QLD" },
+        { "@type": "Place", "name": "Greenslopes QLD" },
+        { "@type": "Place", "name": "Hamilton QLD" },
+        { "@type": "Place", "name": "Hawthorne QLD" },
+        { "@type": "Place", "name": "Hemmant QLD" },
+        { "@type": "Place", "name": "Highgate Hill QLD" },
+        { "@type": "Place", "name": "Holland Park QLD" },
+        { "@type": "Place", "name": "Holland Park West QLD" },
+        { "@type": "Place", "name": "Indooroopilly QLD" },
+        { "@type": "Place", "name": "Kangaroo Point QLD" },
+        { "@type": "Place", "name": "Kelvin Grove QLD" },
+        { "@type": "Place", "name": "Lutwyche QLD" },
+        { "@type": "Place", "name": "Milton QLD" },
+        { "@type": "Place", "name": "Morningside QLD" },
+        { "@type": "Place", "name": "Mount Gravatt QLD" },
+        { "@type": "Place", "name": "Mount Gravatt East QLD" },
+        { "@type": "Place", "name": "Murarrie QLD" },
+        { "@type": "Place", "name": "New Farm QLD" },
+        { "@type": "Place", "name": "Newstead QLD" },
+        { "@type": "Place", "name": "Norman Park QLD" },
+        { "@type": "Place", "name": "Nundah QLD" },
+        { "@type": "Place", "name": "Paddington QLD" },
+        { "@type": "Place", "name": "Red Hill QLD" },
+        { "@type": "Place", "name": "Seven Hills QLD" },
+        { "@type": "Place", "name": "Sherwood QLD" },
+        { "@type": "Place", "name": "Spring Hill QLD" },
+        { "@type": "Place", "name": "St Lucia QLD" },
+        { "@type": "Place", "name": "Stones Corner QLD" },
+        { "@type": "Place", "name": "Tarragindi QLD" },
+        { "@type": "Place", "name": "Teneriffe QLD" },
+        { "@type": "Place", "name": "Tingalpa QLD" },
+        { "@type": "Place", "name": "Toowong QLD" },
+        { "@type": "Place", "name": "Upper Mount Gravatt QLD" },
+        { "@type": "Place", "name": "West End QLD" },
+        { "@type": "Place", "name": "Windsor QLD" },
+        { "@type": "Place", "name": "Woolloongabba QLD" },
+        { "@type": "Place", "name": "Yeronga QLD" }
       ],
       "review": [
         {
@@ -143,7 +172,74 @@ const globalSchema = {
         "Property Valuation",
         "Auction Strategy",
         "Character Home Sales",
-        "Queenslander Home Sales"
+        "Queenslander Home Sales",
+        "Queenslander homes",
+        "Character homes Brisbane",
+        "Post-war homes Brisbane",
+        "Prestige inner east property",
+        "Off-market property Brisbane",
+        "Pre-sale property preparation",
+        "Brisbane property appraisal",
+        "Queensland auction campaigns",
+        "Bulimba real estate",
+        "Hawthorne real estate",
+        "Balmoral real estate",
+        "Morningside real estate",
+        "Norman Park real estate",
+        "Camp Hill real estate",
+        "Cannon Hill real estate",
+        "Carina real estate",
+        "Coorparoo real estate",
+        "East Brisbane real estate",
+        "Seven Hills real estate",
+        "Murarrie real estate",
+        "Tingalpa real estate",
+        "Carina Heights real estate",
+        "Carindale real estate",
+        "Annerley real estate",
+        "Ascot real estate",
+        "Ashgrove real estate",
+        "Auchenflower real estate",
+        "Bardon real estate",
+        "Belmont real estate",
+        "Bowen Hills real estate",
+        "Brisbane CBD real estate",
+        "Chelmer real estate",
+        "Clayfield real estate",
+        "Corinda real estate",
+        "Dutton Park real estate",
+        "Fortitude Valley real estate",
+        "Graceville real estate",
+        "Greenslopes real estate",
+        "Hamilton real estate",
+        "Hemmant real estate",
+        "Highgate Hill real estate",
+        "Holland Park real estate",
+        "Holland Park West real estate",
+        "Indooroopilly real estate",
+        "Kangaroo Point real estate",
+        "Kelvin Grove real estate",
+        "Lutwyche real estate",
+        "Milton real estate",
+        "Mount Gravatt real estate",
+        "Mount Gravatt East real estate",
+        "New Farm real estate",
+        "Newstead real estate",
+        "Nundah real estate",
+        "Paddington real estate",
+        "Red Hill real estate",
+        "Sherwood real estate",
+        "Spring Hill real estate",
+        "St Lucia real estate",
+        "Stones Corner real estate",
+        "Tarragindi real estate",
+        "Teneriffe real estate",
+        "Toowong real estate",
+        "Upper Mount Gravatt real estate",
+        "West End real estate",
+        "Windsor real estate",
+        "Woolloongabba real estate",
+        "Yeronga real estate"
       ],
       "sameAs": [
         "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
@@ -183,6 +279,126 @@ const globalSchema = {
             "@type": "Answer",
             "text": "Daniel Gierach can be contacted on 0412 523 821, at daniel.gierach@raywhite.com, or through the contact form at danielgierach.com."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Bulimba Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Bulimba, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Hawthorne Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Hawthorne, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Balmoral Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Balmoral, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Morningside Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Morningside, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Norman Park Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Norman Park, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Camp Hill Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Camp Hill, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Cannon Hill Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Cannon Hill, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Carina Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Carina, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Coorparoo Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Coorparoo, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in East Brisbane Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in East Brisbane, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Seven Hills Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Seven Hills, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Murarrie Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Murarrie, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Tingalpa Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Tingalpa, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Carina Heights Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Carina Heights, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Carindale Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Carindale, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
         }
       ]
     },
@@ -192,6 +408,10 @@ const globalSchema = {
       "url": "https://danielgierach.com",
       "name": "Daniel Gierach Property",
       "publisher": { "@id": "https://danielgierach.com/#business" },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".eyebrow", "title"]
+      },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {

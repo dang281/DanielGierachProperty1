@@ -87,6 +87,11 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" />
+    <!-- Identity verification for AI systems and search engines -->
+    <link rel="me" href="https://www.raywhite.com/agents/agent/daniel-gierach-88889915" />
+    <link rel="me" href="https://www.realestate.com.au/agent/daniel-gierach-3819232" />
+    <link rel="me" href="https://www.linkedin.com/in/daniel-gierach" />
     <meta name="description" content={description} />
     <meta name="author" content="Daniel Gierach" />
     <meta name="robots" content={draft ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
@@ -133,6 +138,21 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <meta name="geo.placename" content="Brisbane" />
     <meta name="geo.position" content="-27.4568;153.0523" />
     <meta name="ICBM" content="-27.4568, 153.0523" />
+    <!-- Per-page WebPage JSON-LD with speakable for AI/voice assistants -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": canonicalURL,
+      "url": canonicalURL,
+      "name": title,
+      "description": description,
+      "isPartOf": { "@id": "https://danielgierach.com/#website" },
+      "author": { "@id": "https://danielgierach.com/#person" },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".eyebrow", "title"]
+      }
+    })} />
     <!-- Global JSON-LD (pre-stringified at module load, see PERF-010) -->
     <script type="application/ld+json" set:html={GLOBAL_SCHEMA_JSON} />
     <!-- Page-level JSON-LD (optional) -->
