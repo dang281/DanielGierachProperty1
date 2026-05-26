@@ -1,0 +1,1529 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import bccZoneColors from '../../data/bcc-zone-colors.json';
+---
+
+<ToolLayout
+  title="Brisbane Property Map"
+  tool="Property Map"
+  phase="Buyer Tools"
+  description="Zoning, stormwater, water and sewer on one map. Look up any Brisbane address to see BCC City Plan zones, drainage easements and QUU infrastructure constraints."
+  manifest="/manifest-property-map.webmanifest"
+>
+
+<style>
+  .pm-shell { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+  @media (min-width: 1024px) { .pm-shell { padding: 1.5rem 2rem 4rem; } }
+  @media (max-width: 768px) {
+    .pm-shell { padding: 0.75rem 0.75rem 2rem; }
+    .pm-eduline { font-size: 0.64rem; padding: 0.4rem 0.7rem; }
+    .pm-eduline strong { font-size: 0.58rem; }
+  }
+
+  .pm-eduline {
+    margin-bottom: 0.6rem;
+    padding: 0.5rem 0.85rem;
+    background: rgba(196,145,42,0.07);
+    border-left: 3px solid var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+  .pm-eduline strong {
+    font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-gold);
+    font-size: 0.62rem; margin-right: 0.4rem;
+  }
+
+  /* ── Search bar ────────────────────────────────────────────────────── */
+  .pm-search-bar { display: flex; gap: 0.4rem; margin-bottom: 0.85rem; }
+  #pm-search-wrap { position: relative; flex: 1; }
+  #pm-search {
+    width: 100%; font-family: var(--font-sans); font-size: 1rem;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(28,25,23,0.18);
+    background: #ffffff; color: #1c1917;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #pm-search:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+  }
+  #pm-search::placeholder { color: #a8a29e; }
+  #pm-search-btn {
+    padding: 0 1.5rem; background: var(--color-gold); color: #0a0806;
+    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+  }
+  #pm-search-btn:hover { background: #d4af4a; }
+  #pm-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  #pm-gps-btn {
+    flex-shrink: 0; width: 46px;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.18); border-left: none;
+    color: var(--color-text-muted); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color 0.2s, background 0.2s;
+  }
+  #pm-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #pm-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  #pm-gps-btn.locating { color: var(--color-gold); }
+
+  #pm-autocomplete {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(10,8,6,0.97);
+    border: 1px solid rgba(196,145,42,0.2); border-top: none;
+    z-index: 1100; max-height: 240px; overflow-y: auto;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  }
+  .pm-ac-item {
+    padding: 0.85rem 1rem; font-size: 0.85rem;
+    color: rgba(240,236,228,0.85); cursor: pointer;
+    border-bottom: 1px solid rgba(240,236,228,0.07); line-height: 1.4;
+    min-height: 44px; display: flex; align-items: center;
+  }
+  .pm-ac-item:last-child { border-bottom: none; }
+  .pm-ac-item:hover, .pm-ac-item:active { background: rgba(196,145,42,0.1); }
+
+  /* ── Mobile sticky search ──────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .pm-search-sticky {
+      position: sticky; top: 72px; z-index: 1010;
+      background: var(--color-base);
+      padding: 0.6rem 0 0.5rem;
+      margin: 0 -0.75rem;
+      padding-left: 0.75rem; padding-right: 0.75rem;
+      border-bottom: 1px solid rgba(28,25,23,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .pm-search-bar { margin-bottom: 0; }
+    #pm-search { font-size: 16px; height: 48px; padding: 0 0.9rem; }
+    #pm-search-btn { height: 48px; padding: 0 1rem; font-size: 0.68rem; }
+    #pm-gps-btn { width: 48px; height: 48px; }
+    .pm-ac-item { padding: 1rem; min-height: 48px; font-size: 0.92rem; }
+    .pm-eduline { display: none; }
+    #pm-map { height: calc(100svh - 133px) !important; }
+    .leaflet-top.leaflet-left { top: auto !important; bottom: 68px !important; }
+  }
+
+  /* ── Map shell ─────────────────────────────────────────────────────── */
+  .pm-map-wrap { position: relative; }
+  #pm-map {
+    height: 700px; width: 100%;
+    border: 1px solid rgba(28,25,23,0.1);
+    touch-action: none; overscroll-behavior: contain;
+  }
+  @media (max-width: 768px) {
+    #pm-map { height: calc(100svh - 140px); min-height: 420px; touch-action: none; overscroll-behavior: contain; }
+    .leaflet-control-zoom a {
+      width: 44px !important; height: 44px !important;
+      line-height: 44px !important; font-size: 1.2rem !important;
+    }
+  }
+
+  /* ── Floating controls ─────────────────────────────────────────────── */
+  .pm-control {
+    position: absolute; z-index: 500;
+    background: rgba(10,8,6,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(196,145,42,0.18);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .pm-control-tr { top: 12px; right: 72px; }
+
+  #pm-compass {
+    position: absolute; top: 12px; right: 12px; z-index: 500;
+    width: 48px; height: 48px;
+    background: rgba(10,8,6,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(196,145,42,0.18);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+
+  #pm-status {
+    position: absolute; top: 12px; left: 12px; z-index: 500;
+    background: rgba(10,8,6,0.88);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(196,145,42,0.15);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem; color: rgba(240,236,228,0.65);
+    line-height: 1.4; max-width: 280px;
+    pointer-events: none; transition: opacity 0.3s;
+  }
+  @media (max-width: 768px) {
+    #pm-status { left: 12px; right: 60px; max-width: none; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
+  }
+
+  /* ── Layer toggle button ───────────────────────────────────────────── */
+  .pm-layer-toggle {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.55rem 0.85rem;
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(240,236,228,0.85);
+  }
+  .pm-layer-toggle:hover { background: rgba(196,145,42,0.1); }
+  .pm-layer-toggle .pm-toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
+  .pm-layer-toggle[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
+
+  .pm-layer-panel {
+    display: none; border-top: 1px solid rgba(240,236,228,0.08);
+    width: 300px; padding: 0.4rem 0 0.7rem;
+    max-height: 75vh; overflow-y: auto;
+  }
+  .pm-layer-panel.open { display: block; }
+
+  /* Mobile: full-width bottom sheet */
+  @media (max-width: 640px) {
+    .pm-control-tr { right: 12px !important; }
+    #pm-compass { position: absolute; top: 12px; right: 12px; }
+    .pm-control-tr {
+      position: fixed !important;
+      top: auto !important;
+      bottom: calc(78px + env(safe-area-inset-bottom)) !important;
+      right: 0; left: 0; z-index: 1000;
+      border-top: 1px solid rgba(28,25,23,0.12);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+    }
+    .pm-layer-toggle { width: 100%; justify-content: center; padding: 0.75rem 1rem; font-size: 0.72rem; }
+    .pm-layer-panel {
+      width: 100%; display: none;
+      grid-template-columns: 1fr 1fr;
+      max-height: 50vh; overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.5rem 0.75rem 0.75rem;
+    }
+    .pm-layer-panel.open { display: grid; }
+    .pm-layer-group-head { grid-column: 1 / -1; }
+    .pm-zone-sub { grid-column: 1 / -1; }
+    .pm-layer-row { padding: 0.55rem 0.4rem; }
+    .pm-layer-row input { width: 18px; height: 18px; }
+    #pm-result {
+      position: fixed !important;
+      left: 12px; right: 12px;
+      bottom: calc(78px + env(safe-area-inset-bottom) + 64px);
+      width: auto !important; max-width: none !important;
+    }
+  }
+
+  .pm-layer-group-head {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(196,145,42,0.8);
+    padding: 0.55rem 0.6rem 0.25rem;
+  }
+  .pm-layer-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.45rem 0.6rem;
+    cursor: pointer; user-select: none; transition: background 0.15s;
+  }
+  .pm-layer-row:hover { background: rgba(196,145,42,0.07); }
+  .pm-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
+  .pm-swatch { width: 24px; height: 14px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
+  .pm-swatch-line { width: 24px; height: 3px; }
+  .pm-swatch-line-dash { width: 24px; height: 3px; background-image: repeating-linear-gradient(90deg, currentColor 0, currentColor 5px, transparent 5px, transparent 9px); }
+  .pm-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(240,236,228,0.6); box-shadow: 0 0 0 1px rgba(0,0,0,0.3); }
+  .pm-layer-name {
+    font-family: var(--font-sans);
+    font-size: 0.74rem; font-weight: 600;
+    color: rgba(240,236,228,0.9); line-height: 1.3; flex: 1;
+  }
+  .pm-layer-hint {
+    display: block; font-weight: 400;
+    font-size: 0.66rem; color: rgba(240,236,228,0.42); margin-top: 0.1rem;
+  }
+
+  /* ── Zone sub-controls (opacity + legend) ──────────────────────────── */
+  .pm-zone-sub {
+    padding: 0 0.6rem 0.5rem 2.1rem;
+    border-bottom: 1px solid rgba(240,236,228,0.06);
+    margin-bottom: 0.25rem;
+  }
+  .pm-opacity-row {
+    display: flex; align-items: center; gap: 0.55rem;
+    margin-bottom: 0.4rem;
+  }
+  .pm-opacity-label {
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(240,236,228,0.42);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  #pm-opacity-val { color: rgba(196,145,42,0.9); }
+  .pm-opacity-slider { flex: 1; accent-color: var(--color-gold); cursor: pointer; height: 3px; }
+  .pm-legend-btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    background: transparent; border: 1px solid rgba(240,236,228,0.1); cursor: pointer;
+    font-family: var(--font-sans); font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,228,0.55); padding: 0.3rem 0.65rem;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .pm-legend-btn:hover { color: rgba(196,145,42,0.9); border-color: rgba(196,145,42,0.3); }
+  .pm-legend-btn .pm-toggle-arrow { transition: transform 0.2s; }
+  .pm-legend-btn[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
+  #pm-legend-list {
+    margin-top: 0.35rem;
+    max-height: 200px; overflow-y: auto;
+  }
+  .pm-legend-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.3rem 0; cursor: pointer; transition: opacity 0.15s;
+  }
+  .pm-legend-row:hover { opacity: 0.8; }
+  .pm-zone-swatch {
+    width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .pm-legend-code {
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 800; letter-spacing: 0.04em;
+    color: rgba(240,236,228,0.85); flex-shrink: 0; min-width: 28px;
+  }
+  .pm-legend-name {
+    font-size: 0.66rem; color: rgba(240,236,228,0.5); line-height: 1.3; flex: 1;
+  }
+
+  /* ── First-load guide ──────────────────────────────────────────────── */
+  #pm-guide {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 599;
+    background: rgba(10,8,6,0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(196,145,42,0.2);
+    box-shadow: 0 8px 36px rgba(0,0,0,0.5);
+    padding: 1.75rem 2rem; text-align: center;
+    width: min(300px, calc(100% - 3rem));
+    transition: opacity 0.35s, transform 0.35s;
+  }
+  #pm-guide svg { color: var(--color-gold); margin: 0 auto 0.85rem; display: block; }
+  #pm-guide p { font-family: var(--font-sans); font-size: 0.82rem; color: rgba(240,236,228,0.72); line-height: 1.65; margin-bottom: 1.1rem; }
+  #pm-guide-dismiss {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--color-gold); color: #0a0806;
+    font-family: var(--font-sans); font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; padding: 0.6rem 1.35rem;
+    transition: background 0.2s;
+  }
+  #pm-guide-dismiss:hover { background: #d4af4a; }
+  #pm-guide.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 8px)); }
+
+  /* ── Result drawer ─────────────────────────────────────────────────── */
+  #pm-result {
+    position: absolute; left: 14px; bottom: 14px; z-index: 600;
+    background: rgba(10,8,6,0.96);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-left: 3px solid var(--color-gold);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    padding: 0 1.15rem 1rem; max-width: 440px;
+    width: calc(100% - 28px);
+    transform: translate3d(0, calc(100% + 24px), 0);
+    transition: transform 0.28s cubic-bezier(0.2,0.7,0.2,1), border-left-color 0.2s;
+    visibility: hidden; overflow: hidden;
+  }
+  #pm-result.open { transform: translate3d(0,0,0); visibility: visible; }
+  @media (min-width: 768px) { #pm-result { width: 440px; } }
+
+  /* Zone mode border colors */
+  #pm-result.mode-zone.zone-cr  { border-left-color: #6a8f5a; }
+  #pm-result.mode-zone.zone-ldr { border-left-color: #b8a84a; }
+  #pm-result.mode-zone.zone-lmr { border-left-color: #d4843c; }
+  #pm-result.mode-zone.zone-mdr { border-left-color: #c05a2a; }
+  #pm-result.mode-zone.zone-hdr { border-left-color: #9a2a1a; }
+  #pm-result.mode-zone.zone-mu  { border-left-color: #7a5acd; }
+  #pm-result.mode-zone.zone-nc  { border-left-color: #5a7acd; }
+  #pm-result.mode-zone.zone-lc  { border-left-color: #3a5aad; }
+  #pm-result.mode-zone.zone-dc  { border-left-color: #2a3a8d; }
+  #pm-result.mode-zone.zone-pc  { border-left-color: #1a1a6d; }
+  #pm-result.mode-zone.zone-os  { border-left-color: #3a9a5a; }
+  #pm-result.mode-zone.zone-cn  { border-left-color: #1a6a3a; }
+  #pm-result.mode-zone.zone-sp  { border-left-color: #888888; }
+  #pm-result.mode-zone.zone-lii { border-left-color: #7a9ab8; }
+  #pm-result.mode-zone.zone-ru  { border-left-color: #b8a07a; }
+
+  /* Asset mode border colors */
+  #pm-result.mode-asset.kind-propertyBoundary { border-left-color: #9e8c6a; }
+  #pm-result.mode-asset.kind-stormPipe    { border-left-color: #2a8c9c; }
+  #pm-result.mode-asset.kind-stormManhole { border-left-color: #1f6f7d; }
+  #pm-result.mode-asset.kind-gully        { border-left-color: #d77b32; }
+  #pm-result.mode-asset.kind-surfaceDrain { border-left-color: #4dadb8; }
+  #pm-result.mode-asset.kind-sewerMain    { border-left-color: #8a6e2f; }
+  #pm-result.mode-asset.kind-sewerService { border-left-color: #b8904a; }
+  #pm-result.mode-asset.kind-sewerManhole { border-left-color: #6c5320; }
+  #pm-result.mode-asset.kind-waterMain    { border-left-color: #2c7fc4; }
+  #pm-result.mode-asset.kind-waterService { border-left-color: #6fb5e0; }
+  #pm-result.mode-asset.kind-hydrant      { border-left-color: #c43a3a; }
+
+  /* Asset header tints */
+  #pm-result.mode-asset.kind-propertyBoundary .pm-result-head { background: rgba(158,140,106,0.14); }
+  #pm-result.mode-asset.kind-stormPipe    .pm-result-head { background: rgba(42,140,156,0.14); }
+  #pm-result.mode-asset.kind-stormManhole .pm-result-head { background: rgba(31,111,125,0.14); }
+  #pm-result.mode-asset.kind-gully        .pm-result-head { background: rgba(215,123,50,0.14); }
+  #pm-result.mode-asset.kind-surfaceDrain .pm-result-head { background: rgba(77,173,184,0.14); }
+  #pm-result.mode-asset.kind-sewerMain    .pm-result-head { background: rgba(138,110,47,0.16); }
+  #pm-result.mode-asset.kind-sewerService .pm-result-head { background: rgba(184,144,74,0.12); }
+  #pm-result.mode-asset.kind-sewerManhole .pm-result-head { background: rgba(108,83,32,0.16); }
+  #pm-result.mode-asset.kind-waterMain    .pm-result-head { background: rgba(44,127,196,0.14); }
+  #pm-result.mode-asset.kind-waterService .pm-result-head { background: rgba(111,181,224,0.1); }
+  #pm-result.mode-asset.kind-hydrant      .pm-result-head { background: rgba(196,58,58,0.14); }
+
+  .pm-result-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.5rem; margin: 0 -1.15rem 0.7rem;
+    padding: 0.7rem 1.15rem;
+    border-bottom: 1px solid rgba(240,236,228,0.06);
+    transition: background 0.2s;
+  }
+  .pm-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(240,236,228,0.5);
+  }
+  /* Zone mode eyebrow uses gold */
+  #pm-result.mode-zone .pm-eyebrow { color: rgba(196,145,42,0.8); }
+  .pm-close {
+    background: transparent; border: none; cursor: pointer;
+    width: 32px; height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: rgba(240,236,228,0.4); padding: 0;
+    transition: color 0.15s, background 0.15s;
+  }
+  .pm-close:hover { color: rgba(240,236,228,0.9); background: rgba(240,236,228,0.08); }
+
+  /* Zone result body styles */
+  .pm-zone-name-row { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem; }
+  .pm-zone-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.15); }
+  .pm-result-name {
+    font-family: var(--font-serif); font-size: 1rem; font-weight: 400;
+    color: rgba(240,236,228,0.95); line-height: 1.25; margin: 0;
+  }
+  .pm-result-height {
+    font-family: var(--font-sans);
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--color-gold); margin-bottom: 0.5rem;
+  }
+  .pm-result-summary {
+    font-size: 0.78rem; color: rgba(240,236,228,0.7);
+    line-height: 1.65; margin-bottom: 0.5rem;
+  }
+  .pm-result-buyers {
+    font-size: 0.74rem; color: rgba(240,236,228,0.5);
+    line-height: 1.6; font-style: italic;
+    border-top: 1px solid rgba(240,236,228,0.08);
+    padding-top: 0.5rem; margin-bottom: 0.6rem;
+  }
+  .pm-bcc-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-sans); font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none;
+  }
+  .pm-bcc-link:hover { color: #d4af4a; }
+
+  /* Asset result body styles */
+  .pm-result-title {
+    font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400;
+    color: rgba(240,236,228,0.95); line-height: 1.25; margin-bottom: 0.5rem;
+  }
+  .pm-result-interp {
+    font-size: 0.84rem; color: rgba(240,236,228,0.78); line-height: 1.65;
+    margin-bottom: 0.65rem; padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(240,236,228,0.08);
+  }
+  .pm-attrs {
+    display: grid; grid-template-columns: max-content 1fr;
+    gap: 0.3rem 0.85rem; font-size: 0.78rem; line-height: 1.55;
+  }
+  .pm-attrs dt {
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(240,236,228,0.42); align-self: center;
+  }
+  .pm-attrs dd { color: rgba(240,236,228,0.85); margin: 0; }
+
+  /* ── Footer ────────────────────────────────────────────────────────── */
+  .pm-foot {
+    margin-top: 0.85rem;
+    display: flex; flex-wrap: wrap; gap: 0.85rem 1.5rem;
+    align-items: baseline; justify-content: space-between;
+    font-size: 0.72rem; color: var(--color-text-muted); line-height: 1.6;
+  }
+  .pm-foot a {
+    font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-gold); text-decoration: none; white-space: nowrap;
+  }
+  .pm-foot a:hover { color: #d4af4a; }
+  #pm-share-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: none; border: none; cursor: pointer; padding: 0;
+    font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-text-muted); transition: color 0.2s;
+  }
+  #pm-share-btn:hover { color: var(--color-gold); }
+  #pm-share-btn.copied { color: #4caf50; }
+</style>
+
+<style is:global>
+  @media (max-width: 640px) {
+    body.tool-page .tool-header { display: none; }
+    body.tool-page .tool-content { padding-top: 72px !important; }
+  }
+  #pm-search { background: #ffffff !important; color: #1c1917 !important; }
+  #pm-search::placeholder { color: #a8a29e !important; }
+</style>
+
+<!-- Inject BCC zone color table and zone definitions -->
+<script is:inline define:vars={{ bccZoneColors }}>
+window.BCC_ZONE_COLORS = bccZoneColors;
+window.PM_ZONES = {
+  'CR':  { name: 'Character Residential',          short: 'CR',  color: '#6a8f5a',
+    height: 'Up to 8.5m (2 storeys)',
+    summary: 'Protects traditional character housing in heritage areas. Typically single detached dwellings. Demolition and significant alterations require council assessment to preserve streetscape character.',
+    forBuyers: 'Strong demand from buyers seeking streetscape charm. Restrictions on new development generally protect long-term values.' },
+  'LDR': { name: 'Low Density Residential',        short: 'LDR', color: '#b8a84a',
+    height: 'Up to 9.5m (2 storeys)',
+    summary: 'Standard suburban residential zone for single detached houses and small dual occupancy. Limited higher-density development.',
+    forBuyers: 'Standard family neighbourhood. Good land banking potential as infill gradually increases nearby.' },
+  'LMR': { name: 'Low-Medium Density Residential', short: 'LMR', color: '#d4843c',
+    height: 'Up to 3 storeys (approx 9.5-15m)',
+    summary: 'Allows townhouses, dual occupancy and small apartment buildings. Common in inner-ring suburbs experiencing densification.',
+    forBuyers: 'Strong developer interest. Existing houses may have subdivision or townhouse potential, which is often reflected in land values.' },
+  'MDR': { name: 'Medium Density Residential',     short: 'MDR', color: '#c05a2a',
+    height: 'Up to 5 storeys (approx 15m)',
+    summary: 'Apartment buildings, larger townhouse complexes and medium-rise residential. Common near centres and transport corridors.',
+    forBuyers: 'High development activity. Unit and apartment markets are active. Land value often exceeds improvement value for older homes.' },
+  'HDR': { name: 'High Density Residential',       short: 'HDR', color: '#9a2a1a',
+    height: '10+ storeys (site-specific)',
+    summary: 'High-rise apartment buildings and intensive residential development. Generally close to major centres or the CBD.',
+    forBuyers: 'Investment-focused market. Apartment resale and rental yield are key considerations.' },
+  'MU':  { name: 'Mixed Use',                      short: 'MU',  color: '#7a5acd',
+    height: 'Up to 5 storeys typical',
+    summary: 'Combines commercial (ground floor) with residential above. Allows cafes, offices, retail and services alongside apartments.',
+    forBuyers: 'Live/work potential and strong walkability. Popular with professionals and downsizers.' },
+  'NC':  { name: 'Neighbourhood Centre',           short: 'NC',  color: '#5a7acd',
+    height: 'Up to 3-4 storeys',
+    summary: 'Small local convenience centres: corner shops, cafes, medical. Maintains human-scale neighbourhood services.',
+    forBuyers: 'Proximity premium for nearby residential. Zoning allows future commercial use of corner or main road lots.' },
+  'LC':  { name: 'Local Centre',                   short: 'LC',  color: '#3a5aad',
+    height: 'Up to 4-5 storeys',
+    summary: 'Established local shopping strips, supermarkets, restaurants, services and above-shop residential.',
+    forBuyers: 'High foot traffic, strong retail tenancy demand.' },
+  'DC':  { name: 'District Centre',                short: 'DC',  color: '#2a3a8d',
+    height: 'Up to 8+ storeys',
+    summary: 'Major suburban hubs serving a broader catchment. Think Coorparoo Square, Carindale, Cannon Hill.',
+    forBuyers: 'Commercial and residential investment opportunities. Often earmarked for significant future growth.' },
+  'PC':  { name: 'Principal Centre',               short: 'PC',  color: '#1a1a6d',
+    height: 'Unrestricted / site-specific',
+    summary: 'The Brisbane CBD and major metropolitan centres. Highest intensity mixed use, commercial, residential and civic uses.',
+    forBuyers: 'CBD and inner-city apartment and commercial market.' },
+  'OS':  { name: 'Open Space',                     short: 'OS',  color: '#3a9a5a',
+    height: 'Low structures only',
+    summary: 'Public parks, recreational land, waterways, ovals and community open space. Protected from residential development.',
+    forBuyers: 'Proximity to open space adds significant premium to adjoining residential properties.' },
+  'CN':  { name: 'Conservation',                   short: 'CN',  color: '#1a6a3a',
+    height: 'Minimal',
+    summary: 'Environmentally sensitive land, remnant vegetation, waterway corridors and koala habitat. Development heavily restricted.',
+    forBuyers: 'Creates natural buffers and green outlook for nearby properties.' },
+  'SP':  { name: 'Special Purpose',                short: 'SP',  color: '#888888',
+    height: 'Site-specific',
+    summary: 'Schools, hospitals, utilities, transport infrastructure, cemeteries and other community facilities.',
+    forBuyers: 'Neighbourhood anchors. Schools and hospitals drive catchment demand in surrounding residential streets.' },
+  'LII': { name: 'Low Impact Industry',            short: 'LII', color: '#7a9ab8',
+    height: 'Up to 9.5m',
+    summary: 'Light industrial, warehousing, trade services, car yards and limited retail. Located away from residential.',
+    forBuyers: 'Generally not residential. Watch for rezoning opportunities adjacent to inner suburbs.' },
+  'RU':  { name: 'Rural',                          short: 'RU',  color: '#b8a07a',
+    height: 'Low',
+    summary: "Agricultural and rural land on Brisbane's fringe. Large lot sizes, rural uses, acreage lifestyle.",
+    forBuyers: 'Lifestyle acreage market. Watch for future urban expansion in outer areas.' },
+};
+</script>
+
+<div class="pm-shell">
+
+  <p class="pm-eduline">
+    <strong>Educational use only</strong> BCC and QUU open data. Always verify zoning with Brisbane City Council and commission a Dial Before You Dig (1100) search before any excavation or development decision.
+  </p>
+
+  <div class="pm-search-sticky">
+    <div class="pm-search-bar">
+      <div id="pm-search-wrap">
+        <input type="text" id="pm-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
+        <div id="pm-autocomplete" style="display:none;"></div>
+      </div>
+      <button id="pm-search-btn">Search</button>
+      <button id="pm-gps-btn" title="Use my location" aria-label="Use my location">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="9" stroke-opacity="0.3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="pm-map-wrap">
+    <div id="pm-map"></div>
+
+    <!-- First-load guidance -->
+    <div id="pm-guide" role="status" aria-live="polite">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 6-10 6L2 8l10-6z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <p>Search a Brisbane address, or zoom in to load zones and infrastructure. Toggle layers in the panel above right.</p>
+      <button id="pm-guide-dismiss">Start exploring</button>
+    </div>
+
+    <!-- Status pill (top-left) -->
+    <div id="pm-status">Click any feature or search an address.</div>
+
+    <!-- Compass (top-right) -->
+    <div id="pm-compass" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
+        <polygon points="18,32 21,18 18,21 15,18" fill="rgba(240,236,228,0.25)"/>
+        <polygon points="32,18 18,15 21,18 18,21" fill="rgba(240,236,228,0.18)"/>
+        <polygon points="4,18 18,15 15,18 18,21" fill="rgba(240,236,228,0.18)"/>
+        <circle cx="18" cy="18" r="2" fill="rgba(240,236,228,0.6)"/>
+        <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#c4912a" letter-spacing="0.05em">N</text>
+      </svg>
+    </div>
+
+    <!-- Layers panel (top-right) -->
+    <div class="pm-control pm-control-tr">
+      <button class="pm-layer-toggle" id="pm-layer-toggle" aria-expanded="false" aria-controls="pm-layer-panel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l10 6-10 6L2 8l10-6zM2 16l10 6 10-6M2 12l10 6 10-6"/></svg>
+        Layers
+        <svg class="pm-toggle-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="pm-layer-panel" id="pm-layer-panel">
+
+        <!-- Zoning -->
+        <p class="pm-layer-group-head">Zoning (BCC)</p>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="zoning" id="pm-zoning-cb" checked />
+          <span class="pm-swatch">
+            <svg width="24" height="14" viewBox="0 0 24 14" style="flex-shrink:0"><rect x="0" y="0" width="6" height="14" fill="#6a8f5a"/><rect x="6" y="0" width="6" height="14" fill="#d4843c"/><rect x="12" y="0" width="6" height="14" fill="#7a5acd"/><rect x="18" y="0" width="6" height="14" fill="#2a8c9c" opacity="0.7"/></svg>
+          </span>
+          <span class="pm-layer-name">Zone overlay
+            <span class="pm-layer-hint">City Plan 2014 zones</span>
+          </span>
+        </label>
+        <div class="pm-zone-sub" id="pm-zone-sub">
+          <div class="pm-opacity-row">
+            <span class="pm-opacity-label">Opacity <span id="pm-opacity-val">65%</span></span>
+            <input type="range" id="pm-opacity-slider" min="0" max="100" step="5" value="65" class="pm-opacity-slider" />
+          </div>
+          <button class="pm-legend-btn" id="pm-legend-btn" aria-expanded="false">
+            Zone types
+            <svg class="pm-toggle-arrow" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="pm-legend-list" style="display:none;"></div>
+        </div>
+
+        <!-- Cadastre -->
+        <p class="pm-layer-group-head" style="border-top:1px solid rgba(240,236,228,0.06);padding-top:0.6rem;">Cadastre (BCC)</p>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="propertyBoundary" checked />
+          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#9e8c6a;height:1px;border-top:1px dashed #9e8c6a;"></span></span>
+          <span class="pm-layer-name">Property boundaries
+            <span class="pm-layer-hint">Cadastral parcel outlines</span>
+          </span>
+        </label>
+
+        <!-- Stormwater -->
+        <p class="pm-layer-group-head" style="border-top:1px solid rgba(240,236,228,0.06);padding-top:0.6rem;">Stormwater (BCC)</p>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="stormPipe" checked />
+          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#2a8c9c;"></span></span>
+          <span class="pm-layer-name">Stormwater pipes
+            <span class="pm-layer-hint">Underground drainage pipes</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="stormManhole" />
+          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#1f6f7d;"></span></span>
+          <span class="pm-layer-name">Stormwater manholes
+            <span class="pm-layer-hint">Access chambers and junctions</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="gully" checked />
+          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#d77b32;"></span></span>
+          <span class="pm-layer-name">Gullies / kerb inlets
+            <span class="pm-layer-hint">Where runoff enters the underground network</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="surfaceDrain" />
+          <span class="pm-swatch"><span class="pm-swatch-line-dash" style="color:#4dadb8;"></span></span>
+          <span class="pm-layer-name">Surface drains
+            <span class="pm-layer-hint">Overland flow paths and open drains</span>
+          </span>
+        </label>
+
+        <!-- Water & Sewer -->
+        <p class="pm-layer-group-head" style="border-top:1px solid rgba(240,236,228,0.06);padding-top:0.6rem;">Water &amp; Sewer (QUU)</p>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="sewerMain" checked />
+          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#8a6e2f;"></span></span>
+          <span class="pm-layer-name">Sewer mains
+            <span class="pm-layer-hint">Gravity sewer running underground</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="waterMain" checked />
+          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#2c7fc4;"></span></span>
+          <span class="pm-layer-name">Water mains
+            <span class="pm-layer-hint">Pressure mains supplying drinking water</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="sewerService" checked />
+          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#b8904a;opacity:0.7;"></span></span>
+          <span class="pm-layer-name">Sewer connections
+            <span class="pm-layer-hint">Individual property sewer laterals</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="waterService" checked />
+          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#6fb5e0;opacity:0.7;"></span></span>
+          <span class="pm-layer-name">Water connections
+            <span class="pm-layer-hint">Individual property water service lines</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="sewerManhole" />
+          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#6c5320;"></span></span>
+          <span class="pm-layer-name">Sewer manholes
+            <span class="pm-layer-hint">Access chambers along sewer mains</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="hydrant" />
+          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#c43a3a;"></span></span>
+          <span class="pm-layer-name">Hydrants
+            <span class="pm-layer-hint">Fire hydrants on the water network</span>
+          </span>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- Unified result drawer -->
+    <div id="pm-result" role="region" aria-label="Feature information">
+      <div class="pm-result-head">
+        <span class="pm-eyebrow" id="pm-result-eyebrow"></span>
+        <button class="pm-close" id="pm-result-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="pm-result-body"></div>
+    </div>
+  </div>
+
+  <div class="pm-foot">
+    <span><strong style="color:var(--color-text-secondary);">Educational use only.</strong> Zoning and stormwater: Brisbane City Council open data. Water and sewer: Queensland Urban Utilities open data.</span>
+    <span style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+      <button id="pm-share-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Copy map link
+      </button>
+      <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">BCC CityPlan &rarr;</a>
+      <a href="https://urbanutilities.com.au/help-and-advice/manage-your-property/property-information" target="_blank" rel="noopener">QUU plans &rarr;</a>
+      <a href="https://www.1100.com.au/" target="_blank" rel="noopener">Dial Before You Dig &rarr;</a>
+    </span>
+  </div>
+
+  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+      Zoning and easements shape what a property is worth and what you can do with it.
+    </p>
+    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
+      Daniel can walk you through the constraints on a specific site, and what they mean in practice.
+    </p>
+    <a href="/contact" data-cta="tool_to_contact"
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;"
+      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      Ask Daniel
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<link rel="preconnect" href="https://services2.arcgis.com" crossorigin />
+<link rel="preconnect" href="https://services3.arcgis.com" crossorigin />
+<link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
+<link rel="preconnect" href="https://photon.komoot.io" crossorigin />
+<link rel="preconnect" href="https://nominatim.openstreetmap.org" crossorigin />
+
+<link rel="stylesheet" href="/lib/leaflet/leaflet.css" />
+<link rel="preload" as="script" href="/lib/leaflet/leaflet.js" />
+<script is:inline defer src="/lib/leaflet/leaflet.js"></script>
+
+<script>
+(function () {
+  const ZONES = (window as any).PM_ZONES as Record<string,any>;
+
+  // ── BCC zone color lookup ─────────────────────────────────────────────
+  const ZONING_URL = 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Zoning_opendata/FeatureServer/0';
+  const COLOR_LOOKUP = (function () {
+    const m = new Map<string,{hex:string;a:number}>();
+    for (const e of ((window as any).BCC_ZONE_COLORS || [])) m.set(e.value, { hex: e.hex, a: e.a });
+    return m;
+  })();
+  function rendererKey(p: Record<string,any>) {
+    return (p.ZONE_CODE || '') + (p.ZONE_PREC_NO == null ? '' : p.ZONE_PREC_NO) + (p.LVL2_ZONE || '');
+  }
+  function colorFor(p: Record<string,any>) {
+    return COLOR_LOOKUP.get(rendererKey(p)) || { hex: '#cccccc', a: 0.4 };
+  }
+  function matchZone(raw: string) {
+    if (!raw) return null;
+    const u = raw.toUpperCase();
+    for (const [key, z] of Object.entries(ZONES)) {
+      if (u.includes(key) || u.includes((z as any).name.toUpperCase())) return key;
+    }
+    if (u.includes('CHARACTER'))          return 'CR';
+    if (u.includes('LOW-MEDIUM') || u.includes('LOW MEDIUM')) return 'LMR';
+    if (u.includes('LOW DENSITY'))        return 'LDR';
+    if (u.includes('MEDIUM DENSITY'))     return u.includes('HIGH') ? 'HDR' : 'MDR';
+    if (u.includes('MIXED USE'))          return 'MU';
+    if (u.includes('NEIGHBOURHOOD'))      return 'NC';
+    if (u.includes('LOCAL CENTRE'))       return 'LC';
+    if (u.includes('DISTRICT'))           return 'DC';
+    if (u.includes('PRINCIPAL'))          return 'PC';
+    if (u.includes('OPEN SPACE'))         return 'OS';
+    if (u.includes('CONSERVATION'))       return 'CN';
+    if (u.includes('RURAL'))              return 'RU';
+    if (u.includes('INDUSTRY') || u.includes('INDUSTRIAL')) return 'LII';
+    if (u.includes('SPECIAL'))            return 'SP';
+    return null;
+  }
+  function zoneFamily(code: string) {
+    if (!code) return null;
+    const base = code.replace(/[0-9]+$/, '').toUpperCase();
+    if (ZONES[base]) return base;
+    if (base === 'IN' || base === 'LII') return 'LII';
+    if (base === 'SR' || base === 'OS' || base === 'PR') return 'OS';
+    if (base === 'ESP' || base === 'CN') return 'CN';
+    if (base === 'CC' || base === 'SC' || base === 'MC') return 'DC';
+    if (base === 'EC' || base === 'TO') return 'SP';
+    return null;
+  }
+
+  // ── Infrastructure data sources ───────────────────────────────────────
+  const SVC: Record<string,string> = {
+    propertyBoundary: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/property_boundaries_parcel/FeatureServer/0',
+    stormPipe:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Pipe_Existing/FeatureServer/0',
+    stormManhole: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Manhole_Existing/FeatureServer/0',
+    gully:        'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Gully_Existing/FeatureServer/0',
+    surfaceDrain: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Stormwater_Surface_Drain_Existing/FeatureServer/0',
+    sewerMain:    'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/18',
+    sewerService: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/30',
+    waterMain:    'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/21',
+    waterService: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/28',
+    sewerManhole: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/20',
+    hydrant:      'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/15',
+  };
+  const IS_POINT = new Set(['stormManhole','gully','sewerManhole','hydrant']);
+  const STYLE: Record<string,any> = {
+    propertyBoundary: { color: '#9e8c6a', weight: 1.2, opacity: 0.5, fillColor: '#c4912a', fillOpacity: 0.04 },
+    stormPipe:    { color: '#2a8c9c', weight: 2.4, opacity: 0.9 },
+    stormManhole: { radius: 4,   fillColor: '#1f6f7d', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
+    gully:        { radius: 3.5, fillColor: '#d77b32', color: '#fff', weight: 1.3, fillOpacity: 0.95 },
+    surfaceDrain: { color: '#4dadb8', weight: 2, opacity: 0.9, dashArray: '5 4' },
+    sewerMain:    { color: '#8a6e2f', weight: 2.6, opacity: 0.9 },
+    sewerService: { color: '#b8904a', weight: 1.4, opacity: 0.75 },
+    waterMain:    { color: '#2c7fc4', weight: 2.2, opacity: 0.9 },
+    waterService: { color: '#6fb5e0', weight: 1.4, opacity: 0.75 },
+    sewerManhole: { radius: 4,   fillColor: '#6c5320', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
+    hydrant:      { radius: 4,   fillColor: '#c43a3a', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
+  };
+  const OUT_FIELDS: Record<string,string> = {
+    propertyBoundary: 'OBJECTID,LOTPLAN,LOT,PLAN_,HOUSE_NUMBER,CORRIDOR_NAME,SUBURB,LOT_AREA,TENURE_DESC,PARCEL_TYP_DESC',
+    stormPipe:    'OBJECTID,ASSETID,PIPETYPE,DIAMETER,WIDTH,USIL,DSIL,UPSTREAMDEPTHINVERT,DOWNSTREAMDEPTHINVERT,AVERAGEDEPTH,MEASUREDLENGTH,OWNER,STATUS',
+    stormManhole: 'OBJECTID,ASSETID,MANHOLETYPE,DIAMETER,LENGTH,WIDTH,SL,IL,OWNER,STATUS',
+    gully:        'OBJECTID,ASSETID,INLETTYPE,OUTLETTYPE,DIAMETER,LENGTH,WIDTH,SL,OWNER,STATUS',
+    surfaceDrain: 'OBJECTID,ASSETID,SURFACEDRAINTYPE,AVERAGEBASE,LOWFLOW,USSL,USIL,OWNER,STATUS',
+    sewerMain:    'OBJECTID,ASSETID,MATERIAL,DIAMETER,SEGMENTTYPE,GRADE,USIL,DSIL,STATUS,OWNER',
+    sewerService: 'OBJECTID,ASSETID,DIAMETER,OWNER',
+    waterMain:    'OBJECTID,ASSETID,MATERIAL,DIAMETER,WATERTYPE,SUBTYPECD,OWNER',
+    waterService: 'OBJECTID,ASSETID,DIAMETER,SERVICETYPE,WATERTYPE,OWNER',
+    sewerManhole: 'OBJECTID,ASSETID,MANHOLEUSE,SL,IL,DEPTH,OWNER',
+    hydrant:      'OBJECTID,ASSETID,HYDRANTTYPE,WATERTYPE,OWNER',
+  };
+  const TITLES: Record<string,string> = {
+    propertyBoundary: 'Property parcel',
+    stormPipe: 'Stormwater pipe', stormManhole: 'Stormwater manhole',
+    gully: 'Gully / kerb inlet', surfaceDrain: 'Surface drain',
+    sewerMain: 'Sewer main', sewerService: 'Sewer connection',
+    waterMain: 'Water main', waterService: 'Water connection',
+    sewerManhole: 'Sewer manhole', hydrant: 'Hydrant',
+  };
+  const INTERPRETATIONS: Record<string,string> = {
+    propertyBoundary: 'Lot size and shape confirmed from BCC cadastral data. Verify with a registered survey before relying on any boundary for fencing, building setbacks, or pool placement.',
+    stormPipe:    'This pipe likely carries a council drainage easement. The restricted corridor is typically 1.5 m either side of the pipe centreline. No permanent structures or pools are permitted within that zone without council approval.',
+    stormManhole: 'Manholes mark the stormwater pipe alignment. Any new structure near this point should allow the required clearance from the underground pipe.',
+    gully:        'Kerb inlets capture runoff from the road and footpath. Their position shows how overland flow is designed to drain during heavy rain.',
+    surfaceDrain: 'This drain defines the overland flow path. Low-lying land adjacent to a surface drain can flood when rainfall exceeds its capacity.',
+    sewerMain:    'QUU gravity sewer mains carry an easement, typically 1.5 m either side of the centreline (3 m total). No permanent structures, pools, or large trees are permitted within the easement without QUU written approval.',
+    sewerService: 'The individual property sewer connection from the boundary to the gravity main in the road. Its location and depth determine where the drainage plumbing exits the building.',
+    waterMain:    'The reticulated water supply main, typically beneath the road or footpath. The service connection to the property meter branches off from this main.',
+    waterService: 'The water supply line from the main to the property meter at the boundary. Diameter indicates the flow capacity available to this property.',
+    sewerManhole: 'Manholes indicate the sewer pipe alignment. Their presence near a boundary can signal an easement constraint on what can be built in that area.',
+    hydrant:      'Hydrant placement is a building code requirement for fire-fighting access. It does not typically restrict development or affect property value directly.',
+  };
+
+  // ── State ──────────────────────────────────────────────────────────────
+  const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
+  const active: Record<string,boolean> = {
+    zoning: true,
+    propertyBoundary: true,
+    stormPipe: true, stormManhole: false, gully: true, surfaceDrain: false,
+    sewerMain: true, sewerService: true, waterMain: true, waterService: true,
+    sewerManhole: false, hydrant: false,
+  };
+  let map: any, layers: Record<string,any> = {}, pinMarker: any;
+  let zoningLayer: any, zoneFetchAbort: AbortController | null = null;
+  let fetchAborts: Record<string,AbortController> = {}, acDebounce: any;
+  let canvasRenderer: any;
+  let overlayOpacity = 0.65;
+
+  // ── Zone style ────────────────────────────────────────────────────────
+  function zoneStyleFor(feature: any) {
+    const c = colorFor(feature.properties || {});
+    return {
+      color: 'rgba(28,25,23,0.4)',
+      weight: 0.4,
+      fillColor: c.hex,
+      fillOpacity: c.a * overlayOpacity,
+    };
+  }
+
+  // ── Map init ──────────────────────────────────────────────────────────
+  function initMap() {
+    map = (window as any).L.map('pm-map', {
+      maxBounds: BNE_BOUNDS, minZoom: 11, maxBoundsViscosity: 0.5, tap: false,
+    }).setView([-27.46, 153.04], 13);
+
+    (window as any).L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO &middot; BCC &amp; QUU open data',
+      subdomains: 'abcd', maxZoom: 19,
+    }).addTo(map);
+
+    canvasRenderer = (window as any).L.canvas({ padding: 0.2 });
+
+    // Infrastructure layer groups
+    Object.keys(SVC).forEach(k => {
+      layers[k] = (window as any).L.layerGroup();
+      if (active[k]) layers[k].addTo(map);
+    });
+
+    // Zoning layer group (rendered below infra)
+    zoningLayer = (window as any).L.layerGroup();
+    if (active.zoning) zoningLayer.addTo(map);
+
+    // Restore shared view from URL params
+    const sp = new URLSearchParams(location.search);
+    const pLat = sp.get('lat'), pLng = sp.get('lng'), pZ = sp.get('z');
+    if (pLat && pLng) {
+      map.setView([parseFloat(pLat), parseFloat(pLng)], pZ ? parseInt(pZ) : 17);
+      dismissGuide();
+    }
+
+    map.on('moveend', loadVisible);
+    // Map click: zoning takes priority for area identification
+    map.on('click', (e: any) => {
+      if (active.zoning && map.getZoom() >= 13) {
+        identifyZone(e.latlng.lat, e.latlng.lng);
+      }
+    });
+
+    buildZoneLegend();
+    wireUpControls();
+    loadVisible();
+  }
+
+  // ── Load zoning polygons ──────────────────────────────────────────────
+  function loadZoning() {
+    if (!active.zoning) { zoningLayer.clearLayers(); return; }
+    if (map.getZoom() < 13) { zoningLayer.clearLayers(); return; }
+    if (zoneFetchAbort) zoneFetchAbort.abort();
+    zoneFetchAbort = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest(), ne = b.getNorthEast();
+    const z = map.getZoom();
+    const offset = z >= 17 ? 0 : z >= 15 ? 0.00003 : z >= 13 ? 0.0001 : 0.0003;
+
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326', outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'ZONE_CODE,ZONE_PREC_NO,LVL1_ZONE,LVL2_ZONE,ZONE_PREC,ZONE_PREC_DESC',
+      returnGeometry: 'true',
+      maxAllowableOffset: String(offset),
+      resultRecordCount: '4000',
+      f: 'geojson',
+    });
+
+    fetch(`${ZONING_URL}/query?${params}`, { signal: zoneFetchAbort.signal })
+      .then(r => r.json())
+      .then(geo => {
+        zoningLayer.clearLayers();
+        (window as any).L.geoJSON(geo, {
+          renderer: canvasRenderer,
+          style: zoneStyleFor,
+          onEachFeature(f: any, layer: any) {
+            layer.on('click', (e: any) => {
+              (window as any).L.DomEvent.stopPropagation(e);
+              showZoneFromAttributes(f.properties || {});
+            });
+          },
+        }).addTo(zoningLayer);
+      })
+      .catch((err: any) => { if (err.name !== 'AbortError') return; });
+  }
+
+  // ── Load one infrastructure layer ─────────────────────────────────────
+  function loadOne(key: string) {
+    if (!active[key]) { layers[key].clearLayers(); return; }
+    if (map.getZoom() < 14) { layers[key].clearLayers(); return; }
+    if (fetchAborts[key]) fetchAborts[key].abort();
+    fetchAborts[key] = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest(), ne = b.getNorthEast();
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326', outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: OUT_FIELDS[key],
+      returnGeometry: 'true', resultRecordCount: '4000', f: 'geojson',
+    });
+
+    fetch(`${SVC[key]}/query?${params}`, { signal: fetchAborts[key].signal })
+      .then(r => r.json())
+      .then(geo => {
+        layers[key].clearLayers();
+        const pt = IS_POINT.has(key);
+        (window as any).L.geoJSON(geo, {
+          renderer: canvasRenderer,
+          style: pt ? null : () => STYLE[key],
+          pointToLayer: pt ? (f: any, latlng: any) => (window as any).L.circleMarker(latlng, { ...STYLE[key], renderer: canvasRenderer }) : undefined,
+          onEachFeature(f: any, layer: any) {
+            layer.on('click', (e: any) => {
+              (window as any).L.DomEvent.stopPropagation(e);
+              showAssetResult(key, f.properties || {});
+            });
+          },
+        }).addTo(layers[key]);
+      })
+      .catch((err: any) => { if (err.name === 'AbortError') return; });
+  }
+
+  // ── Load all visible ──────────────────────────────────────────────────
+  function loadVisible() {
+    const s = document.getElementById('pm-status')!;
+    const z = map.getZoom();
+
+    if (active.zoning) {
+      if (z >= 13) loadZoning();
+      else zoningLayer.clearLayers();
+    }
+
+    if (z < 14) {
+      Object.keys(SVC).forEach(k => layers[k].clearLayers());
+      if (z < 13 || !active.zoning) {
+        s.textContent = 'Zoom in to load zones (13+) and infrastructure (14+).';
+      } else {
+        s.textContent = 'Zones loaded. Zoom to 14+ for infrastructure.';
+      }
+      return;
+    }
+
+    dismissGuide();
+    s.textContent = 'Loading assets...';
+    Object.keys(SVC).forEach(loadOne);
+    setTimeout(() => { if (map.getZoom() >= 14) s.textContent = 'Assets loaded. Click any feature.'; }, 700);
+  }
+
+  // ── Zone identify (server-side point-in-polygon) ──────────────────────
+  function identifyZone(lat: number, lon: number) {
+    const s = document.getElementById('pm-status')!;
+    s.textContent = 'Identifying zone...';
+
+    function queryZone(distance: number) {
+      const params = new URLSearchParams({
+        geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+        geometryType: 'esriGeometryPoint',
+        inSR: '4326',
+        spatialRel: 'esriSpatialRelIntersects',
+        outFields: 'ZONE_CODE,ZONE_PREC_NO,LVL1_ZONE,LVL2_ZONE,ZONE_PREC,ZONE_PREC_DESC',
+        returnGeometry: 'false', f: 'json',
+      });
+      if (distance > 0) { params.set('distance', String(distance)); params.set('units', 'esriSRUnit_Meter'); }
+      return fetch(`${ZONING_URL}/query?${params}`).then(r => r.json());
+    }
+
+    queryZone(0)
+      .then(d => {
+        if (d.features && d.features.length) return { d, buffered: false };
+        return queryZone(25).then(d2 => ({ d: d2, buffered: true }));
+      })
+      .then(({ d, buffered }: any) => {
+        const f = d.features && d.features[0];
+        if (f && f.attributes) {
+          showZoneFromAttributes(f.attributes);
+          s.textContent = buffered ? 'Nearest parcel shown.' : 'Zone identified.';
+        } else {
+          s.textContent = 'No zone found here. Try clicking directly on a parcel.';
+        }
+        updateBCCLink(lat, lon);
+      })
+      .catch(() => { s.textContent = 'Zone data unavailable. Use the BCC CityPlan link.'; });
+  }
+
+  // ── Show zone result from attributes ─────────────────────────────────
+  function showZoneFromAttributes(p: Record<string,any>) {
+    const code = (p.ZONE_CODE || '').toUpperCase();
+    const family = zoneFamily(code) || matchZone(p.LVL2_ZONE) || matchZone(p.LVL1_ZONE) || 'SP';
+    const z = ZONES[family];
+    const officialLabel = p.ZONE_PREC_DESC || p.LVL2_ZONE || p.LVL1_ZONE || code;
+    const swatchColor = colorFor(p).hex;
+
+    const el = document.getElementById('pm-result')!;
+    el.className = `mode-zone zone-${family.toLowerCase()}`;
+    el.classList.add('open');
+    document.getElementById('pm-result-eyebrow')!.textContent = 'Zone identified';
+
+    document.getElementById('pm-result-body')!.innerHTML = `
+      <div class="pm-zone-name-row">
+        <div class="pm-zone-dot" style="background:${swatchColor};"></div>
+        <p class="pm-result-name">${code ? `${code}  ${officialLabel}` : officialLabel}</p>
+      </div>
+      <p class="pm-result-height">${z ? z.height : ''}</p>
+      <p class="pm-result-summary">${z ? z.summary : officialLabel}</p>
+      ${z && z.forBuyers ? `<p class="pm-result-buyers">${z.forBuyers}</p>` : ''}
+      <a class="pm-bcc-link" id="pm-bcc-link-el" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">
+        Verify on BCC CityPlan
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    `;
+    updateBCCLink(0, 0);
+  }
+
+  function updateBCCLink(lat: number, lon: number) {
+    const link = document.getElementById('pm-bcc-link-el');
+    if (link && lat !== 0) link.setAttribute('href', `https://cityplan.brisbane.qld.gov.au/#@${lon},${lat},16z`);
+  }
+
+  // ── Show asset result ─────────────────────────────────────────────────
+  function showAssetResult(key: string, attrs: Record<string,any>) {
+    const el = document.getElementById('pm-result')!;
+    el.className = `mode-asset kind-${key}`;
+    el.classList.add('open');
+    document.getElementById('pm-result-eyebrow')!.textContent = TITLES[key] || key;
+
+    const attrRows = renderAttrs(key, attrs)
+      .map(([k, v]: [string,string]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`)
+      .join('');
+
+    document.getElementById('pm-result-body')!.innerHTML = `
+      <h3 class="pm-result-title">${esc(headlineFor(key, attrs))}</h3>
+      <p class="pm-result-interp">${INTERPRETATIONS[key] || ''}</p>
+      ${attrRows ? `<dl class="pm-attrs">${attrRows}</dl>` : ''}
+    `;
+
+    // Close layer panel if open
+    const panel = document.getElementById('pm-layer-panel');
+    const toggle = document.getElementById('pm-layer-toggle');
+    if (panel?.classList.contains('open')) {
+      panel.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // ── Headline for asset ─────────────────────────────────────────────────
+  function headlineFor(key: string, a: Record<string,any>) {
+    const num = (v: any) => (v == null || v === '') ? null : v;
+    if (key === 'propertyBoundary') {
+      const addr = [a.HOUSE_NUMBER, a.CORRIDOR_NAME].filter(Boolean).join(' ');
+      return addr || a.LOTPLAN || TITLES[key];
+    }
+    if (key === 'stormPipe') {
+      const dia = num(a.DIAMETER) ? `DN${a.DIAMETER}` : '';
+      return [dia, a.PIPETYPE].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'sewerService') return a.DIAMETER ? `DN${a.DIAMETER} sewer connection` : TITLES[key];
+    if (key === 'waterService') {
+      return a.SERVICETYPE ? `${a.SERVICETYPE} water connection${a.DIAMETER ? ` DN${a.DIAMETER}` : ''}` : (a.DIAMETER ? `DN${a.DIAMETER} water connection` : TITLES[key]);
+    }
+    if (key === 'sewerMain' || key === 'waterMain') {
+      return [num(a.DIAMETER) ? `DN${a.DIAMETER}` : '', a.MATERIAL].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'sewerManhole') {
+      return [a.MANHOLEUSE, num(a.DEPTH) ? `${(+a.DEPTH).toFixed(1)} m deep` : ''].filter(Boolean).join(' · ') || TITLES[key];
+    }
+    if (key === 'stormManhole') return a.MANHOLETYPE || TITLES[key];
+    if (key === 'gully') return a.INLETTYPE || TITLES[key];
+    if (key === 'hydrant') return a.HYDRANTTYPE || TITLES[key];
+    if (key === 'surfaceDrain') return a.SURFACEDRAINTYPE || TITLES[key];
+    return TITLES[key] || 'Asset';
+  }
+
+  function renderAttrs(key: string, a: Record<string,any>): [string,string][] {
+    const rows: [string,string][] = [];
+    const push = (k: string, v: any) => { if (v != null && v !== '') rows.push([k, String(v)]); };
+    if (key === 'propertyBoundary') {
+      push('Lot/Plan', a.LOTPLAN);
+      const addr = [a.HOUSE_NUMBER, a.CORRIDOR_NAME].filter(Boolean).join(' ');
+      if (addr) push('Address', addr);
+      push('Suburb', a.SUBURB);
+      push('Area', a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : null);
+      push('Tenure', a.TENURE_DESC); push('Type', a.PARCEL_TYP_DESC);
+    } else if (key === 'stormPipe') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Type', a.PIPETYPE);
+      push('Length', a.MEASUREDLENGTH ? `${(+a.MEASUREDLENGTH).toFixed(1)} m` : null);
+      push('Avg depth', a.AVERAGEDEPTH ? `${(+a.AVERAGEDEPTH).toFixed(2)} m` : null);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'stormManhole') {
+      push('Type', a.MANHOLETYPE);
+      push('Surface level', a.SL != null ? `${(+a.SL).toFixed(2)} mAHD` : null);
+      push('Invert level', a.IL != null ? `${(+a.IL).toFixed(2)} mAHD` : null);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'gully') {
+      push('Inlet type', a.INLETTYPE); push('Outlet type', a.OUTLETTYPE);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'surfaceDrain') {
+      push('Type', a.SURFACEDRAINTYPE); push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'sewerService') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'waterService') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Type', a.SERVICETYPE); push('Water type', a.WATERTYPE);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'sewerMain') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Material', a.MATERIAL); push('Type', a.SEGMENTTYPE);
+      push('Grade', a.GRADE != null ? `${a.GRADE}` : null);
+      push('US invert', a.USIL != null ? `${(+a.USIL).toFixed(2)} mAHD` : null);
+      push('DS invert', a.DSIL != null ? `${(+a.DSIL).toFixed(2)} mAHD` : null);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'waterMain') {
+      push('Diameter', a.DIAMETER ? `${a.DIAMETER} mm` : null);
+      push('Material', a.MATERIAL); push('Water type', a.WATERTYPE);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'sewerManhole') {
+      push('Use', a.MANHOLEUSE);
+      push('Surface level', a.SL != null ? `${(+a.SL).toFixed(2)} mAHD` : null);
+      push('Invert level', a.IL != null ? `${(+a.IL).toFixed(2)} mAHD` : null);
+      push('Depth', a.DEPTH != null ? `${(+a.DEPTH).toFixed(2)} m` : null);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    } else if (key === 'hydrant') {
+      push('Type', a.HYDRANTTYPE); push('Water type', a.WATERTYPE);
+      push('Owner', a.OWNER); push('Asset ID', a.ASSETID);
+    }
+    return rows;
+  }
+
+  function esc(s: string) {
+    return String(s).replace(/[&<>"']/g, (c: string) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c));
+  }
+
+  // ── Nearest asset identify ────────────────────────────────────────────
+  function fetchNearest(key: string, lat: number, lon: number) {
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint',
+      inSR: '4326', outSR: '4326',
+      distance: '30', units: 'esriSRUnit_Meter',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: OUT_FIELDS[key],
+      returnGeometry: 'true', f: 'json', resultRecordCount: '5',
+    });
+    return fetch(`${SVC[key]}/query?${params}`)
+      .then(r => r.json())
+      .then((d: any) => {
+        const feats = d.features || [];
+        if (!feats.length) return null;
+        let best = feats[0]; best._dist = featDist(best, lat, lon);
+        for (const f of feats.slice(1)) { const dd = featDist(f, lat, lon); if (dd < best._dist) { best = f; best._dist = dd; } }
+        return best;
+      })
+      .catch(() => null);
+  }
+
+  function featDist(f: any, lat: number, lon: number) {
+    const g = f.geometry || {};
+    if (g.x != null && g.y != null) return distSq(g.y, g.x, lat, lon);
+    if (Array.isArray(g.paths) && g.paths.length) {
+      let min = Infinity;
+      for (const path of g.paths) for (const [x, y] of path) { const d = distSq(y, x, lat, lon); if (d < min) min = d; }
+      return min;
+    }
+    return Infinity;
+  }
+  function distSq(lat1: number, lon1: number, lat2: number, lon2: number) {
+    const dy = (lat1 - lat2) * 111320;
+    const dx = (lon1 - lon2) * 111320 * Math.cos((lat1 + lat2) / 2 * Math.PI / 180);
+    return dx * dx + dy * dy;
+  }
+
+  // ── Zone legend ──────────────────────────────────────────────────────
+  function buildZoneLegend() {
+    const list = document.getElementById('pm-legend-list')!;
+    Object.entries(ZONES).forEach(([key, z]: [string, any]) => {
+      const row = document.createElement('div');
+      row.className = 'pm-legend-row';
+      row.innerHTML = `
+        <div class="pm-zone-swatch" style="background:${z.color};"></div>
+        <span class="pm-legend-code">${z.short}</span>
+        <span class="pm-legend-name">${z.name}</span>`;
+      row.addEventListener('click', () => {
+        // Show zone info directly from legend click
+        const el = document.getElementById('pm-result')!;
+        el.className = `mode-zone zone-${key.toLowerCase()}`;
+        el.classList.add('open');
+        document.getElementById('pm-result-eyebrow')!.textContent = 'Zone information';
+        document.getElementById('pm-result-body')!.innerHTML = `
+          <div class="pm-zone-name-row">
+            <div class="pm-zone-dot" style="background:${z.color};"></div>
+            <p class="pm-result-name">${z.short}: ${z.name}</p>
+          </div>
+          <p class="pm-result-height">${z.height}</p>
+          <p class="pm-result-summary">${z.summary}</p>
+          ${z.forBuyers ? `<p class="pm-result-buyers">${z.forBuyers}</p>` : ''}
+          <a class="pm-bcc-link" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">
+            Verify on BCC CityPlan
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>`;
+      });
+      list.appendChild(row);
+    });
+  }
+
+  // ── Geocode / autocomplete ────────────────────────────────────────────
+  async function geocode(addr: string) {
+    const u = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addr + ', Brisbane, Australia')}&format=json&limit=1&countrycodes=au`;
+    const data = await fetch(u, { headers: { 'Accept-Language': 'en' } }).then(r => r.json());
+    if (!data.length) throw new Error('not found');
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+  }
+  function suggestions(q: string) {
+    return fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lang=en&bbox=152.6,-27.8,153.5,-27.1`)
+      .then(r => r.json()).then((d: any) => d.features || []);
+  }
+  function renderSuggestions(features: any[]) {
+    const list = document.getElementById('pm-autocomplete')!;
+    list.innerHTML = '';
+    if (!features.length) { list.style.display = 'none'; return; }
+    features.forEach(f => {
+      const p = f.properties;
+      const label = [p.name, p.street && p.housenumber ? `${p.street} ${p.housenumber}` : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const item = document.createElement('div');
+      item.className = 'pm-ac-item'; item.textContent = label;
+      item.addEventListener('mousedown', () => {
+        const lat = f.geometry.coordinates[1], lon = f.geometry.coordinates[0];
+        (document.getElementById('pm-search') as HTMLInputElement).value = label;
+        list.style.display = 'none';
+        flyAndIdentify(lat, lon);
+      });
+      list.appendChild(item);
+    });
+    list.style.display = 'block';
+  }
+
+  function dropPin(lat: number, lon: number) {
+    if (pinMarker) map.removeLayer(pinMarker);
+    pinMarker = (window as any).L.marker([lat, lon], {
+      icon: (window as any).L.divIcon({
+        className: '',
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        iconSize: [28, 36], iconAnchor: [14, 36],
+      }),
+    }).addTo(map);
+  }
+
+  function flyAndIdentify(lat: number, lon: number) {
+    dropPin(lat, lon);
+    map.setView([lat, lon], 18);
+    // Identify zone first (if active)
+    if (active.zoning) setTimeout(() => identifyZone(lat, lon), 400);
+    updateBCCLink(lat, lon);
+  }
+
+  async function doSearch() {
+    const v = (document.getElementById('pm-search') as HTMLInputElement).value.trim();
+    if (!v) return;
+    const s = document.getElementById('pm-status')!;
+    const btn = document.getElementById('pm-search-btn') as HTMLButtonElement;
+    s.textContent = 'Locating address...';
+    btn.disabled = true;
+    dismissGuide();
+    document.getElementById('pm-autocomplete')!.style.display = 'none';
+    try {
+      const { lat, lon } = await geocode(v);
+      flyAndIdentify(lat, lon);
+    } catch {
+      s.textContent = 'Address not found. Add the suburb (e.g. 12 Main St, Camp Hill).';
+    }
+    btn.disabled = false;
+  }
+
+  function dismissGuide() {
+    document.getElementById('pm-guide')?.classList.add('hidden');
+  }
+
+  // ── Wire up controls ───────────────────────────────────────────────────
+  function wireUpControls() {
+    const search = document.getElementById('pm-search') as HTMLInputElement;
+    document.getElementById('pm-search-btn')!.addEventListener('click', doSearch);
+    search.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+      if (e.key === 'Escape') document.getElementById('pm-autocomplete')!.style.display = 'none';
+    });
+    search.addEventListener('input', () => {
+      clearTimeout(acDebounce);
+      const q = search.value.trim();
+      if (q.length < 3) { document.getElementById('pm-autocomplete')!.style.display = 'none'; return; }
+      acDebounce = setTimeout(() => suggestions(q).then(renderSuggestions), 130);
+    });
+    document.addEventListener('click', (e: MouseEvent) => {
+      if (!(e.target as Element).closest('#pm-search-wrap'))
+        document.getElementById('pm-autocomplete')!.style.display = 'none';
+    });
+
+    // GPS button
+    const gpsBtn = document.getElementById('pm-gps-btn') as HTMLButtonElement | null;
+    if (gpsBtn) {
+      gpsBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+          document.getElementById('pm-status')!.textContent = 'Geolocation not supported.';
+          return;
+        }
+        document.getElementById('pm-status')!.textContent = 'Getting your location...';
+        gpsBtn.disabled = true; gpsBtn.classList.add('locating');
+        navigator.geolocation.getCurrentPosition(
+          pos => { gpsBtn.disabled = false; gpsBtn.classList.remove('locating'); dismissGuide(); flyAndIdentify(pos.coords.latitude, pos.coords.longitude); },
+          () => { gpsBtn.disabled = false; gpsBtn.classList.remove('locating'); document.getElementById('pm-status')!.textContent = 'Location denied. Try searching by address.'; },
+          { timeout: 10000 }
+        );
+      });
+    }
+
+    document.getElementById('pm-guide-dismiss')?.addEventListener('click', dismissGuide);
+
+    // Layers panel toggle
+    const toggle = document.getElementById('pm-layer-toggle')!;
+    const panel  = document.getElementById('pm-layer-panel')!;
+    toggle.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Layer checkboxes (infrastructure)
+    panel.querySelectorAll<HTMLInputElement>('input[data-layer]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const k = cb.dataset.layer!;
+        if (k === 'zoning') {
+          active.zoning = cb.checked;
+          const zoneSub = document.getElementById('pm-zone-sub')!;
+          zoneSub.style.display = cb.checked ? '' : 'none';
+          if (cb.checked) { zoningLayer.addTo(map); loadZoning(); }
+          else map.removeLayer(zoningLayer);
+          return;
+        }
+        active[k] = cb.checked;
+        if (active[k]) { layers[k].addTo(map); loadOne(k); }
+        else map.removeLayer(layers[k]);
+      });
+    });
+
+    // Opacity slider
+    document.getElementById('pm-opacity-slider')?.addEventListener('input', function(this: HTMLInputElement) {
+      const val = parseInt(this.value);
+      document.getElementById('pm-opacity-val')!.textContent = val + '%';
+      overlayOpacity = val / 100;
+      // Refresh zoning layer styles
+      zoningLayer.eachLayer((child: any) => {
+        if (child.eachLayer) {
+          child.eachLayer((p: any) => { if (p.setStyle && p.feature) p.setStyle(zoneStyleFor(p.feature)); });
+        }
+      });
+    });
+
+    // Zone legend toggle
+    const legendBtn = document.getElementById('pm-legend-btn')!;
+    const legendList = document.getElementById('pm-legend-list')!;
+    legendBtn.addEventListener('click', () => {
+      const open = legendList.style.display === 'none';
+      legendList.style.display = open ? 'block' : 'none';
+      legendBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Result close
+    document.getElementById('pm-result-close')!.addEventListener('click', () => {
+      document.getElementById('pm-result')!.classList.remove('open');
+    });
+
+    // Share button
+    const shareBtn = document.getElementById('pm-share-btn') as HTMLButtonElement | null;
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        const c = map.getCenter();
+        const z = map.getZoom();
+        const url = `${location.origin}${location.pathname}?lat=${c.lat.toFixed(5)}&lng=${c.lng.toFixed(5)}&z=${z}`;
+        const reset = () => { shareBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Copy map link'; shareBtn.classList.remove('copied'); };
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(() => { shareBtn.textContent = 'Copied!'; shareBtn.classList.add('copied'); setTimeout(reset, 2200); }).catch(() => prompt('Copy:', url));
+        } else { prompt('Copy:', url); }
+      });
+    }
+
+    // Prevent page zoom when pinching the map on iOS
+    const metaVp = document.querySelector('meta[name="viewport"]') as HTMLMetaElement | null;
+    const mapEl = document.getElementById('pm-map');
+    if (metaVp && mapEl) {
+      mapEl.addEventListener('touchstart', () => { metaVp.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'; }, { passive: true });
+      mapEl.addEventListener('touchend',   () => { metaVp.content = 'width=device-width, initial-scale=1'; }, { passive: true });
+      mapEl.addEventListener('touchcancel',() => { metaVp.content = 'width=device-width, initial-scale=1'; }, { passive: true });
+    }
+
+    // Auto-fade status pill after stable messages
+    const status = document.getElementById('pm-status')!;
+    let fadeTimer: any;
+    new MutationObserver(() => {
+      clearTimeout(fadeTimer);
+      status.style.opacity = '1';
+      if (/loaded|identified/i.test(status.textContent || ''))
+        fadeTimer = setTimeout(() => { status.style.opacity = '0'; }, 1800);
+    }).observe(status, { childList: true, characterData: true, subtree: true });
+  }
+
+  function whenLeafletReady() {
+    if ((window as any).L) initMap();
+    else requestAnimationFrame(whenLeafletReady);
+  }
+  whenLeafletReady();
+})();
+</script>
+
+<!-- Buyers CTA -->
+<div style="margin-top:1.25rem;padding:1.25rem 1.5rem;background:var(--color-surface-1);border-left:3px solid var(--color-gold);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+  <div>
+    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin:0 0 0.3rem;">Off-Market &amp; Pre-Market Access</p>
+    <p style="font-size:0.85rem;color:var(--color-text-primary);line-height:1.6;margin:0;max-width:44ch;">Looking to buy in this area? Register your brief and get early access to properties before they are publicly listed.</p>
+  </div>
+  <a href="/buyers" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0a0806;background:var(--color-gold);padding:0.6rem 1.2rem;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;">Register your search &rarr;</a>
+</div>
+</ToolLayout>
