@@ -131,18 +131,7 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
     border: 1px solid rgba(196,145,42,0.18);
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
-  .pm-control-tr { top: 12px; right: 72px; }
-
-  #pm-compass {
-    position: absolute; top: 12px; right: 12px; z-index: 500;
-    width: 48px; height: 48px;
-    background: rgba(10,8,6,0.92);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(196,145,42,0.18);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    display: flex; align-items: center; justify-content: center;
-    pointer-events: none;
-  }
+  .pm-control-tr { top: 12px; right: 12px; }
 
   #pm-status {
     position: absolute; top: 12px; left: 12px; z-index: 500;
@@ -180,8 +169,6 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
 
   /* Mobile: full-width bottom sheet */
   @media (max-width: 640px) {
-    .pm-control-tr { right: 12px !important; }
-    #pm-compass { position: absolute; top: 12px; right: 12px; }
     .pm-control-tr {
       position: fixed !important;
       top: auto !important;
@@ -580,22 +567,16 @@ window.PM_ZONES = {
     <!-- Status pill (top-left) -->
     <div id="pm-status">Click any feature or search an address.</div>
 
-    <!-- Compass (top-right) -->
-    <div id="pm-compass" aria-hidden="true">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
-        <polygon points="18,32 21,18 18,21 15,18" fill="rgba(240,236,228,0.25)"/>
-        <polygon points="32,18 18,15 21,18 18,21" fill="rgba(240,236,228,0.18)"/>
-        <polygon points="4,18 18,15 15,18 18,21" fill="rgba(240,236,228,0.18)"/>
-        <circle cx="18" cy="18" r="2" fill="rgba(240,236,228,0.6)"/>
-        <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#c4912a" letter-spacing="0.05em">N</text>
-      </svg>
-    </div>
-
-    <!-- Layers panel (top-right) -->
+    <!-- Layers panel + compass (top-right, combined) -->
     <div class="pm-control pm-control-tr">
       <button class="pm-layer-toggle" id="pm-layer-toggle" aria-expanded="false" aria-controls="pm-layer-panel">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l10 6-10 6L2 8l10-6zM2 16l10 6 10-6M2 12l10 6 10-6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
+          <polygon points="18,32 21,18 18,21 15,18" fill="rgba(240,236,228,0.35)"/>
+          <polygon points="32,18 18,15 21,18 18,21" fill="rgba(240,236,228,0.25)"/>
+          <polygon points="4,18 18,15 15,18 18,21" fill="rgba(240,236,228,0.25)"/>
+          <circle cx="18" cy="18" r="2.5" fill="rgba(240,236,228,0.7)"/>
+        </svg>
         Layers
         <svg class="pm-toggle-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
