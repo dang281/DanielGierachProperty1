@@ -61,6 +61,31 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #im-search-btn:hover { background: #d4af4a; }
   #im-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  #im-gps-btn {
+    flex-shrink: 0; width: 46px;
+    background: var(--color-surface-4);
+    border: 1px solid rgba(28,25,23,0.18); border-left: none;
+    color: var(--color-text-muted); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color 0.2s, background 0.2s;
+  }
+  #im-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #im-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  #im-gps-btn.locating { color: var(--color-gold); }
+  .im-result-interp {
+    font-size: 0.84rem; color: var(--color-text-primary); line-height: 1.65;
+    margin-bottom: 0.65rem; padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+  }
+  #im-share-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: none; border: none; cursor: pointer; padding: 0;
+    font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-text-muted); transition: color 0.2s;
+  }
+  #im-share-btn:hover { color: var(--color-gold); }
+  #im-share-btn.copied { color: #4caf50; }
 
   /* ── Mobile search: sticky, prominent, iOS-safe ─────────────────────────── */
   @media (max-width: 640px) {
@@ -80,6 +105,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     /* 16px is the iOS threshold. Anything smaller triggers auto-zoom on focus. */
     #im-search { font-size: 16px; height: 48px; padding: 0 0.9rem; }
     #im-search-btn { height: 48px; padding: 0 1rem; font-size: 0.68rem; }
+    #im-gps-btn { width: 48px; height: 48px; }
+    .im-ac-item { padding: 1rem 1rem; min-height: 48px; font-size: 0.92rem; }
     .im-eduline { display: none; }
   }
   #im-autocomplete {
@@ -90,12 +117,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   }
   .im-ac-item {
-    padding: 0.65rem 1rem; font-size: 0.85rem;
+    padding: 0.85rem 1rem; font-size: 0.85rem;
     color: var(--color-text-primary); cursor: pointer;
     border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4;
+    min-height: 44px; display: flex; align-items: center;
   }
   .im-ac-item:last-child { border-bottom: none; }
-  .im-ac-item:hover { background: rgba(197,160,60,0.08); }
+  .im-ac-item:hover, .im-ac-item:active { background: rgba(197,160,60,0.08); }
 
   .im-map-wrap { position: relative; }
   #im-map {
@@ -310,6 +338,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <div id="im-autocomplete" style="display:none;"></div>
       </div>
       <button id="im-search-btn">Search</button>
+      <button id="im-gps-btn" title="Use my location" aria-label="Use my location">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="9" stroke-opacity="0.3"/></svg>
+      </button>
     </div>
   </div>
 
@@ -421,6 +452,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         </button>
       </div>
       <h3 id="im-result-title"></h3>
+      <p class="im-result-interp" id="im-result-interp"></p>
       <dl class="im-attrs" id="im-result-attrs"></dl>
       <p class="im-result-note" id="im-result-note"></p>
     </div>
@@ -428,7 +460,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   <div class="im-foot">
     <span><strong style="color:var(--color-text-secondary);">Educational use only.</strong> Stormwater data: Brisbane City Council open data. Water &amp; sewer data: Queensland Urban Utilities open data.</span>
-    <span style="display:flex;gap:1rem;">
+    <span style="display:flex;gap:1rem;align-items:center;">
+      <button id="im-share-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Copy map link
+      </button>
       <a href="https://urbanutilities.com.au/help-and-advice/manage-your-property/property-information" target="_blank" rel="noopener">QUU official plans →</a>
       <a href="https://www.1100.com.au/" target="_blank" rel="noopener">Dial Before You Dig →</a>
     </span>
@@ -540,6 +576,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     hydrant:      'Hydrants are spaced for fire-fighting access. Their presence is a code requirement, not a property feature.',
   };
 
+  const INTERPRETATIONS: Record<string,string> = {
+    propertyBoundary: 'Lot size and shape confirmed from BCC cadastral data. Verify with a registered survey before relying on any boundary for fencing, building setbacks, or pool placement.',
+    stormPipe:    'This pipe likely carries a council drainage easement. The restricted corridor is typically 1.5 m either side of the pipe centreline. No permanent structures or pools are permitted within that zone without council approval.',
+    stormManhole: 'Manholes mark the stormwater pipe alignment. Any new structure near this point should allow the required clearance from the underground pipe.',
+    gully:        'Kerb inlets capture runoff from the road and footpath. Their position shows how overland flow is designed to drain during heavy rain.',
+    surfaceDrain: 'This drain defines the overland flow path. Low-lying land adjacent to a surface drain can flood when rainfall exceeds its capacity.',
+    sewerMain:    'QUU gravity sewer mains carry an easement, typically 1.5 m either side of the centreline (3 m total). No permanent structures, pools, or large trees are permitted within the easement without QUU written approval.',
+    sewerService: 'The individual property sewer connection from the boundary to the gravity main in the road. Its location and depth determine where the drainage plumbing exits the building.',
+    waterMain:    'The reticulated water supply main, typically beneath the road or footpath. The service connection to the property meter branches off from this main.',
+    waterService: 'The water supply line from the main to the property meter at the boundary. Diameter indicates the flow capacity available to this property.',
+    sewerManhole: 'Manholes indicate the sewer pipe alignment. Their presence near a boundary can signal an easement constraint on what can be built in that area.',
+    hydrant:      'Hydrant placement is a building code requirement for fire-fighting access. It does not typically restrict development or affect property value directly.',
+  };
+
   const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
 
   const active: Record<string,boolean> = {
@@ -568,6 +618,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       layers[k] = L.layerGroup();
       if (active[k]) layers[k].addTo(map);
     });
+
+    // Restore shared view from URL params (?lat=&lng=&z=)
+    const sp = new URLSearchParams(location.search);
+    const pLat = sp.get('lat'), pLng = sp.get('lng'), pZ = sp.get('z');
+    if (pLat && pLng) {
+      map.setView([parseFloat(pLat), parseFloat(pLng)], pZ ? parseInt(pZ) : 17);
+    }
 
     map.on('moveend', loadVisible);
     map.on('click', (e: any) => identifyAt(e.latlng.lat, e.latlng.lng));
@@ -694,11 +751,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     el.classList.add('open');
     document.getElementById('im-result-eyebrow')!.textContent = TITLES[key] || key;
     document.getElementById('im-result-title')!.textContent = headlineFor(key, attrs);
+    document.getElementById('im-result-interp')!.textContent = INTERPRETATIONS[key] || '';
 
     const rows = renderAttrs(key, attrs);
     document.getElementById('im-result-attrs')!.innerHTML =
       rows.map(([k, v]: [string,string]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
     document.getElementById('im-result-note')!.textContent = NOTES[key] || '';
+
+    // Close layer panel if open so the result drawer isn't obscured
+    const panel = document.getElementById('im-layer-panel');
+    const toggle = document.getElementById('im-layer-toggle');
+    if (panel?.classList.contains('open')) {
+      panel.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
   }
 
   function headlineFor(key: string, a: Record<string,any>) {
@@ -903,6 +969,53 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     document.getElementById('im-result-close')!.addEventListener('click', () => {
       document.getElementById('im-result')!.classList.remove('open');
     });
+
+    // GPS / My Location button
+    const gpsBtn = document.getElementById('im-gps-btn') as HTMLButtonElement | null;
+    if (gpsBtn) {
+      gpsBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+          document.getElementById('im-status')!.textContent = 'Geolocation not supported by your browser.';
+          return;
+        }
+        document.getElementById('im-status')!.textContent = 'Getting your location...';
+        gpsBtn.disabled = true;
+        gpsBtn.classList.add('locating');
+        navigator.geolocation.getCurrentPosition(
+          pos => {
+            gpsBtn.disabled = false;
+            gpsBtn.classList.remove('locating');
+            flyAndIdentify(pos.coords.latitude, pos.coords.longitude);
+          },
+          () => {
+            gpsBtn.disabled = false;
+            gpsBtn.classList.remove('locating');
+            document.getElementById('im-status')!.textContent = 'Location access denied. Try searching by address.';
+          },
+          { timeout: 10000 }
+        );
+      });
+    }
+
+    // Share / copy map link button
+    const shareBtn = document.getElementById('im-share-btn') as HTMLButtonElement | null;
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        const c = map.getCenter();
+        const z = map.getZoom();
+        const url = `${location.origin}${location.pathname}?lat=${c.lat.toFixed(5)}&lng=${c.lng.toFixed(5)}&z=${z}`;
+        const reset = () => { shareBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Copy map link'; shareBtn.classList.remove('copied'); };
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(() => {
+            shareBtn.textContent = 'Copied!';
+            shareBtn.classList.add('copied');
+            setTimeout(reset, 2200);
+          }).catch(() => { prompt('Copy this link:', url); });
+        } else {
+          prompt('Copy this link:', url);
+        }
+      });
+    }
 
     // Prevent the browser from zooming the page when the user pinches the map.
     // On iOS Safari, even with touch-action:none on the element, a pinch gesture
