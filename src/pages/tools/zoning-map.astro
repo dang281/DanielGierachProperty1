@@ -9,6 +9,7 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
   phase="Buyer Tools"
   description="Look up Brisbane City Plan 2014 zoning for any address. Understand Character, LMR, MDR and other zones across Brisbane's inner east."
   resourceSlug="brisbane-heritage-character-overlay-reference"
+  manifest="/manifest-zoning-map.webmanifest"
 >
 
 
@@ -47,8 +48,8 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
     font-size: 0.95rem;
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
-    background: var(--color-surface-4);
-    color: var(--color-text-primary);
+    background: #ffffff;
+    color: #1c1917;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -104,7 +105,20 @@ import bccZoneColors from '../../data/bcc-zone-colors.json';
     border: 1px solid rgba(28,25,23,0.1);
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   }
-  .zm-control-top-right { top: 12px; right: 12px; }
+  /* Shift legend left to leave room for compass (52px + 8px gap) */
+  .zm-control-top-right { top: 12px; right: 72px; }
+
+  /* Compass: top-right corner, light theme matching the control panels */
+  #zm-compass {
+    position: absolute; top: 12px; right: 12px; z-index: 500;
+    width: 48px; height: 48px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(28,25,23,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
   .zm-control-bottom-left { bottom: 14px; left: 14px; padding: 0.55rem 0.9rem; width: 230px; }
   @media (max-width: 480px) {
     .zm-control-bottom-left { width: calc(100% - 28px); }
@@ -421,6 +435,18 @@ window.ZONES = {
 
     <!-- Status (top-left) -->
     <div id="status-msg">Click a property or search an address to identify the zone.</div>
+
+    <!-- Compass rose (top-right) -->
+    <div id="zm-compass" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
+        <polygon points="18,32 21,18 18,21 15,18" fill="rgba(28,25,23,0.2)"/>
+        <polygon points="32,18 18,15 21,18 18,21" fill="rgba(28,25,23,0.12)"/>
+        <polygon points="4,18 18,15 15,18 18,21" fill="rgba(28,25,23,0.12)"/>
+        <circle cx="18" cy="18" r="2" fill="rgba(28,25,23,0.4)"/>
+        <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#c4912a" letter-spacing="0.05em">N</text>
+      </svg>
+    </div>
 
     <!-- Legend (top-right) -->
     <div class="zm-control zm-control-top-right">
