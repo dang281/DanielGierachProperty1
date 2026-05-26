@@ -521,20 +521,6 @@ const serviceSchema = {
     color: #44403c;
   }
 
-  body.appraisal-page #site-header {
-    background: rgba(247,245,240,0.96) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(28,25,23,0.08) !important;
-    box-shadow: 0 4px 24px rgba(28,25,23,0.08) !important;
-  }
-  body.appraisal-page #logo-name {
-    color: var(--color-text-primary) !important;
-  }
-  body.appraisal-page #nav-links .nav-link-mono,
-  body.appraisal-page #nav-cta .nav-link-mono {
-    color: var(--color-text-secondary) !important;
-  }
 </style>
 
 <script>
@@ -700,17 +686,6 @@ const serviceSchema = {
   const navLinkEls = document.querySelectorAll<HTMLElement>('#nav-links .nav-link-mono, #nav-cta .nav-link-mono');
 
   header.classList.add('glass-nav');
-  logoName.style.color = 'var(--color-text-primary)';
-  navLinkEls.forEach(el => el.style.color = '');
-
-  window.addEventListener('scroll', () => {
-    setTimeout(() => {
-      header.classList.add('glass-nav');
-      header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
-      logoName.style.color = 'var(--color-text-primary)';
-      navLinkEls.forEach(el => el.style.color = '');
-    }, 0);
-  });
 
   // ── Google Places autocomplete on property address ─────────────────
   function initGooglePlacesAppraisal() {

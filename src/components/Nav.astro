@@ -5,6 +5,7 @@ const navLinks = [
   { label: 'Property Tools', href: '/tools' },
   { label: 'Suburbs', href: '/suburbs' },
   { label: 'Insights', href: '/insights' },
+  { label: 'Reviews', href: '/reviews' },
   { label: 'About', href: '/about' },
 ];
 
@@ -94,7 +95,7 @@ const suburbs = [
     letter-spacing: 0.18em;
     opacity: 0.75;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     .agency-collective {
       font-size: 0.625rem;
       letter-spacing: 0.22em;
@@ -119,7 +120,7 @@ const suburbs = [
 
   // ── Responsive layout (pure JS, no CSS classes) ──────────────────────────
   function applyLayout() {
-    const desktop = window.innerWidth >= 1280;
+    const desktop = window.innerWidth >= 1024;
     navLinksEl.style.display   = desktop ? 'flex' : 'none';
     navCtaEl.style.display     = desktop ? 'flex' : 'none';
     mobileToggle.style.display = desktop ? 'none' : 'flex';
@@ -144,45 +145,34 @@ const suburbs = [
   // ── Nav scroll state ─────────────────────────────────────────────────────
   const navPhone = document.getElementById('nav-phone') as HTMLAnchorElement | null;
   // PERF-007: passive listener + rAF throttling + state caching so we never
-  // touch the DOM unless the scrolled/light state actually changes.
-  let lastIsLight: boolean | null = null;
+  // touch the DOM unless the scrolled state actually changes.
+  let lastIsScrolled: boolean | null = null;
   let rafQueued = false;
 
-  function applyNavState(isLight: boolean) {
-    if (isLight) {
+  function applyNavState(isScrolled: boolean) {
+    // Always dark — cream/gold colours regardless of scroll state.
+    logoName.style.color = '#f0ece4';
+    navLinkEls.forEach(el => el.style.color = '#f0ece4');
+    bars.forEach(b => b.style.background = '#f0ece4');
+    const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
+    if (trigger) trigger.style.color = '#f0ece4';
+    if (navPhone) {
+      navPhone.style.color = '#f5d07a';
+      navPhone.style.borderColor = 'rgba(245,208,122,0.4)';
+    }
+    if (isScrolled) {
       header.classList.add('glass-nav');
-      header.style.boxShadow = '0 4px 24px rgba(28,25,23,0.1)';
-      logoName.style.color = 'var(--color-text-primary)';
-      navLinkEls.forEach(el => el.style.color = '');
-      bars.forEach(b => b.style.background = '#1c1917');
-      const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
-      if (trigger) trigger.style.color = '';
-      // A11Y-010: darken phone link on cream glass-nav for AA contrast
-      if (navPhone) {
-        navPhone.style.color = '#7a5618';
-        navPhone.style.borderColor = 'rgba(122,86,24,0.45)';
-      }
     } else {
       header.classList.remove('glass-nav');
       header.style.boxShadow = 'none';
-      logoName.style.color = '#f0ece4';
-      navLinkEls.forEach(el => el.style.color = '#f0ece4');
-      bars.forEach(b => b.style.background = '#f0ece4');
-      const trigger = document.querySelector<HTMLElement>('.nav-dropdown-trigger');
-      if (trigger) trigger.style.color = '#f0ece4';
-      // Restore light gold over dark hero
-      if (navPhone) {
-        navPhone.style.color = '#f5d07a';
-        navPhone.style.borderColor = 'rgba(245,208,122,0.4)';
-      }
     }
   }
 
   function updateNav() {
-    const isLight = window.scrollY > 50 || document.body.dataset.lightNav === 'true';
-    if (isLight === lastIsLight) return;
-    lastIsLight = isLight;
-    applyNavState(isLight);
+    const isScrolled = window.scrollY > 50 || document.body.dataset.lightNav === 'true';
+    if (isScrolled === lastIsScrolled) return;
+    lastIsScrolled = isScrolled;
+    applyNavState(isScrolled);
   }
 
   function onScroll() {

@@ -156,6 +156,8 @@ const tagColors: Record<string, string> = {
   'Sold': 'rgba(240,236,228,0.6)',
 };
 
+const allSuburbs = [...new Set([...forSale, ...sold].map(p => p.suburb))].sort();
+
 const listingsSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -197,6 +199,18 @@ const listingsSchema = {
 </section>
 
 
+<!-- Suburb filter -->
+<section style="background:var(--color-base);padding:1.5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+      <button class="suburb-filter active" data-filter="all">All suburbs</button>
+      {allSuburbs.map(s => (
+        <button class="suburb-filter" data-filter={s.toLowerCase().replace(/ /g, '-')}>{s}</button>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- For Sale -->
 <section style="background:var(--color-base);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -219,7 +233,8 @@ const listingsSchema = {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
       {forSale.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener"
-          class="reveal" data-delay={i * 60}
+          class="reveal listing-card" data-delay={i * 60}
+          data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
           style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
           onmouseover="this.style.background='#edeae3'"
           onmouseout="this.style.background='#ffffff'"
@@ -276,7 +291,8 @@ const listingsSchema = {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
       {sold.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener"
-          class="reveal" data-delay={i * 60}
+          class="reveal listing-card" data-delay={i * 60}
+          data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
           style="background:#f2efe9;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
           onmouseover="this.style.background='#edeae3'"
           onmouseout="this.style.background='#f2efe9'"
@@ -307,6 +323,47 @@ const listingsSchema = {
     </div>
   </div>
 </section>
+
+<style>
+  .suburb-filter {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #78716c;
+    background: transparent;
+    border: 1px solid rgba(28,25,23,0.18);
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .suburb-filter:hover {
+    border-color: #c4912a;
+    color: #c4912a;
+  }
+  .suburb-filter.active {
+    background: #c4912a;
+    border-color: #c4912a;
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.suburb-filter');
+  const cards = document.querySelectorAll<HTMLElement>('.listing-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter!;
+      filterBtns.forEach(b => b.classList.toggle('active', b === btn));
+      cards.forEach(card => {
+        const show = filter === 'all' || card.dataset.suburb === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
 
 <!-- Property Report CTA -->
 <section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">

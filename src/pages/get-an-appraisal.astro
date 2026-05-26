@@ -31,15 +31,18 @@ const appraisalSchema = {
   schema={appraisalSchema}
 >
 
-<section class="get-appraisal-hero" style="position:relative; min-height:60vh; background:#0a0806; display:flex; align-items:center; padding:6rem 1.5rem 3rem;">
+<section class="get-appraisal-hero" style="position:relative; min-height:100svh; background:#0a0806; display:flex; align-items:center; padding:7rem 1.5rem 6rem;">
   <div style="position:absolute; inset:0; overflow:hidden;">
     <img
       src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg"
       alt="Brisbane property"
-      style="width:100%; height:100%; object-fit:cover; filter:grayscale(20%) brightness(0.32);"
+      style="width:100%; height:100%; object-fit:cover; filter:grayscale(20%) brightness(0.28);"
       loading="eager" decoding="async" width="1920" height="1080"
     />
-    <div style="position:absolute; inset:0; background:linear-gradient(120deg, rgba(10,8,6,0.6) 0%, rgba(10,8,6,0.25) 100%);"></div>
+    <!-- Directional overlay: heavier left for text legibility, opens up on right -->
+    <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(10,8,6,0.82) 0%, rgba(10,8,6,0.55) 45%, rgba(10,8,6,0.18) 100%);"></div>
+    <!-- Bottom vignette: fades to footer's dark CTA background for seamless handoff -->
+    <div style="position:absolute; bottom:0; left:0; right:0; height:260px; background:linear-gradient(to bottom, transparent 0%, #0a0806 100%);"></div>
   </div>
 
   <div style="position:relative; z-index:10; max-width:1200px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;" class="appraisal-grid">
@@ -60,8 +63,11 @@ const appraisalSchema = {
       </ul>
     </div>
 
-    <!-- Right: form -->
-    <div style="background:var(--color-surface-0); padding:2.5rem 2.25rem; border:1px solid rgba(28,25,23,0.08);">
+    <!-- Right: form card -->
+    <div style="background:var(--color-surface-0); padding:2.75rem 2.5rem; position:relative; box-shadow:0 32px 80px rgba(0,0,0,0.55), 0 8px 24px rgba(0,0,0,0.3);">
+      <!-- Gold top accent -->
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent 0%, rgba(196,145,42,0.9) 25%, rgba(196,145,42,0.9) 75%, transparent 100%);"></div>
+
       <p style="font-family:var(--font-sans); font-size:0.6rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#c4912a; margin-bottom:0.4rem;">Send a Request</p>
       <h2 style="font-family:var(--font-serif); font-size:1.55rem; font-weight:400; color:#1c1917; line-height:1.2; margin-bottom:1.5rem;">
         Daniel will respond within 24 hours.
@@ -75,16 +81,22 @@ const appraisalSchema = {
         <input type="hidden" name="_source" value="get-an-appraisal" />
 
         <input type="text" name="name" required placeholder="Your name" autocomplete="name" aria-label="Your name"
+          class="form-field"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
         <input type="email" name="email" required placeholder="Email address" autocomplete="email" aria-label="Email address"
+          class="form-field"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
         <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" aria-label="Phone, optional"
+          class="form-field"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
         <input id="appraisal-suburb" type="text" name="suburb" required placeholder="Suburb" aria-label="Suburb"
+          class="form-field"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
         <input type="text" name="property_address" required placeholder="Property address (street + number)" aria-label="Property address"
+          class="form-field"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
         <textarea name="notes" rows="3" placeholder="Anything Daniel should know? (timing, situation, target price)" aria-label="Notes, timing, situation, target price"
+          class="form-field"
           style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box; resize:vertical;"></textarea>
 
         <button type="submit" class="btn-gold" style="margin-top:0.5rem; justify-content:center;">

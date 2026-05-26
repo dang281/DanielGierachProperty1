@@ -85,6 +85,8 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="description" content={description} />
     <meta name="author" content="Daniel Gierach" />
     <meta name="robots" content={draft ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
@@ -296,18 +298,20 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       </a>
     </div>
 
-    <!-- Meta Pixel, replace 1493183205636761 with your actual ID from Meta Business Suite → Events Manager -->
+    <!-- Meta Pixel — deferred to after load so it never blocks first paint -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1493183205636761');
-      fbq('track', 'PageView');
+      window.addEventListener('load', function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1493183205636761');
+        fbq('track', 'PageView');
+      });
     </script>
     <noscript>
       <img height="1" width="1" style="display:none"
@@ -320,10 +324,10 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       gtag('js', new Date());
       gtag('config', 'G-K1P37GL73K');
     </script>
-    <!-- Web Vitals → GA4 (#10) -->
-    <script type="module">
-      import {onCLS,onINP,onLCP,onFCP,onTTFB} from 'https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js?module';
-      function sendVital({name,value,rating}){
+    <!-- Web Vitals → GA4 (bundled locally, no unpkg DNS cost) -->
+    <script>
+      import {onCLS,onINP,onLCP,onFCP,onTTFB} from 'web-vitals';
+      function sendVital({name,value,rating}:{name:string,value:number,rating:string}){
         if(typeof gtag==='undefined')return;
         gtag('event',name,{value:Math.round(name==='CLS'?value*1000:value),metric_rating:rating,non_interaction:true});
       }
