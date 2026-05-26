@@ -42,8 +42,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     font-family: var(--font-sans); font-size: 1rem;
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
-    background: var(--color-surface-4);
-    color: #44403c;
+    background: #ffffff;
+    color: #1c1917;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -416,6 +416,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   @media (max-width: 640px) {
     body.tool-page .tool-header { display: none; }
     body.tool-page .tool-content { padding-top: 72px !important; }
+  }
+  /* Search input: white bg, dark readable text, overrides scoping */
+  #im-search {
+    background: #ffffff !important;
+    color: #1c1917 !important;
+  }
+  #im-search::placeholder {
+    color: #a8a29e !important;
   }
 </style>
 
