@@ -164,10 +164,18 @@ const listingsSchema = {
   "name": "Brisbane Inner East Property Listings | Daniel Gierach",
   "description": "Current listings and recently sold homes in Brisbane's inner east.",
   "url": "https://danielgierach.com/listings",
-  "author": {
-    "@type": "Person",
-    "name": "Daniel Gierach",
-    "url": "https://danielgierach.com/about"
+  "author": { "@id": "https://danielgierach.com/#person" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Properties for Sale by Daniel Gierach, Ray White Bulimba",
+    "numberOfItems": forSale.length,
+    "itemListElement": forSale.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${p.address}, ${p.street}`,
+      "url": p.href,
+      "description": `${p.beds} bed ${p.baths} bath, ${p.price}, listed by Daniel Gierach, Ray White Bulimba`
+    }))
   }
 };
 ---

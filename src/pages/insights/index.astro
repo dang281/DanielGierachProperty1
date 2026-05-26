@@ -262,6 +262,26 @@ function filterCount(f: string): number {
 
 
 <Layout title="Insights & Articles | Daniel Gierach Property" description="Property insights and guides for Brisbane sellers and investors. Practical advice on auctions, contracts, stamp duty, costs and more from Daniel Gierach.">
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brisbane Property Insights & Guides | Daniel Gierach",
+  "description": "500+ practical guides on buying and selling Brisbane property: auctions, contracts, costs, suburb guides, and the inner east market.",
+  "url": "https://danielgierach.com/insights",
+  "author": { "@id": "https://danielgierach.com/#person" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Brisbane Property Guides",
+    "numberOfItems": articles.length,
+    "itemListElement": articles.map((a: any, i: number) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://danielgierach.com/insights/${a.slug}`,
+      "name": a.title,
+      "description": a.summary
+    }))
+  }
+})}</script>
 
 <!-- Hero -->
 <section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
