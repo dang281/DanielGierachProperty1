@@ -93,7 +93,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     .im-search-sticky {
       position: sticky;
       top: 72px;
-      z-index: 800;
+      z-index: 1010; /* must exceed Leaflet controls (z-index: ~1000) */
       background: var(--color-base);
       padding: 0.6rem 0 0.5rem;
       margin: 0 -0.75rem;
@@ -111,6 +111,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     .im-eduline { display: none; }
     /* With tool-header hidden, map gets more screen. 72px nav + 61px search = 133px. */
     #im-map { height: calc(100svh - 133px) !important; }
+    /* Move zoom controls to bottom-left, above the fixed layer bar, for one-thumb use */
+    .leaflet-top.leaflet-left {
+      top: auto !important;
+      bottom: 68px !important;
+    }
   }
   #im-autocomplete {
     position: absolute; top: 100%; left: 0; right: 0;
@@ -389,7 +394,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   /* App-mode on mobile: hide the tool page header so nav leads straight to search */
   @media (max-width: 640px) {
     body.tool-page .tool-header { display: none; }
-    body.tool-page .tool-content { padding-top: 0 !important; }
+    body.tool-page .tool-content { padding-top: 72px !important; }
   }
 </style>
 
