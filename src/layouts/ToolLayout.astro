@@ -13,7 +13,7 @@ interface Props {
 const { title, description, tool, phase = 'Seller Tools', resourceSlug } = Astro.props;
 ---
 
-<Layout title={`${title} | Daniel Gierach Property`} description={description}>
+<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true}>
 
 <style is:global>
   /* Tool pages lock the nav into its scrolled (dark glass) state from first paint */
@@ -24,6 +24,17 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug } = Astro
     border-bottom: 1px solid rgba(196,145,42,0.15) !important;
     box-shadow: 0 4px 32px rgba(0,0,0,0.5) !important;
     transition: none !important;
+  }
+  .tool-header { padding-top: 8rem; padding-bottom: 3rem; }
+  .tool-title { font-size: clamp(2rem, 4vw, 3rem); }
+  .tool-content { padding: 3rem 0 6rem; }
+  @media (max-width: 640px) {
+    .tool-header { padding-top: calc(72px + 0.75rem); padding-bottom: 1rem; }
+    .tool-title { font-size: 1.4rem; }
+    .tool-breadcrumb { margin-bottom: 0.5rem; }
+    .tool-desc { display: none; }
+    .eyebrow { display: none !important; }
+    .tool-content { padding: 0.75rem 0 2rem; }
   }
 </style>
 
@@ -46,22 +57,22 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug } = Astro
 </script>
 
   <!-- Tool header -->
-  <div style="background:var(--color-surface-1);padding-top:8rem;padding-bottom:3rem;border-bottom:1px solid rgba(72,72,72,0.15);">
-    <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+  <div class="tool-header" style="background:var(--color-surface-1);border-bottom:1px solid rgba(72,72,72,0.15);">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
       <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 mb-6" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;">
+      <nav class="tool-breadcrumb flex items-center gap-2 mb-4" style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;">
         <a href="/" style="color:var(--color-text-muted);transition:color 0.2s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-text-muted)'">Home</a>
         <span style="color:rgba(72,72,72,0.4);">/</span>
         <a href="/tools" style="color:var(--color-text-muted);transition:color 0.2s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-text-muted)'">Tools</a>
         <span style="color:rgba(72,72,72,0.4);">/</span>
         <span style="color:var(--color-gold);">{tool}</span>
       </nav>
-      <span class="eyebrow mb-3" style="display:block;">{phase}</span>
-      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
+      <span class="eyebrow mb-2" style="display:block;">{phase}</span>
+      <h1 class="tool-title" style="font-family:var(--font-serif);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
         {title}
       </h1>
       {description && (
-        <p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:56ch;line-height:1.75;">
+        <p class="tool-desc" style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:0.75rem;max-width:56ch;line-height:1.75;">
           {description}
         </p>
       )}
@@ -69,8 +80,8 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug } = Astro
   </div>
 
   <!-- Tool content -->
-  <div style="background:var(--color-base);min-height:60vh;padding:3rem 0 6rem;">
-    <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+  <div class="tool-content" style="background:var(--color-base);min-height:60vh;">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
       <slot />
       {resourceSlug && (
         <div class="max-w-[780px] mx-auto">

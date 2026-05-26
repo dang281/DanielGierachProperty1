@@ -61,6 +61,27 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #im-search-btn:hover { background: #d4af4a; }
   #im-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* ── Mobile search: sticky, prominent, iOS-safe ─────────────────────────── */
+  @media (max-width: 640px) {
+    .im-search-sticky {
+      position: sticky;
+      top: 72px;
+      z-index: 800;
+      background: var(--color-base);
+      padding: 0.6rem 0 0.5rem;
+      margin: 0 -0.75rem;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      border-bottom: 1px solid rgba(28,25,23,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .im-search-bar { margin-bottom: 0; }
+    /* 16px is the iOS threshold. Anything smaller triggers auto-zoom on focus. */
+    #im-search { font-size: 16px; height: 48px; padding: 0 0.9rem; }
+    #im-search-btn { height: 48px; padding: 0 1rem; font-size: 0.68rem; }
+    .im-eduline { display: none; }
+  }
   #im-autocomplete {
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--color-surface-4);
@@ -85,7 +106,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     overscroll-behavior: contain;
   }
   @media (max-width: 768px) {
-    #im-map { height: max(460px, calc(100dvh - 200px)); touch-action: none; overscroll-behavior: contain; }
+    /* 72px nav + 61px sticky search + 2px border = 135px; give 5px breathing room */
+    #im-map { height: calc(100svh - 140px); min-height: 420px; touch-action: none; overscroll-behavior: contain; }
     /* Larger Leaflet zoom controls for touch */
     .leaflet-control-zoom a {
       width: 44px !important; height: 44px !important;
@@ -281,12 +303,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <strong>Educational use only</strong> BCC and QUU open data. Always commission a Dial Before You Dig (1100) search before excavating and order official plans before any connection or development decision.
   </p>
 
-  <div class="im-search-bar">
-    <div id="im-search-wrap">
-      <input type="text" id="im-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
-      <div id="im-autocomplete" style="display:none;"></div>
+  <div class="im-search-sticky">
+    <div class="im-search-bar">
+      <div id="im-search-wrap">
+        <input type="text" id="im-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
+        <div id="im-autocomplete" style="display:none;"></div>
+      </div>
+      <button id="im-search-btn">Search</button>
     </div>
-    <button id="im-search-btn">Search</button>
   </div>
 
   <div class="im-map-wrap">
@@ -879,6 +903,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     document.getElementById('im-result-close')!.addEventListener('click', () => {
       document.getElementById('im-result')!.classList.remove('open');
     });
+
+    // Prevent the browser from zooming the page when the user pinches the map.
+    // On iOS Safari, even with touch-action:none on the element, a pinch gesture
+    // can still trigger viewport zoom unless we temporarily lock maximum-scale.
+    const metaVp = document.querySelector('meta[name="viewport"]') as HTMLMetaElement | null;
+    const mapEl = document.getElementById('im-map');
+    if (metaVp && mapEl) {
+      const lockZoom  = () => { metaVp.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'; };
+      const unlockZoom = () => { metaVp.content = 'width=device-width, initial-scale=1'; };
+      mapEl.addEventListener('touchstart',  lockZoom,   { passive: true });
+      mapEl.addEventListener('touchend',    unlockZoom, { passive: true });
+      mapEl.addEventListener('touchcancel', unlockZoom, { passive: true });
+    }
 
     const status = document.getElementById('im-status')!;
     let fadeTimer: any;
