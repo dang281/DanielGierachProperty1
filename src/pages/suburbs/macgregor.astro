@@ -1,0 +1,345 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SuburbMap from '../../components/SuburbMap.astro';
+import Method from '../../components/Method.astro';
+import BuyersCTA from '../../components/BuyersCTA.astro';
+import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import ResourceCTA from '../../components/ResourceCTA.astro';
+const draft = true; // STAGED - remove this line on publish date
+---
+
+<Layout
+  title="Selling in Macgregor | Daniel Gierach Property"
+  description="Selling in Macgregor? Local knowledge of this sought-after southern Brisbane suburb, its large residential blocks, strong school catchments, and the family buyers who compete hard for well-presented homes. Free walkthrough with Daniel Gierach."
+  draft={draft}>
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Real Estate Agent Macgregor Brisbane",
+  "description": "Daniel Gierach is a specialist real estate agent in Macgregor Brisbane, serving the southern corridor including Sunnybank, Wishart, Eight Mile Plains, Upper Mount Gravatt and surrounding suburbs.",
+  "url": "https://danielgierach.com/suburbs/macgregor",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://danielgierach.com" },
+      { "@type": "ListItem", "position": 2, "name": "Macgregor", "item": "https://danielgierach.com/suburbs/macgregor" }
+    ]
+  }
+})}</script>
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": [
+    "LocalBusiness",
+    "RealEstateAgent"
+  ],
+  "@id": "https://danielgierach.com/#business",
+  "name": "Daniel Gierach, Ray White Bulimba",
+  "description": "Specialist real estate agent in Macgregor and Brisbane's southern corridor. Selling property in Macgregor, Sunnybank, Wishart, Eight Mile Plains, Upper Mount Gravatt and surrounding southern suburbs.",
+  "url": "https://danielgierach.com/suburbs/macgregor",
+  "telephone": "+61412523821",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Macgregor",
+    "addressRegion": "QLD",
+    "postalCode": "4109",
+    "addressCountry": "AU"
+  },
+  "email": "daniel.gierach@raywhite.com",
+  "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+  "priceRange": "$$",
+  "geo": { "@type": "GeoCoordinates", "latitude": -27.5841, "longitude": 153.0722 },
+  "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "20:00" },
+  "areaServed": [
+    { "@type": "Place", "name": "Macgregor QLD 4109" },
+    { "@type": "Place", "name": "Sunnybank QLD" },
+    { "@type": "Place", "name": "Wishart QLD" },
+    { "@type": "Place", "name": "Eight Mile Plains QLD" },
+    { "@type": "Place", "name": "Upper Mount Gravatt QLD" }
+  ],
+  "knowsAbout": [
+    "Macgregor real estate",
+    "southern Brisbane property",
+    "Macgregor investment property",
+    "Brisbane family suburbs southern corridor"
+  ],
+  "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
+})}</script>
+
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What drives property values in Macgregor?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Macgregor property values are primarily driven by the suburb's large residential lot sizes, which are rare in the southern Brisbane corridor at this price point, its proximity to Sunnybank's food precinct and Garden City shopping in Upper Mount Gravatt, good school catchments, and motorway access via the Pacific Motorway. The suburb's quiet residential streets and established tree canopy add a genuine amenity premium that buyers recognise, and family buyers competing for properties with generous land content consistently drive the strongest results." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a home in Macgregor?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Macgregor homes typically sell within 25 to 38 days. The suburb attracts a consistent flow of family buyers who understand the relative value that Macgregor's land sizes represent compared to adjacent suburbs. When a property is correctly priced against recent comparable sales and presents the block's potential clearly, buyer interest tends to be focused and decisive. Correct pricing is the most controllable factor in how quickly a campaign resolves." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lifestyle like in Macgregor?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Macgregor offers a quiet, family-oriented residential lifestyle approximately twelve kilometres south of the Brisbane CBD. The suburb's large blocks and established streetscapes give it a spacious character that is increasingly rare this close to the city centre, and its proximity to Sunnybank's food precinct, Garden City, and Pacific Motorway access makes day-to-day life here genuinely practical. Local parks, bike paths, and community spaces contribute to a neighbourhood feel that families consistently value." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Macgregor a good suburb to buy property in?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Macgregor offers genuine appeal for owner-occupier families who prioritise land size, school catchment access, and a quiet residential environment within practical range of Brisbane's southern employment corridor and the CBD. The suburb's large lots at relatively accessible price points compared to equivalent land in the inner suburbs represent a structural advantage that underpins consistent long-term demand. Its established community character and proximity to Sunnybank and Upper Mount Gravatt amenity add further appeal." }
+    }
+  ]
+})}</script>
+
+
+<!-- ===============================================
+     SECTION 1: HERO
+================================================ -->
+<section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
+  <div style="max-width:800px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Macgregor</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
+      Selling in Macgregor, Brisbane.
+    </h1>
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
+      Specialist property sales in Macgregor and Brisbane's southern corridor.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
+      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 2: WHY THIS AREA
+================================================ -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">The southern Brisbane suburb that families pursue for its large residential blocks, good school catchments, and a quiet street character that is increasingly difficult to find this close to the city centre.</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Macgregor sits approximately twelve kilometres south of the Brisbane CBD, sharing a postcode with Sunnybank and positioned in the southern residential corridor with practical motorway access and a residential character that families have consistently valued. The suburb is defined by its land sizes: blocks in Macgregor tend to run larger than the surrounding southern suburbs, and in a market where generous land content close to the city commands significant premiums, that distinction matters. Buyers who target Macgregor in 2026 have typically made a deliberate choice about the value that land represents and understand that this suburb offers an opportunity that comparably priced options in the corridor do not replicate.
+    </p>
+<!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Macgregor home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+    <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry: Macgregor" />
+    <input type="hidden" name="_source" value="macgregor" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    </div>
+    <input type="text" name="property_address" required placeholder="Your Macgregor address (street + number)"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        Request My Free Appraisal
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      The proximity to Sunnybank's food precinct and community infrastructure adds a lifestyle dimension that complements Macgregor's residential qualities. Garden City in Upper Mount Gravatt provides major retail access, and Pacific Motorway connectivity gives residents straightforward access to the Brisbane CBD and Gold Coast. For families with school-age children, Macgregor's school catchments represent a genuine practical asset, and the suburb's established residential streets and local park network contribute to a neighbourhood character that buyers recognise and return for.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      The housing stock in Macgregor is predominantly detached family homes on generous lots, with a smaller supply of townhouses and units. Properties with good street presentation, workable outdoor space, and a configuration that suits family living consistently attract the strongest competition from this suburb's buyer pool. Sellers who understand that the Macgregor buyer is often making a deliberate choice about land and lifestyle value are better positioned to prepare and present their property in a way that resonates.
+    </p>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Macgregor Specialist</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Southern Brisbane Corridor</p>
+      </div>
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Large Block Family Suburb</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Generous lots, school catchments, motorway access</p>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/sunnybank" style="color:#c4912a;">Sunnybank</a>, <a href="/suburbs/wishart" style="color:#c4912a;">Wishart</a>, <a href="/suburbs/eight-mile-plains" style="color:#c4912a;">Eight Mile Plains</a>.</p>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION: FAQ
+================================================ -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">FAQ</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Common questions about Macgregor.</h2>
+    <div style="display:flex; flex-direction:column;">
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What drives property values in Macgregor?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Macgregor values are driven primarily by land size: the suburb's larger-than-average residential lots represent genuine scarcity in the southern corridor at this distance from the CBD. School catchments, proximity to Sunnybank's food precinct and Garden City retail, motorway access, and the suburb's quiet residential character all contribute. Families competing for well-positioned homes on good blocks have consistently driven the strongest results in this market.</p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How long does it take to sell a home in Macgregor?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Macgregor homes typically sell within 25 to 38 days. The suburb's consistent family buyer demand, combined with the genuine scarcity of large blocks in the corridor, means that correctly priced properties attract focused attention. Buyers who target Macgregor have usually been watching the market carefully and act when a property that meets their criteria appears at a price that reflects current conditions. Correct pricing is the primary lever for campaign speed.</p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What is the lifestyle like in Macgregor?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Macgregor offers a quiet, spacious family lifestyle about twelve kilometres south of the Brisbane CBD. The suburb's large blocks and established tree canopy give streets a settled, residential quality that families consistently value. Proximity to Sunnybank's food precinct, Garden City retail in Upper Mount Gravatt, and Pacific Motorway access means the practical amenity is comprehensive. Local parks and community space add to the everyday liveability.</p>
+      </details>
+
+      <details style="padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          Is Macgregor a good suburb to buy property in?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Macgregor offers genuine appeal for families who prioritise land, school catchments, and a quiet residential environment with strong southern corridor access. The suburb's large lots at relatively accessible price points compared to equivalent land in more sought-after addresses represent a structural advantage that underpins long-term demand. Its proximity to Sunnybank and Upper Mount Gravatt amenity, combined with its motorway access, makes it a practical holding for owner-occupiers with long-term horizons.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 3: SUBURBS SERVED
+================================================ -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Macgregor</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Large blocks, school catchments, family community</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Sunnybank</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Multicultural food precinct, motorway access, family and investor demand</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Wishart</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Established southern family suburb, larger blocks, school catchments</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Eight Mile Plains</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Tech precinct proximity, motorway access, strong rental demand</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Upper Mount Gravatt</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated south, views, Garden City, strong family demand</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Mount Gravatt</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Central south, Garden City, strong family demand</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE THREE-PHASE METHOD -->
+<SuburbDeepDive slug="macgregor" name="Macgregor" />
+
+<div class="max-w-[780px] mx-auto px-8 pb-12">
+  <ResourceCTA slug="first-home-buyer-brisbane-inner-east-guide" />
+</div>
+
+<BuyersCTA suburb="Macgregor" />
+<!-- Nearby suburbs cross-links -->
+<section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Nearby Suburbs</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+      <a href="/suburbs/sunnybank" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Sunnybank</a>
+      <a href="/suburbs/wishart" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Wishart</a>
+      <a href="/suburbs/eight-mile-plains" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Eight Mile Plains</a>
+      <a href="/suburbs/upper-mount-gravatt" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Upper Mount Gravatt</a>
+    </div>
+  </div>
+</section>
+
+<Method suburb="Macgregor" />
+
+<!-- CROSS-LINK TO SELLING GUIDE -->
+<section style="background:var(--color-surface-0);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;">
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;">
+      Planning to sell? Read the full guide:
+      <a href="/insights/selling-in-macgregor" style="color:#c4912a;font-weight:600;">How to Sell Your Home in Macgregor &rarr;</a>
+    </p>
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;margin-top:0.75rem;">
+      Want a starting-point estimate?
+      <a href="/tools/valuation" style="color:#c4912a;font-weight:600;">Get an instant property valuation &rarr;</a>
+    </p>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(72,72,72,0.1);">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Free seller tools</p>
+      <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.8;color:#6b6560;">
+        <a href="/tools/selling-costs" style="color:#c4912a;font-weight:600;">Selling costs calculator</a> &middot;
+        <a href="/tools/cgt-timing" style="color:#c4912a;font-weight:600;">CGT timing calculator</a> &middot;
+        <a href="/tools/settlement-date" style="color:#c4912a;font-weight:600;">Settlement date calculator</a>
+      </p>
+    </div>
+    <div style="margin-top:0.75rem;">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Seller guides</p>
+      <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.8;color:#6b6560;">
+        <a href="/insights/cost-of-selling-house-brisbane" style="color:#c4912a;font-weight:600;">Cost of selling a house in Brisbane</a> &middot;
+        <a href="/insights/how-to-prepare-your-home-for-sale-brisbane" style="color:#c4912a;font-weight:600;">How to prepare your home for sale</a> &middot;
+        <a href="/insights/what-happens-at-settlement" style="color:#c4912a;font-weight:600;">What happens at settlement</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 5: CTA STRIP
+================================================ -->
+<section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
+  <div style="max-width:700px; margin:0 auto;">
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in Macgregor?</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.75; color:#c9c4bc; margin-bottom:2rem;">Call me directly for a no-obligation conversation about your property and what it could achieve in today's market.</p>
+    <p style="margin-bottom:2.5rem;">
+      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#f5d07a; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2efe9; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #c4912a;">Send a Message</a>
+      <a href="/property-worth" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    section div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<SuburbMap />
+
+</Layout>
