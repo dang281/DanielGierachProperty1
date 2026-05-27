@@ -1075,6 +1075,7 @@ window.PM_ZONES = {
   let fetchAborts: Record<string,AbortController> = {}, acDebounce: any;
   let canvasRenderer: any;
   let overlayOpacity = 0.65;
+  let _lastZone: { code: string; officialLabel: string; family: string; swatchColor: string; height: string; summary: string; forBuyers: string; bccHref: string } | null = null;
 
   // ── Zone style ────────────────────────────────────────────────────────
   function zoneStyleFor(feature: any) {
@@ -1371,26 +1372,52 @@ window.PM_ZONES = {
     const officialLabel = p.ZONE_PREC_DESC || p.LVL2_ZONE || p.LVL1_ZONE || code;
     const swatchColor = colorFor(p).hex;
 
+    // Store zone data so the summary card below can show full detail
+    _lastZone = {
+      code, officialLabel, family, swatchColor,
+      height:    z ? z.height    : '',
+      summary:   z ? z.summary   : officialLabel,
+      forBuyers: z ? (z.forBuyers || '') : '',
+      bccHref:   'https://cityplan.brisbane.qld.gov.au',
+    };
+    refreshZoneSection();
+
+    // Compact drawer: just code + name, point user to below
     const el = document.getElementById('pm-result')!;
     el.className = `mode-zone zone-${family.toLowerCase()}`;
     el.classList.add('open');
     document.getElementById('pm-result-eyebrow')!.textContent = 'Zone identified';
-
-    document.getElementById('pm-result-body')!.innerHTML = `
-      <div style="display:flex;align-items:center;gap:0.55rem;margin-bottom:0.4rem;">
-        <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:${swatchColor};"></div>
-        <p style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin:0;">${code ? `${code}  ${officialLabel}` : officialLabel}</p>
-      </div>
-      <p style="display:block;font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#c4912a;margin-bottom:0.5rem;">${z ? z.height : ''}</p>
-      <p style="display:block;font-size:0.78rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.5rem;">${z ? z.summary : officialLabel}</p>
-      ${z && z.forBuyers ? `<p style="display:block;font-size:0.74rem;color:rgba(240,236,228,0.55);line-height:1.6;font-style:italic;border-top:1px solid rgba(240,236,228,0.1);padding-top:0.5rem;margin-bottom:0.6rem;">${z.forBuyers}</p>` : ''}
-      <a id="pm-bcc-link-el" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">
-        Verify on BCC CityPlan
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
-    `;
+    document.getElementById('pm-result-body')!.innerHTML =
+      '<div style="display:flex;align-items:center;gap:0.6rem;">' +
+        '<div style="width:12px;height:12px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:' + swatchColor + ';"></div>' +
+        '<p style="font-size:0.9rem;font-family:Georgia,serif;font-weight:400;color:rgba(240,236,228,0.9);margin:0;line-height:1.25;">' + (code ? code + ': ' + officialLabel : officialLabel) + '</p>' +
+      '</div>' +
+      '<p style="font-size:0.6rem;color:rgba(240,236,228,0.35);margin:0.4rem 0 0;font-style:italic;">Full details in Property Details below the map</p>';
     updateBCCLink(0, 0);
   }
+
+  // ── Populate the zone section inside the already-rendered summary card ─
+  function refreshZoneSection() {
+    const zoneDiv = document.getElementById('pm-summary-zone');
+    if (!zoneDiv || !_lastZone) return;
+    const z = _lastZone;
+    zoneDiv.innerHTML =
+      '<div style="margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(240,236,228,0.07);">' +
+        '<p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.55rem;">Zoning (BCC City Plan)</p>' +
+        '<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem;">' +
+          '<div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:' + z.swatchColor + ';"></div>' +
+          '<p style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin:0;">' + (z.code ? z.code + ': ' + z.officialLabel : z.officialLabel) + '</p>' +
+        '</div>' +
+        (z.height ? '<p style="font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#c4912a;margin:0 0 0.45rem;">' + z.height + '</p>' : '') +
+        (z.summary ? '<p style="font-size:0.78rem;color:rgba(240,236,228,0.72);line-height:1.65;margin:0 0 0.45rem;">' + z.summary + '</p>' : '') +
+        (z.forBuyers ? '<p style="font-size:0.74rem;color:rgba(240,236,228,0.48);line-height:1.6;font-style:italic;border-top:1px solid rgba(240,236,228,0.08);padding-top:0.45rem;margin:0 0 0.45rem;">' + z.forBuyers + '</p>' : '') +
+        '<a id="pm-bcc-link-el" href="' + z.bccHref + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">' +
+          'Verify on BCC CityPlan ' +
+          '<svg width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/><polyline points=\"15 3 21 3 21 9\"/><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"/></svg>' +
+        '</a>' +
+      '</div>';
+  }
+
 
   function updateBCCLink(lat: number, lon: number) {
     const link = document.getElementById('pm-bcc-link-el');
@@ -1712,12 +1739,14 @@ window.PM_ZONES = {
   }
 
   function updateSummaryCard(lat: number, lon: number, searchAddr?: string) {
+    _lastZone = null;  // reset zone for new location; will be repopulated by showZoneFromAttributes
     const card = document.getElementById('pm-summary')!;
     card.style.display = 'block';
-    card.innerHTML = `
-      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.18);padding:1.25rem 1.5rem;">
-        <p style="font-size:0.75rem;color:rgba(240,236,228,0.38);margin:0;">Looking up property details...</p>
-      </div>`;
+    card.innerHTML =
+      '<div style="background:#1c1917;border:1px solid rgba(196,145,42,0.18);padding:1.25rem 1.5rem;">' +
+        '<div id="pm-summary-zone"></div>' +
+        '<p style="font-size:0.75rem;color:rgba(240,236,228,0.38);margin:0;">Looking up property details...</p>' +
+      '</div>';
 
     Promise.all([
       queryParcel(lat, lon).catch(() => null),
@@ -1748,6 +1777,7 @@ window.PM_ZONES = {
 
       card.innerHTML = `
         <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.18);padding:1.25rem 1.5rem;">
+          <div id="pm-summary-zone"></div>
           <div id="pm-summary-grid">
             <div>
               <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Property</p>
@@ -1772,11 +1802,14 @@ window.PM_ZONES = {
             </div>
           </div>
           <p style="margin-top:0.8rem;font-size:0.62rem;color:rgba(240,236,228,0.26);border-top:1px solid rgba(240,236,228,0.06);padding-top:0.65rem;line-height:1.55;">
-            School catchments: Queensland DoE open data — verify at <a href="https://schoolzfinder.eq.edu.au" target="_blank" rel="noopener" style="color:rgba(196,145,42,0.55);text-decoration:none;">schoolzfinder.eq.edu.au</a>. Flood overlays: BCC City Plan 2014. Block dimensions approximate. Always verify before any purchase decision.
+            School catchments: Queensland DoE open data. Flood overlays: BCC City Plan 2014. Block dimensions approximate. Always verify before any purchase decision.
           </p>
         </div>`;
+      // Zone data may already be available (if identifyZone resolved first) or arrive later via refreshZoneSection
+      refreshZoneSection();
     });
   }
+
 
   function dropPin(lat: number, lon: number) {
     if (pinMarker) map.removeLayer(pinMarker);
