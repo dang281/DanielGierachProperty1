@@ -1741,7 +1741,8 @@ window.PM_ZONES = {
   }
 
   function updateSummaryCard(lat: number, lon: number, searchAddr?: string) {
-    _lastZone = null;  // reset zone for new location; will be repopulated by showZoneFromAttributes
+    _lastZone = null;
+    _lastAddress = searchAddr || '';  // use search string immediately; parcel query may refine it
     const card = document.getElementById('pm-summary')!;
     card.style.display = 'block';
     card.innerHTML =
@@ -1832,7 +1833,6 @@ window.PM_ZONES = {
   }
 
   function flyAndIdentify(lat: number, lon: number, address?: string) {
-    _lastAddress = address || '';
     dropPin(lat, lon);
     map.setView([lat, lon], 18);
     if (active.zoning) setTimeout(() => identifyZone(lat, lon), 400);
