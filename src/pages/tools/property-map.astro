@@ -1056,7 +1056,7 @@ window.PM_ZONES = {
     sewerManhole: false, hydrant: false,
     floodRiver: false, floodCreek: false, floodOverland: false,
   };
-  let map: any, layers: Record<string,any> = {}, pinMarker: any;
+  let map: any, layers: Record<string,any> = {}, pinMarker: any, parcelDimLayer: any = null;
   let zoningLayer: any, zoneFetchAbort: AbortController | null = null;
   let floodLayers: Record<string,any> = {}, floodAborts: Record<string,AbortController> = {};
   let fetchAborts: Record<string,AbortController> = {}, acDebounce: any;
@@ -1671,15 +1671,60 @@ window.PM_ZONES = {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  function parcelSideLengths(rings: number[][][]): string {
+  function showParcelDimensions(rings: number[][][], areaM2: number) {
+    const L = (window as any).L;
+    if (parcelDimLayer) { map.removeLayer(parcelDimLayer); parcelDimLayer = null; }
+    if (!rings || !rings.length) return;
+    parcelDimLayer = L.layerGroup();
     const coords = rings[0] || [];
-    const lengths: string[] = [];
+    if (coords.length < 3) { parcelDimLayer.addTo(map); return; }
+
+    const latlngs = coords.map(([lon, lat]: number[]) => [lat, lon]);
+    L.polygon(latlngs, {
+      color: '#e53e3e', weight: 2.5, opacity: 0.9,
+      fill: true, fillColor: '#e53e3e', fillOpacity: 0.08,
+    }).addTo(parcelDimLayer);
+
     for (let i = 0; i < coords.length - 1; i++) {
       const [lon1, lat1] = coords[i], [lon2, lat2] = coords[i + 1];
       const len = haversineMetres(lat1, lon1, lat2, lon2);
-      if (len >= 1) lengths.push((Math.round(len * 10) / 10) + 'm');
+
+      L.marker([lat1, lon1], {
+        icon: L.divIcon({
+          className: '',
+          html: '<div style="width:7px;height:7px;background:#222;border:1.5px solid #fff;transform:translate(-50%,-50%);"></div>',
+          iconSize: [0, 0], iconAnchor: [0, 0],
+        }), interactive: false,
+      }).addTo(parcelDimLayer);
+
+      if (len < 1) continue;
+      const midLat = (lat1 + lat2) / 2, midLon = (lon1 + lon2) / 2;
+      const p1 = map.latLngToContainerPoint([lat1, lon1]);
+      const p2 = map.latLngToContainerPoint([lat2, lon2]);
+      let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+      if (Math.abs(angle) > 90) angle += 180;
+      const label = (Math.round(len * 10) / 10) + 'm';
+      L.marker([midLat, midLon], {
+        icon: L.divIcon({
+          className: '',
+          html: '<div style="transform:translate(-50%,-50%) rotate(' + angle + 'deg);background:rgba(15,10,6,0.78);color:#f5d07a;font-family:sans-serif;font-size:10.5px;font-weight:700;padding:2px 6px;border-radius:3px;white-space:nowrap;letter-spacing:0.03em;">' + label + '</div>',
+          iconSize: [0, 0], iconAnchor: [0, 0],
+        }), interactive: false,
+      }).addTo(parcelDimLayer);
     }
-    return lengths.join(' · ');
+
+    const verts = coords.slice(0, -1);
+    let sumLat = 0, sumLon = 0;
+    verts.forEach(([lon, lat]: number[]) => { sumLat += lat; sumLon += lon; });
+    L.marker([sumLat / verts.length, sumLon / verts.length], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="transform:translate(-50%,-50%);background:rgba(255,255,255,0.92);color:#1c1917;font-family:sans-serif;font-size:13px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;border:1px solid rgba(28,25,23,0.15);">' + areaM2 + ' m²</div>',
+        iconSize: [0, 0], iconAnchor: [0, 0],
+      }), interactive: false,
+    }).addTo(parcelDimLayer);
+
+    parcelDimLayer.addTo(map);
   }
 
   async function queryParcel(lat: number, lon: number) {
@@ -1738,7 +1783,8 @@ window.PM_ZONES = {
 
   function updateSummaryCard(lat: number, lon: number, searchAddr?: string) {
     _lastZone = null;
-    _lastAddress = searchAddr || '';  // use search string immediately; parcel query may refine it
+    _lastAddress = searchAddr || '';
+    if (parcelDimLayer) { map.removeLayer(parcelDimLayer); parcelDimLayer = null; }
     const card = document.getElementById('pm-summary')!;
     card.style.display = 'block';
     card.innerHTML =
@@ -1767,10 +1813,10 @@ window.PM_ZONES = {
         if (eyebrow && resultEl?.classList.contains('mode-zone')) eyebrow.textContent = addr;
       }
       const lotInfo = a.LOTPLAN ? `Lot/Plan ${a.LOTPLAN}` : '';
-      const areaM2 = a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : '';
-      let sidesStr = '';
-      if (parcel?.geometry?.rings?.length) {
-        sidesStr = parcelSideLengths(parcel.geometry.rings);
+      const areaRaw = a.LOT_AREA ? Math.round(+a.LOT_AREA) : 0;
+      const areaM2 = areaRaw ? `${areaRaw} m²` : '';
+      if (parcel?.geometry?.rings?.length && areaRaw) {
+        showParcelDimensions(parcel.geometry.rings, areaRaw);
       }
 
       const floodHTML = (floods as {desc:string;cat:string;key:string}[]).length
@@ -1792,7 +1838,6 @@ window.PM_ZONES = {
               ${addr ? `<p style="font-size:0.92rem;font-family:Georgia,serif;color:rgba(28,25,23,0.9);margin:0 0 0.4rem;line-height:1.3;">${addr}</p>` : ''}
               ${lotInfo ? `<p style="font-size:0.7rem;color:rgba(28,25,23,0.38);margin:0 0 0.15rem;">${lotInfo}</p>` : ''}
               ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(28,25,23,0.58);margin:0;">${areaM2}</p>` : ''}
-              ${sidesStr ? `<p style="font-size:0.72rem;color:rgba(28,25,23,0.45);margin:0.15rem 0 0;line-height:1.5;">${sidesStr}</p>` : ''}
               ${!addr && !lotInfo && !areaM2 ? `<p style="font-size:0.78rem;color:rgba(28,25,23,0.3);margin:0;">No parcel data at this point.</p>` : ''}
             </div>
             <div>
