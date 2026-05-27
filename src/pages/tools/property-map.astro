@@ -88,7 +88,7 @@ const legendGroups = [
   #pm-gps-btn {
     flex-shrink: 0; width: 46px;
     background: #1c1917;
-    border: 1px solid rgba(240,236,228,0.14); border-left: none;
+    border: 1px solid rgba(240,236,228,0.14);
     color: rgba(240,236,228,0.55); cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
@@ -659,7 +659,7 @@ window.PM_ZONES = {
   <div class="pm-search-sticky">
     <div class="pm-search-bar">
       <div id="pm-search-wrap">
-        <input type="text" id="pm-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
+        <input type="text" id="pm-search" placeholder="Enter address" autocomplete="off" inputmode="search" enterkeyhint="search" />
         <div id="pm-autocomplete" style="display:none;"></div>
       </div>
       <button id="pm-search-btn">Search</button>
@@ -1647,7 +1647,8 @@ window.PM_ZONES = {
     if (!features.length) { list.style.display = 'none'; return; }
     features.forEach(f => {
       const p = f.properties;
-      const label = [p.name, p.street && p.housenumber ? `${p.street} ${p.housenumber}` : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const streetPart = p.housenumber && p.street ? `${p.housenumber} ${p.street}` : (p.street || p.name || '');
+      const label = [streetPart, p.city || p.suburb].filter(Boolean).join(', ');
       const item = document.createElement('div');
       item.textContent = label;
       Object.assign(item.style, {
