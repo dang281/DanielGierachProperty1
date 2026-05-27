@@ -1,0 +1,346 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SuburbMap from '../../components/SuburbMap.astro';
+import Method from '../../components/Method.astro';
+import BuyersCTA from '../../components/BuyersCTA.astro';
+import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import ResourceCTA from '../../components/ResourceCTA.astro';
+const draft = true; // STAGED - remove this line on publish date
+---
+
+<Layout
+  title="Selling in Enoggera | Daniel Gierach Property"
+  description="Selling in Enoggera? Local knowledge of this inner north-western suburb, its defence community, strong family demand from first home buyers, and the buyers who compete for well-presented homes. Free walkthrough with Daniel Gierach."
+  draft={draft}>
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Real Estate Agent Enoggera Brisbane",
+  "description": "Daniel Gierach is a specialist real estate agent in Enoggera Brisbane, serving the inner north-western corridor including Ashgrove, Gaythorne, Keperra, Bardon and Red Hill.",
+  "url": "https://danielgierach.com/suburbs/enoggera",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://danielgierach.com" },
+      { "@type": "ListItem", "position": 2, "name": "Enoggera", "item": "https://danielgierach.com/suburbs/enoggera" }
+    ]
+  }
+})}</script>
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": [
+    "LocalBusiness",
+    "RealEstateAgent"
+  ],
+  "@id": "https://danielgierach.com/#business",
+  "name": "Daniel Gierach, Ray White Bulimba",
+  "description": "Specialist real estate agent in Enoggera and Brisbane's inner north-western corridor. Selling property in Enoggera, Ashgrove, Gaythorne, Keperra, Bardon and Red Hill.",
+  "url": "https://danielgierach.com/suburbs/enoggera",
+  "telephone": "+61412523821",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Enoggera",
+    "addressRegion": "QLD",
+    "postalCode": "4051",
+    "addressCountry": "AU"
+  },
+  "email": "daniel.gierach@raywhite.com",
+  "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+  "priceRange": "$$",
+  "geo": { "@type": "GeoCoordinates", "latitude": -27.4305, "longitude": 152.9672 },
+  "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "20:00" },
+  "areaServed": [
+    { "@type": "Place", "name": "Enoggera QLD 4051" },
+    { "@type": "Place", "name": "Ashgrove QLD" },
+    { "@type": "Place", "name": "Gaythorne QLD" },
+    { "@type": "Place", "name": "Keperra QLD" },
+    { "@type": "Place", "name": "Bardon QLD" }
+  ],
+  "knowsAbout": [
+    "Enoggera real estate",
+    "inner north-western Brisbane property",
+    "Enoggera first home buyer",
+    "Brisbane defence community suburbs"
+  ],
+  "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
+})}</script>
+
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What drives property values in Enoggera?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enoggera property values are driven by its position as a more accessible entry point into the inner north-western corridor compared to Ashgrove and Bardon, its proximity to the defence precinct and the consistent buyer demand that brings, Enoggera Creek parkland amenity, and the suburb's established family character. Properties on quieter internal streets with usable outdoor space and good school catchment access attract the strongest competition. As Ashgrove and Bardon prices have risen, buyers doing active suburb comparisons increasingly treat Enoggera as a logical next step that retains the inner north-west lifestyle at a more manageable price point." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a home in Enoggera?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Enoggera homes typically sell within 28 to 45 days. The suburb draws a mix of first home buyers, defence-affiliated families, and buyers priced out of Ashgrove and Bardon who arrive with clear criteria and genuine motivation. When a property is correctly priced against recent comparable sales and presents the suburb's lifestyle advantages clearly, it attracts genuine inquiry from multiple buyer profiles. Pricing discipline is the primary driver of campaign speed in this market." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lifestyle like in Enoggera?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enoggera offers a family-oriented, community-minded lifestyle approximately seven kilometres north-west of the Brisbane CBD. Enoggera Creek and its associated parkland provide green space that residents genuinely value, and the suburb's established streets give it a settled residential character. Proximity to Ashgrove's retail and cafe precinct, Red Hill, and good bus access to the CBD makes the practical amenity strong. It is a suburb where owner-occupiers tend to stay, and that low-turnover character contributes to the community feel." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Enoggera a good suburb for first home buyers?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enoggera has consistently attracted first home buyers looking for an inner north-western address at an accessible price point. The suburb sits inside the ring road at a price point below Ashgrove and Bardon, while retaining the same general lifestyle advantages: proximity to the CBD, established community character, creek and parkland amenity, and solid school options. For a first purchase that prioritises inner-suburb living within a sensible budget, Enoggera represents genuine value in the north-western corridor." }
+    }
+  ]
+})}</script>
+
+
+<!-- ===============================================
+     SECTION 1: HERO
+================================================ -->
+<section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
+  <div style="max-width:800px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Enoggera</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
+      Selling in Enoggera, Brisbane.
+    </h1>
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
+      Specialist property sales in Enoggera and Brisbane's inner north-western corridor.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
+      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 2: WHY THIS AREA
+================================================ -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">The inner north-western suburb that families and first home buyers pursue for its creek-side amenity, defence community character, and an address that delivers the inner north-west lifestyle at a more accessible price point than Ashgrove or Bardon.</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Enoggera sits approximately seven kilometres north-west of the Brisbane CBD, tucked inside the ring road in a corridor where Ashgrove, Bardon and Red Hill have commanded significant premiums for well over a decade. The suburb occupies a distinct position in this market: it delivers the same general lifestyle offer as its more celebrated neighbours without the price barrier that has moved many families and first home buyers further out. Enoggera Creek and its associated greenway run through the area, providing a linear park corridor that residents value and that the suburb's address does not always get credit for. Buyers who find their way here in 2026 have typically been doing genuine suburb comparisons and arrived at Enoggera after concluding that the value on offer is real.
+    </p>
+<!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Enoggera home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+    <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry: Enoggera" />
+    <input type="hidden" name="_source" value="enoggera" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    </div>
+    <input type="text" name="property_address" required placeholder="Your Enoggera address (street + number)"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        Request My Free Appraisal
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      The defence precinct nearby has shaped a particular community fabric in Enoggera. Defence-affiliated families bring consistent, purpose-driven demand to the local market: they are buyers who prioritise school catchments, practical family homes, and an address within reasonable proximity of the base. This buyer cohort has underpinned steady activity in the suburb across economic cycles, and sellers who understand this profile can prepare and position their property to speak directly to what these buyers require. First home buyers represent a second significant demand layer, drawn by the price point relative to Ashgrove and Bardon and motivated by the prospect of an inner north-western address within a sensible first purchase budget.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      The housing stock in Enoggera is a mix of post-war homes and character Queenslanders, with a smaller number of newer builds. Properties that sit on workable blocks with usable outdoor space and good street presentation consistently attract the strongest buyer competition. The suburb's internal streets retain a settled, owner-occupied residential character that buyers recognise when they walk them, and that character is part of what they are purchasing when they choose this address.
+    </p>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Enoggera Specialist</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Inner North-Western Brisbane Corridor</p>
+      </div>
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Family and First Home Buyer Suburb</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Creek greenway, defence community, inner north-west value</p>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/ashgrove" style="color:#c4912a;">Ashgrove</a>, <a href="/suburbs/gaythorne" style="color:#c4912a;">Gaythorne</a>, <a href="/suburbs/keperra" style="color:#c4912a;">Keperra</a>.</p>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION: FAQ
+================================================ -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">FAQ</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Common questions about Enoggera.</h2>
+    <div style="display:flex; flex-direction:column;">
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What drives property values in Enoggera?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Enoggera values are driven by its position as an accessible inner north-western address relative to Ashgrove and Bardon, the consistent demand from defence-affiliated families, creek and parkland amenity along Enoggera Creek, and the suburb's settled owner-occupied street character. As Ashgrove and Bardon have moved up the price ladder, buyers doing active comparisons have increasingly recognised that Enoggera offers the same fundamental lifestyle at a meaningfully lower entry point. That spillover demand has underpinned price progression in the suburb.</p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How long does it take to sell a home in Enoggera?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Enoggera homes typically sell within 28 to 45 days. The suburb draws first home buyers, defence families, and buyers priced out of Ashgrove and Bardon who arrive with clear criteria. When a property is correctly priced and presents well, it attracts genuine inquiry from multiple profiles. Overpricing against the Ashgrove and Bardon comparables that buyers are running in parallel stalls campaigns quickly; correct pricing produces focused attention and decisive offers.</p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What is the lifestyle like in Enoggera?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Enoggera offers a family-oriented lifestyle about seven kilometres north-west of the Brisbane CBD. Enoggera Creek and the surrounding greenway provide active recreation and green space that families value, and the suburb's established streets give it a community character that residents are attached to. Ashgrove's retail and cafe precinct is close, bus access to the CBD is practical, and the inner ring road location means the city is a short commute rather than a long haul. The suburb's community feel and low-turnover residential character are part of what buyers are purchasing here.</p>
+      </details>
+
+      <details style="padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          Is Enoggera a good suburb for first home buyers?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Enoggera has consistently attracted first home buyers who want an inner north-western address without the price point of Ashgrove or Bardon. The suburb delivers on the practical requirements: it is inside the ring road, has established community infrastructure, creek and parkland access, bus connections to the CBD, and school options. For a first purchase that prioritises inner suburban living within a realistic budget, Enoggera represents genuine value in the north-western corridor and has the fundamentals that support long-term capital growth.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 3: SUBURBS SERVED
+================================================ -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Enoggera</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Creek greenway, defence community, inner north-west value</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Ashgrove</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Leafy inner north-west, heritage Queenslanders, school catchments</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Gaythorne</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character northern suburb, Queenslander homes, Enoggera Creek greenway</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Keperra</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Accessible outer north-west, family homes, Ferny Grove line</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Bardon</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated inner north-west, character homes, city views</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Red Hill</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated inner north, federation homes, city views</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE THREE-PHASE METHOD -->
+<SuburbDeepDive slug="enoggera" name="Enoggera" />
+
+<div class="max-w-[780px] mx-auto px-8 pb-12">
+  <ResourceCTA slug="first-home-buyer-brisbane-inner-east-guide" />
+</div>
+
+<BuyersCTA suburb="Enoggera" />
+<!-- Nearby suburbs cross-links -->
+<section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Nearby Suburbs</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+      <a href="/suburbs/ashgrove" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Ashgrove</a>
+      <a href="/suburbs/gaythorne" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Gaythorne</a>
+      <a href="/suburbs/keperra" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Keperra</a>
+      <a href="/suburbs/bardon" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Bardon</a>
+      <a href="/suburbs/red-hill" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Red Hill</a>
+    </div>
+  </div>
+</section>
+
+<Method suburb="Enoggera" />
+
+<!-- CROSS-LINK TO SELLING GUIDE -->
+<section style="background:var(--color-surface-0);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;">
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;">
+      Planning to sell? Read the full guide:
+      <a href="/insights/selling-in-enoggera" style="color:#c4912a;font-weight:600;">How to Sell Your Home in Enoggera &rarr;</a>
+    </p>
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;margin-top:0.75rem;">
+      Want a starting-point estimate?
+      <a href="/tools/valuation" style="color:#c4912a;font-weight:600;">Get an instant property valuation &rarr;</a>
+    </p>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(72,72,72,0.1);">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Free seller tools</p>
+      <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.8;color:#6b6560;">
+        <a href="/tools/selling-costs" style="color:#c4912a;font-weight:600;">Selling costs calculator</a> &middot;
+        <a href="/tools/cgt-timing" style="color:#c4912a;font-weight:600;">CGT timing calculator</a> &middot;
+        <a href="/tools/settlement-date" style="color:#c4912a;font-weight:600;">Settlement date calculator</a>
+      </p>
+    </div>
+    <div style="margin-top:0.75rem;">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Seller guides</p>
+      <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.8;color:#6b6560;">
+        <a href="/insights/cost-of-selling-house-brisbane" style="color:#c4912a;font-weight:600;">Cost of selling a house in Brisbane</a> &middot;
+        <a href="/insights/how-to-prepare-your-home-for-sale-brisbane" style="color:#c4912a;font-weight:600;">How to prepare your home for sale</a> &middot;
+        <a href="/insights/what-happens-at-settlement" style="color:#c4912a;font-weight:600;">What happens at settlement</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 5: CTA STRIP
+================================================ -->
+<section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
+  <div style="max-width:700px; margin:0 auto;">
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in Enoggera?</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.75; color:#c9c4bc; margin-bottom:2rem;">Call me directly for a no-obligation conversation about your property and what it could achieve in today's market.</p>
+    <p style="margin-bottom:2.5rem;">
+      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#f5d07a; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2efe9; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #c4912a;">Send a Message</a>
+      <a href="/property-worth" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    section div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<SuburbMap />
+
+</Layout>

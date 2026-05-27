@@ -31,6 +31,7 @@ const suburbs = [
   { name: 'Everton Park',        href: '/suburbs/everton-park',        desc: 'First-home buyer and young family destination, community character, strong northern Brisbane value' },
   { name: 'East Brisbane',       href: '/suburbs/east-brisbane',       desc: 'Walkable inner city, terrace homes, café culture' },
   { name: 'Eight Mile Plains',   href: '/suburbs/eight-mile-plains',   desc: 'Southern tech precinct suburb, motorway access, strong rental demand, young professionals' },
+  { name: 'Enoggera',            href: '/suburbs/enoggera',            desc: 'Inner north-western suburb, defence community, creek greenway, family and first home buyer appeal' },
   { name: 'Fairfield',           href: '/suburbs/fairfield',           desc: 'Family inner south, tree-lined streets, strong value below Dutton Park' },
   { name: 'Fig Tree Pocket',     href: '/suburbs/fig-tree-pocket',     desc: 'Prestigious western enclave, large blocks, river aspect, upsizing families, low turnover' },
   { name: 'Fortitude Valley',    href: '/suburbs/fortitude-valley',    desc: 'Inner-city apartments, culture and entertainment hub' },
@@ -65,6 +66,7 @@ const suburbs = [
   { name: 'Nundah',              href: '/suburbs/nundah',              desc: 'Inner north, rail access, Clayfield spillover buyers' },
   { name: 'Paddington',          href: '/suburbs/paddington',          desc: 'Character homes, Latrobe Terrace, inner west lifestyle' },
   { name: 'Red Hill',            href: '/suburbs/red-hill',            desc: 'Elevated inner north, federation homes, city views' },
+  { name: 'Runcorn',             href: '/suburbs/runcorn',             desc: 'Southern Brisbane, school catchments, family upgrader suburb, Sunnybank proximity' },
   { name: 'Seven Hills',         href: '/suburbs/seven-hills',         desc: 'Elevated inner east, bushland views, strong demand' },
   { name: 'Sherwood',            href: '/suburbs/sherwood',            desc: 'Established family suburb, Oxley Creek, borders Chelmer and Graceville' },
   { name: 'South Brisbane',      href: '/suburbs/south-brisbane',      desc: 'High-density inner-city, South Bank Parklands, CBD walkability' },
@@ -76,6 +78,7 @@ const suburbs = [
   { name: 'Teneriffe',           href: '/suburbs/teneriffe',           desc: 'Prestige woolstore conversions, river views, premium' },
   { name: 'Tingalpa',            href: '/suburbs/tingalpa',            desc: 'Affordable east Brisbane, good access, family homes' },
   { name: 'Upper Mt Gravatt',    href: '/suburbs/upper-mount-gravatt', desc: 'Elevated south, views, Garden City, strong schools' },
+  { name: 'Virginia',            href: '/suburbs/virginia',            desc: 'Northern Brisbane, industrial-residential mix, airport corridor access, investor demand' },
   { name: 'Wavell Heights',      href: '/suburbs/wavell-heights',      desc: 'Elevated inner north-east, family suburb, strong schools, low turnover' },
   { name: 'West End',            href: '/suburbs/west-end',            desc: 'Inner south café culture, riverside, CBD proximity' },
   { name: 'Wilston',             href: '/suburbs/wilston',             desc: 'Heritage Queenslanders, low stock, loyal owner-occupier base inner north' },
@@ -157,7 +160,7 @@ const schema = {
         <a href={suburb.href} style="background:white; padding:1.75rem 1.5rem; text-decoration:none; display:block; transition:background 0.18s;" onmouseover="this.style.background='#f7f5f0'" onmouseout="this.style.background='white'">
           <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">{suburb.name}</p>
           <p style="font-family:var(--font-sans); font-size:0.8rem; font-weight:300; color:#6b6560; line-height:1.5;">{suburb.desc}</p>
-          <span style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#c4912a; display:inline-block; margin-top:0.75rem;">View suburb &rarr;</span>
+          <span style="font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#c4912a; display:inline-block; margin-top:0.75rem;">Explore {suburb.name} &rarr;</span>
         </a>
       ))}
     </div>
