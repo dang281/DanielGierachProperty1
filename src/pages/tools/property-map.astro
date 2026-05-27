@@ -1148,14 +1148,14 @@ window.PM_ZONES = {
     document.getElementById('pm-result-eyebrow')!.textContent = 'Zone identified';
 
     document.getElementById('pm-result-body')!.innerHTML = `
-      <div class="pm-zone-name-row">
-        <div class="pm-zone-dot" style="background:${swatchColor};"></div>
-        <p class="pm-result-name">${code ? `${code}  ${officialLabel}` : officialLabel}</p>
+      <div style="display:flex;align-items:center;gap:0.55rem;margin-bottom:0.4rem;">
+        <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:${swatchColor};"></div>
+        <p style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin:0;">${code ? `${code}  ${officialLabel}` : officialLabel}</p>
       </div>
-      <p class="pm-result-height">${z ? z.height : ''}</p>
-      <p class="pm-result-summary">${z ? z.summary : officialLabel}</p>
-      ${z && z.forBuyers ? `<p class="pm-result-buyers">${z.forBuyers}</p>` : ''}
-      <a class="pm-bcc-link" id="pm-bcc-link-el" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">
+      <p style="display:block;font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#c4912a;margin-bottom:0.5rem;">${z ? z.height : ''}</p>
+      <p style="display:block;font-size:0.78rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.5rem;">${z ? z.summary : officialLabel}</p>
+      ${z && z.forBuyers ? `<p style="display:block;font-size:0.74rem;color:rgba(240,236,228,0.55);line-height:1.6;font-style:italic;border-top:1px solid rgba(240,236,228,0.1);padding-top:0.5rem;margin-bottom:0.6rem;">${z.forBuyers}</p>` : ''}
+      <a id="pm-bcc-link-el" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">
         Verify on BCC CityPlan
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
@@ -1176,13 +1176,15 @@ window.PM_ZONES = {
     document.getElementById('pm-result-eyebrow')!.textContent = TITLES[key] || key;
 
     const attrRows = renderAttrs(key, attrs)
-      .map(([k, v]: [string,string]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`)
+      .map(([k, v]: [string,string]) => `
+        <dt style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,236,228,0.42);align-self:center;">${k}</dt>
+        <dd style="color:rgba(240,236,228,0.85);margin:0;">${esc(v)}</dd>`)
       .join('');
 
     document.getElementById('pm-result-body')!.innerHTML = `
-      <h3 class="pm-result-title">${esc(headlineFor(key, attrs))}</h3>
-      <p class="pm-result-interp">${INTERPRETATIONS[key] || ''}</p>
-      ${attrRows ? `<dl class="pm-attrs">${attrRows}</dl>` : ''}
+      <h3 style="font-family:Georgia,serif;font-size:1.05rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin-bottom:0.5rem;">${esc(headlineFor(key, attrs))}</h3>
+      <p style="font-size:0.84rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.65rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(240,236,228,0.08);">${INTERPRETATIONS[key] || ''}</p>
+      ${attrRows ? `<dl style="display:grid;grid-template-columns:max-content 1fr;gap:0.3rem 0.85rem;font-size:0.78rem;line-height:1.55;">${attrRows}</dl>` : ''}
     `;
 
     // Close layer panel if open
@@ -1339,14 +1341,14 @@ window.PM_ZONES = {
         el.classList.add('open');
         document.getElementById('pm-result-eyebrow')!.textContent = 'Zone information';
         document.getElementById('pm-result-body')!.innerHTML = `
-          <div class="pm-zone-name-row">
-            <div class="pm-zone-dot" style="background:${z.color};"></div>
-            <p class="pm-result-name">${z.short}: ${z.name}</p>
+          <div style="display:flex;align-items:center;gap:0.55rem;margin-bottom:0.4rem;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:${z.color};"></div>
+            <p style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin:0;">${z.short}: ${z.name}</p>
           </div>
-          <p class="pm-result-height">${z.height}</p>
-          <p class="pm-result-summary">${z.summary}</p>
-          ${z.forBuyers ? `<p class="pm-result-buyers">${z.forBuyers}</p>` : ''}
-          <a class="pm-bcc-link" href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener">
+          <p style="display:block;font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#c4912a;margin-bottom:0.5rem;">${z.height}</p>
+          <p style="display:block;font-size:0.78rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.5rem;">${z.summary}</p>
+          ${z.forBuyers ? `<p style="display:block;font-size:0.74rem;color:rgba(240,236,228,0.55);line-height:1.6;font-style:italic;border-top:1px solid rgba(240,236,228,0.1);padding-top:0.5rem;margin-bottom:0.6rem;">${z.forBuyers}</p>` : ''}
+          <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">
             Verify on BCC CityPlan
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>`;
