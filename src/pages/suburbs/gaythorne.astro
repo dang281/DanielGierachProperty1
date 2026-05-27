@@ -1,0 +1,343 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SuburbMap from '../../components/SuburbMap.astro';
+import Method from '../../components/Method.astro';
+import BuyersCTA from '../../components/BuyersCTA.astro';
+import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import ResourceCTA from '../../components/ResourceCTA.astro';
+---
+
+<Layout
+  title="Selling in Gaythorne | Daniel Gierach Property"
+  description="Selling in Gaythorne? Local knowledge of this family-oriented northern Brisbane suburb, its character Queenslander homes, proximity to Mitchelton Station, and the buyers who pursue it as the next best step in the northern corridor. Free walkthrough with Daniel Gierach.">
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Real Estate Agent Gaythorne Brisbane",
+  "description": "Daniel Gierach is a specialist real estate agent in Gaythorne Brisbane, serving the northern corridor including Mitchelton, Alderley, Everton Park, Stafford and surrounding suburbs.",
+  "url": "https://danielgierach.com/suburbs/gaythorne",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://danielgierach.com" },
+      { "@type": "ListItem", "position": 2, "name": "Gaythorne", "item": "https://danielgierach.com/suburbs/gaythorne" }
+    ]
+  }
+})}</script>
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": [
+    "LocalBusiness",
+    "RealEstateAgent"
+  ],
+  "@id": "https://danielgierach.com/#business",
+  "name": "Daniel Gierach, Ray White Bulimba",
+  "description": "Specialist real estate agent in Gaythorne and Brisbane's northern corridor. Selling property in Gaythorne, Mitchelton, Alderley, Everton Park, Stafford and surrounding suburbs.",
+  "url": "https://danielgierach.com/suburbs/gaythorne",
+  "telephone": "+61412523821",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Gaythorne",
+    "addressRegion": "QLD",
+    "postalCode": "4051",
+    "addressCountry": "AU"
+  },
+  "email": "daniel.gierach@raywhite.com",
+  "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+  "priceRange": "$$",
+  "geo": { "@type": "GeoCoordinates", "latitude": -27.4186, "longitude": 152.9942 },
+  "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "20:00" },
+  "areaServed": [
+    { "@type": "Place", "name": "Gaythorne QLD 4051" },
+    { "@type": "Place", "name": "Mitchelton QLD" },
+    { "@type": "Place", "name": "Alderley QLD" },
+    { "@type": "Place", "name": "Everton Park QLD" },
+    { "@type": "Place", "name": "Stafford QLD" }
+  ],
+  "knowsAbout": [
+    "Gaythorne real estate",
+    "northern Brisbane character homes",
+    "Gaythorne Queenslander homes",
+    "northern Brisbane family suburbs"
+  ],
+  "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
+})}</script>
+
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What drives property values in Gaythorne?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gaythorne property values are driven by the suburb's position in Brisbane's northern corridor, its character Queenslander homes on generous residential blocks, proximity to Mitchelton Station on the Ferny Grove line, and the school catchments that attract committed family buyers. The suburb offers a genuine leafy-northern-Brisbane lifestyle at a price point that has historically sat below the more tightly held addresses of neighbouring Alderley and Mitchelton, which draws families who have been comparing the corridor and want the lifestyle without paying the full Alderley premium. Low stock turnover supports consistent buyer competition when properties do come to market." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a home in Gaythorne?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Gaythorne homes typically sell within 25 to 40 days. The suburb attracts motivated family buyers who have been researching the northern corridor and have identified Gaythorne as a compelling value option adjacent to Alderley and Mitchelton. Because these buyers have already done their homework on the corridor, they tend to act decisively when a well-presented property appears at a price that reflects the genuine market. Autumn and spring bring the strongest campaign conditions, but the suburb draws consistent interest throughout the year from buyers who cannot find what they want in the tighter neighbouring addresses." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lifestyle like in Gaythorne?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gaythorne offers a leafy, settled family lifestyle approximately eight kilometres north of the Brisbane CBD. The suburb is defined by quiet residential streets, character Queenslander homes, the Enoggera Creek greenway, and a genuine community feel that reflects its largely owner-occupier population. Mitchelton Station on the Ferny Grove line is accessible from the suburb, providing rail connections to the CBD, and the Blackwood Street precinct in adjacent Mitchelton provides everyday dining and retail amenity. It is a suburb where families come to stay, and that settled character is central to its enduring appeal." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Gaythorne a good suburb to buy in right now?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gaythorne offers genuine value for families comparing the northern Brisbane corridor. The suburb delivers the leafy character, school catchments, and Ferny Grove rail access of its better-known neighbours at a price point that reflects its position as one step removed from the tightest addresses in the corridor. For buyers who have compared Alderley and Mitchelton and found them beyond budget, Gaythorne's character homes, quiet streets, and established community make it a compelling long-term owner-occupier choice. Low stock turnover is a consistent feature, which means that buyers who identify Gaythorne as the right suburb often need to wait for the right property to appear." }
+    }
+  ]
+})}</script>
+
+
+<!-- ===============================================
+     SECTION 1: HERO
+================================================ -->
+<section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
+  <div style="max-width:800px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Gaythorne</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
+      Selling in Gaythorne, Brisbane.
+    </h1>
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
+      Specialist property sales in Gaythorne and Brisbane's northern corridor.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
+      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 2: WHY THIS AREA
+================================================ -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">The northern suburb that families pursue when Alderley and Mitchelton are beyond reach, with character homes, the Enoggera Creek greenway, and a settled residential character.</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Gaythorne sits approximately eight kilometres north of the Brisbane CBD, tucked between Mitchelton, Alderley, Everton Park and Stafford in the northern corridor that draws families away from the inner city in search of leafy streets, character homes and genuine community. The suburb is defined by its Queenslander homes on generous blocks, its quiet residential character, and its position as the compelling alternative for families who have been comparing the northern corridor and found the tighter Alderley and Mitchelton addresses beyond budget. Those buyers arrive in Gaythorne having already done their research. They know the corridor, they know what the character homes look like, and they have concluded that Gaythorne delivers the northern Brisbane lifestyle they are looking for.
+    </p>
+<!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your Gaythorne home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+    <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry: Gaythorne" />
+    <input type="hidden" name="_source" value="gaythorne" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    </div>
+    <input type="text" name="property_address" required placeholder="Your Gaythorne address (street + number)"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        Request My Free Appraisal
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Mitchelton Station on the Ferny Grove line is accessible from Gaythorne, connecting residents to the CBD and making the suburb genuinely practical for families where one or both partners commute to the city. That rail access, combined with the Blackwood Street dining and retail precinct in adjacent Mitchelton, means Gaythorne residents have the amenity of a more prominent northern suburb without paying the Mitchelton or Alderley premium that those addresses command. For the committed family buyer who has been comparing addresses across the northern corridor, Gaythorne represents the point where the lifestyle they are looking for becomes accessible.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      The housing stock in Gaythorne includes a mix of character Queenslander homes, post-war brick cottages, and an increasing number of renovated properties that reflect the suburb's appeal to buyers who recognise the character and the location but want the benefits of a modernised home. Blocks tend to be generous by northern Brisbane standards, and the Enoggera Creek greenway provides a natural amenity that gives the suburb a distinctive identity. Sellers who understand how the buyer in Gaythorne thinks, and who present their property to speak directly to that buyer's priorities, consistently achieve the best results when a campaign goes to market.
+    </p>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Gaythorne Specialist</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Northern Brisbane Corridor</p>
+      </div>
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">Character Northern Suburb</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Queenslanders, families, greenway, train access</p>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/mitchelton" style="color:#c4912a;">Mitchelton</a>, <a href="/suburbs/alderley" style="color:#c4912a;">Alderley</a>, <a href="/suburbs/everton-park" style="color:#c4912a;">Everton Park</a>.</p>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION: FAQ
+================================================ -->
+<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">FAQ</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Common questions about Gaythorne.</h2>
+    <div style="display:flex; flex-direction:column;">
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What drives property values in Gaythorne?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Gaythorne values are driven by its character housing stock, the Enoggera Creek greenway, access to Mitchelton Station on the Ferny Grove line, and the school catchments that attract family buyers to the northern corridor. The suburb sits at a price point below the tighter Alderley and Mitchelton addresses, which creates consistent demand from families who have been comparing the corridor and concluded that Gaythorne delivers the lifestyle they want at a more accessible entry. Properties on well-positioned internal streets with genuine character presentation attract the strongest buyer competition.</p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          How long does it take to sell a home in Gaythorne?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Gaythorne homes typically sell within 25 to 40 days. The buyers who target Gaythorne have usually spent time comparing the northern corridor and arrived at the suburb as a considered choice. When the right property appears at a price that reflects recent comparables, those buyers are ready to act. Autumn and spring produce the strongest open home attendance, but genuine family buyers in this part of Brisbane maintain consistent interest throughout the year.</p>
+      </details>
+
+      <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          What is the lifestyle like in Gaythorne?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Gaythorne offers a quiet, family-oriented lifestyle about eight kilometres north of the Brisbane CBD. The suburb is defined by its residential streets, character homes, and the Enoggera Creek greenway that provides a natural corridor for walking and cycling. Mitchelton's Blackwood Street precinct is accessible for everyday dining and retail, and Mitchelton Station provides rail access to the city. It is a suburb where the predominance of owner-occupiers creates a settled, long-term community character.</p>
+      </details>
+
+      <details style="padding:1.25rem 0;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          Is Gaythorne a good suburb to buy in right now?
+          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+        </summary>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Gaythorne offers a genuine opportunity for families comparing the northern Brisbane corridor. The suburb delivers the character homes, leafy streets, rail access and school catchments that buyers seek in this part of Brisbane at a price point that sits below the most sought-after corridor addresses. Its low stock turnover and consistent demand from well-researched family buyers make it a sound long-term owner-occupier consideration for anyone committed to the northern Brisbane lifestyle.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 3: SUBURBS SERVED
+================================================ -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Gaythorne</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character northern suburb, Queenslanders, greenway, family community</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Mitchelton</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Sought-after northern suburb, Blackwood Street, Ferny Grove train access</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Alderley</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Aspirational northern suburb, character homes, low stock turnover</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Everton Park</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">First-home buyer and young family destination, strong northern value</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Stafford</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Owner-occupier inner north with solid fundamentals</p>
+      </div>
+      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Gordon Park</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Leafy inner north, large blocks, quiet residential character</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE THREE-PHASE METHOD -->
+<SuburbDeepDive slug="gaythorne" name="Gaythorne" />
+
+<div class="max-w-[780px] mx-auto px-8 pb-12">
+  <ResourceCTA slug="first-home-buyer-brisbane-inner-east-guide" />
+</div>
+
+<BuyersCTA suburb="Gaythorne" />
+<!-- Nearby suburbs cross-links -->
+<section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin-bottom:1rem;">Nearby Suburbs</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+      <a href="/suburbs/mitchelton" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Mitchelton</a>
+      <a href="/suburbs/alderley" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Alderley</a>
+      <a href="/suburbs/everton-park" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Everton Park</a>
+      <a href="/suburbs/stafford" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#44403c;text-decoration:none;padding:0.4rem 0.85rem;border:1px solid rgba(28,25,23,0.15);background:#fff;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#c4912a'" onmouseout="this.style.borderColor='rgba(28,25,23,0.15)'">Stafford</a>
+    </div>
+  </div>
+</section>
+
+<Method suburb="Gaythorne" />
+
+<!-- CROSS-LINK TO SELLING GUIDE -->
+<section style="background:var(--color-surface-0);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;">
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;">
+      Planning to sell? Read the full guide:
+      <a href="/insights/selling-in-gaythorne" style="color:#c4912a;font-weight:600;">How to Sell Your Home in Gaythorne &rarr;</a>
+    </p>
+    <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.7;color:#6b6560;margin-top:0.75rem;">
+      Want a starting-point estimate?
+      <a href="/tools/valuation" style="color:#c4912a;font-weight:600;">Get an instant property valuation &rarr;</a>
+    </p>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(72,72,72,0.1);">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Free seller tools</p>
+      <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.8;color:#6b6560;">
+        <a href="/tools/selling-costs" style="color:#c4912a;font-weight:600;">Selling costs calculator</a> &middot;
+        <a href="/tools/cgt-timing" style="color:#c4912a;font-weight:600;">CGT timing calculator</a> &middot;
+        <a href="/tools/settlement-date" style="color:#c4912a;font-weight:600;">Settlement date calculator</a>
+      </p>
+    </div>
+    <div style="margin-top:0.75rem;">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#78716c;margin-bottom:0.5rem;">Seller guides</p>
+      <p style="font-family:var(--font-sans);font-size:0.88rem;font-weight:300;line-height:1.8;color:#6b6560;">
+        <a href="/insights/cost-of-selling-house-brisbane" style="color:#c4912a;font-weight:600;">Cost of selling a house in Brisbane</a> &middot;
+        <a href="/insights/how-to-prepare-your-home-for-sale-brisbane" style="color:#c4912a;font-weight:600;">How to prepare your home for sale</a> &middot;
+        <a href="/insights/what-happens-at-settlement" style="color:#c4912a;font-weight:600;">What happens at settlement</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================================
+     SECTION 5: CTA STRIP
+================================================ -->
+<section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
+  <div style="max-width:700px; margin:0 auto;">
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in Gaythorne?</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.75; color:#c9c4bc; margin-bottom:2rem;">Call me directly for a no-obligation conversation about your property and what it could achieve in today's market.</p>
+    <p style="margin-bottom:2.5rem;">
+      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#f5d07a; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2efe9; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #c4912a;">Send a Message</a>
+      <a href="/property-worth" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    section div[style*="grid-template-columns:repeat(3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<SuburbMap />
+
+</Layout>
