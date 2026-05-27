@@ -11,6 +11,7 @@ const clusterSchema = {
 };
 
 const suburbs = [
+  { slug: 'selling-in-acacia-ridge',      name: 'Acacia Ridge',       summary: "Acacia Ridge's affordable southern Brisbane entry point, dual buyer pool of first-home buyers and investors, and Pacific Motorway access create consistent demand. Here is what sellers need to know about positioning and timing in 2026." },
   { slug: 'selling-in-albion',            name: 'Albion',             summary: "Albion's inner north rail station, heritage character homes, and consistent buyer demand from Wilston and Nundah spillover make timing and positioning critical for sellers in 2026." },
   { slug: 'selling-in-alderley',          name: 'Alderley',           summary: "Alderley's character homes, Ferny Grove train line access, and leafy inner north position attract buyers moving up from Gaythorne and Gordon Park. Here is what sellers need to know about timing and positioning in 2026." },
   { slug: 'selling-in-annerley',          name: 'Annerley',           summary: "Annerley's proximity to Dutton Park, the PA Hospital precinct, and its mix of character homes and subdivisible blocks create a buyer pool that rewards well-positioned listings." },
@@ -37,6 +38,7 @@ const suburbs = [
   { slug: 'selling-in-clayfield',         name: 'Clayfield',          summary: "Clayfield's prestige inner north-east Queenslanders, strong school catchments, and family buyer profile place it among Brisbane's most competitive heritage markets for sellers." },
   { slug: 'selling-in-coorparoo',         name: 'Coorparoo',          summary: "Coorparoo's school catchments, village feel, and proximity to the CBD underpin one of the inner south's most competitive markets for family homes." },
   { slug: 'selling-in-corinda',           name: 'Corinda',            summary: "Corinda's inner south-west position, character homes, and Oxley Creek access attract a buyer pool looking for value relative to Sherwood and Graceville at a lower entry price." },
+  { slug: 'selling-in-darra',             name: 'Darra',              summary: "Darra's rail access to the CBD, affordable entry, and first-home buyer demand create a market where accurate pricing and targeted presentation drive strong results for sellers in 2026." },
   { slug: 'selling-in-dutton-park',       name: 'Dutton Park',        summary: "Dutton Park's PA Hospital proximity, character stock, and tight supply make it one of inner Brisbane's most undersupplied markets for quality detached homes." },
   { slug: 'selling-in-east-brisbane',     name: 'East Brisbane',      summary: "East Brisbane's CBD walkability and Kangaroo Point proximity make it one of the most sought-after addresses for professional owner-occupiers buying in the inner east." },
   { slug: 'selling-in-eight-mile-plains', name: 'Eight Mile Plains',  summary: "Eight Mile Plains' southern tech corridor position, motorway access, and strong rental demand from the surrounding business parks create a reliable investment and family market for sellers in 2026." },
@@ -45,6 +47,7 @@ const suburbs = [
   { slug: 'selling-in-fairfield',         name: 'Fairfield',          summary: "Fairfield's tree-lined streets, strong school catchments, and value position relative to Dutton Park and Annerley on the inner south corridor make it a consistent performer for sellers in 2026." },
   { slug: 'selling-in-ferny-grove',       name: 'Ferny Grove',        summary: "Ferny Grove's leafy outer northern position, Ferny Grove State High School catchment, and buyer pool drawn from Keperra and Mitchelton create a market where position and accurate pricing consistently drive the best seller results." },
   { slug: 'selling-in-fig-tree-pocket',   name: 'Fig Tree Pocket',    summary: "Fig Tree Pocket's prestigious western enclave position, large river-aspect blocks, and scarce listings attract upsizing families willing to wait and pay a premium when the right home comes to market." },
+  { slug: 'selling-in-forest-lake',       name: 'Forest Lake',        summary: "Forest Lake's master-planned estate layout, family buyer profile, and larger block sizes relative to entry price make it western Brisbane's most active family market. Here is what sellers need to know in 2026." },
   { slug: 'selling-in-fortitude-valley',  name: 'Fortitude Valley',   summary: "Fortitude Valley's apartment market is driven by investor demand and lifestyle buyers. Understanding the body corporate landscape and rental yield data is essential for sellers here." },
   { slug: 'selling-in-gaythorne',         name: 'Gaythorne',          summary: "Gaythorne's character homes, Ferny Grove corridor position, and competitive pricing relative to Alderley and Mitchelton attract buyers looking for inner north value. Here is what sellers need to know in 2026." },
   { slug: 'selling-in-geebung',           name: 'Geebung',            summary: "Geebung's affordable northern Brisbane character homes, larger blocks, and direct rail access to the CBD attract buyers redirecting from Chermside and Zillmere. Here is what sellers need to know about timing and positioning in 2026." },
@@ -77,6 +80,7 @@ const suburbs = [
   { slug: 'selling-in-mount-gravatt',     name: 'Mount Gravatt',      summary: "Mount Gravatt's central southside position, Westfield access, and school catchments make it the inner south's most active family market outside Coorparoo." },
   { slug: 'selling-in-mount-gravatt-east',name: 'Mount Gravatt East', summary: "Mount Gravatt East offers larger blocks and quieter streets than the centre while retaining access to the same catchments and amenity. Here is what sellers need to know." },
   { slug: 'selling-in-murarrie',          name: 'Murarrie',           summary: "Murarrie's gateway position, newer housing stock, and improving infrastructure make it one of the inner east's best-value family suburbs for sellers to capitalise on in 2026." },
+  { slug: 'selling-in-nathan',            name: 'Nathan',             summary: "Nathan's Griffith University influence, investor demand, and quiet bushland setting create a dual market of owner-occupiers and investors. Here is what sellers need to know about timing and positioning in 2026." },
   { slug: 'selling-in-new-farm',          name: 'New Farm',           summary: "New Farm's riverfront position, Merthyr Road village, and heritage cottage stock put it consistently among Brisbane's top-performing inner-city suburbs for vendors." },
   { slug: 'selling-in-newstead',          name: 'Newstead',           summary: "Gasworks precinct, river view premiums, body corporate considerations, and how to position an apartment or townhouse in Newstead's competitive inner-city market." },
   { slug: 'selling-in-norman-park',       name: 'Norman Park',        summary: "Norman Park's school catchments, Queenslander stock, and high owner-occupier rate make it one of the inner east's most stable and consistent markets for sellers." },
@@ -85,7 +89,9 @@ const suburbs = [
   { slug: 'selling-in-paddington',        name: 'Paddington',         summary: "Paddington's character terrace and cottage market, Given Terrace cafe strip, and strong heritage overlay presence create one of inner Brisbane's most distinctive selling environments." },
   { slug: 'selling-in-red-hill',          name: 'Red Hill',           summary: "Red Hill's elevated position, city views, and scarce character stock attract buyers willing to pay a premium for scarcity. Here is what sellers need to know in 2026." },
   { slug: 'selling-in-robertson',         name: 'Robertson',          summary: "Robertson's quiet southern Brisbane position, family-upgrader buyer profile, and school catchment appeal create consistent demand that rewards sellers who understand the comparison market in Macgregor and Sunnybank Hills." },
+  { slug: 'selling-in-rocklea',           name: 'Rocklea',            summary: "Rocklea's affordable southern Brisbane position, industrial-residential boundary dynamics, and strong investor yield demand create a niche market where understanding the buyer profile is essential for sellers in 2026." },
   { slug: 'selling-in-runcorn',           name: 'Runcorn',            summary: "Runcorn's family-friendly southern Brisbane position, strong school catchments, and affordable entry relative to Sunnybank attract upgrader buyers who move quickly when a well-prepared home is priced correctly." },
+  { slug: 'selling-in-salisbury',         name: 'Salisbury',          summary: "Salisbury's Pacific Motorway access, post-war family character, and affordable entry relative to nearby Moorooka attract buyers looking for southern Brisbane value. Here is what sellers need to know in 2026." },
   { slug: 'selling-in-seven-hills',       name: 'Seven Hills',        summary: "Seven Hills' elevated position, large allotments, and proximity to Morningside and Camp Hill make it one of the inner east's most competitive renovation and rebuild markets." },
   { slug: 'selling-in-sherwood',          name: 'Sherwood',           summary: "Sherwood's inner south-west position, character homes, and proximity to Graceville and Chelmer buyers create a market where the right campaign and pricing strategy consistently outperforms." },
   { slug: 'selling-in-sinnamon-park',     name: 'Sinnamon Park',      summary: "Sinnamon Park's estate lifestyle, park-fronting block premiums, and western Brisbane family buyer profile make it a niche market where position relative to parks and outlook drives significant price differences." },
@@ -115,7 +121,7 @@ const suburbs = [
   { slug: 'selling-in-zillmere',          name: 'Zillmere',           summary: "Zillmere's train station proximity, large post-war blocks, and active first-home buyer and investor pool create a comparison-active market where accurate pricing is the single biggest driver of campaign outcomes for sellers." },
 ];
 ---
-<Layout title="Selling Property in Brisbane Suburbs | Daniel Gierach Property" description="Suburb-by-suburb guides to selling property in Brisbane. Covering 102 suburbs with local market conditions, what drives value, and selling strategy." schema={clusterSchema}>
+<Layout title="Selling Property in Brisbane Suburbs | Daniel Gierach Property" description="Suburb-by-suburb guides to selling property in Brisbane. Covering 108 suburbs with local market conditions, what drives value, and selling strategy." schema={clusterSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
@@ -126,7 +132,7 @@ const suburbs = [
         onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
         &larr; All Articles
       </a>
-      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Suburb Directory &middot; 102 Guides</span>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Suburb Directory &middot; 108 Guides</span>
       <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
         Selling Property in Brisbane Suburbs
       </h1>
