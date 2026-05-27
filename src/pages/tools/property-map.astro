@@ -869,6 +869,32 @@ window.PM_ZONES = {
   <!-- Property summary card — populated by JS when a location is pinned -->
   <div id="pm-summary" style="display:none;margin-top:1.25rem;"></div>
 
+  <!-- AI assistant widget — shown after property data loads -->
+  <div id="pm-ai-widget" style="display:none;margin-top:0.85rem;">
+    <div style="border:1px solid rgba(196,145,42,0.25);border-radius:6px;padding:1rem 1.25rem;background:#ffffff;">
+      <p style="font-weight:700;font-size:0.82rem;color:rgba(28,25,23,0.85);margin:0 0 0.2rem;font-family:var(--font-sans);">Explain this to me in plain English</p>
+      <p style="font-size:0.7rem;color:rgba(28,25,23,0.4);margin:0 0 0.8rem;line-height:1.5;">Click your AI assistant of choice. The property details are pre-loaded and ready to send.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.45rem;">
+        <button id="pm-ai-chatgpt" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 0.9rem;background:#10a37f;color:#fff;border:none;border-radius:4px;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#0d8a6a'" onmouseout="this.style.background='#10a37f'">
+          Ask ChatGPT
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button id="pm-ai-claude" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 0.9rem;background:#cc785c;color:#fff;border:none;border-radius:4px;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#b5664c'" onmouseout="this.style.background='#cc785c'">
+          Ask Claude
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button id="pm-ai-gemini" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 0.9rem;background:#4285f4;color:#fff;border:none;border-radius:4px;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#2a6dd9'" onmouseout="this.style.background='#4285f4'">
+          Ask Gemini
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button id="pm-ai-perplexity" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 0.9rem;background:#20b2aa;color:#fff;border:none;border-radius:4px;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#199990'" onmouseout="this.style.background='#20b2aa'">
+          Ask Perplexity
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div style="margin-top:3rem;background:#f2efe9;border:1px solid rgba(28,25,23,0.1);padding:2.5rem 2rem;text-align:center;">
     <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.85rem;">
       Zoning and easements shape what a property is worth and what you can do with it.
@@ -1085,6 +1111,7 @@ window.PM_ZONES = {
   let overlayOpacity = 0.65;
   let _lastZone: { code: string; officialLabel: string; family: string; swatchColor: string; height: string; summary: string; forBuyers: string; bccHref: string } | null = null;
   let _lastAddress = '';
+  let _lastCardData: { address: string; lotplan: string; area: string; floods: string; primary: string; secondary: string } | null = null;
 
   // ── Zone style ────────────────────────────────────────────────────────
   function zoneStyleFor(feature: any) {
@@ -1741,6 +1768,45 @@ window.PM_ZONES = {
       '</svg>';
   }
 
+  function buildAIPrompt(): string {
+    const d = _lastCardData;
+    const z = _lastZone;
+    if (!d && !z) return '';
+    const addr = d?.address || _lastAddress || 'this Brisbane property';
+    let p = 'I am researching ' + addr + ' in Brisbane. A property map tool has returned the following information. Please explain in plain English what this means for me as a buyer: what matters, what to watch out for, and what I should investigate before purchasing.\n\n';
+    if (d?.area) p += 'BLOCK SIZE\n' + d.area + (d.lotplan ? ' (' + d.lotplan + ')' : '') + '\n\n';
+    if (z) {
+      p += 'ZONING (BCC City Plan 2014)\n' + (z.code ? z.code + ': ' : '') + z.officialLabel;
+      if (z.height) p += ' | Height limit: ' + z.height;
+      if (z.summary) p += '\n' + z.summary;
+      if (z.forBuyers) p += '\n' + z.forBuyers;
+      p += '\n\n';
+    }
+    p += 'FLOOD OVERLAYS (BCC City Plan)\n' + (d?.floods || 'No flood overlays at this location.') + '\n\n';
+    if (d?.primary || d?.secondary) {
+      p += 'SCHOOL CATCHMENTS\n';
+      if (d?.primary) p += 'Primary: ' + d.primary + '\n';
+      if (d?.secondary) p += 'Secondary: ' + d.secondary + '\n';
+    }
+    return p.trim();
+  }
+
+  function openAI(base: string) {
+    const prompt = buildAIPrompt();
+    if (!prompt) return;
+    window.open(base + encodeURIComponent(prompt), '_blank', 'noopener');
+  }
+
+  function showAIWidget() {
+    const w = document.getElementById('pm-ai-widget');
+    if (w) w.style.display = 'block';
+  }
+
+  function hideAIWidget() {
+    const w = document.getElementById('pm-ai-widget');
+    if (w) w.style.display = 'none';
+  }
+
   function showParcelDimensions(rings: number[][][], areaM2: number) {
     const L = (window as any).L;
     if (parcelDimLayer) { map.removeLayer(parcelDimLayer); parcelDimLayer = null; }
@@ -1854,6 +1920,8 @@ window.PM_ZONES = {
   function updateSummaryCard(lat: number, lon: number, searchAddr?: string) {
     _lastZone = null;
     _lastAddress = searchAddr || '';
+    _lastCardData = null;
+    hideAIWidget();
     if (parcelDimLayer) { map.removeLayer(parcelDimLayer); parcelDimLayer = null; }
     const card = document.getElementById('pm-summary')!;
     card.style.display = 'block';
@@ -1942,6 +2010,20 @@ window.PM_ZONES = {
         </div>`;
       // Zone data may already be available (if identifyZone resolved first) or arrive later via refreshZoneSection
       refreshZoneSection();
+
+      // Populate AI widget data and show it
+      const floodText = (floods as {desc:string;cat:string;key:string}[]).length
+        ? (floods as {desc:string;cat:string;key:string}[]).map(f => f.desc).join('; ')
+        : '';
+      _lastCardData = {
+        address: addr,
+        lotplan: lotInfo,
+        area: areaM2,
+        floods: floodText,
+        primary: catchments.primary || '',
+        secondary: catchments.secondary || '',
+      };
+      showAIWidget();
     });
   }
 
@@ -2093,6 +2175,12 @@ window.PM_ZONES = {
     document.getElementById('pm-result-close')!.addEventListener('click', () => {
       document.getElementById('pm-result')!.classList.remove('open');
     });
+
+    // AI assistant buttons
+    document.getElementById('pm-ai-chatgpt')?.addEventListener('click', () => openAI('https://chatgpt.com/?q='));
+    document.getElementById('pm-ai-claude')?.addEventListener('click', () => openAI('https://claude.ai/new?q='));
+    document.getElementById('pm-ai-gemini')?.addEventListener('click', () => openAI('https://gemini.google.com/app?q='));
+    document.getElementById('pm-ai-perplexity')?.addEventListener('click', () => openAI('https://www.perplexity.ai/?q='));
 
     // Share button
     const shareBtn = document.getElementById('pm-share-btn') as HTMLButtonElement | null;
