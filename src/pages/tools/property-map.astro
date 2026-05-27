@@ -493,6 +493,10 @@ const legendGroups = [
   #pm-search { background: #ffffff !important; color: #1c1917 !important; }
   #pm-search::placeholder { color: #a8a29e !important; }
 
+  /* Summary card responsive grid */
+  #pm-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; }
+  @media (max-width: 520px) { #pm-summary-grid { grid-template-columns: 1fr; } }
+
   /* Result body: injected via innerHTML so must be global to avoid Astro scope hash */
   #pm-result-body .pm-zone-name-row { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem; }
   #pm-result-body .pm-zone-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.2); }
@@ -806,6 +810,9 @@ window.PM_ZONES = {
     </span>
   </div>
 
+  <!-- Property summary card — populated by JS when a location is pinned -->
+  <div id="pm-summary" style="display:none;margin-top:1.25rem;"></div>
+
   <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
     <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
       Zoning and easements shape what a property is worth and what you can do with it.
@@ -858,6 +865,7 @@ window.PM_ZONES = {
 <link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
 <link rel="preconnect" href="https://photon.komoot.io" crossorigin />
 <link rel="preconnect" href="https://nominatim.openstreetmap.org" crossorigin />
+<link rel="preconnect" href="https://spatial-gis.information.qld.gov.au" crossorigin />
 
 <link rel="stylesheet" href="/lib/leaflet/leaflet.css" />
 <link rel="preload" as="script" href="/lib/leaflet/leaflet.js" />
@@ -1036,10 +1044,13 @@ window.PM_ZONES = {
     }
 
     map.on('moveend', loadVisible);
-    // Map click: zoning takes priority for area identification
+    // Map click: drop pin, query summary, optionally identify zone
     map.on('click', (e: any) => {
+      const { lat, lng } = e.latlng;
+      dropPin(lat, lng);
+      updateSummaryCard(lat, lng);
       if (active.zoning && map.getZoom() >= 13) {
-        identifyZone(e.latlng.lat, e.latlng.lng);
+        identifyZone(lat, lng);
       }
     });
 
@@ -1447,11 +1458,110 @@ window.PM_ZONES = {
         const lat = f.geometry.coordinates[1], lon = f.geometry.coordinates[0];
         (document.getElementById('pm-search') as HTMLInputElement).value = label;
         list.style.display = 'none';
-        flyAndIdentify(lat, lon);
+        flyAndIdentify(lat, lon, label);
       });
       list.appendChild(item);
     });
     list.style.display = 'block';
+  }
+
+  // ── Property summary (parcel + school catchments) ────────────────────
+  const SCHOOL_BASE = 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Society/SchoolsAndSchoolCatchments/MapServer';
+
+  function parcelDimensions(rings: number[][][]): { w: number; h: number } {
+    const coords = rings[0] || [];
+    let minLon = Infinity, maxLon = -Infinity, minLat = Infinity, maxLat = -Infinity;
+    for (const [ln, lt] of coords) {
+      if (ln < minLon) minLon = ln; if (ln > maxLon) maxLon = ln;
+      if (lt < minLat) minLat = lt; if (lt > maxLat) maxLat = lt;
+    }
+    const avgLat = (minLat + maxLat) / 2;
+    const mPerLat = 111320;
+    const mPerLon = 111320 * Math.cos(avgLat * Math.PI / 180);
+    return { w: Math.round((maxLon - minLon) * mPerLon), h: Math.round((maxLat - minLat) * mPerLat) };
+  }
+
+  async function queryParcel(lat: number, lon: number) {
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint', inSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'LOTPLAN,HOUSE_NUMBER,CORRIDOR_NAME,SUBURB,LOT_AREA',
+      returnGeometry: 'true', outSR: '4326',
+      resultRecordCount: '1', f: 'json',
+    });
+    const data = await fetch(`${URLS.propertyBoundary}/query?${params}`).then(r => r.json());
+    return (data.features || [])[0] || null;
+  }
+
+  async function queryCatchments(lat: number, lon: number) {
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint', inSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'centre_name', returnGeometry: 'false', f: 'json',
+    });
+    const qs = params.toString();
+    const [p, s] = await Promise.all([
+      fetch(`${SCHOOL_BASE}/1/query?${qs}`).then(r => r.json()).catch(() => null),
+      fetch(`${SCHOOL_BASE}/3/query?${qs}`).then(r => r.json()).catch(() => null),
+    ]);
+    return {
+      primary:   (p?.features?.[0]?.attributes?.centre_name as string) || null,
+      secondary: (s?.features?.[0]?.attributes?.centre_name as string) || null,
+    };
+  }
+
+  function updateSummaryCard(lat: number, lon: number, searchAddr?: string) {
+    const card = document.getElementById('pm-summary')!;
+    card.style.display = 'block';
+    card.innerHTML = `
+      <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.18);padding:1.25rem 1.5rem;">
+        <p style="font-size:0.75rem;color:rgba(240,236,228,0.38);margin:0;">Looking up property details...</p>
+      </div>`;
+
+    Promise.all([
+      queryParcel(lat, lon).catch(() => null),
+      queryCatchments(lat, lon).catch(() => ({ primary: null, secondary: null })),
+    ]).then(([parcel, catchments]) => {
+      const a = parcel?.attributes || {};
+      const num = a.HOUSE_NUMBER || '', street = a.CORRIDOR_NAME || '', suburb = a.SUBURB || '';
+      const addrFromParcel = [num && street ? `${num} ${street}` : (street || num), suburb].filter(Boolean).join(', ');
+      const addr = addrFromParcel || searchAddr || '';
+      const lotInfo = a.LOTPLAN ? `Lot/Plan ${a.LOTPLAN}` : '';
+      const areaM2 = a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : '';
+      let dimStr = '';
+      if (parcel?.geometry?.rings?.length) {
+        const { w, h } = parcelDimensions(parcel.geometry.rings);
+        if (w > 1 && h > 1) dimStr = `~${Math.min(w, h)} &times; ${Math.max(w, h)} m`;
+      }
+
+      card.innerHTML = `
+        <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.18);padding:1.25rem 1.5rem;">
+          <div id="pm-summary-grid">
+            <div>
+              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Property</p>
+              ${addr ? `<p style="font-size:0.92rem;font-family:Georgia,serif;color:rgba(240,236,228,0.95);margin:0 0 0.4rem;line-height:1.3;">${addr}</p>` : ''}
+              ${lotInfo ? `<p style="font-size:0.7rem;color:rgba(240,236,228,0.42);margin:0 0 0.15rem;">${lotInfo}</p>` : ''}
+              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(240,236,228,0.65);margin:0;">${areaM2}${dimStr ? ` <span style="color:rgba(240,236,228,0.28);">&middot;</span> ${dimStr}` : ''}</p>` : ''}
+              ${!addr && !lotInfo && !areaM2 ? `<p style="font-size:0.78rem;color:rgba(240,236,228,0.35);margin:0;">No parcel data at this point.</p>` : ''}
+            </div>
+            <div>
+              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">School catchments</p>
+              ${catchments.primary ? `
+                <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.36);margin:0 0 0.1rem;">Primary</p>
+                <p style="font-size:0.8rem;color:rgba(240,236,228,0.85);margin:0 0 0.55rem;line-height:1.3;">${catchments.primary}</p>` : ''}
+              ${catchments.secondary ? `
+                <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.36);margin:0 0 0.1rem;">Secondary</p>
+                <p style="font-size:0.8rem;color:rgba(240,236,228,0.85);margin:0;line-height:1.3;">${catchments.secondary}</p>` : ''}
+              ${!catchments.primary && !catchments.secondary ? `<p style="font-size:0.78rem;color:rgba(240,236,228,0.3);margin:0;">No state school catchment found for this location.</p>` : ''}
+            </div>
+          </div>
+          <p style="margin-top:0.8rem;font-size:0.62rem;color:rgba(240,236,228,0.26);border-top:1px solid rgba(240,236,228,0.06);padding-top:0.65rem;line-height:1.55;">
+            School catchments from Queensland DoE open data. Verify enrolment eligibility at <a href="https://schoolzfinder.eq.edu.au" target="_blank" rel="noopener" style="color:rgba(196,145,42,0.55);text-decoration:none;">schoolzfinder.eq.edu.au</a>. Block dimensions are approximate (bounding box). Always verify with BCC cadastral data and a registered survey.
+          </p>
+        </div>`;
+    });
   }
 
   function dropPin(lat: number, lon: number) {
@@ -1465,12 +1575,12 @@ window.PM_ZONES = {
     }).addTo(map);
   }
 
-  function flyAndIdentify(lat: number, lon: number) {
+  function flyAndIdentify(lat: number, lon: number, address?: string) {
     dropPin(lat, lon);
     map.setView([lat, lon], 18);
-    // Identify zone first (if active)
     if (active.zoning) setTimeout(() => identifyZone(lat, lon), 400);
     updateBCCLink(lat, lon);
+    updateSummaryCard(lat, lon, address);
   }
 
   async function doSearch() {
@@ -1484,7 +1594,7 @@ window.PM_ZONES = {
     document.getElementById('pm-autocomplete')!.style.display = 'none';
     try {
       const { lat, lon } = await geocode(v);
-      flyAndIdentify(lat, lon);
+      flyAndIdentify(lat, lon, v);
     } catch {
       s.textContent = 'Address not found. Add the suburb (e.g. 12 Main St, Camp Hill).';
     }
