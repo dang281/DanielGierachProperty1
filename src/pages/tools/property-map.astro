@@ -170,7 +170,7 @@ const legendGroups = [
     pointer-events: none; transition: opacity 0.3s;
   }
   @media (max-width: 768px) {
-    #pm-status { left: 12px; right: 60px; max-width: none; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
+    #pm-status { left: 58px; right: 12px; max-width: none; font-size: 0.66rem; padding: 0.4rem 0.65rem; }
   }
 
   /* ── Layer toggle button ───────────────────────────────────────────── */
@@ -1076,6 +1076,7 @@ window.PM_ZONES = {
   let canvasRenderer: any;
   let overlayOpacity = 0.65;
   let _lastZone: { code: string; officialLabel: string; family: string; swatchColor: string; height: string; summary: string; forBuyers: string; bccHref: string } | null = null;
+  let _lastAddress = '';
 
   // ── Zone style ────────────────────────────────────────────────────────
   function zoneStyleFor(feature: any) {
@@ -1386,7 +1387,7 @@ window.PM_ZONES = {
     const el = document.getElementById('pm-result')!;
     el.className = `mode-zone zone-${family.toLowerCase()}`;
     el.classList.add('open');
-    document.getElementById('pm-result-eyebrow')!.textContent = 'Zone identified';
+    document.getElementById('pm-result-eyebrow')!.textContent = _lastAddress || 'Zone identified';
     document.getElementById('pm-result-body')!.innerHTML =
       '<div style="display:flex;align-items:center;gap:0.6rem;">' +
         '<div style="width:12px;height:12px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:' + swatchColor + ';"></div>' +
@@ -1758,6 +1759,13 @@ window.PM_ZONES = {
       const num = a.HOUSE_NUMBER || '', street = a.CORRIDOR_NAME || '', suburb = a.SUBURB || '';
       const addrFromParcel = [num && street ? `${num} ${street}` : (street || num), suburb].filter(Boolean).join(', ');
       const addr = addrFromParcel || searchAddr || '';
+      // Keep _lastAddress up to date and refresh eyebrow if zone drawer is still open
+      if (addr) {
+        _lastAddress = addr;
+        const eyebrow = document.getElementById('pm-result-eyebrow');
+        const resultEl = document.getElementById('pm-result');
+        if (eyebrow && resultEl?.classList.contains('mode-zone')) eyebrow.textContent = addr;
+      }
       const lotInfo = a.LOTPLAN ? `Lot/Plan ${a.LOTPLAN}` : '';
       const areaM2 = a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : '';
       let dimStr = '';
@@ -1824,6 +1832,7 @@ window.PM_ZONES = {
   }
 
   function flyAndIdentify(lat: number, lon: number, address?: string) {
+    _lastAddress = address || '';
     dropPin(lat, lon);
     map.setView([lat, lon], 18);
     if (active.zoning) setTimeout(() => identifyZone(lat, lon), 400);
