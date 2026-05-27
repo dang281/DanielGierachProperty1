@@ -1769,10 +1769,11 @@ window.PM_ZONES = {
       }
       const lotInfo = a.LOTPLAN ? `Lot/Plan ${a.LOTPLAN}` : '';
       const areaM2 = a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : '';
-      let dimStr = '';
+      let frontageStr = '';
       if (parcel?.geometry?.rings?.length) {
         const { w, h } = parcelDimensions(parcel.geometry.rings);
-        if (w > 1 && h > 1) dimStr = `~${Math.min(w, h)} &times; ${Math.max(w, h)} m`;
+        const frontage = Math.min(w, h);
+        if (frontage > 1) frontageStr = `~${frontage}m frontage`;
       }
 
       const floodHTML = (floods as {desc:string;cat:string;key:string}[]).length
@@ -1793,7 +1794,7 @@ window.PM_ZONES = {
               <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Property</p>
               ${addr ? `<p style="font-size:0.92rem;font-family:Georgia,serif;color:rgba(240,236,228,0.95);margin:0 0 0.4rem;line-height:1.3;">${addr}</p>` : ''}
               ${lotInfo ? `<p style="font-size:0.7rem;color:rgba(240,236,228,0.42);margin:0 0 0.15rem;">${lotInfo}</p>` : ''}
-              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(240,236,228,0.65);margin:0;">${areaM2}${dimStr ? ` <span style="color:rgba(240,236,228,0.28);">&middot;</span> ${dimStr}` : ''}</p>` : ''}
+              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(240,236,228,0.65);margin:0;">${areaM2}${frontageStr ? ` <span style="color:rgba(240,236,228,0.28);">&middot;</span> ${frontageStr}` : ''}</p>` : ''}
               ${!addr && !lotInfo && !areaM2 ? `<p style="font-size:0.78rem;color:rgba(240,236,228,0.35);margin:0;">No parcel data at this point.</p>` : ''}
             </div>
             <div>
