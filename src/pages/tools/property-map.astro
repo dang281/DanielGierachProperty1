@@ -1850,14 +1850,13 @@ window.PM_ZONES = {
       placedLabelPx.push({ x: mx, y: my });
 
       const midLat = (lat1 + lat2) / 2, midLon = (lon1 + lon2) / 2;
-      let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
-      if (Math.abs(angle) > 90) angle += 180;
       const label = (Math.round(len * 10) / 10) + 'm';
+      const lw = label.length * 8 + 16;
       L.marker([midLat, midLon], {
         icon: L.divIcon({
           className: '',
-          html: '<div style="transform:translate(-50%,-50%) rotate(' + angle + 'deg);background:rgba(10,8,6,0.78);color:#fff;font-family:sans-serif;font-size:11px;font-weight:600;padding:2px 6px;border-radius:3px;white-space:nowrap;letter-spacing:0.03em;">' + label + '</div>',
-          iconSize: [0, 0], iconAnchor: [0, 0],
+          html: '<div style="background:rgba(10,8,6,0.82);color:#fff;font-family:sans-serif;font-size:12px;font-weight:600;padding:3px 7px;border-radius:3px;white-space:nowrap;letter-spacing:0.02em;line-height:1.3;">' + label + '</div>',
+          iconSize: [lw, 22], iconAnchor: [lw / 2, 11],
         }), interactive: false,
       }).addTo(parcelDimLayer);
     }
@@ -1869,11 +1868,13 @@ window.PM_ZONES = {
     const cLat = sumLat / verts.length, cLon = sumLon / verts.length;
     const cPx = map.latLngToContainerPoint([cLat, cLon]);
     const offsetLL = map.containerPointToLatLng([cPx.x, cPx.y + 26]);
+    const areaLabel = areaM2 + ' m²';
+    const alw = areaLabel.length * 8 + 16;
     L.marker([offsetLL.lat, offsetLL.lng], {
       icon: L.divIcon({
         className: '',
-        html: '<div style="transform:translate(-50%,-50%);background:rgba(10,8,6,0.78);color:#fff;font-family:sans-serif;font-size:11px;font-weight:600;padding:2px 7px;border-radius:3px;white-space:nowrap;letter-spacing:0.02em;">' + areaM2 + ' m²</div>',
-        iconSize: [0, 0], iconAnchor: [0, 0],
+        html: '<div style="background:rgba(10,8,6,0.82);color:#fff;font-family:sans-serif;font-size:12px;font-weight:600;padding:3px 8px;border-radius:3px;white-space:nowrap;letter-spacing:0.02em;line-height:1.3;">' + areaLabel + '</div>',
+        iconSize: [alw, 22], iconAnchor: [alw / 2, 11],
       }), interactive: false,
     }).addTo(parcelDimLayer);
 
