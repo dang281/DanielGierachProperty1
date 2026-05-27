@@ -219,8 +219,9 @@ const legendGroups = [
     #pm-result {
       position: fixed !important;
       left: 12px; right: 12px;
-      bottom: calc(78px + env(safe-area-inset-bottom) + 64px);
+      bottom: calc(78px + env(safe-area-inset-bottom));
       width: auto !important; max-width: none !important;
+      max-height: 42vh; overflow-y: auto;
     }
   }
 
@@ -502,6 +503,9 @@ const legendGroups = [
   body.tool-page .tool-header .eyebrow { color: #c4912a !important; }
   body.tool-page .tool-header span[style*="color"] { color: rgba(240,236,228,0.35) !important; }
   body.tool-page .tool-content { background: #0a0806 !important; }
+
+  /* Hide the global MESSAGE/CALL sticky bar on the map tool: it covers the map */
+  #tool-sticky-cta { display: none !important; }
 
   @media (max-width: 640px) {
     body.tool-page .tool-header { display: none; }
@@ -1171,6 +1175,8 @@ window.PM_ZONES = {
           onEachFeature(f: any, layer: any) {
             layer.on('click', (e: any) => {
               (window as any).L.DomEvent.stopPropagation(e);
+              dropPin(e.latlng.lat, e.latlng.lng);
+              updateSummaryCard(e.latlng.lat, e.latlng.lng);
               showZoneFromAttributes(f.properties || {});
             });
           },
@@ -1209,6 +1215,8 @@ window.PM_ZONES = {
           onEachFeature(f: any, layer: any) {
             layer.on('click', (e: any) => {
               (window as any).L.DomEvent.stopPropagation(e);
+              dropPin(e.latlng.lat, e.latlng.lng);
+              updateSummaryCard(e.latlng.lat, e.latlng.lng);
               showAssetResult(key, f.properties || {});
             });
           },
@@ -1254,6 +1262,8 @@ window.PM_ZONES = {
           onEachFeature(f: any, layer: any) {
             layer.on('click', (e: any) => {
               (window as any).L.DomEvent.stopPropagation(e);
+              dropPin(e.latlng.lat, e.latlng.lng);
+              updateSummaryCard(e.latlng.lat, e.latlng.lng);
               showFloodResult(key, f.properties || {});
             });
           },
@@ -1400,11 +1410,23 @@ window.PM_ZONES = {
         <dd style="color:rgba(240,236,228,0.85);margin:0;">${esc(v)}</dd>`)
       .join('');
 
-    document.getElementById('pm-result-body')!.innerHTML = `
-      <h3 style="font-family:Georgia,serif;font-size:1.05rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin-bottom:0.5rem;">${esc(headlineFor(key, attrs))}</h3>
-      <p style="font-size:0.84rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.65rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(240,236,228,0.08);">${INTERPRETATIONS[key] || ''}</p>
-      ${attrRows ? `<dl style="display:grid;grid-template-columns:max-content 1fr;gap:0.3rem 0.85rem;font-size:0.78rem;line-height:1.55;">${attrRows}</dl>` : ''}
-    `;
+    if (key === 'propertyBoundary') {
+      const a2 = attrs;
+      const addrLine = [a2.HOUSE_NUMBER && a2.CORRIDOR_NAME ? `${a2.HOUSE_NUMBER} ${a2.CORRIDOR_NAME}` : (a2.CORRIDOR_NAME || a2.HOUSE_NUMBER || ''), a2.SUBURB].filter(Boolean).join(', ');
+      const areaLine = a2.LOT_AREA ? `${(+a2.LOT_AREA).toFixed(0)} m²` : '';
+      document.getElementById('pm-result-body')!.innerHTML = `
+        <h3 style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin-bottom:0.3rem;">${esc(addrLine || a2.LOTPLAN || 'Parcel selected')}</h3>
+        ${areaLine ? `<p style="font-size:0.76rem;color:rgba(240,236,228,0.58);margin:0 0 0.25rem;">${areaLine}</p>` : ''}
+        ${a2.LOTPLAN ? `<p style="font-size:0.65rem;color:rgba(240,236,228,0.36);margin:0 0 0.4rem;">Lot/Plan ${a2.LOTPLAN}</p>` : ''}
+        <p style="font-size:0.65rem;color:rgba(240,236,228,0.32);margin:0;font-style:italic;">Full details loading below map...</p>
+      `;
+    } else {
+      document.getElementById('pm-result-body')!.innerHTML = `
+        <h3 style="font-family:Georgia,serif;font-size:1.05rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin-bottom:0.5rem;">${esc(headlineFor(key, attrs))}</h3>
+        <p style="font-size:0.84rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.65rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(240,236,228,0.08);">${INTERPRETATIONS[key] || ''}</p>
+        ${attrRows ? `<dl style="display:grid;grid-template-columns:max-content 1fr;gap:0.3rem 0.85rem;font-size:0.78rem;line-height:1.55;">${attrRows}</dl>` : ''}
+      `;
+    }
 
     // Close layer panel if open
     const panel = document.getElementById('pm-layer-panel');
@@ -1548,11 +1570,16 @@ window.PM_ZONES = {
     const list = document.getElementById('pm-legend-list')!;
     Object.entries(ZONES).forEach(([key, z]: [string, any]) => {
       const row = document.createElement('div');
-      row.className = 'pm-legend-row';
+      Object.assign(row.style, {
+        display: 'flex', alignItems: 'center', gap: '0.5rem',
+        padding: '0.3rem 0', cursor: 'pointer',
+      });
       row.innerHTML = `
-        <div class="pm-zone-swatch" style="background:${z.color};"></div>
-        <span class="pm-legend-code">${z.short}</span>
-        <span class="pm-legend-name">${z.name}</span>`;
+        <div style="width:12px;height:12px;border-radius:2px;flex-shrink:0;background:${z.color};border:1px solid rgba(255,255,255,0.15);"></div>
+        <span style="font-family:sans-serif;font-size:0.6rem;font-weight:800;letter-spacing:0.04em;color:rgba(240,236,228,0.85);flex-shrink:0;min-width:28px;">${z.short}</span>
+        <span style="font-size:0.66rem;color:rgba(240,236,228,0.58);line-height:1.3;flex:1;">${z.name}</span>`;
+      row.addEventListener('mouseover', () => { row.style.opacity = '0.75'; });
+      row.addEventListener('mouseout', () => { row.style.opacity = '1'; });
       row.addEventListener('click', () => {
         // Show zone info directly from legend click
         const el = document.getElementById('pm-result')!;
