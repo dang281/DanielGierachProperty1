@@ -1821,6 +1821,10 @@ window.PM_ZONES = {
       fill: true, fillColor: '#e53e3e', fillOpacity: 0.08,
     }).addTo(parcelDimLayer);
 
+    const placedLabelPx: {x: number; y: number}[] = [];
+    const MIN_EDGE_PX = 40;   // skip label if edge renders shorter than this
+    const MIN_GAP_PX  = 55;   // skip label if midpoint is this close to another label
+
     for (let i = 0; i < coords.length - 1; i++) {
       const [lon1, lat1] = coords[i], [lon2, lat2] = coords[i + 1];
       const len = haversineMetres(lat1, lon1, lat2, lon2);
@@ -1834,9 +1838,18 @@ window.PM_ZONES = {
       }).addTo(parcelDimLayer);
 
       if (len < 1) continue;
-      const midLat = (lat1 + lat2) / 2, midLon = (lon1 + lon2) / 2;
+
       const p1 = map.latLngToContainerPoint([lat1, lon1]);
       const p2 = map.latLngToContainerPoint([lat2, lon2]);
+      const edgePx = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+      if (edgePx < MIN_EDGE_PX) continue;  // edge too short at current zoom
+
+      const mx = (p1.x + p2.x) / 2, my = (p1.y + p2.y) / 2;
+      const tooClose = placedLabelPx.some(pt => Math.hypot(pt.x - mx, pt.y - my) < MIN_GAP_PX);
+      if (tooClose) continue;
+      placedLabelPx.push({ x: mx, y: my });
+
+      const midLat = (lat1 + lat2) / 2, midLon = (lon1 + lon2) / 2;
       let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
       if (Math.abs(angle) > 90) angle += 180;
       const label = (Math.round(len * 10) / 10) + 'm';
