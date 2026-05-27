@@ -1695,10 +1695,13 @@ window.PM_ZONES = {
     return (data.features || [])[0] || null;
   }
 
-  async function queryFloodOverlays(lat: number, lon: number) {
+  async function queryFloodOverlays(lat: number, lon: number, rings?: number[][][]) {
+    const usePolygon = rings && rings.length > 0;
     const params = new URLSearchParams({
-      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
-      geometryType: 'esriGeometryPoint', inSR: '4326',
+      geometry: usePolygon
+        ? JSON.stringify({ rings, spatialReference: { wkid: 4326 } })
+        : JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: usePolygon ? 'esriGeometryPolygon' : 'esriGeometryPoint', inSR: '4326',
       spatialRel: 'esriSpatialRelIntersects',
       outFields: 'OVL2_DESC,OVL2_CAT', returnGeometry: 'false', f: 'json',
     });
@@ -1744,11 +1747,14 @@ window.PM_ZONES = {
         '<p style="font-size:0.75rem;color:rgba(28,25,23,0.33);margin:0;">Looking up property details...</p>' +
       '</div>';
 
-    Promise.all([
-      queryParcel(lat, lon).catch(() => null),
-      queryCatchments(lat, lon).catch(() => ({ primary: null, secondary: null })),
-      queryFloodOverlays(lat, lon).catch(() => [] as {desc:string;cat:string;key:string}[]),
-    ]).then(([parcel, catchments, floods]) => {
+    queryParcel(lat, lon).catch(() => null).then((parcel: any) => {
+      const rings: number[][][] | undefined = parcel?.geometry?.rings;
+      return Promise.all([
+        Promise.resolve(parcel),
+        queryCatchments(lat, lon).catch(() => ({ primary: null as string|null, secondary: null as string|null })),
+        queryFloodOverlays(lat, lon, rings).catch(() => [] as {desc:string;cat:string;key:string}[]),
+      ]);
+    }).then(([parcel, catchments, floods]) => {
       const a = parcel?.attributes || {};
       const num = a.HOUSE_NUMBER || '', street = a.CORRIDOR_NAME || '', suburb = a.SUBURB || '';
       const addrFromParcel = [num && street ? `${num} ${street}` : (street || num), suburb].filter(Boolean).join(', ');
