@@ -1376,7 +1376,17 @@ window.PM_ZONES = {
       const p = f.properties;
       const label = [p.name, p.street && p.housenumber ? `${p.street} ${p.housenumber}` : p.street, p.city || p.suburb].filter(Boolean).join(', ');
       const item = document.createElement('div');
-      item.className = 'pm-ac-item'; item.textContent = label;
+      item.textContent = label;
+      Object.assign(item.style, {
+        padding: '0.85rem 1rem', fontSize: '0.88rem',
+        color: 'rgba(240,236,228,0.9)', cursor: 'pointer',
+        borderBottom: '1px solid rgba(240,236,228,0.07)',
+        lineHeight: '1.4', minHeight: '44px',
+        display: 'flex', alignItems: 'center',
+        background: 'transparent',
+      });
+      item.addEventListener('mouseover', () => { item.style.background = 'rgba(196,145,42,0.12)'; });
+      item.addEventListener('mouseout',  () => { item.style.background = 'transparent'; });
       item.addEventListener('mousedown', () => {
         const lat = f.geometry.coordinates[1], lon = f.geometry.coordinates[0];
         (document.getElementById('pm-search') as HTMLInputElement).value = label;
