@@ -1,8 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-const draft = true; // STAGED, remove this line on publish date
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When should I choose auction over private treaty in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Auction suits properties with genuine competing buyer interest: typically owner-occupier homes in Brisbane's inner east at price points above $1M where buyers can commit unconditionally. If you have three or more motivated buyers and limited comparable supply in your suburb, auction's competitive dynamic usually produces a stronger result. Private treaty is better when the buyer pool is narrow, buyers need finance conditions, or comparable sales support a clear asking price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Brisbane suburbs suit auction best?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane's inner east suburbs consistently clear well at auction. Bulimba, Hawthorne, Balmoral, Norman Park, and Morningside all regularly see competitive bidding because supply is limited and owner-occupier demand is strong. Camp Hill auctions well for well-presented homes above $1.2M. Suburbs with more investor activity or lower price points, such as parts of Carina and outer south-side suburbs, tend to suit private treaty where buyers need finance conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What questions should I ask my agent about method of sale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask: How many registered bidders did comparable properties attract at auction in my suburb? What was the clearance rate over the past 12 months? How many of my likely buyers could bid unconditionally on a set date? What price do you expect under each method, and where does the difference come from? What happens if the property passes in? These questions separate agents with a genuine strategy from those recommending auction by default."
+      }
+    }
+  ]
+};
 ---
-<Layout title="Auction vs Private Treaty: Which Is Better for Brisbane Sellers? | Daniel Gierach Property" description="Auction and private treaty are both legitimate sale methods, but the right choice depends on your property, your buyer pool, and your risk tolerance. Here's how Brisbane agents actually make that call." draft={draft}>
+
+<Layout
+  title="Auction vs Private Treaty: Which Is Right for Your Brisbane Property? | Daniel Gierach Property"
+  description="Auction and private treaty both produce strong results for Brisbane sellers, but the right choice depends on your property, your buyer pool, and the current market. Here is how to decide."
+>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
@@ -11,14 +48,14 @@ const draft = true; // STAGED, remove this line on publish date
     <div class="max-w-[780px] mx-auto px-8">
       <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
         onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
-        ← All Articles
+        Back to Articles
       </a>
-      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 6 min read</span>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 7 min read</span>
       <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
-        Auction vs Private Treaty: Which Is Better for Brisbane Sellers?
+        Auction vs Private Treaty: Which Is Right for Your Brisbane Property?
       </h1>
       <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
-        The sale method you choose affects who shows up, how they compete, and what you ultimately achieve. Neither auction nor private treaty is universally better. Here's how to choose.
+        Both methods produce strong results in the right conditions. The choice depends on your buyer pool, your suburb, and what kind of campaign your property can genuinely support.
       </p>
     </div>
   </div>
@@ -27,48 +64,77 @@ const draft = true; // STAGED, remove this line on publish date
   <div style="padding:3rem 0 7rem;">
     <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
 
-      <p>One of the first decisions you will make when listing a property is the sale method. Auction and private treaty are the two main options in Brisbane's inner east, and most vendors have a preference before they have had a proper conversation about which actually suits their situation. That preference is often shaped by personal experiences, things they have heard from friends or family, or by what the agent recommends without fully explaining why. Making a well-informed decision requires understanding what each method actually does and when each performs best.</p>
+      <p>The method of sale is one of the first strategic decisions you will make when listing your home, and it is also one of the least explained. Most agents have a preferred method and recommend it without fully walking you through the trade-offs. Understanding the genuine difference between auction and private treaty means you can hold that conversation properly and make the call that suits your situation.</p>
 
-      <p>The short answer is that auction tends to suit properties with a defined buyer pool, strong genuine competition, and a seller who is comfortable with a fixed campaign timeline. Private treaty suits properties where buyers need time, where the price bracket is sensitive, or where the pool of likely buyers is broader but less urgent. Both methods can and do produce strong results, and the difference in outcome for the right property in the right conditions is less dramatic than agents sometimes suggest.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How auction works</h2>
+      <p>A standard auction campaign in Brisbane runs for three to four weeks. The property is marketed without a disclosed price, which creates buyer interest across a range of budgets and prevents the asking price from anchoring expectations too low. On auction day, registered bidders compete publicly. If bidding reaches the vendor's reserve, the property sells unconditionally at the fall of the hammer: no cooling-off period, no finance clause, no building inspection contingency. Buyers complete their due diligence before auction day and commit without conditions.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How auction works and what it rewards</h2>
-      <p>Auction is an unconditional sale process. Buyers who register and bid are committing to buy the property on the day, without finance or building and pest conditions. This is both the strength and the limitation of the method. It removes the conditional offer risk that can delay or derail a private treaty sale, but it also narrows the buyer pool to those who are confident enough in their finance position and prepared enough with their due diligence to bid unconditionally on a set date.</p>
+      <p>That unconditional exchange is auction's central strength. It eliminates the conditional offer risk that can delay or unravel a private treaty sale, and competitive bidding regularly produces prices that individual buyers would not have offered in private negotiation. For a detailed walkthrough of the process, see how <a href="/insights/selling-by-auction-brisbane" style="color:var(--color-gold);">selling by auction in Brisbane works in full</a>.</p>
 
-      <p>Where auction works well is when there are multiple genuine buyers who all want the same property and none of them wants to miss out. Competition between two or more unconditional bidders is the mechanism that produces prices above reserve. In suburbs like Bulimba, Hawthorne, and Norman Park, where supply of quality homes is consistently limited and buyer demand among owner-occupiers is strong, auction campaigns regularly produce results that would have been difficult to achieve through private treaty, because the competitive tension of the auction room pulls buyers past the price they would have been comfortable putting in writing as a private offer.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How private treaty works</h2>
+      <p>Private treaty means setting a price and negotiating with buyers individually. Offers can be conditional on finance approval, building and pest inspections, or the sale of another property. There is no fixed sale date, which gives buyers time to arrange their affairs and gives vendors more flexibility with timing.</p>
 
-      <p>Auction also suits unique properties, properties with development potential, and properties where comparable sales are limited, because it allows the market to set the price rather than the agent or vendor estimating it. When you are genuinely uncertain what a property is worth because there are few direct comparables, auction is a legitimate price discovery mechanism.</p>
+      <p>For the right property, that flexibility is the method's strength. Buyers who need to arrange finance, coordinate a simultaneous purchase, or complete thorough due diligence before committing can engage with a private treaty campaign in a way they cannot with auction. A broader, more patient buyer pool sometimes produces a better result than competitive bidding from a smaller group of unconditional buyers. Understanding <a href="/insights/how-to-handle-offers-when-selling" style="color:var(--color-gold);">how to evaluate and handle private treaty offers</a> is essential to getting the most from this method.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When auction is the wrong tool</h2>
-      <p>Auction performs poorly when the buyer pool is small, when buyers need time to arrange finance, or when the property sits at a price point where most purchasers are highly leveraged and require conditional offers to proceed safely. A property that attracts only one serious buyer does not benefit from the auction format: you lose the competitive tension that makes auction valuable and you still face the risk of passing in, which creates a perception problem for the subsequent negotiation.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Which Brisbane suburbs favour auction</h2>
+      <p>In Brisbane's inner east, auction consistently performs well for owner-occupier properties with genuine competing buyer interest. Suburbs where supply of quality homes is structurally limited and demand among owner-occupiers is strong tend to clear well under the hammer.</p>
 
-      <p>Properties in price brackets dominated by first home buyers or investors who are managing their borrowing carefully can be poorly served by auction. These buyers often cannot bid unconditionally and will not register, which means your actual buyer pool on auction day may be smaller than the number of people who attended your open homes. Private treaty allows these buyers to submit conditional offers and work through their finance process, which can produce a better result at the right price even if the process is slower.</p>
+      <ul style="padding-left:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+        <li><a href="/suburbs/bulimba" style="color:var(--color-gold);">Bulimba</a>, <a href="/suburbs/hawthorne" style="color:var(--color-gold);">Hawthorne</a>, and <a href="/suburbs/balmoral" style="color:var(--color-gold);">Balmoral</a> regularly attract eight to twelve registered bidders for quality homes. The riverside corridor has tight supply and deep owner-occupier demand, which creates the competitive tension auction needs to produce a premium result.</li>
+        <li><a href="/suburbs/norman-park" style="color:var(--color-gold);">Norman Park</a> and <a href="/suburbs/morningside" style="color:var(--color-gold);">Morningside</a> auction well because strong school catchments and limited new stock mean genuinely motivated buyers competing for the same homes. That buyer profile responds to auction's urgency in a way that produces results above what private treaty could achieve.</li>
+        <li><a href="/suburbs/camp-hill" style="color:var(--color-gold);">Camp Hill</a> suits auction for well-presented homes above $1.2M, particularly where lifestyle attributes such as views, renovation quality, or block configuration create clear perceived scarcity in the current market.</li>
+      </ul>
 
-      <p>The pass-in risk is real. A property that passes in at auction is immediately labelled by buyers as one the market did not want at the vendor's price. That label is hard to remove, even if the reserve was genuinely too high. Vendors who are not prepared to accept whatever the highest unconditional bid is on auction day should think carefully about whether they want to put their property through that process.</p>
+      <p>Suburbs with a higher investor mix, or where buyers are more likely to be finance-dependent first home owners, tend to suit private treaty. <a href="/suburbs/carina" style="color:var(--color-gold);">Carina</a> and areas further south typically see buyers who need conditional offers to manage their borrowing carefully. A thin bidding room at auction can leave those vendors worse off than a well-run private treaty campaign at a competitive asking price.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How private treaty works and what it rewards</h2>
-      <p>Private treaty means setting a price and negotiating with buyers individually. Offers can be conditional on finance, building and pest inspections, or the sale of another property. The timeline is flexible and negotiations can take days or weeks. There is no single date by which buyers must commit.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Pros and cons for sellers</h2>
 
-      <p>This flexibility is its strength for the right property. Buyers who need to arrange finance, who want to complete their due diligence before committing, or who are coordinating the timing of a simultaneous purchase can engage with a private treaty campaign in a way they cannot with auction. A broader, more patient buyer pool often produces a better result for properties where the likely purchaser is not a cash-ready owner-occupier making an emotional decision.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div style="padding:1.25rem;background:var(--color-surface-1);border-radius:4px;">
+          <p style="font-weight:700;color:var(--color-text-primary);margin-bottom:0.75rem;font-size:0.9rem;letter-spacing:0.04em;text-transform:uppercase;">Auction</p>
+          <p style="font-size:0.88rem;line-height:1.8;"><strong>Advantages:</strong> Unconditional sale on a defined date, competitive price discovery when buyer pool is deep, eliminates conditional offer risk, strongest results in high-demand inner east suburbs.</p>
+          <p style="font-size:0.88rem;line-height:1.8;margin-top:0.5rem;"><strong>Risks:</strong> Pass-in risk if buyer pool is thin, narrows to unconditional buyers only, public pass-in creates a perception problem for subsequent negotiation, does not suit finance-dependent buyers.</p>
+        </div>
+        <div style="padding:1.25rem;background:var(--color-surface-1);border-radius:4px;">
+          <p style="font-weight:700;color:var(--color-text-primary);margin-bottom:0.75rem;font-size:0.9rem;letter-spacing:0.04em;text-transform:uppercase;">Private Treaty</p>
+          <p style="font-size:0.88rem;line-height:1.8;"><strong>Advantages:</strong> Broader buyer pool including conditional purchasers, flexible timeline, suitable when buyer pool is narrow or finance-dependent, price guided by comparable sales.</p>
+          <p style="font-size:0.88rem;line-height:1.8;margin-top:0.5rem;"><strong>Risks:</strong> Conditional period creates settlement risk (finance collapse, renegotiation post-inspection), disclosed asking price anchors buyer perception, slower process with less competitive pressure.</p>
+        </div>
+      </div>
 
-      <p>Private treaty also allows price negotiation, which can be more comfortable for buyers who are uncomfortable with the public performance of auction. Some buyers simply do not enjoy auctions and will not participate regardless of how much they want the property. If your likely buyer is in that category, private treaty captures them in a way auction cannot.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What experienced agents actually look at</h2>
+      <p>The recommendation should come down to three specific factors, not an agent's general preference.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How agents in Brisbane's inner east actually decide</h2>
-      <p>In practice, experienced agents in Brisbane's inner east look at a small number of specific factors before recommending a method. The first is the depth of the buyer pool: how many qualified, motivated buyers are likely to be interested in this specific property? If the honest answer is three or more, auction creates the competition that maximises the result. If the answer is one or two, private treaty is more appropriate.</p>
+      <p>The first is buyer pool depth. How many qualified, motivated buyers are genuinely likely to be interested in this property at its expected price point right now? Three or more serious buyers in a market with limited stock creates the conditions auction rewards. One or two buyers means private treaty is more appropriate: the relationship and negotiation management matter more than competitive pressure when there is no real competition.</p>
 
-      <p>The second factor is the price bracket and buyer profile. At price points above $1.2 million in the inner east, buyers are typically equity-rich, financially prepared, and comfortable with unconditional commitments. Auction suits this profile. At price points below $900,000 where first home buyers and investors are prominent, private treaty usually captures more of the buyer pool.</p>
+      <p>The second is buyer profile. In Brisbane's inner east, properties above $1.2M typically attract buyers who are equity-rich, financially prepared, and comfortable committing unconditionally. Auction suits that buyer. At price points where first home buyers or investors managing leverage carefully are the likely purchasers, private treaty usually captures more of the pool.</p>
 
-      <p>The third factor is the vendor's timeline and risk tolerance. Auction delivers certainty of timing but not certainty of price. Private treaty delivers neither certainty of timing nor certainty of price, but avoids the pass-in risk. A vendor who needs to sell by a specific date and has a property with genuine multi-buyer interest should consider auction seriously. A vendor with flexibility and a property with a specific buyer profile should consider private treaty.</p>
+      <p>The third is the pass-in risk and what happens if it does. A passed-in result is not automatically a failure if the post-auction negotiation is handled well, but it reframes the sale. Buyers know you could not hit your reserve in public. <a href="/insights/property-passed-in-at-auction-brisbane" style="color:var(--color-gold);">Understanding what happens when a property passes in</a> is worth doing before you commit to auction. Check current <a href="/insights/auction-clearance-rates-brisbane-sellers" style="color:var(--color-gold);">Brisbane auction clearance rates</a> to understand what realistic pass-in risk looks like in your suburb right now.</p>
 
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the data actually shows</h2>
-      <p>In Brisbane's inner east, auction clearance rates for well-priced properties in strong markets typically sit between 60 and 75 percent. That means a meaningful proportion of auctions pass in, and those properties then sell post-auction through negotiation, which is essentially a private treaty process. Vendors sometimes get the worst of both worlds: the cost and public exposure of an auction campaign, followed by the slower conditional negotiation of private treaty, with the additional disadvantage of a visible pass-in on the record.</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Questions to ask your agent before deciding</h2>
+      <p>The agent's recommendation should be specific to your property and current conditions, not a standard pitch. These questions will quickly reveal whether you are getting a tailored view:</p>
 
-      <p>This is why the method recommendation matters. An agent who recommends auction for every property, regardless of the buyer pool or price point, is not giving you genuinely tailored advice. The honest answer is that both methods can produce strong outcomes for the right property in the right conditions, and the choice should be driven by the specifics of your situation rather than an agent's preference or standard operating procedure.</p>
+      <ul style="padding-left:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+        <li>How many registered bidders did comparable properties in my suburb attract at auction over the past six months? What was the clearance rate?</li>
+        <li>How many of my likely buyers could realistically bid unconditionally on a set date, given their typical finance profile?</li>
+        <li>What price do you expect this property to achieve under each method, and where does the difference come from?</li>
+        <li>What is your strategy if the property passes in? Who leads that negotiation, and what is the typical timeline to a conditional sale post-auction?</li>
+        <li>Are there any specific factors about this property, such as price bracket, buyer profile, current stock levels, or recent comparables, that change what you would usually recommend?</li>
+      </ul>
+
+      <p>If the answers are vague or the same for every property, the recommendation is not based on your situation. An agent who recommends auction for every listing regardless of buyer pool depth is not giving you genuinely tailored advice on method of sale.</p>
 
       <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
-        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Not sure which method suits your property?</strong> Daniel can give you an honest view of the likely buyer pool, what comparable sales suggest about method performance in your suburb, and which approach is most likely to produce your best result. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want a clear recommendation for your property?</strong> Daniel can walk you through the likely buyer pool in your suburb, what comparable results say about method performance in your street, and which approach gives your specific property the best chance of the strongest outcome. <a href="/appraisal" style="color:#f5d07a;font-weight:600;">Book a free appraisal.</a></p>
       </div>
 
     </div>
   </div>
+
 </article>
+
+<p style="max-width:780px;margin:2rem auto;padding:0 2rem;font-size:0.95rem;color:var(--color-text-secondary);">Part of the <a href="/insights/marketing-and-selling-methods/" style="color:var(--color-gold);">Marketing and Auctions guide series</a>.</p>
+
+<AuthorBio />
+
 </Layout>
