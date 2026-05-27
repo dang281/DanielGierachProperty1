@@ -1671,6 +1671,55 @@ window.PM_ZONES = {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
+  function generateParcelSVG(rings: number[][][], areaRaw: number): string {
+    const coords = rings[0] || [];
+    if (coords.length < 3) return '';
+    const verts = coords.slice(0, -1);
+    let minLon = Infinity, maxLon = -Infinity, minLat = Infinity, maxLat = -Infinity;
+    verts.forEach(([lon, lat]: number[]) => {
+      if (lon < minLon) minLon = lon; if (lon > maxLon) maxLon = lon;
+      if (lat < minLat) minLat = lat; if (lat > maxLat) maxLat = lat;
+    });
+    const W = 200, H = 128, PAD = 22;
+    const innerW = W - PAD * 2, innerH = H - PAD * 2;
+    const cosLat = Math.cos(((minLat + maxLat) / 2) * Math.PI / 180);
+    const lonRange = (maxLon - minLon) || 0.0001;
+    const latRange = (maxLat - minLat) || 0.0001;
+    const aspect = (lonRange * cosLat) / latRange;
+    let dW = innerW, dH = innerH;
+    if (aspect > innerW / innerH) dH = innerW / aspect; else dW = innerH * aspect;
+    const ox = PAD + (innerW - dW) / 2, oy = PAD + (innerH - dH) / 2;
+    const toXY = (lon: number, lat: number): [number, number] => [
+      ox + (lon - minLon) / lonRange * dW,
+      oy + (maxLat - lat) / latRange * dH,
+    ];
+    const pts = verts.map(([lon, lat]: number[]) => toXY(lon, lat).join(',')).join(' ');
+    let labels = '';
+    for (let i = 0; i < coords.length - 1; i++) {
+      const [lon1, lat1] = coords[i], [lon2, lat2] = coords[i + 1];
+      const len = haversineMetres(lat1, lon1, lat2, lon2);
+      if (len < 1) continue;
+      const [x1, y1] = toXY(lon1, lat1), [x2, y2] = toXY(lon2, lat2);
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      let angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+      if (Math.abs(angle) > 90) angle += 180;
+      const txt = (Math.round(len * 10) / 10) + 'm';
+      const hw = txt.length * 2.9 + 3, hh = 5.5;
+      labels += '<g transform="rotate(' + angle + ',' + mx + ',' + my + ')">' +
+        '<rect x="' + (mx - hw) + '" y="' + (my - hh - 2) + '" width="' + (hw * 2) + '" height="' + (hh * 2) + '" rx="2" fill="white" fill-opacity="0.88"/>' +
+        '<text x="' + mx + '" y="' + (my + 1.5) + '" text-anchor="middle" dominant-baseline="middle" font-size="7" font-weight="700" font-family="sans-serif" fill="#1c1917">' + txt + '</text>' +
+        '</g>';
+    }
+    let sx = 0, sy = 0;
+    verts.forEach(([lon, lat]: number[]) => { const [x, y] = toXY(lon, lat); sx += x; sy += y; });
+    const cx = sx / verts.length, cy = sy / verts.length;
+    return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:100%;">' +
+      '<polygon points="' + pts + '" fill="rgba(196,145,42,0.1)" stroke="#c4912a" stroke-width="1.5" stroke-linejoin="round"/>' +
+      labels +
+      '<text x="' + cx + '" y="' + cy + '" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="600" font-family="sans-serif" fill="rgba(28,25,23,0.38)">' + areaRaw + ' m²</text>' +
+      '</svg>';
+  }
+
   function showParcelDimensions(rings: number[][][], areaM2: number) {
     const L = (window as any).L;
     if (parcelDimLayer) { map.removeLayer(parcelDimLayer); parcelDimLayer = null; }
@@ -1815,6 +1864,7 @@ window.PM_ZONES = {
       const lotInfo = a.LOTPLAN ? `Lot/Plan ${a.LOTPLAN}` : '';
       const areaRaw = a.LOT_AREA ? Math.round(+a.LOT_AREA) : 0;
       const areaM2 = areaRaw ? `${areaRaw} m²` : '';
+      const svgStr = (parcel?.geometry?.rings?.length && areaRaw) ? generateParcelSVG(parcel.geometry.rings, areaRaw) : '';
       if (parcel?.geometry?.rings?.length && areaRaw) {
         showParcelDimensions(parcel.geometry.rings, areaRaw);
       }
@@ -1837,7 +1887,8 @@ window.PM_ZONES = {
               <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Property</p>
               ${addr ? `<p style="font-size:0.92rem;font-family:Georgia,serif;color:rgba(28,25,23,0.9);margin:0 0 0.4rem;line-height:1.3;">${addr}</p>` : ''}
               ${lotInfo ? `<p style="font-size:0.7rem;color:rgba(28,25,23,0.38);margin:0 0 0.15rem;">${lotInfo}</p>` : ''}
-              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(28,25,23,0.58);margin:0;">${areaM2}</p>` : ''}
+              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(28,25,23,0.58);margin:0 0 0.6rem;">${areaM2}</p>` : ''}
+              ${svgStr ? `<div style="background:rgba(28,25,23,0.03);border:1px solid rgba(196,145,42,0.18);border-radius:4px;padding:0.25rem;display:inline-block;">${svgStr}</div>` : ''}
               ${!addr && !lotInfo && !areaM2 ? `<p style="font-size:0.78rem;color:rgba(28,25,23,0.3);margin:0;">No parcel data at this point.</p>` : ''}
             </div>
             <div>
