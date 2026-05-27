@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What percentage do real estate agents charge in Brisbane in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most Brisbane agents quote commission rates between 2% and 2.5% of the sale price (exclusive of GST), with 2.2% to 2.5% being the most common range for inner Brisbane residential sales. Agents in high-volume outer suburbs sometimes quote lower; premium inner-east agents typically sit at the upper end. Always confirm whether the quoted rate is inclusive or exclusive of GST."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is real estate commission negotiable in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Real estate commissions are negotiable in Queensland. There is no fixed statutory rate. You can negotiate the percentage, the marketing contribution, the method of sale, and the listing term. That said, agents who discount heavily to win listings may be less invested in achieving a premium result. Negotiate where it makes sense, but weigh the quality of what you are paying for."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does real estate commission cover in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Commission typically covers the agent's fee for managing the full sales campaign: listing coordination, open homes, buyer inquiry management, negotiation, and contract management through to settlement. Marketing costs (portal listings, photography, signboards, digital advertising) are almost always quoted separately as a vendor-paid marketing contribution on top of the commission rate."
+      }
+    }
+  ]
+};
+---
+<Layout title="Real Estate Agent Fees in Brisbane: What You Actually Pay in 2026 | Daniel Gierach Property" description="A transparent breakdown of real estate agent commission in Brisbane: typical rates in 2026, how the fee is calculated, what is negotiable, and what you actually get for your money." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Real Estate Agent Fees in Brisbane: What You Actually Pay in 2026
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        A transparent breakdown of commission structures, typical rates across inner Brisbane, what you can negotiate, and how to judge whether you are getting value for the fee.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most Brisbane vendors go into early agent conversations without a clear frame for what commission should cost. They either accept the first number quoted without question, or try to negotiate without knowing what is typical. The result is often a deal that is either slightly too generous to the agent, or one that trades quality of service for a marginal saving on the rate. Here is the plain breakdown of how agent fees work in Brisbane, what is actually typical right now, and how to think about the negotiation.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How commission is calculated</h2>
+      <p>Real estate commission in Brisbane is charged as a percentage of the final sale price and paid to the agent from the sale proceeds at settlement. It is not an upfront cost. The calculation is straightforward: if your property sells for $900,000 and the agreed commission rate is 2.2%, the commission payable is $19,800 plus GST, making the total $21,780 out of your settlement proceeds.</p>
+
+      <p>Most agents quote a single inclusive rate that covers everything involved in running the campaign: listing management, open homes, buyer inquiry management, negotiation, and contract administration through to settlement. Marketing costs are almost always quoted separately as a vendor-paid marketing (VPM) contribution, billed directly to you regardless of whether the property sells. Understanding this distinction matters: the commission is success-based, the marketing budget is not.</p>
+
+      <p>You can use the <a href="/tools/selling-costs" style="color:#f5d07a;font-weight:600;">selling costs calculator</a> to model your full net proceeds including commission, marketing, and conveyancing before you commit to listing.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What Brisbane agents are actually charging in 2026</h2>
+      <p>There is no fixed rate set by law in Queensland. Commissions are negotiable between vendor and agent. In practice, the range that appears consistently across Brisbane inner suburbs is 2% to 2.5% of the sale price (exclusive of GST), with most full-service agents quoting between 2.2% and 2.5%.</p>
+
+      <p>Agents in higher-volume outer suburbs often work at the lower end, or occasionally below it, to win listings on volume. Agents operating in premium inner-east suburbs, where properties are more complex and the active buyer pool is smaller and more selective, typically quote at the upper end. In suburbs like <a href="/suburbs/new-farm" style="color:#f5d07a;">New Farm</a>, <a href="/suburbs/paddington" style="color:#f5d07a;">Paddington</a>, and <a href="/suburbs/camp-hill" style="color:#f5d07a;">Camp Hill</a>, where a well-run campaign produces a materially different result to a mediocre one, the quality premium in the fee is often justified by the outcome difference.</p>
+
+      <p>Flat-fee and discounted-commission operators have grown their presence in Brisbane and advertise aggressively on price. Their model typically shifts more of the campaign management work onto the vendor in exchange for a lower headline number. That trade can work for straightforward properties in strong markets. It becomes more costly when negotiation skill, competitive tension, and buyer management actually matter to the final price.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What drives the variation between agents</h2>
+      <p>Commission rates vary for four main reasons: the agent's experience and track record, the suburb and price bracket, the complexity of the sale (deceased estate, tenanted property, relationship breakdown), and how much is bundled into the quoted rate versus itemised separately.</p>
+
+      <p>An agent who has sold 40 properties in a given suburb over five years and can demonstrate a consistent premium over comparable listings is quoting a different product to one who has done five. The commission percentage does not tell you that. The numbers you need alongside it are the agent's median days on market and their average price relative to the first-day ask, in your specific suburb and approximate price bracket. Ask for both before you sign anything.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What is negotiable</h2>
+      <p>Everything is technically negotiable. In practice, the most productive areas are the listing term (how long you are locked in before you can change agents), the marketing contribution structure, and sometimes the method of sale. The commission rate itself is negotiable, but be realistic about what you are trading when you push it down.</p>
+
+      <p>An agent who discounts from 2.5% to 2% to win your listing has reduced their revenue on a $900,000 sale by $4,500. That may come at no cost to you. Or it may signal an agent who wins listings on price and delivers accordingly. Ask which properties they sold below their standard rate and how those outcomes compared to similar properties in the area.</p>
+
+      <p>A more productive structure than negotiating the flat rate is to agree on a tiered commission: a base rate below a threshold price, and a higher rate above it. This aligns the agent's financial incentive directly with yours. Not every agent will accept it, but any capable, experienced agent should be able to discuss it clearly and explain why they do or do not prefer it.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What you are actually paying for</h2>
+      <p>A commission of 2.2% on a $750,000 sale is $16,500 plus GST. Framed as a dollar amount, that is significant. Framed as the cost of accessing a result, it looks different. If a well-run campaign with a skilled negotiator consistently produces a result $30,000 to $60,000 above what a weaker campaign achieves for the same property, the fee is not a cost in any meaningful sense. It is a return-generating investment with a clear leverage ratio.</p>
+
+      <p>This is not a hypothetical. The gap between median results and top-quartile results for comparable properties in Brisbane's inner-east suburbs is substantial and persistent across market cycles. The driver is rarely the portal listing or the photography quality. It is the quality of buyer management, the pressure created through genuine competition, and the skill applied in the final negotiation. That is the product a full-service agent at a full commission rate is selling you.</p>
+
+      <p>Daniel Gierach operates through Ray White The Collective and works exclusively in Brisbane's inner east. His approach to fees is straightforward: he will tell you the rate, what it covers, and what his track record looks like in your suburb. If the numbers do not stack up for you, he will tell you that too.</p>
+
+      <p>For the complete picture of selling costs beyond commission, read <a href="/insights/cost-of-selling-house-brisbane" style="color:#f5d07a;">what it costs to sell a house in Brisbane</a>. If you want to understand how agent fees interact with your net proceeds before you commit to a campaign, the guide on <a href="/insights/preparing-financial-position-before-listing-brisbane-seller" style="color:#f5d07a;">preparing your financial position before listing</a> covers the full picture.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want a straight answer on fees and what your property would achieve?</strong> Daniel will give you a clear fee structure, an honest appraisal, and his track record in your suburb. No obligation. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Part of the <a href="/insights/costs-taxes-and-finance" style="color:#f5d07a;font-weight:600;">Costs, Taxes and Finance</a> guide series.
+  </p>
+</div>
+</Layout>
