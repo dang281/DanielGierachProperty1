@@ -247,6 +247,12 @@ const articles = [
   { slug: 'free-property-calculators-brisbane-sellers', tag: 'Sellers', title: 'Free Property Calculators Every Brisbane Home Seller Should Use', summary: "Eight free calculators Brisbane sellers should run before they list. From net proceeds to CGT timing, here is how to use each one and why the numbers matter.", readTime: '6 min read' },
   { slug: 'real-estate-agent-fees-commissions-brisbane', tag: 'Sellers', title: 'Real Estate Agent Fees in Brisbane: What You Actually Pay in 2026', summary: "A transparent breakdown of Brisbane real estate commission in 2026: typical rates, how the fee is calculated, what is negotiable, and whether the cost is worth it.", readTime: '6 min read' },
   { slug: 'how-property-valuations-work-brisbane', tag: 'Sellers', title: 'How Brisbane Property Valuations Work: What Moves the Number Up or Down', summary: "Bank valuation and agent appraisal are not the same thing. Here is how each is produced, why they differ, and the five factors that consistently move a Brisbane property valuation.", readTime: '7 min read' },
+  { slug: 'selling-in-algester', tag: 'Sellers', title: 'Selling in Algester 2026', summary: "Algester offers families space and value in the outer southern corridor alongside Calamvale, Parkinson and Runcorn. Here is what sellers need to know about estate pricing, school catchments and the family buyer market in 2026.", readTime: '5 min read' },
+  { slug: 'selling-in-calamvale', tag: 'Sellers', title: 'Selling in Calamvale 2026', summary: "Calamvale's modern estate character, strong family buyer demand, and Logan and Gateway Motorway access create a comparison-active outer southern market. Here is what sellers need to know about estate pricing, school catchments and timing in 2026.", readTime: '5 min read' },
+  { slug: 'selling-in-middle-park', tag: 'Sellers', title: 'Selling in Middle Park 2026', summary: "Middle Park's small leafy western character, position between Jindalee and Riverhills, and low stock turnover create a tight market where upsizer demand meets limited supply. Here is what sellers need to know in 2026.", readTime: '5 min read' },
+  { slug: 'selling-in-parkinson', tag: 'Sellers', title: 'Selling in Parkinson 2026', summary: "Parkinson's larger modern homes, upsizer and family buyer profile, and position above Algester and Calamvale in the southern corridor price hierarchy create a deliberate, prepared buyer market. Here is what sellers need to know in 2026.", readTime: '5 min read' },
+  { slug: 'selling-in-springwood', tag: 'Sellers', title: 'Selling in Springwood 2026', summary: "Springwood's hub status, major retail precinct, Pacific Motorway access, and diverse housing stock attract a broad buyer pool of families, first home buyers and investors. Here is what sellers need to know about positioning and timing in 2026.", readTime: '5 min read' },
+  { slug: 'selling-in-sumner', tag: 'Sellers', title: 'Selling in Sumner 2026', summary: "Sumner's quiet established western Brisbane character, Centenary Motorway access, generous blocks, and low stock turnover create a market dominated by long-term holders and upsizing families. Here is what sellers need to know in 2026.", readTime: '5 min read' },
 ];
 
 const filters = ['All', 'Buyers', 'Sellers', 'Buyers & Sellers', 'Owners'];
@@ -452,6 +458,7 @@ function filterCount(f: string): number {
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;">
       {[
         { slug: 'selling-in-acacia-ridge',      name: 'Acacia Ridge' },
+        { slug: 'selling-in-algester',          name: 'Algester' },
         { slug: 'selling-in-annerley',         name: 'Annerley' },
         { slug: 'selling-in-ascot',             name: 'Ascot' },
         { slug: 'selling-in-ashgrove',          name: 'Ashgrove' },
@@ -463,6 +470,7 @@ function filterCount(f: string): number {
         { slug: 'selling-in-belmont',           name: 'Belmont' },
         { slug: 'selling-in-brisbane-cbd',      name: 'Brisbane CBD' },
         { slug: 'selling-in-bulimba',           name: 'Bulimba' },
+        { slug: 'selling-in-calamvale',         name: 'Calamvale' },
         { slug: 'selling-in-camp-hill',         name: 'Camp Hill' },
         { slug: 'selling-in-cannon-hill',       name: 'Cannon Hill' },
         { slug: 'selling-in-carina',            name: 'Carina' },
@@ -488,6 +496,7 @@ function filterCount(f: string): number {
         { slug: 'selling-in-kedron',            name: 'Kedron' },
         { slug: 'selling-in-kelvin-grove',      name: 'Kelvin Grove' },
         { slug: 'selling-in-lutwyche',          name: 'Lutwyche' },
+        { slug: 'selling-in-middle-park',        name: 'Middle Park' },
         { slug: 'selling-in-milton',            name: 'Milton' },
         { slug: 'selling-in-morningside',       name: 'Morningside' },
         { slug: 'selling-in-mount-gravatt',     name: 'Mount Gravatt' },
@@ -498,13 +507,16 @@ function filterCount(f: string): number {
         { slug: 'selling-in-norman-park',       name: 'Norman Park' },
         { slug: 'selling-in-nundah',            name: 'Nundah' },
         { slug: 'selling-in-paddington',        name: 'Paddington' },
+        { slug: 'selling-in-parkinson',         name: 'Parkinson' },
         { slug: 'selling-in-red-hill',          name: 'Red Hill' },
         { slug: 'selling-in-seven-hills',       name: 'Seven Hills' },
         { slug: 'selling-in-sherwood',          name: 'Sherwood' },
         { slug: 'selling-in-spring-hill',       name: 'Spring Hill' },
+        { slug: 'selling-in-springwood',        name: 'Springwood' },
         { slug: 'selling-in-st-lucia',          name: 'St Lucia' },
         { slug: 'selling-in-stafford',          name: 'Stafford' },
         { slug: 'selling-in-stones-corner',     name: 'Stones Corner' },
+        { slug: 'selling-in-sumner',            name: 'Sumner' },
         { slug: 'selling-in-tarragindi',        name: 'Tarragindi' },
         { slug: 'selling-in-teneriffe',         name: 'Teneriffe' },
         { slug: 'selling-in-tingalpa',          name: 'Tingalpa' },
