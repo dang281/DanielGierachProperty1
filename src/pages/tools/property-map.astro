@@ -219,7 +219,7 @@ const legendGroups = [
     #pm-result {
       position: fixed !important;
       left: 12px; right: 12px;
-      bottom: calc(78px + env(safe-area-inset-bottom));
+      bottom: calc(126px + env(safe-area-inset-bottom));
       width: auto !important; max-width: none !important;
       max-height: 42vh; overflow-y: auto;
     }
@@ -1671,15 +1671,15 @@ window.PM_ZONES = {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  function parcelFrontage(rings: number[][][]): number {
+  function parcelSideLengths(rings: number[][][]): string {
     const coords = rings[0] || [];
-    let shortest = Infinity;
+    const lengths: string[] = [];
     for (let i = 0; i < coords.length - 1; i++) {
       const [lon1, lat1] = coords[i], [lon2, lat2] = coords[i + 1];
       const len = haversineMetres(lat1, lon1, lat2, lon2);
-      if (len >= 2 && len < shortest) shortest = len;
+      if (len >= 1) lengths.push((Math.round(len * 10) / 10) + 'm');
     }
-    return shortest === Infinity ? 0 : Math.round(shortest * 10) / 10;
+    return lengths.join(' · ');
   }
 
   async function queryParcel(lat: number, lon: number) {
@@ -1768,10 +1768,9 @@ window.PM_ZONES = {
       }
       const lotInfo = a.LOTPLAN ? `Lot/Plan ${a.LOTPLAN}` : '';
       const areaM2 = a.LOT_AREA ? `${(+a.LOT_AREA).toFixed(0)} m²` : '';
-      let frontageStr = '';
+      let sidesStr = '';
       if (parcel?.geometry?.rings?.length) {
-        const frontage = parcelFrontage(parcel.geometry.rings);
-        if (frontage > 0) frontageStr = `${frontage}m frontage`;
+        sidesStr = parcelSideLengths(parcel.geometry.rings);
       }
 
       const floodHTML = (floods as {desc:string;cat:string;key:string}[]).length
@@ -1792,7 +1791,8 @@ window.PM_ZONES = {
               <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Property</p>
               ${addr ? `<p style="font-size:0.92rem;font-family:Georgia,serif;color:rgba(28,25,23,0.9);margin:0 0 0.4rem;line-height:1.3;">${addr}</p>` : ''}
               ${lotInfo ? `<p style="font-size:0.7rem;color:rgba(28,25,23,0.38);margin:0 0 0.15rem;">${lotInfo}</p>` : ''}
-              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(28,25,23,0.58);margin:0;">${areaM2}${frontageStr ? ` <span style="color:rgba(28,25,23,0.22);">&middot;</span> ${frontageStr}` : ''}</p>` : ''}
+              ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(28,25,23,0.58);margin:0;">${areaM2}</p>` : ''}
+              ${sidesStr ? `<p style="font-size:0.72rem;color:rgba(28,25,23,0.45);margin:0.15rem 0 0;line-height:1.5;">${sidesStr}</p>` : ''}
               ${!addr && !lotInfo && !areaM2 ? `<p style="font-size:0.78rem;color:rgba(28,25,23,0.3);margin:0;">No parcel data at this point.</p>` : ''}
             </div>
             <div>
