@@ -1,6 +1,32 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
 import bccZoneColors from '../../data/bcc-zone-colors.json';
+
+const legendGroups = [
+  { label: 'Residential', items: [
+    { short: 'CR',  name: 'Character Residential',          color: '#6a8f5a', height: 'Up to 8.5 m (2 storeys)' },
+    { short: 'LDR', name: 'Low Density Residential',        color: '#b8a84a', height: 'Up to 9.5 m (2 storeys)' },
+    { short: 'LMR', name: 'Low-Medium Density Residential', color: '#d4843c', height: 'Up to 3 storeys (~15 m)' },
+    { short: 'MDR', name: 'Medium Density Residential',     color: '#c05a2a', height: 'Up to 5 storeys (~15 m)' },
+    { short: 'HDR', name: 'High Density Residential',       color: '#9a2a1a', height: '10+ storeys (site-specific)' },
+  ]},
+  { label: 'Mixed Use & Centres', items: [
+    { short: 'MU',  name: 'Mixed Use',                      color: '#7a5acd', height: 'Up to 5 storeys typical' },
+    { short: 'NC',  name: 'Neighbourhood Centre',           color: '#5a7acd', height: 'Up to 3-4 storeys' },
+    { short: 'LC',  name: 'Local Centre',                   color: '#3a5aad', height: 'Up to 4-5 storeys' },
+    { short: 'DC',  name: 'District Centre',                color: '#2a3a8d', height: 'Up to 8+ storeys' },
+    { short: 'PC',  name: 'Principal Centre',               color: '#1a1a6d', height: 'Unrestricted / site-specific' },
+  ]},
+  { label: 'Open Space & Environment', items: [
+    { short: 'OS',  name: 'Open Space',                     color: '#3a9a5a', height: 'Low structures only' },
+    { short: 'CN',  name: 'Conservation',                   color: '#1a6a3a', height: 'Minimal' },
+  ]},
+  { label: 'Industry & Special', items: [
+    { short: 'LII', name: 'Low Impact Industry',            color: '#7a9ab8', height: 'Up to 9.5 m' },
+    { short: 'SP',  name: 'Special Purpose',                color: '#888888', height: 'Site-specific' },
+    { short: 'RU',  name: 'Rural',                          color: '#b8a07a', height: 'Low' },
+  ]},
+];
 ---
 
 <ToolLayout
@@ -795,6 +821,36 @@ window.PM_ZONES = {
     </a>
   </div>
 
+  <!-- ── Zoning legend ─────────────────────────────────────────────────── -->
+  <div style="margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(240,236,228,0.08);">
+    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.2rem;">BCC City Plan</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1rem,2vw,1.3rem);font-weight:400;color:rgba(240,236,228,0.95);margin:0 0 1.75rem;line-height:1.3;">Zoning legend</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem 3rem;">
+      {legendGroups.map(group => (
+        <div>
+          <p style="font-size:0.6rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.38);margin:0 0 0.75rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(240,236,228,0.07);">{group.label}</p>
+          <div style="display:flex;flex-direction:column;gap:0.55rem;">
+            {group.items.map(z => (
+              <div style="display:grid;grid-template-columns:14px 2.2rem 1fr;align-items:start;gap:0 0.65rem;">
+                <span style={`display:block;width:14px;height:14px;border-radius:3px;margin-top:2px;flex-shrink:0;background:${z.color};border:1px solid rgba(255,255,255,0.12);`}></span>
+                <span style="font-size:0.65rem;font-weight:800;letter-spacing:0.06em;color:#c4912a;line-height:1.4;">{z.short}</span>
+                <span>
+                  <span style="display:block;font-size:0.78rem;color:rgba(240,236,228,0.85);line-height:1.35;">{z.name}</span>
+                  <span style="display:block;font-size:0.65rem;color:rgba(240,236,228,0.38);margin-top:0.1rem;">{z.height}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p style="margin-top:1.75rem;font-size:0.68rem;color:rgba(240,236,228,0.35);line-height:1.6;">
+      Zone codes follow BCC City Plan 2014. Sub-zones (e.g. LMR1, LMR2, CR1, CR2) are grouped above for readability. Always verify the specific sub-zone code on <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="color:rgba(196,145,42,0.7);text-decoration:none;">BCC CityPlan</a> before any development or purchase decision.
+    </p>
+  </div>
+
 </div>
 
 <link rel="preconnect" href="https://services2.arcgis.com" crossorigin />
@@ -1573,12 +1629,4 @@ window.PM_ZONES = {
 })();
 </script>
 
-<!-- Buyers CTA -->
-<div style="margin-top:1.25rem;padding:1.25rem 1.5rem;background:var(--color-surface-1);border-left:3px solid var(--color-gold);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
-  <div>
-    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin:0 0 0.3rem;">Off-Market &amp; Pre-Market Access</p>
-    <p style="font-size:0.85rem;color:var(--color-text-primary);line-height:1.6;margin:0;max-width:44ch;">Looking to buy in this area? Register your brief and get early access to properties before they are publicly listed.</p>
-  </div>
-  <a href="/buyers" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0a0806;background:var(--color-gold);padding:0.6rem 1.2rem;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;">Register your search &rarr;</a>
-</div>
 </ToolLayout>
