@@ -1,0 +1,161 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much capital gains tax will I pay when selling my Brisbane investment property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The amount depends on your cost base, whether you qualify for the 50% CGT discount (held more than 12 months), and your marginal income tax rate for the financial year of the contract. A $500,000 purchase sold for $800,000 after 10 years held by an individual in the top tax bracket produces approximately $57,000 to $65,000 in CGT depending on cost base items and depreciation claimed. Your accountant can give you a precise figure once all cost base documents are assembled."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does signing the contract before or after 30 June affect the CGT on an investment property sale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The CGT event is the contract date, not the settlement date. Signing in late June puts the gain in the current financial year. Signing in early July puts it in the next. If your income in one year is materially lower than the other, shifting the contract date across the financial year boundary can reduce the effective tax rate on the gain. This decision should be made with your accountant before the property is listed, not after an offer arrives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does claiming depreciation on my Brisbane investment property increase my CGT when I sell?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in part. Building depreciation claimed under Division 43 reduces your cost base by the amount claimed, which increases the gross capital gain on sale. However, the extra CGT is generally less costly than the value of the deductions claimed, because the CGT applies to only half the gain after the 50% discount. Depreciation is almost always still worth claiming. Your tax agent can model the precise net position for your situation."
+      }
+    }
+  ]
+};
+---
+<Layout title="Capital Gains Tax When Selling a Brisbane Investment Property 2026 | Daniel Gierach Property" description="How CGT is calculated on a Brisbane investment property sale: cost base, the 50% discount, depreciation recapture, and timing the contract around 30 June. Includes a worked example." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Tax &middot; 8 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Capital gains tax when selling a Brisbane investment property: what you actually owe
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        CGT is the number Brisbane investors underestimate most. Here is how the calculation works, what reduces it, and why the contract date matters more than most people realise.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p style="padding:1rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;font-size:0.88rem;"><strong style="color:#f5d07a;">General guidance only, not tax advice.</strong> Your actual CGT position depends on your ownership structure, marginal rate, cost base documentation, depreciation history, and any carried forward losses. Work through the specifics with a registered tax agent before signing a contract.</p>
+
+      <p>Most Brisbane investors who have held a property for ten years or more are sitting on a substantial gain. They focus on the sale price and the agent commission, and leave the CGT calculation to the accountant after settlement. The problem is that several decisions affecting the tax amount need to be made before the contract is signed, not after.</p>
+
+      <p>This article covers how CGT is calculated on an investment property sale, the 50% discount, how depreciation affects the numbers, and why the contract date relative to 30 June matters. The figures use a worked example throughout: a $500,000 purchase, $800,000 sale, held for 10 years by an Australian-resident individual.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What capital gains tax actually is</h2>
+
+      <p>Capital gains tax is not a separate tax with its own rate. It is part of the income tax system. When you sell an investment property, the assessable capital gain is added to your other income for the financial year and you pay income tax on the combined total at your marginal rates. The "CGT" label is shorthand for the rules that calculate what portion of the gain becomes assessable income.</p>
+
+      <p>The financial year in question is determined by the contract date, not settlement. A contract signed on 25 June and settled on 5 August is a gain in the June financial year. A contract signed on 8 July and settled on 20 August is a gain in the July financial year. This distinction matters and will come up again in the timing section below.</p>
+
+      <p>For investment properties, there is no main residence exemption. The full gain is assessable, subject to the 50% discount described below. If the property was used partly as a main residence and partly as an investment at different times, a partial exemption may apply, and the calculation requires specific advice.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Building the cost base</h2>
+
+      <p>The cost base reduces the gross gain. Assembling it properly is one of the most reliable ways to minimise the assessable amount, and many investors leave money on the table by not capturing all eligible items.</p>
+
+      <p>For a typical Brisbane investment property, the cost base includes:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Purchase price</strong> paid at settlement.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Acquisition costs:</strong> stamp duty on purchase, legal and conveyancing fees, registration costs.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Capital improvements</strong> made during ownership: a new kitchen, bathroom renovation, structural extension, or landscaping addition. Routine repairs and maintenance that were claimed as deductions in tax returns are excluded from the cost base.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Selling costs</strong> incurred on this sale: agent commission, marketing spend, conveyancing fees on the sale side.</p>
+
+      <p>In the worked example, the cost base is: purchase price $500,000, plus stamp duty and legal fees at purchase ($17,500), plus a bathroom renovation carried out in year five ($18,000), plus agent commission and marketing on the current sale ($18,500). Total cost base: $554,000.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The 50% CGT discount</h2>
+
+      <p>If you have owned the investment property for more than 12 months and are selling as an Australian-resident individual or through a trust, you are entitled to a 50% discount on the capital gain before it is added to your assessable income. Companies do not get this discount. It is the single largest CGT benefit available to long-term property holders.</p>
+
+      <p>The discount is applied after any capital losses are netted off against the gain, not before. A $1 of carried forward loss offsets $1 of pre-discount gain. If the same loss were applied after the discount, it would only offset $0.50 of post-discount gain. Getting the order right makes a material difference. If you have prior capital losses, see the guide on <a href="/insights/selling-investment-property-loss-carry-forward-cgt-brisbane" style="color:#f5d07a;">CGT and carried forward capital losses</a> before proceeding.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Worked example: $500,000 purchase, $800,000 sale, 10 years held</h2>
+
+      <p>Using the cost base assembled above ($554,000) and sale proceeds of $800,000:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Gross capital gain:</strong> $800,000 minus $554,000 equals $246,000.</p>
+
+      <p><strong style="color:var(--color-text-primary);">After the 50% discount</strong> (held more than 12 months): $123,000 is added to assessable income for the year.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Tax at the top marginal rate</strong> (47%, including Medicare levy): approximately $57,800.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Tax at 39% marginal rate</strong> (income between $135,000 and $190,000 in 2025-26): approximately $47,970.</p>
+
+      <p>The difference between those two scenarios is nearly $10,000, from the same property with the same sale price. This is why the income picture in the year of sale matters, and why selling in a lower-income year (a career transition, reduced hours, or the year before taking on a second income) can produce a meaningfully better outcome.</p>
+
+      <p>Use the <a href="/tools" style="color:#f5d07a;">property calculators on this site</a> to model your holding costs and net return before taking the tax question to your accountant.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How depreciation affects the CGT calculation</h2>
+
+      <p>If you claimed building depreciation under Division 43 (the capital works allowance) during the rental period, the ATO requires that your cost base be reduced by the total amount claimed. You cannot take the deduction while renting and then exclude the same amount from the cost base when you sell.</p>
+
+      <p>Continuing the worked example: assume $32,000 in Division 43 building depreciation was claimed across the 10 years. The cost base reduces from $554,000 to $522,000. The gross gain increases from $246,000 to $278,000. After the 50% discount, the assessable gain rises from $123,000 to $139,000. At a 47% marginal rate, this is approximately $7,520 in additional CGT from the depreciation claims.</p>
+
+      <p>However, those same $32,000 in deductions reduced tax by approximately $15,040 when they were claimed at the 47% marginal rate. The net benefit of having claimed depreciation was roughly $7,520, even after the cost base reduction on sale. Depreciation is almost always worth claiming.</p>
+
+      <p>Plant and equipment depreciation under Division 40 interacts slightly differently with the cost base, and for properties purchased after 9 May 2017 the original purchaser could no longer claim depreciation on second-hand plant and equipment. See the article on <a href="/insights/depreciation-schedule-selling-investment-property-brisbane" style="color:#f5d07a;">depreciation schedules when selling an investment property</a> for the detailed treatment.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Before or after 30 June: timing the contract date</h2>
+
+      <p>The financial year the gain falls into is set by the contract date. Moving the contract from late June to early July defers the entire CGT obligation to the following financial year. This is a legitimate and commonly used strategy when the income picture across the two years is different.</p>
+
+      <p>It makes clear sense when your income in the following year will be materially lower: you are approaching retirement, planning a career change, or expecting significant deductible expenses that reduce overall taxable income. In those circumstances, a July contract date can drop the effective marginal rate on the CGT and produce real savings.</p>
+
+      <p>It makes less sense when your income is similar in both years, when you have carried forward losses that are best applied this year, or when the buyer is unwilling to accommodate a later settlement.</p>
+
+      <p>The key point is to plan this before the property is listed. Once an offer is received, negotiating contract date flexibility is harder. Discuss it with your agent when structuring the campaign so that the terms give you room to move if needed. If the sale price is $750,000 or more, you also need an ATO clearance certificate before settlement. See the guide on <a href="/insights/ato-clearance-certificate-cgt-withholding-selling-queensland" style="color:#f5d07a;">ATO CGT withholding certificates in Queensland</a> for the timeline and process.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Before you list: questions to work through with your accountant</h2>
+
+      <p>The structural decisions are largely locked in once the contract is signed. Before the property goes to market, work through these five questions with your accountant:</p>
+
+      <p>1. What is the assembled cost base, including all acquisition costs, capital improvements, selling costs, and the depreciation adjustment?</p>
+
+      <p>2. Are there any carried forward capital losses that should be applied against this gain?</p>
+
+      <p>3. What is the income picture in this financial year versus the next, and does crossing the June boundary improve the tax position?</p>
+
+      <p>4. Are there other assets sitting at unrealised losses that would make sense to realise in the same financial year?</p>
+
+      <p>5. What is the estimated cash tax liability so it can be planned for from settlement proceeds?</p>
+
+      <p>Brisbane investors regularly underestimate the CGT on a sale. A property bought in 2014 for $500,000 and sold in 2026 for $800,000 or more produces a six-figure gain before the discount. The resulting tax, at the top bracket, is $50,000 to $70,000 that needs to come out of the settlement proceeds before it reaches your account. That is not a number to discover in July when the prior year's return is being prepared.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling an investment property in Brisbane's inner east?</strong> Daniel works regularly with investors and can coordinate with your accountant on contract timing, access arrangements, and campaign structure. <a href="/walkthrough" style="color:#f5d07a;font-weight:600;">Book a walkthrough.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/investment-property-selling/">Investment Properties guide series</a>.</p>
+  <AuthorBio />
+
+</article>
+
+</Layout>
