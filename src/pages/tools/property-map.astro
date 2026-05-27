@@ -1777,7 +1777,7 @@ window.PM_ZONES = {
       L.marker([midLat, midLon], {
         icon: L.divIcon({
           className: '',
-          html: '<div style="transform:translate(-50%,-50%) rotate(' + angle + 'deg);background:rgba(15,10,6,0.78);color:#f5d07a;font-family:sans-serif;font-size:10.5px;font-weight:700;padding:2px 6px;border-radius:3px;white-space:nowrap;letter-spacing:0.03em;">' + label + '</div>',
+          html: '<div style="transform:translate(-50%,-50%) rotate(' + angle + 'deg);background:#fff;color:#1c1917;font-family:sans-serif;font-size:13px;font-weight:700;padding:3px 8px;border-radius:3px;white-space:nowrap;box-shadow:0 1px 5px rgba(0,0,0,0.28);letter-spacing:0.01em;">' + label + '</div>',
           iconSize: [0, 0], iconAnchor: [0, 0],
         }), interactive: false,
       }).addTo(parcelDimLayer);
@@ -1864,7 +1864,20 @@ window.PM_ZONES = {
       '</div>';
 
     queryParcel(lat, lon).catch(() => null).then((parcel: any) => {
+      // Show dimension overlay immediately — don't wait for floods/catchments
       const rings: number[][][] | undefined = parcel?.geometry?.rings;
+      const a0 = parcel?.attributes || {};
+      const area0 = a0.LOT_AREA ? Math.round(+a0.LOT_AREA) : 0;
+      if (rings?.length && area0) showParcelDimensions(rings, area0);
+      // Update address + eyebrow immediately from parcel data
+      const n0 = a0.HOUSE_NUMBER || '', s0 = a0.CORRIDOR_NAME || '', sb0 = a0.SUBURB || '';
+      const addrEarly = [n0 && s0 ? `${n0} ${s0}` : (s0 || n0), sb0].filter(Boolean).join(', ') || searchAddr || '';
+      if (addrEarly) {
+        _lastAddress = addrEarly;
+        const eyebrow = document.getElementById('pm-result-eyebrow');
+        const resultEl = document.getElementById('pm-result');
+        if (eyebrow && resultEl?.classList.contains('mode-zone')) eyebrow.textContent = addrEarly;
+      }
       return Promise.all([
         Promise.resolve(parcel),
         queryCatchments(lat, lon).catch(() => ({ primary: null as string|null, secondary: null as string|null })),
@@ -1875,7 +1888,6 @@ window.PM_ZONES = {
       const num = a.HOUSE_NUMBER || '', street = a.CORRIDOR_NAME || '', suburb = a.SUBURB || '';
       const addrFromParcel = [num && street ? `${num} ${street}` : (street || num), suburb].filter(Boolean).join(', ');
       const addr = addrFromParcel || searchAddr || '';
-      // Keep _lastAddress up to date and refresh eyebrow if zone drawer is still open
       if (addr) {
         _lastAddress = addr;
         const eyebrow = document.getElementById('pm-result-eyebrow');
@@ -1886,9 +1898,6 @@ window.PM_ZONES = {
       const areaRaw = a.LOT_AREA ? Math.round(+a.LOT_AREA) : 0;
       const areaM2 = areaRaw ? `${areaRaw} m²` : '';
       const svgStr = (parcel?.geometry?.rings?.length && areaRaw) ? generateParcelSVG(parcel.geometry.rings, areaRaw) : '';
-      if (parcel?.geometry?.rings?.length && areaRaw) {
-        showParcelDimensions(parcel.geometry.rings, areaRaw);
-      }
 
       const floodHTML = (floods as {desc:string;cat:string;key:string}[]).length
         ? (floods as {desc:string;cat:string;key:string}[]).map(f => {
