@@ -1,0 +1,126 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a bank valuation and an agent appraisal in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A bank valuation is a formal, paid assessment by a licensed valuer, commissioned by a lender to confirm how much they will lend against the property. It applies a conservative methodology and produces a legally recognised document. An agent appraisal is a free estimate of likely sale price in current market conditions, provided by a real estate agent using comparable sales. The two answer different questions and are used for different purposes. Bank valuations are typically 5 to 15 percent below what a well-run campaign achieves, because the valuer is estimating a standard market transaction, not the result of skilled negotiation and competitive bidding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What factors affect my Brisbane property valuation most?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Brisbane's inner suburbs, the five factors that consistently move the number are: land size and configuration, position within the street and micro-pocket (including flood status and proximity to parkland), renovation quality relative to comparable properties in the area, school catchment access, and aspect. Of these, land size and position are structural and cannot be changed. Renovation quality, presentation, and addressing maintenance issues before listing are within the seller's control and directly affect the comparable sales adjustments a valuer makes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I support a higher valuation when selling my Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most reliable things a seller can do are: address the maintenance issues that valuers use to discount (roof condition, stumps, retaining walls), ensure the renovation finish is competitive relative to recent comparables in the area, and provide your agent with recent comparable sales that support your price range. Cosmetic presentation matters for buyer competition but formal valuers weight condition and comparable evidence over styling. Your agent should be able to tell you specifically what the comparable sales say about preparation investment returns in your suburb."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the comparable sales method used to value Brisbane properties?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The comparable sales method identifies three to six recent sales of similar properties nearby, then adjusts each sale up or down for the differences between that sale and your property. Adjustments are made for land size, renovation level, aspect, flood status, school catchment, and recency. In Brisbane's inner east, where heritage overlays, school catchment boundaries, and flood mapping affect value at the street level, identifying genuinely comparable sales requires local knowledge that goes beyond matching bedroom and bathroom counts."
+      }
+    }
+  ]
+};
+---
+<Layout title="How Brisbane Property Valuations Work: What Moves the Number Up or Down | Daniel Gierach Property" description="Bank valuation vs agent appraisal, the comparable sales method, and the five factors Brisbane valuers weight most heavily. What every Brisbane homeowner needs to know before listing." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 7 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How Brisbane Property Valuations Work: What Moves the Number Up or Down
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The bank valuation and the agent appraisal are not the same thing, and confusing them is one of the most common mistakes Brisbane sellers make. Here is how each is produced and what actually drives the number.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most Brisbane homeowners have received a bank valuation at some point, usually during a refinance, and most have also sat through an agent appraisal when thinking about selling. The two figures rarely agree, and the gap can be significant. Understanding why they differ, what each is actually measuring, and which factors move either number is the foundation for making a well-informed decision about whether and when to sell.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Bank valuation vs agent appraisal: two different questions</h2>
+
+      <p>A <a href="/insights/property-appraisal-vs-valuation-brisbane" style="color:#c4912a;font-weight:600;">formal bank valuation</a> is commissioned by a lender when you apply for finance or refinance. A licensed valuer inspects the property, applies a structured and documentable methodology, and produces a written report that carries legal standing. The bank uses this to determine how much it will lend. The valuer's job is to establish what the property would sell for in a standard open market transaction, not the best achievable result in a competitive, well-marketed campaign. Formal residential valuations in Brisbane typically cost $300 to $600 when commissioned independently, though banks usually absorb this cost or charge it to the borrower.</p>
+
+      <p>An agent appraisal is a free estimate of what a willing buyer would pay in current market conditions, provided by a real estate agent. A good appraisal is built from specific comparable sales, adjusted for the differences between those sales and your property, and combined with the agent's knowledge of the active buyer pool and what is currently transacting in your street and price bracket. It is an informed opinion, not a regulated document, and it cannot be submitted for legal, financial, or tax purposes.</p>
+
+      <p>The structural reason they diverge is this: bank valuers are paid to be conservative. They are protecting a lender's security position, so they estimate what the property would sell for in a normal transaction without the benefit of skilled marketing, competitive bidding, or emotional buyer motivation. An agent appraisal accounts for all of those things. In Brisbane's inner east, where a well-run campaign with genuine buyer competition can push results 8 to 15 percent above the most recent comparable sale, the gap between a bank valuation and an agent's range is often meaningful and rarely a cause for concern.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How the comparable sales method works</h2>
+
+      <p>Both methodologies rely on comparable sales as their starting point. The principle is straightforward: the best evidence of what a property is worth is what genuinely similar properties have recently sold for. The skill lies in identifying which sales are truly comparable and in making accurate adjustments for the differences between them and the subject property.</p>
+
+      <p>A solid comparable set for a Brisbane inner east home typically includes three to six sales from the same pocket of the same suburb, within the last three to six months, with similar land size, similar internal area, similar property type, and a similar method of sale. Where a comparable differs from your property, adjustments are made in both directions. An unrenovated comparable is adjusted down relative to your well-finished home. A comparable on a smaller block is adjusted down where your land provides more area. A sale from six months ago in a market that has since moved 4 percent gets adjusted forward.</p>
+
+      <p>In Brisbane's inner suburbs, finding genuinely comparable sales requires more than matching bedroom and bathroom counts. Heritage overlays, school catchment boundaries, flood mapping at the street level, and the micro-pockets that buyers understand intuitively all mean that two properties with identical attributes on paper can transact at different prices. The <a href="/insights/ai-valuation-tools-vs-agent-appraisal-brisbane-2026" style="color:#c4912a;font-weight:600;">automated valuation models</a> that power online estimates struggle with exactly this granularity, which is why a $1.5 million home can have a $400,000 spread between the highest and lowest AVM estimate from different platforms.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Five factors that move a Brisbane valuation</h2>
+
+      <p><strong>Land size and configuration.</strong> In Brisbane's inner east, where [blocks vary from 400 square metre infill lots to original 800 square metre-plus parcels](https://danielgierach.com/insights/floor-area-vs-land-area-brisbane-property-valuation), land content is consistently weighted heavily. A large, regular, level block in <a href="/suburbs/bulimba" style="color:#c4912a;font-weight:600;">Bulimba</a> or <a href="/suburbs/hawthorne" style="color:#c4912a;font-weight:600;">Hawthorne</a> commands a premium because it provides renovation headroom and, in some cases, <a href="/insights/development-potential-property-brisbane-inner-east" style="color:#c4912a;font-weight:600;">development optionality</a>. Irregular shapes and significant fall attract discount adjustments.</p>
+
+      <p><strong>Position within the street and micro-pocket.</strong> The difference between a property that backs onto Norman Creek parkland and one two blocks away with main road traffic is real, well-understood by buyers, and reflected in comparable sales. The same applies to elevation and flood status. In suburbs like <a href="/suburbs/morningside" style="color:#c4912a;font-weight:600;">Morningside</a>, <a href="/suburbs/cannon-hill" style="color:#c4912a;font-weight:600;">Cannon Hill</a>, and Tingalpa, where flood overlays affect some streets but not others, the difference between being on the right side of the contour line can be $80,000 to $150,000 on comparable properties. Valuers adjust for this; buyers price it in even more sharply.</p>
+
+      <p><strong>Renovation quality.</strong> A full contemporary renovation, with a quality kitchen and bathroom finish, functional indoor-outdoor connection, and maintained services, supports a materially higher comparable adjustment than a dated cosmetic refresh or deferred maintenance. The key is how the renovation finish compares to recent sales in the same pocket at the same price point. If most comparables in your area have been renovated and yours has not, that gap is priced. If your renovation substantially exceeds the standard in recent comparable sales, that premium is supportable. Your agent should be able to show you exactly where you sit relative to the comparable set before you decide whether preparation investment makes sense.</p>
+
+      <p><strong>School catchment access.</strong> <a href="/insights/school-catchments-property-brisbane-inner-east" style="color:#c4912a;font-weight:600;">State school catchments</a> for Bulimba, Balmoral, <a href="/suburbs/camp-hill" style="color:#c4912a;font-weight:600;">Camp Hill</a>, and Coorparoo attract a specific and active buyer profile. Properties within sought-after catchments consistently support premium pricing that nearby comparables outside the catchment boundary cannot match, regardless of physical similarity. The catchment effect is visible in the sales data, and any agent or valuer working this market will account for it.</p>
+
+      <p><strong>Aspect.</strong> North and north-east aspect optimises for natural light and cross-ventilation in Brisbane's climate and is a consistent buyer preference. A home with a north-facing rear yard and good solar exposure throughout the day trades above a comparable property with a south-facing rear or significant afternoon shade. It is not the largest adjustment factor, but in a market where buyers are comparing two or three similar properties at the same price point, aspect often decides which one sells first and at what premium.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What sellers can actually influence</h2>
+
+      <p>Land size, position, flood status, and school catchment are structural: they cannot be changed. But within the factors that are within a seller's control, the decisions made before listing have a measurable effect on where an appraisal or campaign lands.</p>
+
+      <p>Addressing the maintenance issues that valuers and buyers use to discount produces a better return than cosmetic upgrades. A roof in poor condition, deteriorating stumps, or a retaining wall with visible movement are issues that experienced valuers identify and that translate directly into downward adjustments from any comparable set. Fixing them before the appraisal removes that pressure. Your agent can tell you which of these to prioritise based on what recent comparables suggest buyers in your pocket are and are not tolerating.</p>
+
+      <p>Renovation decisions should be benchmarked against the local comparable set, not against an abstract standard of quality. If all the recent comparable sales in your street have been updated and yours has not, that gap is quantifiable. If your home is already above the renovation standard in the comparable set, additional spend is less likely to produce a proportional return.</p>
+
+      <p>For sellers who want a current read on where their property sits relative to the comparable set, the <a href="/tools/valuation" style="color:#c4912a;font-weight:600;">instant valuation tool</a> provides an indicative range from recent sales as a starting point. For a full comparable sales analysis, with a walkthrough of the property and an honest assessment of what your specific preparation choices would return, <a href="/get-an-appraisal" style="color:#c4912a;font-weight:600;">book a free appraisal with Daniel</a>.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want to know where your property sits?</strong> Daniel provides free appraisals across Brisbane's inner east, built from comparable sales, a walkthrough of your property, and an honest read on what buyers in your pocket are currently paying. No inflated figures, no obligation. <a href="/get-an-appraisal" style="color:#f5d07a;font-weight:600;">Get a free appraisal.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/property-pricing-and-valuation/">Pricing and Valuation guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/valuation" style="color:#f5d07a;font-weight:600;">Instant Valuation Estimate &rarr;</a>
+  </p>
+</div>
+
+</Layout>
