@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to sell a house in Brisbane in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Brisbane-wide median days on market for houses sits around 30 to 45 days, but that figure masks significant local variation. In Brisbane's inner east suburbs such as Morningside, Hawthorne, and Camp Hill, well-priced properties typically sell within 20 to 30 days. When you include pre-campaign preparation of 2 to 4 weeks and a standard 30 to 45 day settlement period, the full timeline from engaging an agent to receiving funds is typically 10 to 16 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does selling time in Brisbane's inner east compare to outer suburbs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inner east suburbs consistently clear faster than the Brisbane-wide average. Suburbs such as Morningside, Camp Hill, Hawthorne, and Bulimba regularly achieve median days on market of 20 to 30 days in a healthy market. Middle-ring and outer suburbs typically run 35 to 55 days. The difference is driven by a deeper buyer pool for inner suburbs, stronger auction clearance rates, and higher concentration of equity-rich upgrader buyers who can act quickly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does a Brisbane property become stale, and what should sellers do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A property that has been on the market for more than 6 to 8 weeks in Brisbane's inner east is typically considered stale. Buyers who have been searching notice the extended days on market and apply leverage accordingly. If after four open homes you have no offers near your price expectation and attendance is declining, the most effective response is a genuine price reduction, not a minor adjustment. A 3 to 5 percent reduction that brings the property into accurate market alignment will generate more activity than a token cut of 1 percent."
+      }
+    }
+  ]
+};
+---
+<Layout title="How Long Does It Take to Sell a House in Brisbane in 2026? | Daniel Gierach Property" description="The honest answer on Brisbane property sale timelines in 2026: inner east vs outer suburbs, auction vs private treaty, what drives a faster result, and when to reprice." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How Long Does It Take to Sell a House in Brisbane in 2026?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Real ranges by suburb type, how auction and private treaty campaigns compare, what slows a sale down, and when to act if yours is stalling.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>The question comes up early in almost every vendor conversation. The honest answer is that it depends less on Brisbane's broader market conditions and more on three things you can control: how accurately you price, how well you prepare, and which sale method you choose. What you cannot control is how deep the buyer pool is in your suburb and price bracket at the time you list. Understanding where that pool sits before you launch is the most useful thing you can do.</p>
+
+      <p>When most agents quote days on market, they are referring to the number of days between a property's first listing date on the major portals and the date a contract is signed. It does not include settlement, and it resets if a property is withdrawn and relisted. Always ask whether a comparable sale figure comes from a first campaign or a second attempt, because a 14-day figure on a relisting can follow 90 days of an unsuccessful first campaign. The real picture is the combined total.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Brisbane-wide average vs inner suburbs vs outer suburbs</h2>
+      <p>The Brisbane-wide median days on market for houses has consistently sat in the 30 to 45 day range. That average is a starting point, not a reliable benchmark for any specific sale. The variation by location is significant and predictable.</p>
+
+      <p>Inner east suburbs clear faster than the city average. In a healthy market, well-priced properties in <a href="/suburbs/morningside" style="color:#c4912a;font-weight:600;">Morningside</a>, <a href="/suburbs/hawthorne" style="color:#c4912a;font-weight:600;">Hawthorne</a>, <a href="/suburbs/camp-hill" style="color:#c4912a;font-weight:600;">Camp Hill</a>, <a href="/suburbs/bulimba" style="color:#c4912a;font-weight:600;">Bulimba</a>, and <a href="/suburbs/cannon-hill" style="color:#c4912a;font-weight:600;">Cannon Hill</a> typically attract signed contracts within 20 to 30 days of listing. The reason is structural: these suburbs draw a concentrated pool of equity-rich upgrader buyers who have been watching specific streets and floor plans for months and can move quickly when the right property arrives. Auction clearance rates in the inner east consistently run above the Brisbane average, which is a reliable indicator of buyer depth.</p>
+
+      <p>Middle-ring suburbs, roughly 8 to 15 kilometres from the CBD, tend to run 30 to 45 days on market. Outer suburbs and growth corridors typically sit at 40 to 60 days, reflecting a larger proportion of first home buyers who require finance approval and longer decision timelines. In any market softening, outer suburbs feel it first and most sharply, while inner suburbs with structural scarcity tend to hold buyer depth longer.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How auction and private treaty timelines differ</h2>
+      <p>Method of sale has a direct effect on how long a campaign runs before a contract is signed.</p>
+
+      <p>Auction campaigns in Brisbane's inner east are typically structured over 4 weeks. The auction date creates a deadline that concentrates buyer activity, accelerates inspections, and encourages competing parties to prepare finance in parallel. When a property sells under the hammer or in negotiations immediately following auction, the timeline from first listing to signed contract is one of the tightest available. The trade-off is transparency: bidding is public, and a property that passes in without a sale has spent its high-exposure window without a result, which is a disadvantage in subsequent negotiations.</p>
+
+      <p>Private treaty is open-ended by design. A correctly priced private treaty listing in a suburb with active buyer demand can sell in the first week. The same property priced 10 to 15 percent above the market can sit for three months and ultimately sell for less than an accurate launch price would have produced. Without the urgency of an auction date, price and presentation need to be sharper from day one to generate the competitive tension that drives strong offers. See the <a href="/insights/auction-vs-private-treaty-eoi-brisbane" style="color:#c4912a;font-weight:600;">auction vs private treaty comparison</a> for a more detailed breakdown of which suits each property type.</p>
+
+      <p>Expressions of interest campaigns set a closing date, typically 3 to 4 weeks from listing, and require buyers to submit written offers by that date. They suit higher-end or unique properties where the buyer pool is smaller and more deliberate in their approach. The defined end point creates urgency without the public auction dynamic, which works well where vendor privacy is a consideration or where the property is genuinely unusual enough that a competitive auction crowd is unlikely.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What speeds a sale up, and what slows it down</h2>
+      <p>Price accuracy is the strongest single variable. A property priced at the point where buyers with genuine capacity perceive fair value will attract early, competitive attention. One priced above that level will attract lookers, generate low offers, and sit longer than it should. In Brisbane's inner east, overpricing by 10 percent rarely produces a better outcome than accurate pricing. More often it produces a worse one: more weeks on market, a negotiating dynamic that has shifted toward the buyer, and an end price that reflects neither the market nor the vendor's original expectation.</p>
+
+      <p>Presentation is the second lever. Buyers form strong impressions in the first 30 seconds of a listing and in the first 30 seconds of an open home. Properties that present well consistently attract more inspection traffic, stronger initial offers, and shorter campaigns. Addressing the visible maintenance items that buyers use to discount, decluttering, and investing in professional photography and styling are the most reliable pre-sale investments. The data across comparable sales in the inner east is consistent on this point. See the <a href="/insights/how-to-prepare-your-home-for-sale-brisbane" style="color:#c4912a;font-weight:600;">pre-sale preparation guide</a> for the practical checklist.</p>
+
+      <p>Time of year has a real but modest effect. Spring brings more buyer activity and more competing listings simultaneously, which partially offsets the demand increase. Late summer and early autumn, from late January through March, consistently produce strong results in the inner east because buyer demand carries over from the pre-Christmas period while supply has not yet climbed. Brisbane's subtropical climate also means the property shows better in summer, with gardens and outdoor spaces at their most appealing. Winter does slow the market, but a correctly priced property in a supply-constrained suburb will still find its buyer.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When a property is stale and when to reprice</h2>
+      <p>A property that has been on the market for more than 6 to 8 weeks in Brisbane's inner east is in stale territory. Buyers who have been actively searching will have already seen it. New buyers entering the search notice the extended days on market and begin asking why, which shifts the negotiating dynamic in their favour regardless of the actual answer.</p>
+
+      <p>The signal to act is not simply time, but the combination of time and buyer behaviour. If after four open homes you have had no offers near your price expectation, low repeat attendance, and declining inquiry, the market has given you its verdict on your price. A genuine price adjustment at that point, something in the 3 to 5 percent range that brings the property into clear market alignment, will produce more activity than a token reduction. Minor adjustments tell buyers you are still not willing to engage seriously with the market's feedback.</p>
+
+      <p>Relisting after a price reduction can reset the days on market counter on the portals, but it does not reset buyer memory. Experienced buyers and their agents will check the history. The more effective approach is to price accurately at launch, where the largest pool of active buyers see the listing for the first time and the first 2 weeks of genuine momentum can be put to work. That window does not come again. For more on what stale looks like and how to recover, the <a href="/insights/relisting-property-after-failed-sale-brisbane" style="color:#c4912a;font-weight:600;">relisting guide</a> covers the options in detail.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the full timeline looks like from start to settlement</h2>
+      <p>The full timeline from deciding to sell to receiving settlement funds typically runs 10 to 16 weeks for a well-prepared property in Brisbane's inner east. The pre-campaign phase, from engaging an agent through appraisal, Form 6, preparation, photography, and portal launch, takes 2 to 4 weeks. A campaign that produces a signed contract within 3 to 4 weeks is a good result. Settlement for most Queensland residential sales runs 30 to 45 days, though 60 days is not unusual where a buyer requires finance approval or a seller needs time to secure alternative accommodation.</p>
+
+      <p>Sellers who need certainty around their moving date should negotiate the settlement period as part of any offer consideration from the start. An agent who understands your personal timeline should be factoring that into how they present your position to potential buyers during negotiations.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want a specific read on your property?</strong> Daniel can tell you the current days on market for your suburb and price bracket, give you an honest assessment of where your property sits, and lay out what preparation will make the most difference to your result. No obligation. <a href="/get-an-appraisal" style="color:#f5d07a;font-weight:600;">Get a free appraisal.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<p style="margin-top:2rem;font-size:0.95rem;max-width:780px;margin-left:auto;margin-right:auto;padding:0 2rem;">Part of the <a href="/insights/marketing-and-selling-methods/" style="color:#c4912a;font-weight:600;">Marketing, Auctions and Selling Methods</a> guide series.</p>
+<AuthorBio />
+
+</Layout>
