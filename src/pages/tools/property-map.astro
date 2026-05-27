@@ -206,11 +206,12 @@ const legendGroups = [
     .pm-layer-toggle { width: 100%; justify-content: center; padding: 0.75rem 1rem; font-size: 0.72rem; }
     .pm-layer-panel {
       width: 100%; display: none;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       max-height: 50vh; overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       padding: 0.5rem 0.75rem 0.75rem;
     }
+    .pm-layer-row { min-height: 44px; }
     .pm-layer-panel.open { display: grid; }
     .pm-layer-group-head { grid-column: 1 / -1; }
     .pm-zone-sub { grid-column: 1 / -1; }
@@ -231,6 +232,18 @@ const legendGroups = [
     text-transform: uppercase; color: rgba(196,145,42,0.8);
     padding: 0.55rem 0.6rem 0.25rem;
   }
+  .pm-infra-toggle {
+    display: flex; align-items: center; gap: 0.4rem; width: 100%;
+    font-family: var(--font-sans); font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,145,42,0.8);
+    padding: 0.55rem 0.6rem 0.25rem; background: none; border: none; cursor: pointer;
+    border-top: 1px solid rgba(28,25,23,0.07);
+  }
+  .pm-infra-toggle:hover { color: rgba(196,145,42,1); }
+  .pm-infra-toggle .pm-toggle-arrow { margin-left: auto; opacity: 0.5; transition: transform 0.2s; }
+  .pm-infra-toggle[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
+  #pm-infra-panel { display: none; }
+  #pm-infra-panel.open { display: contents; }
   .pm-layer-row {
     display: flex; align-items: center; gap: 0.6rem;
     padding: 0.45rem 0.6rem;
@@ -662,7 +675,7 @@ window.PM_ZONES = {
     <!-- First-load guidance -->
     <div id="pm-guide" role="status" aria-live="polite">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 6-10 6L2 8l10-6z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      <p>Search a Brisbane address, or zoom in to load zones and infrastructure. Toggle layers in the panel above right.</p>
+      <p>Search an address above, or tap any block to see its zone, flood risk, school catchments, and dimensions.</p>
       <button id="pm-guide-dismiss">Start exploring</button>
     </div>
 
@@ -717,81 +730,89 @@ window.PM_ZONES = {
           </span>
         </label>
 
-        <!-- Stormwater -->
-        <p class="pm-layer-group-head" style="border-top:1px solid rgba(28,25,23,0.07);padding-top:0.6rem;">Stormwater (BCC)</p>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="stormPipe" checked />
-          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#2a8c9c;"></span></span>
-          <span class="pm-layer-name">Stormwater pipes
-            <span class="pm-layer-hint">Underground drainage pipes</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="stormManhole" />
-          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#1f6f7d;"></span></span>
-          <span class="pm-layer-name">Stormwater manholes
-            <span class="pm-layer-hint">Access chambers and junctions</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="gully" checked />
-          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#d77b32;"></span></span>
-          <span class="pm-layer-name">Gullies / kerb inlets
-            <span class="pm-layer-hint">Where runoff enters the underground network</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="surfaceDrain" />
-          <span class="pm-swatch"><span class="pm-swatch-line-dash" style="color:#4dadb8;"></span></span>
-          <span class="pm-layer-name">Surface drains
-            <span class="pm-layer-hint">Overland flow paths and open drains</span>
-          </span>
-        </label>
+        <!-- Infrastructure (collapsible) -->
+        <button class="pm-infra-toggle" id="pm-infra-toggle" aria-expanded="false" aria-controls="pm-infra-panel">
+          Infrastructure
+          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(stormwater, water, sewer)</span>
+          <svg class="pm-toggle-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="pm-infra-panel">
 
-        <!-- Water & Sewer -->
-        <p class="pm-layer-group-head" style="border-top:1px solid rgba(28,25,23,0.07);padding-top:0.6rem;">Water &amp; Sewer (QUU)</p>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="sewerMain" checked />
-          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#8a6e2f;"></span></span>
-          <span class="pm-layer-name">Sewer mains
-            <span class="pm-layer-hint">Gravity sewer running underground</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="waterMain" checked />
-          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#2c7fc4;"></span></span>
-          <span class="pm-layer-name">Water mains
-            <span class="pm-layer-hint">Pressure mains supplying drinking water</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="sewerService" checked />
-          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#b8904a;opacity:0.7;"></span></span>
-          <span class="pm-layer-name">Sewer connections
-            <span class="pm-layer-hint">Individual property sewer laterals</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="waterService" checked />
-          <span class="pm-swatch"><span class="pm-swatch-line" style="background:#6fb5e0;opacity:0.7;"></span></span>
-          <span class="pm-layer-name">Water connections
-            <span class="pm-layer-hint">Individual property water service lines</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="sewerManhole" />
-          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#6c5320;"></span></span>
-          <span class="pm-layer-name">Sewer manholes
-            <span class="pm-layer-hint">Access chambers along sewer mains</span>
-          </span>
-        </label>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="hydrant" />
-          <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#c43a3a;"></span></span>
-          <span class="pm-layer-name">Hydrants
-            <span class="pm-layer-hint">Fire hydrants on the water network</span>
-          </span>
-        </label>
+          <p class="pm-layer-group-head" style="padding-top:0.2rem;">Stormwater (BCC)</p>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="stormPipe" checked />
+            <span class="pm-swatch"><span class="pm-swatch-line" style="background:#2a8c9c;"></span></span>
+            <span class="pm-layer-name">Stormwater pipes
+              <span class="pm-layer-hint">Underground drainage pipes</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="stormManhole" />
+            <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#1f6f7d;"></span></span>
+            <span class="pm-layer-name">Stormwater manholes
+              <span class="pm-layer-hint">Access chambers and junctions</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="gully" checked />
+            <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#d77b32;"></span></span>
+            <span class="pm-layer-name">Gullies / kerb inlets
+              <span class="pm-layer-hint">Where runoff enters the underground network</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="surfaceDrain" />
+            <span class="pm-swatch"><span class="pm-swatch-line-dash" style="color:#4dadb8;"></span></span>
+            <span class="pm-layer-name">Surface drains
+              <span class="pm-layer-hint">Overland flow paths and open drains</span>
+            </span>
+          </label>
+
+          <p class="pm-layer-group-head" style="border-top:1px solid rgba(28,25,23,0.07);padding-top:0.6rem;">Water &amp; Sewer (QUU)</p>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="sewerMain" checked />
+            <span class="pm-swatch"><span class="pm-swatch-line" style="background:#8a6e2f;"></span></span>
+            <span class="pm-layer-name">Sewer mains
+              <span class="pm-layer-hint">Gravity sewer running underground</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="waterMain" checked />
+            <span class="pm-swatch"><span class="pm-swatch-line" style="background:#2c7fc4;"></span></span>
+            <span class="pm-layer-name">Water mains
+              <span class="pm-layer-hint">Pressure mains supplying drinking water</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="sewerService" checked />
+            <span class="pm-swatch"><span class="pm-swatch-line" style="background:#b8904a;opacity:0.7;"></span></span>
+            <span class="pm-layer-name">Sewer connections
+              <span class="pm-layer-hint">Individual property sewer laterals</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="waterService" checked />
+            <span class="pm-swatch"><span class="pm-swatch-line" style="background:#6fb5e0;opacity:0.7;"></span></span>
+            <span class="pm-layer-name">Water connections
+              <span class="pm-layer-hint">Individual property water service lines</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="sewerManhole" />
+            <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#6c5320;"></span></span>
+            <span class="pm-layer-name">Sewer manholes
+              <span class="pm-layer-hint">Access chambers along sewer mains</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="hydrant" />
+            <span class="pm-swatch"><span class="pm-swatch-dot" style="background:#c43a3a;"></span></span>
+            <span class="pm-layer-name">Hydrants
+              <span class="pm-layer-hint">Fire hydrants on the water network</span>
+            </span>
+          </label>
+
+        </div>
 
         <!-- Flood overlays -->
         <p class="pm-layer-group-head" style="border-top:1px solid rgba(28,25,23,0.07);padding-top:0.6rem;">Flood Overlays (BCC)</p>
@@ -1955,6 +1976,7 @@ window.PM_ZONES = {
 
   function dismissGuide() {
     document.getElementById('pm-guide')?.classList.add('hidden');
+    try { localStorage.setItem('pm-onboarded', '1'); } catch {}
   }
 
   // ── Wire up controls ───────────────────────────────────────────────────
@@ -1995,6 +2017,7 @@ window.PM_ZONES = {
     }
 
     document.getElementById('pm-guide-dismiss')?.addEventListener('click', dismissGuide);
+    try { if (localStorage.getItem('pm-onboarded')) dismissGuide(); } catch {}
 
     // Layers panel toggle
     const toggle = document.getElementById('pm-layer-toggle')!;
@@ -2002,6 +2025,14 @@ window.PM_ZONES = {
     toggle.addEventListener('click', () => {
       const open = panel.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Infrastructure collapse toggle
+    const infraBtn   = document.getElementById('pm-infra-toggle')!;
+    const infraPanel = document.getElementById('pm-infra-panel')!;
+    infraBtn.addEventListener('click', () => {
+      const open = infraPanel.classList.toggle('open');
+      infraBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
     // Layer checkboxes (infrastructure)
