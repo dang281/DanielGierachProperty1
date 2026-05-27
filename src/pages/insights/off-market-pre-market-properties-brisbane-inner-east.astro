@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { offMarketCount, offMarketUpdated } from '../../data/off-market-count';
 ---
 <Layout
   title="How to Access Off-Market and Pre-Market Properties in Brisbane's Inner East | Daniel Gierach"
@@ -49,6 +50,18 @@ import Layout from '../../layouts/Layout.astro';
       <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
         Most of the best homes in Bulimba, Hawthorne and Morningside are sold before they reach the portals. Here is how buyers actually get access.
       </p>
+
+      <!-- Live count -->
+      <div style="margin-top:2.5rem;display:inline-flex;align-items:center;gap:2rem;padding:1.5rem 2rem;border:1px solid rgba(245,208,122,0.25);background:rgba(245,208,122,0.05);">
+        <div>
+          <span style="display:block;font-family:var(--font-serif);font-size:3rem;font-weight:400;color:#f5d07a;line-height:1;">{offMarketCount}</span>
+          <span style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.5);margin-top:0.3rem;">Current off-market properties</span>
+        </div>
+        <div style="border-left:1px solid rgba(245,208,122,0.2);padding-left:2rem;">
+          <p style="font-family:var(--font-sans);font-size:0.8rem;color:rgba(240,236,228,0.6);line-height:1.6;margin:0;max-width:22ch;">Matched to registered buyers before portal listing. Updated {offMarketUpdated}.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -87,9 +100,9 @@ import Layout from '../../layouts/Layout.astro';
 
       <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What to do next</h2>
 
-      <p>Register your brief. That is the practical step. It costs nothing, takes five minutes, and puts you in the pool for the properties that never reach the portals. The registration should include your specific suburbs, the type of property you are looking for, your bedroom requirement, your budget, and what you are trying to achieve. The more specific the brief, the more useful the match when something comes up.</p>
+      <p><a href="/buyers" style="color:var(--color-gold);text-decoration:none;border-bottom:1px solid rgba(196,145,42,0.4);">Register your brief.</a> That is the practical step. It costs nothing, takes five minutes, and puts you in the pool for the properties that never reach the portals. The registration should include your specific suburbs, the type of property you are looking for, your bedroom requirement, your budget, and what you are trying to achieve. The more specific the brief, the more useful the match when something comes up.</p>
 
-      <p>Daniel Gierach operates a buyer registration service specifically for Brisbane's inner east. Properties are matched to registered buyers before any public listing. If something comes up that fits your brief, you hear about it first.</p>
+      <p>Daniel Gierach operates a <a href="/buyers" style="color:var(--color-gold);text-decoration:none;border-bottom:1px solid rgba(196,145,42,0.4);">buyer registration service</a> specifically for Brisbane's inner east. Properties are matched to registered buyers before any public listing. If something comes up that fits your brief, you hear about it first.</p>
 
       <!-- CTA -->
       <div style="background:#1c1917;padding:2.5rem;margin-top:1rem;">
