@@ -53,7 +53,7 @@ const legendGroups = [
     border-left: 3px solid var(--color-gold);
     font-family: var(--font-sans);
     font-size: 0.7rem;
-    color: var(--color-text-secondary);
+    color: rgba(240,236,228,0.65);
     line-height: 1.4;
   }
   .pm-eduline strong {
@@ -87,9 +87,9 @@ const legendGroups = [
   #pm-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #pm-gps-btn {
     flex-shrink: 0; width: 46px;
-    background: var(--color-surface-4);
-    border: 1px solid rgba(28,25,23,0.18); border-left: none;
-    color: var(--color-text-muted); cursor: pointer;
+    background: #1c1917;
+    border: 1px solid rgba(240,236,228,0.14); border-left: none;
+    color: rgba(240,236,228,0.55); cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
   }
@@ -117,12 +117,12 @@ const legendGroups = [
   @media (max-width: 640px) {
     .pm-search-sticky {
       position: sticky; top: 72px; z-index: 1010;
-      background: var(--color-base);
+      background: #0a0806;
       padding: 0.6rem 0 0.5rem;
       margin: 0 -0.75rem;
       padding-left: 0.75rem; padding-right: 0.75rem;
-      border-bottom: 1px solid rgba(28,25,23,0.1);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      border-bottom: 1px solid rgba(240,236,228,0.07);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
     }
     .pm-search-bar { margin-bottom: 0; }
     #pm-search { font-size: 16px; height: 48px; padding: 0 0.9rem; }
@@ -464,14 +464,18 @@ const legendGroups = [
   /* ── Footer ────────────────────────────────────────────────────────── */
   .pm-foot {
     margin-top: 0.85rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid rgba(240,236,228,0.07);
     display: flex; flex-wrap: wrap; gap: 0.85rem 1.5rem;
     align-items: baseline; justify-content: space-between;
-    font-size: 0.72rem; color: var(--color-text-muted); line-height: 1.6;
+    font-size: 0.72rem; color: rgba(240,236,228,0.48); line-height: 1.6;
   }
+  .pm-foot strong { color: rgba(240,236,228,0.72) !important; }
   .pm-foot a {
     font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--color-gold); text-decoration: none; white-space: nowrap;
+    color: #c4912a; text-decoration: none; white-space: nowrap;
+    transition: color 0.2s;
   }
   .pm-foot a:hover { color: #d4af4a; }
   #pm-share-btn {
@@ -479,23 +483,39 @@ const legendGroups = [
     background: none; border: none; cursor: pointer; padding: 0;
     font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--color-text-muted); transition: color 0.2s;
+    color: rgba(240,236,228,0.48); transition: color 0.2s;
   }
-  #pm-share-btn:hover { color: var(--color-gold); }
+  #pm-share-btn:hover { color: #c4912a; }
   #pm-share-btn.copied { color: #4caf50; }
 </style>
 
 <style is:global>
+  /* ── Dark-theme overrides for this page ───────────────────────────── */
+  body.tool-page .tool-header {
+    background: #1c1917 !important;
+    border-bottom-color: rgba(240,236,228,0.07) !important;
+  }
+  body.tool-page .tool-header h1 { color: rgba(240,236,228,0.95) !important; }
+  body.tool-page .tool-header p  { color: rgba(240,236,228,0.58) !important; }
+  body.tool-page .tool-header a  { color: rgba(240,236,228,0.42) !important; }
+  body.tool-page .tool-header a:hover { color: #c4912a !important; }
+  body.tool-page .tool-header .eyebrow { color: #c4912a !important; }
+  body.tool-page .tool-header span[style*="color"] { color: rgba(240,236,228,0.35) !important; }
+  body.tool-page .tool-content { background: #0a0806 !important; }
+
   @media (max-width: 640px) {
     body.tool-page .tool-header { display: none; }
     body.tool-page .tool-content { padding-top: 72px !important; }
   }
+
+  /* Search input stays white so it's clearly a text field */
   #pm-search { background: #ffffff !important; color: #1c1917 !important; }
   #pm-search::placeholder { color: #a8a29e !important; }
 
   /* Summary card responsive grid */
-  #pm-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; }
-  @media (max-width: 520px) { #pm-summary-grid { grid-template-columns: 1fr; } }
+  #pm-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem 1.5rem; }
+  @media (max-width: 760px) { #pm-summary-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { #pm-summary-grid { grid-template-columns: 1fr; } }
 
   /* Result body: injected via innerHTML so must be global to avoid Astro scope hash */
   #pm-result-body .pm-zone-name-row { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem; }
@@ -782,6 +802,30 @@ window.PM_ZONES = {
           </span>
         </label>
 
+        <!-- Flood overlays -->
+        <p class="pm-layer-group-head" style="border-top:1px solid rgba(240,236,228,0.06);padding-top:0.6rem;">Flood Overlays (BCC)</p>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="floodRiver" />
+          <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#1a60d0;opacity:0.6;border:1px solid rgba(100,160,240,0.6);"></span></span>
+          <span class="pm-layer-name">Brisbane River flood areas
+            <span class="pm-layer-hint">Areas 1 to 5, highest to lowest constraint</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="floodCreek" />
+          <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#008090;opacity:0.6;border:1px solid rgba(0,180,200,0.6);"></span></span>
+          <span class="pm-layer-name">Creek &amp; waterway flood areas
+            <span class="pm-layer-hint">Areas 1 to 5 from local waterways</span>
+          </span>
+        </label>
+        <label class="pm-layer-row">
+          <input type="checkbox" data-layer="floodOverland" />
+          <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#0096c8;opacity:0.5;border:1px solid rgba(0,200,240,0.5);border-style:dashed;"></span></span>
+          <span class="pm-layer-name">Overland flow area
+            <span class="pm-layer-hint">Surface water flow paths during major rainfall</span>
+          </span>
+        </label>
+
       </div>
     </div>
 
@@ -798,7 +842,7 @@ window.PM_ZONES = {
   </div>
 
   <div class="pm-foot">
-    <span><strong style="color:var(--color-text-secondary);">Educational use only.</strong> Zoning and stormwater: Brisbane City Council open data. Water and sewer: Queensland Urban Utilities open data.</span>
+    <span><strong>Educational use only.</strong> Zoning and stormwater: Brisbane City Council open data. Water and sewer: Queensland Urban Utilities open data.</span>
     <span style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
       <button id="pm-share-btn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -987,15 +1031,43 @@ window.PM_ZONES = {
 
   // ── State ──────────────────────────────────────────────────────────────
   const BNE_BOUNDS = [[-27.85, 152.66], [-27.07, 153.55]];
+  // ── Flood overlay constants ───────────────────────────────────────────
+  const FLOOD_SVC: Record<string,string> = {
+    floodRiver:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Flood_overlay_Brisbane_River_flood_planning_area/FeatureServer/0',
+    floodCreek:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Flood_overlay_Creek_waterway_flood_planning_area/FeatureServer/0',
+    floodOverland: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Flood_overlay_Overland_flow/FeatureServer/0',
+  };
+  const FLOOD_COLORS: Record<string,{fill:string;stroke:string;fillOpacity:number}> = {
+    FHA_R1:  { fill:'#003da5', stroke:'#2060cc', fillOpacity:0.38 },
+    FHA_R2A: { fill:'#1255bb', stroke:'#2a72d8', fillOpacity:0.30 },
+    FHA_R2B: { fill:'#246dd0', stroke:'#3a88e4', fillOpacity:0.24 },
+    FHA_R3:  { fill:'#3685d8', stroke:'#4a9eec', fillOpacity:0.20 },
+    FHA_R4:  { fill:'#489de4', stroke:'#60b4f0', fillOpacity:0.16 },
+    FHA_R5:  { fill:'#5ab5ee', stroke:'#78ccf4', fillOpacity:0.13 },
+    FHA_CK1: { fill:'#005a6e', stroke:'#007a90', fillOpacity:0.38 },
+    FHA_CK2: { fill:'#007888', stroke:'#0098a8', fillOpacity:0.30 },
+    FHA_CK3: { fill:'#0096a0', stroke:'#00b8c0', fillOpacity:0.24 },
+    FHA_CK4: { fill:'#00b4b8', stroke:'#00d4d8', fillOpacity:0.20 },
+    FHA_CK5: { fill:'#00d0d4', stroke:'#00ece8', fillOpacity:0.16 },
+    FHA_OFP: { fill:'#0090c0', stroke:'#00b4e4', fillOpacity:0.22 },
+  };
+  const FLOOD_INTERP: Record<string,string> = {
+    floodRiver:    'This property is within the Brisbane River flood planning area. Area 1 is the most constrained (regular flooding); Area 5 is the least. Development in any area requires assessment under Brisbane City Plan 2014, including minimum floor level requirements and potential fill restrictions.',
+    floodCreek:    'This property is within a creek and waterway flood planning area. Flooding risk comes from local creeks and waterways. Development constraints including minimum floor levels apply under Brisbane City Plan 2014. Area 1 has the highest constraints.',
+    floodOverland: 'This property is within the overland flow flood planning area. Surface water flows across this land during major rainfall events. Development must maintain overland flow paths and may require drainage design to manage flow impacts on adjacent properties.',
+  };
+
   const active: Record<string,boolean> = {
     zoning: true,
     propertyBoundary: true,
     stormPipe: true, stormManhole: false, gully: true, surfaceDrain: false,
     sewerMain: true, sewerService: true, waterMain: true, waterService: true,
     sewerManhole: false, hydrant: false,
+    floodRiver: false, floodCreek: false, floodOverland: false,
   };
   let map: any, layers: Record<string,any> = {}, pinMarker: any;
   let zoningLayer: any, zoneFetchAbort: AbortController | null = null;
+  let floodLayers: Record<string,any> = {}, floodAborts: Record<string,AbortController> = {};
   let fetchAborts: Record<string,AbortController> = {}, acDebounce: any;
   let canvasRenderer: any;
   let overlayOpacity = 0.65;
@@ -1034,6 +1106,12 @@ window.PM_ZONES = {
     // Zoning layer group (rendered below infra)
     zoningLayer = (window as any).L.layerGroup();
     if (active.zoning) zoningLayer.addTo(map);
+
+    // Flood overlay layer groups (above zoning, below infra lines)
+    Object.keys(FLOOD_SVC).forEach(k => {
+      floodLayers[k] = (window as any).L.layerGroup();
+      if (active[k]) floodLayers[k].addTo(map);
+    });
 
     // Restore shared view from URL params
     const sp = new URLSearchParams(location.search);
@@ -1139,6 +1217,75 @@ window.PM_ZONES = {
       .catch((err: any) => { if (err.name === 'AbortError') return; });
   }
 
+  // ── Load one flood overlay layer ─────────────────────────────────────
+  function loadFlood(key: string) {
+    if (!active[key]) { floodLayers[key].clearLayers(); return; }
+    if (floodAborts[key]) floodAborts[key].abort();
+    floodAborts[key] = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest(), ne = b.getNorthEast();
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326', outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'OVL2_DESC,OVL2_CAT',
+      returnGeometry: 'true',
+      maxAllowableOffset: '0.0001',
+      resultRecordCount: '500', f: 'geojson',
+    });
+
+    fetch(`${FLOOD_SVC[key]}/query?${params}`, { signal: floodAborts[key].signal })
+      .then(r => r.json())
+      .then(geo => {
+        floodLayers[key].clearLayers();
+        (window as any).L.geoJSON(geo, {
+          renderer: canvasRenderer,
+          style(f: any) {
+            const cat = (f.properties?.OVL2_CAT || '') as string;
+            const fc = FLOOD_COLORS[cat] || { fill: '#3060c0', stroke: '#4070d0', fillOpacity: 0.20 };
+            return {
+              color: fc.stroke, weight: 0.8, opacity: 0.7,
+              fillColor: fc.fill, fillOpacity: fc.fillOpacity,
+              dashArray: key === 'floodOverland' ? '4 3' : undefined,
+            };
+          },
+          onEachFeature(f: any, layer: any) {
+            layer.on('click', (e: any) => {
+              (window as any).L.DomEvent.stopPropagation(e);
+              showFloodResult(key, f.properties || {});
+            });
+          },
+        }).addTo(floodLayers[key]);
+      })
+      .catch((err: any) => { if (err.name === 'AbortError') return; });
+  }
+
+  // ── Show flood overlay result ─────────────────────────────────────────
+  function showFloodResult(key: string, attrs: Record<string,any>) {
+    const el = document.getElementById('pm-result')!;
+    el.className = 'mode-asset kind-flood open';
+    document.getElementById('pm-result-eyebrow')!.textContent = 'Flood overlay (BCC City Plan)';
+
+    const cat = (attrs.OVL2_CAT || '') as string;
+    const desc = attrs.OVL2_DESC || 'Flood overlay';
+    const fc = FLOOD_COLORS[cat] || { fill: '#3060c0', stroke: '#4070d0', fillOpacity: 0.25 };
+    const interp = FLOOD_INTERP[key] || '';
+
+    document.getElementById('pm-result-body')!.innerHTML = `
+      <div style="display:flex;align-items:center;gap:0.55rem;margin-bottom:0.35rem;">
+        <div style="width:18px;height:12px;border-radius:3px;flex-shrink:0;background:${fc.fill};opacity:0.85;border:1px solid rgba(255,255,255,0.2);"></div>
+        <h3 style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(240,236,228,0.95);line-height:1.25;margin:0;">${desc}</h3>
+      </div>
+      ${cat ? `<p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;margin:0 0 0.5rem;">${cat}</p>` : ''}
+      <p style="font-size:0.78rem;color:rgba(240,236,228,0.78);line-height:1.65;margin-bottom:0.65rem;">${interp}</p>
+      <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">
+        Verify on BCC CityPlan
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>`;
+  }
+
   // ── Load all visible ──────────────────────────────────────────────────
   function loadVisible() {
     const s = document.getElementById('pm-status')!;
@@ -1148,6 +1295,11 @@ window.PM_ZONES = {
       if (z >= 13) loadZoning();
       else zoningLayer.clearLayers();
     }
+
+    // Flood overlays load at zoom 12+
+    Object.keys(FLOOD_SVC).forEach(k => {
+      if (active[k]) { if (z >= 12) loadFlood(k); else floodLayers[k].clearLayers(); }
+    });
 
     if (z < 14) {
       Object.keys(SVC).forEach(k => layers[k].clearLayers());
@@ -1490,8 +1642,28 @@ window.PM_ZONES = {
       returnGeometry: 'true', outSR: '4326',
       resultRecordCount: '1', f: 'json',
     });
-    const data = await fetch(`${URLS.propertyBoundary}/query?${params}`).then(r => r.json());
+    const data = await fetch(`${SVC.propertyBoundary}/query?${params}`).then(r => r.json());
     return (data.features || [])[0] || null;
+  }
+
+  async function queryFloodOverlays(lat: number, lon: number) {
+    const params = new URLSearchParams({
+      geometry: JSON.stringify({ x: lon, y: lat, spatialReference: { wkid: 4326 } }),
+      geometryType: 'esriGeometryPoint', inSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'OVL2_DESC,OVL2_CAT', returnGeometry: 'false', f: 'json',
+    });
+    const qs = params.toString();
+    const [river, creek, overland] = await Promise.all([
+      fetch(`${FLOOD_SVC.floodRiver}/query?${qs}`).then(r => r.json()).catch(() => null),
+      fetch(`${FLOOD_SVC.floodCreek}/query?${qs}`).then(r => r.json()).catch(() => null),
+      fetch(`${FLOOD_SVC.floodOverland}/query?${qs}`).then(r => r.json()).catch(() => null),
+    ]);
+    const found: {desc: string; cat: string; key: string}[] = [];
+    if (river?.features?.length)    found.push({ desc: river.features[0].attributes.OVL2_DESC,    cat: river.features[0].attributes.OVL2_CAT,    key: 'floodRiver' });
+    if (creek?.features?.length)    found.push({ desc: creek.features[0].attributes.OVL2_DESC,    cat: creek.features[0].attributes.OVL2_CAT,    key: 'floodCreek' });
+    if (overland?.features?.length) found.push({ desc: overland.features[0].attributes.OVL2_DESC, cat: overland.features[0].attributes.OVL2_CAT, key: 'floodOverland' });
+    return found;
   }
 
   async function queryCatchments(lat: number, lon: number) {
@@ -1523,7 +1695,8 @@ window.PM_ZONES = {
     Promise.all([
       queryParcel(lat, lon).catch(() => null),
       queryCatchments(lat, lon).catch(() => ({ primary: null, secondary: null })),
-    ]).then(([parcel, catchments]) => {
+      queryFloodOverlays(lat, lon).catch(() => [] as {desc:string;cat:string;key:string}[]),
+    ]).then(([parcel, catchments, floods]) => {
       const a = parcel?.attributes || {};
       const num = a.HOUSE_NUMBER || '', street = a.CORRIDOR_NAME || '', suburb = a.SUBURB || '';
       const addrFromParcel = [num && street ? `${num} ${street}` : (street || num), suburb].filter(Boolean).join(', ');
@@ -1535,6 +1708,16 @@ window.PM_ZONES = {
         const { w, h } = parcelDimensions(parcel.geometry.rings);
         if (w > 1 && h > 1) dimStr = `~${Math.min(w, h)} &times; ${Math.max(w, h)} m`;
       }
+
+      const floodHTML = (floods as {desc:string;cat:string;key:string}[]).length
+        ? (floods as {desc:string;cat:string;key:string}[]).map(f => {
+            const fc = FLOOD_COLORS[f.cat] || { fill: '#3060c0' };
+            return `<div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.4rem;">
+              <span style="display:block;width:14px;height:10px;border-radius:2px;margin-top:3px;flex-shrink:0;background:${fc.fill};opacity:0.8;border:1px solid rgba(255,255,255,0.18);"></span>
+              <p style="font-size:0.78rem;color:rgba(240,236,228,0.82);margin:0;line-height:1.35;">${f.desc}</p>
+            </div>`;
+          }).join('')
+        : `<p style="font-size:0.78rem;color:rgba(120,220,140,0.75);margin:0;">No flood overlay at this location.</p>`;
 
       card.innerHTML = `
         <div style="background:#1c1917;border:1px solid rgba(196,145,42,0.18);padding:1.25rem 1.5rem;">
@@ -1554,11 +1737,15 @@ window.PM_ZONES = {
               ${catchments.secondary ? `
                 <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,228,0.36);margin:0 0 0.1rem;">Secondary</p>
                 <p style="font-size:0.8rem;color:rgba(240,236,228,0.85);margin:0;line-height:1.3;">${catchments.secondary}</p>` : ''}
-              ${!catchments.primary && !catchments.secondary ? `<p style="font-size:0.78rem;color:rgba(240,236,228,0.3);margin:0;">No state school catchment found for this location.</p>` : ''}
+              ${!catchments.primary && !catchments.secondary ? `<p style="font-size:0.78rem;color:rgba(240,236,228,0.3);margin:0;">No state school catchment found.</p>` : ''}
+            </div>
+            <div>
+              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Flood overlays</p>
+              ${floodHTML}
             </div>
           </div>
           <p style="margin-top:0.8rem;font-size:0.62rem;color:rgba(240,236,228,0.26);border-top:1px solid rgba(240,236,228,0.06);padding-top:0.65rem;line-height:1.55;">
-            School catchments from Queensland DoE open data. Verify enrolment eligibility at <a href="https://schoolzfinder.eq.edu.au" target="_blank" rel="noopener" style="color:rgba(196,145,42,0.55);text-decoration:none;">schoolzfinder.eq.edu.au</a>. Block dimensions are approximate (bounding box). Always verify with BCC cadastral data and a registered survey.
+            School catchments: Queensland DoE open data — verify at <a href="https://schoolzfinder.eq.edu.au" target="_blank" rel="noopener" style="color:rgba(196,145,42,0.55);text-decoration:none;">schoolzfinder.eq.edu.au</a>. Flood overlays: BCC City Plan 2014. Block dimensions approximate. Always verify before any purchase decision.
           </p>
         </div>`;
     });
@@ -1665,8 +1852,13 @@ window.PM_ZONES = {
           return;
         }
         active[k] = cb.checked;
-        if (active[k]) { layers[k].addTo(map); loadOne(k); }
-        else map.removeLayer(layers[k]);
+        if (k in floodLayers) {
+          if (active[k]) { floodLayers[k].addTo(map); loadFlood(k); }
+          else map.removeLayer(floodLayers[k]);
+        } else {
+          if (active[k]) { layers[k].addTo(map); loadOne(k); }
+          else map.removeLayer(layers[k]);
+        }
       });
     });
 
