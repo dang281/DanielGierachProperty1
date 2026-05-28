@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const draft = true; // STAGED -- remove this line on publish date
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hold a Brisbane property for 3 months while waiting to sell?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a typical Brisbane owner-occupier with an $800,000 mortgage balance at current rates, the direct holding costs over three months are roughly $13,000 to $16,000. That covers mortgage interest (by far the largest component), Brisbane City Council rates, water and sewerage charges, building insurance, and basic maintenance. Investment property owners also need to factor in land tax if the site value exceeds the Queensland threshold, plus property management fees if the property is tenanted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I rent out my Brisbane investment property while waiting to sell?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Renting while waiting to sell can offset holding costs significantly, but it introduces practical complications. A tenanted property is harder to prepare for sale, limits your ability to do pre-sale work, and may require vacant possession at settlement. If the rental yield is high enough to materially reduce your net holding cost and you have enough flexibility in your timeline, renting short-term can make sense. If you need to sell within a few months, the logistics usually outweigh the income. The right answer depends on your lease obligations, your cost of holding, and how urgently the sale needs to proceed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does waiting longer to sell always mean a better price in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not automatically. Waiting can improve your position if you use the time to prepare the property well, if local market conditions are genuinely improving, or if your personal timing allows for a more deliberate campaign. But waiting while carrying significant holding costs on a property that is already well-prepared and in a stable market often reduces your net return rather than improving it. Every month of holding cost is money that cannot be recovered at settlement. A well-prepared, well-timed campaign on a ready property typically outperforms a delayed campaign on the same property."
+      }
+    }
+  ]
+};
+---
+<Layout title="What It Actually Costs to Hold a Brisbane Property While Waiting to Sell | 2026 | Daniel Gierach Property" description="Mortgage interest, council rates, insurance, maintenance: the real holding costs Brisbane property owners face while waiting to sell. 2026 indicative figures." draft={draft} schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 7 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        What Does It Actually Cost to Hold a Brisbane Property While Waiting to Sell?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The costs that keep accumulating while a property sits unlisted are larger than most sellers expect. Here is a clear-eyed breakdown of what holding a Brisbane property actually costs in 2026.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>One of the most underestimated aspects of selling a property is the cost of not selling it. Vendors who delay a campaign while waiting for conditions to improve, who take months preparing a property, or who simply leave a property vacant between a decision to sell and a listing date often underestimate how much those months are costing them. In Brisbane, with mortgage rates sitting above 6% and council charges, insurance, and maintenance all adding up, holding costs can easily run to $5,000 or more per month on a typical family home. Over three or four months, that is real money that cannot be recovered at settlement.</p>
+
+      <p>This breakdown uses indicative 2026 figures for a standard Brisbane residential property. The numbers will vary depending on your mortgage balance, property type, and suburb, but the order of magnitude holds for most owner-occupiers and investment property holders in the inner and middle-ring suburbs.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Mortgage interest: the dominant cost</h2>
+      <p>For most Brisbane property owners, mortgage interest is by far the largest component of holding costs, and the one most often overlooked because it is not a separate invoice. It is simply the interest portion of your regular repayment.</p>
+
+      <p>At a variable rate of around 6.5% per annum (a reasonable benchmark for 2026 after recent rate movements), the interest cost on an $800,000 outstanding balance works out to roughly $4,330 per month or approximately $13,000 per quarter. On a $1.2 million balance the quarterly interest cost is closer to $19,500. These are not small numbers. Every month you hold the property, that interest is leaving your account whether you are living in the property, renting it, or leaving it vacant.</p>
+
+      <p>Owner-occupiers sometimes mentally exclude mortgage interest from holding cost calculations because they assume they would be paying it anyway regardless of whether they sell. That framing can be misleading. If you sell the property and pay down the mortgage, the interest stops. If you delay a campaign by three months waiting for what you hope will be a better market, you are committing to roughly $13,000 to $19,500 in additional interest for a median-priced Brisbane inner-east home. That is the minimum return the market improvement would need to generate just to break even on the delay.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Council rates and water charges</h2>
+      <p>Brisbane City Council charges residential rates on a quarterly cycle. For a typical residential property in the inner east or middle ring, quarterly rates fall in the range of $400 to $700, depending on property value and any applicable pensioner or rebate categories. Properties in the Moreton Bay, Redlands, or Logan council areas will have different figures but are broadly comparable.</p>
+
+      <p>Water and sewerage charges are billed separately by Queensland Urban Utilities (or the relevant distributor for your area) and typically add another $250 to $400 per quarter for a standard household connection. If the property is vacant, water usage drops but the standing charges and sewerage levy remain payable regardless of consumption.</p>
+
+      <p>Combined, rates and water add roughly $650 to $1,100 per quarter to your holding costs. Over three months of delay, that is in the noise compared to interest costs, but it is not zero.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Building and landlord insurance</h2>
+      <p>Building insurance is non-negotiable while you own the property, and the cost of not having it in place during the weeks or months before a sale is an exposure few vendors should accept. Annual premiums for a standard timber Queenslander or post-war home in Brisbane's inner east run from around $2,000 to $4,500 per year depending on the sum insured, construction type, and suburb flood risk category. That works out to roughly $500 to $1,100 per quarter.</p>
+
+      <p>If the property is vacant for an extended period, notify your insurer. Many standard building policies have clauses that reduce or void cover after a property has been vacant for 60 or 90 consecutive days. A vacant property endorsement or a short-term landlord policy may be required if the timeline between decision to sell and the campaign is longer than expected.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Maintenance and presentation costs</h2>
+      <p>A property sitting unlisted still requires ongoing maintenance. Garden upkeep for a typical inner-east block with a reasonable garden runs from $80 to $200 per month for a regular service. If there is a pool, pool maintenance adds another $100 to $200 per month. Minor repairs and maintenance items that accumulate while you hold the property (gutter cleaning, pest inspections, fence repairs) add a further variable cost that is genuinely difficult to predict but rarely zero over a multi-month hold.</p>
+
+      <p>The presentation dimension compounds this. If you have already started preparing the property for sale but delayed the campaign, you may be maintaining a styled or cleared property while paying full holding costs with no income offset. The incremental cost of keeping a pre-sale property in campaign-ready condition can be $200 to $500 per month above normal maintenance, depending on how much preparation has been done.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Land tax: the cost that catches investment property holders</h2>
+      <p>Land tax does not apply to your principal place of residence in Queensland, but it applies to all other land you own, including investment properties and holiday homes. The Queensland land tax-free threshold for individuals is $600,000 in total taxable land value (as at 2026). Above that threshold, the tax is levied on a progressive scale.</p>
+
+      <p>For a Brisbane investment property with a site value of around $900,000, the land tax liability for the 2025-26 assessment year is approximately $4,500 to $6,000 per year (indicative, depending on the exact site value and any foreign owner surcharges). If you are holding an investment property while waiting to sell, this cost sits in the background as a quarterly liability whether or not you have a tenant in place.</p>
+
+      <p>Land tax is assessed on the ownership position at midnight on 30 June each year. If you sell before 30 June, you exit the land tax obligation for the following year. If you delay past 30 June, you are assessed for the next full year regardless of how soon after you sell.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Body corporate levies (units and townhouses)</h2>
+      <p>For apartments, units, and townhouses, body corporate levies add a material recurring cost that house owners do not face. Quarterly body corporate contributions in Brisbane's inner suburbs vary enormously based on building age, size, and facilities. A small block of units without a lift or pool might charge $600 to $900 per quarter. A larger complex with common facilities typically charges $1,200 to $2,500 per quarter per lot, and premium complexes can be higher still.</p>
+
+      <p>Body corporate levies do not pause while the property is listed or vacant. They are a fixed recurring obligation that runs in parallel with all other holding costs.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What three months of holding actually costs: a worked example</h2>
+      <p>To put the components together, here is what holding a typical Brisbane inner-east house for three months looks like in 2026 for an owner-occupier with an $800,000 mortgage balance:</p>
+
+      <div style="background:rgba(245,208,122,0.05);border:1px solid rgba(245,208,122,0.15);border-radius:6px;padding:1.5rem;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(245,208,122,0.2);">
+              <th style="text-align:left;padding:0.5rem 0.75rem;color:var(--color-text-primary);font-weight:600;">Cost item</th>
+              <th style="text-align:right;padding:0.5rem 0.75rem;color:var(--color-text-primary);font-weight:600;">Per quarter (approx.)</th>
+            </tr>
+          </thead>
+          <tbody style="color:var(--color-text-secondary);">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:0.5rem 0.75rem;">Mortgage interest ($800K at 6.5%)</td>
+              <td style="text-align:right;padding:0.5rem 0.75rem;">$13,000</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:0.5rem 0.75rem;">Council rates</td>
+              <td style="text-align:right;padding:0.5rem 0.75rem;">$500</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:0.5rem 0.75rem;">Water and sewerage</td>
+              <td style="text-align:right;padding:0.5rem 0.75rem;">$300</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:0.5rem 0.75rem;">Building insurance</td>
+              <td style="text-align:right;padding:0.5rem 0.75rem;">$750</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:0.5rem 0.75rem;">Garden and maintenance</td>
+              <td style="text-align:right;padding:0.5rem 0.75rem;">$450</td>
+            </tr>
+            <tr style="border-top:1px solid rgba(245,208,122,0.3);">
+              <td style="padding:0.75rem;color:var(--color-text-primary);font-weight:600;">Total (3 months)</td>
+              <td style="text-align:right;padding:0.75rem;color:#f5d07a;font-weight:700;">approx. $15,000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.8rem;color:rgba(240,236,228,0.4);margin-top:0.75rem;margin-bottom:0;">Figures are indicative for a typical inner-east Brisbane house in 2026. Interest rate assumed at 6.5% p.a. variable. Land tax excluded (primary residence exemption applies).</p>
+      </div>
+
+      <p>For an investment property with the same mortgage balance and a site value above the land tax threshold, add roughly $1,500 per quarter in land tax, bringing the total closer to $16,500 per quarter. For a unit with body corporate levies, add another $600 to $2,500 per quarter on top of that.</p>
+
+      <p>These are not small sums. If the three-month delay produces a sale price improvement of $15,000 or more, the holding costs are at least neutral on the maths. If the price improvement is smaller, or if there is no improvement at all, the delay has reduced your net proceeds.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When waiting is worth it, and when it is not</h2>
+      <p>Holding costs do not mean you should never wait. They mean you should be honest about the hurdle rate the delay needs to clear.</p>
+
+      <p>Waiting makes financial sense when you have specific, concrete reasons to expect a meaningful price improvement: when the property genuinely needs preparation work that will add more than the holding costs, when comparable sales data suggests a stronger comparable is imminent, or when your personal circumstances (settlement timing on a purchase, finance approval, a tenant vacating) genuinely require the delay. In those situations, the holding cost is the price of getting the timing right.</p>
+
+      <p>Waiting rarely makes sense when the property is already well-prepared, when local market conditions are stable or softening, or when the decision to delay is based on a general feeling that the market might improve rather than a specific local signal. Every month the property sits unlisted is a month the holding meter is running.</p>
+
+      <p>The clearest version of this trap is the vendor who spends two or three months overpricing the property, watching it sit on the market with no offers, and then sells at a discount to compensate. They have incurred months of holding costs AND taken a price cut. The two outcomes compound each other. A well-priced campaign that clears in the first four weeks, even if the price feels slightly conservative, often produces a better net outcome than a longer campaign at an ambitious price point.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The right way to think about your holding period</h2>
+      <p>Before you decide how long to hold and prepare before launching a campaign, do two calculations. First, add up your actual monthly holding cost: mortgage interest, rates, water, insurance, and maintenance. Second, estimate what preparation work will genuinely add to the sale price in your suburb and price bracket, based on comparable sales, not optimism. If the value-add exceeds the holding cost, proceed. If it does not, launch sooner.</p>
+
+      <p>This is not an argument for rushing to market with an unprepared property. The evidence is consistent that well-prepared properties outperform poorly prepared ones by far more than the holding cost of a few weeks. But there is a difference between a focused four-week preparation period and a six-month delay while the meter runs. The former is almost always worth it. The latter depends entirely on specific, verifiable local conditions, and is frequently not.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want to know what preparation is actually worth doing?</strong> Daniel can give you an honest assessment of your property, what the preparation spend should be, and when to launch. No generic advice, no padding the campaign timeline. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<AuthorBio />
+</Layout>
