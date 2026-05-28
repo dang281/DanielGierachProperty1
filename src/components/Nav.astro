@@ -73,7 +73,7 @@ const suburbs = [
 <div
   id="mobile-menu"
   class="overflow-hidden transition-all duration-300"
-  style="position:fixed;top:76px;left:0;right:0;z-index:9997;max-height:0;background:#f2efe9;"
+  style="position:fixed;top:76px;left:0;right:0;z-index:9997;max-height:0;background:#f2efe9;-webkit-transform:translateZ(0);transform:translateZ(0);"
   aria-hidden="true"
   inert
 >
@@ -195,11 +195,11 @@ const suburbs = [
   const mobileMenuLinks = mobileMenu.querySelectorAll<HTMLElement>('a, button');
 
   function setLeafletVisibility(visible: boolean) {
-    // Leaflet canvases are GPU-composited and ignore CSS z-index on iOS Safari.
-    // Fading opacity to 0 removes them from the GPU compositor so the menu shows cleanly.
+    // opacity:0 does not remove GPU compositor layers on iOS Safari — child
+    // translate3d tiles can still paint through. visibility:hidden prevents
+    // painting entirely and removes the layers from the compositor.
     document.querySelectorAll<HTMLElement>('.leaflet-container').forEach(el => {
-      el.style.transition = visible ? 'opacity 0.15s' : 'none';
-      el.style.opacity = visible ? '' : '0';
+      el.style.visibility = visible ? '' : 'hidden';
       el.style.pointerEvents = visible ? '' : 'none';
     });
   }
