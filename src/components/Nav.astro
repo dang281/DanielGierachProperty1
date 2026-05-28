@@ -194,8 +194,19 @@ const suburbs = [
   // ── Mobile menu open/close + a11y ────────────────────────────────────────
   const mobileMenuLinks = mobileMenu.querySelectorAll<HTMLElement>('a, button');
 
+  function setLeafletVisibility(visible: boolean) {
+    // Leaflet canvases are GPU-composited and ignore CSS z-index on iOS Safari.
+    // Fading opacity to 0 removes them from the GPU compositor so the menu shows cleanly.
+    document.querySelectorAll<HTMLElement>('.leaflet-container').forEach(el => {
+      el.style.transition = visible ? 'opacity 0.15s' : 'none';
+      el.style.opacity = visible ? '' : '0';
+      el.style.pointerEvents = visible ? '' : 'none';
+    });
+  }
+
   function openMobileMenu() {
     menuOpen = true;
+    setLeafletVisibility(false);
     mobileMenu.style.maxHeight = '600px';
     navOverlay.style.display = 'block';
     bar3.style.width = '1.5rem';
@@ -208,6 +219,7 @@ const suburbs = [
 
   function closeMobileMenu(returnFocus = false) {
     menuOpen = false;
+    setLeafletVisibility(true);
     mobileMenu.style.maxHeight = '0';
     navOverlay.style.display = 'none';
     bar3.style.width = '1rem';
