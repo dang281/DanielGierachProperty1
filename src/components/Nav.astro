@@ -194,24 +194,9 @@ const suburbs = [
   // ── Mobile menu open/close + a11y ────────────────────────────────────────
   const mobileMenuLinks = mobileMenu.querySelectorAll<HTMLElement>('a, button');
 
-  function setLeafletVisibility(visible: boolean) {
-    // opacity:0 and visibility:hidden both leave GPU compositor layers active
-    // on iOS Safari, so translate3d tile panes still paint above fixed elements.
-    // display:none is the only change that removes elements from the render tree
-    // entirely, which kills the GPU layers. Fire a resize after restoring so
-    // Leaflet recalculates tile bounds.
-    document.querySelectorAll<HTMLElement>('.leaflet-container').forEach(el => {
-      el.style.display = visible ? '' : 'none';
-      el.style.pointerEvents = visible ? '' : 'none';
-    });
-    if (visible) {
-      requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
-    }
-  }
-
   function openMobileMenu() {
     menuOpen = true;
-    setLeafletVisibility(false);
+    document.body.classList.add('nav-menu-open');
     mobileMenu.style.maxHeight = '600px';
     navOverlay.style.display = 'block';
     bar3.style.width = '1.5rem';
@@ -224,7 +209,8 @@ const suburbs = [
 
   function closeMobileMenu(returnFocus = false) {
     menuOpen = false;
-    setLeafletVisibility(true);
+    document.body.classList.remove('nav-menu-open');
+    requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
     mobileMenu.style.maxHeight = '0';
     navOverlay.style.display = 'none';
     bar3.style.width = '1rem';

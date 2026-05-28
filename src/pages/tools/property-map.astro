@@ -508,6 +508,13 @@ const legendGroups = [
   #tool-sticky-cta { display: none !important; }
   #tool-cta { display: none !important; }
 
+  /* Hide all map content when mobile nav menu is open so GPU-composited
+     Leaflet tile layers don't paint above the fixed nav menu on iOS Safari */
+  body.nav-menu-open .pm-shell,
+  body.nav-menu-open .pm-control-tr {
+    display: none !important;
+  }
+
   @media (max-width: 640px) {
     body.tool-page .tool-header { display: none; }
     body.tool-page .tool-content { padding-top: 72px !important; }
@@ -2233,6 +2240,14 @@ window.PM_ZONES = {
     else requestAnimationFrame(whenLeafletReady);
   }
   whenLeafletReady();
+
+  // When the mobile nav menu closes, the map shell is restored from display:none.
+  // Call invalidateSize so Leaflet recalculates tile bounds for the visible area.
+  window.addEventListener('resize', () => {
+    if (map && document.body.classList.contains('nav-menu-open') === false) {
+      map.invalidateSize();
+    }
+  });
 })();
 </script>
 
