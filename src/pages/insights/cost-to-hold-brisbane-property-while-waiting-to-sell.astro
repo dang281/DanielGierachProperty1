@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
-const draft = true; // STAGED -- remove this line on publish date
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -33,7 +32,7 @@ const faqSchema = {
   ]
 };
 ---
-<Layout title="What It Actually Costs to Hold a Brisbane Property While Waiting to Sell | 2026 | Daniel Gierach Property" description="Mortgage interest, council rates, insurance, maintenance: the real holding costs Brisbane property owners face while waiting to sell. 2026 indicative figures." draft={draft} schema={faqSchema}>
+<Layout title="What It Actually Costs to Hold a Brisbane Property While Waiting to Sell | 2026 | Daniel Gierach Property" description="Mortgage interest, council rates, insurance, maintenance: the real holding costs Brisbane property owners face while waiting to sell. 2026 indicative figures." schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
