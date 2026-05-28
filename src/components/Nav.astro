@@ -66,12 +66,14 @@ const suburbs = [
 
 </header>
 
-<!-- Mobile menu — kept as a sibling OUTSIDE the header so Safari's backdrop-filter
-     compositing on #site-header cannot clip the dropdown -->
+<!-- Full-screen overlay: sits above Leaflet GPU tile layers, closes menu on tap -->
+<div id="nav-overlay" style="display:none;position:fixed;inset:0;z-index:9996;background:rgba(10,8,6,0.45);" aria-hidden="true"></div>
+
+<!-- Mobile menu — sibling of header; z-index above overlay -->
 <div
   id="mobile-menu"
   class="overflow-hidden transition-all duration-300"
-  style="position:fixed;top:76px;left:0;right:0;z-index:9998;max-height:0;background:rgba(242,239,233,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);"
+  style="position:fixed;top:76px;left:0;right:0;z-index:9997;max-height:0;background:#f2efe9;"
   aria-hidden="true"
   inert
 >
@@ -111,6 +113,7 @@ const suburbs = [
   const navCtaEl     = document.getElementById('nav-cta')!;
   const mobileToggle = document.getElementById('mobile-toggle')!;
   const mobileMenu   = document.getElementById('mobile-menu')!;
+  const navOverlay   = document.getElementById('nav-overlay')!;
   const bar1         = document.getElementById('bar1')!;
   const bar2         = document.getElementById('bar2')!;
   const bar3         = document.getElementById('bar3')!;
@@ -194,6 +197,7 @@ const suburbs = [
   function openMobileMenu() {
     menuOpen = true;
     mobileMenu.style.maxHeight = '600px';
+    navOverlay.style.display = 'block';
     bar3.style.width = '1.5rem';
     mobileToggle.setAttribute('aria-expanded', 'true');
     mobileMenu.setAttribute('aria-hidden', 'false');
@@ -205,6 +209,7 @@ const suburbs = [
   function closeMobileMenu(returnFocus = false) {
     menuOpen = false;
     mobileMenu.style.maxHeight = '0';
+    navOverlay.style.display = 'none';
     bar3.style.width = '1rem';
     mobileToggle.setAttribute('aria-expanded', 'false');
     mobileMenu.setAttribute('aria-hidden', 'true');
@@ -215,6 +220,8 @@ const suburbs = [
   mobileToggle.addEventListener('click', () => {
     if (menuOpen) closeMobileMenu(); else openMobileMenu();
   });
+
+  navOverlay.addEventListener('click', () => closeMobileMenu());
 
   // Close on Escape, return focus to toggle
   document.addEventListener('keydown', (e: KeyboardEvent) => {
