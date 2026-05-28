@@ -73,7 +73,7 @@ const suburbs = [
 <div
   id="mobile-menu"
   class="overflow-hidden transition-all duration-300"
-  style="position:fixed;top:76px;left:0;right:0;z-index:9997;max-height:0;background:#f2efe9;-webkit-transform:translateZ(0);transform:translateZ(0);"
+  style="position:fixed;top:76px;left:0;right:0;z-index:9997;max-height:0;background:#f2efe9;"
   aria-hidden="true"
   inert
 >
@@ -195,13 +195,18 @@ const suburbs = [
   const mobileMenuLinks = mobileMenu.querySelectorAll<HTMLElement>('a, button');
 
   function setLeafletVisibility(visible: boolean) {
-    // opacity:0 does not remove GPU compositor layers on iOS Safari — child
-    // translate3d tiles can still paint through. visibility:hidden prevents
-    // painting entirely and removes the layers from the compositor.
+    // opacity:0 and visibility:hidden both leave GPU compositor layers active
+    // on iOS Safari, so translate3d tile panes still paint above fixed elements.
+    // display:none is the only change that removes elements from the render tree
+    // entirely, which kills the GPU layers. Fire a resize after restoring so
+    // Leaflet recalculates tile bounds.
     document.querySelectorAll<HTMLElement>('.leaflet-container').forEach(el => {
-      el.style.visibility = visible ? '' : 'hidden';
+      el.style.display = visible ? '' : 'none';
       el.style.pointerEvents = visible ? '' : 'none';
     });
+    if (visible) {
+      requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+    }
   }
 
   function openMobileMenu() {
