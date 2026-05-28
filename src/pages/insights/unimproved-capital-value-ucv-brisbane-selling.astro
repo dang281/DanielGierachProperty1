@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the unimproved capital value affect what I can sell my Brisbane home for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not directly. The unimproved capital value (UCV) is the Queensland Valuer-General's assessment of the land alone, excluding the house, pool, landscaping, and any other improvements. Sale price is set by comparable sales and what buyers are willing to pay for the whole property. A high UCV does not push your sale price up, and a low UCV does not cap it. UCV matters more for holding costs (council rates and land tax) than for what your property fetches at sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does UCV affect Brisbane council rates and land tax for a property I am selling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane City Council calculates general rates by multiplying your property's three-year average UCV by a rate-in-the-dollar set each budget. Queensland state land tax (paid by investors and second-property owners, not owner-occupiers on a principal residence) uses the same UCV. A sharp annual UCV increase can lift quarterly council rates by hundreds of dollars and, for investors, materially increase the annual land tax bill. At sale, council rates and any land tax are adjusted between buyer and seller at settlement based on the day of possession."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I object to a UCV that I think is too high before selling my Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Queensland Valuer-General publishes new statutory land valuations annually, usually issued in March and effective 30 June. You have 60 days from the date on your valuation notice to lodge a properly grounded objection. Acceptable grounds include comparable land sales that contradict the assessed value, errors in land area or site characteristics, or a clear inconsistency with similar lots in your street. The objection is free, but the case must be evidence-based, not an opinion. A successful objection reduces your council rates and land tax going forward, which can be a useful talking point for an investor buyer."
+      }
+    }
+  ]
+};
+---
+<Layout title="How Brisbane Unimproved Capital Value (UCV) Affects Your Sale | Daniel Gierach Property" description="The unimproved capital value sits on every Brisbane rates notice and confuses both buyers and sellers. Here is what UCV actually is, what it changes when you sell, and how to handle it." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 6 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How Brisbane Unimproved Capital Value (UCV) Affects Your Sale
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The figure sits on every Brisbane rates notice and confuses both buyers and sellers. Here is what UCV actually is, what it changes when you go to market, and how to use it sensibly during a campaign.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Once a year, Brisbane property owners receive a statutory land valuation notice from the Queensland Valuer-General. The number on that notice is the unimproved capital value, or UCV. It quietly drives a lot of what a property costs to hold, yet many vendors only think about it when their accountant raises land tax or when a buyer mentions it during a contract negotiation. Understanding what UCV is, what it is not, and how it affects your sale is one of those small areas of knowledge that separates a confident seller from a nervous one.</p>
+
+      <p>The simple definition is this: UCV is the assessed value of your land if it were vacant and on the open market, with no house, pool, fence, driveway, landscaping, or any other improvement on it. It is a land-only figure. The buildings and other improvements that often represent the majority of your property's market value are deliberately excluded from the UCV. That single distinction is the source of most of the confusion buyers and sellers have about it.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What UCV is, and how the Valuer-General sets it</h2>
+      <p>Statutory land valuations in Queensland are issued under the Land Valuation Act 2010. The Valuer-General assesses every rateable parcel of land, typically reviewing each local government area annually. Notices are usually sent in March and take effect from 30 June of that year. The figure on your notice is the result of a mass valuation process that uses recent sales of vacant or near-vacant comparable lots in your area, adjusted for size, shape, slope, frontage, services, and any constraints such as flood overlays or easements.</p>
+
+      <p>Because UCV is land-only, two houses on identical-sized lots in the same street with very different homes on them will often have very similar UCVs. The Queenslander on one block and the recently rebuilt contemporary on the other are not part of the calculation. This is by design. UCV is intended to measure land scarcity and locational desirability, not the quality of what is built on top.</p>
+
+      <p>In inner-east Brisbane suburbs such as Hawthorne, Bulimba, Morningside, and Camp Hill, UCVs have generally risen steadily over the past several valuation cycles, reflecting strong underlying land demand. That trend is real and meaningful, but it tells you about land value movements, not necessarily about what your house plus land will achieve at sale.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why UCV is not your sale price</h2>
+      <p>The most common mistake vendors make is anchoring on their UCV when forming a price expectation. The mistake usually goes one of two ways. The first is the owner of a well-renovated home in a desirable street who sees a relatively modest UCV and worries that the market will only pay land value. The second is the owner of an older, unrenovated home on a large block who sees a high UCV and assumes the sale price must be well above that figure.</p>
+
+      <p>Neither inference is sound. A market value for a Brisbane home is set by what comparable house-plus-land properties have actually sold for recently in your suburb and price bracket, with adjustments for the specific features of your property. The Valuer-General's UCV is one slice of that picture, and a slice that deliberately excludes the largest single component of most inner-east sale prices: the dwelling itself.</p>
+
+      <p>It is worth noting that the relationship between UCV and sale price varies significantly across Brisbane. In suburbs where most of the value sits in the land (large flat blocks in tightly held streets, knockdown rebuild territory, or development sites), UCV can be a closer proxy. In suburbs where premium homes sit on average-sized blocks, the gap between UCV and sale price is much wider, with the improvements representing 40 to 60 percent or more of the total.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Where UCV does affect your sale: holding costs and buyer questions</h2>
+      <p>UCV genuinely matters in two places at sale. The first is rates and land tax, which are calculated from UCV and which a buyer will inherit. The second is buyer perception, which can be useful or harmful depending on how it is handled.</p>
+
+      <p>Brisbane City Council calculates general rates by applying a rate-in-the-dollar to the average of your last three years of UCVs. When UCV jumps sharply in a valuation cycle, council rates rise. For a typical inner-east family home, an unusually large UCV increase can lift quarterly rates by a few hundred dollars. Buyers reviewing the most recent rates notice during due diligence will pick this up, and an investor in particular will factor the forward-looking annual holding cost into their offer.</p>
+
+      <p>Queensland state land tax is the other consequence, but only for investors and owners of second properties whose total Queensland landholdings exceed the threshold. The principal place of residence is exempt from land tax. For sellers of investment properties, especially those holding a portfolio across several suburbs, a rising UCV can push the property over a higher land tax bracket. Buyers running their numbers will calculate land tax based on UCV, so a sharply increased UCV can soften investor demand even when the underlying market remains strong.</p>
+
+      <p>At settlement, council rates and any land tax owing are adjusted between you and the buyer based on the day of possession. Your conveyancer will request a rates clearance certificate from Brisbane City Council and a land tax clearance from Queensland Revenue Office. These adjustments are routine, but they are the practical mechanism by which the UCV-driven holding costs change hands.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When UCV jumps significantly and you are selling soon</h2>
+      <p>If your latest valuation notice shows a UCV that has risen well beyond the trend of recent years and beyond what comparable land sales would support, you have two questions to consider. The first is whether to object before the deadline. The second is how to position the figure with prospective buyers.</p>
+
+      <p>You have 60 days from the date on the valuation notice to lodge an objection with the Valuer-General. Acceptable grounds include comparable land sales that contradict the assessed value, errors in land area or characteristics on the valuation roll, and clear inconsistency with similar lots in your street. The objection process is free but requires evidence, not opinion. A typical objection cites recent vacant or near-vacant lot sales in the same suburb, sometimes paired with sales of older homes that have been demolished, where the buyer effectively paid for the land alone. If the objection is successful, your UCV is reduced and your rates and land tax fall going forward.</p>
+
+      <p>For sellers who plan to be on the market within a few months, a successful objection is a tangible benefit to pass to the buyer. Lower council rates and lower land tax forward are real money for an investor or a long-term owner-occupier. Conversely, a UCV that has spiked without explanation and not been objected to can become a small but persistent question during a campaign, particularly for analytical buyers.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How buyers actually use UCV in negotiations</h2>
+      <p>Experienced Brisbane buyers and buyer's agents look at UCV alongside, not instead of, comparable sales. Their thinking varies by buyer type. An owner-occupier looking at a renovated home in Hawthorne is generally not anchored on UCV at all. They are looking at recent comparable sales of similar finished homes in the catchment, and the UCV is barely on their radar.</p>
+
+      <p>An investor buyer pays more attention. They calculate land tax exposure from UCV, factor in three-year average rates, and want to understand the trajectory. A property with a UCV that has risen steadily for several cycles tells them the location is strengthening. A property with a UCV that has spiked unusually invites a question about why.</p>
+
+      <p>A development-minded buyer pays the most attention. For a knockdown rebuild prospect, a small infill subdivision, or a duplex site, the UCV becomes a working baseline. They will compare UCV to recent vacant or near-vacant lot sales in the area, then add demolition cost, statutory fees, and a developer margin to arrive at what they can pay. In these cases the UCV-to-sale-price gap narrows considerably and the figure becomes more meaningful.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What sellers should actually do with UCV</h2>
+      <p>The honest answer is: very little, in most cases. Check your latest valuation notice, understand the figure, and know what it has done to your rates. If the UCV looks out of step with recent land sales in your street, consider whether an objection is worth the time. If your property is a development site or a likely knockdown rebuild, expect the UCV to be a meaningful reference for the buyers most likely to transact.</p>
+
+      <p>What you should not do is treat the UCV as a price floor or a price ceiling. Sale prices in Brisbane's inner east are driven by comparable house-plus-land sales, presentation, marketing reach, and buyer competition. The number on the rates notice is a separate calculation done for a separate purpose. Treating it as a market indicator confuses two distinct measures of property value and almost always leads to a worse pricing decision.</p>
+
+      <p>If you are uncertain how your UCV compares to recent sales of land in your suburb, or whether an objection has merit before you list, that is exactly the kind of question an experienced local agent can run through with you in an appraisal meeting. A short conversation with the right comparable evidence in front of you usually clears up most of the confusion and points to the right next step.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Thinking about selling?</strong> Daniel can walk you through your UCV, recent comparable sales in your street, and what your property is likely to achieve in the current market. No fluff, no obligation. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/property-pricing-and-valuation/">Pricing and Valuation guide series</a>. See also <a href="/insights/how-brisbane-city-council-rates-calculated-seller-guide/">How Brisbane City Council Rates Are Calculated</a> and <a href="/insights/land-tax-selling-queensland/">Land Tax When Selling in Queensland</a>.</p>
+<AuthorBio />
+</Layout>
