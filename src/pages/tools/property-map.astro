@@ -1684,7 +1684,7 @@ window.PM_ZONES = {
     features.forEach(f => {
       const p = f.properties;
       const streetPart = p.housenumber && p.street ? `${p.housenumber} ${p.street}` : (p.street || p.name || '');
-      const label = [streetPart, p.city || p.suburb].filter(Boolean).join(', ');
+      const label = [streetPart, p.suburb || p.district || p.city].filter(Boolean).join(', ');
       const item = document.createElement('div');
       item.textContent = label;
       Object.assign(item.style, {
