@@ -51,7 +51,7 @@ export default function PlanningView({
               <button
                 key={tab.value}
                 onClick={() => setView(tab.value)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-sans font-semibold transition-all"
+                className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-sans font-semibold transition-all w-[80px]"
                 style={view === tab.value
                   ? { background: 'var(--color-gold)', color: '#1c1917' }
                   : { color: 'var(--color-cream-x)', background: 'transparent' }
@@ -63,8 +63,10 @@ export default function PlanningView({
             ))}
           </div>
 
-          {/* Manual refresh — calendar only */}
-          {view === 'calendar' && <AutoRefresh intervalMs={60_000} showButton={true} />}
+          {/* Manual refresh — calendar only; keep in DOM to avoid layout shift */}
+          <div style={{ visibility: view === 'calendar' ? 'visible' : 'hidden' }}>
+            <AutoRefresh intervalMs={60_000} showButton={true} />
+          </div>
         </div>
       </div>
 

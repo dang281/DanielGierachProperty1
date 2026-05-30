@@ -41,6 +41,10 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
   const [generatingVisual, setGeneratingVisual] = useState(false)
   const [visualMode, setVisualMode] = useState<'primary' | 'alternate' | null>(null)
   const [visualError, setVisualError] = useState<string | null>(null)
+  const [starred, setStarred] = useState(false)
+  const [showSchedule, setShowSchedule] = useState(false)
+  const [scheduleDateInput, setScheduleDateInput] = useState('')
+  const [scheduleTimeInput, setScheduleTimeInput] = useState('07:30')
 
   useEffect(() => {
     params.then(({ id }) => {
@@ -48,6 +52,11 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
         if (data) {
           setItem(data)
           setForm(data)
+          setScheduleDateInput(data.scheduled_date ?? '')
+          try {
+            const saved = JSON.parse(localStorage.getItem('dg-library-starred') ?? '[]')
+            setStarred(Array.isArray(saved) && saved.includes(id))
+          } catch { /* ignore */ }
         }
       })
     })
@@ -114,10 +123,50 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
     })
   }
 
+  function toggleStar() {
+    if (!item) return
+    const key = 'dg-library-starred'
+    try {
+      const saved: string[] = JSON.parse(localStorage.getItem(key) ?? '[]')
+      const next = !starred
+      const updated = next ? [...saved, item.id] : saved.filter(x => x !== item.id)
+      localStorage.setItem(key, JSON.stringify(updated))
+      setStarred(next)
+      // Starring a Needs Review post auto-promotes to LinkedIn Ready
+      if (next && item.status === 'idea') {
+        startTransition(async () => {
+          await updateStatus(item.id, 'scheduled')
+          setItem(prev => prev ? { ...prev, status: 'scheduled' } : prev)
+        })
+      }
+    } catch { /* ignore */ }
+  }
+
+  function saveSchedule() {
+    if (!scheduleDateInput) return
+    startTransition(async () => {
+      await updateItem(item!.id, {
+        scheduled_date: scheduleDateInput,
+        scheduled_time: scheduleTimeInput || null,
+        status: 'scheduled',
+      })
+      setItem(prev => prev ? { ...prev, scheduled_date: scheduleDateInput, scheduled_time: scheduleTimeInput || null, status: 'scheduled' } : prev)
+      setShowSchedule(false)
+    })
+  }
+
   function setStatus(status: Status) {
     startTransition(async () => {
       await updateStatus(item!.id, status)
       setItem({ ...item!, status })
+      // Auto-remove star when moving out of the active queue
+      if (['queued', 'posted', 'rejected'].includes(status)) {
+        try {
+          const saved: string[] = JSON.parse(localStorage.getItem('dg-library-starred') ?? '[]')
+          localStorage.setItem('dg-library-starred', JSON.stringify(saved.filter(x => x !== item!.id)))
+          setStarred(false)
+        } catch { /* ignore */ }
+      }
       // Notify the agent for meaningful status changes
       if (['scheduled', 'posted', 'rejected', 'ready'].includes(status)) {
         const notified = await notifyAgentOfStatusChange(
@@ -231,7 +280,79 @@ export default function ContentDetailPage({ params }: { params: Promise<{ id: st
           </div>
         </div>
 
-        <div className="flex gap-2 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
+
+          {/* Schedule button */}
+          {!editing && (
+            <div className="relative">
+              <button
+                onClick={() => setShowSchedule(s => !s)}
+                title="Schedule post"
+                className="flex items-center gap-1.5 text-xs font-sans font-semibold px-3 py-1.5 rounded-lg transition-all"
+                style={{ background: 'rgba(34,197,94,0.12)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.3)' }}
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                Schedule
+              </button>
+              {showSchedule && (
+                <div className="absolute right-0 top-full mt-2 z-50 rounded-xl border border-[var(--color-border-w)] p-4 flex flex-col gap-3 min-w-[220px]"
+                  style={{ background: 'var(--color-card)' }}>
+                  <p className="text-[11px] font-sans font-semibold text-[var(--color-cream-dim)] uppercase tracking-wide">Set date &amp; time</p>
+                  <input
+                    type="date"
+                    value={scheduleDateInput}
+                    onChange={e => setScheduleDateInput(e.target.value)}
+                    className={inputClass}
+                  />
+                  <input
+                    type="time"
+                    value={scheduleTimeInput}
+                    onChange={e => setScheduleTimeInput(e.target.value)}
+                    className={inputClass}
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setShowSchedule(false)}
+                      className="flex-1 text-xs font-sans px-3 py-1.5 rounded-lg border border-[var(--color-border-w)] text-[var(--color-cream-dim)]"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={saveSchedule}
+                      disabled={!scheduleDateInput || isPending}
+                      className="flex-1 text-xs font-sans font-semibold px-3 py-1.5 rounded-lg transition-all disabled:opacity-40"
+                      style={{ background: 'rgba(34,197,94,0.15)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.3)' }}
+                    >
+                      {isPending ? 'Saving…' : 'Set'}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Favourite button */}
+          {!editing && (
+            <button
+              onClick={toggleStar}
+              title={starred ? 'Remove from library' : 'Add to library'}
+              className="flex items-center justify-center w-8 h-8 rounded-lg transition-all"
+              style={starred
+                ? { background: 'rgba(196,145,42,0.2)', border: '1px solid rgba(196,145,42,0.4)' }
+                : { background: 'transparent', border: '1px solid var(--color-border-w)' }
+              }
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24"
+                fill={starred ? '#c4912a' : 'none'}
+                stroke={starred ? '#c4912a' : 'var(--color-cream-dim)'}
+                strokeWidth="2"
+              >
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </button>
+          )}
 
           {editing ? (
             <>
