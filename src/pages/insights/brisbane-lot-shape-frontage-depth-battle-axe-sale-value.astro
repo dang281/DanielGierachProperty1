@@ -1,0 +1,153 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the shape of a Brisbane block affect its sale price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Two blocks of identical area in the same Brisbane suburb can sell at meaningfully different prices because of shape. A regular rectangle with a usable frontage, level grade and a logical building envelope is worth more than an irregular, narrow, or battle-axe block of the same square-metre figure. Buyers, valuers, and developers all adjust for shape. The adjustment is rarely listed on a sales sheet but it is built into the price the market clears at."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good frontage for a Brisbane inner east block?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a standard residential block in Brisbane's inner east, a frontage of about 15 to 20 metres on a depth of around 30 to 40 metres is the conventional rectangle the market reads as normal. Frontages below roughly 12 metres start to limit garage placement, side setbacks, and rebuild flexibility, and tend to discount the block compared with a wider equivalent. Frontages above 20 metres on the same depth typically attract a premium, especially for knock-down-rebuild buyers and small developers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much less does a battle-axe block sell for in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Battle-axe blocks in Brisbane's inner east typically transact at a discount of roughly 10 to 25 percent compared with an equivalent street-front block of the same area in the same suburb, with the gap widening when the access handle is long, narrow, or shared. The discount reflects reduced street presence, narrower buyer pools (developers and large families self-select out), and the practical limits of construction access. The exact gap depends on the handle width, whether the driveway is shared with neighbours, and the quality of the rear building envelope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a deep narrow block worth more or less than a wide shallow block of the same size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Brisbane's inner east, a wide shallow block usually outperforms a deep narrow block of the same area for owner-occupier buyers, because the wider frontage allows a more open street-facing facade, easier garage placement, and a logical living-to-garden flow. Deep narrow blocks suit dual-occupancy and townhouse development under LMR zoning, so they can be worth more to developer buyers. The right comparison depends on the dominant buyer pool for that street and price bracket."
+      }
+    }
+  ]
+};
+---
+<Layout title="How Brisbane Property Lot Shape Affects Sale Value: Frontage, Depth and Battle-Axe Blocks | Daniel Gierach Property" description="Two Brisbane blocks of identical area can sell at very different prices because of shape. Here is how frontage, depth, and battle-axe configuration move sale value, who pays the premium, and what sellers should benchmark against." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 10 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How Brisbane Property Lot Shape Affects Sale Value: Frontage, Depth and Battle-Axe Blocks
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Two Brisbane blocks of identical square-metre figure can sell at meaningfully different prices because of shape. How frontage, depth, and battle-axe configuration move sale value in the inner east, who pays the premium, and what sellers should benchmark against.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>When sellers begin benchmarking their Brisbane home against recent sales, the first number they reach for is land area. The second is bedroom count. The shape of the block tends to come up later, if it comes up at all. That is a mistake. In Brisbane's inner east, two blocks of identical area in the same suburb can sell at meaningfully different prices because of how the parcel is configured. A regular rectangle on a wide frontage is a different asset to a long thin block, an irregular wedge, or a battle-axe with a narrow access handle, even when the square-metre figure on the title is the same.</p>
+
+      <p>This article is for vendors who are about to list and want to read their block's shape honestly before pricing, and for owners benchmarking against comparable sales who suspect the headline land figure is doing too much of the work in their estimate. It walks through what frontage actually does to value, how depth interacts with frontage, the specific case of battle-axe and rear blocks, and how the same shape can be worth different amounts to different buyer pools in the same suburb.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why shape moves price independently of area</h2>
+      <p>Land area is one variable. The practical possibilities the parcel allows are another. A 600 square metre rectangle with an 18 metre frontage and a 33 metre depth offers a different building envelope, garden layout, garage placement, and rebuild scope to a 600 square metre block that is 10 metres wide and 60 metres deep. The total area is identical. The houses you can put on each, the way each presents to the street, and the natural light and ventilation each receives are not.</p>
+
+      <p>Buyers and valuers price these differences in implicitly. Owner-occupier buyers respond to street presence, kerb appeal, garage access, and the relationship between the living areas and the back garden. Developer buyers respond to the building envelope a future rebuild or subdivision can legally occupy. Both groups discount blocks that constrain their options and pay premiums for blocks that expand them. The seller who only looks at the area figure misses the part of the price that is being set by shape.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What frontage actually does to value</h2>
+      <p>Frontage is the width of the block at the street boundary. In Brisbane's inner east residential streets, a frontage of around 15 to 20 metres on a depth of 30 to 40 metres is the conventional rectangle the market reads as normal. Most of the post-war character homes in Camp Hill, Cannon Hill, Carina and Carindale sit on blocks in roughly this range, and most of the comparable sales sellers will be benchmarking against share that shape.</p>
+
+      <p>Below about 12 metres of frontage, several practical constraints start to bite. Side setbacks (typically 1.5 metres each side under Brisbane City Council's small lot codes, more under standard residential codes) consume a larger share of the buildable width. Garage placement becomes harder, especially for double garages, and on narrower blocks the garage often dominates the street facade in a way buyers find aesthetically compromising. Side access from front to rear for trades, garden equipment, or a future granny flat becomes restricted. None of these is a disqualifier on its own, but together they reduce the block's flexibility and tend to discount it compared with a wider equivalent.</p>
+
+      <p>Above about 20 metres of frontage on the same depth, the block starts to attract a premium. Wider frontages permit a more generous street-facing facade, easier garage placement away from the main entry, room for a swimming pool along the side rather than in the rear yard, and in suitable zones the option to subdivide into two narrower blocks subject to council approval. Knock-down-rebuild buyers and small developers pay specifically for this flexibility, and their willingness to pay sets a floor on the value of wide-frontage blocks that quietly underpins owner-occupier prices in the same streets.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How depth interacts with frontage</h2>
+      <p>Depth is the front-to-back measurement of the block. It interacts with frontage to determine the usable yard, the relationship between the house and the rear garden, and the practical options for a rebuild.</p>
+
+      <p>Standard depth in Brisbane's inner east is approximately 30 to 40 metres. A typical post-war home sits roughly 6 metres back from the front boundary, occupies around 12 to 16 metres of depth itself, and leaves 10 to 18 metres of rear yard. That rear yard is where families spend most of their outdoor time, where pools go, where kids play, and where buyers form their emotional response to the property during inspections. Shallower depths compress the yard. Deeper depths give more room but also push the house further from the street and can leave large parts of the block underused.</p>
+
+      <p>The interesting case is the deep narrow block, often a legacy of older subdivisions where lots were cut for service-by-foot streets rather than car-based access. A 600 square metre block at 10 metres by 60 metres has the same headline area as a 600 square metre block at 20 metres by 30 metres, but the two trade differently. The deep narrow block is harder for an owner-occupier to use well: the house tends to be long and corridor-heavy, light into the centre rooms is limited, and the rear of the block can feel disconnected from the front. The wide shallow block presents more openly to the street, gives a more conventional family-home layout, and tends to win the owner-occupier preference in the same price bracket.</p>
+
+      <p>Where the deep narrow block can recover ground is in development scenarios. Under Brisbane's Low-Medium Density Residential (LMR) zoning, a deep block with adequate frontage can sometimes support a dual occupancy or a small townhouse development that a wide shallow block cannot. Developer buyers pay for that potential. So the same block shape that disappoints an owner-occupier comparison can outperform on developer arithmetic. The relative weight of the two buyer pools in a particular street determines which outcome wins.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Battle-axe blocks: what they are and how the market prices them</h2>
+      <p>A battle-axe block (sometimes called a hammerhead block or simply a rear block) is a parcel with a narrow access handle running from the street to a main body of land that sits behind another property. Viewed from above the shape resembles the head and handle of an axe. Battle-axes are common in older Brisbane suburbs where larger blocks were subdivided sometime after the original street layout was set, and the resulting back blocks share driveway access with their street-frontage neighbours or have their own narrow strip of driveway access running between adjoining properties.</p>
+
+      <p>The market discount on battle-axe blocks in Brisbane's inner east is typically in the range of roughly 10 to 25 percent compared with an equivalent street-front block of the same area in the same suburb, and sometimes more. Several factors set the size of the discount:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Street presence and kerb appeal.</strong> A battle-axe block has no street facade. From the street, the buyer sees the front-block neighbour's house and a driveway. That removes the emotional response many owner-occupier buyers have when they first see a property, and it narrows the campaign to buyers who are explicitly comfortable with no street presence (typically buyers prioritising privacy, gardens, or land area at a lower per-square-metre figure).</p>
+
+      <p><strong style="color:var(--color-text-primary);">Access handle quality.</strong> The width, length, and surface of the access handle matters. A handle of 4 metres or more, sealed bitumen or concrete, gives reasonable two-way access for the rear block. A narrower handle, an unsealed surface, or a long driveway shared with the front block adds friction. Construction access during a future rebuild is also a real consideration: a narrow handle limits the size of vehicles, deliveries, and equipment that can reach the back block, which raises future build costs.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Shared driveway arrangements.</strong> Where the driveway is on a registered easement shared with the front-block neighbour, ongoing maintenance, repairs, and the relationship between the two owners become live issues. Buyers do their due diligence on the easement registration, the maintenance obligations recorded against the title, and any history of disputes. A clean easement with clear maintenance terms reduces the discount; a vague or contested arrangement deepens it.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Building envelope quality.</strong> Once a buyer is past the driveway, the rear block itself can range from excellent to constrained. A square or near-square back block with logical orientation, room for a generous house and yard, and good privacy can still attract a strong owner-occupier price despite the handle. A back block that is itself awkward (long thin, irregular, or sloped) compounds the access discount.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Irregular and wedge-shaped blocks</h2>
+      <p>Many older Brisbane streets follow the contour of the land rather than a regular grid, and the resulting blocks are sometimes wedge-shaped, trapezoidal, or simply irregular. The market treats these blocks individually rather than by formula. Where the irregular shape produces a usable building envelope (for example, a wedge that widens at the rear and gives a generous private garden) the discount is small or absent. Where the shape produces wasted area (a sharp corner, an awkward triangle, or a section of land that cannot be built on or used as garden) the discount can be material.</p>
+
+      <p>The honest test for an irregular block is to walk it with a measuring tape and ask, of every section, what could legally be built or planted there. Land that cannot be used adds to the rates bill without adding to the family's enjoyment or the future buyer's price. Land that can be used (a meandering garden, a side lawn, a screening planting) is just as valuable as the same area on a regular block. Many sellers carrying irregular blocks under-price themselves by treating the unusable corners as discount triggers when an experienced buyer would not.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Corner blocks and through-blocks</h2>
+      <p>Corner blocks have two street frontages, which changes both the building envelope and the buyer pool. The main implications for value are: more flexibility in driveway placement (often a quieter side street), additional setback requirements that reduce the buildable area, more glazed surfaces exposed to street view, and in residential zones the option for a separate granny flat or studio with its own street access. The net effect on value depends on the suburb and the orientation. In many inner east streets, corner blocks attract a premium for developers (because of the two frontages and the option to subdivide in suitable zones) and a more neutral response from owner-occupiers (who weigh the noise of two streets against the access advantages).</p>
+
+      <p>Through-blocks (parcels that run from one street through to another) are rarer but valuable when they appear, because they offer separate driveway access at the rear, the option for a discreet second dwelling, and in some cases the potential to split into two street-fronting blocks. Sellers of through-blocks should benchmark cautiously: comparable sales for a true through-block are scarce, and the premium for the configuration can be significant.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How orientation amplifies the shape effect</h2>
+      <p>Block shape interacts with orientation in ways that move price further than either variable alone. A wide-frontage block oriented north on the rear yard gives winter sun into the living areas of any sensibly designed house and shelters the outdoor space from the harshest western sun in summer. The same wide-frontage block oriented with the back yard facing south is meaningfully less valuable to owner-occupier buyers, even with identical area, frontage, and depth.</p>
+
+      <p>Battle-axe blocks can sometimes outperform their headline discount when the orientation works well: a back block facing north with good privacy from neighbouring homes can be a genuinely desirable property despite the access handle, and these blocks tend to surprise on price when marketed correctly. Battle-axe blocks facing south or with neighbour-overlooked yards do not have that recovery option, and the discount holds.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The developer arithmetic for irregular shapes</h2>
+      <p>In several Brisbane inner east suburbs, knock-down-rebuild and small-scale developer buyers are a persistent component of the buyer pool. They run different arithmetic to owner-occupiers, and their willingness to pay for a particular shape can quietly set the floor under a property's value.</p>
+
+      <p>Developers focus on the building envelope a future rebuild can legally occupy under the relevant zoning and the council's residential codes. For a knock-down-rebuild, the relevant constraints are setbacks, site cover, plot ratio (where applicable), height limits, and overshadowing rules. For a townhouse or dual-occupancy under LMR zoning, the constraints expand to include minimum lot sizes per unit, communal open space requirements, and access standards. The same block area can support very different built outcomes depending on how the shape fits into these codes.</p>
+
+      <p>The practical implication for sellers is that a block with a shape developers value (wide frontage, regular geometry, suitable for at least two separate dwellings under the prevailing zoning) carries a developer premium even when the existing home is not being knocked down. A block whose shape rules out the standard developer plays trades closer to its owner-occupier value alone. Sellers benchmarking against comparable sales should know which version of the market is setting the price in their specific street.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Common mistakes when sellers benchmark on land area alone</h2>
+      <p>A short list of the recurring errors that under-price or over-price properties when shape is not factored in carefully.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Treating area as a proxy for value.</strong> A 700 square metre figure on the title looks impressive, but if 200 square metres of it is consumed by an awkward access handle or an unusable corner, the property is functionally smaller than its headline suggests. Owners often anchor on the bigger number and end up listing above what the market will pay.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Comparing across shapes without adjustment.</strong> Sellers sometimes find a comparable sale at a similar area in the same suburb and use it as a direct benchmark, without noting that the comparable was a regular rectangle and theirs is a battle-axe, or vice versa. Same area, different asset. The benchmark needs to adjust for the shape gap before it can be useful.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Ignoring the dominant buyer pool.</strong> In some inner east streets the buyer pool is dominated by owner-occupiers and the shape considerations are about kerb appeal, living layout, and garden flow. In others, developer interest is heavy and shape considerations are about building envelope and rebuild options. The shape premium or discount is different in each. Selling a wide-frontage block in a developer-active street through a marketing campaign that only speaks to owner-occupiers leaves money on the table.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Understating the access handle discount on battle-axes.</strong> Some sellers of battle-axe blocks anchor on the area figure and a single high comparable from a nearby street-front block, hoping the market will not adjust for the handle. The buyer pool always adjusts. The honest approach is to identify the realistic discount range early and price the campaign within it.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A practical framework for sellers</h2>
+      <p>Before listing, take a property's title plan and walk through four questions. First, what is the frontage and how does it compare to the conventional rectangle for the suburb? Second, what is the depth and what is the resulting yard-to-house ratio? Third, are there any non-standard features (battle-axe handle, irregular boundaries, easements, corners) that change how a typical buyer will read the block? Fourth, what does the prevailing zoning permit, and what does the dominant buyer pool in this street actually pay for shape?</p>
+
+      <p>The answers should shape both the pricing benchmark and the campaign. Wide-frontage blocks in developer-active streets benefit from marketing that speaks to both buyer pools. Battle-axe blocks benefit from candid disclosure of the access arrangement and from photography that does the rear block justice. Irregular and wedge-shaped blocks benefit from highlighting the usable area rather than apologising for the boundary line on a sketch plan. The shape of the block is a feature of the property, not a footnote to it, and the most accurate sale prices are achieved when the campaign and the pricing treat it that way.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Trying to price a block where shape is doing real work?</strong> Daniel can help you read frontage, depth, and access arrangement against the right comparable sales and the dominant buyer pool for your street. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/property-pricing-and-valuation/">Pricing, Timing and Valuation guide series</a>.</p>
+<AuthorBio />
+</Layout>
