@@ -99,6 +99,44 @@ function extractTheme(item: ContentItem | undefined): string | null {
   return null
 }
 
+// Normalise caption for LinkedIn paste: collapse hashtag lines into a single
+// space-separated line, drop the markdown headers, drop trailing blanks.
+function captionForClipboard(raw: string | null): string {
+  if (!raw) return ''
+  // If the caption contains markdown section headers, take only the body between
+  // "## Caption" and the next "##" header.
+  const captionMatch = raw.match(/##\s*Caption\s*\n([\s\S]+?)(?:\n##|$)/i)
+  const hashtagsMatch = raw.match(/##\s*Hashtags\s*\n([\s\S]+?)(?:\n##|$)/i)
+  let body = (captionMatch ? captionMatch[1] : raw).trim()
+  body = body.replace(/^---+\s*$/gm, '').trim()
+  const tags = hashtagsMatch
+    ? hashtagsMatch[1].split('\n').map(s => s.trim()).filter(s => s.startsWith('#')).join(' ').trim()
+    : ''
+  return tags ? `${body}\n\n${tags}` : body
+}
+
+function firstCommentForClipboard(raw: string | null): string | null {
+  if (!raw) return null
+  const m = raw.match(/##\s*First [Cc]omment\s*\n([\s\S]+?)(?:\n##|$)/)
+  if (!m) return null
+  return m[1].trim().replace(/^---+\s*$/gm, '').trim()
+}
+
+function pollQuestionForClipboard(raw: string | null): string | null {
+  if (!raw) return null
+  const m = raw.match(/##\s*Poll [Qq]uestion\s*\n([\s\S]+?)(?:\n##|$)/)
+  if (!m) return null
+  return m[1].trim().replace(/^---+\s*$/gm, '').trim()
+}
+
+function pollOptionsForClipboard(raw: string | null): string | null {
+  if (!raw) return null
+  const m = raw.match(/##\s*Poll [Oo]ptions\s*\n([\s\S]+?)(?:\n##|$)/)
+  if (!m) return null
+  const lines = m[1].split('\n').map(s => s.replace(/^[-*]\s*/, '').trim()).filter(Boolean)
+  return lines.join('\n')
+}
+
 function bucketize(items: ContentItem[], anchorTue: Date, weeksAhead: number): WeekBucket[] {
   const out: WeekBucket[] = []
   for (let i = 0; i < weeksAhead; i++) {
@@ -180,6 +218,31 @@ function btn(bg: string, color: string, border = 'none'): React.CSSProperties {
   }
 }
 
+function CopyButton({ text, label, disabled = false }: { text: string; label: string; disabled?: boolean }) {
+  const [copied, setCopied] = useState(false)
+  if (!text || disabled) return null
+  function copy() {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    })
+  }
+  return (
+    <button onClick={copy} style={{
+      fontFamily: 'inherit', fontSize: 11, fontWeight: 700,
+      letterSpacing: '0.06em', textTransform: 'uppercase',
+      padding: '7px 12px', borderRadius: 6,
+      border: copied ? '1px solid rgba(16,185,129,0.45)' : '1px solid rgba(196,145,42,0.4)',
+      background: copied ? 'rgba(16,185,129,0.12)' : 'rgba(196,145,42,0.12)',
+      color: copied ? '#10b981' : '#c4912a',
+      cursor: 'pointer',
+      display: 'inline-flex', alignItems: 'center', gap: 5,
+    }}>
+      {copied ? '✓ Copied' : `📋 ${label}`}
+    </button>
+  )
+}
+
 function PostCard({
   item,
   role,
@@ -206,6 +269,12 @@ function PostCard({
   const tint = role ? ROLE_TINT[role] : '#ffffff'
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(item.caption ?? '')
+
+  const captionText = captionForClipboard(item.caption)
+  const firstComment = firstCommentForClipboard(item.caption)
+  const pollQ = pollQuestionForClipboard(item.caption)
+  const pollOpts = pollOptionsForClipboard(item.caption)
+  const isPoll = role === 'poll' || /poll/i.test(item.title ?? '')
 
   return (
     <div style={{
@@ -262,6 +331,19 @@ function PostCard({
           whiteSpace: 'pre-wrap',
         }}>
           {(item.caption ?? '').slice(0, 220)}{(item.caption ?? '').length > 220 ? '…' : ''}
+        </div>
+      )}
+
+      {/* Copy-to-clipboard row — visible for all non-edit states */}
+      {!editing && (
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', gap: 6,
+          padding: '8px 0', borderTop: '1px dashed rgba(28,25,23,0.1)',
+        }}>
+          <CopyButton text={captionText} label="Caption" />
+          {isPoll && pollQ && <CopyButton text={pollQ} label="Poll Q" />}
+          {isPoll && pollOpts && <CopyButton text={pollOpts} label="Poll options" />}
+          {!isPoll && firstComment && <CopyButton text={firstComment} label="First comment" />}
         </div>
       )}
 
