@@ -107,7 +107,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       list.innerHTML = '<p style="color:var(--color-text-muted);font-size:0.85rem;">No defects added yet.</p>';
     } else {
       list.innerHTML = defects.map(d => {
-        const colour = d.action === 'Fix' ? '#d95f5f' : d.action === 'Disclose' ? 'var(--color-gold)' : d.action === 'Leave' ? '#4a9e4a' : 'var(--color-text-muted)';
+        const colour = d.action === 'Fix' ? '#8b6f47' : d.action === 'Disclose' ? 'var(--color-gold)' : d.action === 'Leave' ? '#4a9e4a' : 'var(--color-text-muted)';
         return `
           <div style="padding:0.75rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
             <div style="display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem;">
@@ -135,7 +135,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     document.getElementById('summary')!.innerHTML = `
       <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:0.5rem;">
-        <div style="background:rgba(217,95,95,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#d95f5f;">Fix</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${fix.length}</p></div>
+        <div style="background:rgba(139,111,71,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8b6f47;">Fix</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${fix.length}</p></div>
         <div style="background:rgba(196,145,42,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);">Disclose</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${disclose.length}</p></div>
         <div style="background:rgba(74,158,74,0.12);padding:0.8rem;text-align:center;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#4a9e4a;">Leave</p><p style="font-family:var(--font-serif);font-size:1.3rem;color:var(--color-text-primary);">${leave.length}</p></div>
       </div>

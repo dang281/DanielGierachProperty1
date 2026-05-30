@@ -143,7 +143,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     document.getElementById('breakdown')!.innerHTML = rows.map(r => `
       <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);${r.bold ? 'font-weight:700;' : ''}">
         <span style="font-size:0.78rem;color:${r.bold ? 'var(--color-text-primary)' : 'var(--color-text-muted)'};">${r.label}</span>
-        <span style="font-size:0.85rem;font-weight:600;color:${r.plus ? 'var(--color-text-primary)' : '#d95f5f'};">${fmt(r.value)}</span>
+        <span style="font-size:0.85rem;font-weight:600;color:${r.plus ? 'var(--color-text-primary)' : '#8b6f47'};">${fmt(r.value)}</span>
       </div>
     `).join('');
     document.getElementById('final')!.textContent = fmt(total);

@@ -72,7 +72,7 @@ import { suburbs, formatPrice } from '../../data/suburbs';
               </td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:var(--color-gold);">{formatPrice(s.medianHousePrice)}</td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{formatPrice(s.medianUnitPrice)}</td>
-              <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth1yr < 0 ? '#f87171' : s.priceGrowth1yr >= 10 ? '#a8e6a3' : s.priceGrowth1yr >= 5 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>{s.priceGrowth1yr > 0 ? '+' : ''}{s.priceGrowth1yr}%</td>
+              <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth1yr < 0 ? 'rgba(28,25,23,0.45)' : s.priceGrowth1yr >= 10 ? '#a8e6a3' : s.priceGrowth1yr >= 5 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>{s.priceGrowth1yr > 0 ? '+' : ''}{s.priceGrowth1yr}%</td>
               <td style={`padding:0.85rem 1.25rem;font-size:0.85rem;font-weight:600;color:${s.priceGrowth5yr >= 50 ? '#a8e6a3' : s.priceGrowth5yr >= 40 ? 'var(--color-gold)' : 'var(--color-text-secondary)'};`}>+{s.priceGrowth5yr}%</td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{s.rentalYield}%</td>
               <td style="padding:0.85rem 1.25rem;font-size:0.85rem;color:var(--color-text-secondary);">{s.medianDaysOnMarket} days</td>

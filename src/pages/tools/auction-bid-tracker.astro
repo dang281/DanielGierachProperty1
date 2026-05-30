@@ -121,7 +121,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       prompt.textContent = 'Bidding is on the market. Let it run. Last bidder wins.';
     } else if (bids.length >= 3 && bids.slice(-3).every((b, j, a) => j === 0 || (b - a[j-1]) < 10000) && toReservePct < 0.98) {
       label.textContent = 'Bidding stalled';
-      label.style.color = '#d95f5f';
+      label.style.color = '#8b6f47';
       prompt.style.display = 'block';
       prompt.textContent = 'Three small increments in a row below reserve. Time to pause and consider dropping the reserve to meet the market, or accept the property will pass in.';
     } else if (toReservePct >= 0.95) {

@@ -139,7 +139,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     document.getElementById('analysis')!.innerHTML = `
       <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
         <span style="font-size:0.78rem;color:var(--color-text-muted);">Offer vs comps</span>
-        <span style="font-size:0.85rem;font-weight:600;color:${deltaPct >= 0 ? '#4a9e4a' : '#d95f5f'};">${deltaPct >= 0 ? '+' : ''}${deltaPct.toFixed(1)}% (${fmt(deltaDollar)})</span>
+        <span style="font-size:0.85rem;font-weight:600;color:${deltaPct >= 0 ? '#4a9e4a' : '#8b6f47'};">${deltaPct >= 0 ? '+' : ''}${deltaPct.toFixed(1)}% (${fmt(deltaDollar)})</span>
       </div>
       <div style="display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
         <span style="font-size:0.78rem;color:var(--color-text-muted);">Expected campaign range</span>
