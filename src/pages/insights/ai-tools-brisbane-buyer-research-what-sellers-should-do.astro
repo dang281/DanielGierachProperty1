@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How are buyers using AI tools to research Brisbane property in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brisbane buyers in 2026 are using AI tools at every stage of the research phase. ChatGPT, Claude, Perplexity and Google's AI Overviews are now the first stop for suburb shortlists, school catchment comparisons, flood history checks, body corporate questions, and contract clause explanations. Buyers feed listing photos into multimodal AI models to estimate renovation costs and identify hidden issues. They paste contract pages into ChatGPT to ask about clauses before they engage a solicitor. By the time they walk through your open home, many have read more about your suburb than you have."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will AI tools replace real estate agents in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, but AI is changing what an agent's job actually is. AI handles the research and pattern matching well, but it cannot inspect a property, read a vendor's situation, negotiate in real time, or vouch for the things that are not in the data. The agents who lose ground in 2026 are the ones whose value proposition was being a gatekeeper to information that is now free. The agents who keep doing well are the ones who add judgement, local context, and execution on top of information that buyers can now find without them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should Brisbane sellers do differently because of AI buyer research?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three things matter most. First, your listing copy and disclosure documents should be precise and fact-dense, because AI tools penalise vague marketing language and reward specifics. Second, your photography needs to hold up under multimodal AI inspection: image-recognition models now flag patched ceiling cracks, mismatched cabinetry, and signs of moisture that a hasty buyer might miss. Third, your agent should be able to answer any question an AI model has already answered for the buyer, with sharper local context than the model can provide."
+      }
+    }
+  ]
+};
+---
+<Layout title="How AI Tools Are Changing Brisbane Buyer Research in 2026: What Sellers Should Do | Daniel Gierach Property" description="Brisbane buyers now arrive at open homes already briefed by ChatGPT, Claude and Google AI Overviews. Here is what is changing in how buyers research property, and what sellers should adjust in 2026." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 9 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How AI Tools Are Changing Brisbane Buyer Research in 2026: What Sellers Should Do
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Brisbane buyers now arrive at open homes already briefed by ChatGPT, Claude and Google's AI Overviews. Here is what is changing in how buyers research, and the adjustments sellers should make to their listing, presentation and pricing in 2026.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>If you have not run an open home in the last six months, the shift will surprise you. Buyers arrive holding their phones, not asking questions about the kitchen but checking what they already read about the suburb against what they are seeing in person. They quote the median sale price, the school catchment line, the flood history of the street, and the body corporate levy from the last AGM. They have not always read this on realestate.com.au. Increasingly, they have read it through an AI model that summarised twenty pages of council and registry data into a single paragraph for them in under ten seconds.</p>
+
+      <p>This is the most significant change in buyer behaviour since the property portals launched in the early 2000s. It is not a small change, and pretending it has not happened is the easiest way for a Brisbane seller to leave money on the table in 2026. Most of what follows is good news for vendors with well-prepared, honestly described properties. The buyers who are doing better research are also the ones who are more confident, more decisive, and more willing to pay full price when the property holds up. They are also less forgiving of marketing puffery, presentation tricks, and the kinds of vague claims that used to slide through a campaign without challenge.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What buyers are actually doing with AI right now</h2>
+
+      <p>The first place a serious buyer goes is not always realestate.com.au. It is often ChatGPT or Claude or Perplexity, asking a question like "what should I know about buying in Coorparoo as a young family with two kids" or "compare Hawthorne and Bulimba for a buyer wanting a Queenslander on a flat block under $2.5 million". The model produces a structured summary that draws on public sales data, school zoning, transport, flood mapping, and historical price growth. It is not always perfect. But for a buyer at the shortlisting stage, it is faster and more useful than spending two hours bouncing between domain.com.au, the BCC flood map, the Education Queensland catchment finder, and the suburb profile pages.</p>
+
+      <p>Once a buyer has shortlisted a property, the AI usage gets more specific. Listing photos are uploaded into multimodal models for reasons that would not have occurred to a buyer five years ago. A vision model can scan a photo of a kitchen and flag inconsistencies in cabinetry that suggest a partial renovation rather than a full one. It can look at a hallway photo and identify the kind of patched-and-repainted ceiling that often indicates a roof leak repair. It can examine an exterior shot and estimate the realistic cost of replacing a fibre cement front fence, repainting weatherboards, or replacing a corroded gutter run. Buyers are not always experts at this kind of assessment, but they no longer need to be. The AI gives them a starting list of things to inspect carefully or ask about at the open home.</p>
+
+      <p>Contract review is the third area where AI usage has become routine. Buyers paste pages of the REIQ contract, the body corporate disclosure, or the seller's disclosure statement into an AI model and ask what is unusual, what is standard, and what they should query with a solicitor before signing. The AI is not a substitute for legal advice, and the better-informed buyers know this. But it changes the conversation. A buyer who arrives at a private inspection already having read your full disclosure and having asked an AI to summarise the key conditions is operating at a different level than the buyer of three years ago.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Where the AI is good, and where it is unreliable</h2>
+
+      <p>AI models are good at synthesising public data, summarising long documents, comparing options against a buyer's stated criteria, and answering factual questions that previously required navigating five different government and industry websites. They are good at translating real estate jargon into plain English. They are good at flagging questions that the buyer would not have known to ask. They are good enough at image analysis that a buyer can identify many of the issues a building inspector would later confirm.</p>
+
+      <p>They are not as good at recent and hyperlocal data. A model trained on data with a knowledge cutoff in late 2025 will not know that a comparable home in your street sold three weeks ago. It will not know that the school catchment review is now scheduled for next term. It will not know that the apartment block down the road just lost a section 73 vote on a major capital works project. The retrieval-augmented models that pull live information from Google or specialised real estate APIs are much better at this, but their answers can still mix older and newer data in confusing ways. They are also not good at judging the negotiation context, the seller's actual flexibility, the agent's reputation, or any of the soft factors that determine what a property will really transact at. They are weakest where local human judgement matters most.</p>
+
+      <p>This matters because the buyers who lean too heavily on AI are easy to spot, and they are usually negotiating from a worse position than they realise. A buyer who arrives quoting a Zestimate-style automated valuation, or an AI-generated estimate that does not factor in your renovation quality, your land aspect, or recent street sales, is bringing a number that is often quite wrong. Your agent's job, and your job, is to be ready to respond with sharper local evidence. The AI is fast but generic. Beating it requires being specific.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What changes for sellers: listing copy</h2>
+
+      <p>The first practical change is in how listing copy should be written. AI overviews and chat-based search are increasingly the first lens through which a property description is read, even before the buyer clicks through to the portal. Models summarise listing text into a short briefing for the buyer. Vague adjectives ("stunning", "lifestyle opportunity", "rare offering") get filtered out as low information. Specific, factual phrases get retained and surfaced. A description that says "north-facing 619 square metre block, fully renovated 2023, four-bedroom plus dedicated study, Norman Park State School and Coorparoo Secondary catchments" produces a much better AI summary than one that says "an exceptional family home in a tightly held pocket".</p>
+
+      <p>The same logic applies to facts that buyers will fact-check. If your description says "walking distance to the train station", the AI model will calculate the walking distance from the address and present it to the buyer. If it is fifteen minutes uphill, the buyer will know that before they walk in. If your description says "level block", the AI may compare the address to a topographic data source and flag a contradiction if the block has a noticeable fall. The era of stretching listing language is closing. Accurate, specific copy is rewarded. Loose language is now actively penalised, because the AI gives the buyer immediate evidence of the gap between the marketing and the reality.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What changes for sellers: photography and presentation</h2>
+
+      <p>The second change is in the photography brief. Real estate photography in Brisbane has historically been about producing flattering wide-angle shots that compress rooms and emphasise light. That is still important. But there is now a second, equally important test: the photography needs to hold up when a buyer's AI vision model examines it for issues. This does not mean making the property look worse, and it does not mean abandoning good photography. It means addressing the things AI models will identify, before the photos are taken.</p>
+
+      <p>Patched ceiling cracks should be properly repaired, not just repainted over. Mismatched grout, sections of skirting board that have come away from the wall, cracked window frames, and corroded weather seals are all things that a vision model will flag and that a buyer will ask about. The renovation pieces that were finished in a hurry, the kitchen cabinet that does not quite line up, the bathroom tile that was clearly cut by an amateur, are no longer details that only an experienced buyer would notice. The AI helps every buyer notice them. Spending two thousand dollars on a handyman to fix the obvious cosmetic issues before photography is now a more reliable investment than it has ever been.</p>
+
+      <p>The same principle applies at the open home itself. Buyers come in with their AI checklist already in hand. The things they were told to look at are the things they will look at. A clean, well-prepared, honestly presented property reads as confident. A property where small defects have been hidden behind furniture, where moisture marks have been painted over without addressing the underlying issue, or where the photos were obviously taken before the latest damage occurred, reads as evasive. The buyer's confidence falls, and their offer reflects it.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What changes for sellers: disclosure and documents</h2>
+
+      <p>From 1 August 2025, the Queensland seller disclosure regime under the Property Law Act 2023 already requires sellers to provide a detailed disclosure statement and prescribed certificates before a contract is signed. AI usage among buyers makes this regime far more effective than it might otherwise have been. Buyers paste the disclosure into ChatGPT or Claude and ask the model to identify anything unusual, any encumbrance that should concern them, any rating notice that suggests an issue, and any inconsistency between the disclosure and the listing copy.</p>
+
+      <p>The practical implication is that any contradiction between your disclosure documents, your listing description, and your photography will be caught. A flood-affected property described as "elevated" will be flagged. A property on a known easement that the listing copy did not mention will produce a question at the open home. A body corporate with an underfunded sinking fund, identified through the body corporate disclosure, will become a negotiation point. Sellers who take the disclosure seriously and whose marketing copy is consistent with what the documents say will have a much smoother negotiation than sellers who tried to gloss over inconvenient facts. The penalty for inconsistency is now immediate and visible, not deferred and avoidable.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What changes for sellers: pricing and price guides</h2>
+
+      <p>Pricing has always been the most contested part of a campaign, and AI is making the buyer's side of the pricing conversation more informed. Buyers can now ask an AI to compare your property's price guide to recent comparable sales, adjust for land size, bedroom count, condition and orientation, and produce a defensible counter-offer in a few minutes. The numbers the AI produces are not always right, but the buyer arrives with a quantitative argument rather than a hunch.</p>
+
+      <p>The right response is not to abandon the price guide or to set it artificially low to attract more buyers. The right response is to ensure your price guide is defensible against good comparable sales, that your agent has the comps in writing and ready to share, and that any premium your property commands over the comps is clearly justified by specific features, recent renovation, aspect or land size. A guide that you cannot defend with sales evidence will be challenged immediately. A guide that you can defend will hold. The discipline this imposes is good for vendors who are willing to do the work and bad for vendors hoping the campaign will produce a number that the data does not support.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What changes for agents: what is actually being valued now</h2>
+
+      <p>AI shifts what an agent's job is. The parts of the job that involved compiling and presenting information that the buyer could not access easily are now under pressure. The parts that involve judgement, presence, negotiation, and local knowledge are now more valuable, not less. An agent who can answer questions about the street, the school zoning history, the renovation done in the house three doors down, the realistic difference between a four-week and a six-week campaign for this specific property, and the buyer types most likely to engage, is now offering something an AI cannot reproduce. An agent who is mostly a portal listing manager and a Saturday-morning door opener is offering something the market is starting to discount.</p>
+
+      <p>For sellers, the practical implication is that the agent selection process matters more, not less. The honest local agent who knows the area and shows their working is now competitively more valuable than the agent with the slick brochure and the polished pitch but no actual depth. Ask each agent you interview a hard local question that an AI would handle generically. The answers will tell you who is bringing real local knowledge to the campaign and who is repackaging what the buyer can already look up themselves.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A short checklist for Brisbane sellers in 2026</h2>
+
+      <p>If you are preparing to list a property in Brisbane's inner east in the next six months, the AI-aware adjustments are these. Make sure every claim in your listing copy is factually accurate and verifiable, because AI will check. Make sure your photography is taken after the cosmetic defects are fixed, not before. Make sure your disclosure documents are consistent with your marketing, because AI will surface any contradiction. Make sure your price guide is defensible against recent comparable sales, because AI will produce a counter-comp the moment a buyer asks. And make sure your agent is the kind of agent whose value cannot be replaced by a chat window.</p>
+
+      <p>None of this is a reason to fear the technology. The well-prepared Brisbane vendor with an honest, fact-dense campaign and a strong local agent is now in a better position than ever, because the buyers they meet are better informed, more decisive, and more willing to act when the property checks out. The sellers who lose ground in 2026 are the ones who are still running a 2018 campaign, hoping that the right marketing copy can paper over things that are now easy to verify in seconds.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Thinking about selling?</strong> Daniel can walk you through how AI-aware buyers will research your specific property, what to tighten in your listing and disclosure, and where your campaign should focus to hold up under modern scrutiny. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/marketing-and-selling-methods/">Marketing and Selling Methods guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/property-appraisal" style="color:#f5d07a;font-weight:600;">Property appraisal request &rarr;</a>
+  </p>
+</div>
+</Layout>
