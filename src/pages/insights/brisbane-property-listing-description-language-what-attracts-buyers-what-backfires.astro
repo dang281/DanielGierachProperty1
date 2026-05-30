@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What words should not appear in a Brisbane property listing description?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vague superlatives like 'stunning', 'immaculate', 'perfect family home' and 'must see' carry no information and are filtered out by experienced buyers as noise. Coded language like 'cosy' (small), 'quaint' (old), 'character' (unrenovated), 'potential' (work required) and 'handyman's dream' (run-down) backfires because buyers translate them accurately. Phrases that overpromise, such as 'one of a kind' or 'rarely does a property of this calibre come to market', invite a credibility test against the photos and price guide that the property usually fails."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What actually attracts buyers in a Brisbane property listing description?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Specific, verifiable detail: exact land size, internal floor area, orientation, age and type of construction, school catchment, distance to a named train station or arterial, and the genuinely uncommon features of the property. Buyers searching realestate.com.au and Domain are filtering for facts they can compare across listings. A description that leads with two or three concrete differentiators ('north-rear 612sqm, dual side access, original 1928 Queenslander on stumps') outperforms one that opens with adjectives every time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should a Brisbane property listing description be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long enough to cover the facts a serious buyer needs, short enough that nothing pads the read. For most inner-east Brisbane homes that means a 60 to 100 word opening hook, a clearly broken feature list, and a closing paragraph on location and lifestyle. Total length around 350 to 500 words. Descriptions over 700 words usually contain repetition or filler and reduce the chance a buyer reads to the school catchment line that would have qualified them."
+      }
+    }
+  ]
+};
+---
+<Layout title="Brisbane Property Listing Description Language: What Attracts Buyers, What Backfires | Daniel Gierach Property" description="What to write and what to cut in a Brisbane property listing description. The phrases experienced buyers filter as noise, the coded language that backfires, and the specific detail that actually drives enquiry." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 8 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Brisbane Property Listing Description Language: What Attracts Buyers, What Backfires
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The phrases serious buyers filter as noise, the coded language that backfires, and the specific detail that actually drives enquiry on a Brisbane listing.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>The listing description sits below the photos and above the floor plan, and on most realestate.com.au and Domain pages it is the second-most-read element after the headline image. Done well, it confirms the buyer's interest and pushes them toward an enquiry or open home booking. Done poorly, it either tells the buyer nothing they cannot already see, or it tells them something that contradicts what the photos suggest, which raises a credibility flag the rest of the campaign then has to fight.</p>
+
+      <p>There is no clever wordsmithing that turns a 5/10 property into a 9/10 property. But the same property will attract noticeably more enquiry, and more qualified enquiry, with a description written by someone who understands what buyers in Brisbane's inner east are actually looking for, and what they tune out as noise. Below is a frank account of which language attracts buyers, which language backfires, and how to think about the description as a whole.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The adjectives buyers filter out</h2>
+      <p>Words like "stunning", "immaculate", "spectacular", "luxurious", "perfect family home", "must see" and "this one will not last" appear in most listings and convey almost no information. A buyer scrolling Saturday morning listings has read these same words on the previous six properties they looked at, and they no longer register. Worse, an adjective-heavy opening signals to a careful buyer that the agent had nothing concrete to lead with, which is itself a small negative signal about the property.</p>
+
+      <p>The fix is not to remove adjectives entirely but to make every descriptor earn its place. "Immaculate" tells the buyer nothing. "Floors and walls were repainted in 2024 ahead of sale, kitchen and bathrooms are original 2018 fit-out in unmarked condition" tells them exactly what they want to know. The first version is filler. The second version answers the unspoken question every buyer asks: what will I need to spend in the first twelve months?</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The coded language that backfires</h2>
+      <p>Experienced buyers, and certainly any buyer's agent involved in the search, translate certain phrases accurately. "Cosy" means small. "Quaint" means old and probably needs work. "Original character" means unrenovated, often with original wiring and stumps. "Full of potential" means the current condition is poor and the buyer will be doing the renovation. "Handyman's dream" means run-down. "Compact" means tight floor plan. "Tightly held street" is often used when there are no comparable recent sales and the agent wants to imply scarcity instead of providing a price guide.</p>
+
+      <p>This translation is not unfair. These phrases became code precisely because they were used so often to dress up properties with real shortcomings that buyers learned the pattern. Using them invites the buyer to assume the property is in the worst version of the implied state. If your Camp Hill cottage is 78sqm internal on a small block, you are better off saying so and pitching to the buyer who is genuinely looking for a smaller footprint, than calling it "cosy" and attracting buyers who walk in disappointed.</p>
+
+      <p>The same logic applies to overclaiming. "One of a kind", "rarely does a property of this calibre come to market", "iconic landmark home" and similar lines invite an immediate credibility test. If the photos, floor plan and price guide do not confirm the claim, the buyer concludes the agent is overselling, and they discount everything else in the description by that same amount.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What actually drives enquiry</h2>
+      <p>Buyers searching the inner east for a $1.6m to $2.4m home are filtering across dozens of listings a week. They are looking for the specific facts that let them shortlist quickly. Land size, internal floor area, orientation, number and configuration of bedrooms and bathrooms, age and type of construction, school catchment, distance to the nearest train station or arterial, and any meaningful uncommon feature. Lead the description with two or three concrete differentiators that the photos alone cannot communicate, and you have already done more than most listings on the page.</p>
+
+      <p>For a Morningside Queenslander, that might read: "North-rear 612sqm with dual side access. Original 1928 Queenslander on stumps, fully renovated 2021 with retained VJ walls, hoop pine floors and casement windows. 800m flat walk to Morningside train station, in catchment for Morningside State School." Three sentences. Every claim is verifiable. A buyer who values those facts will lean in. A buyer for whom those facts are wrong will move on faster, which is also useful, because the buyer who is genuinely wrong for the property does not become a low offer that wastes the campaign.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Structure: opening hook, feature list, location close</h2>
+      <p>A description that works on the page generally has three parts. The opening hook is one short paragraph, around 60 to 100 words, leading with the two or three most distinctive facts about the property. This is what the buyer reads if they read nothing else. It needs to confirm the photo and either qualify the buyer in or out within fifteen seconds.</p>
+
+      <p>The feature list follows. Bullet points or short tight paragraphs, organised by area. Inside, outside, location. Specific where you can be: "Bosch induction cooktop, Miele dishwasher, 3.2m island with stone benchtops" rather than "modern chef's kitchen". Air conditioning type and number of rooms. Solar capacity and battery if installed. Pool size if applicable. Land orientation. Side access width if it matters. The feature list is where you give the buyer everything they need to compare your property against the others on their shortlist.</p>
+
+      <p>The location close is one paragraph on what is genuinely good about the immediate surroundings. School catchment, walking distance to a named cafe strip, distance to the CBD, proximity to the river or a named park. Avoid generic Brisbane lifestyle language. A buyer looking in Bulimba already knows Brisbane has a river. They are choosing between three streets in Bulimba and one in Hawthorne, and your job is to make the case for this specific street.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What to leave out</h2>
+      <p>Aspirational language about the buyer's future life ("imagine entertaining friends as the sun sets over the deck") rarely lands and often reads as patronising. Buyers are perfectly capable of imagining their own life. Your job is to give them the facts they need to decide whether this property could host it.</p>
+
+      <p>Long histories of the property, unless genuinely notable, are filler. The previous owners' renovations, the family who raised three children there, the architect who supposedly drew the plans in 1962: most buyers do not care. If a fact is interesting, lead with it. If it needs three sentences of setup to land, it probably is not interesting.</p>
+
+      <p>Repeated mentions of the suburb name, attempts at keyword stuffing for SEO, and instructions to the buyer ("call now to inspect", "this opportunity will not last") add nothing and signal the description was written for the algorithm rather than the reader. realestate.com.au's search does not reward repetition the way old SEO advice suggested, and buyers find the tone off-putting.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Honesty about flaws is usually the right call</h2>
+      <p>If the property has a notable flaw that a buyer will identify within the first thirty seconds of an open home, handling it in the description usually produces a better result than ignoring it. A description that says "1980s kitchen and main bathroom, otherwise renovated" sets the right expectation and attracts buyers who are comfortable budgeting for those works. A description that pretends the kitchen is contemporary attracts buyers who will be disappointed at the open, and disappointed buyers do not make offers, they leave.</p>
+
+      <p>The same applies to busy roads, train line proximity, restricted parking, sloping blocks, body corporate quirks in townhouse complexes and similar factors that the buyer will discover anyway. Naming them, briefly and without apology, builds the trust that lets the rest of the description carry weight. It also pre-qualifies the buyers who turn up to inspect, which protects the campaign from wasted opens and lowball offers based on hidden surprises.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to pressure-test your description before it goes live</h2>
+      <p>Before signing off on the description, run three quick tests. First, would the words be true of fifty other inner-east homes currently for sale? If yes, replace them with something specific to your property. Second, does the opening paragraph give a buyer enough to qualify themselves in or out within fifteen seconds? If not, restructure so it does. Third, would a competitor agent reading the description be able to call you on any claim as unsupportable? If yes, soften the claim or remove it.</p>
+
+      <p>A good description is the result of restraint, not flourish. The agents who write the descriptions that produce the strongest enquiry rates in Brisbane's inner east are the ones who edit out, not the ones who pile on. The buyer is doing you a favour by reading at all. Respect their time and they will reward you with the open home booking that turns into the offer.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Listing soon?</strong> Daniel writes every description himself, in plain language, based on what genuinely differentiates your property and what inner-east buyers are actually filtering for. No template, no padding. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/marketing-and-selling-methods/">Marketing and Selling Methods guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/rent-vs-sell" style="color:#f5d07a;font-weight:600;">Rent vs Sell &rarr;</a>
+  </p>
+</div>
+</Layout>
