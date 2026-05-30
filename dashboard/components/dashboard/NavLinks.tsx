@@ -5,11 +5,14 @@ import { usePathname } from 'next/navigation'
 
 const NAV = [
   { href: '/app/planning',  label: 'Social Media' },
+  { href: '/app/social-v2', label: 'Social Media 2.0' },
   { href: '/app/seo',       label: 'SEO' },
-  { href: '/app/projects',  label: 'CEO Agent' },
-  { href: '/app/workflow',  label: 'Workflow' },
-  { href: '/app/brand',     label: 'Brand' },
-  { href: '/app/templates', label: 'Templates' },
+  { href: '/app/properties', label: 'Properties' },
+  { href: '/app/commission', label: 'Commission' },
+  { href: '/app/projects',   label: 'CEO Agent' },
+  { href: '/app/workflow',   label: 'Workflow' },
+  { href: '/app/brand',      label: 'Brand' },
+  { href: '/app/templates',  label: 'Templates' },
 ]
 
 export default function NavLinks() {

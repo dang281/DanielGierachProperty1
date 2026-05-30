@@ -254,21 +254,29 @@ If a visual looks blurry or the footer is hard to read, the fix is to re-run the
 
 **Market template layout:** Content (headline, body, divider) must anchor to the bottom of the card with intentional dark space above. The script uses `justify-content: flex-end` in `.main` to achieve this. Do not pass layout overrides that would push content to the top or centre. The editorial dark space at the top is deliberate.
 
-### TEMPLATE SELECTION BY DAY — MANDATORY
+### WEEKLY ARC — MANDATORY (updated 2026-05-30)
 
-The post's scheduled day determines the template. The title alone does not override this.
+Every week ships a **single thematic arc** across three connected posts. Tuesday and Thursday drive traffic to danielgierach.com; Wednesday is a pure-engagement poll.
 
-| Day       | Template       | Script flag              |
-|-----------|----------------|--------------------------|
-| Tuesday   | `market`       | `--type market`          |
-| Wednesday | (poll — no visual needed) | —           |
-| Thursday  | `article-cover` (first run) then `article` | `--type article-cover` or `--type article` |
+| Day       | Role           | Template                  | Outbound link?                                          |
+|-----------|----------------|---------------------------|---------------------------------------------------------|
+| Tuesday   | **Tool feature** — introduces the week's question/problem with a calculator or interactive tool | `tool` (visual) | **YES** — link to `/tools/<slug>` in **first comment**, not body |
+| Wednesday | **Poll** — asks the audience's gut answer to the question raised Tuesday | (no visual) | **NO** — pure engagement post, polls down-rank if a link is present |
+| Thursday  | **Article feature** — resolves the poll with an insights article on the site | `article-cover` (week 1 of each theme) then `article` | **YES** — link to `/insights/<slug>` in **first comment**, not body |
 
-**Tuesday posts ALWAYS use `--type market`.** This is a hard rule. Even if the title contains "Field Guide" or "Article Feature", Tuesday is a market/authority post. The article-cover template (with the issue number) is reserved for Thursday article features only.
+**The arc must be topically connected.** All three posts of a week pull from the same theme (e.g. holding costs, days on market, agent fees, finance, presentation). Tuesday raises the question, Wednesday polls the gut answer, Thursday delivers Daniel's expert answer via the matching insights article.
 
-**Thursday posts ALWAYS use an article template** (`article-cover` for the primary visual, `article` for the alternate). Do not use `market` on a Thursday.
+**Comments-first link pattern (mandatory):** LinkedIn down-ranks posts with in-body URLs. For Tue and Thu, the post body contains NO link — the canonical URL goes in the first comment, posted within 60 seconds of the post itself. The poster (Daniel or the scheduler) adds the comment.
 
-Agents must check `**Publish date:**` and derive the day of week before selecting a template. Never infer the template from the title alone.
+**UTM convention (mandatory on every Tue/Thu link):**
+```
+?utm_source=linkedin&utm_medium=social&utm_campaign=<week-slug>&utm_content=<tue-tool|thu-article>
+```
+The `<week-slug>` is the kebab-case theme (e.g. `holding-costs`, `days-on-market`). Without UTMs, weekly attribution is impossible in GA4.
+
+**Tool/article pairing:** The Thursday article must already exist on `danielgierach.com/insights/` (or be scheduled to ship before the Thursday post). Never link to a 404. The Tuesday tool must already exist at `danielgierach.com/tools/` for the same reason. Verify both URLs return 200 before scheduling.
+
+Agents must check `**Publish date:**` and derive the day of week before selecting a template. Never infer the template from the title alone. Every post file must include a `**Week theme:**` frontmatter line so the three weekly posts can be matched.
 
 ---
 
@@ -277,7 +285,7 @@ Agents must check `**Publish date:**` and derive the day of week before selectin
 - Colours: Charcoal `#0a0806` · Cream `#f0ece4` · Gold `#c4912a`
 - No red anywhere
 - No Ray White corporate colours in any visual
-- Footer text: "Ray White Bulimba" (matches Google Business Profile, REIQ register, and BRAND.md)
+- Footer text: "Ray White Collective" (updated May 2026 — use this on all new visuals)
 - Website: `danielgierach.com` (no trailing slash, no www)
 - Always post from Daniel's personal LinkedIn profile, not the agency page
 
@@ -291,7 +299,7 @@ Run through this check mentally on every file you write or edit:
 - [ ] No banned phrases from the AI slop list above
 - [ ] No unverified stats without a ⚠️ VERIFY flag
 - [ ] Tone matches Daniel: calm, specific, no hype
-- [ ] Footer says "Ray White Bulimba"
+- [ ] Footer says "Ray White Collective"
 - [ ] Article-cover visuals use the correct next issue number (run the grep first)
 - [ ] PNG file confirmed to exist before marking Visual status as Ready
 - [ ] `content/polls.md` updated if a poll was used

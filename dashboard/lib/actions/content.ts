@@ -160,6 +160,19 @@ export async function confirmSchedule(
   assignments: Array<{ id: string; scheduled_date: string }>
 ) {
   const supabase = await createClient()
+  // Only approved posts can be moved to scheduled. This is the explicit gate
+  // that stops "Needs Review" or "Draft" posts from going live by accident.
+  const { data: posts } = await supabase
+    .from('content_items')
+    .select('id, status, title')
+    .in('id', assignments.map(a => a.id))
+  const blocked = (posts ?? []).filter(p => p.status !== 'approved' && p.status !== 'scheduled')
+  if (blocked.length) {
+    const sample = blocked.slice(0, 3).map(p => `"${p.title}"`).join(', ')
+    throw new Error(
+      `${blocked.length} post(s) not Approved yet: ${sample}. Approve each in the review queue before scheduling.`
+    )
+  }
   for (const { id, scheduled_date } of assignments) {
     await supabase
       .from('content_items')
@@ -169,6 +182,40 @@ export async function confirmSchedule(
   revalidatePath('/app/planning')
   revalidatePath('/app/social')
   revalidatePath('/app/calendar')
+}
+
+export async function approvePost(id: string): Promise<void> {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ status: 'approved' as Status })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath('/app/social/queue')
+  revalidatePath('/app/social')
+}
+
+export async function unapprovePost(id: string): Promise<void> {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ status: 'idea' as Status })
+    .eq('id', id)
+  if (error) throw error
+  revalidatePath('/app/social/queue')
+  revalidatePath('/app/social')
+}
+
+export async function approveWeek(ids: string[]): Promise<void> {
+  if (!ids.length) return
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('content_items')
+    .update({ status: 'approved' as Status })
+    .in('id', ids)
+  if (error) throw error
+  revalidatePath('/app/social/queue')
+  revalidatePath('/app/social')
 }
 
 export async function unscheduleItems(ids: string[]) {
