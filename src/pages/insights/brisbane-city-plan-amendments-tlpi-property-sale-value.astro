@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Brisbane City Plan amendment and how does it affect my property's sale value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A City Plan amendment is a change to the Brisbane City Plan 2014, the planning scheme that governs zoning, overlays, codes, and what can lawfully be built on every lot in the city. Amendments can be administrative (corrections and minor wording), minor (boundary clean-ups, code updates), or major (new zones, new overlays, neighbourhood plan rollouts). Major amendments often reshape what a buyer can do with a site, which directly changes what they will pay. A site rezoned from Low Density Residential to Low-Medium Density Residential typically sees a step change in land value because the buyer pool widens to include small developers. A site newly captured by a Traditional Building Character overlay or a height cap will usually see a step down in land value because demolition or full-scale redevelopment is no longer available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Temporary Local Planning Instrument (TLPI) in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Temporary Local Planning Instrument is a short-term planning rule that Brisbane City Council can adopt to address an urgent or significant planning issue while a permanent City Plan amendment is being prepared. TLPIs are valid for up to two years and can be extended once. They typically suspend or override specific City Plan provisions in defined geographic areas. Brisbane has used TLPIs to protect character housing precincts, manage flood-risk areas, and pause demolition or redevelopment in suburbs facing rapid change. A TLPI that lands over your property can shift its highest and best use overnight, which is why sale value can move before any permanent change is gazetted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to disclose a pending City Plan amendment or TLPI when selling in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Queensland's seller disclosure regime under the Property Law Act 2023 requires sellers to disclose certain planning and statutory information via a Form 2 disclosure statement before the buyer signs. This includes the current zoning, applicable overlays, and any registered notices on title. Pending amendments and active TLPIs are public information, and a competent buyer's solicitor will run a planning search that picks them up. Hiding a known planning change is a poor idea: it does not stop the change from being discovered, it just damages trust and exposes the seller to termination or claims. The better approach is to handle the disclosure properly, price the property to current reality, and let the campaign work through buyers who understand what they are buying."
+      }
+    }
+  ]
+};
+---
+<Layout title="How Brisbane City Plan Amendments and TLPIs Affect Property Sale Value | Daniel Gierach Property" description="Brisbane City Plan amendments and Temporary Local Planning Instruments can move sale value before they are even gazetted. How planning changes flow through to price, what to verify, and how to time a campaign around a pending change." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 11 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        How Brisbane City Plan Amendments and TLPIs Affect Property Sale Value
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Planning changes do not wait for settlement. How City Plan amendments and Temporary Local Planning Instruments flow through to Brisbane sale value, what sellers should verify before they list, and how to time a campaign when a change is pending.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Most Brisbane sellers think of the City Plan as background scenery: a set of rules that defines what can be built somewhere, mainly relevant if you are renovating or developing. When you are selling a finished home, the planning scheme can feel like someone else's problem. That is mostly true on a quiet year. But Brisbane City Plan 2014 is not a static document. It is amended regularly, and Council also has the power to land Temporary Local Planning Instruments on specific areas, sometimes with very little notice. Both mechanisms can shift the value of your property before the amendment is even gazetted, because the buyer pool reprices the moment the change becomes public.</p>
+
+      <p>If you are selling in Brisbane's inner east in 2026, planning change is not theoretical. The pre-1947 character stock, the small-lot subdivisions around the Olympics infrastructure corridors, the flood-affected pockets that were re-mapped after 2022, and the neighbourhood plan rollouts in suburbs like Carindale and Bulimba all sit inside live planning conversations. Understanding how an amendment or a TLPI moves price, and what your obligations are when one is pending, is part of a competent seller's preparation.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What City Plan amendments actually are</h2>
+      <p>Brisbane City Plan 2014 is the planning scheme adopted under the Planning Act 2016 (Qld). It contains the zones, overlays, codes, and neighbourhood plans that determine what a landowner can lawfully do with a site. The plan is amended in three broad categories. Administrative amendments correct typographical errors, cross-references, or formatting and have no substantive effect on rights or obligations. Minor amendments make limited, clearly defined changes that do not significantly alter the scheme's effect: small boundary corrections, code wording updates, or refinements to mapped layers. Major amendments are the ones that move sale value: new zones, new overlays, substantial changes to a code, the introduction or revision of a neighbourhood plan, and changes to assessment categories that shift what is code-assessable versus impact-assessable.</p>
+
+      <p>Major amendments follow a public process. Council prepares the amendment, the State Government (through the Minister) reviews the proposal under the Minister's Guidelines and Rules, the amendment is publicly notified for consultation (usually four to six weeks), submissions are considered, the amendment is finalised, and the change is gazetted and takes effect. The timeline from first public notification to commencement is commonly six to twelve months for a substantial amendment, sometimes longer. The market does not wait that long. By the time the public notification opens, well-informed buyers, developers, and agents are already pricing the change in.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What a Temporary Local Planning Instrument is and why it matters</h2>
+      <p>A Temporary Local Planning Instrument, or TLPI, is the mechanism Council uses when a planning issue is urgent enough that the standard amendment timeline is too slow. TLPIs are issued under the Planning Act 2016 and operate as a short-term overlay on the City Plan. They are valid for up to two years and can be extended once, by another two years, to give Council time to prepare a permanent amendment. While a TLPI is in force, it can suspend, replace, or add to specific provisions of the City Plan within a defined geographic area.</p>
+
+      <p>Brisbane has used TLPIs across several planning contexts. The traditional building character stock in inner-east and inner-north suburbs has been the subject of multiple character-protection TLPIs over the last decade, expanding the area where pre-1947 demolition becomes impact-assessable. Flood mapping refreshes after major weather events have triggered TLPIs that tighten development on newly mapped land. Neighbourhood plan rollouts have sometimes been preceded by TLPIs that pause specific forms of development in the affected area while the permanent plan is finalised. The common feature of all TLPIs is speed: a TLPI can be adopted by Council resolution, notified, and take effect within weeks. The market repositions immediately.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How an amendment or TLPI flows through to sale value</h2>
+      <p>The mechanism by which a planning change moves sale value is the buyer pool. Every property has a notional highest and best use under the current planning scheme. That use, and the cost of getting to it, defines who is willing to bid on the property. A 600 square metre flat block on a quiet street in a Low-Medium Density Residential zone with no character overlay can be bought by a renovator, a family, or a small developer building two townhouses. The small developer is often the marginal bidder who sets the top of the price range. Remove that developer (by introducing a character overlay, a height cap, or a minimum lot size that defeats the dual occupancy), and the price ceiling drops to what a renovator or family will pay for the existing house. That single mechanism, the loss or gain of a buyer segment, is responsible for most planning-driven price movement in Brisbane.</p>
+
+      <p>The direction of the movement depends on which way the amendment cuts. Upside movements come from up-zoning (LDR to LMR, LMR to MDR), the removal of restrictive overlays, height limit increases, the introduction of accommodation flexibility (secondary dwellings, granny flats), and neighbourhood plan rollouts that introduce mixed-use envelopes around transit. Downside movements come from new character protection overlays, the expansion of traditional building character precincts, new flood overlays, height caps, minimum lot size increases, and the recategorisation of formerly code-assessable proposals as impact-assessable.</p>
+
+      <p>Size of movement varies. A clean up-zoning that genuinely opens the lot to small-format development can add 15 to 30 per cent to land value at the inner-east price points typical of Bulimba, Hawthorne, Camp Hill, and Morningside. A character overlay that locks in the existing house and rules out demolition can pull land value down by a similar order of magnitude, particularly on tired stock that was previously being priced on its development potential. The market does not move smoothly. There is usually a quick step change once the change becomes public, followed by a longer period of adjustment as buyers test the new rules through development applications.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Timing the campaign around a pending change</h2>
+      <p>The most common question I get from sellers caught in this situation is whether to list now or wait. The answer depends on which direction the change is moving and how confident you are that it will land.</p>
+
+      <p>If the pending change is up-zoning or the removal of a restriction, the question is whether the market is already pricing in the upside. Sometimes it is, in which case selling now captures most of the value with the certainty of a current contract. Sometimes the market is being cautious because the amendment is not final, in which case waiting until commencement (or close to it) can be worth six to twelve months of holding cost. The honest answer requires reading actual buyer behaviour on comparable sales right now. Are developer-style offers coming in on sites with similar pending uplift? If yes, the market is pricing it in. If no, waiting may produce a stronger result if you can carry the holding costs.</p>
+
+      <p>If the pending change is a new character overlay, a height cap, or any other downward shift, the calculus reverses. The window before commencement is the window in which a buyer can still acquire the property under the more permissive existing rules. That window has real value to developers and small builders, and the right strategy is often to bring the campaign forward, target the buyer segment that is about to lose access, and price honestly to the pre-change framework. Once the change is gazetted, that buyer segment exits the pool, and the price ceiling drops to whatever the non-development buyer will pay.</p>
+
+      <p>The mistake to avoid is hoping a downward change will not happen. Council does not adopt TLPIs casually. Once a draft amendment or TLPI is in public notification, the probability of it landing in some form is high, and the market knows that. Pricing a campaign as if the change will be defeated, in the hope that the right offer will come in before reality catches up, is a strategy that usually ends with a repriced re-launch and a longer days-on-market figure.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Disclosure obligations under the Property Law Act 2023</h2>
+      <p>Queensland's seller disclosure regime, which commenced in August 2025 under the Property Law Act 2023, requires sellers to provide a Form 2 disclosure statement before the buyer signs the contract. The statement covers a defined list of items, including the property's zoning under the planning scheme, applicable overlays, registered notices on title, and certain orders or proposed acquisitions. Pending City Plan amendments and TLPIs are not always explicitly listed as Form 2 items, but they affect the matters that are listed, particularly zoning and overlays, and they will show up in the planning searches a competent buyer's solicitor runs as part of the contract review.</p>
+
+      <p>The practical position is that pending planning changes are public information. Brisbane City Council publishes amendments and TLPIs through the State's planning portal and Council's own planning notifications. A buyer's solicitor running a standard searches package will pick up the change. Sellers who attempt to time a sale to beat a pending change without proper disclosure are not avoiding the issue, they are layering a misrepresentation risk on top of an already pressured campaign. The better approach is to engage with the change honestly: confirm the current state of the amendment, confirm what it changes, confirm when it is likely to commence, and price the campaign to the reality of those facts. A buyer who is told the full position upfront and still proceeds is a stronger contract than a buyer who finds the change in their searches and walks.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What to verify before you list</h2>
+      <p>If you are planning to sell a Brisbane property and want to be ahead of any planning change that could affect price, three checks are worth doing before the appraisal. First, run the current property report on Brisbane City Council's planning portal and confirm the zoning, applicable overlays, and any neighbourhood plan precinct. Second, check whether any amendments to the City Plan are currently in public notification, in finalisation, or recently gazetted that affect your property's zone, overlay, or precinct. Third, check whether any Temporary Local Planning Instrument is currently in force or recently lapsed that affects your area, and whether there is any indication that a TLPI is being prepared in response to a recent rezoning request, infrastructure announcement, or character-protection campaign.</p>
+
+      <p>None of this needs to be a planning law deep dive. A 30 minute conversation with a local agent who follows the planning notifications, or a short letter from a town planner if you have a specific concern, will usually surface anything material. The point is to be ahead of the change rather than discovering it through a buyer's searches halfway through the contract review.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How buyers price planning risk</h2>
+      <p>Sophisticated buyers, particularly developers and investors, price planning risk explicitly. Their offers are built on a development feasibility model that depends on specific scheme provisions: height limits, setbacks, site coverage, car parking ratios, common open space requirements, and the assessment category. A pending amendment or TLPI that could change any of those inputs is a real risk that gets priced into the offer, usually as a discount and sometimes as a contract condition (longer due diligence, planning enquiry condition, or a finance and planning condition combined). Owner-occupier buyers are usually less alert to pending changes, but their solicitors are, and the contract review will surface what the buyer themselves might have missed.</p>
+
+      <p>The implication for sellers is that the buyer segment most exposed to planning risk is also the segment that typically pays the top of the price range on development-capable lots. Losing that segment, either by waiting too long to list, or by failing to disclose the position so the buyer walks during contract review, drops the price ceiling materially. Engaging with the planning question early and honestly is the way to keep that segment in the pool.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When the change is good news</h2>
+      <p>Not every planning change is a downward pressure. A neighbourhood plan rollout that introduces a mixed-use envelope around a transit corridor, an up-zoning that responds to a state infrastructure announcement, the removal of a restrictive overlay following a successful submission process, or a code amendment that adds flexibility (such as easier secondary dwelling approvals) can all increase the value of properties in the affected area. Sellers in those situations sometimes ask whether they should wait for commencement before listing.</p>
+
+      <p>The honest answer is that waiting can capture additional value, but only if the market is genuinely not pricing the upside in yet. If buyers are already paying premiums on the basis that the change is likely to land, the marginal value of waiting is small and the holding cost (interest, rates, insurance, maintenance, opportunity cost) often exceeds the gain. Reading the actual offers being made on comparable sites today is the way to test this. An agent who is not tracking the planning conversation will not be able to give you a useful read; an agent who is will tell you whether the market is ahead of the gazette or behind it.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The bottom line for Brisbane sellers in 2026</h2>
+      <p>Brisbane City Plan amendments and TLPIs are not background noise in 2026. They are an active part of the inner-east market, particularly for character stock, flood-affected pockets, and the corridors being reshaped by Olympics-related infrastructure. The buyer pool reprices the moment a change becomes public, well before commencement, and the direction of the movement (up or down) depends on whether the change widens or narrows the set of viable uses for your property.</p>
+
+      <p>The practical preparation is straightforward. Confirm your current planning position. Confirm whether any amendment or TLPI affecting your property is in notification, in finalisation, recently gazetted, or in active preparation. Build the answer into your campaign timing, your pricing, and your disclosure. Treat the planning question as an opportunity to demonstrate competence to a sophisticated buyer rather than a risk to be hidden. The sellers who handle this well are the ones who finish the campaign with a contract that holds together; the sellers who do not handle it well are the ones who repeat the campaign.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Is a planning change affecting your sale?</strong> Daniel tracks the City Plan amendment and TLPI pipeline as part of every appraisal in the inner east. If you are unsure how a pending change affects your property's value or campaign timing, an honest read is one conversation away. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/property-pricing-and-valuation/">Pricing and Valuation guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/get-an-appraisal" style="color:#f5d07a;font-weight:600;">Get an Appraisal &rarr;</a>
+  </p>
+</div>
+</Layout>
