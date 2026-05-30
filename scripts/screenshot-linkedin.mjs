@@ -173,7 +173,7 @@ function buildMarketHtml() {
       <div class="avatar"></div>
       <div>
         <div class="name">Daniel Gierach</div>
-        <div class="title">Ray White Bulimba</div>
+        <div class="title">Ray White Collective</div>
       </div>
     </div>
   </div>
@@ -239,7 +239,7 @@ function buildArticleHtml() {
       <div class="avatar"></div>
       <div>
         <div class="name">Daniel Gierach</div>
-        <div class="title">Ray White Bulimba</div>
+        <div class="title">Ray White Collective</div>
       </div>
     </div>
     <div class="insights-label">Insights</div>
@@ -331,7 +331,7 @@ function buildArticleCoverHtml() {
         <div class="avatar-dg"></div>
         <div>
           <div class="name">Daniel Gierach</div>
-          <div class="sub">Ray White Bulimba</div>
+          <div class="sub">Ray White Collective</div>
         </div>
       </div>
       <div class="tag">${esc(tagline)}</div>
@@ -470,7 +470,7 @@ function buildAuthorityHtml() {
       <div class="dg-circle"></div>
       <div>
         <div class="f-name">Daniel Gierach</div>
-        <div class="f-sub">Ray White Bulimba</div>
+        <div class="f-sub">Ray White Collective</div>
       </div>
     </div>
   </div>
