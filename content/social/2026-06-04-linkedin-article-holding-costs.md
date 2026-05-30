@@ -16,15 +16,13 @@
 
 Closing out the week's holding costs arc.
 
-For a Brisbane inner-east home priced around $1.5M, the monthly run-rate during a campaign can sit anywhere from $4,000 to $8,000. On a 90-day campaign that is somewhere in the range of $12,000 to $24,000 in carrying costs by the time settlement arrives. The exact number depends on the loan balance, whether the property is occupied or vacated for marketing, and the time of year.
+The interesting part of the holding cost question is not the dollar figure itself. It is what that figure changes about how a seller should think about campaign length and pricing.
 
-The interesting part is not the number itself. It is what the number changes about how you should run the campaign.
+A 30 day campaign at a realistic price almost always nets the seller more than a 90 day campaign at an aspirational one, once holding costs and the inevitable price reduction at week six or eight are factored in. The opportunity cost of waiting is real, and it compounds against the seller every week the property does not sell.
 
-A 30-day campaign at the right price almost always nets the seller more than a 90-day campaign at an aspirational price, once holding costs and the inevitable price reduction are factored in. The opportunity cost of waiting is real, and it compounds against the seller every week the property does not sell.
+This is why the pricing review cadence in the first three to four weeks matters more than most agents discuss with vendors upfront. A "pricing review cadence" is the agreed schedule for what triggers a repositioning conversation, and what data informs it: inspection numbers, second-inspection rates, written offer activity, comparable listings coming and going. Without that structure, sellers drift into longer campaigns by default, not by design.
 
-This is why the pricing review cadence in the first three to four weeks matters more than most agents discuss with vendors. A clear plan for what triggers a repositioning conversation, and when, is one of the things that separates a controlled campaign from a drifting one.
-
-Full breakdown in the inner east holding costs guide. Link in the comments.
+There is a deeper breakdown in the inner east holding costs guide, including a worked example for a $1.5 million property held for 30, 60, and 90 days. Useful if you are thinking about listing in the next 6-12 months and want to understand the full economics before you commit to a campaign. Link in the comments.
 
 ## Hashtags
 
@@ -36,21 +34,14 @@ Full breakdown: https://danielgierach.com/insights/cost-to-hold-brisbane-propert
 
 ## Visual Brief
 
-Use the article-cover template. Find next issue number via grep on `content/social/` for "Field Guide Issue", increment by 1, zero-pad to two digits.
-
-Headline: "What does waiting actually cost a Brisbane seller?"
-Tagline: "Run-rate, opportunity cost, and the pricing review cadence"
-Read time: 7 MIN READ
-Date: 2026-06-04
-
-See `scripts/screenshot-linkedin.mjs` invocation pattern in CLAUDE.md.
+Use the article-cover template. Headline: "What does waiting actually cost a Brisbane seller?" Tagline: "Run-rate, opportunity cost, and the pricing review cadence". Read time: 7 MIN READ. Date: 2026-06-04.
 
 ## Notes for Daniel
 
-This is the third post of the holding-costs arc. Tue raised the question, Wed polled, Thu delivers the answer.
+Third post of the holding-costs arc.
 
-Comments-first link pattern.
+Defines "pricing review cadence" mid-caption (consultant tone: terminology callout).
 
-UTM: campaign=holding-costs, content=thu-article, so traffic from this post is attributable separately from Tuesday's tool traffic.
+Comments-first link pattern, UTM is content=thu-article.
 
-The article on the site is the canonical evergreen home for this topic and should be linked from each Tue/Wed/Thu analytics dashboard.
+Closes with "useful if you are thinking about listing in the next 6-12 months" framing the article as a resource, not a sales pitch.

@@ -254,17 +254,19 @@ If a visual looks blurry or the footer is hard to read, the fix is to re-run the
 
 **Market template layout:** Content (headline, body, divider) must anchor to the bottom of the card with intentional dark space above. The script uses `justify-content: flex-end` in `.main` to achieve this. Do not pass layout overrides that would push content to the top or centre. The editorial dark space at the top is deliberate.
 
-### WEEKLY ARC — MANDATORY (updated 2026-05-30)
+### WEEKLY ARC — MANDATORY (updated 2026-05-30, day order revised 2026-05-30 evening)
 
-Every week ships a **single thematic arc** across three connected posts. Tuesday and Thursday drive traffic to danielgierach.com; Wednesday is a pure-engagement poll.
+Every week ships a **single thematic arc** across three connected posts. Tuesday is a pure-engagement poll that gets the algorithm warm; Wednesday and Thursday ride that warmth and drive traffic to danielgierach.com.
 
 | Day       | Role           | Template                  | Outbound link?                                          |
 |-----------|----------------|---------------------------|---------------------------------------------------------|
-| Tuesday   | **Tool feature** — introduces the week's question/problem with a calculator or interactive tool | `tool` (visual) | **YES** — link to `/tools/<slug>` in **first comment**, not body |
-| Wednesday | **Poll** — asks the audience's gut answer to the question raised Tuesday | (no visual) | **NO** — pure engagement post, polls down-rank if a link is present |
-| Thursday  | **Article feature** — resolves the poll with an insights article on the site | `article-cover` (week 1 of each theme) then `article` | **YES** — link to `/insights/<slug>` in **first comment**, not body |
+| Tuesday   | **Poll** — asks a stand-alone gut-answer question on the week's theme. Question must work cold (no prior post needed to make sense of it) | (no visual) | **NO** — polls down-rank if a link is present |
+| Wednesday | **Tool feature** — references yesterday's poll then introduces the calculator that gives the real answer | `tool` (visual) | **YES** — link to `/tools/<slug>` in **first comment**, not body |
+| Thursday  | **Article feature** — resolves both the poll and the tool with the canonical insights article | `article-cover` (week 1 of each theme) then `article` | **YES** — link to `/insights/<slug>` in **first comment**, not body |
 
-**The arc must be topically connected.** All three posts of a week pull from the same theme (e.g. holding costs, days on market, agent fees, finance, presentation). Tuesday raises the question, Wednesday polls the gut answer, Thursday delivers Daniel's expert answer via the matching insights article.
+**The arc must be topically connected.** All three posts of a week pull from the same theme (e.g. holding costs, auction reserve, agent fees). Tuesday's poll question seeds the topic; Wednesday's tool answers the question with a calculator and references the poll; Thursday's article delivers the deeper expert answer.
+
+**Why poll-first:** the Tuesday poll has no link, so it earns the strongest LinkedIn algorithmic boost. Whoever votes Tuesday is primed for Wed and Thu, which lifts the link posts that follow. Testing window: at least 4 weeks before re-evaluating order.
 
 **Comments-first link pattern (mandatory):** LinkedIn down-ranks posts with in-body URLs. For Tue and Thu, the post body contains NO link — the canonical URL goes in the first comment, posted within 60 seconds of the post itself. The poster (Daniel or the scheduler) adds the comment.
 

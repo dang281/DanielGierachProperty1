@@ -16,13 +16,15 @@
 
 Closing out the week's auction reserve arc.
 
-A reserve set well in the campaign, and lifted or held with discipline through the inspection cycle, is what separates a strong auction result from a passed-in property in Brisbane's inner east. The number on the day matters less than the process that got you there.
+The most common mistake I see is not setting the reserve too high or too low. It is setting it without a clear rule for when it can change during the campaign.
 
-The strongest reserves I see follow three principles. They are anchored to comparable sales from the past 60 to 90 days, not to historic peak figures or to the seller's emotional bottom line. They are adjusted upward only when registered bidders and inspection feedback genuinely support the lift, not when the agent feels a buyer might still pay more. And they account for the auction room dynamic, where the difference between two and four genuine bidders changes the achievable price in a measurable way.
+A reserve that nobody is willing to revisit when feedback shifts is a reserve that often produces a passed-in result. A reserve that drifts up or down without a defensible rationale produces a different problem: the seller arrives at auction day uncertain about whether to accept what is on offer.
 
-The most common reserve mistake is not setting it too high or too low. It is setting it without a clear rule for when it changes during the campaign. A reserve that nobody is willing to revisit when the feedback shifts is a reserve that will likely produce a passed-in result.
+The framework that holds up well is to agree the reserve methodology before the campaign begins, and then apply it consistently as the data comes in. The methodology should answer three questions explicitly. What inputs are we using to set the reserve, in what weighting? What evidence would lift the number, and by what increment? What evidence would lower it, and what is the floor below which we hold the property?
 
-Full breakdown in the auction reserve guide for Brisbane sellers. Link in the comments.
+Most strong auction results in inner-east Brisbane share that pattern. Most passed-in campaigns share the opposite. The number on the day matters less than the discipline that produced it.
+
+A deeper breakdown is in the auction reserve guide. Useful if you are weighing up an auction campaign in the next 6-12 months. Link in the comments.
 
 ## Hashtags
 
@@ -38,6 +40,6 @@ Use the article-cover template. Headline: "Setting the auction reserve in Brisba
 
 ## Notes for Daniel
 
-Third post of the auction-reserve arc.
+Closes the arc by framing the reserve methodology, not just the number.
 
-Comments-first link pattern, UTM baked in (campaign=auction-reserve, content=thu-article).
+Comments-first link pattern, UTM is content=thu-article.

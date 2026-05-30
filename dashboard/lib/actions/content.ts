@@ -308,8 +308,9 @@ type DayPostType = 'poll' | 'article' | 'authority' | null
 
 function dayPostType(dateStr: string): DayPostType {
   const dow = new Date(dateStr + 'T12:00:00').getDay()
-  if (dow === 2) return 'authority'  // Tuesday
-  if (dow === 3) return 'poll'       // Wednesday
+  // Poll-first arc (revised 2026-05-30): Tue poll, Wed tool/authority, Thu article
+  if (dow === 2) return 'poll'       // Tuesday
+  if (dow === 3) return 'authority'  // Wednesday
   if (dow === 4) return 'article'    // Thursday
   return null
 }

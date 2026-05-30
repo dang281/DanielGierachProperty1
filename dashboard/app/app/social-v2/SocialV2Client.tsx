@@ -26,9 +26,10 @@ const ROLE_COLOUR: Record<DayRole, string> = {
   article: '#a855f7',
 }
 
+// Poll-first arc (revised 2026-05-30): Tue=poll, Wed=tool, Thu=article
 const ROLE_LABEL: Record<DayRole, string> = {
-  tool:    'TUE · TOOL',
-  poll:    'WED · POLL',
+  poll:    'TUE · POLL',
+  tool:    'WED · TOOL',
   article: 'THU · ARTICLE',
 }
 
@@ -393,8 +394,8 @@ function WeekRow({
   const anyApprovable = weekItems.some(p => p.status === 'idea' || p.status === 'draft')
 
   const slots: [DayRole, ContentItem | undefined][] = [
-    ['tool', bucket.tue],
-    ['poll', bucket.wed],
+    ['poll', bucket.tue],
+    ['tool', bucket.wed],
     ['article', bucket.thu],
   ]
 

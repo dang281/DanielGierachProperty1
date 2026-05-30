@@ -16,13 +16,13 @@
 
 Closing out the week's price reduction arc.
 
-Days on market is one of the most-watched and least-understood numbers in a Brisbane campaign. A property that sells in week two looks fast; a property that sells in week eight looks slow. But the days-on-market number is a symptom of pricing and presentation decisions made before the campaign started, not an independent measure of buyer demand.
+Days on market is best read as a symptom, not a cause. A property that sells in week two looks fast and a property that sells in week eight looks slow, but the time taken is largely a function of pricing and presentation decisions made before the campaign started, not an independent measure of buyer demand.
 
-The pattern I see in the inner east is that a property correctly priced to its current comparable sales attracts a serious buyer cohort in the first two to four weeks. If that cohort produces no offer that respects asking, the most useful single change a seller can make is to revisit the price against the feedback collected, not to wait for a different cohort to arrive.
+The pattern that holds well in inner-east Brisbane is this: a property priced correctly to its current comparable sales attracts a serious buyer cohort in the first two to four weeks. If that cohort produces no offer that respects asking, the most useful single change a seller can make is to revisit the price against the feedback collected, not to wait for a different cohort to arrive.
 
-Repricing too quickly looks weak in front of buyers who are still considering. Holding too long produces a buyer pool that has filtered out the property entirely. The judgement call is in the window between those two failure modes, and the question is rarely the size of the adjustment. It is whether the new number resets the buyer pool to one that will pay.
+Two failure modes to avoid. Repricing too quickly looks weak in front of buyers who are still genuinely considering. Holding too long produces a buyer pool that has filtered out the property entirely, where even a meaningful adjustment then struggles to bring them back. The judgement call is in the window between those two failure modes.
 
-Full breakdown in the days on market guide. Link in the comments.
+The article walks through how to read inspection numbers, second-inspection rates, and written offer activity together, so that the repositioning conversation is data-led rather than pressure-led. Useful if you are weighing up an upcoming campaign or already in week three or four of one. Link in the comments.
 
 ## Hashtags
 
@@ -34,10 +34,10 @@ Full breakdown: https://danielgierach.com/insights/days-on-market-what-it-means-
 
 ## Visual Brief
 
-Use the article-cover template. Headline: "When days on market is a signal, not noise". Tagline: "The four-week feedback window in Brisbane's inner east". Read time: 7 MIN READ. Date: 2026-06-18.
+Use the article-cover template. Headline: "When days on market is a signal, not noise". Tagline: "Reading the four-week feedback window in Brisbane's inner east". Read time: 7 MIN READ. Date: 2026-06-18.
 
 ## Notes for Daniel
 
-Third post of the price-reduction arc.
+Consultant tone: defines days on market as a symptom, then explains the two failure modes (repricing too quickly vs holding too long).
 
-Comments-first link pattern, UTM baked in (campaign=price-reduction-timing, content=thu-article).
+Comments-first link pattern, UTM is content=thu-article.

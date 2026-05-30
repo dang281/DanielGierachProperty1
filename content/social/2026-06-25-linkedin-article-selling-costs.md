@@ -16,13 +16,17 @@
 
 Closing out the week's selling costs arc.
 
-The cost of selling a Brisbane home in 2026 typically sits between 2.5 and 4 per cent of the sale price by the time you reach settlement. For a $1.5 million property that is somewhere in the range of $37,500 to $60,000. The wide range is mostly explained by three factors, and they are worth understanding before you commission an agent.
+The right way to think about selling costs is not "what is the lowest figure I can pay" but "what is the lowest figure that supports the result I am trying to produce". A campaign that under-invests in the wrong place can leave more on the table than it saves.
 
-The first is commission structure. Tiered models with a lower base and an incentive on results above a target can produce a meaningfully lower total commission than a flat percentage, particularly when the campaign performs strongly. The second is marketing. A premium media package can add several thousand dollars without producing better results if the property is in a tightly-held suburb where buyer alerts do most of the work. The third is presentation. Investments in styling and pre-sale repairs return well when the property is being positioned for a competitive offer, less so when the buyer pool is renovation-focused.
+Three judgement calls anchor the decision.
 
-The right cost is not the lowest cost. It is the lowest cost that supports the result you are trying to produce. A campaign that under-invests in the wrong place can leave more on the table than it saves.
+The first is commission structure. A tiered model with an incentive above a target price aligns the agent to push hard at the top of the range. A flat percentage is simpler but rewards the same outcome regardless of how much the agent fights for the final bid. Neither is universally right, but the structure should be a deliberate decision, not a default.
 
-Full breakdown in the inner east selling costs guide. Link in the comments.
+The second is marketing intensity. The right spend is a function of how hard the property is to reach. A tightly-held inner-east suburb with an active saved-search audience needs less than a comparable property in an area with thinner buyer activity. A blanket "premium" package is rarely the answer.
+
+The third is presentation investment. Styling, repairs, and gardening earn their return when the property is being positioned for competitive bidding from owner-occupiers. They earn less when the buyer pool is renovation-focused. The work should match the buyer.
+
+A deeper breakdown is in the selling costs guide, including a worked example for a $1.5 million inner-east property. Useful if you are planning a campaign in the next 6-12 months. Link in the comments.
 
 ## Hashtags
 
@@ -34,10 +38,10 @@ Full breakdown: https://danielgierach.com/insights/cost-of-selling-house-brisban
 
 ## Visual Brief
 
-Use the article-cover template. Headline: "The real cost of selling a Brisbane home in 2026". Tagline: "Commission structure, marketing, and the presentation question". Read time: 8 MIN READ. Date: 2026-06-25.
+Use the article-cover template. Headline: "The real cost of selling a Brisbane home in 2026". Tagline: "Commission structure, marketing intensity, and the presentation question". Read time: 8 MIN READ. Date: 2026-06-25.
 
 ## Notes for Daniel
 
-Third post of the selling-costs arc.
+Consultant tone: reframes the cost question as "what supports the result", then explains the three judgement calls.
 
-Comments-first link pattern, UTM baked in (campaign=selling-costs, content=thu-article).
+Comments-first link pattern, UTM is content=thu-article.
