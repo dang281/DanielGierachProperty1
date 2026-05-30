@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should Brisbane property investors sell or refinance in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The right answer depends on three things: the size of the cash flow gap on the property right now, the size of the embedded capital gain and the CGT it would crystallise, and whether the land tax stack is making the asset structurally less attractive. Refinancing is usually the right move when the property still has rental demand and the issue is purely servicing pressure. Selling is usually the right move when the equity is large, the yield is poor relative to alternatives, and land tax is compounding the drag. Many Brisbane inner east investors who bought before 2020 are in the second category in 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does refinancing solve a negative cash flow problem on a Brisbane investment property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refinancing can ease cash flow but rarely fixes it. Switching from principal and interest to interest only, extending the loan term, or moving to a lower variable rate can reduce monthly outflow by hundreds of dollars. But it does not change the underlying yield, the land tax bill, or the maintenance trajectory. If a property is bleeding $1,500 a month after a 6% rent increase and a refinance pulls that down to $900, the asset is still consuming household income. Refinancing buys time, not a solution. Use it deliberately when the holding case is still strong."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the capital gains tax cost of selling a Brisbane investment property in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a property held more than 12 months by an Australian resident individual, the 50% CGT discount applies. The taxable gain is added to your other income in the financial year the contract is signed (not settlement). A Brisbane inner east property bought for $700,000 in 2015 and sold for $1.4 million in 2026 produces a gross gain of around $700,000, less acquisition and disposal costs, less capital improvements not previously claimed. After the 50% discount and at the top marginal rate, the tax bill could land between $150,000 and $180,000. The exact figure depends on depreciation claimed, cost base adjustments, and your other income in that year. Sequencing the contract date around 30 June is often the highest-leverage decision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Queensland land tax affect the sell-or-refinance decision in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Queensland land tax is assessed annually on the total unimproved land value of all taxable land an investor owns, with the principal place of residence exempt. For investors holding multiple properties, the marginal rate climbs quickly, and in 2026 many Brisbane inner east investors are paying $4,000 to $15,000 a year per investment property in land tax alone. Refinancing does not reduce this; selling does. When land tax is the dominant ongoing cost and the rental yield is below 3.5%, the sell side of the calculation tends to win on pure return on equity, even before CGT planning."
+      }
+    }
+  ]
+};
+---
+<Layout title="Should Brisbane Investors Sell or Refinance in 2026? | Daniel Gierach Property" description="A direct framework for Brisbane property investors weighing sale against refinance in 2026: cash flow gap, embedded capital gain, land tax pressure, and what each lever actually solves." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 11 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Should Brisbane Investors Sell or Refinance in 2026?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The two levers Brisbane investors reach for when an investment property starts to drag on the household budget are different tools that solve different problems. Here is how to decide which one fits your situation in 2026.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>By the middle of 2026, a meaningful share of Brisbane investors who bought their property between 2015 and 2021 are sitting in an unusual position. The capital growth has been very strong, particularly in the inner east, where prices have moved 60% to 90% since the pre-pandemic baseline. The rental yield on the same property, even after several rounds of rent increases, is somewhere between 2.8% and 3.6%. Interest rates have eased off the 2024 peak but remain materially higher than the rates the original loan was written at. The land tax bill arrives in October and is genuinely substantial. And the household budget is no longer running on autopilot.</p>
+
+      <p>The two obvious levers are refinance and sell. They are not the same lever and they do not solve the same problems. The single most common mistake I see investors make in 2026 is reaching for the wrong one because their accountant, their broker, or their last conversation with a mate at a barbecue framed the issue differently. Below is the way I think about the decision when an investor sits down across the table.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What refinancing actually changes</h2>
+      <p>Refinancing changes the shape of your debt. It does not change the underlying asset, the rental yield, or the land tax position. Done well, it can pull a few hundred dollars a week of cash flow back into the household budget. The levers available to most Brisbane investors in 2026 are: switching from principal and interest back to interest only, extending the loan term to reset the amortisation, pulling equity out to cover the cash flow gap for a defined period, or moving lenders for a sharper rate. Each of these has a real effect on the monthly position. None of them changes the structural economics of the asset.</p>
+
+      <p>That last point is where investors get into trouble. If a Camp Hill investment property is generating $620 a week in rent, has $2,400 a month in interest, $400 a month in body corporate or maintenance, and $700 a month in land tax averaged across the year, the after-tax holding cost is sitting around $1,200 to $1,500 a month for a household paying the top marginal rate. Refinancing to interest only and re-pricing the loan might bring that to $800 to $1,000 a month. The household is still funding the property out of after-tax income. That is fine if the holding case is strong. It is a slow leak if it is not.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When refinancing is the right move</h2>
+      <p>Refinancing is the right call when three things are true at once. First, the rental demand for the property is genuinely strong, with vacancy under two weeks at lease renewal and rent reviews moving up rather than sitting flat. Second, the capital growth case is still live, either because the area is genuinely undersupplied or because a structural infrastructure change is still feeding through. Third, the household has the income capacity to fund the gap without compromising other financial goals over a three to five year horizon.</p>
+
+      <p>If those three boxes tick, refinancing buys you the right thing: time on a still-appreciating asset, without the friction and transaction cost of selling. The arithmetic on a strong inner east property where capital growth has averaged 6% to 8% a year is hard to beat with most other investment categories, even after the holding cost gap. Pulling equity at the right point in the cycle to fund the gap or to seed a second asset can be the right move if the investor has the financial sophistication to manage the cross-collateralisation risk.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When selling is the right move</h2>
+      <p>Selling is the right call when the maths on the underlying asset is no longer working and refinancing only delays the recognition of that. The three scenarios I see most often in 2026 are these.</p>
+
+      <p><strong>Scenario one: the equity is very large and the yield is poor.</strong> An investor bought a Morningside property for $720,000 in 2017. The 2026 valuation is $1.35 million. The mortgage balance is $530,000. The property rents for $670 a week. The gross yield on the current value is around 2.6%. The investor is sitting on $820,000 of equity in an asset producing a 2.6% gross return before costs, with the cost stack running close to the gross rent. The return on equity from continuing to hold this asset is genuinely poor. Refinancing does not improve it. Selling, paying the CGT, and redeploying the after-tax proceeds into a higher-yielding asset or paying down the principal place of residence usually produces a better risk-adjusted outcome.</p>
+
+      <p><strong>Scenario two: the land tax stack has crossed the threshold.</strong> An investor with three Queensland investment properties now has a combined taxable land value that puts the marginal land tax rate at 1.5% to 2.25% on the top tranche. The combined land tax bill is $14,000 a year and rising as land valuations push up annually. Two of the three properties are servicing well and one is structurally underperforming. The right move is rarely to refinance all three. It is to sell the weakest of the three, drop back below a marginal land tax threshold, and let the remaining holdings perform without the drag.</p>
+
+      <p><strong>Scenario three: the property is approaching a capital expenditure cliff.</strong> A 1980s townhouse or a 1970s low-rise apartment can run beautifully for years, then arrive at a window where the special levy for re-roofing, re-rendering, or balcony rectification is going to be $30,000 to $80,000 per lot. The investor who has watched the body corporate minutes carefully knows it is coming. Refinancing to fund a special levy on a property that the investor was already lukewarm about is a hard case to make. Selling before the special levy is struck, while the body corporate is in good standing on paper, is often the better call. Disclosure obligations under Queensland law are still in force, but the asset is materially easier to sell before a known capital event than after one.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The 2026 capital gains tax reality</h2>
+      <p>Most investors who bought before 2021 are sitting on a meaningful capital gain. The 50% CGT discount for individuals who have held the asset more than 12 months remains in place in 2026, which keeps the headline tax cost on a long-held gain manageable in percentage terms. But the absolute number matters. A $600,000 gain crystallised in a financial year where the investor is also drawing a high salary can produce a tax bill that materially changes the redeployment maths.</p>
+
+      <p>There are three planning levers that most accountants will work through with you before you list. The first is timing the contract date around 30 June, so the gain falls into the financial year where your other income is lowest. The second is identifying any prior capital losses sitting in the trust or the individual's tax history that can be applied to offset the gain. The third is documenting every capital improvement you have made over the holding period that was not claimed as a deduction, because each dollar of legitimate cost base lift is a dollar that does not get taxed at the top marginal rate. None of these levers help if you only think about them after the property is sold. They need to be on the table before the marketing campaign starts.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Refinance to fund a sale-ready position</h2>
+      <p>A third option that sits between the two is to refinance specifically to fund the work that makes the property sale-ready, then sell into the next campaign window. For an investor whose property has tired carpet, an unrenovated kitchen, and a tenant on a below-market rent, the path that often produces the highest net result is: refinance to release $30,000 to $60,000, negotiate a managed end of the tenancy, complete a focused presentation refresh, and list in a campaign window where buyer demand for the property type is genuinely strong. This is not the same as selling immediately and it is not the same as refinancing to hold. It is a bridge between the two and it can be the right answer when the property is structurally sound but presentationally tired.</p>
+
+      <p>The maths only works when the presentation lift is closely matched to comparable sales. Spending $50,000 on a property where the comparable evidence supports a $90,000 to $130,000 presentation premium is sound. Spending $50,000 on a property where the ceiling is set by location and the presentation premium is closer to $25,000 is not. This is where a Brisbane agent who works with investors regularly should be giving you a straight read on the comparable sales before you commit to the spend.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A simple decision framework</h2>
+      <p>When I sit down with a Brisbane investor in 2026, the conversation works through four questions in order. First, what is the current monthly cash flow gap after tax, and is it sustainable for the household for three to five years without compromising other goals? Second, what is the embedded capital gain and what is the after-tax proceed if we sell this financial year? Third, what is the land tax position across the investor's full portfolio, and does selling this asset materially improve it? Fourth, is the underlying property still in a structural growth path, or has the growth case run its course?</p>
+
+      <p>If the cash flow gap is manageable, the gain has further to run, the land tax position is not pressing, and the underlying area still has structural drivers, refinance and hold is usually the right call. If the cash flow gap is real, the equity is large, the land tax is pressing, or the area's growth case has matured, selling and redeploying is usually the right call. Most decisions sit clearly on one side of that line once the numbers are laid out. The investors who get the worst outcomes are the ones who refinance reflexively because selling feels like a failure, and the ones who sell reflexively because the monthly statement is uncomfortable.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Sequencing matters</h2>
+      <p>If selling is the decision, the sequencing of the work is where most of the value is captured or lost. The order I would suggest is: confirm the CGT position with the accountant including any timing levers around 30 June, get a clear written appraisal with the comparable sales attached, decide on tenancy strategy (sell with tenant in situ or seek vacant possession under the current Queensland notice rules), set the presentation budget against the comparable evidence, and then agree the campaign type and timing with the agent. Skipping the accountant step and going straight to the agent is the single most expensive sequencing mistake I see.</p>
+
+      <p>If refinancing is the decision, the sequencing is shorter but still matters. Get the broker to model both interest only and principal and interest paths for the next 24 months, factor a 50 to 75 basis point upside rate scenario into the cash flow, and only then commit to the structure. Refinancing without that scenario test is how investors find themselves back in this same conversation 18 months later.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Weighing sell versus refinance on a Brisbane investment property?</strong> Daniel works with investors regularly and can give you a straight read on current sale conditions for your property type, the comparable evidence behind any presentation spend, and a realistic timeline for a campaign if selling is the right call. No fluff, no obligation. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<p style="margin-top:2rem;font-size:0.95rem;text-align:center;">Part of the <a href="/insights/investment-property-selling/" style="color:#c4912a;font-weight:600;">Investment Property Selling guide series</a>.</p>
+
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);max-width:780px;margin-left:auto;margin-right:auto;">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/rent-vs-sell" style="color:#f5d07a;font-weight:600;">Rent vs Sell &rarr;</a>
+  </p>
+</div>
+
+</Layout>
