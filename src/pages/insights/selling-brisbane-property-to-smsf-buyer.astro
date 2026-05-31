@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can a self-managed super fund buy my Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, an SMSF can purchase residential or commercial property in Brisbane, provided the trustees comply with the sole purpose test under the Superannuation Industry (Supervision) Act 1993. The fund must not be buying from a related party for residential property, and the purchase price must be at arm's length and supported by an independent valuation. For sellers, this means the buyer cannot be someone connected to you or your family, and the transaction will be scrutinised by the fund's auditor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a sale to an SMSF buyer take longer to settle in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often, yes. SMSF buyers using limited recourse borrowing arrangements (LRBAs) require a separately established bare trust, lender approval against tighter SMSF lending policies, and additional documentation including signed trust deeds and certified copies of the SMSF deed. A standard 30-day Queensland settlement is achievable but tight. Many sellers and their solicitors negotiate 45 to 60 days when an SMSF is involved, with a finance clause that gives the trustees time to clear lender conditions without putting the contract at risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is my Brisbane home worth to an SMSF buyer in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Market value to an SMSF buyer is the same arm's length price any qualified buyer would pay, supported by recent comparable sales in your suburb. SMSF lenders typically commission an independent valuation, so the contract price needs to hold up against a panel valuer's report. If the contract price exceeds the valuation, the SMSF either contributes more cash or the deal renegotiates. For most well-priced Brisbane properties in suburbs with active sales evidence, this is not an issue."
+      }
+    }
+  ]
+};
+---
+<Layout title="Selling Your Brisbane Property to a SMSF Buyer 2026 | Daniel Gierach Property" description="An SMSF offer looks the same on the contract, but the buyer constraints, finance approval path, and settlement timeline are different. What Brisbane sellers need to verify before accepting." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 9 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Selling Your Brisbane Property to a SMSF Buyer: What Sellers Need to Know
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        An SMSF offer looks the same on the contract, but the buyer constraints, finance approval path, and settlement timeline are different. What Brisbane sellers need to verify before accepting.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Self-managed super funds have been one of the most active buyer segments in Brisbane's inner east over the last five years. Trustees with $500,000 or more in fund assets and a tolerance for direct property exposure have looked at Camp Hill, Morningside, Carina, Cannon Hill and Norman Park as places where modest entry prices, strong tenant demand and steady capital growth made the maths work inside super. As a seller in 2026, you will receive offers from SMSF buyers more often than most vendors expect, and the difference between a smooth settlement and a frustrating one comes down to what you and your solicitor verify before signing.</p>
+
+      <p>On the contract, an SMSF offer can look identical to a cash buyer or an owner-occupier with finance. The deposit is paid, the price is committed, the cooling off and finance dates sit in the standard Queensland REIQ contract. What is different is the structure behind the buyer, the path to unconditional, and the parties whose approval the trustees still need before they can complete. None of this should put you off accepting an SMSF offer. It just means the questions you ask the buyer's agent and the buyer's solicitor at the point of offer matter more than they would for a conventional purchase.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Who is actually buying: the fund, not the trustee</h2>
+      <p>The legal buyer is the trustee of the SMSF acting in that capacity, not the individual members personally. In practice you will often see contracts in the name of an individual trustee or a corporate trustee, with the words "as trustee for [Fund Name] Superannuation Fund" or similar. If a limited recourse borrowing arrangement is involved, the contract may instead be in the name of a bare trust (sometimes called a custodian trust or property trust) that holds the asset on behalf of the SMSF. Your solicitor needs to confirm the buyer entity matches the structure the lender has approved, otherwise the financier will not release funds at settlement.</p>
+
+      <p>For sellers, the practical implication is straightforward. Make sure the buyer entity is identified correctly on the contract from day one. Changing the buyer name after the contract is signed is messy in Queensland and can trigger additional stamp duty if the substitution looks like a sub-sale rather than a legitimate trust correction. The cleanest path is to ask the buyer's agent for the exact entity name and structure before contract preparation, and to have your solicitor verify it against the SMSF deed and any bare trust documentation.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The sole purpose test and why the buyer cannot be a related party</h2>
+      <p>If you are selling a residential property and the SMSF buyer turns out to be connected to you or someone in your family, the sale cannot proceed. The Superannuation Industry (Supervision) Act 1993 prohibits an SMSF from acquiring residential property from a member of the fund or a related party of any member. Related party includes parents, siblings, children, spouses, and entities those people control. The penalty for breaching this rule is severe: the fund can lose its complying status, which exposes its assets to top marginal tax rates rather than the 15% concessional rate.</p>
+
+      <p>For commercial property the rule is different. Business real property, defined as property used wholly and exclusively in the carrying on of a business, can be acquired by an SMSF from a related party at market value. This is why you see solicitors and accountants sell their own offices into their family SMSFs. Residential property does not benefit from this exception. If the SMSF buyer's name on the contract is anyone connected to you, your solicitor should raise it immediately and the contract should not be signed until the trustees confirm in writing that the acquisition does not breach the related party rules. In most arm's length transactions this is not an issue, but it is worth the question.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Limited recourse borrowing arrangements: a different finance path</h2>
+      <p>The most common reason an SMSF takes longer to settle than a conventional buyer is the limited recourse borrowing arrangement, or LRBA. An SMSF that is borrowing to fund the purchase cannot use a standard residential mortgage. It uses an LRBA structure in which a separate bare trust holds legal title to the property, the SMSF holds beneficial ownership, and the lender's recourse in the event of default is limited to the single asset inside the bare trust. The SMSF's other assets are protected.</p>
+
+      <p>From the lender's perspective, this is a more constrained product. Only a handful of banks and non-bank lenders write SMSF loans, and their credit policies are tighter than residential lending. Most lenders require a minimum 20% to 30% deposit, evidence of fund liquidity post-settlement, a fund balance above a threshold (commonly $200,000 to $250,000), and a serviceability assessment based on the fund's contributions and rental income rather than the members' personal salaries. The valuation the lender commissions is also stricter, and the lender will not release funds until the bare trust is correctly established, the SMSF deed has been reviewed, and the buyer's accountant has provided confirmation that the borrowing meets sole purpose and acquisition rules.</p>
+
+      <p>What this means in practice is that an SMSF buyer using an LRBA needs a realistic finance clause. A 14-day finance condition is too tight in most cases. Twenty-one days is workable for an organised buyer with their lender lined up. For more conservative trustees or buyers who have not yet established the bare trust, 28 to 35 days is more realistic. As a seller, accepting a longer finance clause from an SMSF buyer who has already paid a 10% deposit and signed at full asking price is usually a better trade than holding out for a 14-day clause and risking the buyer pulling out under finance.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Settlement timing: 30 days is tight, 45 to 60 is realistic</h2>
+      <p>The standard Queensland REIQ contract defaults to 30 days from contract date to settlement. For an SMSF purchase with finance, 30 days is achievable only when the bare trust is already established, the lender has issued formal approval pre-contract, and the SMSF's accountant has all the documentation ready to go. In most cases, neither of those preconditions is met at the point of offer.</p>
+
+      <p>The more realistic timeline is 45 to 60 days. The buyer's solicitor needs to liaise with the SMSF's accountant, the lender, and the bare trust documentation provider. The lender's valuation needs to be ordered, completed and reviewed. The SMSF deed may need updating to confirm the trustees have the power to acquire and borrow. Where any of these steps is delayed, the consequence is a settlement extension request to you, the seller.</p>
+
+      <p>If you have flexibility on settlement date, agreeing to 45 or 60 days upfront removes the friction. If you need to settle quickly because you have committed funds elsewhere, you need to flag that at the point of offer and negotiate the contract date and finance clause accordingly. Surprises on day 28 of a 30-day contract, when the SMSF's lender has not yet released funds, are a worse outcome for everyone than a longer contract that finishes on time.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The independent valuation matters more than usual</h2>
+      <p>SMSF auditors and lenders both require evidence that the purchase price is at market value. The lender will commission a valuation through its panel as part of the finance approval. The auditor will look at the contract price against the valuation and against recent comparable sales when signing off on the fund's annual financial statements. If the contract price is materially above the valuation, the trustees either contribute additional cash from existing fund balances, or the contract is renegotiated.</p>
+
+      <p>For sellers, the implication is that an SMSF buyer is more sensitive to a stretched price than a conventional buyer might be. An owner-occupier who falls in love with the home can sometimes pay 5% to 10% above the comparable sales evidence and have the bank still write the loan. An SMSF buyer typically cannot. If your campaign attracts strong SMSF interest, you want to be confident the contract price is well-supported by the recent sales in your suburb. The way to manage this is to make sure your agent prices the property based on genuine comparable evidence, and to provide that evidence to the buyer's lender and accountant if it speeds the approval process.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What attracts SMSF buyers to Brisbane's inner east</h2>
+      <p>SMSF buyers are usually looking for residential investment property that ticks three boxes: strong rental yield relative to purchase price, low vacancy risk, and capacity for steady capital growth over a 7 to 15 year hold. Brisbane's inner east meets all three for a price band typically between $800,000 and $1.6 million. Camp Hill, Morningside, Carina and Cannon Hill are the suburbs where SMSF interest has been most consistent because of the school catchment overlap with Cannon Hill Anglican College, Lourdes Hill, Whites Hill, and the inner-east public catchments, plus walkability to the South-East Busway, Bulimba and Cannon Hill retail, and Norman Creek green corridors.</p>
+
+      <p>The property types that attract SMSF interest most reliably are character homes with separate dwellings or granny flats (additional rental income from the second dwelling lifts yield), three-bedroom post-war homes on standard 405m² to 600m² blocks (low maintenance, good tenant demand), and lowset brick homes (lower depreciation profile but reliable rental income). What attracts SMSF buyers less is high-maintenance Queenslander homes with long deferred maintenance, properties with body corporate fees that erode yield, and homes with structural or weatherboard issues that complicate insurance.</p>
+
+      <p>If your property fits the first profile, presenting it well to SMSF buyers means leading with the rental appraisal alongside the sale appraisal, providing a clear depreciation schedule if one exists, and being open about the rent the existing tenant is paying if the property is tenanted. SMSF buyers and their accountants want to see the yield maths before they make the offer.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Tenanted versus vacant possession</h2>
+      <p>Many SMSF buyers prefer to take possession of a property with the existing tenant in place. The fund needs rental income flowing from settlement to support the LRBA repayments, and a 30 to 60 day vacant period while a new tenant is found can be a real cost. If your property is tenanted at the point of sale, marketing it to SMSF buyers with a clear rental income statement, a current rental appraisal, and confirmation that the tenant is in good standing is often more valuable than vacant possession.</p>
+
+      <p>If the existing rent is below market, an SMSF buyer's accountant will price the property based on the actual income, not the potential income, until the lease expires. This is sometimes a reason sellers consider giving the existing tenant notice and offering vacant possession at settlement. The trade-off needs careful thought. In Queensland the entry to lease rules and the notice periods under the Residential Tenancies and Rooming Accommodation Act 2008 limit your options, particularly under the 2022 and 2024 reforms. Talk to your agent and your property manager before making this call.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What to ask the buyer's agent at the point of offer</h2>
+      <p>When an SMSF offer comes in, the questions to put to the buyer's agent or buyer's solicitor before you accept are direct. Is the SMSF using cash or borrowing through an LRBA? If borrowing, which lender, and is pre-approval in place? Is the bare trust already established or does it need to be set up? What settlement period does the buyer require, and what finance clause? Is the contract going to be in the name of an individual trustee, corporate trustee, or bare trust? Has the SMSF accountant confirmed the fund has sufficient liquidity to complete after the deposit and additional contributions? And, on residential property, is there any relationship between the SMSF members and the vendor that needs to be disclosed?</p>
+
+      <p>The answers determine the contract structure. A cash SMSF buyer with no LRBA can settle in 30 days the same as any other cash buyer. An LRBA buyer with a corporate trustee, lender pre-approval and bare trust established can do 30 to 35 days. An LRBA buyer who is still setting up the structure realistically needs 45 to 60. Knowing which scenario you are dealing with at the point of offer prevents the worst outcome: an extension request on day 27 of a contract that should have been written with a longer settlement from the start.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why SMSF offers are still worth taking</h2>
+      <p>For all the additional complexity, an arm's length SMSF buyer is a strong buyer. The trustees have made a deliberate, advised decision to acquire the property. They have professional advisers involved at every step. They are not emotional buyers who pull out at the building and pest inspection over a minor issue. They are not relying on a future salary increase to support the loan. And they have a long investment horizon, which means they are usually buying with intent to hold rather than flip, removing the risk of a short-settlement-cycle renegotiation.</p>
+
+      <p>What makes them complex for sellers is the structure behind the buyer, not the buyer's commitment. If your solicitor is across the SMSF rules, your agent is realistic about the finance and settlement timing, and the contract reflects what the buyer actually needs, an SMSF sale settles cleanly and on terms that are good for the seller. The mistakes happen when the contract is written like a conventional residential sale and the SMSF structure is treated as an afterthought.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The bottom line</h2>
+      <p>An SMSF buyer is a good buyer for a well-presented, well-priced Brisbane investment property, provided the contract is written to suit the structure. Verify the buyer entity matches the SMSF documentation. Confirm the buyer is at arm's length on a residential sale. Give the LRBA process realistic time on the finance clause and the settlement date. Provide the rental and yield evidence the buyer's advisers will need. And lean on your solicitor and your agent to flag anything in the contract that does not fit the buyer's structure before signing. Done properly, the SMSF buyer pool is a meaningful and underappreciated source of strong, committed buyers in Brisbane's inner east, and a sale to a well-advised SMSF settles as cleanly as any other transaction.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Have an SMSF buyer interested in your Brisbane property?</strong> Daniel can talk you through what to verify, how to structure the contract, and what to expect at each stage of the campaign. Honest, specific, and grounded in actual transactions across Camp Hill, Morningside, Carina and Cannon Hill. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/investment-property-selling/">Investment Property Selling guide series</a>.</p>
+<AuthorBio />
+</Layout>
