@@ -1,0 +1,134 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What happens to the CGT cost base when a joint owner of a Brisbane property dies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under section 128-15 of the Income Tax Assessment Act 1997, the deceased's interest is taken to have been acquired by the beneficiary (or the surviving joint tenant) at the date of death. For property the deceased acquired after 19 September 1985, the cost base of their share resets to the market value at the date of death only in limited circumstances (mainly where the property was the deceased's main residence just before death and not being used to produce income). In most other cases, the beneficiary or surviving owner inherits the deceased's original cost base. The surviving owner's existing share keeps its original cost base regardless. This is the most commonly misunderstood part of inherited Brisbane property sales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it matter whether we owned the property as joint tenants or tenants in common?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but probably less than people think for CGT. For joint tenants, the ATO treats the deceased's interest as passing to the surviving joint tenant in equal shares as if under a will. The cost base rules in section 128-15 apply the same way. For tenants in common, the deceased's share passes through their estate to whoever is named in the will (which may or may not be the surviving co-owner). The CGT cost base treatment of the deceased's share is identical: the beneficiary inherits the deceased's cost base, or in the limited main residence cases, a market value reset at the date of death. The practical difference is who ends up owning the half-share and what happens at settlement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "If the property was the deceased's main residence, can we sell it CGT-free in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often yes, but the rules in section 118-195 are specific. If the deceased acquired the property after 19 September 1985 and it was their main residence just before death and not used to produce assessable income at that time, the beneficiary can generally claim a full main residence exemption on disposal provided the property is sold within 2 years of the date of death (the Commissioner has discretion to extend this in limited cases). If the surviving owner already held a share and was also using the property as their main residence, the exemption can apply to both halves. If the deceased had moved out and rented it out, the exemption is partial and the cost base mechanics become significantly more complex. A specialist accountant should run the actual numbers before any campaign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What records should I gather before listing an inherited Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Six things. First, the original purchase contract and settlement statement showing what the deceased (and any co-owner) paid and when. Second, the death certificate. Third, a market valuation of the property at the date of death from a registered valuer (not a real estate appraisal). Fourth, records of capital improvements made during the deceased's ownership: extensions, kitchens, bathrooms, structural work. Fifth, if the property was ever rented out, the depreciation schedules and capital works deductions claimed. Sixth, the grant of probate or letters of administration if applicable. Bringing this to the first accountant meeting (before listing) is the single most useful thing an executor or surviving owner can do."
+      }
+    }
+  ]
+};
+---
+<Layout title="CGT and Cost-Base Reset When Selling a Brisbane Property After a Joint Owner Has Died | Daniel Gierach Property" description="When a Brisbane property co-owner dies, the capital gains tax cost base of their share is governed by section 128-15 of the Income Tax Assessment Act. Here is how the reset actually works, the main residence rules, and what to gather before listing." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 12 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        CGT and Cost-Base Reset When Selling a Brisbane Property After a Joint Owner Has Died
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        When a Brisbane property co-owner dies, the capital gains tax cost base of their share is governed by section 128-15 of the Income Tax Assessment Act. The reset is narrower than most people assume, the main residence rules carry the heavy lifting, and what you do in the first six months has a much bigger effect on the tax outcome than what you do in the campaign.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>One of the more confusing tax questions in Brisbane real estate is what happens to the CGT cost base of a property when a co-owner dies. The widespread assumption is that the cost base resets to market value at the date of death across the whole property, producing a clean slate for the surviving owner or the beneficiaries. That is true in some cases. In a meaningful number of others, it is not, and inheriting the deceased's original cost base on a property bought in 1998 can create a substantial CGT liability when the property is eventually sold. The difference between the two outcomes is rarely well understood by the people who actually live through it, and the misunderstanding tends to surface six weeks before settlement when an accountant runs the numbers for the first time.</p>
+
+      <p>This is the practical guide for executors, surviving spouses, and beneficiaries of Brisbane property. It covers how section 128-15 of the Income Tax Assessment Act actually operates, when the cost base resets and when it does not, how the main residence exemption interacts with all of this, and what records to bring to your accountant before you list. The numbers are large enough that getting this right is worth the few hundred dollars of upfront advice.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The two ownership structures, and why they matter</h2>
+      <p>Australian property held by two or more owners is held in one of two ways: joint tenancy or tenancy in common. The distinction is set out on the title and affects what happens to the deceased's interest. Under joint tenancy, the deceased's interest passes automatically to the surviving joint tenant by the right of survivorship. It does not go through the estate, it is not affected by the will, and Titles Queensland records the change via a transmission application supported by a certified death certificate. Under tenancy in common, the deceased holds a defined share (usually 50%, but it can be any proportion), and that share passes through the estate according to the will, requiring a grant of probate before it can be dealt with.</p>
+
+      <p>For CGT purposes, the ATO treats both situations under section 128-15. The deceased's interest is taken to have been acquired by either the surviving joint tenant (in joint tenancy) or the beneficiary named in the will (in tenancy in common) at the date of death. The cost base rules that follow do not turn on which form of co-ownership was in place. What changes is who ends up owning the half-share, and whether probate is required before the property can be sold. The transmission path for joint tenancy is typically faster and cheaper than the probate path for tenancy in common, but the tax treatment of the deceased's share is governed by the same provisions.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How section 128-15 actually works on the deceased's share</h2>
+      <p>The cost base of the deceased's share in the hands of the new owner is determined by two questions. First, when did the deceased acquire the property? Second, was the property the deceased's main residence just before death? The answers produce three possible outcomes.</p>
+
+      <p>If the deceased acquired the property before 20 September 1985, it is a pre-CGT asset in their hands. When the new owner acquires the deceased's share, the cost base resets to the market value of that share at the date of death. This is the most generous outcome under the rules, and it applies to a smaller and smaller pool of Brisbane properties as time passes.</p>
+
+      <p>If the deceased acquired the property after 19 September 1985 and it was their main residence just before death and not being used to produce assessable income at that time, the new owner takes the deceased's share at the market value at the date of death. This is the most commonly invoked reset for inner Brisbane properties where the deceased lived in the home until they died.</p>
+
+      <p>If the deceased acquired the property after 19 September 1985 and it was either not their main residence or was being used to produce income at the date of death (most commonly an investment property, or a former home that had been rented out for longer than the absence rule allows), the new owner inherits the deceased's original cost base. There is no market value reset. This is the outcome that catches families by surprise. A Camp Hill investment property the deceased bought for $280,000 in 2002 and is worth $1.6 million at the date of death will retain that $280,000 base in the hands of the beneficiary, plus any capital improvements and certain ownership costs added under the cost base rules.</p>
+
+      <p>The surviving owner's existing share is unaffected by any of this. Their cost base for their original half is whatever it was the day before the death: typically half the original purchase price, half the stamp duty, half the improvements, and so on. That share continues with its original cost base into the future.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The main residence exemption on disposal: section 118-195</h2>
+      <p>Cost base is only half the question. The other half is whether the eventual sale is exempt from CGT under the main residence rules. Section 118-195 provides a separate exemption pathway specifically for inherited dwellings, and it is the most important section for most Brisbane executors and beneficiaries to understand.</p>
+
+      <p>If the deceased acquired the property after 19 September 1985, was using it as their main residence just before death, was not using it to produce assessable income at that time, and the property is sold (with settlement) within 2 years of the date of death, the disposal is fully exempt from CGT. The cost base mechanics from section 128-15 still apply in case the property is held longer, but if the 2-year window is met, the question never gets asked.</p>
+
+      <p>If the deceased acquired the property before 20 September 1985, the 2-year window also gives a full exemption regardless of how the deceased was using it at death, provided the beneficiary did not move in. There is also a separate route to a full exemption where the beneficiary or surviving spouse moves into the dwelling and uses it as their main residence from the date of death until they sell.</p>
+
+      <p>If the 2-year window is missed, the Commissioner has a discretion under section 118-195(1) to extend it. The ATO's published practice in PCG 2019/5 is that the discretion will normally be exercised where the delay was caused by factors outside the control of the trustee or beneficiary: a complex or disputed estate, serious illness, or a property requiring substantial work to be ready for sale. The discretion is not exercised for delay caused by waiting for a better market or a beneficiary's general inability to organise the sale. Brisbane estates that miss the window by six or eight weeks because probate took longer than expected usually qualify. Estates that have been sitting on a property for four years because a beneficiary cannot decide what to do typically do not.</p>
+
+      <p>If the property was the deceased's main residence at death but the disposal occurs outside the 2-year window and the discretion is not granted, the exemption becomes partial. The market value at the date of death is the new cost base for the deceased's share, the period before death gets an exemption, and the period after death is assessable on a time-apportioned basis. This calculation is genuinely complex and is one of the few situations where the cost of a CGT specialist accountant is straightforwardly justified by the tax saved.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A worked example: typical Brisbane inner-east couple</h2>
+      <p>Imagine a couple bought a Norman Park home as joint tenants in 1998 for $310,000. They lived in it as their main residence for the entire ownership period. One spouse dies in March 2026. The market value of the property at the date of death is $1.55 million. The surviving spouse continues to live in the home and sells it in August 2027 (17 months after the date of death) for $1.62 million.</p>
+
+      <p>The surviving spouse's original 50% share has a cost base of $155,000 plus half the stamp duty and any capital improvements. Their share has been their main residence throughout, so the disposal of that half is fully exempt under the ordinary main residence rules in section 118-110.</p>
+
+      <p>The deceased's 50% share resets to the market value at the date of death, which is $775,000 (half of $1.55 million). Because the property was the deceased's main residence at the date of death, not being used to produce income, and the sale settles within 2 years, the deceased's half is also fully exempt under section 118-195. The entire $1.62 million sale is CGT-free.</p>
+
+      <p>Now change one fact. The same couple bought the same Norman Park home in 1998, but moved into a smaller home in 2018 and rented this one out. The deceased dies in March 2026 while the property is still being rented. The cost base of the deceased's 50% share does not reset (it was being used to produce income at death and is not their main residence). The beneficiary inherits the deceased's original $155,000 base. The surviving spouse already had the other $155,000 base on their half. The 6-year absence rule may also have run out, depending on the dates. If the property is sold for $1.62 million two years after death, the assessable capital gain is roughly $1.31 million (less cost base adjustments, the 50% CGT discount where applicable, and any third element holding costs allowed under the rules), and the tax bill at top marginal rates is meaningful. Same property, same price, dramatically different outcome.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Where investment properties sit</h2>
+      <p>For a property the deceased held as a pure investment (never lived in by them as a main residence), section 128-15 hands the beneficiary the deceased's original cost base. There is no main residence reset and no 2-year exemption window. The beneficiary or surviving owner is in essentially the same CGT position the deceased would have been in had they sold the day before they died.</p>
+
+      <p>Two adjustments matter at this point. First, the cost base for the deceased's share is rebuilt under the cost base rules: the original purchase price, the stamp duty, the legal costs, the capital improvements, and (for properties acquired after 20 August 1991) the third element costs of ownership such as rates, land tax, insurance and interest where those costs were not deductible. If the property was rented out by the deceased, depreciation deductions claimed on capital works under Division 43 reduce the cost base. Reconstructing this 25 years after purchase is genuinely difficult, and is the main reason executors should be gathering records as early as possible.</p>
+
+      <p>Second, the 50% CGT discount under Division 115 is available to the beneficiary or surviving owner on the deceased's share, provided the combined ownership period (the deceased's plus the new owner's) is at least 12 months. The discount applies to individuals and trusts (not companies). This is one of the rare features of the rules that works in the beneficiary's favour.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Records to gather before listing</h2>
+      <p>The single most useful thing an executor or surviving owner can do is gather six documents before the first accountant meeting. First, the original purchase contract and the settlement statement showing what was paid and when. Second, the certified death certificate. Third, a written market valuation of the property at the date of death from a registered valuer (not a real estate appraisal), particularly if the cost base reset is in play or a partial exemption calculation is likely. Fourth, records of every capital improvement made during the deceased's ownership: extensions, kitchens, bathrooms, decks, structural work, plus the invoices. Fifth, if the property was ever rented out, every tax depreciation schedule and capital works claim. Sixth, the grant of probate or letters of administration if the property is held as tenants in common.</p>
+
+      <p>Bringing this to a specialist CGT accountant before the property goes to market lets the strategy be set: whether to push for a fast sale inside the 2-year window, whether to defer to a more advantageous financial year, whether to move into the property to access an alternative exemption pathway, or whether to take the assessable gain and plan for it. Setting that strategy before the campaign starts is materially easier than trying to retrofit it after a contract has already been signed.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How this should shape the Brisbane campaign</h2>
+      <p>The CGT position will sometimes shape the campaign itself. If the 2-year window is closing and the exemption is in play, a faster campaign with realistic price expectations is usually the right call: missing the window because the property was overpriced and lingered for four months is a poor trade. If the property was an investment and a large assessable gain is unavoidable, the financial year of the contract date matters more than the calendar year. A contract signed on 28 June lands the gain in the current year; a contract signed on 5 July pushes it into the next year. Where the surviving owner or beneficiary is approaching retirement or has unusual income in one of those years, that difference can be worth tens of thousands of dollars.</p>
+
+      <p>None of this is a substitute for proper tax advice from a specialist accountant who actually runs the numbers on your specific facts. The point of this article is to flag that the cost base and exemption position is rarely as straightforward as families assume, and the moves that produce the best after-tax outcome are made before the first open home, not after the contract is signed.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling an inherited or jointly held Brisbane property?</strong> Daniel works alongside the accountant and solicitor to plan the campaign around the tax position, not against it. A short conversation early can change the after-tax outcome significantly. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/costs-taxes-and-finance/">Costs, Taxes and Finance guide series</a>.</p>
+<AuthorBio />
+</Layout>
