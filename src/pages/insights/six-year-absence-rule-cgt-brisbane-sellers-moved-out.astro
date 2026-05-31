@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 6-year absence rule for CGT in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under Section 118-145 of the Income Tax Assessment Act 1997, if you move out of your main residence and rent it out, you can continue to treat that property as your main residence for capital gains tax purposes for up to 6 years. The election is only available if you have not nominated another property as your main residence during the absence. The 6 year clock resets each time you move back in and the property becomes your main residence again before being rented again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the 6-year absence rule if I bought another home while away?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally no. You can only treat one property as your main residence at any given time for CGT purposes. If you bought another home and treated it as your main residence during the absence period, the original Brisbane home cannot continue to be treated as your main residence for the same period. There is a limited 6 month overlap concession when moving between homes, but it does not extend to long-term concurrent ownership. The election is not automatic and is made by the way you report the sale in your tax return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the 6-year clock reset if I move back into my Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each time you re-establish the property as your main residence and then move out again to rent it, a new 6 year absence period begins. There is no lifetime cap on the number of times the rule can be used, provided each absence period stays within 6 years and you do not elect another property as your main residence during that period. The dates and the nature of each move back in matter, and the ATO can ask for evidence that the property genuinely returned to being your main residence rather than a brief stay engineered to reset the clock."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I am away for more than 6 years and rent out my Brisbane home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your absence is longer than 6 years and the property has been income-producing throughout that time, the absence rule covers the first 6 years and the period beyond that becomes a partial exemption calculation. The capital gain is apportioned across the days the property was treated as your main residence (including the 6 year absence period) and the days it was not. The 50% CGT discount still applies on the taxable portion if you have held the property for more than 12 months."
+      }
+    }
+  ]
+};
+---
+<Layout title="The 6-Year Absence Rule: Brisbane Sellers Who Moved Out of Their Main Residence 2026 | Daniel Gierach Property" description="The 6-year absence rule (Section 118-145) lets you keep the main residence CGT exemption while renting out your home for up to 6 years. Here is exactly how it works for Brisbane sellers who moved interstate or overseas." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 9 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        The 6-Year Absence Rule: Brisbane Sellers Who Moved Out of Their Main Residence
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        If you lived in your Brisbane home, moved out, rented it for a period and are now selling, Section 118-145 of the Income Tax Assessment Act may let you keep the full main residence exemption. The conditions are narrower than most sellers expect, and the dates matter.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>The 6-year absence rule is one of the most valuable concessions in Australian property tax, and one of the most commonly misunderstood. It lets Brisbane owners who moved out of their main residence and rented it out for a period continue to treat the home as their main residence for capital gains tax purposes, provided certain conditions are met. Used correctly, it can preserve a full CGT exemption on a property that was income-producing for years. Used incorrectly, or assumed without checking, it can leave sellers with an unexpected tax bill at settlement.</p>
+
+      <p>This article walks through the rule as it sits in 2026, the situations where it applies cleanly, the situations where it does not, and the records Brisbane sellers should pull together before they sign a sale contract. It is an overview, not tax advice. The interaction between Section 118-145, the partial main residence exemption, the cost base reset rules and the 50% CGT discount is detailed enough that you should work through your specific position with a tax accountant before listing.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the 6-year absence rule actually says</h2>
+      <p>Section 118-145 of the <em>Income Tax Assessment Act 1997</em> allows you to continue treating a property as your main residence for CGT purposes after you have stopped living in it, for a defined period. If the property is used to produce income during your absence (the typical case is renting it out), the absence period can last up to 6 years. If the property is not used to produce income (for example, it sits vacant or is occupied by a family member without paying market rent), there is no time limit on the absence.</p>
+
+      <p>The rule is an election. It is not automatic. You make the election by the way you report the sale on your tax return, and once made, it is generally irrevocable for the years to which it applies. The election must be made for the whole of an applicable period: you cannot choose to apply it for part of a year and then ignore it for the rest.</p>
+
+      <p>The headline outcome, when the election is available and you choose to make it, is that the capital gain from the eventual sale is fully exempt despite the fact that the property was producing rental income for some of your ownership period. The legislation effectively treats the property as if it were your main residence the whole time.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The one main residence at a time condition</h2>
+      <p>This is the condition that catches most sellers out, and it is the single most important one to understand. For CGT purposes, you can only treat one property as your main residence at any given time. If you bought another home during your absence from the Brisbane property and treated that second home as your main residence, you cannot also apply the absence rule to your original Brisbane home for the same period.</p>
+
+      <p>What this typically looks like in practice: you owned a home in Camp Hill or Bulimba, took a job in Sydney for four years, bought a townhouse in Sydney that you lived in, then sold the Brisbane home after returning. If you treated the Sydney townhouse as your main residence for CGT purposes during those four years, the Brisbane home cannot also be your main residence under the absence rule for the same period. You will end up with a partial exemption calculation on the Brisbane sale, not a full one.</p>
+
+      <p>The election is made on a per-property basis at the point of sale, so in some cases there is a strategic choice to be made about which property to nominate as your main residence for the overlapping period. This is a calculation worth running before you sell either property, because the financial implications can be substantial. A property accountant who handles main residence claims regularly will be able to model both options for you.</p>
+
+      <p>There is a narrow 6 month overlap concession in Section 118-140 for the period when you are genuinely moving between homes. This is a separate provision, not part of the 6-year absence rule, and applies only when you are disposing of your old main residence within 6 months of acquiring the new one. It does not solve the broader concurrent ownership problem.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The 6 year clock resets each time you move back in</h2>
+      <p>A point that is poorly understood: the 6 year period is not a lifetime cap. Each time you move back into the property and re-establish it as your main residence, a new 6 year absence period becomes available the next time you move out and rent it.</p>
+
+      <p>So an owner who moved overseas for 4 years, returned to live in their Camp Hill home for 18 months, then moved interstate for another 5 years before selling can potentially apply the absence rule to both absence periods, provided the conditions are met in each case and no other property was treated as their main residence in either period. The interim period of genuine main residence occupation is what triggers the reset.</p>
+
+      <p>The ATO will want evidence that any return-to-main-residence period was genuine, not engineered to reset the clock. A brief stay in the property between tenancies to game the rule is unlikely to be respected. Genuine signals of main residence occupation include redirected mail, electoral roll updates, utility connections in your name with usage consistent with occupation, removal of the property from rental listings and the absence of any other property you were treating as your main residence during the return period.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When the absence runs beyond 6 years</h2>
+      <p>If you move out, rent the property and never move back in before selling, the 6 year cap is hard. The first 6 years of the absence can be covered by the rule. Any period of income-producing absence beyond 6 years cannot. The CGT calculation then moves to a partial exemption, where the gain is apportioned based on the proportion of days the property was your main residence (including the 6 year absence period) to the total days you owned it.</p>
+
+      <p>For Brisbane owners who moved interstate or overseas a long time ago and have been renting their home for 8, 10 or 15 years, this is the typical position. The 6 year rule reduces the taxable portion but does not eliminate it. The 50% CGT discount still applies to the taxable portion provided you have held the property for more than 12 months. Whether to sell now or to first move back in (genuinely) and reset the clock is a question worth modelling carefully, because the cost of a temporary return move can be small relative to the CGT saved.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The cost base reset that can quietly undo the win</h2>
+      <p>There is an additional rule that often surprises sellers even when the 6 year absence rule appears to give them a clean exemption. Under Section 118-192, if a property was acquired after 20 August 1996 and was your main residence when it first started being used to produce income, the cost base for CGT purposes is reset to the market value of the property at the date it first became income-producing.</p>
+
+      <p>This reset only affects the CGT calculation if the absence rule is not available to give you a full exemption (for example, because your absence ran beyond 6 years or because you elected another main residence). When the absence rule does give you a full exemption, the cost base reset is not consequential to the final tax outcome.</p>
+
+      <p>But this is exactly why getting a market valuation as at the date you first rented the property is so important. If your circumstances change later (for example, you stay away longer than 6 years, or you choose to nominate a different property as your main residence), the cost base reset becomes the basis of the taxable gain calculation. Sellers who did not get a valuation at the time often face an awkward retrospective process to establish the value, and the ATO will scrutinise retrospective valuations more closely than contemporaneous ones.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Common Brisbane scenarios where the rule applies cleanly</h2>
+      <p>The cleanest case for the absence rule is the inner Brisbane owner who took a fixed-term work posting interstate or overseas, rented their Camp Hill, Bulimba, Coorparoo or Carina home during the posting, returned within 6 years and is now selling. If they did not buy another home during the posting and did not nominate any other property as their main residence, the full exemption is generally available.</p>
+
+      <p>The second common clean case is the seller who moved into rented accommodation interstate or overseas (so they were tenants themselves during the absence, with no other property to nominate), rented out their Brisbane home, then returned within 6 years. Again, the absence rule generally preserves the full exemption on sale.</p>
+
+      <p>A third pattern is the owner who moves to a regional area to care for a parent, rents their Brisbane home for two or three years and then sells without ever moving back. The 6 year cap is not reached, no other property was nominated, the exemption is available.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Common Brisbane scenarios where the rule does not apply</h2>
+      <p>The rule does not apply, or only partially applies, in several recurring situations Brisbane sellers find themselves in.</p>
+
+      <p>The first is the owner who moved interstate and bought a home in the new city, treating it as their main residence. They cannot apply the absence rule to the Brisbane home for the same period, and a partial exemption calculation applies on whichever property is sold.</p>
+
+      <p>The second is the owner who has been away for longer than 6 years with the property continuously rented. The first 6 years are covered, the years beyond that are not.</p>
+
+      <p>The third is the owner who moved into the Brisbane home only after a period of renting it as an investment first. The absence rule only applies in respect of a period after the property has been established as a main residence. If you bought as an investor and lived in the property later, your CGT calculation starts from a different position and the absence rule may not give you the full benefit you expect.</p>
+
+      <p>The fourth is the owner who is no longer an Australian tax resident at the time of sale. The Foreign Resident CGT rules and the loss of the main residence exemption for foreign residents (in place since 2019) interact with the absence rule in ways that can entirely remove the exemption on what would otherwise have been a fully exempt sale. If you are selling from overseas or your tax residency has changed, this is a critical conversation to have with your accountant before you contract.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Records to locate before you list</h2>
+      <p>If any part of your ownership period involved you being absent from the property, the following records will be needed by your accountant to work out whether the absence rule is available and how it applies:</p>
+      <ul style="padding-left:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+        <li>The original purchase contract, transfer documents and settlement statement, showing the acquisition date</li>
+        <li>The date you first moved into the property as your main residence</li>
+        <li>The date you moved out, with evidence of where you went (lease, employment contract, removalist invoice)</li>
+        <li>The date the first tenancy started and the dates of every subsequent tenancy or vacancy period</li>
+        <li>Any periods you moved back in and re-established the property as your main residence, with evidence of genuine occupation</li>
+        <li>A market valuation as at the date the property first became income-producing</li>
+        <li>Details of any other property you owned during the absence and how you treated it for CGT purposes</li>
+        <li>Tax returns and rental income schedules for the years the property was rented</li>
+        <li>If you were absent overseas, evidence of your Australian tax residency status during the absence</li>
+      </ul>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The mistakes that cost sellers money</h2>
+      <p>The mistake that costs Brisbane sellers the most money is assuming the rule applies without checking the conditions, then setting their reserve and sale price expectations on the basis of a full exemption. When the rule turns out not to apply, the CGT bill arrives months after settlement and the seller has already committed the proceeds to their next purchase.</p>
+
+      <p>The second most expensive mistake is failing to get a market valuation at the date the property first became income-producing. A retrospective valuation, prepared years later, is harder to defend and often produces a less favourable cost base than a contemporaneous one would have.</p>
+
+      <p>The third is making the wrong main residence election when there is a choice. Owners who have owned two homes during overlapping periods sometimes nominate the wrong property as their main residence, locking in a less favourable outcome than the alternative election would have produced.</p>
+
+      <p>The fourth is selling shortly after moving back in to reset the clock, without any genuine re-establishment of main residence. The ATO is alert to this pattern and will look closely at the period of return to assess whether it was genuine.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When to get advice</h2>
+      <p>Before you exchange contracts on your sale, not after. The availability of the 6 year absence rule and the size of any CGT liability if it does not apply will affect your net proceeds, your reserve price thinking, and decisions about timing. A property tax accountant can usually give you a reliable read on your position within an hour or two of reviewing the dates and the relevant valuations. That conversation is one of the cheapest pieces of advice you will buy in the sale process and one of the most consequential.</p>
+
+      <p>If you are considering moving back in to reset the absence period, get advice on the genuineness threshold and the practical and tax implications before you commit. If you are about to sign a contract while overseas, get advice on your tax residency position first. If you cannot find a valuation at the date of first rental, ask your accountant whether a retrospective valuation is worth commissioning before you go to market.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling a Brisbane home you rented for part of your ownership?</strong> Daniel works regularly with sellers whose properties have moved between main residence and investment status. He can introduce you to accountants who handle these calculations frequently and help you plan the sale around the tax outcome rather than after it. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/costs-taxes-and-finance/">Property Costs, Taxes and Finance guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/net-proceeds-calculator" style="color:#f5d07a;font-weight:600;">Net Proceeds Calculator &rarr;</a>
+  </p>
+</div>
+</Layout>
+</content>
+</invoke>
