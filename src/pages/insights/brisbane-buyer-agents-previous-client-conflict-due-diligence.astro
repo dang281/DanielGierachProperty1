@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it a conflict of interest if my agent has previously sold a property to the buyer making an offer on mine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is not automatically a conflict, but it does create a duty of disclosure. Under Queensland's Property Occupations Act 2014, an agent must disclose any material fact that could reasonably influence a seller's decision, including any prior business relationship with a buyer. If the agent has sold to that buyer before, you should be told before the offer is presented, and you should be given enough information to assess whether the agent's negotiating posture might be influenced by the relationship."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What due diligence should I run on a buyer who is one of my agent's previous clients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask for the buyer's full identity in writing, request evidence of finance pre-approval from a third-party lender, confirm whether the buyer is purchasing in their own name or via a trust or company, and ask your solicitor to verify whether the buyer or any related party has been involved in any failed Queensland contracts in the past 24 months. A previous client should be no less rigorously checked than a stranger. The agent's familiarity with the buyer is not a substitute for documented evidence of capacity and intent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my agent represent both me as the seller and a buyer they have a prior relationship with in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Queensland agents act for the seller under a written appointment, not for the buyer. A prior relationship with a buyer does not change that legal position, but it does heighten the agent's obligation to act in your interests and disclose anything that could colour their advice. If the agent has accepted any form of separate appointment from the buyer (a buyer's agent agreement, a referral arrangement, or any fee from the buyer side), they cannot continue to act as your selling agent without your fully informed written consent."
+      }
+    }
+  ]
+};
+---
+<Layout title="When Your Brisbane Buyer Is Your Agent's Previous Client: Conflict and Due Diligence | Daniel Gierach Property" description="What sellers need to do when the buyer making an offer turns out to be a past client of their agent. Disclosure obligations, conflict checks, and the due diligence that protects your sale price." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 7 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        When Your Brisbane Buyer Is Your Agent's Previous Client
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        A familiar buyer sounds reassuring. In practice, it is the moment a Brisbane seller needs to sharpen their disclosure questions and run independent due diligence. Here is what to ask, what to demand in writing, and where the legal lines sit in Queensland.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>It happens more often than most sellers realise, particularly in the tight inner-east Brisbane market where the same agents have sold the same streets for a decade. You list your home, the campaign goes live, and within a fortnight your agent presents an offer from a buyer they describe as "someone they have worked with before". On the surface this can sound positive. The buyer is qualified, the agent vouches for them, and the chain of trust feels shorter. In practice, the moment your agent has a prior relationship with the person on the other side of the contract is the moment your sale needs more scrutiny, not less.</p>
+
+      <p>The risk is not that the agent has done something wrong. Most repeat-client relationships in Brisbane real estate are entirely benign. The risk is that the agent's familiarity with the buyer can colour their advice to you in ways that are difficult to detect from your side of the table. If the agent has sold to that buyer once, they probably want to sell to them again, and the buyer is probably already on the agent's prospect list for their next listing. The agent has a soft commercial incentive to keep that relationship intact, and that incentive does not always align with extracting the strongest possible price for you.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What Queensland law actually requires</h2>
+      <p>Queensland agents act for the seller under a written appointment, currently the Form 6 under the Property Occupations Act 2014. The agent's duty is to you. They cannot also act for the buyer in the same transaction without your written consent given after full disclosure of the relationship and the implications. That much is clear in the legislation.</p>
+
+      <p>What is less clear in practice is the duty around material facts. The Property Occupations Act requires agents to disclose any benefit they may receive in connection with the transaction and any matter that could reasonably influence your decision. A prior client relationship with the buyer does not automatically generate a benefit, but it almost always generates a matter that could influence your decision. You are entitled to know that the buyer is a previous client before the offer is presented and discussed, not afterwards. If your agent has not volunteered that information, ask directly and put the question in an email so the answer is recorded.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The questions to ask before the offer is discussed</h2>
+      <p>Six questions cover most of what you need to know. Ask all six, in writing, before you engage with the offer on price terms.</p>
+
+      <p>First, has the agent ever sold a property to this buyer or any related entity, and when. Second, has the agent ever been engaged by this buyer as a buyer's agent, or accepted any referral fee or commission from the buyer side. Third, is the agent currently appointed by this buyer to find them another property after this purchase. Fourth, does the agent have a personal relationship with the buyer outside the professional one. Fifth, has the agent provided the buyer with any market intelligence about your property or street that has not also been shared in the general marketing campaign. Sixth, will the agent give you written confirmation that no separate commission or referral fee will be paid to the agency by the buyer or any party connected to the buyer in relation to this transaction.</p>
+
+      <p>The answers should be specific. "I have worked with the buyer in the past" is not specific. "I sold the buyer 47 Oxford Street in March 2024 and have had no engagement with them since" is specific. If the answers stay vague, that itself is informative.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Due diligence on the buyer is not optional</h2>
+      <p>The agent's familiarity with the buyer can subtly tempt sellers to skip the standard buyer checks. A buyer the agent has dealt with before feels less risky than a stranger. The legal exposure is identical. A previous client who fails finance, defaults, or claims a misrepresentation after settlement creates exactly the same problem for you as any other buyer who does the same thing.</p>
+
+      <p>Run the same due diligence you would run on any unfamiliar buyer. Request a current finance pre-approval letter from a recognised lender, dated within 30 days, not a verbal indication from the agent. Confirm in writing whether the buyer is purchasing in their personal name, a company name, or a trust, and have your solicitor satisfy themselves that the purchasing entity exists and has authority to contract. Ask your solicitor to run a basic court search and a property settlement history check on the named buyer and any related entity. None of this is hostile. It is what every seller should be doing before they sign a contract worth seven figures.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What changes about the negotiation</h2>
+      <p>A prior client relationship between agent and buyer can affect three parts of the negotiation, and you need to manage each one.</p>
+
+      <p>The first is information flow. Information you share with your agent in confidence about your bottom line, your timeline, your other offers, or your reasons for selling has slightly higher risk of leaking to a buyer the agent already has a relationship with. Treat your discussions with the agent the way you would treat them if the buyer were sitting in the next room. Do not disclose your walk-away number. Do not disclose your settlement urgency unless you have a strategic reason to do so. Keep your reservations about other offers to yourself until you have something firm in writing.</p>
+
+      <p>The second is the framing of the offer. A prior client buyer often comes in with a price that is calibrated to what the agent thinks you will accept rather than what the buyer would actually pay. If the offer is delivered with strong agent endorsement and a recommendation to accept quickly, that recommendation should be tested against an independent reading of the market. Ask the agent to walk you through the most recent three comparable sales in your suburb, with addresses, and show you why the offer represents fair value. If the answer leans on the relationship rather than the comparables, treat the price as a starting point rather than a final number.</p>
+
+      <p>The third is the conditional period. Buyers who have purchased from your agent before sometimes ask for slightly more generous conditional terms (longer finance period, additional access for inspections, post-contract variations) on the basis of the agent relationship. None of these terms are automatic and none should be accepted just because the agent is comfortable with the buyer. Each condition has a cost to you, and each one should be negotiated on its own merits.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When to bring in an independent voice</h2>
+      <p>If the answers to your disclosure questions reveal a recent or ongoing financial connection between the agent and the buyer (a current buyer's agent appointment, a referral fee, a personal relationship), you should consider engaging an independent property advisor or solicitor to review the offer with you before you sign anything. The cost is usually $500 to $2,000, depending on the depth of review you ask for, and at a seven-figure transaction the insurance value of an independent reading is high.</p>
+
+      <p>An independent advisor can do three things your agent cannot: confirm the offer against the most recent comparable sales without any bias, review the contract clauses for any subtle concessions that benefit the buyer, and give you a clean view of whether you should accept, counter, or take the property back to the market. None of these tasks require the advisor to talk to the agent or the buyer. They simply need the offer, the contract, and the recent sales evidence.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When it is genuinely a good thing</h2>
+      <p>It is worth saying clearly that a buyer who is a previous client of your agent is sometimes genuinely the best outcome for you. The agent knows the buyer is serious, knows their finance is real, and knows they tend to honour their commitments. In those cases the prior relationship reduces transaction risk and can shorten the campaign. The point of running the disclosure questions and the independent checks is not to assume bad faith. It is to make sure you can tell the difference between a genuinely good repeat buyer and an offer that is structured around the agent's commercial interests rather than yours.</p>
+
+      <p>Trust is built through verification, not assumed in its absence. A good agent will welcome the questions, answer them in writing, and treat the additional process as a sign that you are taking the transaction seriously. An agent who is reluctant to put the prior relationship on the record, or who pushes back on independent due diligence, has told you something useful about how to handle the offer they have just brought you.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling and want a clear-eyed read on your agent and the offers coming in?</strong> Daniel can give you an honest second opinion on whether an offer reflects market value, what to ask about agent-buyer relationships, and how to structure your negotiation so you stay in control. No obligation, no pressure. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/contracts-and-settlement/">Contracts and Settlement guide series</a>.</p>
+<AuthorBio />
+
+</Layout>
