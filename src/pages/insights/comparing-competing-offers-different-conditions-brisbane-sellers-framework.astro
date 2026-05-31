@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I compare two Brisbane property offers when one is higher but conditional and the other is lower but unconditional?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Convert each offer to a risk-adjusted figure before you compare. A 14-day finance clause from a buyer who already has pre-approval typically carries a 3 to 6 percent fall-over risk in the Brisbane inner east; a building and pest clause adds another 5 to 10 percent depending on the property's age and condition. Multiply each offer's headline price by the probability of settlement, then add the cost of running another 4 to 6 week campaign if the deal falls over (agent costs, marketing, holding costs and the price drift of relisting a property buyers know was previously contracted). The unconditional offer often wins on a risk-adjusted basis once the gap is under 2.5 percent of price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the standard framework for evaluating competing offers in a Brisbane sale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The framework is a five-column comparison: headline price, deposit (size and timing), conditions (finance, building and pest, due diligence, sunset, related sale), settlement date, and buyer profile (pre-approval status, motivation, prior failed deals). Each column converts to either a dollar figure or a probability adjustment. The buyer profile column is the one most sellers underweight and most experienced agents weight heavily, because it is the best predictor of whether the contract actually proceeds to settlement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I accept the highest offer and use the others as backup in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only one contract can be live at a time on a Queensland property. You cannot sign with Buyer A and simultaneously sign with Buyer B as a formal backup. What you can do is keep the unsuccessful buyers warm through your agent, ask whether they would consider a backup position with a clear understanding that it only activates if the primary contract terminates, and have their solicitor ready to move quickly if you need to pivot. Backup offers are useful in practice even though the formal contract layer is exclusive."
+      }
+    }
+  ]
+};
+---
+<Layout title="Comparing Competing Offers With Different Conditions: A Brisbane Sellers Framework 2026 | Daniel Gierach Property" description="When competing offers on your Brisbane property arrive with different prices, deposits, conditions and settlement dates, the highest number rarely wins on a risk-adjusted basis. Here is the framework for converting apples-to-oranges offers into a like-for-like comparison." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 12 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Comparing Competing Offers With Different Conditions: A Brisbane Sellers Framework
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Three offers, three different prices, three different conditional structures, three different settlement dates. The highest headline number rarely wins on a risk-adjusted basis. Here is the framework Brisbane sellers can use to compare offers that are not apples-to-apples.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>The most common multiple-offer scenario on a Brisbane inner-east property is not three identical offers at different prices. It is three offers with different prices, different deposit sizes, different conditional structures, different settlement timelines, and three buyer profiles that range from a cash-rich downsizer to a finance-dependent first home buyer. The instinct is to start at the top of the price column. That instinct is wrong often enough to cost sellers money, settlements, and time.</p>
+
+      <p>This article sets out the framework Brisbane sellers can use to convert messy, non-comparable offers into a like-for-like comparison. It draws on the patterns experienced selling agents apply in their heads inside thirty seconds, and turns those judgement calls into a structured comparison you can run yourself before you sit down with your agent to make the call.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why headline price is the wrong starting point</h2>
+
+      <p>A signed contract is not a settled sale. Between the day you accept an offer and the day funds clear at settlement, every condition in the contract is a potential exit door for the buyer. Some doors close quickly (a five-day due diligence clause, for example). Some stay open for weeks (a 21-day finance clause). Some open and close based on events outside the buyer's control (a related-sale clause that depends on the buyer's own buyer completing their finance).</p>
+
+      <p>Every conditional contract in Queensland carries a probability of falling over. The aggregate fall-over rate across Brisbane residential contracts sits between 8 and 14 percent in a typical year, weighted heavily by finance and building and pest terminations. In a softer market or a buyer with marginal pre-approval, the rate on a single contract can be 20 to 25 percent. A 5 percent higher offer with a 25 percent fall-over probability is, in expected-value terms, often worse than a 3 percent lower offer with a 5 percent fall-over probability. The framework below makes that comparison explicit.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The five-column comparison</h2>
+
+      <p>For every offer on the table, build a row with five columns. Do this on a single page, by hand or on a screen, before any conversation with your agent about which to accept. The discipline of writing it out matters; offers held in your head get compared on whichever feature was most recently discussed.</p>
+
+      <p><strong>Column 1: Headline price.</strong> The number the buyer has written on the offer form, before any adjustments. Record it. This is the only column where higher is unambiguously better.</p>
+
+      <p><strong>Column 2: Deposit.</strong> Both the size and the timing. A 10 percent deposit released on signing tells you something different from a 5 percent deposit due 14 days after the finance condition clears. Larger deposits, paid sooner, reflect both a serious buyer and a buyer who has done the work to free up the cash. In Queensland, the standard REIQ contract allows for a deposit anywhere from 0 to 10 percent, with split deposits also permitted. A buyer who offers 10 percent unconditional on signing is signalling commitment in a way a 2 percent deposit does not.</p>
+
+      <p><strong>Column 3: Conditions.</strong> List every condition in the contract: finance, building and pest, due diligence, related sale, sunset, special conditions on access or repairs. For each, record the number of days until the condition either clears or terminates the contract. A 14-day finance condition is a 14-day exit window. A 7-day building and pest condition is a 7-day exit window. A 30-day related-sale condition is a 30-day exit window. Total the days. The longer the aggregate exposure window, the more the offer is worth less than its headline price.</p>
+
+      <p><strong>Column 4: Settlement date.</strong> The date the buyer proposes for settlement. Compare each against your own timeline. If you have a purchase on the other side at a fixed settlement, a buyer offering a 30-day settlement on a property where you need 60 days is offering a contract that creates a new problem for you, not solves one. Conversely, a 90-day settlement on a property where you have no fixed onward purchase is a 90-day extension of your own optionality. The settlement column is rarely zero-dollar; an inconvenient settlement carries a real cost in bridging finance, double moves, or rental accommodation.</p>
+
+      <p><strong>Column 5: Buyer profile.</strong> The single most predictive column, and the one most often left off the comparison sheet. Record: has the buyer provided a current pre-approval letter from their lender? Have they conducted their own building and pest inspection before submitting the offer? Have they been in any prior contracts on Brisbane property that terminated? What is their stated motivation (upsize, downsize, relocation, investor)? Are they local or interstate? Is there a deposit gift involved (which changes finance probability)? Your agent should be able to answer most of these from their conversations with the buyer's agent or the buyer directly. If they cannot, the absence of information is itself information.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Converting conditions to a risk-adjusted price</h2>
+
+      <p>Once you have the five columns filled in, the comparison reduces to one move: convert each offer's headline price into a risk-adjusted figure by multiplying by the probability of settlement. The probabilities below are guidelines based on Brisbane inner-east transaction patterns over the past three years; your agent should adjust them based on the specific buyer in front of you.</p>
+
+      <p><strong>Unconditional offer (no conditions, 10 percent deposit on signing):</strong> 96 to 98 percent settlement probability. The remaining risk is buyer death, serious illness, or rare contract termination by mutual agreement. Treat as effectively certain.</p>
+
+      <p><strong>Finance condition only, 14 days, with current pre-approval letter sighted:</strong> 92 to 95 percent settlement probability. The buyer is dependent on the lender re-confirming the pre-approval against the specific property, which usually proceeds without issue.</p>
+
+      <p><strong>Finance condition, 21 days, no pre-approval letter sighted:</strong> 75 to 85 percent settlement probability. The buyer is still seeking finance; some proportion will not get there, particularly if the property is over the lender's automated valuation, in a postcode with higher LVR restrictions, or in a building with strata complications.</p>
+
+      <p><strong>Building and pest condition, 7 to 14 days, on a property under 15 years old in good condition:</strong> 95 to 97 percent settlement probability. Termination usually requires a finding the buyer can credibly use to walk; clean reports usually proceed.</p>
+
+      <p><strong>Building and pest condition on a pre-1970 timber Queenslander or a property with known maintenance issues:</strong> 80 to 90 percent settlement probability. Termite history, stumps, roof condition, and electrical compliance findings are common termination triggers on older Brisbane stock.</p>
+
+      <p><strong>Related-sale condition (buyer must sell their own property first):</strong> 60 to 80 percent settlement probability, depending on how advanced the buyer's own sale is. A buyer whose own contract has already gone unconditional is at the top of the range; a buyer who has not yet listed sits at the bottom and arguably should not be entertained at all.</p>
+
+      <p><strong>Sunset clause beyond 30 days (often on DA-pending or off-the-plan related arrangements):</strong> 70 to 85 percent. The longer the sunset, the more market and personal circumstances can change.</p>
+
+      <p>For an offer with multiple conditions, multiply the probabilities together rather than adding them. A contract with both a 21-day finance condition (85 percent) and a 14-day building and pest condition on an older property (85 percent) sits at roughly 72 percent settlement probability (0.85 x 0.85), not 85 percent. Conditions compound.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The cost of a fall-over</h2>
+
+      <p>The probability of settlement is only half the calculation. The other half is what happens if the contract does not settle. A failed contract is not a return to the position you were in before the offer. It is a worse position, for four reasons.</p>
+
+      <p><strong>First, your property is now visibly back on the market.</strong> Brisbane buyers track relistings on realestate.com.au and Domain; the analytics show them a property was previously under contract and is now active again. The natural question, fairly or not, is what went wrong. Some buyers assume building and pest issues. Others assume the previous buyer found something. A relisted property typically sells for 1 to 3 percent below the original contract price within the same campaign window, and that is before any further reduction needed to reset the campaign.</p>
+
+      <p><strong>Second, you carry holding costs through the gap.</strong> A failed contract that comes back to market and re-sells in another 4 to 6 weeks costs you roughly 1.5 to 2.5 percent of the property value in agent re-engagement, additional marketing, mortgage interest, council rates, insurance, and lost opportunity on a parallel purchase you may have lined up. On a $1.5 million Bulimba home, that is $22,500 to $37,500 in pure friction cost.</p>
+
+      <p><strong>Third, the buyer pool has narrowed.</strong> The serious buyers from the first round have either moved on to another property or are watching to see whether you reduce. The pool of new buyers entering the market is smaller in the second campaign than the first. Multiple-offer dynamics that produced the strong first contract rarely repeat.</p>
+
+      <p><strong>Fourth, your psychology has changed.</strong> Sellers who have been through a fall-over make worse decisions on the second round than they would have made on the first. The pressure to settle quickly often overrides the pressure to settle well. An offer you would have rejected in week two of the original campaign becomes acceptable in week three of the second one.</p>
+
+      <p>Roll the cost of a fall-over into your comparison. If the cost of a failed contract is $40,000 of friction plus a 2 percent price reduction, that is $70,000 to $80,000 of expected loss on a $1.5 million sale. An offer with a 15 percent fall-over risk is therefore carrying $10,500 to $12,000 of expected fall-over cost. Subtract that from the offer's headline price to get a true risk-adjusted figure.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A worked example: three offers on a Bulimba Queenslander</h2>
+
+      <p>A four-bedroom Queenslander on a 506 square metre block in Bulimba goes to market in March 2026. By the end of the second open home, three offers are on the table.</p>
+
+      <p><strong>Offer A: $1.825 million, unconditional, 10 percent deposit on signing, 45-day settlement.</strong> Buyer is a local downsizer who has already sold their previous home and is renting. Cash purchase, no finance condition. Building and pest already conducted privately. Settlement probability: 97 percent. Risk-adjusted: $1.825 million x 0.97 = $1.770 million effective, less roughly $2,400 of fall-over expected cost (3 percent of $80,000 friction). Net: $1.767 million.</p>
+
+      <p><strong>Offer B: $1.870 million, 14-day finance condition, 7-day building and pest, 5 percent deposit, 60-day settlement.</strong> Buyer is a family upsizer with pre-approval letter from a major bank dated three weeks ago, currently in a rental with a flexible lease. Settlement probability: roughly 0.93 (finance) x 0.96 (building and pest, recent renovation) = 0.893, call it 89 percent. Risk-adjusted: $1.870 million x 0.89 = $1.664 million effective, less roughly $8,800 of fall-over cost (11 percent of $80,000). Net: $1.655 million.</p>
+
+      <p><strong>Offer C: $1.910 million, 21-day finance condition, 14-day building and pest, 5 percent deposit due 5 days after finance, 90-day settlement subject to buyer's own related sale completing.</strong> Buyer is an interstate family relocating, no pre-approval letter sighted, their own related sale not yet under contract. Settlement probability: roughly 0.80 (finance, no pre-approval) x 0.88 (building and pest, older property) x 0.70 (related sale not yet under contract) = 0.49, call it 49 percent. Risk-adjusted: $1.910 million x 0.49 = $936,000 effective, less roughly $40,800 of fall-over cost (51 percent of $80,000). Net: $895,000.</p>
+
+      <p>Offer A wins comfortably on a risk-adjusted basis, despite being $85,000 below Offer C on headline price. Offer C is, in expected value terms, worth less than half of what it appears to be worth, because the compounded probability of three conditions makes the contract closer to a coin flip than a sale. Offer B sits in between, with a meaningful gap below Offer A.</p>
+
+      <p>This is not to say sellers should always accept the unconditional offer. Sometimes the gap is large enough that the higher conditional offer is still the better expected-value choice. The framework forces that comparison to be explicit rather than implicit.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Asking buyers to improve specific conditions, not just price</h2>
+
+      <p>One of the most useful moves in a multiple-offer scenario is to ask the buyers behind the lower-headline offers to improve specific conditions rather than just lift their price. A buyer who cannot match the highest price may still be able to shorten their finance condition, remove the building and pest clause by conducting it before signing, increase their deposit, or commit to a settlement date that matches your timeline. Each of these moves shifts the risk-adjusted comparison in their favour without requiring more cash.</p>
+
+      <p>This conversation is what your agent should be running. The instruction is straightforward: "Tell Buyer B we have a stronger offer than theirs. If they can come back unconditional, or with a shorter finance condition and a higher deposit, we want to look at it." Some buyers will move. Some will not. The information you get back from who moves and who does not is itself diagnostic.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When the highest conditional offer is still the right choice</h2>
+
+      <p>The framework above produces a risk-adjusted comparison, not an automatic rule. There are situations where the conditional offer is the right call even with the discount applied.</p>
+
+      <p>The most common is when you have time. If your onward purchase is not yet locked in, if you have flexible accommodation, and if a failed contract does not create cascading problems for you, the expected-value calculation matters less. You can afford to accept the higher conditional offer, manage the buyer carefully through the condition period, and re-list if it falls over. The cost of fall-over is real but contained.</p>
+
+      <p>The second is when the buyer profile is genuinely strong despite the conditions. A 21-day finance condition on a buyer with a clear written pre-approval, a 40 percent deposit ready to release, a long history of completing on Brisbane purchases, and a clear motivation (a sold family home settling in 14 days) is a different risk profile from the same conditions on a buyer with none of those characteristics. The headline probability for a 21-day finance condition is 75 to 85 percent; for this buyer, it may be 95 percent. The framework adjusts for known buyer-specific factors.</p>
+
+      <p>The third is when the price gap is large enough to absorb the risk. If Offer C in the example above had been $2.1 million rather than $1.910 million, the calculation would have produced a closer answer, and the case for accepting Offer C with extra protective work (a larger deposit, a tighter finance condition, a parent guarantor on the related sale) becomes stronger.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What to do before any offers arrive</h2>
+
+      <p>The framework is most useful when you have run it once before any offers arrive. Knowing in advance how you will compare a $1.8 million unconditional offer against a $1.9 million conditional offer takes the emotion out of the decision when the offers actually land. Set your default policy with your agent at the start of the campaign: how much weight you give to certainty, what your minimum settlement date is, what the smallest deposit you will accept looks like, whether you will entertain related-sale conditions at all.</p>
+
+      <p>The discipline of writing these things down in week one of the campaign means that in week three, when three offers arrive on a Friday afternoon and your agent is asking for a decision by Sunday, you are working from a position you have already thought about rather than reacting to whichever number was largest.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling in Brisbane in 2026?</strong> Daniel runs this comparison on every multiple-offer campaign, with the specific buyer profiles and current market data plugged in. If you want a clear-eyed read on the offers in front of you, or want to set up the framework before your campaign launches, get in touch. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/marketing-and-selling-methods/">Marketing and Selling Methods guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/sale-proceeds" style="color:#f5d07a;font-weight:600;">Sale Proceeds Calculator &rarr;</a>
+  </p>
+</div>
+</Layout>
