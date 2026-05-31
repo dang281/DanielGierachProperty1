@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When do I declare a Brisbane property sale on my tax return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You declare the sale in the financial year that the contract is signed, not the year of settlement. This is the contract date rule under section 104-10 of the Income Tax Assessment Act. If you sign a contract on 28 June 2026 with settlement on 12 August 2026, the capital gains tax event occurs in the 2025 to 2026 financial year and the sale belongs on that year's tax return, even though the money does not change hands until the following year. This catches many Brisbane sellers off guard, especially around 30 June. If the property is your main residence and the full exemption applies, you do not need to declare it. For investment properties, the gain or loss must be declared in the contract-date financial year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What needs to go on a tax return in the year I sell a Brisbane investment property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four things change on the return in the year of sale. First, partial-year rental income and deductions: you declare rent received up to settlement date plus apportioned interest, rates, insurance, body corporate, agent fees, and other holding costs for the period the property was rented. Second, the capital gain or loss calculation: cost base less capital proceeds, with the 50 percent discount if you held the property over twelve months as an individual. Third, depreciation recapture and balancing adjustments on any plant and equipment that was being claimed. Fourth, the ATO clearance certificate if the property sold for $750,000 or more, which prevents 12.5 percent foreign resident withholding being applied to your proceeds. Each of these is its own label on the return and needs supporting records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reduce the tax bill in the year I sell a Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in several ways, and the lead time matters. Carry-forward concessional super contributions of up to five years of unused cap can be made in the same financial year as the gain, which can shelter a significant portion of a large CGT event for individuals under 75 who meet the work test exemption. Realising capital losses from underperforming shares or other CGT assets in the same financial year can offset the gain. Prepaying deductible expenses such as a final year of interest on a remaining investment loan or income protection premiums can pull deductions into the high-income year. For sellers over 55, the Downsizer Contribution allows up to $300,000 of sale proceeds into super outside the contribution caps if eligibility rules are met. Each of these needs to be set up before 30 June of the contract-date financial year, not after."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the ATO automatically know I sold my Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Queensland's Office of State Revenue, the land titles registry, and the ATO share property transaction data. The sale will appear in the ATO's pre-fill data the year after the contract is signed, and in many cases the ATO will issue a reminder or pre-populate the CGT label on your return. If you omit the sale or under-report the gain, the ATO will detect the discrepancy through data matching. The practical implication is that you cannot quietly leave a sale off the return, and the records you keep at the time of the transaction need to support the position you take on the return, particularly for main residence exemption claims and cost base calculations."
+      }
+    }
+  ]
+};
+---
+
+<Layout title="Tax Return in the Year of Sale: What Brisbane Property Sellers Need to Know 2026 | Daniel Gierach Property" description="A plain English guide for Brisbane sellers to the tax return in the year of sale: contract date rule, partial year rental, CGT label, depreciation recapture, ATO clearance certificate, and the moves that need to happen before 30 June." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 9 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Tax Return in the Year of Sale: What Brisbane Property Sellers Need to Know in 2026
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The year you sell a property is the most complex tax return year most owners will ever file. Here is how the contract date rule, partial year rental, the CGT label, depreciation recapture, and the ATO clearance certificate fit together, and the moves you need to make before 30 June.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>For most Brisbane property owners, the financial year in which a property is sold is the most complicated tax return year of their working life. The return picks up a partial year of rental income and deductions, a capital gains tax event, depreciation adjustments, an ATO clearance certificate, and frequently a one-off spike in taxable income that pushes the seller into a higher marginal bracket for that year only. Most of the planning that meaningfully reduces the bill has to happen before 30 June, not after, which is why understanding what the return will look like in advance is so valuable.</p>
+
+      <p>This article is written for owner-occupiers selling their Brisbane main residence, investors selling rental property, and anyone selling a former main residence that has been rented out at some point. The framing is practical: what does the return actually look like in the year of sale, what records will you need, and what decisions need to be locked in before 30 June. It is general information and not personal tax advice. Every situation has its own variables and a Brisbane-based accountant familiar with property will earn back their fee many times over in the year of sale.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The contract date rule is the single most important thing to understand</h2>
+
+      <p>The capital gains tax event that triggers the inclusion of a property sale on your tax return is the contract date, not the settlement date. This is set out in section 104-10 of the Income Tax Assessment Act 1997 and there is no flexibility on it. If you sign a sale contract on 28 June 2026 and settle on 12 August 2026, the CGT event occurs in the 2025 to 2026 financial year, and the gain or loss must be declared on the return covering that year, even though the money does not arrive until the following financial year.</p>
+
+      <p>This trips up Brisbane sellers around 30 June every year. The seller who signs in late June and assumes the sale falls into the next financial year because settlement is in July finds out months later that the gain belongs on the return they have already lodged. The practical implication is that the timing of the contract signature is itself a tax decision, particularly if you are weighing whether to bring the gain into a high-income year or push it into the following year when income may be lower.</p>
+
+      <p>For a separate deep dive into how to time the gain across financial years and the interaction with super, see <a href="/insights/cgt-timing-brisbane-sellers-approaching-retirement-trigger-gain" style="color:#c4912a;font-weight:600;">CGT timing for sellers approaching retirement</a>. The contract date rule is the foundation that timing strategy is built on.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">If it was your main residence the return may not need to mention it</h2>
+
+      <p>If the property was your main residence for the entire ownership period, never produced rental income, and never had a part of it used in a business or income-producing activity, then the full main residence exemption usually applies and there is no requirement to declare the sale on your tax return. The CGT event still occurs but the gain is fully exempt. You should still keep the contract, settlement statement, agent's commission invoice, and conveyancer's invoice on file in case the ATO later asks for evidence that the exemption applies.</p>
+
+      <p>The exemption gets more complicated where the property was your main residence for part of the time and rented out for the other part, where you used a portion of it for income-producing purposes such as a home office or business, or where you owned the property before you moved in. Section 118-145 of the Income Tax Assessment Act, sometimes called the six-year absence rule, allows you to continue treating a former main residence as your main residence for up to six years of rental, provided you do not nominate another property as your main residence during that period. The conditions are narrower than most sellers expect and the dates matter. The <a href="/insights/six-year-absence-rule-cgt-brisbane-sellers-moved-out" style="color:#c4912a;font-weight:600;">six-year absence rule article</a> goes through the conditions in detail.</p>
+
+      <p>If any portion of the gain is not covered by the main residence exemption, that portion needs to be calculated and declared on the return. The calculation depends on the days the property was used to produce income relative to the total ownership period, with the cost base apportioned to match. This is the area where errors most commonly creep into Brisbane sellers' returns, particularly for former rentals that were converted back to main residence shortly before sale.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">For investment properties: four things change on the return</h2>
+
+      <p>Selling a Brisbane investment property changes four discrete sections of the return in the year of sale. They each need their own records and they each have their own pitfalls.</p>
+
+      <p><strong>Partial year rental income and deductions.</strong> The property was a rental for part of the year, and possibly was untenanted for several weeks before listing. You declare the rent received between 1 July and the settlement date, plus the deductible holding costs for the same period. Council rates, body corporate fees, landlord insurance, interest on the investment loan, property management fees, repairs, and any other ordinary deductions are apportioned to the rental period. If the property was vacant for the campaign because the previous tenants moved out, the deductions usually continue during the vacancy provided the property was genuinely available for rent or being actively marketed for sale, with case law and ATO rulings on this point varying enough that it is worth confirming with your accountant before you assume the deductions are claimable.</p>
+
+      <p><strong>Capital gain or loss on the CGT label.</strong> This is the central calculation. Capital proceeds (the sale price less agent commission, conveyancing, marketing, auctioneer fees, and other incidental costs of disposal) less the cost base (purchase price plus stamp duty, original conveyancing, capital improvements, and other capital costs). The result is the nominal gain or loss. If you have held the property for more than twelve months as an individual or in a trust that distributes to individuals, the 50 percent CGT discount applies to the gain. The <a href="/insights/tax-deductions-selling-brisbane-property" style="color:#c4912a;font-weight:600;">tax deductions when selling article</a> covers what counts as an incidental cost of disposal and what increases the cost base.</p>
+
+      <p><strong>Depreciation recapture and balancing adjustments.</strong> If you have been claiming depreciation on plant and equipment (Division 40) and capital works (Division 43) over the years, the sale triggers two adjustments. The Division 43 capital works deductions you have claimed reduce your cost base when the property is sold, which increases the capital gain. Division 40 depreciation on removable items such as dishwashers, carpets, and air conditioning units triggers a balancing adjustment at sale, which can produce assessable income or a deductible loss depending on whether the asset's written-down value is higher or lower than the value attributed to it in the contract. The contract usually does not allocate proceeds to individual items, so the ATO's approach is to use market value or, in many cases, written-down value. For a property with a long history of depreciation claims this can add tens of thousands of dollars to assessable income in the year of sale that the seller did not anticipate.</p>
+
+      <p><strong>ATO clearance certificate.</strong> Since 1 January 2025, every Australian resident selling property for $750,000 or more must provide the buyer with an ATO clearance certificate before settlement to avoid 12.5 percent foreign resident withholding being deducted from the sale proceeds and remitted to the ATO. Without the certificate, the buyer is legally required to withhold and the seller can only recover the money by lodging the next tax return and waiting for the refund. The certificate is free and is issued by the ATO usually within a few days of application, but applications can take up to 28 days in busier periods. Apply as soon as you decide to list, not after the contract is signed. The <a href="/insights/ato-clearance-certificate-cgt-withholding-selling-queensland" style="color:#c4912a;font-weight:600;">ATO clearance certificate article</a> covers the application process in detail.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The records you actually need to file the return</h2>
+
+      <p>Brisbane sellers consistently underestimate the volume of records they will need to support the return in the year of sale, and most of those records need to be assembled before 30 June rather than the following October. The minimum file should include:</p>
+
+      <ul style="padding-left:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+        <li>The original purchase contract and settlement statement, including stamp duty paid and conveyancer's invoice from the date of purchase.</li>
+        <li>Receipts and invoices for every capital improvement made during ownership: structural works, extensions, kitchen and bathroom rebuilds, decks and pergolas, retaining walls, fencing, and any other works that added to the property rather than maintained it.</li>
+        <li>The depreciation schedule prepared by a quantity surveyor, if you used one. If you did not, the depreciation claimed in prior tax returns needs to be reconstructed from the returns themselves.</li>
+        <li>The sale contract, settlement statement, and conveyancer's invoice.</li>
+        <li>The agent's commission invoice, marketing invoice, auctioneer's invoice (if applicable), styling and presentation invoices that were paid as part of the sale campaign, and the building and pest report invoice if paid by the seller.</li>
+        <li>The ATO clearance certificate confirmation.</li>
+        <li>Rental statements for the income year up to settlement, plus the property manager's reconciliation showing rent collected, fees deducted, and disbursements made.</li>
+        <li>The body corporate and council rates statements covering the rental period, and the apportionment of the final period between the seller and buyer at settlement.</li>
+      </ul>
+
+      <p>A folder or shared drive with all of these scanned in one place, indexed by category, saves the accountant several hours of fee time and reduces the risk that something is missed in the cost base calculation. The free <a href="/insights/free-property-calculators-brisbane-sellers" style="color:#c4912a;font-weight:600;">property calculators for Brisbane sellers</a> include a CGT calculator that can give you an indicative gain figure once these records are assembled.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Moves that need to happen before 30 June, not after</h2>
+
+      <p>The decisions that meaningfully reduce the tax bill in the year of sale are almost all timing decisions, and most of them need to be made before 30 June of the contract-date financial year. Once 30 June has passed the opportunity is gone. The most common moves Brisbane sellers should consider with their accountant well before that date:</p>
+
+      <p><strong>Carry-forward concessional super contributions.</strong> The concessional contribution cap is currently $30,000 per year. If you have not used the full cap in any of the previous five financial years (from 2018 to 2019 onwards), you can carry forward the unused amount and make a catch-up contribution in the current year, provided your total super balance was under $500,000 at 30 June of the prior year. This can allow contributions of $60,000 to $150,000 in a single year, deductible at the seller's marginal rate, which can shelter a meaningful portion of a CGT event from tax at 39 to 47 percent and instead taxed inside super at 15 percent. The work test exemption applies for those between 67 and 75. The contribution must be received by the super fund before 30 June.</p>
+
+      <p><strong>Realising capital losses on other assets.</strong> If you hold shares, managed funds, or other CGT assets that are sitting on unrealised losses, selling them in the same financial year as the property gain allows the losses to offset the gain dollar for dollar (before the 50 percent discount is applied to the net gain). This is a common move for sellers with an investment portfolio outside their primary residence. The sale needs to be a genuine arm's length transaction and the loss assets cannot be immediately rebought to crystallise the loss without changing the economic position, although there is no formal wash sale rule in Australia, the ATO has anti-avoidance provisions that catch contrived loss harvesting.</p>
+
+      <p><strong>Prepaying deductible interest and other expenses.</strong> If you still have an investment loan against the sold property or against another investment property, prepaying up to twelve months of interest before 30 June pulls that deduction into the high-income year. Income protection insurance premiums and certain other prepaid expenses can be claimed in the year of payment if the period covered is twelve months or less and the prepayment rules are satisfied.</p>
+
+      <p><strong>Downsizer Contribution for sellers over 55.</strong> If you are 55 or over at the time of the sale and the property was your main residence for at least part of the ownership period, you can contribute up to $300,000 per person (so $600,000 for a couple) from the sale proceeds into super outside the normal contribution caps. The contribution must be made within 90 days of settlement and the eligibility conditions are precise. The <a href="/insights/downsizer-superannuation-contribution-brisbane-sellers-over-55" style="color:#c4912a;font-weight:600;">Downsizer Contribution article</a> covers the rules in detail.</p>
+
+      <p><strong>Estimating PAYG instalments.</strong> The ATO will base PAYG instalments for the year of sale on the prior year's income, but the year of sale typically has much higher taxable income because of the gain. Sellers can vary their PAYG instalments downwards once the sale is complete, since the high taxable income is a one-off event and the following year's instalments should not be based on it. Conversely, if the seller's regular PAYG withholding from salary is significantly less than the tax that will be owed on the sale, setting aside the additional cash in a separate account before the return is lodged avoids a cash flow shock in October or November.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Brisbane-specific factors that affect the return</h2>
+
+      <p>Several factors that are more common in Brisbane than in other Australian capital cities affect the tax return in the year of sale. Many Brisbane investment properties were purchased in the 2010 to 2015 period at prices that have since doubled, which produces large nominal capital gains that hit the highest marginal rate for sellers who are still working. The Queensland Government's land tax regime applies to the value of the land rather than the improvements, and the threshold and aggregation rules mean that owners with multiple Queensland investment properties may have been paying land tax for years that increases the cost base. The land tax clearance certificate process at settlement reconciles the seller's land tax position to settlement date and is a deductible item if the period covered was rental.</p>
+
+      <p>Brisbane is also a relatively common location for owners who purchased pre-CGT (before 20 September 1985) properties through long-held family holdings. Pre-CGT properties are exempt from CGT entirely on sale of the original interest, but the rules are technical and any improvements or changes in ownership structure can convert part or all of the property to a post-CGT asset. Sellers who believe they may be in this position need specialist advice before the contract is signed, not after.</p>
+
+      <p>Finally, the local property cycle matters for the timing of the sale across financial years. A Brisbane property sold in late June at the end of a strong campaign cycle puts the gain into one financial year; the same property sold in early July puts the gain into the next. If the seller has retirement plans that change their marginal rate in the following year, or has carry-forward super contributions that are larger in one year than the next, that small shift in contract date can be worth tens of thousands of dollars on the return.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How a good agent should help you prepare for the tax return</h2>
+
+      <p>A real estate agent is not a tax adviser and you should not take tax advice from one. But the agent's role in setting up a clean tax return in the year of sale is larger than most sellers realise. The contract date is set by the agent's campaign timeline and negotiation process, and a good agent will be open about pushing the contract into the most useful financial year for the seller's circumstances when there is genuine flexibility. The agent's invoice for commission, marketing, styling, and any other items the seller pays needs to be itemised cleanly enough that the accountant can identify what is a cost of disposal versus an ordinary deduction. The settlement statement provided by the conveyancer needs to be reconciled to the agent's trust account records and to any rental adjustments at settlement.</p>
+
+      <p>For Brisbane sellers, the single most useful conversation to have with the agent before listing is the timing conversation: how the agent expects the campaign to run, when contracts typically sign in the suburb, and whether there is flexibility on the contract date for tax planning reasons. The agent cannot promise a specific date but understanding the realistic window helps the seller align their tax planning with the campaign rather than scrambling after the fact.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The conversation to have with your accountant</h2>
+
+      <p>If you are planning to sell a Brisbane property in the next twelve months, the conversation to have with your accountant before you list is straightforward. You want an estimate of the capital gain on a range of sale prices, an estimate of the depreciation recapture if applicable, a view on whether the contract date should fall in this financial year or the next, a list of the carry-forward super capacity you have available, and a record of any capital improvements or other cost base items the accountant already has on file from prior returns. That ten thousand dollar conversation is the single highest-leverage tax planning conversation of most property owners' working lives, and it has to happen before the contract is signed, not after.</p>
+
+      <p>The records, the timing, and the strategy all need to be in place before 30 June. The tax return itself, lodged the following October or later, is just the documentation of decisions that were already made.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Thinking about selling?</strong> Daniel can give you an honest read on current conditions in your suburb and what your property is likely to achieve, and can point you to specialist Brisbane property accountants who can run the numbers on your specific situation before you list. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/costs-taxes-and-finance/">Costs, Taxes and Finance guide series</a>.</p>
+
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/cgt-calculator" style="color:#f5d07a;font-weight:600;">CGT Calculator &rarr;</a>
+  </p>
+</div>
+
+</Layout>
