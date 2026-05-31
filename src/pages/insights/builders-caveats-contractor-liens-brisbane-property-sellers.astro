@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can a builder or tradesperson put a caveat on my Brisbane property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A builder, subcontractor or tradesperson cannot lodge a caveat on your Brisbane property unless your written contract grants them a caveatable interest, which is rare in standard residential building contracts. What they can do under Queensland's Building Industry Fairness (Security of Payment) Act 2017 is lodge a subcontractor's charge, register a payment claim, or pursue a money judgment that can later support a writ of execution against the property. A caveat lodged without a proper caveatable interest can be removed by application and the lodger may be liable for compensation under section 130 of the Land Title Act 1994."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a subcontractor's charge and how does it affect selling my property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A subcontractor's charge under chapter 4 of Queensland's BIF Act 2017 is a statutory charge over money payable to a head contractor, not directly over the land title. It does not register as a caveat or encumbrance on your certificate of title, so it generally does not block a sale of the property itself. However, if your property is the subject of an active building contract and a subcontractor has issued a notice of claim of charge, money that would otherwise flow to your builder can be redirected, which sometimes leaves a builder unable to complete works before settlement. The risk to a vendor is practical rather than registrable: incomplete works, builder insolvency mid-build, or disputes that delay practical completion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check if there is a caveat or charge on my Brisbane property before listing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Order a current title search through Titles Queensland or your solicitor before signing a listing authority. The title search shows registered interests including mortgages, easements and any caveats. Caveats appear as a separate line item with a caveat number, the caveator's name and the nature of the interest claimed. A current search costs around $24 and takes minutes. If a caveat appears, get advice from a property solicitor before listing. If you are mid-build or recently completed works, also ask your builder for a statutory declaration that all subcontractors and suppliers have been paid, and consider requesting evidence of progress payments to subcontractors before final invoices are settled."
+      }
+    }
+  ]
+};
+---
+<Layout title="Builders Caveats and Contractor Liens on Brisbane Property: What Sellers Need to Know | Daniel Gierach Property" description="A practical guide to builders caveats, subcontractors' charges and contractor liens for Brisbane property sellers. What they actually are, when they appear, and how to clear them before settlement." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 10 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Builders Caveats and Contractor Liens on Brisbane Property: What Sellers Need to Know
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Builders, subcontractors and suppliers rarely register interests directly against a Brisbane title, but the protections they hold under Queensland law can still surface during a sale. Here is what each instrument is, when it appears, and how to clear the path to settlement.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Queensland does not have a general statutory contractors' lien against land in the way some American states do. A plumber, tiler or framing carpenter who has not been paid cannot simply attach a lien to your title and force a sale. Despite that, vendors who have recently built, renovated or extended a Brisbane property still encounter caveats, charges and writs lodged by parties in the building chain. The legal pathway is different, but the practical effect on a sale can be just as disruptive.</p>
+
+      <p>The three instruments that matter for sellers are the caveat lodged under the Land Title Act 1994, the subcontractor's charge under the Building Industry Fairness (Security of Payment) Act 2017, and the writ of execution that follows a money judgment in QCAT or the courts. Each has a different trigger, a different process, and a different consequence at settlement. Getting the distinctions right matters because the wrong response can delay your sale or create personal liability after settlement.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Caveats lodged by builders: when they can and cannot do it</h2>
+      <p>A caveat is a notice on the certificate of title under section 121 of the Land Title Act 1994. It records that a person claims an interest in the land and prevents most subsequent dealings from being registered until the caveat is resolved. To lodge a valid caveat, the caveator must hold a caveatable interest, which means a recognised proprietary interest in the land itself, not just a money claim.</p>
+
+      <p>A builder or subcontractor generally does not have a caveatable interest by virtue of having performed work on the property. The right to be paid is a contractual right, not a proprietary right in the land. The exception is where a written building contract expressly grants the builder a charge or equitable interest over the land as security for payment. Some commercial building contracts include this. Standard residential contracts in Queensland, including the QBCC level 1 and 2 contracts most homeowners use, do not.</p>
+
+      <p>When a builder lodges a caveat anyway, often in frustration over an unpaid invoice, the vendor can apply to the Registrar under section 127 of the Land Title Act to require the caveator to commence proceedings within 14 days, or apply to the Supreme Court for removal. If the caveat is held to have been lodged without reasonable cause, the caveator is liable to compensate the registered owner under section 130. This is a meaningful protection: vendors do not have to negotiate with a builder holding the title hostage on a doubtful interest.</p>
+
+      <p>Before you do anything else, get a current title search. If a caveat appears, give the search to a property solicitor with a copy of the original building contract and a short note explaining the dispute. The solicitor will tell you within a day whether the caveat is properly grounded or removable on application.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Subcontractors' charges under the BIF Act</h2>
+      <p>The instrument that does most of the work for unpaid subcontractors in Queensland is the subcontractor's charge under chapter 4 of the Building Industry Fairness (Security of Payment) Act 2017. It replaced the older Subcontractors' Charges Act 1974 from 2018, but the underlying mechanism is similar.</p>
+
+      <p>A subcontractor who has performed work for a head contractor on a construction site can serve a notice of claim of charge on the person above them in the contractual chain, which on a residential job is usually the homeowner who engaged the builder. The notice attaches a statutory charge to money the homeowner still owes the head contractor. The homeowner is then required to retain that money until the charge is resolved or, in some cases, pay it into court.</p>
+
+      <p>Critically, this is a charge over money, not over land. It does not register against your title. It does not appear on a title search. A subcontractor's charge does not, by itself, stop you from selling the property. What it can do is interrupt cash flow to your builder during a build, which sometimes triggers a wider problem: the builder cannot pay other suppliers, work stops, and a partly completed home goes to market with practical completion issues that affect price and conditional approvals from buyer banks.</p>
+
+      <p>For vendors who have already finished the build and paid the head contractor in full, a subcontractor's charge served after final payment is generally too late to attach to anything. The statutory mechanism requires money still owing. If you have paid your builder, you have discharged the only fund the subcontractor can charge.</p>
+
+      <p>For vendors who are mid-build at the time of listing, the position is more delicate. Any unpaid subcontractor in the chain can serve a notice during your campaign. The right defensive step before listing is a statutory declaration from your builder confirming that all subcontractors and suppliers have been paid in full to date, supported by lien releases or paid invoice records for the larger trades. Some Brisbane solicitors will hold final payment in trust at settlement until those releases are produced.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">QBCC home warranty insurance does not protect against builder debts</h2>
+      <p>It is worth correcting a common misunderstanding. QBCC Home Warranty Insurance covers defective work, non-completion and subsidence in eligible residential construction. It does not pay your unpaid subcontractors, and it does not extinguish a builder's debts. If your builder enters insolvency mid-build with subcontractors unpaid, QBCC cover may help complete the works or rectify defects, but the underlying payment claims survive.</p>
+
+      <p>Where this affects sellers most often is the partly completed renovation that has stalled because the builder is no longer solvent. Subcontractors have valid claims for work done, those claims remain attached to any money you have not yet paid, and a sale at this stage requires careful staging. Getting the contract administration right before you list, including any QBCC complaint, claim or insurance notification, protects your price and your disclosure position.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Writs of execution and enforcement warrants on title</h2>
+      <p>The third instrument vendors occasionally encounter is the writ of execution or enforcement warrant. This is what happens when a creditor, including an unpaid builder or subcontractor, takes their money claim through QCAT or the courts, obtains a judgment, and then enforces it against the land.</p>
+
+      <p>An enforcement warrant against the land is registered against the title and operates in much the same way as a mortgage or caveat: it must be discharged before, or at, settlement. Discharge usually requires payment of the judgment debt plus interest and enforcement costs. If your sale price is sufficient to cover the writ and your existing mortgage, your solicitor coordinates payment through the settlement statement and the writ is removed as part of the transfer process. If the proceeds are not enough, the sale cannot proceed without negotiated discounts from the creditor or additional funds from the vendor.</p>
+
+      <p>Vendors who have been involved in protracted building disputes should order a title search at the start of any conversation with an agent. An enforcement warrant on title is a serious matter that needs legal input before listing.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Disclosure obligations to buyers under the Property Law Act 2023</h2>
+      <p>Queensland's Mandatory Seller Disclosure regime under the Property Law Act 2023 requires sellers to provide a disclosure statement and prescribed certificates before a buyer signs the contract. Where the property is recently completed, partway through a build, or subject to live builder disputes, sellers should expect their solicitor to ask detailed questions about the construction history, any QBCC complaints, any active or threatened claims, and any registered or unregistered interests.</p>
+
+      <p>A material omission on the disclosure statement can give the buyer a right to terminate before settlement and recover their deposit, even if the underlying problem would not have stopped settlement on its own. The conservative approach is to over-disclose anything that touches construction, especially within the QBCC defects window, rather than discover the issue after a contract is signed.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A pre-listing checklist for sellers with recent building work</h2>
+      <p>If you have built, renovated or extended your Brisbane property in the last seven years, work through this list before signing a listing authority:</p>
+
+      <p>Order a current title search and review it with your solicitor. Confirm there are no caveats, writs or unexpected charges registered. If there are, address them before going to market, not after a contract is signed.</p>
+
+      <p>Locate the original building contract and final invoices. Confirm the head contractor was paid in full and confirm the date of practical completion. The QBCC defects window of six years and six months for structural and one year for non-structural runs from practical completion.</p>
+
+      <p>If the build was recent, request a statutory declaration from your builder confirming all subcontractors and suppliers have been paid. The declaration is not a guarantee, but it shifts the risk profile and gives your solicitor something to point to if a subcontractor surfaces during the campaign.</p>
+
+      <p>Check the QBCC online register for any complaints, directions or claims associated with the property or the licensed builder. Past complaints that were closed without action are usually not disclosable; live complaints or outstanding directions almost always are.</p>
+
+      <p>Confirm any Home Warranty Insurance certificate is current and on the file you will hand to the buyer's solicitor. The insurance transfers with the property but the buyer needs the paperwork to make any future claim.</p>
+
+      <p>If you are mid-build at the time of listing, get specific legal advice. Selling a property that is not at practical completion involves QBCC consent issues, contract novation questions and disclosure complexities that go beyond a standard campaign.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What this means in practice for Brisbane vendors</h2>
+      <p>For the overwhelming majority of Brisbane sellers, builders caveats and contractor liens are not a real risk. A homeowner who completed a renovation three years ago and paid their builder in full has nothing on title and no live exposure to subcontractor charges. A title search confirms the position in minutes.</p>
+
+      <p>Where the risk does exist, it is concentrated in two scenarios: vendors who are mid-build or just past practical completion with a builder dispute, and vendors who have a history of QCAT or court proceedings with their builder that may have produced a judgment debt. Both warrant early legal input. The instruments are technical, the timelines are short, and the consequences of getting it wrong run from contract termination to personal liability for compensation under the Land Title Act.</p>
+
+      <p>The general rule for vendors with any building history on the property is straightforward. Order the title search first. Get the contract and final invoice file together second. Speak to a property solicitor third. Only then sign the listing authority. The order matters because once a contract is on foot, options to deal with a surprise interest narrow quickly.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling a recently built or renovated home?</strong> Daniel can walk you through the construction history questions buyers and solicitors will ask, what to assemble before listing, and how to position a property with builder warranty cover in the marketing without raising unnecessary concerns. Honest, local, and confidential. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/contracts-and-settlement/">Contracts and Settlement guide series</a>.</p>
+<AuthorBio />
+</Layout>
