@@ -146,7 +146,9 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <meta name="geo.placename" content="Brisbane" />
     <meta name="geo.position" content="-27.4568;153.0523" />
     <meta name="ICBM" content="-27.4568, 153.0523" />
-    <!-- Per-page WebPage JSON-LD with speakable for AI/voice assistants -->
+    <!-- Per-page WebPage JSON-LD with speakable for AI/voice assistants. author + publisher
+         reference the canonical Daniel Gierach Person and Ray White Bulimba business so every
+         page on the site reinforces the same entity graph. -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -154,8 +156,11 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       "url": canonicalURL,
       "name": title,
       "description": description,
+      "inLanguage": "en-AU",
       "isPartOf": { "@id": "https://danielgierach.com/#website" },
       "author": { "@id": "https://danielgierach.com/#person" },
+      "publisher": { "@id": "https://danielgierach.com/#business" },
+      ...(preloadImage ? { "primaryImageOfPage": preloadImage.replace(/w=\d+/, 'w=1200').replace(/q=\d+/, 'q=80') } : {}),
       "speakable": {
         "@type": "SpeakableSpecification",
         "cssSelector": ["h1", ".eyebrow", "title"]
@@ -165,24 +170,27 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <script type="application/ld+json" set:html={GLOBAL_SCHEMA_JSON} />
     <!-- Page-level JSON-LD (optional) -->
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
-    <!-- Article JSON-LD for all insights articles (alongside any passed schema prop) -->
+    <!-- Article JSON-LD for all insights articles. author/publisher use @id refs into the
+         global graph so AI crawlers resolve every article to the canonical Daniel Gierach
+         Person + Ray White Bulimba business entity, not floating duplicates. -->
     {_isInsightsArticle && (
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
+        "@id": `${canonicalURL}#article`,
         "headline": title,
         "description": description,
-        "author": {
-          "@type": "Person",
-          "name": "Daniel Gierach",
-          "url": "https://danielgierach.com/about"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Daniel Gierach Property",
-          "url": "https://danielgierach.com"
-        },
+        "author": { "@id": "https://danielgierach.com/#person" },
+        "publisher": { "@id": "https://danielgierach.com/#business" },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalURL },
         "url": canonicalURL,
+        "inLanguage": "en-AU",
+        "isAccessibleForFree": true,
+        "articleSection": "Brisbane Real Estate",
+        "image": preloadImage
+          ? preloadImage.replace(/w=\d+/, 'w=1200').replace(/q=\d+/, 'q=80')
+          : 'https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg',
+        "about": { "@id": "https://danielgierach.com/#person" },
         ...(_datePublished ? { "datePublished": _datePublished } : {}),
         ...(_datePublished ? { "dateModified": _scheduleEntry?.modifiedDate ?? _datePublished } : {})
       })} />
