@@ -1,5 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "images": {
+    "sizes": [640, 750, 1080, 1200, 1440, 1920, 2048],
+    "formats": ["image/avif", "image/webp"],
+    "minimumCacheTTL": 2592000,
+    "remotePatterns": [
+      { "protocol": "https", "hostname": "cdn6.ep.dynamics.net" }
+    ]
+  },
   "headers": [
     {
       "source": "/_astro/(.*)",
