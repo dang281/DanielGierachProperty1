@@ -4,6 +4,14 @@ import Method from '../components/Method.astro';
 import { resources as allResources } from '../data/resources/index.js';
 const homeResources = allResources.slice(0, 6);
 
+// Route any cdn6.ep.dynamics.net image through Vercel's image optimizer for
+// AVIF/WebP output + responsive sizing. Cuts hero JPEGs from 2.67 MB to ~150 KB.
+// Allowed widths defined in vercel.json images.sizes.
+const vImg = (url: string, w: number, q = 70): string =>
+  `/_vercel/image?url=${encodeURIComponent(url)}&w=${w}&q=${q}`;
+const vImgSrcset = (url: string, widths: number[], q = 70): string =>
+  widths.map(w => `${vImg(url, w, q)} ${w}w`).join(', ');
+
 // ── Daniel's listings: update as properties come on/off market ───────────────
 // Source: raywhitebulimba.com.au/agents/daniel-gierach/177117
 const listings = [
@@ -206,7 +214,8 @@ const faqSchema = {
     <div class="hero-card max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;">
 
       <div class="reveal" data-delay="100" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
-        <img src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
+        <img src={vImg('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg', 80, 80)}
+          srcset={`${vImg('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg', 80, 80)} 2x`}
           alt="Daniel Gierach" width="40" height="40"
           style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);" />
         <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
@@ -285,7 +294,10 @@ const faqSchema = {
         >
           <!-- Image -->
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
-            <img src={p.image} alt={p.address} width="800" height="600"
+            <img src={vImg(p.image, 800)}
+              srcset={vImgSrcset(p.image, [400, 800, 1200])}
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              alt={p.address} width="800" height="600"
               loading={i === 0 ? 'eager' : 'lazy'}
               style={`width:100%;height:100%;object-fit:cover;${p.tag === 'Sold' ? 'filter:grayscale(30%);' : ''}`}
             />
@@ -344,7 +356,10 @@ const faqSchema = {
           class={`prop-card reveal${i === 1 ? '-right' : '-left'}`} data-delay={`${i * 80}`}
           style="display:flex;flex-direction:column;text-decoration:none;background:var(--color-surface-0);height:100%;">
           <div class="img-wrap relative" style="aspect-ratio:3/2;">
-            <img src={p.image} alt={p.address} width="1200" height="800" loading="lazy"
+            <img src={vImg(p.image, 1200)}
+              srcset={vImgSrcset(p.image, [640, 1080, 1200])}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              alt={p.address} width="1200" height="800" loading="lazy"
               style="filter:grayscale(25%) brightness(0.75);" />
             <div class="absolute top-5 left-5"><span class="gold-pill">{p.tag}</span></div>
             <div class="absolute inset-0 pointer-events-none"
@@ -398,7 +413,9 @@ const faqSchema = {
       <div class="relative reveal-left">
         <div class="daniel-portrait-wrap" style="aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(28,25,23,0.1);">
           <img
-            src="https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg"
+            src={vImg('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg', 900)}
+            srcset={vImgSrcset('https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg', [640, 900, 1200])}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             alt="Daniel Gierach, Ray White Bulimba"
             class="w-full h-full object-cover"
             style="object-position:center 10%;"
@@ -550,7 +567,8 @@ const faqSchema = {
 <section id="home-worth" class="relative overflow-hidden" style="padding:7rem 0;">
   <div class="absolute inset-0">
     <img
-      src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7149-H3442687-184436620__1769558771-34622-FJD9608.jpg"
+      src={vImg('https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7149-H3442687-184436620__1769558771-34622-FJD9608.jpg', 1920)}
+      srcset={vImgSrcset('https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7149-H3442687-184436620__1769558771-34622-FJD9608.jpg', [640, 1200, 1920])}
       sizes="100vw"
       alt="Premium property"
       class="hw-bg-img w-full h-full object-cover"
