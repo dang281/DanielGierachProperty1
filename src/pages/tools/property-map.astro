@@ -1258,11 +1258,16 @@ window.PM_ZONES = {
   // ── Load one flood overlay layer ─────────────────────────────────────
   function loadFlood(key: string) {
     if (!active[key]) { floodLayers[key].clearLayers(); return; }
+    if (map.getZoom() < 13) { floodLayers[key].clearLayers(); return; }
     if (floodAborts[key]) floodAborts[key].abort();
     floodAborts[key] = new AbortController();
 
     const b = map.getBounds();
     const sw = b.getSouthWest(), ne = b.getNorthEast();
+    const z = map.getZoom();
+    // AGOL simplifies in tiers; offsets under ~0.0006 fall back to full resolution
+    // and blow past the 40 MB transfer limit. Stay above that cliff at every zoom.
+    const offset = z >= 15 ? 0.0007 : z >= 13 ? 0.0012 : 0.002;
     const params = new URLSearchParams({
       geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
       geometryType: 'esriGeometryEnvelope',
@@ -1270,7 +1275,9 @@ window.PM_ZONES = {
       spatialRel: 'esriSpatialRelIntersects',
       outFields: 'OVL2_DESC,OVL2_CAT',
       returnGeometry: 'true',
-      resultRecordCount: '500', f: 'geojson',
+      maxAllowableOffset: String(offset),
+      geometryPrecision: '5',
+      resultRecordCount: '4000', f: 'geojson',
     });
 
     fetch(`${FLOOD_SVC[key]}/query?${params}`, { signal: floodAborts[key].signal })
@@ -1335,9 +1342,10 @@ window.PM_ZONES = {
       else zoningLayer.clearLayers();
     }
 
-    // Flood overlays load at zoom 12+
+    // Flood overlays load at zoom 13+ (matches zoning; at lower zooms the bbox
+    // spans the entire flood region and AGOL returns thousands of features).
     Object.keys(FLOOD_SVC).forEach(k => {
-      if (active[k]) { if (z >= 12) loadFlood(k); else floodLayers[k].clearLayers(); }
+      if (active[k]) { if (z >= 13) loadFlood(k); else floodLayers[k].clearLayers(); }
     });
 
     if (z < 14) {
