@@ -183,7 +183,8 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
           "url": "https://danielgierach.com"
         },
         "url": canonicalURL,
-        ...(_datePublished ? { "datePublished": _datePublished } : {})
+        ...(_datePublished ? { "datePublished": _datePublished } : {}),
+        ...(_datePublished ? { "dateModified": _scheduleEntry?.modifiedDate ?? _datePublished } : {})
       })} />
     )}
     <!-- BreadcrumbList JSON-LD, generated automatically from URL path -->
