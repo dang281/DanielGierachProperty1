@@ -22,7 +22,7 @@ function trimBody(body: string): string {
   return body.replace(/^##.*$/gm, '').replace(/^---+$/gm, '').trim()
 }
 
-const AVATAR_URL = 'https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg'
+const AVATAR_URL = 'https://danielgierach.com/img/daniel-headshot.jpg'
 
 export default function LinkedInPreview({ item, firstComment }: Props) {
   const caption = item.caption ?? ''

@@ -100,7 +100,7 @@ const CREAM     = '#f0ece4';
 const CREAM_DIM = 'rgba(240,236,228,0.62)';
 const GOLD      = '#c4912a';
 const GOLD_WARM = '#f5d07a';   // warmer gold used in the Field Guide series
-const AVATAR    = 'https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg';
+const AVATAR    = 'https://danielgierach.com/img/daniel-headshot.jpg';
 
 const FONT_URL_STANDARD = 'https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;600;700;800&display=swap';
 const FONT_URL_COVER    = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;600&display=swap';

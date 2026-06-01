@@ -13,7 +13,7 @@ const globalSchema = {
       "url": "https://danielgierach.com",
       "telephone": "+61412523821",
       "email": "daniel.gierach@raywhite.com",
-      "image": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+      "image": "https://danielgierach.com/img/daniel-headshot.jpg",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -146,7 +146,7 @@ const globalSchema = {
       },
       "image": {
         "@type": "ImageObject",
-        "url": "https://cdn6.ep.dynamics.net/s3/rw-media/memberphotos/88889915-cef5-4a5f-9c19-0cea700d7bca.jpeg",
+        "url": "https://danielgierach.com/img/daniel-headshot.jpg",
         "width": 400,
         "height": 400
       },
