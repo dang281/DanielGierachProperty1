@@ -64,9 +64,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #im-gps-btn {
     flex-shrink: 0; width: 46px;
-    background: var(--color-surface-4);
-    border: 1px solid rgba(28,25,23,0.18); border-left: none;
-    color: var(--color-text-muted); cursor: pointer;
+    background: #f5f2eb;
+    border: 1px solid rgba(28,25,23,0.12);
+    color: rgba(28,25,23,0.5); cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
   }
@@ -74,9 +74,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #im-gps-btn.locating { color: var(--color-gold); }
   .im-result-interp {
-    font-size: 0.84rem; color: rgba(240,236,228,0.78); line-height: 1.65;
+    font-size: 0.84rem; color: rgba(28,25,23,0.7); line-height: 1.65;
     margin-bottom: 0.65rem; padding-bottom: 0.65rem;
-    border-bottom: 1px solid rgba(240,236,228,0.08);
+    border-bottom: 1px solid rgba(28,25,23,0.09);
   }
   #im-share-btn {
     display: inline-flex; align-items: center; gap: 0.4rem;
@@ -119,15 +119,15 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #im-autocomplete {
     position: absolute; top: 100%; left: 0; right: 0;
-    background: rgba(10,8,6,0.97);
-    border: 1px solid rgba(196,145,42,0.2); border-top: none;
+    background: #ffffff;
+    border: 1px solid rgba(28,25,23,0.12); border-top: none;
     z-index: 1100; max-height: 240px; overflow-y: auto;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
   }
   .im-ac-item {
     padding: 0.85rem 1rem; font-size: 0.85rem;
-    color: rgba(240,236,228,0.85); cursor: pointer;
-    border-bottom: 1px solid rgba(240,236,228,0.07); line-height: 1.4;
+    color: rgba(28,25,23,0.88); cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.08); line-height: 1.4;
     min-height: 44px; display: flex; align-items: center;
   }
   .im-ac-item:last-child { border-bottom: none; }
@@ -152,11 +152,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   .im-control {
-    position: absolute; z-index: 500;
-    background: rgba(10,8,6,0.92);
+    position: absolute; z-index: 1200;
+    background: rgba(242,239,233,0.97);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(196,145,42,0.18);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    border: 1px solid rgba(28,25,23,0.12);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
   /* Shift layers left to leave room for the compass (52px wide + 8px gap) */
   .im-control-tr { top: 12px; right: 72px; }
@@ -165,21 +165,21 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-compass {
     position: absolute; top: 12px; right: 12px; z-index: 500;
     width: 48px; height: 48px;
-    background: rgba(10,8,6,0.92);
+    background: rgba(242,239,233,0.97);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(196,145,42,0.18);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    border: 1px solid rgba(28,25,23,0.12);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     display: flex; align-items: center; justify-content: center;
     pointer-events: none;
   }
 
   #im-status {
-    position: absolute; top: 12px; left: 12px; z-index: 500;
-    background: rgba(10,8,6,0.88);
+    position: absolute; top: 12px; left: 50px; z-index: 500;
+    background: rgba(242,239,233,0.95);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(196,145,42,0.15);
+    border: 1px solid rgba(28,25,23,0.1);
     padding: 0.45rem 0.85rem;
-    font-size: 0.72rem; color: rgba(240,236,228,0.65);
+    font-size: 0.72rem; color: rgba(28,25,23,0.55);
     line-height: 1.4; max-width: 280px;
     pointer-events: none; transition: opacity 0.3s;
   }
@@ -193,14 +193,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     background: transparent; border: none; cursor: pointer;
     font-family: var(--font-sans);
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(240,236,228,0.85);
+    text-transform: uppercase; color: rgba(28,25,23,0.78);
   }
   .im-layer-toggle:hover { background: rgba(196,145,42,0.1); }
   .im-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
   .im-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
 
   .im-layer-panel {
-    display: none; border-top: 1px solid rgba(240,236,228,0.08);
+    display: none; border-top: 1px solid rgba(28,25,23,0.09);
     width: 300px; padding: 0.4rem 0.5rem 0.7rem;
     max-height: 70vh; overflow-y: auto;
   }
@@ -267,23 +267,23 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-swatch { width: 24px; height: 14px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
   .im-swatch-line { width: 24px; height: 3px; }
   .im-swatch-line-dash { width: 24px; height: 3px; background-image: repeating-linear-gradient(90deg, currentColor 0, currentColor 5px, transparent 5px, transparent 9px); }
-  .im-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(240,236,228,0.6); box-shadow: 0 0 0 1px rgba(0,0,0,0.3); }
+  .im-swatch-dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(28,25,23,0.25); box-shadow: 0 0 0 1px rgba(0,0,0,0.1); }
   .im-layer-name {
     font-family: var(--font-sans);
     font-size: 0.74rem; font-weight: 600;
-    color: rgba(240,236,228,0.9); line-height: 1.3; flex: 1;
+    color: rgba(28,25,23,0.88); line-height: 1.3; flex: 1;
   }
   .im-layer-hint {
     display: block; font-weight: 400;
-    font-size: 0.66rem; color: rgba(240,236,228,0.42); margin-top: 0.1rem;
+    font-size: 0.66rem; color: rgba(28,25,23,0.38); margin-top: 0.1rem;
   }
 
   #im-result {
     position: absolute; left: 14px; bottom: 14px; z-index: 600;
-    background: rgba(10,8,6,0.96);
+    background: rgba(242,239,233,0.98);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-left: 3px solid var(--color-gold);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
     padding: 0 1.15rem 1.0rem; max-width: 440px;
     width: calc(100% - 28px);
     transform: translate3d(0, calc(100% + 24px), 0);
@@ -311,7 +311,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     gap: 0.5rem;
     margin: 0 -1.15rem 0.7rem;
     padding: 0.7rem 1.15rem;
-    border-bottom: 1px solid rgba(240,236,228,0.06);
+    border-bottom: 1px solid rgba(28,25,23,0.07);
   }
   /* Per-kind header tints */
   #im-result.kind-propertyBoundary .im-result-head { background: rgba(158,140,106,0.14); }
@@ -347,19 +347,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-eyebrow {
     font-family: var(--font-sans);
     font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: rgba(240,236,228,0.5);
+    text-transform: uppercase; color: rgba(28,25,23,0.45);
   }
   .im-close {
     background: transparent; border: none; cursor: pointer;
     width: 32px; height: 32px;
     display: inline-flex; align-items: center; justify-content: center;
-    color: rgba(240,236,228,0.4); padding: 0;
+    color: rgba(28,25,23,0.35); padding: 0;
     transition: color 0.15s, background 0.15s;
   }
-  .im-close:hover { color: rgba(240,236,228,0.9); background: rgba(240,236,228,0.08); }
+  .im-close:hover { color: rgba(28,25,23,0.85); background: rgba(28,25,23,0.06); }
   #im-result h3 {
     font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400;
-    color: rgba(240,236,228,0.95); line-height: 1.25; margin-bottom: 0.5rem;
+    color: rgba(28,25,23,0.88); line-height: 1.25; margin-bottom: 0.5rem;
   }
   .im-attrs {
     display: grid; grid-template-columns: max-content 1fr;
@@ -368,9 +368,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-attrs dt {
     font-family: var(--font-sans);
     font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(240,236,228,0.42); align-self: center;
+    text-transform: uppercase; color: rgba(28,25,23,0.38); align-self: center;
   }
-  .im-attrs dd { color: rgba(240,236,228,0.85); margin: 0; }
+  .im-attrs dd { color: rgba(28,25,23,0.78); margin: 0; }
 
   .im-foot {
     margin-top: 0.85rem;
@@ -390,10 +390,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 599;
-    background: rgba(10,8,6,0.92);
+    background: rgba(242,239,233,0.97);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(196,145,42,0.2);
-    box-shadow: 0 8px 36px rgba(0,0,0,0.5);
+    border: 1px solid rgba(28,25,23,0.12);
+    box-shadow: 0 8px 36px rgba(0,0,0,0.15);
     padding: 1.75rem 2rem;
     text-align: center;
     width: min(300px, calc(100% - 3rem));
@@ -403,7 +403,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-guide svg { color: var(--color-gold); margin-bottom: 0.85rem; display: block; margin-left: auto; margin-right: auto; }
   #im-guide p {
     font-family: var(--font-sans); font-size: 0.82rem;
-    color: rgba(240,236,228,0.72); line-height: 1.65; margin-bottom: 1.1rem;
+    color: rgba(28,25,23,0.65); line-height: 1.65; margin-bottom: 1.1rem;
   }
   #im-guide-dismiss {
     display: inline-flex; align-items: center; gap: 0.4rem;
@@ -473,13 +473,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <!-- North pointer (gold) -->
         <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
         <!-- South pointer (muted) -->
-        <polygon points="18,32 21,18 18,21 15,18" fill="rgba(240,236,228,0.25)"/>
+        <polygon points="18,32 21,18 18,21 15,18" fill="rgba(28,25,23,0.3)"/>
         <!-- East pointer (muted) -->
-        <polygon points="32,18 18,15 21,18 18,21" fill="rgba(240,236,228,0.18)"/>
+        <polygon points="32,18 18,15 21,18 18,21" fill="rgba(28,25,23,0.2)"/>
         <!-- West pointer (muted) -->
-        <polygon points="4,18 18,15 15,18 18,21" fill="rgba(240,236,228,0.18)"/>
+        <polygon points="4,18 18,15 15,18 18,21" fill="rgba(28,25,23,0.2)"/>
         <!-- Centre dot -->
-        <circle cx="18" cy="18" r="2" fill="rgba(240,236,228,0.6)"/>
+        <circle cx="18" cy="18" r="2.5" fill="rgba(28,25,23,0.6)"/>
         <!-- N label -->
         <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#c4912a" letter-spacing="0.05em">N</text>
       </svg>
@@ -1097,7 +1097,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (!features.length) { list.style.display = 'none'; return; }
     features.forEach(f => {
       const p = f.properties;
-      const label = [p.name, p.street && p.housenumber ? `${p.street} ${p.housenumber}` : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const streetPart = p.housenumber && p.street ? `${p.housenumber} ${p.street}` : (p.street || p.name || '');
+      const granular = p.suburb || p.locality || p.district || p.neighbourhood || p.county;
+      const locality = granular || (p.city && p.city !== 'Brisbane' ? p.city : (p.postcode ? `Brisbane ${p.postcode}` : (p.city || '')));
+      const label = [streetPart, locality].filter(Boolean).join(', ');
       const item = document.createElement('div');
       item.className = 'im-ac-item'; item.textContent = label;
       item.addEventListener('mousedown', () => {

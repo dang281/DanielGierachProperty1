@@ -64,20 +64,80 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #ws-search-btn:hover { background: #d4af4a; }
   #ws-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  #ws-gps-btn {
+    flex-shrink: 0; width: 46px;
+    background: #f5f2eb;
+    border: 1px solid rgba(28,25,23,0.12);
+    color: rgba(28,25,23,0.5); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color 0.2s, background 0.2s;
+  }
+  #ws-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #ws-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  #ws-gps-btn.locating { color: var(--color-gold); }
   #ws-autocomplete {
     position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--color-surface-4);
-    border: 1px solid rgba(28,25,23,0.18); border-top: none;
+    background: #ffffff;
+    border: 1px solid rgba(28,25,23,0.12); border-top: none;
     z-index: 1100; max-height: 240px; overflow-y: auto;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
   }
   .ws-ac-item {
-    padding: 0.65rem 1rem; font-size: 0.85rem;
-    color: var(--color-text-primary); cursor: pointer;
-    border-bottom: 1px solid rgba(28,25,23,0.06); line-height: 1.4;
+    padding: 0.85rem 1rem; font-size: 0.85rem;
+    color: rgba(28,25,23,0.88); cursor: pointer;
+    border-bottom: 1px solid rgba(28,25,23,0.08); line-height: 1.4;
+    min-height: 44px; display: flex; align-items: center;
+    transition: background 0.15s;
   }
   .ws-ac-item:last-child { border-bottom: none; }
-  .ws-ac-item:hover { background: rgba(197,160,60,0.08); }
+  .ws-ac-item:hover, .ws-ac-item:active { background: rgba(196,145,42,0.1); }
+
+  /* Mobile sticky search */
+  @media (max-width: 640px) {
+    .ws-search-sticky {
+      position: sticky; top: 72px; z-index: 1010;
+      background: var(--color-base);
+      padding: 0.6rem 0 0.5rem;
+      margin: 0 -0.75rem;
+      padding-left: 0.75rem; padding-right: 0.75rem;
+      border-bottom: 1px solid rgba(28,25,23,0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .ws-search-bar { margin-bottom: 0; }
+    #ws-search { font-size: 16px; height: 48px; padding: 0 0.9rem; }
+    #ws-search-btn { height: 48px; padding: 0 1rem; font-size: 0.68rem; }
+    #ws-gps-btn { width: 48px; height: 48px; }
+    .ws-ac-item { padding: 1rem; min-height: 48px; font-size: 0.92rem; }
+    .ws-eduline { display: none; }
+    #ws-map { height: calc(100svh - 133px) !important; }
+    .leaflet-top.leaflet-left { top: auto !important; bottom: 68px !important; }
+  }
+
+  /* First-load guide overlay */
+  #ws-guide {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 599;
+    background: rgba(242,239,233,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(28,25,23,0.12);
+    box-shadow: 0 8px 36px rgba(0,0,0,0.15);
+    padding: 1.75rem 2rem; text-align: center;
+    width: min(300px, calc(100% - 3rem));
+    transition: opacity 0.35s, transform 0.35s;
+  }
+  #ws-guide svg { color: var(--color-gold); margin: 0 auto 0.85rem; display: block; }
+  #ws-guide p { font-family: var(--font-sans); font-size: 0.82rem; color: rgba(28,25,23,0.65); line-height: 1.65; margin-bottom: 1.1rem; }
+  #ws-guide-dismiss {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--color-gold); color: #0a0806;
+    font-family: var(--font-sans); font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; padding: 0.6rem 1.35rem;
+    transition: background 0.2s;
+  }
+  #ws-guide-dismiss:hover { background: #d4af4a; }
+  #ws-guide.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 8px)); }
 
   /* ── Map shell & floating controls ─────────────────────────────── */
   .ws-map-wrap { position: relative; }
@@ -272,17 +332,29 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </p>
 
   <!-- Search -->
-  <div class="ws-search-bar">
-    <div id="ws-search-wrap">
-      <input type="text" id="ws-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
-      <div id="ws-autocomplete" style="display:none;"></div>
+  <div class="ws-search-sticky">
+    <div class="ws-search-bar">
+      <div id="ws-search-wrap">
+        <input type="text" id="ws-search" placeholder="Search address e.g. 12 Oxford St, Bulimba" autocomplete="off" inputmode="search" enterkeyhint="search" />
+        <div id="ws-autocomplete" style="display:none;"></div>
+      </div>
+      <button id="ws-search-btn">Search</button>
+      <button id="ws-gps-btn" title="Use my location" aria-label="Use my location" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="9" stroke-opacity="0.3"/></svg>
+      </button>
     </div>
-    <button id="ws-search-btn">Search</button>
   </div>
 
   <!-- Map + floating controls -->
   <div class="ws-map-wrap">
     <div id="ws-map"></div>
+
+    <!-- First-load guidance -->
+    <div id="ws-guide" role="status" aria-live="polite">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 6-10 6L2 8l10-6z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <p>Search an address, tap a pipe or asset, or use your location to see QUU infrastructure.</p>
+      <button id="ws-guide-dismiss" type="button">Start exploring</button>
+    </div>
 
     <div id="ws-status">Click any pipe or feature, or search an address.</div>
 
@@ -672,7 +744,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     if (!features.length) { list.style.display = 'none'; return; }
     features.forEach(f => {
       const p = f.properties;
-      const label = [p.name, p.street && p.housenumber ? p.street + ' ' + p.housenumber : p.street, p.city || p.suburb].filter(Boolean).join(', ');
+      const streetPart = p.housenumber && p.street ? `${p.housenumber} ${p.street}` : (p.street || p.name || '');
+      const granular = p.suburb || p.locality || p.district || p.neighbourhood || p.county;
+      const locality = granular || (p.city && p.city !== 'Brisbane' ? p.city : (p.postcode ? `Brisbane ${p.postcode}` : (p.city || '')));
+      const label = [streetPart, locality].filter(Boolean).join(', ');
       const item = document.createElement('div');
       item.className = 'ws-ac-item';
       item.textContent = label;
@@ -699,9 +774,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   function flyAndIdentify(lat, lon) {
+    const guide = document.getElementById('ws-guide');
+    if (guide) { guide.classList.add('hidden'); try { localStorage.setItem('ws-onboarded', '1'); } catch {} }
     dropPin(lat, lon);
     map.setView([lat, lon], 18);
-    // Wait for tiles + features to load before identifying
     setTimeout(() => identifyAt(lat, lon), 800);
   }
 
@@ -741,6 +817,41 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         document.getElementById('ws-autocomplete').style.display = 'none';
       }
     });
+
+    // First-load guide dismiss
+    const guide = document.getElementById('ws-guide');
+    const dismissGuide = () => {
+      if (!guide) return;
+      guide.classList.add('hidden');
+      try { localStorage.setItem('ws-onboarded', '1'); } catch {}
+    };
+    document.getElementById('ws-guide-dismiss')?.addEventListener('click', dismissGuide);
+    try { if (localStorage.getItem('ws-onboarded')) dismissGuide(); } catch {}
+
+    // GPS button
+    const gpsBtn = document.getElementById('ws-gps-btn');
+    if (gpsBtn) {
+      gpsBtn.addEventListener('click', () => {
+        const status = document.getElementById('ws-status');
+        if (!navigator.geolocation) {
+          status.textContent = 'Geolocation not supported on this device.';
+          return;
+        }
+        status.textContent = 'Getting your location…';
+        gpsBtn.disabled = true; gpsBtn.classList.add('locating');
+        navigator.geolocation.getCurrentPosition(
+          pos => {
+            gpsBtn.disabled = false; gpsBtn.classList.remove('locating');
+            flyAndIdentify(pos.coords.latitude, pos.coords.longitude);
+          },
+          () => {
+            gpsBtn.disabled = false; gpsBtn.classList.remove('locating');
+            status.textContent = 'Location denied. Try searching by address.';
+          },
+          { timeout: 10000 }
+        );
+      });
+    }
 
     // Layers toggle
     const toggle = document.getElementById('layer-toggle');
