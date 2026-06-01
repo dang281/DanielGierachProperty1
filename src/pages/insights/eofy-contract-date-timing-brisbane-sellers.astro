@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should Brisbane sellers time their contract date around the end of financial year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on what is in the contract. For Brisbane homeowners selling a fully exempt main residence, the financial year of the contract is largely irrelevant to tax. For investors, retirees, deceased estates and sellers using the 6-year absence rule, the contract date determines which financial year the gain falls into, and that single decision can move the final tax bill by tens or hundreds of thousands of dollars. EOFY timing is a real lever for the second group, not the first. Run the numbers with a registered tax agent before deciding on a campaign date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a 30 June contract or a 1 July contract affect CGT in Queensland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, materially, for property sales subject to CGT. The CGT event happens on the contract date under ATO rules. A contract signed on 30 June 2026 puts the gain in the 2025-26 financial year. A contract signed on 1 July 2026 puts the same gain in the 2026-27 financial year, even where settlement happens on the same August day in both scenarios. The choice of contract date is the choice of which year's income, brackets, deductions, super cap and tax position the gain stacks onto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best time of year to sign a Brisbane property contract for tax purposes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no universal best time. The right contract date depends on your taxable income shape, super eligibility, retirement timing, carry-forward losses, ownership structure and the size of the gain. For Brisbane investors retiring in the next 24 months, the first full year of retirement is often the lowest-tax year to crystallise. For sellers with large unused concessional super cap and a high-income year ending, a late June contract can be the right call. For sellers with no CGT exposure (a fully exempt main residence), the financial year of the contract does not change the tax outcome and the market campaign should drive the timing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a Brisbane seller change the contract date after signing to shift the CGT year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, not without rescinding and re-signing the contract, which the buyer would have to agree to and which is very rarely available. The contract date is the date the buyer and seller signed the binding contract, not the date you intended to sign it. Once both parties have signed, the CGT event has occurred. This is why the contract date decision must be made before the offer is accepted, not after. Sellers wanting a 1 July contract have to delay the offer process, not back-date or amend after the fact."
+      }
+    }
+  ]
+};
+---
+<Layout title="Should Brisbane Sellers Time Their Contract Date Around the End of Financial Year? 2026 | Daniel Gierach Property" description="The contract date, not the settlement date, is the CGT event for a Brisbane property sale. Who actually benefits from a 30 June vs 1 July contract, who should ignore EOFY entirely, and how to plan a Brisbane campaign in lockstep with the financial year you want the gain in." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 11 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Should Brisbane Sellers Time Their Contract Date Around the End of Financial Year?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        Every June, Brisbane sellers ask the same question: should I push the contract through before 30 June, or hold it until 1 July? The honest answer is that it depends entirely on what is in the contract. For some vendors EOFY timing is the single most valuable decision of the campaign. For others it is irrelevant noise. Here is how to tell which one you are.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Brisbane's end of financial year falls on 30 June. That single date trips a long list of switches inside the Australian tax system: marginal brackets reset, super contribution caps reset, deductions are locked in, prior-year tax losses are confirmed, and the Centrelink and Medicare assessments that feed off taxable income start their next twelve-month cycle. For a seller who is signing a contract in the last week of June or the first week of July, the choice of which side of 30 June the contract falls on can be the most consequential timing decision of the entire sale.</p>
+
+      <p>The reason is one line of tax law that most vendors learn the hard way. The CGT event for a property sale is the contract date, not the settlement date. The Australian Taxation Office treats the moment both parties sign the binding contract as the moment the gain is realised, regardless of when the money lands. So if you sign on 28 June with a settlement in August, the gain is in the 2025-26 financial year. If you sign on 2 July with the same August settlement, the gain is in the 2026-27 financial year. Same property, same buyer, same price, different year, often a very different tax bill.</p>
+
+      <p>This article is general information for Brisbane sellers thinking about how the financial year affects their sale, not personal tax advice. Sit down with a registered tax agent before you make the call.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">First question: are you actually exposed to CGT?</h2>
+
+      <p>The single most useful filter on the EOFY timing question is whether the contract you are about to sign produces any CGT at all. The answer falls into four broad buckets for Brisbane sellers.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Bucket 1: Fully exempt main residence.</strong> If the property has been your main residence for the entire ownership period, has not been used to produce income (no rental, no flatmates paying market rent, no claimed home office area), and sits on land of two hectares or less, the main residence exemption typically wipes the gain entirely. For this seller, the financial year of the contract does not affect the tax outcome. Sign when the campaign result is best, not when the calendar suits a tax planner.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Bucket 2: Partial main residence.</strong> If the property has been your home for most of the ownership period but was rented out at some stage, used to claim home office deductions, or was acquired through a deceased estate with some absence period, you have a partial CGT exposure. The financial year decision matters here, though usually with a smaller leverage than for a pure investment. The size of the partial gain and your other income for each candidate year drives whether 30 June or 1 July is the right side to land on.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Bucket 3: Investment property held by an individual.</strong> The classic case. A Brisbane apartment, townhouse or house held for rental income, sold with a substantial capital gain. The full gain (less the 50% discount if held more than 12 months) is added to your other taxable income in the year of the contract. The financial year decision is the largest single tax lever available on the sale.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Bucket 4: Investment property held by a company, trust or SMSF.</strong> The contract date still determines the year of the gain, but the rate calculation and distribution decisions follow different rules. Company tax rates do not have the same bracket structure that makes year-by-year timing so leveraged for individuals. Trust distributions can shift the assessable amount across beneficiaries with their own income shapes. SMSF capital gains may be partially or fully exempt in pension phase. These structures need their own planning conversation rather than a generic 30 June rule.</p>
+
+      <p>If you are in Bucket 1, the rest of this article is interesting but not load-bearing for you. If you are in Bucket 2, 3 or 4, read on carefully.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When a 30 June contract is the right call</h2>
+
+      <p>There are real reasons to push for a contract signed before 30 June. The right ones all share a common shape: the current financial year is, for some reason, a relatively low-tax year for you, and bringing the gain forward into it uses up tax allowances or deductions that would otherwise be wasted.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You have unused concessional super cap that disappears at year end.</strong> The carry-forward concessional contribution rules let you stack unused cap from the previous five financial years onto the current year. A Brisbane investor with $80,000 to $130,000 of stacked cap can make a personal deductible super contribution and claim it against the gain at marginal rates. The stacked cap rolls forward to the next year if unused, but the oldest year drops off forever once it is six years old. If a stacked cap year is about to roll off, using it against a current-year gain often beats waiting.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You have large carry-forward tax losses.</strong> Capital losses carried forward from prior years are applied against capital gains before the 50% discount is calculated. For an investor with, say, $150,000 of carried losses from a previous bad year, a current-year capital gain can absorb the losses. Pushing the gain into the next financial year does not help and may simply mean another year of holding the losses without using them.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Your current-year income is unusually low.</strong> A year of unpaid leave, a career break, an extended sabbatical, a redundancy with the payout taken as a lump sum and taxed under separate rules, or a year you took the year off to renovate the property you are now selling, all create temporary windows where your wage component is low. Stacking the gain on top of a low wage produces a better marginal rate outcome than waiting until you are back at full salary.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You expect a higher-income next year.</strong> A confirmed promotion, a partner promotion, a windfall, a return to full-time work after parental leave, or an SMSF coming out of pension phase, all push next year's marginal rate higher. If the current year is your lower-rate year, get the gain into it.</p>
+
+      <p>For these cases, the contract has to be signed and dated on or before 30 June. Not exchanged, not initialled, not handed to the conveyancer for review. Both parties must have signed the binding contract. A Brisbane campaign aiming at a 30 June contract typically needs to be live no later than the first week of May, with the offer process structured to close before the third week of June so there is time for final amendments and signatures. Leaving it to the last week is how vendors miss the deadline and accidentally land the gain in the wrong year.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When a 1 July contract is the right call</h2>
+
+      <p>The mirror cases sit on the other side. The right reasons to delay the contract until 1 July or later all share a shape: the next financial year is, for some reason, a much lower-tax year for you, and pushing the gain into it puts it through wider lower brackets.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You are retiring on 30 June.</strong> The cleanest case. Your final pay cycle ends on or before 30 June and from 1 July you have no further wage. A gain that lands in 2026-27 falls into a year where the only meaningful taxable income is the gain itself. For a Brisbane investor with a $700,000 gain, the difference between the last year of full-time work and the first year of retirement is routinely $80,000 to $150,000 in tax for a sole owner, often double for a joint-owner couple where both retire on the same date.</p>
+
+      <p><strong style="color:var(--color-text-primary);">You have unrealised capital losses sitting in another asset.</strong> If you hold an underwater share parcel or a separate underperforming investment property, and you intend to sell it next financial year to crystallise the loss, you want the property gain in the same year as the planned loss. Selling the property today and the loss-making asset in a different year produces two unconnected tax outcomes. Same year, they offset.</p>
+
+      <p><strong style="color:var(--color-text-primary);">A spouse is becoming the lower-income party.</strong> If your spouse is starting a lower-paid role, taking parental leave, ceasing work, or going on extended unpaid leave from 1 July, and the property is in their name or held jointly, pushing the contract into the new financial year lets their share of the gain run through their lower brackets.</p>
+
+      <p><strong style="color:var(--color-text-primary);">A government policy change starts on 1 July.</strong> Federal tax changes are typically announced in the May budget with a 1 July start date. New brackets, new contribution caps, new discount rules, new thresholds. If a confirmed change makes the next year better for you, sign on 1 July. If a confirmed change makes it worse, sign on 30 June.</p>
+
+      <p>A Brisbane campaign aiming at a 1 July contract is straightforward to run if planned in advance. The property goes to market in the second half of June with private inspections only, the listing makes clear that offers will not be accepted until 1 July, and the offer process runs through the first half of July. Buyers in Brisbane's inner east accept this rhythm without losing competitive tension, particularly when the agent communicates the reason as "vendor preference" without disclosing tax specifics. A delayed-offer campaign that opens on 1 July with strong buyer interest from the preceding two weeks of private inspections often produces a stronger result than a rushed end-of-June campaign that puts contract pressure on a thin July buyer pool.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The contract date trap that catches Brisbane vendors every June</h2>
+
+      <p>The single most expensive misunderstanding in EOFY timing is the difference between intended contract date and actual contract date. The CGT event is the day both parties signed, not the day the property was inspected, not the day the offer was made, not the day the deposit was paid.</p>
+
+      <p>A common scenario. A Brisbane investor lists the property in May, planning to land a contract in early July. An eager buyer makes an offer on 26 June. The agent advises holding until 1 July. The buyer pushes for an immediate decision and threatens to walk if they have to wait a week. The seller signs on 27 June to lock the buyer in, planning to "sort the tax out later". The CGT event happens on 27 June. The gain is now in 2025-26. There is no later sorting available, because nothing about a contract that has been signed by both parties can be changed without rescinding it, which the buyer has no reason to agree to.</p>
+
+      <p>The lesson is that the contract date decision has to be made before the offer process starts, not in the room with a buyer waving a contract at you. If the plan is a 1 July contract, the campaign and the agent's offer-handling instructions must reflect that from day one. Offers received in late June are politely held, not accepted. Buyers are told upfront that offers will not be entertained until July. This is not a hard sell to manage in Brisbane's inner east when handled well at the listing stage, but it falls apart if the seller wavers in the final week.</p>
+
+      <p>The reverse trap is identical. A seller planning a 30 June contract who runs a slow campaign with an indecisive buyer can easily slip past 30 June. The contract that gets signed on 2 July puts the gain in the wrong year. By that point the planning around super contributions, deductible expenses, prior-year losses and current-year offsets may already be misaligned. The fix is to set hard deadlines for the buyer and to make sure the agent and conveyancer both understand the date constraint.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What the buyer side looks like across 30 June</h2>
+
+      <p>EOFY changes more than tax for the seller. It shifts what buyers are willing to do, and that shifts the price.</p>
+
+      <p>In the last two weeks of June, the Brisbane buyer pool typically thins. End of financial year work pressure, family commitments, and the general fatigue of the autumn period all pull buyer attention away. Mortgage brokers are completing tax-driven refinances and depreciation work for existing clients rather than chasing new pre-approvals. Conveyancers are working through their backlog of June settlements rather than reviewing new contracts. The buyers who are active tend to be highly motivated, but the breadth of the pool is reduced.</p>
+
+      <p>In the first two weeks of July, the Brisbane buyer pool typically widens again. The new financial year brings fresh budgets, fresh borrowing capacity calculations (lenders re-baseline serviceability against the new year), and fresh pre-approvals. Investors in particular re-engage in July because they are looking at the next financial year with a clean slate of deductions, depreciation schedules and tax-loss planning. School holiday timing in early July shifts the family buyer rhythm, but the inner east sees a meaningful pickup by mid-July.</p>
+
+      <p>The competitive tension on the buyer side, in other words, is often stronger in early July than in late June. For a seller running a delayed-offer campaign aiming at a 1 July contract, this is helpful. The campaign builds private inspection interest during the quieter late-June window, then opens for offers into a freshly active early-July buyer pool. A 30 June contract, by contrast, often has to be negotiated through a thinner pool. This dynamic does not always reverse a tax-driven decision, but it should be factored into the price expectation.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Special cases worth flagging</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Deceased estate sales.</strong> When a Brisbane property is sold by the legal personal representative of a deceased estate, the CGT calculation can use the deceased's original cost base or a market-value cost base depending on the dates of acquisition and death. The financial year of the contract still matters because it determines which year the estate's CGT is assessed, and estates often have very low taxable income from other sources. Pushing the contract into a year where the estate has no other income can let the gain run through low brackets. A registered tax agent advising the executor should be running these numbers before the campaign is set.</p>
+
+      <p><strong style="color:var(--color-text-primary);">6-year absence rule sellers.</strong> If you are selling a Brisbane property that has been rented for under six years since you moved out and you are using the section 118-145 absence rule to keep the main residence exemption, the financial year of the contract usually does not change the tax outcome because the exemption applies regardless. The exception is where the absence period is approaching six years and you are at risk of exceeding it. In that case, the contract date relative to the six-year clock matters far more than its position relative to 30 June.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Foreign resident sellers.</strong> Non-resident sellers do not get the 50% CGT discount on gains accrued after 8 May 2012, and are subject to foreign resident capital gains withholding at 15% of the contract price (which the buyer remits to the ATO at settlement). The financial year of the contract still drives the assessable year, but the headline rate is higher and there is no discount lever to plan around. For non-residents planning to return to Australian residency, the year of becoming a resident again is often a relevant timing question.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Sellers using the small business CGT concessions.</strong> The small business CGT concessions can wipe out a property gain in some commercial or business-asset contexts. Eligibility tests are time-sensitive and depend on the structure as at the contract date. The financial year decision can be secondary to maintaining eligibility, and this is a tax adviser conversation, not a calendar one.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">When the tax tail should not wag the dog</h2>
+
+      <p>EOFY timing is a real lever and the dollar amounts can be large, but property markets do not stand still for the financial year calendar. A Brisbane investor who decides to delay a sale by twelve months to land a better tax outcome, then watches the inner east market move 6% against them over that period on a $1.5 million property, has lost $90,000 chasing what might have been a $60,000 tax saving. A seller who rushes a campaign to hit a 30 June contract and ends up with a thin buyer pool and a discounted price has paid the tax saving back at the sale price.</p>
+
+      <p>The right approach is to run the timing decision and the campaign decision together. If the planning target is a 1 July contract, the property has to be ready, the buyer pool has to be active, and the campaign has to be designed to land cleanly on that contract date with a strong result. If the market window in late June and early July is poor for the specific property (say, a school-catchment family home where the natural buyer is on holiday), tax timing alone is not a good enough reason to push through it. The decision that almost always works is to list when the property is genuinely ready, run the campaign properly, and engineer the contract date so it lands in a financial year your tax adviser has already planned for.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A six-month checklist before you commit to a contract date target</h2>
+
+      <p>By the time a Brisbane seller is six months out from the planned contract date, the following should be settled with a registered tax agent and, where relevant, a financial adviser.</p>
+
+      <p>The CGT position on the property is calculated for both candidate financial years, with a written estimate of the tax bill in each scenario. The 50% discount eligibility (12-month rule from contract-of-purchase plus one day to contract-of-sale minus one day) is confirmed against the original sale contract. Carry-forward concessional super cap is calculated against the previous 30 June total super balance test, and a contribution strategy is set up for the chosen year. Any carry-forward capital losses or revenue losses are confirmed and matched to the planned year. The contract date target (late June or early July) is set, and the campaign timeline is reverse-engineered from it: a 30 June target means a market launch by early May at the latest, a 1 July target means a market launch in mid-to-late June with offers held until 1 July. The agency agreement, marketing brief and offer-handling instructions all reflect the contract date target.</p>
+
+      <p>Anything less than this is improvisation. Improvisation around EOFY contract timing is what produces the late-June surprises that cost Brisbane sellers six-figure sums.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Planning a Brisbane sale around end of financial year?</strong> Daniel can structure the campaign timing so the contract date lands in the financial year your tax adviser has planned for, with the buyer pool and price tension protected. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;">Part of the <a href="/insights/costs-taxes-and-finance/">Costs, Taxes and Finance guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Use the free tool: <a href="/tools/net-proceeds" style="color:#f5d07a;font-weight:600;">Net Proceeds Calculator &rarr;</a>
+  </p>
+</div>
+</Layout>
