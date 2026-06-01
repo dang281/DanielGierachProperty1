@@ -1255,7 +1255,61 @@ window.PM_ZONES = {
       .catch((err: any) => { if (err.name === 'AbortError') return; });
   }
 
+  // ── Decode AGOL quantized Esri-JSON features into GeoJSON ─────────────
+  // AGOL `quantizationParameters` returns rings as integer pixel offsets
+  // (first point absolute, rest delta-encoded). Convert back to lat/lon at
+  // the original polygon precision modulo one screen pixel of rounding.
+  function quantizedRingsToGeometry(rings: number[][][], xmin: number, ymax: number, tol: number) {
+    const decoded = rings.map(ring => {
+      const out: number[][] = [];
+      let cx = 0, cy = 0;
+      for (let i = 0; i < ring.length; i++) {
+        cx += ring[i][0]; cy += ring[i][1];
+        out.push([xmin + cx * tol, ymax - cy * tol]);
+      }
+      return out;
+    });
+    if (decoded.length === 1) return { type: 'Polygon', coordinates: decoded };
+    // Group outer rings + their holes. Esri convention: outer = clockwise
+    // in geographic coords → shoelace sum > 0 with our formulation.
+    const signedArea = (r: number[][]) => {
+      let s = 0;
+      for (let i = 0; i < r.length - 1; i++) s += (r[i+1][0] - r[i][0]) * (r[i+1][1] + r[i][1]);
+      return s;
+    };
+    const polys: number[][][][] = [];
+    let outer: number[][] | null = null;
+    let holes: number[][][] = [];
+    for (const r of decoded) {
+      if (signedArea(r) > 0) {
+        if (outer) polys.push([outer, ...holes]);
+        outer = r; holes = [];
+      } else if (outer) {
+        holes.push(r);
+      } else {
+        polys.push([r]);
+      }
+    }
+    if (outer) polys.push([outer, ...holes]);
+    if (polys.length === 1) return { type: 'Polygon', coordinates: polys[0] };
+    return { type: 'MultiPolygon', coordinates: polys };
+  }
+
+  function esriQuantizedToGeoJSON(esri: any, xmin: number, ymax: number, tol: number) {
+    return {
+      type: 'FeatureCollection',
+      features: (esri.features || []).map((f: any) => ({
+        type: 'Feature',
+        properties: f.attributes || {},
+        geometry: quantizedRingsToGeometry(f.geometry?.rings || [], xmin, ymax, tol),
+      })),
+    };
+  }
+
   // ── Load one flood overlay layer ─────────────────────────────────────
+  // Uses AGOL `quantizationParameters` so polygon boundaries are pixel-perfect
+  // at the current zoom. Without it, a full-precision query for the visible
+  // viewport blows past AGOL's 40 MB transfer limit and the response is truncated.
   function loadFlood(key: string) {
     if (!active[key]) { floodLayers[key].clearLayers(); return; }
     if (map.getZoom() < 13) { floodLayers[key].clearLayers(); return; }
@@ -1264,25 +1318,31 @@ window.PM_ZONES = {
 
     const b = map.getBounds();
     const sw = b.getSouthWest(), ne = b.getNorthEast();
-    const z = map.getZoom();
-    // AGOL simplifies in tiers; offsets under ~0.0006 fall back to full resolution
-    // and blow past the 40 MB transfer limit. Stay above that cliff at every zoom.
-    const offset = z >= 15 ? 0.0007 : z >= 13 ? 0.0012 : 0.002;
+    const xmin = sw.lng, ymin = sw.lat, xmax = ne.lng, ymax = ne.lat;
+    // 1 pixel in degrees latitude at this zoom (constant for any latitude).
+    // Using the same value for X tolerance is acceptable — minor anisotropy
+    // at Brisbane latitude is sub-pixel after rendering.
+    const tol = 180 / (256 * Math.pow(2, map.getZoom()));
+    const quant = {
+      mode: 'view', originPosition: 'upperLeft', tolerance: tol,
+      extent: { xmin, ymin, xmax, ymax, spatialReference: { wkid: 4326 } },
+    };
     const params = new URLSearchParams({
-      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometry: `${xmin},${ymin},${xmax},${ymax}`,
       geometryType: 'esriGeometryEnvelope',
       inSR: '4326', outSR: '4326',
       spatialRel: 'esriSpatialRelIntersects',
       outFields: 'OVL2_DESC,OVL2_CAT',
       returnGeometry: 'true',
-      maxAllowableOffset: String(offset),
-      geometryPrecision: '5',
-      resultRecordCount: '4000', f: 'geojson',
+      quantizationParameters: JSON.stringify(quant),
+      resultRecordCount: '4000', f: 'json',
     });
 
     fetch(`${FLOOD_SVC[key]}/query?${params}`, { signal: floodAborts[key].signal })
       .then(r => r.json())
-      .then(geo => {
+      .then(esri => {
+        if (esri?.error) return;
+        const geo = esriQuantizedToGeoJSON(esri, xmin, ymax, tol);
         floodLayers[key].clearLayers();
         (window as any).L.geoJSON(geo, {
           renderer: canvasRenderer,
