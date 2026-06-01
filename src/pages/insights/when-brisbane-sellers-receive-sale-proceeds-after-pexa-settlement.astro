@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long after a PEXA settlement does a Brisbane seller actually receive their sale proceeds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once PEXA's electronic workspace settles, funds move within seconds between the financial institutions involved. The seller's mortgage is paid out, the agent's commission is transferred, and the net balance lands in the solicitor's trust account, all on the same business day. The seller themselves usually receives net proceeds in their nominated account between 30 minutes and a few hours after PEXA settlement, provided the settlement completes before the bank's RTGS or NPP cut-off and the solicitor disburses on the same day. If settlement is late in the afternoon (after about 3pm Brisbane time) or the receiving bank is slower to credit, funds may not show as cleared until the next business morning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some Brisbane sellers see their sale money the same day and others the next morning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The difference comes down to three things: the time of day settlement actually occurs, whether the solicitor uses the New Payments Platform (NPP) to push net proceeds in real time or relies on a same-day or next-day direct credit, and how quickly the seller's own bank credits incoming funds. PEXA settlements scheduled between 9am and 1pm Brisbane time almost always result in same-day clearance to the seller's account. Settlements booked late in the afternoon, or with a receiving bank that processes incoming credits in batches, often clear overnight and appear the following business morning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a Brisbane seller request that net proceeds be paid by PayID or NPP on the day of settlement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most Queensland conveyancers and solicitors can now release trust account funds via NPP using a PayID or BSB and account number. NPP transfers are typically credited within 60 seconds, 24/7, regardless of bank cut-offs. The seller needs to provide their nominated account details (or PayID) before settlement, confirm the solicitor's trust account is enabled for NPP outbound payments, and check that the receiving bank accepts NPP credits without the typical hold periods that apply to larger sums. Some banks place a one-business-day hold on incoming credits above a threshold, so confirm with the bank in advance."
+      }
+    }
+  ]
+};
+---
+<Layout title="When Do Brisbane Sellers Actually Receive Their Sale Proceeds After PEXA Settlement? 2026 Guide | Daniel Gierach Property" description="The exact timeline from PEXA settlement to cleared funds in a Brisbane seller's account. How the disbursement cascade works, why settlement time of day matters, NPP vs RTGS, and the practical steps to get same-day funds." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <!-- Hero -->
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        &larr; All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; 11 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        When Do Brisbane Sellers Actually Receive Their Sale Proceeds After PEXA Settlement?
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        The disbursement cascade from settlement to cleared funds in your account, why the time of day matters, and the practical steps to ensure you see your money the same day.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>The single question most Brisbane sellers ask in the week before settlement is some version of, "When will the money actually be in my account?" The honest answer is more nuanced than the marketing material from PEXA suggests. Settlement itself is now electronic and almost instantaneous, but the journey from that settled workspace to cleared funds in your personal bank account passes through three or four separate banking steps. The total can take anywhere from 30 minutes to the next business morning, depending on choices made by your solicitor, your bank, and the time of day settlement was booked.</p>
+
+      <p>This article walks through what actually happens in the minutes and hours after a PEXA settlement on a Brisbane property, who controls each step, and the practical things sellers can do in the week before settlement to make sure the funds are sitting in their nominated account on the same day, rather than the next morning.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What "PEXA settlement" actually means</h2>
+      <p>Property Exchange Australia (PEXA) is the electronic lodgement network that almost all Queensland property settlements now use. The PEXA workspace is the shared online environment where the seller's solicitor, the buyer's solicitor, the seller's outgoing lender, and the buyer's incoming lender all sit on the same screen, agree on the figures, and click through to settle. When the workspace "settles," three things happen at almost the same moment: the title transfer is lodged with the Queensland Titles Registry, the buyer's lender debits the purchase funds, and those funds are distributed according to the agreed line items, paying out the seller's mortgage, paying registration fees and rates adjustments, and routing the balance to the seller's solicitor.</p>
+
+      <p>The point most sellers miss is that "settled" in PEXA terms does not mean "money has hit your personal bank account." It means the inter-bank movements between the lenders and the seller's solicitor's trust account are complete. Your funds at that moment are sitting in your solicitor's trust account, not your everyday account. The transfer from that trust account to you is a second step, governed by Queensland trust account rules and the operating hours of the Australian banking system.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The disbursement cascade, step by step</h2>
+      <p>For a Brisbane seller, the typical sequence on settlement day looks like this. At the booked settlement time (usually a specified slot between 9am and 4pm Brisbane time), the PEXA workspace runs through its automated checks and the participating banks execute the financial settlement. Within seconds of the workspace marking settled, the buyer's lender has paid the purchase price into the PEXA financial settlement schedule, the seller's outgoing mortgage has been paid out in full, the buyer's stamp duty and registration fees have been deducted, and the net balance has been transferred to the seller's solicitor's trust account.</p>
+
+      <p>At that point, the seller's solicitor has to disburse those net proceeds. They will deduct the agent's commission and pay it to the agency's trust account (or directly to the agency's general account if instructed). They will deduct their own legal fees and any other authorised disbursements set out in the trust authority you signed before settlement. The remaining balance, your actual net proceeds, is then transferred from the solicitor's trust account into the bank account you nominated.</p>
+
+      <p>This last transfer is the one most sellers care about, and it is the one that varies most in timing. It is governed by which payment rail the solicitor uses, the cut-off times of the relevant banks, and the receiving bank's own credit policies.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">RTGS, NPP, and same-day direct credit: why the rail matters</h2>
+      <p>Australian banks move money between accounts using a small number of payment rails, and each has its own timing characteristics. The three most relevant for a Brisbane settlement are RTGS (Real-Time Gross Settlement), NPP (the New Payments Platform), and same-day direct credit through the older Bulk Electronic Clearing System.</p>
+
+      <p>RTGS is what PEXA itself uses for the inter-bank settlement of large property transactions. RTGS payments are processed individually and settled in real time during Reserve Bank operating hours, typically 7:30am to 6:30pm Sydney time on business days. This is why your PEXA settlement on a Brisbane property is effectively instantaneous between the lenders.</p>
+
+      <p>NPP is the rail that allows your solicitor to send you net proceeds in 60 seconds or less, 24/7, from their trust account to yours. NPP credits show up immediately in the receiving account in most cases, and they are increasingly the default for solicitor trust disbursements in Queensland. NPP works using BSB and account number, or a PayID such as your mobile number or email. Most major Australian banks now process incoming NPP credits without the holds that historically applied to large direct credits.</p>
+
+      <p>The older same-day direct credit rail is still in use by some firms for larger amounts that exceed NPP transaction limits, or where the receiving bank has not enabled NPP for high-value incoming payments. Same-day direct credit funds typically arrive in the receiving account on the same business day if sent before about 3pm Brisbane time, but may not be released until the next morning if they are sent after the daily cut-off.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Why the settlement time of day changes your answer</h2>
+      <p>A PEXA settlement booked for 10am behaves very differently from one booked for 3:30pm. Brisbane property settlements are typically scheduled in three windows: 9:30am to 11am, 11am to 1pm, and 2pm to 4pm. Most experienced Queensland solicitors push for a morning slot when possible, because everything downstream of settlement runs more smoothly when there are still four or five hours of business banking time left in the day.</p>
+
+      <p>For a morning settlement, the practical timeline is usually: PEXA workspace settles at the booked time, the solicitor receives the net proceeds in trust within minutes, trust account disbursements are processed within 30 to 90 minutes, and net proceeds land in the seller's account by early afternoon. Most major bank accounts will show those funds as cleared and available the same day.</p>
+
+      <p>For a late afternoon settlement, the sequence is the same but the timing is compressed against the close of business. If settlement runs at 3:30pm and the solicitor needs an hour to complete the trust disbursement, the actual transfer to your account may not initiate until after 4:30pm, which is after some banks' processing cut-offs. If the solicitor uses NPP, this is not usually a problem because NPP runs 24/7 and your account is credited within seconds. If they use same-day direct credit or RTGS, the funds may not appear until the next business morning.</p>
+
+      <p>Late Friday afternoon settlements deserve a particular flag. Some banks treat Friday after-cut-off credits as Monday transactions, meaning funds sent at 4:45pm Friday may not be cleared until Monday morning. If you have a downstream commitment such as a deposit for a new purchase, factor this in or insist on an earlier slot.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The trust account rules that constrain your solicitor</h2>
+      <p>Queensland conveyancers and solicitors hold your net proceeds under the Legal Profession Act 2007 and the Australian Solicitors' Conduct Rules. Trust money received on settlement must be disbursed in accordance with the trust authority you signed, and only to the parties listed in that authority. This sounds bureaucratic, but it matters in practice for two reasons.</p>
+
+      <p>First, your solicitor cannot pay net proceeds to a bank account you have not given them in writing. If you change your mind on the morning of settlement and want the money paid to a different account, expect a delay while the firm confirms the new account by independent means, often a callback to a number on file. This is a deliberate anti-fraud measure, because cyber-fraud syndicates have repeatedly targeted property settlements in Australia in recent years by impersonating sellers and asking for funds to be redirected. Pre-confirm your account details in writing well before settlement.</p>
+
+      <p>Second, trust account disbursements have to be reconciled and recorded the same day. Reputable firms will process the outbound payment promptly, but some smaller firms batch their afternoon trust disbursements and run them all at once before close of business. If you have a strong preference for an immediate transfer the moment funds clear, ask your solicitor in advance whether they will process your disbursement individually and as soon as PEXA settles. Most will, but it is worth saying explicitly.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What "cleared funds" means at the receiving end</h2>
+      <p>Even after a successful NPP credit, some major Australian banks apply internal review processes to incoming credits above a certain threshold. In most cases the funds are visible immediately and available for the customer to transact with. In a minority of cases, the bank places a same-day or one-business-day hold while it conducts anti-money-laundering checks under AUSTRAC rules. This is more likely to occur if the receiving account is new, if the amount is large relative to the account's usual activity, or if the receiving customer has flags on their profile.</p>
+
+      <p>If you are receiving the proceeds of a Brisbane property sale and the amount is significant, particularly if you are receiving the funds into an account you do not normally use for large transactions, call your bank before settlement and let them know an incoming credit is coming. Most banks will note the file and reduce the likelihood of an automated hold. If you need to immediately transfer the funds outward (for instance, to your buying solicitor for a same-day purchase), confirm with the receiving bank that the funds will be released for outbound transfer the same day.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A worked Brisbane example</h2>
+      <p>To make this concrete, here is a representative timeline for the sale of a Bulimba Queenslander, settling on a Tuesday with a 10:30am PEXA slot, a $1.75 million sale price, a $620,000 outgoing mortgage, and a $35,000 agent commission inclusive of GST. The seller has provided their solicitor with the BSB and account number of their everyday account at a major bank.</p>
+
+      <p>At 10:32am the PEXA workspace settles. Within 90 seconds, the buyer's lender has paid the purchase funds into the PEXA financial settlement schedule, the seller's mortgage of $620,000 has been paid out to the outgoing lender (and the discharge of mortgage is electronically lodged), and the net balance of $1,094,800 (after stamp duty and registration fees deducted from the buyer's side, plus minor settlement adjustments on the seller's side) lands in the seller's solicitor's trust account. By 10:35am, PEXA shows the workspace as "settled" and the title is registered to the new owner.</p>
+
+      <p>At about 11:15am, the solicitor's accounts team processes the trust disbursement: they pay $35,000 to the agency's nominated trust account, deduct their own legal fee and disbursements (say $2,400), and initiate an NPP transfer of $1,057,400 to the seller's everyday account. The NPP transfer credits the seller's account by 11:16am. The seller's bank shows the funds as available within seconds, and the seller transfers $90,000 of it to their new buying solicitor's trust account by lunchtime to settle their replacement purchase the following week.</p>
+
+      <p>This is the smoothest version of the process and it is increasingly the norm. The slower version, where the same settlement is booked for 3:30pm, with the solicitor using same-day direct credit rather than NPP, often results in the seller seeing the funds in their account at around 9am the following Wednesday morning. Neither outcome is wrong, but they have very different consequences if you have a downstream commitment.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">What can delay receipt of net proceeds</h2>
+      <p>Most Brisbane PEXA settlements run cleanly and the seller receives funds on the same day. When delays happen, the cause is usually one of five things.</p>
+
+      <p>The most common is a workspace error in the final minutes before settlement. If one of the participants (often the buyer's incoming lender) flags a mismatch in the figures or fails to fund their position in time, PEXA will not allow the workspace to settle and the slot is missed. The settlement is rebooked, sometimes for later the same day and sometimes for the next morning. Net proceeds clearly cannot move until settlement actually completes.</p>
+
+      <p>The second is a missing or incorrect account detail in the trust authority. If your solicitor finds an inconsistency in the account details you provided, they will pause the disbursement and call you to verify. This typically adds 30 minutes to a few hours, depending on how quickly the firm can confirm the correct details with you. The protection is to give your solicitor your final account details in writing at least 48 hours before settlement, and to make sure the BSB and account number on the trust authority match exactly.</p>
+
+      <p>The third is a discharge of mortgage that runs late. Outgoing lenders are supposed to be ready to release the seller's title in time for settlement, but discharge teams occasionally miss the booked window. In that case the workspace will not settle on the scheduled slot and the settlement is pushed to a later slot or the next day.</p>
+
+      <p>The fourth is a buyer-side delay, such as the buyer's incoming lender not transferring the purchase funds in time, or the buyer's solicitor not confirming the buyer's final balance in the workspace. These are usually resolved within hours but they can push settlement past the daily cut-off.</p>
+
+      <p>The fifth, less common but worth flagging, is an anti-money-laundering hold at either the trust account or the receiving account. Both your solicitor's bank and your bank are required to monitor large transactions, and they occasionally pause a transfer for review. These holds are usually released within hours but in rare cases extend to the next business day.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The practical seller checklist for same-day funds</h2>
+      <p>If receiving your net proceeds on the day of settlement matters to you, here is what to do in the two weeks before. Confirm with your solicitor that they will disburse your net proceeds via NPP rather than same-day direct credit, and that their trust account is enabled for high-value NPP outbound transfers. Most Queensland firms are, but it is worth asking directly.</p>
+
+      <p>Provide your solicitor with the BSB and account number of your receiving account, in writing, at least 48 hours before settlement. If you can use a PayID linked to that account, even better. Ask the firm to confirm in writing that the trust authority reflects those details and that the funds will be sent the moment PEXA settles.</p>
+
+      <p>Push for a morning settlement slot. The 9:30am to 11am window gives the most slack downstream. Avoid late-Friday afternoon slots if you have a Monday commitment for the funds.</p>
+
+      <p>Call your bank a few days before settlement and let them know a large incoming credit is expected. Ask whether any holds will apply and whether you can pre-authorise an outbound transfer for the same day, if relevant. If you have a downstream purchase, set up the outbound transfer details in your banking app in advance so you can execute it within minutes of receiving the funds.</p>
+
+      <p>Have your buying solicitor's trust account details ready if you are buying as well as selling, so you can move funds across without delay. Confirm with both solicitors whether the funds should pass through your account or be transferred directly between trust accounts; the latter is often faster and lower risk.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">A note on simultaneous settlements</h2>
+      <p>If you are selling one property and buying another on the same day, the question of when you receive funds becomes intertwined with when you need to pay them out. Queensland simultaneous settlements are usually structured so that the buying settlement is booked for a slot 30 to 60 minutes after the selling settlement, with both solicitors coordinating the movement of funds in real time. In a clean simultaneous, the seller's net proceeds never visit the seller's personal account; they move directly from the selling solicitor's trust account to the buying solicitor's trust account. This is generally faster and lower risk than routing funds through your own account.</p>
+
+      <p>Talk to your solicitor about how they want to structure this, and whether to use direct trust-to-trust transfers or the seller's account as the intermediate step. For most sellers buying again in Brisbane's inner east, the trust-to-trust approach is the cleanest. There is more detail on this in the article on <a href="/insights/simultaneous-settlement-brisbane" style="color:#f5d07a;">simultaneous settlements in Brisbane</a>.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The honest summary</h2>
+      <p>For the vast majority of Brisbane sellers in 2026, the answer to "when will I receive my net proceeds" is: within a couple of hours of a morning PEXA settlement, or by the next business morning if settlement is booked late in the afternoon. The mechanics of PEXA make the inter-bank settlement effectively instantaneous, but trust account disbursement, payment rail choice, and receiving bank policy all sit between the settled workspace and your everyday account.</p>
+
+      <p>The single biggest lever you have as a seller is to confirm your receiving account details in writing, push for an NPP disbursement, and ask for a morning settlement slot. Do those three things and same-day funds is the overwhelmingly likely outcome.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Selling a Brisbane property soon?</strong> Daniel works closely with experienced Queensland conveyancers and solicitors who routinely deliver same-day net proceeds for vendors in Bulimba, Hawthorne, Morningside, Camp Hill and the inner east. If you want a conversation about how to structure your sale and settlement, including timing your downstream purchase, <a href="/contact" style="color:#f5d07a;font-weight:600;">contact Daniel</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</article>
+<p style="margin-top:2rem;font-size:0.95rem;text-align:center;">Part of the <a href="/insights/contracts-and-settlement/">Contracts and Settlement guide series</a>.</p>
+<AuthorBio />
+
+<div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
+  <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
+    Free tool: <a href="/tools/settlement-net-proceeds-calculator" style="color:#f5d07a;font-weight:600;">Settlement Net Proceeds Calculator &rarr;</a>
+  </p>
+</div>
+</Layout>
+</content>
+</invoke>
