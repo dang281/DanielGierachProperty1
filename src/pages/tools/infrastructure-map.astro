@@ -301,8 +301,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-result.kind-sewerManhole { border-left-color: #6c5320; }
   #im-result.kind-waterMain    { border-left-color: #2c7fc4; }
   #im-result.kind-hydrant      { border-left-color: #c43a3a; }
-  #im-result.kind-floodRiver    { border-left-color: #003da5; }
-  #im-result.kind-floodCreek    { border-left-color: #005a6e; }
   #im-result.kind-floodOverland { border-left-color: #0090c0; }
 
   /* Header bleeds to the edges of the drawer for a colour-band effect */
@@ -325,8 +323,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-result.kind-waterMain    .im-result-head { background: rgba(44,127,196,0.14); }
   #im-result.kind-waterService .im-result-head { background: rgba(111,181,224,0.1); }
   #im-result.kind-hydrant      .im-result-head { background: rgba(196,58,58,0.14); }
-  #im-result.kind-floodRiver    .im-result-head { background: rgba(0,61,165,0.16); }
-  #im-result.kind-floodCreek    .im-result-head { background: rgba(0,90,110,0.16); }
   #im-result.kind-floodOverland .im-result-head { background: rgba(0,144,192,0.14); }
   /* Per-kind eyebrow colors */
   #im-result.kind-propertyBoundary .im-eyebrow { color: #b8a27c; }
@@ -340,8 +336,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-result.kind-waterMain    .im-eyebrow { color: #4a9fd4; }
   #im-result.kind-waterService .im-eyebrow { color: #6ab8e0; }
   #im-result.kind-hydrant      .im-eyebrow { color: #e05050; }
-  #im-result.kind-floodRiver    .im-eyebrow { color: #4a8fe0; }
-  #im-result.kind-floodCreek    .im-eyebrow { color: #2ab8d0; }
   #im-result.kind-floodOverland .im-eyebrow { color: #3ab4e8; }
 
   .im-eyebrow {
@@ -579,20 +573,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
         <p class="im-layer-group-head" style="margin-top:0.4rem;border-top:1px solid rgba(28,25,23,0.07);padding-top:0.7rem;">Flood overlays (BCC)</p>
         <label class="im-layer-row">
-          <input type="checkbox" data-layer="floodRiver" />
-          <span class="im-swatch"><span class="im-swatch-line" style="background:#003da5;height:8px;opacity:0.7;"></span></span>
-          <span class="im-layer-name">Brisbane River flood
-            <span class="im-layer-hint">River flood planning areas (R1-R5)</span>
-          </span>
-        </label>
-        <label class="im-layer-row">
-          <input type="checkbox" data-layer="floodCreek" />
-          <span class="im-swatch"><span class="im-swatch-line" style="background:#005a6e;height:8px;opacity:0.7;"></span></span>
-          <span class="im-layer-name">Creek &amp; waterway flood
-            <span class="im-layer-hint">Local creek and waterway planning areas (CK1-CK5)</span>
-          </span>
-        </label>
-        <label class="im-layer-row">
           <input type="checkbox" data-layer="floodOverland" />
           <span class="im-swatch"><span class="im-swatch-line-dash" style="color:#0090c0;"></span></span>
           <span class="im-layer-name">Overland flow
@@ -673,27 +653,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     sewerManhole: 'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Sewer_OpenData/FeatureServer/20',
     hydrant:      'https://services3.arcgis.com/ocUCNI2h4moKOpKX/arcgis/rest/services/UU_Water_OpenData/FeatureServer/15',
     // BCC Flood overlays (City Plan 2014)
-    floodRiver:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Flood_overlay_Brisbane_River_flood_planning_area/FeatureServer/0',
-    floodCreek:    'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Flood_overlay_Creek_waterway_flood_planning_area/FeatureServer/0',
     floodOverland: 'https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Flood_overlay_Overland_flow/FeatureServer/0',
   };
 
-  const IS_POLYGON = new Set(['propertyBoundary', 'floodRiver', 'floodCreek', 'floodOverland']);
+  const IS_POLYGON = new Set(['propertyBoundary', 'floodOverland']);
 
-  const FLOOD_KEYS = new Set(['floodRiver', 'floodCreek', 'floodOverland']);
+  const FLOOD_KEYS = new Set(['floodOverland']);
 
   const FLOOD_COLORS: Record<string,{fill:string;stroke:string;fillOpacity:number}> = {
-    FHA_R1:  { fill:'#003da5', stroke:'#2060cc', fillOpacity:0.38 },
-    FHA_R2A: { fill:'#1255bb', stroke:'#2a72d8', fillOpacity:0.30 },
-    FHA_R2B: { fill:'#246dd0', stroke:'#3a88e4', fillOpacity:0.24 },
-    FHA_R3:  { fill:'#3685d8', stroke:'#4a9eec', fillOpacity:0.20 },
-    FHA_R4:  { fill:'#489de4', stroke:'#60b4f0', fillOpacity:0.16 },
-    FHA_R5:  { fill:'#5ab5ee', stroke:'#78ccf4', fillOpacity:0.13 },
-    FHA_CK1: { fill:'#005a6e', stroke:'#007a90', fillOpacity:0.38 },
-    FHA_CK2: { fill:'#007888', stroke:'#0098a8', fillOpacity:0.30 },
-    FHA_CK3: { fill:'#0096a0', stroke:'#00b8c0', fillOpacity:0.24 },
-    FHA_CK4: { fill:'#00b4b8', stroke:'#00d4d8', fillOpacity:0.20 },
-    FHA_CK5: { fill:'#00d0d4', stroke:'#00ece8', fillOpacity:0.16 },
     FHA_OFP: { fill:'#0090c0', stroke:'#00b4e4', fillOpacity:0.22 },
   };
 
@@ -709,8 +676,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     waterService: { color: '#6fb5e0', weight: 1.4, opacity: 0.75 },
     sewerManhole: { radius: 4,   fillColor: '#6c5320', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
     hydrant:      { radius: 4,   fillColor: '#c43a3a', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
-    floodRiver:    { color: '#2060cc', weight: 0.8, opacity: 0.7, fillColor: '#003da5', fillOpacity: 0.22 },
-    floodCreek:    { color: '#007a90', weight: 0.8, opacity: 0.7, fillColor: '#005a6e', fillOpacity: 0.22 },
     floodOverland: { color: '#00b4e4', weight: 0.8, opacity: 0.7, fillColor: '#0090c0', fillOpacity: 0.18, dashArray: '4 3' },
   };
 
@@ -728,8 +693,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     waterService: 'OBJECTID,ASSETID,DIAMETER,SERVICETYPE,WATERTYPE,OWNER',
     sewerManhole: 'OBJECTID,ASSETID,MANHOLEUSE,SL,IL,DEPTH,OWNER',
     hydrant:      'OBJECTID,ASSETID,HYDRANTTYPE,WATERTYPE,OWNER',
-    floodRiver:    'OBJECTID,OVL2_DESC,OVL2_CAT',
-    floodCreek:    'OBJECTID,OVL2_DESC,OVL2_CAT',
     floodOverland: 'OBJECTID,OVL2_DESC,OVL2_CAT',
   };
 
@@ -745,8 +708,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     waterService: 'Water connection',
     sewerManhole: 'Sewer manhole',
     hydrant:      'Hydrant',
-    floodRiver:    'Brisbane River flood area',
-    floodCreek:    'Creek / waterway flood area',
     floodOverland: 'Overland flow flood area',
   };
 
@@ -762,8 +723,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     waterService: 'The water service connection runs from the water main to the property meter at the boundary. Diameter indicates the service capacity available to the property.',
     sewerManhole: 'Manholes mark sewer access points. They indicate the sewer alignment and depth at this location.',
     hydrant:      'Hydrants are spaced for fire-fighting access. Their presence is a code requirement, not a property feature.',
-    floodRiver:    'This property is within the Brisbane River flood planning area. Area 1 is the most constrained (regular flooding); Area 5 is the least. Development requires assessment under Brisbane City Plan 2014, including minimum floor levels and potential fill restrictions.',
-    floodCreek:    'This property is within a creek and waterway flood planning area. Flooding risk comes from local creeks and waterways. Minimum floor levels and other constraints apply under Brisbane City Plan 2014.',
     floodOverland: 'This property is within the overland flow flood planning area. Surface water flows across the land during major rainfall. Development must maintain overland flow paths and may require drainage design.',
   };
 
@@ -779,8 +738,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     waterService: 'The water supply line from the main to the property meter at the boundary. Diameter indicates the flow capacity available to this property.',
     sewerManhole: 'Manholes indicate the sewer pipe alignment. Their presence near a boundary can signal an easement constraint on what can be built in that area.',
     hydrant:      'Hydrant placement is a building code requirement for fire-fighting access. It does not typically restrict development or affect property value directly.',
-    floodRiver:    'Brisbane River flood planning area. R1 is most constrained (regular flooding); R5 is least. Development triggers floor-level and fill restrictions under BCC City Plan 2014.',
-    floodCreek:    'Creek and waterway flood planning area. CK1 is most constrained, CK5 is least. Minimum floor levels and other development controls apply under BCC City Plan 2014.',
     floodOverland: 'Overland flow flood planning area. Surface water flows across this land during major rainfall. Development must preserve overland flow paths.',
   };
 
@@ -791,7 +748,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     stormPipe: true, stormManhole: false, gully: true, surfaceDrain: false,
     sewerMain: true, sewerService: true, waterMain: true, waterService: true,
     sewerManhole: false, hydrant: false,
-    floodRiver: false, floodCreek: false, floodOverland: false,
+    floodOverland: false,
   };
 
   let map: any, layers: Record<string,any> = {}, pinMarker: any;
