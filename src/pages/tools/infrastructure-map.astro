@@ -237,6 +237,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     }
     .im-layer-panel.open { display: grid; }
     .im-layer-group-head { grid-column: 1 / -1; }
+    .im-other-toggle { grid-column: 1 / -1; }
     .im-layer-row { padding: 0.55rem 0.4rem; }
     .im-layer-row input { width: 18px; height: 18px; }
     /* Result drawer fixed to viewport, sits above the layer bar */
@@ -256,6 +257,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     text-transform: uppercase; color: rgba(196,145,42,0.8);
     padding: 0.55rem 0.6rem 0.25rem;
   }
+
+  .im-other-toggle {
+    display: flex; align-items: center; gap: 0.4rem; width: 100%;
+    font-family: var(--font-sans); font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,145,42,0.8);
+    padding: 0.55rem 0.6rem 0.25rem; background: none; border: none; cursor: pointer;
+    margin-top: 0.4rem; border-top: 1px solid rgba(28,25,23,0.07); padding-top: 0.7rem;
+  }
+  .im-other-toggle:hover { color: rgba(196,145,42,1); }
+  .im-other-toggle .toggle-arrow { margin-left: auto; opacity: 0.5; transition: transform 0.2s; }
+  .im-other-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
+  #im-other-panel { display: none; }
+  #im-other-panel.open { display: contents; }
 
   .im-layer-row {
     display: flex; align-items: center; gap: 0.6rem;
@@ -571,14 +585,20 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           </span>
         </label>
 
-        <p class="im-layer-group-head" style="margin-top:0.4rem;border-top:1px solid rgba(28,25,23,0.07);padding-top:0.7rem;">Flood overlays (BCC)</p>
-        <label class="im-layer-row">
-          <input type="checkbox" data-layer="floodOverland" />
-          <span class="im-swatch"><span class="im-swatch-line-dash" style="color:#0090c0;"></span></span>
-          <span class="im-layer-name">Overland flow
-            <span class="im-layer-hint">Surface flow paths during major rainfall</span>
-          </span>
-        </label>
+        <button class="im-other-toggle" id="im-other-toggle" aria-expanded="false" aria-controls="im-other-panel">
+          Other
+          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(flood overlays)</span>
+          <svg class="toggle-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="im-other-panel">
+          <label class="im-layer-row">
+            <input type="checkbox" data-layer="floodOverland" />
+            <span class="im-swatch"><span class="im-swatch-line-dash" style="color:#0090c0;"></span></span>
+            <span class="im-layer-name">Overland flow
+              <span class="im-layer-hint">Surface flow paths during major rainfall</span>
+            </span>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -1131,6 +1151,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     toggle.addEventListener('click', () => {
       const open = panel.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    const otherBtn   = document.getElementById('im-other-toggle')!;
+    const otherPanel = document.getElementById('im-other-panel')!;
+    otherBtn.addEventListener('click', () => {
+      const open = otherPanel.classList.toggle('open');
+      otherBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
     panel.querySelectorAll<HTMLInputElement>('input[data-layer]').forEach(cb => {

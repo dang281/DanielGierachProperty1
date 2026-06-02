@@ -244,6 +244,8 @@ const legendGroups = [
   .pm-infra-toggle[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
   #pm-infra-panel { display: none; }
   #pm-infra-panel.open { display: contents; }
+  #pm-other-panel { display: none; }
+  #pm-other-panel.open { display: contents; }
   .pm-layer-row {
     display: flex; align-items: center; gap: 0.6rem;
     padding: 0.45rem 0.6rem;
@@ -807,15 +809,21 @@ window.PM_ZONES = {
 
         </div>
 
-        <!-- Flood overlays -->
-        <p class="pm-layer-group-head" style="border-top:1px solid rgba(28,25,23,0.07);padding-top:0.6rem;">Flood Overlays (BCC)</p>
-        <label class="pm-layer-row">
-          <input type="checkbox" data-layer="floodOverland" />
-          <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#0096c8;opacity:0.5;border:1px solid rgba(0,200,240,0.5);border-style:dashed;"></span></span>
-          <span class="pm-layer-name">Overland flow area
-            <span class="pm-layer-hint">Surface water flow paths during major rainfall</span>
-          </span>
-        </label>
+        <!-- Other (collapsible) -->
+        <button class="pm-infra-toggle" id="pm-other-toggle" aria-expanded="false" aria-controls="pm-other-panel">
+          Other
+          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(flood overlays)</span>
+          <svg class="pm-toggle-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="pm-other-panel">
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="floodOverland" />
+            <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#0096c8;opacity:0.5;border:1px solid rgba(0,200,240,0.5);border-style:dashed;"></span></span>
+            <span class="pm-layer-name">Overland flow area
+              <span class="pm-layer-hint">Surface water flow paths during major rainfall</span>
+            </span>
+          </label>
+        </div>
 
       </div>
     </div>
@@ -2109,6 +2117,14 @@ window.PM_ZONES = {
     infraBtn.addEventListener('click', () => {
       const open = infraPanel.classList.toggle('open');
       infraBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Other (flood overlays) collapse toggle
+    const otherBtn   = document.getElementById('pm-other-toggle')!;
+    const otherPanel = document.getElementById('pm-other-panel')!;
+    otherBtn.addEventListener('click', () => {
+      const open = otherPanel.classList.toggle('open');
+      otherBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
     // Layer checkboxes (infrastructure)
