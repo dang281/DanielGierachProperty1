@@ -4,7 +4,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 <ToolLayout
   title="Selling Cost Calculator"
-  description="Understand your true net proceeds before you sell. Adjust every variable to model your exact situation."
+  description="Understand your true net proceeds before you sell. Models every QLD seller cost including GST, compliance items and agent fees."
   tool="Selling Costs"
   phase="Seller Tools"
   resourceSlug="complete-home-selling-checklist"
@@ -15,153 +15,419 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div class="lg:col-span-3 flex flex-col gap-6">
 
       <!-- Sale price -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
-        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Estimated Sale Price</label>
+      <div class="sc-card">
+        <label class="sc-label">Estimated Sale Price</label>
         <div class="flex items-center gap-4 mb-3">
-          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="sale-display">$2,000,000</span>
+          <span class="sc-price" id="sale-display">$2,000,000</span>
         </div>
-        <input type="range" id="sale-price" min="400000" max="30000000" step="25000" value="2000000"
-          style="width:100%;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
-        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.65rem;color:var(--color-text-muted);">
+        <input type="range" id="sale-price" min="400000" max="30000000" step="25000" value="2000000" class="sc-slider" />
+        <div class="sc-slider-bounds">
           <span>$400K</span><span>$30M</span>
         </div>
       </div>
 
-      <!-- Commission -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
-        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Agent Commission Rate</label>
+      <!-- AGENT COSTS -->
+      <div class="sc-section-head">Agent Costs</div>
+
+      <div class="sc-card">
+        <label class="sc-label">Agent Commission Rate <span class="sc-label-hint">(ex GST)</span></label>
         <div class="flex items-center gap-3">
-          <input type="range" id="commission-rate" min="2" max="3.5" step="0.1" value="2.5"
-            style="flex:1;accent-color:var(--color-gold);cursor:pointer;height:3px;" />
-          <div style="background:var(--color-surface-4);padding:0.5rem 0.75rem;min-width:4rem;text-align:center;">
-            <span id="commission-display" style="font-size:1rem;font-weight:700;color:var(--color-text-primary);">2.5%</span>
+          <input type="range" id="commission-rate" min="1.8" max="3.5" step="0.05" value="2.5" class="sc-slider" />
+          <div class="sc-value-pill">
+            <span id="commission-display">2.50%</span>
           </div>
         </div>
+        <p class="sc-hint">Brisbane inner east typically sits between 2.0% and 2.8%. GST (10%) is added at settlement.</p>
       </div>
 
-      <!-- Marketing -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
-        <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Marketing Budget</label>
-        <select id="marketing" class="obs-select" style="width:100%;">
-          <option value="5000" selected>Entry ($5,000)</option>
-          <option value="8000">Standard ($8,000)</option>
-          <option value="12000">Mid ($12,000)</option>
-          <option value="18000">Premium ($18,000)</option>
-          <option value="25000">High ($25,000)</option>
-          <option value="30000">Prestige ($30,000)</option>
-        </select>
+      <div class="sc-card">
+        <label class="sc-label">Marketing Budget <span class="sc-label-hint">(inc GST)</span></label>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <select id="marketing-preset" class="obs-select" style="flex:1;">
+            <option value="5500" selected>Entry ($5,500)</option>
+            <option value="8800">Standard ($8,800)</option>
+            <option value="13200">Mid ($13,200)</option>
+            <option value="19800">Premium ($19,800)</option>
+            <option value="27500">High ($27,500)</option>
+            <option value="33000">Prestige ($33,000)</option>
+            <option value="custom">Custom amount</option>
+          </select>
+          <input type="number" id="marketing-custom" class="obs-input" placeholder="Custom $" style="display:none;width:8rem;" />
+        </div>
+
+        <label class="sc-toggle">
+          <input type="checkbox" id="marketing-defer" checked />
+          <span><strong>Defer marketing to settlement.</strong> Pay $0 upfront and recover the cost from sale proceeds at settlement. No interest charged if the property sells.</span>
+        </label>
       </div>
 
-      <!-- Other costs row -->
+      <!-- PROPERTY PREPARATION -->
+      <div class="sc-section-head">Property Preparation</div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div style="background:var(--color-surface-3);padding:1.5rem;">
-          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Legal / Conveyancing</label>
-          <input type="number" id="legal" value="1800" class="obs-input" style="font-size:1rem;" />
-        </div>
-        <div style="background:var(--color-surface-3);padding:1.5rem;">
-          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Styling / Staging</label>
+        <div class="sc-card-sm">
+          <label class="sc-label sc-label-sm">Styling / Staging</label>
           <div class="flex items-center gap-3">
-            <input type="checkbox" id="staging-toggle" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
-            <input type="number" id="staging" value="3500" class="obs-input" style="flex:1;font-size:1rem;" />
+            <input type="checkbox" id="staging-toggle" checked class="sc-check" />
+            <input type="number" id="staging" value="3500" class="obs-input" style="flex:1;" />
           </div>
         </div>
-        <div style="background:var(--color-surface-3);padding:1.5rem;">
-          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Repairs Budget</label>
-          <input type="number" id="repairs" value="0" class="obs-input" style="font-size:1rem;" placeholder="0" />
-        </div>
-        <div style="background:var(--color-surface-3);padding:1.5rem;">
-          <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Mortgage Payout</label>
+        <div class="sc-card-sm">
+          <label class="sc-label sc-label-sm">Repairs / Touch-ups</label>
           <div class="flex items-center gap-3">
-            <input type="checkbox" id="mortgage-toggle" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
-            <input type="number" id="mortgage-payout" value="0" class="obs-input" style="flex:1;font-size:1rem;" placeholder="0" disabled />
+            <input type="checkbox" id="repairs-toggle" class="sc-check" />
+            <input type="number" id="repairs" value="0" class="obs-input" style="flex:1;" disabled />
           </div>
+        </div>
+        <div class="sc-card-sm">
+          <label class="sc-label sc-label-sm">Pool Safety Certificate</label>
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="pool-toggle" class="sc-check" />
+            <input type="number" id="pool" value="300" class="obs-input" style="flex:1;" disabled />
+          </div>
+          <p class="sc-hint-sm">Required in QLD if the property has a pool or spa.</p>
+        </div>
+        <div class="sc-card-sm">
+          <label class="sc-label sc-label-sm">Smoke Alarm Upgrade</label>
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="smoke-toggle" class="sc-check" />
+            <input type="number" id="smoke" value="600" class="obs-input" style="flex:1;" disabled />
+          </div>
+          <p class="sc-hint-sm">QLD interconnected photoelectric standard. Tick if the home is not yet compliant.</p>
+        </div>
+      </div>
+
+      <!-- SETTLEMENT -->
+      <div class="sc-section-head">Settlement</div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="sc-card-sm">
+          <label class="sc-label sc-label-sm">Legal / Conveyancing</label>
+          <input type="number" id="legal" value="1800" class="obs-input" />
+          <p class="sc-hint-sm">Typical Brisbane range: $1,500 to $2,200.</p>
+        </div>
+        <div class="sc-card-sm">
+          <label class="sc-label sc-label-sm">Bank Discharge Fee</label>
+          <input type="number" id="discharge" value="350" class="obs-input" />
+          <p class="sc-hint-sm">Lender charge to release the title. Often $250 to $500.</p>
+        </div>
+        <div class="sc-card-sm sm:col-span-2">
+          <label class="sc-label sc-label-sm">Mortgage Payout</label>
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="mortgage-toggle" class="sc-check" />
+            <input type="number" id="mortgage-payout" value="0" class="obs-input" style="flex:1;" placeholder="Outstanding loan balance" disabled />
+          </div>
+          <p class="sc-hint-sm">Not a cost as such, but it comes out of settlement proceeds. Fixed-rate break fees are not modelled here.</p>
         </div>
       </div>
     </div>
 
     <!-- Results -->
     <div class="lg:col-span-2">
-      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
-        <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
-          Net Proceeds Estimate
-        </h2>
+      <div class="sc-result-card">
+        <h2 class="sc-result-title">Net Proceeds Estimate</h2>
 
-        <div id="breakdown" class="flex flex-col gap-0">
-          <!-- Populated by JS -->
+        <div id="breakdown"></div>
+
+        <div class="sc-totals-row">
+          <span>Total cost of sale</span>
+          <span id="total-cost"></span>
         </div>
 
-        <div style="margin-top:1.5rem;padding:1.25rem;background:rgba(255,221,121,0.08);border-left:3px solid var(--color-gold);">
-          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.4rem;">Estimated Net Proceeds</p>
-          <p id="net-proceeds" style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-gold);line-height:1;"></p>
+        <div class="sc-net-block">
+          <p class="sc-net-eyebrow">Estimated Net Proceeds</p>
+          <p id="net-proceeds" class="sc-net-value"></p>
+          <p id="cost-pct" class="sc-net-sub"></p>
         </div>
 
-        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
-          Estimate only. CGT, break costs and other fees not included. Confirm with your solicitor.
+        <p class="sc-disclaimer">
+          <strong>Not included:</strong> capital gains tax, fixed-rate break fees, removalists, body corporate adjustments, council rates settlement adjustments, auction fees if applicable. Confirm final figures with your solicitor and accountant.
         </p>
 
-        <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold" style="width:100%;margin-top:1.5rem;justify-content:center;">
+        <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold sc-cta">
           Book a Free Appraisal
         </a>
       </div>
     </div>
   </div>
 
-<!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
-  <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
-    Want more context? Read the full guide:
-    <a href="/insights/cost-of-selling-house-brisbane" style="color:var(--color-gold);font-weight:600;">What Does It Cost to Sell a House in Brisbane? &rarr;</a>
-  </p>
-</div>
+  <!-- Deferred marketing explainer -->
+  <div class="sc-info-callout">
+    <p class="sc-info-eyebrow">Pay marketing at settlement</p>
+    <p class="sc-info-body">
+      Marketing is the one cost most sellers expect to pay upfront. Daniel offers an agent-funded marketing program through Ray White: the full campaign is paid for at launch and recovered from your sale proceeds at settlement. No out-of-pocket cost to list, no interest charged if the property sells within the agency agreement. Your net result is identical. The only thing that changes is the cash flow timing.
+    </p>
+  </div>
+
+  <!-- Related guide -->
+  <div class="sc-guide-link">
+    <p>
+      Want more context? Read the full guide:
+      <a href="/insights/cost-of-selling-house-brisbane">What Does It Cost to Sell a House in Brisbane? &rarr;</a>
+    </p>
+  </div>
+
+  <style>
+    .sc-card { background: var(--color-surface-3); padding: 2rem; }
+    .sc-card-sm { background: var(--color-surface-3); padding: 1.5rem; }
+    .sc-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--color-gold);
+      display: block; margin-bottom: 1rem;
+    }
+    .sc-label-sm { margin-bottom: 0.75rem; letter-spacing: 0.14em; }
+    .sc-label-hint {
+      font-size: 0.55rem; font-weight: 500; letter-spacing: 0.08em;
+      color: var(--color-text-muted); text-transform: none; margin-left: 0.4rem;
+    }
+    .sc-price {
+      font-family: var(--font-serif); font-size: 2.5rem; font-weight: 400;
+      color: var(--color-text-primary);
+    }
+    .sc-slider {
+      width: 100%; accent-color: var(--color-gold);
+      cursor: pointer; height: 3px;
+    }
+    .sc-slider-bounds {
+      display: flex; justify-content: space-between;
+      margin-top: 0.5rem; font-size: 0.65rem; color: var(--color-text-muted);
+    }
+    .sc-value-pill {
+      background: var(--color-surface-4); padding: 0.5rem 0.75rem;
+      min-width: 4.5rem; text-align: center;
+      font-size: 1rem; font-weight: 700; color: var(--color-text-primary);
+    }
+    .sc-hint {
+      font-size: 0.7rem; color: var(--color-text-muted);
+      margin-top: 0.85rem; line-height: 1.55;
+    }
+    .sc-hint-sm {
+      font-size: 0.65rem; color: var(--color-text-muted);
+      margin-top: 0.5rem; line-height: 1.5;
+    }
+    .sc-check {
+      accent-color: var(--color-gold); width: 16px; height: 16px; cursor: pointer;
+    }
+    .sc-toggle {
+      display: flex; gap: 0.65rem; align-items: flex-start;
+      margin-top: 0.9rem; padding: 0.85rem 0.95rem;
+      background: rgba(196,145,42,0.08); border-left: 2px solid var(--color-gold);
+      font-size: 0.72rem; line-height: 1.55; color: var(--color-text-secondary);
+      cursor: pointer;
+    }
+    .sc-toggle input { accent-color: var(--color-gold); margin-top: 0.2rem; flex-shrink: 0; }
+    .sc-toggle strong { color: var(--color-text-primary); font-weight: 700; }
+
+    .sc-section-head {
+      font-family: var(--font-sans); font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(196,145,42,0.7);
+      padding: 0.5rem 0 0;
+      border-top: 1px solid rgba(72,72,72,0.15);
+    }
+
+    /* Result panel */
+    .sc-result-card {
+      background: var(--color-surface-3); padding: 2rem;
+      position: sticky; top: 6rem;
+    }
+    .sc-result-title {
+      font-family: var(--font-serif); font-size: 1.35rem; font-weight: 400;
+      color: var(--color-text-primary);
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(72,72,72,0.2);
+      padding-bottom: 1rem;
+    }
+    .sc-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 0; border-bottom: 1px dashed rgba(72,72,72,0.12);
+    }
+    .sc-row-label { font-size: 0.78rem; color: var(--color-text-muted); }
+    .sc-row-label.sc-row-indent { padding-left: 0.85rem; font-size: 0.72rem; opacity: 0.85; }
+    .sc-row-value { font-size: 0.85rem; font-weight: 600; color: var(--color-text-primary); }
+    .sc-row-value.sc-row-neg { color: rgba(28,25,23,0.78); }
+    .sc-row-value.sc-row-defer { color: var(--color-gold); font-style: italic; font-weight: 500; font-size: 0.78rem; }
+    .sc-row-subhead {
+      font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(196,145,42,0.7);
+      padding: 0.85rem 0 0.35rem;
+    }
+    .sc-totals-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.9rem 0; margin-top: 0.4rem;
+      border-top: 1px solid rgba(72,72,72,0.25);
+      font-size: 0.85rem; font-weight: 700; color: var(--color-text-primary);
+    }
+    .sc-net-block {
+      margin-top: 1.25rem; padding: 1.25rem;
+      background: rgba(196,145,42,0.08); border-left: 3px solid var(--color-gold);
+    }
+    .sc-net-eyebrow {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--color-gold); margin-bottom: 0.4rem;
+    }
+    .sc-net-value {
+      font-family: var(--font-serif); font-size: 2rem; font-weight: 400;
+      color: var(--color-gold); line-height: 1;
+    }
+    .sc-net-sub {
+      font-size: 0.7rem; color: var(--color-text-muted);
+      margin-top: 0.6rem; line-height: 1.5;
+    }
+    .sc-disclaimer {
+      font-size: 0.7rem; color: var(--color-text-muted);
+      margin-top: 1rem; line-height: 1.6;
+    }
+    .sc-disclaimer strong { color: var(--color-text-secondary); font-weight: 700; }
+    .sc-cta {
+      width: 100%; margin-top: 1.5rem; justify-content: center; display: inline-flex;
+    }
+
+    /* Deferred marketing callout */
+    .sc-info-callout {
+      margin-top: 2rem; padding: 1.5rem 1.75rem;
+      background: var(--color-surface-1);
+      border-left: 3px solid var(--color-gold);
+    }
+    .sc-info-eyebrow {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--color-gold);
+      margin-bottom: 0.65rem;
+    }
+    .sc-info-body {
+      font-size: 0.85rem; line-height: 1.7; color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .sc-guide-link {
+      margin-top: 1.25rem; padding: 1rem 1.25rem;
+      background: var(--color-surface-1);
+      border-left: 2px solid rgba(196,145,42,0.4);
+    }
+    .sc-guide-link p {
+      font-size: 0.8rem; color: var(--color-text-secondary); line-height: 1.7; margin: 0;
+    }
+    .sc-guide-link a { color: var(--color-gold); font-weight: 600; }
+  </style>
 </ToolLayout>
 
 <script>
-  const fmt = (n: number) => n < 0
-    ? `-$${Math.abs(Math.round(n)).toLocaleString()}`
-    : `$${Math.round(n).toLocaleString()}`;
+  const fmt = (n: number) => {
+    const abs = Math.abs(Math.round(n)).toLocaleString();
+    return n < 0 ? `-$${abs}` : `$${abs}`;
+  };
 
-  function calc() {
-    const sale       = Number((document.getElementById('sale-price') as HTMLInputElement).value);
-    const commRate   = Number((document.getElementById('commission-rate') as HTMLInputElement).value) / 100;
-    const marketing  = Number((document.getElementById('marketing') as HTMLSelectElement).value);
-    const legal      = Number((document.getElementById('legal') as HTMLInputElement).value) || 0;
-    const stagingOn  = (document.getElementById('staging-toggle') as HTMLInputElement).checked;
-    const staging    = stagingOn ? Number((document.getElementById('staging') as HTMLInputElement).value) || 0 : 0;
-    const repairs    = Number((document.getElementById('repairs') as HTMLInputElement).value) || 0;
-    const mortOn     = (document.getElementById('mortgage-toggle') as HTMLInputElement).checked;
-    const mortgage   = mortOn ? Number((document.getElementById('mortgage-payout') as HTMLInputElement).value) || 0 : 0;
+  const GST = 0.10;
 
-    const commission = sale * commRate;
-    const total      = commission + marketing + legal + staging + repairs + mortgage;
-    const net        = sale - total;
+  function $(id: string) { return document.getElementById(id) as HTMLInputElement; }
+  function $sel(id: string) { return document.getElementById(id) as HTMLSelectElement; }
 
-    const rows = [
-      { label: 'Gross Sale Price',    value: sale,       plus: true },
-      { label: `Commission (${(commRate*100).toFixed(1)}%)`, value: -commission },
-      { label: 'Marketing',           value: -marketing },
-      { label: 'Legal / Conveyancing', value: -legal },
-      ...(stagingOn ? [{ label: 'Styling / Staging', value: -staging }] : []),
-      ...(repairs    ? [{ label: 'Repairs',           value: -repairs }] : []),
-      ...(mortOn && mortgage ? [{ label: 'Mortgage Payout', value: -mortgage }] : []),
-    ];
-
-    const breakdown = document.getElementById('breakdown')!;
-    breakdown.innerHTML = rows.map(r => `
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid rgba(72,72,72,0.15);">
-        <span style="font-size:0.8rem;color:var(--color-text-muted);">${r.label}</span>
-        <span style="font-size:0.875rem;font-weight:600;color:${r.plus ? 'var(--color-text-primary)' : 'rgba(192,57,43,0.9)'};">${fmt(r.value)}</span>
-      </div>
-    `).join('');
-
-    document.getElementById('net-proceeds')!.textContent = fmt(net);
-    document.getElementById('sale-display')!.textContent = `$${sale.toLocaleString()}`;
-    document.getElementById('commission-display')!.textContent = `${((commRate)*100).toFixed(1)}%`;
+  // Helper: get a checkbox-gated numeric value
+  function gated(toggleId: string, valueId: string): { on: boolean; value: number } {
+    const on = $(toggleId).checked;
+    const value = on ? (Number($(valueId).value) || 0) : 0;
+    return { on, value };
   }
 
-  // Mortgage toggle
-  (document.getElementById('mortgage-toggle') as HTMLInputElement).addEventListener('change', (e) => {
-    const input = document.getElementById('mortgage-payout') as HTMLInputElement;
-    input.disabled = !(e.target as HTMLInputElement).checked;
+  function calc() {
+    const sale     = Number($('sale-price').value);
+    const commRate = Number($('commission-rate').value) / 100;
+
+    // Marketing: preset or custom
+    const preset = $sel('marketing-preset').value;
+    const customField = $('marketing-custom');
+    customField.style.display = preset === 'custom' ? 'block' : 'none';
+    const marketing = preset === 'custom'
+      ? (Number(customField.value) || 0)
+      : Number(preset);
+    const marketingDeferred = $('marketing-defer').checked;
+
+    // Agent fees
+    const commissionEx  = sale * commRate;
+    const commissionGst = commissionEx * GST;
+
+    // Preparation
+    const staging = gated('staging-toggle', 'staging');
+    const repairs = gated('repairs-toggle', 'repairs');
+    const pool    = gated('pool-toggle',    'pool');
+    const smoke   = gated('smoke-toggle',   'smoke');
+
+    // Settlement
+    const legal     = Number($('legal').value) || 0;
+    const discharge = Number($('discharge').value) || 0;
+    const mortgage  = gated('mortgage-toggle', 'mortgage-payout');
+
+    // Totals — marketing always reduces proceeds whether deferred or not
+    const totalCost = commissionEx + commissionGst + marketing
+      + staging.value + repairs.value + pool.value + smoke.value
+      + legal + discharge + mortgage.value;
+    const net = sale - totalCost;
+    const pct = sale > 0 ? (totalCost / sale) * 100 : 0;
+
+    // Build itemised breakdown grouped by section
+    const rows: string[] = [];
+    const push = (html: string) => rows.push(html);
+    const row = (label: string, value: number, opts: { indent?: boolean; defer?: boolean } = {}) => {
+      const labelCls = opts.indent ? 'sc-row-label sc-row-indent' : 'sc-row-label';
+      const valueCls = opts.defer ? 'sc-row-value sc-row-defer' : 'sc-row-value sc-row-neg';
+      const valueText = opts.defer ? `${fmt(value)} (at settlement)` : fmt(value);
+      return `<div class="sc-row"><span class="${labelCls}">${label}</span><span class="${valueCls}">${valueText}</span></div>`;
+    };
+    const subhead = (label: string) => `<div class="sc-row-subhead">${label}</div>`;
+
+    push(`<div class="sc-row"><span class="sc-row-label">Gross sale price</span><span class="sc-row-value">${fmt(sale)}</span></div>`);
+
+    push(subhead('Agent fees'));
+    push(row(`Commission (${(commRate*100).toFixed(2)}%)`, -commissionEx, { indent: true }));
+    push(row('GST on commission (10%)', -commissionGst, { indent: true }));
+    push(row('Marketing', -marketing, { indent: true, defer: marketingDeferred && marketing > 0 }));
+
+    const prepRows: string[] = [];
+    if (staging.on) prepRows.push(row('Styling / staging', -staging.value, { indent: true }));
+    if (repairs.on) prepRows.push(row('Repairs / touch-ups', -repairs.value, { indent: true }));
+    if (pool.on)    prepRows.push(row('Pool safety certificate', -pool.value, { indent: true }));
+    if (smoke.on)   prepRows.push(row('Smoke alarm upgrade', -smoke.value, { indent: true }));
+    if (prepRows.length) {
+      push(subhead('Property preparation'));
+      prepRows.forEach(push);
+    }
+
+    push(subhead('Settlement'));
+    push(row('Legal / conveyancing', -legal, { indent: true }));
+    push(row('Bank discharge fee', -discharge, { indent: true }));
+    if (mortgage.on && mortgage.value > 0) {
+      push(row('Mortgage payout', -mortgage.value, { indent: true }));
+    }
+
+    document.getElementById('breakdown')!.innerHTML = rows.join('');
+
+    // Totals + summaries
+    document.getElementById('total-cost')!.textContent = `-${fmt(totalCost).replace('-', '')}`;
+    document.getElementById('net-proceeds')!.textContent = fmt(net);
+    document.getElementById('cost-pct')!.textContent =
+      `Cost of sale: ${pct.toFixed(2)}% of price` +
+      (marketingDeferred && marketing > 0 ? ` · marketing deferred to settlement` : '');
+
+    // Live input displays
+    document.getElementById('sale-display')!.textContent = `$${sale.toLocaleString()}`;
+    document.getElementById('commission-display')!.textContent = `${(commRate*100).toFixed(2)}%`;
+  }
+
+  // Toggle wiring — enable/disable inputs based on their checkbox
+  const gates: [string, string][] = [
+    ['staging-toggle', 'staging'],
+    ['repairs-toggle', 'repairs'],
+    ['pool-toggle', 'pool'],
+    ['smoke-toggle', 'smoke'],
+    ['mortgage-toggle', 'mortgage-payout'],
+  ];
+  gates.forEach(([t, v]) => {
+    $(t).addEventListener('change', () => {
+      $(v).disabled = !$(t).checked;
+      calc();
+    });
+    // Initial state
+    $(v).disabled = !$(t).checked;
   });
 
   document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
