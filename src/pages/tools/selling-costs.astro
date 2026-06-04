@@ -32,28 +32,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div class="sc-card">
         <label class="sc-label">Agent Commission Rate <span class="sc-label-hint">(ex GST)</span></label>
         <div class="flex items-center gap-3">
-          <input type="range" id="commission-rate" min="1.8" max="3.5" step="0.05" value="2.5" class="sc-slider" />
+          <input type="range" id="commission-rate" min="2.5" max="3.5" step="0.05" value="2.5" class="sc-slider" />
           <div class="sc-value-pill">
             <span id="commission-display">2.50%</span>
           </div>
         </div>
-        <p class="sc-hint">Brisbane inner east typically sits between 2.0% and 2.8%. GST (10%) is added at settlement.</p>
+        <p class="sc-hint">Brisbane inner east typically sits between 2.5% and 2.8%. GST (10%) is added at settlement.</p>
       </div>
 
       <div class="sc-card">
         <label class="sc-label">Marketing Budget <span class="sc-label-hint">(inc GST)</span></label>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <select id="marketing-preset" class="obs-select" style="flex:1;">
-            <option value="5500" selected>Entry ($5,500)</option>
-            <option value="8800">Standard ($8,800)</option>
-            <option value="13200">Mid ($13,200)</option>
-            <option value="19800">Premium ($19,800)</option>
-            <option value="27500">High ($27,500)</option>
-            <option value="33000">Prestige ($33,000)</option>
-            <option value="custom">Custom amount</option>
-          </select>
-          <input type="number" id="marketing-custom" class="obs-input" placeholder="Custom $" style="display:none;width:8rem;" />
-        </div>
+        <input type="number" id="marketing" class="obs-input" value="8000" placeholder="Enter amount" style="width:100%;font-size:1rem;" />
+        <p class="sc-hint">Most Brisbane campaigns sit between $5,000 and $25,000 depending on photography, video, signage and portal upgrades.</p>
 
         <label class="sc-toggle">
           <input type="checkbox" id="marketing-defer" checked />
@@ -320,7 +310,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   const GST = 0.10;
 
   function $(id: string) { return document.getElementById(id) as HTMLInputElement; }
-  function $sel(id: string) { return document.getElementById(id) as HTMLSelectElement; }
 
   // Helper: get a checkbox-gated numeric value
   function gated(toggleId: string, valueId: string): { on: boolean; value: number } {
@@ -333,13 +322,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const sale     = Number($('sale-price').value);
     const commRate = Number($('commission-rate').value) / 100;
 
-    // Marketing: preset or custom
-    const preset = $sel('marketing-preset').value;
-    const customField = $('marketing-custom');
-    customField.style.display = preset === 'custom' ? 'block' : 'none';
-    const marketing = preset === 'custom'
-      ? (Number(customField.value) || 0)
-      : Number(preset);
+    const marketing = Number($('marketing').value) || 0;
     const marketingDeferred = $('marketing-defer').checked;
 
     // Agent fees
