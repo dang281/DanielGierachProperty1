@@ -20,9 +20,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <div class="flex items-center gap-4 mb-3">
           <span class="sc-price" id="sale-display">$2,000,000</span>
         </div>
-        <input type="range" id="sale-price" min="400000" max="30000000" step="25000" value="2000000" class="sc-slider" />
+        <input type="range" id="sale-price" min="400000" max="20000000" step="25000" value="2000000" class="sc-slider" />
         <div class="sc-slider-bounds">
-          <span>$400K</span><span>$30M</span>
+          <span>$400K</span><span>$20M</span>
         </div>
       </div>
 
@@ -134,9 +134,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           <strong>Not included:</strong> capital gains tax, fixed-rate break fees, removalists, body corporate adjustments, council rates settlement adjustments, auction fees if applicable. Confirm final figures with your solicitor and accountant.
         </p>
 
-        <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold sc-cta">
-          Book a Free Appraisal
-        </a>
       </div>
     </div>
   </div>
@@ -157,7 +154,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </p>
   </div>
 
-  <style>
+  <style is:global>
     .sc-card { background: var(--color-surface-3); padding: 2rem; }
     .sc-card-sm { background: var(--color-surface-3); padding: 1.5rem; }
     .sc-label {
@@ -269,9 +266,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       margin-top: 1rem; line-height: 1.6;
     }
     .sc-disclaimer strong { color: var(--color-text-secondary); font-weight: 700; }
-    .sc-cta {
-      width: 100%; margin-top: 1.5rem; justify-content: center; display: inline-flex;
-    }
 
     /* Deferred marketing callout */
     .sc-info-callout {
