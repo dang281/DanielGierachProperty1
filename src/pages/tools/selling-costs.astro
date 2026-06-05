@@ -18,9 +18,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div class="sc-card">
         <label class="sc-label">Estimated Sale Price</label>
         <div class="flex items-center gap-4 mb-3">
-          <span class="sc-price" id="sale-display">$2,000,000</span>
+          <input type="text" inputmode="numeric" id="sale-display" class="sc-price-input" value="$2,000,000" aria-label="Estimated sale price" />
         </div>
         <input type="range" id="sale-price" min="400000" max="20000000" step="25000" value="2000000" class="sc-slider" />
+        <p class="sc-hint">Drag the slider or type any amount between $400,000 and $20,000,000.</p>
         <div class="sc-slider-bounds">
           <span>$400K</span><span>$20M</span>
         </div>
@@ -167,10 +168,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       font-size: 0.55rem; font-weight: 500; letter-spacing: 0.08em;
       color: var(--color-text-muted); text-transform: none; margin-left: 0.4rem;
     }
-    .sc-price {
+    .sc-price-input {
       font-family: var(--font-serif); font-size: 2.5rem; font-weight: 400;
-      color: var(--color-text-primary);
+      color: var(--color-text-primary); background: transparent;
+      border: none; outline: none; width: 100%; padding: 0.15rem 0;
+      border-bottom: 1px solid transparent; transition: border-color 0.15s;
     }
+    .sc-price-input:hover { border-bottom-color: rgba(196,145,42,0.25); }
+    .sc-price-input:focus { border-bottom-color: var(--color-gold); }
     .sc-slider {
       width: 100%; accent-color: var(--color-gold);
       cursor: pointer; height: 3px;
@@ -386,7 +391,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       (marketingDeferred && marketing > 0 ? ` · marketing deferred to settlement` : '');
 
     // Live input displays
-    document.getElementById('sale-display')!.textContent = `$${sale.toLocaleString()}`;
+    const saleDisplayEl = document.getElementById('sale-display') as HTMLInputElement;
+    if (document.activeElement !== saleDisplayEl) {
+      saleDisplayEl.value = `$${sale.toLocaleString()}`;
+    }
     document.getElementById('commission-display')!.textContent = `${(commRate*100).toFixed(2)}%`;
   }
 
@@ -405,6 +413,28 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     });
     // Initial state
     $(v).disabled = !$(t).checked;
+  });
+
+  // Sale-price typed input syncs into the slider before calc runs
+  const saleSlider  = $('sale-price');
+  const saleDisplay = $('sale-display');
+  const SALE_MIN = 400000;
+  const SALE_MAX = 20000000;
+
+  saleDisplay.addEventListener('input', () => {
+    const raw = saleDisplay.value.replace(/[^\d]/g, '');
+    const n = Math.max(SALE_MIN, Math.min(SALE_MAX, Number(raw) || SALE_MIN));
+    saleSlider.value = String(n);
+  });
+  saleDisplay.addEventListener('focus', () => {
+    saleDisplay.value = saleDisplay.value.replace(/[^\d]/g, '');
+  });
+  saleDisplay.addEventListener('blur', () => {
+    const raw = saleDisplay.value.replace(/[^\d]/g, '');
+    const n = Math.max(SALE_MIN, Math.min(SALE_MAX, Number(raw) || SALE_MIN));
+    saleSlider.value = String(n);
+    saleDisplay.value = `$${n.toLocaleString()}`;
+    calc();
   });
 
   document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
