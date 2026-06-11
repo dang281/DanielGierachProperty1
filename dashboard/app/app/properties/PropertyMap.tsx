@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import type { BuyerBrief } from '@/types/buyers'
+import { matchBuyersToListing } from '@/lib/buyer-matching'
 
 export type TrackedProperty = {
   id: string
@@ -29,11 +31,18 @@ export type PropertyAlert = {
   lng: number | null
   actioned: boolean
   detected_at: string
+  listing_description?: string | null
+  listing_beds?: number | null
+  listing_baths?: number | null
+  listing_car?: number | null
+  listing_price_numeric?: number | null
+  listing_type_normalized?: string | null
 }
 
 type Props = {
   properties: TrackedProperty[]
   alerts: PropertyAlert[]
+  buyers?: BuyerBrief[]
 }
 
 const LEGEND_ITEMS = [
@@ -58,6 +67,17 @@ const SCHOOL_ITEMS = [
   { key: 'school-secondary', color: '#7c3aed', label: 'Private Secondary' },
 ]
 
+const CATCHMENT_ITEMS = [
+  { key: 'catchment-primary',   color: '#0891b2', label: 'State Primary catchment' },
+  { key: 'catchment-secondary', color: '#7c3aed', label: 'State Secondary catchment' },
+]
+
+// QLD Department of Education catchment polygons (open data).
+// Layer 1 = Primary catchments, Layer 3 = Secondary catchments.
+const CATCHMENT_BASE = 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Society/SchoolsAndSchoolCatchments/MapServer'
+// Inner-east Brisbane bbox: covers Indooroopilly across to Wynnum, Stafford down to Holland Park.
+const CATCHMENT_BBOX = { xmin: 152.95, ymin: -27.60, xmax: 153.20, ymax: -27.37 }
+
 type School = { name: string; type: 'primary' | 'secondary' | 'p12'; lat: number; lng: number }
 
 const SCHOOLS: School[] = [
@@ -81,7 +101,11 @@ const ALL_KEYS = [
   ...LEGEND_ITEMS.map(i => i.key),
   ...ALERT_ITEMS.map(i => i.key),
   ...SCHOOL_ITEMS.map(i => i.key),
+  ...CATCHMENT_ITEMS.map(i => i.key),
 ]
+
+// Catchments default off. Fill polygons clash visually with pins, so toggle on when researching an area.
+const DEFAULT_OFF = new Set<string>(CATCHMENT_ITEMS.map(i => i.key))
 
 function groupKey(monday_group: string | null): string {
   if (!monday_group) return 'Other'
@@ -105,6 +129,16 @@ function daysAgo(iso: string): number {
   return Math.max(0, Math.floor((Date.now() - d) / 86400000))
 }
 
+// Calendar-day difference (ignores time-of-day). 27 May -> 1 June = 5 days.
+function calendarDaysAgo(iso: string): number {
+  const then = new Date(iso)
+  if (isNaN(then.getTime())) return 0
+  const now = new Date()
+  const nowStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
+  const thenStart = new Date(then.getFullYear(), then.getMonth(), then.getDate()).getTime()
+  return Math.max(0, Math.round((nowStart - thenStart) / 86400000))
+}
+
 // Sold pins fade weekly and disappear at 4 weeks.
 // Returns 1.0, 0.75, 0.5, 0.25, or 0 (hidden).
 function soldFade(days: number): number {
@@ -123,13 +157,13 @@ function haversineM(lat1: number, lng1: number, lat2: number, lng2: number): num
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 }
 
-export default function PropertyMap({ properties, alerts }: Props) {
+export default function PropertyMap({ properties, alerts, buyers = [] }: Props) {
   const mapRef       = useRef<HTMLDivElement>(null)
   const leafletRef   = useRef<any>(null)
   const layersRef    = useRef<Record<string, any>>({})
 
   const [visible, setVisible] = useState<Record<string, boolean>>(
-    () => Object.fromEntries(ALL_KEYS.map(k => [k, true]))
+    () => Object.fromEntries(ALL_KEYS.map(k => [k, !DEFAULT_OFF.has(k)]))
   )
 
   function toggle(key: string) {
@@ -173,10 +207,12 @@ export default function PropertyMap({ properties, alerts }: Props) {
       leafletRef.current = map
       setTimeout(() => { if (!cancelled) map.invalidateSize() }, 60)
 
-      // Create one LayerGroup per legend key, all added to map by default
+      // Create one LayerGroup per legend key. Default-off layers stay off-map at startup.
       const layers: Record<string, any> = {}
       for (const key of ALL_KEYS) {
-        layers[key] = L.layerGroup().addTo(map)
+        const lg = L.layerGroup()
+        if (!DEFAULT_OFF.has(key)) lg.addTo(map)
+        layers[key] = lg
       }
       layersRef.current = layers
 
@@ -246,6 +282,50 @@ export default function PropertyMap({ properties, alerts }: Props) {
         }
       }
 
+      // ── State school catchments (QLD DoE open data) ─────────────────────────
+      // Fetched once at init. GeoJSON output, low precision keeps payload small.
+      const catchmentParams = new URLSearchParams({
+        geometry: JSON.stringify({ ...CATCHMENT_BBOX, spatialReference: { wkid: 4326 } }),
+        geometryType: 'esriGeometryEnvelope',
+        inSR: '4326',
+        spatialRel: 'esriSpatialRelIntersects',
+        outFields: 'centre_name',
+        returnGeometry: 'true',
+        outSR: '4326',
+        geometryPrecision: '5',
+        f: 'geojson',
+      }).toString()
+
+      const renderCatchments = (layerKey: string, color: string, fc: any) => {
+        if (!fc?.features?.length) return
+        L.geoJSON(fc, {
+          style: {
+            color, weight: 1.6, opacity: 0.65,
+            fillColor: color, fillOpacity: 0.07,
+          },
+          onEachFeature: (feature: any, layer: any) => {
+            const name = feature?.properties?.centre_name || 'Unknown catchment'
+            const tier = layerKey === 'catchment-primary' ? 'Primary' : 'Secondary'
+            layer.bindPopup(
+              `<div style="font-family:system-ui;width:200px">
+                 <div style="font-weight:700;font-size:13px;color:#1c1917;margin-bottom:3px">${name}</div>
+                 <span style="display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;background:${color}18;color:${color}">${tier} catchment · State</span>
+               </div>`,
+              { maxWidth: 220, className: 'dg-popup' }
+            )
+          },
+        }).addTo(layers[layerKey])
+      }
+
+      // Fire both fetches in parallel. Silently no-op on failure since catchments
+      // are a secondary layer, not core map functionality.
+      fetch(`${CATCHMENT_BASE}/1/query?${catchmentParams}`)
+        .then(r => r.json()).then(fc => { if (!cancelled) renderCatchments('catchment-primary', '#0891b2', fc) })
+        .catch(() => {})
+      fetch(`${CATCHMENT_BASE}/3/query?${catchmentParams}`)
+        .then(r => r.json()).then(fc => { if (!cancelled) renderCatchments('catchment-secondary', '#7c3aed', fc) })
+        .catch(() => {})
+
       // ── Alert pins ──────────────────────────────────────────────────────────
       for (const a of alerts.filter(a => !a.actioned && a.lat && a.lng)) {
         const lat      = a.lat!
@@ -256,7 +336,7 @@ export default function PropertyMap({ properties, alerts }: Props) {
         const typeColor = isSold ? '#0d9488' : isAuction ? '#ef4444' : '#f97316'
         const typeLabel = isSold ? 'SOLD' : isAuction ? 'AUCTION' : 'FOR SALE'
 
-        const soldDays = isSold ? daysAgo(a.detected_at) : 0
+        const soldDays = isSold ? calendarDaysAgo(a.detected_at) : 0
         const fade = isSold ? soldFade(soldDays) : 1
         if (isSold && fade === 0) continue  // 4+ weeks old: hide entirely
 
@@ -266,18 +346,48 @@ export default function PropertyMap({ properties, alerts }: Props) {
           .filter(p => p.distM <= 500)
           .sort((x, y) => x.distM - y.distM)
 
+        // Buyer matches for this listing (skip for sold)
+        const buyerMatches = !isSold && buyers.length > 0 ? matchBuyersToListing(a, buyers) : []
+        const matchCount = buyerMatches.length
+
         const soldTag = isSold
           ? `<div style="position:absolute;top:-7px;left:50%;transform:translateX(-50%);background:#0d9488;color:white;font-family:system-ui;font-size:9px;font-weight:800;letter-spacing:0.03em;padding:2px 5px;border-radius:8px;border:1.5px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.25);white-space:nowrap;line-height:1;opacity:${fade};">Sold ${soldDays}d ago</div>`
+          : ''
+
+        const matchBadge = matchCount > 0
+          ? `<div style="position:absolute;top:-6px;right:-6px;background:#c4912a;color:white;font-family:system-ui;font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(196,145,42,0.4);line-height:1;">${matchCount}</div>`
           : ''
 
         const alertIcon = L.divIcon({
           html: `<div style="position:relative;width:28px;height:28px;opacity:${fade};">
             ${isSold ? '' : `<div style="position:absolute;inset:0;border-radius:50%;background:${typeColor};opacity:0.25;animation:dgpulse 2s ease-out infinite;"></div>`}
             <div style="position:absolute;inset:4px;border-radius:50%;background:${typeColor};border:2.5px solid white;box-shadow:0 2px 8px ${typeColor}66;display:flex;align-items:center;justify-content:center;font-size:9px;">${isSold ? '✓' : '🏠'}</div>
-            ${soldTag}
+            ${soldTag}${matchBadge}
           </div>`,
           className: '', iconSize: [28, 28], iconAnchor: [14, 14],
         })
+
+        const matchedBuyersHtml = matchCount > 0
+          ? `<div style="margin-top:10px;padding:10px;border-radius:6px;background:rgba(196,145,42,0.08);border:1px solid rgba(196,145,42,0.3)">
+              <div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#c4912a;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
+                <span>${matchCount} buyer${matchCount !== 1 ? 's' : ''} matching</span>
+                <a href="/app/properties/buyers" style="font-size:9px;color:#c4912a;text-decoration:none;font-weight:700">Manage →</a>
+              </div>
+              ${buyerMatches.slice(0, 5).map(m => {
+                const score = m.score
+                const scoreColor = score >= 80 ? '#22c55e' : score >= 50 ? '#c4912a' : '#a8a29e'
+                const phone = m.buyer.phone
+                return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(196,145,42,0.15)">
+                  <div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1">
+                    <span style="font-family:ui-monospace,monospace;font-size:10px;font-weight:800;color:${scoreColor};flex-shrink:0;background:${scoreColor}18;padding:2px 5px;border-radius:3px">${score}%</span>
+                    <span style="font-size:12px;color:#1c1917;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600">${m.buyer.name}</span>
+                  </div>
+                  ${phone ? `<a href="tel:${phone.replace(/\\s/g,'')}" style="font-size:11px;color:#c4912a;font-weight:700;text-decoration:none;flex-shrink:0;margin-left:6px">Call</a>` : ''}
+                </div>`
+              }).join('')}
+              ${matchCount > 5 ? `<div style="font-size:10px;color:#78716c;text-align:center;margin-top:4px">+${matchCount - 5} more</div>` : ''}
+            </div>`
+          : ''
 
         const nearbyRows = closeContacts.length
           ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid #f0ece4">
@@ -305,13 +415,22 @@ export default function PropertyMap({ properties, alerts }: Props) {
           ? `<div style="margin-top:4px;font-size:11px;font-weight:700;color:${typeColor}">Sold ${soldDays === 0 ? 'today' : soldDays === 1 ? 'yesterday' : soldDays + ' days ago'}</div>`
           : ''
 
+        const listedDays = !isSold ? calendarDaysAgo(a.detected_at) : 0
+        const listedDate = !isSold
+          ? new Date(a.detected_at).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })
+          : ''
+        const listedRelative = listedDays === 0 ? 'today' : listedDays === 1 ? 'yesterday' : `${listedDays} days ago`
+        const listedLine = !isSold
+          ? `<div style="margin-top:4px;font-size:11px;color:#78716c" title="Date your Property Alerts Agent picked up this listing from REA emails. May lag the actual REA list date by a day or two.">Detected ${listedRelative} <span style="color:#a8a29e">· ${listedDate}</span></div>`
+          : ''
+
         L.marker([lat, lng], { icon: alertIcon })
           .bindPopup(`
             <div style="font-family:system-ui;width:240px">
               <span style="display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.5px;background:${typeColor}18;color:${typeColor};margin-bottom:6px">${typeLabel}</span>
               <div style="font-weight:700;font-size:14px;color:#1c1917;line-height:1.3">${a.listing_address}</div>
               <div style="font-size:12px;color:#78716c;margin-top:2px">${a.listing_suburb}${a.listing_price ? ` · ${a.listing_price}` : ''}</div>
-              ${soldLine}${reaBtn}${nearbyRows}
+              ${soldLine}${listedLine}${reaBtn}${matchedBuyersHtml}${nearbyRows}
             </div>
           `, { maxWidth: 280, className: 'dg-popup' })
           .addTo(layers[alertKey])
@@ -443,6 +562,44 @@ export default function PropertyMap({ properties, alerts }: Props) {
                     fontSize: 8,
                     transition: 'background 0.15s',
                   }}>🏫</div>
+                  <span style={{ fontSize: 11, color: on ? '#1c1917' : '#a8a29e', transition: 'color 0.15s' }}>
+                    {label}
+                  </span>
+                  <span style={{ marginLeft: 'auto', fontSize: 10, color: on ? color : '#d4d4d4', fontWeight: 700 }}>
+                    {on ? '●' : '○'}
+                  </span>
+                </button>
+              )
+            })}
+
+            <div style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '.06em', color: '#a8a29e', fontWeight: 700, marginTop: 6, marginBottom: 2, paddingLeft: 6 }}>
+              Catchments
+            </div>
+            {CATCHMENT_ITEMS.map(({ key, color, label }) => {
+              const on = visible[key]
+              return (
+                <button
+                  key={key}
+                  onClick={() => toggle(key)}
+                  title={on ? `Hide ${label}` : `Show ${label}`}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    background: on ? 'transparent' : 'rgba(0,0,0,0.03)',
+                    border: 'none', borderRadius: 6,
+                    padding: '4px 6px', margin: '0 -6px',
+                    cursor: 'pointer', textAlign: 'left', width: 'calc(100% + 12px)',
+                    opacity: on ? 1 : 0.45,
+                    transition: 'opacity 0.15s, background 0.15s',
+                  }}
+                >
+                  <div style={{
+                    width: 14, height: 10, borderRadius: 2,
+                    background: on ? `${color}22` : 'transparent',
+                    border: `1.5px solid ${on ? color : '#d4d4d4'}`,
+                    boxShadow: '0 0 0 1px rgba(0,0,0,0.04)',
+                    flexShrink: 0,
+                    transition: 'background 0.15s, border-color 0.15s',
+                  }} />
                   <span style={{ fontSize: 11, color: on ? '#1c1917' : '#a8a29e', transition: 'color 0.15s' }}>
                     {label}
                   </span>
