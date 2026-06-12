@@ -62,6 +62,18 @@ const buyerSchema = {
         Most of the best properties in Brisbane's inner east are spoken for before a sign goes up. Register your brief and get early access to both off-market and pre-market properties when they come up.
       </p>
 
+      <!-- Mobile-only: compact value prop + primary action -->
+      <p class="buyers-hero-mobile-sub">
+        Brisbane's inner east. Early access before properties hit realestate.com.au.
+      </p>
+      <a href="#register" class="buyers-hero-mobile-cta" aria-label="Start your buyer brief">
+        Start your brief
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+      <a href="tel:+61412523821" class="buyers-hero-mobile-call">
+        Or call <strong>0412 523 821</strong>
+      </a>
+
       <div class="buyers-hero-contact reveal" data-delay="240" style="padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);">
         <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.6rem;">Prefer to talk first?</p>
         <a href="tel:+61412523821"
@@ -73,7 +85,7 @@ const buyerSchema = {
   </div>
 
   <!-- ── RIGHT: wizard panel ── -->
-  <div class="flex flex-col justify-center overflow-y-auto buyers-form-panel" style="background:var(--color-surface-1);padding:8rem 4rem 4rem;">
+  <div id="register" class="flex flex-col justify-center overflow-y-auto buyers-form-panel" style="background:var(--color-surface-1);padding:8rem 4rem 4rem;scroll-margin-top:80px;">
 
     <div class="reveal" data-delay="80" style="max-width:500px;width:100%;">
 
@@ -619,22 +631,81 @@ const buyerSchema = {
     }
   }
 
+  /* Hide mobile-only hero pieces by default (desktop) */
+  .buyers-hero-mobile-sub,
+  .buyers-hero-mobile-cta,
+  .buyers-hero-mobile-call { display: none; }
+
   @media (max-width: 860px) {
     .buyers-split { grid-template-columns: 1fr !important; }
+
+    /* Hero becomes a self-contained intro card, not a squished strip */
     .buyers-hero-panel {
       min-height: 0;
-      padding: 4.25rem 1.25rem 1.1rem !important;
+      padding: 4.5rem 1.5rem 2.75rem !important;
+      justify-content: flex-start !important;
       overflow: hidden;
     }
     .buyers-hero-panel h1 {
-      font-size: clamp(1.15rem, 5vw, 1.7rem) !important;
-      margin-bottom: 0 !important;
+      font-size: clamp(1.55rem, 6.5vw, 2.1rem) !important;
+      margin: 0 0 0.85rem !important;
       line-height: 1.18 !important;
+      letter-spacing: -0.015em !important;
     }
-    .buyers-form-panel { padding: 1.5rem 1.25rem 3.5rem !important; }
+
+    /* Desktop versions hidden, mobile compact versions shown */
     .buyers-hero-desc,
     .buyers-hero-points,
     .buyers-hero-contact { display: none !important; }
+
+    .buyers-hero-mobile-sub {
+      display: block !important;
+      font-size: 0.92rem !important;
+      color: rgba(240,236,228,0.78) !important;
+      line-height: 1.55 !important;
+      margin: 0 0 1.5rem !important;
+      max-width: 34ch !important;
+    }
+    .buyers-hero-mobile-cta {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.55rem !important;
+      padding: 0.95rem 1.5rem !important;
+      background: #c4912a !important;
+      color: #0a0806 !important;
+      font-family: var(--font-sans) !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      border: none !important;
+      min-height: 50px !important;
+      align-self: flex-start !important;
+      transition: background 0.2s, transform 0.1s !important;
+    }
+    .buyers-hero-mobile-cta:active {
+      background: #b8851e !important;
+      transform: translateY(1px) !important;
+    }
+    .buyers-hero-mobile-call {
+      display: inline-block !important;
+      margin-top: 1.1rem !important;
+      font-family: var(--font-sans) !important;
+      font-size: 0.85rem !important;
+      color: rgba(240,236,228,0.7) !important;
+      text-decoration: none !important;
+    }
+    .buyers-hero-mobile-call strong {
+      color: #f5d07a !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.01em !important;
+      margin-left: 0.15rem !important;
+    }
+
+    /* Form panel: clean transition from dark hero */
+    .buyers-form-panel { padding: 2rem 1.25rem 3.5rem !important; }
 
     /* Dots already show progress + label, so drop the duplicate counter */
     #wz-counter { display: none !important; }
