@@ -49,7 +49,7 @@ const buyerSchema = {
       <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(10,8,6,0.88) 0%,rgba(10,8,6,0.65) 55%,rgba(10,8,6,0.3) 100%);"></div>
     </div>
 
-    <div class="relative z-10">
+    <div class="relative z-10 buyers-hero-content">
       <span class="reveal" style="display:block;font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#f5d07a;margin-bottom:1.25rem;">Off-Market &amp; Pre-Market</span>
 
       <h1 id="hero-heading" class="reveal" data-delay="60"
@@ -639,12 +639,20 @@ const buyerSchema = {
   @media (max-width: 860px) {
     .buyers-split { grid-template-columns: 1fr !important; }
 
-    /* Hero becomes a self-contained intro card, not a squished strip */
+    /* Hero becomes a self-contained intro card with room to breathe */
     .buyers-hero-panel {
-      min-height: 0;
-      padding: 4.5rem 1.5rem 2.75rem !important;
+      min-height: 75vh !important;
+      padding: 7rem 1.5rem 2.5rem !important;
       justify-content: flex-start !important;
       overflow: hidden;
+    }
+    /* Inner content wrapper becomes a flex column so we can dock the
+       phone link at the bottom of the hero */
+    .buyers-hero-content {
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+      width: 100% !important;
     }
     .buyers-hero-panel h1 {
       font-size: clamp(1.55rem, 6.5vw, 2.1rem) !important;
@@ -667,11 +675,12 @@ const buyerSchema = {
       max-width: 34ch !important;
     }
     .buyers-hero-mobile-cta {
-      display: inline-flex !important;
+      display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       gap: 0.55rem !important;
       padding: 0.95rem 1.5rem !important;
+      width: fit-content !important;
       background: #c4912a !important;
       color: #0a0806 !important;
       font-family: var(--font-sans) !important;
@@ -689,19 +698,22 @@ const buyerSchema = {
       background: #b8851e !important;
       transform: translateY(1px) !important;
     }
+    /* Phone link docks at the bottom of the hero with a thin separator */
     .buyers-hero-mobile-call {
-      display: inline-block !important;
-      margin-top: 1.1rem !important;
+      display: block !important;
+      margin-top: auto !important;
+      padding-top: 1.75rem !important;
+      border-top: 1px solid rgba(255,255,255,0.12) !important;
       font-family: var(--font-sans) !important;
       font-size: 0.85rem !important;
-      color: rgba(240,236,228,0.7) !important;
+      color: rgba(240,236,228,0.65) !important;
       text-decoration: none !important;
     }
     .buyers-hero-mobile-call strong {
       color: #f5d07a !important;
       font-weight: 700 !important;
       letter-spacing: 0.01em !important;
-      margin-left: 0.15rem !important;
+      margin-left: 0.3rem !important;
     }
 
     /* Form panel: clean transition from dark hero */
