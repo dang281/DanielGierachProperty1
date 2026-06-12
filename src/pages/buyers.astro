@@ -639,19 +639,15 @@ const buyerSchema = {
   @media (max-width: 860px) {
     .buyers-split { grid-template-columns: 1fr !important; }
 
-    /* Hero becomes a self-contained intro card with room to breathe */
+    /* Hero is content-sized so the form is reachable with minimal scroll */
     .buyers-hero-panel {
-      min-height: 75vh !important;
-      padding: 7rem 1.5rem 2.5rem !important;
+      min-height: 0 !important;
+      padding: 6.5rem 1.5rem 2rem !important;
       justify-content: flex-start !important;
       overflow: hidden;
     }
-    /* Inner content wrapper becomes a flex column so we can dock the
-       phone link at the bottom of the hero */
     .buyers-hero-content {
-      display: flex !important;
-      flex-direction: column !important;
-      flex: 1 1 auto !important;
+      display: block !important;
       width: 100% !important;
     }
     .buyers-hero-panel h1 {
@@ -698,11 +694,11 @@ const buyerSchema = {
       background: #b8851e !important;
       transform: translateY(1px) !important;
     }
-    /* Phone link docks at the bottom of the hero with a thin separator */
+    /* Phone link sits below the CTA with a thin separator, no big gap */
     .buyers-hero-mobile-call {
       display: block !important;
-      margin-top: auto !important;
-      padding-top: 1.75rem !important;
+      margin-top: 1.5rem !important;
+      padding-top: 1.5rem !important;
       border-top: 1px solid rgba(255,255,255,0.12) !important;
       font-family: var(--font-sans) !important;
       font-size: 0.85rem !important;
