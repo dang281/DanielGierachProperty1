@@ -114,11 +114,17 @@ const buyerSchema = {
 
       <form id="buyer-form" method="POST" action="https://formspree.io/f/meedzvyv">
 
-        <!-- Honeypot + hidden fields -->
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <!-- Hidden Formspree controls -->
         <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=buyer-registration" />
         <input type="hidden" name="_subject" value="New buyer registration - danielgierach.com" />
         <input type="hidden" name="_source" value="buyers" />
+
+        <!-- Honeypot. aria-hidden + offscreen position keeps password managers from
+             auto-filling the field; only headless bots fill it. -->
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+          <label for="_gotcha">Leave this field empty</label>
+          <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="new-password" />
+        </div>
 
         <!-- ─── STEP 1: Property details ────────────────────── -->
         <div id="step-1" class="wz-step" style="display:flex;flex-direction:column;gap:1.25rem;">
