@@ -26,11 +26,10 @@ import { resolve, dirname } from 'path';
 const args = process.argv.slice(2);
 const get  = (k, d='') => { const i = args.indexOf(`--${k}`); return i !== -1 ? args[i + 1] : d; };
 
-const eyebrow  = get('eyebrow',  'OFF-MARKET & PRE-MARKET');
+const eyebrow  = get('eyebrow',  'OFF-MARKET & PRE-MARKET ACCESS');
 const headline = get('headline', 'Find your next home before it hits the market.');
 const sub      = get('sub',      "Brisbane's inner east. Early access for registered buyers, before properties hit realestate.com.au.");
 const cta      = get('cta',      'Register your brief');
-const url      = get('url',      'danielgierach.com/buyers');
 const outArg   = get('out',      `/Users/danielgierach/Documents/IG-Stories/buyers-promo-${new Date().toISOString().slice(0,10)}.png`);
 
 const outPath  = resolve(outArg);
@@ -159,7 +158,7 @@ const html = `<!doctype html>
     text-transform: uppercase;
     padding: 36px 56px;
     border: none;
-    margin-bottom: 42px;
+    margin-bottom: 72px;
   }
   .cta .arrow {
     display: inline-flex;
@@ -169,16 +168,6 @@ const html = `<!doctype html>
     border-radius: 50%;
     background: rgba(10, 8, 6, 0.18);
   }
-
-  .url {
-    font-family: 'Manrope', sans-serif;
-    font-size: 30px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: rgba(240, 236, 228, 0.9);
-    margin-bottom: 56px;
-  }
-  .url .domain { color: #f5d07a; }
 
   .brand-rule {
     width: 56px; height: 1px;
@@ -224,11 +213,9 @@ const html = `<!doctype html>
         </span>
       </div>
 
-      <div class="url">Register at <span class="domain">${url}</span></div>
-
       <div class="brand-rule"></div>
       <div class="brand-name">Daniel Gierach</div>
-      <div class="brand-agency">Ray White Bulimba</div>
+      <div class="brand-agency">Ray White Collective</div>
     </div>
   </div>
 </div>
