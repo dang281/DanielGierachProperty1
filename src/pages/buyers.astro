@@ -50,7 +50,7 @@ const buyerSchema = {
     </div>
 
     <div class="relative z-10">
-      <span class="reveal" style="display:block;font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#f5d07a;margin-bottom:1.25rem;">Off-Market &amp; Pre-Market · Inner East</span>
+      <span class="reveal" style="display:block;font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#f5d07a;margin-bottom:1.25rem;">Off-Market &amp; Pre-Market</span>
 
       <h1 id="hero-heading" class="reveal" data-delay="60"
         style="font-family:var(--font-serif);font-size:clamp(2.4rem,4vw,3.8rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;transition:opacity 0.3s;">
@@ -76,13 +76,6 @@ const buyerSchema = {
   <div class="flex flex-col justify-center overflow-y-auto buyers-form-panel" style="background:var(--color-surface-1);padding:8rem 4rem 4rem;">
 
     <div class="reveal" data-delay="80" style="max-width:500px;width:100%;">
-
-      <!-- Mobile-only brand anchor — shown when hero is scrolled away -->
-      <div class="wz-mobile-brand">
-        <span>Daniel Gierach</span>
-        <span class="wz-mobile-brand-sep">·</span>
-        <span>Ray White Bulimba</span>
-      </div>
 
       <!-- Step progress indicator -->
       <div class="wz-indicator" id="wz-indicator" style="margin-bottom:2.25rem;">
@@ -418,7 +411,11 @@ const buyerSchema = {
 <style is:global>
   .resources-grid { }
   @media (max-width: 640px) {
-    .resources-grid { grid-template-columns: 1fr !important; }
+    .resources-grid { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
+    .resource-card { padding: 1.25rem !important; }
+    /* Tighter section rhythm on phones */
+    section[style*="padding:4rem 0"] { padding: 2.5rem 0 !important; }
+    section[style*="padding:4rem 1.5rem 5rem"] { padding: 2.5rem 1.25rem 3rem !important; }
   }
   @media (min-width: 641px) and (max-width: 900px) {
     .resources-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -609,23 +606,6 @@ const buyerSchema = {
     background: #c4912a;
   }
 
-  /* ── Mobile brand anchor (hidden on desktop) ──────────────────────────────── */
-  .wz-mobile-brand {
-    display: none;
-    align-items: center;
-    font-family: var(--font-sans);
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(28,25,23,0.38);
-    margin-bottom: 1.25rem;
-  }
-  .wz-mobile-brand-sep { margin: 0 0.35rem; }
-  @media (max-width: 860px) {
-    .wz-mobile-brand { display: flex; }
-  }
-
   /* ── Desktop: left panel sticky ─────────────────────────────────────────── */
   @media (min-width: 861px) {
     .buyers-hero-panel {
@@ -643,18 +623,36 @@ const buyerSchema = {
     .buyers-split { grid-template-columns: 1fr !important; }
     .buyers-hero-panel {
       min-height: 0;
-      padding: 5rem 1.25rem 1.5rem !important;
+      padding: 4.25rem 1.25rem 1.1rem !important;
       overflow: hidden;
     }
     .buyers-hero-panel h1 {
-      font-size: clamp(1.1rem, 5vw, 1.8rem) !important;
+      font-size: clamp(1.15rem, 5vw, 1.7rem) !important;
       margin-bottom: 0 !important;
-      line-height: 1.15 !important;
+      line-height: 1.18 !important;
     }
-    .buyers-form-panel { padding: 2rem 1.25rem 4rem !important; }
+    .buyers-form-panel { padding: 1.5rem 1.25rem 3.5rem !important; }
     .buyers-hero-desc,
     .buyers-hero-points,
     .buyers-hero-contact { display: none !important; }
+
+    /* Dots already show progress + label, so drop the duplicate counter */
+    #wz-counter { display: none !important; }
+
+    /* Tighter indicator and section heading on mobile */
+    .wz-indicator { margin-bottom: 1.4rem !important; }
+    #wz-heading { margin-bottom: 0.3rem !important; }
+    #wz-subhead { margin-bottom: 1.25rem !important; }
+
+    /* Field labels were 9px. Bump for legibility on touch. */
+    .field-label { font-size: 0.7rem !important; letter-spacing: 0.12em !important; }
+    .field-opt   { font-size: 0.66rem !important; }
+  }
+
+  /* Smallest screens: drop dot labels so the indicator doesn't crowd */
+  @media (max-width: 400px) {
+    .wz-dot-lbl { display: none !important; }
+    .wz-dot-wrap { gap: 0 !important; }
   }
 
   /* ── Mobile: prevent iOS auto-zoom (needs 16px+ on all inputs) ─── */
