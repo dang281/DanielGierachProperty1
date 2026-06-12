@@ -28,7 +28,7 @@ const get  = (k, d='') => { const i = args.indexOf(`--${k}`); return i !== -1 ? 
 
 const eyebrow  = get('eyebrow',  'OFF-MARKET & PRE-MARKET ACCESS');
 const headline = get('headline', 'Find your next home before it hits the market.');
-const sub      = get('sub',      "Brisbane's inner east. Early access for registered buyers, before properties hit realestate.com.au.");
+const sub      = get('sub',      'Early access for registered buyers, before properties hit online.');
 const cta      = get('cta',      'Register your brief');
 const outArg   = get('out',      `/Users/danielgierach/Documents/IG-Stories/buyers-promo-${new Date().toISOString().slice(0,10)}.png`);
 
@@ -96,32 +96,34 @@ const html = `<!doctype html>
 
   .eyebrow {
     font-family: 'Manrope', sans-serif;
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 800;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.28em;
     color: #f5d07a;
     text-transform: uppercase;
     margin-bottom: 56px;
     display: flex;
     align-items: center;
     gap: 22px;
+    white-space: nowrap;
   }
   .eyebrow::before {
     content: '';
     display: block;
-    width: 64px; height: 2px;
+    width: 56px; height: 2px;
     background: #c4912a;
+    flex-shrink: 0;
   }
 
   .headline {
     font-family: 'Noto Serif', Georgia, serif;
     font-weight: 400;
-    font-size: 116px;
-    line-height: 1.04;
-    letter-spacing: -0.022em;
+    font-size: 81px;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
     color: #f4f0e7;
-    margin-bottom: 56px;
-    max-width: 900px;
+    margin-bottom: 48px;
+    max-width: 820px;
   }
   .headline em {
     font-style: italic;
