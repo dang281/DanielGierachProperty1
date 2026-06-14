@@ -247,6 +247,8 @@ const legendGroups = [
   #pm-infra-panel.open { display: contents; }
   #pm-other-panel { display: none; }
   #pm-other-panel.open { display: contents; }
+  #pm-schools-panel { display: none; }
+  #pm-schools-panel.open { display: contents; }
   .pm-layer-row {
     display: flex; align-items: center; gap: 0.6rem;
     padding: 0.45rem 0.6rem;
@@ -809,6 +811,29 @@ window.PM_ZONES = {
 
         </div>
 
+        <!-- School catchments (collapsible) -->
+        <button class="pm-infra-toggle" id="pm-schools-toggle" aria-expanded="false" aria-controls="pm-schools-panel">
+          School catchments
+          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(state primary / secondary)</span>
+          <svg class="pm-toggle-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="pm-schools-panel">
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="catchmentPrimary" />
+            <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:rgba(8,145,178,0.12);border:1.5px solid #0891b2;"></span></span>
+            <span class="pm-layer-name">Primary catchments
+              <span class="pm-layer-hint">State primary school enrolment boundaries</span>
+            </span>
+          </label>
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="catchmentSecondary" />
+            <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:rgba(124,58,237,0.12);border:1.5px solid #7c3aed;"></span></span>
+            <span class="pm-layer-name">Secondary catchments
+              <span class="pm-layer-hint">State high school enrolment boundaries</span>
+            </span>
+          </label>
+        </div>
+
         <!-- Other (collapsible) -->
         <button class="pm-infra-toggle" id="pm-other-toggle" aria-expanded="false" aria-controls="pm-other-panel">
           Other
@@ -1067,6 +1092,19 @@ window.PM_ZONES = {
     floodOverland: 'This property is within the overland flow flood planning area. Surface water flows across this land during major rainfall events. Development must maintain overland flow paths and may require drainage design to manage flow impacts on adjacent properties.',
   };
 
+  // ── State school catchment layers (QLD Department of Education) ───────
+  const CATCHMENT_SVC: Record<string,string> = {
+    catchmentPrimary:   'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Society/SchoolsAndSchoolCatchments/MapServer/1',
+    catchmentSecondary: 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Society/SchoolsAndSchoolCatchments/MapServer/3',
+  };
+  const CATCHMENT_STYLE: Record<string,{stroke:string;fill:string;fillOpacity:number}> = {
+    catchmentPrimary:   { stroke: '#0891b2', fill: '#0891b2', fillOpacity: 0.06 },
+    catchmentSecondary: { stroke: '#7c3aed', fill: '#7c3aed', fillOpacity: 0.06 },
+  };
+  const CATCHMENT_LABEL: Record<string,string> = {
+    catchmentPrimary: 'Primary', catchmentSecondary: 'Secondary',
+  };
+
   const active: Record<string,boolean> = {
     zoning: true,
     propertyBoundary: true,
@@ -1074,10 +1112,12 @@ window.PM_ZONES = {
     sewerMain: true, sewerService: true, waterMain: true, waterService: true,
     sewerManhole: false, hydrant: false,
     floodOverland: false,
+    catchmentPrimary: false, catchmentSecondary: false,
   };
   let map: any, layers: Record<string,any> = {}, pinMarker: any, parcelDimLayer: any = null;
   let zoningLayer: any, zoneFetchAbort: AbortController | null = null;
   let floodLayers: Record<string,any> = {}, floodAborts: Record<string,AbortController> = {};
+  let catchmentLayers: Record<string,any> = {}, catchmentAborts: Record<string,AbortController> = {};
   let fetchAborts: Record<string,AbortController> = {}, acDebounce: any;
   let canvasRenderer: any;
   let overlayOpacity = 0.65;
@@ -1124,6 +1164,12 @@ window.PM_ZONES = {
     Object.keys(FLOOD_SVC).forEach(k => {
       floodLayers[k] = (window as any).L.layerGroup();
       if (active[k]) floodLayers[k].addTo(map);
+    });
+
+    // School catchment layer groups (rendered at same level as flood overlays)
+    Object.keys(CATCHMENT_SVC).forEach(k => {
+      catchmentLayers[k] = (window as any).L.layerGroup();
+      if (active[k]) catchmentLayers[k].addTo(map);
     });
 
     // Restore shared view from URL params
@@ -1354,6 +1400,75 @@ window.PM_ZONES = {
       .catch((err: any) => { if (err.name === 'AbortError') return; });
   }
 
+  // ── Load one school catchment layer ──────────────────────────────────
+  // QLD DoE service supports f=geojson directly. maxAllowableOffset trims
+  // detail at low zoom so we keep payload modest across the whole map area.
+  function loadCatchment(key: string) {
+    if (!active[key]) { catchmentLayers[key].clearLayers(); return; }
+    if (map.getZoom() < 12) { catchmentLayers[key].clearLayers(); return; }
+    if (catchmentAborts[key]) catchmentAborts[key].abort();
+    catchmentAborts[key] = new AbortController();
+
+    const b = map.getBounds();
+    const sw = b.getSouthWest(), ne = b.getNorthEast();
+    const z = map.getZoom();
+    const offset = z >= 16 ? 0 : z >= 14 ? 0.00005 : z >= 12 ? 0.0002 : 0.0005;
+
+    const params = new URLSearchParams({
+      geometry: `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`,
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326', outSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: 'centre_name',
+      returnGeometry: 'true',
+      maxAllowableOffset: String(offset),
+      resultRecordCount: '2000',
+      f: 'geojson',
+    });
+
+    fetch(`${CATCHMENT_SVC[key]}/query?${params}`, { signal: catchmentAborts[key].signal })
+      .then(r => r.json())
+      .then(geo => {
+        catchmentLayers[key].clearLayers();
+        const style = CATCHMENT_STYLE[key];
+        (window as any).L.geoJSON(geo, {
+          renderer: canvasRenderer,
+          style: () => ({
+            color: style.stroke, weight: 1.6, opacity: 0.75,
+            fillColor: style.fill, fillOpacity: style.fillOpacity,
+          }),
+          onEachFeature(f: any, layer: any) {
+            const name = f?.properties?.centre_name || 'Unknown catchment';
+            const tier = CATCHMENT_LABEL[key];
+            layer.bindTooltip(`${name} (${tier})`, { sticky: true, direction: 'top', opacity: 0.9 });
+            layer.on('click', (e: any) => {
+              (window as any).L.DomEvent.stopPropagation(e);
+              dropPin(e.latlng.lat, e.latlng.lng);
+              updateSummaryCard(e.latlng.lat, e.latlng.lng);
+              showCatchmentResult(key, f.properties || {});
+            });
+          },
+        }).addTo(catchmentLayers[key]);
+      })
+      .catch((err: any) => { if (err.name === 'AbortError') return; });
+  }
+
+  function showCatchmentResult(key: string, attrs: Record<string,any>) {
+    const el = document.getElementById('pm-result')!;
+    el.className = 'mode-asset kind-catchment open';
+    document.getElementById('pm-result-eyebrow')!.textContent = 'School catchment (QLD DoE)';
+    const name = attrs.centre_name || 'Unknown catchment';
+    const tier = CATCHMENT_LABEL[key];
+    const style = CATCHMENT_STYLE[key];
+    document.getElementById('pm-result-body')!.innerHTML = `
+      <div style="display:flex;align-items:center;gap:0.55rem;margin-bottom:0.35rem;">
+        <span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:${style.fill}33;border:1.5px solid ${style.stroke};"></span>
+        <strong style="font-size:0.95rem;color:#1c1917;">${name}</strong>
+      </div>
+      <p style="font-size:0.8rem;color:rgba(28,25,23,0.62);margin:0 0 0.45rem;">State ${tier.toLowerCase()} school catchment.</p>
+      <p style="font-size:0.72rem;color:rgba(28,25,23,0.48);margin:0;line-height:1.5;">Living within a catchment guarantees enrolment at this state school. Always verify the current catchment boundary with the school or via the official QLD Globe before relying on it for a property decision.</p>`;
+  }
+
   // ── Show flood overlay result ─────────────────────────────────────────
   function showFloodResult(key: string, attrs: Record<string,any>) {
     const el = document.getElementById('pm-result')!;
@@ -1392,6 +1507,12 @@ window.PM_ZONES = {
     // spans the entire flood region and AGOL returns thousands of features).
     Object.keys(FLOOD_SVC).forEach(k => {
       if (active[k]) { if (z >= 13) loadFlood(k); else floodLayers[k].clearLayers(); }
+    });
+
+    // School catchments load at zoom 12+ since the polygons are large and
+    // useful for orientation when zoomed slightly out.
+    Object.keys(CATCHMENT_SVC).forEach(k => {
+      if (active[k]) { if (z >= 12) loadCatchment(k); else catchmentLayers[k].clearLayers(); }
     });
 
     if (z < 14) {
@@ -2120,6 +2241,14 @@ window.PM_ZONES = {
       otherBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
+    // School catchments collapse toggle
+    const schoolsBtn   = document.getElementById('pm-schools-toggle')!;
+    const schoolsPanel = document.getElementById('pm-schools-panel')!;
+    schoolsBtn.addEventListener('click', () => {
+      const open = schoolsPanel.classList.toggle('open');
+      schoolsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
     // Pro mode: auto-expand the Other panel so the overland toggle is visible
     if (active.floodOverland) {
       otherPanel.classList.add('open');
@@ -2144,6 +2273,9 @@ window.PM_ZONES = {
         if (k in floodLayers) {
           if (active[k]) { floodLayers[k].addTo(map); loadFlood(k); }
           else map.removeLayer(floodLayers[k]);
+        } else if (k in catchmentLayers) {
+          if (active[k]) { catchmentLayers[k].addTo(map); loadCatchment(k); }
+          else map.removeLayer(catchmentLayers[k]);
         } else {
           if (active[k]) { layers[k].addTo(map); loadOne(k); }
           else map.removeLayer(layers[k]);
