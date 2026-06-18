@@ -247,8 +247,6 @@ const legendGroups = [
   #pm-infra-panel.open { display: contents; }
   #pm-other-panel { display: none; }
   #pm-other-panel.open { display: contents; }
-  #pm-schools-panel { display: none; }
-  #pm-schools-panel.open { display: contents; }
   .pm-layer-row {
     display: flex; align-items: center; gap: 0.6rem;
     padding: 0.45rem 0.6rem;
@@ -811,13 +809,20 @@ window.PM_ZONES = {
 
         </div>
 
-        <!-- School catchments (collapsible) -->
-        <button class="pm-infra-toggle" id="pm-schools-toggle" aria-expanded="false" aria-controls="pm-schools-panel">
-          School catchments
-          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(state primary / secondary)</span>
+        <!-- Other (collapsible) -->
+        <button class="pm-infra-toggle" id="pm-other-toggle" aria-expanded="false" aria-controls="pm-other-panel">
+          Other
+          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(flood overlays, school catchments)</span>
           <svg class="pm-toggle-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div id="pm-schools-panel">
+        <div id="pm-other-panel">
+          <label class="pm-layer-row">
+            <input type="checkbox" data-layer="floodOverland" />
+            <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#0096c8;opacity:0.5;border:1px solid rgba(0,200,240,0.5);border-style:dashed;"></span></span>
+            <span class="pm-layer-name">Overland flow area
+              <span class="pm-layer-hint">Surface water flow paths during major rainfall</span>
+            </span>
+          </label>
           <label class="pm-layer-row">
             <input type="checkbox" data-layer="catchmentPrimary" />
             <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:rgba(8,145,178,0.12);border:1.5px solid #0891b2;"></span></span>
@@ -830,22 +835,6 @@ window.PM_ZONES = {
             <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:rgba(124,58,237,0.12);border:1.5px solid #7c3aed;"></span></span>
             <span class="pm-layer-name">Secondary catchments
               <span class="pm-layer-hint">State high school enrolment boundaries</span>
-            </span>
-          </label>
-        </div>
-
-        <!-- Other (collapsible) -->
-        <button class="pm-infra-toggle" id="pm-other-toggle" aria-expanded="false" aria-controls="pm-other-panel">
-          Other
-          <span style="font-size:0.5rem;font-weight:600;letter-spacing:0.1em;color:rgba(28,25,23,0.35);text-transform:none;margin-left:0.3rem;">(flood overlays)</span>
-          <svg class="pm-toggle-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div id="pm-other-panel">
-          <label class="pm-layer-row">
-            <input type="checkbox" data-layer="floodOverland" />
-            <span class="pm-swatch"><span style="display:block;width:18px;height:10px;border-radius:2px;background:#0096c8;opacity:0.5;border:1px solid rgba(0,200,240,0.5);border-style:dashed;"></span></span>
-            <span class="pm-layer-name">Overland flow area
-              <span class="pm-layer-hint">Surface water flow paths during major rainfall</span>
             </span>
           </label>
         </div>
@@ -2239,14 +2228,6 @@ window.PM_ZONES = {
     otherBtn.addEventListener('click', () => {
       const open = otherPanel.classList.toggle('open');
       otherBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-
-    // School catchments collapse toggle
-    const schoolsBtn   = document.getElementById('pm-schools-toggle')!;
-    const schoolsPanel = document.getElementById('pm-schools-panel')!;
-    schoolsBtn.addEventListener('click', () => {
-      const open = schoolsPanel.classList.toggle('open');
-      schoolsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
     // Pro mode: auto-expand the Other panel so the overland toggle is visible
