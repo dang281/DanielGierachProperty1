@@ -21,21 +21,10 @@ const listings = [
     suburb: 'Carina',
     address: '34 Balmerino Drive',
     street: 'Carina QLD 4152',
-    price: 'Auction - If Not Sold Prior',
-    beds: 4, baths: 3, cars: 2,
-    tag: 'Auction',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/carina-4152/house/3512351',
-  },
-  {
-    id: 8,
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1ee0-H3507158-201017882__1778550340-49608-AMY8135.jpg',
-    suburb: 'Wynnum',
-    address: '348 Tingal Road',
-    street: 'Wynnum QLD 4178',
     price: 'Price by Negotiation',
     beds: 4, baths: 3, cars: 2,
     tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/wynnum-4178/house/3507158',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/carina-4152/house/3512351',
   },
   {
     id: 7,
@@ -43,10 +32,21 @@ const listings = [
     suburb: 'Seven Hills',
     address: '64 Valaria Avenue',
     street: 'Seven Hills QLD 4170',
-    price: 'Price by Negotiation',
+    price: '$1,800,000',
     beds: 5, baths: 3, cars: 2,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/seven-hills-4170/house/3494515',
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/seven-hills-4170/house/3494515',
+  },
+  {
+    id: 8,
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1ee0-H3507158-201017882__1778550340-49608-AMY8135.jpg',
+    suburb: 'Wynnum',
+    address: '348 Tingal Road',
+    street: 'Wynnum QLD 4178',
+    price: 'Sold June 2026',
+    beds: 4, baths: 3, cars: 2,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/wynnum-4178/house/3507158',
   },
   {
     id: 6,
@@ -65,10 +65,10 @@ const listings = [
     suburb: 'West End',
     address: '11103/41 Tondara Lane',
     street: 'West End QLD 4101',
-    price: 'Contact Agent',
+    price: 'Sold 11 June 2026',
     beds: 3, baths: 3, cars: 4,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/west-end-4101/unit/3442687',
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/west-end-4101/unit/3442687',
   },
   {
     id: 3,
@@ -273,10 +273,10 @@ const faqSchema = {
       <div class="reveal" style="max-width:36rem;">
         <span class="eyebrow mb-4">Daniel's</span>
         <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.1;">
-          Recent Properties for Sale
+          Recent Properties
         </h2>
         <p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:1rem;line-height:1.8;">
-          Recent properties listed by Daniel across Brisbane.
+          Current listings and recent sales by Daniel across Brisbane.
         </p>
       </div>
       <a href="/listings" class="reveal" data-delay="100"
