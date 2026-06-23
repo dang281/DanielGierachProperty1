@@ -1,0 +1,382 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+
+const services = [
+  {
+    href: '/tools/presale-checklist',
+    eyebrow: 'For sellers',
+    title: 'Prepare your home for sale',
+    desc: 'An interactive checklist that walks you through every room. Kerb appeal, repairs, staging and compliance.',
+  },
+  {
+    href: '/tools/property-map',
+    eyebrow: 'For everyone',
+    title: 'Brisbane Property Map',
+    desc: 'Zoning, flood overlays, stormwater, water and sewer, school catchments. All on one map for any address.',
+  },
+  {
+    href: '/buyers',
+    eyebrow: 'For buyers',
+    title: 'Off-market & pre-market access',
+    desc: 'Register your brief in three steps. Be the first to see homes in the inner east before they hit realestate.com.au.',
+  },
+];
+
+const articles = [
+  {
+    href: '/insights/aml-changes-real-estate-brisbane-1-july-2026',
+    title: 'New AML rules for Brisbane real estate, from 1 July 2026',
+    desc: 'What changes for buyers and sellers when agents become AUSTRAC reporting entities, and how Ray White Bulimba is handling it.',
+  },
+  {
+    href: '/insights/seller-disclosure-obligations-queensland',
+    title: 'Seller disclosure obligations in Queensland',
+    desc: 'What a vendor must (and should) tell a buyer under the new disclosure regime. The common traps and how to avoid them.',
+  },
+];
+---
+
+<LandingLayout
+  title="Property Tools & Guides | Daniel Gierach & Conrad Leisemann"
+  description="Free property tools and articles for Brisbane buyers and sellers. Prepare your home, search the property map, register for off-market access, and read the latest market notes."
+>
+
+<style>
+  :root {
+    --bg: #0a0806;
+    --bg-soft: #15110d;
+    --card: #1c1612;
+    --card-hover: #221a14;
+    --line: rgba(240, 236, 228, 0.08);
+    --line-strong: rgba(196, 145, 42, 0.35);
+    --text: #f2efe9;
+    --text-mute: rgba(242, 239, 233, 0.55);
+    --text-soft: rgba(242, 239, 233, 0.78);
+    --gold: #c4912a;
+    --gold-bright: #d4a23a;
+  }
+
+  body { background: var(--bg); color: var(--text); }
+
+  .shell {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 2.25rem 1.25rem 3rem;
+    min-height: 100svh;
+  }
+  @media (min-width: 640px) {
+    .shell { padding: 3rem 1.5rem 4rem; }
+  }
+
+  .header { text-align: center; margin-bottom: 2.25rem; }
+  .agents {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 480px) { .agents { gap: 2rem; } }
+  @media (min-width: 640px) { .agents { gap: 2.75rem; } }
+
+  .agent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 170px;
+  }
+
+  .avatar {
+    width: 92px; height: 92px; border-radius: 50%;
+    object-fit: cover; margin: 0 0 0.7rem; display: block;
+    border: 2px solid rgba(196,145,42,0.6);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+  @media (min-width: 480px) { .avatar { width: 108px; height: 108px; } }
+
+  .name {
+    font-family: var(--font-serif);
+    font-size: 1.05rem; font-weight: 400; line-height: 1.2;
+    margin-bottom: 0.2rem; letter-spacing: -0.01em;
+    min-height: 2.5em;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  @media (min-width: 480px) { .name { font-size: 1.2rem; min-height: 1.4em; } }
+
+  .phone {
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+  }
+  .phone a {
+    color: var(--gold); text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .phone a:hover { color: var(--gold-bright); }
+  @media (min-width: 480px) { .phone { font-size: 0.78rem; } }
+
+  .email {
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+    word-break: break-all;
+    max-width: 100%;
+  }
+  .email a {
+    color: var(--text-soft); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .email a:hover { color: var(--gold); }
+  @media (min-width: 480px) { .email { font-size: 0.66rem; word-break: normal; } }
+
+  .handle {
+    font-family: var(--font-sans);
+    font-size: 0.64rem; font-weight: 500;
+    color: var(--text-mute); letter-spacing: 0.02em;
+    line-height: 1.3;
+    word-break: break-all;
+  }
+  @media (min-width: 480px) { .handle { font-size: 0.68rem; word-break: normal; } }
+
+  .handle a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .handle a:hover { color: var(--gold); }
+  .agency {
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-mute);
+    margin: 0.5rem 0 0.95rem;
+  }
+  .tagline {
+    font-size: 0.88rem; line-height: 1.55;
+    color: var(--text-soft);
+    max-width: 38ch; margin: 0 auto;
+  }
+
+  .section { margin-bottom: 2rem; }
+  .section-label {
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 800;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: 0.85rem; padding-left: 0.15rem;
+  }
+
+  .card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    padding: 1.15rem 1.25rem;
+    text-decoration: none;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    transition: background 0.18s, border-color 0.18s, transform 0.18s;
+    min-height: 64px;
+    position: relative;
+  }
+  .card:hover, .card:focus-visible {
+    background: var(--card-hover);
+    border-left-color: var(--gold-bright);
+    transform: translateY(-1px);
+  }
+  .card:active { transform: translateY(0); background: var(--card); }
+
+  .card-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.56rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold);
+    display: block; margin-bottom: 0.4rem;
+  }
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem; font-weight: 400; line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+  .card-desc {
+    font-size: 0.78rem; line-height: 1.55;
+    color: var(--text-soft);
+    padding-right: 1.5rem;
+  }
+  .card-arrow {
+    position: absolute; right: 1rem; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-mute); transition: color 0.18s, transform 0.18s;
+  }
+  .card:hover .card-arrow {
+    color: var(--gold);
+    transform: translateY(-50%) translateX(3px);
+  }
+
+  /* Article card variant: smaller, lighter accent */
+  .acard {
+    display: block;
+    padding: 0.95rem 1.1rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--text);
+    margin-bottom: 0.55rem;
+    transition: background 0.18s, border-color 0.18s;
+    position: relative;
+  }
+  .acard:hover, .acard:focus-visible {
+    background: var(--bg-soft);
+    border-color: var(--line-strong);
+  }
+  .acard-title {
+    font-family: var(--font-serif);
+    font-size: 0.95rem; font-weight: 400; line-height: 1.3;
+    margin-bottom: 0.3rem;
+    padding-right: 1.5rem;
+  }
+  .acard-desc {
+    font-size: 0.72rem; line-height: 1.55;
+    color: var(--text-mute);
+    padding-right: 1.5rem;
+  }
+
+  .browse-all {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    margin-top: 0.65rem; padding: 0.25rem 0.15rem;
+    font-family: var(--font-sans);
+    font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    transition: color 0.18s;
+  }
+  .browse-all:hover { color: var(--gold-bright); }
+
+  /* Final CTA panel */
+  .final {
+    background: linear-gradient(135deg, rgba(196,145,42,0.12), rgba(196,145,42,0.03));
+    border: 1px solid var(--line-strong);
+    padding: 1.5rem 1.35rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .final-title {
+    font-family: var(--font-serif);
+    font-size: 1rem; font-weight: 400; line-height: 1.3;
+    margin-bottom: 0.45rem;
+  }
+  .final-sub {
+    font-size: 0.78rem; line-height: 1.55;
+    color: var(--text-soft);
+    margin-bottom: 1rem;
+  }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--gold); color: var(--bg);
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-bright); }
+
+  .contact-row {
+    display: flex; justify-content: center; gap: 1.5rem;
+    margin-top: 1.75rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .contact-row a {
+    font-family: var(--font-sans);
+    font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-mute); text-decoration: none;
+    transition: color 0.18s;
+  }
+  .contact-row a:hover { color: var(--gold); }
+
+  .legal {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.6rem; color: var(--text-mute);
+    line-height: 1.5;
+  }
+  .legal a { color: var(--text-mute); text-decoration: underline; text-underline-offset: 2px; }
+</style>
+
+<div class="shell">
+
+  <header class="header">
+    <div class="agents">
+      <div class="agent">
+        <img src="/img/daniel-headshot.jpg" alt="Daniel Gierach" class="avatar" width="108" height="108" loading="eager" />
+        <h1 class="name">Daniel Gierach</h1>
+        <p class="phone"><a href="tel:+61412523821" data-cta="property_tools_call_daniel">0412 523 821</a></p>
+        <p class="email"><a href="mailto:daniel.gierach@raywhite.com" data-cta="property_tools_email_daniel">daniel.gierach@raywhite.com</a></p>
+        <p class="handle"><a href="https://www.instagram.com/dgierach/" target="_blank" rel="noopener">@dgierach</a></p>
+      </div>
+      <div class="agent">
+        <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann" class="avatar" width="108" height="108" loading="eager" />
+        <h2 class="name">Conrad Leisemann</h2>
+        <p class="phone"><a href="tel:+61403978813" data-cta="property_tools_call_conrad">0403 978 813</a></p>
+        <p class="email"><a href="mailto:conrad.leisemann@raywhite.com" data-cta="property_tools_email_conrad">conrad.leisemann@raywhite.com</a></p>
+        <p class="handle"><a href="https://www.instagram.com/connie_leisemann/" target="_blank" rel="noopener">@connie_leisemann</a></p>
+      </div>
+    </div>
+    <p class="agency">Ray White &middot; The Collective &middot; Bulimba</p>
+  </header>
+
+  <section class="section">
+    <span class="section-label">Tools &amp; services</span>
+    {services.map(s => (
+      <a class="card" href={s.href} data-cta={`property_tools_${s.href.replace(/\//g, '_')}`}>
+        <span class="card-eyebrow">{s.eyebrow}</span>
+        <div class="card-title">{s.title}</div>
+        <p class="card-desc">{s.desc}</p>
+        <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    ))}
+  </section>
+
+  <section class="section">
+    <span class="section-label">Latest articles</span>
+    {articles.map(a => (
+      <a class="acard" href={a.href} data-cta={`property_tools_article_${a.href.split('/').pop()}`}>
+        <div class="acard-title">{a.title}</div>
+        <p class="acard-desc">{a.desc}</p>
+        <svg class="card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    ))}
+    <a href="/insights" class="browse-all" data-cta="property_tools_browse_all">
+      Browse all articles
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <div class="final">
+    <p class="final-title">What is your home worth in today's market?</p>
+    <p class="final-sub">A free, no-obligation property report based on recent comparable sales in your suburb.</p>
+    <a href="/walkthrough" class="btn-gold" data-cta="property_tools_to_walkthrough">
+      Get my free property report
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="contact-row">
+    <a href="/contact" data-cta="property_tools_contact">Contact</a>
+    <a href="/tools" data-cta="property_tools_all_tools">All tools</a>
+    <a href="/" data-cta="property_tools_home">Home</a>
+  </div>
+
+  <p class="legal">
+    Educational information only. Always seek independent advice.
+  </p>
+
+</div>
+
+</LandingLayout>
