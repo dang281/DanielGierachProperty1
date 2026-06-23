@@ -164,9 +164,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div id="score-label" style="margin-top:0.5rem;font-size:0.75rem;font-style:italic;color:#78716c;"></div>
     </div>
     <div style="display:flex;gap:0.75rem;flex-shrink:0;" class="no-print">
-      <button onclick="window.print()" style="padding:0.65rem 1.25rem;border:1.5px solid rgba(28,25,23,0.2);background:transparent;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;color:#1c1917;display:flex;align-items:center;gap:0.4rem;">
+      <button id="oh-print-btn" type="button" style="padding:0.65rem 1.25rem;border:1.5px solid rgba(28,25,23,0.2);background:transparent;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;color:#1c1917;display:flex;align-items:center;gap:0.4rem;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
-        Print
+        <span id="oh-print-label">Print</span>
       </button>
     </div>
   </div>
@@ -464,6 +464,34 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   });
 
   updateScore();
+
+  // Print / share button: on mobile, use Web Share so the native OS sheet
+  // exposes Print, Save to PDF, Email, etc. (window.print is unreliable on
+  // iOS Chrome/Firefox). Desktop still gets a direct print dialog.
+  const ohPrintBtn = document.getElementById('oh-print-btn');
+  const ohPrintLabel = document.getElementById('oh-print-label');
+  const ohIsMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const ohHasShare = typeof (navigator as any).share === 'function';
+  if (ohPrintBtn && ohPrintLabel && ohIsMobile && ohHasShare) {
+    ohPrintLabel.textContent = 'Save / share';
+  }
+  ohPrintBtn?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (ohIsMobile && ohHasShare) {
+      try {
+        const addr = (document.getElementById('print-address') as HTMLElement | null)?.textContent || 'Open home inspection';
+        await (navigator as any).share({
+          title: 'Open Home Inspection Checklist',
+          text: `${addr}. Open home checklist by Daniel Gierach.`,
+          url: location.href,
+        });
+        return;
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return;
+      }
+    }
+    window.print();
+  });
 </script>
 
 

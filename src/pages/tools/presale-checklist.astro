@@ -152,9 +152,9 @@ const sections = [
       </p>
       <p id="prog-label" style="font-size:0.82rem;color:var(--color-text-muted);margin-top:0.25rem;">Tick items off as you go.</p>
     </div>
-    <button id="print-btn" style="margin-left:auto;padding:0.6rem 1.1rem;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid rgba(28,25,23,0.22);color:#78716c;background:transparent;cursor:pointer;display:flex;align-items:center;gap:0.4rem;" onclick="window.print()">
+    <button id="print-btn" type="button" style="margin-left:auto;padding:0.6rem 1.1rem;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid rgba(28,25,23,0.22);color:#78716c;background:transparent;cursor:pointer;display:flex;align-items:center;gap:0.4rem;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      Print
+      <span id="print-btn-label">Print</span>
     </button>
   </div>
 
@@ -259,6 +259,36 @@ const sections = [
   });
 
   updateProgress();
+
+  // Print / share button: window.print() is unreliable on iOS browsers
+  // (Chrome and Firefox on iOS silently no-op). Web Share opens the native
+  // OS share sheet which exposes Print, Save to PDF, Email, Copy, etc.
+  const printBtn = document.getElementById('print-btn');
+  const printBtnLabel = document.getElementById('print-btn-label');
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const hasShare = typeof (navigator as any).share === 'function';
+
+  if (printBtn && printBtnLabel && isMobile && hasShare) {
+    printBtnLabel.textContent = 'Save / share';
+  }
+
+  printBtn?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (isMobile && hasShare) {
+      try {
+        await (navigator as any).share({
+          title: 'Pre-Sale Preparation Checklist',
+          text: `${doneEl.textContent}/${totalEl.textContent} tasks complete. Brisbane pre-sale checklist by Daniel Gierach.`,
+          url: location.href,
+        });
+        return;
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return;
+        // fall through to window.print() if share failed for any other reason
+      }
+    }
+    window.print();
+  });
 </script>
 
 <!-- Appraisal CTA -->
