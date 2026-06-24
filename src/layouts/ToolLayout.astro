@@ -38,6 +38,29 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest
     .eyebrow { display: none !important; }
     .tool-content { padding: 0.75rem 0 2rem; }
   }
+
+  /* Print: strip site chrome so tools print as standalone documents.
+     Page-specific elements use .no-print or page-level @media print rules. */
+  @media print {
+    @page { margin: 1.5cm 1.25cm; }
+    body { background: white !important; color: #000 !important; }
+    #site-header,
+    #tool-sticky-cta,
+    #tool-cta,
+    .tool-breadcrumb,
+    footer,
+    .no-print { display: none !important; }
+    .tool-header {
+      padding: 0.25rem 0 0.75rem !important;
+      border-bottom: 1px solid #000 !important;
+      background: white !important;
+    }
+    .tool-content { padding: 0.5rem 0 0 !important; background: white !important; }
+    .tool-title { font-size: 1.4rem !important; color: #000 !important; }
+    .tool-desc { display: none !important; }
+    .eyebrow { font-size: 0.55rem !important; color: #000 !important; }
+    a { color: #000 !important; text-decoration: none !important; }
+  }
 </style>
 
 <script>

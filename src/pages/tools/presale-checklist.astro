@@ -133,7 +133,66 @@ const sections = [
   .section-items.open { display: block; }
   .chevron { transition: transform 0.2s; }
   .chevron.open { transform: rotate(180deg); }
+
+  @media print {
+    /* Force-expand all sections so every task prints */
+    .section-items { display: block !important; }
+    .chevron { display: none !important; }
+
+    /* Compact, paper-friendly checklist rows */
+    .checklist-section { page-break-inside: auto; margin-bottom: 0.4rem; }
+    .section-header {
+      padding: 0.45rem 0.65rem !important;
+      page-break-after: avoid;
+      border: 1px solid #000 !important;
+      background: white !important;
+    }
+    .checklist-item {
+      padding: 0.3rem 0.65rem !important;
+      gap: 0.6rem !important;
+      page-break-inside: avoid;
+      border: 1px solid #ccc !important;
+      border-top: none !important;
+    }
+    .checklist-item.done { background: white !important; }
+    .checklist-item.done .item-task {
+      text-decoration: line-through;
+      color: #555 !important;
+    }
+    .item-task { font-size: 0.78rem !important; line-height: 1.45 !important; }
+
+    /* Black-ink-only checkboxes; filled when complete */
+    .custom-cb {
+      width: 14px !important; height: 14px !important;
+      border: 1.5px solid #000 !important;
+      background: white !important;
+    }
+    .checklist-item.done .custom-cb {
+      background: #000 !important;
+      border-color: #000 !important;
+    }
+    .checklist-item.done .check-icon { display: block !important; }
+
+    /* Priority badges: outline only, no colour fill */
+    .priority-badge {
+      border: 1px solid #000 !important;
+      background: white !important;
+      color: #000 !important;
+      padding: 0.05rem 0.35rem !important;
+    }
+
+    /* Progress summary stays as a header band on page 1 */
+    #progress-ring-container {
+      padding: 0.6rem 0.9rem !important;
+      border: 1px solid #000 !important;
+      gap: 1rem !important;
+      background: white !important;
+      page-break-after: avoid;
+    }
+    #progress-ring-container p { color: #000 !important; }
+  }
 </style>
+
 
 <div style="display:flex;flex-direction:column;gap:1.5rem;">
 
@@ -152,7 +211,7 @@ const sections = [
       </p>
       <p id="prog-label" style="font-size:0.82rem;color:var(--color-text-muted);margin-top:0.25rem;">Tick items off as you go.</p>
     </div>
-    <button id="print-btn" type="button" style="margin-left:auto;padding:0.6rem 1.1rem;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid rgba(28,25,23,0.22);color:#78716c;background:transparent;cursor:pointer;display:flex;align-items:center;gap:0.4rem;">
+    <button id="print-btn" type="button" class="no-print" style="margin-left:auto;padding:0.6rem 1.1rem;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid rgba(28,25,23,0.22);color:#78716c;background:transparent;cursor:pointer;display:flex;align-items:center;gap:0.4rem;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       <span id="print-btn-label">Print</span>
     </button>
@@ -194,7 +253,7 @@ const sections = [
   ))}
 
   <!-- Daniel CTA -->
-  <div style="padding:1.5rem;background:rgba(196,145,42,0.06);border-left:3px solid var(--color-gold);margin-top:0.5rem;">
+  <div class="no-print" style="padding:1.5rem;background:rgba(196,145,42,0.06);border-left:3px solid var(--color-gold);margin-top:0.5rem;">
     <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--color-text-primary);margin-bottom:0.4rem;">Not sure where to start?</p>
     <p style="font-size:0.85rem;color:var(--color-text-muted);line-height:1.75;margin-bottom:0.75rem;">Daniel walks through your property before it goes to market, prioritises what will actually move the needle, and tells you what not to spend money on. Free, no obligation.</p>
     <a href="/contact" data-cta="tool_to_contact" style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-gold);text-decoration:none;">Book a Pre-Sale Walk Through →</a>
