@@ -13,6 +13,7 @@ interface Props {
   preloadImage?: string;
   ogImage?: string;
   hideMobileCta?: boolean;
+  hideFooterCta?: boolean;
   hideBreadcrumbs?: boolean;
   draft?: boolean;
   manifest?: string;
@@ -25,6 +26,7 @@ const {
   preloadImage,
   ogImage,
   hideMobileCta = false,
+  hideFooterCta = false,
   hideBreadcrumbs = false,
   draft = false,
   manifest = '/site.webmanifest',
@@ -327,7 +329,7 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       </div>
     )}
 
-    <Footer />
+    <Footer hideFooterCta={hideFooterCta} />
 
     <!-- Mobile sticky call bar -->
     <div class={`mobile-call-bar${hideMobileCta ? ' hidden-by-page' : ''}`}>
