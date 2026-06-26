@@ -6,32 +6,60 @@ const services = [
     href: '/tools/presale-checklist',
     eyebrow: 'For sellers',
     title: 'Prepare your home for sale',
-    desc: 'An interactive checklist that walks you through every room. Kerb appeal, repairs, staging and compliance.',
+    desc: 'Interactive room-by-room checklist with cost estimates.',
+    icon: 'home',
   },
   {
     href: '/tools/property-map',
     eyebrow: 'For everyone',
     title: 'Brisbane Property Map',
-    desc: 'Zoning, flood overlays, stormwater, water and sewer, school catchments. All on one map for any address.',
+    desc: 'Zoning, stormwater, water, sewer, school catchments.',
+    icon: 'map',
   },
   {
     href: '/buyers',
     eyebrow: 'For buyers',
     title: 'Off-market & pre-market access',
-    desc: 'Register your brief in three steps. Be the first to see homes in the inner east before they hit realestate.com.au.',
+    desc: 'See homes in the inner east before they hit realestate.com.au.',
+    icon: 'key',
   },
 ];
 
 const articles = [
   {
     href: '/insights/aml-changes-real-estate-brisbane-1-july-2026',
-    title: 'New AML rules for Brisbane real estate, from 1 July 2026',
-    desc: 'What changes for buyers and sellers when agents become AUSTRAC reporting entities, and how Ray White Bulimba is handling it.',
+    title: 'New AML rules from 1 July 2026',
+    desc: 'What changes for buyers and sellers.',
+    icon: 'shield',
   },
   {
     href: '/insights/seller-disclosure-obligations-queensland',
     title: 'Seller disclosure obligations in Queensland',
-    desc: 'What a vendor must (and should) tell a buyer under the new disclosure regime. The common traps and how to avoid them.',
+    desc: 'What a vendor must (and should) tell a buyer.',
+    icon: 'doc',
+  },
+];
+
+const agents = [
+  {
+    name: 'Daniel Gierach',
+    photo: '/img/daniel-headshot.jpg',
+    phone: '0412 523 821',
+    tel: '+61412523821',
+    email: 'daniel.gierach@raywhite.com',
+    handle: 'dgierach',
+    instagramUrl: 'https://www.instagram.com/dgierach/',
+    ctaKey: 'daniel',
+  },
+  {
+    name: 'Conrad Leisemann',
+    photo: '/img/conrad-headshot.jpg',
+    phone: '0403 978 813',
+    tel: '+61403978813',
+    email: 'conrad.leisemann@raywhite.com',
+    handle: 'connie_leisemann',
+    instagramUrl: 'https://www.instagram.com/connie_leisemann/',
+    ctaKey: 'conrad',
   },
 ];
 ---
@@ -44,257 +72,287 @@ const articles = [
 <style>
   :root {
     --bg: #0a0806;
-    --bg-soft: #15110d;
-    --card: #1c1612;
-    --card-hover: #221a14;
-    --line: rgba(240, 236, 228, 0.08);
-    --line-strong: rgba(196, 145, 42, 0.35);
+    --bg-soft: #100c08;
+    --card: #15110d;
+    --card-hover: #1c1612;
+    --line: rgba(240, 236, 228, 0.07);
+    --line-strong: rgba(196, 145, 42, 0.32);
+    --line-glow: rgba(196, 145, 42, 0.5);
     --text: #f2efe9;
-    --text-mute: rgba(242, 239, 233, 0.55);
+    --text-mute: rgba(242, 239, 233, 0.5);
     --text-soft: rgba(242, 239, 233, 0.78);
     --gold: #c4912a;
     --gold-bright: #d4a23a;
+    --gold-soft: rgba(196, 145, 42, 0.85);
   }
 
   body { background: var(--bg); color: var(--text); }
 
   .shell {
-    max-width: 560px;
+    max-width: 520px;
     margin: 0 auto;
-    padding: 2.25rem 1.25rem 3rem;
+    padding: 1.5rem 1.15rem 2.5rem;
     min-height: 100svh;
   }
   @media (min-width: 640px) {
-    .shell { padding: 3rem 1.5rem 4rem; }
+    .shell { padding: 2rem 1.5rem 3rem; }
   }
 
-  .header { text-align: center; margin-bottom: 2.25rem; }
-  .agents {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1.25rem;
+  /* ── Header (two-agent) ──────────────────────────────────────── */
+  .header { text-align: center; margin-bottom: 1.5rem; }
+
+  .agency-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-soft);
     margin-bottom: 1rem;
   }
-  @media (min-width: 480px) { .agents { gap: 2rem; } }
-  @media (min-width: 640px) { .agents { gap: 2.75rem; } }
+
+  .agents {
+    display: flex; justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  @media (min-width: 480px) { .agents { gap: 2.25rem; } }
 
   .agent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: 170px;
+    display: flex; flex-direction: column; align-items: center;
+    flex: 1 1 0; min-width: 0; max-width: 180px;
   }
 
   .avatar {
-    width: 92px; height: 92px; border-radius: 50%;
-    object-fit: cover; margin: 0 0 0.7rem; display: block;
-    border: 2px solid rgba(196,145,42,0.6);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-    flex-shrink: 0;
+    width: 66px; height: 66px; border-radius: 50%;
+    object-fit: cover; display: block;
+    margin: 0 0 0.7rem;
+    border: 1.5px solid rgba(196, 145, 42, 0.55);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(196, 145, 42, 0.05);
   }
-  @media (min-width: 480px) { .avatar { width: 108px; height: 108px; } }
+  @media (min-width: 480px) { .avatar { width: 76px; height: 76px; } }
 
   .name {
     font-family: var(--font-serif);
-    font-size: 1.05rem; font-weight: 400; line-height: 1.2;
-    margin-bottom: 0.2rem; letter-spacing: -0.01em;
-    min-height: 2.5em;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center;
+    font-size: 0.96rem; font-weight: 400;
+    line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+    min-height: 2.4em;
+    display: flex; align-items: center;
   }
-  @media (min-width: 480px) { .name { font-size: 1.2rem; min-height: 1.4em; } }
+  @media (min-width: 480px) { .name { font-size: 1.05rem; min-height: 1.3em; } }
 
-  .phone {
+  .phone-line {
     font-family: var(--font-sans);
     font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.02em;
     line-height: 1.3;
-    margin-bottom: 0.2rem;
   }
-  .phone a {
-    color: var(--gold); text-decoration: none;
-    transition: color 0.2s;
-    white-space: nowrap;
-  }
-  .phone a:hover { color: var(--gold-bright); }
-  @media (min-width: 480px) { .phone { font-size: 0.78rem; } }
+  .phone-line a { color: var(--gold); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+  .phone-line a:hover { color: var(--gold-bright); }
+  @media (min-width: 480px) { .phone-line { font-size: 0.78rem; } }
 
-  .email {
+  .handle-line {
     font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 500;
+    font-size: 0.6rem; font-weight: 500;
+    color: var(--text-mute);
     line-height: 1.3;
-    margin-bottom: 0.3rem;
+    margin-top: 0.15rem;
     word-break: break-all;
-    max-width: 100%;
   }
-  .email a {
+  @media (min-width: 480px) { .handle-line { font-size: 0.65rem; word-break: normal; } }
+  .handle-line a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .handle-line a:hover { color: var(--gold); }
+
+  .emails {
+    display: flex; flex-direction: column; gap: 0.2rem;
+    margin-top: 0.85rem;
+    font-family: var(--font-sans);
+    font-size: 0.66rem; font-weight: 400;
+    line-height: 1.35;
+    text-align: center;
+  }
+  .emails a {
     color: var(--text-soft); text-decoration: none;
     transition: color 0.2s;
-  }
-  .email a:hover { color: var(--gold); }
-  @media (min-width: 480px) { .email { font-size: 0.66rem; word-break: normal; } }
-
-  .handle {
-    font-family: var(--font-sans);
-    font-size: 0.64rem; font-weight: 500;
-    color: var(--text-mute); letter-spacing: 0.02em;
-    line-height: 1.3;
     word-break: break-all;
   }
-  @media (min-width: 480px) { .handle { font-size: 0.68rem; word-break: normal; } }
+  @media (min-width: 480px) { .emails a { word-break: normal; } }
+  .emails a:hover { color: var(--gold); }
 
-  .handle a { color: inherit; text-decoration: none; transition: color 0.2s; }
-  .handle a:hover { color: var(--gold); }
-  .agency {
-    font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text-mute);
-    margin: 0.5rem 0 0.95rem;
-  }
-  .tagline {
-    font-size: 0.88rem; line-height: 1.55;
-    color: var(--text-soft);
-    max-width: 38ch; margin: 0 auto;
-  }
-
-  .section { margin-bottom: 2rem; }
+  /* ── Section labels ───────────────────────────────────────────── */
+  .section { margin-bottom: 1.5rem; }
   .section-label {
+    display: block;
     font-family: var(--font-sans);
-    font-size: 0.6rem; font-weight: 800;
-    letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--text-mute);
-    margin-bottom: 0.85rem; padding-left: 0.15rem;
+    margin-bottom: 0.7rem; padding-left: 0.2rem;
   }
 
+  /* ── Service cards ────────────────────────────────────────────── */
   .card {
-    display: block;
-    background: var(--card);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.95rem;
+    background:
+      linear-gradient(135deg, rgba(196,145,42,0.04) 0%, rgba(196,145,42,0) 60%),
+      var(--card);
     border: 1px solid var(--line);
-    border-left: 3px solid var(--gold);
-    padding: 1.15rem 1.25rem;
-    text-decoration: none;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-    transition: background 0.18s, border-color 0.18s, transform 0.18s;
-    min-height: 64px;
-    position: relative;
-  }
-  .card:hover, .card:focus-visible {
-    background: var(--card-hover);
-    border-left-color: var(--gold-bright);
-    transform: translateY(-1px);
-  }
-  .card:active { transform: translateY(0); background: var(--card); }
-
-  .card-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.56rem; font-weight: 800;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--gold);
-    display: block; margin-bottom: 0.4rem;
-  }
-  .card-title {
-    font-family: var(--font-serif);
-    font-size: 1.1rem; font-weight: 400; line-height: 1.25;
-    margin-bottom: 0.35rem;
-  }
-  .card-desc {
-    font-size: 0.78rem; line-height: 1.55;
-    color: var(--text-soft);
-    padding-right: 1.5rem;
-  }
-  .card-arrow {
-    position: absolute; right: 1rem; top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-mute); transition: color 0.18s, transform 0.18s;
-  }
-  .card:hover .card-arrow {
-    color: var(--gold);
-    transform: translateY(-50%) translateX(3px);
-  }
-
-  /* Article card variant: smaller, lighter accent */
-  .acard {
-    display: block;
-    padding: 0.95rem 1.1rem;
-    background: transparent;
-    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.95rem 1.05rem;
     text-decoration: none;
     color: var(--text);
     margin-bottom: 0.55rem;
-    transition: background 0.18s, border-color 0.18s;
+    transition: background 0.2s, border-color 0.2s, transform 0.18s;
     position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--gold);
+    opacity: 0.6;
+    transition: opacity 0.2s, width 0.2s;
+  }
+  .card:hover, .card:focus-visible {
+    background:
+      linear-gradient(135deg, rgba(196,145,42,0.08) 0%, rgba(196,145,42,0.01) 60%),
+      var(--card-hover);
+    border-color: var(--line-strong);
+    transform: translateY(-1px);
+  }
+  .card:hover::before { opacity: 1; width: 3px; }
+  .card:active { transform: translateY(0); }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(196, 145, 42, 0.1);
+    border: 1px solid rgba(196, 145, 42, 0.18);
+    border-radius: 50%;
+    color: var(--gold-bright);
+    flex-shrink: 0;
+  }
+
+  .card-body { min-width: 0; }
+  .card-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.52rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold);
+    display: block; margin-bottom: 0.18rem;
+  }
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 1rem; font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+  }
+  .card-desc {
+    font-size: 0.7rem; line-height: 1.4;
+    color: var(--text-soft);
+  }
+  .card-arrow {
+    color: var(--text-mute);
+    flex-shrink: 0;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .card:hover .card-arrow {
+    color: var(--gold);
+    transform: translateX(2px);
+  }
+
+  /* ── Article cards ────────────────────────────────────────────── */
+  .acard {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 0.95rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text);
+    margin-bottom: 0.45rem;
+    transition: background 0.2s, border-color 0.2s;
   }
   .acard:hover, .acard:focus-visible {
     background: var(--bg-soft);
     border-color: var(--line-strong);
   }
+  .acard-icon {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-soft);
+    flex-shrink: 0;
+  }
+  .acard-body { min-width: 0; }
   .acard-title {
     font-family: var(--font-serif);
-    font-size: 0.95rem; font-weight: 400; line-height: 1.3;
-    margin-bottom: 0.3rem;
-    padding-right: 1.5rem;
+    font-size: 0.88rem; font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 0.15rem;
   }
   .acard-desc {
-    font-size: 0.72rem; line-height: 1.55;
+    font-size: 0.66rem; line-height: 1.35;
     color: var(--text-mute);
-    padding-right: 1.5rem;
   }
 
   .browse-all {
     display: inline-flex; align-items: center; gap: 0.35rem;
-    margin-top: 0.65rem; padding: 0.25rem 0.15rem;
+    margin-top: 0.4rem; padding: 0.3rem 0.2rem;
     font-family: var(--font-sans);
-    font-size: 0.65rem; font-weight: 800;
-    letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.6rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--gold); text-decoration: none;
     transition: color 0.18s;
   }
   .browse-all:hover { color: var(--gold-bright); }
 
-  /* Final CTA panel */
+  /* ── Final CTA panel ──────────────────────────────────────────── */
   .final {
-    background: linear-gradient(135deg, rgba(196,145,42,0.12), rgba(196,145,42,0.03));
+    background:
+      linear-gradient(135deg, rgba(196,145,42,0.15) 0%, rgba(196,145,42,0.04) 100%);
     border: 1px solid var(--line-strong);
-    padding: 1.5rem 1.35rem;
-    margin-top: 2.5rem;
+    border-radius: 4px;
+    padding: 1.25rem 1.25rem;
+    margin-top: 1.5rem;
     text-align: center;
   }
   .final-title {
     font-family: var(--font-serif);
-    font-size: 1rem; font-weight: 400; line-height: 1.3;
-    margin-bottom: 0.45rem;
+    font-size: 0.98rem; font-weight: 400; line-height: 1.3;
+    margin-bottom: 0.4rem;
   }
   .final-sub {
-    font-size: 0.78rem; line-height: 1.55;
+    font-size: 0.7rem; line-height: 1.5;
     color: var(--text-soft);
-    margin-bottom: 1rem;
+    margin-bottom: 0.9rem;
   }
   .btn-gold {
-    display: inline-flex; align-items: center; gap: 0.45rem;
-    padding: 0.85rem 1.4rem;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.75rem 1.25rem;
     background: var(--gold); color: var(--bg);
     font-family: var(--font-sans);
-    font-size: 0.7rem; font-weight: 800;
+    font-size: 0.66rem; font-weight: 800;
     letter-spacing: 0.14em; text-transform: uppercase;
     text-decoration: none;
-    transition: background 0.2s;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.18s;
   }
-  .btn-gold:hover { background: var(--gold-bright); }
+  .btn-gold:hover { background: var(--gold-bright); transform: translateY(-1px); }
 
+  /* ── Bottom row ──────────────────────────────────────────────── */
   .contact-row {
-    display: flex; justify-content: center; gap: 1.5rem;
-    margin-top: 1.75rem; padding-top: 1.25rem;
+    display: flex; justify-content: center; gap: 1.25rem;
+    margin-top: 1.25rem; padding-top: 1rem;
     border-top: 1px solid var(--line);
   }
   .contact-row a {
     font-family: var(--font-sans);
-    font-size: 0.66rem; font-weight: 700;
-    letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--text-mute); text-decoration: none;
     transition: color 0.18s;
   }
@@ -302,43 +360,57 @@ const articles = [
 
   .legal {
     text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.6rem; color: var(--text-mute);
+    margin-top: 1rem;
+    font-size: 0.56rem; color: var(--text-mute);
     line-height: 1.5;
+    opacity: 0.85;
   }
-  .legal a { color: var(--text-mute); text-decoration: underline; text-underline-offset: 2px; }
 </style>
 
 <div class="shell">
 
   <header class="header">
+    <p class="agency-eyebrow">Ray White &middot; The Collective &middot; Bulimba</p>
+
     <div class="agents">
-      <div class="agent">
-        <img src="/img/daniel-headshot.jpg" alt="Daniel Gierach" class="avatar" width="108" height="108" loading="eager" />
-        <h1 class="name">Daniel Gierach</h1>
-        <p class="phone"><a href="tel:+61412523821" data-cta="property_tools_call_daniel">0412 523 821</a></p>
-        <p class="email"><a href="mailto:daniel.gierach@raywhite.com" data-cta="property_tools_email_daniel">daniel.gierach@raywhite.com</a></p>
-        <p class="handle"><a href="https://www.instagram.com/dgierach/" target="_blank" rel="noopener">@dgierach</a></p>
-      </div>
-      <div class="agent">
-        <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann" class="avatar" width="108" height="108" loading="eager" />
-        <h2 class="name">Conrad Leisemann</h2>
-        <p class="phone"><a href="tel:+61403978813" data-cta="property_tools_call_conrad">0403 978 813</a></p>
-        <p class="email"><a href="mailto:conrad.leisemann@raywhite.com" data-cta="property_tools_email_conrad">conrad.leisemann@raywhite.com</a></p>
-        <p class="handle"><a href="https://www.instagram.com/connie_leisemann/" target="_blank" rel="noopener">@connie_leisemann</a></p>
-      </div>
+      {agents.map(a => (
+        <div class="agent">
+          <img src={a.photo} alt={a.name} class="avatar" width="76" height="76" loading="eager" />
+          <div class="name">{a.name}</div>
+          <p class="phone-line"><a href={`tel:${a.tel}`} data-cta={`property_tools_call_${a.ctaKey}`}>{a.phone}</a></p>
+          <p class="handle-line"><a href={a.instagramUrl} target="_blank" rel="noopener">@{a.handle}</a></p>
+        </div>
+      ))}
     </div>
-    <p class="agency">Ray White &middot; The Collective &middot; Bulimba</p>
+
+    <div class="emails">
+      {agents.map(a => (
+        <a href={`mailto:${a.email}`} data-cta={`property_tools_email_${a.ctaKey}`}>{a.email}</a>
+      ))}
+    </div>
   </header>
 
   <section class="section">
     <span class="section-label">Tools &amp; services</span>
     {services.map(s => (
       <a class="card" href={s.href} data-cta={`property_tools_${s.href.replace(/\//g, '_')}`}>
-        <span class="card-eyebrow">{s.eyebrow}</span>
-        <div class="card-title">{s.title}</div>
-        <p class="card-desc">{s.desc}</p>
-        <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span class="card-icon">
+          {s.icon === 'home' && (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v10h4v-6h6v6h4V10"/></svg>
+          )}
+          {s.icon === 'map' && (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          )}
+          {s.icon === 'key' && (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2"/><path d="M16.5 6.5L19 9"/></svg>
+          )}
+        </span>
+        <div class="card-body">
+          <span class="card-eyebrow">{s.eyebrow}</span>
+          <div class="card-title">{s.title}</div>
+          <p class="card-desc">{s.desc}</p>
+        </div>
+        <svg class="card-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     ))}
   </section>
@@ -347,9 +419,19 @@ const articles = [
     <span class="section-label">Latest articles</span>
     {articles.map(a => (
       <a class="acard" href={a.href} data-cta={`property_tools_article_${a.href.split('/').pop()}`}>
-        <div class="acard-title">{a.title}</div>
-        <p class="acard-desc">{a.desc}</p>
-        <svg class="card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span class="acard-icon">
+          {a.icon === 'shield' && (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          )}
+          {a.icon === 'doc' && (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          )}
+        </span>
+        <div class="acard-body">
+          <div class="acard-title">{a.title}</div>
+          <p class="acard-desc">{a.desc}</p>
+        </div>
+        <svg class="card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     ))}
     <a href="/insights" class="browse-all" data-cta="property_tools_browse_all">
@@ -359,11 +441,11 @@ const articles = [
   </section>
 
   <div class="final">
-    <p class="final-title">What is your home worth in today's market?</p>
+    <p class="final-title">What is your home worth today?</p>
     <p class="final-sub">A free, no-obligation property report based on recent comparable sales in your suburb.</p>
     <a href="/walkthrough" class="btn-gold" data-cta="property_tools_to_walkthrough">
-      Get my free property report
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Get my free report
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
 
