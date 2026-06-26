@@ -15,7 +15,7 @@ const serviceSchema = {
 };
 ---
 
-<Layout preloadImage="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg" title="Book a Walk Through | Daniel Gierach Property" description="Book a free in-person property walkthrough with Daniel Gierach. A frank, well-researched appraisal of your home's value. No obligation, no call centres." schema={serviceSchema}>
+<Layout preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70" title="Book a Walk Through | Daniel Gierach Property" description="Book a free in-person property walkthrough with Daniel Gierach. A frank, well-researched appraisal of your home's value. No obligation, no call centres." schema={serviceSchema}>
 
 <!-- ════════════════════════════════════════════
      FULL-VIEWPORT SPLIT LAYOUT
@@ -26,25 +26,32 @@ const serviceSchema = {
   <!-- ── LEFT: dark hero panel ── -->
   <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;">
 
-    <!-- Background image -->
+    <!-- Background image (via Vercel optimizer — raw Ray White CDN hotlinks
+         return 403, so we route through /_vercel/image which fetches
+         server-side and re-serves as AVIF/WebP). -->
     <div class="absolute inset-0 z-0">
       <img
-        src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg"
+        src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70"
+        srcset="
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=640&q=70 640w,
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70 1080w,
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70 1920w
+        "
         sizes="(max-width: 768px) 100vw, 50vw"
-        alt="Brisbane inner-east property"
+        alt=""
         class="w-full h-full object-cover"
-        style="filter:grayscale(8%) brightness(0.45);"
+        style="filter:grayscale(8%) brightness(0.5);"
         fetchpriority="high"
       />
-      <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(10,8,6,0.82) 0%,rgba(10,8,6,0.6) 55%,rgba(10,8,6,0.25) 100%);"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(170deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.55) 50%,rgba(10,8,6,0.78) 100%);"></div>
     </div>
 
     <!-- Content -->
     <div class="relative z-10">
       <span class="appraisal-hero-eyebrow eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Free Property Walk Through</span>
 
-      <h1 class="reveal" data-delay="60"
-        style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
+      <h1 class="appraisal-hero-h1 reveal" data-delay="60"
+        style="font-family:var(--font-serif);font-size:clamp(1.65rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
         Let's get you booked in.
       </h1>
 
@@ -263,16 +270,23 @@ const serviceSchema = {
     }
     .appraisal-split > div:first-child {
       min-height: 0;
-      padding: 6.5rem 1.75rem 4.5rem !important;
+      padding: 5rem 1.5rem 2.5rem !important;
       justify-content: center;
     }
     .appraisal-split > div:last-child {
-      padding: 3rem 2rem 4rem !important;
+      padding: 2.25rem 1.5rem 3rem !important;
     }
-    /* Hide eyebrow, description + contact details on mobile, headline only */
+    /* Headline only on mobile. Eyebrow, description, contacts hidden. */
     .appraisal-hero-eyebrow,
     .appraisal-hero-desc,
     .appraisal-hero-contacts { display: none !important; }
+    /* Headline gets a hand-tuned size so it doesn't orphan "in." on its own line */
+    .appraisal-hero-h1 {
+      font-size: 1.85rem !important;
+      line-height: 1.1 !important;
+      max-width: 18ch;
+      margin-bottom: 1.25rem !important;
+    }
   }
   input::placeholder { color: var(--color-text-muted); }
 
