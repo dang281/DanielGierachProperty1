@@ -47,30 +47,32 @@ const serviceSchema = {
     </div>
 
     <!-- Content -->
-    <div class="relative z-10">
-      <!-- Homepage-hero-style identity badge: small headshot + name in gold caps -->
-      <div class="appraisal-identity reveal" data-delay="40" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-        <img
-          src="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=96&q=80"
-          srcset="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=128&q=80 2x, /_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=256&q=80 3x"
-          alt="Daniel Gierach"
-          width="40" height="40"
-          style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);"
-        />
-        <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
+    <div class="relative z-10 appraisal-hero-content">
+      <div class="appraisal-hero-text">
+        <!-- Homepage-hero-style identity badge: small headshot + name in gold caps -->
+        <div class="appraisal-identity reveal" data-delay="40" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+          <img
+            src="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=96&q=80"
+            srcset="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=128&q=80 2x, /_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=256&q=80 3x"
+            alt="Daniel Gierach"
+            width="40" height="40"
+            style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);"
+          />
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
+        </div>
+
+        <span class="appraisal-hero-eyebrow eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Free Property Walk Through</span>
+
+        <h1 class="appraisal-hero-h1 reveal" data-delay="60"
+          style="font-family:var(--font-serif);font-size:clamp(1.65rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
+          Let's get you booked in.
+        </h1>
+
+        <p class="appraisal-hero-desc reveal" data-delay="120"
+          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
+          Fill in your details and Daniel will confirm a time that suits you. Takes less than a minute.
+        </p>
       </div>
-
-      <span class="appraisal-hero-eyebrow eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Free Property Walk Through</span>
-
-      <h1 class="appraisal-hero-h1 reveal" data-delay="60"
-        style="font-family:var(--font-serif);font-size:clamp(1.65rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
-        Let's get you booked in.
-      </h1>
-
-      <p class="appraisal-hero-desc reveal" data-delay="120"
-        style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
-        Fill in your details and Daniel will confirm a time that suits you. Takes less than a minute.
-      </p>
 
       <!-- Testimonial -->
       <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:rgba(10,8,6,0.5);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);margin-bottom:2.75rem;">
@@ -275,6 +277,30 @@ const serviceSchema = {
 </section>
 
 <style>
+  /* Hero glass card: wraps badge + headline + description + testimonial
+     in one unified glassmorphism panel. Mirrors the homepage hero card. */
+  .appraisal-hero-content {
+    background: rgba(0,0,0,0.45);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(72,72,72,0.22);
+    padding: 2rem 2.25rem;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    max-width: 560px;
+  }
+  @media (min-width: 768px) {
+    .appraisal-hero-content { padding: 2.5rem 3rem; }
+  }
+  /* Testimonial sits inside the outer card; dissolve its own glass styling
+     so it reads as one unified panel rather than a card-inside-card. */
+  .appraisal-hero-content > .reveal:nth-of-type(2) {
+    background: rgba(255,255,255,0.04) !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
   @media (max-width: 768px) {
     .name-grid { grid-template-columns: 1fr !important; }
     .appraisal-split {
