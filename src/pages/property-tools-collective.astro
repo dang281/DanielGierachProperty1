@@ -122,13 +122,15 @@ const agents = [
   }
 
   .avatar {
-    width: 66px; height: 66px; border-radius: 50%;
-    object-fit: cover; display: block;
+    width: 72px; height: 72px;
+    border-radius: 12px;
+    object-fit: cover; object-position: center 10%;
+    display: block;
     margin: 0 0 0.7rem;
-    border: 1.5px solid rgba(196, 145, 42, 0.55);
+    border: 1.5px solid rgba(197, 160, 60, 0.5);
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(196, 145, 42, 0.05);
   }
-  @media (min-width: 480px) { .avatar { width: 76px; height: 76px; } }
+  @media (min-width: 480px) { .avatar { width: 84px; height: 84px; border-radius: 14px; } }
 
   .name {
     font-family: var(--font-serif);
@@ -375,7 +377,7 @@ const agents = [
     <div class="agents">
       {agents.map(a => (
         <div class="agent">
-          <img src={a.photo} alt={a.name} class="avatar" width="76" height="76" loading="eager" />
+          <img src={a.photo} alt={a.name} class="avatar" width="84" height="84" loading="eager" />
           <div class="name">{a.name}</div>
           <p class="phone-line"><a href={`tel:${a.tel}`} data-cta={`property_tools_call_${a.ctaKey}`}>{a.phone}</a></p>
           <p class="handle-line"><a href={a.instagramUrl} target="_blank" rel="noopener">@{a.handle}</a></p>
