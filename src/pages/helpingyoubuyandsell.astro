@@ -6,21 +6,21 @@ const services = [
     href: '/tools/presale-checklist',
     eyebrow: 'For sellers',
     title: 'Prepare your home for sale',
-    desc: 'Interactive room-by-room checklist with cost estimates.',
+    desc: 'A room-by-room checklist.',
     icon: 'home',
   },
   {
     href: '/tools/property-map',
     eyebrow: 'For everyone',
     title: 'Brisbane Property Map',
-    desc: 'Zoning, stormwater, water, sewer, school catchments.',
+    desc: 'Zoning, infrastructure and school catchments.',
     icon: 'map',
   },
   {
     href: '/buyers',
     eyebrow: 'For buyers',
     title: 'Off-market & pre-market access',
-    desc: 'See homes in the inner east before they hit realestate.com.au.',
+    desc: 'See homes before they hit realestate.com.au.',
     icon: 'key',
   },
 ];
@@ -78,19 +78,19 @@ const articles = [
   .hero-bg img {
     width: 100%; height: 100%;
     object-fit: cover; object-position: center 35%;
-    filter: grayscale(15%) brightness(0.42);
+    filter: grayscale(10%) brightness(0.7) contrast(1.05);
   }
   .hero-bg::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,145,42,0.08) 0%, rgba(196,145,42,0) 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,145,42,0.1) 0%, rgba(196,145,42,0) 70%),
       linear-gradient(
         180deg,
-        rgba(10,8,6,0.45) 0%,
-        rgba(10,8,6,0.55) 35%,
-        rgba(10,8,6,0.85) 75%,
+        rgba(10,8,6,0.15) 0%,
+        rgba(10,8,6,0.3) 45%,
+        rgba(10,8,6,0.75) 82%,
         var(--bg) 100%
       );
   }
