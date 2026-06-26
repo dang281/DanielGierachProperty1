@@ -78,8 +78,9 @@ const sections = [
   title="Pre-Sale Preparation Checklist"
   tool="Pre-Sale Checklist"
   phase="Seller Tools"
-  description="A complete pre-sale preparation checklist for Brisbane homeowners. Prioritised tasks, cost estimates, and what to do before your property goes to market."
+  description="A complete pre-sale preparation checklist for Brisbane homeowners. Tick tasks off as you go. Progress saves automatically."
   resourceSlug="complete-home-selling-checklist"
+  manifest="/manifest-presale-checklist.webmanifest"
 >
 
 <style>
@@ -283,6 +284,88 @@ const sections = [
      vertical space and breaks the flow. Footer CTA still covers that path. */
   :global(#tool-sticky-cta) { display: none !important; }
 
+  /* ── Restore notice (when state is loaded from URL / storage) ─ */
+  #restore-notice {
+    margin-top: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    background: rgba(74,158,74,0.08);
+    border: 1px solid rgba(74,158,74,0.18);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.65rem;
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+  }
+  #restore-notice button {
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    transition: color 0.2s, background 0.2s;
+  }
+  #restore-notice button:hover { color: #a03030; background: rgba(160,48,48,0.05); }
+
+  /* ── Save to phone (PWA install) button + help ───────────────── */
+  #pwa-install-bar {
+    margin-top: 0.5rem;
+    padding: 0;
+    border: 1px dashed rgba(196,145,42,0.35);
+    border-radius: 6px;
+    background: rgba(196,145,42,0.04);
+    overflow: hidden;
+  }
+  #pwa-install-btn {
+    width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-gold);
+    transition: background 0.2s;
+  }
+  #pwa-install-btn:hover, #pwa-install-btn:active { background: rgba(196,145,42,0.08); }
+  #pwa-install-btn svg { flex-shrink: 0; }
+  #pwa-install-help {
+    border-top: 1px dashed rgba(196,145,42,0.25);
+    padding: 0.85rem 1rem;
+    font-size: 0.72rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+    background: rgba(196,145,42,0.02);
+  }
+  #pwa-install-help strong {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  #pwa-install-help ol {
+    padding-left: 1.1rem;
+    margin: 0;
+  }
+  #pwa-install-help li { margin-bottom: 0.25rem; }
+  #pwa-install-help kbd {
+    display: inline-block;
+    background: rgba(28,25,23,0.08);
+    border: 1px solid rgba(28,25,23,0.15);
+    padding: 0.05rem 0.4rem;
+    border-radius: 3px;
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
   @media print {
     /* Force-expand all sections so every task prints */
     .section-items { display: block !important; }
@@ -364,6 +447,21 @@ const sections = [
     </button>
   </div>
 
+  <!-- Restore notice (shown when in-progress state is loaded) -->
+  <div id="restore-notice" class="no-print" hidden>
+    <span><strong style="color:#4a9e4a;">Picked up where you left off.</strong> Your progress saves automatically.</span>
+    <button id="restore-clear" type="button">Reset</button>
+  </div>
+
+  <!-- Save to phone (PWA install) -->
+  <div id="pwa-install-bar" class="no-print" hidden>
+    <button id="pwa-install-btn" type="button" aria-expanded="false" aria-controls="pwa-install-help">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      <span id="pwa-install-label">Save to my phone</span>
+    </button>
+    <div id="pwa-install-help" hidden></div>
+  </div>
+
   <!-- Sections -->
   {sections.map(section => (
     <div class="checklist-section" data-section={section.id}>
@@ -439,14 +537,80 @@ const sections = [
     });
   }
 
+  // ── Persistence ────────────────────────────────────────────────
+  // Done state is mirrored to:
+  //   1. localStorage (silent autosave per browser)
+  //   2. URL hash       (so shared links restore in-progress state)
+  // On load, URL wins if present, else localStorage.
+  const STORAGE_KEY = 'presale-checklist-done-v1';
+  const done = new Set<string>();
+
+  function loadInitialState(): Set<string> {
+    const m = location.hash.match(/done=([^&]*)/);
+    if (m) {
+      const ids = decodeURIComponent(m[1]).split(',').filter(Boolean);
+      return new Set(ids);
+    }
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return new Set(JSON.parse(raw));
+    } catch {}
+    return new Set();
+  }
+
+  function persist() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...done])); } catch {}
+    const ids = [...done];
+    const newHash = ids.length ? `#done=${ids.join(',')}` : '';
+    const url = location.pathname + location.search + newHash;
+    history.replaceState(null, '', url);
+  }
+
+  function setItemDone(item: HTMLElement, isDone: boolean) {
+    item.classList.toggle('done', isDone);
+    const icon = item.querySelector<SVGElement>('.check-icon')!;
+    icon.style.display = isDone ? 'block' : 'none';
+  }
+
+  // Restore on load
+  const initial = loadInitialState();
+  let restoredCount = 0;
+  allItems.forEach(item => {
+    const id = item.dataset.id!;
+    if (initial.has(id)) {
+      done.add(id);
+      setItemDone(item, true);
+      restoredCount++;
+    }
+  });
+  if (restoredCount > 0) {
+    const notice = document.getElementById('restore-notice');
+    if (notice) notice.hidden = false;
+  }
+  // Make sure URL reflects current state even if we loaded from localStorage
+  persist();
+
   // Toggle items
   allItems.forEach(item => {
     item.addEventListener('click', () => {
-      item.classList.toggle('done');
-      const icon = item.querySelector<SVGElement>('.check-icon')!;
-      icon.style.display = item.classList.contains('done') ? 'block' : 'none';
+      const id = item.dataset.id!;
+      const nowDone = !item.classList.contains('done');
+      setItemDone(item, nowDone);
+      if (nowDone) done.add(id); else done.delete(id);
+      persist();
       updateProgress();
     });
+  });
+
+  // Reset button
+  document.getElementById('restore-clear')?.addEventListener('click', () => {
+    if (!confirm('Clear your checklist progress?')) return;
+    allItems.forEach(item => setItemDone(item, false));
+    done.clear();
+    persist();
+    updateProgress();
+    const notice = document.getElementById('restore-notice');
+    if (notice) notice.hidden = true;
   });
 
   // Toggle sections
@@ -478,6 +642,8 @@ const sections = [
     e.preventDefault();
     if (isMobile && hasShare) {
       try {
+        // location.href already includes the #done=... hash from persist(),
+        // so the shared link restores in-progress state when the recipient opens it.
         await (navigator as any).share({
           title: 'Pre-Sale Preparation Checklist',
           text: `${doneEl.textContent}/${totalEl.textContent} tasks complete. Brisbane pre-sale checklist by Daniel Gierach.`,
@@ -491,6 +657,113 @@ const sections = [
     }
     window.print();
   });
+
+  // ── PWA install ("Save to my phone") ──────────────────────────
+  // Different paths per platform. Hidden when already installed (standalone).
+  const ua = navigator.userAgent;
+  const isStandalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    (window.navigator as any).standalone === true;
+  const isIOS = /iPad|iPhone|iPod/.test(ua);
+  const isInIGWebview = /Instagram|FBAN|FBAV|FB_IAB/.test(ua);
+  const isAndroidChrome = /Android/.test(ua) && /Chrome/.test(ua) && !/EdgA|OPR|SamsungBrowser/.test(ua);
+
+  const installBar   = document.getElementById('pwa-install-bar');
+  const installBtn   = document.getElementById('pwa-install-btn');
+  const installHelp  = document.getElementById('pwa-install-help');
+  const installLabel = document.getElementById('pwa-install-label');
+
+  // Android beforeinstallprompt — captured early so we can fire it on demand.
+  let deferredPrompt: any = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  function showInstallBar() {
+    if (installBar) installBar.hidden = false;
+  }
+
+  function helpFor(platform: 'ios-safari' | 'ios-webview' | 'android-chrome' | 'android-generic' | 'desktop'): string {
+    if (platform === 'ios-safari') {
+      return `<strong>Add to your iPhone home screen</strong>
+        <ol>
+          <li>Tap the Share icon <kbd>&#9650;</kbd> at the bottom of Safari.</li>
+          <li>Scroll down and tap <kbd>Add to Home Screen</kbd>.</li>
+          <li>Tap <kbd>Add</kbd>. The checklist opens like an app, and progress is saved.</li>
+        </ol>`;
+    }
+    if (platform === 'ios-webview') {
+      return `<strong>Open in Safari to save</strong>
+        <ol>
+          <li>Tap the <kbd>&hellip;</kbd> menu at the top of this in-app browser.</li>
+          <li>Tap <kbd>Open in Safari</kbd> (or copy the link and paste into Safari).</li>
+          <li>In Safari, tap Share &rarr; <kbd>Add to Home Screen</kbd>.</li>
+        </ol>`;
+    }
+    if (platform === 'android-chrome') {
+      return `<strong>Add to your home screen</strong>
+        <ol>
+          <li>Tap the <kbd>&#8942;</kbd> menu in Chrome.</li>
+          <li>Tap <kbd>Install app</kbd> (or <kbd>Add to Home screen</kbd>).</li>
+          <li>Confirm. The checklist opens like an app and progress is saved.</li>
+        </ol>`;
+    }
+    if (platform === 'android-generic') {
+      return `<strong>Add to your home screen</strong>
+        <ol>
+          <li>Tap your browser's menu (usually <kbd>&#8942;</kbd> or <kbd>&#9776;</kbd>).</li>
+          <li>Tap <kbd>Add to Home screen</kbd> or <kbd>Install</kbd>.</li>
+          <li>Confirm. The shortcut opens this checklist with your progress.</li>
+        </ol>`;
+    }
+    return `<strong>Bookmark for easy access</strong>
+      <ol>
+        <li>Press <kbd>Ctrl</kbd> + <kbd>D</kbd> (or <kbd>&#8984;</kbd> + <kbd>D</kbd> on Mac) to bookmark.</li>
+        <li>Your progress saves to this browser automatically. Reopen the bookmark any time to continue.</li>
+      </ol>`;
+  }
+
+  function detectPlatform(): 'ios-safari' | 'ios-webview' | 'android-chrome' | 'android-generic' | 'desktop' {
+    if (isIOS) return isInIGWebview ? 'ios-webview' : 'ios-safari';
+    if (/Android/.test(ua)) return isAndroidChrome ? 'android-chrome' : 'android-generic';
+    return 'desktop';
+  }
+
+  if (!isStandalone) {
+    showInstallBar();
+    installBtn?.addEventListener('click', async () => {
+      const platform = detectPlatform();
+      // Android Chrome: trigger native install if the prompt was captured
+      if (platform === 'android-chrome' && deferredPrompt) {
+        try {
+          deferredPrompt.prompt();
+          await deferredPrompt.userChoice;
+          deferredPrompt = null;
+          return;
+        } catch {
+          // fall through to instructions
+        }
+      }
+      // Toggle the instructions panel
+      if (installHelp) {
+        const open = installHelp.hidden;
+        if (open && !installHelp.innerHTML.trim()) {
+          installHelp.innerHTML = helpFor(platform);
+        }
+        installHelp.hidden = !open;
+        installBtn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+    });
+    // Once installed, hide the bar permanently for this session
+    window.addEventListener('appinstalled', () => {
+      if (installBar) installBar.hidden = true;
+    });
+    // Shorter label on small phones to keep it on one line
+    if (window.innerWidth < 360 && installLabel) {
+      installLabel.textContent = 'Save to phone';
+    }
+  }
 </script>
 
 <!-- Appraisal CTA -->
