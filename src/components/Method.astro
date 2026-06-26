@@ -317,7 +317,7 @@ const phases = [
       <!-- Right column: three phases -->
       <div class="lg:col-span-8 reveal" data-delay="80">
         {phases.map((p, i) => (
-          <div style={`padding:1.75rem 0;border-top:1px solid ${border};display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:baseline;${i === phases.length - 1 ? `border-bottom:1px solid ${border};` : ''}`}>
+          <div class="phase-row" style={`padding:1.75rem 0;border-top:1px solid ${border};display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:baseline;transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);${i === phases.length - 1 ? `border-bottom:1px solid ${border};` : ''}`}>
             <span style={`font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.18em;color:${gold};padding-top:0.15rem;`}>
               {p.number}
             </span>
@@ -342,3 +342,16 @@ const phases = [
     </div>
   </div>
 </section>
+
+<style>
+  .phase-row {
+    cursor: default;
+  }
+  .phase-row:hover {
+    transform: translateX(6px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .phase-row { transition: none !important; }
+    .phase-row:hover { transform: none !important; }
+  }
+</style>

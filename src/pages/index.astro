@@ -217,7 +217,7 @@ const faqSchema = {
         <img src={vImg('/img/daniel-headshot.jpg', 96)}
           srcset={`${vImg('/img/daniel-headshot.jpg', 128)} 2x, ${vImg('/img/daniel-headshot.jpg', 256)} 3x`}
           alt="Daniel Gierach, Brisbane inner east property agent" width="40" height="40"
-          style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);" />
+          style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);" />
         <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
       </div>
 
@@ -239,10 +239,10 @@ const faqSchema = {
               type="text"
               placeholder="Enter your property address…"
               autocomplete="off"
-              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
+              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;border-radius:8px 0 0 8px;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
             />
           </div>
-          <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
+          <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:0 8px 8px 0;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
             onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
             What's Your Property Worth?
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -553,8 +553,8 @@ const faqSchema = {
   @media (max-width: 768px) {
     .hw-card, .hw-card-featured { min-height: auto !important; }
   }
-  .hw-card-btn { transition: background 0.2s, gap 0.2s; }
-  .hw-card-outline-btn { transition: border-color 0.2s, color 0.2s; }
+  .hw-card-btn { transition: background 0.2s, gap 0.2s; border-radius: 8px; }
+  .hw-card-outline-btn { transition: border-color 0.2s, color 0.2s; border-radius: 8px; }
   .hw-card:hover .hw-card-outline-btn {
     border-color: rgba(197,160,60,0.7) !important;
     color: #c5a03c !important;
@@ -766,7 +766,7 @@ const faqSchema = {
         Tell Daniel which suburbs, what size, and your budget. Three quick steps. He reviews every registration personally and will follow up the same day.
       </p>
       <a href="/buyers"
-        style="display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;align-self:flex-start;"
+        style="display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:8px;transition:background 0.2s;align-self:flex-start;"
         onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'"
         onclick="gtag('event','buyers_cta_click',{event_category:'buyer',event_label:'Homepage CTA'})">
         Register My Search
