@@ -4,21 +4,18 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 const services = [
   {
     href: '/tools/presale-checklist',
-    eyebrow: 'For sellers',
     title: 'Prepare your home for sale',
     desc: 'Interactive room-by-room checklist with cost estimates.',
     icon: 'home',
   },
   {
     href: '/tools/property-map',
-    eyebrow: 'For everyone',
     title: 'Brisbane Property Map',
     desc: 'Zoning, stormwater, water, sewer, school catchments.',
     icon: 'map',
   },
   {
     href: '/buyers',
-    eyebrow: 'For buyers',
     title: 'Off-market & pre-market access',
     desc: 'See homes in the inner east before they hit realestate.com.au.',
     icon: 'key',
@@ -408,7 +405,6 @@ const agents = [
           )}
         </span>
         <div class="card-body">
-          <span class="card-eyebrow">{s.eyebrow}</span>
           <div class="card-title">{s.title}</div>
           <p class="card-desc">{s.desc}</p>
         </div>
