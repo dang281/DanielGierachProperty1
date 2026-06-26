@@ -26,7 +26,7 @@ try {
     await page.screenshot({
       path: resolve(publicDir, file),
       type: 'png',
-      omitBackground: false,
+      omitBackground: true,
       clip: { x: 0, y: 0, width: size, height: size },
     });
     console.log(`wrote ${file} (${size}x${size})`);
