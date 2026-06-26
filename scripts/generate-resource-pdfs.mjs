@@ -330,7 +330,7 @@ function renderHTML(r) {
       <div class="cover__sig">Daniel Gierach</div>
       <div class="cover__sig-sub">Ray White Bulimba</div>
     </div>
-    <div class="cover__site">danielgierach.com</div>
+    <div class="cover__site">0412 523 821</div>
   </div>
 </section>
 

@@ -4,15 +4,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
-  { href: '/app/planning',  label: 'Social Media' },
-  { href: '/app/social-v2', label: 'Social Media 2.0' },
-  { href: '/app/seo',       label: 'SEO' },
-  { href: '/app/properties', label: 'Properties' },
-  { href: '/app/commission', label: 'Commission' },
-  { href: '/app/projects',   label: 'CEO Agent' },
-  { href: '/app/workflow',   label: 'Workflow' },
+  { href: '/app',                  label: 'Today' },
+  { href: '/app/funnel',           label: 'Funnel' },
+  { href: '/app/board/pipeline',   label: 'Properties' },
+  { href: '/app/board/leads',      label: 'Buyers' },
+  { href: '/app/board/contacts',   label: 'Contacts' },
+  { href: '/app/board/referrals',  label: 'Referrals' },
+  { href: '/app/planning',   label: 'Social Media' },
+  { href: '/app/social-v2',  label: 'Social Media 2.0' },
+  { href: '/app/commission', label: 'Commission Calculator' },
   { href: '/app/brand',      label: 'Brand' },
   { href: '/app/templates',  label: 'Templates' },
+  { href: '/app/import',     label: 'Import' },
 ]
 
 export default function NavLinks() {
@@ -21,7 +24,7 @@ export default function NavLinks() {
   return (
     <nav className="flex items-center gap-0.5">
       {NAV.map(({ href, label }) => {
-        const isActive = pathname.startsWith(href)
+        const isActive = href === '/app' ? pathname === '/app' : pathname.startsWith(href)
         return (
           <Link
             key={href}

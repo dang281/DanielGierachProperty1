@@ -157,6 +157,26 @@ function haversineM(lat1: number, lng1: number, lat2: number, lng2: number): num
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 }
 
+// "5 Stanley Street, Bulimba 4171 QLD" → "stanley" (strips house number, suburb,
+// and the street type suffix so "Stanley St" matches "Stanley Street").
+const STREET_SUFFIX = /\s+(st|street|rd|road|ave|avenue|dr|drive|cct|circuit|ct|court|cr|crescent|cres|pde|parade|pl|place|tce|terrace|way|lane|ln|hwy|highway|boulevard|blvd|esplanade|esp|grove|gr|close|cl)\.?$/i
+
+function streetKey(address: string | null): string {
+  if (!address) return ''
+  return (address.toLowerCase()
+    .replace(/^[\d/\-a-z]+\s+/, '')   // strip house number incl. "5/12", "Unit 4"
+    .split(',')[0]                     // street name part
+    .trim()
+    .replace(STREET_SUFFIX, '')
+    .trim())
+}
+
+function sameStreet(a: string | null, b: string | null): boolean {
+  const ka = streetKey(a)
+  const kb = streetKey(b)
+  return ka !== '' && ka === kb
+}
+
 export default function PropertyMap({ properties, alerts, buyers = [] }: Props) {
   const mapRef       = useRef<HTMLDivElement>(null)
   const leafletRef   = useRef<any>(null)
@@ -343,7 +363,7 @@ export default function PropertyMap({ properties, alerts, buyers = [] }: Props) 
         const closeContacts = properties
           .filter(p => p.lat && p.lng)
           .map(p => ({ ...p, distM: haversineM(lat, lng, p.lat!, p.lng!) }))
-          .filter(p => p.distM <= 500)
+          .filter(p => p.distM <= 150 || sameStreet(p.address, a.listing_address))
           .sort((x, y) => x.distM - y.distM)
 
         // Buyer matches for this listing (skip for sold)
@@ -391,7 +411,7 @@ export default function PropertyMap({ properties, alerts, buyers = [] }: Props) 
 
         const nearbyRows = closeContacts.length
           ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid #f0ece4">
-              <div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:${typeColor};font-weight:700;margin-bottom:6px">${closeContacts.length} contact${closeContacts.length !== 1 ? 's' : ''} within 500m</div>
+              <div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:${typeColor};font-weight:700;margin-bottom:6px">${closeContacts.length} contact${closeContacts.length !== 1 ? 's' : ''} within 150m or same street</div>
               ${closeContacts.slice(0, 5).map(p => {
                 const d  = Math.round(p.distM)
                 const dc = d < 100 ? '#ef4444' : d < 250 ? '#f97316' : '#a8a29e'

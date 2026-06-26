@@ -2,9 +2,11 @@
 
 import { useState, useTransition, useRef } from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import type { PropertyAlert } from './PropertyMap'
 import { addPropertyAlert, logContactCall } from '@/lib/actions/properties'
 import QueueView from './QueueView'
+import type { BuyerBrief } from '@/types/buyers'
 
 const PropertyMap = dynamic(() => import('./PropertyMap'), { ssr: false })
 
@@ -81,7 +83,7 @@ function ContactAge({ date }: { date: string | null }) {
   return <span style={{ color }} title={`${days} days ago`}>{label}</span>
 }
 
-export default function PropertiesView({ properties, alerts }: { properties: Property[]; alerts: PropertyAlert[] }) {
+export default function PropertiesView({ properties, alerts, buyers }: { properties: Property[]; alerts: PropertyAlert[]; buyers: BuyerBrief[] }) {
   const [search, setSearch] = useState('')
   const [groupFilter, setGroupFilter] = useState('All')
   const [selected, setSelected] = useState<Property | null>(null)
@@ -152,6 +154,17 @@ export default function PropertiesView({ properties, alerts }: { properties: Pro
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Link
+            href="/app/properties/buyers"
+            className="px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-colors bg-[var(--color-card-2)] text-[var(--color-cream)] hover:bg-[var(--color-gold)] hover:text-[var(--color-bg)] flex items-center gap-1.5"
+          >
+            <span>Buyers</span>
+            {buyers.length > 0 && (
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-[var(--color-bg)]/40">
+                {buyers.length}
+              </span>
+            )}
+          </Link>
           <button
             onClick={() => setShowAddListing(true)}
             className="px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-colors"
@@ -219,6 +232,7 @@ export default function PropertiesView({ properties, alerts }: { properties: Pro
           <PropertyMap
             properties={filtered}
             alerts={alerts}
+            buyers={buyers}
           />
         </div>
       )}

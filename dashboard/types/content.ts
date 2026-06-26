@@ -2,7 +2,7 @@ export type Platform    = 'linkedin' | 'instagram' | 'facebook' | 'seo'
 // 'idea' is the current DB value for "Needs Review" (pending rename to 'draft' via SQL migration).
 // 'approved' is the explicit gate for posts cleared to go to schedule; only approved posts can
 // be picked up by the publisher (see confirmSchedule).
-export type Status      = 'idea' | 'draft' | 'approved' | 'scheduled' | 'posted' | 'rejected' | 'archived'
+export type Status      = 'idea' | 'draft' | 'ready' | 'approved' | 'scheduled' | 'queued' | 'posted' | 'rejected' | 'archived'
 export type Pillar      = 'seller' | 'authority' | 'suburb' | 'proof' | 'buyer'
 export type VisualStatus = 'needed' | 'draft' | 'needs_revision' | 'approved'
 
@@ -41,8 +41,10 @@ export type ContentItemUpdate = Partial<Omit<ContentItem, 'id' | 'created_at' | 
 export const STATUS_LABEL: Record<Status, string> = {
   idea:      'Needs Review',
   draft:     'Needs Review',
+  ready:     'Ready for Review',
   approved:  'Approved',
-  scheduled: 'Scheduled',
+  scheduled: 'LinkedIn Ready',
+  queued:    'Scheduled in LinkedIn',
   posted:    'Posted',
   rejected:  'Rejected',
   archived:  'Archived',
@@ -51,8 +53,10 @@ export const STATUS_LABEL: Record<Status, string> = {
 export const STATUS_COLOUR: Record<Status, string> = {
   idea:      '#c4912a',
   draft:     '#c4912a',
+  ready:     '#c4912a',
   approved:  '#10b981',
   scheduled: '#22c55e',
+  queued:    '#0a66c2',
   posted:    '#60a5fa',
   rejected:  '#ef4444',
   archived:  '#6b5a3e',
@@ -61,8 +65,10 @@ export const STATUS_COLOUR: Record<Status, string> = {
 export const STATUS_BG: Record<Status, string> = {
   idea:      'rgba(196,145,42,0.15)',
   draft:     'rgba(196,145,42,0.15)',
+  ready:     'rgba(196,145,42,0.15)',
   approved:  'rgba(16,185,129,0.12)',
   scheduled: 'rgba(34,197,94,0.12)',
+  queued:    'rgba(10,102,194,0.12)',
   posted:    'rgba(59,130,246,0.12)',
   rejected:  'rgba(239,68,68,0.1)',
   archived:  'rgba(107,90,62,0.18)',
@@ -71,8 +77,10 @@ export const STATUS_BG: Record<Status, string> = {
 export const STATUS_BORDER: Record<Status, string> = {
   idea:      'rgba(196,145,42,0.35)',
   draft:     'rgba(196,145,42,0.35)',
+  ready:     'rgba(196,145,42,0.35)',
   approved:  'rgba(16,185,129,0.3)',
   scheduled: 'rgba(34,197,94,0.3)',
+  queued:    'rgba(10,102,194,0.3)',
   posted:    'rgba(59,130,246,0.25)',
   rejected:  'rgba(239,68,68,0.25)',
   archived:  'rgba(107,90,62,0.35)',
