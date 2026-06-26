@@ -727,7 +727,7 @@ const faqSchema = {
 <!-- ════════════════════════════════════════════
      BUYERS CTA
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-base);padding:0;">
+<section class="buyers-cta-section" style="background:linear-gradient(to right,#0a0806 50%,var(--color-surface-1) 50%);padding:0;">
   <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;" class="buyers-cta-grid">
 
     <!-- Left: dark hero -->
@@ -785,6 +785,7 @@ const faqSchema = {
 <style>
   .buyers-cta-grid { }
   @media (max-width: 760px) {
+    .buyers-cta-section { background: #0a0806 !important; }
     .buyers-cta-grid { grid-template-columns: 1fr !important; }
     .buyers-cta-grid > div { padding: 3rem 1.5rem !important; }
     .buyers-cta-grid > div:first-child { padding-bottom: 2.5rem !important; }
