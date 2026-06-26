@@ -49,7 +49,7 @@ const _bPath = Astro.url.pathname.replace(/\/$/, '');
 const _bParts = _bPath.split('/').filter(Boolean);
 const _bSectionLabels: Record<string, string> = {
   suburbs: 'Suburbs', insights: 'Insights', tools: 'Tools',
-  listings: 'Listings', contact: 'Contact', walkthrough: 'Free Appraisal', 'property-worth': 'Property Worth',
+  listings: 'Listings', contact: 'Contact', walkthrough: 'Book a Walk Through', 'property-worth': 'Property Worth',
 };
 const breadcrumbs: { label: string; href: string }[] = [{ label: 'Home', href: '/' }];
 if (_bParts.length >= 1 && _bSectionLabels[_bParts[0]]) {
