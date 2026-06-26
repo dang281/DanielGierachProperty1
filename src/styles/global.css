@@ -115,9 +115,9 @@
 @layer base {
   .reveal {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
-                transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    transform: translateY(18px);
+    transition: opacity 0.95s cubic-bezier(0.16,1,0.3,1),
+                transform 0.95s cubic-bezier(0.16,1,0.3,1);
   }
   .reveal.visible {
     opacity: 1;
@@ -127,8 +127,8 @@
   .reveal-left {
     opacity: 0;
     transform: translateX(-32px);
-    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
-                transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    transition: opacity 1.05s cubic-bezier(0.16,1,0.3,1),
+                transform 1.05s cubic-bezier(0.16,1,0.3,1);
   }
   .reveal-left.visible {
     opacity: 1;
@@ -138,8 +138,8 @@
   .reveal-right {
     opacity: 0;
     transform: translateX(32px);
-    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
-                transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    transition: opacity 1.05s cubic-bezier(0.16,1,0.3,1),
+                transform 1.05s cubic-bezier(0.16,1,0.3,1);
   }
   .reveal-right.visible {
     opacity: 1;
@@ -371,10 +371,10 @@
 
   /* Listing cards (homepage grid) */
   .listing-card {
-    transition: transform 0.3s cubic-bezier(0.34,1,0.64,1),
-                box-shadow 0.3s cubic-bezier(0.34,1,0.64,1),
-                background 0.25s cubic-bezier(0.4,0,0.2,1);
-    box-shadow: 0 1px 4px rgba(28,25,23,0.05);
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.45s cubic-bezier(0.16,1,0.3,1),
+                background 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 4px 14px rgba(28,25,23,0.07);
   }
 
   /* Staggered card entrance, PERF-009: will-change removed (one-shot animation) */
@@ -389,8 +389,8 @@
     transform: translateY(0) scale(1);
   }
   .listing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 32px rgba(28,25,23,0.09);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(28,25,23,0.14);
     background: #f7f5f0 !important;
   }
   .listing-card:hover img {
