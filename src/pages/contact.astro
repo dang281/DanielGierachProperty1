@@ -17,12 +17,19 @@ import Layout from '../layouts/Layout.astro';
   <!-- ── LEFT: dark hero panel ── -->
   <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;">
 
-    <!-- Background image -->
+    <!-- Background image (served via Vercel optimizer; raw Ray White CDN
+         hotlinks now return 403, so we route through /_vercel/image which
+         the optimizer fetches server-side and re-serves as AVIF/WebP). -->
     <div class="absolute inset-0 z-0">
       <img
-        src="https://cdn6.ep.dynamics.net/s3/rw-propertyimages/65cb-H3485122-195546888__1775524459-58394-AMY1219.jpg"
+        src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70"
+        srcset="
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=640&q=70 640w,
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70 1080w,
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70 1920w
+        "
         sizes="(max-width: 768px) 100vw, 50vw"
-        alt="Brisbane inner-east property"
+        alt="64 Valaria Avenue, Seven Hills, listed by Daniel Gierach"
         class="w-full h-full object-cover"
         style="filter:grayscale(8%) brightness(0.45);"
         fetchpriority="high"
