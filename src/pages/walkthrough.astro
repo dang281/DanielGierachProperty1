@@ -69,21 +69,10 @@ const serviceSchema = {
         </h1>
 
         <p class="appraisal-hero-desc reveal" data-delay="120"
-          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:1.5rem;">
+          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
           Fill in your details and Daniel will confirm a time that suits you. Takes less than a minute.
         </p>
       </div>
-
-      <!-- Quick-action CTA: scrolls to the form on mobile, focuses the address input on desktop -->
-      <a href="#appraisal-address" class="hero-quick-cta reveal" data-delay="140"
-        data-cta="walkthrough_hero_book_btn"
-        style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.9rem 1.5rem;background:#c4912a;color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:8px;margin-bottom:1.5rem;transition:background 0.2s;"
-        onmouseover="this.style.background='#f5d07a'" onmouseout="this.style.background='#c4912a'"
-        onclick="setTimeout(function(){document.getElementById('appraisal-address')?.focus();}, 550);"
-      >
-        Book a Walk Through
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
 
       <!-- Testimonial -->
       <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:rgba(10,8,6,0.5);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);margin-bottom:2.75rem;">
@@ -193,7 +182,7 @@ const serviceSchema = {
             Continue
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <p style="font-family:var(--font-sans);font-size:0.65rem;color:#78716c;text-align:center;margin-top:0.5rem;line-height:1.5;">Takes less than a minute. No call centre.</p>
+          <p style="font-family:var(--font-sans);font-size:0.65rem;color:#78716c;text-align:center;margin-top:0.5rem;line-height:1.5;">Takes less than a minute.</p>
         </div>
 
         <!-- STEP 2: Contact details + booking -->
@@ -270,7 +259,7 @@ const serviceSchema = {
             <label for="walk-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
               Name <span style="color:#c4912a;">*</span>
             </label>
-            <input type="text" id="walk-name" name="name" required placeholder="Your name"
+            <input type="text" id="walk-name" name="name" required placeholder="Name"
               class="obs-input form-field" autocomplete="name"
             />
           </div>
@@ -287,7 +276,7 @@ const serviceSchema = {
 
         <!-- Submit -->
         <button type="submit" class="btn-gold"
-          style="width:100%;justify-content:center;padding:1rem;margin-top:0.5rem;"
+          style="width:100%;justify-content:center;padding:1rem;margin-top:1.25rem;"
           onclick="gtag('event', 'appraisal_cta_click', { event_category: 'lead', event_label: 'Request My Appraisal' })"
         >
           Confirm My Booking
@@ -331,14 +320,19 @@ const serviceSchema = {
     .name-grid { grid-template-columns: 1fr !important; }
     .appraisal-split {
       grid-template-columns: 1fr !important;
+      display: flex !important;
+      flex-direction: column;
     }
-    .appraisal-split > div:first-child {
+    /* Mobile order swap: form first (less friction to start), hero second */
+    .appraisal-split > div:nth-child(1) {  /* hero panel */
+      order: 2;
       min-height: 0;
-      padding: 5rem 1.5rem 2.5rem !important;
-      justify-content: center;
+      padding: 1.75rem 1.5rem 2.5rem !important;
+      justify-content: flex-start;
     }
-    .appraisal-split > div:last-child {
-      padding: 2.25rem 1.5rem 3rem !important;
+    .appraisal-split > div:nth-child(2) {  /* form panel */
+      order: 1;
+      padding: 1.5rem 1.5rem 1rem !important;
     }
     /* Headline only on mobile. Eyebrow, description, contacts hidden. */
     .appraisal-hero-eyebrow,

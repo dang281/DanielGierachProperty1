@@ -61,18 +61,6 @@ const buyerSchema = {
         Most of the best properties in Brisbane's inner east are spoken for before a sign goes up. Register your brief and get early access to both off-market and pre-market properties when they come up.
       </p>
 
-      <!-- Mobile-only: compact value prop + primary action -->
-      <p class="buyers-hero-mobile-sub">
-        Early access for registered buyers, before properties hit online.
-      </p>
-      <a href="#register" class="buyers-hero-mobile-cta" aria-label="Start your buyer brief">
-        Start your brief
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      </a>
-      <a href="tel:+61412523821" class="buyers-hero-mobile-call">
-        Or call <strong>0412 523 821</strong>
-      </a>
-
       <div class="buyers-hero-contact reveal" data-delay="240" style="padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);">
         <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.6rem;">Prefer to talk first?</p>
         <a href="tel:+61412523821"
@@ -109,7 +97,7 @@ const buyerSchema = {
       <!-- Step counter + heading (both change per step) -->
       <p id="wz-counter" style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Step 1 of 3</p>
       <h2 id="wz-heading" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:0.4rem;transition:opacity 0.25s;">
-        What are you after?
+        What are you searching for?
       </h2>
       <p id="wz-subhead" style="font-size:0.85rem;color:#78716c;line-height:1.7;margin-bottom:1.75rem;transition:opacity 0.25s;">
         Start with what kind of place you want. All fields are optional.
@@ -631,17 +619,21 @@ const buyerSchema = {
   }
 
   /* Hide mobile-only hero pieces by default (desktop) */
-  .buyers-hero-mobile-sub,
-  .buyers-hero-mobile-cta,
-  .buyers-hero-mobile-call { display: none; }
 
   @media (max-width: 860px) {
-    .buyers-split { grid-template-columns: 1fr !important; }
+    .buyers-split {
+      grid-template-columns: 1fr !important;
+      display: flex !important;
+      flex-direction: column;
+    }
+    /* Mobile order swap: form first (less friction to start), hero below as context */
+    .buyers-hero-panel  { order: 2 !important; }
+    .buyers-form-panel  { order: 1 !important; }
 
-    /* Hero is content-sized so the form is reachable with minimal scroll */
+    /* Hero below the form: content-sized, no nav-clearance padding needed */
     .buyers-hero-panel {
       min-height: 0 !important;
-      padding: 5.25rem 1.5rem 1.25rem !important;
+      padding: 2.5rem 1.5rem 2.5rem !important;
       justify-content: flex-start !important;
       overflow: hidden;
     }
@@ -656,64 +648,13 @@ const buyerSchema = {
       letter-spacing: -0.015em !important;
     }
 
-    /* Desktop versions hidden, mobile compact versions shown */
+    /* Desktop-only context blocks stay hidden on mobile */
     .buyers-hero-desc,
     .buyers-hero-points,
     .buyers-hero-contact { display: none !important; }
 
-    .buyers-hero-mobile-sub {
-      display: block !important;
-      font-size: 0.92rem !important;
-      color: rgba(240,236,228,0.78) !important;
-      line-height: 1.5 !important;
-      margin: 0 0 1.1rem !important;
-      max-width: 34ch !important;
-    }
-    .buyers-hero-mobile-cta {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 0.55rem !important;
-      padding: 0.95rem 1.5rem !important;
-      width: fit-content !important;
-      background: #c4912a !important;
-      color: #0a0806 !important;
-      font-family: var(--font-sans) !important;
-      font-size: 0.72rem !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.14em !important;
-      text-transform: uppercase !important;
-      text-decoration: none !important;
-      border: none !important;
-      border-radius: 8px !important;
-      min-height: 50px !important;
-      align-self: flex-start !important;
-      transition: background 0.2s, transform 0.1s !important;
-    }
-    .buyers-hero-mobile-cta:active {
-      background: #b8851e !important;
-      transform: translateY(1px) !important;
-    }
-    /* Phone link sits below the CTA with a thin separator, no big gap */
-    .buyers-hero-mobile-call {
-      display: block !important;
-      margin-top: 1rem !important;
-      padding-top: 1rem !important;
-      border-top: 1px solid rgba(255,255,255,0.12) !important;
-      font-family: var(--font-sans) !important;
-      font-size: 0.85rem !important;
-      color: rgba(240,236,228,0.65) !important;
-      text-decoration: none !important;
-    }
-    .buyers-hero-mobile-call strong {
-      color: #f5d07a !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.01em !important;
-      margin-left: 0.3rem !important;
-    }
-
-    /* Form panel: clean transition from dark hero */
-    .buyers-form-panel { padding: 2rem 1.25rem 3.5rem !important; }
+    /* Form panel: now the entry point, gets the nav-clearance padding */
+    .buyers-form-panel { padding: 5rem 1.25rem 2.5rem !important; }
 
     /* Dots already show progress + label, so drop the duplicate counter */
     #wz-counter { display: none !important; }
@@ -1112,7 +1053,7 @@ const buyerSchema = {
   };
 
   const stepContent: Record<StepNum, { h: string; s: string }> = {
-    1: { h: 'What are you after?',             s: 'Start with what kind of place you want. All fields are optional.' },
+    1: { h: 'What are you searching for?',             s: 'Start with what kind of place you want. All fields are optional.' },
     2: { h: 'Where are you looking?',          s: 'Select the suburbs you\'re searching in. Add as many as you like.' },
     3: { h: 'How should Daniel reach you?',    s: 'Daniel reviews every registration personally.' }
   };
