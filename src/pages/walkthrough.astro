@@ -69,10 +69,21 @@ const serviceSchema = {
         </h1>
 
         <p class="appraisal-hero-desc reveal" data-delay="120"
-          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
+          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:1.5rem;">
           Fill in your details and Daniel will confirm a time that suits you. Takes less than a minute.
         </p>
       </div>
+
+      <!-- Quick-action CTA: scrolls to the form on mobile, focuses the address input on desktop -->
+      <a href="#appraisal-address" class="hero-quick-cta reveal" data-delay="140"
+        data-cta="walkthrough_hero_book_btn"
+        style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.9rem 1.5rem;background:#c4912a;color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:8px;margin-bottom:1.5rem;transition:background 0.2s;"
+        onmouseover="this.style.background='#f5d07a'" onmouseout="this.style.background='#c4912a'"
+        onclick="setTimeout(function(){document.getElementById('appraisal-address')?.focus();}, 550);"
+      >
+        Book a Walk Through
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
 
       <!-- Testimonial -->
       <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:rgba(10,8,6,0.5);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);margin-bottom:2.75rem;">
@@ -155,56 +166,50 @@ const serviceSchema = {
     <div class="reveal" data-delay="80" style="max-width:480px;width:100%;">
 
       <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Book a Walk Through</p>
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:1.75rem;">
-        Daniel will be in touch promptly.
+      <h2 id="walk-heading" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:0.45rem;">
+        First, what property?
       </h2>
+      <p id="walk-step-indicator" style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#a8a29e;margin-bottom:1.5rem;">
+        Step 1 of 2
+      </p>
 
       <form id="walkthrough-form" style="display:flex;flex-direction:column;gap:1rem;">
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
   <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=walkthrough" />
   <input type="hidden" name="_subject" value="New appraisal request - danielgierach.com" />
 
-        <!-- First Name + Last Name -->
-        <div class="name-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <!-- STEP 1: Property Address -->
+        <div class="form-step" data-step="1">
           <div>
-            <label for="walk-first-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-              First Name <span style="color:#c4912a;">*</span>
+            <label for="appraisal-address" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+              Property Address <span style="color:#c4912a;">*</span>
             </label>
-            <input type="text" id="walk-first-name" name="first_name" required placeholder="First Name"
-              class="obs-input form-field" autocomplete="given-name"
+            <input type="text" id="appraisal-address" name="property_address" required placeholder="Start typing your address..."
+              class="obs-input form-field" autocomplete="off" enterkeyhint="next"
             />
           </div>
-          <div>
-            <label for="walk-last-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-              Last Name <span style="color:#c4912a;">*</span>
-            </label>
-            <input type="text" id="walk-last-name" name="last_name" required placeholder="Last Name"
-              class="obs-input form-field" autocomplete="family-name"
-            />
+          <button type="button" id="walk-step-continue" class="btn-gold"
+            style="width:100%;justify-content:center;padding:1rem;margin-top:1rem;">
+            Continue
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p style="font-family:var(--font-sans);font-size:0.65rem;color:#78716c;text-align:center;margin-top:0.5rem;line-height:1.5;">Takes less than a minute. No call centre.</p>
+        </div>
+
+        <!-- STEP 2: Contact details + booking -->
+        <div class="form-step" data-step="2" style="display:none;">
+          <!-- Confirmed address pill + change link -->
+          <div id="walk-address-pill" style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;padding:0.65rem 0.9rem;background:rgba(196,145,42,0.08);border:1px solid rgba(196,145,42,0.25);border-radius:6px;margin-bottom:1rem;">
+            <div style="display:flex;align-items:center;gap:0.55rem;min-width:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="walk-address-pill-text" style="font-family:var(--font-sans);font-size:0.78rem;color:#1c1917;font-weight:500;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+            </div>
+            <button type="button" id="walk-step-back" style="background:transparent;border:none;cursor:pointer;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;flex-shrink:0;padding:0.3rem 0.4rem;">
+              Change
+            </button>
           </div>
-        </div>
 
-        <!-- Phone -->
-        <div>
-          <label for="walk-phone" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-            Phone <span style="color:#c4912a;">*</span>
-          </label>
-          <input type="tel" id="walk-phone" name="phone" required placeholder="04xx xxx xxx"
-            class="obs-input form-field" autocomplete="tel"
-          />
-        </div>
-
-        <!-- Property Address -->
-        <div>
-          <label for="appraisal-address" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-            Property Address <span style="color:#c4912a;">*</span>
-          </label>
-          <input type="text" id="appraisal-address" name="property_address" required placeholder="e.g. 12 River Street, Bulimba 4171"
-            class="obs-input form-field" autocomplete="off"
-          />
-        </div>
-
-        <!-- Calendar picker -->
+        <!-- Calendar picker (top of step 2 so users can pick a time first) -->
         <div class="cal-wrap">
           <label class="cal-label">Suggest a Date &amp; Time <span style="font-weight:400;opacity:0.6;">(optional)</span></label>
 
@@ -260,6 +265,26 @@ const serviceSchema = {
           <input type="hidden" name="preferred_time" id="preferred-time-input" />
         </div>
 
+          <!-- Name (single field) -->
+          <div style="margin-top:1.25rem;">
+            <label for="walk-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+              Name <span style="color:#c4912a;">*</span>
+            </label>
+            <input type="text" id="walk-name" name="name" required placeholder="Your name"
+              class="obs-input form-field" autocomplete="name"
+            />
+          </div>
+
+          <!-- Phone -->
+          <div style="margin-top:1rem;">
+            <label for="walk-phone" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+              Phone <span style="color:#c4912a;">*</span>
+            </label>
+            <input type="tel" id="walk-phone" name="phone" required placeholder="04xx xxx xxx"
+              class="obs-input form-field" autocomplete="tel"
+            />
+          </div>
+
         <!-- Submit -->
         <button type="submit" class="btn-gold"
           style="width:100%;justify-content:center;padding:1rem;margin-top:0.5rem;"
@@ -268,7 +293,8 @@ const serviceSchema = {
           Confirm My Booking
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <p style="font-family:var(--font-sans);font-size:0.65rem;color:#78716c;text-align:center;margin-top:0.5rem;line-height:1.5;">Daniel will call to confirm the time. No pressure.</p>
+        </div>
+        <!-- /STEP 2 -->
 
       </form>
     </div>
@@ -763,6 +789,72 @@ const serviceSchema = {
     document.head.appendChild(s);
   }
 
+  // ── Two-step form: address first, contact details second ────────────
+  function attachStepFlow() {
+    const step1 = document.querySelector<HTMLElement>('.form-step[data-step="1"]');
+    const step2 = document.querySelector<HTMLElement>('.form-step[data-step="2"]');
+    const continueBtn = document.getElementById('walk-step-continue') as HTMLButtonElement | null;
+    const backBtn = document.getElementById('walk-step-back') as HTMLButtonElement | null;
+    const addrInput = document.getElementById('appraisal-address') as HTMLInputElement | null;
+    const addrPillText = document.getElementById('walk-address-pill-text');
+    const heading = document.getElementById('walk-heading');
+    const stepIndicator = document.getElementById('walk-step-indicator');
+    const nameInput = document.getElementById('walk-name') as HTMLInputElement | null;
+    if (!step1 || !step2 || !continueBtn || !backBtn || !addrInput) return;
+
+    let addressNotificationSent = false;
+
+    function showStep1() {
+      step2!.style.display = 'none';
+      step1!.style.display = '';
+      if (heading) heading.textContent = 'First, what property?';
+      if (stepIndicator) stepIndicator.textContent = 'Step 1 of 2';
+      try { addrInput!.focus(); } catch (_) {}
+    }
+    function showStep2() {
+      step1!.style.display = 'none';
+      step2!.style.display = '';
+      if (heading) heading.textContent = 'Last step, your details.';
+      if (stepIndicator) stepIndicator.textContent = 'Step 2 of 2';
+      if (addrPillText) addrPillText.textContent = addrInput!.value;
+      try { (window as any).gtag('event', 'walkthrough_step_2', { event_category: 'lead' }); } catch (_) {}
+      try { nameInput?.focus(); } catch (_) {}
+    }
+
+    // Early-capture: when user hits Continue, fire an address notification
+    // to Formspree (so Daniel gets the address even if they bail on step 2).
+    // Same pattern as the homepage hero form.
+    function sendAddressNotification(addr: string) {
+      if (addressNotificationSent) return;
+      addressNotificationSent = true;
+      try { (window as any).gtag('event', 'walkthrough_address_submit', { event_category: 'lead', event_label: addr }); } catch (_) {}
+      try { if (typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead', { content_name: 'walkthrough_address' }); } catch (_) {}
+      const fd = new FormData();
+      fd.append('_subject', 'Walkthrough address enquiry, ' + addr);
+      fd.append('address', addr);
+      fd.append('source', 'Walkthrough page, step 1');
+      fetch('https://formspree.io/f/xnjgedwp', {
+        method: 'POST', body: fd, keepalive: true, headers: { 'Accept': 'application/json' }
+      }).catch(() => {});
+    }
+
+    continueBtn.addEventListener('click', () => {
+      const v = addrInput.value.trim();
+      if (v.length < 4) {
+        addrInput.focus();
+        addrInput.reportValidity?.();
+        return;
+      }
+      sendAddressNotification(v);
+      showStep2();
+    });
+    // Pressing Enter in the address input continues to step 2
+    addrInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); continueBtn.click(); }
+    });
+    backBtn.addEventListener('click', () => { showStep1(); });
+  }
+
   // ── Form submit via fetch → /thank-you?from=walkthrough ─────────────
   function attachWalkthroughSubmit() {
     const form = document.getElementById('walkthrough-form') as HTMLFormElement;
@@ -779,10 +871,14 @@ const serviceSchema = {
       }).finally(() => { window.location.href = '/thank-you?from=walkthrough'; });
     });
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attachWalkthroughSubmit);
-  } else {
+  function initWalkthrough() {
+    attachStepFlow();
     attachWalkthroughSubmit();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWalkthrough);
+  } else {
+    initWalkthrough();
   }
 </script>
 

@@ -139,7 +139,7 @@ const buyerSchema = {
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.4rem;margin-top:0.4rem;" id="type-group">
               {['House','Townhouse','Unit / Apartment','Development Site'].map((t) => (
                 <button type="button" class="selector-btn" data-group="type" data-value={t}
-                  style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0;height:2.75rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;">
+                  style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0;height:2.75rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);border-radius:8px;color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;">
                   {t}
                 </button>
               ))}
@@ -685,6 +685,7 @@ const buyerSchema = {
       text-transform: uppercase !important;
       text-decoration: none !important;
       border: none !important;
+      border-radius: 8px !important;
       min-height: 50px !important;
       align-self: flex-start !important;
       transition: background 0.2s, transform 0.1s !important;
@@ -776,6 +777,7 @@ const buyerSchema = {
     height: 44px;
     background: transparent;
     border: 1px solid rgba(196,145,42,0.28);
+    border-radius: 8px;
     color: #57534e;
     cursor: pointer;
     transition: all 0.2s;
