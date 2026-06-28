@@ -79,7 +79,6 @@ const suburbs = [
                 {link.children.map((child) => (
                   <a href={child.href} role="menuitem" class="nav-dropdown-item">
                     <span class="nav-dropdown-label">{child.label}</span>
-                    {child.sub && <span class="nav-dropdown-sub">{child.sub}</span>}
                   </a>
                 ))}
               </div>
@@ -168,9 +167,9 @@ const suburbs = [
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(8px);
-    min-width: 240px;
+    min-width: 230px;
     margin-top: 0.85rem;
-    padding: 0.55rem;
+    padding: 0.45rem;
     background: rgba(10, 8, 6, 0.96);
     -webkit-backdrop-filter: blur(20px) saturate(1.1);
     backdrop-filter: blur(20px) saturate(1.1);
@@ -217,31 +216,28 @@ const suburbs = [
   }
   .nav-dropdown-item {
     display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding: 0.7rem 0.95rem;
+    align-items: center;
+    padding: 0.7rem 1rem;
     border-radius: 6px;
     text-decoration: none;
-    transition: background 0.15s;
+    transition: background 0.15s, color 0.15s;
   }
   .nav-dropdown-item:hover,
   .nav-dropdown-item:focus-visible {
-    background: rgba(196, 145, 42, 0.1);
+    background: rgba(196, 145, 42, 0.18);
     outline: none;
   }
   .nav-dropdown-label {
     font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #f5d07a;
-  }
-  .nav-dropdown-sub {
-    font-family: var(--font-sans);
-    font-size: 0.66rem;
+    font-size: 0.88rem;
     font-weight: 500;
-    color: rgba(240, 236, 228, 0.55);
-    line-height: 1.4;
+    letter-spacing: 0.01em;
+    color: #f0ece4;
+    transition: color 0.15s;
+  }
+  .nav-dropdown-item:hover .nav-dropdown-label,
+  .nav-dropdown-item:focus-visible .nav-dropdown-label {
+    color: #f5d07a;
   }
 </style>
 
