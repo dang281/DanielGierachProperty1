@@ -408,11 +408,17 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
         var link = e.target.closest('[data-cta]');
         if (!link) return;
         var ctaName = link.getAttribute('data-cta');
+        var linkUrl = link.getAttribute('href') || null;
+        var pagePath = location.pathname;
         if (typeof fbq === 'function') {
-          fbq('trackCustom', 'CTAClick', { cta_name: ctaName });
+          fbq('trackCustom', 'CTAClick', { cta_name: ctaName, page_path: pagePath });
         }
         if (typeof gtag === 'function') {
-          gtag('event', 'cta_click', { cta_name: ctaName });
+          // Generic event so all CTA clicks roll up under one report line
+          gtag('event', 'cta_click', { cta_name: ctaName, page_path: pagePath, link_url: linkUrl });
+          // Also fire the cta_name as its own event so it shows up discretely
+          // in GA4 Events report without needing to drill into cta_click params
+          gtag('event', ctaName, { event_category: 'cta', page_path: pagePath, link_url: linkUrl });
         }
       });
     </script>

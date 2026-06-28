@@ -88,5 +88,23 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
       gtag('js', new Date());
       gtag('config', 'G-K1P37GL73K');
     </script>
+
+    <!-- Global CTA click tracking (mirrors Layout.astro for LandingLayout pages). -->
+    <script is:inline>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('[data-cta]');
+        if (!link) return;
+        var ctaName = link.getAttribute('data-cta');
+        var linkUrl = link.getAttribute('href') || null;
+        var pagePath = location.pathname;
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'CTAClick', { cta_name: ctaName, page_path: pagePath });
+        }
+        if (typeof gtag === 'function') {
+          gtag('event', 'cta_click', { cta_name: ctaName, page_path: pagePath, link_url: linkUrl });
+          gtag('event', ctaName, { event_category: 'cta', page_path: pagePath, link_url: linkUrl });
+        }
+      });
+    </script>
   </body>
 </html>
