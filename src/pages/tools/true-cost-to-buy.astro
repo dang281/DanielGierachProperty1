@@ -537,18 +537,19 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     }
 
     // First Home Buyer
-    // Verified 2026-05-10 against QRO First Home Concession (post-9-June-2024 schedule):
+    // Verified 2026-06-28 against QRO First Home Concession schedule:
     // https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home/
-    // Full concession up to $709,999.99, partial $710k to $799,999.99 with a $17,350
-    // taper over the $90k window, no first home concession at $800k and above.
+    // Full concession up to $700,000, linear taper $700,001 to $799,999.99 with
+    // max concession $17,350 over the $100k window, no first home concession at
+    // $800,000 and above (home concession rate still applies above that band).
     if (buyerType === 'fhb') {
-      if (price <= 709999.99) {
+      if (price <= 700000) {
         return { duty: 0, label: 'Transfer Duty (FHB full concession)' };
       }
       if (price < 800000) {
         const homeDuty = calcHomeDuty(price);
         const maxConcession = 17350;
-        const concession = maxConcession * (800000 - price) / 90000;
+        const concession = maxConcession * (800000 - price) / 100000;
         return { duty: Math.max(0, homeDuty - concession), label: 'Transfer Duty (FHB partial concession)' };
       }
       // $800k and above: no first home concession, home concession rate applies

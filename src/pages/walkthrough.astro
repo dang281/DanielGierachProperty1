@@ -778,7 +778,7 @@ const serviceSchema = {
     initGooglePlacesAppraisal();
   } else {
     const s = document.createElement('script');
-    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initGooglePlacesAppraisal';
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesAppraisal&loading=async`;
     s.async = true; s.defer = true;
     document.head.appendChild(s);
   }

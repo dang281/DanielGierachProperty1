@@ -1,5 +1,6 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
+const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 ---
 
 
@@ -476,9 +477,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 </div>
 </ToolLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ GMAPS_KEY }}>
 (function () {
-  const GMAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
 
   /* ── Load Google Maps JS ─────────────────────────────────── */
   function loadScript(src) {
@@ -491,7 +491,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     });
   }
 
-  loadScript(`https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}&libraries=places`).then(initTool);
+  loadScript(`https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}&libraries=places&loading=async`).then(initTool);
 
   /* ── State ───────────────────────────────────────────────── */
   const coords = { work: null, home: null, prop: null };

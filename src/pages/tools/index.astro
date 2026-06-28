@@ -125,10 +125,10 @@ const toolsSchema = {
         <button
           class="fpill"
           data-filter={phase}
-          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${phase==='All'?'#1c1917':'transparent'};color:${phase==='All'?'#f0ece4':'#78716c'};border-color:${phase==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;border-radius:8px;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${phase==='All'?'#1c1917':'transparent'};color:${phase==='All'?'#f0ece4':'#78716c'};border-color:${phase==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
         >
           {phase === 'All' ? 'Show All' : phase}
-          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;background:${phase==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${phase==='All'?'#f0ece4':'#78716c'};`}>
+          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;border-radius:4px;background:${phase==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${phase==='All'?'#f0ece4':'#78716c'};`}>
             {counts[phase] || 0}
           </span>
         </button>
@@ -142,7 +142,7 @@ const toolsSchema = {
           type="search"
           placeholder="Search tools..."
           aria-label="Search tools"
-          style="padding:0.55rem 1rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);outline:none;width:200px;transition:border-color 0.15s,box-shadow 0.15s;"
+          style="padding:0.55rem 1rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);border-radius:8px;outline:none;width:200px;transition:border-color 0.15s,box-shadow 0.15s;"
           onfocus="this.style.borderColor='#c4912a';this.style.boxShadow='0 0 0 3px rgba(196,145,42,0.12)'"
           onblur="this.style.borderColor='rgba(28,25,23,0.22)';this.style.boxShadow='none'"
         />

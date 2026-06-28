@@ -1,5 +1,6 @@
 ---
 import LandingLayout from '../../layouts/LandingLayout.astro';
+const MAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 ---
 
 <LandingLayout
@@ -267,7 +268,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
     });
   };
 </script>
-<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw&libraries=places&callback=initMapsAutocomplete"></script>
+<script is:inline src={`https://maps.googleapis.com/maps/api/js?key=${MAPS_KEY}&libraries=places&callback=initMapsAutocomplete&loading=async`}></script>
 <script>
   // ── Sticky CTA ─────────────────────────────────────────────────
   const stickyCta = document.getElementById('stickyCta');

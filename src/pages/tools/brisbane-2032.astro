@@ -1,6 +1,6 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
-const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
+const MAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 ---
 
 <ToolLayout
@@ -335,7 +335,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 // Load Maps JS API
 const script = document.createElement('script');
-script.src = `https://maps.googleapis.com/maps/api/js?key=${MAPS_KEY}&callback=initMap`;
+script.src = `https://maps.googleapis.com/maps/api/js?key=${MAPS_KEY}&callback=initMap&loading=async`;
 script.async = true;
 script.defer = true;
 window.initMap = initMap;

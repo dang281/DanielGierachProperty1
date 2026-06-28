@@ -1216,7 +1216,7 @@ const faqSchema = {
 
   // ── Hero address input (Google Places AutocompleteSuggestion) ─────
   (function() {
-    const MAPS_KEY = 'AIzaSyD2sghjRZa7NJeUDKUm6_EHt_aAL0ntvzw';
+    const MAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY as string;
     const input    = document.getElementById('hero-address-input') as HTMLInputElement;
     const form     = document.getElementById('hero-address-form')  as HTMLFormElement;
     let selectedAddress = '';

@@ -252,16 +252,16 @@ const FHOG_FMT = `$${FHOG_AMOUNT.toLocaleString()}`;
   // First Home Concession (applies to established homes, and to new homes
   // before 1 May 2025; thresholds in effect since 9 June 2024).
   // Source: https://qro.qld.gov.au/duties/transfer-duty/concessions/homes/first-home/
-  // Full concession (duty = $0) up to $709,999.99.
-  // Taper from $710k to $800k, concession phases from $17,350 down to $0.
+  // Full concession (duty = $0) up to $700,000.
+  // Linear taper $700,001 to $799,999.99, max concession $17,350 (= home duty at $700k).
   // Nil first home concession at $800k+, but general home concession still applies.
   function calcFirstHomeConcession(price: number): number {
-    if (price <= 709999.99) return calcDuty(price); // refund full duty
+    if (price <= 700000) return calcDuty(price); // refund full duty
     if (price < 800000) {
       const homeDuty = calcHomeDuty(price);
       const standardDuty = calcDuty(price);
       const maxConcession = 17350;
-      const concession = maxConcession * (800000 - price) / 90000;
+      const concession = maxConcession * (800000 - price) / 100000;
       return Math.max(0, standardDuty - Math.max(0, homeDuty - concession));
     }
     // $800k+: no first home concession, standard minus home concession (owner-occupier saving)

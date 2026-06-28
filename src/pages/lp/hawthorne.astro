@@ -353,7 +353,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     initPlaces();
   } else {
     const s = document.createElement('script');
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=initLpPlaces`;
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=initLpPlaces&loading=async`;
     s.async = true; s.defer = true;
     document.head.appendChild(s);
   }

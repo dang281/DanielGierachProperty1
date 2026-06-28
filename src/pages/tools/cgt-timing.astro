@@ -59,7 +59,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <p id="rec" style="font-family:var(--font-serif);font-size:1.2rem;color:var(--color-text-primary);line-height:1.4;"></p>
       </div>
       <p style="font-size:0.7rem;color:var(--color-text-muted);margin-top:1rem;line-height:1.6;">
-        Uses 2025-26 brackets for sales contracted before 1 July 2026 and the announced 2026-27 brackets (lowest rate 15%) for sales contracted on or after 1 July 2026. The CGT event falls on contract date, not settlement. Confirm the 2026-27 rates against current ATO guidance and always speak with an accountant. Sale price has 3% deducted to estimate selling costs (agent commission, marketing, legals); your actual costs may differ.
+        Uses 2025-26 brackets for sales contracted before 1 July 2026 and the legislated 2026-27 brackets (lowest rate 15%, Treasury Laws Amendment (More Cost of Living Relief) Act 2025) for sales contracted on or after 1 July 2026. The CGT event falls on contract date, not settlement. Always speak with an accountant. Sale price has 3% deducted to estimate selling costs (agent commission, marketing, legals); your actual costs may differ.
       </p>
       <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold" style="width:100%;margin-top:1rem;justify-content:center;">Discuss Timing with Daniel</a>
     </div>
@@ -96,7 +96,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     return 51638 + (income - 190000) * 0.45;
   }
 
-  // 2026-27 resident tax (announced cut: lowest bracket drops 16% to 15% from 1 July 2026; confirm legislation status before relying on this)
+  // 2026-27 resident tax (legislated: lowest bracket drops 16% to 15% from 1 July 2026; Treasury Laws Amendment (More Cost of Living Relief) Act 2025)
   // Bases: 26800 * 0.15 = 4020; 4020 + 90000 * 0.30 = 31020; 31020 + 55000 * 0.37 = 51370.
   function tax2627(income: number): number {
     if (income <= 18200) return 0;
