@@ -468,7 +468,7 @@ function filterCount(f: string): number {
       Practical property knowledge for Brisbane buyers, sellers, and owners. No fluff.
     </p>
     <a href="/resources" class="reveal" data-delay="220"
-      style="display:inline-flex;align-items:center;gap:0.55rem;margin-top:1.5rem;padding:0.7rem 1.25rem;background:rgba(245,208,122,0.1);border:1px solid rgba(245,208,122,0.4);color:#f5d07a;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,border-color 0.2s;"
+      style="display:inline-flex;align-items:center;gap:0.55rem;margin-top:1.5rem;padding:0.7rem 1.25rem;background:rgba(245,208,122,0.1);border:1px solid rgba(245,208,122,0.4);border-radius:8px;color:#f5d07a;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,border-color 0.2s;"
       onmouseover="this.style.background='rgba(245,208,122,0.18)';this.style.borderColor='rgba(245,208,122,0.7)'"
       onmouseout="this.style.background='rgba(245,208,122,0.1)';this.style.borderColor='rgba(245,208,122,0.4)'">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -486,10 +486,10 @@ function filterCount(f: string): number {
         <button
           class="fpill"
           data-filter={f}
-          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#1c1917':'transparent'};color:${f==='All'?'#f0ece4':'#78716c'};border-color:${f==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;border-radius:8px;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#1c1917':'transparent'};color:${f==='All'?'#f0ece4':'#78716c'};border-color:${f==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
         >
           {f === 'All' ? 'Show All' : f}
-          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;background:${f==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${f==='All'?'#f0ece4':'#78716c'};`}>
+          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;border-radius:4px;background:${f==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${f==='All'?'#f0ece4':'#78716c'};`}>
             {filterCount(f)}
           </span>
         </button>
@@ -504,7 +504,7 @@ function filterCount(f: string): number {
           type="search"
           placeholder="Search articles (e.g. auction, settlement, agent fees)"
           aria-label="Search articles"
-          style="padding:0.55rem 2rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);outline:none;width:320px;transition:border-color 0.15s,box-shadow 0.15s;"
+          style="padding:0.55rem 2rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);border-radius:8px;outline:none;width:320px;transition:border-color 0.15s,box-shadow 0.15s;"
           onfocus="this.style.borderColor='#c4912a';this.style.boxShadow='0 0 0 3px rgba(196,145,42,0.12)'"
           onblur="this.style.borderColor='rgba(28,25,23,0.22)';this.style.boxShadow='none'"
         />
