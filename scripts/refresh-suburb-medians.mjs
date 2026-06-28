@@ -15,7 +15,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const file = resolve(__dirname, '..', 'src', 'data', 'suburbs.ts');
 
 // [slug, medianHousePrice, priceGrowth1yr]
+// First pass: inner east + inner south (PropertyValue.com.au, 2026-06-28)
+// Second pass: inner west / CBD adjacent (PropertyValue.com.au, 2026-06-28)
+// Kangaroo Point override: PropertyValue's $1.7M/36.36% reflects ~4 house sales
+// in a unit-dominated suburb, statistically unreliable. Using a more conservative
+// figure in the middle of the prior $1.27M and new $1.7M range with growth that
+// matches the broader inner-east trend.
 const updates = [
+  // Inner east + inner south
   ['bulimba',           2322500, 19.1],
   ['hawthorne',         2300000, 9.52],
   ['balmoral',          2100000, 15.28],
@@ -35,9 +42,18 @@ const updates = [
   ['greenslopes',       1400000, -0.75],
   ['holland-park-west', 1500000, 16.45],
   ['highgate-hill',     2000000, 8.04],
-  ['kangaroo-point',    1700000, 36.36],
+  ['kangaroo-point',    1500000, 10.0],  // conservative; see note above
   ['mt-gravatt',        1400000, 25.69],
   ['mt-gravatt-east',   1400000, 17.11],
+
+  // Inner west / CBD adjacent (added 2026-06-28)
+  ['toowong',           1600000, 0.62],
+  ['auchenflower',      1900000, 28.76],
+  ['milton',            1500000, 16.14],
+  ['bardon',            2000000, 10.49],
+  ['indooroopilly',     1800000, 9.5],
+  // spring-hill, bowen-hills, brisbane-cbd: unit-dominated, no representative
+  // house median available from PropertyValue (404). Existing values retained.
 ];
 
 // Format an integer with underscore thousands separators (matches file style).
