@@ -79,7 +79,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
           </label>
           <label class="flex items-center gap-3" style="cursor:pointer;">
             <input type="checkbox" id="incl-mortgage-reg" checked style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
-            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Mortgage Registration <span style="color:var(--color-text-muted);">(est. $212)</span></span>
+            <span style="font-size:0.8rem;color:var(--color-text-secondary);">Mortgage Registration <span style="color:var(--color-text-muted);">(est. $204)</span></span>
           </label>
           <label class="flex items-center gap-3" style="cursor:pointer;">
             <input type="checkbox" id="incl-lenders" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
@@ -214,7 +214,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const { duty, label } = calcStampDuty(price, buyerType, propType);
     const legal     = inclLegal   ? 2000 : 0;
     const inspection= inclInsp    ? 700  : 0;
-    const mortReg   = inclMortReg ? 212  : 0;
+    const mortReg   = inclMortReg ? 204  : 0;
     const lmi       = inclLMI     ? calcLMI(price, depositPct) : 0;
 
     const total = duty + legal + inspection + mortReg + lmi;

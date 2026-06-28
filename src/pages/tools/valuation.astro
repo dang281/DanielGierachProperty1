@@ -11,6 +11,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 >
   <div class="max-w-2xl mx-auto pt-8">
 
+    <!-- Data currency disclaimer -->
+    <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:0.85rem 1.1rem;margin-bottom:1.5rem;">
+      <p style="font-family:var(--font-sans);font-size:0.72rem;color:var(--color-text-secondary);line-height:1.6;margin:0;">
+        <strong style="color:var(--color-text-primary);">Indicative only.</strong>
+        Suburb medians used here are a snapshot in time and may be 6 to 12 months behind the current market. For a current, evidenced valuation on your specific property, <a href="/walkthrough" style="color:var(--color-gold);text-decoration:underline;">book a free walkthrough</a>.
+      </p>
+    </div>
+
     <!-- Step indicator -->
     <div class="flex items-center gap-0 mb-8" id="step-indicator">
       {[1,2,3].map((s, i) => (
