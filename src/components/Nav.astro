@@ -7,8 +7,24 @@ const navLinks: Array<{
   href: string;
   children?: Array<{ label: string; href: string; sub?: string }>;
 }> = [
-  { label: 'Selling', href: '/walkthrough' },
-  { label: 'Buying',  href: '/buyers' },
+  {
+    label: 'Selling',
+    href: '/walkthrough',
+    children: [
+      { label: 'Book a Walkthrough',     href: '/walkthrough',             sub: 'A 10-15 minute in-person visit' },
+      { label: 'Pre-Sale Checklist',     href: '/tools/presale-checklist', sub: 'Room-by-room prep before listing' },
+      { label: 'Selling Cost Calculator', href: '/tools/selling-costs',    sub: 'Estimate your net proceeds' },
+    ],
+  },
+  {
+    label: 'Buying',
+    href: '/buyers',
+    children: [
+      { label: 'Current Listings',       href: '/listings', sub: 'Properties on the market now' },
+      { label: 'Off-Market & Pre-Market', href: '/buyers',  sub: 'Get first look before public listing' },
+      { label: 'Buying Tools',           href: '/tools',    sub: 'Stamp duty, mortgage, borrowing power' },
+    ],
+  },
   {
     label: 'Property Insights',
     href: '/insights',
