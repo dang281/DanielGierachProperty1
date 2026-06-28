@@ -664,6 +664,16 @@
    Boost vertical padding on small tap controls to clear the 44px minimum
    on phones. Desktop is unaffected.
 ───────────────────────────────────────── */
+/* Insights article hero: replace the solid black with a Brisbane property
+   photo backdrop, heavily darkened so text stays readable. Targets the
+   inline background:#0a0806 used on every article hero. */
+article > div[style*="padding:8rem 0 3rem"],
+article > div[style*="padding:8rem 0 4rem"] {
+  background:
+    linear-gradient(180deg, rgba(10,8,6,0.7) 0%, rgba(10,8,6,0.78) 50%, rgba(10,8,6,0.92) 100%),
+    url('/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70') center/cover no-repeat !important;
+}
+
 @media (max-width: 768px) {
   /* Insights article hero (and similar dark hero blocks): the 8rem top
      padding inlined on each article was tuned for desktop where the
