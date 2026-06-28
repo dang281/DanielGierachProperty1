@@ -665,6 +665,15 @@
    on phones. Desktop is unaffected.
 ───────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Insights article hero (and similar dark hero blocks): the 8rem top
+     padding inlined on each article was tuned for desktop where the
+     breadcrumb is hidden. On mobile the breadcrumb shows and stacks an
+     empty 100+px dark band above the content. Trim aggressively. */
+  article > div[style*="padding:8rem 0 3rem"],
+  article > div[style*="padding:8rem 0 4rem"] {
+    padding: 1.25rem 0 1.75rem !important;
+  }
+
   /* Filter pills (.fpill) used on tools-index and insights-index */
   .fpill {
     padding-top: 0.85rem;
