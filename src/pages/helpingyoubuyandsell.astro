@@ -168,7 +168,7 @@ const agents = [
     border-radius: 14px;
     object-fit: cover; object-position: center 35%;
     display: block;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.5rem;
     border: 1.5px solid rgba(197, 160, 60, 0.55);
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(196, 145, 42, 0.05);
   }
@@ -178,7 +178,7 @@ const agents = [
     font-family: var(--font-serif);
     font-size: 1rem; font-weight: 700;
     line-height: 1.15; letter-spacing: 0.005em;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.3rem;
     min-height: 2.4em;
     display: flex; align-items: center; justify-content: center;
     text-align: center;
@@ -186,19 +186,22 @@ const agents = [
   }
   @media (min-width: 480px) { .name { font-size: 1.15rem; min-height: 1.3em; } }
 
+  /* Stack phone / handle / email vertically so both columns always have
+     the same number of lines, keeping the two cards aligned no matter
+     how long the handles or addresses are. */
   .contact-line {
-    display: flex; justify-content: center; align-items: center;
-    flex-wrap: wrap; gap: 0.25rem 0.4rem;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.1rem;
     font-family: var(--font-sans);
     font-size: 0.7rem; font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 0.35rem;
+    line-height: 1.25;
+    margin-bottom: 0.15rem;
     text-shadow: 0 1px 8px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.45);
   }
   @media (min-width: 480px) { .contact-line { font-size: 0.78rem; } }
   .contact-line a { color: var(--gold); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
   .contact-line a:hover { color: var(--gold-bright); }
-  .contact-line .sep { color: rgba(242,239,233,0.45); font-weight: 400; }
+  .contact-line .sep { display: none; }
   .handle-text { color: rgba(242,239,233,0.78); font-weight: 600; }
   .handle-text a { color: rgba(242,239,233,0.78); }
   .handle-text a:hover { color: var(--gold); }
@@ -206,10 +209,11 @@ const agents = [
   .email {
     font-family: var(--font-sans);
     font-size: 0.6rem; font-weight: 500;
-    line-height: 1.35;
+    line-height: 1.25;
     word-break: break-all;
     text-shadow: 0 1px 6px rgba(0,0,0,0.55);
     padding: 0 0.25rem;
+    margin: 0;
   }
   @media (min-width: 480px) { .email { font-size: 0.66rem; word-break: normal; } }
   .email a {
@@ -429,7 +433,7 @@ const agents = [
 
   <header class="header">
     <p class="agency-eyebrow">Ray White &middot; The Collective &middot; Bulimba</p>
-    <p class="team-title">Our Team</p>
+    <p class="team-title">Your Team</p>
 
     <div class="agents">
       {agents.map(a => (
