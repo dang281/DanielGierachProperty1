@@ -469,6 +469,15 @@
     box-shadow: 0 0 0 3px rgba(196,145,42,0.1);
   }
 
+  /* Form selector chips (sitewide rounding so any tool that uses these
+     classes gets the same corners as the property type / bedroom /
+     budget chips on the buyers page and the I'm Looking To buttons on
+     contact). Inline border-radius on individual buttons still wins. */
+  .selector-btn,
+  .intent-btn {
+    border-radius: 8px;
+  }
+
   .obs-select {
     height: 52px;
     padding: 0 1rem;

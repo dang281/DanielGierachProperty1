@@ -138,7 +138,7 @@ import Layout from '../layouts/Layout.astro';
             {['Sell', 'Buy', 'Understand the Market'].map((opt) => (
               <button type="button" class="intent-btn"
                 data-value={opt.toLowerCase()}
-                style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0;height:2.75rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;">
+                style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0;height:2.75rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);border-radius:8px;color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;">
                 {opt === 'Sell' ? 'Sell' : opt === 'Buy' ? 'Buy / Rent' : 'Understand the Market'}
               </button>
             ))}

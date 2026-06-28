@@ -1,10 +1,23 @@
 ---
-const navLinks = [
-  { label: 'Listings', href: '/listings' },
-  { label: 'Buyers', href: '/buyers' },
-  { label: 'Property Tools', href: '/tools' },
-  { label: 'Suburbs', href: '/suburbs' },
-  { label: 'Insights', href: '/insights' },
+// Audience-led nav: 3 user-intent buckets + About.
+// Selling/Buying are direct links to their entry pages.
+// Property Insights is a dropdown surfacing the broader content library.
+const navLinks: Array<{
+  label: string;
+  href: string;
+  children?: Array<{ label: string; href: string; sub?: string }>;
+}> = [
+  { label: 'Selling', href: '/walkthrough' },
+  { label: 'Buying',  href: '/buyers' },
+  {
+    label: 'Property Insights',
+    href: '/insights',
+    children: [
+      { label: 'All Tools',    href: '/tools',    sub: 'Calculators, maps and checklists' },
+      { label: 'All Suburbs',  href: '/suburbs',  sub: 'Inner east area guides' },
+      { label: 'All Articles', href: '/insights', sub: 'Market notes and how-tos' },
+    ],
+  },
   { label: 'About', href: '/about' },
 ];
 
@@ -40,7 +53,24 @@ const suburbs = [
       <!-- Desktop nav, hidden by default, JS shows on ≥1024px -->
       <nav id="nav-links" style="display:none;align-items:center;gap:2.5rem;">
         {navLinks.map((link) => (
-          <a href={link.href} class="nav-link-mono" style="color:#f0ece4;">{link.label}</a>
+          link.children ? (
+            <div class="nav-dropdown">
+              <a href={link.href} class="nav-link-mono nav-dropdown-trigger" style="color:#f0ece4;display:inline-flex;align-items:center;gap:0.35rem;">
+                {link.label}
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </a>
+              <div class="nav-dropdown-panel" role="menu">
+                {link.children.map((child) => (
+                  <a href={child.href} role="menuitem" class="nav-dropdown-item">
+                    <span class="nav-dropdown-label">{child.label}</span>
+                    {child.sub && <span class="nav-dropdown-sub">{child.sub}</span>}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a href={link.href} class="nav-link-mono" style="color:#f0ece4;">{link.label}</a>
+          )
         ))}
       </nav>
 
@@ -79,7 +109,16 @@ const suburbs = [
 >
   <div class="max-w-[1400px] mx-auto px-8 pt-10 pb-6 flex flex-col gap-5">
     {navLinks.map((link) => (
-      <a href={link.href} class="nav-link-mono mobile-nav-link">{link.label}</a>
+      <div>
+        <a href={link.href} class="nav-link-mono mobile-nav-link">{link.label}</a>
+        {link.children && (
+          <div style="display:flex;flex-direction:column;gap:0.65rem;margin-top:0.55rem;padding-left:0.8rem;border-left:1px solid rgba(28,25,23,0.12);">
+            {link.children.map((child) => (
+              <a href={child.href} class="mobile-nav-sublink" style="font-family:var(--font-sans);font-size:0.78rem;font-weight:500;color:rgba(28,25,23,0.7);text-decoration:none;letter-spacing:0.02em;padding:0.3rem 0;">{child.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
     ))}
 
     <div class="pt-4 flex flex-col gap-3" style="border-top:1px solid rgba(28,25,23,0.12);">
@@ -104,6 +143,89 @@ const suburbs = [
       letter-spacing: 0.22em;
       opacity: 1;
     }
+  }
+
+  /* ── Desktop dropdown (Property Insights) ──────────────────── */
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    min-width: 240px;
+    margin-top: 0.85rem;
+    padding: 0.55rem;
+    background: rgba(10, 8, 6, 0.96);
+    -webkit-backdrop-filter: blur(20px) saturate(1.1);
+    backdrop-filter: blur(20px) saturate(1.1);
+    border: 1px solid rgba(196, 145, 42, 0.22);
+    border-radius: 10px;
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s, transform 0.18s, visibility 0s 0.18s;
+    z-index: 10000;
+  }
+  /* Bridge the visual gap between trigger and panel with a transparent
+     pseudo-element so the cursor never leaves :hover when moving from
+     "Property Insights" down to the dropdown items. */
+  .nav-dropdown-panel::before {
+    content: '';
+    position: absolute;
+    top: -1.6rem;
+    left: 0;
+    right: 0;
+    height: 1.6rem;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+    transition: opacity 0.18s, transform 0.18s, visibility 0s 0s;
+    /* Small close delay so accidental cursor exits don't immediately dismiss */
+    transition-delay: 0s, 0s, 0s;
+  }
+  .nav-dropdown:not(:hover):not(:focus-within) .nav-dropdown-panel {
+    transition: opacity 0.18s 0.15s, transform 0.18s 0.15s, visibility 0s 0.33s;
+  }
+  .nav-dropdown-trigger svg {
+    transition: transform 0.2s;
+    opacity: 0.65;
+  }
+  .nav-dropdown:hover .nav-dropdown-trigger svg {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+  .nav-dropdown-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.7rem 0.95rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .nav-dropdown-item:hover,
+  .nav-dropdown-item:focus-visible {
+    background: rgba(196, 145, 42, 0.1);
+    outline: none;
+  }
+  .nav-dropdown-label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #f5d07a;
+  }
+  .nav-dropdown-sub {
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    color: rgba(240, 236, 228, 0.55);
+    line-height: 1.4;
   }
 </style>
 
