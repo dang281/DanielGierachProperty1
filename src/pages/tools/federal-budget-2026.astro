@@ -1,12 +1,16 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
+// STAGED: tool was written before the 12 May 2026 budget was delivered.
+// Needs rewriting with actual announced policy before unflagging.
+const draft = true;
 ---
 
 <ToolLayout
   title="Federal Budget 2026: Property Scenario Calculator"
-  description="Model the financial impact of proposed 2026 Federal Budget changes to negative gearing, CGT discounts, and the Help to Buy scheme. Indicative figures only."
+  description="Model the financial impact of 2026 Federal Budget changes to negative gearing, CGT discounts, and the Help to Buy scheme. Indicative figures only."
   tool="Federal Budget 2026 Calculator"
   phase="Investor Tools"
+  draft={draft}
 >
 
 <style is:global>

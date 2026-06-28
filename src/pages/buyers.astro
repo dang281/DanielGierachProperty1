@@ -664,13 +664,24 @@ const buyerSchema = {
     #wz-heading { margin-bottom: 0.3rem !important; }
     #wz-subhead { margin-bottom: 1.25rem !important; }
 
+    /* Step indicator: shrink labels + connectors so all 3 labels fit
+       inside the form panel width without "Property" / "Where" /
+       "Contact" being clipped at the viewport edge. */
+    .wz-dot-lbl {
+      font-size: 0.54rem !important;
+      letter-spacing: 0.08em !important;
+    }
+    .wz-connector {
+      margin: 6px 0.4rem 0 !important;
+    }
+
     /* Field labels were 9px. Bump for legibility on touch. */
     .field-label { font-size: 0.7rem !important; letter-spacing: 0.12em !important; }
     .field-opt   { font-size: 0.66rem !important; }
   }
 
   /* Smallest screens: drop dot labels so the indicator doesn't crowd */
-  @media (max-width: 400px) {
+  @media (max-width: 380px) {
     .wz-dot-lbl { display: none !important; }
     .wz-dot-wrap { gap: 0 !important; }
   }

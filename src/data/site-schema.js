@@ -17,7 +17,7 @@ const globalSchema = {
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Unit 6, 57-59 Oxford Street",
+        "streetAddress": "2A, 57-59 Oxford Street",
         "addressLocality": "Bulimba",
         "addressRegion": "QLD",
         "postalCode": "4171",
@@ -119,9 +119,9 @@ const globalSchema = {
       },
       "sameAs": [
         "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
-        "https://www.linkedin.com/in/daniel-gierach",
+        "https://www.linkedin.com/in/danielgierach",
         "https://www.facebook.com/danielgierachproperty",
-        "https://www.instagram.com/danielgierach",
+        "https://www.instagram.com/dgierach/",
         "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach",
         "https://www.realestate.com.au/agent/daniel-gierach-3819232"
       ]
@@ -157,7 +157,7 @@ const globalSchema = {
       },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Unit 6, 57-59 Oxford Street",
+        "streetAddress": "2A, 57-59 Oxford Street",
         "addressLocality": "Bulimba",
         "addressRegion": "QLD",
         "postalCode": "4171",
@@ -244,9 +244,9 @@ const globalSchema = {
       "sameAs": [
         "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
         "https://raywhitebulimba.com.au/agents/daniel-gierach/177117",
-        "https://www.linkedin.com/in/daniel-gierach",
+        "https://www.linkedin.com/in/danielgierach",
         "https://www.facebook.com/danielgierachproperty",
-        "https://www.instagram.com/danielgierach",
+        "https://www.instagram.com/dgierach/",
         "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach",
         "https://www.realestate.com.au/agent/daniel-gierach-3819232",
         "https://danielgierach.com"
@@ -269,7 +269,7 @@ const globalSchema = {
           "name": "Where is Daniel Gierach based?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Daniel Gierach is based in Bulimba, Brisbane, Queensland, Australia. His office is at Unit 6, 57-59 Oxford Street, Bulimba QLD 4171 (Ray White Bulimba)."
+            "text": "Daniel Gierach is based in Bulimba, Brisbane, Queensland, Australia. His office is at 2A, 57-59 Oxford Street, Bulimba QLD 4171 (Ray White Bulimba)."
           }
         },
         {

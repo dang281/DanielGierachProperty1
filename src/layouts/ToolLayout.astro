@@ -10,12 +10,13 @@ interface Props {
   resourceSlug?: string;
   manifest?: string;
   ogImage?: string;
+  draft?: boolean;
 }
 
-const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest, ogImage } = Astro.props;
+const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest, ogImage, draft = false } = Astro.props;
 ---
 
-<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest} ogImage={ogImage}>
+<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest} ogImage={ogImage} draft={draft}>
 
 <style is:global>
   /* Tool pages lock the nav into its scrolled (dark glass) state from first paint */
