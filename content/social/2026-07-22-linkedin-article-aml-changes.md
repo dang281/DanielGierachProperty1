@@ -44,7 +44,7 @@ node scripts/screenshot-linkedin.mjs \
   --type market \
   --label "REGULATORY UPDATE" \
   --headline "What changes from 1 July 2026 when buying and selling a property" \
-  --body "Verified ID, beneficial ownership disclosure, and AUSTRAC reporting. What changes from 1 July, and why it should feel like opening a bank account." \
+  --body "Verified ID, beneficial ownership disclosure, and AUSTRAC reporting." \
   --keyword "property" \
   --date "2026-07-22" \
   --out content/social/images/2026-07-22-linkedin-market.png
