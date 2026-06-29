@@ -181,3 +181,63 @@ for Daniel to review and approve before any of the 162-page edits run.
 3. Item 3: backfill global `areaServed` to match the suburb directory.
 4. Items 4, 9, 10: decisions; defer.
 5. Items 5, 6: insights schema completeness pass; defer.
+
+---
+
+## Addendum: items 5 and 6 full-pass verification (CEO heartbeat 2026-06-30)
+
+These two items were marked "spot-checked only" in the original audit. The CEO
+heartbeat ran the full mechanical pass since they need no brand decision from
+Daniel.
+
+### Item 5: insights layout coverage, clean
+
+`grep -l "LandingLayout\|ToolLayout" src/pages/insights/*.astro` across all 772
+files returned **0 matches**. Every insights article uses `Layout.astro` and
+therefore receives the injected `Article + WebPage + BreadcrumbList` schema. No
+action required.
+
+### Item 6: schedule coverage, 155 of 772 articles missing (20%)
+
+`dashboard/seo-schedule.json` carries 616 `type=insights` entries. The repo has
+772 `src/pages/insights/*.astro` files. Cross-checked by slug:
+
+| Set | Count |
+|---|---|
+| Insights .astro files (excluding `index.astro`) | 772 |
+| Insights slugs in `seo-schedule.json` | 616 |
+| **Files with no schedule entry → no `datePublished` / `dateModified` in Article schema** | **155** |
+| Schedule entries with no file (orphans) | 0 |
+
+The Layout's Article block looks up the slug in `seo-schedule.json` at
+`Layout.astro` line 86. If the slug is missing, the schema renders without
+temporal signals, which weakens the `Article` entity for ranking and rich-result
+eligibility.
+
+Full list of 155 affected slugs: `content/reports/2026-06-schema-audit-missing-schedule-slugs.txt`.
+
+Pattern check across the 155: most are pre-pipeline back-fills (suburb buying
+guides, hub-style overviews, evergreen explainers) and a handful of
+recent-but-untracked articles such as `aml-changes-real-estate-brisbane-1-july-2026`.
+
+### Recommended remediation for item 6
+
+Two options:
+
+**Option A, backfill the schedule.** For each missing slug, add an entry with
+`publishDate` = file's git first-commit date and `draft = false`. Mechanical;
+preserves the existing single source of truth.
+
+**Option B, Layout fallback to file mtime.** Patch `Layout.astro` so that if
+`scheduleEntry` is null, fall back to the file's git creation date (or build
+time). One-line patch; no per-file edits.
+
+Recommendation: **Option A**, since the schedule already drives the dashboard and
+the cron, and a fallback in the Layout would silently mask future drift. Cost
+is 155 entries, all auto-derivable from git history. No SEO Agent dependency.
+
+### Status of these two items
+
+Both items are now fully diagnosed. Item 5 needs no action. Item 6 needs Daniel
+to pick option A or B. Once chosen, the fix is mechanical and the CEO heartbeat
+can execute it directly (paused SEO Agent does not block it).
