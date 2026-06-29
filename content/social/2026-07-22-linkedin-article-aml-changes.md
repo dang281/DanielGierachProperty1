@@ -1,4 +1,4 @@
-# LinkedIn Post: AML Changes Article Feature
+# LinkedIn Post: What changes from 1 July 2026 when buying and selling a property
 
 **Platform:** LinkedIn
 **Format:** Post (Article feature)
@@ -43,9 +43,9 @@ Use the market template (Wednesday slot, consistent with other Wed market/author
 node scripts/screenshot-linkedin.mjs \
   --type market \
   --label "REGULATORY UPDATE" \
-  --headline "What the new AML rules mean for Brisbane buyers and sellers" \
+  --headline "What changes from 1 July 2026 when buying and selling a property" \
   --body "Verified ID, beneficial ownership disclosure, and AUSTRAC reporting. What changes from 1 July, and why it should feel like opening a bank account." \
-  --keyword "AML" \
+  --keyword "property" \
   --date "2026-07-22" \
   --out content/social/images/2026-07-22-linkedin-market.png
 ```

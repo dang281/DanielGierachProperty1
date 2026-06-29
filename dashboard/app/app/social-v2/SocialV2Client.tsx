@@ -774,10 +774,31 @@ export default function SocialV2Client({ items }: Props) {
               flexShrink: 0,
               background: '#fff', padding: 8,
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              gap: 8,
               borderBottom: '1px solid rgba(28,25,23,0.08)',
             }}>
               <span style={{ fontWeight: 600, fontSize: 13, padding: '0 8px' }}>LinkedIn preview</span>
-              <button onClick={() => setPreviewId(null)} style={btn('transparent', '#1c1917', '1px solid rgba(28,25,23,0.18)')}>Close</button>
+              <div style={{ display: 'flex', gap: 6 }}>
+                {previewItem.visual_thumbnail && (
+                  <a
+                    href={previewItem.visual_thumbnail}
+                    download
+                    target="_blank"
+                    rel="noopener"
+                    style={{
+                      ...btn('transparent', '#1c1917', '1px solid rgba(28,25,23,0.18)'),
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 5,
+                    }}
+                    title="Download the visual to post on LinkedIn"
+                  >
+                    ⬇ Download
+                  </a>
+                )}
+                <button onClick={() => setPreviewId(null)} style={btn('transparent', '#1c1917', '1px solid rgba(28,25,23,0.18)')}>Close</button>
+              </div>
             </div>
             <div style={{
               flex: 1, minHeight: 0,
