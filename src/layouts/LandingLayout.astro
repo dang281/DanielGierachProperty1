@@ -1,13 +1,22 @@
 ---
-// Stripped layout for paid ad landing pages, no nav, no footer, no distractions
+// Stripped layout for paid ad landing pages, no nav, no footer, no distractions.
+// `manifest`, `appleTouchIcon`, `faviconSvg` let individual pages override the
+// default DG branding — used by Conrad-first pages so the "Add to Home Screen"
+// PWA icon is CL instead of DG.
 interface Props {
   title?: string;
   description?: string;
+  manifest?: string;
+  appleTouchIcon?: string;
+  faviconSvg?: string;
 }
 
 const {
   title = "Free Property Report | Daniel Gierach Property",
   description = "Find out what your home is worth. Free report based on recent comparable sales. No obligation.",
+  manifest = '/site.webmanifest',
+  appleTouchIcon = '/apple-touch-icon.png',
+  faviconSvg = '/favicon.svg',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').href;
@@ -21,7 +30,11 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
+    <link rel="manifest" href={manifest} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
