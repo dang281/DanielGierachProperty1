@@ -14,6 +14,12 @@ const services = [
     desc: 'See homes before they hit realestate.com.au.',
     icon: 'key',
   },
+  {
+    href: '/tools/commute-cost',
+    title: 'Commute & fuel calculator',
+    desc: 'See annual fuel cost and drive time before you buy.',
+    icon: 'route',
+  },
 ];
 
 const articles = [
@@ -464,6 +470,9 @@ const agents = [
           )}
           {s.icon === 'key' && (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2"/><path d="M16.5 6.5L19 9"/></svg>
+          )}
+          {s.icon === 'route' && (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6a4 4 0 0 0 4-4V9M15 5H9a4 4 0 0 0-4 4v6"/></svg>
           )}
         </span>
         <div class="card-body">
