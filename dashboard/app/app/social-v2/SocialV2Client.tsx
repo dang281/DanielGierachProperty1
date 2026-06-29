@@ -760,14 +760,20 @@ export default function SocialV2Client({ items }: Props) {
       {previewItem && (
         <div onClick={() => setPreviewId(null)} style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
           padding: 24, zIndex: 100,
+          overflowY: 'auto',
         }}>
-          <div onClick={e => e.stopPropagation()} style={{ maxWidth: 600, width: '100%' }}>
+          <div onClick={e => e.stopPropagation()} style={{
+            maxWidth: 600, width: '100%',
+            margin: 'auto 0',
+          }}>
             <div style={{
+              position: 'sticky', top: 0, zIndex: 1,
               background: '#fff', borderRadius: 10, padding: 8,
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
               marginBottom: 8,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
             }}>
               <span style={{ fontWeight: 600, fontSize: 13, padding: '0 8px' }}>LinkedIn preview</span>
               <button onClick={() => setPreviewId(null)} style={btn('transparent', '#1c1917', '1px solid rgba(28,25,23,0.18)')}>Close</button>
