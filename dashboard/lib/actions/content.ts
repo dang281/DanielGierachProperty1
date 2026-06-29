@@ -416,16 +416,18 @@ export async function regenerateVisual(id: string, mode: 'primary' | 'alternate'
   const currentThumb = item.visual_thumbnail ?? ''
 
   // Day of week is authoritative for template selection:
-  // Tuesday (2) = market/authority — NEVER article-cover, regardless of title
-  // Thursday (4) = article feature — ALWAYS article or article-cover
+  // Tuesday  (2) = market/authority — NEVER article-cover, regardless of title
+  // Wednesday(3) = market/authority — NEVER article-cover, regardless of title
+  // Thursday (4) = article feature  — ALWAYS article or article-cover
   // 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
   const scheduledDow = item.scheduled_date
     ? new Date(item.scheduled_date + 'T12:00:00').getDay()
     : -1
   const isTuesdayPost   = scheduledDow === 2
+  const isWednesdayPost = scheduledDow === 3
   const isThursdayPost  = scheduledDow === 4
   const isArticle = isThursdayPost || (
-    !isTuesdayPost && (
+    !isTuesdayPost && !isWednesdayPost && (
       /article feature|field guide/i.test(title) || /field guide/i.test(notes)
     )
   )

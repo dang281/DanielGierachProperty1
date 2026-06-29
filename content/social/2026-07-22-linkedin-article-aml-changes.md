@@ -7,8 +7,9 @@
 **Status:** Ready for Review
 **Publish date:** 2026-07-22
 **Scheduled time:** 07:30
-**Visual status:** Not yet generated
-**Visual template:** article-cover
+**Visual status:** Ready
+**Visual template:** market
+**Image:** content/social/images/2026-07-22-linkedin-market.png
 
 ---
 
@@ -36,9 +37,18 @@ Full breakdown: https://danielgierach.com/insights/aml-changes-real-estate-brisb
 
 ## Visual Brief
 
-Use the article-cover template. Headline: "What the new AML rules mean for buyers and sellers". Tagline: "ID checks, beneficial ownership, and the 1 July changes explained". Read time: 7 MIN READ. Date: 2026-07-22.
+Use the market template (Wednesday slot, consistent with other Wed market/authority visuals).
 
-Run the issue-number grep first to find the next sequential Field Guide number. Then add `**Series:** Field Guide Issue NN` to this file after generating.
+```
+node scripts/screenshot-linkedin.mjs \
+  --type market \
+  --label "REGULATORY UPDATE" \
+  --headline "What the new AML rules mean for Brisbane buyers and sellers" \
+  --body "Verified ID, beneficial ownership disclosure, and AUSTRAC reporting. What changes from 1 July, and why it should feel like opening a bank account." \
+  --keyword "AML" \
+  --date "2026-07-22" \
+  --out content/social/images/2026-07-22-linkedin-market.png
+```
 
 ## Notes for Daniel
 

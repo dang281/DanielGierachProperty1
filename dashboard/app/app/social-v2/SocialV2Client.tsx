@@ -250,6 +250,7 @@ function PostCard({
   onApprove,
   onUnapprove,
   onRegenerate,
+  onMove,
   onOpenPreview,
   onEdit,
   busyIds,
@@ -259,6 +260,7 @@ function PostCard({
   onApprove: (id: string) => void
   onUnapprove: (id: string) => void
   onRegenerate: (id: string) => void
+  onMove: (id: string, date: string) => void
   onOpenPreview: (id: string) => void
   onEdit: (id: string, caption: string) => void
   busyIds: Set<string>
@@ -291,6 +293,7 @@ function PostCard({
       minWidth: 260,
       maxWidth: 380,
     }}>
+      <style>{`@keyframes sv2spin { to { transform: rotate(360deg); } }`}</style>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', color: colour }}>
           {role ? ROLE_LABEL[role] : 'UNSCHEDULED'}
@@ -358,7 +361,93 @@ function PostCard({
           <>
             <button onClick={() => onOpenPreview(item.id)} style={btn('transparent', '#1c1917', '1px solid rgba(28,25,23,0.18)')}>Preview</button>
             {!isLocked && <button onClick={() => setEditing(true)} style={btn('transparent', '#78716c', '1px solid rgba(28,25,23,0.18)')}>Edit</button>}
-            {!isLocked && <button onClick={() => onRegenerate(item.id)} disabled={isBusy} style={btn('transparent', '#c4912a', '1px solid rgba(196,145,42,0.4)')}>{isBusy ? 'Regen…' : 'Regen visual'}</button>}
+            {!isLocked && (
+              <button
+                onClick={() => onRegenerate(item.id)}
+                disabled={isBusy}
+                style={{
+                  ...btn('transparent', '#c4912a', '1px solid rgba(196,145,42,0.4)'),
+                  opacity: isBusy ? 0.85 : 1,
+                  cursor: isBusy ? 'wait' : 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}
+              >
+                {isBusy && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      width: 11,
+                      height: 11,
+                      border: '1.5px solid rgba(196,145,42,0.35)',
+                      borderTopColor: '#c4912a',
+                      borderRadius: '50%',
+                      animation: 'sv2spin 0.7s linear infinite',
+                      display: 'inline-block',
+                    }}
+                  />
+                )}
+                {isBusy ? 'Regenerating…' : 'Regen visual'}
+              </button>
+            )}
+            {item.visual_thumbnail && (
+              <a
+                href={item.visual_thumbnail}
+                download
+                target="_blank"
+                rel="noopener"
+                style={{
+                  ...btn('transparent', '#1c1917', '1px solid rgba(28,25,23,0.18)'),
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 5,
+                }}
+                title="Download the visual to post on LinkedIn"
+              >
+                ⬇ Download
+              </a>
+            )}
+            {!isLocked && (
+              <label
+                title="Move this post to a different date"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  padding: '6px 8px',
+                  border: '1px solid rgba(28,25,23,0.18)',
+                  borderRadius: 6,
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: '#1c1917',
+                  background: 'transparent',
+                  cursor: 'pointer',
+                }}
+              >
+                📅
+                <input
+                  type="date"
+                  defaultValue={item.scheduled_date ?? ''}
+                  onChange={e => {
+                    const d = e.target.value
+                    if (d && d !== item.scheduled_date) onMove(item.id, d)
+                  }}
+                  disabled={isBusy}
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    fontSize: 11,
+                    fontFamily: 'inherit',
+                    color: '#1c1917',
+                    padding: 0,
+                    cursor: isBusy ? 'wait' : 'pointer',
+                    width: 100,
+                  }}
+                />
+              </label>
+            )}
             {!isLocked && !isApproved && <button onClick={() => onApprove(item.id)} disabled={isBusy} style={btn('#10b981', '#fff')}>Approve</button>}
             {!isLocked && isApproved && <button onClick={() => onUnapprove(item.id)} disabled={isBusy} style={btn('transparent', '#10b981', '1px solid rgba(16,185,129,0.4)')}>Unapprove</button>}
           </>
@@ -375,6 +464,7 @@ function WeekRow({
   onUnapprove,
   onApproveWeek,
   onRegenerate,
+  onMove,
   onOpenPreview,
   onEdit,
   busyIds,
@@ -385,6 +475,7 @@ function WeekRow({
   onUnapprove: (id: string) => void
   onApproveWeek: (b: WeekBucket) => void
   onRegenerate: (id: string) => void
+  onMove: (id: string, date: string) => void
   onOpenPreview: (id: string) => void
   onEdit: (id: string, caption: string) => void
   busyIds: Set<string>
@@ -436,7 +527,8 @@ function WeekRow({
         {slots.map(([role, it]) => it ? (
           <PostCard key={it.id} item={it} role={role}
             onApprove={onApprove} onUnapprove={onUnapprove}
-            onRegenerate={onRegenerate} onOpenPreview={onOpenPreview} onEdit={onEdit}
+            onRegenerate={onRegenerate} onMove={onMove}
+            onOpenPreview={onOpenPreview} onEdit={onEdit}
             busyIds={busyIds}
           />
         ) : (
@@ -538,6 +630,7 @@ export default function SocialV2Client({ items }: Props) {
   function handleUnapprove(id: string)  { safeRun(id, () => unapprovePost(id)) }
   function handleEdit(id: string, caption: string) { safeRun(id, () => updateItem(id, { caption })) }
   function handleRegenerate(id: string) { safeRun(id, () => regenerateVisual(id, 'primary')) }
+  function handleMove(id: string, date: string) { safeRun(id, () => updateItem(id, { scheduled_date: date })) }
 
   function handleApproveWeek(b: WeekBucket) {
     const ids = [b.tue, b.wed, b.thu]
@@ -623,6 +716,7 @@ export default function SocialV2Client({ items }: Props) {
             onApprove={handleApprove} onUnapprove={handleUnapprove}
             onApproveWeek={handleApproveWeek}
             onRegenerate={handleRegenerate}
+            onMove={handleMove}
             onOpenPreview={setPreviewId} onEdit={handleEdit}
             busyIds={busyIds}
           />
@@ -638,6 +732,7 @@ export default function SocialV2Client({ items }: Props) {
             onApprove={handleApprove} onUnapprove={handleUnapprove}
             onApproveWeek={handleApproveWeek}
             onRegenerate={handleRegenerate}
+            onMove={handleMove}
             onOpenPreview={setPreviewId} onEdit={handleEdit}
             busyIds={busyIds}
           />
