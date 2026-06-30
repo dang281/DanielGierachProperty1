@@ -3,6 +3,18 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
 const services = [
   {
+    href: '/buyers',
+    title: 'Off-market & pre-market access',
+    desc: 'See homes before they hit realestate.com.au.',
+    icon: 'key',
+  },
+  {
+    href: '/listings',
+    title: 'Current listings',
+    desc: 'Homes Daniel and Conrad have on the market right now.',
+    icon: 'tag',
+  },
+  {
     href: '/tools/presale-checklist',
     title: 'Prepare your home for sale',
     desc: 'A room-by-room checklist.',
@@ -13,12 +25,6 @@ const services = [
     title: 'Brisbane Property Map',
     desc: 'Zoning, infrastructure and school catchments.',
     icon: 'map',
-  },
-  {
-    href: '/buyers',
-    title: 'Off-market & pre-market access',
-    desc: 'See homes before they hit realestate.com.au.',
-    icon: 'key',
   },
 ];
 
@@ -369,7 +375,7 @@ const supportTeam = [
       linear-gradient(135deg, rgba(196,145,42,0.04) 0%, rgba(196,145,42,0) 60%),
       var(--card);
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 12px;
     padding: 0.95rem 1.05rem;
     text-decoration: none;
     color: var(--text);
@@ -442,7 +448,7 @@ const supportTeam = [
     padding: 0.7rem 0.95rem;
     background: transparent;
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 10px;
     text-decoration: none;
     color: var(--text);
     margin-bottom: 0.45rem;
@@ -486,7 +492,7 @@ const supportTeam = [
     background:
       linear-gradient(135deg, rgba(196,145,42,0.15) 0%, rgba(196,145,42,0.04) 100%);
     border: 1px solid var(--line-strong);
-    border-radius: 4px;
+    border-radius: 12px;
     padding: 1.25rem 1.25rem;
     margin-top: 1.5rem;
     text-align: center;
@@ -610,6 +616,9 @@ const supportTeam = [
           {s.icon === 'key' && (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2"/><path d="M16.5 6.5L19 9"/></svg>
           )}
+          {s.icon === 'tag' && (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          )}
         </span>
         <div class="card-body">
           <div class="card-title">{s.title}</div>
@@ -648,7 +657,7 @@ const supportTeam = [
   <div class="final">
     <p class="final-title">What is your home worth today?</p>
     <p class="final-sub">A free, no-obligation property report based on recent comparable sales in your suburb.</p>
-    <a href="/walkthrough" class="btn-gold" data-cta="property_tools_to_walkthrough">
+    <a href="/report" class="btn-gold" data-cta="meet_team_to_report">
       Click here to find out
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
