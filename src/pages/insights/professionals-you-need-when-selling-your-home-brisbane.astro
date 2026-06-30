@@ -1,0 +1,162 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who do I need to engage with when selling a property in Brisbane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum, a real estate agent and a conveyancer or property solicitor. Most Brisbane sales also involve a building and pest inspector, a photographer, a stylist for presentation, painters or gardeners for pre-sale work, and removalists for the move. If you are also buying or have tax considerations, add a mortgage broker and an accountant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How early should I start contacting these professionals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eight to twelve weeks before the planned listing date is the standard runway for a presentation-led campaign. Stylists, painters, and trades book out fast in spring. The conveyancer can be lined up at any point before the campaign goes live, but should review the contract before the property is advertised."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a stylist when selling my home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A stylist is not legally required, but for most homes priced above the suburb median a full style is the norm, because it lifts buyer numbers at the first open. For homes that already present well, partial styling or hire pieces for key rooms is often enough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my agent recommend trusted professionals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most experienced agents keep a working list of trades, stylists, photographers, conveyancers, and brokers they use repeatedly. These recommendations are usually a good starting point because the agent has seen the actual quality of work over years. Ask the agent up front if they have a commercial relationship with any recommended supplier."
+      }
+    }
+  ]
+};
+---
+<Layout title="Who You'll Need on Your Team When Selling Your Brisbane Home | Daniel Gierach Property" description="A full list of the professionals a typical Brisbane home sale involves, from the listing agent and conveyancer through to stylists, photographers, removalists, and brokers, and how to decide which ones you actually need." schema={faqSchema}>
+
+<article style="background:var(--color-surface-0);min-height:100vh;">
+
+  <div style="background:#0a0806;padding:8rem 0 3rem;">
+    <div class="max-w-[780px] mx-auto px-8">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+        ← All Articles
+      </a>
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers · 10 min read</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+        Who You'll Need on Your Team When Selling Your Brisbane Home
+      </h1>
+      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+        A full list of the professionals a typical Brisbane home sale involves, what each one actually does, and when they enter the campaign. Plus how to decide which ones you actually need.
+      </p>
+    </div>
+  </div>
+
+  <div style="padding:3rem 0 7rem;">
+    <div class="max-w-[780px] mx-auto px-8" style="font-size:0.97rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.75rem;">
+
+      <p>Selling a home looks like a one-person process from the outside. The listing agent is the visible face of it, and most sellers think of the agent first. In practice a typical Brisbane sale involves eight to twelve different professionals across legal, finance, presentation, inspection, marketing, and logistics. Knowing who you might engage with, what each one does, and when they enter the campaign helps you plan the costs, control the timing, and avoid doubling up.</p>
+
+      <p>This is a generic list. Not every seller needs every professional. A vacant investment property in good condition might only need an agent, a conveyancer, and a photographer. A long-held family home being repositioned for a premium sale might involve every category below. The point is to know what is available before the campaign starts, so you can decide which roles to fill and which to skip.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">The non-negotiables</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Real estate agent.</strong> The listing agent runs the campaign, negotiates with buyers, handles enquiries, and manages the contract through to settlement. In Queensland the formal appointment is via a Form 6 agency agreement. A good agent also coordinates other professionals on your behalf, including photographers, stylists, and inspectors, and chases up loose ends in the lead-up to settlement.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Conveyancer or solicitor.</strong> Every Queensland sale needs a legal professional who can prepare the contract, manage the trust account for the deposit, handle searches, and run settlement. Solicitors and conveyancers can both do this work. Solicitors charge more but can handle disputes, deceased estates, and complex title issues. Conveyancers are usually fine for a standard residential sale.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Tax and finance</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Accountant.</strong> If the property is an investment, an inherited asset, or a former home that has been rented out, capital gains tax may apply. Your accountant calculates the gain, advises on the contract date for CGT timing, prepares the ATO clearance certificate if the price is above the threshold, and keeps records for the tax return. The contract date, not the settlement date, is the CGT event in Australia. Have this conversation before you sign anything.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Mortgage broker.</strong> If you have a loan on the property being sold, the broker coordinates the discharge with your bank. If you are also buying, the broker arranges new finance or bridging finance to cover the gap between sale and settlement. A good broker can also advise on whether to sell first or buy first based on your borrowing capacity.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Financial adviser.</strong> If the sale produces a meaningful amount of cash that will not immediately go into another property, a financial adviser can help with where to invest the proceeds. Most relevant for retirees, investors, or anyone consolidating a portfolio. Not every seller needs one.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Presentation team</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Property stylist.</strong> A stylist (sometimes called a stager) furnishes empty homes or refreshes lived-in ones with hire pieces. Full styling typically runs four to eight weeks across the campaign and costs $3,000 to $8,000 in Brisbane depending on the size of the home. Partial styling for key rooms only, or styling around your existing furniture, is cheaper and often enough.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Painter.</strong> Fresh interior paint is one of the highest-return pre-sale jobs because it presents as clean, new, and neutral in photographs and at open homes. Exterior touch-ups on the fascia, gutters, and entry door make a strong difference to kerb appeal. Get two quotes and ask for a fixed price, not an hourly rate.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Gardener and landscaper.</strong> Kerb appeal sells. A gardener handles a clean-up, mulching, hedge trimming, and lawn restoration. A landscaper does more substantial work like turf laying, garden bed reconstruction, or replacing dead plants. For most homes, a gardener for one or two visits before the photoshoot is enough.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Cleaner.</strong> A pre-photoshoot deep clean is non-negotiable. Some agencies include this in the campaign package. If yours does not, book a residential cleaner who specifically does pre-sale work. Carpets, windows, and bathrooms are the high-impact spots. A second clean before each open home keeps presentation tight.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Handyman and trades for repairs.</strong> Small repairs add up in photographs and at inspections. A handyman can knock over a list of small jobs in a day: re-grouting tiles, replacing light bulbs, fixing door handles, patching plaster, oiling decks. Larger jobs need licensed trades. In Queensland, electrical and plumbing work must be done by a licensed tradesperson.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Inspection and reports</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Building inspector.</strong> The buyer will commission their own building inspection during the contract period. Some sellers commission a pre-sale building inspection to identify and fix issues before they show up in the buyer's report. The cost is $400 to $700 in Brisbane and the report becomes a marketing asset if it comes back clean.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Pest inspector.</strong> Termite, borer, and other pest activity is common in Queensland because of the climate. Sellers who pre-emptively commission a pest inspection know what the buyer's inspector will find, and can address active infestations before the contract is signed.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Structural engineer.</strong> Only relevant if there is a specific concern: visible cracking, slab movement, retaining wall lean, or a balcony or deck with obvious problems. Quotes vary by scope.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Marketing</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Photographer.</strong> Almost all Brisbane sellers use the agent's preferred photographer because the agent has negotiated the package and the photographer knows the local style. A good real estate shoot uses twilight images for exterior shots and high-dynamic-range processing for interiors. Drone footage adds value for homes on larger blocks or with views.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Videographer and drone operator.</strong> A short walk-through video or drone reel is now standard for premium campaigns. The cost sits on top of the photography package and typically adds $400 to $1,200.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Copywriter.</strong> Some agencies use a professional copywriter for the property description on realestate.com.au and Domain. Others write in-house. Good copy is short, specific, and avoids cliches.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Auctioneer.</strong> If the campaign is run as an auction, an auctioneer runs the day. Most agencies have a preferred auctioneer who is paid on a flat fee. The auctioneer attends pre-auction inspections, manages the registration of bidders, and runs the bidding.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">Logistics for the move</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Removalists.</strong> Book early. Demand spikes around weekends and end of month in Brisbane. Get three quotes for any move larger than a unit. Confirm insurance cover, especially if you have heavy furniture, fragile items, or art.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Storage operator.</strong> If there is a gap between settling on the sale and moving into the next home, a self-storage unit holds the difference. Most operators in Brisbane do month-by-month contracts. Check access hours and climate control before booking.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Post-move cleaning team.</strong> Settlement contracts in Queensland include a presentation obligation: the home must be in the same condition as on inspection. A bond-clean style service the day after the move covers it. This is also the cheapest insurance against settlement disputes over presentation.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">If you are also buying</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Buyers' agent.</strong> A buyers' agent represents you on the purchase side, sources off-market properties, runs the negotiations, and bids at auction. Useful for time-poor buyers, interstate buyers, or anyone targeting a competitive segment.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Mortgage broker (on the buying side).</strong> The same broker who handles the discharge on the sale can arrange the new loan or bridging finance for the purchase. Coordinating both sides through one broker keeps the timing tight.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">If you are selling a unit</h2>
+
+      <p><strong style="color:var(--color-text-primary);">Body corporate manager.</strong> The body corporate manager prepares the disclosure documents the buyer's solicitor will request: recent levies, the sinking fund balance, the by-laws, AGM minutes, and any current disputes or special levies. Order these documents at the start of the campaign because they can take a week or more.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Strata search agent.</strong> For unit sellers who want the disclosure pack reviewed for risk, a strata search agent reads the records and writes a short report. Useful if the building has had a history of disputes, defect claims, or special levies.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How many of these do you actually need?</h2>
+
+      <p>Most sellers do not engage every category. The right shortlist depends on the property, the campaign type, and your timeline. As a rough guide:</p>
+
+      <p><strong style="color:var(--color-text-primary);">Premium home, four to six week campaign, owner-occupier sale:</strong> agent, conveyancer, accountant, stylist, painter, gardener, cleaner, photographer, removalist. Eight or nine professionals.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Standard family home, no styling:</strong> agent, conveyancer, photographer, gardener, cleaner, removalist. Five or six.</p>
+
+      <p><strong style="color:var(--color-text-primary);">Vacant investment property:</strong> agent, conveyancer, accountant, photographer, cleaner, and a removalist if there is anything to move out. Five or six.</p>
+
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);">How to use any recommendation you receive</h2>
+
+      <p>For any professional your agent recommends, do two checks. First, ask whether the agent has a commercial relationship with the supplier (referral fee, equity, or ownership). A good agent answers directly. Second, get a second quote where the cost is meaningful, especially on styling, painting, and removals. For licensed trades, confirm the licence is current on the relevant Queensland licensing register.</p>
+
+      <p>Push back on any recommendation that does not feel right. A good agent expects this conversation and welcomes it, because the cost of a bad supplier is high on both sides.</p>
+
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Want Daniel's list of trusted professionals?</strong> Daniel keeps a current shortlist of the stylists, photographers, conveyancers, brokers, removalists, and trades he uses regularly across Brisbane. He shares it with sellers who are getting ready to list. <a href="/contact" style="color:#f5d07a;font-weight:600;">Contact Daniel.</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <AuthorBio />
+
+</article>
+
+</Layout>
