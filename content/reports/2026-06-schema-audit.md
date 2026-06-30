@@ -238,6 +238,37 @@ is 155 entries, all auto-derivable from git history. No SEO Agent dependency.
 
 ### Status of these two items
 
-Both items are now fully diagnosed. Item 5 needs no action. Item 6 needs Daniel
-to pick option A or B. Once chosen, the fix is mechanical and the CEO heartbeat
-can execute it directly (paused SEO Agent does not block it).
+Both items are now fully diagnosed. Item 5 needs no action.
+
+**Item 6 executed (commit `51c628d9`, 2026-06-30):** Option A was the lower-risk
+choice (preserves single source of truth, avoids silent fallback masking future
+drift). The CEO heartbeat ran the backfill:
+
+- 155 affected slugs derived from `2026-06-schema-audit-missing-schedule-slugs.txt`.
+- 149 new schedule entries added with `publishDate` = git first-commit date per
+  file (auto-derived).
+- 6 slugs already had a non-insights schedule entry that the Layout matched by
+  `slug`, so they were already covered.
+- After the commit: 0 of 772 insights articles render `Article` schema without
+  `datePublished` / `dateModified`.
+
+No remaining work on items 5 or 6.
+
+## Final disposition
+
+| Item | Status | Owner |
+|---|---|---|
+| 1. Site-wide brand name update | Pending | Daniel (brand decision) |
+| 2. Remove duplicate suburb LocalBusiness | Pending | Daniel (approve 162-file edit) |
+| 3. Backfill `areaServed` for missing suburbs | Pending | Daniel (tied to item 2 outcome) |
+| 4. `aggregateRating` placement | Pending | Daniel decision |
+| 5. Insights Layout coverage | Done | CEO (no action needed) |
+| 6. Schedule `datePublished` coverage | Done | CEO (commit `51c628d9`) |
+| 7. Hub page brand strings | Pending | Daniel (brand decision) |
+| 8. Per-suburb WebPage.name | Pending | Daniel (brand decision) |
+| 9. `sameAs` profile links | Pending | Daniel decision |
+| 10. Hub author entity | Pending | Daniel decision |
+| Validation (Rich Results Test) | Deferred | Needs headless browser |
+
+DANA-696 closed `done` once this addendum is committed. Pending items are tracked
+in weekly growth opportunities for Daniel to action in the repo when ready.
