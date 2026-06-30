@@ -969,6 +969,11 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
     { title: "How to Handle Offers When Selling Your Home", slug: "how-to-handle-offers-when-selling", label: "Negotiation" },
   ],
+  "professionals-you-need-when-selling-your-home-brisbane": [
+    { title: "How to Choose a Real Estate Agent in Brisbane", slug: "how-to-choose-a-real-estate-agent-brisbane", label: "Agents" },
+    { title: "Property Styling and Staging When Selling in Brisbane", slug: "property-styling-staging-brisbane", label: "Presentation" },
+    { title: "Cost of Selling a House in Brisbane", slug: "cost-of-selling-house-brisbane", label: "Costs" },
+  ],
 };
 
 // Default fallback for pages not in the map
