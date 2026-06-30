@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const reportSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Your Property Report",
+  "provider": { "@id": "https://danielgierach.com/#business" },
+  "serviceType": "Property Appraisal",
+  "areaServed": "Brisbane Inner East",
+  "url": "https://danielgierach.com/report"
+};
+---
+
+<Layout
+  preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70"
+  title="Your Property Report | Daniel Gierach Property"
+  description="Get your free property report from Daniel Gierach. Instant online estimate, in-person walkthrough, or a direct call. Pick whichever suits."
+  schema={reportSchema}
+  hideFooterCta={true}
+  hideMobileCta={true}
+>
+
+<section style="display:grid;grid-template-columns:1fr 1fr;min-height:100dvh;" class="report-split">
+
+  <!-- ── LEFT: dark hero panel ── -->
+  <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;">
+
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70"
+        srcset="
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=640&q=70 640w,
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70 1080w,
+          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70 1920w
+        "
+        sizes="(max-width: 768px) 100vw, 50vw"
+        alt=""
+        class="w-full h-full object-cover"
+        style="filter:grayscale(8%) brightness(0.5);"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0" style="background:linear-gradient(170deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.55) 50%,rgba(10,8,6,0.78) 100%);"></div>
+    </div>
+
+    <div class="relative z-10 report-hero-content">
+      <div class="report-hero-text">
+        <div class="report-identity reveal" data-delay="40" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+          <img
+            src="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=96&q=80"
+            srcset="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=128&q=80 2x, /_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=256&q=80 3x"
+            alt="Daniel Gierach"
+            width="40" height="40"
+            style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);"
+          />
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
+        </div>
+
+        <span class="report-hero-eyebrow eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Your Property Report</span>
+
+        <h1 class="report-hero-h1 reveal" data-delay="60"
+          style="font-family:var(--font-serif);font-size:clamp(1.65rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
+          Let's find your home's value.
+        </h1>
+
+        <p class="report-hero-desc reveal" data-delay="120"
+          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
+          Start with your address. We'll show you three quick ways to get a number that suit you. Takes less than a minute.
+        </p>
+      </div>
+
+      <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:rgba(10,8,6,0.5);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);margin-bottom:2.75rem;">
+        <div style="display:flex;gap:0.2rem;margin-bottom:0.75rem;">
+          {[1,2,3,4,5].map(() => (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#c5a03c" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ))}
+        </div>
+        <p style="font-family:var(--font-serif);font-size:0.8rem;font-style:italic;color:rgba(240,236,228,0.9);line-height:1.55;margin-bottom:0.75rem;">
+          "Daniel was honestly fantastic to work with. He was incredibly knowledgeable, professional and responsive throughout the entire process."
+        </p>
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c5a03c;">5 Stars · Recent Review</p>
+      </div>
+
+      <div class="report-hero-contacts reveal" data-delay="180" style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Phone</p>
+          <a href="tel:+61412523821" data-cta="report_call_daniel"
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='#ffffff'">0412 523 821</a>
+        </div>
+
+        <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
+
+        <div>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Email</p>
+          <a href="mailto:daniel.gierach@raywhite.com" data-cta="report_email_daniel"
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#f5d07a'"
+            onmouseout="this.style.color='#ffffff'">daniel.gierach@raywhite.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT: form panel ── -->
+  <div class="report-form-panel relative flex flex-col justify-center" style="padding:8rem 4rem 4rem;background:var(--color-base);">
+    <div style="max-width:480px;width:100%;margin:0 auto;">
+      <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Your Property Report</p>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:400;line-height:1.15;color:var(--color-text-primary);margin-bottom:0.5rem;">
+        First, what property?
+      </h2>
+      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#a8a29e;margin-bottom:1.5rem;">
+        Step 1 of 2
+      </p>
+
+      <form id="report-form" style="display:flex;flex-direction:column;gap:1rem;" onsubmit="return false;">
+        <div>
+          <label for="report-address-input" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
+            Property Address <span style="color:#c4912a;">*</span>
+          </label>
+          <input type="text" id="report-address-input" name="property_address" required placeholder="Start typing your address..."
+            class="obs-input form-field" autocomplete="off" enterkeyhint="next"
+          />
+        </div>
+        <button type="button" id="report-continue" class="btn-gold" data-cta="report_continue_to_options"
+          style="width:100%;justify-content:center;padding:1rem;margin-top:1rem;">
+          Continue
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p style="font-family:var(--font-sans);font-size:0.65rem;color:#78716c;text-align:center;margin-top:0.5rem;line-height:1.5;">Pick how you want your report on the next step.</p>
+      </form>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .report-hero-content {
+    background: rgba(0,0,0,0.45);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(72,72,72,0.22);
+    padding: 2rem 2.25rem;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    max-width: 560px;
+  }
+  @media (min-width: 768px) {
+    .report-hero-content { padding: 2.5rem 3rem; }
+  }
+  .report-hero-content > .reveal:nth-of-type(2) {
+    background: rgba(255,255,255,0.04) !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .report-split {
+      grid-template-columns: 1fr !important;
+      display: flex !important;
+      flex-direction: column;
+    }
+    .report-split > div:nth-child(1) {
+      order: 2;
+      min-height: 0;
+      padding: 1.75rem 1.5rem 2.5rem !important;
+      justify-content: flex-start;
+    }
+    .report-split > div:nth-child(2) {
+      order: 1;
+      padding: 1.5rem 1.5rem 1rem !important;
+    }
+    .report-hero-eyebrow,
+    .report-hero-desc,
+    .report-hero-contacts { display: none !important; }
+    .report-hero-h1 {
+      font-size: 1.85rem !important;
+      line-height: 1.1 !important;
+      max-width: 18ch;
+      margin-bottom: 1.25rem !important;
+    }
+  }
+  input::placeholder { color: var(--color-text-muted); }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-surface-4) inset;
+    -webkit-text-fill-color: #1c1917;
+  }
+</style>
+
+<script>
+  document.body.dataset.lightNav = 'true';
+
+  function initGooglePlacesReport() {
+    const input = document.getElementById('report-address-input') as HTMLInputElement;
+    if (!input) return;
+    const ac = new (window as any).google.maps.places.Autocomplete(input, {
+      componentRestrictions: { country: 'au' },
+      fields: ['formatted_address'],
+      types: ['address'],
+    });
+    ac.addListener('place_changed', () => {
+      const place = ac.getPlace();
+      if (place.formatted_address) input.value = place.formatted_address;
+    });
+  }
+  (window as any).initGooglePlacesReport = function() { initGooglePlacesReport(); };
+  if ((window as any).google?.maps?.places) {
+    initGooglePlacesReport();
+  } else {
+    const s = document.createElement('script');
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGooglePlacesReport&loading=async`;
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  // Continue: validate address, fire early-capture to Formspree (keepalive so
+  // the request survives the navigation), then route to /property-worth with
+  // the address pre-filled.
+  function attachContinue() {
+    const btn = document.getElementById('report-continue') as HTMLButtonElement | null;
+    const addrInput = document.getElementById('report-address-input') as HTMLInputElement | null;
+    if (!btn || !addrInput) return;
+
+    let sent = false;
+    function sendEarlyCapture(addr: string) {
+      if (sent) return;
+      sent = true;
+      try { (window as any).gtag('event', 'report_address_submit', { event_category: 'lead', event_label: addr }); } catch (_) {}
+      try { if (typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead', { content_name: 'report_address' }); } catch (_) {}
+      const fd = new FormData();
+      fd.append('_subject', 'Property report address enquiry, ' + addr);
+      fd.append('address', addr);
+      fd.append('source', 'Report page, address step');
+      fetch('https://formspree.io/f/xnjgedwp', {
+        method: 'POST', body: fd, keepalive: true, headers: { 'Accept': 'application/json' }
+      }).catch(() => {});
+    }
+
+    btn.addEventListener('click', () => {
+      const v = addrInput.value.trim();
+      if (v.length < 4) {
+        addrInput.focus();
+        addrInput.reportValidity?.();
+        return;
+      }
+      sendEarlyCapture(v);
+      window.location.href = '/property-worth?address=' + encodeURIComponent(v);
+    });
+    addrInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachContinue);
+  } else {
+    attachContinue();
+  }
+</script>
+
+</Layout>
