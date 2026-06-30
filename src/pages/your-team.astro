@@ -3,13 +3,20 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
 // Tools for a social-media audience. Property Report goes through the
 // address-first chooser at /report (then on to /property-worth's three
-// options). Off-market is the buyer-side capture.
+// options). Calculators give buyers an entry point; off-market is the
+// deeper buyer-side capture.
 const services = [
   {
     href: '/report',
     title: 'Your Free Property Report',
     desc: 'A no-obligation valuation based on recent comparable sales.',
     icon: 'report',
+  },
+  {
+    href: '/tools',
+    title: 'Buying soon? Run the numbers',
+    desc: 'Stamp duty, deposit and borrowing calculators in one place.',
+    icon: 'grid',
   },
   {
     href: '/buyers',
