@@ -170,7 +170,9 @@ const reportSchema = {
     }
     .report-split > div:nth-child(2) {
       order: 1;
-      padding: 1.5rem 1.5rem 1rem !important;
+      /* Clear the fixed site nav so the "Your Property Report" eyebrow and
+         "First, what property?" heading don't crash into the brand text. */
+      padding: 5.5rem 1.5rem 1.25rem !important;
     }
     .report-hero-eyebrow,
     .report-hero-desc,

@@ -596,18 +596,7 @@ const agents = [
     </div>
   </header>
 
-  <!-- Primary CTA moved up to where Current Listings used to sit. Same
-       panel that previously lived at the bottom of the page, now leading. -->
-  <div class="final">
-    <p class="final-title">What is your home worth today?</p>
-    <p class="final-sub">A free, no-obligation property report based on recent comparable sales in your suburb.</p>
-    <a href="/report" class="btn-gold" data-cta="your_team_to_report">
-      Click here to find out
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-
-  <section class="section" style="margin-top:1.5rem;">
+  <section class="section">
     <span class="section-label">Tools &amp; services</span>
     {services.map(s => (
       <a class="card" href={s.href} data-cta={`your_team_${s.href.replace(/\//g, '_')}`}>
@@ -655,6 +644,15 @@ const agents = [
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </section>
+
+  <div class="final">
+    <p class="final-title">What is your home worth today?</p>
+    <p class="final-sub">A free, no-obligation property report based on recent comparable sales in your suburb.</p>
+    <a href="/report" class="btn-gold" data-cta="your_team_to_report">
+      Click here to find out
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
 
   <div class="contact-row">
     <a href="/contact" data-cta="property_tools_contact">Contact</a>
