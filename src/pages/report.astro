@@ -193,6 +193,9 @@ const reportSchema = {
 
 <script>
   document.body.dataset.lightNav = 'true';
+  // Mirror /walkthrough: give the nav a solid glass backdrop so the brand
+  // text doesn't ghost against the cream form panel on mobile.
+  document.getElementById('site-header')?.classList.add('glass-nav');
 
   function initGooglePlacesReport() {
     const input = document.getElementById('report-address-input') as HTMLInputElement;
