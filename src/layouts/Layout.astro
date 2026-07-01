@@ -252,7 +252,7 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     {/* Article enhancements: progress bar, sticky ToC, back-to-top. All insights articles. */}
     {_isInsightsArticle && (
       <Fragment>
-        <div id="article-progress" aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:60;pointer-events:none;">
+        <div id="article-progress" aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.06);z-index:10001;pointer-events:none;">
           <div id="article-progress-fill" style="height:100%;width:0;background:var(--color-gold);transition:width 0.05s linear;"></div>
         </div>
 
