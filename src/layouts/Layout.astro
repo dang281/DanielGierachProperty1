@@ -15,6 +15,7 @@ interface Props {
   hideMobileCta?: boolean;
   hideFooterCta?: boolean;
   hideBreadcrumbs?: boolean;
+  hideNav?: boolean;
   draft?: boolean;
   manifest?: string;
 }
@@ -28,6 +29,7 @@ const {
   hideMobileCta = false,
   hideFooterCta = false,
   hideBreadcrumbs = false,
+  hideNav = false,
   draft = false,
   manifest = '/site.webmanifest',
 } = Astro.props;
@@ -226,7 +228,7 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
-    <Nav />
+    {!hideNav && <Nav />}
     {showBreadcrumbs && (
       <nav aria-label="Breadcrumb" style="background:#1c1917;padding:calc(76px + 0.6rem) 1.5rem 0.6rem;border-bottom:1px solid rgba(196,145,42,0.1);">
         <ol style="display:flex;align-items:center;gap:0.4rem;list-style:none;margin:0;padding:0;max-width:1280px;margin:0 auto;flex-wrap:wrap;">
