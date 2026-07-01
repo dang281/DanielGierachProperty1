@@ -416,7 +416,7 @@ const appraisalSchema = {
       </a>
 
       <!-- Card 2: Walkthrough (featured) -->
-      <a href="/walkthrough" class="pw-card pw-card-featured" style="position:relative;">
+      <a id="pw-card-walkthrough" href="/walkthrough" class="pw-card pw-card-featured" style="position:relative;">
         <div class="pw-badge-float">Most Accurate</div>
         <div class="pw-card-top-bar"></div>
         <div class="pw-card-body">
@@ -475,8 +475,10 @@ const appraisalSchema = {
   const addr    = params.get('address') || '';
 
   if (addr) {
-    const link = document.getElementById('pw-card-report');
-    if (link) link.href = '/property-report?address=' + encodeURIComponent(addr);
+    const reportLink = document.getElementById('pw-card-report');
+    if (reportLink) reportLink.href = '/property-report?address=' + encodeURIComponent(addr);
+    const walkLink = document.getElementById('pw-card-walkthrough');
+    if (walkLink) walkLink.href = '/walkthrough?address=' + encodeURIComponent(addr);
   }
 
   function extractSuburb(address) {
