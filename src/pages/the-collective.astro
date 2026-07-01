@@ -174,38 +174,9 @@ const reasons = [
 </section>
 
 <!-- ════════════════════════════════════════════
-     LEADERSHIP
-════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-0); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
-  <div style="max-width:1200px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem; text-align:center;">Leadership</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.75rem; text-align:center;">Who sits behind the network.</h2>
-
-    <div class="leaders-grid">
-      {leaders.map(l => (
-        <a href={l.href} class="leader-card"
-          {...(l.external ? { target: '_blank', rel: 'noopener' } : {})}
-          data-cta={`the_collective_leader_${l.name.toLowerCase().replace(/ /g,'_')}`}>
-          {l.photo
-            ? <img src={l.photo} alt={l.name} class="leader-avatar" width="120" height="120" loading="lazy" />
-            : <span class="leader-avatar leader-initials" aria-hidden="true">{l.initials}</span>
-          }
-          <p class="leader-name">{l.name}</p>
-          <p class="leader-role">{l.role}</p>
-          <span class="leader-cta">
-            {l.external ? 'Ray White profile' : 'More info'}
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════
      WHY IT MATTERS
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-base); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:var(--color-surface-0); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
   <div style="max-width:1200px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Why It Matters</p>
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 3.6vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem; max-width:640px;">What the group actually does for your sale.</h2>
@@ -225,7 +196,7 @@ const reasons = [
 <!-- ════════════════════════════════════════════
      2024 / 2025 RESULTS
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-0); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:var(--color-base); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
   <div style="max-width:1200px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">2024 / 2025 Results</p>
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem; max-width:640px;">What the Collective delivered last financial year.</h2>
@@ -248,7 +219,7 @@ const reasons = [
 <!-- ════════════════════════════════════════════
      THE WHITE STORY
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-base); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:var(--color-surface-0); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
   <div style="max-width:1100px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">The Ray White Story</p>
     <h2 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 3.6vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem; max-width:640px;">
@@ -274,6 +245,35 @@ const reasons = [
           At any given time, Ray White corporate employs in excess of 300 support staff. Each region is backed by local market specialists supporting each business at every level.
         </p>
       </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     LEADERSHIP
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem; text-align:center;">Leadership</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.75rem; text-align:center;">Who sits behind the network.</h2>
+
+    <div class="leaders-grid">
+      {leaders.map(l => (
+        <a href={l.href} class="leader-card"
+          {...(l.external ? { target: '_blank', rel: 'noopener' } : {})}
+          data-cta={`the_collective_leader_${l.name.toLowerCase().replace(/ /g,'_')}`}>
+          {l.photo
+            ? <img src={l.photo} alt={l.name} class="leader-avatar" width="120" height="120" loading="lazy" />
+            : <span class="leader-avatar leader-initials" aria-hidden="true">{l.initials}</span>
+          }
+          <p class="leader-name">{l.name}</p>
+          <p class="leader-role">{l.role}</p>
+          <span class="leader-cta">
+            {l.external ? 'Ray White profile' : 'More info'}
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      ))}
     </div>
   </div>
 </section>
