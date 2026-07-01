@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const offices = [
-  { name: 'Ray White Bulimba',        phone: '(07) 3254 1022', tel: '+61732541022', note: "Daniel's office" },
+  { name: 'Ray White Bulimba',        phone: '(07) 3254 1022', tel: '+61732541022' },
   { name: 'Ray White New Farm',       phone: '(07) 3254 1022', tel: '+61732541022' },
   { name: 'Ray White Toowong',        phone: '(07) 3741 4922', tel: '+61737414922' },
   { name: 'Ray White Living Here',    phone: '(07) 3606 8300', tel: '+61736068300' },
@@ -68,12 +68,18 @@ const reasons = [
 <!-- ════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════ -->
-<section style="background:#0a0806; color:#f0ece4; padding:120px 24px 90px;">
+<section class="hero-section" style="background:#0a0806; color:#f0ece4; padding:120px 24px 90px;">
   <div style="max-width:920px; margin:0 auto; text-align:center;">
     <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Ray White · The Collective</p>
-    <h1 style="font-family:var(--font-serif); font-size:clamp(2.6rem, 5.5vw, 4.4rem); font-weight:300; line-height:1.1; letter-spacing:-0.015em; color:#f0ece4; margin-bottom:1.5rem;">
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5.2vw, 4.4rem); font-weight:300; line-height:1.1; letter-spacing:-0.015em; color:#f0ece4; margin-bottom:1.5rem;">
       The advantages of a big group. With personalised service.
     </h1>
+    <div class="rank-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7L12 17.8 5.7 21.2l1.7-7L2 9.5l7.1-.6L12 2z"/>
+      </svg>
+      #1 Ray White Group Internationally
+    </div>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.75; color:rgba(240,236,228,0.7); max-width:640px; margin:0 auto;">
       Ray White Collective is a network of over 100 agents across six Brisbane offices, sharing a database of 550,000+ registered buyers. Every listing benefits from the reach of the entire group, while you keep a single dedicated agent from start to finish.
     </p>
@@ -177,6 +183,25 @@ const reasons = [
 </section>
 
 <style>
+  /* Rank badge (under hero H1) */
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: 0 auto 1.75rem;
+    background: rgba(196, 145, 42, 0.14);
+    border: 1px solid rgba(196, 145, 42, 0.4);
+    border-radius: 999px;
+    color: #d4a23a;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .rank-badge svg { flex-shrink: 0; }
+
   /* Stats band */
   .stats-grid {
     display: grid;
@@ -331,11 +356,30 @@ const reasons = [
   }
 
   @media (max-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .hero-section { padding: 72px 20px 56px !important; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
     .stat { border-left: none; }
+    .stat-value { font-size: 1.9rem; }
     .offices-grid { grid-template-columns: 1fr; }
+    .office-card { min-height: auto; padding: 1.5rem 1.4rem; }
     .reasons-grid { grid-template-columns: 1fr; }
+    .reason-card { padding: 2rem 1.5rem; }
     .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .result-card { padding: 1.5rem 1.25rem; }
+    .result-value { font-size: 1.55rem; }
+    .rank-badge {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      padding: 0.45rem 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .rank-badge {
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+      padding: 0.4rem 0.75rem;
+    }
   }
 </style>
 
