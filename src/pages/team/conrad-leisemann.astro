@@ -13,8 +13,8 @@ import Layout from '../../layouts/Layout.astro';
       src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fa665-H3373155-164932053__1758673927-230712-AMY19482.jpg&w=1600&q=70"
       srcset="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fa665-H3373155-164932053__1758673927-230712-AMY19482.jpg&w=800&q=70 800w, /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fa665-H3373155-164932053__1758673927-230712-AMY19482.jpg&w=1600&q=70 1600w"
       sizes="100vw" alt="" decoding="async"
-      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.32;z-index:0;" />
-    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,0.5) 0%,rgba(10,8,6,0.72) 55%,rgba(10,8,6,0.92) 100%);z-index:0;"></div>
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0.55;z-index:0;" />
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,0.55) 0%,rgba(10,8,6,0.65) 55%,rgba(10,8,6,0.82) 100%);z-index:0;"></div>
     <div class="max-w-[780px] mx-auto px-8 flex flex-col items-center text-center" style="position:relative;z-index:1;">
       <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann"
         style="width:160px;height:160px;border-radius:18px;object-fit:cover;border:1.5px solid rgba(197,160,60,0.5);box-shadow:0 8px 28px rgba(0,0,0,0.45);margin-bottom:1.5rem;" />
@@ -23,16 +23,16 @@ import Layout from '../../layouts/Layout.astro';
       </h1>
       <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1.5rem;">Sales &amp; Marketing Executive &middot; Ray White Collective</span>
 
-      <div style="display:flex;flex-wrap:wrap;gap:1.25rem 2rem;justify-content:center;font-family:var(--font-sans);font-size:0.78rem;color:rgba(240,236,228,0.82);">
-        <a href="tel:+61403978813" data-cta="team_conrad_call" style="color:#f5d07a;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+      <div class="hero-contact">
+        <a href="tel:+61403978813" data-cta="team_conrad_call">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
           0403 978 813
         </a>
-        <a href="mailto:conrad.leisemann@raywhite.com" data-cta="team_conrad_email" style="color:#f5d07a;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+        <a href="mailto:conrad.leisemann@raywhite.com" data-cta="team_conrad_email">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           conrad.leisemann@raywhite.com
         </a>
-        <a href="https://www.instagram.com/connie_leisemann/" target="_blank" rel="noopener" data-cta="team_conrad_instagram" style="color:#f5d07a;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+        <a href="https://www.instagram.com/connie_leisemann/" target="_blank" rel="noopener" data-cta="team_conrad_instagram">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           @connie_leisemann
         </a>
@@ -62,6 +62,43 @@ import Layout from '../../layouts/Layout.astro';
 </article>
 
 <style>
+  .hero-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+  }
+  .hero-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.95rem;
+    background: rgba(10, 8, 6, 0.42);
+    border: 1px solid rgba(197, 160, 60, 0.4);
+    border-radius: 999px;
+    color: #f5d07a;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .hero-contact a:hover {
+    background: rgba(196, 145, 42, 0.18);
+    border-color: rgba(197, 160, 60, 0.75);
+  }
+  @media (max-width: 560px) {
+    .hero-contact {
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .hero-contact a { justify-content: center; width: 100%; }
+  }
+
   .bio-body {
     font-size: 1rem;
     color: var(--color-text-secondary);
