@@ -1,15 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-// ⚠️ VERIFY: Daniel to confirm these three stats before this ships.
-// Years and degree are already claimed in his existing bio. Licence
-// number is a placeholder pending confirmation.
-const stats = [
-  { value: '10+', label: 'Years in property' },
-  { value: 'BProp Econ', label: 'Property Economics degree, QUT' },
-  { value: '6 offices', label: 'Ray White Collective network' },
-];
-
 // Recent sales, pulled from Daniel's confirmed listings.
 // Sources verified via raywhitebulimba.com.au agent page.
 const recentSales = [
@@ -87,26 +78,12 @@ const credentials = [
     </div>
   </div>
 
-  <!-- ── Stats strip ─────────────────────────────────────────── -->
-  <div class="max-w-[900px] mx-auto px-8" style="margin-top:-2.5rem;position:relative;z-index:2;">
-    <div class="stats-strip">
-      {stats.map(s => (
-        <div class="stat">
-          <span class="stat-value">{s.value}</span>
-          <span class="stat-label">{s.label}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-
   <!-- ── Bio ─────────────────────────────────────────────────── -->
-  <div style="padding:3rem 0 3.5rem;">
+  <div style="padding:3.5rem 0 3.5rem;">
     <div class="max-w-[720px] mx-auto px-8 bio-body">
 
       <p class="bio-eyebrow">The background</p>
-      <p class="bio-lede">
-        <span class="drop-cap">B</span>orn and raised in Brisbane, Daniel spent a decade across residential sales, marketing, business operations and construction before settling into the listing side of the business. His degree in Property Economics from QUT sits behind the numbers-first approach he brings to every campaign.
-      </p>
+      <p class="bio-lede">Born and raised in Brisbane, Daniel spent a decade across residential sales, marketing, business operations and construction before settling into the listing side of the business. His degree in Property Economics from QUT sits behind the numbers-first approach he brings to every campaign.</p>
 
       <p>He works out of Ray White Bulimba and lists most heavily across the inner east and south: Camp Hill, Seven Hills, Carina, Hawthorne, Bulimba and Balmoral. That is where his local knowledge is deepest and where the strongest results come from knowing which buyers are already registered on which street.</p>
 
@@ -223,50 +200,6 @@ const credentials = [
 </article>
 
 <style>
-  /* ── Stats strip ── */
-  .stats-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-    background: #ffffff;
-    border: 1px solid rgba(28,25,23,0.08);
-    border-radius: 8px;
-    box-shadow: 0 6px 24px rgba(10,8,6,0.08);
-    overflow: hidden;
-  }
-  @media (max-width: 640px) {
-    .stats-strip { grid-template-columns: 1fr; gap: 0; }
-  }
-  .stat {
-    padding: 1.25rem 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    border-right: 1px solid rgba(28,25,23,0.06);
-  }
-  .stat:last-child { border-right: none; }
-  @media (max-width: 640px) {
-    .stat { border-right: none; border-bottom: 1px solid rgba(28,25,23,0.06); }
-    .stat:last-child { border-bottom: none; }
-  }
-  .stat-value {
-    font-family: var(--font-serif);
-    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-    font-weight: 400;
-    color: var(--color-gold);
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-  }
-  .stat-label {
-    font-family: var(--font-sans);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #78716c;
-    line-height: 1.35;
-  }
-
   /* ── Bio body ── */
   .bio-body {
     font-size: 1rem;
@@ -286,15 +219,6 @@ const credentials = [
     margin: 0 0 -0.4rem 0;
   }
   .bio-lede { font-size: 1.05rem; }
-  .drop-cap {
-    float: left;
-    font-family: var(--font-serif);
-    font-size: 3.6rem;
-    line-height: 0.85;
-    color: var(--color-gold);
-    padding: 0.35rem 0.55rem 0 0;
-    font-weight: 400;
-  }
 
   /* ── Pull quote ── */
   .pull-quote {
