@@ -40,13 +40,16 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 
-  <div style="padding:2.5rem 0 4rem;">
-    <div class="max-w-[780px] mx-auto px-8" style="font-size:1rem;color:var(--color-text-secondary);line-height:1.8;display:flex;flex-direction:column;gap:1.25rem;">
+  <div style="padding:3.5rem 0 4rem;">
+    <div class="max-w-[720px] mx-auto px-8 bio-body">
 
+      <p class="bio-eyebrow">The background</p>
       <p>Conrad Leisemann is a Sales and Marketing Consultant at Ray White Collective who is passionate about helping people in his local community. Widely known as an exceptional communicator and negotiator due to his wealth of experience in customer service and business management, Conrad has been regularly recognised as a multi-award winner within the Real Estate Industry.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">Local roots</p>
       <p>Having lived in the inner eastern suburbs of Brisbane for over 35 years, and now working out of the Bulimba office, Conrad not only has an intricate knowledge of our local area but the entire Brisbane landscape. His clients appreciate his sense of humor, lighthearted and supportive outlook, while nonetheless being able to provide a highly skilled, professional, empathetic and trustworthy service. An active member of the local community, Conrad continues to support many different sporting clubs, local businesses, community charities, school programs and local events.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">How Conrad works</p>
       <p>Conrad is especially enthusiastic about providing diligent, honest and caring service while sharing in his client's excitement at achieving great results. Conrad enjoys guiding his valued clients to achieve the very best experience and outcome in their real estate transaction. With an investment property portfolio of his own, he can also provide expert advice to property investors.</p>
 
       <p>His business philosophy is simple: "Clients for life through the finest service".</p>
@@ -57,5 +60,25 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 </article>
+
+<style>
+  .bio-body {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+  .bio-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 -0.4rem 0;
+  }
+</style>
 
 </Layout>

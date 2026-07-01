@@ -36,13 +36,16 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 
-  <div style="padding:3rem 0 6rem;">
-    <div class="max-w-[780px] mx-auto px-8" style="font-size:1rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.5rem;">
+  <div style="padding:3.5rem 0 6rem;">
+    <div class="max-w-[720px] mx-auto px-8 bio-body">
 
+      <p class="bio-eyebrow">The background</p>
       <p>With over 20 years experience, Peter has become one of the most respected names in the Real Estate industry.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">The record</p>
       <p>Peter has called in excess of 7000 property auctions with the highest sale price of $10.2 million, achieving a result of $3,650,000 above reserve price.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">Recognition</p>
       <p>Peter has built himself a reputation as one of Queensland's best and most highly skilled auctioneers, with expertise in every sector of the property market. Along with this, Peter Burgin has also achieved the coveted, REIQ Auctioneer of the Year Award in 2010.</p>
 
       <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(28,25,23,0.1);">
@@ -51,5 +54,25 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 </article>
+
+<style>
+  .bio-body {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.9;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .bio-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 -0.7rem 0;
+  }
+</style>
 
 </Layout>

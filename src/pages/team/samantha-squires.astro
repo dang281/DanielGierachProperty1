@@ -32,15 +32,19 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 
-  <div style="padding:3rem 0 6rem;">
-    <div class="max-w-[780px] mx-auto px-8" style="font-size:1rem;color:var(--color-text-secondary);line-height:1.9;display:flex;flex-direction:column;gap:1.5rem;">
+  <div style="padding:3.5rem 0 6rem;">
+    <div class="max-w-[720px] mx-auto px-8 bio-body">
 
+      <p class="bio-eyebrow">The background</p>
       <p>With over 10 years of experience in business management and building teams, Samantha brings a strong background in operations and a genuine passion for property. She has always loved helping people, whether it's guiding clients through complex processes or ensuring every task is completed with efficiency and accuracy.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">Beyond the office</p>
       <p>A lifelong Brisbane resident, and a proud mother herself, Samantha is deeply connected to her local community. Actively involved in her son's school and supporting local families, she understands first-hand the importance of finding the right home in the right area. She is committed to delivering reliable, people focused service and making sure every interaction is a positive one. She takes pride in helping families make informed, confident decisions about their next chapter and her long-standing interest in real estate, paired with a results-driven mindset, allows her to support our valued clients with confidence, care and local insight.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">The team fit</p>
       <p>Together, Daniel, Conrad and Samantha create the perfect balance of sales and organisation within the team. Their complementary strengths ensure clients receive both expert guidance and a seamless experience from start to finish.</p>
 
+      <p class="bio-eyebrow" style="margin-top:2.5rem;">How Samantha helps</p>
       <p>For all your operational needs, please reach out to Samantha, who is happy to help with all your questions.</p>
 
       <div>
@@ -68,5 +72,25 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 </article>
+
+<style>
+  .bio-body {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.9;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .bio-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 -0.7rem 0;
+  }
+</style>
 
 </Layout>
