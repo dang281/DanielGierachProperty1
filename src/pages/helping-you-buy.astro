@@ -336,6 +336,55 @@ const supportTeam = [
     color: var(--gold-bright);
   }
 
+  /* ── The Collective call-out band ─────────────────────────────── */
+  .collective-band {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    margin: 0.75rem 0 1.75rem;
+    background:
+      linear-gradient(135deg, rgba(196,145,42,0.08) 0%, rgba(196,145,42,0) 55%),
+      var(--bg-soft);
+    border: 1px solid rgba(196,145,42,0.3);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .collective-band:hover, .collective-band:focus-visible {
+    border-color: var(--gold);
+    transform: translateY(-1px);
+  }
+  .cb-body { flex: 1; min-width: 0; }
+  .cb-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 0.3rem;
+  }
+  .cb-title {
+    font-family: var(--font-serif);
+    font-size: 1.02rem; font-weight: 400;
+    line-height: 1.25;
+    margin: 0 0 0.25rem;
+  }
+  .cb-desc {
+    font-size: 0.72rem; line-height: 1.4;
+    color: var(--text-mute);
+    margin: 0;
+  }
+  .cb-arrow {
+    color: var(--gold-soft);
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .collective-band:hover .cb-arrow {
+    color: var(--gold);
+    transform: translateX(2px);
+  }
+
   .section { margin-bottom: 1.5rem; }
   .section-label {
     display: block;
@@ -573,6 +622,15 @@ const supportTeam = [
       ))}
     </div>
   </header>
+
+  <a class="collective-band" href="/the-collective" data-cta="helping_you_buy_the_collective">
+    <div class="cb-body">
+      <p class="cb-eyebrow">About the group</p>
+      <p class="cb-title">Ray White Collective</p>
+      <p class="cb-desc">Six offices across Brisbane inner east. 100+ agents. First look at properties before they hit the market.</p>
+    </div>
+    <svg class="cb-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
 
   <section class="section">
     <span class="section-label">Buyer tools</span>
