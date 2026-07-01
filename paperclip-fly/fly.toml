@@ -1,0 +1,31 @@
+# fly.toml app configuration file generated for dg-paperclip on 2026-07-01T16:50:50+10:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'dg-paperclip'
+primary_region = 'syd'
+
+[build]
+
+[env]
+  NODE_ENV = 'production'
+  PAPERCLIP_HOME = '/data/paperclip'
+
+[[mounts]]
+  source = 'paperclip_data'
+  destination = '/data/paperclip'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'off'
+  auto_start_machines = false
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 512
