@@ -138,6 +138,7 @@ const appraisalSchema = {
     background: rgba(10,8,6,0.6);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(240,236,228,0.08);
+    border-radius: 8px;
     padding: 2.25rem 2rem;
     display: flex;
     flex-direction: column;
@@ -166,6 +167,8 @@ const appraisalSchema = {
     top: 0; left: 0; right: 0;
     height: 3px;
     background: #c5a03c;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   .pw-badge-float {
     position: absolute;
@@ -173,6 +176,7 @@ const appraisalSchema = {
     transform: translate(-50%, -100%);
     background: #c5a03c;
     padding: 0.5rem 1.5rem;
+    border-radius: 999px;
     white-space: nowrap;
     z-index: 2;
     font-family: var(--font-sans);
@@ -235,6 +239,7 @@ const appraisalSchema = {
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    border-radius: 8px;
     transition: background 0.18s, gap 0.18s;
     border: none;
     cursor: pointer;
@@ -321,13 +326,13 @@ const appraisalSchema = {
       display: inline-block !important;
       background: #c5a03c;
       color: #0a0806;
-      padding: 0.22rem 0.6rem;
+      padding: 0.22rem 0.7rem;
       font-family: var(--font-sans);
       font-size: 0.5rem;
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      border-radius: 4px;
+      border-radius: 999px;
       line-height: 1;
       margin-bottom: 0.45rem;
     }
