@@ -6,7 +6,7 @@ const offices = [
   { name: 'Ray White New Farm',       phone: '(07) 3254 1022', tel: '+61732541022' },
   { name: 'Ray White Toowong',        phone: '(07) 3741 4922', tel: '+61737414922' },
   { name: 'Ray White Living Here',    phone: '(07) 3606 8300', tel: '+61736068300' },
-  { name: 'Ray White Clayfield',      phone: '(07) 3124 9891', tel: '+61731249891', principal: 'Kim Olsen Property' },
+  { name: 'Kim Olsen Property',       phone: '(07) 3124 9891', tel: '+61731249891', principal: 'Ray White Clayfield' },
   { name: 'Ray White Woody Point',    phone: '(07) 3283 2277', tel: '+61732832277' },
 ];
 
@@ -124,84 +124,7 @@ const reasons = [
 <section style="background:var(--color-base); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
   <div style="max-width:1200px; margin:0 auto;">
     <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem; text-align:center;">The Offices</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2rem; text-align:center;">Six offices. Brisbane to Redcliffe.</h2>
-
-    <div class="map-wrap">
-      <svg viewBox="0 0 540 480" class="offices-map" role="img" aria-labelledby="collective-map-title collective-map-desc">
-        <title id="collective-map-title">Ray White Collective office locations</title>
-        <desc id="collective-map-desc">Editorial map showing six Ray White Collective offices from Woody Point in the north down to Toowong in the south west, with Clayfield, Living Here, Bulimba and New Farm in between.</desc>
-
-        <!-- Cardinal / context labels -->
-        <text x="270" y="24" text-anchor="middle" class="map-cardinal">Redcliffe Peninsula</text>
-        <text x="270" y="465" text-anchor="middle" class="map-cardinal">Brisbane CBD &amp; Inner East</text>
-
-        <!-- Compass N -->
-        <g transform="translate(30, 40)">
-          <line x1="0" y1="14" x2="0" y2="-8" stroke="#c4912a" stroke-width="1.2" opacity="0.55" />
-          <polygon points="0,-12 -4,-4 4,-4" fill="#c4912a" opacity="0.55" />
-          <text x="0" y="26" text-anchor="middle" class="map-compass">N</text>
-        </g>
-
-        <!-- Moreton Bay arc (top-right hint) -->
-        <path d="M 490 45 Q 530 120 510 210" fill="none" stroke="#c4912a" stroke-width="1" opacity="0.16" />
-        <text x="512" y="140" text-anchor="end" class="map-river">Moreton Bay</text>
-
-        <!-- Brisbane River sweep (west to east through inner suburbs) -->
-        <path d="M 20 415 Q 130 405 210 388 Q 285 373 340 356 Q 405 335 470 300 Q 510 280 530 260"
-              fill="none" stroke="#c4912a" stroke-width="1.5" stroke-linecap="round" opacity="0.2" />
-        <text x="150" y="420" class="map-river">Brisbane River</text>
-
-        <!-- Subtle "25km" hint on the long north-south stretch -->
-        <text x="430" y="150" text-anchor="middle" class="map-distance">~25km</text>
-        <line x1="430" y1="90" x2="430" y2="130" stroke="#c4912a" stroke-width="0.8" opacity="0.35" stroke-dasharray="2,3" />
-        <line x1="430" y1="160" x2="430" y2="200" stroke="#c4912a" stroke-width="0.8" opacity="0.35" stroke-dasharray="2,3" />
-
-        <!-- CBD marker -->
-        <g transform="translate(160, 350)">
-          <rect x="-4" y="-4" width="8" height="8" fill="none" stroke="#c4912a" stroke-width="1" opacity="0.5" />
-          <text x="12" y="4" class="map-landmark">Brisbane CBD</text>
-        </g>
-
-        <!-- Office pins -->
-
-        <!-- Woody Point (top right) -->
-        <g class="office-pin">
-          <circle cx="450" cy="70" r="7" />
-          <text x="450" y="94" text-anchor="middle">Woody Point</text>
-        </g>
-
-        <!-- Clayfield (upper mid) -->
-        <g class="office-pin">
-          <circle cx="320" cy="230" r="7" />
-          <text x="334" y="234" text-anchor="start">Clayfield</text>
-        </g>
-
-        <!-- Living Here (mid-left) -->
-        <g class="office-pin">
-          <circle cx="220" cy="315" r="7" />
-          <text x="206" y="319" text-anchor="end">Living Here</text>
-        </g>
-
-        <!-- Bulimba (mid-right) -->
-        <g class="office-pin">
-          <circle cx="365" cy="335" r="7" />
-          <text x="379" y="339" text-anchor="start">Bulimba</text>
-        </g>
-
-        <!-- New Farm (lower mid) -->
-        <g class="office-pin">
-          <circle cx="255" cy="380" r="7" />
-          <text x="241" y="384" text-anchor="end">New Farm</text>
-        </g>
-
-        <!-- Toowong (bottom left) -->
-        <g class="office-pin">
-          <circle cx="80" cy="425" r="7" />
-          <text x="94" y="429" text-anchor="start">Toowong</text>
-        </g>
-      </svg>
-      <p class="map-note">Approximate positions, not to scale.</p>
-    </div>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem; text-align:center;">Six offices across Brisbane.</h2>
 
     <div class="offices-grid">
       {offices.map(o => (
@@ -308,91 +231,16 @@ const reasons = [
     letter-spacing: 0.03em;
   }
 
-  /* Map */
-  .map-wrap {
-    max-width: 560px;
-    margin: 0 auto 3rem;
-    padding: 1.5rem 1rem 0.5rem;
-    background: var(--color-surface-0);
-    border: 1px solid rgba(28,25,23,0.1);
-    border-radius: 12px;
-  }
-  .offices-map {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  .offices-map .map-cardinal {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    fill: #c4912a;
-  }
-  .offices-map .map-river {
-    font-family: var(--font-serif);
-    font-size: 11px;
-    font-style: italic;
-    fill: #a8a29e;
-    opacity: 0.7;
-  }
-  .offices-map .map-compass {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 700;
-    fill: #c4912a;
-    letter-spacing: 0.05em;
-    opacity: 0.7;
-  }
-  .offices-map .map-distance {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    fill: #a8a29e;
-    letter-spacing: 0.08em;
-  }
-  .offices-map .map-landmark {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-style: italic;
-    fill: #a8a29e;
-    opacity: 0.75;
-    letter-spacing: 0.02em;
-  }
-  .offices-map .office-pin circle {
-    fill: #c4912a;
-    stroke: #0a0806;
-    stroke-width: 2;
-    transition: r 0.2s, fill 0.2s;
-  }
-  .offices-map .office-pin text {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 600;
-    fill: #1c1917;
-    letter-spacing: 0.01em;
-  }
-  .offices-map .office-pin:hover circle { r: 9; fill: #d4a23a; }
-  .map-note {
-    text-align: center;
-    font-family: var(--font-sans);
-    font-size: 0.68rem;
-    color: #a8a29e;
-    letter-spacing: 0.06em;
-    margin-top: 0.75rem;
-  }
-
   /* Office cards */
   .offices-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(28,25,23,0.1);
-    border: 1px solid rgba(28,25,23,0.1);
+    gap: 1rem;
   }
   .office-card {
     background: var(--color-surface-0);
+    border: 1px solid rgba(28,25,23,0.1);
+    border-radius: 8px;
     padding: 2rem 1.75rem;
     display: flex;
     flex-direction: column;
@@ -442,12 +290,12 @@ const reasons = [
   .reasons-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: rgba(28,25,23,0.1);
-    border: 1px solid rgba(28,25,23,0.1);
+    gap: 1rem;
   }
   .reason-card {
     background: var(--color-surface-0);
+    border: 1px solid rgba(28,25,23,0.1);
+    border-radius: 8px;
     padding: 2.5rem 2.25rem;
     display: flex;
     flex-direction: column;
@@ -481,12 +329,12 @@ const reasons = [
   .results-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(28,25,23,0.1);
-    border: 1px solid rgba(28,25,23,0.1);
+    gap: 1rem;
   }
   .result-card {
     background: var(--color-surface-0);
+    border: 1px solid rgba(28,25,23,0.1);
+    border-radius: 8px;
     padding: 2rem 1.75rem;
     text-align: left;
   }
