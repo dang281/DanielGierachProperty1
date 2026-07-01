@@ -8,3 +8,16 @@ export type TodayItem = {
   phone: string | null
   email: string | null
 }
+
+export type ScoredCallSuggestion = {
+  slug: string
+  monday_item_id: string
+  name: string | null
+  stage: string | null
+  phone: string | null
+  email: string | null
+  follow_up: string | null
+  nvml: string | null
+  score: number
+  reasons: string[]
+}

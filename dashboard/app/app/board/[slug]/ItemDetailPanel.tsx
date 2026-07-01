@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState, useTransition } from 'react'
-import { updateBoardCell } from '@/lib/actions/board'
+import { getContactRelations, updateBoardCell } from '@/lib/actions/board'
+import { findMatchesForBrief, getBuyerBrief, upsertBuyerBrief, type BuyerBriefRow } from '@/lib/actions/buyer-brief'
 import {
   deleteActivityEntry,
   listContactActivity,
@@ -113,6 +114,14 @@ export default function ItemDetailPanel({
         <div className="px-5 py-4 space-y-6 text-[var(--color-cream)]">
           <QuickActions slug={slug} itemId={item.monday_item_id} onLogged={() => { /* timeline self-refreshes */ }} />
 
+          {slug === 'contacts' && (
+            <ContactRelationships contactId={item.monday_item_id} onOpenLinked={onOpenLinked} />
+          )}
+
+          {slug === 'leads' && (
+            <BuyerBriefEditor leadId={item.monday_item_id} leadName={item.name ?? ''} onOpenLinked={onOpenLinked} />
+          )}
+
           {contactCols.length > 0 && (
             <Section title="Contact">
               {contactCols.map(c => <PanelField key={c.column_id} col={c} item={item} slug={slug} onLocalChange={onLocalChange} onOpenLinked={onOpenLinked} />)}
@@ -148,7 +157,9 @@ export default function ItemDetailPanel({
               {longCols.map(c => <PanelLongText key={c.column_id} col={c} item={item} slug={slug} onLocalChange={onLocalChange} />)}
             </Section>
           )}
-          {relCols.length > 0 && (
+          {/* The Linked section duplicates what Relationships shows at the top
+              for contacts. Hide it on contacts; show on every other board. */}
+          {relCols.length > 0 && slug !== 'contacts' && (
             <Section title="Linked">
               {relCols.map(c => <PanelField key={c.column_id} col={c} item={item} slug={slug} onLocalChange={onLocalChange} onOpenLinked={onOpenLinked} />)}
             </Section>
@@ -456,27 +467,447 @@ function DropdownPicker({
   )
 }
 
+// ---- Buyer Brief ----------------------------------------------------------
+
+const PROPERTY_TYPE_OPTIONS = ['House', 'Townhouse', 'Unit', 'Apartment', 'Land', 'Acreage']
+const PRESET_SUBURBS = [
+  'Bulimba', 'Balmoral', 'Hawthorne', 'Norman Park', 'Morningside', 'Murarrie',
+  'Cannon Hill', 'Newstead', 'Teneriffe', 'Carina', 'Camp Hill', 'Coorparoo',
+  'Greenslopes', 'East Brisbane', 'Woolloongabba', 'Wynnum', 'Manly', 'Lota',
+  'Tingalpa', 'Seven Hills',
+]
+
+function BuyerBriefEditor({
+  leadId, leadName, onOpenLinked,
+}: {
+  leadId: string
+  leadName: string
+  onOpenLinked?: (itemId: string) => void
+}) {
+  const [brief, setBrief] = useState<BuyerBriefRow | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [matchCount, setMatchCount] = useState<number | null>(null)
+  const [showMatches, setShowMatches] = useState(false)
+  const [matches, setMatches] = useState<Awaited<ReturnType<typeof findMatchesForBrief>>>([])
+
+  // Local form state — debounced save on change
+  const [form, setForm] = useState({
+    suburbs: [] as string[],
+    property_types: [] as string[],
+    beds_min: 0,
+    beds_max: null as number | null,
+    baths_min: 0,
+    baths_max: null as number | null,
+    car_min: 0,
+    car_max: null as number | null,
+    block_min: null as number | null,
+    block_max: null as number | null,
+    price_min: null as number | null,
+    price_max: null as number | null,
+    extras: '',
+  })
+
+  useEffect(() => {
+    let cancelled = false
+    getBuyerBrief(leadId)
+      .then(b => {
+        if (cancelled) return
+        if (b) {
+          setBrief(b)
+          setForm({
+            suburbs: b.suburbs ?? [],
+            property_types: b.property_types ?? [],
+            beds_min: b.beds_min ?? 0,
+            beds_max: b.beds_max,
+            baths_min: b.baths_min ?? 0,
+            baths_max: b.baths_max,
+            car_min: b.car_min ?? 0,
+            car_max: b.car_max,
+            block_min: b.block_min,
+            block_max: b.block_max,
+            price_min: b.price_min,
+            price_max: b.price_max,
+            extras: b.extras ?? '',
+          })
+        }
+        setLoading(false)
+      })
+      .catch(e => { console.error(e); if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
+  }, [leadId])
+
+  async function save() {
+    setSaving(true)
+    try {
+      const result = await upsertBuyerBrief({
+        monday_lead_id: leadId,
+        name: leadName,
+        ...form,
+      })
+      setBrief(result)
+    } catch (e) { console.error(e) }
+    finally { setSaving(false) }
+  }
+
+  async function loadMatches() {
+    setShowMatches(true)
+    try {
+      const m = await findMatchesForBrief(leadId)
+      setMatches(m)
+      setMatchCount(m.length)
+    } catch (e) { console.error(e); setMatchCount(0) }
+  }
+
+  if (loading) return (
+    <section>
+      <h3 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)] mb-2">Buyer brief</h3>
+      <div className="text-[var(--color-cream-x)] text-xs">Loading…</div>
+    </section>
+  )
+
+  function toggleArrayValue(key: 'suburbs' | 'property_types', value: string) {
+    setForm(f => ({
+      ...f,
+      [key]: f[key].includes(value) ? f[key].filter(v => v !== value) : [...f[key], value],
+    }))
+  }
+
+  return (
+    <section className="border border-[var(--color-card-2)] rounded-xl p-3 bg-[var(--color-card)]">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)]">Buyer brief</h3>
+        <div className="flex gap-1.5 items-center">
+          {brief ? (
+            <span className="text-[10px] text-[var(--color-cream-x)]">Last saved {new Date(brief.updated_at).toLocaleDateString('en-AU')}</span>
+          ) : (
+            <span className="text-[10px] text-[var(--color-gold)]">New</span>
+          )}
+          <button
+            onClick={loadMatches}
+            className="bg-[var(--color-gold)] text-[var(--color-bg)] rounded px-2 py-1 text-[10px] font-medium"
+          >
+            Find matches
+          </button>
+        </div>
+      </div>
+
+      {/* Suburbs */}
+      <Field label="Suburbs / areas">
+        <div className="flex flex-wrap gap-1">
+          {PRESET_SUBURBS.map(s => (
+            <button
+              key={s}
+              onClick={() => toggleArrayValue('suburbs', s)}
+              onBlur={save}
+              className={[
+                'px-2 py-0.5 rounded text-[11px] border',
+                form.suburbs.includes(s)
+                  ? 'bg-[var(--color-gold)] text-[var(--color-bg)] border-[var(--color-gold)]'
+                  : 'bg-transparent text-[var(--color-cream-dim)] border-[var(--color-card-2)] hover:text-[var(--color-cream)]',
+              ].join(' ')}
+            >{s}</button>
+          ))}
+          <input
+            type="text"
+            placeholder="+ add another"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                const v = (e.currentTarget.value ?? '').trim()
+                if (v && !form.suburbs.includes(v)) {
+                  setForm(f => ({ ...f, suburbs: [...f.suburbs, v] }))
+                  e.currentTarget.value = ''
+                  save()
+                }
+              }
+            }}
+            className="bg-[var(--color-bg)] border border-[var(--color-card-2)] rounded px-2 py-0.5 text-[11px] text-[var(--color-cream)] outline-none focus:border-[var(--color-gold)] w-24"
+          />
+        </div>
+      </Field>
+
+      {/* Property types */}
+      <Field label="Property types">
+        <div className="flex flex-wrap gap-1">
+          {PROPERTY_TYPE_OPTIONS.map(t => (
+            <button
+              key={t}
+              onClick={() => toggleArrayValue('property_types', t)}
+              onBlur={save}
+              className={[
+                'px-2 py-0.5 rounded text-[11px] border',
+                form.property_types.includes(t)
+                  ? 'bg-[var(--color-gold)] text-[var(--color-bg)] border-[var(--color-gold)]'
+                  : 'bg-transparent text-[var(--color-cream-dim)] border-[var(--color-card-2)] hover:text-[var(--color-cream)]',
+              ].join(' ')}
+            >{t}</button>
+          ))}
+        </div>
+      </Field>
+
+      {/* Ranges */}
+      <RangeField label="Bedrooms" min={form.beds_min} max={form.beds_max} onChange={(min, max) => { setForm(f => ({ ...f, beds_min: min ?? 0, beds_max: max })); save() }} step={1} />
+      <RangeField label="Bathrooms" min={form.baths_min} max={form.baths_max} onChange={(min, max) => { setForm(f => ({ ...f, baths_min: min ?? 0, baths_max: max })); save() }} step={1} />
+      <RangeField label="Car spaces" min={form.car_min} max={form.car_max} onChange={(min, max) => { setForm(f => ({ ...f, car_min: min ?? 0, car_max: max })); save() }} step={1} />
+      <RangeField label="Block (m²)" min={form.block_min} max={form.block_max} onChange={(min, max) => { setForm(f => ({ ...f, block_min: min, block_max: max })); save() }} step={50} />
+      <RangeField label="Price ($)" min={form.price_min} max={form.price_max} onChange={(min, max) => { setForm(f => ({ ...f, price_min: min, price_max: max })); save() }} step={50000} />
+
+      {/* Extras */}
+      <Field label="Other (school, pool, view, must-have, must-NOT-have)">
+        <textarea
+          value={form.extras}
+          onChange={e => setForm(f => ({ ...f, extras: e.target.value }))}
+          onBlur={save}
+          placeholder="e.g. needs side access, walking to school, ground floor only…"
+          className="w-full bg-[var(--color-bg)] border border-[var(--color-card-2)] rounded p-2 text-xs text-[var(--color-cream)] outline-none focus:border-[var(--color-gold)] min-h-[60px] resize-y"
+        />
+      </Field>
+
+      <div className="flex items-center justify-end gap-2 mt-2">
+        {saving && <span className="text-[10px] text-[var(--color-cream-x)]">Saving…</span>}
+        {!saving && brief && <span className="text-[10px] text-[var(--color-cream-x)]">Auto-saves on change</span>}
+      </div>
+
+      {showMatches && (
+        <div className="mt-3 pt-3 border-t border-[var(--color-card-2)]">
+          <div className="flex items-baseline justify-between mb-2">
+            <h4 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)]">
+              Matches{matchCount !== null && ` (${matchCount})`}
+            </h4>
+            {matchCount === 0 && <span className="text-[10px] text-[var(--color-cream-x)]">Nothing on the radar yet</span>}
+          </div>
+          {matches.length > 0 && (
+            <ul className="space-y-1 max-h-[300px] overflow-y-auto">
+              {matches.map(m => (
+                <li key={`${m.slug}-${m.monday_item_id}`} className="bg-[var(--color-card-2)] rounded p-2 text-xs">
+                  {onOpenLinked ? (
+                    <button onClick={() => onOpenLinked(m.monday_item_id)} className="text-left text-[var(--color-cream)] hover:text-[var(--color-gold)] font-medium w-full truncate">
+                      {m.name || '(no name)'}
+                    </button>
+                  ) : (
+                    <span className="text-[var(--color-cream)] font-medium truncate block">{m.name || '(no name)'}</span>
+                  )}
+                  <div className="text-[10px] text-[var(--color-cream-x)] mt-0.5 flex flex-wrap gap-2">
+                    <span className="uppercase tracking-wide">{m.slug === 'properties' ? 'Listing' : 'Property'}</span>
+                    {m.stage  && <span>· {m.stage}</span>}
+                    {m.beds   !== null && <span>· {m.beds}🛏</span>}
+                    {m.baths  !== null && <span>· {m.baths}🛁</span>}
+                    {m.block  !== null && <span>· {m.block}m²</span>}
+                    {m.price  !== null && <span>· ${(m.price/1000).toFixed(0)}k</span>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </section>
+  )
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-3 last:mb-0">
+      <div className="text-[10px] uppercase tracking-wide text-[var(--color-cream-dim)] mb-1">{label}</div>
+      {children}
+    </div>
+  )
+}
+
+function RangeField({
+  label, min, max, onChange, step = 1,
+}: {
+  label: string
+  min: number | null
+  max: number | null
+  onChange: (min: number | null, max: number | null) => void
+  step?: number
+}) {
+  return (
+    <Field label={label}>
+      <div className="flex items-center gap-2">
+        <input
+          type="number"
+          value={min ?? ''}
+          step={step}
+          placeholder="min"
+          onChange={e => onChange(e.target.value === '' ? null : Number(e.target.value), max)}
+          className="w-24 bg-[var(--color-bg)] border border-[var(--color-card-2)] rounded px-2 py-1 text-xs text-[var(--color-cream)] outline-none focus:border-[var(--color-gold)] tabular-nums"
+        />
+        <span className="text-[var(--color-cream-x)] text-xs">to</span>
+        <input
+          type="number"
+          value={max ?? ''}
+          step={step}
+          placeholder="max"
+          onChange={e => onChange(min, e.target.value === '' ? null : Number(e.target.value))}
+          className="w-24 bg-[var(--color-bg)] border border-[var(--color-card-2)] rounded px-2 py-1 text-xs text-[var(--color-cream)] outline-none focus:border-[var(--color-gold)] tabular-nums"
+        />
+      </div>
+    </Field>
+  )
+}
+
+// ---- Contact Card relationships ---------------------------------------------
+
+type ContactRelation = { slug: string; itemId: string; name: string | null; stage: string | null; label: string }
+type ContactRelationsData = {
+  related: ContactRelation[]
+  counts: { properties: number; listings: number; buyer: number; referral: number }
+  isInvestor: boolean
+  isReferred: boolean
+}
+
+function ContactRelationships({ contactId, onOpenLinked }: { contactId: string; onOpenLinked?: (id: string) => void }) {
+  const [data, setData] = useState<ContactRelationsData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+    getContactRelations(contactId)
+      .then(d => { if (!cancelled) { setData(d as ContactRelationsData); setLoading(false) } })
+      .catch(e => { console.error(e); if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
+  }, [contactId])
+
+  if (loading) return (
+    <section>
+      <h3 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)] mb-2">Relationships</h3>
+      <div className="text-[var(--color-cream-x)] text-xs">Loading…</div>
+    </section>
+  )
+  if (!data) return null
+  if (data.related.length === 0) return (
+    <section>
+      <h3 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)] mb-2">Relationships</h3>
+      <div className="text-[var(--color-cream-x)] text-xs">No properties, buyer registrations, or referrals link to this contact yet.</div>
+    </section>
+  )
+
+  // Group by unique address (name). Each unique property shows ONCE — with
+  // badges for every place it's referenced (Property / Buyer / Listing /
+  // Referral). Avoids the previous 3-section repetition for the same address.
+  const LABEL_COLOR: Record<string, string> = {
+    Property: '#c4912a', Listing: '#6366f1', Buyer: '#16a34a', Referral: '#ea580c',
+  }
+  type Grouped = { name: string | null; refs: ContactRelation[] }
+  const grouped = new Map<string, Grouped>()
+  for (const r of data.related) {
+    const key = (r.name ?? r.itemId).trim().toLowerCase()
+    if (!grouped.has(key)) grouped.set(key, { name: r.name, refs: [] })
+    grouped.get(key)!.refs.push(r)
+  }
+  const uniqueProperties = Array.from(grouped.values())
+
+  return (
+    <section>
+      <h3 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)] mb-2">Relationships</h3>
+
+      <div className="flex flex-wrap gap-1.5 mb-3">
+        {data.counts.properties > 0 && <Badge label={`${data.counts.properties} ${data.counts.properties === 1 ? 'property' : 'properties'}`} color="#c4912a" />}
+        {data.counts.listings > 0   && <Badge label={`${data.counts.listings} listing${data.counts.listings === 1 ? '' : 's'}`} color="#6366f1" />}
+        {data.isInvestor            && <Badge label={`Investor / Buyer${data.counts.buyer > 1 ? ` ×${data.counts.buyer}` : ''}`} color="#16a34a" />}
+        {data.isReferred            && <Badge label={`Referral${data.counts.referral > 1 ? ` ×${data.counts.referral}` : ''}`} color="#ea580c" />}
+      </div>
+
+      <ul className="space-y-2">
+        {uniqueProperties.map((g, idx) => {
+          // Click the address → open the canonical source row. Prefer Property
+          // (Pipeline) since it's the core record, then Listing, Buyer, Referral.
+          const priority = ['Property', 'Listing', 'Buyer', 'Referral']
+          const canonical = priority
+            .map(p => g.refs.find(r => r.label === p))
+            .filter((r): r is ContactRelation => !!r)[0] ?? g.refs[0]
+          const stageSet = new Set<string>()
+          for (const r of g.refs) if (r.stage) stageSet.add(`${r.label} — ${r.stage}`)
+          // Dedupe label badges
+          const seenLabels = new Set<string>()
+          const labels: ContactRelation[] = []
+          for (const r of g.refs) {
+            if (seenLabels.has(r.label)) continue
+            seenLabels.add(r.label)
+            labels.push(r)
+          }
+          return (
+            <li key={`grp-${idx}`} className="bg-[var(--color-card-2)] rounded p-2.5 text-xs">
+              <div className="flex items-start justify-between gap-2 mb-1.5">
+                {onOpenLinked ? (
+                  <button
+                    onClick={() => onOpenLinked(canonical.itemId)}
+                    className="text-left text-[var(--color-cream)] hover:text-[var(--color-gold)] font-medium flex-1 truncate"
+                  >
+                    {g.name || '(no name)'}
+                  </button>
+                ) : (
+                  <span className="text-[var(--color-cream)] font-medium flex-1 truncate">{g.name || '(no name)'}</span>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {labels.map(r => (
+                  onOpenLinked ? (
+                    <button
+                      key={`${r.slug}-${r.itemId}`}
+                      onClick={() => onOpenLinked(r.itemId)}
+                      className="inline-block px-2 py-0.5 rounded text-[10px] text-white font-medium hover:opacity-80"
+                      style={{ background: LABEL_COLOR[r.label] ?? '#5b6470' }}
+                      title={r.stage ?? r.label}
+                    >
+                      {r.label}
+                    </button>
+                  ) : (
+                    <span
+                      key={`${r.slug}-${r.itemId}`}
+                      className="inline-block px-2 py-0.5 rounded text-[10px] text-white font-medium"
+                      style={{ background: LABEL_COLOR[r.label] ?? '#5b6470' }}
+                    >{r.label}</span>
+                  )
+                ))}
+              </div>
+              {Array.from(stageSet).length > 0 && (
+                <div className="text-[10px] text-[var(--color-cream-x)] mt-1.5 space-y-0.5">
+                  {Array.from(stageSet).map(s => <div key={s}>{s}</div>)}
+                </div>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
+function Badge({ label, color }: { label: string; color: string }) {
+  return (
+    <span className="inline-block px-2 py-0.5 rounded text-[11px] text-white font-medium" style={{ background: color }}>
+      {label}
+    </span>
+  )
+}
+
 // ---- Quick Actions ---------------------------------------------------------
 
 type QuickActionEvent = { type: string; createdAt: string }
 const QUICK_ACTION_BUS = new EventTarget()
 
 function QuickActions({ slug, itemId, onLogged }: { slug: string; itemId: string; onLogged: () => void }) {
-  const [busy, setBusy] = useState<string | null>(null)
   const [showNote, setShowNote] = useState(false)
   const [showFollowUp, setShowFollowUp] = useState(false)
   const [showAppraisal, setShowAppraisal] = useState(false)
   const [noteDraft, setNoteDraft] = useState('')
   const [dateDraft, setDateDraft] = useState('')
+  const [flash, setFlash] = useState<string | null>(null)
 
-  async function run<T>(label: string, fn: () => Promise<T>) {
-    setBusy(label)
-    try {
-      await fn()
-      QUICK_ACTION_BUS.dispatchEvent(new CustomEvent('logged', { detail: { slug, itemId } }))
-      onLogged()
-    } catch (e) { console.error(e) }
-    finally { setBusy(null) }
+  // Fire-and-forget: kick off the server action, refresh timeline optimistically,
+  // never block the buttons. Errors land in console only.
+  function fire<T>(label: string, fn: () => Promise<T>) {
+    setFlash(label)
+    setTimeout(() => setFlash(null), 800)
+    fn()
+      .then(() => {
+        QUICK_ACTION_BUS.dispatchEvent(new CustomEvent('logged', { detail: { slug, itemId } }))
+        onLogged()
+      })
+      .catch(e => console.error(e))
   }
 
   return (
@@ -484,30 +915,30 @@ function QuickActions({ slug, itemId, onLogged }: { slug: string; itemId: string
       <h3 className="text-[10px] uppercase tracking-[0.15em] text-[var(--color-cream-dim)] mb-2">Quick actions</h3>
       <div className="grid grid-cols-5 gap-1.5">
         <button
-          onClick={() => run('connected', () => quickActionCallConnected({ slug, itemId }))}
-          disabled={busy !== null}
+          onClick={() => fire('connected', () => quickActionCallConnected({ slug, itemId }))}
+          
           className="bg-[#16a34a] hover:bg-[#15803d] disabled:opacity-50 text-white rounded-md px-2 py-2 text-[11px] font-medium leading-tight"
           title="Reset NVML, set follow-up to +7d"
         >Called<br/>Connected</button>
         <button
-          onClick={() => run('nvml', () => quickActionCallNvml({ slug, itemId }))}
-          disabled={busy !== null}
+          onClick={() => fire('nvml', () => quickActionCallNvml({ slug, itemId }))}
+          
           className="bg-[#ea580c] hover:bg-[#c2410c] disabled:opacity-50 text-white rounded-md px-2 py-2 text-[11px] font-medium leading-tight"
           title="Increment NVML, set follow-up to +2d"
         >Called<br/>NVML</button>
         <button
           onClick={() => setShowNote(s => !s)}
-          disabled={busy !== null}
+          
           className="bg-[var(--color-card-2)] hover:bg-[#3a3631] text-[var(--color-cream)] rounded-md px-2 py-2 text-[11px] font-medium leading-tight"
         >Add<br/>Note</button>
         <button
           onClick={() => { setDateDraft(addDaysISO(7)); setShowFollowUp(true) }}
-          disabled={busy !== null}
+          
           className="bg-[var(--color-card-2)] hover:bg-[#3a3631] text-[var(--color-cream)] rounded-md px-2 py-2 text-[11px] font-medium leading-tight"
         >Set<br/>Follow-up</button>
         <button
           onClick={() => { setDateDraft(addDaysISO(3)); setShowAppraisal(true) }}
-          disabled={busy !== null}
+          
           className="bg-[var(--color-gold)] hover:opacity-90 text-[var(--color-bg)] rounded-md px-2 py-2 text-[11px] font-medium leading-tight"
         >Book<br/>Appraisal</button>
       </div>
@@ -523,7 +954,7 @@ function QuickActions({ slug, itemId, onLogged }: { slug: string; itemId: string
           />
           <div className="flex flex-col gap-1">
             <button
-              onClick={() => run('note', async () => {
+              onClick={() => fire('note', async () => {
                 const body = noteDraft.trim()
                 if (!body) return
                 await quickActionNote({ slug, itemId, body })
@@ -546,7 +977,7 @@ function QuickActions({ slug, itemId, onLogged }: { slug: string; itemId: string
             className="bg-[var(--color-bg)] border border-[var(--color-card-2)] text-[var(--color-cream)] rounded px-2 py-1 text-xs outline-none"
           />
           <button
-            onClick={() => run('follow_up', async () => {
+            onClick={() => fire('follow_up', async () => {
               if (!dateDraft) return
               await quickActionSetFollowUp({ slug, itemId, date: dateDraft })
               setShowFollowUp(false)
@@ -566,7 +997,7 @@ function QuickActions({ slug, itemId, onLogged }: { slug: string; itemId: string
             className="bg-[var(--color-bg)] border border-[var(--color-card-2)] text-[var(--color-cream)] rounded px-2 py-1 text-xs outline-none"
           />
           <button
-            onClick={() => run('appraisal', async () => {
+            onClick={() => fire('appraisal', async () => {
               await quickActionBookAppraisal({ slug, itemId, date: dateDraft || undefined })
               setShowAppraisal(false)
             })}

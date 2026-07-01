@@ -10,7 +10,7 @@ import {
 import { getLinkedItem } from '@/lib/actions/board'
 import ItemDetailPanel from '@/app/app/board/[slug]/ItemDetailPanel'
 import type { BoardColumn, BoardItem } from '@/app/app/board/[slug]/types'
-import type { TodayItem } from './today-types'
+import type { TodayItem, ScoredCallSuggestion } from './today-types'
 
 function daysAgo(d: string | null): number {
   if (!d) return 0
@@ -29,11 +29,13 @@ export default function TodayView({
   overdue,
   today,
   saturday,
+  topFive,
   todayDateLabel,
 }: {
   overdue: TodayItem[]
   today: TodayItem[]
   saturday: TodayItem[]
+  topFive: ScoredCallSuggestion[]
   todayDateLabel: string
 }) {
   const router = useRouter()
@@ -103,6 +105,12 @@ export default function TodayView({
       </header>
 
       <div className="flex-1 overflow-auto px-4 sm:px-6 py-4 space-y-6">
+        <TopFiveSection
+          items={topFive.filter(it => !actedIds.has(`${it.slug}:${it.monday_item_id}`))}
+          openDetail={openDetail}
+          quickConnected={(it) => quickConnected({ slug: it.slug, monday_item_id: it.monday_item_id } as TodayItem)}
+          quickNvml={(it) => quickNvml({ slug: it.slug, monday_item_id: it.monday_item_id } as TodayItem)}
+        />
         <Section
           title="Overdue"
           subtitle="Follow-up date has passed"
@@ -163,6 +171,78 @@ export default function TodayView({
         />
       )}
     </div>
+  )
+}
+
+function TopFiveSection({
+  items, openDetail, quickConnected, quickNvml,
+}: {
+  items: ScoredCallSuggestion[]
+  openDetail: (slug: string, itemId: string) => void
+  quickConnected: (it: ScoredCallSuggestion) => void
+  quickNvml: (it: ScoredCallSuggestion) => void
+}) {
+  if (items.length === 0) return null
+  return (
+    <section className="border border-[var(--color-gold)]/40 rounded-xl bg-gradient-to-br from-[var(--color-card)] to-[var(--color-bg)]">
+      <header className="px-4 py-3 border-b border-[var(--color-card-2)]">
+        <h2 className="font-serif text-lg text-[var(--color-cream)]">
+          Top {items.length} to call now
+        </h2>
+        <p className="text-[11px] text-[var(--color-cream-dim)] mt-0.5">
+          Reading every contact's notes + stage + NVML + appraisal status. As a sales coach — call these first.
+        </p>
+      </header>
+      <ul className="divide-y divide-[var(--color-card-2)]">
+        {items.map((it, idx) => (
+          <li
+            key={`${it.slug}:${it.monday_item_id}`}
+            className="bg-transparent hover:bg-[var(--color-card-2)]/50 px-4 py-2.5 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center text-sm"
+          >
+            <div className="sm:col-span-5 min-w-0 flex items-center gap-3">
+              <span className="text-[var(--color-gold)] font-serif text-xl tabular-nums flex-shrink-0 w-6">{idx + 1}</span>
+              <div className="min-w-0">
+                <button
+                  onClick={() => openDetail(it.slug, it.monday_item_id)}
+                  className="text-left font-medium text-[var(--color-cream)] hover:text-[var(--color-gold)] truncate block w-full"
+                >
+                  {it.name || '(no name)'}
+                </button>
+                <div className="text-[10px] text-[var(--color-cream-x)] mt-0.5 truncate">
+                  {it.reasons.join(' · ')}
+                </div>
+              </div>
+            </div>
+            <div className="sm:col-span-3 text-xs text-[var(--color-cream-dim)]">
+              {it.phone && <a href={`tel:${it.phone}`} className="text-[var(--color-gold)] hover:underline whitespace-nowrap block">{it.phone}</a>}
+              {it.stage && <div className="text-[10px] text-[var(--color-cream-x)] truncate">{it.stage}</div>}
+            </div>
+            <div className="sm:col-span-2 text-[11px] text-right text-[var(--color-cream-dim)]">
+              score {it.score}
+            </div>
+            <div className="sm:col-span-2 flex gap-1 justify-end">
+              {it.phone && (
+                <a
+                  href={`tel:${it.phone}`}
+                  className="sm:hidden bg-[#16a34a] text-white rounded px-3 py-1.5 text-xs font-medium"
+                  title="Call"
+                >📞</a>
+              )}
+              <button
+                onClick={() => quickConnected(it)}
+                className="bg-[#16a34a] hover:bg-[#15803d] text-white rounded px-3 py-1.5 sm:px-2 sm:py-1 text-xs sm:text-[10px] font-medium leading-tight"
+                title="Called — Connected"
+              >✓</button>
+              <button
+                onClick={() => quickNvml(it)}
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white rounded px-3 py-1.5 sm:px-2 sm:py-1 text-xs sm:text-[10px] font-medium leading-tight"
+                title="Called — NVML"
+              >NVML</button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
 

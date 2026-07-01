@@ -38,7 +38,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </form>
       </header>
 
-      <main className="flex-1 px-6 py-6 max-w-[1440px] mx-auto w-full">
+      <main className="flex-1 w-full min-w-0">
         {children}
       </main>
     </div>

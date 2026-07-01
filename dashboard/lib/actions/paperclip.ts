@@ -2,12 +2,29 @@
 
 import type { Agent, Issue, HeartbeatRun, AgentTokenData } from '@/types/paperclip'
 
-const API     = process.env.PAPERCLIP_API_URL    || 'http://127.0.0.1:3100'
-const COMPANY = process.env.PAPERCLIP_COMPANY_ID || ''
+const API           = process.env.PAPERCLIP_API_URL       || 'http://127.0.0.1:3100'
+const COMPANY       = process.env.PAPERCLIP_COMPANY_ID    || ''
+const API_KEY       = process.env.PAPERCLIP_API_KEY       || ''
+const CF_CLIENT_ID  = process.env.CF_ACCESS_CLIENT_ID     || ''
+const CF_CLIENT_SEC = process.env.CF_ACCESS_CLIENT_SECRET || ''
+
+function authHeaders(json = true): Record<string, string> {
+  const h: Record<string, string> = {}
+  if (json) h['Content-Type'] = 'application/json'
+  if (API_KEY) h['Authorization'] = `Bearer ${API_KEY}`
+  if (CF_CLIENT_ID && CF_CLIENT_SEC) {
+    h['CF-Access-Client-Id'] = CF_CLIENT_ID
+    h['CF-Access-Client-Secret'] = CF_CLIENT_SEC
+  }
+  return h
+}
 
 async function pFetch(path: string) {
   try {
-    const res = await fetch(`${API}${path}`, { next: { revalidate: 30 } })
+    const res = await fetch(`${API}${path}`, {
+      next: { revalidate: 30 },
+      headers: authHeaders(false),
+    })
     if (!res.ok) return null
     return res.json()
   } catch {
@@ -29,16 +46,15 @@ export async function amendProposal(issueId: string, feedback: string): Promise<
   // Post feedback comment — CEO reads this and revises the proposal accordingly
   await fetch(`${API}/api/issues/${issueId}/comments`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify({ body: `Amendment requested by Daniel: ${feedback.trim()}` }),
   })
 }
 
 export async function approveProposal(issueId: string): Promise<void> {
-  // Remove the proposal label — issue becomes a regular todo the agents will pick up
   await fetch(`${API}/api/issues/${issueId}`, {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify({ labelIds: [] }),
   })
 }
@@ -47,13 +63,13 @@ export async function dismissProposal(issueId: string, reason?: string): Promise
   if (reason?.trim()) {
     await fetch(`${API}/api/issues/${issueId}/comments`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({ body: `Dismissed by Daniel: ${reason.trim()}` }),
     })
   }
   await fetch(`${API}/api/issues/${issueId}`, {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify({ status: 'cancelled' }),
   })
 }
@@ -84,7 +100,7 @@ export async function notifyAgentOfStatusChange(
   try {
     const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({
         title:      `Post ${label}: "${postTitle}"`,
         body,
@@ -113,7 +129,7 @@ export async function sendChangeRequestToAgent(
   try {
     const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({
         title:      `Change request: "${postTitle}"`,
         body,
@@ -144,7 +160,7 @@ export async function requestFactCheck(
   try {
     const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({
         title:      `Fact-check requested: "${postTitle}"`,
         body,
@@ -178,7 +194,7 @@ export async function requestNewPostForDate(
   try {
     const res = await fetch(`${API}/api/companies/${COMPANY}/issues`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({
         title:      `Write new ${postTypeLabel} post for ${dateStr}`,
         body,

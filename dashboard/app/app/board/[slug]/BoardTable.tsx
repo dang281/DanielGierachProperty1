@@ -1,6 +1,7 @@
 'use client'
 
-import { useDeferredValue, useEffect, useMemo, useRef, useState, useTransition } from 'react'
+import { memo, useDeferredValue, useEffect, useMemo, useRef, useState, useTransition } from 'react'
+import AddressInput from '@/components/AddressInput'
 import dynamic from 'next/dynamic'
 import { addBoardItem, bulkDeleteItems, bulkMoveItems, deleteBoardItem, getLinkedItem, moveItemToGroup, updateBoardCell } from '@/lib/actions/board'
 import ItemDetailPanel from './ItemDetailPanel'
@@ -97,7 +98,7 @@ function StatusPill({
     <span
       onClick={onClick}
       className={[
-        'inline-block px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap text-white',
+        'inline-block px-2.5 py-0.5 rounded text-[12px] font-medium whitespace-nowrap text-white',
         editable ? 'cursor-pointer hover:opacity-90' : '',
       ].join(' ')}
       style={{ background: bg }}
@@ -147,21 +148,23 @@ function FixedPopover({
   )
 }
 
-function EditableCell({
-  slug,
-  itemId,
-  col,
-  cell,
-  onLocalChange,
-  onOpenLinked,
-}: {
+type EditableCellProps = {
   slug: string
   itemId: string
   col: BoardColumn
   cell: { type: string; text: string | null; value: string | null; linked_item_ids?: string[] } | undefined
   onLocalChange: (newText: string | null) => void
   onOpenLinked?: (itemId: string) => void
-}) {
+}
+
+function EditableCellInner({
+  slug,
+  itemId,
+  col,
+  cell,
+  onLocalChange,
+  onOpenLinked,
+}: EditableCellProps) {
   // DEBUG: catch the {id, name} render error
   if (cell?.text && typeof cell.text !== 'string') {
     console.error('[EditableCell] non-string text', { col: col.column_id, type: col.column_type, cell })
@@ -181,6 +184,7 @@ function EditableCell({
   const isDropdown = EDITABLE_DROPDOWN_TYPES.has(col.column_type)
   const isText = EDITABLE_TEXT_TYPES.has(col.column_type)
   const isDate = EDITABLE_DATE_TYPES.has(col.column_type)
+  const isLocation = col.column_type === 'location'
 
   function save(newText: string | null) {
     onLocalChange(newText)
@@ -295,24 +299,42 @@ function EditableCell({
     )
   }
 
-  // --- Inline text edit ---
-  if (editing && isText) {
-    const isLong = col.column_type === 'long_text'
-    if (isLong) {
-      return (
-        <textarea
-          autoFocus
-          value={draft}
-          onChange={e => setDraft(e.target.value)}
-          onBlur={commitTextEdit}
-          onKeyDown={e => {
-            if (e.key === 'Escape') { setEditing(false); setDraft(text ?? '') }
-            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) commitTextEdit()
-          }}
-          className="w-full min-w-[220px] min-h-[60px] bg-[var(--color-card)] border border-[var(--color-gold)] text-[var(--color-cream)] rounded px-2 py-1 text-xs outline-none"
-        />
-      )
+  // --- Long text: open a roomy floating editor so the whole note is readable
+  const isLong = col.column_type === 'long_text'
+  if (editing && isLong && anchor) {
+    function close(commit: boolean) {
+      if (commit) commitTextEdit()
+      else { setEditing(false); setDraft(text ?? '') }
+      setAnchor(null)
     }
+    const titleText = col.title ?? 'Note'
+    return (
+      <>
+        <span ref={cellRef} className="text-[var(--color-cream-dim)] truncate">
+          {(text ?? '').slice(0, 60)}{(text ?? '').length > 60 ? '…' : ''}
+        </span>
+        <FixedPopover anchor={anchor} onClose={() => close(true)}>
+          <div className="flex items-center justify-between mb-1.5 px-0.5">
+            <span className="text-[10px] uppercase tracking-wide text-[var(--color-cream-dim)]">{titleText}</span>
+            <span className="text-[10px] text-[var(--color-cream-x)]">Esc to cancel · ⌘/Ctrl+Enter to save</span>
+          </div>
+          <textarea
+            autoFocus
+            value={draft}
+            onChange={e => setDraft(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Escape') close(false)
+              if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) close(true)
+            }}
+            className="w-[520px] max-w-[88vw] min-h-[280px] max-h-[60vh] bg-[var(--color-bg)] text-[var(--color-cream)] text-[13px] leading-relaxed outline-none p-3 resize-y rounded border border-[var(--color-card-2)] whitespace-pre-wrap"
+          />
+        </FixedPopover>
+      </>
+    )
+  }
+
+  // --- Inline text edit ---
+  if (editing && isText && !isLong) {
     return (
       <input
         autoFocus
@@ -325,6 +347,23 @@ function EditableCell({
           if (e.key === 'Enter') commitTextEdit()
         }}
         className="w-full min-w-[120px] bg-[var(--color-card)] border border-[var(--color-gold)] text-[var(--color-cream)] rounded px-2 py-1 text-xs outline-none"
+      />
+    )
+  }
+
+  if (editing && isLocation) {
+    return (
+      <AddressInput
+        autoFocus
+        value={draft}
+        onChange={setDraft}
+        onSelect={(addr) => { save(addr); setEditing(false) }}
+        onBlur={commitTextEdit}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') { setEditing(false); setDraft(text ?? '') }
+          if (e.key === 'Enter') commitTextEdit()
+        }}
+        className="w-full min-w-[200px] bg-[var(--color-card)] border border-[var(--color-gold)] text-[var(--color-cream)] rounded px-2 py-1 text-xs outline-none"
       />
     )
   }
@@ -348,7 +387,7 @@ function EditableCell({
 
   // --- Display modes (clickable to edit when editable) ---
   const empty = !text || text === ''
-  const isEmptyEditable = empty && (isText || isDate || isStatus || isDropdown)
+  const isEmptyEditable = empty && (isText || isDate || isStatus || isDropdown || isLocation)
 
   if (empty && !isEmptyEditable) {
     return <span className="text-[var(--color-cream-x)]">—</span>
@@ -356,7 +395,11 @@ function EditableCell({
 
   const dashClick = () => {
     if (isStatus || isDropdown) openPicker()
-    else if (isText || isDate) startTextEdit()
+    else if (col.column_type === 'long_text') {
+      if (cellRef.current) setAnchor(cellRef.current.getBoundingClientRect())
+      startTextEdit()
+    }
+    else if (isText || isDate || isLocation) startTextEdit()
   }
 
   if (empty) {
@@ -458,7 +501,11 @@ function EditableCell({
       const truncated = (text ?? '').length > 60
       return (
         <span
-          onClick={startTextEdit}
+          ref={cellRef}
+          onClick={(e) => {
+            setAnchor((e.currentTarget as HTMLElement).getBoundingClientRect())
+            startTextEdit()
+          }}
           title={text ?? undefined}
           className="cursor-pointer hover:text-[var(--color-gold)] text-[var(--color-cream-dim)]"
         >
@@ -472,14 +519,17 @@ function EditableCell({
       const linkedIds = cell?.linked_item_ids
       if (names.length === 0) return <span className="text-[var(--color-cream-x)]">—</span>
       return (
-        <div className="flex flex-wrap gap-1">
+        <div
+          className="flex flex-nowrap gap-1 overflow-hidden"
+          title={names.join(' · ')}
+        >
           {names.map((n, i) => {
             const id = linkedIds?.[i]
             return id && onOpenLinked ? (
               <button
                 key={i}
                 onClick={(e) => { e.stopPropagation(); onOpenLinked(id) }}
-                className="inline-block px-2 py-0.5 rounded bg-[var(--color-card-2)] text-[11px] whitespace-nowrap text-[var(--color-cream)] hover:bg-[var(--color-gold)] hover:text-[var(--color-bg)] transition-colors cursor-pointer"
+                className="inline-block px-2.5 py-0.5 rounded bg-[var(--color-card-2)] text-[12px] whitespace-nowrap text-[var(--color-cream)] hover:bg-[var(--color-gold)] hover:text-[var(--color-bg)] cursor-pointer"
                 title="Open linked item"
               >
                 {n}
@@ -487,7 +537,7 @@ function EditableCell({
             ) : (
               <span
                 key={i}
-                className="inline-block px-2 py-0.5 rounded bg-[var(--color-card-2)] text-[11px] whitespace-nowrap text-[var(--color-cream)]"
+                className="inline-block px-2.5 py-0.5 rounded bg-[var(--color-card-2)] text-[12px] whitespace-nowrap text-[var(--color-cream)]"
               >
                 {n}
               </span>
@@ -497,8 +547,32 @@ function EditableCell({
       )
     }
     case 'mirror':
-    case 'lookup':
-      return <span className="text-[var(--color-cream-dim)] truncate">{text}</span>
+    case 'lookup': {
+      // Mirror columns often duplicate when a contact is linked to the same
+      // property from multiple boards. Dedupe by chunk to show each address once.
+      const txt = text ?? ''
+      let display = txt
+      if (txt && txt.length > 0) {
+        // Try the simple "value repeats N times" pattern first
+        const parts = txt.split(',').map(s => s.trim()).filter(Boolean)
+        if (parts.length > 1) {
+          const unique = Array.from(new Set(parts))
+          // If only 1 unique part, just show it
+          if (unique.length === 1) display = unique[0]
+          // If parts evenly group into N copies of the same address (with commas inside)
+          else for (let groupSize = 1; groupSize <= Math.floor(parts.length / 2); groupSize++) {
+            if (parts.length % groupSize !== 0) continue
+            const first = parts.slice(0, groupSize).join(', ')
+            let allMatch = true
+            for (let i = groupSize; i < parts.length; i += groupSize) {
+              if (parts.slice(i, i + groupSize).join(', ') !== first) { allMatch = false; break }
+            }
+            if (allMatch) { display = first; break }
+          }
+        }
+      }
+      return <span className="text-[var(--color-cream-dim)] truncate">{display}</span>
+    }
     case 'subtasks':
     case 'subitems': {
       let count = 0
@@ -529,6 +603,16 @@ function EditableCell({
   }
 }
 
+// Skip re-render when only callbacks change (they always do). Compare on the
+// data props that actually affect what we render.
+const EditableCell = memo(EditableCellInner, (prev, next) =>
+  prev.slug   === next.slug   &&
+  prev.itemId === next.itemId &&
+  prev.col    === next.col    &&
+  prev.cell   === next.cell   &&
+  Boolean(prev.onOpenLinked) === Boolean(next.onOpenLinked)
+)
+
 type SortDir = 'asc' | 'desc'
 
 type ViewMode = 'table' | 'map' | 'queue'
@@ -540,6 +624,52 @@ type ViewState = {
   sortDir: SortDir
   hidden: string[]
   view: ViewMode
+}
+
+// Per-board default-hidden columns. Show only the essentials on first load —
+// the user can re-enable any via the Columns menu. Only applied when there's
+// no prior preference in localStorage (i.e. first-time load on this board).
+const DEFAULT_HIDDEN_COLUMNS: Record<string, string[]> = {
+  pipeline: [
+    'email_mkwpd6dn',         // Email — use detail panel
+    'link_mkvv2dsy',          // Price Finder — detail panel
+    'date_mkzjzxnd',          // Event date (historical noise)
+    'text_mm0d1cy2',          // Appraisal Range — detail panel
+    'long_text_mm35hdg2',     // Second Notes
+    'long_text_mm3xdjdm',     // Third Notes
+    'long_text_mm3xbawf',     // Third Notes cont.
+  ],
+  contacts: [
+    'lookup_mkv11gr0',        // Mirror Properties Address — mostly duplicates linked property
+  ],
+  leads: [
+    'lookup_mkwq1n91',        // Mirror (generic)
+    'lookup_mkv1bshd',        // Address Mirror of Contacts — open panel for full address
+    'pulse_updated_mkv4s3cn', // Auto last-updated timestamp
+    'date4',                  // Date — Follow Up Date is the actionable one
+  ],
+  referrals: [
+    'pulse_updated_mkvv446w', // Auto last-updated timestamp
+    'long_text_mkvva4px',     // Generic "Long text" — open panel for full notes
+  ],
+}
+
+// Per-board default column order. Applied only on first load of the board
+// (when there's no localStorage colOrder). Any columns not listed here fall
+// to the end of the table in their natural Monday order.
+const DEFAULT_COLUMN_ORDER: Record<string, string[]> = {
+  pipeline: [
+    'property_contact',       // Contact
+    'phone_mkvdbvr4',         // Phone
+    'date_mkvwk1we',          // Follow Up Date
+    'color_mm0dp0q8',         // Appraised?
+    'color_mm0dpras',         // Buy to Sell?
+    'link_mkvdcbdw',          // Nurture Cloud Link
+    'link_mm3hsnx0',          // Dup. of Nurture Cloud Link
+    'long_text_mkvwnqqp',     // First Notes
+    'property_address',       // Address
+    'color_mkvvc85t',         // Owner Type
+  ],
 }
 
 // Per-board fallback group order. Each entry is a prefix matched
@@ -650,11 +780,17 @@ export default function BoardTable({
       if (raw) {
         const parsed = JSON.parse(raw) as { hidden?: string[]; views?: typeof savedViews; view?: ViewMode; widths?: Record<string, number>; order?: string[]; groupOrder?: string[] }
         if (parsed.hidden) setHiddenCols(new Set(parsed.hidden))
+        else if (DEFAULT_HIDDEN_COLUMNS[slug]) setHiddenCols(new Set(DEFAULT_HIDDEN_COLUMNS[slug]))
         if (parsed.views) setSavedViews(parsed.views)
         if (parsed.view) setView(parsed.view)
         if (parsed.widths) setColWidths(parsed.widths)
         if (parsed.order) setColOrder(parsed.order)
+        else if (DEFAULT_COLUMN_ORDER[slug]) setColOrder(DEFAULT_COLUMN_ORDER[slug])
         if (parsed.groupOrder) setGroupOrder(parsed.groupOrder)
+      } else {
+        // First time on this board — apply defaults
+        if (DEFAULT_HIDDEN_COLUMNS[slug]) setHiddenCols(new Set(DEFAULT_HIDDEN_COLUMNS[slug]))
+        if (DEFAULT_COLUMN_ORDER[slug]) setColOrder(DEFAULT_COLUMN_ORDER[slug])
       }
     } catch {}
   }, [slug])
@@ -905,13 +1041,26 @@ export default function BoardTable({
     e.stopPropagation()
     const startX = e.clientX
     const startWidth = colWidths[colKey] ?? (colKey === 'name' ? 260 : 160)
+    const handle = e.currentTarget as HTMLElement
+    const th = handle.closest('th') as HTMLTableHeaderCellElement | null
+    if (!th) return
+    let currentWidth = startWidth
+    document.body.style.cursor = 'col-resize'
+    document.body.style.userSelect = 'none'
+
     function onMove(ev: MouseEvent) {
-      const next = Math.max(60, Math.min(800, startWidth + (ev.clientX - startX)))
-      setColWidths(prev => ({ ...prev, [colKey]: next }))
+      currentWidth = Math.max(60, Math.min(800, startWidth + (ev.clientX - startX)))
+      // Direct DOM update — no React re-render. Browser reflows column only.
+      th!.style.width = `${currentWidth}px`
+      th!.style.minWidth = `${currentWidth}px`
     }
     function onUp() {
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+      // Commit final width to React state once, after the drag ends.
+      setColWidths(prev => ({ ...prev, [colKey]: currentWidth }))
     }
     document.addEventListener('mousemove', onMove)
     document.addEventListener('mouseup', onUp)
@@ -974,6 +1123,16 @@ export default function BoardTable({
               >Queue</button>
             </div>
           )}
+          <button
+            onClick={() => {
+              const allCollapsed = groups.length > 0 && groups.every(g => collapsed.has(g))
+              setCollapsed(allCollapsed ? new Set() : new Set(groups))
+            }}
+            className="bg-[var(--color-card)] border border-[var(--color-card-2)] rounded-lg px-3 py-1.5 text-xs hover:border-[var(--color-gold)] text-[var(--color-cream-dim)] hover:text-[var(--color-cream)]"
+            title={collapsed.size === groups.length && groups.length > 0 ? 'Expand all groups' : 'Collapse all groups'}
+          >
+            {collapsed.size === groups.length && groups.length > 0 ? '▾ Expand all' : '▸ Collapse all'}
+          </button>
           <select
             value={groupFilter}
             onChange={e => setGroupFilter(e.target.value)}
@@ -1034,7 +1193,7 @@ export default function BoardTable({
         </div>
       ) : (
       <div className="flex-1 overflow-auto">
-        <table className="w-full text-xs border-separate border-spacing-0">
+        <table className="w-full text-[13px] border-separate border-spacing-0">
           <thead className="sticky top-0 z-20 bg-[var(--color-bg)]">
             <tr>
               <SortableHeader
@@ -1380,7 +1539,7 @@ function SortableHeader({
   )
 }
 
-function GroupBlock({
+function GroupBlockInner({
   group,
   rows,
   dataColumns,
@@ -1476,7 +1635,7 @@ function GroupBlock({
       >
         <td
           colSpan={totalCols}
-          className="sticky left-0 bg-[var(--color-card)] text-[var(--color-cream)] px-4 py-1 text-[11px] font-medium uppercase tracking-wide border-b border-t border-[var(--color-card-2)] cursor-grab active:cursor-grabbing"
+          className="sticky left-0 bg-[var(--color-card)] text-[var(--color-cream)] px-4 py-1 text-[13px] font-semibold uppercase tracking-wide border-b border-t border-[var(--color-card-2)] cursor-grab active:cursor-grabbing"
         >
           <span className="inline-flex items-center gap-2">
             <span className="text-[var(--color-cream-x)] text-[10px] select-none" title="Drag to reorder group">⋮⋮</span>
@@ -1503,9 +1662,8 @@ function GroupBlock({
         <tr
           key={row.monday_item_id}
           className="group hover:bg-[var(--color-card)]"
-          style={{ contentVisibility: 'auto', containIntrinsicSize: '34px 100%' }}
         >
-          <td className="sticky left-0 z-10 bg-[var(--color-bg)] group-hover:bg-[var(--color-card)] px-4 py-1 border-b border-r border-[var(--color-card-2)] whitespace-nowrap overflow-hidden">
+          <td className="sticky left-0 z-10 bg-[var(--color-bg)] group-hover:bg-[var(--color-card)] px-4 py-0.5 border-b border-r border-[var(--color-card-2)] whitespace-nowrap overflow-hidden">
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -1538,7 +1696,7 @@ function GroupBlock({
           {dataColumns.map(c => (
             <td
               key={c.column_id}
-              className="px-3 py-1 border-b border-r border-[var(--color-card-2)] align-middle overflow-hidden whitespace-nowrap text-ellipsis"
+              className="px-3 py-0.5 border-b border-r border-[var(--color-card-2)] align-middle overflow-hidden whitespace-nowrap text-ellipsis"
             >
               <EditableCell
                 slug={slug}
@@ -1594,3 +1752,18 @@ function GroupBlock({
     </>
   )
 }
+
+// Skip GroupBlock re-renders unless the data that visibly affects it changed.
+// Callbacks always close over the latest parent state via setX(prev => ...),
+// so it's safe to ignore them in equality.
+const GroupBlock = memo(GroupBlockInner, (prev, next) =>
+  prev.group        === next.group        &&
+  prev.rows         === next.rows         &&
+  prev.dataColumns  === next.dataColumns  &&
+  prev.slug         === next.slug         &&
+  prev.totalCols    === next.totalCols    &&
+  prev.collapsed    === next.collapsed    &&
+  prev.bulkIds      === next.bulkIds      &&
+  prev.isDragging   === next.isDragging   &&
+  prev.isDragTarget === next.isDragTarget
+)
