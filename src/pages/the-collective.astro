@@ -1,0 +1,278 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const offices = [
+  { name: 'Ray White Bulimba',        area: 'Bulimba',    note: "Daniel's office" },
+  { name: 'Ray White East Brisbane',  area: 'East Brisbane' },
+  { name: 'Ray White New Farm',       area: 'New Farm' },
+  { name: 'Ray White Spring Hill',    area: 'Spring Hill', principal: 'To Wong' },
+  { name: 'Ray White Kim Olsen Property', area: 'Clayfield', principal: 'Kim Olsen' },
+  { name: 'Ray White Woody Point',    area: 'Woody Point' },
+];
+
+const reasons = [
+  {
+    title: 'A larger buyer pool from day one.',
+    body: 'Every registered buyer across the six offices sees your listing before it goes public on realestate.com.au. That is materially more first-look eyes than any single office can offer.',
+  },
+  {
+    title: 'Off-market and pre-market as a first port of call.',
+    body: 'Every new listing is first circulated inside the group as an off-market or pre-market opportunity. If a buyer inside the network is a fit, the sale can happen without the vendor ever paying for public marketing.',
+  },
+  {
+    title: 'Auction and marketing at group scale.',
+    body: 'Haesley Cush and Peter Burgin call auctions across all six offices. Photographers, videographers and copywriters are shared resources. That is a level of production a single office cannot sustain, and it lands on your campaign at the same fee.',
+  },
+  {
+    title: 'Group scale. Local focus.',
+    body: "Ray White is Australia's largest network. The Collective gives you that scale while keeping your campaign in the hands of an agent who works one corridor of Brisbane and lives in it.",
+  },
+];
+---
+
+<Layout
+  title="Ray White Collective | Six Offices, One Buyer Database | Daniel Gierach"
+  description="Ray White Collective is a network of six Ray White offices across Brisbane's inner east and inner city. Shared buyer database, shared auction team, shared marketing platform. What it means for your sale."
+>
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Ray White Collective | Six Offices, One Buyer Database",
+  "description": "Ray White Collective is a network of six Ray White offices across Brisbane. Daniel Gierach explains what the group means for a vendor.",
+  "url": "https://danielgierach.com/the-collective",
+  "author": { "@id": "https://danielgierach.com/#person" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://danielgierach.com" },
+      { "@type": "ListItem", "position": 2, "name": "The Collective", "item": "https://danielgierach.com/the-collective" }
+    ]
+  }
+})}</script>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section style="background:#0a0806; color:#f0ece4; padding:120px 24px 90px;">
+  <div style="max-width:900px; margin:0 auto; text-align:center;">
+    <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">Ray White Collective</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.6rem, 5.5vw, 4.4rem); font-weight:300; line-height:1.1; letter-spacing:-0.015em; color:#f0ece4; margin-bottom:1.5rem;">
+      Six offices. One buyer database.
+    </h1>
+    <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.75; color:rgba(240,236,228,0.7); max-width:640px; margin:0 auto 2.5rem;">
+      Ray White Collective is a group of six independently-owned Ray White offices in Brisbane. What links them is a shared buyer database, a shared auction team, and a marketing platform that lets a single listing surface to every buyer registered with any office in the group.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/property-worth" data-cta="the_collective_hero_appraisal" style="font-family:var(--font-sans); font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#0a0806; padding:0.9rem 1.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; border-radius:8px;">
+        Request an appraisal
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/meet-the-team" data-cta="the_collective_hero_meet_team" style="font-family:var(--font-sans); font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f0ece4; border:1px solid rgba(240,236,228,0.25); padding:0.85rem 1.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; border-radius:8px;">
+        Meet the team
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     WHAT IT IS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:820px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">The Network</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 3.6vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">One listing. Six offices worth of buyers.</h2>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.85; color:#4a4540; margin-bottom:1.25rem;">
+      Each Collective office runs its own team, its own campaigns, and its own suburbs. They compete in the market the same way any Ray White office does. What sits underneath them is shared infrastructure: one buyer database, one CRM, one auction team, and one marketing platform.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.85; color:#4a4540;">
+      For a vendor, the practical effect is straightforward. The moment your property is loaded into the system, it is visible to every registered buyer at Bulimba, East Brisbane, New Farm, Spring Hill, Clayfield and Woody Point. Not just the pool at whichever office you signed the agency agreement with.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     THE SIX OFFICES
+════════════════════════════════════════════ -->
+<section style="background:var(--color-base); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem; text-align:center;">The Offices</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem; text-align:center;">Six offices across Brisbane.</h2>
+
+    <div class="offices-grid">
+      {offices.map(o => (
+        <div class={`office-card ${o.note ? 'is-featured' : ''}`}>
+          <p class="office-area">{o.area}</p>
+          <p class="office-name">{o.name}</p>
+          {o.principal && <p class="office-principal">{o.principal}</p>}
+          {o.note && <p class="office-note">{o.note}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     WHY IT MATTERS
+════════════════════════════════════════════ -->
+<section style="background:var(--color-surface-0); padding:80px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Why It Matters</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 3.6vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem; max-width:640px;">What the group actually does for your sale.</h2>
+
+    <div class="reasons-grid">
+      {reasons.map((r, i) => (
+        <div class="reason-card">
+          <div class="reason-num">{String(i + 1).padStart(2, '0')}</div>
+          <p class="reason-title">{r.title}</p>
+          <p class="reason-body">{r.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════ -->
+<section style="background:#1c1917; padding:80px 24px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="cta-grid">
+      <div>
+        <h2 style="font-family:var(--font-serif); font-size:clamp(1.75rem, 3.5vw, 2.6rem); font-weight:300; color:#f0ece4; line-height:1.2; letter-spacing:-0.015em; margin-bottom:1.25rem;">
+          Thinking of selling?
+        </h2>
+        <p style="font-family:var(--font-sans); font-size:0.92rem; font-weight:300; color:rgba(240,236,228,0.65); line-height:1.85; max-width:44ch;">
+          Daniel will walk through your home, review comparable sales in your street, and give you a clear read on what your property is worth to Collective buyers today. No obligation, no fee.
+        </p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1.75rem;">
+        <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+          <div>
+            <p style="font-family:var(--font-sans); font-size:0.55rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(240,236,228,0.55); margin-bottom:0.4rem;">Phone</p>
+            <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#f0ece4; text-decoration:none;">0412 523 821</a>
+          </div>
+          <div style="width:1px; height:44px; background:rgba(240,236,228,0.12);"></div>
+          <div>
+            <p style="font-family:var(--font-sans); font-size:0.55rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(240,236,228,0.55); margin-bottom:0.4rem;">Email</p>
+            <a href="mailto:daniel.gierach@raywhite.com" style="font-family:var(--font-sans); font-size:0.82rem; font-weight:500; color:#f0ece4; text-decoration:none;">daniel.gierach@raywhite.com</a>
+          </div>
+        </div>
+        <div>
+          <a href="/property-worth" data-cta="the_collective_footer_appraisal" style="font-family:var(--font-sans); font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#0a0806; padding:0.9rem 1.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; border-radius:8px;">
+            Request an appraisal
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .offices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(28,25,23,0.1);
+    border: 1px solid rgba(28,25,23,0.1);
+  }
+  .office-card {
+    background: var(--color-surface-0);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-height: 180px;
+  }
+  .office-card.is-featured {
+    background: #fbf7ee;
+    border-left: 3px solid #c4912a;
+    padding-left: calc(1.75rem - 3px);
+  }
+  .office-area {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #c4912a;
+    margin: 0;
+  }
+  .office-name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: #1c1917;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .office-principal {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: #78716c;
+    margin: 0;
+  }
+  .office-note {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #c4912a;
+    margin-top: auto;
+    letter-spacing: 0.02em;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(28,25,23,0.1);
+    border: 1px solid rgba(28,25,23,0.1);
+  }
+  .reason-card {
+    background: var(--color-surface-0);
+    padding: 2.5rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .reason-num {
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #c4912a;
+    letter-spacing: 0.15em;
+  }
+  .reason-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #1c1917;
+    line-height: 1.35;
+    margin: 0;
+  }
+  .reason-body {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: #4a4540;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .offices-grid { grid-template-columns: 1fr; }
+    .reasons-grid { grid-template-columns: 1fr; }
+    .cta-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+
+</Layout>
