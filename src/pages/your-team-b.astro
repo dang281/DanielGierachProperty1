@@ -1,13 +1,14 @@
 ---
 import LandingLayout from '../layouts/LandingLayout.astro';
 
-// Generic tools chosen for a social-media audience — work for both buyers
-// and sellers without forcing intent.
+// Tools for a social-media audience. Property Report goes through the
+// address-first chooser at /report (then on to /property-worth's three
+// options). Off-market is the buyer-side capture.
 const services = [
   {
-    href: '/walkthrough',
-    title: 'Free property report',
-    desc: 'A no-obligation valuation based on recent comparable sales.',
+    href: '/report',
+    title: 'Your Property Report',
+    desc: 'Online, in-person, or by phone. Your call.',
     icon: 'report',
   },
   {
@@ -15,12 +16,6 @@ const services = [
     title: 'Off-market & pre-market access',
     desc: 'See homes before they hit realestate.com.au.',
     icon: 'key',
-  },
-  {
-    href: '/tools',
-    title: 'All buyer & seller tools',
-    desc: 'Calculators, checklists, maps, market reports.',
-    icon: 'grid',
   },
 ];
 
@@ -41,17 +36,6 @@ const articles = [
 
 const agents = [
   {
-    name: 'Conrad Leisemann',
-    slug: 'conrad-leisemann',
-    photo: '/img/conrad-headshot.jpg',
-    phone: '0403 978 813',
-    tel: '+61403978813',
-    email: 'conrad.leisemann@raywhite.com',
-    handle: 'connie_leisemann',
-    instagramUrl: 'https://www.instagram.com/connie_leisemann/',
-    ctaKey: 'conrad',
-  },
-  {
     name: 'Daniel Gierach',
     slug: 'daniel-gierach',
     photo: '/img/daniel-headshot-tight.jpg',
@@ -62,16 +46,24 @@ const agents = [
     instagramUrl: 'https://www.instagram.com/dgierach/',
     ctaKey: 'daniel',
   },
+  {
+    name: 'Conrad Leisemann',
+    slug: 'conrad-leisemann',
+    photo: '/img/conrad-headshot.jpg',
+    phone: '0403 978 813',
+    tel: '+61403978813',
+    email: 'conrad.leisemann@raywhite.com',
+    handle: 'connie_leisemann',
+    instagramUrl: 'https://www.instagram.com/connie_leisemann/',
+    ctaKey: 'conrad',
+  },
 ];
 
 ---
 
 <LandingLayout
-  title="Your Team | Conrad Leisemann & Daniel Gierach"
-  description="Conrad Leisemann and Daniel Gierach at Ray White Collective. Inner-east Brisbane buyer and seller tools, a free property report, and off-market access."
-  manifest="/manifest-cl.webmanifest"
-  appleTouchIcon="/apple-touch-icon-cl.png"
-  faviconSvg="/favicon-cl.svg"
+  title="Your Team | Daniel Gierach & Conrad Leisemann"
+  description="Daniel Gierach and Conrad Leisemann at Ray White Bulimba. Inner-east Brisbane buyer and seller tools, a free property report, and off-market access."
 >
 
 <style>
@@ -346,6 +338,30 @@ const agents = [
     color: var(--gold-bright);
   }
 
+  /* ── Current listings CTA (gold button above tools) ──────────── */
+  .listings-cta {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.6rem;
+    max-width: 320px;
+    margin: 0 auto 1.5rem;
+    padding: 0.95rem 1.5rem;
+    background: var(--gold);
+    color: var(--bg);
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
+    box-shadow: 0 8px 22px rgba(196,145,42,0.28);
+  }
+  .listings-cta:hover { background: var(--gold-bright); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(196,145,42,0.38); }
+  .listings-cta:active { transform: translateY(0); }
+  .listings-cta-icon { display: inline-flex; }
+  .listings-cta-text { white-space: nowrap; }
+  .listings-cta-arrow { transition: transform 0.18s; }
+  .listings-cta:hover .listings-cta-arrow { transform: translateX(2px); }
+
   /* ── Section labels ───────────────────────────────────────────── */
   .section { margin-bottom: 1.5rem; }
   .section-label {
@@ -367,7 +383,7 @@ const agents = [
       linear-gradient(135deg, rgba(196,145,42,0.04) 0%, rgba(196,145,42,0) 60%),
       var(--card);
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 12px;
     padding: 0.95rem 1.05rem;
     text-decoration: none;
     color: var(--text);
@@ -440,7 +456,7 @@ const agents = [
     padding: 0.7rem 0.95rem;
     background: transparent;
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 10px;
     text-decoration: none;
     color: var(--text);
     margin-bottom: 0.45rem;
@@ -469,8 +485,8 @@ const agents = [
   }
 
   .browse-all {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    margin-top: 0.4rem; padding: 0.3rem 0.2rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+    margin-top: 0.6rem; padding: 0.3rem 0.2rem;
     font-family: var(--font-sans);
     font-size: 0.6rem; font-weight: 800;
     letter-spacing: 0.16em; text-transform: uppercase;
@@ -484,7 +500,7 @@ const agents = [
     background:
       linear-gradient(135deg, rgba(196,145,42,0.15) 0%, rgba(196,145,42,0.04) 100%);
     border: 1px solid var(--line-strong);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 1.75rem 1.25rem;
     margin-top: 1.5rem;
     text-align: center;
@@ -539,6 +555,231 @@ const agents = [
     line-height: 1.5;
     opacity: 0.85;
   }
+
+  /* ── B: Trust strip at top ──────────────────────────────────── */
+  .trust-strip {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem; flex-wrap: wrap;
+    padding: 0.55rem 0.9rem;
+    margin-bottom: 1.1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: rgba(196, 145, 42, 0.06);
+    text-align: center;
+  }
+  .trust-stars { display: inline-flex; gap: 0.12rem; color: var(--gold-bright); }
+  .trust-text {
+    font-family: var(--font-sans);
+    font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-soft);
+  }
+  @media (min-width: 480px) { .trust-text { font-size: 0.6rem; } }
+
+  /* ── B: Primary CTA (Your Property Report) ──────────────────── */
+  .primary-cta {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    column-gap: 0.5rem;
+    padding: 1.15rem 1.2rem;
+    margin-bottom: 0.7rem;
+    background:
+      linear-gradient(135deg, var(--gold) 0%, #b88526 100%);
+    color: #0a0806;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 14px 38px rgba(196,145,42,0.32), inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: transform 0.18s, box-shadow 0.2s;
+  }
+  .primary-cta:hover { transform: translateY(-1px); box-shadow: 0 18px 44px rgba(196,145,42,0.42), inset 0 1px 0 rgba(255,255,255,0.18); }
+  .primary-cta:active { transform: translateY(0); }
+  .pcta-eyebrow {
+    grid-column: 1; grid-row: 1;
+    font-family: var(--font-sans);
+    font-size: 0.55rem; font-weight: 800;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(10,8,6,0.7);
+    margin-bottom: 0.25rem;
+  }
+  .pcta-title {
+    grid-column: 1; grid-row: 2;
+    font-family: var(--font-serif);
+    font-size: 1.3rem; font-weight: 700;
+    line-height: 1.15;
+    color: #0a0806;
+    margin-bottom: 0.2rem;
+  }
+  .pcta-sub {
+    grid-column: 1; grid-row: 3;
+    font-family: var(--font-sans);
+    font-size: 0.74rem; font-weight: 500;
+    line-height: 1.35;
+    color: rgba(10,8,6,0.78);
+  }
+  .pcta-arrow {
+    grid-column: 2; grid-row: 1 / 4;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    background: rgba(10,8,6,0.12);
+    border-radius: 50%;
+    color: #0a0806;
+    transition: transform 0.18s, background 0.2s;
+  }
+  .primary-cta:hover .pcta-arrow { background: rgba(10,8,6,0.2); transform: translateX(2px); }
+
+  /* ── B: Secondary CTA (Current listings) ────────────────────── */
+  .secondary-cta {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 1.1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .secondary-cta:hover { background: rgba(196,145,42,0.06); border-color: var(--gold); color: var(--gold-bright); }
+
+  /* ── B: Team strip (compact) ────────────────────────────────── */
+  .ts-label {
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-mute);
+    margin: 1.5rem 0 0.7rem;
+    padding-left: 0.2rem;
+  }
+  .team-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .ts-card {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.7rem 0.75rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: background 0.18s, border-color 0.18s;
+  }
+  .ts-card:hover { background: var(--card-hover); border-color: var(--line-strong); }
+  .ts-avatar {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    object-fit: cover; object-position: center 18%;
+    border: 1px solid rgba(197,160,60,0.4);
+    flex-shrink: 0;
+  }
+  @media (min-width: 480px) { .ts-avatar { width: 56px; height: 56px; } }
+  .ts-body { min-width: 0; flex: 1; }
+  .ts-name {
+    font-family: var(--font-serif);
+    font-size: 0.85rem; font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.15rem;
+    color: var(--text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .ts-row { margin-bottom: 0.4rem; }
+  .ts-call {
+    font-family: var(--font-sans);
+    font-size: 0.66rem; font-weight: 700;
+    color: var(--gold); text-decoration: none;
+    white-space: nowrap;
+  }
+  .ts-call:hover { color: var(--gold-bright); }
+  .ts-more {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    padding: 0.3rem 0.55rem;
+    background: rgba(196,145,42,0.08);
+    border: 1px solid rgba(196,145,42,0.32);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.5rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+  }
+  .ts-more:hover { background: rgba(196,145,42,0.16); border-color: var(--gold); color: var(--gold-bright); }
+
+  /* ── B: Visual tile (replaces articles list) ────────────────── */
+  .visual-tile {
+    display: block;
+    position: relative;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    aspect-ratio: 16 / 9;
+    background: var(--card);
+    border: 1px solid var(--line);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .visual-tile:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+  .visual-tile img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 65%;
+    filter: brightness(0.6);
+    transition: filter 0.25s, transform 0.4s;
+  }
+  .visual-tile:hover img { filter: brightness(0.7); transform: scale(1.02); }
+  .vt-overlay {
+    position: absolute;
+    left: 1rem; right: 1rem; bottom: 0.9rem;
+    color: var(--text);
+  }
+  .vt-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.55rem; font-weight: 800;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 0.25rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+  }
+  .vt-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem; font-weight: 400;
+    line-height: 1.15;
+    color: #f6f1e6;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+  }
+  .vt-arrow {
+    position: absolute; right: 0; bottom: 0;
+    font-size: 1.1rem;
+    color: var(--gold-bright);
+    text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+  }
+
+  /* ── B: Sticky mobile call bar ──────────────────────────────── */
+  .mobile-call-bar { display: none; }
+  @media (max-width: 480px) {
+    .mobile-call-bar {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      position: fixed;
+      left: 0.7rem; right: 0.7rem; bottom: 0.7rem;
+      padding: 0.9rem 1rem;
+      background: var(--gold);
+      color: #0a0806;
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
+      z-index: 50;
+    }
+    /* leave breathing room for the sticky bar above legal */
+    .shell { padding-bottom: 5rem; }
+  }
 </style>
 
 <!-- Header backdrop photo: heavily darkened, fades to solid charcoal
@@ -559,92 +800,91 @@ const agents = [
 
 <div class="shell">
 
-  <header class="header">
-    <p class="agency-eyebrow">Ray White &middot; The Collective &middot; Bulimba</p>
-    <p class="team-title">Your Team</p>
+  <!-- B: Trust strip at the very top (above any action). One short line of
+       geo + rating. Builds enough credibility to justify the click below. -->
+  <div class="trust-strip" aria-label="Inner east Brisbane specialists, 5 stars">
+    <span class="trust-stars" aria-hidden="true">
+      {[1,2,3,4,5].map(() => (
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      ))}
+    </span>
+    <span class="trust-text">Inner east Brisbane &middot; Bulimba, Hawthorne, Camp Hill, Morningside</span>
+  </div>
 
-    <div class="agents">
-      {agents.map(a => (
-        <div class="agent">
-          <img src={a.photo} alt={a.name} class="avatar" width="88" height="88" loading="eager" />
-          <div class="name">{a.name}</div>
-          <p class="contact-line">
-            <a href={`tel:${a.tel}`} data-cta={`property_tools_call_${a.ctaKey}`}>{a.phone}</a>
-            <span class="sep">&middot;</span>
-            <span class="handle-text"><a href={a.instagramUrl} target="_blank" rel="noopener">@{a.handle}</a></span>
+  <!-- B: Primary action FIRST. Big gold panel for "Your Property Report" -->
+  <a href="/report" class="primary-cta" data-cta="your_team_b_property_report">
+    <span class="pcta-eyebrow">Free &middot; Takes 1 minute</span>
+    <span class="pcta-title">Your Property Report</span>
+    <span class="pcta-sub">Online, in-person, or by phone. Your call.</span>
+    <span class="pcta-arrow" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </span>
+  </a>
+
+  <!-- B: Secondary action — Current listings -->
+  <a href="/listings" class="secondary-cta" data-cta="your_team_b_current_listings">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    Current listings
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+
+  <!-- B: Off-market card as a single secondary item -->
+  <section class="section" style="margin-top:0.5rem;">
+    <a class="card" href="/buyers" data-cta="your_team_b_offmarket">
+      <span class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2"/><path d="M16.5 6.5L19 9"/></svg>
+      </span>
+      <div class="card-body">
+        <div class="card-title">Off-market & pre-market access</div>
+        <p class="card-desc">See homes before they hit realestate.com.au.</p>
+      </div>
+      <svg class="card-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <!-- B: Compact team strip (moved BELOW actions). Two small cards with
+       just headshot, name, call link, and More info button. Email removed
+       to reduce visual noise; it's still on each /team/{slug} page. -->
+  <p class="ts-label">Your Team</p>
+  <div class="team-strip">
+    {agents.map(a => (
+      <div class="ts-card">
+        <img src={a.photo} alt={a.name} class="ts-avatar" width="56" height="56" loading="lazy" />
+        <div class="ts-body">
+          <p class="ts-name">{a.name}</p>
+          <p class="ts-row">
+            <a href={`tel:${a.tel}`} class="ts-call" data-cta={`your_team_b_call_${a.ctaKey}`}>{a.phone}</a>
           </p>
-          <p class="email"><a href={`mailto:${a.email}`} data-cta={`property_tools_email_${a.ctaKey}`}>{a.email}</a></p>
-          <a href={`/team/${a.slug}`} class="agent-info-btn" data-cta={`meet_team_${a.ctaKey}`}>
+          <a href={`/team/${a.slug}`} class="ts-more" data-cta={`your_team_b_more_${a.ctaKey}`}>
             More info
             <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
-      ))}
-    </div>
-  </header>
-
-  <section class="section">
-    <span class="section-label">Tools &amp; services</span>
-    {services.map(s => (
-      <a class="card" href={s.href} data-cta={`your_team_${s.href.replace(/\//g, '_')}`}>
-        <span class="card-icon">
-          {s.icon === 'report' && (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
-          )}
-          {s.icon === 'key' && (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2"/><path d="M16.5 6.5L19 9"/></svg>
-          )}
-          {s.icon === 'grid' && (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-          )}
-        </span>
-        <div class="card-body">
-          <div class="card-title">{s.title}</div>
-          <p class="card-desc">{s.desc}</p>
-        </div>
-        <svg class="card-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      </div>
     ))}
-  </section>
-
-  <section class="section">
-    <span class="section-label">Latest articles</span>
-    {articles.map(a => (
-      <a class="acard" href={a.href} data-cta={`property_tools_article_${a.href.split('/').pop()}`}>
-        <span class="acard-icon">
-          {a.icon === 'shield' && (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          )}
-          {a.icon === 'doc' && (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
-          )}
-        </span>
-        <div class="acard-body">
-          <div class="acard-title">{a.title}</div>
-          <p class="acard-desc">{a.desc}</p>
-        </div>
-        <svg class="card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    ))}
-    <a href="/insights" class="browse-all" data-cta="property_tools_browse_all">
-      Browse all articles
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </section>
-
-  <div class="final">
-    <p class="final-title">What is your home worth today?</p>
-    <p class="final-sub">A free, no-obligation property report based on recent comparable sales in your suburb.</p>
-    <a href="/walkthrough" class="btn-gold" data-cta="property_tools_to_walkthrough">
-      Click here to find out
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
   </div>
 
+  <!-- B: Visual tile to recent listings. Replaces the article cards section
+       so the page leans visual rather than text-heavy. -->
+  <a href="/listings" class="visual-tile" data-cta="your_team_b_listings_tile">
+    <img
+      src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Ff0e3-H3512351-202426677__1779329460-52623-AMY9140.jpg&w=640&q=70"
+      srcset="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Ff0e3-H3512351-202426677__1779329460-52623-AMY9140.jpg&w=480&q=70 480w, /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Ff0e3-H3512351-202426677__1779329460-52623-AMY9140.jpg&w=960&q=70 960w"
+      sizes="(max-width: 640px) 100vw, 480px"
+      alt="Inner east Brisbane property"
+      loading="lazy"
+    />
+    <div class="vt-overlay">
+      <p class="vt-eyebrow">View now</p>
+      <p class="vt-title">See all current listings</p>
+      <p class="vt-arrow">&rarr;</p>
+    </div>
+  </a>
+
   <div class="contact-row">
-    <a href="/contact" data-cta="property_tools_contact">Contact</a>
-    <a href="/tools" data-cta="property_tools_all_tools">All tools</a>
-    <a href="/" data-cta="property_tools_home">Home</a>
+    <a href="/contact" data-cta="your_team_b_contact">Contact</a>
+    <a href="/tools" data-cta="your_team_b_all_tools">All tools</a>
+    <a href="/" data-cta="your_team_b_home">Home</a>
   </div>
 
   <p class="legal">
@@ -652,5 +892,11 @@ const agents = [
   </p>
 
 </div>
+
+<!-- B: Sticky mobile call bar. Visible only on small screens. -->
+<a href="tel:+61412523821" class="mobile-call-bar" data-cta="your_team_b_mobile_sticky_call">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
+  Call Daniel &middot; 0412 523 821
+</a>
 
 </LandingLayout>
