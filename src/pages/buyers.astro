@@ -121,6 +121,28 @@ const buyerSchema = {
         <!-- ─── STEP 1: Property details ────────────────────── -->
         <div id="step-1" class="wz-step" style="display:flex;flex-direction:column;gap:1.25rem;">
 
+          <!-- What best describes you? -->
+          <div>
+            <label class="field-label">What best describes you? <span style="color:#c4912a;">*</span></label>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.4rem;margin-top:0.4rem;" id="category-group">
+              {[
+                { label: 'Upsizing', value: 'upsizing' },
+                { label: 'Downsizing', value: 'downsizing' },
+                { label: 'Investing', value: 'investing' },
+                { label: 'Market research', value: 'market_research' },
+              ].map((c) => (
+                <button type="button" class="selector-btn" data-group="category" data-value={c.value}
+                  style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0;height:2.75rem;background:var(--color-surface-2);border:1px solid rgba(28,25,23,0.15);border-radius:8px;color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;">
+                  {c.label}
+                </button>
+              ))}
+            </div>
+            <input type="hidden" name="buyer_category" id="category-value" />
+            <div id="category-error" style="display:none;margin-top:0.6rem;padding:0.7rem 1rem;background:rgba(196,145,42,0.1);border-left:3px solid #c4912a;">
+              <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;color:#7a5618;margin:0;">Pick one to continue.</p>
+            </div>
+          </div>
+
           <!-- Property type -->
           <div>
             <label class="field-label">Property type <span class="field-opt">(optional)</span></label>
@@ -1034,16 +1056,21 @@ const buyerSchema = {
       dropdown.style.display = 'none';
   });
 
-  // Type + beds: multi-select (toggle). Budget: single-select (range).
+  // Type + beds: multi-select (toggle). Budget + category: single-select.
+  const SINGLE_SELECT = new Set(['budget', 'category']);
   document.querySelectorAll<HTMLButtonElement>('.selector-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const group = btn.dataset.group!;
       const input = document.getElementById(`${group}-value`) as HTMLInputElement;
-      if (group === 'budget') {
-        document.querySelectorAll<HTMLButtonElement>(`.selector-btn[data-group="budget"]`)
+      if (SINGLE_SELECT.has(group)) {
+        document.querySelectorAll<HTMLButtonElement>(`.selector-btn[data-group="${group}"]`)
           .forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         input.value = btn.dataset.value!;
+        if (group === 'category') {
+          const err = document.getElementById('category-error');
+          if (err) err.style.display = 'none';
+        }
       } else {
         btn.classList.toggle('active');
         const vals = [...document.querySelectorAll<HTMLButtonElement>(`.selector-btn[data-group="${group}"].active`)]
@@ -1140,6 +1167,13 @@ const buyerSchema = {
   document.querySelectorAll<HTMLButtonElement>('.wz-next-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const to = Number(btn.dataset.to) as StepNum;
+      const categoryInput = document.getElementById('category-value') as HTMLInputElement | null;
+      if (to === 2 && categoryInput && !categoryInput.value) {
+        const err = document.getElementById('category-error');
+        if (err) err.style.display = 'block';
+        document.getElementById('category-group')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
       if (to === 3 && !areasInput.value) {
         areasError.style.display = 'block';
         document.getElementById('quick-chips')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
