@@ -2302,6 +2302,48 @@ const supportTeam = [
   .wider-team-label { color: #6b4610 !important; }
   .team-title { color: #191817 !important; }
 
+  /* Contact details link: replaces the three-line contact chip stack
+     with a single quiet text link that opens the agent's bio page. */
+  .contact-details-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0.8rem auto 0;
+    padding: 0.4rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(25,24,23,0.72);
+    text-decoration: none;
+    background: rgba(242,234,212,0.95);
+    border: 1px solid rgba(25,24,23,0.10);
+    border-radius: 999px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.18s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .contact-details-link svg {
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+  .contact-details-link:hover,
+  .contact-details-link:focus-visible {
+    background: rgba(232,220,190,0.95);
+    border-color: rgba(185,130,41,0.4);
+    color: #6b4610;
+    transform: translateY(-1px);
+  }
+  .contact-details-link:hover svg,
+  .contact-details-link:focus-visible svg { transform: translateX(3px); }
+
+  /* Make sure the parent .agent stays column-flex so the link
+     wraps neatly under the card. */
+  .agent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* Compact hero: less top padding, tighter gap between eyebrow +
      title, tighter gap between title + first row of agent cards.
      Was ~4.5rem shell top + 4rem header bottom + 2.5rem title bottom.
@@ -2396,12 +2438,13 @@ const supportTeam = [
             <span class="name-link">{a.name}</span>
             <span class="agent-role">{a.role}</span>
           </a>
-          <p class="contact-line">
-            <a href={`tel:${a.tel}`} data-cta={`property_tools_call_${a.ctaKey}`}>{a.phone}</a>
-            <span class="sep">&middot;</span>
-            <span class="handle-text"><a href={a.instagramUrl} target="_blank" rel="noopener">@{a.handle}</a></span>
-          </p>
-          <p class="email"><a href={`mailto:${a.email}`} data-cta={`property_tools_email_${a.ctaKey}`}>{a.email}</a></p>
+          {/* Single link that opens the agent's bio page where phone,
+              email, handle and everything else lives. Cleaner than
+              cramming three lines of contact chips under the card. */}
+          <a href={`/team/${a.slug}`} class="contact-details-link" data-cta={`property_tools_details_${a.ctaKey}`}>
+            Contact details
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       ))}
     </div>
