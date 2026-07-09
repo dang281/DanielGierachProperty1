@@ -2248,6 +2248,60 @@ const supportTeam = [
   /* Content sits above the backdrop. */
   .shell { position: relative; z-index: 1; }
 
+  /* READABILITY PASS: opaque cream surfaces for every text block so
+     text always has guaranteed contrast, never sitting on the photo. */
+  .agent-primary-link,
+  .wt-card {
+    background: #f2ead4 !important;
+    border: 1px solid rgba(25,24,23,0.10) !important;
+    box-shadow: 0 2px 6px rgba(25,24,23,0.05) !important;
+  }
+  .agent-primary-link:hover,
+  .agent-primary-link:focus-visible,
+  .wt-card-link:hover,
+  .wt-card-link:focus-visible {
+    background: #ede2c5 !important;
+    border-color: rgba(185,130,41,0.4) !important;
+    box-shadow: 0 6px 16px rgba(25,24,23,0.08) !important;
+  }
+
+  .agent .contact-line,
+  .agent .email {
+    background: rgba(242,234,212,0.95);
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+  .agent .contact-line { margin-top: 0.6rem; }
+  .agent .email { margin-top: 0.35rem; margin-bottom: 0.15rem; }
+
+  .contact-line a { color: rgba(25,24,23,0.88) !important; font-weight: 500 !important; }
+  .handle-text a { color: rgba(25,24,23,0.75) !important; }
+  .email a       { color: rgba(25,24,23,0.75) !important; }
+  .agent-role,
+  .wt-role       { color: rgba(25,24,23,0.75) !important; }
+
+  .collective-band,
+  .card,
+  .acard,
+  .final {
+    background: #f2ead4 !important;
+    border: 1px solid rgba(25,24,23,0.10) !important;
+  }
+  .collective-band:hover,
+  .collective-band:focus-visible,
+  .card:hover, .card:focus-visible,
+  .acard:hover, .acard:focus-visible {
+    background: #ede2c5 !important;
+    border-color: rgba(185,130,41,0.4) !important;
+  }
+
+  .agency-eyebrow,
+  .section-label,
+  .wider-team-label { color: #6b4610 !important; }
+  .team-title { color: #191817 !important; }
+
   /* ═══════════════════════════════════════════════════════════════════
      CONTACT MINI-BUTTONS: three quiet pill buttons (Call / Text / Email)
      replacing the raw phone/handle/email text stack under each primary
