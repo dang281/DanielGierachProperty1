@@ -2353,6 +2353,31 @@ const supportTeam = [
   .header { margin-bottom: 1.5rem !important; }
   @media (min-width: 640px) { .header { margin-bottom: 2rem !important; } }
   .agency-eyebrow { margin-bottom: 0.65rem !important; }
+
+  /* Section headings: bumped up so THE WIDER TEAM, TOOLS & SERVICES,
+     and LATEST ARTICLES read confidently rather than as micro-labels.
+     Agency eyebrow at the very top stays as-is (that one's meant to
+     be quiet, feeding into the big serif title below). */
+  .section-label,
+  .wider-team-label,
+  .cb-eyebrow {
+    font-size: 1.35rem !important;
+    letter-spacing: 0.14em !important;
+  }
+  @media (max-width: 639.98px) {
+    .section-label,
+    .wider-team-label,
+    .cb-eyebrow {
+      font-size: 1.2rem !important;
+    }
+  }
+  @media (max-width: 380px) {
+    .section-label,
+    .wider-team-label,
+    .cb-eyebrow {
+      font-size: 1.05rem !important;
+    }
+  }
   .team-title { margin-bottom: 1rem !important; }
   @media (min-width: 640px) { .team-title { margin-bottom: 1.5rem !important; } }
 
