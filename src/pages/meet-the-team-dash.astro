@@ -2197,11 +2197,11 @@ const supportTeam = [
     }
   }
 
-  /* Body stays a solid warm cream as a fallback in case the backdrop
-     image fails to load. Warmer than a pale ivory: pushes toward
-     the mustard side of the palette. */
+  /* Body / html fallback: warm cream that matches the veil-over-photo
+     composition at the top of the page. Also serves as the status-bar
+     tint colour on iOS when overscrolling past the top of the page. */
   html, body {
-    background: #ece0c4 !important;
+    background: #e6d9bd !important;
     min-height: 100vh;
   }
 
@@ -2443,6 +2443,23 @@ const supportTeam = [
     fetchpriority="high"
   />
 </div>
+
+<script is:inline>
+  // iOS Safari + Android Chrome use theme-color to tint the browser
+  // status bar area. Match the effective color at the top of the veil
+  // over the photo so the status bar blends with the page rather than
+  // reading as a separate solid cream band.
+  (function () {
+    var color = '#e6d9bd';
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'theme-color');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', color);
+  })();
+</script>
 
 <div class="page-backdrop" aria-hidden="true">
   <img src="/img/trial/balmerino-kitchen.jpg" alt="" class="page-backdrop-img" />
