@@ -2197,27 +2197,51 @@ const supportTeam = [
     }
   }
 
-  /* Background: 34 Balmerino kitchen photo used as a full-page backdrop,
-     heavily dimmed with warm cream overlays so the palette still reads.
-     Cards + text stay legible via z-index. Layer order (top to bottom):
-        1. two soft gold radial glows for atmosphere
-        2. warm cream veil (86-92 percent opacity gradient) that mutes
-           the photo enough for text contrast
-        3. the kitchen photo itself, centered and cover-sized */
+  /* Background: 34 Balmerino kitchen photo as a full-page backdrop.
+     Rendered via a fixed pseudo-element on body (NOT background-attachment:
+     fixed which iOS Safari renders incorrectly, causing weird crops
+     like "only ceiling visible" on phones). This approach works
+     consistently on iOS, Android, and desktop.
+     Cream base + soft gold glows on the body background. */
   html, body {
     background:
       radial-gradient(ellipse 1200px 620px at 12% -10%, rgba(198,148,40,0.06) 0%, rgba(198,148,40,0) 60%),
       radial-gradient(ellipse 900px 560px at 88% 40%,   rgba(185,130,41,0.05) 0%, rgba(185,130,41,0) 65%),
-      linear-gradient(180deg, rgba(253,252,247,0.86) 0%, rgba(244,236,214,0.90) 100%),
-      url('/img/trial/balmerino-kitchen.jpg') !important;
-    background-size: auto, auto, auto, cover !important;
-    background-position: 0 0, 0 0, 0 0, center center !important;
-    background-attachment: fixed !important;
+      linear-gradient(180deg, #fdfcf7 0%, #f4ecd6 100%) !important;
     background-repeat: no-repeat !important;
     min-height: 100vh;
   }
 
-  /* Content stays above the glows via z-index. */
+  /* The photo backdrop sits in a fixed pseudo-element covering the
+     viewport. Its own overlay dims the image so text stays legible.
+     background-position tuned per breakpoint: mobile phones show the
+     lower/middle portion of the kitchen (counters + cabinets), desktop
+     shows the natural centered crop. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(253,252,247,0.84) 0%, rgba(244,236,214,0.90) 100%),
+      url('/img/trial/balmerino-kitchen.jpg');
+    background-size: auto, cover;
+    background-position: 0 0, center 65%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+  @media (min-width: 768px) {
+    body::before {
+      background-position: 0 0, center center;
+    }
+  }
+  @media (max-width: 380px) {
+    body::before {
+      background-position: 0 0, center 70%;
+    }
+  }
+
+  /* Content stays above the backdrop via z-index. */
   .shell { position: relative; z-index: 1; }
 
   /* ═══════════════════════════════════════════════════════════════════
