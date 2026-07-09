@@ -2302,6 +2302,18 @@ const supportTeam = [
   .wider-team-label { color: #6b4610 !important; }
   .team-title { color: #191817 !important; }
 
+  /* Compact hero: less top padding, tighter gap between eyebrow +
+     title, tighter gap between title + first row of agent cards.
+     Was ~4.5rem shell top + 4rem header bottom + 2.5rem title bottom.
+     Now ~1.5rem shell top + 1.5rem header bottom + 1rem title bottom. */
+  .shell { padding-top: 1.5rem !important; }
+  @media (min-width: 640px) { .shell { padding-top: 2.5rem !important; } }
+  .header { margin-bottom: 1.5rem !important; }
+  @media (min-width: 640px) { .header { margin-bottom: 2rem !important; } }
+  .agency-eyebrow { margin-bottom: 0.65rem !important; }
+  .team-title { margin-bottom: 1rem !important; }
+  @media (min-width: 640px) { .team-title { margin-bottom: 1.5rem !important; } }
+
   /* ═══════════════════════════════════════════════════════════════════
      CONTACT MINI-BUTTONS: three quiet pill buttons (Call / Text / Email)
      replacing the raw phone/handle/email text stack under each primary
