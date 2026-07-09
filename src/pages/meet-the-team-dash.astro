@@ -2198,9 +2198,10 @@ const supportTeam = [
   }
 
   /* Body stays a solid warm cream as a fallback in case the backdrop
-     image fails to load. */
+     image fails to load. Warmer than a pale ivory: pushes toward
+     the mustard side of the palette. */
   html, body {
-    background: #f9f5e8 !important;
+    background: #ece0c4 !important;
     min-height: 100vh;
   }
 
@@ -2229,15 +2230,19 @@ const supportTeam = [
   @media (max-width: 380px) {
     .page-backdrop-img { object-position: center 65%; }
   }
+  /* Veil: gradient from light warm cream at top to deeper honey cream
+     at bottom. Both stops now have visible warmth (not near-white) so
+     the page reads as cream + gold, not washed-out white. Photo shows
+     through at 28 percent at top, 18 percent at bottom as texture. */
   .page-backdrop-veil {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 1200px 620px at 12% -10%, rgba(198,148,40,0.06) 0%, rgba(198,148,40,0) 60%),
-      radial-gradient(ellipse 900px 560px at 88% 40%,   rgba(185,130,41,0.05) 0%, rgba(185,130,41,0) 65%),
+      radial-gradient(ellipse 1200px 620px at 12% -10%, rgba(198,148,40,0.08) 0%, rgba(198,148,40,0) 60%),
+      radial-gradient(ellipse 900px 560px at 88% 40%,   rgba(185,130,41,0.06) 0%, rgba(185,130,41,0) 65%),
       linear-gradient(180deg,
-        rgba(253,252,247,0.82) 0%,
-        rgba(244,236,214,0.88) 100%);
+        rgba(238,227,199,0.72) 0%,
+        rgba(220,205,165,0.82) 100%);
   }
 
   /* Content sits above the backdrop. */
