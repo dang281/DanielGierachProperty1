@@ -2197,41 +2197,47 @@ const supportTeam = [
     }
   }
 
-  /* Background: 34 Balmerino kitchen photo as a full-page backdrop.
-     Everything renders inside a fixed pseudo-element on body: warm
-     cream veil at the top layer, photo at the bottom. body itself is
-     transparent so the veil + photo show through unobstructed.
-     Bypasses iOS Safari background-attachment: fixed bug entirely. */
+  /* Body stays a solid warm cream as a fallback in case the backdrop
+     image fails to load. */
   html, body {
     background: #f9f5e8 !important;
     min-height: 100vh;
   }
 
-  body::before {
-    content: '';
+  /* Backdrop: a real fixed-position div with an <img> inside + a veil
+     layer on top. Uses real DOM elements rather than pseudo-elements
+     so it renders reliably on iOS Safari, Android, and desktop. */
+  .page-backdrop {
     position: fixed;
     inset: 0;
-    z-index: -1;
-    background:
-      linear-gradient(180deg, rgba(253,252,247,0.55) 0%, rgba(244,236,214,0.62) 100%),
-      url('/img/trial/balmerino-kitchen.jpg');
-    background-size: auto, cover;
-    background-position: 0 0, center 60%;
-    background-repeat: no-repeat;
+    z-index: 0;
+    overflow: hidden;
     pointer-events: none;
   }
+  .page-backdrop-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    display: block;
+  }
   @media (min-width: 768px) {
-    body::before {
-      background-position: 0 0, center center;
-    }
+    .page-backdrop-img { object-position: center center; }
   }
   @media (max-width: 380px) {
-    body::before {
-      background-position: 0 0, center 65%;
-    }
+    .page-backdrop-img { object-position: center 65%; }
+  }
+  .page-backdrop-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(253,252,247,0.55) 0%,
+      rgba(244,236,214,0.62) 100%);
   }
 
-  /* Content stays above the backdrop via z-index. */
+  /* Content sits above the backdrop. */
   .shell { position: relative; z-index: 1; }
 
   /* ═══════════════════════════════════════════════════════════════════
@@ -2295,6 +2301,11 @@ const supportTeam = [
     alt=""
     fetchpriority="high"
   />
+</div>
+
+<div class="page-backdrop" aria-hidden="true">
+  <img src="/img/trial/balmerino-kitchen.jpg" alt="" class="page-backdrop-img" />
+  <div class="page-backdrop-veil"></div>
 </div>
 
 <div class="shell">
