@@ -215,7 +215,7 @@ const faqSchema = {
       "
       sizes="100vw"
       alt="64 Valaria Avenue Seven Hills, listed by Daniel Gierach, Ray White Bulimba"
-      class="w-full h-full object-cover"
+      class="w-full h-full object-cover hero-kenburns"
       style="filter:grayscale(15%) brightness(0.88);"
       fetchpriority="high"
       width="1920" height="1080"
@@ -541,6 +541,19 @@ const faqSchema = {
     100% { transform: scale(1.06) translateY(-20px); }
   }
   .hw-bg-img { animation: bgDriftHome 14s ease-in-out infinite alternate; }
+
+  /* Hero background · slow Ken Burns · adds subtle life without distraction */
+  @keyframes heroKenBurns {
+    0%   { transform: scale(1)     translate(0, 0); }
+    100% { transform: scale(1.08)  translate(-1.5%, -1.5%); }
+  }
+  .hero-kenburns {
+    animation: heroKenBurns 22s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-kenburns { animation: none; }
+  }
 
   .hw-card {
     transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1), border-color 0.45s ease, background 0.45s ease;

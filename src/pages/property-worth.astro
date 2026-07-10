@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import GieMannTheme from '../components/GieMannTheme.astro';
 import { suburbs } from '../data/suburbs';
 const suburbsJson = JSON.stringify(suburbs);
 
@@ -30,6 +31,7 @@ const appraisalSchema = {
   hideFooterCta={true}
   schema={appraisalSchema}
 >
+<GieMannTheme />
 
 <style>
   @keyframes bgDrift {
@@ -61,14 +63,14 @@ const appraisalSchema = {
     font-weight: 700;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #c5a03c;
+    color: #6b4610;
     margin-bottom: 1rem;
   }
   .pw-title {
     font-family: var(--font-serif);
     font-size: clamp(1.9rem, 4.5vw, 3.5rem);
     font-weight: 400;
-    color: #f0ece4;
+    color: #191817;
     letter-spacing: -0.02em;
     line-height: 1.12;
     text-align: center;
@@ -77,10 +79,10 @@ const appraisalSchema = {
     overflow-wrap: break-word;
     word-break: break-word;
   }
-  .pw-title em { font-style: italic; color: #c5a03c; }
+  .pw-title em { font-style: italic; color: #b98229; }
   .pw-subtitle {
     font-size: 0.9rem;
-    color: rgba(240,236,228,0.6);
+    color: rgba(25,24,23,0.6);
     text-align: center;
     max-width: 46ch;
     margin: 0 auto 2.5rem;
@@ -90,22 +92,23 @@ const appraisalSchema = {
   /* ── Testimonial ────────────────────────────────── */
   .pw-testimonial {
     padding: 1.5rem 2rem;
-    background: rgba(10,8,6,0.55);
+    background: rgba(242,234,212,0.85);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(197,160,60,0.18);
-    border-radius: 8px;
+    border: 1px solid rgba(185,130,41,0.18);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+    box-shadow: 0 4px 16px rgba(107,70,16,0.08);
   }
   .pw-testimonial blockquote {
     font-family: var(--font-serif);
     font-size: 0.9rem;
     font-style: italic;
-    color: rgba(240,236,228,0.8);
+    color: rgba(25,24,23,0.8);
     line-height: 1.65;
     max-width: 58ch;
     margin: 0;
@@ -124,7 +127,7 @@ const appraisalSchema = {
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(197,160,60,0.7);
+    color: rgba(107,70,16,0.7);
     white-space: nowrap;
   }
 
@@ -136,10 +139,9 @@ const appraisalSchema = {
     padding-top: 32px; /* space for floating badge */
   }
   .pw-card {
-    background: rgba(10,8,6,0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(240,236,228,0.08);
-    border-radius: 8px;
+    background: #f2ead4;
+    border: 1px solid rgba(185,130,41,0.15);
+    border-radius: 16px;
     padding: 2.25rem 2rem;
     display: flex;
     flex-direction: column;
@@ -147,35 +149,36 @@ const appraisalSchema = {
     text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(107,70,16,0.07);
   }
   .pw-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.45);
-    background: rgba(20,16,12,0.85);
-    border-color: rgba(197,160,60,0.35);
+    box-shadow: 0 20px 48px rgba(107,70,16,0.14);
+    background: #faf3dc;
+    border-color: rgba(185,130,41,0.35);
   }
   .pw-card-featured {
-    border-color: rgba(197,160,60,0.55);
-    box-shadow: inset 0 0 40px rgba(197,160,60,0.04);
+    border-color: rgba(185,130,41,0.55);
+    box-shadow: 0 4px 20px rgba(185,130,41,0.12);
     position: relative;
   }
   .pw-card-featured:hover {
     transform: translateY(-5px);
-    border-color: rgba(197,160,60,0.75);
+    border-color: rgba(185,130,41,0.75);
   }
   .pw-card-top-bar {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: #c5a03c;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    background: #b98229;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
   }
   .pw-badge-float {
     position: absolute;
     top: -1px; left: 50%;
     transform: translate(-50%, -100%);
-    background: #c5a03c;
+    background: #b98229;
     padding: 0.5rem 1.5rem;
     border-radius: 999px;
     white-space: nowrap;
@@ -185,7 +188,7 @@ const appraisalSchema = {
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #0a0806;
+    color: #ffffff;
   }
   .pw-card-tag {
     font-family: var(--font-sans);
@@ -193,7 +196,7 @@ const appraisalSchema = {
     font-weight: 800;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(197,160,60,0.7);
+    color: rgba(107,70,16,0.7);
     margin-bottom: 0.5rem;
     display: block;
   }
@@ -201,13 +204,13 @@ const appraisalSchema = {
     font-family: var(--font-serif);
     font-size: 1.3rem;
     font-weight: 400;
-    color: #f0ece4;
+    color: #191817;
     line-height: 1.2;
     margin: 0 0 0.65rem;
   }
   .pw-card p {
     font-size: 0.82rem;
-    color: rgba(240,236,228,0.58);
+    color: rgba(25,24,23,0.58);
     line-height: 1.75;
     margin: 0;
   }
@@ -220,12 +223,12 @@ const appraisalSchema = {
   }
   .pw-bullets li {
     font-size: 0.77rem;
-    color: rgba(240,236,228,0.55);
+    color: rgba(25,24,23,0.55);
     display: flex;
     align-items: flex-start;
     gap: 0.45rem;
   }
-  .pw-bullets li span { color: #c5a03c; font-size: 0.68rem; margin-top: 0.1rem; }
+  .pw-bullets li span { color: #b98229; font-size: 0.68rem; margin-top: 0.1rem; }
   .pw-card-body { display: flex; flex-direction: column; gap: 1rem; flex: 1; }
   .pw-btn {
     display: flex;
@@ -233,27 +236,27 @@ const appraisalSchema = {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.9rem 1.5rem;
-    background: rgba(197,160,60,0.8);
-    color: #0a0806;
+    background: #b98229;
+    color: #ffffff;
     font-family: var(--font-sans);
     font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: background 0.18s, gap 0.18s;
     border: none;
     cursor: pointer;
   }
-  .pw-btn-featured { background: #c5a03c; }
+  .pw-btn-featured { background: #b98229; }
   .pw-btn-outline {
     background: transparent;
-    color: #f0ece4;
-    border: 1px solid rgba(240,236,228,0.22);
+    color: #6b4610;
+    border: 1px solid rgba(185,130,41,0.4);
     transition: border-color 0.18s, color 0.18s;
   }
-  .pw-card:hover .pw-btn { background: #d4af4a; gap: 0.75rem; }
-  .pw-card:hover .pw-btn-outline { border-color: rgba(197,160,60,0.6); color: #c5a03c; }
+  .pw-card:hover .pw-btn { background: #a5721c; gap: 0.75rem; }
+  .pw-card:hover .pw-btn-outline { border-color: rgba(185,130,41,0.6); color: #b98229; }
 
   /* ── Mobile ─────────────────────────────────────── */
   @media (max-width: 768px) {
@@ -304,29 +307,29 @@ const appraisalSchema = {
       flex-shrink: 0;
       width: 32px; height: 32px;
       border-radius: 50%;
-      background: rgba(197,160,60,0.15);
+      background: rgba(185,130,41,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-left: auto;
     }
     .pw-card-featured .pw-card-arrow {
-      background: rgba(197,160,60,0.3);
+      background: rgba(185,130,41,0.3);
     }
     .pw-card-top-bar { display: none; }
 
     /* Featured: gold left border instead of floating badge */
     .pw-card-featured {
-      border-left: 3px solid #c5a03c !important;
-      border-color: rgba(197,160,60,0.4);
+      border-left: 3px solid #b98229 !important;
+      border-color: rgba(185,130,41,0.4);
     }
     .pw-badge-float { display: none; }
 
     /* "Most Accurate" pill on mobile: its own line above the meta tag */
     .pw-featured-mobile-badge {
       display: inline-block !important;
-      background: #c5a03c;
-      color: #0a0806;
+      background: #b98229;
+      color: #ffffff;
       padding: 0.22rem 0.7rem;
       font-family: var(--font-sans);
       font-size: 0.5rem;
@@ -339,7 +342,7 @@ const appraisalSchema = {
     }
 
     /* Make card touch feedback clearer */
-    .pw-card:active { background: rgba(25,20,15,0.85); }
+    .pw-card:active { background: #ede2c5; }
   }
 
   @media (min-width: 769px) {
@@ -355,10 +358,10 @@ const appraisalSchema = {
       src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2F7149-H3442687-184436620__1769558771-34622-FJD9608.jpg&w=1200&q=70"
       alt="Brisbane inner east property"
       class="pw-bg"
-      style="width:100%;height:100%;object-fit:cover;filter:grayscale(35%) brightness(0.22);"
+      style="width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.85);"
       loading="eager" decoding="async" width="1920" height="1080"
     />
-    <div style="position:absolute;inset:0;background:rgba(10,8,6,0.5);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(230,217,189,0.55) 0%,rgba(230,217,189,0.75) 100%);"></div>
   </div>
 
   <div class="pw-inner">
@@ -407,7 +410,7 @@ const appraisalSchema = {
           </ul>
         </div>
         <div class="pw-card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b98229" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
         <span class="pw-btn">
           Get My Instant Report
@@ -433,7 +436,7 @@ const appraisalSchema = {
           </ul>
         </div>
         <div class="pw-card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b98229" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
         <span class="pw-btn pw-btn-featured">
           Book a Free Walkthrough
@@ -456,7 +459,7 @@ const appraisalSchema = {
           </ul>
         </div>
         <div class="pw-card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b98229" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
         </div>
         <span class="pw-btn pw-btn-outline">
           Call Now, 0412 523 821
