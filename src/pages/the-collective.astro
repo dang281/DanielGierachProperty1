@@ -1023,7 +1023,10 @@ const reasons = [
   }
   .network-diagram .net-label {
     font-family: 'Fraunces', 'Noto Serif', Georgia, serif;
-    font-size: 15px;
+    /* SVG font-size lives in viewBox units. Bumped from 15 to 22 so
+       labels still read once the 800-unit viewBox is scaled down to
+       a 335px column on iPhone SE. */
+    font-size: 22px;
     font-weight: 400;
     fill: #191817;
     letter-spacing: -0.005em;
@@ -1035,7 +1038,7 @@ const reasons = [
   .network-diagram .net-caption {
     font-family: 'Fraunces', 'Noto Serif', Georgia, serif;
     font-style: italic;
-    font-size: 12px;
+    font-size: 16px;
     fill: rgba(25,24,23,0.42);
     letter-spacing: 0.02em;
   }
@@ -1408,14 +1411,8 @@ const reasons = [
       background: linear-gradient(90deg, transparent, rgba(107,70,16,0.25), transparent);
     }
   }
-  @media (max-width: 640px) {
-    /* Shrink the network diagram font sizes so labels don't collide */
-    .network-diagram .net-label { font-size: 12px; }
-    .network-diagram .net-caption { font-size: 10px; }
-    .network-diagram { padding: 1rem 0.5rem 0.75rem; }
-  }
   @media (max-width: 768px) {
-    .hero-section { padding: 84px 20px 72px; }
+    .hero-section { padding: 72px 20px 64px; }
     .hero-glow { width: 500px; height: 400px; }
     .section-block { padding: 68px 20px; }
     .stats-section { padding: 60px 20px; }
@@ -1431,6 +1428,8 @@ const reasons = [
       letter-spacing: 0.18em;
       padding: 0.55rem 1rem;
     }
+    /* Compare card: give it more of the viewport on mobile */
+    .compare-grid { padding: 1.75rem 1.25rem; }
   }
   @media (max-width: 560px) {
     .leaders-grid { grid-template-columns: 1fr; }
@@ -1438,10 +1437,21 @@ const reasons = [
     .reason-title { font-size: 1.35rem; }
   }
   @media (max-width: 480px) {
-    .hero-title { font-size: 2.2rem; }
-    .section-title { font-size: 1.85rem; }
+    .hero-section { padding: 60px 18px 56px; }
+    .hero-title { font-size: 1.9rem; line-height: 1.12; }
+    .section-title { font-size: 1.75rem; line-height: 1.15; }
     .stat-value { font-size: 2.6rem; }
     .brand-eyebrow, .eyebrow { font-size: 0.85rem; letter-spacing: 0.18em; }
+    .hero-lede { font-size: 0.95rem; }
+    /* Stack stats vertically so 608,000+ has full column width */
+    .stats-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+    .stat { padding: 0; }
+    .stat-label { max-width: 100%; }
+  }
+  @media (max-width: 380px) {
+    .hero-title { font-size: 1.7rem; }
+    .section-title { font-size: 1.55rem; }
+    .stat-value { font-size: 2.4rem; }
   }
 
   /* Fraunces stylistic set (softer g/a) + tabular figures on numeric data */
