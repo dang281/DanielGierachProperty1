@@ -150,17 +150,24 @@
     color: #6b4610 !important;
   }
 
-  /* Rounded corners on tool + article + "Keep Reading" cards */
+  /* Rounded corners across every card class site-wide */
   html .tool-card,
   html .insight-card,
-  html .checklist-item,
-  html a[style*="background:var(--color-surface-0)"][style*="border:1px solid rgba(28,25,23"] {
-    border-radius: 12px !important;
+  html .home-tool-card,
+  html .listing-card,
+  html .sale-card,
+  html .hw-card,
+  html .hw-card-featured,
+  html a[style*="background:var(--color-surface-0)"][style*="border:1px solid rgba(28,25,23"],
+  html a[style*="background:var(--color-surface-3)"][style*="padding:"] {
+    border-radius: 16px !important;
     overflow: hidden;
   }
-  html .tool-card > div:first-of-type[style*="height:3px"] {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+  html .checklist-item { border-radius: 12px !important; overflow: hidden; }
+  html .tool-card > div:first-of-type[style*="height:3px"],
+  html .home-tool-card > div:first-of-type[style*="height:2px"] {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
   }
 
   /* Header phone button · high-contrast: dark ink text on cream, not gold */
