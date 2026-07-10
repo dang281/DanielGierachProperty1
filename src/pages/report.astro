@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import GieMannTheme from '../components/GieMannTheme.astro';
 
 const reportSchema = {
   "@context": "https://schema.org",
@@ -21,27 +22,14 @@ const reportSchema = {
   hideMobileCta={true}
 >
 
+<GieMannTheme />
+
 <section style="display:grid;grid-template-columns:1fr 1fr;min-height:100dvh;" class="report-split">
 
-  <!-- ── LEFT: dark hero panel ── -->
-  <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;">
+  <!-- ── LEFT: cream hero panel ── -->
+  <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;background:#f2ead4;">
 
-    <div class="absolute inset-0 z-0">
-      <img
-        src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70"
-        srcset="
-          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=640&q=70 640w,
-          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70 1080w,
-          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70 1920w
-        "
-        sizes="(max-width: 768px) 100vw, 50vw"
-        alt=""
-        class="w-full h-full object-cover"
-        style="filter:grayscale(8%) brightness(0.5);"
-        fetchpriority="high"
-      />
-      <div class="absolute inset-0" style="background:linear-gradient(170deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.55) 50%,rgba(10,8,6,0.78) 100%);"></div>
-    </div>
+    <div aria-hidden="true" class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 80% 70% at 40% 50%,rgba(185,130,41,0.12) 0%,transparent 70%);pointer-events:none;"></div>
 
     <div class="relative z-10 report-hero-content">
       <div class="report-hero-text">
@@ -51,53 +39,53 @@ const reportSchema = {
             srcset="/_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=128&q=80 2x, /_vercel/image?url=%2Fimg%2Fdaniel-headshot.jpg&w=256&q=80 3x"
             alt="Daniel Gierach"
             width="40" height="40"
-            style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);"
+            style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid #b98229;"
           />
-          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#6b4610;">Daniel Gierach</span>
         </div>
 
-        <span class="report-hero-eyebrow eyebrow mb-5 reveal" style="display:block;color:#f5d07a;">Your Property Report</span>
+        <span class="report-hero-eyebrow eyebrow mb-5 reveal" style="display:block;color:#6b4610;">Your Property Report</span>
 
         <h1 class="report-hero-h1 reveal" data-delay="60"
-          style="font-family:var(--font-serif);font-size:clamp(1.65rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.25rem;">
+          style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.65rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#191817;margin-bottom:1.25rem;">
           Let's find your home's value.
         </h1>
 
         <p class="report-hero-desc reveal" data-delay="120"
-          style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
+          style="font-size:1rem;color:rgba(25,24,23,0.65);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
           Start with your address. We'll show you three quick ways to get a number that suit you. Takes less than a minute.
         </p>
       </div>
 
-      <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:rgba(10,8,6,0.5);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);border-radius:8px;margin-bottom:2.75rem;">
+      <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:#ffffff;border:1px solid rgba(185,130,41,0.25);border-radius:8px;margin-bottom:2.75rem;">
         <div style="display:flex;gap:0.2rem;margin-bottom:0.75rem;">
           {[1,2,3,4,5].map(() => (
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#c5a03c" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#b98229" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           ))}
         </div>
-        <p style="font-family:var(--font-serif);font-size:0.8rem;font-style:italic;color:rgba(240,236,228,0.9);line-height:1.55;margin-bottom:0.75rem;">
+        <p style="font-family:var(--font-serif);font-size:0.8rem;font-style:italic;color:rgba(25,24,23,0.85);line-height:1.55;margin-bottom:0.75rem;">
           "Daniel was honestly fantastic to work with. He was incredibly knowledgeable, professional and responsive throughout the entire process."
         </p>
-        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c5a03c;">5 Stars · Recent Review</p>
+        <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#b98229;">5 Stars · Recent Review</p>
       </div>
 
       <div class="report-hero-contacts reveal" data-delay="180" style="display:flex;flex-direction:column;gap:1.5rem;">
         <div>
-          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Phone</p>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Phone</p>
           <a href="tel:+61412523821" data-cta="report_call_daniel"
-            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='#ffffff'">0412 523 821</a>
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#191817;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='#191817'">0412 523 821</a>
         </div>
 
-        <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
+        <div style="width:100%;height:1px;background:rgba(25,24,23,0.1);"></div>
 
         <div>
-          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Email</p>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Email</p>
           <a href="mailto:daniel.gierach@raywhite.com" data-cta="report_email_daniel"
-            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='#ffffff'">daniel.gierach@raywhite.com</a>
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#191817;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='#191817'">daniel.gierach@raywhite.com</a>
         </div>
       </div>
     </div>
@@ -137,23 +125,19 @@ const reportSchema = {
 
 <style>
   .report-hero-content {
-    background: rgba(0,0,0,0.45);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(72,72,72,0.22);
+    background: transparent;
+    border: none;
     padding: 2rem 2.25rem;
     border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    box-shadow: none;
     max-width: 560px;
   }
   @media (min-width: 768px) {
     .report-hero-content { padding: 2.5rem 3rem; }
   }
   .report-hero-content > .reveal:nth-of-type(2) {
-    background: rgba(255,255,255,0.04) !important;
-    border-color: rgba(255,255,255,0.08) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    background: #ffffff !important;
+    border-color: rgba(185,130,41,0.25) !important;
   }
 
   @media (max-width: 768px) {

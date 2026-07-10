@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import GieMannTheme from '../../components/GieMannTheme.astro';
+import PageTOC from '../../components/PageTOC.astro';
 
 // Recent sales, pulled from Daniel's confirmed listings.
 // Sources verified via raywhitebulimba.com.au agent page.
@@ -39,29 +41,84 @@ const credentials = [
 ---
 
 <Layout
-  title="Daniel Gierach | Sales & Marketing Executive | Ray White Collective"
+  title="Daniel Gierach | Lead Agent | Ray White Collective"
   description="Daniel Gierach, Brisbane-born property professional at Ray White Collective. Degree in Property Economics, 10+ years across residential sales, marketing, business operations and construction."
   hideNav={true}
   hideBreadcrumbs={true}
 >
 
+<GieMannTheme />
+<PageTOC />
+
+<script is:inline>
+  // Override the site-wide theme-color meta tag (#1c1917 dark charcoal
+  // from Layout.astro) with a warm cream that matches this page's
+  // palette. Prevents iOS Safari status bar area from rendering as black.
+  (function () {
+    var color = '#e6d9bd';
+    var metas = document.querySelectorAll('meta[name="theme-color"]');
+    metas.forEach(function (m) { m.setAttribute('content', color); });
+    if (!metas.length) {
+      var meta = document.createElement('meta');
+      meta.setAttribute('name', 'theme-color');
+      meta.setAttribute('content', color);
+      document.head.appendChild(meta);
+    }
+  })();
+</script>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&display=swap');
+
+  :root {
+    /* Palette override to match /meet-the-team-dash. */
+    --color-base:            #f9f5e8;
+    --color-surface-0:       #f9f5e8;
+    --color-surface-1:       #f2ead4;
+    --color-surface-2:       #e6d9bd;
+    --color-surface-3:       #ffffff;
+    --color-surface-4:       #efe6ce;
+    --color-surface-5:       #e6d9bd;
+
+    --color-gold:            #8f6317;
+    --color-gold-dim:        #6b4610;
+    --color-gold-muted:      rgba(143,99,23,0.10);
+
+    --color-accent:          #191817;
+    --color-accent-soft:     #2a2724;
+    --color-eyebrow:         #6b4610;
+
+    --color-text-primary:    #191817;
+    --color-text-secondary:  rgba(25,24,23,0.72);
+    --color-text-muted:      rgba(25,24,23,0.55);
+    --color-ghost:           rgba(25,24,23,0.10);
+
+    --font-serif: 'Fraunces', 'Noto Serif', Georgia, serif;
+    --font-sans:  'Manrope', system-ui, sans-serif;
+  }
+
+  html, body {
+    background: #e6d9bd !important;
+  }
+
+  /* Serif elements get Fraunces optical size axis tuning. */
+  h1, h2, h3, .section-eyebrow + p, article [style*="font-serif"] {
+    font-feature-settings: "ss01" 1, "calt" 1;
+  }
+</style>
+
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
   <!-- ── Hero ────────────────────────────────────────────────── -->
-  <div style="position:relative;background:#0a0806;padding:3.5rem 0 2.5rem;overflow:hidden;">
-    <img
-      src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fa665-H3373155-164932053__1758673927-230712-AMY19482.jpg&w=1600&q=70"
-      srcset="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fa665-H3373155-164932053__1758673927-230712-AMY19482.jpg&w=800&q=70 800w, /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fa665-H3373155-164932053__1758673927-230712-AMY19482.jpg&w=1600&q=70 1600w"
-      sizes="100vw" alt="" decoding="async"
-      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0.55;z-index:0;" />
-    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,0.55) 0%,rgba(10,8,6,0.65) 55%,rgba(10,8,6,0.82) 100%);z-index:0;"></div>
+  <div style="position:relative;background:linear-gradient(180deg,#dcc898 0%,#e6d9bd 100%);padding:3.5rem 0 2.5rem;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(185,130,41,0.13) 0%,transparent 70%);z-index:0;pointer-events:none;"></div>
     <div class="max-w-[780px] mx-auto px-8 flex flex-col items-center text-center" style="position:relative;z-index:1;">
       <img src="/img/daniel-headshot-tight.jpg" alt="Daniel Gierach"
-        style="width:160px;height:160px;border-radius:18px;object-fit:cover;border:1.5px solid rgba(197,160,60,0.5);box-shadow:0 8px 28px rgba(0,0,0,0.45);margin-bottom:1.5rem;" />
-      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,4.5vw,3rem);font-weight:400;color:#f0ece4;line-height:1.1;letter-spacing:-0.01em;margin-bottom:0.55rem;">
+        style="width:160px;height:160px;border-radius:18px;object-fit:cover;border:2px solid #b98229;box-shadow:0 8px 28px rgba(25,24,23,0.12);margin-bottom:1.5rem;" />
+      <h1 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(2rem,4.5vw,3rem);font-weight:400;color:#191817;line-height:1.1;letter-spacing:-0.01em;margin-bottom:0.55rem;">
         Daniel Gierach
       </h1>
-      <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1.5rem;">Sales &amp; Marketing Executive &middot; Ray White Collective</span>
+      <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;margin-bottom:1.5rem;">Lead Agent &middot; Ray White Collective</span>
 
       <div class="hero-contact">
         <a href="tel:+61412523821" data-cta="team_daniel_call">
@@ -141,7 +198,7 @@ const credentials = [
             A snapshot of Daniel's recent results
           </h2>
         </div>
-        <a href="/listings#sold" style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#78716c;text-decoration:none;">
+        <a href="/listings#sold" style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(25,24,23,0.44);text-decoration:none;">
           Full sales history &rarr;
         </a>
       </div>
@@ -216,18 +273,16 @@ const credentials = [
     align-items: center;
     gap: 0.5rem;
     padding: 0.55rem 0.95rem;
-    background: rgba(10, 8, 6, 0.42);
-    border: 1px solid rgba(197, 160, 60, 0.4);
+    background: rgba(25, 24, 23, 0.06);
+    border: 1px solid rgba(185, 130, 41, 0.4);
     border-radius: 999px;
-    color: #f5d07a;
+    color: #6b4610;
     text-decoration: none;
     transition: background 0.2s, border-color 0.2s;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
   }
   .hero-contact a:hover {
-    background: rgba(196, 145, 42, 0.18);
-    border-color: rgba(197, 160, 60, 0.75);
+    background: rgba(185, 130, 41, 0.12);
+    border-color: #b98229;
   }
   @media (max-width: 560px) {
     .hero-contact {
@@ -243,7 +298,7 @@ const credentials = [
   /* ── Bio body ── */
   .bio-body {
     font-size: 1rem;
-    color: var(--color-text-secondary);
+    color: rgba(25,24,23,0.78);
     line-height: 1.85;
     display: flex;
     flex-direction: column;
@@ -289,11 +344,11 @@ const credentials = [
   /* ── Section eyebrow (shared) ── */
   .section-eyebrow {
     font-family: var(--font-sans);
-    font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #78716c;
+    color: #6b4610;
     margin-bottom: 1rem;
   }
 
@@ -420,7 +475,7 @@ const credentials = [
     padding-top: 0.8rem;
     border-top: 1px solid rgba(28,25,23,0.08);
     font-size: 0.7rem;
-    color: #78716c;
+    color: rgba(25,24,23,0.44);
   }
 
   /* ── CTA panel ── */

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Method from '../components/Method.astro';
+import GieMannTheme from '../components/GieMannTheme.astro';
 import { resources as allResources } from '../data/resources/index.js';
 const homeResources = allResources.slice(0, 6);
 
@@ -129,16 +130,6 @@ const listings = [
 
 const prestige = [
   {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7783-H3502736-200045322__1778022110-20631-Photo-3-Web.jpg',
-    suburb: 'Balmoral',
-    address: '42 Barton Parade',
-    price: 'Under Contract',
-    beds: 5, baths: 3, cars: 2,
-    desc: 'A newly built five-bedroom luxury home in one of Balmoral\'s most premier streets, presenting three bathrooms and a double garage.',
-    tag: 'Under Contract',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/balmoral-4171/other/3502736',
-  },
-  {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg',
     suburb: 'Cannon Hill',
     address: '12/76 Minnippi Boulevard',
@@ -202,6 +193,7 @@ const faqSchema = {
 ---
 
 <Layout title="Daniel Gierach | Real Estate Agent Brisbane Inner East" description="Brisbane inner east real estate agent. A documented three-phase method to position your home and protect your sale price." schema={faqSchema} preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1200&q=70">
+<GieMannTheme />
 
 <!-- ════════════════════════════════════════════
      HERO
@@ -209,7 +201,7 @@ const faqSchema = {
      Daniel listing). Replace with an owned street/portrait photo when one
      is available, Brisbane streetscape, open-home shot, etc.
 ════════════════════════════════════════════ -->
-<section class="relative min-h-dvh sm:min-h-dvh flex items-center overflow-hidden hero-section" style="background:#0a0806;">
+<section class="relative min-h-dvh sm:min-h-dvh flex items-center overflow-hidden hero-section" style="background:linear-gradient(180deg,#dcc898 0%,#e6d9bd 100%);">
 
   <!-- Parallax bg (served through Vercel image optimizer for WebP/AVIF + responsive sizes) -->
   <div class="absolute inset-0 z-0" id="hero-bg">
@@ -224,32 +216,32 @@ const faqSchema = {
       sizes="100vw"
       alt="64 Valaria Avenue Seven Hills, listed by Daniel Gierach, Ray White Bulimba"
       class="w-full h-full object-cover"
-      style="filter:grayscale(8%) brightness(0.55);"
+      style="filter:grayscale(15%) brightness(0.88);"
       fetchpriority="high"
       width="1920" height="1080"
     />
-    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.62) 0%,rgba(10,8,6,0.2) 100%);"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(230,217,189,0.4) 0%,rgba(230,217,189,0.7) 100%);"></div>
   </div>
 
   <!-- Glass card -->
   <div class="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-16 sm:pb-20">
-    <div class="hero-card max-w-2xl" style="background:rgba(0,0,0,0.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(72,72,72,0.2);padding:3rem 3.5rem;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04);">
+    <div class="hero-card max-w-2xl" style="background:rgba(242,234,212,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(107,70,16,0.14);padding:3rem 3.5rem;border-radius:12px;box-shadow:0 2px 12px rgba(107,70,16,0.10),0 0 0 1px rgba(107,70,16,0.06);">
 
       <div class="reveal" data-delay="100" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
         <img src={vImg('/img/daniel-headshot.jpg', 96)}
           srcset={`${vImg('/img/daniel-headshot.jpg', 128)} 2x, ${vImg('/img/daniel-headshot.jpg', 256)} 3x`}
           alt="Daniel Gierach, Brisbane inner east property agent" width="40" height="40"
-          style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(197,160,60,0.5);" />
-        <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#f5d07a;">Daniel Gierach</span>
+          style="width:40px;height:40px;border-radius:8px;object-fit:cover;object-position:center 10%;border:1.5px solid rgba(185,130,41,0.5);" />
+        <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#6b4610;">Daniel Gierach</span>
       </div>
 
       <h1 class="hero-h1 reveal" data-delay="380"
-        style="font-family:var(--font-serif);font-size:clamp(1.9rem,3.2vw,2.75rem);font-weight:400;line-height:1.15;letter-spacing:-0.01em;color:#f0ece4;margin-bottom:1.5rem;">
+        style="font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(1.9rem,3.2vw,2.75rem);line-height:1.15;letter-spacing:-0.01em;color:#191817;margin-bottom:1.5rem;">
         Find out what your Brisbane property is worth.
       </h1>
 
       <p class="reveal hero-p2" data-delay="560"
-        style="font-size:0.9rem;color:rgba(240,236,228,0.72);line-height:1.8;max-width:46ch;margin-bottom:0.75rem;">
+        style="font-size:0.9rem;color:rgba(25,24,23,0.65);line-height:1.8;max-width:46ch;margin-bottom:0.75rem;">
         Based on what comparable homes in your suburb are actually selling for.
       </p>
 
@@ -261,16 +253,16 @@ const faqSchema = {
               type="text"
               placeholder="Enter your property address…"
               autocomplete="off"
-              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-right:none;border-radius:8px 0 0 8px;color:#f0ece4;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
+              style="width:100%;padding:0.9rem 1.1rem;background:rgba(255,255,255,0.75);border:1.5px solid rgba(107,70,16,0.2);border-right:none;border-radius:8px 0 0 8px;color:#191817;font-family:var(--font-sans);font-size:0.85rem;outline:none;box-sizing:border-box;-webkit-appearance:none;"
             />
           </div>
-          <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:0 8px 8px 0;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
-            onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+          <button type="submit" class="hero-cta" style="padding:0.9rem 1.5rem;background:#b98229;color:#ffffff;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:0 8px 8px 0;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:0.4rem;transition:background 0.2s;"
+            onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'">
             What's Your Property Worth?
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </form>
-        <p style="font-size:0.72rem;color:rgba(240,236,228,0.55);margin-top:0.6rem;letter-spacing:0.06em;">Free. Daniel responds within one business day.</p>
+        <p style="font-size:0.72rem;color:rgba(25,24,23,0.55);margin-top:0.6rem;letter-spacing:0.06em;">Free. Daniel responds within one business day.</p>
       </div>
 
     </div>
@@ -278,8 +270,8 @@ const faqSchema = {
 
   <!-- Scroll nudge -->
   <div class="absolute bottom-8 right-12 hidden lg:flex flex-col items-center gap-2">
-    <span aria-hidden="true" style="font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(161,161,161,0.7);writing-mode:vertical-rl;">Scroll</span>
-    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,221,121,0.4),transparent);"></div>
+    <span aria-hidden="true" style="font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(107,70,16,0.55);writing-mode:vertical-rl;">Scroll</span>
+    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(185,130,41,0.4),transparent);"></div>
   </div>
 </section>
 
@@ -308,11 +300,11 @@ const faqSchema = {
     </div>
 
     <!-- 3-column card grid, matches listings page style -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(107,70,16,0.10);">
       {listings.slice(0, 3).map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener noreferrer"
           class="card-reveal listing-card" data-delay={i * 130}
-          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;"
+          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.08);"
         >
           <!-- Image -->
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
@@ -323,20 +315,20 @@ const faqSchema = {
               loading={i === 0 ? 'eager' : 'lazy'}
               style={`width:100%;height:100%;object-fit:cover;${p.tag === 'Sold' ? 'filter:grayscale(30%);' : ''}`}
             />
-            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;background:${p.tag === 'Sold' ? '#44403c' : p.tag === 'Pre-Market' ? '#a8e6a3' : p.tag === 'Auction' ? '#7ec8e3' : '#f5d07a'};color:${p.tag === 'Sold' ? '#f0ece4' : '#0a0806'};padding:0.3rem 0.65rem;`}>
+            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;background:${p.tag === 'Sold' ? 'rgba(107,70,16,0.80)' : p.tag === 'Pre-Market' ? '#a8e6a3' : p.tag === 'Auction' ? '#7ec8e3' : '#b98229'};color:${p.tag === 'Sold' ? '#f2ead4' : p.tag === 'Pre-Market' || p.tag === 'Auction' ? '#191817' : '#ffffff'};padding:0.3rem 0.65rem;border-radius:4px;`}>
               {p.tag}
             </span>
           </div>
           <!-- Details -->
           <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">{p.suburb}</p>
-            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.2;">{p.address}</h3>
-            <p style="font-size:0.78rem;color:#78716c;">{p.street}</p>
-            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#44403c;margin-top:0.25rem;">{p.price}</p>
-            <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
-              <span style="font-size:0.72rem;color:#78716c;">{p.beds} bed</span>
-              <span style="font-size:0.72rem;color:#78716c;">{p.baths} bath</span>
-              <span style="font-size:0.72rem;color:#78716c;">{p.cars} car</span>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;">{p.suburb}</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#191817;line-height:1.2;">{p.address}</h3>
+            <p style="font-size:0.78rem;color:rgba(25,24,23,0.55);">{p.street}</p>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:rgba(25,24,23,0.72);margin-top:0.25rem;">{p.price}</p>
+            <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(107,70,16,0.10);">
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.55);">{p.beds} bed</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.55);">{p.baths} bath</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.55);">{p.cars} car</span>
             </div>
           </div>
         </a>
@@ -352,6 +344,12 @@ const faqSchema = {
 ════════════════════════════════════════════ -->
 <Method />
 
+
+<div class="ornament" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:2rem 24px;background:var(--color-surface-2);">
+  <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
+  <span style="font-family:'Fraunces',Georgia,serif;font-size:0.9rem;color:#b98229;">✦</span>
+  <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
+</div>
 
 <!-- ════════════════════════════════════════════
      PRESTIGE COLLECTION
@@ -382,10 +380,10 @@ const faqSchema = {
               srcset={vImgSrcset(p.image, [640, 1080, 1200])}
               sizes="(min-width: 1024px) 50vw, 100vw"
               alt={p.address} width="1200" height="800" loading="lazy"
-              style="filter:grayscale(25%) brightness(0.75);" />
+              style="filter:grayscale(20%) brightness(0.90);" />
             <div class="absolute top-5 left-5"><span class="gold-pill">{p.tag}</span></div>
             <div class="absolute inset-0 pointer-events-none"
-              style="background:linear-gradient(to top,rgba(14,14,14,0.92) 0%,transparent 55%);"></div>
+              style="background:linear-gradient(180deg,rgba(230,217,189,0.25) 0%,rgba(230,217,189,0.55) 100%);"></div>
           </div>
           <div style="padding:1.75rem;display:flex;flex-direction:column;flex:1;">
             <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.4rem;">{p.suburb}</span>
@@ -505,7 +503,7 @@ const faqSchema = {
       <div class="testimonial-card" style="background:var(--color-surface-0);padding:2.75rem 3rem;">
         <div style="display:flex;gap:0.25rem;margin-bottom:1.5rem;">
           {[1,2,3,4,5].map(() => (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98229"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           ))}
         </div>
         <p style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.75rem;font-style:italic;">
@@ -520,7 +518,7 @@ const faqSchema = {
       <div class="testimonial-card" style="background:var(--color-surface-0);padding:2.75rem 3rem;">
         <div style="display:flex;gap:0.25rem;margin-bottom:1.5rem;">
           {[1,2,3,4,5].map(() => (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98229"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           ))}
         </div>
         <p style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:var(--color-text-primary);line-height:1.8;margin-bottom:1.75rem;font-style:italic;">
@@ -549,30 +547,30 @@ const faqSchema = {
     cursor: pointer;
     text-decoration: none;
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    box-shadow: 0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.08);
   }
   .hw-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 30px 64px rgba(0,0,0,0.55);
-    background: rgba(20,16,12,0.85) !important;
-    border-color: rgba(197,160,60,0.4) !important;
+    box-shadow: 0 16px 48px rgba(107,70,16,0.14),0 0 0 1px rgba(185,130,41,0.25);
+    background: rgba(255,255,255,0.96) !important;
+    border-color: rgba(185,130,41,0.4) !important;
   }
-  .hw-card:hover .hw-card-tag { color: #c5a03c !important; }
+  .hw-card:hover .hw-card-tag { color: #b98229 !important; }
   .hw-card:hover .hw-card-btn {
-    background: #d4af4a !important;
+    background: #a5721c !important;
     gap: 0.75rem !important;
   }
   .hw-card-featured:hover {
     transform: none !important;
-    background: rgba(20,16,12,0.85) !important;
-    border-color: rgba(197,160,60,0.7) !important;
+    background: rgba(255,255,255,0.96) !important;
+    border-color: rgba(185,130,41,0.7) !important;
   }
   .hw-featured-wrapper {
     transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1);
   }
   .hw-featured-wrapper:hover {
     transform: translateY(-8px);
-    box-shadow: 0 30px 64px rgba(0,0,0,0.55);
+    box-shadow: 0 16px 48px rgba(107,70,16,0.14);
   }
   @media (max-width: 768px) {
     .hw-card, .hw-card-featured { min-height: auto !important; }
@@ -580,15 +578,21 @@ const faqSchema = {
   .hw-card-btn { transition: background 0.2s, gap 0.2s; border-radius: 8px; }
   .hw-card-outline-btn { transition: border-color 0.2s, color 0.2s; border-radius: 8px; }
   .hw-card:hover .hw-card-outline-btn {
-    border-color: rgba(197,160,60,0.7) !important;
-    color: #c5a03c !important;
+    border-color: rgba(185,130,41,0.7) !important;
+    color: #b98229 !important;
   }
 </style>
+
+<div class="ornament" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:2rem 24px;background:var(--color-surface-0);">
+  <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
+  <span style="font-family:'Fraunces',Georgia,serif;font-size:0.9rem;color:#b98229;">✦</span>
+  <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
+</div>
 
 <!-- ════════════════════════════════════════════
      APPRAISAL CTA
 ════════════════════════════════════════════ -->
-<section id="home-worth" class="relative overflow-hidden" style="padding:7rem 0;">
+<section id="home-worth" class="relative overflow-hidden" style="padding:7rem 0;background:var(--color-surface-1);">
   <div class="absolute inset-0">
     <img
       src={vImg('https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7149-H3442687-184436620__1769558771-34622-FJD9608.jpg', 1920)}
@@ -596,39 +600,39 @@ const faqSchema = {
       sizes="100vw"
       alt="Premium property"
       class="hw-bg-img w-full h-full object-cover"
-      style="filter:grayscale(40%) brightness(0.25);"
+      style="filter:grayscale(30%) brightness(0.85);"
       loading="lazy" decoding="async" width="1920" height="1080"
     />
-    <div class="absolute inset-0" style="background:rgba(10,8,6,0.55);"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(230,217,189,0.6) 0%,rgba(237,226,197,0.75) 100%);"></div>
   </div>
 
   <div class="relative max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <!-- Heading -->
     <div class="text-center mb-14">
-      <span class="eyebrow mb-5 reveal" style="display:block;text-align:center;color:#f5d07a;">What's Your Property Worth?</span>
+      <span class="eyebrow mb-5 reveal" style="display:block;text-align:center;color:#6b4610;">What's Your Property Worth?</span>
       <h2 class="reveal" data-delay="80"
-        style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
+        style="font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(2.25rem,5vw,3.75rem);color:#191817;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.25rem;">
         Find out in three ways. Choose yours.
       </h2>
       <p class="reveal" data-delay="160"
-        style="font-size:0.9375rem;color:rgba(240,236,228,0.65);max-width:52ch;margin:0 auto;line-height:1.8;">
+        style="font-size:0.9375rem;color:rgba(25,24,23,0.65);max-width:52ch;margin:0 auto;line-height:1.8;">
         Three starting points. Pick the one that matches where you are.
       </p>
     </div>
 
     <!-- Testimonial strip -->
-    <div class="reveal hw-testimonial" data-delay="140" style="margin-bottom:2.5rem;padding:1.75rem 2rem;background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);border:1px solid rgba(197,160,60,0.2);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;">
-      <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(240,236,228,0.85);line-height:1.65;max-width:60ch;text-align:center;">
+    <div class="reveal hw-testimonial" data-delay="140" style="margin-bottom:2.5rem;padding:1.75rem 2rem;background:rgba(242,234,212,0.88);backdrop-filter:blur(8px);border:1px solid rgba(107,70,16,0.14);display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;justify-content:center;border-radius:12px;box-shadow:0 2px 12px rgba(107,70,16,0.08);">
+      <p style="font-family:var(--font-serif);font-size:0.95rem;font-style:italic;color:rgba(25,24,23,0.85);line-height:1.65;max-width:60ch;text-align:center;">
         "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me. If you're after an agent who genuinely cares and goes above and beyond, Daniel's your guy."
       </p>
       <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;flex-shrink:0;">
         <div style="display:flex;gap:0.2rem;">
           {[1,2,3,4,5].map(() => (
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#b98229"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           ))}
         </div>
-        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(197,160,60,0.7);white-space:nowrap;">5 Stars · Recent Review</span>
+        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#6b4610;white-space:nowrap;">5 Stars · Recent Review</span>
       </div>
     </div>
 
@@ -639,30 +643,30 @@ const faqSchema = {
       <a href="/property-report"
         onclick="gtag('event','property_report_click',{event_category:'lead',event_label:'CTA Section'})"
         class="hw-card"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid transparent;">
+        style="background:rgba(242,234,212,0.92);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid rgba(107,70,16,0.12);">
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
-            <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Instant · Online</p>
-            <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;line-height:1.2;margin-bottom:0.75rem;">
+            <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#6b4610;margin-bottom:0.6rem;">Instant · Online</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.75rem;">
               Get an Instant<br/>Property Report
             </h3>
-            <p style="font-size:0.82rem;color:rgba(240,236,228,0.6);line-height:1.75;">
+            <p style="font-size:0.82rem;color:rgba(25,24,23,0.65);line-height:1.75;">
               An automated estimate based on recent sales data in your area. Good for a ballpark. For a precise number, book a walkthrough.
             </p>
           </div>
           <ul class="hw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Instant estimate from real sales data
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.65);display:flex;align-items:center;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;">✓</span> Instant estimate from real sales data
             </li>
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;">✓</span> No phone call required
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.65);display:flex;align-items:center;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;">✓</span> No phone call required
             </li>
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Ready in under 60 seconds
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.65);display:flex;align-items:center;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;">✓</span> Ready in under 60 seconds
             </li>
           </ul>
         </div>
-        <span class="hw-card-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:rgba(197,160,60,0.75);color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="hw-card-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:#b98229;color:#ffffff;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           Get My Instant Report
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -674,34 +678,34 @@ const faqSchema = {
         style="display:flex;flex-direction:column;align-self:stretch;">
       <a href="/walkthrough"
         class="hw-card hw-card-featured"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;border:1px solid rgba(197,160,60,0.6);box-shadow:0 0 0 1px rgba(197,160,60,0.15),inset 0 0 40px rgba(197,160,60,0.04);flex:1;">
-        <div style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#c5a03c;padding:0.55rem 1.75rem;border-radius:8px 8px 0 0;white-space:nowrap;z-index:2;">
-          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#0a0806;">Most Accurate</span>
+        style="background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;border:1px solid rgba(185,130,41,0.45);box-shadow:0 2px 12px rgba(107,70,16,0.10),0 0 0 1px rgba(185,130,41,0.15);flex:1;">
+        <div style="position:absolute;top:-1px;left:50%;transform:translate(-50%,-100%);background:#b98229;padding:0.55rem 1.75rem;border-radius:8px 8px 0 0;white-space:nowrap;z-index:2;">
+          <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Most Accurate</span>
         </div>
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#c5a03c;border-radius:12px 12px 0 0;"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#b98229;border-radius:12px 12px 0 0;"></div>
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
-            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Free · In-Person · 10-15 mins</p>
-            <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;line-height:1.25;margin-bottom:0.75rem;">
+            <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#6b4610;margin-bottom:0.6rem;">Free · In-Person · 10-15 mins</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#191817;line-height:1.25;margin-bottom:0.75rem;">
               Book a Free<br/>Property Walkthrough
             </h3>
-            <p style="font-size:0.82rem;color:rgba(240,236,228,0.65);line-height:1.75;">
+            <p style="font-size:0.82rem;color:rgba(25,24,23,0.65);line-height:1.75;">
               Daniel walks through your home, assesses it against recent comparable sales, and gives you a frank, well-researched opinion of value. No charge, no obligation.
             </p>
           </div>
           <ul class="hw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Accurate, comparable-based assessment
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.72);display:flex;align-items:flex-start;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;margin-top:0.1rem;">✓</span> Accurate, comparable-based assessment
             </li>
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> Tailored to your home's condition and position
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.72);display:flex;align-items:flex-start;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;margin-top:0.1rem;">✓</span> Tailored to your home's condition and position
             </li>
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.6);display:flex;align-items:flex-start;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;margin-top:0.1rem;">✓</span> No scripts, just honest advice
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.72);display:flex;align-items:flex-start;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;margin-top:0.1rem;">✓</span> No scripts, just honest advice
             </li>
           </ul>
         </div>
-        <span class="hw-card-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.9rem 1.5rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;border-radius:8px;">
+        <span class="hw-card-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.9rem 1.5rem;background:#b98229;color:#ffffff;font-family:var(--font-sans);font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;border-radius:8px;">
           Book a Free Walkthrough
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -712,30 +716,30 @@ const faqSchema = {
       <a href="tel:+61412523821"
         onclick="gtag('event','phone_click',{event_category:'contact',event_label:'CTA Section'})"
         class="hw-card"
-        style="background:rgba(10,8,6,0.6);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid transparent;">
+        style="background:rgba(242,234,212,0.92);backdrop-filter:blur(8px);padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;border:1px solid rgba(107,70,16,0.12);">
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
           <div>
-            <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.6rem;">Immediate · Personal</p>
-            <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#f0ece4;line-height:1.2;margin-bottom:0.75rem;">
+            <p class="hw-card-tag" style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#6b4610;margin-bottom:0.6rem;">Immediate · Personal</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.75rem;">
               Call Daniel<br/>Directly
             </h3>
-            <p style="font-size:0.82rem;color:rgba(240,236,228,0.6);line-height:1.75;">
+            <p style="font-size:0.82rem;color:rgba(25,24,23,0.65);line-height:1.75;">
               Got a specific question about your property, a recent sale nearby, or the current market? Call Daniel directly and get a straight answer in minutes.
             </p>
           </div>
           <ul class="hw-bullets" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Speak directly with Daniel, no assistants
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.65);display:flex;align-items:center;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;">✓</span> Speak directly with Daniel, no assistants
             </li>
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;">✓</span> Available 7 days, 7am to 8pm
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.65);display:flex;align-items:center;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;">✓</span> Available 7 days, 7am to 8pm
             </li>
-            <li style="font-size:0.78rem;color:rgba(240,236,228,0.55);display:flex;align-items:center;gap:0.5rem;">
-              <span style="color:#c5a03c;font-size:0.7rem;">✓</span> No scripts, no sales pitch
+            <li style="font-size:0.78rem;color:rgba(25,24,23,0.65);display:flex;align-items:center;gap:0.5rem;">
+              <span style="color:#b98229;font-size:0.7rem;">✓</span> No scripts, no sales pitch
             </li>
           </ul>
         </div>
-        <span class="hw-card-outline-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,0.25);font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
+        <span class="hw-card-outline-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;background:transparent;color:#6b4610;border:1.5px solid rgba(185,130,41,0.55);font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">
           Call 0412 523 821
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 5.92 5.92l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.21 16z"/></svg>
         </span>
@@ -749,31 +753,31 @@ const faqSchema = {
 <!-- ════════════════════════════════════════════
      BUYERS CTA
 ════════════════════════════════════════════ -->
-<section class="buyers-cta-section" style="background:linear-gradient(to right,#0a0806 50%,var(--color-surface-1) 50%);padding:0;">
+<section class="buyers-cta-section" style="background:linear-gradient(to right,#dcc898 50%,var(--color-surface-1) 50%);padding:0;">
   <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;" class="buyers-cta-grid">
 
-    <!-- Left: dark hero -->
-    <div style="background:#0a0806;padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;">
-      <div style="position:absolute;inset:0;opacity:0.15;background:radial-gradient(ellipse at 30% 60%, #c4912a 0%, transparent 65%);pointer-events:none;"></div>
+    <!-- Left: warm gold panel -->
+    <div style="background:linear-gradient(135deg,#dcc898 0%,#e6d9bd 100%);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-right:1px solid rgba(107,70,16,0.12);">
+      <div style="position:absolute;inset:0;opacity:0.18;background:radial-gradient(ellipse at 30% 60%, #b98229 0%, transparent 65%);pointer-events:none;"></div>
       <div style="position:relative;z-index:1;">
-        <span style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Off-Market Access · Inner East</span>
-        <h3 class="reveal" style="font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:#f0ece4;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+        <span style="display:block;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#6b4610;margin-bottom:1rem;">Off-Market Access · Inner East</span>
+        <h3 class="reveal" style="font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:#191817;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;">
           Find your next home before it's listed.
         </h3>
-        <p style="font-size:0.9rem;color:rgba(240,236,228,0.72);line-height:1.85;max-width:42ch;margin-bottom:1.75rem;">
+        <p style="font-size:0.9rem;color:rgba(25,24,23,0.72);line-height:1.85;max-width:42ch;margin-bottom:1.75rem;">
           The best properties in Bulimba, Hawthorne, Morningside and the wider inner east are often spoken for before a sign goes up. Register your buying criteria and Daniel will contact you when something matches.
         </p>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.6rem;">
-          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(240,236,228,0.7);line-height:1.6;">
-            <span style="color:#c4912a;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(25,24,23,0.70);line-height:1.6;">
+            <span style="color:#b98229;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
             Pre-market and off-market properties before they hit realestate.com.au
           </li>
-          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(240,236,228,0.7);line-height:1.6;">
-            <span style="color:#c4912a;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(25,24,23,0.70);line-height:1.6;">
+            <span style="color:#b98229;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
             Daniel matches buyers to properties personally. No call centre, no database blasts
           </li>
-          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(240,236,228,0.7);line-height:1.6;">
-            <span style="color:#c4912a;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <li style="display:flex;gap:0.7rem;align-items:flex-start;font-size:0.83rem;color:rgba(25,24,23,0.70);line-height:1.6;">
+            <span style="color:#b98229;flex-shrink:0;margin-top:0.15em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
             No obligation. You hear about a property only when it genuinely fits
           </li>
         </ul>
@@ -782,21 +786,21 @@ const faqSchema = {
 
     <!-- Right: CTA card -->
     <div style="background:var(--color-surface-1);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;">
-      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Takes 2 minutes</p>
-      <h3 style="font-family:var(--font-serif);font-size:clamp(1.3rem,2.2vw,1.75rem);font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:0.85rem;">
+      <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#6b4610;margin-bottom:0.5rem;">Takes 2 minutes</p>
+      <h3 style="font-family:var(--font-serif);font-size:clamp(1.3rem,2.2vw,1.75rem);font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.85rem;">
         Register your buying criteria.
       </h3>
-      <p style="font-size:0.875rem;color:#57534e;line-height:1.8;max-width:44ch;margin-bottom:2rem;">
+      <p style="font-size:0.875rem;color:rgba(25,24,23,0.55);line-height:1.8;max-width:44ch;margin-bottom:2rem;">
         Tell Daniel which suburbs, what size, and your budget. Three quick steps. He reviews every registration personally and will follow up the same day.
       </p>
       <a href="/buyers"
-        style="display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:8px;transition:background 0.2s;align-self:flex-start;"
-        onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'"
+        style="display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;background:#b98229;color:#ffffff;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:10px;transition:background 0.2s;align-self:flex-start;"
+        onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'"
         onclick="gtag('event','buyers_cta_click',{event_category:'buyer',event_label:'Homepage CTA'})">
         Register My Search
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <p style="font-size:0.72rem;color:#a8a29e;margin-top:1rem;line-height:1.6;">
+      <p style="font-size:0.72rem;color:rgba(25,24,23,0.55);margin-top:1rem;line-height:1.6;">
         30+ Brisbane suburbs covered. Most buyers hear back the same day.
       </p>
     </div>
@@ -807,13 +811,19 @@ const faqSchema = {
 <style>
   .buyers-cta-grid { }
   @media (max-width: 760px) {
-    .buyers-cta-section { background: #0a0806 !important; }
+    .buyers-cta-section { background: #e6d9bd !important; }
     .buyers-cta-grid { grid-template-columns: 1fr !important; }
     .buyers-cta-grid > div { padding: 3rem 1.5rem !important; }
     .buyers-cta-grid > div:first-child { padding-bottom: 2.5rem !important; }
   }
 </style>
 
+
+<div class="ornament" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:2rem 24px;background:var(--color-surface-2);">
+  <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
+  <span style="font-family:'Fraunces',Georgia,serif;font-size:0.9rem;color:#b98229;">✦</span>
+  <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
+</div>
 
 <!-- ════════════════════════════════════════════
      MARKET UPDATES, EMAIL CAPTURE
@@ -929,7 +939,7 @@ const faqSchema = {
 <!-- ════════════════════════════════════════════
      TOOLS SHOWCASE
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(72,72,72,0.15);">
+<section style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(107,70,16,0.10);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-12">
@@ -1024,10 +1034,10 @@ const faqSchema = {
           onmouseover="this.style.background='var(--color-surface-4)';this.style.transform='translateY(-3px)'"
           onmouseout="this.style.background='var(--color-surface-3)';this.style.transform='translateY(0)'"
         >
-          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#c4912a;"></div>
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#b98229;"></div>
           <div style="display:flex;justify-content:space-between;align-items:center;padding-top:0.25rem;">
-            <span style="display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">
-              <span style="width:5px;height:5px;border-radius:50%;background:#c4912a;"></span>
+            <span style="display:inline-flex;align-items:center;gap:0.3rem;font-size:0.5rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;">
+              <span style="width:5px;height:5px;border-radius:50%;background:#b98229;"></span>
               {r.category}
             </span>
             <span style="font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);font-weight:700;">PDF · {r.pages}p</span>
@@ -1101,7 +1111,7 @@ const faqSchema = {
           onmouseover="this.style.background='var(--color-surface-2)'"
           onmouseout="this.style.background='var(--color-surface-0)'">
           <p style="font-family:var(--font-sans);font-size:0.82rem;font-weight:600;color:var(--color-text-primary);margin:0 0 0.2rem;">{suburb.name}</p>
-          <p style="font-family:var(--font-sans);font-size:0.68rem;color:#c4912a;margin:0;">View suburb →</p>
+          <p style="font-family:var(--font-sans);font-size:0.68rem;color:#b98229;margin:0;">View suburb →</p>
         </a>
       ))}
     </div>
@@ -1224,7 +1234,7 @@ const faqSchema = {
 
     // Dropdown appended to body, position:fixed, escapes overflow:hidden on hero
     const drop = document.createElement('div');
-    drop.style.cssText = 'display:none;position:fixed;z-index:99999;background:#1c1917;border:1px solid rgba(255,255,255,0.18);border-top:none;max-height:240px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.65);';
+    drop.style.cssText = 'display:none;position:fixed;z-index:99999;background:#f2ead4;border:1px solid rgba(107,70,16,0.18);border-top:none;max-height:240px;overflow-y:auto;box-shadow:0 8px 32px rgba(107,70,16,0.18);';
     document.body.appendChild(drop);
 
     function positionDrop() {
@@ -1235,7 +1245,7 @@ const faqSchema = {
     }
     function hideDrop() { drop.style.display = 'none'; }
 
-    const PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="15" viewBox="0 0 12 16" style="flex-shrink:0;margin-top:2px;"><path fill="rgba(255,255,255,0.45)" d="M6 0C2.69 0 0 2.69 0 6c0 4.5 6 10 6 10s6-5.5 6-10C12 2.69 9.31 0 6 0zm0 8.5C4.62 8.5 3.5 7.38 3.5 6S4.62 3.5 6 3.5 8.5 4.62 8.5 6 7.38 8.5 6 8.5z"/></svg>`;
+    const PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="15" viewBox="0 0 12 16" style="flex-shrink:0;margin-top:2px;"><path fill="rgba(107,70,16,0.45)" d="M6 0C2.69 0 0 2.69 0 6c0 4.5 6 10 6 10s6-5.5 6-10C12 2.69 9.31 0 6 0zm0 8.5C4.62 8.5 3.5 7.38 3.5 6S4.62 3.5 6 3.5 8.5 4.62 8.5 6 7.38 8.5 6 8.5z"/></svg>`;
 
     function showItems(suggestions: any[]) {
       if (!suggestions.length) { hideDrop(); return; }
@@ -1248,20 +1258,20 @@ const faqSchema = {
 
       drop.innerHTML = items.map(s =>
         `<div data-label="${s.full.replace(/"/g,'&quot;')}"
-          style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.65rem 1rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.07);">
+          style="display:flex;align-items:flex-start;gap:0.6rem;padding:0.65rem 1rem;cursor:pointer;border-bottom:1px solid rgba(107,70,16,0.10);">
           ${PIN_SVG}
           <div>
-            <div style="color:#f0ece4;font-size:0.83rem;font-family:sans-serif;line-height:1.3;">${s.main}</div>
-            ${s.sec ? `<div style="color:rgba(255,255,255,0.45);font-size:0.72rem;font-family:sans-serif;margin-top:1px;">${s.sec}</div>` : ''}
+            <div style="color:#191817;font-size:0.83rem;font-family:sans-serif;line-height:1.3;">${s.main}</div>
+            ${s.sec ? `<div style="color:rgba(25,24,23,0.50);font-size:0.72rem;font-family:sans-serif;margin-top:1px;">${s.sec}</div>` : ''}
           </div>
         </div>`
       ).join('') +
-      `<div style="padding:0.4rem 1rem;text-align:right;border-top:1px solid rgba(255,255,255,0.07);">
+      `<div style="padding:0.4rem 1rem;text-align:right;border-top:1px solid rgba(107,70,16,0.10);">
         <img src="https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-non-white3.png" alt="Powered by Google" style="height:14px;opacity:0.7;">
       </div>`;
 
       drop.querySelectorAll<HTMLElement>('[data-label]').forEach(el => {
-        el.onmouseover = () => { el.style.background = 'rgba(255,255,255,0.08)'; };
+        el.onmouseover = () => { el.style.background = 'rgba(107,70,16,0.06)'; };
         el.onmouseout  = () => { el.style.background = ''; };
         el.onmousedown = (e) => {
           e.preventDefault();
@@ -1366,7 +1376,7 @@ const faqSchema = {
 
   // ── Homepage tools filter ──────────────────────────────────────
   const hPillColors: Record<string, string> = {
-    All: '#1c1917', Seller: '#b89a2a', Buyer: '#3a8fa8', Investor: '#4a9e4a', Market: '#888'
+    All: '#191817', Seller: '#b98229', Buyer: '#3a8fa8', Investor: '#4a9e4a', Market: '#888'
   };
   const hPills = document.querySelectorAll<HTMLButtonElement>('.home-filter-pill');
   const hCards = document.querySelectorAll<HTMLElement>('.home-tool-card');
@@ -1375,7 +1385,7 @@ const faqSchema = {
     hPills.forEach(pill => {
       const phase = pill.dataset.hfilter!;
       const isActive = phase === active;
-      const col = hPillColors[phase] || '#1c1917';
+      const col = hPillColors[phase] || '#191817';
       pill.style.background  = isActive ? col   : 'transparent';
       pill.style.color       = isActive ? (phase === 'All' ? 'var(--color-base)' : '#fff') : 'var(--color-text-muted)';
       pill.style.borderColor = isActive ? col   : 'rgba(28,25,23,0.2)';
@@ -1468,7 +1478,7 @@ const faqSchema = {
     .hw-card-btn, .hw-card-outline-btn { display: none !important; }
     .hw-featured-wrapper { padding-top: 0 !important; }
     .hw-card-featured > div:first-child { display: none !important; } /* hide floating badge */
-    .hw-card-featured { border-left: 3px solid #c5a03c !important; }
+    .hw-card-featured { border-left: 3px solid #b98229 !important; }
     .hw-card-featured > div:nth-child(2) { height: 0 !important; overflow: hidden !important; } /* hide top bar */
 
     /* Gold arrow badge on right of each card row */
@@ -1476,8 +1486,8 @@ const faqSchema = {
       content: '→';
       font-size: 0.85rem;
       font-weight: 800;
-      color: #0a0806;
-      background: #c5a03c;
+      color: #ffffff;
+      background: #b98229;
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -1518,8 +1528,8 @@ const faqSchema = {
 </style>
 
 <!-- Mobile sticky CTA bar -->
-<div id="mobile-sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#c5a03c;padding:1rem 1.25rem;box-shadow:0 -4px 24px rgba(0,0,0,0.25);border-radius:8px;">
-  <a href="/property-worth" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;">
+<div id="mobile-sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#b98229;padding:1rem 1.25rem;box-shadow:0 -4px 24px rgba(107,70,16,0.20);border-radius:8px 8px 0 0;">
+  <a href="/property-worth" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;color:#ffffff;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;">
     What's Your Property Worth?
     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>

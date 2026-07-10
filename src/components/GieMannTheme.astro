@@ -1,0 +1,240 @@
+---
+// Shared GieMann brand-palette overrides. Drop this component near the top
+// of any page (inside the Layout / ToolLayout / LandingLayout wrapper) and
+// it will retint the whole page:
+//
+//   - Warm honey-cream + mustard-gold palette
+//   - Fraunces serif via Google Fonts @import
+//   - Cream-translucent site header (readable on cream page bg)
+//   - Cream mobile sticky call bar with white/gold buttons
+//
+// Reference page: /the-collective. Full brand system docs live in
+// ~/.claude/projects/-Users-danielgierach/memory/giemann_colours.md.
+---
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&display=swap');
+
+  :root {
+    --font-serif: 'Fraunces', 'Noto Serif', Georgia, serif;
+
+    --color-base:        #e6d9bd;
+    --color-surface-0:   #f2ead4;
+    --color-surface-1:   #ede2c5;
+    --color-surface-2:   #e6d9bd;
+    --color-surface-3:   #ffffff;
+
+    --color-gold:        #b98229;
+    --color-gold-dim:    #6b4610;
+    --color-gold-muted:  rgba(185,130,41,0.12);
+
+    --color-accent:      #191817;
+    --color-accent-soft: #2a2724;
+    --color-eyebrow:     #6b4610;
+
+    --color-text-primary:   #191817;
+    --color-text-secondary: rgba(25,24,23,0.65);
+    --color-text-muted:     rgba(25,24,23,0.44);
+    --color-ghost:          rgba(25,24,23,0.10);
+  }
+
+  html, body { background: #e6d9bd; }
+
+  /* Site header · cream translucent glass over the GieMann page.
+     Extra `html` prefix bumps specificity above ToolLayout's own
+     is:global rule `body.tool-page #site-header`. */
+  html body.tool-page #site-header,
+  html #site-header {
+    background: rgba(230,217,189,0.72) !important;
+    backdrop-filter: blur(14px) saturate(1.1) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.1) !important;
+    border-bottom: 1px solid rgba(107,70,16,0.08) !important;
+    box-shadow: none !important;
+  }
+  html body.tool-page #site-header.glass-nav,
+  html #site-header.glass-nav {
+    background: rgba(230,217,189,0.92) !important;
+    border-bottom: 1px solid rgba(107,70,16,0.15) !important;
+    box-shadow: 0 4px 20px rgba(107,70,16,0.08) !important;
+  }
+  html #site-header #logo-name { color: #191817 !important; }
+  html #site-header #nav-links .nav-link-mono,
+  html #site-header #nav-cta .nav-link-mono { color: #191817 !important; }
+  html #site-header #nav-phone {
+    color: #6b4610 !important;
+    border-color: rgba(107,70,16,0.35) !important;
+  }
+  html #site-header #bar1,
+  html #site-header #bar2,
+  html #site-header #bar3 { background: #191817 !important; }
+
+  /* Mobile sticky call bar · cream + gold */
+  html .mobile-call-bar {
+    background: rgba(230,217,189,0.94) !important;
+    border-top: 1px solid rgba(107,70,16,0.18) !important;
+    box-shadow: 0 -6px 22px rgba(107,70,16,0.10) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  html .mobile-call-btn {
+    background: #ffffff !important;
+    border: 1.5px solid rgba(185,130,41,0.55) !important;
+    color: #6b4610 !important;
+    border-radius: 10px !important;
+  }
+  html .mobile-call-btn:active {
+    background: #faf3dc !important;
+    border-color: #b98229 !important;
+  }
+  html .mobile-call-btn.primary {
+    background: #b98229 !important;
+    border-color: #b98229 !important;
+    color: #ffffff !important;
+  }
+  html .mobile-call-btn.primary:active {
+    background: #a5721c !important;
+    border-color: #a5721c !important;
+  }
+
+  /* global.css force-darkens every insights article hero with a
+     linear-gradient + property photo, keyed by the inline
+     `padding:8rem 0 3rem` on the hero div. Revert to cream. */
+  html body article > div[style*="padding:8rem 0 3rem"],
+  html body article > div[style*="padding:8rem 0 4rem"] {
+    background: #e6d9bd !important;
+  }
+
+  /* Layout-level dark blocks that ship inline styles from Layout.astro
+     and Footer.astro. Retint them here so ink text remains readable. */
+  html nav[aria-label="Breadcrumb"] {
+    background: #ede2c5 !important;
+    border-bottom: 1px solid rgba(107,70,16,0.14) !important;
+  }
+  html nav[aria-label="Breadcrumb"] a {
+    color: #6b4610 !important;
+  }
+  html nav[aria-label="Breadcrumb"] span[aria-current="page"] {
+    color: rgba(25,24,23,0.55) !important;
+  }
+  html nav[aria-label="Breadcrumb"] span[aria-hidden="true"] {
+    color: rgba(25,24,23,0.35) !important;
+  }
+
+  html #article-back-to-top {
+    background: #f2ead4 !important;
+    color: #6b4610 !important;
+    border: 1px solid rgba(107,70,16,0.35) !important;
+    box-shadow: 0 4px 14px rgba(107,70,16,0.14) !important;
+  }
+
+  /* Footer.astro CTA strip · dark → cream with ink and gold-brand copy */
+  html footer > div:first-of-type {
+    background: #f2ead4 !important;
+  }
+  html footer > div:first-of-type span[style*="color:#c4912a"] { color: #6b4610 !important; }
+  html footer > div:first-of-type p[style*="color:#f0ece4"],
+  html footer > div:first-of-type h2[style*="color:#f0ece4"] {
+    color: #191817 !important;
+  }
+  html footer a[style*="background:#c4912a"] {
+    background: #b98229 !important;
+    color: #ffffff !important;
+  }
+
+  /* Article TOC card · cream bg, gold-deep header */
+  html #article-toc {
+    background: rgba(242,234,212,0.94) !important;
+    border: 1px solid rgba(107,70,16,0.15) !important;
+  }
+  html #article-toc p[style*="color:var(--color-gold)"] {
+    color: #6b4610 !important;
+  }
+
+  /* Rounded corners on tool + article + "Keep Reading" cards */
+  html .tool-card,
+  html .insight-card,
+  html .checklist-item,
+  html a[style*="background:var(--color-surface-0)"][style*="border:1px solid rgba(28,25,23"] {
+    border-radius: 12px !important;
+    overflow: hidden;
+  }
+  html .tool-card > div:first-of-type[style*="height:3px"] {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  /* Header phone button · high-contrast: dark ink text on cream, not gold */
+  html #site-header #nav-phone {
+    color: #191817 !important;
+    background: #ffffff !important;
+    border: 1.5px solid #b98229 !important;
+    border-radius: 999px !important;
+  }
+  html #site-header #nav-phone svg { color: #b98229 !important; }
+  html #site-header #nav-phone:hover {
+    background: #b98229 !important;
+    color: #ffffff !important;
+  }
+  html #site-header #nav-phone:hover svg { color: #ffffff !important; }
+
+  /* ══════════════════════════════════════════════════════════════════
+     BUTTON STANDARDISATION
+     Same-colour buttons use the same text colour everywhere.
+
+     Primary (solid gold):    #b98229 bg, #ffffff text, gold svg
+     Secondary (outline):     transparent bg, #6b4610 text, #b98229 border
+     ══════════════════════════════════════════════════════════════════ */
+  /* Primary CTA · any gold-brand solid-fill button/link/class */
+  html a[style*="background:#c4912a"],
+  html a[style*="background:#b98229"],
+  html button[style*="background:#c4912a"],
+  html button[style*="background:#b98229"],
+  html a.btn-gold,
+  html button.btn-gold,
+  html .btn-gold {
+    background: #b98229 !important;
+    color: #ffffff !important;
+    border: 1px solid #b98229 !important;
+    border-radius: 10px !important;
+  }
+  html .btn-gold svg { color: #ffffff !important; stroke: #ffffff !important; }
+  html a[style*="background:#c4912a"]:hover,
+  html a[style*="background:#b98229"]:hover,
+  html button[style*="background:#c4912a"]:hover,
+  html button[style*="background:#b98229"]:hover {
+    background: #a5721c !important;
+    border-color: #a5721c !important;
+    color: #ffffff !important;
+  }
+
+  /* Secondary outline · gold-brand border, gold-deep text on cream */
+  html a[style*="border:1px solid rgba(196,145,42"],
+  html a[style*="border: 1px solid rgba(196,145,42"],
+  html a[style*="border:1px solid rgba(245,208,122"],
+  html a[style*="border:1px solid rgba(185,130,41"],
+  html a[style*="border:1.5px solid rgba(196,145,42"],
+  html a[style*="border:1.5px solid rgba(245,208,122"],
+  html a[style*="border:1.5px solid rgba(185,130,41"] {
+    color: #6b4610 !important;
+    border-color: rgba(185,130,41,0.5) !important;
+    background: transparent !important;
+    border-radius: 10px !important;
+  }
+  html a[style*="border:1px solid rgba(196,145,42"]:hover,
+  html a[style*="border:1px solid rgba(245,208,122"]:hover,
+  html a[style*="border:1px solid rgba(185,130,41"]:hover,
+  html a[style*="border:1.5px solid rgba(196,145,42"]:hover,
+  html a[style*="border:1.5px solid rgba(245,208,122"]:hover,
+  html a[style*="border:1.5px solid rgba(185,130,41"]:hover {
+    color: #b98229 !important;
+    border-color: #b98229 !important;
+    background: #faf3dc !important;
+  }
+
+  /* Print: force white paper background even after our GieMann retint */
+  @media print {
+    html, body { background: #ffffff !important; }
+    html #site-header,
+    html .mobile-call-bar { display: none !important; }
+  }
+</style>

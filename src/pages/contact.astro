@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import GieMannTheme from '../components/GieMannTheme.astro';
 
 // Page-level RealEstateAgent schema removed (LSEO-004): the global @graph
 // in Layout.astro already declares the canonical RealEstateAgent +
@@ -8,100 +9,83 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2F93d1-H3480857-194603639__1774840446-82684-03-2226DuttonstreetHawthorne20.jpg&w=1200&q=70" title="Contact | Daniel Gierach Property" description="Contact Daniel Gierach, Brisbane inner-east real estate agent at Ray White Bulimba. Call 0412 523 821 or send a message to discuss your property.">
 
+<GieMannTheme />
+
 <!-- ════════════════════════════════════════════
      FULL-VIEWPORT SPLIT LAYOUT
      Left: dark hero  |  Right: form
 ════════════════════════════════════════════ -->
 <section style="display:grid;grid-template-columns:1fr 1fr;min-height:100dvh;" class="contact-split">
 
-  <!-- ── LEFT: dark hero panel ── -->
-  <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;">
+  <!-- ── LEFT: cream hero panel ── -->
+  <div class="relative flex flex-col justify-center overflow-hidden" style="padding:8rem 4rem 4rem;background:#f2ead4;">
 
-    <!-- Background image (served via Vercel optimizer; raw Ray White CDN
-         hotlinks now return 403, so we route through /_vercel/image which
-         the optimizer fetches server-side and re-serves as AVIF/WebP). -->
-    <div class="absolute inset-0 z-0">
-      <img
-        src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70"
-        srcset="
-          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=640&q=70 640w,
-          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70 1080w,
-          /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70 1920w
-        "
-        sizes="(max-width: 768px) 100vw, 50vw"
-        alt="64 Valaria Avenue, Seven Hills, listed by Daniel Gierach"
-        class="w-full h-full object-cover"
-        style="filter:grayscale(8%) brightness(0.45);"
-        fetchpriority="high"
-      />
-      <!-- Left-heavy gradient so text always sits on dark -->
-      <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(10,8,6,0.82) 0%,rgba(10,8,6,0.6) 55%,rgba(10,8,6,0.25) 100%);"></div>
-    </div>
+    <div aria-hidden="true" class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 80% 70% at 40% 50%,rgba(185,130,41,0.12) 0%,transparent 70%);pointer-events:none;"></div>
 
     <!-- Content -->
     <div class="relative z-10">
-      <span class="eyebrow mb-5 reveal" style="display:block;color:#f5d07a;font-size:0.7rem;letter-spacing:0.22em;">Get In Touch</span>
+      <span class="eyebrow mb-5 reveal" style="display:block;color:#6b4610;font-size:0.7rem;letter-spacing:0.22em;">Get In Touch</span>
 
       <h1 class="reveal" data-delay="60"
-        style="font-family:var(--font-serif);font-size:clamp(2.6rem,4.5vw,4.2rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;">
+        style="font-family:var(--font-serif);font-style:italic;font-size:clamp(2.6rem,4.5vw,4.2rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#191817;margin-bottom:1.5rem;">
         Your Next Move Starts Here.
       </h1>
 
       <p class="contact-hero-desc reveal" data-delay="120"
-        style="font-size:1rem;color:rgba(240,236,228,0.82);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
+        style="font-size:1rem;color:rgba(25,24,23,0.65);line-height:1.9;max-width:44ch;margin-bottom:2.75rem;">
         Whether you're selling, buying, or exploring off-market, a direct, no-pressure conversation is the best place to start.
       </p>
 
       <!-- Contact details -->
       <div class="contact-hero-contacts reveal" data-delay="180" style="display:flex;flex-direction:column;gap:1.5rem;">
         <div>
-          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Phone</p>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Phone</p>
           <a href="tel:+61412523821"
-            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='#ffffff'">0412 523 821</a>
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#191817;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='#191817'">0412 523 821</a>
         </div>
 
-        <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
+        <div style="width:100%;height:1px;background:rgba(25,24,23,0.1);"></div>
 
         <div>
-          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Email</p>
+          <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Email</p>
           <a href="mailto:daniel.gierach@raywhite.com"
-            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='#ffffff'">daniel.gierach@raywhite.com</a>
+            style="font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:#191817;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='#191817'">daniel.gierach@raywhite.com</a>
         </div>
 
-        <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
+        <div style="width:100%;height:1px;background:rgba(25,24,23,0.1);"></div>
 
         <div style="display:flex;gap:0.85rem;align-items:center;">
           <a href="https://www.instagram.com/dgierach/" target="_blank" rel="noopener" aria-label="Instagram"
-            style="color:rgba(240,236,228,0.65);transition:color 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+            style="color:rgba(25,24,23,0.55);transition:color 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='rgba(25,24,23,0.55)'">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/>
               <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
             </svg>
           </a>
           <a href="https://www.linkedin.com/in/danielgierach" target="_blank" rel="noopener" aria-label="LinkedIn"
-            style="color:rgba(240,236,228,0.65);transition:color 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+            style="color:rgba(25,24,23,0.55);transition:color 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='rgba(25,24,23,0.55)'">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
             </svg>
           </a>
           <a href="https://www.realestate.com.au/agent/daniel-gierach-3819232" target="_blank" rel="noopener" aria-label="realestate.com.au"
-            style="opacity:0.65;transition:opacity 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
+            style="opacity:0.55;transition:opacity 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
             onmouseover="this.style.opacity='1'"
-            onmouseout="this.style.opacity='0.45'">
+            onmouseout="this.style.opacity='0.55'">
             <img src="https://www.realestate.com.au/favicon.ico" width="24" height="24" alt="realestate.com.au" style="display:block;" />
           </a>
           <a href="https://share.google/WipmgyJnjC5nkhGwx" target="_blank" rel="noopener" aria-label="Google Business Profile"
-            style="color:rgba(240,236,228,0.65);transition:color 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
-            onmouseover="this.style.color='#f5d07a'"
-            onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+            style="color:rgba(25,24,23,0.55);transition:color 0.2s;padding:0.75rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;"
+            onmouseover="this.style.color='#b98229'"
+            onmouseout="this.style.color='rgba(25,24,23,0.55)'">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -119,8 +103,8 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="reveal" data-delay="80" style="max-width:480px;width:100%;">
 
-      <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Send a Message</p>
-      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:1.75rem;">
+      <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Send a Message</p>
+      <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:1.75rem;">
         Daniel will respond promptly.
       </h2>
 
@@ -150,7 +134,7 @@ import Layout from '../layouts/Layout.astro';
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
           <div>
             <label for="contact-first-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-              First Name <span style="color:#c4912a;">*</span>
+              First Name <span style="color:#b98229;">*</span>
             </label>
             <input type="text" id="contact-first-name" name="first_name" required placeholder="First Name"
               class="obs-input form-field" autocomplete="given-name"
@@ -158,7 +142,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div>
             <label for="contact-last-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-              Last Name <span style="color:#c4912a;">*</span>
+              Last Name <span style="color:#b98229;">*</span>
             </label>
             <input type="text" id="contact-last-name" name="last_name" required placeholder="Last Name"
               class="obs-input form-field" autocomplete="family-name"
@@ -169,7 +153,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Phone -->
         <div>
           <label for="contact-phone" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-            Phone <span style="color:#c4912a;">*</span>
+            Phone <span style="color:#b98229;">*</span>
           </label>
           <input type="tel" id="contact-phone" name="phone" required placeholder="04xx xxx xxx"
             class="obs-input form-field" autocomplete="tel"
@@ -179,7 +163,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Email -->
         <div>
           <label for="contact-email" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-            Email <span style="color:#c4912a;">*</span>
+            Email <span style="color:#b98229;">*</span>
           </label>
           <input type="email" id="contact-email" name="email" required placeholder="your@email.com"
             class="obs-input form-field" autocomplete="email"
@@ -247,8 +231,8 @@ import Layout from '../layouts/Layout.astro';
     <!-- Office details -->
     <div style="padding:3.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem;border-left:1px solid rgba(28,25,23,0.08);">
       <div>
-        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:1.25rem;">Find Us</p>
-        <p style="font-family:var(--font-serif);font-size:1.1rem;color:#1c1917;line-height:1.5;margin-bottom:0.5rem;">Ray White Bulimba</p>
+        <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:1.25rem;">Find Us</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;color:#191817;line-height:1.5;margin-bottom:0.5rem;">Ray White Bulimba</p>
         <p style="font-size:0.88rem;color:#44403c;line-height:1.8;">2A, 57-59 Oxford Street<br/>Bulimba QLD 4171</p>
       </div>
 

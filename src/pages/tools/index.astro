@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import GieMannTheme from '../../components/GieMannTheme.astro';
 
 const tools = [
   { href: '/tools/valuation',          label: 'Instant Valuation',             desc: 'Get an indicative value for your property in minutes.',                                                      phase: 'Seller',   cta: 'Estimate My Home' },
@@ -92,32 +93,33 @@ const toolsSchema = {
 
 <Layout title="Property Tools & Calculators | Daniel Gierach Property" description="Free property tools and calculators for Brisbane buyers and sellers. Mortgage, stamp duty, selling costs, borrowing power and more. Inner-east Brisbane." schema={toolsSchema}>
 
+<GieMannTheme />
+
 <!-- Hero -->
-<section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
-  <div class="absolute inset-0 z-0">
-    <img
-      src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2F1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg&w=1200&q=70"
-      alt="Brisbane property"
-      class="w-full h-full object-cover"
-      style="filter:grayscale(8%) brightness(0.4);"
-    />
-    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.3) 100%);"></div>
-  </div>
-  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-32 pb-16">
-    <span class="eyebrow mb-4 reveal" style="display:block;color:#f5d07a;">Resources</span>
+<section class="relative flex items-center overflow-hidden" style="background:#e6d9bd;">
+  <div aria-hidden="true" class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(185,130,41,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12" style="padding-top:6rem;padding-bottom:2rem;">
+    <span class="eyebrow mb-4 reveal" style="display:block;color:#6b4610;">Resources</span>
     <h1 class="reveal" data-delay="80"
-      style="font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
+      style="font-family:var(--font-serif);font-style:italic;font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#191817;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
       Property tools &amp; calculators.
     </h1>
     <p class="reveal" data-delay="160"
-      style="font-size:0.95rem;color:rgba(240,236,228,0.6);max-width:48ch;line-height:1.8;">
+      style="font-size:0.95rem;color:rgba(25,24,23,0.65);max-width:48ch;line-height:1.8;">
       Free tools to help you buy, sell, or invest smarter across Brisbane's inner east.
     </p>
   </div>
 </section>
 
-<!-- Sticky Filter Bar -->
-<div style="position:sticky;top:0;z-index:40;background:rgba(247,245,240,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(28,25,23,0.08);box-shadow:0 2px 16px rgba(28,25,23,0.05);">
+<!-- Ornament divider: hero to filter band -->
+<div class="tools-ornament" aria-hidden="true">
+  <span class="tools-ornament-line"></span>
+  <span class="tools-ornament-mark">&#10022;</span>
+  <span class="tools-ornament-line"></span>
+</div>
+
+<!-- Sticky Filter Bar · band bg so it reads as its own zone -->
+<div style="position:sticky;top:0;z-index:40;background:rgba(242,234,212,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(107,70,16,0.12);border-bottom:1px solid rgba(107,70,16,0.12);box-shadow:0 2px 16px rgba(28,25,23,0.05);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12" style="padding-top:0.9rem;padding-bottom:0.9rem;">
     <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;justify-content:space-between;">
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
@@ -125,10 +127,10 @@ const toolsSchema = {
         <button
           class="fpill"
           data-filter={phase}
-          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;border-radius:8px;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${phase==='All'?'#1c1917':'transparent'};color:${phase==='All'?'#f0ece4':'#78716c'};border-color:${phase==='All'?'#1c1917':'rgba(28,25,23,0.22)'};`}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;border-radius:8px;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${phase==='All'?'#b98229':'transparent'};color:${phase==='All'?'#ffffff':'rgba(25,24,23,0.55)'};border-color:${phase==='All'?'#b98229':'rgba(28,25,23,0.22)'};`}
         >
           {phase === 'All' ? 'Show All' : phase}
-          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;border-radius:4px;background:${phase==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${phase==='All'?'#f0ece4':'#78716c'};`}>
+          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;border-radius:4px;background:${phase==='All'?'rgba(255,255,255,0.25)':'rgba(28,25,23,0.08)'};color:${phase==='All'?'#ffffff':'rgba(25,24,23,0.55)'};`}>
             {counts[phase] || 0}
           </span>
         </button>
@@ -136,14 +138,14 @@ const toolsSchema = {
       </div>
       <!-- Search -->
       <div style="position:relative;flex-shrink:0;">
-        <svg style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <svg style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(25,24,23,0.44)" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input
           id="tool-search"
           type="search"
           placeholder="Search tools..."
           aria-label="Search tools"
-          style="padding:0.55rem 1rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#1c1917;background:#fff;border:1.5px solid rgba(28,25,23,0.22);border-radius:8px;outline:none;width:200px;transition:border-color 0.15s,box-shadow 0.15s;"
-          onfocus="this.style.borderColor='#c4912a';this.style.boxShadow='0 0 0 3px rgba(196,145,42,0.12)'"
+          style="padding:0.55rem 1rem 0.55rem 2.25rem;font-family:var(--font-sans);font-size:0.7rem;color:#191817;background:#fff;border:1.5px solid rgba(28,25,23,0.22);border-radius:8px;outline:none;width:200px;transition:border-color 0.15s,box-shadow 0.15s;"
+          onfocus="this.style.borderColor='#b98229';this.style.boxShadow='0 0 0 3px rgba(185,130,41,0.12)'"
           onblur="this.style.borderColor='rgba(28,25,23,0.22)';this.style.boxShadow='none'"
         />
       </div>
@@ -155,6 +157,11 @@ const toolsSchema = {
 <section style="background:var(--color-base);padding:3.5rem 0 7rem;">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
 
+    <div class="reveal" style="margin-bottom:2.5rem;">
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;margin-bottom:0.5rem;">Tools + Calculators</span>
+      <h2 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;color:#191817;letter-spacing:-0.01em;">Free property tools.</h2>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {tools.map((tool, i) => (
         <a href={tool.href}
@@ -163,9 +170,9 @@ const toolsSchema = {
           data-label={tool.label.toLowerCase()}
           data-desc={tool.desc.toLowerCase()}
           data-delay={i * 40}
-          style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem 2rem 1.75rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s cubic-bezier(0.4,0,0.2,1),border-color 0.25s cubic-bezier(0.4,0,0.2,1),transform 0.3s cubic-bezier(0.34,1,0.64,1),box-shadow 0.3s cubic-bezier(0.34,1,0.64,1);position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
-          onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(28,25,23,0.09)'"
-          onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
+          style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem 2rem 1.75rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s cubic-bezier(0.4,0,0.2,1),border-color 0.25s cubic-bezier(0.4,0,0.2,1),transform 0.3s cubic-bezier(0.34,1,0.64,1),box-shadow 0.3s cubic-bezier(0.34,1,0.64,1);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.08);border-radius:14px;"
+          onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
+          onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.08)'"
         >
           <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${phaseColors[tool.phase]};`}></div>
           <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.25rem;">
@@ -178,21 +185,21 @@ const toolsSchema = {
             </svg>
           </div>
           <div>
-            <h2 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:#1c1917;margin-bottom:0.5rem;line-height:1.2;">
+            <h2 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:#191817;margin-bottom:0.5rem;line-height:1.2;">
               {tool.label}
             </h2>
-            <p style="font-size:0.8rem;color:#78716c;line-height:1.75;">
+            <p style="font-size:0.8rem;color:rgba(25,24,23,0.44);line-height:1.75;">
               {tool.desc}
             </p>
           </div>
-          <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4912a;margin-top:auto;">
+          <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b98229;margin-top:auto;">
             {tool.cta} →
           </span>
         </a>
       ))}
     </div>
 
-    <p id="no-tools" style="display:none;text-align:center;padding:4rem 0;font-size:0.9rem;color:#78716c;">No tools in this category.</p>
+    <p id="no-tools" style="display:none;text-align:center;padding:4rem 0;font-size:0.9rem;color:rgba(25,24,23,0.44);">No tools in this category.</p>
 
   </div>
 </section>
@@ -201,8 +208,8 @@ const toolsSchema = {
 <section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div class="reveal" style="padding:2.5rem;background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
-      <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#1c1917;">What is your property worth?</p>
-      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
+      <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#191817;">What is your property worth?</p>
+      <p style="font-size:0.85rem;color:rgba(25,24,23,0.44);line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
       <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold">
         Get My Free Property Report
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -213,8 +220,35 @@ const toolsSchema = {
 
 </Layout>
 
+<style>
+  /* Ornament divider */
+  .tools-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    background: #e6d9bd;
+    position: relative;
+    z-index: 2;
+  }
+  .tools-ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(107,70,16,0.55), transparent);
+  }
+  .tools-ornament-mark {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: #b98229;
+    line-height: 1;
+  }
+</style>
+
 <script>
-  const activeBg: Record<string, string> = { All:'#1c1917', Seller:'#b89a2a', Buyer:'#3a8fa8', Investor:'#4a9e4a', Market:'#888' };
+  const activeBg: Record<string, string> = { All:'#b98229', Seller:'#b89a2a', Buyer:'#3a8fa8', Investor:'#4a9e4a', Market:'#888' };
   const pills       = document.querySelectorAll<HTMLButtonElement>('.fpill');
   const cards       = document.querySelectorAll<HTMLElement>('.tool-card');
   const noEl        = document.getElementById('no-tools')!;
@@ -227,14 +261,14 @@ const toolsSchema = {
     pills.forEach(p => {
       const f = p.dataset.filter!;
       const isActive = f === active;
-      const bg = activeBg[f] || '#1c1917';
+      const bg = activeBg[f] || '#b98229';
       p.style.background  = isActive ? bg    : 'transparent';
-      p.style.color       = isActive ? '#fff' : '#78716c';
+      p.style.color       = isActive ? '#fff' : 'rgba(25,24,23,0.55)';
       p.style.borderColor = isActive ? bg    : 'rgba(28,25,23,0.22)';
       const badge = p.querySelector('span') as HTMLSpanElement;
       if (badge) {
         badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.08)';
-        badge.style.color      = isActive ? '#fff' : '#78716c';
+        badge.style.color      = isActive ? '#fff' : 'rgba(25,24,23,0.55)';
       }
     });
     applyVisibility();

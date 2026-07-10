@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import GieMannTheme from '../../components/GieMannTheme.astro';
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -34,20 +35,23 @@ const faqSchema = {
 ---
 <Layout title="Seller Disclosure Obligations When Selling a House in Queensland | Daniel Gierach Property" description="What Queensland sellers must legally disclose: the Mandatory Seller Disclosure Statement, pool safety certificates, and smoke alarm compliance." schema={faqSchema}>
 
+<GieMannTheme />
+
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
   <!-- Hero -->
-  <div style="background:#0a0806;padding:8rem 0 3rem;">
-    <div class="max-w-[780px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+  <div style="background:#e6d9bd;padding:8rem 0 3rem;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(185,130,41,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+    <div class="max-w-[780px] mx-auto px-8" style="position:relative;z-index:1;">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(25,24,23,0.44);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#b98229'" onmouseout="this.style.color='rgba(25,24,23,0.44)'">
         &larr; All Articles
       </a>
-      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Sellers &middot; Legal &middot; 7 min read</span>
-      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;margin-bottom:1rem;">Sellers &middot; Legal &middot; 7 min read</span>
+      <h1 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#191817;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
         Seller Disclosure Obligations When Selling a House in Queensland
       </h1>
-      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:54ch;">
+      <p style="font-size:1rem;color:rgba(25,24,23,0.65);line-height:1.8;max-width:54ch;">
         Queensland has specific legal requirements for vendors before a property can be sold. Understanding what you must disclose, what certificates you need, and who is responsible for what will save you time and stress during your campaign.
       </p>
     </div>
@@ -117,8 +121,8 @@ const faqSchema = {
 
       <p>None of these are difficult to manage. The key is doing them early, before your listing is live, rather than discovering an issue once a buyer is in contract and using it as use. A well-prepared vendor who has addressed compliance items upfront runs a smoother campaign and is in a stronger negotiating position throughout.</p>
 
-      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #f5d07a;">
-        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#f5d07a;">Preparing to sell?</strong> Daniel will walk you through what you need to have in place before your campaign launches, compliance items, preparation priorities, and an honest appraisal of your property's likely result. <a href="/contact" style="color:#f5d07a;font-weight:600;">Get in touch for a no-obligation conversation.</a></p>
+      <div style="padding:1.5rem;background:rgba(245,208,122,0.06);border-left:3px solid #b98229;">
+        <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.8;"><strong style="color:#b98229;">Preparing to sell?</strong> Daniel will walk you through what you need to have in place before your campaign launches, compliance items, preparation priorities, and an honest appraisal of your property's likely result. <a href="/contact" style="color:#b98229;font-weight:600;">Get in touch for a no-obligation conversation.</a></p>
       </div>
 
     </div>
@@ -127,7 +131,7 @@ const faqSchema = {
 <div style="max-width:780px;margin:3rem auto 0;padding:0 2rem;">
   <div style="border-top:1px solid rgba(10,8,6,0.1);padding-top:1.5rem;text-align:center;">
     <p style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-secondary);margin:0;">
-      Part of the <a href="/insights/contracts-and-settlement/" style="color:#c4912a;text-decoration:none;">Contracts and Settlement guide series</a>
+      Part of the <a href="/insights/contracts-and-settlement/" style="color:#b98229;text-decoration:none;">Contracts and Settlement guide series</a>
     </p>
   </div>
 </div>
@@ -135,7 +139,7 @@ const faqSchema = {
 
 <div style="margin-top:2rem;padding:1rem 1.25rem;background:rgba(245,208,122,0.06);border-left:3px solid rgba(245,208,122,0.35);">
   <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.75;margin:0;">
-    Use the free tool: <a href="/tools/presale-checklist" style="color:#f5d07a;font-weight:600;">Pre-Sale Checklist &rarr;</a>
+    Use the free tool: <a href="/tools/presale-checklist" style="color:#b98229;font-weight:600;">Pre-Sale Checklist &rarr;</a>
   </p>
 </div>
 </Layout>

@@ -1,11 +1,14 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
+import GieMannTheme from '../../components/GieMannTheme.astro';
 
 const sections = [
   {
     id: 'kerb',
+    numeral: '1',
     label: 'Kerb Appeal',
-    color: '#c4912a',
+    sub: 'What buyers see before they open the door.',
+    color: '#b98229',
     items: [
       { id: 'k1', priority: 'High', task: 'Mow, edge and fertilise lawns. Remove weeds from garden beds and replace dead plants.' },
       { id: 'k2', priority: 'High', task: 'Pressure wash driveway, pathways, and exterior walls. First impressions begin at the kerb.' },
@@ -17,7 +20,9 @@ const sections = [
   },
   {
     id: 'repairs',
+    numeral: '2',
     label: 'Repairs & Maintenance',
+    sub: 'The building-report items that turn buyers cautious.',
     color: '#8b6f47',
     items: [
       { id: 'r1', priority: 'High', task: 'Fix all dripping taps, running toilets, and leaking showerheads. Buyers notice water damage and assume worse.' },
@@ -32,8 +37,10 @@ const sections = [
   },
   {
     id: 'clean',
+    numeral: '3',
     label: 'Cleaning & Declutter',
-    color: '#3a8fa8',
+    sub: 'Less is more. Buyers need to see the space, not you.',
+    color: '#6b7a5a',
     items: [
       { id: 'c1', priority: 'High', task: 'Hire a professional cleaner for a full deep clean: oven, bathrooms, skirting boards, ceiling fans, and inside cupboards.' },
       { id: 'c2', priority: 'High', task: 'Remove at least 30% of furniture and personal items. Less furniture makes rooms feel larger. Buyers need to see the space, not your belongings.' },
@@ -46,8 +53,10 @@ const sections = [
   },
   {
     id: 'style',
+    numeral: '4',
     label: 'Staging & Styling',
-    color: '#4a9e4a',
+    sub: 'The 5 to 10% edge that professional styling delivers.',
+    color: '#a06b3a',
     items: [
       { id: 's1', priority: 'High', task: 'Engage a professional property stylist for key rooms (living, master bedroom, dining). Styled homes consistently achieve 5-10% above comparable unstyled properties.' },
       { id: 's2', priority: 'High', task: 'Replace tired or mismatched cushions, throws, and soft furnishings in the living areas with neutral, contemporary pieces.' },
@@ -59,8 +68,10 @@ const sections = [
   },
   {
     id: 'legal',
+    numeral: '5',
     label: 'Documentation & Compliance',
-    color: '#8a7acd',
+    sub: 'What your solicitor and buyer will ask for.',
+    color: '#6b4610',
     items: [
       { id: 'l1', priority: 'High', task: 'Engage a solicitor or conveyancer to prepare the contract of sale and vendor disclosure documents before launch.' },
       { id: 'l2', priority: 'High', task: 'Obtain a building and pest inspection report. Identifying issues before launch lets you address them on your terms, not the buyer\'s.' },
@@ -74,12 +85,218 @@ const sections = [
 ];
 ---
 
+<!-- GieMann palette retint (surfaces, gold, ink, header, sticky bar) -->
+<GieMannTheme />
+
+<style is:global>
+  /* ════════════════════════════════════════════
+     ON-PAGE TOC · article-style right rail
+  ════════════════════════════════════════════ */
+  #page-toc {
+    position: fixed;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    width: 260px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1.25rem 1.35rem;
+    background: rgba(242,234,212,0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(107,70,16,0.15);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 2px rgba(107,70,16,0.05),
+      0 12px 30px rgba(107,70,16,0.10);
+    z-index: 40;
+  }
+  .page-toc-title {
+    font-family: var(--font-serif);
+    font-variant-caps: all-small-caps;
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    color: #6b4610;
+    margin: 0 0 1rem;
+    font-variation-settings: "opsz" 14;
+  }
+  #page-toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  #page-toc-list a {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: center;
+    column-gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.18s ease;
+  }
+  #page-toc-list a:hover { background: rgba(185,130,41,0.08); }
+  #page-toc-list a.is-active { background: rgba(185,130,41,0.14); }
+  .toc-dot {
+    width: 10px; height: 10px;
+    border: 1.5px solid rgba(107,70,16,0.4);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: transparent;
+    transition: background 0.18s, border-color 0.18s;
+  }
+  .toc-dot.is-partial {
+    background: radial-gradient(circle at 30% 50%, #b98229 45%, transparent 45%);
+    border-color: #b98229;
+  }
+  .toc-dot.is-done {
+    background: #b98229;
+    border-color: #b98229;
+  }
+  .toc-numeral {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6b4610;
+    min-width: 18px;
+    text-align: center;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-variation-settings: "opsz" 20;
+  }
+  .toc-label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(25,24,23,0.72);
+    line-height: 1.3;
+  }
+  #page-toc-list a.is-active .toc-label {
+    color: #191817;
+    font-weight: 700;
+  }
+  .toc-count {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: rgba(25,24,23,0.42);
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  #page-back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 46px; height: 46px;
+    border: 1px solid rgba(107,70,16,0.35);
+    border-radius: 50%;
+    background: #f2ead4;
+    color: #6b4610;
+    cursor: pointer;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(107,70,16,0.14);
+    transition: background 0.18s, transform 0.18s;
+  }
+  #page-back-to-top:hover { background: #ede2c5; transform: translateY(-2px); }
+  @media (max-width: 1279px) {
+    #page-toc { display: none !important; }
+    /* Move back-to-top above the sticky call bar on mobile */
+    #page-back-to-top { bottom: 6rem; }
+  }
+  /* Reserve a right gutter for the fixed TOC so it never overlaps content */
+  @media (min-width: 1280px) {
+    html .tool-content > .max-w-\[1400px\],
+    html .tool-header > .max-w-\[1400px\] {
+      padding-right: 320px !important;
+    }
+  }
+  @media (min-width: 1440px) {
+    /* Slightly wider gutter on very large screens keeps the rail off content */
+    html .tool-content > .max-w-\[1400px\],
+    html .tool-header > .max-w-\[1400px\] {
+      padding-right: 340px !important;
+    }
+  }
+
+  /* Print: force white paper background even after our GieMann retint */
+  @media print {
+    html, body { background: #ffffff !important; }
+    html .tool-header {
+      background: #ffffff !important;
+      border-bottom: 1px solid #000 !important;
+    }
+    html .tool-title { color: #000 !important; }
+    html .tool-desc { display: none !important; }
+    html .tool-header .eyebrow { color: #000 !important; font-size: 0.55rem !important; }
+    html #site-header { display: none !important; }
+    html .tool-header .max-w-\[1400px\]::after { display: none !important; }
+  }
+
+  /* Tool header · flat warm cream, subtle bottom hairline. */
+  html .tool-header {
+    position: relative;
+    background: #e6d9bd !important;
+    border-bottom: 1px solid rgba(107,70,16,0.14) !important;
+  }
+  html .tool-breadcrumb a,
+  html .tool-breadcrumb span:not([style*="color:var(--color-gold)"]) {
+    color: rgba(25,24,23,0.55) !important;
+  }
+  html .tool-header .eyebrow {
+    font-family: 'Fraunces', 'Noto Serif', Georgia, serif !important;
+    font-variant-caps: all-small-caps !important;
+    text-transform: none !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.22em !important;
+    color: #6b4610 !important;
+    font-weight: 400 !important;
+    font-variation-settings: "opsz" 14;
+    margin-bottom: 1.25rem !important;
+  }
+  html .tool-title {
+    font-family: 'Fraunces', 'Noto Serif', Georgia, serif !important;
+    font-weight: 300 !important;
+    font-size: clamp(2.4rem, 5.2vw, 4rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.028em !important;
+    color: #191817 !important;
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 1.25rem !important;
+  }
+  html .tool-desc {
+    font-family: 'Fraunces', 'Noto Serif', Georgia, serif !important;
+    font-style: italic;
+    font-size: 1.1rem !important;
+    line-height: 1.55 !important;
+    color: rgba(25,24,23,0.65) !important;
+    font-weight: 400;
+    font-variation-settings: "opsz" 24;
+    max-width: 620px !important;
+  }
+  /* Gold ornament under the title */
+  html .tool-header .max-w-\[1400px\]::after {
+    content: '';
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: 1px;
+    margin: 1.5rem 0 0;
+    background: linear-gradient(90deg, rgba(107,70,16,0.55), transparent);
+  }
+</style>
+
 <ToolLayout
   title="Pre-Sale Preparation Checklist"
   tool="Pre-Sale Checklist"
   phase="Seller Tools"
   description="A complete pre-sale preparation checklist for Brisbane homeowners. Tick tasks off as you go. Progress saves automatically."
-  resourceSlug="complete-home-selling-checklist"
+
   manifest="/manifest-presale-checklist.webmanifest"
   appleTouchIcon="/apple-touch-icon-checklist.png"
   appleWebAppTitle="Checklist"
@@ -88,46 +305,55 @@ const sections = [
 <style>
   /* ── Mobile-first base ─────────────────────────────────────── */
 
-  /* Progress card: compact horizontal band */
+  /* Progress card: flat white with deeper drop shadow for lift */
   #progress-ring-container {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 0.85rem;
-    padding: 0.85rem 1rem;
-    background: var(--color-surface-3);
-    border: 1px solid rgba(28,25,23,0.08);
-    border-radius: 6px;
+    gap: 1rem;
+    padding: 1.15rem 1.35rem;
+    background: #ffffff;
+    border: 1px solid rgba(107,70,16,0.14);
+    border-radius: 16px;
+    box-shadow:
+      0 1px 2px rgba(107,70,16,0.06),
+      0 12px 32px rgba(107,70,16,0.12);
   }
-  #prog-svg { width: 44px; height: 44px; flex-shrink: 0; }
+  #prog-svg { width: 52px; height: 52px; flex-shrink: 0; }
   .prog-text {
     font-family: var(--font-serif);
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: 400;
-    color: var(--color-text-primary);
-    line-height: 1.2;
+    color: #191817;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 32;
   }
+  #done-count, #total-count { font-variant-numeric: tabular-nums lining-nums; }
   #prog-label {
-    font-size: 0.7rem;
-    color: var(--color-text-muted);
-    margin-top: 0.15rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(25,24,23,0.6);
+    margin-top: 0.2rem;
     line-height: 1.3;
+    font-variation-settings: "opsz" 14;
   }
 
   /* Print button: icon-only square on mobile, expands to label on desktop */
   #print-btn {
     width: 40px; height: 40px;
     padding: 0;
-    border: 1px solid rgba(28,25,23,0.18);
-    background: white;
-    color: #78716c;
+    border: 1px solid rgba(107,70,16,0.28);
+    background: #ffffff;
+    color: #6b4610;
     cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: color 0.2s, border-color 0.2s, background 0.2s;
     flex-shrink: 0;
   }
-  #print-btn:hover { color: var(--color-gold); border-color: var(--color-gold); }
+  #print-btn:hover { color: #b98229; border-color: #b98229; background: #faf3dc; }
   #print-btn-label {
     /* Hidden visually on mobile; accessible via aria-label on the button */
     position: absolute; width: 1px; height: 1px;
@@ -135,31 +361,116 @@ const sections = [
     clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
   }
 
-  /* Section header (collapsible) */
+  /* Ornamental section divider between sections */
+  .section-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    max-width: 320px;
+    margin: 2rem auto 1.5rem;
+  }
+  .section-ornament .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(107,70,16,0.4), transparent);
+  }
+  .section-ornament .ornament-mark {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: #b98229;
+    line-height: 1;
+  }
+
+  /* Section header (collapsible) · editorial chapter with accent tint */
   .section-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.7rem 0.85rem; cursor: pointer;
-    border: 1px solid rgba(28,25,23,0.1);
-    transition: background 0.15s;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 1.25rem;
+    align-items: center;
+    padding: 1.35rem 1.4rem;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid rgba(107,70,16,0.14);
+    border-left: 5px solid var(--section-accent, #b98229);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    box-shadow:
+      0 1px 2px rgba(107,70,16,0.05),
+      0 6px 22px rgba(107,70,16,0.07);
+    transition: background 0.15s, box-shadow 0.2s;
     user-select: none;
   }
-  .section-header:hover, .section-header:active { background: rgba(28,25,23,0.02); }
+  /* Faint accent tint bleeding from the coloured left border */
+  .section-header::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 140px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--section-accent, #b98229) 8%, transparent), transparent);
+    pointer-events: none;
+    border-top-left-radius: 10px;
+  }
+  .section-header > * { position: relative; z-index: 1; }
+  .section-header:hover, .section-header:active {
+    background: #faf3dc;
+    box-shadow:
+      0 1px 2px rgba(107,70,16,0.05),
+      0 10px 28px rgba(107,70,16,0.14);
+  }
+  .section-numeral {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 2.4rem;
+    line-height: 0.9;
+    color: var(--section-accent, #b98229);
+    letter-spacing: -0.02em;
+    min-width: 48px;
+    text-align: center;
+    font-variant-numeric: lining-nums;
+    font-variation-settings: "opsz" 96;
+  }
+  @media (min-width: 640px) {
+    .section-numeral { font-size: 2.75rem; min-width: 56px; }
+  }
+  .section-titles { min-width: 0; }
+  .section-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
   .section-label {
     font-family: var(--font-serif);
-    font-size: 0.95rem;
+    font-size: 1.35rem;
     font-weight: 400;
-    color: var(--color-text-primary);
+    color: #191817;
     line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 32;
+  }
+  @media (min-width: 640px) {
+    .section-label { font-size: 1.5rem; }
   }
   .section-count {
     font-family: var(--font-sans);
-    font-size: 0.58rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     color: var(--color-text-muted);
-    margin-left: 0.55rem;
+    font-variant-numeric: tabular-nums lining-nums;
   }
-  .chevron { transition: transform 0.2s; flex-shrink: 0; }
+  .section-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(25,24,23,0.58);
+    line-height: 1.4;
+    margin: 0.25rem 0 0;
+    font-variation-settings: "opsz" 14;
+  }
+  .chevron { transition: transform 0.2s; flex-shrink: 0; align-self: center; }
   .chevron.open { transform: rotate(180deg); }
 
   /* Checklist items: compact, task-first layout */
@@ -171,26 +482,31 @@ const sections = [
     grid-template-columns: auto 1fr;
     column-gap: 0.7rem;
     align-items: start;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid rgba(28,25,23,0.06);
+    padding: 0.7rem 1rem;
+    background: #ffffff;
+    border: 1px solid rgba(107,70,16,0.08);
     border-top: none;
     transition: background 0.15s;
     cursor: pointer;
   }
-  .checklist-item:hover, .checklist-item:active { background: rgba(28,25,23,0.02); }
-  .checklist-item.done { background: rgba(74,158,74,0.04); }
+  .checklist-item:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .checklist-item:hover, .checklist-item:active { background: #faf3dc; }
+  .checklist-item.done { background: rgba(185,130,41,0.06); }
   .checklist-item.done .item-task { text-decoration: line-through; color: var(--color-text-muted); }
 
   .custom-cb {
     width: 18px; height: 18px;
-    border: 1.5px solid rgba(28,25,23,0.3);
+    border: 1.5px solid rgba(107,70,16,0.35);
     flex-shrink: 0; margin-top: 2px;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.15s, border-color 0.15s;
-    border-radius: 3px;
+    border-radius: 4px;
   }
   .checklist-item.done .custom-cb {
-    background: #4a9e4a; border-color: #4a9e4a;
+    background: #b98229; border-color: #b98229;
   }
 
   .item-body { min-width: 0; }
@@ -211,17 +527,19 @@ const sections = [
     line-height: 1.3;
   }
   .item-meta .meta-sep { opacity: 0.45; }
-  .item-pri-High   { color: #a03030; }
-  .item-pri-Medium { color: #8a6010; }
-  .item-pri-Low    { color: #78716c; }
+  .item-pri-High   { color: #7a3030; }
+  .item-pri-Medium { color: #6b4610; }
+  .item-pri-Low    { color: rgba(25,24,23,0.5); }
 
-  /* Daniel CTA: condensed on mobile */
+  /* Daniel CTA: warm gold wash, italic title */
   .daniel-cta {
-    padding: 1rem 1.1rem;
-    background: rgba(196,145,42,0.06);
-    border-left: 3px solid var(--color-gold);
-    margin-top: 0.5rem;
-    border-radius: 0 4px 4px 0;
+    padding: 1.25rem 1.25rem;
+    background: linear-gradient(180deg, rgba(185,130,41,0.14) 0%, rgba(185,130,41,0.04) 100%);
+    border: 1px solid rgba(185,130,41,0.28);
+    border-left: 3px solid #b98229;
+    margin-top: 0.75rem;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 6px 18px rgba(107,70,16,0.05);
   }
   .daniel-cta-title {
     font-family: var(--font-serif);
@@ -290,9 +608,9 @@ const sections = [
   #restore-notice {
     margin-top: 0.5rem;
     padding: 0.55rem 0.85rem;
-    background: rgba(74,158,74,0.08);
-    border: 1px solid rgba(74,158,74,0.18);
-    border-radius: 4px;
+    background: rgba(185,130,41,0.08);
+    border: 1px solid rgba(185,130,41,0.22);
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 0.65rem;
     font-size: 0.7rem;
@@ -308,48 +626,54 @@ const sections = [
     border-radius: 3px;
     transition: color 0.2s, background 0.2s;
   }
-  #restore-notice button:hover { color: #a03030; background: rgba(160,48,48,0.05); }
+  #restore-notice button:hover { color: #7a3030; background: rgba(122,48,48,0.05); }
 
   /* ── Save to phone (PWA install) button + help ───────────────── */
   #pwa-install-bar {
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     padding: 0;
-    border: 1px dashed rgba(196,145,42,0.35);
-    border-radius: 6px;
-    background: rgba(196,145,42,0.04);
+    border: 1px solid rgba(185,130,41,0.35);
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(107,70,16,0.05);
     overflow: hidden;
   }
   #pwa-install-btn {
     width: 100%;
     display: flex; align-items: center; justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    gap: 0.6rem;
+    padding: 0.85rem 1.25rem;
     background: transparent;
     border: none;
     cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-variant-caps: all-small-caps;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: #6b4610;
     transition: background 0.2s;
+    font-variation-settings: "opsz" 14;
   }
-  #pwa-install-btn:hover, #pwa-install-btn:active { background: rgba(196,145,42,0.08); }
+  #pwa-install-btn:hover, #pwa-install-btn:active { background: #faf3dc; color: #b98229; }
   #pwa-install-btn svg { flex-shrink: 0; }
   #pwa-install-help {
-    border-top: 1px dashed rgba(196,145,42,0.25);
-    padding: 0.85rem 1rem;
-    font-size: 0.72rem;
-    line-height: 1.55;
+    border-top: 1px solid rgba(107,70,16,0.12);
+    padding: 1rem 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.6;
     color: var(--color-text-secondary);
-    background: rgba(196,145,42,0.02);
+    background: #faf3dc;
   }
   #pwa-install-help strong {
-    font-family: var(--font-sans);
-    font-size: 0.58rem; font-weight: 800;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-variant-caps: all-small-caps;
+    font-size: 0.9rem; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: none;
+    color: #6b4610;
     display: block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+    font-variation-settings: "opsz" 14;
   }
   #pwa-install-help ol {
     padding-left: 1.1rem;
@@ -369,62 +693,227 @@ const sections = [
   }
 
   @media print {
+    /* A4 portrait, honest margins */
+    @page { size: A4 portrait; margin: 1.4cm 1.2cm; }
+
+    /* Preserve colour: keep gold accents on colour printers instead of
+       flattening everything to black. Modern browsers respect this hint. */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
     /* Force-expand all sections so every task prints */
     .section-items { display: block !important; }
     .chevron { display: none !important; }
+    .section-ornament { display: none !important; }
 
     /* Compact, paper-friendly checklist rows */
-    .checklist-section { page-break-inside: auto; margin-bottom: 0.4rem; }
+    .checklist-section { page-break-inside: auto; margin-bottom: 0.35rem; }
+
+    /* Section header · Fraunces label, big numeral, gold-brand accent band */
     .section-header {
-      padding: 0.45rem 0.65rem !important;
+      padding: 0.55rem 0.85rem !important;
       page-break-after: avoid;
-      border: 1px solid #000 !important;
-      background: white !important;
+      background: #faf3dc !important;
+      border: 1px solid rgba(107,70,16,0.35) !important;
+      border-left: 4px solid #b98229 !important;
+      border-top-left-radius: 6px !important;
+      border-top-right-radius: 6px !important;
+      box-shadow: none !important;
+      grid-template-columns: auto 1fr auto !important;
     }
+    .section-header::before { display: none !important; }
+    .section-numeral {
+      color: #b98229 !important;
+      font-size: 1.6rem !important;
+      font-family: var(--font-serif) !important;
+      font-weight: 400 !important;
+      line-height: 1 !important;
+    }
+    .section-label {
+      color: #191817 !important;
+      font-family: var(--font-serif) !important;
+      font-size: 1.05rem !important;
+      font-weight: 400 !important;
+    }
+    .section-sub { display: none !important; }
+    .section-count {
+      color: #6b4610 !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+    }
+
+    /* Progress card at top */
+    #progress-ring-container {
+      background: #faf3dc !important;
+      border: 1px solid rgba(107,70,16,0.28) !important;
+      border-radius: 8px !important;
+      padding: 0.7rem 1rem !important;
+      gap: 1rem !important;
+      box-shadow: none !important;
+      page-break-after: avoid;
+      margin-bottom: 0.5rem !important;
+    }
+    #prog-svg circle { stroke: #b98229 !important; }
+    .prog-text {
+      color: #191817 !important;
+      font-family: var(--font-serif) !important;
+    }
+    #prog-label {
+      color: rgba(25,24,23,0.65) !important;
+      font-family: var(--font-serif) !important;
+      font-style: italic !important;
+    }
+
+    /* Checklist item rows: warm white on cream page */
     .checklist-item {
-      padding: 0.3rem 0.65rem !important;
-      gap: 0.6rem !important;
+      padding: 0.32rem 0.85rem !important;
+      gap: 0.65rem !important;
       page-break-inside: avoid;
-      border: 1px solid #ccc !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(107,70,16,0.18) !important;
       border-top: none !important;
+      border-radius: 0 !important;
     }
-    .checklist-item.done { background: white !important; }
+    .checklist-item:last-child {
+      border-bottom-left-radius: 6px !important;
+      border-bottom-right-radius: 6px !important;
+    }
+    .checklist-item.done { background: #ffffff !important; }
     .checklist-item.done .item-task {
       text-decoration: line-through;
-      color: #555 !important;
+      color: rgba(25,24,23,0.55) !important;
     }
-    .item-task { font-size: 0.78rem !important; line-height: 1.45 !important; }
+    .item-task {
+      font-size: 0.8rem !important;
+      line-height: 1.45 !important;
+      color: #191817 !important;
+      font-family: var(--font-sans) !important;
+    }
 
-    /* Black-ink-only checkboxes; filled when complete */
+    /* Checkboxes · warm cream fill when ticked, gold ink cross when empty */
     .custom-cb {
       width: 14px !important; height: 14px !important;
-      border: 1.5px solid #000 !important;
-      background: white !important;
+      border: 1.5px solid #6b4610 !important;
+      background: #ffffff !important;
+      border-radius: 3px !important;
     }
     .checklist-item.done .custom-cb {
-      background: #000 !important;
-      border-color: #000 !important;
+      background: #b98229 !important;
+      border-color: #b98229 !important;
     }
     .checklist-item.done .check-icon { display: block !important; }
+    .checklist-item.done .check-icon path,
+    .checklist-item.done .check-icon polyline { stroke: #ffffff !important; }
 
-    /* Priority + cost meta line: black ink for print */
-    .item-meta { font-size: 0.6rem !important; color: #000 !important; }
-    .item-meta .item-pri-High,
-    .item-meta .item-pri-Medium,
-    .item-meta .item-pri-Low { color: #000 !important; font-weight: 800 !important; }
+    /* Priority pills · keep colour on colour printers */
+    .item-meta { font-size: 0.62rem !important; }
+    .item-meta .item-pri-High   { color: #7a3030 !important; font-weight: 800 !important; }
+    .item-meta .item-pri-Medium { color: #6b4610 !important; font-weight: 800 !important; }
+    .item-meta .item-pri-Low    { color: rgba(25,24,23,0.55) !important; font-weight: 800 !important; }
 
-    /* Progress summary stays as a header band on page 1 */
-    #progress-ring-container {
-      padding: 0.6rem 0.9rem !important;
-      border: 1px solid #000 !important;
-      gap: 1rem !important;
-      background: white !important;
-      page-break-after: avoid;
+    /* Kill things that don't belong on paper */
+    .no-print,
+    #page-toc,
+    #page-back-to-top,
+    .daniel-cta,
+    #restore-notice,
+    #pwa-install-bar,
+    #site-header,
+    footer,
+    .mobile-call-bar,
+    .tool-breadcrumb,
+    .tool-content > .max-w-\[1400px\] > .max-w-\[780px\],
+    aside[style*="background:#0a0806"],
+    aside[style*="background: #0a0806"] { display: none !important; }
+
+    /* Print-only contact footer (see .print-contact-footer element in DOM) */
+    .print-contact-footer {
+      display: block !important;
+      margin-top: 1.25rem;
+      padding: 0.9rem 1rem;
+      background: #faf3dc !important;
+      border: 1px solid rgba(107,70,16,0.28) !important;
+      border-radius: 8px !important;
+      page-break-inside: avoid;
     }
-    #progress-ring-container p { color: #000 !important; }
+    .print-contact-title {
+      font-family: var(--font-serif) !important;
+      font-size: 0.95rem !important;
+      font-weight: 400 !important;
+      color: #191817 !important;
+      margin: 0 0 0.55rem !important;
+    }
+    .print-contact-eyebrow {
+      font-family: var(--font-serif) !important;
+      font-variant-caps: all-small-caps !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.22em !important;
+      color: #6b4610 !important;
+      margin: 0 0 0.6rem !important;
+    }
+    .print-contact-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.5rem;
+    }
+    .print-contact-name {
+      font-family: var(--font-serif) !important;
+      font-size: 0.85rem !important;
+      font-weight: 500 !important;
+      color: #191817 !important;
+      margin: 0 0 0.15rem !important;
+    }
+    .print-contact-role {
+      font-family: var(--font-serif) !important;
+      font-style: italic;
+      font-size: 0.7rem !important;
+      color: rgba(25,24,23,0.6) !important;
+      margin: 0 0 0.3rem !important;
+    }
+    .print-contact-line {
+      font-family: var(--font-sans) !important;
+      font-size: 0.72rem !important;
+      color: #191817 !important;
+      margin: 0 !important;
+      line-height: 1.4 !important;
+    }
+    .print-contact-line strong {
+      font-family: var(--font-sans) !important;
+      font-size: 0.6rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      color: #6b4610 !important;
+      text-transform: uppercase;
+      display: inline-block;
+      min-width: 40px;
+    }
   }
+  /* Print-only element hidden on screen */
+  .print-contact-footer { display: none; }
 </style>
 
+
+<!-- ════════════════════════════════════════════
+     ON-PAGE TOC · article-style right rail, mirrors task progress
+════════════════════════════════════════════ -->
+<aside id="page-toc" aria-label="On this page" class="no-print" hidden>
+  <p class="page-toc-title">On this page</p>
+  <ol id="page-toc-list">
+    {sections.map(s => (
+      <li>
+        <a href={`#section-${s.id}`} data-target={`section-${s.id}`} data-section={s.id}>
+          <span class="toc-dot" data-section={s.id} aria-hidden="true"></span>
+          <span class="toc-numeral">{s.numeral}</span>
+          <span class="toc-label">{s.label}</span>
+          <span class="toc-count" data-toc-count={s.id}>0/{s.items.length}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</aside>
+
+<button id="page-back-to-top" type="button" aria-label="Back to top" class="no-print" hidden>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 
 <div style="display:flex;flex-direction:column;gap:1.5rem;">
 
@@ -432,7 +921,7 @@ const sections = [
   <div id="progress-ring-container">
     <svg id="prog-svg" viewBox="0 0 64 64">
       <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(28,25,23,0.1)" stroke-width="5"/>
-      <circle id="prog-circle" cx="32" cy="32" r="26" fill="none" stroke="#c4912a" stroke-width="5"
+      <circle id="prog-circle" cx="32" cy="32" r="26" fill="none" stroke="#b98229" stroke-width="5"
         stroke-dasharray="163.4" stroke-dashoffset="163.4"
         stroke-linecap="round" transform="rotate(-90 32 32)"
         style="transition:stroke-dashoffset 0.4s;"/>
@@ -451,7 +940,7 @@ const sections = [
 
   <!-- Restore notice (shown when in-progress state is loaded) -->
   <div id="restore-notice" class="no-print" hidden>
-    <span><strong style="color:#4a9e4a;">Picked up where you left off.</strong> Your progress saves automatically.</span>
+    <span><strong style="color:#6b4610;">Picked up where you left off.</strong> Your progress saves automatically.</span>
     <button id="restore-clear" type="button">Reset</button>
   </div>
 
@@ -465,15 +954,26 @@ const sections = [
   </div>
 
   <!-- Sections -->
-  {sections.map(section => (
-    <div class="checklist-section" data-section={section.id}>
-      <div class="section-header" data-toggle={section.id}
-        style={`border-left:3px solid ${section.color};`}>
-        <div>
-          <span class="section-label">{section.label}</span>
-          <span class="section-count" data-section={section.id}>0/{section.items.length}</span>
+  {sections.map((section, i) => (
+    <div class="checklist-section" id={`section-${section.id}`} data-section={section.id}>
+      {i > 0 && (
+        <div class="section-ornament" aria-hidden="true">
+          <span class="ornament-line"></span>
+          <span class="ornament-mark">✦</span>
+          <span class="ornament-line"></span>
         </div>
-        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      )}
+      <div class="section-header" data-toggle={section.id}
+        style={`--section-accent:${section.color};`}>
+        <div class="section-numeral" aria-hidden="true">{section.numeral}</div>
+        <div class="section-titles">
+          <div class="section-title-row">
+            <span class="section-label">{section.label}</span>
+            <span class="section-count" data-section={section.id}>0/{section.items.length}</span>
+          </div>
+          <p class="section-sub">{section.sub}</p>
+        </div>
+        <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b4610" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="section-items open" id={`items-${section.id}`}>
         {section.items.map(item => (
@@ -502,6 +1002,26 @@ const sections = [
     <a href="/contact" data-cta="tool_to_contact" class="daniel-cta-link">Book a Pre-Sale Walk Through &rarr;</a>
   </div>
 
+  <!-- Print-only contact footer (last page of printout) -->
+  <aside class="print-contact-footer" aria-hidden="true">
+    <p class="print-contact-eyebrow">Questions about anything on this list?</p>
+    <p class="print-contact-title">Talk to Daniel or Conrad at Ray White Collective.</p>
+    <div class="print-contact-grid">
+      <div>
+        <p class="print-contact-name">Daniel Gierach</p>
+        <p class="print-contact-role">Lead Agent · Ray White Collective</p>
+        <p class="print-contact-line"><strong>Phone</strong> 0412 523 821</p>
+        <p class="print-contact-line"><strong>Email</strong> daniel.gierach@raywhite.com</p>
+      </div>
+      <div>
+        <p class="print-contact-name">Conrad Leisemann</p>
+        <p class="print-contact-role">Lead Agent · Ray White Collective</p>
+        <p class="print-contact-line"><strong>Phone</strong> 0403 978 813</p>
+        <p class="print-contact-line"><strong>Email</strong> conrad.leisemann@raywhite.com</p>
+      </div>
+    </div>
+  </aside>
+
 </div>
 
 <script>
@@ -525,7 +1045,7 @@ const sections = [
     const idx = Math.min(Math.floor(pct * 5), 5);
     progLabel.textContent = labels[idx];
 
-    // Update section counts
+    // Update section counts + TOC dot state
     document.querySelectorAll<HTMLElement>('[data-section]').forEach(el => {
       if (!el.classList.contains('checklist-section')) {
         const sec  = el.dataset.section!;
@@ -533,11 +1053,63 @@ const sections = [
         const secTotal = document.querySelectorAll(`.checklist-item[data-section="${sec}"]`).length;
         if (el.classList.contains('section-count')) {
           el.textContent = `${secDone}/${secTotal}`;
-          el.style.color = secDone === secTotal && secTotal > 0 ? '#4a9e4a' : 'var(--color-text-muted)';
+          el.style.color = secDone === secTotal && secTotal > 0 ? '#b98229' : 'var(--color-text-muted)';
         }
       }
     });
+
+    // TOC per-section dot + count
+    document.querySelectorAll<HTMLElement>('[data-toc-count]').forEach(el => {
+      const sec = el.dataset.tocCount!;
+      const secDone  = document.querySelectorAll(`.checklist-item.done[data-section="${sec}"]`).length;
+      const secTotal = document.querySelectorAll(`.checklist-item[data-section="${sec}"]`).length;
+      el.textContent = `${secDone}/${secTotal}`;
+    });
+    document.querySelectorAll<HTMLElement>('.toc-dot').forEach(el => {
+      const sec = el.dataset.section!;
+      const secDone  = document.querySelectorAll(`.checklist-item.done[data-section="${sec}"]`).length;
+      const secTotal = document.querySelectorAll(`.checklist-item[data-section="${sec}"]`).length;
+      el.classList.remove('is-partial', 'is-done');
+      if (secDone === 0) return;
+      if (secDone >= secTotal) el.classList.add('is-done');
+      else el.classList.add('is-partial');
+    });
   }
+
+  // ── TOC: reading progress, active-section highlighting, back-to-top ──
+  (function () {
+    const main = document.getElementById('main');
+    if (!main) return;
+
+    const tocEl = document.getElementById('page-toc');
+    const btn = document.getElementById('page-back-to-top') as HTMLButtonElement | null;
+    const sectionEls = Array.from(document.querySelectorAll<HTMLElement>('.checklist-section'));
+    const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('#page-toc-list a'));
+
+    if (sectionEls.length && tocEl) tocEl.hidden = false;
+
+    function updateBackToTop() {
+      if (!btn) return;
+      btn.hidden = window.scrollY <= 600;
+    }
+
+    if (btn) btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    if (sectionEls.length && tocLinks.length) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            tocLinks.forEach(l => l.classList.toggle('is-active', l.dataset.target === id));
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      sectionEls.forEach(s => obs.observe(s));
+    }
+
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    updateBackToTop();
+  })();
 
   // ── Persistence ────────────────────────────────────────────────
   // Done state is mirrored to:
@@ -675,7 +1247,7 @@ const sections = [
   const installHelp  = document.getElementById('pwa-install-help');
   const installLabel = document.getElementById('pwa-install-label');
 
-  // Android beforeinstallprompt — captured early so we can fire it on demand.
+  // Android beforeinstallprompt · captured early so we can fire it on demand.
   let deferredPrompt: any = null;
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
@@ -769,7 +1341,7 @@ const sections = [
 </script>
 
 <!-- Appraisal CTA -->
-<div style="margin-top:3rem;background:var(--color-surface-3);padding:2.5rem;border-left:3px solid var(--color-gold);">
+<div class="no-print" style="margin-top:3rem;background:var(--color-surface-3);padding:2.5rem;border-left:3px solid var(--color-gold);">
   <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">Ready to take the next step?</p>
   <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.75rem;line-height:1.3;">Working through the checklist? Get a professional opinion on what to prioritise.</h2>
   <p style="font-size:0.88rem;font-weight:300;line-height:1.75;color:var(--color-text-secondary);margin-bottom:1.5rem;">Every property is different. Before you spend on renovations, a professional walkthrough helps identify what actually moves buyers in your street, and what you can skip. No obligation, no sales pitch.</p>
@@ -778,7 +1350,7 @@ const sections = [
 
 
 <!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
+<div class="no-print" style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
   <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
     Want more context? Read the full guide:
     <a href="/insights/how-to-prepare-your-home-for-sale-brisbane" style="color:var(--color-gold);font-weight:600;">How to Prepare Your Home for Sale in Brisbane &rarr;</a>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import GieMannTheme from '../components/GieMannTheme.astro';
 
 const forSale = [
   {
@@ -65,16 +66,6 @@ const forSale = [
 ];
 
 const sold = [
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7783-H3502736-200045322__1778022110-20631-Photo-3-Web.jpg',
-    suburb: 'Balmoral',
-    address: '42 Barton Parade',
-    street: 'Balmoral QLD 4171',
-    price: 'Sold June 2026',
-    beds: 5, baths: 3, cars: 2,
-    tag: 'Sold',
-    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/balmoral-4171/other/3502736',
-  },
   {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg',
     suburb: 'Cannon Hill',
@@ -192,36 +183,37 @@ const listingsSchema = {
 
 <Layout title="Listings | Daniel Gierach Property" description="Current listings and recently sold homes in Brisbane's inner east. View Daniel Gierach's sales results across Camp Hill, Norman Park, Hawthorne, and Balmoral." schema={listingsSchema}>
 
+<GieMannTheme />
+
 <!-- Hero -->
-<section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#0a0806;">
-  <div class="absolute inset-0 z-0">
-    <img
-      src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2F93d1-H3480857-194603639__1774840446-82684-03-2226DuttonstreetHawthorne20.jpg&w=1200&q=70"
-      alt="Brisbane property"
-      class="w-full h-full object-cover"
-      style="filter:grayscale(8%) brightness(0.4);"
-    />
-    <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(10,8,6,0.7) 0%,rgba(10,8,6,0.3) 100%);"></div>
-  </div>
+<section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#e6d9bd;">
+  <div aria-hidden="true" class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(185,130,41,0.12) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-32 pb-16">
-    <span class="eyebrow mb-4 reveal" style="display:block;color:#f5d07a;">Daniel Gierach · Ray White Bulimba</span>
+    <span class="eyebrow mb-4 reveal" style="display:block;color:#6b4610;">Daniel Gierach · Ray White Bulimba</span>
     <h1 class="reveal" data-delay="80"
-      style="font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#f0ece4;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
+      style="font-family:var(--font-serif);font-style:italic;font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#191817;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
       Current listings &amp; recent sales.
     </h1>
     <p class="reveal" data-delay="160"
-      style="font-size:0.95rem;color:rgba(240,236,228,0.6);max-width:44ch;line-height:1.8;">
-      Looking for off-market access? <a href="/contact" style="color:#f5d07a;text-decoration:none;font-weight:600;">Get in touch directly.</a>
+      style="font-size:0.95rem;color:rgba(25,24,23,0.65);max-width:44ch;line-height:1.8;">
+      Looking for off-market access? <a href="/contact" style="color:#b98229;text-decoration:none;font-weight:600;">Get in touch directly.</a>
     </p>
   </div>
 </section>
 
 
-<!-- Suburb filter -->
-<section style="background:var(--color-base);padding:1.5rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+<!-- Ornament divider: hero to filter band -->
+<div class="listings-ornament" aria-hidden="true">
+  <span class="listings-ornament-line"></span>
+  <span class="listings-ornament-mark">&#10022;</span>
+  <span class="listings-ornament-line"></span>
+</div>
+
+<!-- Suburb filter band -->
+<section style="background:#f2ead4;padding:0.85rem 0;border-top:1px solid rgba(107,70,16,0.12);border-bottom:1px solid rgba(107,70,16,0.12);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-      <button class="suburb-filter active" data-filter="all">All suburbs</button>
+    <div class="suburb-filter-row">
+      <button class="suburb-filter active" data-filter="all">All</button>
       {allSuburbs.map(s => (
         <button class="suburb-filter" data-filter={s.toLowerCase().replace(/ /g, '-')}>{s}</button>
       ))}
@@ -230,32 +222,32 @@ const listingsSchema = {
 </section>
 
 <!-- For Sale -->
-<section style="background:var(--color-base);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:var(--color-base);padding:6rem 0 5rem;">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
       {/* TODO Daniel: confirm whether these listings are exclusively your own or office-wide. If exclusive to you, change eyebrow to "For Sale by Daniel Gierach"; if these are network listings handled across the Bulimba team, "Ray White Bulimba" is the accurate label. Left as office-network framing pending confirmation. */}
       <div class="reveal">
-        <span class="eyebrow mb-3" style="display:block;">For Sale via Ray White Collective</span>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#1c1917;letter-spacing:-0.01em;">
-          For Sale
+        <span class="eyebrow mb-3" style="display:block;color:#6b4610;">For Sale</span>
+        <h2 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#191817;letter-spacing:-0.01em;">
+          Currently on market.
         </h2>
       </div>
       <a href="https://raywhitebulimba.com.au/agents/daniel-gierach" target="_blank" rel="noopener"
-        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;text-decoration:none;transition:color 0.2s;"
-        onmouseover="this.style.color='#c4912a'"
-        onmouseout="this.style.color='#78716c'">
+        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(25,24,23,0.44);text-decoration:none;transition:color 0.2s;"
+        onmouseover="this.style.color='#b98229'"
+        onmouseout="this.style.color='rgba(25,24,23,0.44)'">
         View All on Ray White →
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {forSale.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener"
           class="reveal listing-card" data-delay={i * 60}
           data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
-          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
-          onmouseover="this.style.background='#edeae3'"
-          onmouseout="this.style.background='#ffffff'"
+          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
+          onmouseover="this.style.background='#edeae3';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
+          onmouseout="this.style.background='#ffffff';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
         >
           <!-- Image -->
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
@@ -265,20 +257,20 @@ const listingsSchema = {
               onmouseout="this.style.transform='scale(1)'"
               loading="lazy"
             />
-            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#0a0806;background:${tagColors[p.tag] || '#f5d07a'};padding:0.3rem 0.65rem;`}>
+            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#191817;background:${tagColors[p.tag] || '#f5d07a'};padding:0.3rem 0.65rem;`}>
               {p.tag}
             </span>
           </div>
           <!-- Details -->
           <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">{p.suburb}</p>
-            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.2;">{p.address}</h3>
-            <p style="font-size:0.78rem;color:#78716c;">{p.street}</p>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;">{p.suburb}</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#191817;line-height:1.2;">{p.address}</h3>
+            <p style="font-size:0.78rem;color:rgba(25,24,23,0.44);">{p.street}</p>
             <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#44403c;margin-top:0.25rem;">{p.price}</p>
             <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
-              <span style="font-size:0.72rem;color:#78716c;">{p.beds} bed</span>
-              <span style="font-size:0.72rem;color:#78716c;">{p.baths} bath</span>
-              <span style="font-size:0.72rem;color:#78716c;">{p.cars} car</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.beds} bed</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.baths} bath</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.cars} car</span>
             </div>
           </div>
         </a>
@@ -289,31 +281,31 @@ const listingsSchema = {
 
 
 <!-- Recently Sold -->
-<section id="sold" style="background:var(--color-surface-1);padding:6rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+<section id="sold" style="background:#f2ead4;padding:6rem 0 5rem;border-top:1px solid rgba(107,70,16,0.12);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
       <div class="reveal">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Recently Sold via Ray White Collective</p>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#1c1917;letter-spacing:-0.01em;">
-          Recently Sold
+        <p class="eyebrow" style="margin-bottom:0.5rem;color:#6b4610;">Recently Sold</p>
+        <h2 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#191817;letter-spacing:-0.01em;">
+          Recent results.
         </h2>
       </div>
       <a href="https://raywhitebulimba.com.au/agents/daniel-gierach" target="_blank" rel="noopener"
-        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;text-decoration:none;transition:color 0.2s;"
-        onmouseover="this.style.color='#c4912a'"
-        onmouseout="this.style.color='#78716c'">
+        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(25,24,23,0.44);text-decoration:none;transition:color 0.2s;"
+        onmouseover="this.style.color='#b98229'"
+        onmouseout="this.style.color='rgba(25,24,23,0.44)'">
         Full Sales History →
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(28,25,23,0.08);">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {sold.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener"
           class="reveal listing-card" data-delay={i * 60}
           data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
-          style="background:#f2efe9;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s;"
-          onmouseover="this.style.background='#edeae3'"
-          onmouseout="this.style.background='#f2efe9'"
+          style="background:#f2efe9;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
+          onmouseover="this.style.background='#edeae3';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
+          onmouseout="this.style.background='#f2efe9';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
         >
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
             <img src={p.image} alt={p.address} class="w-full h-full object-cover"
@@ -322,18 +314,18 @@ const listingsSchema = {
               onmouseout="this.style.filter='grayscale(30%)';this.style.transform='scale(1)'"
               loading="lazy"
             />
-            <span style="position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,236,228,0.9);background:rgba(28,25,23,0.65);padding:0.3rem 0.65rem;">
+            <span style="position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(25,24,23,0.9);background:rgba(230,217,189,0.88);padding:0.3rem 0.65rem;">
               Sold
             </span>
           </div>
           <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;">{p.suburb}</p>
-            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#1c1917;line-height:1.2;">{p.address}</h3>
-            <p style="font-size:0.78rem;color:#78716c;">{p.street}</p>
+            <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;">{p.suburb}</p>
+            <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#191817;line-height:1.2;">{p.address}</h3>
+            <p style="font-size:0.78rem;color:rgba(25,24,23,0.44);">{p.street}</p>
             <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
-              <span style="font-size:0.72rem;color:#78716c;">{p.beds} bed</span>
-              <span style="font-size:0.72rem;color:#78716c;">{p.baths} bath</span>
-              <span style="font-size:0.72rem;color:#78716c;">{p.cars} car</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.beds} bed</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.baths} bath</span>
+              <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.cars} car</span>
             </div>
           </div>
         </a>
@@ -343,27 +335,66 @@ const listingsSchema = {
 </section>
 
 <style>
+  /* Ornament divider */
+  .listings-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    background: #e6d9bd;
+    position: relative;
+    z-index: 2;
+  }
+  .listings-ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(107,70,16,0.55), transparent);
+  }
+  .listings-ornament-mark {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: #b98229;
+    line-height: 1;
+  }
+
+  /* One-line suburb chip row · horizontal scroll on narrow screens */
+  .suburb-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.15rem;
+    scrollbar-width: none;
+  }
+  .suburb-filter-row::-webkit-scrollbar { display: none; }
   .suburb-filter {
+    flex-shrink: 0;
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #78716c;
+    color: rgba(25,24,23,0.6);
     background: transparent;
-    border: 1px solid rgba(28,25,23,0.18);
-    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(107,70,16,0.22);
+    padding: 0.35rem 0.75rem;
     cursor: pointer;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
-    border-radius: 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    line-height: 1;
   }
   .suburb-filter:hover {
-    border-color: #c4912a;
+    border-color: #b98229;
     color: #c4912a;
   }
   .suburb-filter.active {
-    background: #c4912a;
-    border-color: #c4912a;
+    background: #b98229;
+    border-color: #b98229;
     color: #ffffff;
   }
 </style>
@@ -388,8 +419,8 @@ const listingsSchema = {
 <section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div class="reveal" style="padding:2.5rem;background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
-      <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#1c1917;">What is your property worth?</p>
-      <p style="font-size:0.85rem;color:#78716c;line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
+      <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#191817;">What is your property worth?</p>
+      <p style="font-size:0.85rem;color:rgba(25,24,23,0.44);line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
       <a href="/walkthrough" class="btn-gold">
         Get My Free Property Report
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
