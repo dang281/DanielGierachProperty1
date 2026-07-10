@@ -48,13 +48,6 @@ const leaders = [
     href: '/team/peter-burgin',
     external: false,
   },
-  {
-    name: 'Nerida Conisbee',
-    role: 'Chief Economist · Ray White Group',
-    photo: 'https://www.raywhite.com/assets/volumes/images/People/_800x800_crop_center-center_82_none/Nerida-Conisbee-lifestyle-7.jpeg?mtime=1681964650',
-    href: 'https://www.raywhite.com/people/chief-economist-nerida-conisbee',
-    external: true,
-  },
 ];
 
 const reasons = [
@@ -1220,8 +1213,10 @@ const reasons = [
      ══════════════════════════════════════════════════════════════════ */
   .leaders-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    max-width: 960px;
+    margin: 0 auto;
   }
   .leader-card {
     display: flex;
