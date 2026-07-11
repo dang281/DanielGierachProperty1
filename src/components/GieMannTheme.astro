@@ -168,6 +168,25 @@
   html .sale-card {
     border-radius: 0 !important;
   }
+
+  /* Form inputs (text, email, search, tel, textarea) with the site's
+     standard cream fill · rounded 10px. Excludes date pickers etc which
+     browsers style natively. */
+  html input[type="text"],
+  html input[type="email"],
+  html input[type="tel"],
+  html input[type="search"],
+  html input[type="url"],
+  html textarea {
+    border-radius: 10px !important;
+  }
+
+  /* Inline callout panels · anything using the gold-muted wash as its
+     background gets a 16px radius to match the rest of the card system. */
+  html div[style*="background:var(--color-gold-muted)"],
+  html div[style*="background: var(--color-gold-muted)"] {
+    border-radius: 16px !important;
+  }
   html .checklist-item { border-radius: 12px !important; overflow: hidden; }
   html .tool-card > div:first-of-type[style*="height:3px"],
   html .home-tool-card > div:first-of-type[style*="height:2px"] {
