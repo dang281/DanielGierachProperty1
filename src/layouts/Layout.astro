@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedArticles from '../components/RelatedArticles.astro';
+import GieMannTheme from '../components/GieMannTheme.astro';
 import scheduleData from '../data/seo-schedule.json';
 import { GLOBAL_SCHEMA_JSON } from '../data/site-schema.js';
 
@@ -243,6 +244,7 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
+    <GieMannTheme />
     {!hideNav && <Nav />}
     {showBreadcrumbs && (
       <nav aria-label="Breadcrumb" style="background:#1c1917;padding:calc(76px + 0.6rem) 1.5rem 0.6rem;border-bottom:1px solid rgba(196,145,42,0.1);">
