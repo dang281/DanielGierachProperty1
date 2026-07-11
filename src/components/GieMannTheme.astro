@@ -104,6 +104,74 @@
     background: #e6d9bd !important;
   }
 
+  /* Site-wide catch-all: any inline hardcoded dark background left over
+     from the pre-GieMann palette gets flipped to cream. Covers ~800
+     suburb + insight pages plus half a dozen top-level pages that
+     otherwise would need per-page edits. Includes rgb() variants because
+     reveal.js normalises hex to rgb at runtime. */
+  html body [style*="background:#0a0806"],
+  html body [style*="background: #0a0806"],
+  html body [style*="background: rgb(10, 8, 6)"] {
+    background: #e6d9bd !important;
+  }
+  html body [style*="background:#1c1917"],
+  html body [style*="background: #1c1917"],
+  html body [style*="background: rgb(28, 25, 23)"] {
+    background: #f2ead4 !important;
+  }
+
+  /* Dark linear-gradient overlays used as image tints on team bios,
+     insights index, and hero photos. Flip to a soft cream wash so the
+     photo underneath reads lighter and the cream section around it
+     doesn't fight the retint. */
+  html body [style*="background:linear-gradient(180deg,rgba(10,8,6"],
+  html body [style*="background: linear-gradient(180deg,rgba(10,8,6"],
+  html body [style*="background:linear-gradient(120deg,rgba(10,8,6"],
+  html body [style*="background:linear-gradient(rgba(10,8,6"] {
+    background: linear-gradient(180deg,rgba(230,217,189,0.18) 0%,rgba(230,217,189,0.4) 60%,rgba(230,217,189,0.6) 100%) !important;
+  }
+  /* Cream-on-dark text tokens now sit on cream · invert to ink. Covers
+     the various cream shades used across suburb + insight page templates.
+     Also matches the rgb(...) form because reveal.js rewrites inline
+     styles at runtime, normalising `color:#f0ece4` to `color: rgb(240, 236, 228)`. */
+  html body [style*="color:#f0ece4"],
+  html body [style*="color: #f0ece4"],
+  html body [style*="color:#f2efe9"],
+  html body [style*="color: #f2efe9"],
+  html body [style*="color:#f5f2eb"],
+  html body [style*="color:#faf7ee"],
+  html body [style*="color: rgb(240, 236, 228)"],
+  html body [style*="color: rgb(242, 239, 233)"],
+  html body [style*="color: rgb(245, 242, 235)"] { color: #191817 !important; }
+  html body [style*="color:rgba(240,236,228"],
+  html body [style*="color: rgba(240, 236, 228"] { color: rgba(25,24,23,0.72) !important; }
+  html body [style*="color:rgba(242,239,233"],
+  html body [style*="color: rgba(242, 239, 233"] { color: rgba(25,24,23,0.72) !important; }
+  html body [style*="color:rgba(255,255,255"],
+  html body [style*="color: rgba(255, 255, 255"] { color: rgba(25,24,23,0.72) !important; }
+  /* Site-gold #c4912a used as accent throughout suburb + insight pages ·
+     retune to gold-brand for button/text consistency. Skip when the same
+     hex is used as a background (button standardisation catches those).
+     Includes rgb() variants (rgb(196, 145, 42)) for the reveal.js rewrite. */
+  html body [style*="color:#c4912a"]:not([style*="background:#c4912a"]),
+  html body [style*="color: #c4912a"]:not([style*="background:#c4912a"]),
+  html body [style*="color: rgb(196, 145, 42)"]:not([style*="background: rgb(196, 145, 42)"]) {
+    color: #b98229 !important;
+  }
+  html body [style*="border-color:#c4912a"],
+  html body [style*="border-color: #c4912a"],
+  html body [style*="border-color: rgb(196, 145, 42)"] { border-color: #b98229 !important; }
+  html body [style*="border-color:rgba(196,145,42"],
+  html body [style*="border-color: rgba(196, 145, 42"] { border-color: rgba(185,130,41,0.5) !important; }
+  /* Bright gold #f5d07a on insights article CTA callouts */
+  html body [style*="color:#f5d07a"]:not([style*="background:#f5d07a"]),
+  html body [style*="color: #f5d07a"]:not([style*="background:#f5d07a"]),
+  html body [style*="color: rgb(245, 208, 122)"]:not([style*="background: rgb(245, 208, 122)"]) {
+    color: #6b4610 !important;
+  }
+  html body [style*="border-left:3px solid #f5d07a"],
+  html body [style*="border-left: 3px solid #f5d07a"] { border-left-color: #b98229 !important; }
+
   /* Layout-level dark blocks that ship inline styles from Layout.astro
      and Footer.astro. Retint them here so ink text remains readable. */
   html nav[aria-label="Breadcrumb"] {
