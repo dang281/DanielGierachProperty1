@@ -29,7 +29,7 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #0a0806;
+    background: #e6d9bd;
     padding: 7rem 2rem 5rem;
   }
   .ty-bg-img {
@@ -43,8 +43,8 @@ import Layout from '../layouts/Layout.astro';
   .ty-bg-gradient {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 40%, rgba(197,160,60,0.09) 0%, transparent 65%),
-                linear-gradient(to bottom, rgba(10,8,6,0.3) 0%, rgba(10,8,6,0.55) 100%);
+    background: radial-gradient(ellipse at 50% 40%, rgba(185,130,41,0.09) 0%, transparent 65%),
+                linear-gradient(to bottom, rgba(230,217,189,0.3) 0%, rgba(230,217,189,0.55) 100%);
   }
   .ty-content {
     position: relative;
@@ -64,22 +64,22 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1px solid rgba(197,160,60,0.5);
+    border: 1px solid rgba(185,130,41,0.5);
     animation: ringPulse 1.8s ease-out 0.3s forwards;
   }
   .check-ring-pulse-2 {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1px solid rgba(197,160,60,0.3);
+    border: 1px solid rgba(185,130,41,0.3);
     animation: ringPulse 1.8s ease-out 0.6s forwards;
   }
   .check-circle {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: rgba(197,160,60,0.1);
-    border: 1.5px solid rgba(197,160,60,0.45);
+    background: rgba(185,130,41,0.1);
+    border: 1.5px solid rgba(185,130,41,0.45);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,7 +96,7 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #c5a03c;
+    color: #b98229;
     display: block;
     margin-bottom: 1.25rem;
     animation: fadeUp 0.6s ease 0.5s both;
@@ -105,23 +105,23 @@ import Layout from '../layouts/Layout.astro';
     font-family: var(--font-serif);
     font-size: clamp(2.4rem, 5.5vw, 4rem);
     font-weight: 400;
-    color: #f0ece4;
+    color: #191817;
     line-height: 1.08;
     letter-spacing: -0.025em;
     margin-bottom: 1.5rem;
     animation: fadeUp 0.6s ease 0.65s both;
   }
-  .ty-h1 em { font-style: italic; color: #c5a03c; }
+  .ty-h1 em { font-style: italic; color: #b98229; }
   .ty-sub {
     font-size: 1rem;
-    color: rgba(240,236,228,0.7);
+    color: rgba(25,24,23,0.7);
     line-height: 1.85;
     max-width: 44ch;
     margin: 0 auto 2.75rem;
     animation: fadeUp 0.6s ease 0.8s both;
   }
   .ty-sub a {
-    color: #c5a03c;
+    color: #b98229;
     text-decoration: none;
     font-weight: 600;
   }
@@ -131,7 +131,7 @@ import Layout from '../layouts/Layout.astro';
     width: 60px;
     height: 1px;
     margin: 0 auto 2.75rem;
-    background: linear-gradient(90deg, transparent, #c5a03c, transparent);
+    background: linear-gradient(90deg, transparent, #b98229, transparent);
     background-size: 200% 100%;
     animation: fadeUp 0.6s ease 0.95s both, shimmer 2.5s ease 1.5s infinite;
   }
@@ -142,15 +142,15 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     gap: 0.6rem;
     padding: 0.65rem 1.25rem;
-    border: 1px solid rgba(197,160,60,0.25);
-    background: rgba(197,160,60,0.06);
+    border: 1px solid rgba(185,130,41,0.25);
+    background: rgba(185,130,41,0.06);
     animation: fadeUp 0.6s ease 1s both;
   }
   .ty-badge-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #c5a03c;
+    background: #b98229;
     animation: ringPulse 2s ease-in-out 1.5s infinite;
   }
   .ty-badge span {
@@ -158,7 +158,7 @@ import Layout from '../layouts/Layout.astro';
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.1em;
-    color: rgba(240,236,228,0.75);
+    color: rgba(25,24,23,0.75);
   }
 
   /* What happens next */
@@ -183,7 +183,7 @@ import Layout from '../layouts/Layout.astro';
     font-family: var(--font-serif);
     font-size: 3.5rem;
     font-weight: 300;
-    color: #c5a03c;
+    color: #b98229;
     opacity: 0.2;
     line-height: 1;
     margin-bottom: 1.25rem;
@@ -197,13 +197,13 @@ import Layout from '../layouts/Layout.astro';
   }
   .ty-next-body {
     font-size: 0.82rem;
-    color: #78716c;
+    color: rgba(25,24,23,0.55);
     line-height: 1.75;
   }
 
   /* Quote */
   .ty-quote {
-    background: #1c1917;
+    background: #f2ead4;
     padding: 5rem 2rem;
     text-align: center;
   }
@@ -212,7 +212,7 @@ import Layout from '../layouts/Layout.astro';
     font-size: clamp(1.15rem, 2.5vw, 1.55rem);
     font-weight: 300;
     font-style: italic;
-    color: rgba(240,236,228,0.88);
+    color: rgba(25,24,23,0.88);
     line-height: 1.7;
     max-width: 52ch;
     margin: 0 auto 2rem;
@@ -223,7 +223,7 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #c5a03c;
+    color: #b98229;
   }
 
   /* Explore */
@@ -248,7 +248,7 @@ import Layout from '../layouts/Layout.astro';
     transition: border-color 0.2s, transform 0.2s;
   }
   .ty-explore-card:hover {
-    border-color: #c5a03c;
+    border-color: #b98229;
     transform: translateY(-2px);
   }
   .ty-explore-label {
@@ -257,7 +257,7 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #c5a03c;
+    color: #b98229;
     margin-bottom: 0.5rem;
   }
   .ty-explore-title {
@@ -268,7 +268,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .ty-explore-desc {
     font-size: 0.78rem;
-    color: #78716c;
+    color: rgba(25,24,23,0.55);
     line-height: 1.65;
   }
 
@@ -300,13 +300,13 @@ import Layout from '../layouts/Layout.astro';
       <div class="check-ring-pulse"></div>
       <div class="check-ring-pulse-2"></div>
       <div class="check-circle">
-        <svg class="check-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c5a03c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="check-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b98229" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
     </div>
 
-    <p class="ty-notified" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(197,160,60,0.7);margin-bottom:0.75rem;">Daniel has been notified.</p>
+    <p class="ty-notified" style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(185,130,41,0.7);margin-bottom:0.75rem;">Daniel has been notified.</p>
 
     <span class="ty-eyebrow">Message Received</span>
 
@@ -345,7 +345,7 @@ import Layout from '../layouts/Layout.astro';
 ══════════════════════════════════ -->
 <section class="ty-next">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-    <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c5a03c;margin-bottom:0.75rem;">What Happens Next</p>
+    <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.75rem;">What Happens Next</p>
     <h2 style="font-family:var(--font-serif);font-size:clamp(1.7rem,3vw,2.5rem);font-weight:400;color:#1c1917;line-height:1.15;">You're in good hands.</h2>
   </div>
 
@@ -360,7 +360,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="ty-next-item">
       <div class="ty-next-num">2</div>
       <p class="ty-next-title">He'll be in touch within 24 hours</p>
-      <p class="ty-next-body">Available 7 days. If it's urgent, call <a href="tel:+61412523821" style="color:#c5a03c;text-decoration:none;font-weight:600;">0412 523 821</a> directly.</p>
+      <p class="ty-next-body">Available 7 days. If it's urgent, call <a href="tel:+61412523821" style="color:#b98229;text-decoration:none;font-weight:600;">0412 523 821</a> directly.</p>
     </div>
 
     <div class="ty-next-item">
@@ -378,7 +378,7 @@ import Layout from '../layouts/Layout.astro';
 ══════════════════════════════════ -->
 <section class="ty-explore">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-    <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c5a03c;margin-bottom:0.75rem;">While You Wait</p>
+    <p style="font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.75rem;">While You Wait</p>
     <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#1c1917;line-height:1.2;">Explore the site</h2>
   </div>
 
@@ -457,7 +457,7 @@ import Layout from '../layouts/Layout.astro';
       if (next1title) next1title.textContent = 'Daniel reads your message';
       if (next1body) next1body.textContent = 'Every enquiry lands directly with Daniel. No filtering, no delegation.';
       if (next2title) next2title.textContent = 'He\'ll be in touch within 24 hours';
-      if (next2body) next2body.innerHTML = 'Available 7 days. If it\'s urgent, call <a href="tel:+61412523821" style="color:#c5a03c;text-decoration:none;font-weight:600;">0412 523 821</a> directly.';
+      if (next2body) next2body.innerHTML = 'Available 7 days. If it\'s urgent, call <a href="tel:+61412523821" style="color:#b98229;text-decoration:none;font-weight:600;">0412 523 821</a> directly.';
       if (next3title) next3title.textContent = 'A straightforward conversation';
       if (next3body) next3body.textContent = 'No scripts, no pressure. Daniel will answer your questions and help you work out your next move.';
     }
@@ -483,7 +483,7 @@ import Layout from '../layouts/Layout.astro';
       if (next1title) next1title.textContent = 'Daniel reviews your request';
       if (next1body) next1body.textContent = 'He checks your preferred date and time to make sure it works, and confirms availability.';
       if (next2title) next2title.textContent = 'He\'ll confirm the exact time';
-      if (next2body) next2body.innerHTML = 'Expect a call or message from Daniel shortly to lock in the details. Or reach him directly on <a href="tel:+61412523821" style="color:#c5a03c;text-decoration:none;font-weight:600;">0412 523 821</a>.';
+      if (next2body) next2body.innerHTML = 'Expect a call or message from Daniel shortly to lock in the details. Or reach him directly on <a href="tel:+61412523821" style="color:#b98229;text-decoration:none;font-weight:600;">0412 523 821</a>.';
       if (next3title) next3title.textContent = 'An honest, in-person assessment';
       if (next3body) next3body.textContent = 'Daniel walks through your home and gives you a frank, well-researched opinion of value. Free, no obligation.';
     }

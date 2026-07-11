@@ -14,7 +14,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 2rem; height: 76px;
-    background: rgba(10,8,6,0.85);
+    background: rgba(230,217,189,0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(245,208,122,0.08);
@@ -25,7 +25,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   }
   .lp-bar-logo-name {
     font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700;
-    color: #f0ece4; letter-spacing: 0.005em;
+    color: #191817; letter-spacing: 0.005em;
   }
   .lp-bar-logo-sub {
     display: flex; align-items: center; gap: 0.5rem;
@@ -62,7 +62,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   }
   .lp-hero-grad {
     position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(120deg, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.15) 100%);
+    background: linear-gradient(120deg, rgba(230,217,189,0.55) 0%, rgba(230,217,189,0.15) 100%);
   }
   .lp-hero-inner {
     position: relative; z-index: 2;
@@ -72,7 +72,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 
   .lp-card {
     max-width: 640px;
-    background: rgba(0,0,0,0.45);
+    background: rgba(242,234,212,0.88);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(72,72,72,0.2);
@@ -84,23 +84,23 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .lp-avatar-img {
     width: 40px; height: 40px; border-radius: 50%;
     object-fit: cover; object-position: center 10%;
-    border: 1.5px solid rgba(197,160,60,0.5);
+    border: 1.5px solid rgba(185,130,41,0.5);
     flex-shrink: 0;
   }
   .lp-avatar-name {
     font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase; color: #f5d07a;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #6b4610;
   }
   .lp-h1 {
     font-family: var(--font-serif);
     font-size: clamp(2.2rem, 4.5vw, 3.8rem);
     font-weight: 400; line-height: 1.08;
     letter-spacing: -0.02em;
-    color: #f0ece4; margin-bottom: 1.5rem;
+    color: #191817; margin-bottom: 1.5rem;
   }
   .lp-h1 em { font-style: italic; color: var(--gold); }
   .lp-sub {
-    font-size: 1rem; color: rgba(240,236,228,0.72);
+    font-size: 1rem; color: rgba(25,24,23,0.72);
     line-height: 1.8; max-width: 46ch; margin-bottom: 0.75rem;
   }
 
@@ -108,57 +108,57 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .lp-input-wrap { position: relative; flex: 1; min-width: 0; }
   .lp-input {
     width: 100%; padding: 0.9rem 1.1rem;
-    background: rgba(255,255,255,0.08);
-    border: 1.5px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.75);
+    border: 1.5px solid rgba(185,130,41,0.35);
     border-right: none;
-    color: #f0ece4; font-family: var(--font-sans); font-size: 0.85rem;
+    color: #191817; font-family: var(--font-sans); font-size: 0.85rem;
     outline: none; box-sizing: border-box; -webkit-appearance: none;
   }
-  .lp-input::placeholder { color: rgba(240,236,228,0.6); }
+  .lp-input::placeholder { color: rgba(25,24,23,0.6); }
 
   .pac-container {
-    background: #1c1917;
+    background: #f2ead4;
     border: 1px solid rgba(255,255,255,0.12);
     border-top: none; border-radius: 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 24px rgba(107,70,16,0.15);
     font-family: var(--font-sans);
   }
   .pac-item {
     padding: 0.65rem 1.1rem; font-size: 0.82rem;
-    color: rgba(240,236,228,0.8);
-    border-top: 1px solid rgba(255,255,255,0.08); cursor: pointer;
+    color: rgba(25,24,23,0.8);
+    border-top: 1px solid rgba(255,255,255,0.75); cursor: pointer;
   }
   .pac-item:hover, .pac-item-selected { background: rgba(196,145,42,0.12); }
-  .pac-item-query { color: #f0ece4; font-weight: 600; }
+  .pac-item-query { color: #191817; font-weight: 600; }
   .pac-matched { color: var(--gold); }
   .pac-icon { display: none; }
 
   .lp-submit {
     padding: 0.9rem 1.5rem;
-    background: #c5a03c; border: none; cursor: pointer;
+    background: #b98229; border: none; cursor: pointer;
     font-family: var(--font-sans); font-size: 0.68rem; font-weight: 800;
     letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark);
     white-space: nowrap; flex-shrink: 0;
     display: flex; align-items: center; gap: 0.4rem;
     transition: background 0.2s;
   }
-  .lp-submit:hover { background: #d4af4a; }
+  .lp-submit:hover { background: #a5721c; }
   .lp-trust {
-    font-size: 0.72rem; color: rgba(240,236,228,0.55);
+    font-size: 0.72rem; color: rgba(25,24,23,0.55);
     margin-top: 0.6rem; letter-spacing: 0.06em;
   }
 
   @media (max-width: 540px) {
     .lp-card { padding: 2rem 1.5rem; }
     .lp-form { flex-direction: column; }
-    .lp-input { border-right: 1.5px solid rgba(255,255,255,0.18); border-bottom: none; }
+    .lp-input { border-right: 1.5px solid rgba(185,130,41,0.35); border-bottom: none; }
     .lp-submit { width: 100%; justify-content: center; }
   }
 
   /* ── Testimonial ── */
   .lp-testimonial {
-    background: #111; padding: 5rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
+    background: #f2ead4; padding: 5rem 1.5rem;
+    border-top: 1px solid rgba(25,24,23,0.06);
   }
   .lp-testimonial-inner {
     max-width: 640px; margin: 0 auto; text-align: center;
@@ -171,13 +171,13 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .lp-stars { display: flex; gap: 0.25rem; justify-content: center; margin-bottom: 0.6rem; }
   .lp-attr {
     font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: rgba(242,239,233,0.4);
+    text-transform: uppercase; color: rgba(25,24,23,0.4);
   }
 
   /* ── Daniel section ── */
   .lp-daniel {
     background: var(--dark); padding: 5rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
+    border-top: 1px solid rgba(25,24,23,0.06);
   }
   .lp-daniel-inner {
     max-width: 600px; margin: 0 auto;
@@ -197,7 +197,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
   }
   .lp-daniel-body {
-    font-size: 0.82rem; font-weight: 300; color: rgba(242,239,233,0.55);
+    font-size: 0.82rem; font-weight: 300; color: rgba(25,24,23,0.55);
     line-height: 1.7; margin-bottom: 1rem;
   }
   .lp-call-btn {
@@ -212,15 +212,15 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 
   /* ── Footer ── */
   .lp-footer {
-    background: #111; padding: 2rem 1.5rem;
-    border-top: 1px solid rgba(242,239,233,0.06);
+    background: #f2ead4; padding: 2rem 1.5rem;
+    border-top: 1px solid rgba(25,24,23,0.06);
     text-align: center;
   }
   .lp-footer p {
-    font-size: 0.6rem; color: rgba(242,239,233,0.25);
+    font-size: 0.6rem; color: rgba(25,24,23,0.25);
     letter-spacing: 0.06em; line-height: 1.8;
   }
-  .lp-footer a { color: rgba(242,239,233,0.4); text-decoration: none; }
+  .lp-footer a { color: rgba(25,24,23,0.4); text-decoration: none; }
 
   @media (max-width: 640px) {
     .lp-bar { padding: 0.85rem 1.25rem; }
@@ -298,7 +298,7 @@ const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   <div class="lp-testimonial-inner">
     <div class="lp-stars">
       {[1,2,3,4,5].map(() => (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5d07a"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#6b4610"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       ))}
     </div>
     <blockquote class="lp-quote">
