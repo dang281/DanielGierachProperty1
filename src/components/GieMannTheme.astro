@@ -150,18 +150,23 @@
     color: #6b4610 !important;
   }
 
-  /* Rounded corners across every card class site-wide */
+  /* Rounded corners across every card class site-wide.
+     NOTE: .listing-card + .sale-card intentionally excluded · Daniel prefers
+     sharp corners on property tiles so photography reads edge-to-edge. */
   html .tool-card,
   html .insight-card,
   html .home-tool-card,
-  html .listing-card,
-  html .sale-card,
   html .hw-card,
   html .hw-card-featured,
   html a[style*="background:var(--color-surface-0)"][style*="border:1px solid rgba(28,25,23"],
   html a[style*="background:var(--color-surface-3)"][style*="padding:"] {
     border-radius: 16px !important;
     overflow: hidden;
+  }
+  /* Property listing cards · sharp corners, keep the shadow */
+  html .listing-card,
+  html .sale-card {
+    border-radius: 0 !important;
   }
   html .checklist-item { border-radius: 12px !important; overflow: hidden; }
   html .tool-card > div:first-of-type[style*="height:3px"],
