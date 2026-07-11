@@ -135,9 +135,53 @@ const prestige = [
     address: '12/76 Minnippi Boulevard',
     price: 'Under Contract',
     beds: 4, baths: 2, cars: 2,
-    desc: 'A refined four-bedroom townhouse positioned in the heart of the Minnippi Boulevard precinct, with two bathrooms and a double garage.',
     tag: 'Under Contract',
     href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/cannon-hill-4170/townhouse/3505222',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/3f91-H3530740-206381089__1781777760-114994-6.png',
+    suburb: 'Morningside',
+    address: '1/10 Gary Street',
+    price: 'Price by Negotiation',
+    beds: 2, baths: 2, cars: 1,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/morningside-4170/unit/3530740',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/a63b-H3528786-206311856__1781747347-45821-imgi6494367d2b660e85aa62b2c804db58e593hd.jpg',
+    suburb: 'West End',
+    address: '10604/41 Tondara Lane',
+    price: 'Price by Negotiation',
+    beds: 3, baths: 3, cars: 3,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/west-end-4101/unit/3528786',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8319-H3512351-202426571__1779329423-64502-DJI202605201433570530DFRED.jpg',
+    suburb: 'Carina',
+    address: '34 Balmerino Drive',
+    price: 'Price by Negotiation',
+    beds: 4, baths: 3, cars: 2,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/carina-4152/house/3512351',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/dfdd-H3529524-206535479__1781912031-205035-Photo-1-Web.jpg',
+    suburb: 'Balmoral',
+    address: '7 Orchard Street',
+    price: 'Auction 18 July',
+    beds: 3, baths: 2, cars: 2,
+    tag: 'Forthcoming Auction',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/balmoral-4171/house/3529524',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8747-H3532103-207186732__1782342090-31257-8.jpg',
+    suburb: 'Hawthorne',
+    address: '48 Dover Street',
+    price: 'Auction 18 July',
+    beds: 2, baths: 1, cars: 1,
+    tag: 'Forthcoming Auction',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/hawthorne-4171/house/3532103',
   },
 ];
 
@@ -345,16 +389,16 @@ const faqSchema = {
 <Method />
 
 
-<div class="ornament" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:2rem 24px;background:var(--color-surface-2);">
+<div class="ornament" aria-hidden="true" style="width:100%;padding:2rem 0;background:var(--color-surface-0);"><div style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:0 24px;">
   <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
   <span style="font-family:'Fraunces',Georgia,serif;font-size:0.9rem;color:#b98229;">✦</span>
   <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
-</div>
+</div></div>
 
 <!-- ════════════════════════════════════════════
      PRESTIGE COLLECTION
 ════════════════════════════════════════════ -->
-<section style="background:var(--color-surface-2);padding:6rem 0 7rem;">
+<section style="background:var(--color-surface-0);padding:6rem 0 7rem;">
   <div class="max-w-[1280px] mx-auto px-8 sm:px-12 lg:px-16">
 
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-8 mb-16">
@@ -370,32 +414,30 @@ const faqSchema = {
       <a href="https://raywhitecollective.com.au" target="_blank" rel="noopener noreferrer" class="btn-outline-gold reveal self-end" data-delay="100">View All Collective Listings</a>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {prestige.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener noreferrer"
-          class={`prop-card reveal${i === 1 ? '-right' : '-left'}`} data-delay={`${i * 80}`}
-          style="display:flex;flex-direction:column;text-decoration:none;background:var(--color-surface-0);height:100%;">
-          <div class="img-wrap relative" style="aspect-ratio:3/2;">
-            <img src={vImg(p.image, 1200)}
-              srcset={vImgSrcset(p.image, [640, 1080, 1200])}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              alt={p.address} width="1200" height="800" loading="lazy"
-              style="filter:grayscale(20%) brightness(0.90);" />
-            <div class="absolute top-5 left-5"><span class="gold-pill">{p.tag}</span></div>
-            <div class="absolute inset-0 pointer-events-none"
-              style="background:linear-gradient(180deg,rgba(230,217,189,0.25) 0%,rgba(230,217,189,0.55) 100%);"></div>
+          class="reveal listing-card" data-delay={`${i * 60}`}
+          style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
+          onmouseover="this.style.background='#faf3dc';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
+          onmouseout="this.style.background='#ffffff';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
+        >
+          <div class="relative" style="aspect-ratio:4/3;overflow:hidden;">
+            <img src={vImg(p.image, 800)}
+              srcset={vImgSrcset(p.image, [640, 800, 1080])}
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+              alt={p.address} width="800" height="600" loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;" />
+            <span style="position:absolute;top:0.85rem;left:0.85rem;display:inline-block;padding:0.35rem 0.7rem;background:#b98229;color:#ffffff;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;">{p.tag}</span>
           </div>
-          <div style="padding:1.75rem;display:flex;flex-direction:column;flex:1;">
-            <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.4rem;">{p.suburb}</span>
-            <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.6rem;">{p.address}</h3>
-            <p style="font-size:0.825rem;color:var(--color-text-secondary);line-height:1.75;margin-bottom:1.25rem;max-width:52ch;">{p.desc}</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);margin-top:auto;">
-              <div style="display:flex;gap:1.25rem;">
-                <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.beds} Bed</span>
-                <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.baths} Bath</span>
-                <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">{p.cars} Car</span>
-              </div>
-              <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-gold);">{p.price}</span>
+          <div style="padding:1.25rem 1.35rem 1.35rem;display:flex;flex-direction:column;flex:1;">
+            <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#6b4610;margin-bottom:0.4rem;">{p.suburb}</span>
+            <h4 style="font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:#191817;line-height:1.25;margin-bottom:0.45rem;">{p.address}</h4>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;color:rgba(25,24,23,0.6);margin:0 0 1rem;">{p.price}</p>
+            <div style="display:flex;gap:1rem;padding-top:0.85rem;border-top:1px solid rgba(107,70,16,0.12);margin-top:auto;">
+              <span style="font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(25,24,23,0.55);">{p.beds} Bed</span>
+              <span style="font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(25,24,23,0.55);">{p.baths} Bath</span>
+              <span style="font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(25,24,23,0.55);">{p.cars} Car</span>
             </div>
           </div>
         </a>
@@ -596,11 +638,11 @@ const faqSchema = {
   }
 </style>
 
-<div class="ornament" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:2rem 24px;background:var(--color-surface-0);">
+<div class="ornament" aria-hidden="true" style="width:100%;padding:2rem 0;background:var(--color-surface-0);"><div style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:0 24px;">
   <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
   <span style="font-family:'Fraunces',Georgia,serif;font-size:0.9rem;color:#b98229;">✦</span>
   <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
-</div>
+</div></div>
 
 <!-- ════════════════════════════════════════════
      APPRAISAL CTA
@@ -832,11 +874,11 @@ const faqSchema = {
 </style>
 
 
-<div class="ornament" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:2rem 24px;background:var(--color-surface-2);">
+<div class="ornament" aria-hidden="true" style="width:100%;padding:2rem 0;background:var(--color-surface-2);"><div style="display:flex;align-items:center;justify-content:center;gap:1.25rem;max-width:320px;margin:0 auto;padding:0 24px;">
   <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
   <span style="font-family:'Fraunces',Georgia,serif;font-size:0.9rem;color:#b98229;">✦</span>
   <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(107,70,16,0.4),transparent);"></span>
-</div>
+</div></div>
 
 <!-- ════════════════════════════════════════════
      MARKET UPDATES, EMAIL CAPTURE
