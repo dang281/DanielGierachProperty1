@@ -215,20 +215,51 @@
      Primary (solid gold):    #b98229 bg, #ffffff text, gold svg
      Secondary (outline):     transparent bg, #6b4610 text, #b98229 border
      ══════════════════════════════════════════════════════════════════ */
-  /* Primary CTA · any gold-brand solid-fill button/link/class */
+  /* Primary CTA · every gold-brand solid-fill button/link on the site.
+     Catches: hardcoded #c4912a / #b98229 / #8f6317 inline, the CSS
+     variable form, the .btn-gold utility class, and the various tool
+     page button classes (.pw-btn, .appraisal-btn, .mobile-appraisal-btn,
+     .walk-btn, .hero-cta). */
   html a[style*="background:#c4912a"],
   html a[style*="background:#b98229"],
+  html a[style*="background:#8f6317"],
+  html a[style*="background:var(--color-gold)"],
+  html a[style*="background: var(--color-gold)"],
   html button[style*="background:#c4912a"],
   html button[style*="background:#b98229"],
+  html button[style*="background:#8f6317"],
+  html button[style*="background:var(--color-gold)"],
+  html button[style*="background: var(--color-gold)"],
   html a.btn-gold,
   html button.btn-gold,
-  html .btn-gold {
+  html .btn-gold,
+  html .pw-btn,
+  html .appraisal-btn,
+  html .mobile-appraisal-btn,
+  html .hero-cta.primary,
+  html .walk-btn.primary {
     background: #b98229 !important;
     color: #ffffff !important;
     border: 1px solid #b98229 !important;
     border-radius: 10px !important;
   }
-  html .btn-gold svg { color: #ffffff !important; stroke: #ffffff !important; }
+  /* Ensure inner text spans and SVGs inherit white too, in case the
+     button's markup nests them with their own colour. */
+  html .btn-gold *,
+  html a.btn-gold *,
+  html a[style*="background:#c4912a"] *:not(svg *):not([style*="color:#c4912a"]),
+  html a[style*="background:#b98229"] *:not(svg *):not([style*="color:#b98229"]),
+  html a[style*="background:var(--color-gold)"] *:not(svg *),
+  html .pw-btn *,
+  html .appraisal-btn * {
+    color: #ffffff !important;
+  }
+  html .btn-gold svg,
+  html a[style*="background:#c4912a"] svg,
+  html a[style*="background:#b98229"] svg,
+  html a[style*="background:var(--color-gold)"] svg,
+  html .pw-btn svg,
+  html .appraisal-btn svg { color: #ffffff !important; stroke: #ffffff !important; }
   html a[style*="background:#c4912a"]:hover,
   html a[style*="background:#b98229"]:hover,
   html button[style*="background:#c4912a"]:hover,
