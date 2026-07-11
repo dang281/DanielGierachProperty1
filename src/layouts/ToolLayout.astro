@@ -14,12 +14,14 @@ interface Props {
   appleWebAppTitle?: string;
   ogImage?: string;
   draft?: boolean;
+  hideToolCta?: boolean;
+  hideFooterCta?: boolean;
 }
 
-const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest, appleTouchIcon, faviconSvg, appleWebAppTitle, ogImage, draft = false } = Astro.props;
+const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest, appleTouchIcon, faviconSvg, appleWebAppTitle, ogImage, draft = false, hideToolCta = false, hideFooterCta = false } = Astro.props;
 ---
 
-<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest} appleTouchIcon={appleTouchIcon} faviconSvg={faviconSvg} appleWebAppTitle={appleWebAppTitle} ogImage={ogImage} draft={draft}>
+<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest} appleTouchIcon={appleTouchIcon} faviconSvg={faviconSvg} appleWebAppTitle={appleWebAppTitle} ogImage={ogImage} draft={draft} hideFooterCta={hideFooterCta}>
 
 <style is:global>
   /* Tool pages lock the nav into its scrolled (dark glass) state from first paint */
@@ -140,6 +142,7 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest
   </script>
 
   <!-- Tool CTA -->
+  {!hideToolCta && (
   <div id="tool-cta" style="background:var(--color-surface-1);padding:3.5rem 0;border-top:1px solid rgba(72,72,72,0.15);">
     <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
       <div style="padding:2rem 1.5rem;background:var(--color-gold-muted);border:1px solid rgba(196,145,42,0.15);border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;">
@@ -160,4 +163,5 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest
       </div>
     </div>
   </div>
+  )}
 </Layout>
