@@ -342,14 +342,16 @@
     color: #ffffff !important;
   }
 
-  /* Secondary outline · gold-brand border, gold-deep text on cream */
+  /* Secondary outline · gold-brand border, gold-deep text on cream.
+     .hw-card anchors excluded · they are full cards with the same gold
+     border, and this rule was blanking their cream fill to transparent. */
   html a[style*="border:1px solid rgba(196,145,42"],
   html a[style*="border: 1px solid rgba(196,145,42"],
   html a[style*="border:1px solid rgba(245,208,122"],
-  html a[style*="border:1px solid rgba(185,130,41"],
+  html a[style*="border:1px solid rgba(185,130,41"]:not(.hw-card),
   html a[style*="border:1.5px solid rgba(196,145,42"],
   html a[style*="border:1.5px solid rgba(245,208,122"],
-  html a[style*="border:1.5px solid rgba(185,130,41"] {
+  html a[style*="border:1.5px solid rgba(185,130,41"]:not(.hw-card) {
     color: #6b4610 !important;
     border-color: rgba(185,130,41,0.5) !important;
     background: transparent !important;
@@ -357,10 +359,10 @@
   }
   html a[style*="border:1px solid rgba(196,145,42"]:hover,
   html a[style*="border:1px solid rgba(245,208,122"]:hover,
-  html a[style*="border:1px solid rgba(185,130,41"]:hover,
+  html a[style*="border:1px solid rgba(185,130,41"]:not(.hw-card):hover,
   html a[style*="border:1.5px solid rgba(196,145,42"]:hover,
   html a[style*="border:1.5px solid rgba(245,208,122"]:hover,
-  html a[style*="border:1.5px solid rgba(185,130,41"]:hover {
+  html a[style*="border:1.5px solid rgba(185,130,41"]:not(.hw-card):hover {
     color: #b98229 !important;
     border-color: #b98229 !important;
     background: #faf3dc !important;
