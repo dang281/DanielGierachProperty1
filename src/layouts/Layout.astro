@@ -78,8 +78,12 @@ const _suburbSlug  = _suburbMatch ? _suburbMatch[1] : null;
 const _suburbName  = _suburbSlug ? _suburbSlug.replace(/-/g,' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()) : null;
 
 // Insight → Suburb + CTA cross-link (#11)
+// Only link when the suburb page actually exists: some selling-in-* slugs
+// are not suburbs (selling-in-winter-brisbane, selling-in-brisbane-suburbs).
+const _suburbPageFiles = import.meta.glob('../pages/suburbs/*.astro');
+const _validSuburbSlugs = new Set(Object.keys(_suburbPageFiles).map(p => p.split('/').pop()!.replace('.astro', '')));
 const _insightMatch      = _bPath.match(/^\/insights\/selling-in-(.+)$/);
-const _insightSuburbSlug = _insightMatch ? _insightMatch[1] : null;
+const _insightSuburbSlug = _insightMatch && _validSuburbSlugs.has(_insightMatch[1]) ? _insightMatch[1] : null;
 const _insightSuburbName = _insightSuburbSlug ? _insightSuburbSlug.replace(/-/g,' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()) : null;
 
 // Hub pages pass schema with @type CollectionPage -- exclude from article treatment

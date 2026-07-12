@@ -75,7 +75,7 @@ export const topics: Record<string, Topic> = {
       { slug: 'building-pest-report', title: 'Building and Pest Reports When Selling', label: 'Due Diligence' },
       { slug: 'seller-disclosure-obligations-queensland', title: 'Seller Disclosure Obligations in Queensland', label: 'Legal' },
       { slug: 'asbestos-disclosure-selling-queensland', title: 'Asbestos Disclosure When Selling in Queensland', label: 'Disclosure' },
-      { slug: 'pre-listing-pest-inspection-brisbane-sellers', title: 'Pre-Listing Pest Inspections for Brisbane Sellers', label: 'Inspections' },
+      { slug: 'pre-sale-building-pest-inspection-brisbane-seller', title: 'Pre-Sale Building and Pest Inspections', label: 'Inspections' },
     ],
     tools: [
       { slug: 'defect-triage', title: 'Defect Triage Tool' },
@@ -160,8 +160,8 @@ export const topics: Record<string, Topic> = {
     articles: [
       { slug: 'should-i-renovate-before-selling-brisbane', title: 'Should I Renovate Before Selling?', label: 'Renovation' },
       { slug: 'bathroom-renovations-before-selling-brisbane-cost-return-tiers', title: 'Bathroom Renovations Before Selling', label: 'Bathroom' },
-      { slug: 'kitchen-renovation-before-selling-brisbane', title: 'Kitchen Renovation Before Selling', label: 'Kitchen' },
-      { slug: 'paint-before-selling-brisbane-roi', title: 'Paint Before Selling: ROI', label: 'Paint' },
+      { slug: 'kitchen-renovations-before-selling-brisbane-pay-off-wasted-spend', title: 'Kitchen Renovations Before Selling: Pay Off or Wasted Spend', label: 'Kitchen' },
+      { slug: 'interior-paint-colours-selling-brisbane-property', title: 'Interior Paint Colours When Selling', label: 'Paint' },
     ],
     tools: [
       { slug: 'renovation-roi', title: 'Renovation ROI Calculator' },
@@ -277,10 +277,10 @@ export const topics: Record<string, Topic> = {
   'life-events': {
     label: 'Life events and selling',
     articles: [
-      { slug: 'selling-after-separation-divorce-queensland', title: 'Selling After Separation or Divorce', label: 'Separation' },
+      { slug: 'selling-property-during-separation-divorce-queensland', title: 'Selling After Separation or Divorce', label: 'Separation' },
       { slug: 'selling-deceased-estate-queensland', title: 'Selling a Deceased Estate', label: 'Estate' },
-      { slug: 'downsizing-brisbane-inner-east', title: 'Downsizing in Brisbane Inner East', label: 'Downsizing' },
-      { slug: 'interstate-seller-brisbane', title: 'Selling From Interstate', label: 'Interstate' },
+      { slug: 'downsizing-brisbane-inner-east-strategy-process', title: 'Downsizing in Brisbane Inner East', label: 'Downsizing' },
+      { slug: 'selling-brisbane-property-interstate-overseas-guide', title: 'Selling From Interstate or Overseas', label: 'Interstate' },
     ],
     tools: [
       { slug: 'whole-of-move', title: 'Whole of Move Cost Tool' },
@@ -294,10 +294,10 @@ export const topics: Record<string, Topic> = {
   investor: {
     label: 'Investment property',
     articles: [
-      { slug: 'tenanted-vs-vacant-sale-brisbane', title: 'Tenanted vs Vacant Sale', label: 'Tenants' },
+      { slug: 'list-brisbane-home-vacant-occupied-or-staged', title: 'Selling Vacant, Occupied or Staged', label: 'Tenants' },
       { slug: 'when-to-exit-brisbane-property-investor-decision-to-sell', title: 'When to Exit a Brisbane Investment', label: 'Timing' },
-      { slug: 'cgt-timing-investment-property-brisbane', title: 'CGT Timing for Investment Property', label: 'Tax' },
-      { slug: 'depreciation-when-selling-investment-property', title: 'Depreciation When Selling', label: 'Depreciation' },
+      { slug: 'capital-gains-tax-selling-investment-property-brisbane', title: 'CGT When Selling an Investment Property', label: 'Tax' },
+      { slug: 'depreciation-clawback-selling-investment-property-brisbane', title: 'Depreciation Clawback When Selling', label: 'Depreciation' },
     ],
     tools: [
       { slug: 'investment-yield', title: 'Investment Yield Calculator' },
@@ -311,8 +311,8 @@ export const topics: Record<string, Topic> = {
   overlays: {
     label: 'Overlays and zoning',
     articles: [
-      { slug: 'flood-overlay-brisbane-selling', title: 'Flood Overlay When Selling', label: 'Flood' },
-      { slug: 'character-overlay-brisbane-pre-1947', title: 'Character Overlay (Pre-1947)', label: 'Heritage' },
+      { slug: 'flood-overlay-flood-mapping-brisbane-selling', title: 'Flood Overlay When Selling', label: 'Flood' },
+      { slug: 'traditional-building-character-overlay-pre-1947-brisbane-sellers', title: 'Character Overlay (Pre-1947)', label: 'Heritage' },
       { slug: 'traditional-building-character-overlay-pre-1947-brisbane-sellers', title: 'Traditional Building Character Overlay', label: 'Heritage' },
       { slug: 'brisbane-house-styles', title: 'Brisbane House Styles', label: 'Architecture' },
     ],
@@ -346,7 +346,7 @@ export const topics: Record<string, Topic> = {
     label: 'For buyers',
     articles: [
       { slug: 'auction-bidding-strategy-brisbane-buyers', title: 'Auction Bidding Strategy for Buyers', label: 'Auction' },
-      { slug: 'first-home-buyer-brisbane-inner-east', title: 'First Home Buyer in Brisbane Inner East', label: 'First Home' },
+      { slug: 'first-home-buyer-help-history-and-current-options', title: 'First Home Buyer Help: What Is Available Now', label: 'First Home' },
       { slug: 'building-pest-report', title: 'Building and Pest Reports', label: 'Due Diligence' },
       { slug: 'stamp-duty-queensland', title: 'Stamp Duty in Queensland', label: 'Costs' },
     ],
