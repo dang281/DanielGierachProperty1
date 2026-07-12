@@ -236,14 +236,26 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
     </script>
-    <!-- Funnel-arrival flag: ?nav=off hides the site header (set by /meet-the-team outbound links). -->
+    <!-- Funnel/magazine mode: ?nav=off hides the site header + breadcrumb, then
+         persists for the whole session so clicking deeper stays chrome-free.
+         ?nav=on clears it. Set by /meet-the-team outbound links. -->
     <script is:inline>
-      if (new URLSearchParams(location.search).get('nav') === 'off') {
-        document.documentElement.classList.add('nav-off');
-      }
+      (function () {
+        var p = new URLSearchParams(location.search);
+        var mode = p.get('nav');
+        try {
+          if (mode === 'off') sessionStorage.setItem('navOff', '1');
+          else if (mode === 'on') sessionStorage.removeItem('navOff');
+        } catch (e) {}
+        var on = mode === 'off';
+        try { on = on || sessionStorage.getItem('navOff') === '1'; } catch (e) {}
+        if (on) document.documentElement.classList.add('nav-off');
+      })();
     </script>
     <style is:global>
       html.nav-off #site-header { display: none !important; }
+      /* Funnel arrivals read like a clean magazine: no header, no breadcrumb. */
+      html.nav-off nav[aria-label="Breadcrumb"] { display: none !important; }
     </style>
   </head>
   <body>
