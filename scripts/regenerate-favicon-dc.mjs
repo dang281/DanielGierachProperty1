@@ -12,7 +12,10 @@ import puppeteer from 'puppeteer';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = resolve(__dirname, '..', 'public');
 
-const svgSource = await readFile(resolve(publicDir, 'favicon-dc.svg'), 'utf8');
+// Home-screen icons render FULL-BLEED: iOS masks its own corners, and
+// transparent corners would show as black. Flatten the tab icon's rounding.
+const svgSource = (await readFile(resolve(publicDir, 'favicon-dc.svg'), 'utf8'))
+  .replace(/rx="6"/g, 'rx="0"');
 
 const targets = [
   { file: 'apple-touch-icon-dc.png', size: 180 },
@@ -38,7 +41,7 @@ try {
     await page.screenshot({
       path: resolve(publicDir, file),
       type: 'png',
-      omitBackground: true,
+      omitBackground: false,
       clip: { x: 0, y: 0, width: size, height: size },
     });
     console.log(`wrote ${file} (${size}x${size})`);

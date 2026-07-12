@@ -9,14 +9,18 @@ interface Props {
   manifest?: string;
   appleTouchIcon?: string;
   faviconSvg?: string;
+  appleWebAppTitle?: string;
 }
 
 const {
   title = "Free Property Report | Daniel Gierach Property",
   description = "Find out what your home is worth. Free report based on recent comparable sales. No obligation.",
   manifest = '/site.webmanifest',
-  appleTouchIcon = '/apple-touch-icon.png',
-  faviconSvg = '/favicon.svg',
+  // Keep the ?v cache-bust in step with Layout.astro or landing pages
+  // serve the stale pre-refresh favicon (head drift, 2026-07-13).
+  appleTouchIcon = '/apple-touch-icon.png?v=3',
+  faviconSvg = '/favicon.svg?v=3',
+  appleWebAppTitle = 'Daniel Gierach',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').href;
@@ -36,6 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
     <link rel="manifest" href={manifest} />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content={appleWebAppTitle} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
