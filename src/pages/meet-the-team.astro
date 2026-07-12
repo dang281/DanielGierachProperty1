@@ -79,18 +79,18 @@ const supportTeam = [
 <style>
   :root {
     --bg: #e6d9bd;
-    --bg-soft: #100c08;
-    --card: #15110d;
-    --card-hover: #1c1612;
-    --line: rgba(240, 236, 228, 0.07);
-    --line-strong: rgba(196, 145, 42, 0.32);
-    --line-glow: rgba(196, 145, 42, 0.5);
-    --text: #f2ead4;
-    --text-mute: rgba(242, 239, 233, 0.5);
-    --text-soft: rgba(242, 239, 233, 0.78);
+    --bg-soft: #ede2c5;
+    --card: #f2ead4;
+    --card-hover: #f7f0de;
+    --line: rgba(25, 24, 23, 0.10);
+    --line-strong: rgba(185, 130, 41, 0.32);
+    --line-glow: rgba(185, 130, 41, 0.5);
+    --text: #191817;
+    --text-mute: rgba(25, 24, 23, 0.52);
+    --text-soft: rgba(25, 24, 23, 0.70);
     --gold: #b98229;
-    --gold-bright: #d4a23a;
-    --gold-soft: rgba(196, 145, 42, 0.85);
+    --gold-bright: #a5721c;
+    --gold-soft: rgba(185, 130, 41, 0.85);
   }
 
   body { background: var(--bg); color: var(--text); position: relative; }
@@ -108,7 +108,7 @@ const supportTeam = [
   .hero-bg img {
     width: 100%; height: 100%;
     object-fit: cover; object-position: center 92%;
-    filter: grayscale(12%) brightness(0.62) contrast(1.05);
+    filter: grayscale(12%) brightness(0.95) contrast(1.02);
   }
   .hero-bg::after {
     content: '';
@@ -118,10 +118,10 @@ const supportTeam = [
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(185,130,41,0.1) 0%, rgba(185,130,41,0) 70%),
       linear-gradient(
         180deg,
-        rgba(230,217,189,0.55) 0%,
-        rgba(230,217,189,0.5) 28%,
-        rgba(230,217,189,0.7) 55%,
-        rgba(230,217,189,0.88) 80%,
+        rgba(230,217,189,0.72) 0%,
+        rgba(230,217,189,0.68) 28%,
+        rgba(230,217,189,0.82) 55%,
+        rgba(230,217,189,0.94) 80%,
         var(--bg) 100%
       );
   }
@@ -157,7 +157,7 @@ const supportTeam = [
     color: var(--text);
     letter-spacing: -0.01em;
     margin-bottom: 1.4rem;
-    text-shadow: 0 1px 12px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 12px rgba(230,217,189,0.85);
   }
 
   .agents {
@@ -179,8 +179,8 @@ const supportTeam = [
     object-fit: cover; object-position: center 35%;
     display: block;
     margin: 0 0 0.5rem;
-    border: 1.5px solid rgba(197, 160, 60, 0.55);
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(196, 145, 42, 0.05);
+    border: 1.5px solid rgba(185, 130, 41, 0.35);
+    box-shadow: 0 6px 18px rgba(25, 24, 23, 0.10), 0 0 0 3px rgba(185, 130, 41, 0.06);
   }
   @media (min-width: 480px) { .avatar { width: 88px; height: 88px; } }
 
@@ -192,7 +192,7 @@ const supportTeam = [
     min-height: 2.4em;
     display: flex; align-items: center; justify-content: center;
     text-align: center;
-    text-shadow: 0 1px 12px rgba(0,0,0,0.65), 0 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 12px rgba(230,217,189,0.9), 0 1px 2px rgba(230,217,189,0.6);
   }
   @media (min-width: 480px) { .name { font-size: 1.15rem; min-height: 1.3em; } }
 
@@ -206,7 +206,7 @@ const supportTeam = [
     font-size: 0.7rem; font-weight: 700;
     line-height: 1.25;
     margin-bottom: 0.15rem;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.45);
+    text-shadow: 0 1px 8px rgba(230,217,189,0.85), 0 1px 2px rgba(230,217,189,0.55);
   }
   @media (min-width: 480px) { .contact-line { font-size: 0.78rem; } }
   .contact-line a { color: var(--gold); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
@@ -221,7 +221,7 @@ const supportTeam = [
     font-size: 0.6rem; font-weight: 500;
     line-height: 1.25;
     word-break: break-all;
-    text-shadow: 0 1px 6px rgba(0,0,0,0.55);
+    text-shadow: 0 1px 6px rgba(230,217,189,0.8);
     padding: 0 0.25rem;
     margin: 0;
   }
@@ -238,8 +238,8 @@ const supportTeam = [
     gap: 0.3rem;
     margin-top: 0.65rem;
     padding: 0.4rem 0.75rem;
-    background: rgba(196, 145, 42, 0.08);
-    border: 1px solid rgba(196, 145, 42, 0.35);
+    background: rgba(185, 130, 41, 0.08);
+    border: 1px solid rgba(185, 130, 41, 0.35);
     border-radius: 6px;
     font-family: var(--font-sans);
     font-size: 0.52rem; font-weight: 800;
@@ -251,7 +251,7 @@ const supportTeam = [
   }
   @media (min-width: 480px) { .agent-info-btn { font-size: 0.55rem; padding: 0.45rem 0.9rem; } }
   .agent-info-btn:hover {
-    background: rgba(196, 145, 42, 0.18);
+    background: rgba(185, 130, 41, 0.18);
     border-color: var(--gold);
     color: var(--gold-bright);
   }
@@ -279,10 +279,10 @@ const supportTeam = [
   .wt-card {
     display: flex; flex-direction: column; align-items: center;
     padding: 0.9rem 0.5rem 0.85rem;
-    background: rgba(15, 11, 7, 0.55);
+    background: var(--card);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(196, 145, 42, 0.18);
+    border: 1px solid rgba(185, 130, 41, 0.18);
     border-radius: 8px;
     transition: background 0.18s, border-color 0.18s;
     /* Equal width siblings; cap at 200px so the row stays compact */
@@ -290,12 +290,12 @@ const supportTeam = [
     min-width: 0;
     max-width: 200px;
   }
-  .wt-card:hover { background: rgba(20, 14, 9, 0.75); border-color: rgba(196, 145, 42, 0.4); }
+  .wt-card:hover { background: var(--card-hover); border-color: rgba(185, 130, 41, 0.4); }
   .wt-avatar {
     width: 60px; height: 60px;
     border-radius: 10px;
     object-fit: cover; object-position: center 22%;
-    border: 1px solid rgba(197, 160, 60, 0.45);
+    border: 1px solid rgba(185, 130, 41, 0.35);
     margin-bottom: 0.6rem;
   }
   @media (min-width: 480px) { .wt-avatar { width: 70px; height: 70px; border-radius: 12px; } }
@@ -306,7 +306,7 @@ const supportTeam = [
     text-align: center;
     margin-bottom: 0.2rem;
     color: var(--text);
-    text-shadow: 0 1px 8px rgba(0,0,0,0.55);
+    text-shadow: 0 1px 8px rgba(230,217,189,0.8);
     /* Reserve 2 lines so cards stay the same height even if a name fits
        on one line (e.g. Peter Burgin) vs wraps (Samantha Squires) */
     min-height: 2.4em;
@@ -329,8 +329,8 @@ const supportTeam = [
     display: inline-flex; align-items: center; justify-content: center;
     gap: 0.3rem;
     padding: 0.5rem 0.8rem;
-    background: rgba(196, 145, 42, 0.08);
-    border: 1px solid rgba(196, 145, 42, 0.35);
+    background: rgba(185, 130, 41, 0.08);
+    border: 1px solid rgba(185, 130, 41, 0.35);
     border-radius: 6px;
     font-family: var(--font-sans);
     font-size: 0.52rem; font-weight: 800;
@@ -343,7 +343,7 @@ const supportTeam = [
   }
   @media (min-width: 480px) { .wt-info-btn { font-size: 0.55rem; padding: 0.55rem 1rem; } }
   .wt-info-btn:hover {
-    background: rgba(196, 145, 42, 0.18);
+    background: rgba(185, 130, 41, 0.18);
     border-color: var(--gold);
     color: var(--gold-bright);
   }
@@ -447,8 +447,8 @@ const supportTeam = [
   .card-icon {
     width: 36px; height: 36px;
     display: flex; align-items: center; justify-content: center;
-    background: rgba(196, 145, 42, 0.1);
-    border: 1px solid rgba(196, 145, 42, 0.18);
+    background: rgba(185, 130, 41, 0.1);
+    border: 1px solid rgba(185, 130, 41, 0.18);
     border-radius: 50%;
     color: var(--gold-bright);
     flex-shrink: 0;
@@ -558,7 +558,7 @@ const supportTeam = [
   .btn-gold {
     display: inline-flex; align-items: center; gap: 0.4rem;
     padding: 0.75rem 1.25rem;
-    background: var(--gold); color: var(--bg);
+    background: var(--gold); color: #ffffff;
     font-family: var(--font-sans);
     font-size: 0.66rem; font-weight: 800;
     letter-spacing: 0.14em; text-transform: uppercase;
