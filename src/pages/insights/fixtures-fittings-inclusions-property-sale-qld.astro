@@ -56,8 +56,8 @@ const faqSchema = {
   <div style="background:#e6d9bd;padding:8rem 0 3rem;">
     <div class="max-w-[780px] mx-auto px-8">
       <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(25,24,23,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#6b4610'" onmouseout="this.style.color='rgba(25,24,23,0.6)'">
-        ← All Articles
+        onmouseover="this.style.color='#6b4610'" onmouseout="this.style.color='rgba(25,24,23,0.6)'" onclick="if(history.length>1&&document.referrer.indexOf(location.origin)===0){history.back();return false}">
+        &larr; Back
       </a>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;margin-bottom:1rem;">Sellers · 5 min read</span>
       <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#191817;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
