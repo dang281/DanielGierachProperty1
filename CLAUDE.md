@@ -284,10 +284,30 @@ Agents must check `**Publish date:**` and derive the day of week before selectin
 
 ## BRAND
 
-- Colours: Charcoal `#0a0806` · Cream `#f0ece4` · Gold `#c4912a`
+**GieMann palette · rolled out sitewide 2026-07-10 → 2026-07-12. Use these on every new page, tile, script, PDF, and social visual.**
+
+Web palette (`src/components/GieMannTheme.astro` is the source of truth):
+
+- Page bg: `#e6d9bd` (warm honey cream · was `#0a0806` charcoal)
+- Card fill: `#f2ead4` (mid cream)
+- Ink primary: `#191817` (text on cream · was `#f0ece4` on dark)
+- Ink secondary: `rgba(25,24,23,0.72)`
+- Gold brand: `#b98229` (buttons, hover accents · was `#c4912a`)
+- Gold deep: `#6b4610` (eyebrows, small-caps labels · was `#f5d07a`)
+
+Rules for every new page:
+
+- Reference the tokens through CSS variables when possible: `background:var(--color-base)`, `color:var(--color-text-primary)`, `color:var(--color-gold)`. GieMannTheme resolves them to the GieMann values.
+- If you must hardcode a hex (Astro inline style, one-off), use the GieMann values above. Never `#0a0806`, `#1c1917`, `#c4912a`, `#f0ece4`, `#f5d07a`, `#c5a03c`, `#f2efe9`. GieMannTheme's catch-all rules retint most of these post-hoc, but new pages should ship correct on first render.
+- Same-colour button = same text colour. Solid gold-brand buttons get **white** text. GieMannTheme forces this via a broad selector; if you add a new button class add it to the selector list.
+- Property tiles (`.listing-card`, `.sale-card`) stay sharp-cornered so photos read edge-to-edge. Every other card class rounds to 16px.
+- Reference pages: `/the-collective` (canonical hero and typography), `/team/daniel-gierach` (palette override for lighter body cream), `/tools/valuation` (tool-page pattern).
+
+Other brand rules:
+
 - No red anywhere
 - No Ray White corporate colours in any visual
-- Footer text: "Ray White Collective" (updated May 2026 — use this on all new visuals)
+- Footer text: "Ray White Collective" (updated May 2026, use this on all new visuals)
 - Website: `danielgierach.com` (no trailing slash, no www)
 - Always post from Daniel's personal LinkedIn profile, not the agency page
 

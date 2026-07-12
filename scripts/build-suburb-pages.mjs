@@ -357,49 +357,49 @@ ${s.faqs.map(f => `    { "@type": "Question", "name": ${JSON.stringify(f.q)}, "a
 })}</script>
 
 <!-- HERO -->
-<section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
+<section style="background:#f2ead4; color:#f2ead4; padding: 100px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">${s.name}</p>
-    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1.25rem;">${s.name}</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2ead4;">
       Real estate agent ${s.name}.
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
       Property sales in ${s.name} and ${s.region}.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
-      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's your property worth?</a>
+      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
+      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's your property worth?</a>
     </div>
   </div>
 </section>
 
 <!-- WHY THIS AREA -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">${s.headline}</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Local Expertise</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:1.75rem;">${s.headline}</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       ${s.intro}
     </p>
 <!-- APPRAISAL FORM -->
-<div style="background:#fff; border-left:4px solid #c4912a; padding:2rem 2rem 1.75rem; margin:2rem 0;">
-  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c4912a; margin-bottom:0.5rem;">Free Appraisal</p>
-  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#1c1917; margin-bottom:1.25rem; line-height:1.25;">Find out what your ${s.name} home is worth.</h3>
+<div style="background:#fff; border-left:4px solid #b98229; padding:2rem 2rem 1.75rem; margin:2rem 0;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#b98229; margin-bottom:0.5rem;">Free Appraisal</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#f2ead4; margin-bottom:1.25rem; line-height:1.25;">Find out what your ${s.name} home is worth.</h3>
   <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
     <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
     <input type="hidden" name="_subject" value="Appraisal enquiry - ${s.name}" />
     <input type="hidden" name="_source" value="${s.slug}" />
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
       <input type="text" name="name" required placeholder="Your name" autocomplete="name"
-        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#f2ead4; outline:none; width:100%; box-sizing:border-box;" />
       <input type="email" name="email" required placeholder="Email address" autocomplete="email"
-        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#f2ead4; outline:none; width:100%; box-sizing:border-box;" />
     </div>
     <input type="text" name="property_address" required placeholder="Your ${s.name} address (street + number)"
-      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#1c1917; outline:none; width:100%; box-sizing:border-box;" />
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#f2ead4; outline:none; width:100%; box-sizing:border-box;" />
     <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
       <button type="submit"
-        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;">
         Request my free appraisal
       </button>
       <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
@@ -416,25 +416,25 @@ ${s.faqs.map(f => `    { "@type": "Question", "name": ${JSON.stringify(f.q)}, "a
       ${s.body}
     </p>${body2}
     <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-${s.cards.map(c => `      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">${c.title}</p>
+${s.cards.map(c => `      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#f2ead4; margin-bottom:0.4rem;">${c.title}</p>
         <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">${c.sub}</p>
       </div>`).join('\n')}
     </div>
-    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: ${nearbyCards.map(slug => `<a href="/suburbs/${slug}" style="color:#c4912a;">${slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</a>`).join(', ')}.</p>
+    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: ${nearbyCards.map(slug => `<a href="/suburbs/${slug}" style="color:#b98229;">${slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</a>`).join(', ')}.</p>
   </div>
 </section>
 
 <!-- FAQ -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">FAQ</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Common questions about ${s.name}.</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">FAQ</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:2.5rem;">Common questions about ${s.name}.</h2>
     <div style="display:flex; flex-direction:column;">
 ${s.faqs.map((f, i) => `      <details style="${i < s.faqs.length - 1 ? 'border-bottom:1px solid rgba(72,72,72,0.15); ' : ''}padding:1.25rem 0;">
-        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#f2ead4; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
           ${f.q}
-          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+          <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
         <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">${f.a}</p>
       </details>`).join('\n')}
@@ -443,48 +443,48 @@ ${s.faqs.map((f, i) => `      <details style="${i < s.faqs.length - 1 ? 'border-
 </section>
 
 <!-- HOW DANIEL HELPS YOU SELL -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Selling in ${s.name}</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem;">What selling with Daniel looks like.</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Selling in ${s.name}</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:3rem;">What selling with Daniel looks like.</h2>
     <div style="display:flex; flex-direction:column; gap:2.5rem; margin-bottom:3rem;">
       <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
+        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#b98229; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
         <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Free appraisal</p>
+          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">Free appraisal</p>
           <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Daniel will walk through what your property is worth and what buyers are currently paying in your street.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
+        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#b98229; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
         <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Tailored campaign</p>
+          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">Tailored campaign</p>
           <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Every property is different. The strategy is built around your home, your timing and the buyer profile in your suburb.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">3</span>
+        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#b98229; line-height:1; flex-shrink:0; width:2.5rem;">3</span>
         <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Managed negotiation</p>
+          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">Managed negotiation</p>
           <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Every offer is managed with commercial discipline to protect the final result.</p>
         </div>
       </div>
     </div>
-    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request a free appraisal</a>
+    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request a free appraisal</a>
   </div>
 </section>
 
 <!-- CTA STRIP -->
-<section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
+<section style="background:#f2ead4; color:#f2ead4; padding:80px 24px; text-align:center;">
   <div style="max-width:700px; margin:0 auto;">
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in ${s.name}?</h2>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:1.25rem;">Thinking of selling in ${s.name}?</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.75; color:#c9c4bc; margin-bottom:2rem;">Call Daniel directly for a no-obligation conversation about your property and what it could achieve in today's market.</p>
     <p style="margin-bottom:2.5rem;">
-      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#f5d07a; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
+      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#6b4610; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2efe9; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #c4912a;">Send a message</a>
-      <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's your property worth?</a>
+      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229;">Send a message</a>
+      <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's your property worth?</a>
     </div>
   </div>
 </section>

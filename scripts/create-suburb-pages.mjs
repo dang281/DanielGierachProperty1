@@ -250,10 +250,10 @@ function generatePage(s) {
     ],
   };
 
-  const nearbyLinks = s.nearby.map(n => `<a href="${n.href}" style="color:#c4912a;">${n.name}</a>`).join(', ');
+  const nearbyLinks = s.nearby.map(n => `<a href="${n.href}" style="color:#b98229;">${n.name}</a>`).join(', ');
   const gridItems = s.gridSuburbs.map(g => `
-      <div style="background:var(--color-base, #f2efe9); padding:1.75rem;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">${g.name}</p>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">${g.name}</p>
         <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">${g.desc}</p>
       </div>`).join('');
 
@@ -273,18 +273,18 @@ import Layout from '../../layouts/Layout.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO
 ════════════════════════════════════════════════ -->
-<section style="background:#1c1917; color:#f2efe9; padding: 100px 24px 80px;">
+<section style="background:#f2ead4; color:#f2ead4; padding: 100px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1.25rem;">${s.name}</p>
-    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2efe9;">
-      Real Estate Agent<br/><em style="color:#f5d07a;">${s.name}.</em>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1.25rem;">${s.name}</p>
+    <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; color:#f2ead4;">
+      Real Estate Agent<br/><em style="color:#6b4610;">${s.name}.</em>
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:#c9c4bc; max-width:580px; margin:0 auto 2.5rem;">
       Specialist property sales in ${s.name} and Brisbane's inner east and south.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
-      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">View Current Listings</a>
+      <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
     </div>
   </div>
 </section>
@@ -292,10 +292,10 @@ import Layout from '../../layouts/Layout.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION 2: WHY THIS AREA
 ════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Local Expertise</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:1.75rem;">${s.h2}</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Local Expertise</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:1.75rem;">${s.h2}</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       ${s.intro}
     </p>
@@ -306,12 +306,12 @@ import Layout from '../../layouts/Layout.astro';
       ${s.body}
     </p>
     <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">${s.badge1}</p>
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#f2ead4; margin-bottom:0.4rem;">${s.badge1}</p>
         <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">${s.badge1sub}</p>
       </div>
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #c4912a;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#1c1917; margin-bottom:0.4rem;">${s.badge2}</p>
+      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229;">
+        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#f2ead4; margin-bottom:0.4rem;">${s.badge2}</p>
         <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">${s.badge2sub}</p>
       </div>
     </div>
@@ -322,40 +322,40 @@ import Layout from '../../layouts/Layout.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION: FAQ
 ════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">FAQ</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Common questions about ${s.name}.</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">FAQ</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:2.5rem;">Common questions about ${s.name}.</h2>
     <div style="display:flex; flex-direction:column;">
 
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
-        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#f2ead4; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
           Who is the best real estate agent in ${s.name}?
-          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+          <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
         <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Daniel Gierach of Ray White Bulimba is an active agent across Brisbane's inner east and south, including ${s.name}. He brings local market knowledge, a targeted buyer database and a proven track record of results. Call 0412 523 821 for a no-obligation appraisal.</p>
       </details>
 
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
-        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#f2ead4; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
           What is the median house price in ${s.name}?
-          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+          <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
         <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">${s.name}'s median house price is approximately ${s.medianPrice} as of early 2026. ${s.medianContext}</p>
       </details>
 
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
-        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#f2ead4; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
           How long does it take to sell a home in ${s.name}?
-          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+          <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
         <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced ${s.name} homes typically sell within ${s.days} days. ${s.daysContext} Daniel Gierach's median days on market across his Brisbane portfolio is 20 days.</p>
       </details>
 
       <details style="padding:1.25rem 0;">
-        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#1c1917; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+        <summary style="font-family:var(--font-serif); font-size:1.05rem; cursor:pointer; color:#f2ead4; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
           ${s.q4}
-          <span style="color:#c4912a; font-size:1.4rem; flex-shrink:0;">+</span>
+          <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
         <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">${s.a4}</p>
       </details>
@@ -369,8 +369,8 @@ import Layout from '../../layouts/Layout.astro';
 ════════════════════════════════════════════════ -->
 <section style="background:#fff; padding:80px 24px;">
   <div style="max-width:900px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Areas Covered</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
     <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">${gridItems}
     </div>
   </div>
@@ -379,50 +379,50 @@ import Layout from '../../layouts/Layout.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION 4: HOW I CAN HELP YOU SELL
 ════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2efe9); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
   <div style="max-width:800px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#c4912a; margin-bottom:1rem;">Selling in ${s.name}</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#1c1917; margin-bottom:3rem;">What selling with Daniel looks like.</h2>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Selling in ${s.name}</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:3rem;">What selling with Daniel looks like.</h2>
     <div style="display:flex; flex-direction:column; gap:2.5rem; margin-bottom:3rem;">
       <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
+        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#b98229; line-height:1; flex-shrink:0; width:2.5rem;">1</span>
         <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Free appraisal</p>
+          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">Free appraisal</p>
           <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I'll walk you through what your property is worth and what buyers are currently paying in your area.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
+        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#b98229; line-height:1; flex-shrink:0; width:2.5rem;">2</span>
         <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Tailored campaign</p>
+          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">Tailored campaign</p>
           <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">Every property is different. I build a strategy around your home, your timeline and your buyer profile.</p>
         </div>
       </div>
       <div style="display:flex; gap:2rem; align-items:flex-start;">
-        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#c4912a; line-height:1; flex-shrink:0; width:2.5rem;">3</span>
+        <span style="font-family:var(--font-serif); font-size:2.5rem; font-weight:300; color:#b98229; line-height:1; flex-shrink:0; width:2.5rem;">3</span>
         <div>
-          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#1c1917; margin-bottom:0.5rem;">Managed negotiation</p>
+          <p style="font-family:var(--font-serif); font-size:1.2rem; font-style:italic; font-weight:400; color:#f2ead4; margin-bottom:0.5rem;">Managed negotiation</p>
           <p style="font-family:var(--font-sans); font-size:0.9rem; font-weight:300; line-height:1.7; color:#6b6560;">I manage every offer with commercial discipline to protect your final result.</p>
         </div>
       </div>
     </div>
-    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request a Free Appraisal</a>
+    <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">Request a Free Appraisal</a>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════
      SECTION 5: CTA STRIP
 ════════════════════════════════════════════════ -->
-<section style="background:#1c1917; color:#f2efe9; padding:80px 24px; text-align:center;">
+<section style="background:#f2ead4; color:#f2ead4; padding:80px 24px; text-align:center;">
   <div style="max-width:700px; margin:0 auto;">
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2efe9; margin-bottom:1.25rem;">Thinking of selling in ${s.name}?</h2>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:300; line-height:1.2; color:#f2ead4; margin-bottom:1.25rem;">Thinking of selling in ${s.name}?</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.75; color:#c9c4bc; margin-bottom:2rem;">Call me directly for a no-obligation conversation about your property and what it could achieve in today's market.</p>
     <p style="margin-bottom:2.5rem;">
-      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#f5d07a; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
+      <a href="tel:+61412523821" style="font-family:var(--font-serif); font-size:2rem; font-weight:300; color:#6b4610; text-decoration:none; letter-spacing:0.02em;">0412 523 821</a>
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2efe9; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #c4912a;">Send a Message</a>
-      <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#c4912a; color:#1c1917; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
+      <a href="/contact" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229;">Send a Message</a>
+      <a href="/walkthrough" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#f2ead4; padding:0.85rem 2rem; text-decoration:none; display:inline-block;">What's Your Property Worth?</a>
     </div>
   </div>
 </section>
