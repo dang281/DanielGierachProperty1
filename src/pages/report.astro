@@ -55,7 +55,7 @@ const reportSchema = {
         </p>
       </div>
 
-      <div class="reveal" data-delay="160" style="padding:1.25rem 1.5rem;background:#ffffff;border:1px solid rgba(185,130,41,0.25);border-radius:8px;margin-bottom:2.75rem;">
+      <div class="reveal report-testimonial" data-delay="160" style="padding:1.25rem 1.5rem;background:#ffffff;border:1px solid rgba(185,130,41,0.25);border-radius:8px;margin-bottom:2.75rem;">
         <div style="display:flex;gap:0.2rem;margin-bottom:0.75rem;">
           {[1,2,3,4,5].map(() => (
             <svg width="12" height="12" viewBox="0 0 24 24" fill="#b98229" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -143,13 +143,18 @@ const reportSchema = {
       grid-template-columns: 1fr !important;
       display: flex !important;
       flex-direction: column;
+      min-height: 0 !important;
     }
     .report-split > div:nth-child(1) {
       order: 2;
       min-height: 0;
-      padding: 1.75rem 1.5rem 2.5rem !important;
+      padding: 1.75rem 1.5rem 1.5rem !important;
       justify-content: flex-start;
     }
+    /* The contacts block below the testimonial is hidden on mobile, so the
+       testimonial's large bottom margin becomes dead space. */
+    .report-testimonial { margin-bottom: 0 !important; }
+    .report-hero-content { padding-bottom: 0.5rem !important; }
     .report-split > div:nth-child(2) {
       order: 1;
       /* Clear the fixed site nav so the "Your Property Report" eyebrow and
