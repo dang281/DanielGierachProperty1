@@ -70,7 +70,7 @@ async function main() {
   await page.evaluate(() => {
     const dlWrap = document.getElementById('dlWrap')
     if (dlWrap) dlWrap.style.display = 'none'
-    document.body.style.cssText = 'margin:0;padding:0;display:block;background:#0a0806;'
+    document.body.style.cssText = 'margin:0;padding:0;display:block;background:#e6d9bd;'
     const frame = document.querySelector('.frame')
     if (frame) frame.style.cssText += ';position:fixed;top:0;left:0;'
   })

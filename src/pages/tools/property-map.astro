@@ -50,7 +50,7 @@ const legendGroups = [
   .pm-eduline {
     margin-bottom: 0.6rem;
     padding: 0.5rem 0.85rem;
-    background: rgba(196,145,42,0.07);
+    background: rgba(185,130,41,0.07);
     border-left: 3px solid var(--color-gold);
     font-family: var(--font-sans);
     font-size: 0.7rem;
@@ -71,21 +71,21 @@ const legendGroups = [
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
     border-radius: 8px;
-    background: #ffffff; color: #1c1917;
+    background: #ffffff; color:#191817;
     outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
   #pm-search:focus {
     border-color: var(--color-gold);
-    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+    box-shadow: 0 0 0 3px rgba(185,130,41,0.15);
   }
   #pm-search::placeholder { color: #a8a29e; }
   #pm-search-btn {
-    padding: 0 1.5rem; background: var(--color-gold); color: #0a0806;
+    padding: 0 1.5rem; background: var(--color-gold); color:#191817;
     font-family: var(--font-sans); font-size: 0.7rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
     border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: background 0.2s;
   }
-  #pm-search-btn:hover { background: #d4af4a; }
+  #pm-search-btn:hover { background: #a5721c; }
   #pm-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #pm-gps-btn {
     flex-shrink: 0; width: 46px;
@@ -96,7 +96,7 @@ const legendGroups = [
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
   }
-  #pm-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #pm-gps-btn:hover { color: var(--color-gold); background: rgba(185,130,41,0.08); }
   #pm-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #pm-gps-btn.locating { color: var(--color-gold); }
 
@@ -114,7 +114,7 @@ const legendGroups = [
     min-height: 44px; display: flex; align-items: center;
   }
   .pm-ac-item:last-child { border-bottom: none; }
-  .pm-ac-item:hover, .pm-ac-item:active { background: rgba(196,145,42,0.1); }
+  .pm-ac-item:hover, .pm-ac-item:active { background: rgba(185,130,41,0.1); }
 
   /* ── Mobile sticky search ──────────────────────────────────────────── */
   @media (max-width: 640px) {
@@ -157,7 +157,7 @@ const legendGroups = [
   /* ── Floating controls ─────────────────────────────────────────────── */
   .pm-control {
     position: absolute; z-index: 1200;
-    background: rgba(242,239,233,0.97);
+    background: rgba(25,24,23,0.97);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(28,25,23,0.12);
     border-radius: 8px;
@@ -168,7 +168,7 @@ const legendGroups = [
 
   #pm-status {
     position: absolute; top: 12px; left: 50px; z-index: 500;
-    background: rgba(242,239,233,0.95);
+    background: rgba(25,24,23,0.95);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(28,25,23,0.1);
     border-radius: 6px;
@@ -190,7 +190,7 @@ const legendGroups = [
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
     text-transform: uppercase; color: rgba(28,25,23,0.78);
   }
-  .pm-layer-toggle:hover { background: rgba(196,145,42,0.1); }
+  .pm-layer-toggle:hover { background: rgba(185,130,41,0.1); }
   .pm-layer-toggle .pm-toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
   .pm-layer-toggle[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
 
@@ -237,17 +237,17 @@ const legendGroups = [
   .pm-layer-group-head {
     font-family: var(--font-sans);
     font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em;
-    text-transform: uppercase; color: rgba(196,145,42,0.8);
+    text-transform: uppercase; color: rgba(185,130,41,0.8);
     padding: 0.55rem 0.6rem 0.25rem;
   }
   .pm-infra-toggle {
     display: flex; align-items: center; gap: 0.4rem; width: 100%;
     font-family: var(--font-sans); font-size: 0.58rem; font-weight: 800;
-    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,145,42,0.8);
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(185,130,41,0.8);
     padding: 0.55rem 0.6rem 0.25rem; background: none; border: none; cursor: pointer;
     border-top: 1px solid rgba(28,25,23,0.07);
   }
-  .pm-infra-toggle:hover { color: rgba(196,145,42,1); }
+  .pm-infra-toggle:hover { color: rgba(185,130,41,1); }
   .pm-infra-toggle .pm-toggle-arrow { margin-left: auto; opacity: 0.5; transition: transform 0.2s; }
   .pm-infra-toggle[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
   #pm-infra-panel { display: none; }
@@ -259,7 +259,7 @@ const legendGroups = [
     padding: 0.45rem 0.6rem;
     cursor: pointer; user-select: none; transition: background 0.15s;
   }
-  .pm-layer-row:hover { background: rgba(196,145,42,0.07); }
+  .pm-layer-row:hover { background: rgba(185,130,41,0.07); }
   .pm-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
   .pm-swatch { width: 24px; height: 14px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
   .pm-swatch-line { width: 24px; height: 3px; }
@@ -291,7 +291,7 @@ const legendGroups = [
     text-transform: uppercase; color: rgba(28,25,23,0.38);
     white-space: nowrap; flex-shrink: 0;
   }
-  #pm-opacity-val { color: rgba(196,145,42,0.9); }
+  #pm-opacity-val { color: rgba(185,130,41,0.9); }
   .pm-opacity-slider { flex: 1; accent-color: var(--color-gold); cursor: pointer; height: 3px; }
   .pm-legend-btn {
     display: inline-flex; align-items: center; gap: 0.35rem;
@@ -301,7 +301,7 @@ const legendGroups = [
     color: rgba(28,25,23,0.5); padding: 0.3rem 0.65rem;
     transition: color 0.15s, border-color 0.15s;
   }
-  .pm-legend-btn:hover { color: rgba(196,145,42,0.9); border-color: rgba(196,145,42,0.3); }
+  .pm-legend-btn:hover { color: rgba(185,130,41,0.9); border-color: rgba(185,130,41,0.3); }
   .pm-legend-btn .pm-toggle-arrow { transition: transform 0.2s; }
   .pm-legend-btn[aria-expanded="true"] .pm-toggle-arrow { transform: rotate(180deg); }
   #pm-legend-list {
@@ -331,7 +331,7 @@ const legendGroups = [
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 599;
-    background: rgba(242,239,233,0.97);
+    background: rgba(25,24,23,0.97);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(28,25,23,0.12);
     box-shadow: 0 8px 36px rgba(0,0,0,0.15);
@@ -343,19 +343,19 @@ const legendGroups = [
   #pm-guide p { font-family: var(--font-sans); font-size: 0.82rem; color: rgba(28,25,23,0.65); line-height: 1.65; margin-bottom: 1.1rem; }
   #pm-guide-dismiss {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    background: var(--color-gold); color: #0a0806;
+    background: var(--color-gold); color:#191817;
     font-family: var(--font-sans); font-size: 0.65rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
     border: none; cursor: pointer; padding: 0.6rem 1.35rem;
     transition: background 0.2s;
   }
-  #pm-guide-dismiss:hover { background: #d4af4a; }
+  #pm-guide-dismiss:hover { background: #a5721c; }
   #pm-guide.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 8px)); }
 
   /* ── Result drawer ─────────────────────────────────────────────────── */
   #pm-result {
     position: absolute; left: 14px; bottom: 14px; z-index: 600;
-    background: rgba(242,239,233,0.98);
+    background: rgba(25,24,23,0.98);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-left: 3px solid var(--color-gold);
     border-radius: 0 8px 8px 0;
@@ -425,7 +425,7 @@ const legendGroups = [
     text-transform: uppercase; color: rgba(28,25,23,0.45);
   }
   /* Zone mode eyebrow uses gold */
-  #pm-result.mode-zone .pm-eyebrow { color: rgba(196,145,42,0.8); }
+  #pm-result.mode-zone .pm-eyebrow { color: rgba(185,130,41,0.8); }
   .pm-close {
     background: transparent; border: none; cursor: pointer;
     width: 32px; height: 32px;
@@ -463,7 +463,7 @@ const legendGroups = [
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--color-gold); text-decoration: none;
   }
-  .pm-bcc-link:hover { color: #d4af4a; }
+  .pm-bcc-link:hover { color: #a5721c; }
 
   /* Asset result body styles */
   .pm-result-title {
@@ -499,10 +499,10 @@ const legendGroups = [
   .pm-foot a {
     font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: #c4912a; text-decoration: none; white-space: nowrap;
+    color: #b98229; text-decoration: none; white-space: nowrap;
     transition: color 0.2s;
   }
-  .pm-foot a:hover { color: #d4af4a; }
+  .pm-foot a:hover { color: #a5721c; }
   #pm-share-btn {
     display: inline-flex; align-items: center; gap: 0.4rem;
     background: none; border: none; cursor: pointer; padding: 0;
@@ -510,7 +510,7 @@ const legendGroups = [
     letter-spacing: 0.12em; text-transform: uppercase;
     color: rgba(28,25,23,0.45); transition: color 0.2s;
   }
-  #pm-share-btn:hover { color: #c4912a; }
+  #pm-share-btn:hover { color: #b98229; }
   #pm-share-btn.copied { color: #4caf50; }
 </style>
 
@@ -532,7 +532,7 @@ const legendGroups = [
   }
 
   /* Search input stays white so it's clearly a text field */
-  #pm-search { background: #ffffff !important; color: #1c1917 !important; }
+  #pm-search { background: #ffffff !important; color:#191817 !important; }
   #pm-search::placeholder { color: #a8a29e !important; }
 
   /* Summary card responsive grid */
@@ -548,7 +548,7 @@ const legendGroups = [
   }
   #pm-result-body .pm-result-height {
     font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
-    color: #c4912a !important; margin-bottom: 0.5rem; display: block;
+    color: #b98229 !important; margin-bottom: 0.5rem; display: block;
   }
   #pm-result-body .pm-result-summary {
     font-size: 0.78rem; color: rgba(28,25,23,0.7) !important;
@@ -563,7 +563,7 @@ const legendGroups = [
   #pm-result-body .pm-bcc-link {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #c4912a !important; text-decoration: none;
+    text-transform: uppercase; color: #b98229 !important; text-decoration: none;
   }
   #pm-result-body .pm-result-title {
     font-family: Georgia, serif; font-size: 1.05rem; font-weight: 400;
@@ -587,12 +587,12 @@ const legendGroups = [
   /* Leaflet attribution: minimise so it doesn't overlap mobile call bar */
   .leaflet-control-attribution {
     font-size: 0.55rem !important;
-    background: rgba(10,8,6,0.75) !important;
-    color: rgba(240,236,228,0.5) !important;
+    background: rgba(230,217,189,0.75) !important;
+    color: rgba(25,24,23,0.5) !important;
     padding: 2px 6px !important;
     max-width: calc(100vw - 1rem) !important;
   }
-  .leaflet-control-attribution a { color: #c4912a !important; }
+  .leaflet-control-attribution a { color: #b98229 !important; }
   /* On mobile push attribution above the fixed LAYERS bar */
   @media (max-width: 640px) {
     .leaflet-bottom.leaflet-right {
@@ -689,7 +689,7 @@ window.PM_ZONES = {
     <div class="pm-control pm-control-tr">
       <button class="pm-layer-toggle" id="pm-layer-toggle" aria-expanded="false" aria-controls="pm-layer-panel">
         <svg width="14" height="14" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-          <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
+          <polygon points="18,4 21,18 18,15 15,18" fill="#b98229"/>
           <polygon points="18,32 21,18 18,21 15,18" fill="rgba(28,25,23,0.3)"/>
           <polygon points="32,18 18,15 21,18 18,21" fill="rgba(28,25,23,0.2)"/>
           <polygon points="4,18 18,15 15,18 18,21" fill="rgba(28,25,23,0.2)"/>
@@ -873,7 +873,7 @@ window.PM_ZONES = {
 
   <!-- AI assistant widget — shown after property data loads -->
   <div id="pm-ai-widget" style="display:none;margin-top:0.85rem;">
-    <div style="border:1px solid rgba(196,145,42,0.25);border-radius:6px;padding:1rem 1.25rem;background:#ffffff;">
+    <div style="border:1px solid rgba(185,130,41,0.25);border-radius:6px;padding:1rem 1.25rem;background:#ffffff;">
       <p style="font-weight:700;font-size:0.82rem;color:rgba(28,25,23,0.85);margin:0 0 0.2rem;font-family:var(--font-sans);">Explain this to me in plain English</p>
       <p style="font-size:0.7rem;color:rgba(28,25,23,0.4);margin:0 0 0.8rem;line-height:1.5;">Click your AI assistant of choice. The property details are pre-loaded and ready to send.</p>
       <div style="display:flex;flex-wrap:wrap;gap:0.45rem;">
@@ -897,16 +897,16 @@ window.PM_ZONES = {
     </div>
   </div>
 
-  <div style="margin-top:3rem;background:#f2efe9;border:1px solid rgba(28,25,23,0.1);border-radius:8px;padding:2.5rem 2rem;text-align:center;">
-    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.85rem;">
+  <div style="margin-top:3rem;background:#f2ead4;border:1px solid rgba(28,25,23,0.1);border-radius:8px;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.85rem;">
       Zoning and easements shape what a property is worth and what you can do with it.
     </p>
     <p style="font-size:0.85rem;color:rgba(28,25,23,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
       Daniel can walk you through the constraints on a specific site, and what they mean in practice.
     </p>
     <a href="/contact" data-cta="tool_to_contact"
-      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
-      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#b98229;color:#191817;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
+      onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'">
       Ask Daniel
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -914,7 +914,7 @@ window.PM_ZONES = {
 
   <!-- ── Zoning legend ─────────────────────────────────────────────────── -->
   <div style="margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(28,25,23,0.09);">
-    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.2rem;">BCC City Plan</p>
+    <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin:0 0 0.2rem;">BCC City Plan</p>
     <h2 style="font-family:var(--font-serif);font-size:clamp(1rem,2vw,1.3rem);font-weight:400;color:rgba(28,25,23,0.9);margin:0 0 1.75rem;line-height:1.3;">Zoning legend</h2>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem 3rem;">
@@ -925,7 +925,7 @@ window.PM_ZONES = {
             {group.items.map(z => (
               <div style="display:grid;grid-template-columns:14px 2.2rem 1fr;align-items:start;gap:0 0.65rem;">
                 <span style={`display:block;width:14px;height:14px;border-radius:3px;margin-top:2px;flex-shrink:0;background:${z.color};border:1px solid rgba(255,255,255,0.12);`}></span>
-                <span style="font-size:0.65rem;font-weight:800;letter-spacing:0.06em;color:#c4912a;line-height:1.4;">{z.short}</span>
+                <span style="font-size:0.65rem;font-weight:800;letter-spacing:0.06em;color:#b98229;line-height:1.4;">{z.short}</span>
                 <span>
                   <span style="display:block;font-size:0.78rem;color:rgba(28,25,23,0.78);line-height:1.35;">{z.name}</span>
                   <span style="display:block;font-size:0.65rem;color:rgba(28,25,23,0.33);margin-top:0.1rem;">{z.height}</span>
@@ -938,7 +938,7 @@ window.PM_ZONES = {
     </div>
 
     <p style="margin-top:1.75rem;font-size:0.68rem;color:rgba(28,25,23,0.3);line-height:1.6;">
-      Zone codes follow BCC City Plan 2014. Sub-zones (e.g. LMR1, LMR2, CR1, CR2) are grouped above for readability. Always verify the specific sub-zone code on <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="color:rgba(196,145,42,0.7);text-decoration:none;">BCC CityPlan</a> before any development or purchase decision.
+      Zone codes follow BCC City Plan 2014. Sub-zones (e.g. LMR1, LMR2, CR1, CR2) are grouped above for readability. Always verify the specific sub-zone code on <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="color:rgba(185,130,41,0.7);text-decoration:none;">BCC CityPlan</a> before any development or purchase decision.
     </p>
   </div>
 
@@ -1022,7 +1022,7 @@ window.PM_ZONES = {
   };
   const IS_POINT = new Set(['stormManhole','gully','sewerManhole','hydrant']);
   const STYLE: Record<string,any> = {
-    propertyBoundary: { color: '#9e8c6a', weight: 1.2, opacity: 0.5, fillColor: '#c4912a', fillOpacity: 0.04 },
+    propertyBoundary: { color: '#9e8c6a', weight: 1.2, opacity: 0.5, fillColor: '#b98229', fillOpacity: 0.04 },
     stormPipe:    { color: '#2a8c9c', weight: 2.4, opacity: 0.9 },
     stormManhole: { radius: 4,   fillColor: '#1f6f7d', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
     gully:        { radius: 3.5, fillColor: '#d77b32', color: '#fff', weight: 1.3, fillOpacity: 0.95 },
@@ -1314,7 +1314,7 @@ window.PM_ZONES = {
     document.getElementById('pm-result-body')!.innerHTML = `
       <div style="display:flex;align-items:center;gap:0.55rem;margin-bottom:0.35rem;">
         <span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:${style.fill}33;border:1.5px solid ${style.stroke};"></span>
-        <strong style="font-size:0.95rem;color:#1c1917;">${name}</strong>
+        <strong style="font-size:0.95rem;color:#191817;">${name}</strong>
       </div>
       <p style="font-size:0.8rem;color:rgba(28,25,23,0.62);margin:0 0 0.45rem;">State ${tier.toLowerCase()} school catchment.</p>
       <p style="font-size:0.72rem;color:rgba(28,25,23,0.48);margin:0;line-height:1.5;">Living within a catchment guarantees enrolment at this state school. Always verify the current catchment boundary with the school or via the official QLD Globe before relying on it for a property decision.</p>`;
@@ -1426,14 +1426,14 @@ window.PM_ZONES = {
     const z = _lastZone;
     zoneDiv.innerHTML =
       '<div style="margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(28,25,23,0.08);">' +
-        '<p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.55rem;">Zoning (BCC City Plan)</p>' +
+        '<p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin:0 0 0.55rem;">Zoning (BCC City Plan)</p>' +
         '<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem;">' +
           '<div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:' + z.swatchColor + ';"></div>' +
           '<p style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(28,25,23,0.9);line-height:1.25;margin:0;">' + (z.code ? z.code + ': ' + z.officialLabel : z.officialLabel) + '</p>' +
         '</div>' +
-        (z.height ? '<p style="font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#c4912a;margin:0 0 0.45rem;">' + z.height + '</p>' : '') +
+        (z.height ? '<p style="font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#b98229;margin:0 0 0.45rem;">' + z.height + '</p>' : '') +
         (z.summary ? '<p style="font-size:0.78rem;color:rgba(28,25,23,0.65);line-height:1.65;margin:0 0 0.45rem;">' + z.summary + '</p>' : '') +
-        '<a id="pm-bcc-link-el" href="' + z.bccHref + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">' +
+        '<a id="pm-bcc-link-el" href="' + z.bccHref + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#b98229;text-decoration:none;">' +
           'Verify on BCC CityPlan ' +
           '<svg width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/><polyline points=\"15 3 21 3 21 9\"/><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"/></svg>' +
         '</a>' +
@@ -1640,9 +1640,9 @@ window.PM_ZONES = {
             <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.2);background:${z.color};"></div>
             <p style="font-family:Georgia,serif;font-size:1rem;font-weight:400;color:rgba(28,25,23,0.9);line-height:1.25;margin:0;">${z.short}: ${z.name}</p>
           </div>
-          <p style="display:block;font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#c4912a;margin-bottom:0.5rem;">${z.height}</p>
+          <p style="display:block;font-size:0.66rem;font-weight:700;letter-spacing:0.08em;color:#b98229;margin-bottom:0.5rem;">${z.height}</p>
           <p style="display:block;font-size:0.78rem;color:rgba(28,25,23,0.7);line-height:1.65;margin-bottom:0.5rem;">${z.summary}</p>
-          <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c4912a;text-decoration:none;">
+          <a href="https://cityplan.brisbane.qld.gov.au" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#b98229;text-decoration:none;">
             Verify on BCC CityPlan
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>`;
@@ -1683,7 +1683,7 @@ window.PM_ZONES = {
         display: 'flex', alignItems: 'center',
         background: 'transparent',
       });
-      item.addEventListener('mouseover', () => { item.style.background = 'rgba(196,145,42,0.12)'; });
+      item.addEventListener('mouseover', () => { item.style.background = 'rgba(185,130,41,0.12)'; });
       item.addEventListener('mouseout',  () => { item.style.background = 'transparent'; });
       item.addEventListener('mousedown', () => {
         const lat = f.geometry.coordinates[1], lon = f.geometry.coordinates[0];
@@ -1742,7 +1742,7 @@ window.PM_ZONES = {
       const txt = (Math.round(len * 10) / 10) + 'm';
       const hw = txt.length * 3.8 + 4, hh = 7;
       labels += '<g transform="rotate(' + angle + ',' + mx + ',' + my + ')">' +
-        '<rect x="' + (mx - hw) + '" y="' + (my - hh) + '" width="' + (hw * 2) + '" height="' + (hh * 2) + '" rx="2" fill="rgba(10,8,6,0.82)"/>' +
+        '<rect x="' + (mx - hw) + '" y="' + (my - hh) + '" width="' + (hw * 2) + '" height="' + (hh * 2) + '" rx="2" fill="rgba(230,217,189,0.82)"/>' +
         '<text x="' + mx + '" y="' + my + '" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#ffffff">' + txt + '</text>' +
         '</g>';
     }
@@ -1750,7 +1750,7 @@ window.PM_ZONES = {
     verts.forEach(([lon, lat]: number[]) => { const [x, y] = toXY(lon, lat); sx += x; sy += y; });
     const cx = sx / verts.length, cy = sy / verts.length;
     return '<svg width="100%" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="display:block;">' +
-      '<polygon points="' + pts + '" fill="rgba(196,145,42,0.12)" stroke="#c4912a" stroke-width="2" stroke-linejoin="round"/>' +
+      '<polygon points="' + pts + '" fill="rgba(185,130,41,0.12)" stroke="#b98229" stroke-width="2" stroke-linejoin="round"/>' +
       labels +
       '<text x="' + cx + '" y="' + cy + '" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="600" font-family="sans-serif" fill="rgba(28,25,23,0.35)">' + areaRaw + ' m²</text>' +
       '</svg>';
@@ -1895,15 +1895,15 @@ window.PM_ZONES = {
           <div id="pm-summary-zone"></div>
           <div id="pm-summary-grid">
             <div>
-              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">Property</p>
+              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin:0 0 0.25rem;">Property</p>
               ${addr ? `<p style="font-size:0.92rem;font-family:Georgia,serif;color:rgba(28,25,23,0.9);margin:0 0 0.4rem;line-height:1.3;">${addr}</p>` : ''}
               ${lotInfo ? `<p style="font-size:0.7rem;color:rgba(28,25,23,0.38);margin:0 0 0.15rem;">${lotInfo}</p>` : ''}
               ${areaM2 ? `<p style="font-size:0.76rem;color:rgba(28,25,23,0.58);margin:0 0 0.6rem;">${areaM2}</p>` : ''}
-              ${svgStr ? `<div style="background:rgba(28,25,23,0.03);border:1px solid rgba(196,145,42,0.18);border-radius:4px;padding:0.35rem;display:block;margin-top:0.5rem;">${svgStr}</div>` : ''}
+              ${svgStr ? `<div style="background:rgba(28,25,23,0.03);border:1px solid rgba(185,130,41,0.18);border-radius:4px;padding:0.35rem;display:block;margin-top:0.5rem;">${svgStr}</div>` : ''}
               ${!addr && !lotInfo && !areaM2 ? `<p style="font-size:0.78rem;color:rgba(28,25,23,0.3);margin:0;">No parcel data at this point.</p>` : ''}
             </div>
             <div>
-              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin:0 0 0.25rem;">School catchments</p>
+              <p style="font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin:0 0 0.25rem;">School catchments</p>
               ${catchments.primary ? `
                 <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(28,25,23,0.32);margin:0 0 0.1rem;">Primary</p>
                 <p style="font-size:0.8rem;color:rgba(28,25,23,0.78);margin:0 0 0.55rem;line-height:1.3;">${catchments.primary}</p>` : ''}
@@ -1938,7 +1938,7 @@ window.PM_ZONES = {
     pinMarker = (window as any).L.marker([lat, lon], {
       icon: (window as any).L.divIcon({
         className: '',
-        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#b98229" stroke="#fff" stroke-width="1.5"/></svg>`,
         iconSize: [28, 36], iconAnchor: [14, 36],
       }),
     }).addTo(map);

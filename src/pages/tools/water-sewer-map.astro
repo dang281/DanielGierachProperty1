@@ -17,7 +17,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .ws-eduline {
     margin-bottom: 0.6rem;
     padding: 0.5rem 0.85rem;
-    background: rgba(196,145,42,0.07);
+    background: rgba(185,130,41,0.07);
     border-left: 3px solid var(--color-gold);
     font-family: var(--font-sans);
     font-size: 0.7rem;
@@ -48,13 +48,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #ws-search:focus {
     border-color: var(--color-gold);
-    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+    box-shadow: 0 0 0 3px rgba(185,130,41,0.15);
   }
   #ws-search::placeholder { color: var(--color-text-muted); }
   #ws-search-btn {
     padding: 0 1.5rem;
     background: var(--color-gold);
-    color: #0a0806;
+    color:#191817;
     font-family: var(--font-sans);
     font-size: 0.7rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
@@ -62,7 +62,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     white-space: nowrap;
     transition: background 0.2s;
   }
-  #ws-search-btn:hover { background: #d4af4a; }
+  #ws-search-btn:hover { background: #a5721c; }
   #ws-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #ws-gps-btn {
     flex-shrink: 0; width: 46px;
@@ -72,7 +72,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
   }
-  #ws-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #ws-gps-btn:hover { color: var(--color-gold); background: rgba(185,130,41,0.08); }
   #ws-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #ws-gps-btn.locating { color: var(--color-gold); }
   #ws-autocomplete {
@@ -90,7 +90,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     transition: background 0.15s;
   }
   .ws-ac-item:last-child { border-bottom: none; }
-  .ws-ac-item:hover, .ws-ac-item:active { background: rgba(196,145,42,0.1); }
+  .ws-ac-item:hover, .ws-ac-item:active { background: rgba(185,130,41,0.1); }
 
   /* Mobile sticky search */
   @media (max-width: 640px) {
@@ -118,7 +118,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 599;
-    background: rgba(242,239,233,0.97);
+    background: rgba(25,24,23,0.97);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(28,25,23,0.12);
     box-shadow: 0 8px 36px rgba(0,0,0,0.15);
@@ -130,13 +130,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #ws-guide p { font-family: var(--font-sans); font-size: 0.82rem; color: rgba(28,25,23,0.65); line-height: 1.65; margin-bottom: 1.1rem; }
   #ws-guide-dismiss {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    background: var(--color-gold); color: #0a0806;
+    background: var(--color-gold); color:#191817;
     font-family: var(--font-sans); font-size: 0.65rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
     border: none; cursor: pointer; padding: 0.6rem 1.35rem;
     transition: background 0.2s;
   }
-  #ws-guide-dismiss:hover { background: #d4af4a; }
+  #ws-guide-dismiss:hover { background: #a5721c; }
   #ws-guide.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 8px)); }
 
   /* ── Map shell & floating controls ─────────────────────────────── */
@@ -193,7 +193,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     text-transform: uppercase;
     color: var(--color-text-primary);
   }
-  .ws-layer-toggle:hover { background: rgba(197,160,60,0.08); }
+  .ws-layer-toggle:hover { background: rgba(185,130,41,0.08); }
   .ws-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
   .ws-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
   .ws-layer-panel {
@@ -211,7 +211,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     cursor: pointer; user-select: none;
     transition: background 0.15s;
   }
-  .ws-layer-row:hover { background: rgba(197,160,60,0.06); }
+  .ws-layer-row:hover { background: rgba(185,130,41,0.06); }
   .ws-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
   .ws-swatch {
     width: 24px; height: 14px; flex-shrink: 0;
@@ -321,7 +321,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     color: var(--color-gold); text-decoration: none;
     white-space: nowrap;
   }
-  .ws-foot a:hover { color: #d4af4a; }
+  .ws-foot a:hover { color: #a5721c; }
 </style>
 
 <div class="ws-shell">
@@ -418,16 +418,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <!-- CTA -->
-  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
-    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+  <div style="margin-top:3rem;background:#f2ead4;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.85rem;">
       A sewer easement can change what you can build, and what the land is worth.
     </p>
-    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
+    <p style="font-size:0.85rem;color:rgba(25,24,23,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
       Daniel can help you read the QUU plans, understand the easement implications, and decide whether to proceed.
     </p>
     <a href="/contact" data-cta="tool_to_contact"
-      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
-      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#b98229;color:#191817;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
+      onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'">
       Ask Daniel
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -767,7 +767,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pinMarker = L.marker([lat, lon], {
       icon: L.divIcon({
         className: '',
-        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#b98229" stroke="#fff" stroke-width="1.5"/></svg>`,
         iconSize: [28, 36], iconAnchor: [14, 36],
       }),
     }).addTo(map);
@@ -904,6 +904,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin:0 0 0.3rem;">Off-Market &amp; Pre-Market Access</p>
     <p style="font-size:0.85rem;color:var(--color-text-primary);line-height:1.6;margin:0;max-width:44ch;">Looking to buy in this area? Register your brief and get early access to properties before they are publicly listed.</p>
   </div>
-  <a href="/buyers" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0a0806;background:var(--color-gold);padding:0.6rem 1.2rem;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;border-radius:8px;">Register your search &rarr;</a>
+  <a href="/buyers" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#191817;background:var(--color-gold);padding:0.6rem 1.2rem;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;border-radius:8px;">Register your search &rarr;</a>
 </div>
 </ToolLayout>

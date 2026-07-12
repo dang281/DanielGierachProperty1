@@ -22,7 +22,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-eduline {
     margin-bottom: 0.6rem;
     padding: 0.5rem 0.85rem;
-    background: rgba(196,145,42,0.07);
+    background: rgba(185,130,41,0.07);
     border-left: 3px solid var(--color-gold);
     font-family: var(--font-sans);
     font-size: 0.7rem;
@@ -43,24 +43,24 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
     background: #ffffff;
-    color: #1c1917;
+    color:#191817;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   #im-search:focus {
     border-color: var(--color-gold);
-    box-shadow: 0 0 0 3px rgba(196,145,42,0.15);
+    box-shadow: 0 0 0 3px rgba(185,130,41,0.15);
   }
   #im-search::placeholder { color: var(--color-text-muted); }
   #im-search-btn {
     padding: 0 1.5rem;
-    background: var(--color-gold); color: #0a0806;
+    background: var(--color-gold); color:#191817;
     font-family: var(--font-sans); font-size: 0.7rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
     border: none; cursor: pointer; white-space: nowrap;
     transition: background 0.2s;
   }
-  #im-search-btn:hover { background: #d4af4a; }
+  #im-search-btn:hover { background: #a5721c; }
   #im-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #im-gps-btn {
     flex-shrink: 0; width: 46px;
@@ -70,7 +70,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
   }
-  #im-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #im-gps-btn:hover { color: var(--color-gold); background: rgba(185,130,41,0.08); }
   #im-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #im-gps-btn.locating { color: var(--color-gold); }
   .im-result-interp {
@@ -131,7 +131,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     min-height: 44px; display: flex; align-items: center;
   }
   .im-ac-item:last-child { border-bottom: none; }
-  .im-ac-item:hover, .im-ac-item:active { background: rgba(196,145,42,0.1); }
+  .im-ac-item:hover, .im-ac-item:active { background: rgba(185,130,41,0.1); }
 
   .im-map-wrap { position: relative; }
   #im-map {
@@ -153,7 +153,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   .im-control {
     position: absolute; z-index: 1200;
-    background: rgba(242,239,233,0.97);
+    background: rgba(25,24,23,0.97);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(28,25,23,0.12);
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -165,7 +165,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   #im-compass {
     position: absolute; top: 12px; right: 12px; z-index: 500;
     width: 48px; height: 48px;
-    background: rgba(242,239,233,0.97);
+    background: rgba(25,24,23,0.97);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(28,25,23,0.12);
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -175,7 +175,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   #im-status {
     position: absolute; top: 12px; left: 50px; z-index: 500;
-    background: rgba(242,239,233,0.95);
+    background: rgba(25,24,23,0.95);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(28,25,23,0.1);
     padding: 0.45rem 0.85rem;
@@ -195,7 +195,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
     text-transform: uppercase; color: rgba(28,25,23,0.78);
   }
-  .im-layer-toggle:hover { background: rgba(196,145,42,0.1); }
+  .im-layer-toggle:hover { background: rgba(185,130,41,0.1); }
   .im-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
   .im-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
 
@@ -254,18 +254,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .im-layer-group-head {
     font-family: var(--font-sans);
     font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em;
-    text-transform: uppercase; color: rgba(196,145,42,0.8);
+    text-transform: uppercase; color: rgba(185,130,41,0.8);
     padding: 0.55rem 0.6rem 0.25rem;
   }
 
   .im-other-toggle {
     display: flex; align-items: center; gap: 0.4rem; width: 100%;
     font-family: var(--font-sans); font-size: 0.58rem; font-weight: 800;
-    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,145,42,0.8);
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(185,130,41,0.8);
     padding: 0.55rem 0.6rem 0.25rem; background: none; border: none; cursor: pointer;
     margin-top: 0.4rem; border-top: 1px solid rgba(28,25,23,0.07); padding-top: 0.7rem;
   }
-  .im-other-toggle:hover { color: rgba(196,145,42,1); }
+  .im-other-toggle:hover { color: rgba(185,130,41,1); }
   .im-other-toggle .toggle-arrow { margin-left: auto; opacity: 0.5; transition: transform 0.2s; }
   .im-other-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
   #im-other-panel { display: none; }
@@ -276,7 +276,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.45rem 0.6rem;
     cursor: pointer; user-select: none; transition: background 0.15s;
   }
-  .im-layer-row:hover { background: rgba(196,145,42,0.07); }
+  .im-layer-row:hover { background: rgba(185,130,41,0.07); }
   .im-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
   .im-swatch { width: 24px; height: 14px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
   .im-swatch-line { width: 24px; height: 3px; }
@@ -294,7 +294,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   #im-result {
     position: absolute; left: 14px; bottom: 14px; z-index: 600;
-    background: rgba(242,239,233,0.98);
+    background: rgba(25,24,23,0.98);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-left: 3px solid var(--color-gold);
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
@@ -391,14 +391,14 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--color-gold); text-decoration: none; white-space: nowrap;
   }
-  .im-foot a:hover { color: #d4af4a; }
+  .im-foot a:hover { color: #a5721c; }
 
   /* ── First-load guidance card ───────────────────────────────────────────── */
   #im-guide {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 599;
-    background: rgba(242,239,233,0.97);
+    background: rgba(25,24,23,0.97);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(28,25,23,0.12);
     box-shadow: 0 8px 36px rgba(0,0,0,0.15);
@@ -415,13 +415,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   #im-guide-dismiss {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    background: var(--color-gold); color: #0a0806;
+    background: var(--color-gold); color:#191817;
     font-family: var(--font-sans); font-size: 0.65rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
     border: none; cursor: pointer; padding: 0.6rem 1.35rem;
     transition: background 0.2s;
   }
-  #im-guide-dismiss:hover { background: #d4af4a; }
+  #im-guide-dismiss:hover { background: #a5721c; }
   #im-guide.hidden {
     opacity: 0; pointer-events: none;
     transform: translate(-50%, calc(-50% + 8px));
@@ -437,7 +437,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   /* Search input: white bg, dark readable text, overrides scoping */
   #im-search {
     background: #ffffff !important;
-    color: #1c1917 !important;
+    color:#191817 !important;
   }
   #im-search::placeholder {
     color: #a8a29e !important;
@@ -479,7 +479,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div id="im-compass" aria-hidden="true">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- North pointer (gold) -->
-        <polygon points="18,4 21,18 18,15 15,18" fill="#c4912a"/>
+        <polygon points="18,4 21,18 18,15 15,18" fill="#b98229"/>
         <!-- South pointer (muted) -->
         <polygon points="18,32 21,18 18,21 15,18" fill="rgba(28,25,23,0.3)"/>
         <!-- East pointer (muted) -->
@@ -489,7 +489,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <!-- Centre dot -->
         <circle cx="18" cy="18" r="2.5" fill="rgba(28,25,23,0.6)"/>
         <!-- N label -->
-        <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#c4912a" letter-spacing="0.05em">N</text>
+        <text x="18" y="3" text-anchor="middle" font-family="sans-serif" font-size="5.5" font-weight="700" fill="#b98229" letter-spacing="0.05em">N</text>
       </svg>
     </div>
 
@@ -628,16 +628,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </span>
   </div>
 
-  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
-    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+  <div style="margin-top:3rem;background:#f2ead4;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.85rem;">
       Easements and drainage constraints can limit what you build and affect what the land is worth.
     </p>
-    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
+    <p style="font-size:0.85rem;color:rgba(25,24,23,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
       Daniel can help you read the plans, understand the easement implications, and decide whether to proceed.
     </p>
     <a href="/contact" data-cta="tool_to_contact"
-      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
-      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#b98229;color:#191817;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
+      onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'">
       Ask Daniel
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -685,7 +685,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   };
 
   const STYLE: Record<string,any> = {
-    propertyBoundary: { color: '#9e8c6a', weight: 1.2, opacity: 0.5, fillColor: '#c4912a', fillOpacity: 0.04 },
+    propertyBoundary: { color: '#9e8c6a', weight: 1.2, opacity: 0.5, fillColor: '#b98229', fillOpacity: 0.04 },
     stormPipe:    { color: '#2a8c9c', weight: 2.4, opacity: 0.9 },
     stormManhole: { radius: 4,   fillColor: '#1f6f7d', color: '#fff', weight: 1.5, fillOpacity: 0.95 },
     gully:        { radius: 3.5, fillColor: '#d77b32', color: '#fff', weight: 1.3, fillOpacity: 0.95 },
@@ -1096,7 +1096,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pinMarker = L.marker([lat, lon], {
       icon: L.divIcon({
         className: '',
-        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#b98229" stroke="#fff" stroke-width="1.5"/></svg>`,
         iconSize: [28, 36], iconAnchor: [14, 36],
       }),
     }).addTo(map);
@@ -1258,6 +1258,6 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <p style="font-family:var(--font-sans);font-size:0.58rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin:0 0 0.3rem;">Off-Market &amp; Pre-Market Access</p>
     <p style="font-size:0.85rem;color:var(--color-text-primary);line-height:1.6;margin:0;max-width:44ch;">Looking to buy in this area? Register your brief and get early access to properties before they are publicly listed.</p>
   </div>
-  <a href="/buyers" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0a0806;background:var(--color-gold);padding:0.6rem 1.2rem;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;border-radius:8px;">Register your search &rarr;</a>
+  <a href="/buyers" style="font-family:var(--font-sans);font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#191817;background:var(--color-gold);padding:0.6rem 1.2rem;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;border-radius:8px;">Register your search &rarr;</a>
 </div>
 </ToolLayout>

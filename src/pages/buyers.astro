@@ -47,25 +47,25 @@ const buyerSchema = {
         fetchpriority="high"
         width="1200" height="800"
       />
-      <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(10,8,6,0.88) 0%,rgba(10,8,6,0.65) 55%,rgba(10,8,6,0.3) 100%);"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(230,217,189,0.88) 0%,rgba(230,217,189,0.65) 55%,rgba(230,217,189,0.3) 100%);"></div>
     </div>
 
     <div class="relative z-10 buyers-hero-content">
       <h1 id="hero-heading" class="reveal" data-delay="60"
-        style="font-family:var(--font-serif);font-size:clamp(2.4rem,4vw,3.8rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#f0ece4;margin-bottom:1.5rem;transition:opacity 0.3s;">
+        style="font-family:var(--font-serif);font-size:clamp(2.4rem,4vw,3.8rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:#191817;margin-bottom:1.5rem;transition:opacity 0.3s;">
         Find your next home before it hits the market.
       </h1>
 
       <p id="hero-desc" class="buyers-hero-desc reveal" data-delay="120"
-        style="font-size:1rem;color:rgba(240,236,228,0.8);line-height:1.9;max-width:44ch;margin-bottom:2.5rem;transition:opacity 0.3s;">
+        style="font-size:1rem;color:rgba(25,24,23,0.8);line-height:1.9;max-width:44ch;margin-bottom:2.5rem;transition:opacity 0.3s;">
         Most of the best properties in Brisbane's inner east are spoken for before a sign goes up. Register your brief and get early access to both off-market and pre-market properties when they come up.
       </p>
 
       <div class="buyers-hero-contact reveal" data-delay="240" style="padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);">
-        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.6rem;">Prefer to talk first?</p>
+        <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#b98229;margin-bottom:0.6rem;">Prefer to talk first?</p>
         <a href="tel:+61412523821"
           style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:#ffffff;text-decoration:none;transition:color 0.2s;"
-          onmouseover="this.style.color='#f5d07a'"
+          onmouseover="this.style.color='#6b4610'"
           onmouseout="this.style.color='#ffffff'">0412 523 821</a>
       </div>
     </div>
@@ -95,8 +95,8 @@ const buyerSchema = {
       </div>
 
       <!-- Step counter + heading (both change per step) -->
-      <p id="wz-counter" style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#c4912a;margin-bottom:0.5rem;">Step 1 of 3</p>
-      <h2 id="wz-heading" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:0.4rem;transition:opacity 0.25s;">
+      <p id="wz-counter" style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Step 1 of 3</p>
+      <h2 id="wz-heading" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.4rem;transition:opacity 0.25s;">
         What are you searching for?
       </h2>
       <p id="wz-subhead" style="font-size:0.85rem;color:#78716c;line-height:1.7;margin-bottom:1.75rem;transition:opacity 0.25s;">
@@ -123,7 +123,7 @@ const buyerSchema = {
 
           <!-- What best describes you? -->
           <div>
-            <label class="field-label">What best describes you? <span style="color:#c4912a;">*</span></label>
+            <label class="field-label">What best describes you? <span style="color:#b98229;">*</span></label>
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.4rem;margin-top:0.4rem;" id="category-group">
               {[
                 { label: 'Upsizing', value: 'upsizing' },
@@ -138,7 +138,7 @@ const buyerSchema = {
               ))}
             </div>
             <input type="hidden" name="buyer_category" id="category-value" />
-            <div id="category-error" style="display:none;margin-top:0.6rem;padding:0.7rem 1rem;background:rgba(196,145,42,0.1);border-left:3px solid #c4912a;">
+            <div id="category-error" style="display:none;margin-top:0.6rem;padding:0.7rem 1rem;background:rgba(185,130,41,0.1);border-left:3px solid #b98229;">
               <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;color:#7a5618;margin:0;">Pick one to continue.</p>
             </div>
           </div>
@@ -231,7 +231,7 @@ const buyerSchema = {
             </div>
 
             <input type="hidden" name="areas" id="areas-value" />
-            <div id="areas-error" style="display:none;margin-top:0.6rem;padding:0.7rem 1rem;background:rgba(196,145,42,0.1);border-left:3px solid #c4912a;">
+            <div id="areas-error" style="display:none;margin-top:0.6rem;padding:0.7rem 1rem;background:rgba(185,130,41,0.1);border-left:3px solid #b98229;">
               <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;color:#7a5618;margin:0;">Select at least one suburb to continue.</p>
             </div>
           </div>
@@ -249,19 +249,19 @@ const buyerSchema = {
         <div id="step-3" class="wz-step" style="display:none;flex-direction:column;gap:1.1rem;">
 
           <div>
-            <label for="buyer-email" class="field-label">Email <span style="color:#c4912a;">*</span></label>
+            <label for="buyer-email" class="field-label">Email <span style="color:#b98229;">*</span></label>
             <input type="email" id="buyer-email" name="email" required placeholder="your@email.com"
               class="obs-input form-field" autocomplete="email" />
           </div>
 
           <div>
-            <label for="buyer-name" class="field-label">Name <span style="color:#c4912a;">*</span></label>
+            <label for="buyer-name" class="field-label">Name <span style="color:#b98229;">*</span></label>
             <input type="text" id="buyer-name" name="name" required placeholder="Your full name"
               class="obs-input form-field" autocomplete="name" />
           </div>
 
           <div>
-            <label for="buyer-phone" class="field-label">Phone <span style="color:#c4912a;">*</span></label>
+            <label for="buyer-phone" class="field-label">Phone <span style="color:#b98229;">*</span></label>
             <input type="tel" id="buyer-phone" name="phone" required placeholder="04xx xxx xxx"
               class="obs-input form-field" autocomplete="tel" />
           </div>
@@ -299,8 +299,8 @@ const buyerSchema = {
 ══════════════════════════════════════════════ -->
 <section style="background:var(--color-base);border-top:1px solid rgba(28,25,23,0.08);padding:4rem 0;">
   <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
-    <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#c4912a;margin-bottom:0.6rem;">Buyer Resources</p>
-    <h2 style="font-family:var(--font-serif);font-size:clamp(1.3rem,2.5vw,1.75rem);font-weight:400;color:#1c1917;line-height:1.2;margin-bottom:0.65rem;">
+    <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#b98229;margin-bottom:0.6rem;">Buyer Resources</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.3rem,2.5vw,1.75rem);font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.65rem;">
       Free guides for Brisbane buyers.
     </h2>
     <p style="font-size:0.88rem;color:#57534e;line-height:1.8;max-width:52ch;margin-bottom:2.5rem;">
@@ -311,12 +311,12 @@ const buyerSchema = {
 
       <a href="/resources/first-home-buyer-brisbane-inner-east-guide" class="resource-card"
         style="display:flex;flex-direction:column;padding:1.75rem;border:1px solid rgba(28,25,23,0.1);text-decoration:none;background:var(--color-surface-1);transition:border-color 0.2s,box-shadow 0.2s;"
-        onmouseover="this.style.borderColor='#c4912a';this.style.boxShadow='0 4px 16px rgba(196,145,42,0.1)'"
+        onmouseover="this.style.borderColor='#b98229';this.style.boxShadow='0 4px 16px rgba(185,130,41,0.1)'"
         onmouseout="this.style.borderColor='rgba(28,25,23,0.1)';this.style.boxShadow='none'">
-        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">8 pages · Free</span>
-        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.6rem;">First Home Buyer's Guide to Brisbane Inner East</span>
+        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin-bottom:0.75rem;">8 pages · Free</span>
+        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.6rem;">First Home Buyer's Guide to Brisbane Inner East</span>
         <span style="font-size:0.78rem;color:#78716c;line-height:1.7;flex:1;">Borrowing capacity, Queensland stamp duty concessions, suburb comparisons, and what to do from offer to settlement.</span>
-        <span style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;">
+        <span style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#b98229;">
           Read guide
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -324,12 +324,12 @@ const buyerSchema = {
 
       <a href="/resources/auction-bidding-playbook-buyers" class="resource-card"
         style="display:flex;flex-direction:column;padding:1.75rem;border:1px solid rgba(28,25,23,0.1);text-decoration:none;background:var(--color-surface-1);transition:border-color 0.2s,box-shadow 0.2s;"
-        onmouseover="this.style.borderColor='#c4912a';this.style.boxShadow='0 4px 16px rgba(196,145,42,0.1)'"
+        onmouseover="this.style.borderColor='#b98229';this.style.boxShadow='0 4px 16px rgba(185,130,41,0.1)'"
         onmouseout="this.style.borderColor='rgba(28,25,23,0.1)';this.style.boxShadow='none'">
-        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">7 pages · Free</span>
-        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.6rem;">Auction Bidding Playbook for Brisbane Buyers</span>
+        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin-bottom:0.75rem;">7 pages · Free</span>
+        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.6rem;">Auction Bidding Playbook for Brisbane Buyers</span>
         <span style="font-size:0.78rem;color:#78716c;line-height:1.7;flex:1;">How to register, bid, and win at a Brisbane auction. Contract, finance, bidding strategy, and what happens after the hammer falls.</span>
-        <span style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;">
+        <span style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#b98229;">
           Read guide
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -337,12 +337,12 @@ const buyerSchema = {
 
       <a href="/resources/building-pest-report-explainer" class="resource-card"
         style="display:flex;flex-direction:column;padding:1.75rem;border:1px solid rgba(28,25,23,0.1);text-decoration:none;background:var(--color-surface-1);transition:border-color 0.2s,box-shadow 0.2s;"
-        onmouseover="this.style.borderColor='#c4912a';this.style.boxShadow='0 4px 16px rgba(196,145,42,0.1)'"
+        onmouseover="this.style.borderColor='#b98229';this.style.boxShadow='0 4px 16px rgba(185,130,41,0.1)'"
         onmouseout="this.style.borderColor='rgba(28,25,23,0.1)';this.style.boxShadow='none'">
-        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Free</span>
-        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#1c1917;line-height:1.3;margin-bottom:0.6rem;">Building & Pest Report Explainer</span>
+        <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin-bottom:0.75rem;">Free</span>
+        <span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.6rem;">Building & Pest Report Explainer</span>
         <span style="font-size:0.78rem;color:#78716c;line-height:1.7;flex:1;">What the report actually means, which defects matter, which don't, and how to use it to negotiate or walk away with confidence.</span>
-        <span style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4912a;">
+        <span style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#b98229;">
           Read guide
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -356,8 +356,8 @@ const buyerSchema = {
 <section style="background:var(--color-surface-0);padding:4rem 1.5rem 5rem;">
   <div style="max-width:780px;margin:0 auto;">
 
-    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin:0 0 0.5rem;">Suburbs covered</p>
-    <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:#1c1917;margin:0 0 1rem;line-height:1.2;">Off-market and pre-market access across Brisbane's inner east</h2>
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;margin:0 0 0.5rem;">Suburbs covered</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:#191817;margin:0 0 1rem;line-height:1.2;">Off-market and pre-market access across Brisbane's inner east</h2>
     <p style="font-size:0.9rem;color:#57534e;line-height:1.8;max-width:58ch;margin:0 0 1.75rem;">Daniel works with buyers across the following suburbs. Properties are matched to registered buyers before any public listing is created.</p>
 
     <div style="display:flex;flex-wrap:wrap;gap:0.4rem 0.6rem;margin-bottom:3rem;">
@@ -366,45 +366,45 @@ const buyerSchema = {
       ))}
     </div>
 
-    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#c4912a;margin:0 0 1.25rem;">Common questions</p>
+    <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;margin:0 0 1.25rem;">Common questions</p>
 
     <div style="display:flex;flex-direction:column;gap:0;">
       <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
-        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#191817;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           What is an off-market property?
-          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+          <span style="color:#b98229;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
         </summary>
         <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">An off-market property is sold without ever being listed on realestate.com.au or Domain. The agent approaches a small group of registered buyers directly and the transaction completes quietly, often without a sign or open homes.</p>
       </details>
 
       <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
-        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#191817;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           What is a pre-market property?
-          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+          <span style="color:#b98229;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
         </summary>
         <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">A pre-market property is one being prepared for sale that has not yet been publicly listed. Registered buyers get access in the days or weeks before the campaign launches. If someone makes an acceptable offer in that window, the sale is done before the portals are ever involved.</p>
       </details>
 
       <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
-        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#191817;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           How does Daniel's buyer matching service work?
-          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+          <span style="color:#b98229;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
         </summary>
         <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">You register your brief: the suburbs you want, the property type, your bedroom requirement and your budget. When a property that fits comes up, Daniel contacts you directly before it is publicly listed. There is no cost and no obligation to proceed.</p>
       </details>
 
       <details style="border-top:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
-        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#191817;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           Is there any cost to registering?
-          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+          <span style="color:#b98229;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
         </summary>
         <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">No. Registering your search is free. Daniel is paid by the vendor when a sale completes, not by buyers. There is no commitment required and you can update or cancel your brief at any time by contacting Daniel directly.</p>
       </details>
 
       <details style="border-top:1px solid rgba(28,25,23,0.1);border-bottom:1px solid rgba(28,25,23,0.1);padding:1.1rem 0;">
-        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#1c1917;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <summary style="font-family:var(--font-serif);font-size:1rem;cursor:pointer;color:#191817;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
           Which suburbs have the most off-market activity?
-          <span style="color:#c4912a;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
+          <span style="color:#b98229;font-size:1.3rem;flex-shrink:0;line-height:1;">+</span>
         </summary>
         <p style="font-family:var(--font-sans);font-size:0.88rem;line-height:1.8;color:#57534e;margin:0.75rem 2rem 0 0;">Bulimba, Hawthorne, Balmoral and Morningside see the most consistent off-market and pre-market activity. Supply in these suburbs is limited and buyer demand is strong, which means vendors can often transact quietly without needing a full public campaign.</p>
       </details>
@@ -412,7 +412,7 @@ const buyerSchema = {
 
     <p style="font-size:0.8rem;color:#78716c;line-height:1.7;margin:2rem 0 0;">
       For more context on how off-market and pre-market selling works in Brisbane, read:
-      <a href="/insights/off-market-pre-market-properties-brisbane-inner-east" style="color:#c4912a;font-weight:600;">How to Access Off-Market and Pre-Market Properties in Brisbane's Inner East &rarr;</a>
+      <a href="/insights/off-market-pre-market-properties-brisbane-inner-east" style="color:#b98229;font-weight:600;">How to Access Off-Market and Pre-Market Properties in Brisbane's Inner East &rarr;</a>
     </p>
 
   </div>
@@ -452,7 +452,7 @@ const buyerSchema = {
     font-size: 0.92rem;
     color: #44403c;
     cursor: pointer;
-    border-bottom: 1px solid rgba(196,145,42,0.12);
+    border-bottom: 1px solid rgba(185,130,41,0.12);
     transition: background 0.15s, padding-left 0.15s;
     user-select: none;
   }
@@ -462,19 +462,19 @@ const buyerSchema = {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: rgba(196,145,42,0.4);
+    background: rgba(185,130,41,0.4);
     flex-shrink: 0;
     transition: background 0.15s, transform 0.15s;
   }
   .suburb-dd-item:hover,
   .suburb-dd-item.focused {
-    background: rgba(196,145,42,0.07);
+    background: rgba(185,130,41,0.07);
     color: #7a5618;
     padding-left: 1.6rem;
   }
   .suburb-dd-item:hover::before,
   .suburb-dd-item.focused::before {
-    background: #c4912a;
+    background: #b98229;
     transform: scale(1.3);
   }
 
@@ -572,7 +572,7 @@ const buyerSchema = {
     transition: color 0.18s;
     flex-shrink: 0;
   }
-  .wz-back-btn:hover { color: #1c1917; }
+  .wz-back-btn:hover { color:#191817; }
 
   /* ── Progress dots ─────────────────────────────────────────────────────── */
   .wz-indicator {
@@ -591,18 +591,18 @@ const buyerSchema = {
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: rgba(196,145,42,0.12);
-    border: 2px solid rgba(196,145,42,0.22);
+    background: rgba(185,130,41,0.12);
+    border: 2px solid rgba(185,130,41,0.22);
     transition: all 0.25s;
   }
   .wz-dot-wrap.active .wz-dot {
-    background: #c4912a;
-    border-color: #c4912a;
-    box-shadow: 0 0 0 4px rgba(196,145,42,0.18);
+    background: #b98229;
+    border-color: #b98229;
+    box-shadow: 0 0 0 4px rgba(185,130,41,0.18);
   }
   .wz-dot-wrap.done .wz-dot {
-    background: rgba(196,145,42,0.5);
-    border-color: rgba(196,145,42,0.5);
+    background: rgba(185,130,41,0.5);
+    border-color: rgba(185,130,41,0.5);
   }
   .wz-dot-lbl {
     font-family: var(--font-sans);
@@ -614,17 +614,17 @@ const buyerSchema = {
     transition: color 0.25s;
     white-space: nowrap;
   }
-  .wz-dot-wrap.active .wz-dot-lbl { color: #c4912a; }
-  .wz-dot-wrap.done .wz-dot-lbl   { color: rgba(196,145,42,0.65); }
+  .wz-dot-wrap.active .wz-dot-lbl { color: #b98229; }
+  .wz-dot-wrap.done .wz-dot-lbl   { color: rgba(185,130,41,0.65); }
   .wz-connector {
     flex: 1;
     height: 1.5px;
-    background: rgba(196,145,42,0.16);
+    background: rgba(185,130,41,0.16);
     margin: 6px 0.75rem 0;
     transition: background 0.3s;
   }
   .wz-connector.done {
-    background: #c4912a;
+    background: #b98229;
   }
 
   /* ── Desktop: left panel sticky ─────────────────────────────────────────── */
@@ -757,7 +757,7 @@ const buyerSchema = {
     padding: 0 0.5rem;
     height: 44px;
     background: transparent;
-    border: 1px solid rgba(196,145,42,0.28);
+    border: 1px solid rgba(185,130,41,0.28);
     border-radius: 8px;
     color: #57534e;
     cursor: pointer;
@@ -773,9 +773,9 @@ const buyerSchema = {
     gap: 0.35rem;
   }
   .quick-chip:hover {
-    border-color: #c4912a;
-    background: rgba(196,145,42,0.05);
-    color: #1c1917;
+    border-color: #b98229;
+    background: rgba(185,130,41,0.05);
+    color:#191817;
   }
   .quick-chip.active {
     border-color: #3d7a55;
@@ -794,12 +794,12 @@ const buyerSchema = {
 
   /* ── Inline tag input box ──────────────────────────────────────────────── */
   .suburb-input-box {
-    border: 1px solid rgba(196,145,42,0.35);
+    border: 1px solid rgba(185,130,41,0.35);
     border-radius: 8px;
     background: var(--color-surface-0, #fff);
     transition: border-color 0.2s;
   }
-  .suburb-input-box:focus-within { border-color: #c4912a; }
+  .suburb-input-box:focus-within { border-color: #b98229; }
 
   /* Tags inside the box */
   .suburb-tags-inline {
@@ -832,7 +832,7 @@ const buyerSchema = {
     padding: 0.75rem 0.5rem;
     border: none;
     background: transparent;
-    color: #1c1917;
+    color:#191817;
     outline: none;
   }
   #suburb-search::placeholder { color: #a8a29e; font-style: italic; }
@@ -845,8 +845,8 @@ const buyerSchema = {
     min-width: 44px;
     background: transparent;
     border: none;
-    border-left: 1px solid rgba(196,145,42,0.28);
-    color: #c4912a;
+    border-left: 1px solid rgba(185,130,41,0.28);
+    color: #b98229;
     font-family: var(--font-sans);
     font-size: 0.6rem;
     font-weight: 700;
@@ -856,7 +856,7 @@ const buyerSchema = {
     transition: background 0.18s, color 0.18s;
     white-space: nowrap;
   }
-  #suburb-add-btn:hover { background: rgba(196,145,42,0.08); color: #7a5618; }
+  #suburb-add-btn:hover { background: rgba(185,130,41,0.08); color: #7a5618; }
 
   #suburb-dropdown {
     display: none;
@@ -865,14 +865,14 @@ const buyerSchema = {
     left: 0; right: 0;
     z-index: 2000;
     background: #faf8f4;
-    border: 1px solid rgba(196,145,42,0.4);
+    border: 1px solid rgba(185,130,41,0.4);
     max-height: 220px;
     overflow-y: auto;
     box-shadow: 0 16px 40px rgba(28,25,23,0.13);
   }
   #suburb-dropdown::-webkit-scrollbar { width: 4px; }
   #suburb-dropdown::-webkit-scrollbar-track { background: transparent; }
-  #suburb-dropdown::-webkit-scrollbar-thumb { background: rgba(196,145,42,0.3); border-radius: 2px; }
+  #suburb-dropdown::-webkit-scrollbar-thumb { background: rgba(185,130,41,0.3); border-radius: 2px; }
 
 
   /* All selector buttons (property type, bedrooms, budget) share the
@@ -882,15 +882,15 @@ const buyerSchema = {
     border-radius: 8px;
   }
   .selector-btn.active {
-    background: rgba(196,145,42,0.1) !important;
-    border-color: #c4912a !important;
-    color: #c4912a !important;
+    background: rgba(185,130,41,0.1) !important;
+    border-color: #b98229 !important;
+    color: #b98229 !important;
   }
 
   input::placeholder, textarea::placeholder { color: var(--color-text-muted); }
   input:-webkit-autofill, textarea:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px var(--color-surface-4) inset;
-    -webkit-text-fill-color: #1c1917;
+    -webkit-text-fill-color:#191817;
   }
 </style>
 
@@ -900,7 +900,7 @@ const buyerSchema = {
     if (!h) return;
     function sync() {
       if (window.scrollY <= 50) {
-        h.style.background = 'rgba(10,8,6,0.9)';
+        h.style.background = 'rgba(230,217,189,0.9)';
         h.style.backdropFilter = 'blur(16px)';
         h.style.webkitBackdropFilter = 'blur(16px)';
       } else {

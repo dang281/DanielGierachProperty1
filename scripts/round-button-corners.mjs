@@ -5,8 +5,8 @@
  *
  * A "button style" is identified inside a single `style="..."` attribute when:
  *   - it has a `padding:` value, AND
- *   - it has EITHER `background:#c4912a` / `background:#c5a03c` / `background:var(--color-gold)`
- *     OR `border:1px solid #c4912a` / `border:1.5px solid` with a colour reference,
+ *   - it has EITHER `background:#b98229` / `background:#b98229` / `background:var(--color-gold)`
+ *     OR `border:1px solid #b98229` / `border:1.5px solid` with a colour reference,
  *     OR it appears on a `data-cta=` or `href="/walkthrough"` `href="/buyers"` anchor link
  *   - AND it does NOT already contain `border-radius`
  *
@@ -33,12 +33,12 @@ const dirs = [
 const styleAttr = /style="([^"]*)"/g;
 
 const buttonHints = [
-  /background:\s*#c4912a/i,
-  /background:\s*#c5a03c/i,
+  /background:\s*#b98229/i,
+  /background:\s*#b98229/i,
   /background:\s*var\(--color-gold\)/i,
   /background:\s*var\(--gold[^)]*\)/i,
-  /background:\s*#f5d07a/i,
-  /border:\s*1(\.5)?px\s+solid\s+(#c4912a|#f5d07a|var\(--color-gold\))/i,
+  /background:\s*#6b4610/i,
+  /border:\s*1(\.5)?px\s+solid\s+(#b98229|#6b4610|var\(--color-gold\))/i,
 ];
 
 function styleNeedsRadius(style) {

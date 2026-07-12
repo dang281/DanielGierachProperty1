@@ -27,13 +27,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.75rem 1rem;
     border: 1px solid rgba(28,25,23,0.2);
     background: #fff;
-    color: #1c1917;
+    color:#191817;
     outline: none;
     transition: border-color 0.2s;
     width: 100%;
     box-sizing: border-box;
   }
-  .irc-input:focus { border-color: #c4912a; }
+  .irc-input:focus { border-color: #b98229; }
 
   /* ── Scenario table ──────────────────────── */
   .irc-table {
@@ -56,7 +56,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .irc-table td {
     padding: 0.8rem 1.1rem;
     font-size: 0.83rem;
-    color: #1c1917;
+    color:#191817;
     border-bottom: 1px solid rgba(28,25,23,0.07);
     vertical-align: middle;
     white-space: nowrap;
@@ -74,12 +74,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     border-bottom: none !important;
   }
   .irc-section-hdr.cuts-hdr td  { background: rgba(34,139,34,0.07);  color: #1a7a1a; }
-  .irc-section-hdr.curr-hdr td  { background: rgba(196,145,42,0.12); color: #9a6e10; }
+  .irc-section-hdr.curr-hdr td  { background: rgba(185,130,41,0.12); color: #9a6e10; }
   .irc-section-hdr.rises-hdr td { background: rgba(192,57,43,0.07);  color: #a83020; }
 
   /* Data row tints */
   .irc-row-cut td          { background: rgba(34,139,34,0.025); }
-  .irc-row-current td      { background: rgba(196,145,42,0.07); font-weight: 700; }
+  .irc-row-current td      { background: rgba(185,130,41,0.07); font-weight: 700; }
   .irc-row-rise td         {}
   .irc-row-rise-high td    { background: rgba(192,57,43,0.03); }
 
@@ -116,7 +116,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
   .irc-card-title {
     font-size: 0.8rem;
-    color: #1c1917;
+    color:#191817;
     display: block;
     margin-bottom: 0.5rem;
     line-height: 1.3;
@@ -172,17 +172,17 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <!-- ── CURRENT REPAYMENT HERO ─────────────────── -->
-  <div style="display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;background:rgba(196,145,42,0.07);border:1px solid rgba(196,145,42,0.25);padding:1.75rem 2rem;flex-wrap:wrap;">
+  <div style="display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;background:rgba(185,130,41,0.07);border:1px solid rgba(185,130,41,0.25);padding:1.75rem 2rem;flex-wrap:wrap;">
     <div>
       <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#9a6e10;margin-bottom:0.6rem;">Your current monthly repayment</span>
-      <span id="irc-hero-monthly" style="font-family:var(--font-serif);font-size:2.8rem;font-weight:400;color:#1c1917;line-height:1;">$3,597</span>
+      <span id="irc-hero-monthly" style="font-family:var(--font-serif);font-size:2.8rem;font-weight:400;color:#191817;line-height:1;">$3,597</span>
       <span id="irc-hero-desc" style="display:block;font-size:0.78rem;color:#78716c;margin-top:0.5rem;">$600,000 at 6.00% over 30 years, Principal &amp; Interest</span>
     </div>
     <div style="text-align:right;flex-shrink:0;">
       <span style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;margin-bottom:0.35rem;">Weekly</span>
-      <span id="irc-hero-weekly" style="font-family:var(--font-serif);font-size:1.5rem;color:#1c1917;">$831</span>
+      <span id="irc-hero-weekly" style="font-family:var(--font-serif);font-size:1.5rem;color:#191817;">$831</span>
       <span style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;margin-top:0.75rem;margin-bottom:0.35rem;">Annual</span>
-      <span id="irc-hero-annual" style="font-family:var(--font-serif);font-size:1.5rem;color:#1c1917;">$43,164</span>
+      <span id="irc-hero-annual" style="font-family:var(--font-serif);font-size:1.5rem;color:#191817;">$43,164</span>
     </div>
   </div>
 
@@ -217,8 +217,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <!-- ── APRA CALLOUT ──────────────────────────── -->
-  <div style="background:rgba(196,145,42,0.05);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
-    <p style="font-size:0.82rem;color:#1c1917;line-height:1.75;margin:0;">
+  <div style="background:rgba(185,130,41,0.05);border-left:3px solid #b98229;padding:1rem 1.25rem;">
+    <p style="font-size:0.82rem;color:#191817;line-height:1.75;margin:0;">
       <strong>APRA serviceability buffer:</strong> Since October 2021, Australian lenders must assess new borrowers at the applied rate plus 3%. At a 6.00% rate, your lender stress-tests affordability at 9.00%. This is why you may qualify for more or less than this calculator suggests.
     </p>
   </div>
@@ -335,7 +335,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
       // Bar
       const barPct = (m / maxM) * 100;
-      const barColor = isCurrent ? '#c4912a' : isCut ? '#4a9e4a' : isHighRise ? '#c0392b' : '#e07a3a';
+      const barColor = isCurrent ? '#b98229' : isCut ? '#4a9e4a' : isHighRise ? '#c0392b' : '#e07a3a';
 
       // Change cell
       let changeCell: string;
@@ -404,7 +404,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 </script>
 
 <!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
+<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(185,130,41,0.4);">
   <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
     Want more context? Read the full guide:
     <a href="/insights/selling-house-with-mortgage-brisbane" style="color:var(--color-gold);font-weight:600;">Selling a House with a Mortgage in Brisbane &rarr;</a>

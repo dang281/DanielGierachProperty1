@@ -17,7 +17,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .cc-alert {
     font-size: 0.78rem;
     color: var(--color-text-secondary);
-    background: rgba(196,145,42,0.07);
+    background: rgba(185,130,41,0.07);
     border-left: 3px solid var(--color-gold);
     padding: 0.9rem 1.1rem;
     line-height: 1.65;
@@ -79,7 +79,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .cc-vpreset:hover, .cc-vpreset.active {
     background: var(--color-gold);
     border-color: var(--color-gold);
-    color: #0a0806;
+    color:#191817;
   }
   .cc-vsep {
     width: 1px;
@@ -104,7 +104,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     transition: border-color 0.2s, box-shadow 0.2s;
     position: relative;
   }
-  .cc-loc-card.work-card  { border-top-color: #c5a03c; }
+  .cc-loc-card.work-card  { border-top-color: #b98229; }
   .cc-loc-card.home-card  { border-top-color: #7ec8e3; }
   .cc-loc-card.prop-card  { border-top-color: #a8e6a3; }
   .cc-loc-card.cc-active  { box-shadow: 0 0 0 2px var(--color-gold); }
@@ -121,7 +121,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     border-radius: 50%;
     flex-shrink: 0;
   }
-  .work-card  .cc-loc-dot { background: #c5a03c; }
+  .work-card  .cc-loc-dot { background: #b98229; }
   .home-card  .cc-loc-dot { background: #3a8fa8; }
   .prop-card  .cc-loc-dot { background: #4a9e4a; }
 
@@ -172,7 +172,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     border-bottom: 1px solid rgba(28,25,23,0.05);
     line-height: 1.4;
   }
-  .cc-suggestions li:hover { background: rgba(196,145,42,0.06); color: var(--color-text-primary); }
+  .cc-suggestions li:hover { background: rgba(185,130,41,0.06); color: var(--color-text-primary); }
   .cc-loc-set {
     font-size: 0.68rem;
     color: var(--color-text-muted);
@@ -214,8 +214,8 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .cc-results-header {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
-    background: #1c1917;
-    color: #f0ece4;
+    background: #f2ead4;
+    color: #191817;
   }
   .cc-rh-cell {
     padding: 0.75rem 1rem;
@@ -225,7 +225,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     text-transform: uppercase;
   }
   .cc-rh-cell:first-child { color: var(--color-text-muted); }
-  .cc-rh-work  { color: #c5a03c !important; }
+  .cc-rh-work  { color: #b98229 !important; }
   .cc-rh-home  { color: #7ec8e3 !important; }
   .cc-rh-prop  { color: #a8e6a3 !important; }
 
@@ -251,7 +251,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .cc-rcell.val { font-weight: 600; color: var(--color-text-primary); }
   .cc-rcell.saving { color: #4a9e4a; font-weight: 700; }
   .cc-rcell.more   { color: #c0392b; font-weight: 600; }
-  .cc-rcell.total-row { background: rgba(196,145,42,0.05); font-weight: 700; font-size: 0.88rem; color: var(--color-text-primary); }
+  .cc-rcell.total-row { background: rgba(185,130,41,0.05); font-weight: 700; font-size: 0.88rem; color: var(--color-text-primary); }
   .cc-placeholder {
     text-align: center;
     padding: 3rem 2rem;
@@ -275,7 +275,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     border-top: 1px solid rgba(28,25,23,0.05);
     cursor: pointer;
   }
-  .pac-item:hover, .pac-item-selected { background: rgba(196,145,42,0.06); }
+  .pac-item:hover, .pac-item-selected { background: rgba(185,130,41,0.06); }
   .pac-item-query { font-size: 0.76rem; color: var(--color-text-primary); }
   .pac-icon { display: none; }
   .pac-logo::after { display: none; }
@@ -285,7 +285,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     display: inline-block;
     width: 12px;
     height: 12px;
-    border: 2px solid rgba(196,145,42,0.3);
+    border: 2px solid rgba(185,130,41,0.3);
     border-top-color: var(--color-gold);
     border-radius: 50%;
     animation: cc-spin 0.6s linear infinite;
@@ -430,38 +430,38 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 </div>
 
 <div style="margin-top:2rem;padding:1.5rem;background:#f7f5f0;border:1px solid rgba(28,25,23,0.08);">
-  <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;margin-bottom:1rem;">Calculation Assumptions</h3>
+  <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#191817;margin-bottom:1rem;">Calculation Assumptions</h3>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem;">
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Traffic data</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Traffic data</strong>
       Drive times are fetched from Google Maps using Tuesday 8:00 am as the departure time, representing a typical peak-hour morning commute.
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Return journey</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Return journey</strong>
       Daily distance and time shown are return trips (to work and back). Annual figures multiply the return trip by days per week x weeks per year (your inputs above).
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Fuel cost formula</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Fuel cost formula</strong>
       Annual fuel = (one-way km x 2) / 100 x peak-hour fuel efficiency (L/100km) x fuel price ($/L) x days/week x weeks/year. Peak-hour figures are set higher than manufacturer ratings to account for stop-start driving and A/C load.
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Fuel only</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Fuel only</strong>
       This tool calculates fuel costs only. Tolls, parking, registration, insurance, depreciation and maintenance are not included.
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Annual hours</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Annual hours</strong>
       Hours per year = (one-way drive minutes x 2) / 60 x days/week x weeks/year.
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Annual difference</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Annual difference</strong>
       The "Annual difference" row shows the extra fuel cost of the New Property commute compared to your Current Home commute each year.
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Default fuel price</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Default fuel price</strong>
       Default is an indicative Brisbane unleaded price. Pump prices vary day-to-day across a typical $1.70 to $2.30 range. Update this to your current bowser price for an accurate estimate.
     </div>
     <div style="font-size:0.72rem;color:#78716c;line-height:1.7;">
-      <strong style="display:block;color:#1c1917;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Estimates only</strong>
+      <strong style="display:block;color:#191817;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Estimates only</strong>
       Results are indicative. Actual fuel costs vary with driving style, traffic, vehicle condition and fuel price fluctuations.
     </div>
   </div>
@@ -469,7 +469,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 
 
 <!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
+<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(185,130,41,0.4);">
   <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
     Want more context? Read the full guide:
     <a href="/insights/brisbane-inner-east-value" style="color:var(--color-gold);font-weight:600;">Brisbane Inner East Property Values &rarr;</a>
@@ -506,7 +506,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   const fmtKm = n => n.toFixed(1) + ' km';
   const fmtMin = n => n < 60 ? n + ' min' : Math.floor(n/60) + ' h ' + (n%60) + ' min';
 
-  const modeColors = { work: '#c5a03c', home: '#3a8fa8', prop: '#4a9e4a' };
+  const modeColors = { work: '#b98229', home: '#3a8fa8', prop: '#4a9e4a' };
   const modeLabels = { work: 'Workplace', home: 'Current Home', prop: 'New Property' };
 
   /* ── Google Maps marker icons ────────────────────────────── */

@@ -29,7 +29,7 @@ const html = `<!doctype html>
   html, body {
     width: 1200px; height: 630px; overflow: hidden;
     font-family: 'Manrope', system-ui, sans-serif;
-    background: #0a0806;
+    background: #e6d9bd;
     -webkit-font-smoothing: antialiased;
   }
   .stage {
@@ -48,50 +48,50 @@ const html = `<!doctype html>
   .scrim {
     position: absolute; inset: 0;
     background: linear-gradient(95deg,
-      rgba(10,8,6,0.95) 0%,
-      rgba(10,8,6,0.75) 45%,
-      rgba(10,8,6,0.35) 100%);
+      rgba(230,217,189,0.95) 0%,
+      rgba(230,217,189,0.75) 45%,
+      rgba(230,217,189,0.35) 100%);
   }
 
   .corner {
     position: absolute; top: 36px; right: 40px; z-index: 500;
-    background: rgba(10,8,6,0.85);
-    color: #f0ece4;
+    background: rgba(230,217,189,0.85);
+    color: #191817;
     padding: 10px 16px;
     font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
-    border-bottom: 2px solid #c4912a;
+    border-bottom: 2px solid #b98229;
   }
 
   .card {
     position: absolute; left: 48px; bottom: 48px; z-index: 500;
-    background: rgba(10,8,6,0.94);
-    border-left: 4px solid #c4912a;
+    background: rgba(230,217,189,0.94);
+    border-left: 4px solid #b98229;
     padding: 28px 36px 30px 32px;
     max-width: 720px;
-    color: #f0ece4;
+    color: #191817;
     box-shadow: 0 24px 60px rgba(0,0,0,0.45);
   }
   .eyebrow {
     font-size: 12px; font-weight: 800; letter-spacing: 0.22em;
-    text-transform: uppercase; color: #c4912a; margin: 0 0 14px;
+    text-transform: uppercase; color: #b98229; margin: 0 0 14px;
   }
   h1 {
     font-family: 'Noto Serif', Georgia, serif;
     font-weight: 400; font-size: 42px; line-height: 1.08;
-    margin: 0 0 14px; letter-spacing: -0.015em; color: #f0ece4;
+    margin: 0 0 14px; letter-spacing: -0.015em; color: #191817;
   }
   .desc {
-    font-size: 16px; line-height: 1.55; color: rgba(240,236,228,0.8);
+    font-size: 16px; line-height: 1.55; color: rgba(25,24,23,0.8);
     margin: 0 0 18px; max-width: 60ch;
   }
   .foot {
     display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid rgba(196,145,42,0.25);
+    border-top: 1px solid rgba(185,130,41,0.25);
     padding-top: 12px;
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(240,236,228,0.7); font-weight: 700;
+    color: rgba(25,24,23,0.7); font-weight: 700;
   }
-  .foot .url { color: #c4912a; }
+  .foot .url { color: #b98229; }
 </style>
 </head><body>
 <div class="stage">

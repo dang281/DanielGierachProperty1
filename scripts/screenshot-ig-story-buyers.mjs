@@ -47,10 +47,10 @@ const html = `<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 1080px; height: 1920px; background: #0a0806; overflow: hidden; }
+  html, body { width: 1080px; height: 1920px; background: #e6d9bd; overflow: hidden; }
   body {
     font-family: 'Manrope', system-ui, sans-serif;
-    color: #f0ece4;
+    color: #191817;
     -webkit-font-smoothing: antialiased;
   }
   .stage {
@@ -70,10 +70,10 @@ const html = `<!doctype html>
     position: absolute; inset: 0;
     background:
       linear-gradient(180deg,
-        rgba(10,8,6,0.92) 0%,
-        rgba(10,8,6,0.65) 35%,
-        rgba(10,8,6,0.78) 65%,
-        rgba(10,8,6,0.96) 100%);
+        rgba(230,217,189,0.92) 0%,
+        rgba(230,217,189,0.65) 35%,
+        rgba(230,217,189,0.78) 65%,
+        rgba(230,217,189,0.96) 100%);
   }
   /* Subtle gold ambient glow behind headline */
   .ambient {
@@ -82,7 +82,7 @@ const html = `<!doctype html>
     top: 48%;
     transform: translate(-50%, -50%);
     width: 1200px; height: 700px;
-    background: radial-gradient(ellipse at center, rgba(196,145,42,0.18) 0%, rgba(196,145,42,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(185,130,41,0.18) 0%, rgba(185,130,41,0) 70%);
     pointer-events: none;
   }
 
@@ -99,7 +99,7 @@ const html = `<!doctype html>
     font-size: 22px;
     font-weight: 800;
     letter-spacing: 0.28em;
-    color: #f5d07a;
+    color: #6b4610;
     text-transform: uppercase;
     margin-bottom: 56px;
     display: flex;
@@ -111,7 +111,7 @@ const html = `<!doctype html>
     content: '';
     display: block;
     width: 56px; height: 2px;
-    background: #c4912a;
+    background: #b98229;
     flex-shrink: 0;
   }
 
@@ -127,7 +127,7 @@ const html = `<!doctype html>
   }
   .headline em {
     font-style: italic;
-    color: #f5d07a;
+    color: #6b4610;
     font-weight: 400;
   }
 
@@ -151,8 +151,8 @@ const html = `<!doctype html>
     display: inline-flex;
     align-items: center;
     gap: 22px;
-    background: #c4912a;
-    color: #0a0806;
+    background: #b98229;
+    color: #e6d9bd;
     font-family: 'Manrope', sans-serif;
     font-size: 32px;
     font-weight: 800;
@@ -181,7 +181,7 @@ const html = `<!doctype html>
     font-style: italic;
     font-weight: 400;
     font-size: 42px;
-    color: #f0ece4;
+    color: #191817;
     margin-bottom: 12px;
     letter-spacing: 0.005em;
   }
@@ -191,7 +191,7 @@ const html = `<!doctype html>
     font-weight: 700;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: #c4912a;
+    color: #b98229;
   }
 </style>
 </head><body>

@@ -68,17 +68,17 @@ const agents = [
 
 <style>
   :root {
-    --bg: #0a0806;
+    --bg: #e6d9bd;
     --bg-soft: #100c08;
     --card: #15110d;
     --card-hover: #1c1612;
     --line: rgba(240, 236, 228, 0.07);
     --line-strong: rgba(196, 145, 42, 0.32);
     --line-glow: rgba(196, 145, 42, 0.5);
-    --text: #f2efe9;
+    --text: #f2ead4;
     --text-mute: rgba(242, 239, 233, 0.5);
     --text-soft: rgba(242, 239, 233, 0.78);
-    --gold: #c4912a;
+    --gold: #b98229;
     --gold-bright: #d4a23a;
     --gold-soft: rgba(196, 145, 42, 0.85);
   }
@@ -105,13 +105,13 @@ const agents = [
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,145,42,0.1) 0%, rgba(196,145,42,0) 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(185,130,41,0.1) 0%, rgba(185,130,41,0) 70%),
       linear-gradient(
         180deg,
-        rgba(10,8,6,0.55) 0%,
-        rgba(10,8,6,0.5) 28%,
-        rgba(10,8,6,0.7) 55%,
-        rgba(10,8,6,0.88) 80%,
+        rgba(230,217,189,0.55) 0%,
+        rgba(230,217,189,0.5) 28%,
+        rgba(230,217,189,0.7) 55%,
+        rgba(230,217,189,0.88) 80%,
         var(--bg) 100%
       );
   }
@@ -202,8 +202,8 @@ const agents = [
   .contact-line a { color: var(--gold); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
   .contact-line a:hover { color: var(--gold-bright); }
   .contact-line .sep { display: none; }
-  .handle-text { color: rgba(242,239,233,0.78); font-weight: 600; }
-  .handle-text a { color: rgba(242,239,233,0.78); }
+  .handle-text { color: rgba(25,24,23,0.78); font-weight: 600; }
+  .handle-text a { color: rgba(25,24,23,0.78); }
   .handle-text a:hover { color: var(--gold); }
 
   .email {
@@ -217,7 +217,7 @@ const agents = [
   }
   @media (min-width: 480px) { .email { font-size: 0.66rem; word-break: normal; } }
   .email a {
-    color: rgba(242,239,233,0.85); text-decoration: none;
+    color: rgba(25,24,23,0.85); text-decoration: none;
     transition: color 0.2s;
   }
   .email a:hover { color: var(--gold); }
@@ -353,9 +353,9 @@ const agents = [
     font-size: 0.72rem; font-weight: 800;
     letter-spacing: 0.14em; text-transform: uppercase;
     transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
-    box-shadow: 0 8px 22px rgba(196,145,42,0.28);
+    box-shadow: 0 8px 22px rgba(185,130,41,0.28);
   }
-  .listings-cta:hover { background: var(--gold-bright); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(196,145,42,0.38); }
+  .listings-cta:hover { background: var(--gold-bright); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(185,130,41,0.38); }
   .listings-cta:active { transform: translateY(0); }
   .listings-cta-icon { display: inline-flex; }
   .listings-cta-text { white-space: nowrap; }
@@ -380,7 +380,7 @@ const agents = [
     align-items: center;
     gap: 0.95rem;
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.04) 0%, rgba(196,145,42,0) 60%),
+      linear-gradient(135deg, rgba(185,130,41,0.04) 0%, rgba(185,130,41,0) 60%),
       var(--card);
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -401,7 +401,7 @@ const agents = [
   }
   .card:hover, .card:focus-visible {
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.08) 0%, rgba(196,145,42,0.01) 60%),
+      linear-gradient(135deg, rgba(185,130,41,0.08) 0%, rgba(185,130,41,0.01) 60%),
       var(--card-hover);
     border-color: var(--line-strong);
     transform: translateY(-1px);
@@ -498,7 +498,7 @@ const agents = [
   /* ── Final CTA panel ──────────────────────────────────────────── */
   .final {
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.15) 0%, rgba(196,145,42,0.04) 100%);
+      linear-gradient(135deg, rgba(185,130,41,0.15) 0%, rgba(185,130,41,0.04) 100%);
     border: 1px solid var(--line-strong);
     border-radius: 12px;
     padding: 1.75rem 1.25rem;
@@ -587,20 +587,20 @@ const agents = [
     margin-bottom: 0.7rem;
     background:
       linear-gradient(135deg, var(--gold) 0%, #b88526 100%);
-    color: #0a0806;
+    color:#191817;
     border-radius: 14px;
     text-decoration: none;
-    box-shadow: 0 14px 38px rgba(196,145,42,0.32), inset 0 1px 0 rgba(255,255,255,0.15);
+    box-shadow: 0 14px 38px rgba(185,130,41,0.32), inset 0 1px 0 rgba(255,255,255,0.15);
     transition: transform 0.18s, box-shadow 0.2s;
   }
-  .primary-cta:hover { transform: translateY(-1px); box-shadow: 0 18px 44px rgba(196,145,42,0.42), inset 0 1px 0 rgba(255,255,255,0.18); }
+  .primary-cta:hover { transform: translateY(-1px); box-shadow: 0 18px 44px rgba(185,130,41,0.42), inset 0 1px 0 rgba(255,255,255,0.18); }
   .primary-cta:active { transform: translateY(0); }
   .pcta-eyebrow {
     grid-column: 1; grid-row: 1;
     font-family: var(--font-sans);
     font-size: 0.55rem; font-weight: 800;
     letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(10,8,6,0.7);
+    color: rgba(230,217,189,0.7);
     margin-bottom: 0.25rem;
   }
   .pcta-title {
@@ -608,7 +608,7 @@ const agents = [
     font-family: var(--font-serif);
     font-size: 1.3rem; font-weight: 700;
     line-height: 1.15;
-    color: #0a0806;
+    color:#191817;
     margin-bottom: 0.2rem;
   }
   .pcta-sub {
@@ -616,18 +616,18 @@ const agents = [
     font-family: var(--font-sans);
     font-size: 0.74rem; font-weight: 500;
     line-height: 1.35;
-    color: rgba(10,8,6,0.78);
+    color: rgba(230,217,189,0.78);
   }
   .pcta-arrow {
     grid-column: 2; grid-row: 1 / 4;
     display: inline-flex; align-items: center; justify-content: center;
     width: 36px; height: 36px;
-    background: rgba(10,8,6,0.12);
+    background: rgba(230,217,189,0.12);
     border-radius: 50%;
-    color: #0a0806;
+    color:#191817;
     transition: transform 0.18s, background 0.2s;
   }
-  .primary-cta:hover .pcta-arrow { background: rgba(10,8,6,0.2); transform: translateX(2px); }
+  .primary-cta:hover .pcta-arrow { background: rgba(230,217,189,0.2); transform: translateX(2px); }
 
   /* ── B: Secondary CTA (Current listings) ────────────────────── */
   .secondary-cta {
@@ -645,7 +645,7 @@ const agents = [
     letter-spacing: 0.14em; text-transform: uppercase;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
-  .secondary-cta:hover { background: rgba(196,145,42,0.06); border-color: var(--gold); color: var(--gold-bright); }
+  .secondary-cta:hover { background: rgba(185,130,41,0.06); border-color: var(--gold); color: var(--gold-bright); }
 
   /* ── B: Team strip (compact) ────────────────────────────────── */
   .ts-label {
@@ -675,7 +675,7 @@ const agents = [
     width: 48px; height: 48px;
     border-radius: 10px;
     object-fit: cover; object-position: center 18%;
-    border: 1px solid rgba(197,160,60,0.4);
+    border: 1px solid rgba(185,130,41,0.4);
     flex-shrink: 0;
   }
   @media (min-width: 480px) { .ts-avatar { width: 56px; height: 56px; } }
@@ -699,8 +699,8 @@ const agents = [
   .ts-more {
     display: inline-flex; align-items: center; gap: 0.25rem;
     padding: 0.3rem 0.55rem;
-    background: rgba(196,145,42,0.08);
-    border: 1px solid rgba(196,145,42,0.32);
+    background: rgba(185,130,41,0.08);
+    border: 1px solid rgba(185,130,41,0.32);
     border-radius: 6px;
     font-family: var(--font-sans);
     font-size: 0.5rem; font-weight: 800;
@@ -708,7 +708,7 @@ const agents = [
     color: var(--gold); text-decoration: none;
     transition: background 0.18s, border-color 0.18s, color 0.18s;
   }
-  .ts-more:hover { background: rgba(196,145,42,0.16); border-color: var(--gold); color: var(--gold-bright); }
+  .ts-more:hover { background: rgba(185,130,41,0.16); border-color: var(--gold); color: var(--gold-bright); }
 
   /* ── B: Visual tile (replaces articles list) ────────────────── */
   .visual-tile {
@@ -768,7 +768,7 @@ const agents = [
       left: 0.7rem; right: 0.7rem; bottom: 0.7rem;
       padding: 0.9rem 1rem;
       background: var(--gold);
-      color: #0a0806;
+      color:#191817;
       border-radius: 12px;
       font-family: var(--font-sans);
       font-size: 0.72rem; font-weight: 800;

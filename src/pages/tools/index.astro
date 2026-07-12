@@ -66,7 +66,7 @@ const tools = [
 ];
 
 const phaseColors: Record<string, string> = {
-  Seller:   '#f5d07a',
+  Seller:   '#6b4610',
   Buyer:    '#7ec8e3',
   Investor: '#a8e6a3',
   Market:   '#c8c6c8',
@@ -169,7 +169,7 @@ const toolsSchema = {
           data-desc={tool.desc.toLowerCase()}
           data-delay={i * 40}
           style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:2rem 2rem 1.75rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background 0.25s cubic-bezier(0.4,0,0.2,1),border-color 0.25s cubic-bezier(0.4,0,0.2,1),transform 0.3s cubic-bezier(0.34,1,0.64,1),box-shadow 0.3s cubic-bezier(0.34,1,0.64,1);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.08);border-radius:14px;"
-          onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
+          onmouseover="this.style.background='#f2ead4';this.style.borderColor='rgba(185,130,41,0.3)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 28px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
           onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.08)'"
         >
           <div style={`position:absolute;top:0;left:0;right:0;height:3px;background:${phaseColors[tool.phase]};`}></div>
@@ -203,9 +203,9 @@ const toolsSchema = {
 </section>
 
 <!-- Property Report CTA -->
-<section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:#f2ead4;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-    <div class="reveal" style="padding:2.5rem;background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
+    <div class="reveal" style="padding:2.5rem;background:rgba(185,130,41,0.06);border:1px solid rgba(185,130,41,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
       <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#191817;">What is your property worth?</p>
       <p style="font-size:0.85rem;color:rgba(25,24,23,0.44);line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
       <a href="/walkthrough" data-cta="tool_to_walkthrough" class="btn-gold">

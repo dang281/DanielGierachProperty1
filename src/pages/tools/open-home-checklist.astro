@@ -17,7 +17,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.75rem 1rem;
     border: 1px solid rgba(28,25,23,0.2);
     background: #fff;
-    color: #1c1917;
+    color:#191817;
     outline: none;
     transition: border-color 0.2s;
     width: 100%;
@@ -96,7 +96,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   .star-rating { display: flex; gap: 0.3rem; padding: 0.75rem 1.5rem; align-items: center; border-top: 1px solid rgba(28,25,23,0.06); }
   .star { font-size: 1.25rem; cursor: pointer; color: rgba(28,25,23,0.2); transition: color 0.1s; }
-  .star.lit { color: #c4912a; }
+  .star.lit { color: #b98229; }
 
   .score-ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
   .score-circle { position: relative; width: 120px; height: 120px; }
@@ -141,21 +141,21 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div class="score-circle">
         <svg width="120" height="120" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(28,25,23,0.08)" stroke-width="8"/>
-          <circle id="score-ring" cx="60" cy="60" r="50" fill="none" stroke="#c4912a" stroke-width="8"
+          <circle id="score-ring" cx="60" cy="60" r="50" fill="none" stroke="#b98229" stroke-width="8"
             stroke-dasharray="314.2" stroke-dashoffset="314.2" stroke-linecap="round" style="transition:stroke-dashoffset 0.4s ease,stroke 0.3s;"/>
         </svg>
         <div class="score-text">
-          <span id="score-val" style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;color:#1c1917;line-height:1;">0</span>
+          <span id="score-val" style="font-family:var(--font-serif);font-size:1.75rem;font-weight:400;color:#191817;line-height:1;">0</span>
           <span style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;color:#78716c;text-transform:uppercase;">/ 5</span>
         </div>
       </div>
       <span style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#78716c;">Overall Score</span>
     </div>
     <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.5rem;">
-      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#1c1917;">
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#191817;">
         <span>Sections rated</span><span id="rated-count" style="font-weight:700;">0 / 8</span>
       </div>
-      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#1c1917;">
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#191817;">
         <span>Items checked</span><span id="checked-count" style="font-weight:700;">0</span>
       </div>
       <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#c0392b;">
@@ -164,7 +164,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div id="score-label" style="margin-top:0.5rem;font-size:0.75rem;font-style:italic;color:#78716c;"></div>
     </div>
     <div style="display:flex;gap:0.75rem;flex-shrink:0;" class="no-print">
-      <button id="oh-print-btn" type="button" style="padding:0.65rem 1.25rem;border:1.5px solid rgba(28,25,23,0.2);border-radius:8px;background:transparent;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;color:#1c1917;display:flex;align-items:center;gap:0.4rem;">
+      <button id="oh-print-btn" type="button" style="padding:0.65rem 1.25rem;border:1.5px solid rgba(28,25,23,0.2);border-radius:8px;background:transparent;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;color:#191817;display:flex;align-items:center;gap:0.4rem;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
         <span id="oh-print-label">Print</span>
       </button>
@@ -187,11 +187,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <!-- Appraisal CTA -->
-  <div class="no-print" style="background:var(--color-surface-3, #f5f2ed);padding:2.5rem;border-left:3px solid #c4912a;">
-    <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c4912a;margin-bottom:0.75rem;">Own a property you're thinking about selling?</p>
-    <h2 style="font-family:var(--font-serif, Georgia, serif);font-size:1.5rem;font-weight:400;color:#1c1917;margin-bottom:0.75rem;line-height:1.3;">Find out what your property would score with buyers.</h2>
+  <div class="no-print" style="background:var(--color-surface-3, #f5f2ed);padding:2.5rem;border-left:3px solid #b98229;">
+    <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b98229;margin-bottom:0.75rem;">Own a property you're thinking about selling?</p>
+    <h2 style="font-family:var(--font-serif, Georgia, serif);font-size:1.5rem;font-weight:400;color:#191817;margin-bottom:0.75rem;line-height:1.3;">Find out what your property would score with buyers.</h2>
     <p style="font-size:0.88rem;font-weight:300;line-height:1.75;color:#57534e;margin-bottom:1.5rem;">If you've been inspecting properties and thinking about your own, I can give you an honest read on how it would present to buyers and what it could realistically achieve. A free appraisal takes about 30 minutes and comes with no obligation to list.</p>
-    <a href="/walkthrough" data-cta="tool_to_walkthrough" style="font-family:var(--font-sans, system-ui);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:#c4912a;color:#1c1917;padding:0.85rem 2rem;text-decoration:none;display:inline-block;border-radius:8px;">Request a Free Appraisal</a>
+    <a href="/walkthrough" data-cta="tool_to_walkthrough" style="font-family:var(--font-sans, system-ui);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:#b98229;color:#191817;padding:0.85rem 2rem;text-decoration:none;display:inline-block;border-radius:8px;">Request a Free Appraisal</a>
   </div>
 
 </div>
@@ -235,7 +235,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     },
     {
       label: 'Kitchen',
-      color: '#c4912a',
+      color: '#b98229',
       items: [
         { text: 'Bench space and layout' },
         { text: 'Cabinetry, doors, hinges, drawers open smoothly' },
@@ -304,7 +304,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   let totalFlagged = 0;
 
   const LABELS = ['','Needs major work','Below average','Average','Good','Excellent'];
-  const SCORE_COLORS = ['','#c0392b','#e07a3a','#c4912a','#4a9e4a','#2a7a45'];
+  const SCORE_COLORS = ['','#c0392b','#e07a3a','#b98229','#4a9e4a','#2a7a45'];
 
   function updateScore() {
     const rated = sectionRatings.filter(r => r > 0);
@@ -312,7 +312,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const pct = avg / 5;
     const circumference = 314.2;
     scoreRing.style.strokeDashoffset = String(circumference * (1 - pct));
-    scoreRing.style.stroke = avg > 0 ? SCORE_COLORS[Math.round(avg)] : '#c4912a';
+    scoreRing.style.stroke = avg > 0 ? SCORE_COLORS[Math.round(avg)] : '#b98229';
     scoreVal.textContent = avg > 0 ? avg.toFixed(1) : '0';
     scoreLabel.textContent = avg > 0 ? LABELS[Math.round(avg)] : '';
     ratedCount.textContent = `${rated.length} / ${SECTIONS.length}`;
@@ -329,7 +329,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     header.innerHTML = `
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <span style="width:8px;height:8px;border-radius:50%;background:${sec.color};flex-shrink:0;"></span>
-        <span style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;">${sec.label}</span>
+        <span style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#191817;">${sec.label}</span>
         <span class="sec-count-${si}" style="font-size:0.65rem;color:#78716c;"></span>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;">
@@ -351,7 +351,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         <div class="item-check">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" style="display:none;"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
-        <span style="font-size:0.82rem;color:#1c1917;line-height:1.5;flex:1;">${item.text}</span>
+        <span style="font-size:0.82rem;color:#191817;line-height:1.5;flex:1;">${item.text}</span>
         ${item.flag ? `<button class="flag-btn no-print" title="Flag as issue">⚑ Flag</button>` : ''}
       `;
 
@@ -425,7 +425,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
         const secStars = header.querySelector(`.sec-stars-${si}`);
         if (secStars) {
           secStars.textContent = `${'★'.repeat(s)}${'☆'.repeat(5-s)}`;
-          (secStars as HTMLElement).style.color = '#c4912a';
+          (secStars as HTMLElement).style.color = '#b98229';
         }
         updateScore();
       });
@@ -496,7 +496,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 
 <!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
+<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(185,130,41,0.4);">
   <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
     Want more context? Read the full guide:
     <a href="/insights/open-home-tips-for-sellers-brisbane" style="color:var(--color-gold);font-weight:600;">Open Home Tips for Brisbane Sellers &rarr;</a>

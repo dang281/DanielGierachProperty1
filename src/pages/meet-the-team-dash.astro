@@ -94,19 +94,19 @@ const supportTeam = [
     /* Surfaces: dashboard hierarchy */
     --color-base:        #fdfcf7;   /* was #f7f5f0 */
     --color-surface-0:   #fdfcf7;
-    --color-surface-1:   #f7f5ec;   /* was #f2efe9 (zebra step) */
+    --color-surface-1:   #f7f5ec;   /* was #f2ead4 (zebra step) */
     --color-surface-2:   #efece0;   /* was #edeae3 (row hover) */
     --color-surface-3:   #ffffff;   /* pure white card */
     --color-surface-4:   #efece0;   /* was #f5f2eb */
     --color-surface-5:   #e0dccb;   /* was #ece9e1 (badges / group heads) */
 
     /* Gold: dashboard mustard */
-    --color-gold:        #b98229;   /* was #c4912a */
+    --color-gold:        #b98229;   /* was #b98229 */
     --color-gold-dim:    #a5721c;   /* was #b07e22 */
     --color-gold-muted:  rgba(185,130,41,0.12);
 
     /* Accent + eyebrow */
-    --color-accent:      #191817;   /* was #1c1917 */
+    --color-accent:      #191817;   /* was #f2ead4 */
     --color-accent-soft: #2a2724;
     --color-eyebrow:     rgba(25,24,23,0.38);   /* was #78716c */
 
@@ -131,25 +131,25 @@ const supportTeam = [
      retained as reference comments so we can flip back easily. */
   :root {
     /* Surfaces: flip from dark charcoal to cream/white hierarchy */
-    --bg:            #fdfcf7;                     /* was #0a0806  */
+    --bg:            #fdfcf7;                     /* was #e6d9bd  */
     --bg-soft:       #f7f5ec;                     /* was #100c08  */
     --card:          #ffffff;                     /* was #15110d  */
     --card-hover:    #efece0;                     /* was #1c1612  */
 
     /* Lines: soft ink instead of cream-on-dark */
-    --line:          rgba(25,24,23,0.08);         /* was rgba(240,236,228,0.07)  */
-    --line-strong:   rgba(185,130,41,0.32);       /* was rgba(196,145,42,0.32)   */
-    --line-glow:     rgba(185,130,41,0.5);        /* was rgba(196,145,42,0.5)    */
+    --line:          rgba(25,24,23,0.08);         /* was rgba(25,24,23,0.07)  */
+    --line-strong:   rgba(185,130,41,0.32);       /* was rgba(185,130,41,0.32)   */
+    --line-glow:     rgba(185,130,41,0.5);        /* was rgba(185,130,41,0.5)    */
 
     /* Text: near-black warm on cream */
-    --text:          #191817;                     /* was #f2efe9              */
-    --text-mute:     rgba(25,24,23,0.38);         /* was rgba(242,239,233,0.5) */
-    --text-soft:     rgba(25,24,23,0.58);         /* was rgba(242,239,233,0.78)*/
+    --text:          #191817;                     /* was #f2ead4              */
+    --text-mute:     rgba(25,24,23,0.38);         /* was rgba(25,24,23,0.5) */
+    --text-soft:     rgba(25,24,23,0.58);         /* was rgba(25,24,23,0.78)*/
 
     /* Gold: dashboard mustard, slightly deeper than the site's brighter gold */
-    --gold:          #b98229;                     /* was #c4912a  */
+    --gold:          #b98229;                     /* was #b98229  */
     --gold-bright:   #cc933a;                     /* was #d4a23a  */
-    --gold-soft:     rgba(185,130,41,0.85);       /* was rgba(196,145,42,0.85) */
+    --gold-soft:     rgba(185,130,41,0.85);       /* was rgba(185,130,41,0.85) */
   }
 
   body { background: var(--bg); color: var(--text); position: relative; }
@@ -174,13 +174,13 @@ const supportTeam = [
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,145,42,0.1) 0%, rgba(196,145,42,0) 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(185,130,41,0.1) 0%, rgba(185,130,41,0) 70%),
       linear-gradient(
         180deg,
-        rgba(10,8,6,0.55) 0%,
-        rgba(10,8,6,0.5) 28%,
-        rgba(10,8,6,0.7) 55%,
-        rgba(10,8,6,0.88) 80%,
+        rgba(230,217,189,0.55) 0%,
+        rgba(230,217,189,0.5) 28%,
+        rgba(230,217,189,0.7) 55%,
+        rgba(230,217,189,0.88) 80%,
         var(--bg) 100%
       );
   }
@@ -271,8 +271,8 @@ const supportTeam = [
   .contact-line a { color: var(--gold); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
   .contact-line a:hover { color: var(--gold-bright); }
   .contact-line .sep { display: none; }
-  .handle-text { color: rgba(242,239,233,0.78); font-weight: 600; }
-  .handle-text a { color: rgba(242,239,233,0.78); }
+  .handle-text { color: rgba(25,24,23,0.78); font-weight: 600; }
+  .handle-text a { color: rgba(25,24,23,0.78); }
   .handle-text a:hover { color: var(--gold); }
 
   .email {
@@ -286,7 +286,7 @@ const supportTeam = [
   }
   @media (min-width: 480px) { .email { font-size: 0.66rem; word-break: normal; } }
   .email a {
-    color: rgba(242,239,233,0.85); text-decoration: none;
+    color: rgba(25,24,23,0.85); text-decoration: none;
     transition: color 0.2s;
   }
   .email a:hover { color: var(--gold); }
@@ -415,9 +415,9 @@ const supportTeam = [
     padding: 1.1rem 1.25rem;
     margin: 0.75rem 0 1.75rem;
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.08) 0%, rgba(196,145,42,0) 55%),
+      linear-gradient(135deg, rgba(185,130,41,0.08) 0%, rgba(185,130,41,0) 55%),
       var(--bg-soft);
-    border: 1px solid rgba(196,145,42,0.3);
+    border: 1px solid rgba(185,130,41,0.3);
     border-radius: 12px;
     text-decoration: none;
     color: var(--text);
@@ -474,7 +474,7 @@ const supportTeam = [
     align-items: center;
     gap: 0.95rem;
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.04) 0%, rgba(196,145,42,0) 60%),
+      linear-gradient(135deg, rgba(185,130,41,0.04) 0%, rgba(185,130,41,0) 60%),
       var(--card);
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -495,7 +495,7 @@ const supportTeam = [
   }
   .card:hover, .card:focus-visible {
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.08) 0%, rgba(196,145,42,0.01) 60%),
+      linear-gradient(135deg, rgba(185,130,41,0.08) 0%, rgba(185,130,41,0.01) 60%),
       var(--card-hover);
     border-color: var(--line-strong);
     transform: translateY(-1px);
@@ -592,7 +592,7 @@ const supportTeam = [
   /* ── Final CTA panel ──────────────────────────────────────────── */
   .final {
     background:
-      linear-gradient(135deg, rgba(196,145,42,0.15) 0%, rgba(196,145,42,0.04) 100%);
+      linear-gradient(135deg, rgba(185,130,41,0.15) 0%, rgba(185,130,41,0.04) 100%);
     border: 1px solid var(--line-strong);
     border-radius: 12px;
     padding: 1.75rem 1.25rem;
@@ -632,7 +632,7 @@ const supportTeam = [
      CTA above it keeps the eye. Wraps a native Web Share button
      with a copy-link fallback for desktop. */
   .share-card {
-    background: linear-gradient(135deg, rgba(196,145,42,0.06) 0%, rgba(196,145,42,0.02) 100%);
+    background: linear-gradient(135deg, rgba(185,130,41,0.06) 0%, rgba(185,130,41,0.02) 100%);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 1.5rem 1.25rem;

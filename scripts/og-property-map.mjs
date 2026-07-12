@@ -22,47 +22,47 @@ const html = `<!doctype html>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   html, body { margin: 0; padding: 0; width: 1200px; height: 630px; overflow: hidden;
-    font-family: 'Manrope', system-ui, sans-serif; background: #0a0806; }
+    font-family: 'Manrope', system-ui, sans-serif; background: #e6d9bd; }
   #map { width: 1200px; height: 630px; }
   .leaflet-control-attribution { font-size: 9px !important; background: rgba(255,255,255,0.7) !important; }
 
   .card {
     position: absolute; left: 48px; bottom: 48px; z-index: 500;
-    background: rgba(10,8,6,0.96);
-    border-left: 4px solid #c4912a;
+    background: rgba(230,217,189,0.96);
+    border-left: 4px solid #b98229;
     padding: 28px 36px 30px 32px;
     max-width: 620px;
-    color: #f0ece4;
+    color: #191817;
     box-shadow: 0 24px 60px rgba(0,0,0,0.45);
   }
   .eyebrow {
     font-size: 12px; font-weight: 800; letter-spacing: 0.18em;
-    text-transform: uppercase; color: #c4912a; margin: 0 0 14px;
+    text-transform: uppercase; color: #b98229; margin: 0 0 14px;
   }
   h1 {
     font-family: 'Noto Serif', Georgia, serif;
     font-weight: 400; font-size: 44px; line-height: 1.08;
-    margin: 0 0 14px; letter-spacing: -0.01em; color: #f0ece4;
+    margin: 0 0 14px; letter-spacing: -0.01em; color: #191817;
   }
   .desc {
-    font-size: 16px; line-height: 1.5; color: rgba(240,236,228,0.78); margin: 0 0 18px;
+    font-size: 16px; line-height: 1.5; color: rgba(25,24,23,0.78); margin: 0 0 18px;
   }
   .foot {
     display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid rgba(196,145,42,0.25);
+    border-top: 1px solid rgba(185,130,41,0.25);
     padding-top: 12px;
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(240,236,228,0.7); font-weight: 700;
+    color: rgba(25,24,23,0.7); font-weight: 700;
   }
-  .foot .url { color: #c4912a; }
+  .foot .url { color: #b98229; }
 
   .corner {
     position: absolute; top: 36px; right: 40px; z-index: 500;
-    background: rgba(10,8,6,0.85);
-    color: #f0ece4;
+    background: rgba(230,217,189,0.85);
+    color: #191817;
     padding: 10px 16px;
     font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
-    border-bottom: 2px solid #c4912a;
+    border-bottom: 2px solid #b98229;
   }
 </style>
 </head><body>

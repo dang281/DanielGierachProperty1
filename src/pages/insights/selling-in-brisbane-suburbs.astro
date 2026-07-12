@@ -180,17 +180,17 @@ const suburbs = [
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
   <!-- Hero -->
-  <div style="background:#0a0806;padding:8rem 0 3.5rem;">
+  <div style="background:#e6d9bd;padding:8rem 0 3.5rem;">
     <div class="max-w-[1100px] mx-auto px-8">
-      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,228,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
-        onmouseover="this.style.color='#f5d07a'" onmouseout="this.style.color='rgba(240,236,228,0.6)'">
+      <a href="/insights" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(25,24,23,0.6);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#6b4610'" onmouseout="this.style.color='rgba(25,24,23,0.6)'">
         &larr; All Articles
       </a>
-      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#f5d07a;margin-bottom:1rem;">Suburb Directory &middot; 162 Guides</span>
-      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#f0ece4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
+      <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;margin-bottom:1rem;">Suburb Directory &middot; 162 Guides</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;color:#191817;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.5rem;">
         Selling Property in Brisbane Suburbs
       </h1>
-      <p style="font-size:1rem;color:rgba(240,236,228,0.6);line-height:1.8;max-width:58ch;">
+      <p style="font-size:1rem;color:rgba(25,24,23,0.6);line-height:1.8;max-width:58ch;">
         Every Brisbane suburb sells differently. School catchments, days-on-market data, what drives buyer competition, and what the current market looks like in your street all vary at the suburb level. Find your suburb below for a specific, data-led guide.
       </p>
     </div>
@@ -204,13 +204,13 @@ const suburbs = [
         {suburbs.map(s => (
           <a href={`/insights/${s.slug}`}
             style="background:#ffffff;border:1px solid rgba(28,25,23,0.1);padding:1.5rem;display:flex;flex-direction:column;gap:0.6rem;text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,25,23,0.05);"
-            onmouseover="this.style.background='#f2efe9';this.style.borderColor='rgba(196,145,42,0.3)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(28,25,23,0.09)'"
+            onmouseover="this.style.background='#f2ead4';this.style.borderColor='rgba(185,130,41,0.3)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(28,25,23,0.09)'"
             onmouseout="this.style.background='#ffffff';this.style.borderColor='rgba(28,25,23,0.1)';this.style.transform='translateY(0)';this.style.boxShadow='0 1px 4px rgba(28,25,23,0.05)'"
           >
-            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#f5d07a;"></div>
+            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#6b4610;"></div>
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <h2 style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#1c1917;line-height:1.2;">{s.name}</h2>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#c4912a" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <h2 style="font-family:var(--font-serif);font-size:1rem;font-weight:400;color:#191817;line-height:1.2;">{s.name}</h2>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b98229" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
             <p style="font-size:0.78rem;color:#78716c;line-height:1.7;">{s.summary}</p>
           </a>
@@ -223,10 +223,10 @@ const suburbs = [
   <!-- CTA -->
   <div style="padding:4rem 0;background:#f7f5f0;border-top:1px solid rgba(28,25,23,0.08);">
     <div class="max-w-[1100px] mx-auto px-8" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
-      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#1c1917;">Not sure how your suburb is performing right now?</p>
+      <p style="font-family:var(--font-serif);font-size:1.25rem;font-style:italic;color:#191817;">Not sure how your suburb is performing right now?</p>
       <p style="font-size:0.85rem;color:#78716c;line-height:1.75;max-width:44ch;">Daniel can give you a current read on days-on-market, clearance rates, and what comparable sales suggest about your property's value. No cost, no obligation.</p>
-      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#c4912a;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
-        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#c4912a'">
+      <a href="/get-an-appraisal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.75rem;background:#b98229;color:#fff;font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
+        onmouseover="this.style.background='#a87824'" onmouseout="this.style.background='#b98229'">
         Get a Free Appraisal
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>

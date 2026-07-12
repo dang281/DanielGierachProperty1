@@ -16,12 +16,12 @@ const OUT_DIR = resolve(ROOT, 'public/downloads');
 
 mkdirSync(OUT_DIR, { recursive: true });
 
-const CHARCOAL  = '#0a0806';
-const CREAM     = '#f0ece4';
-const CREAM_DIM = 'rgba(240,236,228,0.7)';
-const GOLD      = '#c4912a';
-const GOLD_SOFT = '#f5d07a';
-const OFF_BLACK = '#1c1917';
+const CHARCOAL  = '#e6d9bd';
+const CREAM     = '#191817';
+const CREAM_DIM = 'rgba(25,24,23,0.7)';
+const GOLD      = '#b98229';
+const GOLD_SOFT = '#6b4610';
+const OFF_BLACK = '#f2ead4';
 const STONE     = '#78716c';
 const PAPER     = '#fefdf9';
 
@@ -154,7 +154,7 @@ function renderHTML(r) {
     margin: 8mm 0;
   }
   .cover__bottom {
-    border-top: 1px solid rgba(240,236,228,0.18);
+    border-top: 1px solid rgba(25,24,23,0.18);
     padding-top: 6mm;
     display: flex;
     justify-content: space-between;
@@ -188,7 +188,7 @@ function renderHTML(r) {
   .intro {
     border-left: 3px solid ${GOLD};
     padding: 4mm 6mm;
-    background: rgba(196,145,42,0.05);
+    background: rgba(185,130,41,0.05);
     margin-bottom: 10mm;
   }
   .intro p {
@@ -378,7 +378,7 @@ async function renderOne(browser, r) {
                   padding:0 18mm;display:flex;justify-content:space-between;align-items:center;
                   letter-spacing:0.1em;text-transform:uppercase;">
         <span>${escapeHtml(r.title)}</span>
-        <span style="color:#c4912a;">danielgierach.com</span>
+        <span style="color:#b98229;">danielgierach.com</span>
         <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
       </div>`,
     margin: { top: '14mm', bottom: '14mm', left: '0', right: '0' },

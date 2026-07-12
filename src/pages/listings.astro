@@ -148,12 +148,12 @@ const sold = [
 ];
 
 const tagColors: Record<string, string> = {
-  'For Sale': '#f5d07a',
+  'For Sale': '#6b4610',
   'Pre-Market': '#a8e6a3',
   'Forthcoming Auction': '#7ec8e3',
   'Under Contract': '#f4a261',
   'Blue-Chip Land': '#c8c6c8',
-  'Sold': 'rgba(240,236,228,0.6)',
+  'Sold': 'rgba(25,24,23,0.6)',
 };
 
 const allSuburbs = [...new Set([...forSale, ...sold].map(p => p.suburb))].sort();
@@ -255,7 +255,7 @@ const listingsSchema = {
               onmouseout="this.style.transform='scale(1)'"
               loading="lazy"
             />
-            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#191817;background:${tagColors[p.tag] || '#f5d07a'};padding:0.3rem 0.65rem;`}>
+            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#191817;background:${tagColors[p.tag] || '#6b4610'};padding:0.3rem 0.65rem;`}>
               {p.tag}
             </span>
           </div>
@@ -301,9 +301,9 @@ const listingsSchema = {
         <a href={p.href} target="_blank" rel="noopener"
           class="reveal listing-card" data-delay={i * 60}
           data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
-          style="background:#f2efe9;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
+          style="background:#f2ead4;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
           onmouseover="this.style.background='#edeae3';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
-          onmouseout="this.style.background='#f2efe9';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
+          onmouseout="this.style.background='#f2ead4';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
         >
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
             <img src={p.image} alt={p.address} class="w-full h-full object-cover"
@@ -388,7 +388,7 @@ const listingsSchema = {
   }
   .suburb-filter:hover {
     border-color: #b98229;
-    color: #c4912a;
+    color: #b98229;
   }
   .suburb-filter.active {
     background: #b98229;
@@ -414,9 +414,9 @@ const listingsSchema = {
 </script>
 
 <!-- Property Report CTA -->
-<section style="background:#f2efe9;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+<section style="background:#f2ead4;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-    <div class="reveal" style="padding:2.5rem;background:rgba(196,145,42,0.06);border:1px solid rgba(196,145,42,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
+    <div class="reveal" style="padding:2.5rem;background:rgba(185,130,41,0.06);border:1px solid rgba(185,130,41,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;">
       <p style="font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:#191817;">What is your property worth?</p>
       <p style="font-size:0.85rem;color:rgba(25,24,23,0.44);line-height:1.75;">Get an instant digital property report, powered by Ray White, no obligation.</p>
       <a href="/walkthrough" class="btn-gold">

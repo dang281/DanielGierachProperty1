@@ -40,36 +40,36 @@ const appraisalSchema = {
       loading="eager" decoding="async" width="1920" height="1080"
     />
     <!-- Directional overlay: heavier left for text legibility, opens up on right -->
-    <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(10,8,6,0.82) 0%, rgba(10,8,6,0.55) 45%, rgba(10,8,6,0.18) 100%);"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(230,217,189,0.82) 0%, rgba(230,217,189,0.55) 45%, rgba(230,217,189,0.18) 100%);"></div>
     <!-- Bottom vignette: fades to footer's dark CTA background for seamless handoff -->
-    <div style="position:absolute; bottom:0; left:0; right:0; height:260px; background:linear-gradient(to bottom, transparent 0%, #0a0806 100%);"></div>
+    <div style="position:absolute; bottom:0; left:0; right:0; height:260px; background:linear-gradient(to bottom, transparent 0%, #e6d9bd 100%);"></div>
   </div>
 
   <div style="position:relative; z-index:10; max-width:1200px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;" class="appraisal-grid">
 
     <!-- Left: copy -->
     <div>
-      <span class="eyebrow" style="display:block; color:rgba(240,236,228,0.6); margin-bottom:1rem;">Free Appraisal · Anywhere in Brisbane</span>
+      <span class="eyebrow" style="display:block; color:rgba(25,24,23,0.6); margin-bottom:1rem;">Free Appraisal · Anywhere in Brisbane</span>
       <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem, 4vw, 3.5rem); font-weight:400; color:#191817; line-height:1.1; letter-spacing:-0.02em; margin-bottom:1.25rem;">
         Request an appraisal for your Brisbane property.
       </h1>
-      <p style="font-size:1rem; color:rgba(240,236,228,0.78); line-height:1.85; max-width:46ch; margin-bottom:1.5rem;">
+      <p style="font-size:1rem; color:rgba(25,24,23,0.78); line-height:1.85; max-width:46ch; margin-bottom:1.5rem;">
         Every appraisal Daniel does runs the same documented method: position the property accurately, build the buyer pool, protect the result. Send a few details and he'll come back within 24 hours with comparable sales for your suburb and a frank read on what your property is worth.
       </p>
       <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.55rem;">
-        <li style="font-size:0.85rem; color:rgba(240,236,228,0.7); display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#c5a03c; flex-shrink:0;">✓</span> Direct line to Daniel, no call centre</li>
-        <li style="font-size:0.85rem; color:rgba(240,236,228,0.7); display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#c5a03c; flex-shrink:0;">✓</span> Comparable sales in your suburb, not a generic estimate</li>
-        <li style="font-size:0.85rem; color:rgba(240,236,228,0.7); display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#c5a03c; flex-shrink:0;">✓</span> No obligation, no pressure to list</li>
+        <li style="font-size:0.85rem; color:rgba(25,24,23,0.7); display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#b98229; flex-shrink:0;">✓</span> Direct line to Daniel, no call centre</li>
+        <li style="font-size:0.85rem; color:rgba(25,24,23,0.7); display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#b98229; flex-shrink:0;">✓</span> Comparable sales in your suburb, not a generic estimate</li>
+        <li style="font-size:0.85rem; color:rgba(25,24,23,0.7); display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#b98229; flex-shrink:0;">✓</span> No obligation, no pressure to list</li>
       </ul>
     </div>
 
     <!-- Right: form card -->
     <div style="background:var(--color-surface-0); padding:2.75rem 2.5rem; position:relative; box-shadow:0 32px 80px rgba(0,0,0,0.55), 0 8px 24px rgba(0,0,0,0.3);">
       <!-- Gold top accent -->
-      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent 0%, rgba(196,145,42,0.9) 25%, rgba(196,145,42,0.9) 75%, transparent 100%);"></div>
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent 0%, rgba(185,130,41,0.9) 25%, rgba(185,130,41,0.9) 75%, transparent 100%);"></div>
 
-      <p style="font-family:var(--font-sans); font-size:0.6rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#c4912a; margin-bottom:0.4rem;">Send a Request</p>
-      <h2 style="font-family:var(--font-serif); font-size:1.55rem; font-weight:400; color:#1c1917; line-height:1.2; margin-bottom:1.5rem;">
+      <p style="font-family:var(--font-sans); font-size:0.6rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#b98229; margin-bottom:0.4rem;">Send a Request</p>
+      <h2 style="font-family:var(--font-serif); font-size:1.55rem; font-weight:400; color:#191817; line-height:1.2; margin-bottom:1.5rem;">
         Daniel will respond within 24 hours.
       </h2>
 
@@ -82,22 +82,22 @@ const appraisalSchema = {
 
         <input type="text" name="name" required placeholder="Your name" autocomplete="name" aria-label="Your name"
           class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
+          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box;" />
         <input type="email" name="email" required placeholder="Email address" autocomplete="email" aria-label="Email address"
           class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
+          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box;" />
         <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" aria-label="Phone, optional"
           class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
+          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box;" />
         <input id="appraisal-suburb" type="text" name="suburb" required placeholder="Suburb" aria-label="Suburb"
           class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
+          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box;" />
         <input type="text" name="property_address" required placeholder="Property address (street + number)" aria-label="Property address"
           class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box;" />
+          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box;" />
         <textarea name="notes" rows="3" placeholder="Anything Daniel should know? (timing, situation, target price)" aria-label="Notes, timing, situation, target price"
           class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#1c1917; outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; resize:vertical;"></textarea>
 
         <button type="submit" class="btn-gold" style="margin-top:0.5rem; justify-content:center;">
           Request appraisal

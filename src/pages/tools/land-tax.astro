@@ -17,7 +17,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.75rem 1rem;
     border: 1px solid rgba(28,25,23,0.2);
     background: #fff;
-    color: #1c1917;
+    color:#191817;
     outline: none;
     transition: border-color 0.2s;
     width: 100%;
@@ -29,7 +29,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.75rem 1rem;
     border: 1px solid rgba(28,25,23,0.2);
     background: #fff;
-    color: #1c1917;
+    color:#191817;
     outline: none;
     transition: border-color 0.2s;
     width: 100%;
@@ -47,7 +47,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     padding: 0.65rem 1.25rem;
     font-size: 0.8rem;
     border-bottom: 1px solid rgba(28,25,23,0.06);
-    color: #1c1917;
+    color:#191817;
   }
   .rate-table-row.header {
     font-size: 0.6rem;
@@ -57,17 +57,17 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     color: #78716c;
     background: #f9f7f4;
   }
-  .rate-table-row.active-band { background: rgba(196,145,42,0.1); font-weight: 700; }
+  .rate-table-row.active-band { background: rgba(185,130,41,0.1); font-weight: 700; }
   .rate-table-row:last-child { border-bottom: none; }
 </style>
 
 <div style="display:flex;flex-direction:column;gap:2rem;max-width:700px;">
 
   <!-- Important note about land value -->
-  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
-    <p style="font-size:0.85rem;color:#1c1917;font-weight:700;margin:0 0 0.3rem;">Land value, not purchase price</p>
-    <p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.7;">
-      Land tax is calculated on the <strong>unimproved value of land</strong> as assessed by the Queensland Valuer-General, not the purchase price. Find your land value on your council rates notice or at <a href="https://www.qld.gov.au/environment/land/title/valuation/search" target="_blank" style="color:#c4912a;">qld.gov.au</a>. If you own multiple properties, all non-exempt land values are <em>aggregated</em>.
+  <div style="background:rgba(185,130,41,0.06);border-left:3px solid #b98229;padding:1rem 1.25rem;">
+    <p style="font-size:0.85rem;color:#191817;font-weight:700;margin:0 0 0.3rem;">Land value, not purchase price</p>
+    <p style="font-size:0.8rem;color:#191817;margin:0;line-height:1.7;">
+      Land tax is calculated on the <strong>unimproved value of land</strong> as assessed by the Queensland Valuer-General, not the purchase price. Find your land value on your council rates notice or at <a href="https://www.qld.gov.au/environment/land/title/valuation/search" target="_blank" style="color:#b98229;">qld.gov.au</a>. If you own multiple properties, all non-exempt land values are <em>aggregated</em>.
     </p>
   </div>
 
@@ -90,8 +90,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <!-- Primary residence exemption -->
   <div>
     <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;">
-      <input id="lt-home" type="checkbox" style="width:18px;height:18px;cursor:pointer;accent-color:#c4912a;" />
-      <span style="font-size:0.85rem;color:#1c1917;">This includes my principal place of residence (primary home exempt)</span>
+      <input id="lt-home" type="checkbox" style="width:18px;height:18px;cursor:pointer;accent-color:#b98229;" />
+      <span style="font-size:0.85rem;color:#191817;">This includes my principal place of residence (primary home exempt)</span>
     </label>
     <div id="home-note" style="display:none;margin-top:0.5rem;margin-left:2rem;font-size:0.78rem;color:#78716c;line-height:1.6;">
       Your primary home land is generally exempt. Enter only the land value of your <em>investment properties</em> above, excluding your home.
@@ -108,8 +108,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       <div id="calc-result" style="display:none;flex-direction:column;gap:1.25rem;">
         <div style="display:flex;align-items:flex-end;gap:1rem;flex-wrap:wrap;">
           <div>
-            <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#c4912a;margin-bottom:0.3rem;">Annual Land Tax</div>
-            <div id="lt-annual" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:#1c1917;line-height:1;"></div>
+            <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#b98229;margin-bottom:0.3rem;">Annual Land Tax</div>
+            <div id="lt-annual" style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:#191817;line-height:1;"></div>
           </div>
           <div style="padding-bottom:0.4rem;">
             <div style="font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#78716c;margin-bottom:0.3rem;">Effective Rate</div>
@@ -127,9 +127,9 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div id="rate-table" style="background:#fff;border:1px solid rgba(28,25,23,0.1);overflow:hidden;"></div>
   </div>
 
-  <div style="background:rgba(196,145,42,0.06);border-left:3px solid #c4912a;padding:1rem 1.25rem;">
-    <p style="font-size:0.82rem;color:#1c1917;line-height:1.7;margin:0;">
-      <strong>Company / Trust:</strong> Threshold is $350,000. Absentee surcharge adds 3% on the portion of land value above $350,000. Foreign companies and trusts pay higher rates again. Always confirm with a tax accountant for complex structures. Source: <a href="https://www.qro.qld.gov.au/land-tax/" target="_blank" style="color:#c4912a;">Queensland Revenue Office</a>.
+  <div style="background:rgba(185,130,41,0.06);border-left:3px solid #b98229;padding:1rem 1.25rem;">
+    <p style="font-size:0.82rem;color:#191817;line-height:1.7;margin:0;">
+      <strong>Company / Trust:</strong> Threshold is $350,000. Absentee surcharge adds 3% on the portion of land value above $350,000. Foreign companies and trusts pay higher rates again. Always confirm with a tax accountant for complex structures. Source: <a href="https://www.qro.qld.gov.au/land-tax/" target="_blank" style="color:#b98229;">Queensland Revenue Office</a>.
     </p>
   </div>
 
@@ -213,7 +213,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     // Check threshold
     if (value < threshold) {
-      exemptMsg.innerHTML = `<div style="background:rgba(74,158,74,0.08);border-left:3px solid #4a9e4a;padding:1rem;"><p style="font-size:0.85rem;color:#1a5c3a;font-weight:700;margin:0 0 0.25rem;">Below the threshold, no land tax</p><p style="font-size:0.8rem;color:#1c1917;margin:0;line-height:1.6;">Your land value of ${fmt(value)} is under the ${fmt(threshold)} individual threshold. No land tax is payable.</p></div>`;
+      exemptMsg.innerHTML = `<div style="background:rgba(74,158,74,0.08);border-left:3px solid #4a9e4a;padding:1rem;"><p style="font-size:0.85rem;color:#1a5c3a;font-weight:700;margin:0 0 0.25rem;">Below the threshold, no land tax</p><p style="font-size:0.8rem;color:#191817;margin:0;line-height:1.6;">Your land value of ${fmt(value)} is under the ${fmt(threshold)} individual threshold. No land tax is payable.</p></div>`;
       exemptMsg.style.display = 'block';
       calcResult.style.display = 'none';
       renderTable(bands, bands[0].from);
@@ -250,11 +250,11 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <p style="font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">Thinking of selling?</p>
   <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--color-text-primary);margin-bottom:0.75rem;line-height:1.3;">Thinking of selling your investment property? Get a realistic net proceeds estimate.</h2>
   <p style="font-size:0.88rem;font-weight:300;line-height:1.75;color:var(--color-text-secondary);margin-bottom:1.5rem;">If land tax is eating into your returns, it may be the right time to sell. Daniel can walk through your likely sale price, net proceeds after costs, and timing with no obligation.</p>
-  <a href="/walkthrough" data-cta="tool_to_walkthrough" style="font-family:var(--font-sans);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--color-gold);color:#1c1917;padding:0.85rem 2rem;text-decoration:none;display:inline-block;border-radius:8px;">Book a Free Walkthrough</a>
+  <a href="/walkthrough" data-cta="tool_to_walkthrough" style="font-family:var(--font-sans);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--color-gold);color:#191817;padding:0.85rem 2rem;text-decoration:none;display:inline-block;border-radius:8px;">Book a Free Walkthrough</a>
 </div>
 
 <!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
+<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(185,130,41,0.4);">
   <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
     Want more context? Read the full guide:
     <a href="/insights/land-tax-queensland-investment-property" style="color:var(--color-gold);font-weight:600;">Land Tax in Queensland for Investment Properties &rarr;</a>

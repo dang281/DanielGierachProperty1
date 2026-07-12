@@ -64,13 +64,13 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   }
 
   .type-state-primary   { background: rgba(126,200,227,0.15); color: #2a7fa0; }
-  .type-state-high      { background: rgba(245,208,122,0.15); color: #a07a2a; }
+  .type-state-high      { background: rgba(107,70,16,0.15); color: #a07a2a; }
   .type-catholic        { background: rgba(168,150,220,0.15); color: #5a4a9a; }
   .type-private         { background: rgba(168,230,163,0.15); color: #3a7a35; }
   .type-other           { background: rgba(200,200,200,0.15); color: #666; }
 
   .dot-state-primary  { background: #2a7fa0; }
-  .dot-state-high     { background: #c4912a; }
+  .dot-state-high     { background: #b98229; }
   .dot-catholic       { background: #6a5acd; }
   .dot-private        { background: #3a7a35; }
   .dot-other          { background: #888; }
@@ -104,7 +104,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     transition: background 0.15s;
   }
   .ac-item:last-child { border-bottom: none; }
-  .ac-item:hover, .ac-item.highlighted { background: rgba(197,160,60,0.08); }
+  .ac-item:hover, .ac-item.highlighted { background: rgba(185,130,41,0.08); }
   #search-wrap { position: relative; flex: 1; }
 
   .filter-btn {
@@ -124,7 +124,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .filter-btn.active, .filter-btn:hover {
     border-color: var(--color-gold);
     color: var(--color-gold);
-    background: rgba(197,160,60,0.06);
+    background: rgba(185,130,41,0.06);
   }
 
   .legend-item {
@@ -164,8 +164,8 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
             <div id="autocomplete-list" style="display:none;"></div>
           </div>
           <button id="search-btn"
-            style="padding:0.9rem 1.25rem;background:var(--color-gold);color:#0a0806;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;border-radius:8px;"
-            onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='var(--color-gold)'">
+            style="padding:0.9rem 1.25rem;background:var(--color-gold);color:#191817;font-family:var(--font-sans);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;border-radius:8px;"
+            onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='var(--color-gold)'">
             Search
           </button>
         </div>
@@ -210,7 +210,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
 
       <!-- Disclaimer -->
-      <div style="border:1px solid rgba(197,160,60,0.25);background:rgba(197,160,60,0.04);padding:1.25rem 1.5rem;">
+      <div style="border:1px solid rgba(185,130,41,0.25);background:rgba(185,130,41,0.04);padding:1.25rem 1.5rem;">
         <p style="font-size:0.75rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:0.75rem;">
           <strong style="color:var(--color-text-primary);">Indicative only.</strong> School catchment boundaries are defined by the Queensland Department of Education and can change. A property's street address, not its suburb, determines eligibility.
         </p>
@@ -253,16 +253,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   </div>
 
   <!-- CTA -->
-  <div style="margin-top:4rem;background:#1c1917;padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
-    <p style="font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:400;color:#f0ece4;line-height:1.25;">
+  <div style="margin-top:4rem;background:#f2ead4;padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:400;color:#191817;line-height:1.25;">
       School zones can significantly add or subtract value from a property.
     </p>
-    <p style="font-size:0.875rem;color:rgba(240,236,228,0.6);max-width:52ch;line-height:1.8;">
+    <p style="font-size:0.875rem;color:rgba(25,24,23,0.6);max-width:52ch;line-height:1.8;">
       Daniel knows which streets in Camp Hill, Norman Park and Balmoral fall inside the most sought-after catchments, and how much that's worth in the current market.
     </p>
     <a href="/contact" data-cta="tool_to_contact"
-      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2.25rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.75rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
-      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2.25rem;background:#b98229;color:#191817;font-family:var(--font-sans);font-size:0.75rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
+      onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'">
       Ask Daniel
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -312,7 +312,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
   const TYPE_CONFIG = {
     'state-primary': { label: 'State Primary', color: '#2a7fa0', dot: 'dot-state-primary', badge: 'type-state-primary' },
-    'state-high':    { label: 'State High',     color: '#c4912a', dot: 'dot-state-high',    badge: 'type-state-high'    },
+    'state-high':    { label: 'State High',     color: '#b98229', dot: 'dot-state-high',    badge: 'type-state-high'    },
     'catholic':      { label: 'Faith-based',    color: '#6a5acd', dot: 'dot-catholic',      badge: 'type-catholic'      },
     'private':       { label: 'Private',        color: '#3a7a35', dot: 'dot-private',       badge: 'type-private'       },
   };
@@ -332,7 +332,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   function goldPinIcon() {
     return L.divIcon({
       className: '',
-      html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+      html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#b98229" stroke="#fff" stroke-width="1.5"/></svg>`,
       iconSize: [28, 36],
       iconAnchor: [14, 36],
       popupAnchor: [0, -36],
@@ -457,10 +457,10 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pinMarker = L.marker([lat, lon], { icon: goldPinIcon(), zIndexOffset: 1000 }).addTo(map).bindPopup('<strong>Your address</strong>');
     radiusCircle = L.circle([lat, lon], {
       radius: currentRadius,
-      color: '#c5a03c',
+      color: '#b98229',
       weight: 1.5,
       opacity: 0.7,
-      fillColor: '#c5a03c',
+      fillColor: '#b98229',
       fillOpacity: 0.05,
     }).addTo(map);
   }
@@ -569,7 +569,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
 
 <!-- Related guide -->
-<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(196,145,42,0.4);">
+<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:var(--color-surface-1);border-left:2px solid rgba(185,130,41,0.4);">
   <p style="font-size:0.8rem;color:var(--color-text-secondary);line-height:1.7;margin:0;">
     Want more context? Read the full guide:
     <a href="/insights/school-catchments-property-brisbane-inner-east" style="color:var(--color-gold);font-weight:600;">School Catchments and Brisbane Property Values &rarr;</a>

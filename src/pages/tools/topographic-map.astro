@@ -16,7 +16,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   .tm-eduline {
     margin-bottom: 0.6rem;
     padding: 0.5rem 0.85rem;
-    background: rgba(196,145,42,0.07);
+    background: rgba(185,130,41,0.07);
     border-left: 3px solid var(--color-gold);
     font-family: var(--font-sans);
     font-size: 0.7rem;
@@ -45,18 +45,18 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  #tm-search:focus { border-color: var(--color-gold); box-shadow: 0 0 0 3px rgba(196,145,42,0.15); }
+  #tm-search:focus { border-color: var(--color-gold); box-shadow: 0 0 0 3px rgba(185,130,41,0.15); }
   #tm-search::placeholder { color: var(--color-text-muted); }
   #tm-search-btn {
     padding: 0 1.5rem;
-    background: var(--color-gold); color: #0a0806;
+    background: var(--color-gold); color:#191817;
     font-family: var(--font-sans);
     font-size: 0.7rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
     border: none; cursor: pointer; white-space: nowrap;
     transition: background 0.2s;
   }
-  #tm-search-btn:hover { background: #d4af4a; }
+  #tm-search-btn:hover { background: #a5721c; }
   #tm-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   #tm-gps-btn {
     flex-shrink: 0; width: 46px;
@@ -66,7 +66,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
   }
-  #tm-gps-btn:hover { color: var(--color-gold); background: rgba(196,145,42,0.08); }
+  #tm-gps-btn:hover { color: var(--color-gold); background: rgba(185,130,41,0.08); }
   #tm-gps-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   #tm-gps-btn.locating { color: var(--color-gold); }
   #tm-autocomplete {
@@ -84,7 +84,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     transition: background 0.15s;
   }
   .tm-ac-item:last-child { border-bottom: none; }
-  .tm-ac-item:hover, .tm-ac-item:active { background: rgba(196,145,42,0.1); }
+  .tm-ac-item:hover, .tm-ac-item:active { background: rgba(185,130,41,0.1); }
 
   @media (max-width: 640px) {
     .tm-search-sticky {
@@ -147,7 +147,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     text-transform: uppercase;
     color: var(--color-text-primary);
   }
-  .tm-layer-toggle:hover { background: rgba(197,160,60,0.08); }
+  .tm-layer-toggle:hover { background: rgba(185,130,41,0.08); }
   .tm-layer-toggle .toggle-arrow { transition: transform 0.2s; opacity: 0.5; }
   .tm-layer-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
   .tm-layer-panel { display: none; border-top: 1px solid rgba(28,25,23,0.08); width: 260px; padding: 0.55rem 0.65rem 0.75rem; }
@@ -167,12 +167,12 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     transition: background 0.15s;
     border-radius: 2px;
   }
-  .tm-layer-row:hover { background: rgba(197,160,60,0.06); }
+  .tm-layer-row:hover { background: rgba(185,130,41,0.06); }
   .tm-layer-row input { accent-color: var(--color-gold); cursor: pointer; }
   .tm-layer-name { font-family: var(--font-sans); font-size: 0.74rem; font-weight: 600; color: var(--color-text-primary); line-height: 1.3; }
   .tm-opacity-row { display: flex; align-items: center; gap: 0.55rem; padding: 0.5rem 0.5rem 0.2rem; }
   .tm-opacity-label { font-family: var(--font-sans); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(28,25,23,0.55); white-space: nowrap; }
-  #tm-opacity-val { color: rgba(196,145,42,0.9); }
+  #tm-opacity-val { color: rgba(185,130,41,0.9); }
   .tm-opacity-slider { flex: 1; accent-color: var(--color-gold); cursor: pointer; height: 3px; }
 
   /* Result drawer */
@@ -218,7 +218,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     color: var(--color-gold); text-decoration: none;
     white-space: nowrap;
   }
-  .tm-foot a:hover { color: #d4af4a; }
+  .tm-foot a:hover { color: #a5721c; }
 </style>
 
 <div class="tm-shell">
@@ -297,16 +297,16 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     </span>
   </div>
 
-  <div style="margin-top:3rem;background:#1c1917;padding:2.5rem 2rem;text-align:center;">
-    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#f0ece4;line-height:1.3;margin-bottom:0.85rem;">
+  <div style="margin-top:3rem;background:#f2ead4;padding:2.5rem 2rem;text-align:center;">
+    <p style="font-family:var(--font-serif);font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:400;color:#191817;line-height:1.3;margin-bottom:0.85rem;">
       Elevation, slope and overland flow shape what you can build and how a block sells.
     </p>
-    <p style="font-size:0.85rem;color:rgba(240,236,228,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
+    <p style="font-size:0.85rem;color:rgba(25,24,23,0.6);max-width:54ch;margin:0 auto 1.5rem;line-height:1.75;">
       Daniel can help you read the terrain alongside flood overlays, easements and zoning so you understand what a sloping block really means before you buy or sell.
     </p>
     <a href="/contact" data-cta="tool_to_contact"
-      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#c5a03c;color:#0a0806;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
-      onmouseover="this.style.background='#d4af4a'" onmouseout="this.style.background='#c5a03c'">
+      style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:#b98229;color:#191817;font-family:var(--font-sans);font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;border-radius:8px;"
+      onmouseover="this.style.background='#a5721c'" onmouseout="this.style.background='#b98229'">
       Ask Daniel
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -381,7 +381,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     pinMarker = Lwin.marker([lat, lon], {
       icon: Lwin.divIcon({
         className: '',
-        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#c5a03c" stroke="#fff" stroke-width="1.5"/></svg>`,
+        html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.27 0 0 6.27 0 14c0 9.63 14 22 14 22S28 23.63 28 14C28 6.27 21.73 0 14 0zm0 20a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#b98229" stroke="#fff" stroke-width="1.5"/></svg>`,
         iconSize: [28, 36], iconAnchor: [14, 36],
       }),
     }).addTo(map);

@@ -155,7 +155,7 @@ async function recordAd({ html, slug }) {
     if (dlWrap) dlWrap.style.display = 'none'
 
     // Override body layout so the .frame sits flush at (0,0) with no centering offset
-    document.body.style.cssText = 'margin:0;padding:0;display:block;background:#0a0806;'
+    document.body.style.cssText = 'margin:0;padding:0;display:block;background:#e6d9bd;'
 
     // Ensure the frame fills the viewport exactly
     const frame = document.querySelector('.frame')
