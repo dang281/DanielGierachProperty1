@@ -148,12 +148,18 @@ const sold = [
 ];
 
 const tagColors: Record<string, string> = {
-  'For Sale': '#6b4610',
+  'For Sale': '#b98229',
   'Pre-Market': '#a8e6a3',
   'Forthcoming Auction': '#7ec8e3',
   'Under Contract': '#f4a261',
   'Blue-Chip Land': '#c8c6c8',
-  'Sold': 'rgba(25,24,23,0.6)',
+  'Sold': '#6b4610',
+};
+// White text on the dark-fill tags so they stay legible; dark text on the light tags.
+const tagText: Record<string, string> = {
+  'For Sale': '#ffffff',
+  'Sold': '#ffffff',
+  'Under Contract': '#191817',
 };
 
 const allSuburbs = [...new Set([...forSale, ...sold].map(p => p.suburb))].sort();
@@ -255,7 +261,7 @@ const listingsSchema = {
               onmouseout="this.style.transform='scale(1)'"
               loading="lazy"
             />
-            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#191817;background:${tagColors[p.tag] || '#6b4610'};padding:0.3rem 0.65rem;`}>
+            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${tagText[p.tag] || '#191817'};background:${tagColors[p.tag] || '#6b4610'};padding:0.3rem 0.65rem;`}>
               {p.tag}
             </span>
           </div>

@@ -469,9 +469,9 @@ function filterCount(f: string): number {
       Practical property knowledge for Brisbane buyers, sellers, and owners. No fluff.
     </p>
     <a href="/resources" class="reveal" data-delay="220"
-      style="display:inline-flex;align-items:center;gap:0.55rem;margin-top:1.5rem;padding:0.7rem 1.25rem;background:rgba(107,70,16,0.1);border:1px solid rgba(107,70,16,0.4);border-radius:8px;color:#6b4610;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,border-color 0.2s;"
-      onmouseover="this.style.background='rgba(107,70,16,0.18)';this.style.borderColor='rgba(107,70,16,0.7)'"
-      onmouseout="this.style.background='rgba(107,70,16,0.1)';this.style.borderColor='rgba(107,70,16,0.4)'">
+      style="display:inline-flex;align-items:center;gap:0.55rem;margin-top:1.5rem;padding:0.75rem 1.4rem;background:#b98229;border:1px solid #b98229;border-radius:8px;color:#ffffff;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;box-shadow:0 2px 10px rgba(107,70,16,0.18);transition:background 0.2s,border-color 0.2s;"
+      onmouseover="this.style.background='#a5721c';this.style.borderColor='#a5721c'"
+      onmouseout="this.style.background='#b98229';this.style.borderColor='#b98229'">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       Free Printable Guides &rarr;
     </a>
@@ -487,10 +487,10 @@ function filterCount(f: string): number {
         <button
           class="fpill"
           data-filter={f}
-          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;border-radius:8px;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#f2ead4':'transparent'};color:${f==='All'?'#191817':'#78716c'};border-color:${f==='All'?'#f2ead4':'rgba(28,25,23,0.22)'};`}
+          style={`display:inline-flex;align-items:center;gap:0.45rem;padding:0.55rem 1.25rem;font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid;border-radius:8px;line-height:1;transition:background 0.15s,color 0.15s,border-color 0.15s;background:${f==='All'?'#b98229':'transparent'};color:${f==='All'?'#ffffff':'rgba(25,24,23,0.75)'};border-color:${f==='All'?'#b98229':'rgba(107,70,16,0.35)'};`}
         >
           {f === 'All' ? 'Show All' : f}
-          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;border-radius:4px;background:${f==='All'?'rgba(255,255,255,0.2)':'rgba(28,25,23,0.08)'};color:${f==='All'?'#191817':'#78716c'};`}>
+          <span style={`display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 3px;font-size:0.6rem;font-weight:800;border-radius:4px;background:${f==='All'?'rgba(255,255,255,0.25)':'rgba(107,70,16,0.1)'};color:${f==='All'?'#ffffff':'rgba(25,24,23,0.75)'};`}>
             {filterCount(f)}
           </span>
         </button>
@@ -731,7 +731,7 @@ function filterCount(f: string): number {
 
 <script>
   const activeBg: Record<string, string> = {
-    'All':'#f2ead4','Buyers':'#3a8fa8','Sellers':'#b89a2a','Suburbs':'#5e7d63','Buyers & Sellers':'#b89a2a','Owners':'#4a9e4a'
+    'All':'#b98229','Buyers':'#3a8fa8','Sellers':'#b89a2a','Suburbs':'#5e7d63','Buyers & Sellers':'#b89a2a','Owners':'#4a9e4a'
   };
 
   function insightMatches(tag: string, filter: string): boolean {
@@ -754,12 +754,12 @@ function filterCount(f: string): number {
       const isActive = f === active;
       const bg = activeBg[f] || '#f2ead4';
       p.style.background  = isActive ? bg    : 'transparent';
-      p.style.color       = isActive ? '#fff' : '#78716c';
-      p.style.borderColor = isActive ? bg    : 'rgba(28,25,23,0.22)';
+      p.style.color       = isActive ? '#fff' : 'rgba(25,24,23,0.75)';
+      p.style.borderColor = isActive ? bg    : 'rgba(107,70,16,0.35)';
       const badge = p.querySelector('span') as HTMLSpanElement;
       if (badge) {
-        badge.style.background = isActive ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.08)';
-        badge.style.color      = isActive ? '#fff' : '#78716c';
+        badge.style.background = isActive ? 'rgba(255,255,255,0.25)' : 'rgba(107,70,16,0.1)';
+        badge.style.color      = isActive ? '#fff' : 'rgba(25,24,23,0.75)';
       }
     });
     applyVisibility();

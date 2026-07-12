@@ -267,6 +267,8 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       html.nav-off .hero-section,
       html.nav-off .pt-32.pb-16 { padding-top: 2.5rem !important; }
       html.nav-off .tool-header { padding-top: 1.25rem !important; }
+      /* Heroes that reserve viewport-height leave a gap once the header is gone. */
+      html.nav-off .min-h-\[40vh\] { min-height: 0 !important; }
     </style>
   </head>
   <body>
