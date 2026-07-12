@@ -21,8 +21,14 @@ try {
   for (const { file, size } of targets) {
     const page = await browser.newPage();
     await page.setViewport({ width: size, height: size, deviceScaleFactor: 1 });
-    const html = `<!doctype html><html><head><style>html,body{margin:0;padding:0;background:transparent;width:${size}px;height:${size}px;overflow:hidden;}svg{display:block;width:${size}px;height:${size}px;}</style></head><body>${svgSource}</body></html>`;
-    await page.setContent(html, { waitUntil: 'load' });
+    const html = `<!doctype html><html><head>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&display=swap" rel="stylesheet">
+      <style>html,body{margin:0;padding:0;background:transparent;width:${size}px;height:${size}px;overflow:hidden;}svg{display:block;width:${size}px;height:${size}px;}</style></head><body>${svgSource}</body></html>`;
+    await page.setContent(html, { waitUntil: 'networkidle0' });
+    // Give Fraunces a beat to hand off from the fallback to the real face.
+    await new Promise((r) => setTimeout(r, 400));
     await page.screenshot({
       path: resolve(publicDir, file),
       type: 'png',
