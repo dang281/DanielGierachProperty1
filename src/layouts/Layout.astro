@@ -254,8 +254,19 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     </script>
     <style is:global>
       html.nav-off #site-header { display: none !important; }
-      /* Funnel arrivals read like a clean magazine: no header, no breadcrumb. */
-      html.nav-off nav[aria-label="Breadcrumb"] { display: none !important; }
+      /* Funnel arrivals read like a clean magazine: no header, no breadcrumb.
+         Covers both the standard breadcrumb and the tool-page breadcrumb. */
+      html.nav-off nav[aria-label="Breadcrumb"],
+      html.nav-off .tool-breadcrumb { display: none !important; }
+      /* With the header gone, collapse the top gap it used to clear. Targets
+         each page type's first hero block (articles, report/contact, collective,
+         listings) plus the tool header. Works desktop and mobile. */
+      html.nav-off [style*="padding:8rem 0 3rem"],
+      html.nav-off [style*="padding:8rem 0 3.5rem"],
+      html.nav-off [style*="padding:8rem 4rem 4rem"],
+      html.nav-off .hero-section,
+      html.nav-off .pt-32.pb-16 { padding-top: 2.5rem !important; }
+      html.nav-off .tool-header { padding-top: 1.25rem !important; }
     </style>
   </head>
   <body>
