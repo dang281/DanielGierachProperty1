@@ -16,12 +16,13 @@ interface Props {
   draft?: boolean;
   hideToolCta?: boolean;
   hideFooterCta?: boolean;
+  hideNav?: boolean;
 }
 
-const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest, appleTouchIcon, faviconSvg, appleWebAppTitle, ogImage, draft = false, hideToolCta = false, hideFooterCta = false } = Astro.props;
+const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest, appleTouchIcon, faviconSvg, appleWebAppTitle, ogImage, draft = false, hideToolCta = false, hideFooterCta = false, hideNav = false } = Astro.props;
 ---
 
-<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest} appleTouchIcon={appleTouchIcon} faviconSvg={faviconSvg} appleWebAppTitle={appleWebAppTitle} ogImage={ogImage} draft={draft} hideFooterCta={hideFooterCta}>
+<Layout title={`${title} | Daniel Gierach Property`} description={description} hideBreadcrumbs={true} manifest={manifest} appleTouchIcon={appleTouchIcon} faviconSvg={faviconSvg} appleWebAppTitle={appleWebAppTitle} ogImage={ogImage} draft={draft} hideFooterCta={hideFooterCta} hideNav={hideNav}>
 
 <style is:global>
   /* Tool pages lock the nav into its scrolled (dark glass) state from first paint */

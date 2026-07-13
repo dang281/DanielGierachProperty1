@@ -236,11 +236,33 @@ const sections = [
     html .tool-header .max-w-\[1400px\]::after { display: none !important; }
   }
 
-  /* Tool header · flat warm cream, subtle bottom hairline. */
+  /* ── Magazine mode ──────────────────────────────────────────
+     Daniel wants the checklist to read like the magazine pages: no
+     "Daniel Gierach" site wordmark, no Home / Tools / Pre-Sale breadcrumb.
+     hideNav={true} on the ToolLayout call drops the site nav server-side;
+     this hides the tool-level breadcrumb the layout still renders. */
+  html .tool-breadcrumb { display: none !important; }
+
+  /* Stop the page drifting left/right (felt "loose" on mobile). */
+  html, body { overflow-x: hidden; }
+
+  /* Installed-app (standalone) view: drop the full marketing footer: social
+     row, nav links, suburb list, office block, legal. Sticky Message / Call
+     bar stays. Media query covers modern iOS/Android; the .app-standalone
+     class (added in the page script) is the fallback for older iOS. */
+  @media (display-mode: standalone) { html body footer { display: none !important; } }
+  html.app-standalone footer { display: none !important; }
+
+  /* Tool header · flat warm cream, subtle bottom hairline. Site header is
+     gone, so collapse the top padding that used to clear the fixed nav. */
   html .tool-header {
     position: relative;
     background: #e6d9bd !important;
     border-bottom: 1px solid rgba(107,70,16,0.14) !important;
+    padding-top: 2.5rem !important;
+  }
+  @media (max-width: 640px) {
+    html .tool-header { padding-top: 1.25rem !important; }
   }
   html .tool-breadcrumb a,
   html .tool-breadcrumb span:not([style*="color:var(--color-gold)"]) {
@@ -296,6 +318,7 @@ const sections = [
   description="A complete pre-sale preparation checklist for Brisbane homeowners. Tick tasks off as you go. Progress saves automatically."
   hideToolCta={true}
   hideFooterCta={true}
+  hideNav={true}
   manifest="/manifest-presale-checklist.webmanifest"
   appleTouchIcon="/apple-touch-icon-checklist.png"
   appleWebAppTitle="Checklist"
@@ -994,13 +1017,6 @@ const sections = [
     </div>
   ))}
 
-  <!-- Daniel CTA -->
-  <div class="daniel-cta no-print">
-    <p class="daniel-cta-title">Not sure where to start?</p>
-    <p class="daniel-cta-body">Daniel walks through your property before it goes to market, prioritises what will actually move the needle, and tells you what not to spend money on. Free, no obligation.</p>
-    <a href="/contact" data-cta="tool_to_contact" class="daniel-cta-link">Book a Pre-Sale Walk Through &rarr;</a>
-  </div>
-
   <!-- Print-only contact footer (last page of printout) -->
   <aside class="print-contact-footer" aria-hidden="true">
     <p class="print-contact-eyebrow">Questions about anything on this list?</p>
@@ -1237,6 +1253,8 @@ const sections = [
   const isStandalone =
     window.matchMedia('(display-mode: standalone)').matches ||
     (window.navigator as any).standalone === true;
+  // Installed-app view: hide the full marketing footer (CSS handles the rest).
+  if (isStandalone) document.documentElement.classList.add('app-standalone');
   const isIOS = /iPad|iPhone|iPod/.test(ua);
   const isInIGWebview = /Instagram|FBAN|FBAV|FB_IAB/.test(ua);
   const isAndroidChrome = /Android/.test(ua) && /Chrome/.test(ua) && !/EdgA|OPR|SamsungBrowser/.test(ua);
