@@ -270,6 +270,12 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       html.nav-off .tool-header { padding-top: 1.25rem !important; }
       /* Heroes that reserve viewport-height leave a gap once the header is gone. */
       html.nav-off .min-h-\[40vh\] { min-height: 0 !important; }
+      /* Magazine footer: drop the sticky Message/Call bar and the full footer
+         (CTA strip, link lists, socials), show just the team contact tiles
+         that Footer.astro keeps hidden for normal visitors. */
+      html.nav-off .mobile-call-bar { display: none !important; }
+      html.nav-off footer > *:not(.magazine-footer) { display: none !important; }
+      html.nav-off footer .magazine-footer { display: block !important; }
     </style>
   </head>
   <body>

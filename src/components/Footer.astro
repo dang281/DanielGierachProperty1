@@ -201,4 +201,29 @@ const year = new Date().getFullYear();
       </div>
     </div>
   </div>
+
+  <!-- Magazine-mode footer: shown ONLY under html.nav-off (the meet-your-team
+       funnel), where Layout.astro hides the full footer + link lists + sticky
+       call bar and the reader just needs the team's contact details. -->
+  <div class="magazine-footer" style="display:none;padding:2.5rem 1.25rem 3rem;">
+    <div style="max-width:640px;margin:0 auto;">
+      <p class="eyebrow" style="text-align:center;margin-bottom:1.25rem;">Your Team</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+        {[
+          { name: 'Daniel Gierach', role: 'Lead Agent', photo: '/img/daniel-headshot-tight.jpg', phone: '0412 523 821', tel: '+61412523821', email: 'daniel.gierach@raywhite.com', key: 'daniel' },
+          { name: 'Conrad Leisemann', role: 'Lead Agent', photo: '/img/conrad-headshot.jpg', phone: '0403 978 813', tel: '+61403978813', email: 'conrad.leisemann@raywhite.com', key: 'conrad' },
+        ].map(a => (
+          <div style="background:var(--color-surface-1,#f2ead4);border:1px solid rgba(107,70,16,0.15);border-radius:16px;padding:1.25rem;display:flex;gap:1rem;align-items:center;">
+            <img src={a.photo} alt={a.name} loading="lazy" width="64" height="64" style="width:64px;height:64px;border-radius:999px;object-fit:cover;flex-shrink:0;" />
+            <div style="min-width:0;">
+              <p style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-text-primary);line-height:1.2;">{a.name}</p>
+              <p style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-gold-deep,#6b4610);margin:0.15rem 0 0.5rem;">{a.role} · Ray White Bulimba</p>
+              <a href={`tel:${a.tel}`} data-cta={`magazine_footer_${a.key}_call`} style="display:block;font-size:0.85rem;color:var(--color-gold,#b98229);font-weight:600;">{a.phone}</a>
+              <a href={`mailto:${a.email}`} data-cta={`magazine_footer_${a.key}_email`} style="display:block;font-size:0.78rem;color:var(--color-text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{a.email}</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
 </footer>
