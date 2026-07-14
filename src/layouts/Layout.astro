@@ -17,6 +17,10 @@ interface Props {
   hideFooterCta?: boolean;
   hideBreadcrumbs?: boolean;
   hideNav?: boolean;
+  /** Always-on magazine footer for pages Daniel shares 1:1: hides the sticky
+      Message/Call bar + full footer, shows the team contact tiles instead
+      (same treatment nav-off applies funnel-wide, but baked into the page). */
+  magazineFooter?: boolean;
   draft?: boolean;
   manifest?: string;
   appleTouchIcon?: string;
@@ -34,6 +38,7 @@ const {
   hideFooterCta = false,
   hideBreadcrumbs = false,
   hideNav = false,
+  magazineFooter = false,
   draft = false,
   manifest = '/site.webmanifest',
   appleTouchIcon = '/apple-touch-icon.png?v=3',
@@ -272,13 +277,17 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       html.nav-off .min-h-\[40vh\] { min-height: 0 !important; }
       /* Magazine footer: drop the sticky Message/Call bar and the full footer
          (CTA strip, link lists, socials), show just the team contact tiles
-         that Footer.astro keeps hidden for normal visitors. */
-      html.nav-off .mobile-call-bar { display: none !important; }
-      html.nav-off footer > *:not(.magazine-footer) { display: none !important; }
-      html.nav-off footer .magazine-footer { display: block !important; }
+         that Footer.astro keeps hidden for normal visitors. Applies in
+         nav-off (funnel) AND on pages that bake it in via magazineFooter. */
+      html.nav-off .mobile-call-bar,
+      body.mag-footer .mobile-call-bar { display: none !important; }
+      html.nav-off footer > *:not(.magazine-footer),
+      body.mag-footer footer > *:not(.magazine-footer) { display: none !important; }
+      html.nav-off footer .magazine-footer,
+      body.mag-footer footer .magazine-footer { display: block !important; }
     </style>
   </head>
-  <body>
+  <body class={magazineFooter ? 'mag-footer' : undefined}>
     <a href="#main" class="skip-link">Skip to main content</a>
     <GieMannTheme />
     {!hideNav && <Nav />}
