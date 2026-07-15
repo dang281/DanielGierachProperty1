@@ -26,6 +26,7 @@ interface Props {
   appleTouchIcon?: string;
   faviconSvg?: string;
   appleWebAppTitle?: string;
+  canonicalOverride?: string;
 }
 
 const {
@@ -44,6 +45,7 @@ const {
   appleTouchIcon = '/apple-touch-icon.png?v=3',
   faviconSvg = '/favicon.svg?v=3',
   appleWebAppTitle = 'Daniel Gierach',
+  canonicalOverride,
 } = Astro.props;
 
 // Social share image: explicit ogImage wins, then preloadImage (resized to 1200w),
@@ -58,7 +60,10 @@ const _socialImage = ogImage
 // always matches the actual served URL, the sitemap, and Google's chosen canonical.
 const _rawPath = Astro.url.pathname;
 const _canonPath = _rawPath === '/' ? '/' : (_rawPath.endsWith('/') ? _rawPath : `${_rawPath}/`);
-const canonicalURL = new URL(_canonPath, 'https://danielgierach.com').href;
+// canonicalOverride lets near-duplicate conversion pages (get-an-appraisal,
+// property-report, report) consolidate ranking signal onto /property-worth
+// while staying fully functional as ad/funnel endpoints.
+const canonicalURL = canonicalOverride ?? new URL(_canonPath, 'https://danielgierach.com').href;
 
 // Breadcrumb computation (moved out of template to avoid IIFE/JSX issues)
 const _bPath = Astro.url.pathname.replace(/\/$/, '');
