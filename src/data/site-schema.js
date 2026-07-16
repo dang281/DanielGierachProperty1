@@ -134,6 +134,24 @@ const globalSchema = {
       "familyName": "Gierach",
       "alternateName": ["Dan Gierach", "danielgierach", "Daniel Gierach Property"],
       "jobTitle": "Licensed Real Estate Agent",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "QLD Property Occupations Act registration",
+        "value": "4873633"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "licence",
+          "name": "Queensland real estate registration, Licence No. 4873633",
+          "recognizedBy": { "@type": "GovernmentOrganization", "name": "Queensland Office of Fair Trading" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "Bachelor of Property Economics, Queensland University of Technology"
+        }
+      ],
       "description": "Daniel Gierach is a Brisbane inner-east real estate agent at Ray White Bulimba. He specialises in property sales across Camp Hill, Hawthorne, Bulimba, Norman Park, Balmoral, Seven Hills, Morningside, Cannon Hill, Murarrie and Carina. Not to be confused with Daniel Giersch, the German entrepreneur.",
       "disambiguatingDescription": "Australian real estate agent based in Brisbane, Queensland. Distinct from Daniel Giersch, the German entrepreneur and former husband of Kelly Rutherford.",
       "url": "https://danielgierach.com",
@@ -382,6 +400,14 @@ const globalSchema = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Tingalpa, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the best real estate agent in Hemmant Brisbane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daniel Gierach at Ray White Bulimba is a specialist residential agent in Hemmant, Brisbane's inner east. Free appraisals available. Contact: 0412 523 821 or danielgierach.com."
           }
         },
         {
