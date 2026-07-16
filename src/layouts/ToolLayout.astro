@@ -47,6 +47,21 @@ const { title, description, tool, phase = 'Seller Tools', resourceSlug, manifest
     .tool-content { padding: 0.75rem 0 2rem; }
   }
 
+  /* GieMann radius pass: tool pages build cards from per-tool classes
+     (sc-card, ds-result-card, fb-card, step-panel, cg-note-box, ...) and
+     the occasional inline white div. One catch-all gives every card-like
+     box the standard 16px radius instead of editing 56 bespoke pages.
+     Radius on non-box elements that happen to match (e.g. card titles)
+     is invisible, so over-matching is harmless. */
+  body.tool-page [class*="-card"],
+  body.tool-page [class*="-panel"],
+  body.tool-page [class*="-box"],
+  body.tool-page [class*="-block"],
+  body.tool-page div[style*="background:#fff"],
+  body.tool-page div[style*="background:#ffffff"] {
+    border-radius: 16px;
+  }
+
   /* Print: strip site chrome so tools print as standalone documents.
      Page-specific elements use .no-print or page-level @media print rules. */
   @media print {
