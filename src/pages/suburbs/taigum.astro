@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Taigum, Brisbane | Daniel Gierach"
   description="Selling in Taigum? Local knowledge of northern Brisbane buyer profiles, school catchments and recent sold prices. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Taigum Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Taigum", "item": "https://danielgierach.com/suburbs/taigum" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "northside Brisbane investment property"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Taigum offers genuine value for buyers who need practical northside access and everyday convenience without paying the premium of Aspley or Chermside. Its compact geography means amenity is genuinely close, and the suburb attracts both families looking for an affordable entry and investors who see rental demand holding firm in the northern corridor." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

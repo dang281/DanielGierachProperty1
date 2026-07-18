@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Nundah? Inner north Brisbane with character homes, strong rail access and buyer spillover from Clayfield. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Nundah Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Nundah", "item": "https://danielgierach.com/suburbs/nundah" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Nundah QLD 4012"}],
   "knowsAbout": ["Nundah real estate","Inner Brisbane property values","Nundah home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Nundah Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Nundah sits about eight kilometres north of the CBD with direct train access on the Doomben and Airport lines through Nundah Station. Sandgate Road runs through the suburb's commercial heart with cafes, restaurants and local retail. The residential streets away from the main road have a settled, low-density feel that contrasts with the suburb's inner-city convenience. It is the kind of suburb that rewards buyers who take the time to explore beyond the commercial strip." } },
     { "@type": "Question", "name": "What types of homes are in Nundah?", "acceptedAnswer": { "@type": "Answer", "text": "Nundah has a mixed housing stock. The character home layer includes Queenslanders, workers cottages and post-war brick homes in the residential streets to the north and west of the station. There is a substantial apartment and unit layer concentrated along the Sandgate Road corridor and near the station precinct. Character homes in well-positioned streets are the primary target for owner-occupiers who have identified Nundah as their suburb of choice." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

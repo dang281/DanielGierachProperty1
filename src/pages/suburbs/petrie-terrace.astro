@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Petrie Terrace, Brisbane | Daniel Gierach"
   description="Selling in Petrie Terrace? Local knowledge of inner-city workers' cottages, character-protected streets and recent sold prices. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Petrie Terrace Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Petrie Terrace", "item": "https://danielgierach.com/suburbs/petrie-terrace" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -77,10 +77,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Petrie Terrace property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -105,7 +105,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Petrie Terrace is one of Brisbane's most supply-constrained character suburbs, with the heritage overlay preventing significant new development. That scarcity, combined with the suburb's direct CBD walkability, continues to support strong buyer demand for cottages and small-lot character homes." }
     }
   ]
-})}</script>
+})} />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO

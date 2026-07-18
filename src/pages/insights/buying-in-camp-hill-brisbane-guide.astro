@@ -7,7 +7,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
   description="Camp Hill's elevated position, character housing, and strong school catchments make it one of Brisbane's most consistent inner-east family suburbs. A practical guide for buyers."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -32,7 +32,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Elevation and city or bay views are the strongest premium drivers in Camp Hill. Block size, renovation quality, and proximity to Camp Hill Marketplace also influence price. School catchment is a genuine factor for family buyers, with Camp Hill State Infants and Primary School and Whites Hill State College both drawing buyers from neighbouring suburbs who want to secure a property inside the catchment boundary." }
     }
   ]
-})}</script>
+})} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

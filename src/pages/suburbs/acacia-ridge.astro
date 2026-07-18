@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Acacia Ridge, Brisbane | Daniel Gierach"
   description="Selling in Acacia Ridge? Local knowledge of this affordable southern suburb, its buyer profile, motorway access and what drives value here. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Acacia Ridge Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Acacia Ridge", "item": "https://danielgierach.com/suburbs/acacia-ridge" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Acacia Ridge property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Acacia Ridge attracts consistent investor and first home buyer demand. Its affordability relative to inner Brisbane and excellent motorway connectivity sustain buyer interest across market cycles. As neighbouring suburbs like Moorooka and Salisbury have repriced, attention has shifted further south and Acacia Ridge has benefited from that migration." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

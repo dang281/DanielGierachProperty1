@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Fairfield, Brisbane | Daniel Gierach"
   description="Selling in Fairfield? Tree-lined streets, strong school catchments and solid value relative to Dutton Park and Annerley. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Fairfield Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Fairfield", "item": "https://danielgierach.com/suburbs/fairfield" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Fairfield property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Fairfield offers genuine inner south proximity at a price point that remains below Dutton Park and Annerley. Buyers who have been pushed along the corridor by rising prices in those suburbs are discovering Fairfield's tree-lined streets and family character, and that migration is supporting steady demand." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

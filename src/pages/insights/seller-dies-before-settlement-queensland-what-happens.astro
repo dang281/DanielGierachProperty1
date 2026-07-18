@@ -74,7 +74,7 @@ const draft = true; // STAGED, remove this line on publish date
     </div>
   </div>
 
-  <script type="application/ld+json">{JSON.stringify({
+  <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
@@ -103,7 +103,7 @@ const draft = true; // STAGED, remove this line on publish date
         }
       }
     ]
-  })}</script>
+  })} />
 
 </article>
 </Layout>

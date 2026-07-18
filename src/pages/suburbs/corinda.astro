@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Corinda? Inner south-west Brisbane with character homes, Oxley Creek access and strong family demand. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Corinda Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Corinda", "item": "https://danielgierach.com/suburbs/corinda" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Corinda QLD 4075"}],
   "knowsAbout": ["Corinda real estate","Inner Brisbane property values","Corinda home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Corinda Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Corinda sits about eleven kilometres south-west of the CBD and offers direct train access to the city on the Ipswich line. Oxley Creek to the west provides bushland and recreational space. The suburb has a settled, family-oriented character with low commercial density and a strong sense of residential amenity. Corinda State School and proximity to Graceville's shopping strip add practical appeal." } },
     { "@type": "Question", "name": "What types of homes are in Corinda?", "acceptedAnswer": { "@type": "Answer", "text": "Corinda's housing stock is predominantly character homes built from the early to mid twentieth century: workers cottages, Queenslanders and post-war brick homes. There is a modest unit and townhouse layer near the station precinct. The character home market is the suburb's primary draw for buyers who have identified Corinda over higher-priced neighbours to the north and east." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

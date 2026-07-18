@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Geebung, Brisbane | Daniel Gierach"
   description="Selling in Geebung? Local knowledge of character home buyer profiles, Geebung train station access and what drives value in this established northern family suburb. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Geebung Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Geebung", "item": "https://danielgierach.com/suburbs/geebung" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Geebung train station access"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Geebung remains one of the more accessible northern Brisbane suburbs with direct rail access. Its character housing stock, larger-than-average blocks and train connectivity continue to attract families who have been priced out of Wavell Heights and Nundah. The suburb's value story is well understood by buyers doing serious north-side comparisons." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- SECTION 1: HERO -->

@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Seven Hills, Brisbane | Daniel Gierach"
   description="Selling in Seven Hills? Elevated-street premiums, view campaigns and character-home strategy. Free walkthrough with Daniel Gierach, Ray White Bulimba.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -101,7 +101,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       ]
     }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Chermside West, Brisbane | Daniel Gierach"
   description="Selling in Chermside West? Local knowledge of the elevated streets, Craigslea catchment edge, Marchant Park surrounds and recent sold prices. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Chermside West Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Chermside West", "item": "https://danielgierach.com/suburbs/chermside-west" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Chermside West property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Chermside West has been one of the northside's most consistent family suburbs through the recent cycle. Demand from upgraders out of Chermside, Stafford Heights and Everton Park remains strong, and the suburb's quieter residential character continues to support price growth relative to busier northside addresses." }
     }
   ]
-})}</script>
+})} />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO

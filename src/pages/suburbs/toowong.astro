@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Toowong? Inner-west family hub anchored by the river and the university. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Toowong Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Toowong", "item": "https://danielgierach.com/suburbs/toowong" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Toowong QLD 4066"}],
   "knowsAbout": ["Toowong real estate","Inner West Brisbane property values","Toowong home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Toowong Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Toowong combines established neighbourhood feel with genuine inner-city access. Residents have ferry, train and bus connections to the CBD, the riverside walk and bike paths, and the Toowong Village retail precinct on their doorstep. Streets vary from quiet leafy family pockets to busier arterial corridors, and pricing reflects that." } },
     { "@type": "Question", "name": "What types of homes are in Toowong?", "acceptedAnswer": { "@type": "Answer", "text": "Toowong has a broad mix: traditional Queenslanders and post-war family homes on flat blocks, character homes on elevated streets with city or river outlooks, and a strong apartment market along the river and around the village. The detached family home market remains the most contested for sellers and the most consistent in price growth." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

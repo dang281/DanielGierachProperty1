@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Mount Ommaney, Brisbane | Daniel Gierach"
   description="Selling in Mount Ommaney? Local knowledge of this established western Brisbane family suburb, strong school catchments and what drives property results here. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Mount Ommaney Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Mount Ommaney", "item": "https://danielgierach.com/suburbs/mount-ommaney" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Mount Ommaney property appraisal"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Mount Ommaney remains one of western Brisbane's most consistently sought-after family suburbs. Its established character, large lots and strong school catchments draw persistent demand from buyers upgrading from Jindalee, Riverhills and Middle Park, and the suburb's limited new supply supports steady long-term value." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

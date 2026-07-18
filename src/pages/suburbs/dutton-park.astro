@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Dutton Park? Riverside parkland, character housing and inner-south appeal. Free appraisal, Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Dutton Park Brisbane",
@@ -34,8 +34,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -87,8 +87,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "character homes inner Brisbane"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -125,7 +125,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       }
     }
   ]
-})}</script>
+})} />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO

@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Ashgrove, Brisbane | Daniel Gierach"
   description="Selling in Ashgrove? Heritage Queenslanders, leafy streets and strong school catchments in the inner north-west. Free appraisal from Daniel Gierach, Ray White Bulimba.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Ashgrove Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Ashgrove", "item": "https://danielgierach.com/suburbs/ashgrove" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,9 +62,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "inner north-west character property Brisbane"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Ashgrove is approximately 4 kilometres north-west of the CBD and well-connected via Waterworks Road and Ashgrove Avenue. Travel time to the CBD by car is typically 15 to 20 minutes, and the suburb is serviced by bus routes. This is one of the draws for families relocating from outer suburbs who want inner Brisbane accessibility." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

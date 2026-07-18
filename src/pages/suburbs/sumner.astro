@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Sumner, Brisbane | Daniel Gierach"
   description="Selling in Sumner? Local knowledge of this quiet western Brisbane suburb, its family appeal, Centenary Motorway access and what drives value here. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Sumner Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Sumner", "item": "https://danielgierach.com/suburbs/sumner" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Sumner quiet residential streets"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Sumner offers genuine value compared with Jindalee, Sinnamon Park and Riverhills for buyers who prioritise block size and quietness over suburb profile. It is a practical family suburb with stable demand and lower price points, which makes it an attractive entry into the western corridor for buyers whose budget does not stretch to the higher-profile addresses nearby." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===================================================

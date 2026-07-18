@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Fig Tree Pocket, Brisbane | Daniel Gierach"
   description="Selling in Fig Tree Pocket? Local knowledge of this prestigious western Brisbane enclave, large blocks, river aspect, and the upsizing families who compete for homes here. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Fig Tree Pocket Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Fig Tree Pocket", "item": "https://danielgierach.com/suburbs/fig-tree-pocket" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Fig Tree Pocket upsizing families"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Fig Tree Pocket has historically been one of the more tightly held western Brisbane addresses precisely because the people who choose it tend to stay. The combination of block sizes, privacy and western Brisbane access that the suburb offers at its price point is genuinely difficult to replicate in adjacent suburbs. For buyers who have concluded that space, established character and a western Brisbane lifestyle are their priorities, Fig Tree Pocket remains a compelling and scarce option." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

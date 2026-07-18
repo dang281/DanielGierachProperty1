@@ -12,7 +12,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Selling in Virginia? Local knowledge of this northern Brisbane suburb's industrial-residential mix, investment appeal, and the buyers targeting this practical northern corridor address. Free walkthrough with Daniel Gierach."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Virginia Brisbane",
@@ -25,8 +25,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Virginia", "item": "https://danielgierach.com/suburbs/virginia" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane northern corridor suburbs"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Virginia has consistently attracted investor attention for its combination of accessible price points, solid rental demand from the northern employment and airport corridor, and proximity to Westfield Chermside and major northern infrastructure. The suburb's mix of residential and commercial activity creates a tenant base that includes workers in the local industrial precinct and the broader northern employment corridor. Investors who understand the specific demand drivers in Virginia make better decisions about property selection and tenant targeting." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

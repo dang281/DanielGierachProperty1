@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Mansfield, Brisbane | Daniel Gierach"
   description="Selling in Mansfield? Local knowledge of this established southern Brisbane suburb, its Mansfield State High School catchment, family-oriented community, and the buyers who target this address specifically. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Mansfield Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Mansfield", "item": "https://danielgierach.com/suburbs/mansfield" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane family suburbs southern corridor"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Mansfield offers strong appeal for families who are specifically prioritising Mansfield State High School catchment access alongside a well-established residential environment. The suburb's catchment-driven demand provides a consistent floor of buyer competition that underpins values, and its established character, good block sizes, and proximity to retail and transport amenity in the surrounding southern corridor make it a practical long-term family holding. Its position between Carindale, Wishart, and Mount Gravatt East ensures strong surrounding amenity without the price premiums of the inner suburbs." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

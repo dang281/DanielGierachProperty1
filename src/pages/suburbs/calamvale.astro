@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Calamvale, Brisbane | Daniel Gierach"
   description="Selling in Calamvale? Local knowledge of this outer southern Brisbane family suburb, its modern estates, motorway access and what drives property prices here. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Calamvale Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Calamvale", "item": "https://danielgierach.com/suburbs/calamvale" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Calamvale family living"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Calamvale offers consistent value for families seeking space and motorway connectivity in Brisbane's outer southern corridor. Its modern estate stock is well-maintained and the suburb sits at a price point where buyers get genuinely more land and home than comparable spend in Sunnybank Hills or Robertson. Family demand is reliable throughout the year and tends to intensify ahead of school enrolment windows." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===================================================

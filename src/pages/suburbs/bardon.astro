@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Bardon? Leafy family suburb on the western ridge with large blocks. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Bardon Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Bardon", "item": "https://danielgierach.com/suburbs/bardon" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Bardon QLD 4065"}],
   "knowsAbout": ["Bardon real estate","Inner West Brisbane property values","Bardon home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Bardon Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Bardon is leafy, quiet and family-focused. Its elevated streets, large blocks and proximity to bushland reserves give it a noticeably different feel to denser inner suburbs. Residents have easy access to Paddington's Latrobe Terrace café strip, and CBD commute is straightforward by car or bus." } },
     { "@type": "Question", "name": "What types of homes are in Bardon?", "acceptedAnswer": { "@type": "Answer", "text": "Bardon is dominated by Queenslanders, post-war family homes, and architect-designed contemporary builds. Larger blocks support significant renovation and extension activity, and full rebuilds are also common in the suburb's top streets." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

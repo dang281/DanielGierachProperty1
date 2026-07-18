@@ -7,7 +7,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
   description="What buyers need to know about Norman Park: property types, school catchments, heritage overlays, flood due diligence, and how to compete in a low-volume market."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -44,7 +44,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
       }
     }
   ]
-})}</script>
+})} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

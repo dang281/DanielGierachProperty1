@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Mitchelton, Brisbane | Daniel Gierach"
   description="Selling in Mitchelton? Local knowledge of the Blackwood Street precinct, school catchments, and family buyer profiles in this sought-after northern suburb. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Mitchelton Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Mitchelton", "item": "https://danielgierach.com/suburbs/mitchelton" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Mitchelton school catchments"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Mitchelton offers compelling value for families comparing northern Brisbane options. The suburb provides access to good schools, established leafy streets and a growing cafe precinct at a price point that sits below the prestige inner-north addresses many of the same buyers would prefer. Buyer interest from families priced out of Ashgrove, Alderley and Windsor has been consistent, and the Ferny Grove train access gives the suburb a transit credibility that some competing northern suburbs lack." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Everton Park, Brisbane | Daniel Gierach"
   description="Selling in Everton Park? Local knowledge of this northern Brisbane first-home-buyer and young family suburb, its community character, and what drives value. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Everton Park Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Everton Park", "item": "https://danielgierach.com/suburbs/everton-park" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "northern Brisbane family homes"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Everton Park offers a practical northern Brisbane entry point with genuine community character and block sizes that compare well with what the same budget delivers in inner suburbs. The suburb's position adjacent to Mitchelton and Stafford, combined with its relative affordability, makes it a consistent choice for buyers who want to enter the northern corridor market without paying Mitchelton premiums. Consistent first-home-buyer and young family demand has supported the suburb's market through different phases of the broader Brisbane cycle." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

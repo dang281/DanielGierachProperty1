@@ -12,7 +12,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Selling in Eight Mile Plains? Local knowledge of this southern Brisbane tech precinct suburb, its proximity to major business parks, its strong rental market, and the young professional and engineer buyers who target it. Free walkthrough with Daniel Gierach."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Eight Mile Plains Brisbane",
@@ -25,8 +25,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Eight Mile Plains", "item": "https://danielgierach.com/suburbs/eight-mile-plains" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane tech corridor southern suburbs"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Eight Mile Plains offers genuine appeal for both owner-occupiers and investors comparing Brisbane's southern corridor. The suburb's proximity to major employment centres, its motorway access, strong rental demand, and its position in established school catchments make it a practical choice for buyers who prioritise commuter efficiency alongside residential quality. Its consistent rental market and diverse buyer pool provide solid fundamentals for long-term property ownership." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

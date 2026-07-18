@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Mount Crosby, Brisbane | Daniel Gierach"
   description="Selling in Mount Crosby? Local knowledge of the riverside acreage holdings, established lifestyle blocks, the Brisbane River pockets and recent sold prices in the western corridor. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Mount Crosby Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Mount Crosby", "item": "https://danielgierach.com/suburbs/mount-crosby" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Mount Crosby lifestyle blocks"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Mount Crosby's lifestyle character and the limited supply of riverside and acreage holdings on Brisbane's western fringe has continued to attract steady lifestyle demand. Buyers comparing acreage corridors across south-east Queensland frequently arrive at Mount Crosby once they understand the price-to-land equation, and quality properties continue to perform when correctly positioned." }
     }
   ]
-})}</script>
+})} />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO

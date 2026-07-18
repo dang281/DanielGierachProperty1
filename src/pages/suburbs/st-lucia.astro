@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent St Lucia, Brisbane | Daniel Gierach"
   description="Selling in St Lucia? Inner west Brisbane market with strong UQ-driven demand and character home appeal. Free appraisal from Daniel Gierach, Ray White Bulimba.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent St Lucia Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "St Lucia", "item": "https://danielgierach.com/suburbs/st-lucia" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,9 +62,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "inner west Brisbane property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "St Lucia has historically seen consistent rental demand from UQ post-graduate and professional tenants, with low vacancy rates underpinning investor confidence. Rental yield should be assessed against the current interest rate environment. The owner-occupier appeal of the suburb's character homes anchors resale values beyond pure yield calculations." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

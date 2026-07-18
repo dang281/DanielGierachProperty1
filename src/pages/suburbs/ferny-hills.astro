@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Ferny Hills, Brisbane | Daniel Gierach"
   description="Selling in Ferny Hills? Leafy outer northern Brisbane suburb with large blocks on elevated hilly terrain, strong school catchments and family-focused demand. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Ferny Hills Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Ferny Hills", "item": "https://danielgierach.com/suburbs/ferny-hills" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -61,10 +61,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Ferny Hills property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Ferny Hills has maintained consistent demand from family-upgrader buyers seeking large blocks and a leafy outer-ring setting. Buyers priced out of Keperra regularly extend their search to Ferny Hills, creating a steady spill-over buyer pool. The suburb's elevated terrain and tree-lined character are genuinely scarce within Brisbane's city limits, and working-from-home flexibility has expanded the buyer pool beyond traditional rail commuters, broadening demand year-round." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

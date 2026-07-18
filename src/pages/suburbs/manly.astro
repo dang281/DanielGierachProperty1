@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Manly, Brisbane | Daniel Gierach"
   description="Selling in Manly? Local knowledge of the Manly Boat Harbour, Cambridge Parade lifestyle, family and downsizer buyer profiles. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Manly Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Manly", "item": "https://danielgierach.com/suburbs/manly" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Manly property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Manly offers the bayside lifestyle at a price point that remains accessible relative to similarly positioned waterfront-adjacent suburbs in other cities. The suburb's strong owner-occupier tenure, established Cambridge Parade precinct and marina identity give it a distinct character that continues to attract buyers who have researched the eastern corridor thoroughly. Growing buyer interest from across southeast Brisbane is broadening the pool of people who consider Manly as a genuine destination rather than simply a suburb on the way to somewhere else." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

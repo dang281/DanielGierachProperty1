@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Spring Hill? CBD-edge character precinct with workers cottages and apartments. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Spring Hill Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Spring Hill", "item": "https://danielgierach.com/suburbs/spring-hill" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Spring Hill QLD 4000"}],
   "knowsAbout": ["Spring Hill real estate","Inner Brisbane property values","Spring Hill home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Spring Hill Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Spring Hill is one of Brisbane's few suburbs where you can genuinely walk to the CBD, the Valley's dining precinct, and the riverside in different directions in under fifteen minutes. The streetscape is character-rich without being precious, and the suburb has a distinct day-and-night rhythm thanks to the hospital precinct." } },
     { "@type": "Question", "name": "What types of homes are in Spring Hill?", "acceptedAnswer": { "@type": "Answer", "text": "Spring Hill's housing stock is one of the most varied in inner Brisbane: workers cottages, terrace houses, restored Queenslanders, post-war townhouses, and a growing layer of apartments from the 1990s onwards. The character cottage market is the suburb's most contested segment." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

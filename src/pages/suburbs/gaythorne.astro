@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Gaythorne, Brisbane | Daniel Gierach"
   description="Selling in Gaythorne? Local knowledge of this family-oriented northern Brisbane suburb, its character Queenslander homes, proximity to Mitchelton Station, and the buyers who pursue it as the next best step in the northern corridor. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Gaythorne Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Gaythorne", "item": "https://danielgierach.com/suburbs/gaythorne" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "northern Brisbane family suburbs"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Gaythorne offers genuine value for families comparing the northern Brisbane corridor. The suburb delivers the leafy character, school catchments, and Ferny Grove rail access of its better-known neighbours at a price point that reflects its position as one step removed from the tightest addresses in the corridor. For buyers who have compared Alderley and Mitchelton and found them beyond budget, Gaythorne's character homes, quiet streets, and established community make it a compelling long-term owner-occupier choice. Low stock turnover is a consistent feature, which means that buyers who identify Gaythorne as the right suburb often need to wait for the right property to appear." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

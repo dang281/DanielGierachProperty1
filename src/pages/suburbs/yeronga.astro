@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Yeronga, Brisbane | Daniel Gierach"
   description="Selling in Yeronga? Local knowledge of the inner south buyer profile, what drives value near Yeronga Park, and how to position your home in a fast-changing market. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Yeronga Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Yeronga", "item": "https://danielgierach.com/suburbs/yeronga" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,9 +62,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "emerging Brisbane inner suburbs"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Yeronga is an active investment suburb because of its proximity to the PA Hospital, Griffith University Nathan campus, and Queensland Uni South Bank. Rental demand is consistent year-round. Buyers considering the suburb for investment should look at character homes on full blocks, which tend to hold value better than units as the suburb continues to reprice." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

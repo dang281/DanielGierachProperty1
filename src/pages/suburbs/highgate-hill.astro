@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Highgate Hill? Elevated inner-south prestige with city outlooks and large blocks. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Highgate Hill Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Highgate Hill", "item": "https://danielgierach.com/suburbs/highgate-hill" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Highgate Hill QLD 4101"}],
   "knowsAbout": ["Highgate Hill real estate","Inner South Brisbane property values","Highgate Hill home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "Is Highgate Hill in the Brisbane State High catchment?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Highgate Hill sits squarely within the Brisbane State High School catchment, which is one of the strongest sustained demand drivers in inner-south Brisbane. Catchment access supports a permanent premium on family homes here." } },
     { "@type": "Question", "name": "What types of homes are in Highgate Hill?", "acceptedAnswer": { "@type": "Answer", "text": "Highgate Hill is dominated by Federation-era homes, traditional Queenslanders and architect-designed contemporary rebuilds. Renovation activity is ongoing on the suburb's top streets, and original-condition homes on premium blocks attract strong owner-occupier and developer interest." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

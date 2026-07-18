@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Macgregor, Brisbane | Daniel Gierach"
   description="Selling in Macgregor? Local knowledge of this sought-after southern Brisbane suburb, its large residential blocks, strong school catchments, and the family buyers who compete hard for well-presented homes. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Macgregor Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Macgregor", "item": "https://danielgierach.com/suburbs/macgregor" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane family suburbs southern corridor"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Macgregor offers genuine appeal for owner-occupier families who prioritise land size, school catchment access, and a quiet residential environment within practical range of Brisbane's southern employment corridor and the CBD. The suburb's large lots at relatively accessible price points compared to equivalent land in the inner suburbs represent a structural advantage that underpins consistent long-term demand. Its established community character and proximity to Sunnybank and Upper Mount Gravatt amenity add further appeal." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

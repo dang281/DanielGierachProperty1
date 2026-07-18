@@ -426,7 +426,7 @@ function filterCount(f: string): number {
 
 
 <Layout title="Insights & Articles | Daniel Gierach Property" description="Property insights and guides for Brisbane sellers and investors. Practical advice on auctions, contracts, stamp duty, costs and more from Daniel Gierach.">
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Brisbane Property Insights & Guides | Daniel Gierach",
@@ -445,7 +445,7 @@ function filterCount(f: string): number {
       "description": a.summary
     }))
   }
-})}</script>
+})} />
 
 <!-- Hero -->
 <section class="relative min-h-[40vh] flex items-center overflow-hidden" style="background:#e6d9bd;">

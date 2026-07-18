@@ -12,7 +12,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Selling in Runcorn? Local knowledge of this family-friendly southern suburb, its school catchments, and the upgrader buyers who compete hard for well-presented homes. Free walkthrough with Daniel Gierach."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Runcorn Brisbane",
@@ -25,8 +25,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Runcorn", "item": "https://danielgierach.com/suburbs/runcorn" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane family suburbs southern corridor"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Runcorn values in 2026 are shaped by school catchment position within the Runcorn State High School zone, land size and outdoor space, street character, and proximity to the Pacific Motorway and Sunnybank. Upgrader buyers are the dominant demand driver in Runcorn, and they assess properties primarily on how well the home functions for a growing family. Contact Daniel for a precise current appraisal based on recent comparable sales in the suburb." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

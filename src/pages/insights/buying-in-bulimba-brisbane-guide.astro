@@ -7,7 +7,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
   description="Bulimba's riverside character, Oxford Street village, and limited supply make it one of Brisbane's most distinct inner-east suburbs. A practical guide for buyers."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -32,7 +32,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "River views, proximity to Oxford Street, renovation quality, and lot size are the main premium drivers. Properties with a clear river outlook from a raised position command the strongest premiums. Thoughtfully renovated Queenslanders that retain original character features also attract a premium over comparable homes that have been stripped or poorly updated." }
     }
   ]
-})}</script>
+})} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

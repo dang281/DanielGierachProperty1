@@ -12,7 +12,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Selling in Keperra? Local knowledge of this family-oriented northern Brisbane suburb, its large blocks, quiet streets, proximity to the Ferny Grove corridor, and the buyers who pursue it for space close to the city. Free walkthrough with Daniel Gierach."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Keperra Brisbane",
@@ -25,8 +25,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Keperra", "item": "https://danielgierach.com/suburbs/keperra" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "northern Brisbane family suburbs"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Keperra offers genuine value for families who prioritise space and quiet streets close to the city. The suburb delivers large blocks, rail access, and a settled northern Brisbane lifestyle at a price point that sits below the most sought-after corridor addresses. Its low stock turnover and consistent demand from well-researched family buyers make it a sound long-term owner-occupier choice for anyone who wants more land than the tighter northern suburbs provide." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

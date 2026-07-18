@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Chapel Hill, Brisbane | Daniel Gierach"
   description="Selling in Chapel Hill? Local knowledge of this elevated western suburb, school catchments, leafy family streets and the buyer profile that drives demand. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Chapel Hill Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Chapel Hill", "item": "https://danielgierach.com/suburbs/chapel-hill" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Chapel Hill property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Chapel Hill offers a combination of land size, established bushland character and school catchment quality that is genuinely scarce at its price point in the western corridor. Buyers who find Paddington or Toowong beyond their budget for detached homes on generous blocks consistently discover Chapel Hill offers comparable liveability with more space. The suburb's low turnover and stable owner-occupier base underpin long-term value." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

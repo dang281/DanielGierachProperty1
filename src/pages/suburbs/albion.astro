@@ -10,7 +10,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Albion? Heritage precinct, Doomben line rail and a professional buyer market 4km from the CBD. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Albion Brisbane",
@@ -23,8 +23,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Albion", "item": "https://danielgierach.com/suburbs/albion" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -47,9 +47,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Albion QLD 4010"}],
   "knowsAbout": ["Albion real estate","Albion property values","Albion heritage homes","Inner Brisbane north property"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -58,7 +58,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Albion Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Albion sits four kilometres north of the CBD with Albion Station on the Doomben line delivering a rail commute of around 10 minutes to the city. The Albion Mills heritage precinct and the commercial warehouses along Sandgate Road give the suburb a distinct architectural character that differs from the standard inner north formula. Fortitude Valley's restaurants and nightlife are immediately to the south, while Ascot's cafe strip is east along Sandgate Road. The suburb is increasingly sought by professionals and downsizers from nearby prestige suburbs." } },
     { "@type": "Question", "name": "What types of homes are in Albion?", "acceptedAnswer": { "@type": "Answer", "text": "Albion has a genuine mix of housing types. Original character cottages and Queenslanders occupy the quieter residential streets, while converted heritage commercial buildings along Sandgate Road have produced some distinctive residential offerings. Newer townhouses and small lot development have added density, particularly on the periphery of the suburb. This diversity of stock attracts a correspondingly broad buyer pool: owner-occupiers for the character homes, investors for the townhouses and yield-focused product near Newstead and the Valley." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

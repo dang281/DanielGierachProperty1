@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Manly West, Brisbane | Daniel Gierach"
   description="Selling in Manly West? Local knowledge of this family-friendly bayside suburb, strong school catchments, and the buyer profile that makes this one of the eastern corridor's most consistent markets. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Manly West Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Manly West", "item": "https://danielgierach.com/suburbs/manly-west" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Manly West property market"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Manly West offers compelling value for families comparing the eastern bayside corridor. The suburb delivers school catchments, established residential character and bayside access at a price point that sits below the premium Manly addresses many of the same buyers would prefer. Consistent demand from families relocating to the east for the lifestyle and school options has supported the market, and the suburb's position as the more accessible bayside option makes it a genuine long-term consideration for family buyers." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

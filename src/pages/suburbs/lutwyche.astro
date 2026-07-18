@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Lutwyche? Inner north Brisbane with character homes, value relative to Windsor and strong CBD access. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Lutwyche Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Lutwyche", "item": "https://danielgierach.com/suburbs/lutwyche" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Lutwyche QLD 4030"}],
   "knowsAbout": ["Lutwyche real estate","Inner Brisbane property values","Lutwyche home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Lutwyche Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Lutwyche sits about five kilometres north of the CBD, sharing postcode 4030 with Windsor. The Lutwyche Road commercial corridor gives residents walkable access to cafes, restaurants, the Lutwyche Shopping Centre and city bus connections. Behind the road corridor, the residential streets have a character and quietness that surprises buyers who form their first impression from the main road. The suburb is genuinely inner north in terms of CBD access while remaining less expensive than Windsor." } },
     { "@type": "Question", "name": "What types of homes are in Lutwyche?", "acceptedAnswer": { "@type": "Answer", "text": "Lutwyche has a mix of character homes and apartments. The character home layer includes workers cottages, Queenslanders and post-war brick homes in the streets behind the Lutwyche Road corridor. The apartment and unit layer is concentrated along the main road and around the shopping centre precinct. Character homes in the residential streets represent the primary target for owner-occupiers who have identified Lutwyche as their value-entry to the inner north." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

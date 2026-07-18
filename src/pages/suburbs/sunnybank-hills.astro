@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Sunnybank Hills, Brisbane | Daniel Gierach"
   description="Selling in Sunnybank Hills? Local knowledge of this multicultural southern Brisbane suburb, its elevated position, strong family and investor demand, and the buyers who compete for well-presented homes. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Sunnybank Hills Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Sunnybank Hills", "item": "https://danielgierach.com/suburbs/sunnybank-hills" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane multicultural suburbs southern corridor"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Sunnybank Hills has consistently attracted investor interest for its combination of strong rental demand, a broad and active buyer pool at resale, and its position in Brisbane's southern residential corridor. The suburb's proximity to the Sunnybank food precinct, motorway access, and established community infrastructure create a tenant profile that values this specific address. Investors comparing Sunnybank Hills against other southern Brisbane options tend to find it delivers consistent yields relative to the entry price point." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

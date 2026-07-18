@@ -12,7 +12,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in East Brisbane? Character homes with strong inner-city demand and lifestyle appeal. Free appraisal, Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent East Brisbane",
@@ -25,8 +25,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "East Brisbane", "item": "https://danielgierach.com/suburbs/east-brisbane" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -78,10 +78,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "East Brisbane property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -106,7 +106,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "East Brisbane benefits from its position between the CBD and the inner-east lifestyle corridor. With the Gabba Stadium redevelopment planned for the 2032 Olympics, the area's profile and infrastructure investment are set to increase further, which many buyers and investors factor into their decision." }
     }
   ]
-})}</script>
+})} />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO

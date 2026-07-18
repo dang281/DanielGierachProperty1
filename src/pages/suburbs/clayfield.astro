@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Clayfield? Prestige inner north-east Brisbane with heritage Queenslanders and established family streets. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Clayfield Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Clayfield", "item": "https://danielgierach.com/suburbs/clayfield" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Clayfield QLD 4011"}],
   "knowsAbout": ["Clayfield real estate","Inner Brisbane property values","Clayfield home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Clayfield Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Clayfield is one of Brisbane's most private and settled inner suburbs. The tree-lined streets, the character of the original housing stock, and the proximity to the Ascot and Hamilton dining and retail precincts give it a sense of established permanence that newer suburbs cannot replicate. Clayfield College and access to the inner north's private school corridor are significant drawcards for families making long-term location decisions." } },
     { "@type": "Question", "name": "What types of homes are in Clayfield?", "acceptedAnswer": { "@type": "Answer", "text": "Clayfield is dominated by heritage Queenslanders, interwar homes and character properties on medium to large blocks. Heritage listings constrain alterations for many of the suburb's most recognisable homes, which preserves the streetscape character but requires sellers to understand the implications for presentation and what buyers are permitted to do post-purchase. There is a smaller apartment and townhouse layer, primarily concentrated near the Sandgate Road and Lutwyche Road boundaries." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

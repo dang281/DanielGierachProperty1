@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Chelmer, Brisbane | Daniel Gierach"
   description="Selling in Chelmer? Local knowledge of the riverside prestige market, heritage Queenslander buyers and low-turnover inner south-west dynamics. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Chelmer Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Chelmer", "item": "https://danielgierach.com/suburbs/chelmer" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,9 +62,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "inner south-west prestige property Brisbane"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Chelmer is a strong seller's suburb for correctly prepared and priced properties. Low stock means limited competing supply, which works in a seller's favour. The key is reaching the right buyer pool, which tends to stretch from established families upsizing within the inner south-west to prestige buyers looking for river proximity without the price premium of Hamilton or Hawthorne." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

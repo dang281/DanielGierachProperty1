@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Sherwood, Brisbane | Daniel Gierach"
   description="Selling in Sherwood? Established family suburb bordering Chelmer and Graceville, with Oxley Creek green space and strong character home appeal. Free appraisal from Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Sherwood Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Sherwood", "item": "https://danielgierach.com/suburbs/sherwood" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,9 +62,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Oxley Creek corridor property Brisbane"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Sherwood shares the inner south-west river corridor character with Chelmer and Graceville but typically offers a more accessible entry price. Buyers who have been searching Chelmer and Graceville and found themselves outcompeted often redirect to Sherwood, which adds a consistent overflow buyer pool. Sherwood's own character home stock and the Oxley Creek and arboretum green space give it a genuine independent identity rather than just a consolation option." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

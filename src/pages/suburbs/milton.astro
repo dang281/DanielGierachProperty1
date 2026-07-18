@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Milton? Riverside professional precinct with Park Road at its centre. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Milton Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Milton", "item": "https://danielgierach.com/suburbs/milton" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Milton QLD 4064"}],
   "knowsAbout": ["Milton real estate","Inner West Brisbane property values","Milton home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Milton Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Milton is one of Brisbane's most genuinely walkable suburbs. The Park Road precinct, the riverside bike path along Coronation Drive, and rapid CBD access via train, bus or ferry all sit within a tight footprint. It attracts buyers who want city-edge living with established character." } },
     { "@type": "Question", "name": "What types of homes are in Milton?", "acceptedAnswer": { "@type": "Answer", "text": "Milton has a mix of small-block character cottages, terrace and townhouse stock, and an active apartment market. The detached home segment is small and contested whenever quality stock comes up, particularly in the Brisbane State High catchment." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

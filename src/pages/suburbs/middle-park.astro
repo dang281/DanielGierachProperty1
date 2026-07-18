@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Middle Park, Brisbane | Daniel Gierach"
   description="Selling in Middle Park? Local knowledge of this small leafy western Brisbane suburb, its peaceful streets, upsizer appeal and what drives value. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Middle Park Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Middle Park", "item": "https://danielgierach.com/suburbs/middle-park" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -63,10 +63,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Middle Park elevated streets"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -91,7 +91,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Middle Park offers a combination of scarcity, leafy character and western corridor proximity that is increasingly hard to find at this distance from the city. For buyers who value privacy and established streetscapes over suburb name recognition, it is a genuinely appealing address. The low turnover means opportunities to buy here are less frequent than in adjacent suburbs, which adds to its appeal for long-term ownership." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===================================================

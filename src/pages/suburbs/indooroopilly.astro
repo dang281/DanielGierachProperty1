@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Indooroopilly? Established western suburb anchored by the train and the centre. Free appraisal from Daniel Gierach."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Indooroopilly Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Indooroopilly", "item": "https://danielgierach.com/suburbs/indooroopilly" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Indooroopilly QLD 4068"}],
   "knowsAbout": ["Indooroopilly real estate","Inner West Brisbane property values","Indooroopilly home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "Is Indooroopilly in the Indooroopilly State High catchment?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Indooroopilly sits within the Indooroopilly State High School catchment. Indooroopilly State High is one of the most sought-after public secondary catchments in the inner west, and it is a meaningful, ongoing demand driver for the family-home market." } },
     { "@type": "Question", "name": "What types of homes are in Indooroopilly?", "acceptedAnswer": { "@type": "Answer", "text": "Indooroopilly's housing stock is broad: traditional Queenslanders, post-war family homes, mid-century brick homes, contemporary rebuilds and a sizable apartment market around the centre and railway corridor. The detached family home segment is the most consistently in demand." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

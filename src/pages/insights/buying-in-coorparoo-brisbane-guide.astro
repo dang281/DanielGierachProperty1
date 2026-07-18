@@ -7,7 +7,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
   description="What buyers need to know about Coorparoo: property types, school catchments, character overlays, Stones Corner proximity, and how to compete in an active market."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -44,7 +44,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
       }
     }
   ]
-})}</script>
+})} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

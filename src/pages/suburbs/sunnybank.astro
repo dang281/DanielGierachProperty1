@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Sunnybank, Brisbane | Daniel Gierach"
   description="Selling in Sunnybank? Local knowledge of this sought-after southern suburb, its multicultural food precinct, strong investor demand, and the family and investor buyers who compete for well-presented homes. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Sunnybank Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Sunnybank", "item": "https://danielgierach.com/suburbs/sunnybank" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Brisbane multicultural suburbs southern corridor"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Sunnybank has long attracted investor attention for its combination of strong rental demand, a diverse and active buyer pool, and relatively accessible price points compared to inner-city alternatives. The suburb's proximity to employment centres in the southern corridor, its excellent motorway access, and its established community infrastructure support consistent tenant demand. Investors who understand the specific buyer and tenant profiles that Sunnybank attracts tend to make more informed decisions about how to present and position their properties." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

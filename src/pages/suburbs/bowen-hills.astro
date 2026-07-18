@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Bowen Hills? Apartment-led growth precinct anchored by the showgrounds and the train. Free appraisal from Daniel Gierach."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Bowen Hills Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Bowen Hills", "item": "https://danielgierach.com/suburbs/bowen-hills" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Bowen Hills QLD 4006"}],
   "knowsAbout": ["Bowen Hills real estate","Inner Brisbane property values","Bowen Hills home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "Is Bowen Hills a good investment suburb?", "acceptedAnswer": { "@type": "Answer", "text": "Bowen Hills has been one of inner Brisbane's most active growth precincts over the past decade. Cross River Rail, ongoing King Street development and proximity to RBWH all support medium-term fundamentals. Building selection matters enormously, and not all stock benefits equally." } },
     { "@type": "Question", "name": "What types of homes are in Bowen Hills?", "acceptedAnswer": { "@type": "Answer", "text": "Bowen Hills is predominantly apartments and townhouses, with a smaller layer of detached cottages on a few elevated streets. The apartment market is the suburb's defining segment and where most transactions occur." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

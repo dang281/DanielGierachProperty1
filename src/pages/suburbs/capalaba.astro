@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Capalaba, Brisbane | Daniel Gierach"
   description="Selling in Capalaba? Local knowledge of this major eastern Brisbane hub, its large residential catchment, Capalaba State College, and the family buyers who choose it for space and value. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Capalaba Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Capalaba", "item": "https://danielgierach.com/suburbs/capalaba" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "eastern Brisbane larger blocks"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Capalaba offers genuine value for families comparing the eastern Brisbane corridor. The suburb delivers generous blocks, good school options, practical local amenity, and an established owner-occupier community at a price point that reflects its distance from the CBD rather than any deficit in what it offers families. Consistent demand from buyers making a deliberate move east for space and self-contained lifestyle has supported the market, and Capalaba's position as the major service hub of its corridor gives it ongoing structural appeal." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

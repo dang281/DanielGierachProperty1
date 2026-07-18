@@ -10,7 +10,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Moorooka? Affordable inner south Brisbane with strong bus access, a mix of character and post-war homes, and genuine investor and first-home buyer demand. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Moorooka Brisbane",
@@ -23,8 +23,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Moorooka", "item": "https://danielgierach.com/suburbs/moorooka" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -47,9 +47,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Moorooka QLD 4105"}],
   "knowsAbout": ["Moorooka real estate","Moorooka property values","Moorooka investment property","Inner South Brisbane property"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -58,7 +58,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What types of homes are in Moorooka?", "acceptedAnswer": { "@type": "Answer", "text": "Moorooka has a mix of post-war brick homes, original Queenslanders on established lots, and a growing layer of townhouses and newer development, particularly near the Ipswich Road and commercial corridors. The original housing stock in the quieter residential streets is the primary draw for first-home buyers and families; the townhouse layer appeals to investors and those wanting low-maintenance inner south living. Understanding which type you own, and who it appeals to, shapes the entire campaign strategy." } },
     { "@type": "Question", "name": "Is Moorooka a good suburb for investment property in Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Moorooka attracts consistent investor interest for a combination of reasons: its affordability relative to neighbouring Annerley and Greenslopes, proximity to the CBD and employment precincts via Ipswich Road buses, and the ongoing transition of industrial and commercial land near Rocklea. Rental demand is strong from the same demographic that drives buyer enquiry: professionals and young families who want inner south proximity at a liveable price. As with any investment decision, the specific property and its position within the suburb matters more than suburb-level generalisations." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

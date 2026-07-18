@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Mount Cotton, Brisbane | Daniel Gierach"
   description="Selling in Mount Cotton? Local knowledge of acreage and lifestyle properties in the Redlands hinterland, plus recent sold context. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Mount Cotton Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Mount Cotton", "item": "https://danielgierach.com/suburbs/mount-cotton" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -77,10 +77,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "rural residential property Brisbane south-east"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -105,7 +105,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Mount Cotton continues to attract steady lifestyle and acreage demand. As acreage supply across the broader south-east tightens, well-located Mount Cotton blocks with quality dwellings and useable land remain consistent performers, particularly for buyers prioritising space, privacy and proximity to Capalaba's services." }
     }
   ]
-})}</script>
+})} />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO

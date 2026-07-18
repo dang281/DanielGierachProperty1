@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Chermside, Brisbane | Daniel Gierach"
   description="Selling in Chermside? Local knowledge of the northern hub, Westfield Chermside, Prince Charles Hospital precinct and family buyer profiles. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Chermside Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Chermside", "item": "https://danielgierach.com/suburbs/chermside" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Chermside property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Chermside offers a compelling combination of retail convenience, hospital employment proximity and improving housing stock at a price point that compares well with inner-north suburbs closer to the CBD. The suburb's ongoing higher-density development is adding amenity and rental supply, which strengthens the investment case. Owner-occupiers who prioritise lifestyle convenience and access to the northern corridor's employment hubs consistently identify Chermside as an undervalued address relative to its infrastructure." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

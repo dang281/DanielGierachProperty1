@@ -418,7 +418,7 @@ const buyerSchema = {
   </div>
 </section>
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -427,7 +427,7 @@ const buyerSchema = {
     { "@type": "Question", "name": "How does Daniel's buyer matching service work?", "acceptedAnswer": { "@type": "Answer", "text": "Register your suburb, property type, bedrooms and budget. When a property that matches comes up, Daniel contacts you before it is publicly listed. There is no cost and no obligation." } },
     { "@type": "Question", "name": "Is there any cost to registering as a buyer?", "acceptedAnswer": { "@type": "Answer", "text": "No. Registering is free. Daniel is paid by the vendor on a completed sale, not by buyers." } }
   ]
-})}</script>
+})} />
 
 <style is:global>
   .resources-grid { }

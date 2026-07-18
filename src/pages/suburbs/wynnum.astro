@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Wynnum, Brisbane | Daniel Gierach"
   description="Selling in Wynnum? Local knowledge of the bayside lifestyle, Wynnum Esplanade, family and downsizer buyer profiles. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Wynnum Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Wynnum", "item": "https://danielgierach.com/suburbs/wynnum" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Wynnum property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Wynnum offers a rare combination of bayside lifestyle, established village character and relative affordability compared to similarly positioned coastal suburbs in other cities. The suburb's growing dining and retail precinct, reliable train access to the CBD and strong community identity have increased its appeal with buyers who previously overlooked the eastern corridor. Block sizes are competitive relative to the price point, and the suburb is attracting upgraders from across southeast Brisbane." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

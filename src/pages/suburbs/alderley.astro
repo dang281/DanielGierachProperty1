@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Alderley, Brisbane | Daniel Gierach"
   description="Selling in Alderley? Local knowledge of this sought-after northern Brisbane suburb, its character homes, Ferny Grove train access, and strong school catchments. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Alderley Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Alderley", "item": "https://danielgierach.com/suburbs/alderley" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Alderley school catchments"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Alderley is one of the more tightly held addresses in Brisbane's northern corridor, and that scarcity has historically supported sound price performance relative to comparable northern suburbs. Buyers priced out of Ashgrove and Wilston have consistently identified Alderley as the next best option, and the Ferny Grove train line gives the suburb a transit credibility that supports ongoing demand from city commuters. The suburb's established character and low turnover make it a compelling long-term hold as well as a considered purchase." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ===============================================

@@ -10,7 +10,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Wooloowin? Quiet heritage streets, Doomben line access and value relative to Clayfield. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Wooloowin Brisbane",
@@ -23,8 +23,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Wooloowin", "item": "https://danielgierach.com/suburbs/wooloowin" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -47,9 +47,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Wooloowin QLD 4030"}],
   "knowsAbout": ["Wooloowin real estate","Wooloowin property values","Wooloowin character homes","Inner Brisbane north property"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -58,7 +58,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Wooloowin Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Wooloowin sits about five kilometres north of the CBD on the Doomben rail line, giving residents a direct and frequent city connection. The suburb has a quieter character than its neighbours: the housing streets are largely free of commercial noise, and the community feel reflects its predominantly owner-occupier, family demographic. Clayfield's cafe strip along Sandgate Road is a short walk east, while Lutwyche Road's retail is nearby to the south." } },
     { "@type": "Question", "name": "What types of homes are in Wooloowin?", "acceptedAnswer": { "@type": "Answer", "text": "Wooloowin is defined by its post-war character homes and Queenslanders. The housing stock is predominantly free-standing homes on established lots, with very little apartment development relative to neighbouring suburbs. That stability in housing type, combined with the suburb's low turnover, means the character of the streets has been well preserved and remains a strong drawcard for family owner-occupiers." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

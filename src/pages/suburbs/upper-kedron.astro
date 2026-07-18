@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Upper Kedron, Brisbane | Daniel Gierach"
   description="Selling in Upper Kedron? Semi-rural outer northern Brisbane suburb with large acreage-style blocks, D'Aguilar National Park access and family-focused demand. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Upper Kedron Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Upper Kedron", "item": "https://danielgierach.com/suburbs/upper-kedron" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -61,10 +61,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "Upper Kedron property values"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,7 +89,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Upper Kedron has maintained consistent demand from buyers seeking the acreage lifestyle experience within Brisbane's metropolitan boundary. The suburb's semi-rural character is genuinely difficult to replicate at an equivalent price point in more central areas, and as working-from-home patterns have made outer-ring locations more viable for more buyers, the pool of people willing to make the trade-off for space has grown. Well-presented homes with genuine block size and rural character attract buyers who have been searching specifically for what Upper Kedron offers." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- ═══════════════════════════════════════════════

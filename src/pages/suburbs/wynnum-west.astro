@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   title="Real Estate Agent Wynnum West, Brisbane | Daniel Gierach"
   description="Selling in Wynnum West? Local knowledge of bayside family buyer profiles, proximity to Wynnum amenity and what drives value in this affordable eastern suburb. Free walkthrough with Daniel Gierach.">
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Wynnum West Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Wynnum West", "item": "https://danielgierach.com/suburbs/wynnum-west" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": [
     "LocalBusiness",
@@ -62,10 +62,10 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     "bayside family homes Brisbane"
   ],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -90,7 +90,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "acceptedAnswer": { "@type": "Answer", "text": "Wynnum West remains a strong value proposition for families seeking bayside access at an accessible price point. As Wynnum itself has appreciated, buyers priced out of the primary market have moved to Wynnum West, bringing sustained demand that has supported consistent price growth. The suburb's fundamentals, including school catchments, motorway proximity and bayside access, are not going to change." }
     }
   ]
-})}</script>
+})} />
 
 
 <!-- SECTION 1: HERO -->

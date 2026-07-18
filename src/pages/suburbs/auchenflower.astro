@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Auchenflower? Hospital-precinct family suburb with strong school catchments. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Auchenflower Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Auchenflower", "item": "https://danielgierach.com/suburbs/auchenflower" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Auchenflower QLD 4066"}],
   "knowsAbout": ["Auchenflower real estate","Inner West Brisbane property values","Auchenflower home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "Is Auchenflower in the Brisbane State High catchment?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, parts of Auchenflower are in the Brisbane State High School catchment, which is one of the strongest demand drivers in the inner west. Catchment boundaries can be street-by-street so it pays to verify your specific address with the Department of Education before you buy or list." } },
     { "@type": "Question", "name": "What types of homes are in Auchenflower?", "acceptedAnswer": { "@type": "Answer", "text": "Auchenflower is predominantly character housing: traditional Queenslanders, post-war cottages and inter-war homes. Many have been renovated to a high standard while retaining original facades. There is also a smaller apartment market closer to the river and the railway corridor that is popular with hospital staff and CBD professionals." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

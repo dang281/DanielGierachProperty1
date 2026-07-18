@@ -7,7 +7,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
   description="A practical guide to buying property in Brisbane's inner east: suburbs, property types, value drivers, market conditions, due diligence, and how to prepare."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -44,7 +44,7 @@ import RelatedContent from '../../components/RelatedContent.astro';
       }
     }
   ]
-})}</script>
+})} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

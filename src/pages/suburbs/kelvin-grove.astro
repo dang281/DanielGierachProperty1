@@ -11,7 +11,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   description="Thinking of selling in Kelvin Grove? QUT campus suburb with character homes and urban village living. Free appraisal from Daniel Gierach, Ray White Bulimba."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Real Estate Agent Kelvin Grove Brisbane",
@@ -24,8 +24,8 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       { "@type": "ListItem", "position": 2, "name": "Kelvin Grove", "item": "https://danielgierach.com/suburbs/kelvin-grove" }
     ]
   }
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "RealEstateAgent"],
   "@id": "https://danielgierach.com/#business",
@@ -48,9 +48,9 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   "areaServed": [{"@type":"Place","name":"Kelvin Grove QLD 4059"}],
   "knowsAbout": ["Kelvin Grove real estate","Inner Brisbane property values","Kelvin Grove home values"],
   "sameAs": ["https://www.raywhite.com/agents/agent/daniel-gierach-88889915", "https://www.realestate.com.au/agent/daniel-gierach-3819232"]
-})}</script>
+})} />
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -59,7 +59,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     { "@type": "Question", "name": "What is the lifestyle like in Kelvin Grove Brisbane?", "acceptedAnswer": { "@type": "Answer", "text": "Kelvin Grove offers a rare combination of inner-city proximity and genuine neighbourhood character. Victoria Park sits to the south, connecting the suburb to the CBD precinct on foot or by bike. The QUT Creative Industries campus brings a consistent energy to the area, and the urban village precinct has created a walkable hub that older parts of the suburb lacked. It is an area that functions well for people who want to live close to the city without the density of apartment-only precincts." } },
     { "@type": "Question", "name": "What types of homes are in Kelvin Grove?", "acceptedAnswer": { "@type": "Answer", "text": "Kelvin Grove has two distinct housing layers. The older, established parts of the suburb contain workers cottages, Queenslanders and character homes built across the early to mid twentieth century. The Kelvin Grove Urban Village, developed from the early 2000s, introduced a significant volume of townhouses, terraces and apartments into the suburb. These two markets attract different buyer profiles and are priced and campaigned differently." } }
   ]
-})}</script>
+})} />
 
 <!-- HERO -->
 <section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">

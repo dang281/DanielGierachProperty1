@@ -7,7 +7,7 @@ import { offMarketCount, offMarketUpdated } from '../../data/off-market-count';
   description="Most of the best homes in Bulimba, Hawthorne, Morningside and the wider inner east are sold before they reach realestate.com.au. Here is how buyers actually get access to them."
 >
 
-<script type="application/ld+json">{JSON.stringify({
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -32,7 +32,7 @@ import { offMarketCount, offMarketUpdated } from '../../data/off-market-count';
       "acceptedAnswer": { "@type": "Answer", "text": "Bulimba, Hawthorne, Balmoral and Morningside see consistent off-market and pre-market activity because supply is limited and buyer demand is high. Vendors in these suburbs often prefer a quiet, private sale over a full public campaign." }
     }
   ]
-})}</script>
+})} />
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 
