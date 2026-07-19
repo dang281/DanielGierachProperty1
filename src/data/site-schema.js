@@ -152,7 +152,7 @@ const globalSchema = {
           "name": "Bachelor of Property Economics, Queensland University of Technology"
         }
       ],
-      "description": "Daniel Gierach is a Brisbane inner-east real estate agent at Ray White Bulimba. He specialises in property sales across Camp Hill, Hawthorne, Bulimba, Norman Park, Balmoral, Seven Hills, Morningside, Cannon Hill, Murarrie and Carina. Not to be confused with Daniel Giersch, the German entrepreneur.",
+      "description": "Daniel Gierach is a Brisbane inner-east real estate agent at Ray White Bulimba. He specialises in property sales across Seven Hills, Norman Park, Morningside, Cannon Hill, Carina, Bulimba, Hawthorne, Balmoral, Camp Hill and Murarrie. Not to be confused with Daniel Giersch, the German entrepreneur.",
       "disambiguatingDescription": "Australian real estate agent based in Brisbane, Queensland. Distinct from Daniel Giersch, the German entrepreneur and former husband of Kelly Rutherford.",
       "url": "https://danielgierach.com",
       "telephone": "+61412523821",
