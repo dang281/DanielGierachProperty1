@@ -235,7 +235,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title="Daniel Gierach | Real Estate Agent Brisbane Inner East" description="Brisbane inner east real estate agent. A documented three-phase method to position your home and protect your sale price." schema={faqSchema} preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1200&q=70">
+<Layout title="Daniel Gierach | Real Estate Agent Brisbane Inner East" description="Brisbane inner east real estate agent. A documented three-phase method to position your home and protect your sale price. Serving Bulimba, Hawthorne, Balmoral, Morningside and Seven Hills." schema={faqSchema} preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1200&q=70">
 
 <!-- ════════════════════════════════════════════
      HERO
@@ -245,15 +245,16 @@ const faqSchema = {
 ════════════════════════════════════════════ -->
 <section class="relative min-h-dvh sm:min-h-dvh flex items-center overflow-hidden hero-section" style="background:linear-gradient(180deg,#dcc898 0%,#e6d9bd 100%);">
 
-  <!-- Parallax bg (served through Vercel image optimizer for WebP/AVIF + responsive sizes) -->
+  <!-- Parallax bg (served through Vercel image optimizer for WebP/AVIF + responsive sizes).
+       srcset widths must mirror Layout.astro's preload imagesrcset (640/1200/1440),
+       otherwise the browser preloads one width and fetches another = hero downloads twice. -->
   <div class="absolute inset-0 z-0" id="hero-bg">
     <img
-      src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70"
+      src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1200&q=70"
       srcset="
         /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=640&q=70 640w,
-        /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1080&q=70 1080w,
         /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1200&q=70 1200w,
-        /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1920&q=70 1920w
+        /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fb7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG&w=1440&q=70 1440w
       "
       sizes="100vw"
       alt="64 Valaria Avenue Seven Hills, listed by Daniel Gierach, Ray White Bulimba"

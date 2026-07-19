@@ -26,6 +26,7 @@ const reportSchema = {
   title="Instant Property Report | Daniel Gierach Property"
   description="Find out what your Brisbane property is worth. Get a free sales or rental appraisal report from Daniel Gierach, Ray White Bulimba."
   preloadImage="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fe543-H3474534-192843678__1773807208-74050-IMG2700p.jpg&w=1200&q=70"
+  preloadImageSizes="50vw"
   schema={reportSchema}
 >
 
@@ -353,6 +354,12 @@ const reportSchema = {
   <div class="report-left">
     <img
       src="/_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fe543-H3474534-192843678__1773807208-74050-IMG2700p.jpg&w=1200&q=70"
+      srcset="
+        /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fe543-H3474534-192843678__1773807208-74050-IMG2700p.jpg&w=640&q=70 640w,
+        /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fe543-H3474534-192843678__1773807208-74050-IMG2700p.jpg&w=1200&q=70 1200w,
+        /_vercel/image?url=https%3A%2F%2Fcdn6.ep.dynamics.net%2Fs3%2Frw-propertyimages%2Fe543-H3474534-192843678__1773807208-74050-IMG2700p.jpg&w=1440&q=70 1440w
+      "
+      sizes="50vw"
       alt=""
       class="report-left-img"
       aria-hidden="true"

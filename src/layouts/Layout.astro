@@ -12,6 +12,9 @@ interface Props {
   description?: string;
   schema?: any;
   preloadImage?: string;
+  /** Must match the hero <img> sizes attribute so the preload and the img pick the
+      same srcset candidate (a mismatch makes the browser download the hero twice). */
+  preloadImageSizes?: string;
   ogImage?: string;
   hideMobileCta?: boolean;
   hideFooterCta?: boolean;
@@ -34,6 +37,7 @@ const {
   description = 'Brisbane real estate agent at Ray White Bulimba. A documented method for selling homes across Brisbane, with deep local roots in the inner east and south.',
   schema,
   preloadImage,
+  preloadImageSizes = '100vw',
   ogImage,
   hideMobileCta = false,
   hideFooterCta = false,
@@ -141,7 +145,7 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <meta name="robots" content={draft ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} imagesrcset={`${preloadImage.replace(/w=\d+/, 'w=640')} 640w, ${preloadImage.replace(/w=\d+/, 'w=1200')} 1200w, ${preloadImage.replace(/w=\d+/, 'w=1440')} 1440w`} imagesizes="100vw" fetchpriority="high" />}
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} imagesrcset={`${preloadImage.replace(/w=\d+/, 'w=640')} 640w, ${preloadImage.replace(/w=\d+/, 'w=1200')} 1200w, ${preloadImage.replace(/w=\d+/, 'w=1440')} 1440w`} imagesizes={preloadImageSizes} fetchpriority="high" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn6.ep.dynamics.net" crossorigin />

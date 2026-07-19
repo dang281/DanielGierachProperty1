@@ -214,7 +214,7 @@ const year = new Date().getFullYear();
           { name: 'Conrad Leisemann', role: 'Lead Agent', photo: '/img/conrad-headshot.jpg', phone: '0403 978 813', tel: '+61403978813', email: 'conrad.leisemann@raywhite.com', key: 'conrad' },
         ].map(a => (
           <div style="background:var(--color-surface-1,#f2ead4);border:1px solid rgba(107,70,16,0.15);border-radius:16px;padding:1.25rem;display:flex;gap:1rem;align-items:center;">
-            <img src={a.photo} alt={a.name} loading="lazy" width="64" height="64" style="width:64px;height:64px;border-radius:999px;object-fit:cover;flex-shrink:0;" />
+            <img src={`/_vercel/image?url=${encodeURIComponent(a.photo)}&w=128&q=70`} srcset={`/_vercel/image?url=${encodeURIComponent(a.photo)}&w=96&q=70 1x, /_vercel/image?url=${encodeURIComponent(a.photo)}&w=128&q=70 2x, /_vercel/image?url=${encodeURIComponent(a.photo)}&w=256&q=70 3x`} alt={a.name} loading="lazy" width="64" height="64" style="width:64px;height:64px;border-radius:999px;object-fit:cover;flex-shrink:0;" />
             <div style="min-width:0;">
               <p style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-text-primary);line-height:1.2;">{a.name}</p>
               <p style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-gold-deep,#6b4610);margin:0.15rem 0 0.5rem;">{a.role} · Ray White Bulimba</p>
