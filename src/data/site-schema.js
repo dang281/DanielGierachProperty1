@@ -122,7 +122,7 @@ const globalSchema = {
         "https://www.linkedin.com/in/danielgierach",
         "https://www.facebook.com/danielgierachproperty",
         "https://www.instagram.com/dgierach/",
-        "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach",
+        "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach-mx883",
         "https://www.realestate.com.au/agent/daniel-gierach-3819232"
       ]
     },
@@ -265,7 +265,7 @@ const globalSchema = {
         "https://www.linkedin.com/in/danielgierach",
         "https://www.facebook.com/danielgierachproperty",
         "https://www.instagram.com/dgierach/",
-        "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach",
+        "https://www.ratemyagent.com.au/real-estate-agent/daniel-gierach-mx883",
         "https://www.realestate.com.au/agent/daniel-gierach-3819232",
         "https://danielgierach.com"
       ]
