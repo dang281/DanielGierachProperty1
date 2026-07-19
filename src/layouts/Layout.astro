@@ -424,6 +424,11 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
             <input type="hidden" name="_subject" value="Market update signup - insights article" />
             <input type="hidden" name="form_type" value="insights_market_update_signup" />
+            {/* Invisible context: which article they signed up from is the
+                best lead signal we have (a "selling in X" slug names their
+                suburb). Costs the reader nothing. */}
+            <input type="hidden" name="article" value={_bPath} />
+            <input type="hidden" name="page_title" value={title} />
             <input
               type="email" name="email" required placeholder="Your email address" autocomplete="email"
               style="flex:1;min-width:0;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(28,25,23,0.2);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;"
