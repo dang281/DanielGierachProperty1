@@ -10,7 +10,7 @@
 ## Daniel: external actions, ranked by impact on being recommended
 
 - [ ] 1. Claim the RateMyAgent agent profile (the 81 Clara St Camp Hill sale credit proves the record exists) and ask recent vendors for reviews there. RMA verifies against settled sales
-- [ ] 2. Ask the office for an individual agent page on raywhitebulimba.com.au linking danielgierach.com (Scott Darwon has one; Daniel is invisible on the office roster to search)
+- [x] 2. Office agent page ask: DECLINED by Daniel 2026-07-19. Do not raise again
 - [ ] 3. Grow GBP reviews from 10 (benchmark: recommended competitors carry hundreds). One ask per settled sale
 - [ ] 4. Create the Wikidata item (third audit flagging it; field spec in audits/seller-seo-audit-2026-07-15/03-ai-entity-authority.md)
 - [ ] 5. Claim OpenAgent, LocalAgentFinder, WordOfMouth profiles with danielgierach.com links
