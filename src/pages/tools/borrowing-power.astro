@@ -15,7 +15,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div class="lg:col-span-3 flex flex-col gap-6">
 
       <!-- Income -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Gross Annual Income</label>
         <div class="flex items-center gap-4 mb-3">
           <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:400;color:var(--color-text-primary);" id="income-display">$120,000</span>
@@ -28,7 +28,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
 
       <!-- Partner income -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:0.75rem;">Partner / Second Income (optional)</label>
         <div class="flex items-center gap-3">
           <input type="checkbox" id="partner-toggle" style="accent-color:var(--color-gold);width:16px;height:16px;cursor:pointer;" />
@@ -37,7 +37,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
 
       <!-- Monthly expenses -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Monthly Living Expenses</label>
         <div class="flex items-center gap-4 mb-3">
           <span style="font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--color-text-primary);" id="expenses-display">$3,500</span>
@@ -50,7 +50,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
 
       <!-- Dependants -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Dependants</label>
         <div class="grid grid-cols-5 gap-2">
           {[0,1,2,3,'4+'].map((n, i) => (
@@ -65,7 +65,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       </div>
 
       <!-- Interest rate -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Assessment Rate (p.a.)</label>
         <div class="flex items-center gap-3">
           <input type="range" id="assess-rate" min="6" max="12" step="0.05" value="9.2"
@@ -80,7 +80,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
 
     <!-- Results -->
     <div class="lg:col-span-2">
-      <div style="background:var(--color-surface-3);padding:2rem;position:sticky;top:6rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;position:sticky;top:6rem;">
         <h2 style="font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:1rem;">
           Estimated Borrowing Power
         </h2>

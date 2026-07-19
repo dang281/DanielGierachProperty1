@@ -16,7 +16,7 @@ import { suburbs } from '../../data/suburbs';
     <div class="lg:col-span-3 flex flex-col gap-6">
 
       <!-- Suburb selector -->
-      <div style="background:var(--color-surface-3);padding:2rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
         <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">Select Suburb</label>
         <select id="suburb-select" class="obs-select" style="width:100%;">
           <option value="">Choose a suburb...</option>
@@ -28,7 +28,7 @@ import { suburbs } from '../../data/suburbs';
 
       <!-- Risk display -->
       <div id="risk-panel" style="display:none;">
-        <div id="risk-card" style="background:var(--color-surface-3);padding:2rem;">
+        <div id="risk-card" style="background:var(--color-surface-3);border-radius:14px;padding:2rem;">
           <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.5rem;">
             <div id="risk-icon" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;"></div>
             <div>
@@ -41,7 +41,7 @@ import { suburbs } from '../../data/suburbs';
         </div>
 
         <!-- What this means -->
-        <div style="background:var(--color-surface-3);padding:2rem;margin-top:1.5rem;">
+        <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;margin-top:1.5rem;">
           <label style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-gold);display:block;margin-bottom:1rem;">What This Means for Buyers</label>
           <div id="implications" class="flex flex-col gap-3"></div>
         </div>
@@ -56,7 +56,7 @@ import { suburbs } from '../../data/suburbs';
 
     <!-- Info panel -->
     <div class="lg:col-span-2">
-      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;margin-bottom:1.5rem;">
         <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.25rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">Risk Level Guide</h3>
         <div class="flex flex-col gap-3">
           {[
@@ -75,7 +75,7 @@ import { suburbs } from '../../data/suburbs';
         </div>
       </div>
 
-      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;margin-bottom:1.5rem;">
         <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.25rem;border-bottom:1px solid rgba(72,72,72,0.2);padding-bottom:0.75rem;">Buyer Checklist</h3>
         <div class="flex flex-col gap-2">
           {[

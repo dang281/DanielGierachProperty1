@@ -12,7 +12,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
   <div class="max-w-2xl mx-auto pt-8">
 
     <!-- Data currency disclaimer -->
-    <div style="background:rgba(185,130,41,0.06);border-left:3px solid #b98229;padding:0.85rem 1.1rem;margin-bottom:1.5rem;">
+    <div style="background:rgba(185,130,41,0.06);border-left:3px solid #b98229;padding:0.85rem 1.1rem;margin-bottom:1.5rem; border-radius:12px;">
       <p style="font-family:var(--font-sans);font-size:0.72rem;color:var(--color-text-secondary);line-height:1.6;margin:0;">
         <strong style="color:var(--color-text-primary);">Suburb medians are indicative.</strong>
         Prices shown are a snapshot and may be 6 to 12 months behind the current market. Treat results as a starting point, then confirm against current sales evidence.
@@ -183,7 +183,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     const container = document.getElementById('quiz-container')!;
 
     container.innerHTML = `
-      <div style="background:var(--color-surface-3);padding:2rem;margin-bottom:1.5rem;">
+      <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;margin-bottom:1.5rem;">
         <p style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--color-text-primary);margin-bottom:1.5rem;line-height:1.4;">${q.text}</p>
         <div class="flex flex-col gap-3">
           ${q.options.map((opt, i) => `
@@ -241,7 +241,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
       const maxScore = sorted[0][1];
       const pct = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
       return `
-        <div style="background:var(--color-surface-3);padding:2rem;border-left:4px solid ${medals[i]};">
+        <div style="background:var(--color-surface-3);border-radius:14px;padding:2rem;border-left:4px solid ${medals[i]};">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.75rem;">
             <div>
               <p style="font-size:0.55rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:${medals[i]};margin-bottom:0.3rem;">${['Best Match', 'Strong Match', 'Good Match'][i]}</p>
