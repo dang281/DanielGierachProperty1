@@ -278,7 +278,7 @@ function buildProjection(allCoords, width, height, padding = 20) {
   return ([lon, lat]) => {
     const x = (lon - minLon) * lonScale * scale + offsetX;
     const y = (maxLat - lat) * scale + offsetY;
-    return [Number(x.toFixed(2)), Number(y.toFixed(2))];
+    return [Number(x.toFixed(0)), Number(y.toFixed(0))]; // integer px: on a 900x700 viewBox sub-pixel precision is invisible and doubles payload
   };
 }
 

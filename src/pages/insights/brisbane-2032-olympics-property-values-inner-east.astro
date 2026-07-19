@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-const draft = true; // STAGED: remove this line on publish date
+const draft = false; // published (was staged past its publish date, un-staged 2026-07-19); // STAGED: remove this line on publish date
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -40,7 +40,7 @@ const faqSchema = {
   ]
 };
 ---
-<Layout title="Brisbane 2032 Olympics and Property Values in the Inner East | Daniel Gierach Property" description="The 2032 Olympics is accelerating investment across Brisbane's inner east. Here is what it means for property values, which suburbs are most affected, and what sellers should know." draft={draft} schema={faqSchema}>
+<Layout title="Brisbane 2032 Olympics and Property Values in the Inner East | Daniel Gierach Property" description="The 2032 Olympics is accelerating investment across Brisbane's inner east. Here is what it means for property values, which suburbs are most affected." draft={draft} schema={faqSchema}>
 
 <article style="background:var(--color-surface-0);min-height:100vh;">
 

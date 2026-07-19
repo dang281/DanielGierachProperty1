@@ -1,5 +1,22 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import scheduleData from '../../data/seo-schedule.json';
+
+// TECH-03 (2026-07-19): complete A to Z index of every LIVE article so none is
+// orphaned. 292 of 747 articles previously had zero internal links anywhere on
+// the site. Generated at build time from the filesystem (published files that
+// are not staged drafts) plus schedule titles; the curated cards below stay.
+const _titleBySlug = new Map((scheduleData as any).articles.map((a: any) => [a.slug, a.title]));
+const allLiveArticles = readdirSync('src/pages/insights')
+  .filter((f) => f.endsWith('.astro') && f !== 'index.astro' && f !== '.astro' && statSync(`src/pages/insights/${f}`).isFile())
+  .filter((f) => !/const draft = true/.test(readFileSync(`src/pages/insights/${f}`, 'utf8')))
+  .map((f) => {
+    const slug = f.replace('.astro', '');
+    const title = (_titleBySlug.get(slug) as string) ?? slug.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+    return { slug, title };
+  })
+  .sort((a, b) => a.title.localeCompare(b.title));
 
 const articles = [
   { slug: 'professionals-you-need-when-selling-your-home-brisbane', tag: 'Sellers', title: "Who You'll Need on Your Team When Selling Your Brisbane Home", summary: "A full list of the professionals a typical Brisbane home sale involves, from the listing agent and conveyancer through to stylists, photographers, removalists, and brokers, and how to decide which ones you actually need.", readTime: '10 min read' },
@@ -723,6 +740,25 @@ function filterCount(f: string): number {
         Get My Free Property Report
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Complete A to Z index: every live guide, so no article is orphaned -->
+<section style="background:var(--color-surface-1);padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
+  <div class="max-w-[1280px] mx-auto px-8 sm:px-12 lg:px-16">
+    <span class="eyebrow mb-3" style="display:block;">Every Guide</span>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--color-text-primary);letter-spacing:-0.01em;line-height:1.2;margin-bottom:0.75rem;">
+      The full library, A to Z.
+    </h2>
+    <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:2rem;max-width:52ch;line-height:1.7;">
+      All {allLiveArticles.length} guides on selling, buying and owning property in Brisbane.
+    </p>
+    <div style="columns:1;column-gap:2.5rem;" class="sm:!columns-2 lg:!columns-3">
+      {allLiveArticles.map((a) => (
+        <a href={`/insights/${a.slug}`} style="display:block;font-family:var(--font-sans);font-size:0.78rem;line-height:1.5;color:rgba(25,24,23,0.72);text-decoration:none;padding:0.28rem 0;break-inside:avoid;" onmouseover="this.style.color='#b98229'" onmouseout="this.style.color='rgba(25,24,23,0.72)'">{a.title}</a>
+      ))}
     </div>
   </div>
 </section>

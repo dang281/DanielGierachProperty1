@@ -23,7 +23,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
     <div class="flex items-center gap-0 mb-8" id="step-indicator">
       {[1,2,3].map((s, i) => (
         <div class="flex items-center flex-1">
-          <div class={`step-dot`} data-step={s} style={`width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;letter-spacing:0.05em;border:2px solid ${s === 1 ? 'var(--color-gold)' : 'rgba(72,72,72,0.3)'};color:${s === 1 ? 'var(--color-gold)' : 'var(--color-text-muted)'};flex-shrink:0;transition:all 0.3s;`}>
+          <div class={`step-dot`} data-step={s} style={`width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;letter-spacing:0.05em;border-radius:10px;border:2px solid ${s === 1 ? 'var(--color-gold)' : 'rgba(72,72,72,0.3)'};color:${s === 1 ? 'var(--color-gold)' : 'var(--color-text-muted)'};flex-shrink:0;transition:all 0.3s;`}>
             {s}
           </div>
           {i < 2 && <div class="step-line" data-line={s} style={`flex:1;height:2px;background:${s < 1 ? 'var(--color-gold)' : 'rgba(72,72,72,0.2)'};transition:background 0.3s;`}></div>}
@@ -81,7 +81,7 @@ import ToolLayout from '../../layouts/ToolLayout.astro';
               {['House', 'Unit / Apt', 'Terrace'].map((t, i) => (
                 <label style="cursor:pointer;text-align:center;">
                   <input type="radio" name="prop-type" value={t.toLowerCase().replace(' / ', '-')} checked={i === 0} style="display:none;" />
-                  <div class={`ptype-label`} style={`padding:0.75rem;background:var(--color-surface-4);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-primary);border:2px solid ${i === 0 ? 'var(--color-gold)' : 'transparent'};transition:all 0.2s;`}>
+                  <div class={`ptype-label`} style={`padding:0.75rem;background:var(--color-surface-4);border-radius:10px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-primary);border:2px solid ${i === 0 ? 'var(--color-gold)' : 'transparent'};transition:all 0.2s;`}>
                     {t}
                   </div>
                 </label>
