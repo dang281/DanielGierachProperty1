@@ -898,13 +898,16 @@ const faqSchema = {
       <input type="hidden" name="_subject" value="Suburb report signup - danielgierach.com" />
       <input type="hidden" name="form_type" value="suburb_report_signup" />
       <div style="display:flex;gap:0.75rem;width:100%;flex-wrap:wrap;">
-        <input type="text" name="suburb" required placeholder="Your suburb (e.g. Camp Hill)" autocomplete="address-level2"
-          style="flex:1;min-width:220px;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(107,70,16,0.28);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;border-radius:10px;"
+        <input type="text" name="first_name" required placeholder="First name" autocomplete="given-name"
+          style="flex:1;min-width:140px;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(107,70,16,0.28);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;border-radius:10px;"
         />
-        <input type="email" name="email" required placeholder="Your email address" autocomplete="email"
-          style="flex:2;min-width:180px;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(107,70,16,0.28);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;border-radius:10px;"
+        <input type="text" name="suburb" required placeholder="Your suburb (e.g. Camp Hill)" autocomplete="address-level2"
+          style="flex:1.4;min-width:200px;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(107,70,16,0.28);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;border-radius:10px;"
         />
       </div>
+      <input type="email" name="email" required placeholder="Your email address" autocomplete="email"
+        style="width:100%;font-family:var(--font-sans);font-size:0.875rem;padding:0.85rem 1.1rem;border:1px solid rgba(107,70,16,0.28);background:var(--color-surface-0);color:var(--color-text-primary);outline:none;border-radius:10px;"
+      />
       <button type="submit" class="btn-gold"
         style="white-space:nowrap;width:100%;justify-content:center;"
         onclick="gtag('event', 'email_signup_click', { event_category: 'lead', event_label: 'Suburb Report' })"
