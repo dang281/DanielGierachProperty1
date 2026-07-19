@@ -81,24 +81,34 @@ const appraisalSchema = {
         <input type="hidden" name="_subject" value="Appraisal request, wider Brisbane" />
         <input type="hidden" name="_source" value="get-an-appraisal" />
 
-        <input type="text" name="name" required placeholder="Your name" autocomplete="name" aria-label="Your name"
-          class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
-        <input type="email" name="email" required placeholder="Email address" autocomplete="email" aria-label="Email address"
-          class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
-        <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" aria-label="Phone, optional"
-          class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
-        <input id="appraisal-suburb" type="text" name="suburb" required placeholder="Suburb" aria-label="Suburb"
-          class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
-        <input type="text" name="property_address" required placeholder="Property address (street + number)" aria-label="Property address"
-          class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
-        <textarea name="notes" rows="3" placeholder="Anything Daniel should know? (timing, situation, target price)" aria-label="Notes, timing, situation, target price"
-          class="form-field"
-          style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:var(--color-surface-3); color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%; resize:vertical;"></textarea>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
+          <div>
+            <label for="ga-name" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">Name <span style="color:#b98229;">*</span></label>
+            <input id="ga-name" type="text" name="name" required autocomplete="name" class="form-field" style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:#ffffff; color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
+          </div>
+          <div>
+            <label for="ga-phone" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">Phone</label>
+            <input id="ga-phone" type="tel" name="phone" autocomplete="tel" placeholder="04xx xxx xxx" class="form-field" style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:#ffffff; color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
+          </div>
+        </div>
+        <div>
+          <label for="ga-email" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">Email <span style="color:#b98229;">*</span></label>
+          <input id="ga-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com" class="form-field" style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:#ffffff; color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
+          <div>
+            <label for="appraisal-suburb" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">Suburb <span style="color:#b98229;">*</span></label>
+            <input id="appraisal-suburb" type="text" name="suburb" required class="form-field" style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:#ffffff; color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
+          </div>
+          <div>
+            <label for="ga-address" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">Property address <span style="color:#b98229;">*</span></label>
+            <input id="ga-address" type="text" name="property_address" required placeholder="Street + number" class="form-field" style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:#ffffff; color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%;" />
+          </div>
+        </div>
+        <div>
+          <label for="ga-notes" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">Anything Daniel should know?</label>
+          <textarea id="ga-notes" name="notes" rows="3" placeholder="Timing, situation, target price" class="form-field" style="font-family:var(--font-sans); font-size:0.92rem; padding:0.8rem 1rem; border:1px solid rgba(28,25,23,0.18); background:#ffffff; color:#191817; outline:none; box-sizing:border-box; border-radius:10px; width:100%; resize:vertical;"></textarea>
+        </div>
 
         <button type="submit" class="btn-gold" style="margin-top:0.5rem; justify-content:center;">
           Request appraisal

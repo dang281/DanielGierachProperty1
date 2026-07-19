@@ -713,3 +713,15 @@ article > div[style*="padding:8rem 0 4rem"] {
     min-height: 44px;
   }
 }
+
+/* Fraunces personality pin (2026-07-19): with optical sizing on auto, large
+   heroes drift into the sharp high-opsz cut Daniel reads as "the old text
+   type". Pin every heading to the soft characterful cut he approved. Inert
+   on Manrope elements (no opsz axis). */
+h1, h2, h3, .font-serif {
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 30;
+}
+
+/* Resource/guide cards follow the card radius standard. */
+.resource-card { border-radius: 14px; }
