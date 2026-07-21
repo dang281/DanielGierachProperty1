@@ -9,9 +9,12 @@ const publicDir = resolve(__dirname, '..', 'public');
 
 const svgSource = await readFile(resolve(publicDir, 'favicon.svg'), 'utf8');
 
-// `square: true` flattens the rounded corners to a full-bleed tile so the
-// installed-app / home-screen icons have no transparent corners for the OS
-// mask to render as black. The browser-tab favicon keeps the rounded corners.
+// The favicon is a circle. `square: true` fills the transparent corners with
+// the cream background so installed-app / home-screen icons are a full-bleed
+// tile (no transparent corners for the OS mask to render as black). The
+// browser-tab favicon + .ico stay a transparent circle so Google's circular
+// crop and browser tabs show a clean disc.
+const CREAM = '#e6d9bd';
 const targets = [
   { file: 'favicon.ico', size: 32, square: false },
   { file: 'apple-touch-icon.png', size: 180, square: true },
@@ -24,7 +27,9 @@ try {
   for (const { file, size, square } of targets) {
     const page = await browser.newPage();
     await page.setViewport({ width: size, height: size, deviceScaleFactor: 1 });
-    const svg = square ? svgSource.replace(/rx="6"/g, 'rx="0"') : svgSource;
+    const svg = square
+      ? svgSource.replace(/(<svg[^>]*>)/, `$1<rect width="32" height="32" fill="${CREAM}"/>`)
+      : svgSource;
     const html = `<!doctype html><html><head>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

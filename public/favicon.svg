@@ -1,14 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- GieMann seal: full-bleed deep-gold disc + cream DG monogram.
-       Full-bleed background means Google's circular crop shows a clean disc
-       with no clipped corners; the monogram is sized and centred inside the
-       safe zone so it never gets cut off at small sizes. -->
-  <rect width="32" height="32" rx="6" fill="#6b4610"/>
+  <!-- GieMann seal: cream disc + gold ring + gold DG monogram.
+       Built as a full-bleed CIRCLE so it fits Google's circular favicon slot
+       exactly (no square corners to clip); the gold ring defines the edge
+       against a white background and the monogram stays inside the safe
+       centre so it never gets cut off. -->
+  <circle cx="16" cy="16" r="16" fill="#e6d9bd"/>
+  <circle cx="16" cy="16" r="14.4" fill="none" stroke="#b98229" stroke-width="1.5"/>
   <text x="16" y="21.2"
     font-family="'Fraunces','Playfair Display','Cormorant Garamond',Georgia,'Times New Roman',serif"
-    font-size="14"
+    font-size="13.5"
     font-weight="700"
-    fill="#f2ead4"
+    fill="#b98229"
     text-anchor="middle"
     letter-spacing="-0.3">DG</text>
 </svg>
