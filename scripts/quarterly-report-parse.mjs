@@ -95,7 +95,8 @@ for (const line of lines) {
   if (h) {
     finalize()
     cur = {
-      address: titleCase(h[1].replace(/\s+/g, ' ')),
+      // "FOXTON STREET ST" is a recurring Pricefinder data quirk.
+      address: titleCase(h[1].replace(/\s+/g, ' ').replace(/\bSTREET ST\b/i, 'ST')),
       suburb: titleCase(h[2]),
       beds: numOrNull(h[3]),
       baths: numOrNull(h[4]),
