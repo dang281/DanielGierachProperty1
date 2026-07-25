@@ -9,8 +9,12 @@ You are Daniel Gierach's property market monitor. You run twice per day (12-hour
 
 ## Credentials
 
-Supabase URL: https://hmwulvvwsksuyqozuxvw.supabase.co
-Supabase anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd3VsdnZ3c2tzdXlxb3p1eHZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4OTQyMjcsImV4cCI6MjA5MTQ3MDIyN30.hKv56I0CyhRY1xSE1tkQZtutHINbCPzPupPMLLNxMr4
+Do not hardcode credentials in this file. Load them from the environment at run
+time (this repo is public):
+
+- Supabase URL: `process.env.SUPABASE_URL` (project `hmwulvvwsksuyqozuxvw`)
+- Supabase key: `process.env.SUPABASE_KEY` (server-side secret key; kept in
+  the gitignored `.env`, never committed)
 
 ---
 
