@@ -82,11 +82,10 @@ function finalize() {
   cur.daysToSell = days ? Number(days) : null
   cur.office = f(/Office Name:\s*(.+)$/m)
   cur.agent = f(/Agent Name:\s*(.+)$/m)
-  // REA property-profile link (public page for the address; photos + history).
-  const slugAddr = cur.address.toLowerCase()
-    .replace(/\bstreet st\b/, 'st') // Pricefinder data quirk: "FOXTON STREET ST"
-    .replace(/\//g, '-').replace(/[^a-z0-9- ]/g, '').trim().replace(/\s+/g, '-')
-  cur.rea = `https://www.realestate.com.au/property/${slugAddr}-${cur.suburb.toLowerCase().replace(/\s+/g, '-')}-qld-${summary.postcode ?? ''}/`
+  // Guessed REA/Domain property URLs fail too often (units use a different
+  // slug format and neither site lets us verify). A Google search on the
+  // exact address always lands the reader on the live listing result.
+  cur.search = 'https://www.google.com/search?q=' + encodeURIComponent(`"${cur.address}, ${cur.suburb} QLD" sold`)
   sales.push(cur)
   cur = null
   curBlock = []
