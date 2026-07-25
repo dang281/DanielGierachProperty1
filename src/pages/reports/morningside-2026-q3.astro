@@ -67,16 +67,20 @@ const pins = sales
 
 <style>
   :root {
-    --bg: #e6d9bd; --card: #f2ead4; --white: #fdfcf7; --ink: #191817;
+    --bg: #e6d9bd; --card: #f2ead4; --heritage: #ddccaa; --white: #fdfcf7; --ink: #191817;
     --ink-2: rgba(25, 24, 23, 0.72); --ink-3: rgba(25, 24, 23, 0.55);
-    --gold: #b98229; --gold-deep: #6b4610; --line: rgba(25, 24, 23, 0.12);
+    --gold: #b98229; --gold-deep: #6b4610; --line: rgba(107, 70, 16, 0.14);
     --house: #a87718; --unit: #1e64ab;
-    --cream: #f0ece4; --cream-dim: rgba(240, 236, 228, 0.78);
   }
   * { box-sizing: border-box; }
   body { background: var(--bg); color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; margin: 0; }
   .inner { max-width: 780px; margin: 0 auto; padding: 0 1.1rem; }
   @media (min-width: 1024px) { .inner { max-width: 960px; } }
+
+  /* Ornamental divider between bands, straight from the-collective. */
+  .ornament { display: flex; align-items: center; justify-content: center; gap: 1.5rem; max-width: 420px; margin: 0 auto; padding: 34px 24px; }
+  .ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(107, 70, 16, 0.55), transparent); }
+  .ornament-mark { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; color: var(--gold); line-height: 1; }
 
   a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
 
@@ -87,29 +91,33 @@ const pins = sales
     .rise { opacity: 1; transform: none; transition: none; }
   }
 
-  /* ── Hero band ─────────────────────────────────────────────── */
-  .hero { background: var(--ink); color: var(--cream); padding: 2.6rem 0 4.6rem; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 0.7rem; }
-  h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: clamp(2rem, 6.5vw, 3rem); line-height: 1.08; margin: 0 0 0.5rem; }
-  h1 em { font-style: italic; color: var(--gold); }
-  .period { color: var(--cream-dim); font-size: 0.95rem; margin: 0; }
-  .prepared-for { display: none; border: 1px solid var(--gold); border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.85rem; font-weight: 600; color: var(--cream); margin: 1.1rem 0 0; width: fit-content; }
-  .prepared-for .star { color: var(--gold); margin-right: 0.4rem; }
+  /* ── Hero · editorial anchor with soft gold glow (site pattern) ── */
+  .hero { position: relative; background: var(--bg); padding: 4.2rem 0 2.2rem; overflow: hidden; text-align: center; }
+  .hero-glow { position: absolute; top: -4%; left: 50%; transform: translateX(-50%); width: 780px; height: 520px; background: radial-gradient(ellipse at center, rgba(185, 130, 41, 0.18) 0%, rgba(185, 130, 41, 0.04) 45%, rgba(185, 130, 41, 0) 70%); pointer-events: none; }
+  .hero .inner { position: relative; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-deep); font-weight: 700; margin: 0 0 1.1rem; }
+  h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 300; font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.04; letter-spacing: -0.03em; margin: 0 0 1.4rem; font-variation-settings: "opsz" 144; }
+  h1 em { font-style: italic; font-weight: 300; color: var(--gold-deep); }
+  .hero-divider { display: inline-flex; align-items: center; justify-content: center; gap: 0.85rem; margin: 0 auto 1.4rem; width: 100%; max-width: 240px; }
+  .hero-divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(107, 70, 16, 0.35), transparent); }
+  .hero-divider-mark { font-family: 'Fraunces', Georgia, serif; font-size: 0.9rem; color: var(--gold); line-height: 1; }
+  .period { color: var(--ink-2); font-size: 1.02rem; line-height: 1.7; margin: 0; }
+  .prepared-for { display: none; align-items: center; gap: 0.55rem; background: rgba(255, 255, 255, 0.35); border: 1px solid rgba(185, 130, 41, 0.55); border-radius: 999px; padding: 0.6rem 1.2rem; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-deep); margin: 1.5rem auto 0; width: fit-content; box-shadow: 0 6px 22px rgba(107, 70, 16, 0.1), 0 1px 0 rgba(255, 255, 255, 0.6) inset; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 
-  /* ── Stat cards overlapping the hero ───────────────────────── */
-  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: -3.2rem; }
+  /* ── Stat cards ────────────────────────────────────────────── */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; padding: 1.6rem 0 0.4rem; }
   @media (min-width: 620px) { .stats { grid-template-columns: 1.35fr 1fr 1fr 1fr; } }
-  .stat { background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 16px; padding: 1rem 1.1rem; box-shadow: 0 10px 26px rgba(25, 24, 23, 0.12); }
-  .stat .v { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-weight: 600; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.05rem 1.15rem; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 18px rgba(107, 70, 16, 0.08); }
+  .stat .v { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-weight: 500; line-height: 1.05; font-variant-numeric: tabular-nums; }
   .stat.lead .v { font-size: 2rem; color: var(--gold-deep); }
-  .stat .l { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-top: 0.4rem; }
+  .stat .l { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-top: 0.45rem; }
 
   /* ── Section scaffolding ───────────────────────────────────── */
   .section-label { display: flex; align-items: baseline; gap: 0.7rem; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-deep); font-weight: 700; margin: 0 0 1rem; }
   .section-label .n { font-family: 'Fraunces', Georgia, serif; font-size: 1.35rem; color: var(--gold); font-weight: 500; letter-spacing: 0; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); align-self: center; }
-  .band { padding: 2.6rem 0; }
-  .band.white { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .band { padding: 3rem 0; }
+  .band.tone { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.35); }
 
   .brief { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.05rem, 3.6vw, 1.3rem); line-height: 1.55; font-weight: 400; margin: 0; max-width: 60ch; }
   .brief strong { color: var(--gold-deep); font-weight: 600; }
@@ -135,10 +143,10 @@ const pins = sales
   /* ── Sales cards ───────────────────────────────────────────── */
   .sales-grid { display: grid; grid-template-columns: 1fr; gap: 0.65rem; }
   @media (min-width: 720px) { .sales-grid { grid-template-columns: 1fr 1fr; } }
-  .sale { background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--house); border-radius: 12px; padding: 0.9rem 1.05rem; transition: transform 0.18s ease-out, box-shadow 0.18s ease-out; }
-  .sale:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(25, 24, 23, 0.1); }
+  .sale { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--house); border-radius: 16px; padding: 0.9rem 1.05rem; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45); transition: transform 0.18s ease-out, box-shadow 0.18s ease-out; }
+  .sale:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 8px 20px rgba(107, 70, 16, 0.12); }
   @media (prefers-reduced-motion: reduce) { .sale, .sale:hover { transform: none; transition: none; } }
-  .band.white .sale { background: var(--card); }
+  .band.tone .sale { background: var(--white); }
   .sale.unit-card { border-left-color: var(--unit); }
   .sale-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
   .sale-addr { font-weight: 700; font-size: 0.97rem; }
@@ -149,22 +157,22 @@ const pins = sales
   .sale-links a { color: var(--gold); font-weight: 700; font-size: 0.82rem; text-decoration: none; }
   .sale-links a:hover { text-decoration: underline; }
 
-  /* ── Pull-quote band ───────────────────────────────────────── */
-  .quote-band { background: var(--gold-deep); color: var(--cream); padding: 2.3rem 0; }
-  .quote-band p { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(1.15rem, 4vw, 1.5rem); line-height: 1.5; margin: 0; max-width: 34ch; }
+  /* ── Pull-quote band · heritage tone (site pattern) ────────── */
+  .quote-band { background: var(--heritage); border-top: 1px solid rgba(107, 70, 16, 0.16); border-bottom: 1px solid rgba(107, 70, 16, 0.16); padding: 2.6rem 0; text-align: center; }
+  .quote-band p { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 300; font-size: clamp(1.25rem, 4.4vw, 1.7rem); line-height: 1.5; color: var(--gold-deep); margin: 0 auto; max-width: 34ch; }
 
   /* ── CTA ───────────────────────────────────────────────────── */
-  .cta-band { background: var(--ink); color: var(--cream); padding: 3rem 0; text-align: center; }
-  .cta-heads { display: flex; justify-content: center; gap: -10px; margin-bottom: 1rem; }
-  .cta-heads img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); }
+  .cta-band { background: var(--bg); padding: 3.2rem 0 2.6rem; text-align: center; }
+  .cta-heads { display: flex; justify-content: center; margin-bottom: 1.1rem; }
+  .cta-heads img { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); box-shadow: 0 6px 18px rgba(107, 70, 16, 0.18); }
   .cta-heads img + img { margin-left: -14px; }
-  .cta-names { font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; margin: 0 0 0.3rem; }
-  .cta-band p.sub { color: var(--cream-dim); font-size: 0.93rem; line-height: 1.6; max-width: 46ch; margin: 0 auto 1.4rem; }
+  .cta-names { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 1.5rem; margin: 0 0 0.35rem; }
+  .cta-band p.sub { color: var(--ink-2); font-size: 0.95rem; line-height: 1.7; max-width: 46ch; margin: 0 auto 1.5rem; }
   .cta-btn { display: inline-block; background: var(--gold); color: #fff; font-weight: 700; padding: 0.85rem 1.8rem; border-radius: 10px; text-decoration: none; font-size: 0.98rem; min-height: 44px; transition: transform 0.15s ease-out, filter 0.15s ease-out; }
   .cta-btn:hover { filter: brightness(1.06); }
   .cta-btn:active { transform: scale(0.97); }
   @media (prefers-reduced-motion: reduce) { .cta-btn, .cta-btn:active { transform: none; transition: none; } }
-  .cta-sub { font-size: 0.78rem; color: var(--cream-dim); margin-top: 0.9rem; }
+  .cta-sub { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.9rem; }
 
   .disclaimer { font-size: 0.7rem; color: var(--ink-3); line-height: 1.5; padding: 1.8rem 0 2.6rem; }
 
@@ -177,9 +185,15 @@ const pins = sales
 </style>
 
 <div class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="inner">
     <p class="eyebrow">Ray White &middot; The Collective &middot; Quarterly Report</p>
-    <h1>{suburb} <em>Market Report</em></h1>
+    <h1>{suburb}<br /><em>Market Report</em></h1>
+    <div class="hero-divider" aria-hidden="true">
+      <span class="hero-divider-line"></span>
+      <span class="hero-divider-mark">✦</span>
+      <span class="hero-divider-line"></span>
+    </div>
     <p class="period">{period} &middot; every recorded sale in {suburb} 4170</p>
     <p class="prepared-for" id="prepared-for"></p>
   </div>
@@ -194,7 +208,13 @@ const pins = sales
   </div>
 </div>
 
-<div class="band">
+<div class="ornament" aria-hidden="true">
+  <span class="ornament-line"></span>
+  <span class="ornament-mark">✦</span>
+  <span class="ornament-line"></span>
+</div>
+
+<div class="band" style="padding-top: 0">
   <div class="inner">
     <h2 class="section-label"><span class="n">01</span> The quarter in brief</h2>
     <p class="brief">
@@ -203,7 +223,7 @@ const pins = sales
   </div>
 </div>
 
-<div class="band white">
+<div class="band tone">
   <div class="inner">
     <h2 class="section-label"><span class="n">02</span> Where the prices landed</h2>
     <div class="legend">
@@ -244,7 +264,7 @@ const pins = sales
   </div>
 </div>
 
-<div class="band white">
+<div class="band tone">
   <div class="inner">
     <h2 class="section-label"><span class="n">04</span> Houses &middot; {houses.length} sales</h2>
     <div class="sales-grid">
@@ -295,6 +315,11 @@ const pins = sales
 </div>
 
 <div class="cta-band">
+  <div class="ornament" aria-hidden="true" style="padding-top: 0">
+    <span class="ornament-line"></span>
+    <span class="ornament-mark">✦</span>
+    <span class="ornament-line"></span>
+  </div>
   <div class="inner">
     <div class="cta-heads">
       <img src="/img/daniel-headshot-tight.jpg" alt="Daniel Gierach" width="64" height="64" loading="lazy" />
