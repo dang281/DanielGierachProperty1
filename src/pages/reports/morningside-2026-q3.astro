@@ -1,0 +1,210 @@
+---
+// Quarterly suburb market report, built from a Pricefinder sales export via
+// scripts/quarterly-report-parse.mjs. Shared 1:1 with quarterly-update
+// contacts by email/SMS. Personalisation comes entirely from the URL
+// (?for=21+Lawson+Street&lat=-27.46&lng=153.07) so no contact data is baked
+// into the page. LandingLayout = noindex.
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import report from '../../data/reports/morningside-2026-q3.json';
+
+const { summary, sales } = report;
+const suburb = 'Morningside';
+const period = 'April to July 2026';
+
+const fmtPrice = (n) => (n == null ? null : '$' + n.toLocaleString('en-AU'));
+const sold = sales.filter((s) => !s.priceWithheld && s.price);
+const houses = sales.filter((s) => s.type === 'House');
+const units = sales.filter((s) => s.type === 'Unit');
+const median = summary?.median?.price ?? null;
+const medianDays = summary?.median?.days ?? null;
+
+// Serialise only what the map needs.
+const pins = sales
+  .filter((s) => s.lat && s.lng)
+  .map((s) => ({
+    a: s.address, p: s.price, w: s.priceWithheld, lp: s.lastPrice,
+    b: s.beds, ba: s.baths, c: s.cars, ar: s.area, d: s.saleDate,
+    ds: s.daysToSell, t: s.type, r: s.rea, lat: s.lat, lng: s.lng,
+  }));
+---
+
+<LandingLayout
+  title={`${suburb} Quarterly Market Report | Daniel Gierach & Conrad Leisemann`}
+  description={`Every ${suburb} sale from ${period}: prices, days on market and an interactive sales map. Prepared by Daniel Gierach and Conrad Leisemann, Ray White Bulimba.`}
+  faviconSvg="/favicon-dc.svg?v=3"
+  appleTouchIcon="/apple-touch-icon-dc.png?v=2"
+  appleWebAppTitle="Market Report"
+>
+
+<link rel="stylesheet" href="/lib/leaflet/leaflet.css" />
+<script is:inline defer src="/lib/leaflet/leaflet.js"></script>
+
+<style>
+  :root {
+    --bg: #e6d9bd; --card: #f2ead4; --ink: #191817;
+    --ink-2: rgba(25, 24, 23, 0.72); --ink-3: rgba(25, 24, 23, 0.55);
+    --gold: #b98229; --gold-deep: #6b4610; --line: rgba(25, 24, 23, 0.12);
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; margin: 0; }
+  .shell { max-width: 760px; margin: 0 auto; padding: 2rem 1.1rem 3rem; }
+
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); font-weight: 700; margin: 0 0 0.5rem; }
+  h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: clamp(1.7rem, 5.5vw, 2.4rem); line-height: 1.15; margin: 0 0 0.35rem; }
+  .period { color: var(--ink-2); font-size: 0.95rem; margin: 0 0 0.4rem; }
+  .prepared-for { display: none; background: var(--card); border: 1px solid var(--gold); border-radius: 999px; padding: 0.4rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--gold-deep); margin: 0.8rem 0 0; width: fit-content; }
+
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; margin: 1.5rem 0; }
+  @media (min-width: 560px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0.9rem 1rem; }
+  .stat .v { font-family: 'Fraunces', Georgia, serif; font-size: 1.45rem; font-weight: 600; color: var(--ink); line-height: 1.1; }
+  .stat .l { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-top: 0.3rem; }
+
+  .map-wrap { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); margin: 1.2rem 0 0.5rem; }
+  #report-map { height: 420px; width: 100%; background: #dcd2b8; }
+  .map-hint { font-size: 0.8rem; color: var(--ink-3); margin: 0.5rem 0 0; }
+
+  .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); font-weight: 700; margin: 2.2rem 0 0.8rem; display: block; }
+  .sale { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0.95rem 1.1rem; margin-bottom: 0.7rem; }
+  .sale-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+  .sale-addr { font-weight: 700; font-size: 0.98rem; }
+  .sale-price { font-family: 'Fraunces', Georgia, serif; font-size: 1.15rem; font-weight: 600; color: var(--gold-deep); white-space: nowrap; }
+  .sale-price.withheld { font-size: 0.9rem; font-family: inherit; font-weight: 600; color: var(--ink-3); }
+  .sale-meta { font-size: 0.83rem; color: var(--ink-2); margin-top: 0.35rem; }
+  .sale-links { margin-top: 0.5rem; }
+  .sale-links a { color: var(--gold); font-weight: 700; font-size: 0.83rem; text-decoration: none; }
+  .sale-links a:hover { text-decoration: underline; }
+
+  .cta { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem 1.3rem; margin-top: 2.4rem; text-align: center; }
+  .cta p { margin: 0 0 1rem; color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; }
+  .cta .names { font-family: 'Fraunces', Georgia, serif; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.2rem; font-weight: 600; }
+  .cta-btn { display: inline-block; background: var(--gold); color: #fff; font-weight: 700; padding: 0.75rem 1.6rem; border-radius: 10px; text-decoration: none; font-size: 0.95rem; }
+  .cta-sub { font-size: 0.8rem; color: var(--ink-3); margin-top: 0.7rem; }
+
+  .disclaimer { font-size: 0.7rem; color: var(--ink-3); line-height: 1.5; margin-top: 2.2rem; }
+
+  @media print {
+    .map-wrap { break-inside: avoid; }
+    .sale { break-inside: avoid; border: 1px solid #ccc; }
+    .cta-btn { border: 1px solid var(--gold); }
+  }
+</style>
+
+<div class="shell">
+  <header>
+    <p class="eyebrow">Ray White &middot; The Collective</p>
+    <h1>{suburb} Market Report</h1>
+    <p class="period">{period} &middot; every recorded sale in {suburb} 4170</p>
+    <p class="prepared-for" id="prepared-for"></p>
+  </header>
+
+  <div class="stats">
+    {median && <div class="stat"><div class="v">{fmtPrice(median)}</div><div class="l">Median sale</div></div>}
+    <div class="stat"><div class="v">{sales.length}</div><div class="l">Sales recorded</div></div>
+    {medianDays != null && <div class="stat"><div class="v">{medianDays} days</div><div class="l">Median time to sell</div></div>}
+    <div class="stat"><div class="v">{houses.length} / {units.length}</div><div class="l">Houses / units</div></div>
+  </div>
+
+  <div class="map-wrap"><div id="report-map"></div></div>
+  <p class="map-hint">Tap a pin for the sale details and the realestate.com.au listing.</p>
+
+  <span class="section-label">Houses &middot; {houses.length} sales</span>
+  {houses.map((s) => (
+    <div class="sale">
+      <div class="sale-top">
+        <span class="sale-addr">{s.address}</span>
+        {s.priceWithheld
+          ? <span class="sale-price withheld">Price withheld{s.lastPrice ? ` · listed ${s.lastPrice}` : ''}</span>
+          : <span class="sale-price">{fmtPrice(s.price)}</span>}
+      </div>
+      <div class="sale-meta">
+        {[s.beds && `${s.beds} bed`, s.baths && `${s.baths} bath`, s.cars && `${s.cars} car`, s.area && `${s.area.toLocaleString('en-AU')} m² land`, s.saleDate && `sold ${s.saleDate}`, s.daysToSell != null && `${s.daysToSell} days on market`].filter(Boolean).join(' · ')}
+      </div>
+      <div class="sale-links"><a href={s.rea} target="_blank" rel="noopener">View on realestate.com.au →</a></div>
+    </div>
+  ))}
+
+  <span class="section-label">Units &amp; townhouses &middot; {units.length} sales</span>
+  {units.map((s) => (
+    <div class="sale">
+      <div class="sale-top">
+        <span class="sale-addr">{s.address}</span>
+        {s.priceWithheld
+          ? <span class="sale-price withheld">Price withheld{s.lastPrice ? ` · listed ${s.lastPrice}` : ''}</span>
+          : <span class="sale-price">{fmtPrice(s.price)}</span>}
+      </div>
+      <div class="sale-meta">
+        {[s.beds && `${s.beds} bed`, s.baths && `${s.baths} bath`, s.cars && `${s.cars} car`, s.area && `${s.area.toLocaleString('en-AU')} m²`, s.saleDate && `sold ${s.saleDate}`, s.daysToSell != null && `${s.daysToSell} days on market`].filter(Boolean).join(' · ')}
+      </div>
+      <div class="sale-links"><a href={s.rea} target="_blank" rel="noopener">View on realestate.com.au →</a></div>
+    </div>
+  ))}
+
+  <div class="cta">
+    <p class="names">Daniel Gierach &amp; Conrad Leisemann</p>
+    <p>We put this report together each quarter for {suburb} owners who like to stay across their local market. If you'd like to talk through what these results mean for your place, call or text any time.</p>
+    <a class="cta-btn" href="tel:+61412523821" data-cta="report_call_daniel">Call Daniel · 0412 523 821</a>
+    <p class="cta-sub">Ray White Bulimba &middot; danielgierach.com</p>
+  </div>
+
+  <p class="disclaimer">
+    Sales data sourced from Pricefinder (Property Data Solutions Pty Ltd) and the State of Queensland (Department of Resources), {period}. Provided as an information source only; accuracy and completeness are not guaranteed. Recently advised sales may be under contract with prices subject to settlement.
+  </p>
+</div>
+
+<script is:inline define:vars={{ pins }}>
+  // Map + optional "prepared for" personalisation from the URL:
+  //   ?for=21+Lawson+Street&lat=-27.463&lng=153.073
+  const params = new URLSearchParams(location.search);
+  const forAddr = params.get('for');
+  const homeLat = parseFloat(params.get('lat'));
+  const homeLng = parseFloat(params.get('lng'));
+
+  if (forAddr) {
+    const el = document.getElementById('prepared-for');
+    el.textContent = 'Prepared for ' + forAddr;
+    el.style.display = 'block';
+  }
+
+  function initMap() {
+    if (!window.L) { setTimeout(initMap, 80); return; }
+    const map = L.map('report-map', { scrollWheelZoom: false });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19,
+    }).addTo(map);
+
+    const bounds = [];
+    const money = (n) => '$' + n.toLocaleString('en-AU');
+    for (const p of pins) {
+      const priceLabel = p.w ? 'Price withheld' + (p.lp ? ' · listed ' + p.lp : '') : money(p.p);
+      const marker = L.circleMarker([p.lat, p.lng], {
+        radius: 8, color: '#6b4610', weight: 1.5,
+        fillColor: p.t === 'House' ? '#b98229' : '#8a5f1c', fillOpacity: 0.9,
+      }).addTo(map);
+      marker.bindPopup(
+        '<strong>' + p.a + '</strong><br>' + priceLabel + '<br>' +
+        [p.b && p.b + ' bed', p.ba && p.ba + ' bath', p.c && p.c + ' car', p.ar && p.ar.toLocaleString('en-AU') + ' m²'].filter(Boolean).join(' · ') + '<br>' +
+        'Sold ' + p.d + (p.ds != null ? ' · ' + p.ds + ' days' : '') + '<br>' +
+        '<a href="' + p.r + '" target="_blank" rel="noopener">View on realestate.com.au →</a>'
+      );
+      bounds.push([p.lat, p.lng]);
+    }
+
+    if (!isNaN(homeLat) && !isNaN(homeLng)) {
+      const home = L.marker([homeLat, homeLng], {
+        icon: L.divIcon({
+          className: '',
+          html: '<div style="width:26px;height:26px;border-radius:50%;background:#6b4610;border:3px solid #f2ead4;box-shadow:0 2px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;color:#f2ead4;font-size:13px;font-weight:700;">★</div>',
+          iconSize: [26, 26], iconAnchor: [13, 13],
+        }),
+      }).addTo(map);
+      home.bindPopup('<strong>' + (forAddr || 'Your home') + '</strong>');
+      bounds.push([homeLat, homeLng]);
+    }
+
+    if (bounds.length) map.fitBounds(bounds, { padding: [30, 30] });
+  }
+  initMap();
+</script>
+
+</LandingLayout>
