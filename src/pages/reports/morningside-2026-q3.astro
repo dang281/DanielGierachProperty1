@@ -67,6 +67,25 @@ const pins = sales
     b: s.beds, ba: s.baths, c: s.cars, ar: s.area, d: s.saleDate,
     ds: s.daysToSell, h: s.type === 'House', r: s.search, lat: s.lat, lng: s.lng,
   }));
+
+// Short personal links: ?h=<slug> resolves here so shared URLs stay clean
+// (the long ?for/lat/lng form still works as a fallback). Addresses only,
+// deliberately no names.
+const homes = {
+  'u301-83-lawson': { a: 'U301/83 Lawson Street', lat: -27.470028, lng: 153.068828 },
+  '15-foxton': { a: '15 Foxton Street', lat: -27.474876, lng: 153.067749 },
+  '57-tandoor': { a: '57 Tandoor Street', lat: -27.459315, lng: 153.069316 },
+  '21-lawson': { a: '21 Lawson Street', lat: -27.468848, lng: 153.065238 },
+  '64-blackwood': { a: '64 Blackwood Avenue', lat: -27.47403, lng: 153.08209 },
+  '1-29-bundara': { a: '1/29 Bundara Street', lat: -27.471975, lng: 153.07151 },
+  '119-blackwood': { a: '119 Blackwood Avenue', lat: -27.476509, lng: 153.080986 },
+  '2-105-thynne': { a: '2/105 Thynne Road', lat: -27.464416, lng: 153.071492 },
+  '9-50-junction': { a: '9/50 Junction Road', lat: -27.464824, lng: 153.079948 },
+  '21-bentley': { a: '21 Bentley Street', lat: -27.46166, lng: 153.070752 },
+  '72-baringa': { a: '72 Baringa Street', lat: -27.463478, lng: 153.075726 },
+  '16-skirving': { a: '16 Skirving Street', lat: -27.461845, lng: 153.074357 },
+  '127-blackwood': { a: '127 Blackwood Avenue', lat: -27.476963, lng: 153.0809 },
+};
 ---
 
 <LandingLayout
@@ -350,12 +369,14 @@ const pins = sales
   </p>
 </div>
 
-<script is:inline define:vars={{ pins, googleMapsKey }}>
-  // Personalisation from the URL: ?for=21+Lawson+Street&lat=-27.463&lng=153.073
+<script is:inline define:vars={{ pins, googleMapsKey, homes }}>
+  // Personalisation from the URL. Preferred short form: ?h=21-lawson (looked
+  // up in the homes map). Long form ?for=...&lat=...&lng=... still works.
   const params = new URLSearchParams(location.search);
-  const forAddr = params.get('for');
-  const homeLat = parseFloat(params.get('lat'));
-  const homeLng = parseFloat(params.get('lng'));
+  const home = homes[params.get('h')] ?? null;
+  const forAddr = home ? home.a : params.get('for');
+  const homeLat = home ? home.lat : parseFloat(params.get('lat'));
+  const homeLng = home ? home.lng : parseFloat(params.get('lng'));
 
   // Scroll-triggered reveals; stat cards stagger 60ms apart. Reduced-motion
   // users get everything visible immediately via the CSS override.
