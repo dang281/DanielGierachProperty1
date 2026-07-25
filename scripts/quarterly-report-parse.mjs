@@ -74,7 +74,9 @@ function finalize() {
   cur.area = areaRaw ? Number(areaRaw.replace(/,/g, '')) : null
   cur.price = priceNum
   cur.priceWithheld = withheld
-  cur.lastPrice = f(/Last Price:\s*(.+?)\s*(?:Chg %|$)/m)
+  // An empty Last Price cell makes the regex swallow the "Chg %" column header.
+  const lastPrice = f(/Last Price:\s*(.+?)\s*(?:Chg %|$)/m)
+  cur.lastPrice = lastPrice && !/^chg\b/i.test(lastPrice) ? lastPrice : null
   cur.saleDate = f(/Sale Date:\s*([\d/]+)/)
   const days = f(/Days to Sell:\s*(\d+)/)
   cur.daysToSell = days ? Number(days) : null

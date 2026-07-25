@@ -76,6 +76,16 @@ const pins = sales
   * { box-sizing: border-box; }
   body { background: var(--bg); color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; margin: 0; }
   .inner { max-width: 780px; margin: 0 auto; padding: 0 1.1rem; }
+  @media (min-width: 1024px) { .inner { max-width: 960px; } }
+
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+
+  /* Scroll-triggered entrance: elements start shifted, settle on reveal. */
+  .rise { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+  .rise.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { opacity: 1; transform: none; transition: none; }
+  }
 
   /* ── Hero band ─────────────────────────────────────────────── */
   .hero { background: var(--ink); color: var(--cream); padding: 2.6rem 0 4.6rem; }
@@ -90,7 +100,7 @@ const pins = sales
   .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: -3.2rem; }
   @media (min-width: 620px) { .stats { grid-template-columns: 1.35fr 1fr 1fr 1fr; } }
   .stat { background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 16px; padding: 1rem 1.1rem; box-shadow: 0 10px 26px rgba(25, 24, 23, 0.12); }
-  .stat .v { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-weight: 600; line-height: 1.05; }
+  .stat .v { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-weight: 600; line-height: 1.05; font-variant-numeric: tabular-nums; }
   .stat.lead .v { font-size: 2rem; color: var(--gold-deep); }
   .stat .l { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-top: 0.4rem; }
 
@@ -123,12 +133,16 @@ const pins = sales
   .map-hint { font-size: 0.8rem; color: var(--ink-3); margin: 0.6rem 0 0; }
 
   /* ── Sales cards ───────────────────────────────────────────── */
-  .sale { background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--house); border-radius: 12px; padding: 0.9rem 1.05rem; margin-bottom: 0.65rem; }
+  .sales-grid { display: grid; grid-template-columns: 1fr; gap: 0.65rem; }
+  @media (min-width: 720px) { .sales-grid { grid-template-columns: 1fr 1fr; } }
+  .sale { background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--house); border-radius: 12px; padding: 0.9rem 1.05rem; transition: transform 0.18s ease-out, box-shadow 0.18s ease-out; }
+  .sale:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(25, 24, 23, 0.1); }
+  @media (prefers-reduced-motion: reduce) { .sale, .sale:hover { transform: none; transition: none; } }
   .band.white .sale { background: var(--card); }
   .sale.unit-card { border-left-color: var(--unit); }
   .sale-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
   .sale-addr { font-weight: 700; font-size: 0.97rem; }
-  .sale-price { font-family: 'Fraunces', Georgia, serif; font-size: 1.2rem; font-weight: 600; color: var(--gold-deep); white-space: nowrap; }
+  .sale-price { font-family: 'Fraunces', Georgia, serif; font-size: 1.2rem; font-weight: 600; color: var(--gold-deep); white-space: nowrap; font-variant-numeric: tabular-nums; }
   .sale-price.withheld { font-size: 0.85rem; font-family: inherit; font-weight: 600; color: var(--ink-3); }
   .sale-meta { font-size: 0.82rem; color: var(--ink-2); margin-top: 0.3rem; }
   .sale-links { margin-top: 0.45rem; }
@@ -146,7 +160,10 @@ const pins = sales
   .cta-heads img + img { margin-left: -14px; }
   .cta-names { font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; margin: 0 0 0.3rem; }
   .cta-band p.sub { color: var(--cream-dim); font-size: 0.93rem; line-height: 1.6; max-width: 46ch; margin: 0 auto 1.4rem; }
-  .cta-btn { display: inline-block; background: var(--gold); color: #fff; font-weight: 700; padding: 0.85rem 1.8rem; border-radius: 10px; text-decoration: none; font-size: 0.98rem; }
+  .cta-btn { display: inline-block; background: var(--gold); color: #fff; font-weight: 700; padding: 0.85rem 1.8rem; border-radius: 10px; text-decoration: none; font-size: 0.98rem; min-height: 44px; transition: transform 0.15s ease-out, filter 0.15s ease-out; }
+  .cta-btn:hover { filter: brightness(1.06); }
+  .cta-btn:active { transform: scale(0.97); }
+  @media (prefers-reduced-motion: reduce) { .cta-btn, .cta-btn:active { transform: none; transition: none; } }
   .cta-sub { font-size: 0.78rem; color: var(--cream-dim); margin-top: 0.9rem; }
 
   .disclaimer { font-size: 0.7rem; color: var(--ink-3); line-height: 1.5; padding: 1.8rem 0 2.6rem; }
@@ -179,7 +196,7 @@ const pins = sales
 
 <div class="band">
   <div class="inner">
-    <p class="section-label"><span class="n">01</span> The quarter in brief</p>
+    <h2 class="section-label"><span class="n">01</span> The quarter in brief</h2>
     <p class="brief">
       {suburb} recorded <strong>{sales.length} sales</strong> this quarter. Houses medianed <strong>{fmtShort(houseMedian)}</strong> and units <strong>{fmtShort(unitMedian)}</strong>, with the typical property selling in <strong>{medianDays} days</strong>. The top result was <strong>{topSale.address}</strong> at <strong>{fmtPrice(topSale.price)}</strong>{fastest ? `, and the fastest sale went in ${fastest.daysToSell} day${fastest.daysToSell === 1 ? '' : 's'}` : ''}.
     </p>
@@ -188,11 +205,12 @@ const pins = sales
 
 <div class="band white">
   <div class="inner">
-    <p class="section-label"><span class="n">02</span> Where the prices landed</p>
+    <h2 class="section-label"><span class="n">02</span> Where the prices landed</h2>
     <div class="legend">
       <span class="chip"><span class="dot" style="background: var(--house)"></span> Houses</span>
       <span class="chip"><span class="dot" style="background: var(--unit)"></span> Units &amp; townhouses</span>
     </div>
+    <div class="chart-block">
     <div class="chart">
       {dist.map((d) => (
         <div>
@@ -209,12 +227,13 @@ const pins = sales
       ))}
     </div>
     <p class="chart-note">Number of sales in each price bracket, {period}. Excludes {sales.length - priced.length} sales with withheld prices.</p>
+    </div>
   </div>
 </div>
 
 <div class="band">
   <div class="inner">
-    <p class="section-label"><span class="n">03</span> Every sale on the map</p>
+    <h2 class="section-label"><span class="n">03</span> Every sale on the map</h2>
     <div class="legend">
       <span class="chip"><span class="dot" style="background: var(--house); border-radius: 50%"></span> House</span>
       <span class="chip"><span class="dot" style="background: var(--unit); border-radius: 50%"></span> Unit / townhouse</span>
@@ -227,7 +246,8 @@ const pins = sales
 
 <div class="band white">
   <div class="inner">
-    <p class="section-label"><span class="n">04</span> Houses &middot; {houses.length} sales</p>
+    <h2 class="section-label"><span class="n">04</span> Houses &middot; {houses.length} sales</h2>
+    <div class="sales-grid">
     {houses.map((s) => (
       <div class="sale">
         <div class="sale-top">
@@ -242,12 +262,14 @@ const pins = sales
         <div class="sale-links"><a href={s.rea} target="_blank" rel="noopener">View on realestate.com.au →</a></div>
       </div>
     ))}
+    </div>
   </div>
 </div>
 
 <div class="band">
   <div class="inner">
-    <p class="section-label"><span class="n">05</span> Units &amp; townhouses &middot; {units.length} sales</p>
+    <h2 class="section-label"><span class="n">05</span> Units &amp; townhouses &middot; {units.length} sales</h2>
+    <div class="sales-grid">
     {units.map((s) => (
       <div class="sale unit-card">
         <div class="sale-top">
@@ -262,6 +284,7 @@ const pins = sales
         <div class="sale-links"><a href={s.rea} target="_blank" rel="noopener">View on realestate.com.au →</a></div>
       </div>
     ))}
+    </div>
   </div>
 </div>
 
@@ -296,6 +319,16 @@ const pins = sales
   const forAddr = params.get('for');
   const homeLat = parseFloat(params.get('lat'));
   const homeLng = parseFloat(params.get('lng'));
+
+  // Scroll-triggered reveals; stat cards stagger 60ms apart. Reduced-motion
+  // users get everything visible immediately via the CSS override.
+  const risers = document.querySelectorAll('.stat, .brief, .chart-block, .map-wrap, .quote-band p');
+  risers.forEach((el) => el.classList.add('rise'));
+  document.querySelectorAll('.stat').forEach((el, i) => { el.style.transitionDelay = (i * 60) + 'ms'; });
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  risers.forEach((el) => io.observe(el));
 
   if (forAddr) {
     const el = document.getElementById('prepared-for');
