@@ -218,7 +218,7 @@ const pins = sales
     <div class="legend">
       <span class="chip"><span class="dot" style="background: var(--house); border-radius: 50%"></span> House</span>
       <span class="chip"><span class="dot" style="background: var(--unit); border-radius: 50%"></span> Unit / townhouse</span>
-      <span class="chip" id="legend-home" style="display: none"><span style="color: var(--gold-deep); font-size: 15px">★</span> Your home</span>
+      <span class="chip" id="legend-home" style="display: none"><svg width="12" height="16" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#6b4610"/><circle cx="12" cy="12" r="4.5" fill="#fdfcf7"/></svg> Your home</span>
     </div>
     <div class="map-wrap"><div id="report-map"></div></div>
     <p class="map-hint">Tap a pin for the sale details and the realestate.com.au listing.</p>
@@ -299,7 +299,7 @@ const pins = sales
 
   if (forAddr) {
     const el = document.getElementById('prepared-for');
-    el.innerHTML = '<span class="star">★</span> Prepared for ' + forAddr.replace(/</g, '&lt;');
+    el.innerHTML = '<svg width="11" height="15" viewBox="0 0 24 32" style="vertical-align: -2px; margin-right: 6px" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#b98229"/><circle cx="12" cy="12" r="4.5" fill="#191817"/></svg>Prepared for ' + forAddr.replace(/</g, '&lt;');
     el.style.display = 'block';
   }
   if (!isNaN(homeLat)) document.getElementById('legend-home').style.display = 'inline-flex';
@@ -354,17 +354,20 @@ const pins = sales
     }
 
     if (!isNaN(homeLat) && !isNaN(homeLng)) {
+      // Classic teardrop map pin, anchored at its tip, sized above the sale
+      // dots so "your home" reads instantly.
       const home = new google.maps.Marker({
         position: { lat: homeLat, lng: homeLng },
         map,
         zIndex: 1000,
         icon: {
-          path: 'M 0,-1 0.588,0.809 -0.951,-0.309 0.951,-0.309 -0.588,0.809 z',
-          scale: 14,
+          path: 'M 0,0 C -2.6,-7 -8,-9.2 -8,-15 A 8,8 0 1 1 8,-15 C 8,-9.2 2.6,-7 0,0 Z M 0,-15 m -3,0 a 3,3 0 1 0 6,0 a 3,3 0 1 0 -6,0',
+          scale: 2.1,
           fillColor: DEEP,
           fillOpacity: 1,
           strokeColor: '#fdfcf7',
-          strokeWeight: 1.5,
+          strokeWeight: 1.8,
+          anchor: new google.maps.Point(0, 0),
         },
         title: forAddr || 'Your home',
       });
