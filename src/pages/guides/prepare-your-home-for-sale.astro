@@ -1,0 +1,298 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// 20-page square brochure, rendered to /public/guides/prepare-your-home-for-sale/page-NN.jpg
+const TOTAL = 20;
+const pages = Array.from({ length: TOTAL }, (_, k) =>
+  `/guides/prepare-your-home-for-sale/page-${String(k + 1).padStart(2, '0')}.jpg`
+);
+const pdf = '/guides/prepare-your-home-for-sale.pdf';
+const cover = pages[0];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Prepare Your Home For Sale",
+  "description": "A guide for Brisbane homeowners on preparing a home for sale: presentation, styling, repairs and campaign readiness.",
+  "url": "https://danielgierach.com/guides/prepare-your-home-for-sale"
+};
+---
+<Layout
+  title="Prepare Your Home For Sale"
+  description="A free guide for Brisbane sellers: how to prepare, present and style your home for sale. Flip through it or download the PDF."
+  ogImage={cover}
+  schema={schema}
+  hideNav={true}
+  hideBreadcrumbs={true}
+  hideFooterCta={true}
+>
+  <article style="background:var(--color-surface-0);min-height:100vh;">
+    <!-- Header -->
+    <div style="padding:2.75rem 0 1.75rem;">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-8" style="text-align:center;">
+        <span style="display:block;font-family:var(--font-sans);font-size:0.6rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;margin-bottom:0.75rem;">Property Guide</span>
+        <h1 style="font-family:var(--font-serif);font-size:clamp(1.7rem,4.2vw,2.6rem);font-weight:400;font-style:italic;color:#191817;line-height:1.12;letter-spacing:-0.02em;">
+          Prepare Your Home For Sale
+        </h1>
+        <p style="font-size:1rem;color:rgba(25,24,23,0.62);line-height:1.8;max-width:60ch;margin:1.1rem auto 0;">
+          Twenty pages on getting your home market ready, presentation, styling, the small repairs that pay, and how to time it. Flip through it below, or download the PDF to keep.
+        </p>
+      </div>
+    </div>
+
+    <!-- Flipbook -->
+    <div class="max-w-[1560px] mx-auto px-2 sm:px-6" style="padding-bottom:3.5rem;">
+      <div class="stage" id="stage" data-mode="single">
+        <img class="leaf" id="leftImg" alt="" draggable="false" decoding="async" />
+        <img class="leaf" id="rightImg" alt="" draggable="false" decoding="async" />
+        <button class="edge prev" id="prevBtn" aria-label="Previous page" type="button">&#8249;</button>
+        <button class="edge next" id="nextBtn" aria-label="Next page" type="button">&#8250;</button>
+      </div>
+
+      <div class="progress"><div class="progress-fill" id="progFill"></div></div>
+
+      <div class="controls">
+        <button class="restart" id="restartBtn" type="button" hidden>&#8634; Back to start</button>
+        <span class="counter" id="counter">1 / {TOTAL}</span>
+        <a class="download" href={pdf} download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+      <p class="hint">Tap the arrows or the sides of the page, swipe, or use your keyboard arrows.</p>
+    </div>
+
+    <!-- Agents -->
+    <div class="max-w-[940px] mx-auto px-6" style="padding-bottom:4rem;">
+      <p class="agents-heading">Talk to the team</p>
+      <div class="agent-grid">
+        <div class="agent-card">
+          <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann" class="agent-photo" width="88" height="88" loading="lazy" />
+          <h2 class="agent-name">Conrad Leisemann</h2>
+          <p class="agent-title">Lead Agent · Ray White Collective</p>
+          <div class="agent-actions">
+            <a class="agent-btn call" href="tel:+61403978813">Call 0403 978 813</a>
+            <a class="agent-btn email" href="mailto:conrad.leisemann@raywhite.com">Email</a>
+          </div>
+        </div>
+        <div class="agent-card">
+          <img src="/img/daniel-headshot.jpg" alt="Daniel Gierach" class="agent-photo" width="88" height="88" loading="lazy" />
+          <h2 class="agent-name">Daniel Gierach</h2>
+          <p class="agent-title">Lead Agent · Ray White Collective</p>
+          <div class="agent-actions">
+            <a class="agent-btn call" href="tel:+61412523821">Call 0412 523 821</a>
+            <a class="agent-btn email" href="mailto:daniel.gierach@raywhite.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    /* Standalone page: no site footer, no sticky Message/Call bar. */
+    :global(footer) { display: none !important; }
+    :global(.mobile-call-bar) { display: none !important; }
+
+    .stage {
+      position: relative; display: flex; align-items: stretch; gap: 0;
+      margin: 0 auto; touch-action: pan-y; user-select: none; cursor: pointer;
+    }
+    /* Single page (mobile / cover / back). */
+    .stage[data-mode="single"], .stage.single-leaf { width: min(94vw, 620px); aspect-ratio: 1 / 1; }
+    .stage[data-mode="single"] .leaf, .stage.single-leaf .leaf { width: 100%; height: 100%; }
+    /* Two-page spread (desktop). */
+    .stage[data-mode="spread"]:not(.single-leaf) { width: min(94vw, 1440px); aspect-ratio: 2 / 1; }
+    .stage[data-mode="spread"]:not(.single-leaf) .leaf { width: 50%; height: 100%; }
+    .stage[data-mode="spread"]:not(.single-leaf)::after {
+      content: ''; position: absolute; top: 2%; bottom: 2%; left: 50%; width: 44px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(25,24,23,0.16), transparent);
+      pointer-events: none; z-index: 2;
+    }
+    .leaf {
+      object-fit: contain; background: #fff; border-radius: 8px;
+      box-shadow: 0 22px 55px -22px rgba(25,24,23,0.5);
+      opacity: 1; transition: opacity 0.28s ease;
+    }
+    .stage[data-mode="spread"]:not(.single-leaf) #leftImg { border-top-right-radius: 2px; border-bottom-right-radius: 2px; }
+    .stage[data-mode="spread"]:not(.single-leaf) #rightImg { border-top-left-radius: 2px; border-bottom-left-radius: 2px; }
+
+    /* Overlay arrow controls, visible on mobile and desktop. */
+    .edge {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+      width: 46px; height: 46px; border-radius: 999px;
+      display: grid; place-items: center; font-size: 24px; line-height: 1;
+      background: rgba(255,255,255,0.9); color: #6b4610;
+      border: 1px solid rgba(107,70,16,0.22);
+      box-shadow: 0 6px 18px -6px rgba(25,24,23,0.5);
+      cursor: pointer; transition: transform 0.12s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+    .edge.prev { left: 10px; }
+    .edge.next { right: 10px; }
+    .edge:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+    .edge:disabled { opacity: 0; pointer-events: none; }
+    @media (max-width: 520px) { .edge { width: 40px; height: 40px; font-size: 21px; } .edge.prev { left: 6px; } .edge.next { right: 6px; } }
+
+    .progress {
+      width: min(94vw, 1440px); max-width: 100%; height: 3px; margin: 1.5rem auto 0;
+      background: rgba(25,24,23,0.1); border-radius: 999px; overflow: hidden;
+    }
+    .progress-fill { height: 100%; width: 5%; background: #b98229; border-radius: 999px; transition: width 0.3s ease; }
+
+    .controls { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 1.1rem; flex-wrap: wrap; }
+    .counter { font-family: var(--font-sans); font-size: 0.95rem; color: rgba(25,24,23,0.7); }
+    .download {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #b98229; color: #fff; text-decoration: none;
+      font-family: var(--font-sans); font-weight: 700; font-size: 0.9rem;
+      padding: 0.7rem 1.25rem; border-radius: 999px;
+      box-shadow: 0 10px 24px -12px rgba(185,130,41,0.9);
+      transition: transform 0.12s ease, filter 0.12s ease;
+    }
+    .download:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .restart { font-family: var(--font-sans); font-weight: 700; font-size: 0.85rem; color: #6b4610; background: transparent; border: 1px solid rgba(107,70,16,0.28); padding: 0.6rem 1.1rem; border-radius: 999px; cursor: pointer; }
+    .restart[hidden] { display: none; }
+    .restart:hover { background: rgba(107,70,16,0.06); }
+    .hint { text-align: center; margin-top: 0.9rem; font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.02em; color: rgba(25,24,23,0.42); }
+
+    .agents-heading { text-align: center; font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: #191817; margin-bottom: 1.25rem; }
+    .agent-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .agent-grid { grid-template-columns: 1fr 1fr; } }
+    .agent-card {
+      text-align: center;
+      background: #f2ead4; border: 1px solid rgba(107,70,16,0.14);
+      border-radius: 16px; padding: 2.25rem 1.75rem;
+      box-shadow: 0 16px 44px -24px rgba(25,24,23,0.45);
+    }
+    .agent-photo { width: 100px; height: 100px; border-radius: 999px; object-fit: cover; display: block; margin: 0 auto 1.1rem; box-shadow: 0 6px 18px -8px rgba(25,24,23,0.4); }
+    .agent-eyebrow { font-family: var(--font-sans); font-size: 0.6rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #6b4610; margin-bottom: 0.5rem; }
+    .agent-name { font-family: var(--font-sans); font-style: normal; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; color: #191817; line-height: 1.2; }
+    .agent-title { font-family: var(--font-sans); font-size: 0.82rem; color: rgba(25,24,23,0.6); margin-top: 0.35rem; margin-bottom: 1.4rem; }
+    .agent-blurb { font-size: 0.9rem; color: rgba(25,24,23,0.66); line-height: 1.7; margin: 1rem auto 1.4rem; max-width: 32ch; }
+    .agent-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+    .agent-btn { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; font-family: var(--font-sans); font-weight: 700; font-size: 0.85rem; padding: 0.65rem 1.15rem; border-radius: 999px; transition: transform 0.12s ease, filter 0.12s ease; }
+    .agent-btn.call { background: #b98229; color: #fff; box-shadow: 0 10px 24px -12px rgba(185,130,41,0.9); }
+    .agent-btn.call:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .agent-btn.email { background: transparent; color: #6b4610; border: 1px solid rgba(107,70,16,0.28); }
+    .agent-btn.email:hover { background: rgba(107,70,16,0.06); }
+  </style>
+
+  <script is:inline>
+    (function () {
+      const stage = document.getElementById('stage');
+      if (!stage) return;
+      const leftImg = document.getElementById('leftImg');
+      const rightImg = document.getElementById('rightImg');
+      const counter = document.getElementById('counter');
+      const progFill = document.getElementById('progFill');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const restartBtn = document.getElementById('restartBtn');
+
+      const TOTAL = 20;
+      const BASE = '/guides/prepare-your-home-for-sale/';
+      const PAGES = Array.from({ length: TOTAL }, function (_, k) { return BASE + 'page-' + String(k + 1).padStart(2, '0') + '.jpg'; });
+
+      // Book pagination: cover alone, then facing spreads, back cover alone.
+      const SPREADS = [[0]];
+      for (var i = 1; i <= TOTAL - 2; i += 2) SPREADS.push([i, i + 1]);
+      SPREADS.push([TOTAL - 1]);
+      function spreadOf(p) { for (var j = 0; j < SPREADS.length; j++) if (SPREADS[j].indexOf(p) !== -1) return j; return 0; }
+
+      const wide = window.matchMedia('(min-width: 900px)');
+      var mode = wide.matches ? 'spread' : 'single';
+      var pageIdx = 0;
+
+      function setLeaf(img, idx) {
+        var url = PAGES[idx];
+        img.alt = 'Prepare Your Home For Sale, page ' + (idx + 1) + ' of ' + TOTAL;
+        if (img.getAttribute('src') === url) return;
+        img.style.opacity = '0';
+        img.onload = function () { img.style.opacity = '1'; };
+        img.src = url;
+      }
+
+      function render() {
+        var frac;
+        if (mode === 'single') {
+          stage.dataset.mode = 'single';
+          stage.classList.remove('single-leaf');
+          leftImg.style.display = 'none';
+          rightImg.style.display = '';
+          setLeaf(rightImg, pageIdx);
+          counter.textContent = (pageIdx + 1) + ' / ' + TOTAL;
+          prevBtn.disabled = pageIdx === 0;
+          nextBtn.disabled = pageIdx === TOTAL - 1;
+          frac = (pageIdx + 1) / TOTAL;
+        } else {
+          stage.dataset.mode = 'spread';
+          var si = spreadOf(pageIdx);
+          var s = SPREADS[si];
+          if (s.length === 2) {
+            stage.classList.remove('single-leaf');
+            leftImg.style.display = '';
+            rightImg.style.display = '';
+            setLeaf(leftImg, s[0]);
+            setLeaf(rightImg, s[1]);
+            counter.textContent = (s[0] + 1) + '-' + (s[1] + 1) + ' / ' + TOTAL;
+          } else {
+            stage.classList.add('single-leaf');
+            leftImg.style.display = 'none';
+            rightImg.style.display = '';
+            setLeaf(rightImg, s[0]);
+            counter.textContent = (s[0] + 1) + ' / ' + TOTAL;
+          }
+          prevBtn.disabled = si === 0;
+          nextBtn.disabled = si === SPREADS.length - 1;
+          frac = (si + 1) / SPREADS.length;
+        }
+        progFill.style.width = Math.round(frac * 100) + '%';
+        // Show "back to start" once the next control is disabled (at the end).
+        restartBtn.hidden = !nextBtn.disabled;
+      }
+
+      function next() {
+        if (mode === 'single') { pageIdx = Math.min(TOTAL - 1, pageIdx + 1); }
+        else { var si = spreadOf(pageIdx); if (si < SPREADS.length - 1) pageIdx = SPREADS[si + 1][0]; }
+        render();
+      }
+      function prev() {
+        if (mode === 'single') { pageIdx = Math.max(0, pageIdx - 1); }
+        else { var si = spreadOf(pageIdx); if (si > 0) pageIdx = SPREADS[si - 1][0]; }
+        render();
+      }
+
+      render();
+
+      nextBtn.addEventListener('click', function (e) { e.stopPropagation(); next(); });
+      prevBtn.addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+      restartBtn.addEventListener('click', function (e) { e.stopPropagation(); pageIdx = 0; render(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+      stage.addEventListener('click', function (e) {
+        var r = stage.getBoundingClientRect();
+        if (e.clientX - r.left > r.width / 2) next(); else prev();
+      });
+      var x0 = null;
+      stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) { if (dx < 0) next(); else prev(); }
+        x0 = null;
+      });
+
+      function onModeChange() {
+        var m = wide.matches ? 'spread' : 'single';
+        if (m !== mode) { mode = m; render(); }
+      }
+      if (wide.addEventListener) wide.addEventListener('change', onModeChange);
+      else window.addEventListener('resize', onModeChange);
+
+      // Preload the rest so flipping is instant.
+      setTimeout(function () { PAGES.forEach(function (u) { var im = new Image(); im.src = u; }); }, 800);
+    })();
+  </script>
+</Layout>
