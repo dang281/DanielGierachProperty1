@@ -11,7 +11,7 @@ const gieMannSold = [
     suburb: 'Carina',
     address: '34 Balmerino Drive',
     street: 'Carina QLD 4152',
-    price: 'Sold July 2026',
+    price: '$2,047,000',
     beds: 4, baths: 3, cars: 2,
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/carina-4152/house/3512351',
   },
@@ -20,7 +20,7 @@ const gieMannSold = [
     suburb: 'West End',
     address: '10604/41 Tondara Lane',
     street: 'West End QLD 4101',
-    price: 'Sold July 2026',
+    price: '$2,850,000',
     beds: 3, baths: 3, cars: 3,
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/west-end-4101/unit/3528786',
   },
@@ -50,6 +50,17 @@ const gieMannSold = [
     price: '$1,025,000',
     beds: 3, baths: 2, cars: 4,
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/victoria-point-4165/house/3485122',
+  },
+  {
+    // Off-market sale: no public listing page or campaign photography,
+    // so the card renders the D&C seal tile instead of an image.
+    image: null,
+    suburb: 'Seven Hills',
+    address: '21a Marshall Avenue',
+    street: 'Seven Hills QLD 4170',
+    price: 'Sold March 2026',
+    beds: 4, baths: 3, cars: 2,
+    href: null,
   },
 ];
 
@@ -125,7 +136,7 @@ const soldSchema = {
       "@type": "ListItem",
       "position": i + 1,
       "name": `${p.address}, ${p.street}`,
-      "url": p.href,
+      "url": p.href ?? undefined,
       "description": `${p.beds} bed ${p.baths} bath, sold by Daniel Gierach and Conrad Leisemann, Ray White Bulimba`
     }))
   }
@@ -179,20 +190,29 @@ const soldSchema = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {gieMannSold.map((p, i) => (
-        <a href={p.href} target="_blank" rel="noopener"
+      {gieMannSold.map((p, i) => {
+        const El = p.href ? 'a' : 'div';
+        return (
+        <El href={p.href ?? undefined} target={p.href ? '_blank' : undefined} rel={p.href ? 'noopener' : undefined}
           class="reveal listing-card" data-delay={i * 60}
           style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
           onmouseover="this.style.background='#edeae3';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
           onmouseout="this.style.background='#ffffff';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
         >
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
-            <img src={p.image} alt={p.address} class="w-full h-full object-cover"
-              style="transition:transform 0.4s;"
-              onmouseover="this.style.transform='scale(1.04)'"
-              onmouseout="this.style.transform='scale(1)'"
-              loading="lazy"
-            />
+            {p.image ? (
+              <img src={p.image} alt={p.address} class="w-full h-full object-cover"
+                style="transition:transform 0.4s;"
+                onmouseover="this.style.transform='scale(1.04)'"
+                onmouseout="this.style.transform='scale(1)'"
+                loading="lazy"
+              />
+            ) : (
+              <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.85rem;background:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(185,130,41,0.1) 0%,transparent 70%) #efe6cd;">
+                <img src="/favicon-dc.svg" alt="Daniel &amp; Conrad seal" width="64" height="64" loading="lazy" />
+                <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#6b4610;">Sold off market</span>
+              </div>
+            )}
             <span style="position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#ffffff;background:#6b4610;padding:0.3rem 0.65rem;">
               Sold
             </span>
@@ -208,8 +228,9 @@ const soldSchema = {
               <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.cars} car</span>
             </div>
           </div>
-        </a>
-      ))}
+        </El>
+        );
+      })}
     </div>
   </div>
 </section>
