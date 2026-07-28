@@ -1,40 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const forSale = [
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/3f91-H3530740-206381089__1781777760-114994-6.png',
-    suburb: 'Morningside',
-    address: '1/10 Gary Street',
-    street: 'Morningside QLD 4170',
-    price: 'Price by Negotiation',
-    beds: 2, baths: 2, cars: 1,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/morningside-4170/unit/3530740',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/c6f3-H3502291-199952651__1777955761-77154-ab40593e-50dc-4a92-a6bc-5355e05faa1c.JPG',
-    suburb: 'Hendra',
-    address: '31 Chermside Street',
-    street: 'Hendra QLD 4011',
-    price: 'For Sale',
-    beds: 5, baths: 3, cars: 2,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/hendra-4011/house/3502291',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8747-H3532103-207186732__1782342090-31257-8.jpg',
-    suburb: 'Hawthorne',
-    address: '48 Dover Street',
-    street: 'Hawthorne QLD 4171',
-    price: 'Auction Saturday 18 July, 9:00am',
-    beds: 2, baths: 1, cars: 1,
-    tag: 'Forthcoming Auction',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/hawthorne-4171/house/3532103',
-  },
-];
-
-const sold = [
+// Every property here is verified against raywhitebulimba.com.au (agents array
+// on the listing page). GieMann sales list Daniel + Conrad as the agents;
+// collective sales are other Ray White Bulimba agents and are framed as such.
+// Prices only appear where the sold price is publicly disclosed on the listing.
+const gieMannSold = [
   {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8319-H3512351-202426571__1779329423-64502-DJI202605201433570530DFRED.jpg',
     suburb: 'Carina',
@@ -42,7 +13,6 @@ const sold = [
     street: 'Carina QLD 4152',
     price: 'Sold July 2026',
     beds: 4, baths: 3, cars: 2,
-    tag: 'Sold',
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/carina-4152/house/3512351',
   },
   {
@@ -52,28 +22,7 @@ const sold = [
     street: 'West End QLD 4101',
     price: 'Sold July 2026',
     beds: 3, baths: 3, cars: 3,
-    tag: 'Sold',
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/west-end-4101/unit/3528786',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/dfdd-H3529524-206535479__1781912031-205035-Photo-1-Web.jpg',
-    suburb: 'Balmoral',
-    address: '7 Orchard Street',
-    street: 'Balmoral QLD 4171',
-    price: 'Sold July 2026',
-    beds: 3, baths: 2, cars: 2,
-    tag: 'Sold',
-    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/balmoral-4171/house/3529524',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg',
-    suburb: 'Cannon Hill',
-    address: '12/76 Minnippi Boulevard',
-    street: 'Cannon Hill QLD 4170',
-    price: 'Sold June 2026',
-    beds: 4, baths: 2, cars: 2,
-    tag: 'Sold',
-    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/cannon-hill-4170/townhouse/3505222',
   },
   {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/b7ae-H3494515-197181379__1776384722-43921-AMY4184.JPG',
@@ -82,7 +31,6 @@ const sold = [
     street: 'Seven Hills QLD 4170',
     price: '$1,800,000',
     beds: 5, baths: 3, cars: 2,
-    tag: 'Sold',
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/seven-hills-4170/house/3494515',
   },
   {
@@ -92,18 +40,7 @@ const sold = [
     street: 'West End QLD 4101',
     price: '$3,400,000',
     beds: 3, baths: 3, cars: 4,
-    tag: 'Sold',
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/west-end-4101/unit/3442687',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/c1e3-H3496706-198397212__1777175580-150488-Photo-18-Web.jpg',
-    suburb: 'Bulimba',
-    address: '99 Coutts Street',
-    street: 'Bulimba QLD 4171',
-    price: '$1,320,000',
-    beds: 3, baths: 2, cars: 1,
-    tag: 'Sold',
-    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/bulimba-4171/townhouse/3496706',
   },
   {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/e3af-H3485122-195546888__1775524459-58394-AMY1219.jpg',
@@ -112,128 +49,143 @@ const sold = [
     street: 'Victoria Point QLD 4165',
     price: '$1,025,000',
     beds: 3, baths: 2, cars: 4,
-    tag: 'Sold',
     href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/victoria-point-4165/house/3485122',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/a5f6-H3496277-198254255__1776991960-223775-IMG6340.jpeg',
-    suburb: 'Balmoral',
-    address: '40 Barton Parade',
-    street: 'Balmoral QLD 4171',
-    price: '$3,570,000',
-    beds: 5, baths: 4, cars: 2,
-    tag: 'Sold',
-    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/balmoral-4171/house/3496277',
   },
 ];
 
-const tagColors: Record<string, string> = {
-  'For Sale': '#b98229',
-  'Pre-Market': '#a8e6a3',
-  'Forthcoming Auction': '#7ec8e3',
-  'Under Contract': '#f4a261',
-  'Blue-Chip Land': '#c8c6c8',
-  'Sold': '#6b4610',
-};
-// White text on the dark-fill tags so they stay legible; dark text on the light tags.
-const tagText: Record<string, string> = {
-  'For Sale': '#ffffff',
-  'Sold': '#ffffff',
-  'Under Contract': '#191817',
-};
+const collectiveSold = [
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/9517-H3526890-206024564__1781587667-84989-Photo-30-Web.jpg',
+    suburb: 'Balmoral',
+    address: '27 Taylor Street',
+    street: 'Balmoral QLD 4171',
+    price: 'Sold July 2026',
+    beds: 5, baths: 4, cars: 2,
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/balmoral-4171/house/3526890',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8758-H3472604-192402385__1773701582-35077-Photo-18-Web.jpg',
+    suburb: 'Balmoral',
+    address: '1/61 Collings Street',
+    street: 'Balmoral QLD 4171',
+    price: 'Sold July 2026',
+    beds: 3, baths: 2, cars: 2,
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/balmoral-4171/apartment/3472604',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/899c-H3536603-208077111__1782962157-252595-Photo-2-Web.jpg',
+    suburb: 'Balmoral',
+    address: '9 Barton Parade',
+    street: 'Balmoral QLD 4171',
+    price: 'Sold July 2026',
+    beds: 3, baths: 3, cars: 2,
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/balmoral-4171/house/3536603',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/7465-H3533026-204892884__1780899293-93591-Photo-2-Web.jpg',
+    suburb: 'Hawthorne',
+    address: '26 Stewart Street',
+    street: 'Hawthorne QLD 4171',
+    price: 'Sold July 2026',
+    beds: 5, baths: 3, cars: 1,
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/hawthorne-4171/house/3533026',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/3ebf-H3527842-206212560__1781674124-94868-4-web-or-mls-358-hawthorne-rd-4.jpg',
+    suburb: 'Hawthorne',
+    address: '4/358 Hawthorne Road',
+    street: 'Hawthorne QLD 4171',
+    price: 'Sold June 2026',
+    beds: 3, baths: 2, cars: 2,
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/hawthorne-4171/townhouse/3527842',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/beb1-H3514365-202932930__1779702303-124387-Photo-1-Web.jpg',
+    suburb: 'Bulimba',
+    address: '99 Bulimba Street',
+    street: 'Bulimba QLD 4171',
+    price: 'Sold June 2026',
+    beds: 5, baths: 3, cars: 2,
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/bulimba-4171/house/3514365',
+  },
+];
 
-const allSuburbs = [...new Set([...forSale, ...sold].map(p => p.suburb))].sort();
-
-const listingsSchema = {
+const soldSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Brisbane Inner East Property Listings | Daniel Gierach",
-  "description": "Current listings and recently sold homes in Brisbane's inner east.",
-  "url": "https://danielgierach.com/listings",
+  "name": "Recently Sold | Daniel Gierach & Conrad Leisemann",
+  "description": "Homes recently sold by Daniel Gierach and Conrad Leisemann across Brisbane's inner east.",
+  "url": "https://danielgierach.com/recently-sold",
   "author": { "@id": "https://danielgierach.com/#person" },
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Properties for Sale by Daniel Gierach, Ray White Bulimba",
-    "numberOfItems": forSale.length,
-    "itemListElement": forSale.map((p, i) => ({
+    "name": "Properties Sold by Daniel Gierach and Conrad Leisemann, Ray White Bulimba",
+    "numberOfItems": gieMannSold.length,
+    "itemListElement": gieMannSold.map((p, i) => ({
       "@type": "ListItem",
       "position": i + 1,
       "name": `${p.address}, ${p.street}`,
       "url": p.href,
-      "description": `${p.beds} bed ${p.baths} bath, ${p.price}, listed by Daniel Gierach, Ray White Bulimba`
+      "description": `${p.beds} bed ${p.baths} bath, sold by Daniel Gierach and Conrad Leisemann, Ray White Bulimba`
     }))
   }
 };
 ---
 
-<Layout title="Listings | Daniel Gierach Property" description="Current listings and recently sold homes in Brisbane's inner east. View Daniel Gierach's sales results across Camp Hill, Norman Park, Hawthorne, and Balmoral." schema={listingsSchema}>
+<Layout title="Recently Sold | Daniel Gierach Property" description="Homes recently sold by Daniel Gierach and Conrad Leisemann across Brisbane's inner east, plus recent results from the wider Ray White Collective team." schema={soldSchema}>
 
 
 <!-- Hero -->
 <section class="relative overflow-hidden" style="background:#e6d9bd;">
   <div aria-hidden="true" class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(185,130,41,0.12) 0%,transparent 70%);pointer-events:none;"></div>
-  <div class="listings-hero-pad relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-20 pb-8 md:pt-28 md:pb-10">
-    <span class="eyebrow mb-4 reveal" style="display:block;color:#6b4610;">Daniel Gierach · Ray White Bulimba</span>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-12 pt-20 pb-8 md:pt-28 md:pb-10">
+    <span class="eyebrow mb-4 reveal" style="display:block;color:#6b4610;">Daniel Gierach &amp; Conrad Leisemann · Ray White Bulimba</span>
     <h1 class="reveal" data-delay="80"
       style="font-family:var(--font-serif);font-style:italic;font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#191817;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.75rem;">
-      Current listings &amp; recent sales.
+      Recently sold.
     </h1>
     <p class="reveal" data-delay="160"
       style="font-size:0.95rem;color:rgba(25,24,23,0.65);max-width:44ch;line-height:1.8;">
-      Looking for off-market access? <a href="/contact" style="color:#b98229;text-decoration:none;font-weight:600;">Get in touch directly.</a>
+      Wondering what your home could achieve? <a href="/contact" style="color:#b98229;text-decoration:none;font-weight:600;">Get in touch directly.</a>
     </p>
   </div>
 </section>
 
 
-<!-- Ornament divider: hero to filter band -->
-<div class="listings-ornament" aria-hidden="true">
-  <span class="listings-ornament-line"></span>
-  <span class="listings-ornament-mark">&#10022;</span>
-  <span class="listings-ornament-line"></span>
+<!-- Ornament divider -->
+<div class="sold-ornament" aria-hidden="true">
+  <span class="sold-ornament-line"></span>
+  <span class="sold-ornament-mark">&#10022;</span>
+  <span class="sold-ornament-line"></span>
 </div>
 
-<!-- Suburb filter band -->
-<section style="background:#f2ead4;padding:0.85rem 0;border-top:1px solid rgba(107,70,16,0.12);border-bottom:1px solid rgba(107,70,16,0.12);">
-  <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-    <div class="suburb-filter-row">
-      <button class="suburb-filter active" data-filter="all">All</button>
-      {allSuburbs.map(s => (
-        <button class="suburb-filter" data-filter={s.toLowerCase().replace(/ /g, '-')}>{s}</button>
-      ))}
-    </div>
-  </div>
-</section>
 
-<!-- For Sale -->
+<!-- Sold by Daniel & Conrad -->
 <section style="background:var(--color-base);padding:clamp(2rem,6vw,6rem) 0 clamp(2.5rem,5vw,5rem);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
     <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
-      {/* TODO Daniel: confirm whether these listings are exclusively your own or office-wide. If exclusive to you, change eyebrow to "For Sale by Daniel Gierach"; if these are network listings handled across the Bulimba team, "Ray White Bulimba" is the accurate label. Left as office-network framing pending confirmation. */}
       <div class="reveal">
-        <span class="eyebrow mb-3" style="display:block;color:#6b4610;">For Sale</span>
+        <span class="eyebrow mb-3" style="display:block;color:#6b4610;">Sold by Daniel &amp; Conrad</span>
         <h2 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#191817;letter-spacing:-0.01em;">
-          Currently on market.
+          Our recent results.
         </h2>
       </div>
       <a href="https://raywhitebulimba.com.au/agents/daniel-gierach/177117" target="_blank" rel="noopener"
         style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(25,24,23,0.44);text-decoration:none;transition:color 0.2s;"
         onmouseover="this.style.color='#b98229'"
         onmouseout="this.style.color='rgba(25,24,23,0.44)'">
-        View All on Ray White →
+        Full Sales History →
       </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {forSale.map((p, i) => (
+      {gieMannSold.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener"
           class="reveal listing-card" data-delay={i * 60}
-          data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
           style="background:#ffffff;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
           onmouseover="this.style.background='#edeae3';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
           onmouseout="this.style.background='#ffffff';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
         >
-          <!-- Image -->
           <div style="aspect-ratio:4/3;overflow:hidden;position:relative;">
             <img src={p.image} alt={p.address} class="w-full h-full object-cover"
               style="transition:transform 0.4s;"
@@ -241,11 +193,10 @@ const listingsSchema = {
               onmouseout="this.style.transform='scale(1)'"
               loading="lazy"
             />
-            <span style={`position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:${tagText[p.tag] || '#191817'};background:${tagColors[p.tag] || '#6b4610'};padding:0.3rem 0.65rem;`}>
-              {p.tag}
+            <span style="position:absolute;top:1rem;left:1rem;font-family:var(--font-sans);font-size:0.55rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#ffffff;background:#6b4610;padding:0.3rem 0.65rem;">
+              Sold
             </span>
           </div>
-          <!-- Details -->
           <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
             <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;">{p.suburb}</p>
             <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#191817;line-height:1.2;">{p.address}</h3>
@@ -264,29 +215,23 @@ const listingsSchema = {
 </section>
 
 
-<!-- Recently Sold -->
-<section id="sold" style="background:#f2ead4;padding:clamp(2rem,6vw,6rem) 0 clamp(2.5rem,5vw,5rem);border-top:1px solid rgba(107,70,16,0.12);">
+<!-- With the Collective -->
+<section style="background:#f2ead4;padding:clamp(2rem,6vw,6rem) 0 clamp(2.5rem,5vw,5rem);border-top:1px solid rgba(107,70,16,0.12);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;">
-      <div class="reveal">
-        <p class="eyebrow" style="margin-bottom:0.5rem;color:#6b4610;">Recently Sold</p>
-        <h2 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#191817;letter-spacing:-0.01em;">
-          Recent results.
-        </h2>
-      </div>
-      <a href="https://raywhitebulimba.com.au/agents/daniel-gierach/177117" target="_blank" rel="noopener"
-        style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(25,24,23,0.44);text-decoration:none;transition:color 0.2s;"
-        onmouseover="this.style.color='#b98229'"
-        onmouseout="this.style.color='rgba(25,24,23,0.44)'">
-        Full Sales History →
-      </a>
+    <div class="reveal" style="margin-bottom:3rem;">
+      <span class="eyebrow mb-3" style="display:block;color:#6b4610;">With the Collective</span>
+      <h2 style="font-family:var(--font-serif);font-style:italic;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#191817;letter-spacing:-0.01em;">
+        More results from our office.
+      </h2>
+      <p style="margin-top:0.75rem;font-size:0.85rem;color:rgba(25,24,23,0.55);max-width:52ch;line-height:1.75;">
+        Recent inner east sales from the wider Ray White Collective team we work alongside at Bulimba.
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {sold.map((p, i) => (
+      {collectiveSold.map((p, i) => (
         <a href={p.href} target="_blank" rel="noopener"
           class="reveal listing-card" data-delay={i * 60}
-          data-suburb={p.suburb.toLowerCase().replace(/ /g, '-')}
           style="background:#f2ead4;display:flex;flex-direction:column;text-decoration:none;transition:background 0.2s,box-shadow 0.2s;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09);"
           onmouseover="this.style.background='#edeae3';this.style.boxShadow='0 6px 24px rgba(107,70,16,0.13),0 0 0 1px rgba(107,70,16,0.12)'"
           onmouseout="this.style.background='#f2ead4';this.style.boxShadow='0 2px 12px rgba(107,70,16,0.08),0 0 0 1px rgba(107,70,16,0.09)'"
@@ -306,6 +251,7 @@ const listingsSchema = {
             <p style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b98229;">{p.suburb}</p>
             <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#191817;line-height:1.2;">{p.address}</h3>
             <p style="font-size:0.78rem;color:rgba(25,24,23,0.44);">{p.street}</p>
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;color:#44403c;margin-top:0.25rem;">{p.price}</p>
             <div style="display:flex;gap:1.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(28,25,23,0.1);">
               <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.beds} bed</span>
               <span style="font-size:0.72rem;color:rgba(25,24,23,0.44);">{p.baths} bath</span>
@@ -319,8 +265,7 @@ const listingsSchema = {
 </section>
 
 <style>
-  /* Ornament divider */
-  .listings-ornament {
+  .sold-ornament {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -332,72 +277,18 @@ const listingsSchema = {
     position: relative;
     z-index: 2;
   }
-  .listings-ornament-line {
+  .sold-ornament-line {
     flex: 1;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(107,70,16,0.55), transparent);
   }
-  .listings-ornament-mark {
+  .sold-ornament-mark {
     font-family: var(--font-serif);
     font-size: 1rem;
     color: #b98229;
     line-height: 1;
   }
-
-  /* One-line suburb chip row · horizontal scroll on narrow screens */
-  .suburb-filter-row {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 0.15rem;
-    scrollbar-width: none;
-  }
-  .suburb-filter-row::-webkit-scrollbar { display: none; }
-  .suburb-filter {
-    flex-shrink: 0;
-    font-family: var(--font-sans);
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(25,24,23,0.6);
-    background: transparent;
-    border: 1px solid rgba(107,70,16,0.22);
-    padding: 0.35rem 0.75rem;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-    border-radius: 999px;
-    white-space: nowrap;
-    line-height: 1;
-  }
-  .suburb-filter:hover {
-    border-color: #b98229;
-    color: #b98229;
-  }
-  .suburb-filter.active {
-    background: #b98229;
-    border-color: #b98229;
-    color: #ffffff;
-  }
 </style>
-
-<script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.suburb-filter');
-  const cards = document.querySelectorAll<HTMLElement>('.listing-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter!;
-      filterBtns.forEach(b => b.classList.toggle('active', b === btn));
-      cards.forEach(card => {
-        const show = filter === 'all' || card.dataset.suburb === filter;
-        card.style.display = show ? '' : 'none';
-      });
-    });
-  });
-</script>
 
 <!-- Property Report CTA -->
 <section style="background:#f2ead4;padding:4rem 0;border-top:1px solid rgba(28,25,23,0.08);">
