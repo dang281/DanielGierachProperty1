@@ -98,12 +98,14 @@ const schema = {
       position: relative; display: flex; align-items: stretch; gap: 0;
       margin: 0 auto; touch-action: pan-y; user-select: none; cursor: pointer;
     }
-    /* Single page (mobile / cover / back). */
-    .stage[data-mode="single"], .stage.single-leaf { width: min(94vw, 620px); aspect-ratio: 1 / 1; }
-    .stage[data-mode="single"] .leaf, .stage.single-leaf .leaf { width: 100%; height: 100%; }
-    /* Two-page spread (desktop). */
-    .stage[data-mode="spread"]:not(.single-leaf) { width: min(94vw, 1440px); aspect-ratio: 2 / 1; }
-    .stage[data-mode="spread"]:not(.single-leaf) .leaf { width: 50%; height: 100%; }
+    /* Single page (mobile only: the phone shows one page at a time). */
+    .stage[data-mode="single"] { width: min(94vw, 620px); aspect-ratio: 1 / 1; }
+    .stage[data-mode="single"] .leaf { width: 100%; height: 100%; }
+    /* Desktop: the open-book frame stays the SAME width whether it's showing the
+       cover / back cover (one leaf, centred) or an inner spread (two leaves), so
+       the book never starts small and then jumps bigger when you turn the page. */
+    .stage[data-mode="spread"] { width: min(94vw, 1440px); aspect-ratio: 2 / 1; justify-content: center; }
+    .stage[data-mode="spread"] .leaf { width: 50%; height: 100%; }
     .stage[data-mode="spread"]:not(.single-leaf)::after {
       content: ''; position: absolute; top: 2%; bottom: 2%; left: 50%; width: 44px;
       transform: translateX(-50%);
