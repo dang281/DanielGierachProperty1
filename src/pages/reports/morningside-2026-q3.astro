@@ -91,7 +91,7 @@ const bandStats = BANDS.map(([min, max, label]) => {
 });
 const maxBand = Math.max(...bandStats.map((b) => b.n)) || 1;
 const busiest = bandStats.slice().sort((a, b) => b.n - a.n)[0];
-const chartNote = `Houses and units sit in clearly different brackets. The busiest band this season was ${busiest.label.toLowerCase()}, which is where most of the buyer competition landed.`;
+const chartNote = `Houses and units/townhouses sit in clearly different brackets. The busiest band this season was ${busiest.label.toLowerCase()}, which is where most of the buyer competition landed.`;
 
 const fmtDay = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
 const toIso = (dmy) => {
