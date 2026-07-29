@@ -330,6 +330,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   @media (max-width: 640px) { .cta-btn { min-height: 40px; padding: 8px 16px; font-size: 11px; letter-spacing: 0.07em; gap: 8px; } .cta-input { min-height: 44px; font-size: 14px; } }
   .cta-btn:hover { background: var(--gold-lighter); color: var(--ink); }
   .cta-fine { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-top: 14px; font-size: 13.5px; color: rgba(246, 241, 230, 0.65); }
+  .cta-print { display: none; }
 
   .agent-card { display: flex; align-items: center; gap: clamp(16px, 4vw, 26px); flex-wrap: wrap; background: var(--card-cream); border-radius: 18px; padding: clamp(20px, 4.5vw, 28px); margin-top: 12px; }
   .agent-card img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
@@ -340,7 +341,6 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .agent-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 13px; font-weight: 600; }
   .agent-co { display: flex; align-items: center; gap: 14px; flex: 0 1 auto; margin-left: auto; padding-left: clamp(0px, 3vw, 20px); }
   .agent-co img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
-  .agent-co .agent-links { margin-top: 8px; }
   @media (max-width: 720px) { .agent-co { margin-left: 0; } }
 
   .src-footer { padding-top: 26px; }
@@ -371,10 +371,13 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     .stat-card, .sale-card, .top-row, .comp-row, .panel, .comps-panel, .agent-card { background: #FFFFFF; border: 1px solid #D8D2C4; break-inside: avoid; }
     .sec-head { break-after: avoid; }
     .view-section, .season, .comps-section { break-inside: auto; }
-    .cta-panel { background: #FFFFFF; border: 1px solid #D8D2C4; }
-    .cta-panel h3 { color: var(--ink); }
-    .cta-panel .sub { color: var(--ink-70); }
+    .cta-panel { background: #FFFFFF; border: 1px solid #D8D2C4; break-inside: avoid; padding: 8mm; }
+    .cta-panel h3, .cta-panel .sub { display: none !important; }
     .cta-row, .cta-fine { display: none !important; }
+    .cta-print { display: block; }
+    .cta-print-name { font-size: 24px; margin: 0 0 4px; color: var(--ink); }
+    .cta-print-details { font-size: 14px; font-weight: 600; color: var(--gold-dark); margin: 0; }
+    .agent-card { break-inside: avoid; }
     .prepared { box-shadow: none; }
     /* Chart bars are backgrounds; force them onto paper even when the
        browser's "Background graphics" box is unticked. */
@@ -525,6 +528,10 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
       <div class="cta-panel">
         <h3 class="serif">Find out what your property is worth.</h3>
         <p class="sub">Based on what comparable homes in {suburb} are actually selling for.</p>
+        <div class="cta-print">
+          <p class="serif cta-print-name">Contact Daniel Gierach</p>
+          <p class="cta-print-details">0412 523 821 · daniel.gierach@raywhite.com</p>
+        </div>
         <div class="cta-row">
           <input type="text" class="cta-input" id="cta-address" placeholder="Enter your property address" />
           <a href={walkthroughUrl} id="cta-link" class="cta-btn" data-cta="report_appraisal">What's your property worth? →</a>
