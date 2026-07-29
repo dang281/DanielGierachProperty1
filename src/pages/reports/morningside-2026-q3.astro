@@ -377,6 +377,20 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     .cta-panel .sub { color: var(--ink-70); }
     .cta-row, .cta-fine { display: none !important; }
     .prepared { box-shadow: none; }
+    /* Chart bars are backgrounds; force them onto paper even when the
+       browser's "Background graphics" box is unticked. */
+    .band-bars .h, .band-bars .u, .band-legend i, .cta-btn {
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .band-bars .h { border: 1px solid #1F1D1B; }
+    .band-bars .u { border: 1px solid #B5831C; }
+    /* Tighter rhythm on paper: screen breathing room reads as gaps in a PDF. */
+    .hero .wrap { padding-top: 6mm; padding-bottom: 5mm; }
+    .season .wrap, .comps-section .wrap { padding-top: 4mm; padding-bottom: 3mm; }
+    .main { padding-top: 4mm; }
+    .view-section { margin-bottom: 7mm; }
+    .tail .wrap { padding-top: 3mm; padding-bottom: 8mm; }
+    .cover h1, .hero h1 { font-size: 44px; }
   }
 </style>
 
@@ -445,7 +459,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         <div class="top-list">
           {topSales.map((sale) => (
             <a href={sale.url} target="_blank" rel="noopener" class="top-row">
-              <span class="photo-slot"><img src={sale.photoUrl} alt={`Street view of ${sale.address}`} width="72" height="72" loading="lazy" onerror="this.remove()" /><span>Photo</span></span>
+              <span class="photo-slot"><img src={sale.photoUrl} alt={`Photo of ${sale.address}`} width="72" height="72" onerror="this.remove()" /><span>Photo</span></span>
               <span class="row-main">
                 <span class="row-addr">{sale.address}</span>
                 <span class="row-sum">{sale.summaryLine}</span>
@@ -634,7 +648,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   });
 
   // ── View tabs + search ──
-  const VIEWS = [['overview', 'Overview'], ['map', 'Map'], ['recent', 'Most recent'], ['type', 'Houses and units'], ['price', 'Price band'], ['beds', 'Bedrooms']];
+  const VIEWS = [['overview', 'Overview'], ['map', 'Map'], ['recent', 'Most recent'], ['type', 'Houses/units/townhouses'], ['price', 'Price band'], ['beds', 'Bedrooms']];
   const tabsEl = document.getElementById('tabs');
   const searchEl = document.getElementById('search');
 
