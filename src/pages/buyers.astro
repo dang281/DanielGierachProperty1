@@ -94,7 +94,7 @@ const buyerSchema = {
           <div class="wz-dot"></div>
           <span class="wz-dot-lbl">Property</span>
         </div>
-        <div class="wz-connector" data-after="1"></div>
+        <div class="wz-connector half" data-after="1"></div>
         <div class="wz-dot-wrap" data-step="2">
           <div class="wz-dot"></div>
           <span class="wz-dot-lbl">Where</span>
@@ -112,7 +112,7 @@ const buyerSchema = {
         What are you searching for?
       </h2>
       <p id="wz-subhead" style="font-size:0.85rem;color:#78716c;line-height:1.7;margin-bottom:1.75rem;transition:opacity 0.25s;">
-        Start with what kind of place you want. All fields are optional.
+        We have pre-filled the most common brief: 3 bedrooms, $1.5m to $2m. Adjust anything that does not fit.
       </p>
       <!-- Note: wz-subhead text is overwritten by setStep() for steps 2 and 3 -->
 
@@ -169,18 +169,22 @@ const buyerSchema = {
             <input type="hidden" name="property_type" id="type-value" />
           </div>
 
-          <!-- Bedrooms -->
+          <!-- Bedrooms: stepper pre-set to 3 so the brief starts part-done -->
           <div>
             <label class="field-label">Bedrooms <span class="field-opt">(optional)</span></label>
-            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem;margin-top:0.4rem;" id="beds-group">
-              {['1','2','3','4','5+'].map((b) => (
-                <button type="button" class="selector-btn" data-group="beds" data-value={b}
-                  style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;padding:0;height:2.75rem;background:#ffffff;border:1.5px solid rgba(28,25,23,0.22);border-radius:10px;box-shadow:0 1px 2px rgba(25,24,23,0.05);color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;">
-                  {b}
-                </button>
-              ))}
+            <div class="beds-stepper" style="margin-top:0.4rem;">
+              <button type="button" class="beds-step-btn" id="beds-minus" aria-label="Fewer bedrooms">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>
+              </button>
+              <div class="beds-readout" aria-live="polite">
+                <span id="beds-count">3</span>
+                <span class="beds-unit" id="beds-unit">bedrooms</span>
+              </div>
+              <button type="button" class="beds-step-btn" id="beds-plus" aria-label="More bedrooms">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
             </div>
-            <input type="hidden" name="bedrooms" id="beds-value" />
+            <input type="hidden" name="bedrooms" id="beds-value" value="3" />
           </div>
 
           <!-- Budget -->
@@ -188,13 +192,13 @@ const buyerSchema = {
             <label class="field-label">Budget range <span class="field-opt">(optional)</span></label>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;margin-top:0.4rem;" id="budget-group">
               {['Under $1m','$1m-$1.5m','$1.5m-$2m','$2m-$3m','$3m-$5m','$5m+'].map((b) => (
-                <button type="button" class="selector-btn" data-group="budget" data-value={b}
+                <button type="button" class={b === '$1.5m-$2m' ? 'selector-btn active' : 'selector-btn'} data-group="budget" data-value={b}
                   style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.04em;padding:0;height:2.75rem;background:#ffffff;border:1.5px solid rgba(28,25,23,0.22);border-radius:10px;box-shadow:0 1px 2px rgba(25,24,23,0.05);color:#44403c;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3;">
                   {b}
                 </button>
               ))}
             </div>
-            <input type="hidden" name="budget" id="budget-value" />
+            <input type="hidden" name="budget" id="budget-value" value="$1.5m-$2m" />
           </div>
 
           <div class="wz-footer" style="margin-top:0.5rem;">
@@ -635,9 +639,69 @@ const buyerSchema = {
     background: rgba(185,130,41,0.16);
     margin: 6px 0.75rem 0;
     transition: background 0.3s;
+    position: relative;
+  }
+  /* Pre-filled brief = the first leg starts part-done */
+  .wz-connector.half::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 40%;
+    background: #b98229;
   }
   .wz-connector.done {
     background: #b98229;
+  }
+
+  /* ── Bedrooms stepper ──────────────────────────────────────────────────── */
+  .beds-stepper {
+    display: flex;
+    align-items: stretch;
+    height: 2.75rem;
+    background: #ffffff;
+    border: 1.5px solid rgba(28,25,23,0.22);
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(25,24,23,0.05);
+    overflow: hidden;
+  }
+  .beds-step-btn {
+    width: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #b98229;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .beds-step-btn:hover:not(:disabled) { background: rgba(185,130,41,0.08); }
+  .beds-step-btn:disabled { color: rgba(28,25,23,0.18); cursor: default; }
+  .beds-readout {
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.4rem;
+    align-self: center;
+    border-left: 1px solid rgba(28,25,23,0.1);
+    border-right: 1px solid rgba(28,25,23,0.1);
+    padding: 0.45rem 0;
+  }
+  #beds-count {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #191817;
+  }
+  .beds-unit {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #78716c;
   }
 
   /* ── Desktop: left panel sticky ─────────────────────────────────────────── */
@@ -717,10 +781,10 @@ const buyerSchema = {
       line-height: 1.2 !important;
       padding: 0.2rem 0.4rem !important;
     }
-    /* Bedrooms is a single digit so keep it punchy */
-    #beds-group .selector-btn {
-      font-size: 0.95rem !important;
-    }
+    /* Bedrooms stepper: taller touch target */
+    .beds-stepper { height: 3.25rem !important; }
+    #beds-count   { font-size: 1.05rem !important; }
+  }
 
   /* Smallest screens: drop dot labels so the indicator doesn't crowd */
   @media (max-width: 380px) {
@@ -1005,6 +1069,31 @@ const buyerSchema = {
     });
   });
 
+  // Seed the brief with Daniel's patch so step 2 starts part-done.
+  // Removable like any other tag; specific suburbs refine it.
+  addSuburb('Inner East Brisbane');
+
+  // ── Bedrooms stepper (pre-set to 3) ────────────────────────────────────────
+  const BED_STEPS = ['1', '2', '3', '4', '5+'];
+  const bedsValue = document.getElementById('beds-value') as HTMLInputElement;
+  const bedsCount = document.getElementById('beds-count')!;
+  const bedsUnit  = document.getElementById('beds-unit')!;
+  const bedsMinus = document.getElementById('beds-minus') as HTMLButtonElement;
+  const bedsPlus  = document.getElementById('beds-plus') as HTMLButtonElement;
+  let bedIdx = BED_STEPS.indexOf('3');
+
+  function renderBeds() {
+    const v = BED_STEPS[bedIdx];
+    bedsCount.textContent = v;
+    bedsUnit.textContent  = v === '1' ? 'bedroom' : 'bedrooms';
+    bedsValue.value = v;
+    bedsMinus.disabled = bedIdx === 0;
+    bedsPlus.disabled  = bedIdx === BED_STEPS.length - 1;
+  }
+  bedsMinus.addEventListener('click', () => { if (bedIdx > 0) { bedIdx--; renderBeds(); } });
+  bedsPlus.addEventListener('click',  () => { if (bedIdx < BED_STEPS.length - 1) { bedIdx++; renderBeds(); } });
+  renderBeds();
+
   // Search + dropdown
   const searchInput = document.getElementById('suburb-search') as HTMLInputElement;
   const dropdown    = document.getElementById('suburb-dropdown')!;
@@ -1118,8 +1207,8 @@ const buyerSchema = {
   };
 
   const stepContent: Record<StepNum, { h: string; s: string }> = {
-    1: { h: 'What are you searching for?',             s: 'Start with what kind of place you want. All fields are optional.' },
-    2: { h: 'Where are you looking?',          s: 'Select the suburbs you\'re searching in. Add as many as you like.' },
+    1: { h: 'What are you searching for?',     s: 'We have pre-filled the most common brief: 3 bedrooms, $1.5m to $2m. Adjust anything that does not fit.' },
+    2: { h: 'Where are you looking?',          s: 'We have started you with the inner east. Add the suburbs you actually want, or keep it broad.' },
     3: { h: 'How should Daniel reach you?',    s: 'Daniel reviews every registration personally.' }
   };
 
