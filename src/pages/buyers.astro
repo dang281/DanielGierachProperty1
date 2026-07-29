@@ -107,13 +107,11 @@ const buyerSchema = {
       </div>
 
       <!-- Step counter + heading (both change per step) -->
-      <p id="wz-counter" style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Step 1 of 3 &middot; 40% done</p>
-      <h2 id="wz-heading" style="font-family:var(--font-serif);font-size:1.9rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.4rem;transition:opacity 0.25s;">
+      <p id="wz-counter" style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Step 1 of 3 &middot; 33% done</p>
+      <h2 id="wz-heading" style="font-family:var(--font-serif);font-size:1.9rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:1.25rem;transition:opacity 0.25s;">
         What are you searching for?
       </h2>
-      <p id="wz-subhead" style="font-size:0.85rem;color:#78716c;line-height:1.7;margin-bottom:1.75rem;transition:opacity 0.25s;">
-        We have pre-filled the most common brief: a house, 3 bedrooms, $1.5m to $2m. Adjust anything that does not fit.
-      </p>
+      <p id="wz-subhead" style="display:none;font-size:0.85rem;color:#78716c;line-height:1.7;margin-bottom:1.75rem;transition:opacity 0.25s;"></p>
       <!-- Note: wz-subhead text is overwritten by setStep() for steps 2 and 3 -->
 
       <form id="buyer-form" method="POST" action="https://formspree.io/f/meedzvyv">
@@ -169,22 +167,32 @@ const buyerSchema = {
             <input type="hidden" name="property_type" id="type-value" value="House" />
           </div>
 
-          <!-- Bedrooms: stepper pre-set to 3 so the brief starts part-done -->
+          <!-- Bedrooms / bathrooms / cars: steppers pre-set to the common brief -->
           <div>
-            <label class="field-label">Bedrooms <span class="field-opt">(optional)</span></label>
-            <div class="beds-stepper" style="margin-top:0.4rem;">
-              <button type="button" class="beds-step-btn" id="beds-minus" aria-label="Fewer bedrooms">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>
-              </button>
-              <div class="beds-readout" aria-live="polite">
-                <span id="beds-count">3</span>
-                <span class="beds-unit" id="beds-unit">bedrooms</span>
-              </div>
-              <button type="button" class="beds-step-btn" id="beds-plus" aria-label="More bedrooms">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-              </button>
+            <label class="field-label">Bedrooms, bathrooms and cars <span class="field-opt">(optional)</span></label>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.4rem;">
+              {[
+                { id: 'beds',  unit: 'bed',  start: '3', name: 'bedrooms' },
+                { id: 'baths', unit: 'bath', start: '2', name: 'bathrooms' },
+                { id: 'cars',  unit: 'car',  start: '2', name: 'cars' },
+              ].map((s) => (
+                <div class="beds-stepper">
+                  <button type="button" class="beds-step-btn" id={`${s.id}-minus`} aria-label={`Fewer ${s.name}`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>
+                  </button>
+                  <div class="beds-readout" aria-live="polite">
+                    <span class="beds-count" id={`${s.id}-count`}>{s.start}</span>
+                    <span class="beds-unit">{s.unit}</span>
+                  </div>
+                  <button type="button" class="beds-step-btn" id={`${s.id}-plus`} aria-label={`More ${s.name}`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+              ))}
             </div>
             <input type="hidden" name="bedrooms" id="beds-value" value="3" />
+            <input type="hidden" name="bathrooms" id="baths-value" value="2" />
+            <input type="hidden" name="cars" id="cars-value" value="2" />
           </div>
 
           <!-- Budget -->
@@ -266,7 +274,7 @@ const buyerSchema = {
 
           <div>
             <label for="buyer-email" class="field-label">Email <span style="color:#b98229;">*</span></label>
-            <input type="email" id="buyer-email" name="email" required placeholder="your@email.com"
+            <input type="email" id="buyer-email" name="email" required placeholder="jane.smith@gmail.com"
               class="obs-input form-field" autocomplete="email" />
           </div>
 
@@ -278,7 +286,7 @@ const buyerSchema = {
 
           <div>
             <label for="buyer-phone" class="field-label">Phone <span style="color:#b98229;">*</span></label>
-            <input type="tel" id="buyer-phone" name="phone" required placeholder="04xx xxx xxx"
+            <input type="tel" id="buyer-phone" name="phone" required placeholder="0412 345 678"
               class="obs-input form-field" autocomplete="tel" />
           </div>
 
@@ -291,14 +299,10 @@ const buyerSchema = {
               class="obs-input" />
           </div>
 
-          <p style="font-size:0.72rem;color:#78716c;line-height:1.7;margin-top:0.25rem;">
-            Daniel works with buyers across 30+ Brisbane suburbs. Most hear back the same day.
-          </p>
-
           <div class="wz-footer wz-footer-split" style="margin-top:0.25rem;">
             <button type="button" class="wz-back-btn" data-to="2">← Back</button>
             <button type="submit" id="buyer-submit" class="btn-gold" style="flex:1;justify-content:center;">
-              <span id="buyer-submit-label">Send my brief to Daniel</span>
+              <span id="buyer-submit-label">Keep me updated</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
@@ -681,8 +685,6 @@ const buyerSchema = {
   .beds-stepper {
     display: flex;
     align-items: stretch;
-    width: 15rem;
-    max-width: 100%;
     height: 2.75rem;
     background: #ffffff;
     border: 1.5px solid rgba(28,25,23,0.22);
@@ -691,7 +693,7 @@ const buyerSchema = {
     overflow: hidden;
   }
   .beds-step-btn {
-    width: 3.25rem;
+    width: 2.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -709,13 +711,14 @@ const buyerSchema = {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
     align-self: center;
     border-left: 1px solid rgba(28,25,23,0.1);
     border-right: 1px solid rgba(28,25,23,0.1);
     padding: 0.45rem 0;
+    min-width: 0;
   }
-  #beds-count {
+  .beds-count {
     font-family: var(--font-sans);
     font-size: 0.95rem;
     font-weight: 700;
@@ -807,9 +810,10 @@ const buyerSchema = {
       line-height: 1.2 !important;
       padding: 0.2rem 0.4rem !important;
     }
-    /* Bedrooms stepper: taller touch target */
+    /* Bed/bath/car steppers: taller touch target */
     .beds-stepper { height: 3.25rem !important; }
-    #beds-count   { font-size: 1.05rem !important; }
+    .beds-count   { font-size: 1.05rem !important; }
+    .beds-unit    { font-size: 0.52rem !important; letter-spacing: 0.06em !important; }
   }
 
   /* Smallest screens: drop dot labels so the indicator doesn't crowd */
@@ -853,11 +857,11 @@ const buyerSchema = {
   }
 
   .quick-chip {
-    font-family: var(--font-serif);
-    font-size: 0.78rem;
-    font-weight: 400;
-    font-style: italic;
-    padding: 0 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0 0.4rem;
     height: 44px;
     background: #ffffff;
     border: 1.5px solid rgba(28,25,23,0.18);
@@ -867,10 +871,9 @@ const buyerSchema = {
     cursor: pointer;
     transition: all 0.2s;
     text-align: center;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.25;
     overflow: hidden;
-    text-overflow: ellipsis;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -931,8 +934,7 @@ const buyerSchema = {
   #suburb-search {
     flex: 1;
     min-width: 0;
-    font-family: var(--font-serif);
-    font-style: italic;
+    font-family: var(--font-sans);
     font-size: 0.9rem;
     padding: 0.75rem 0.5rem;
     border: none;
@@ -940,7 +942,7 @@ const buyerSchema = {
     color:#191817;
     outline: none;
   }
-  #suburb-search::placeholder { color: #a8a29e; font-style: italic; }
+  #suburb-search::placeholder { color: #a8a29e; }
   #suburb-add-btn {
     display: flex;
     align-items: center;
@@ -1097,30 +1099,26 @@ const buyerSchema = {
     });
   });
 
-  // Seed the brief with Daniel's patch so step 2 starts part-done.
-  // Removable like any other tag; specific suburbs refine it.
-  addSuburb('Inner East Brisbane');
-
-  // ── Bedrooms stepper (pre-set to 3) ────────────────────────────────────────
-  const BED_STEPS = ['1', '2', '3', '4', '5+'];
-  const bedsValue = document.getElementById('beds-value') as HTMLInputElement;
-  const bedsCount = document.getElementById('beds-count')!;
-  const bedsUnit  = document.getElementById('beds-unit')!;
-  const bedsMinus = document.getElementById('beds-minus') as HTMLButtonElement;
-  const bedsPlus  = document.getElementById('beds-plus') as HTMLButtonElement;
-  let bedIdx = BED_STEPS.indexOf('3');
-
-  function renderBeds() {
-    const v = BED_STEPS[bedIdx];
-    bedsCount.textContent = v;
-    bedsUnit.textContent  = v === '1' ? 'bedroom' : 'bedrooms';
-    bedsValue.value = v;
-    bedsMinus.disabled = bedIdx === 0;
-    bedsPlus.disabled  = bedIdx === BED_STEPS.length - 1;
+  // ── Bed / bath / car steppers (pre-set to the common brief) ────────────────
+  function wireStepper(id: string, steps: string[], start: string) {
+    const value = document.getElementById(`${id}-value`) as HTMLInputElement;
+    const count = document.getElementById(`${id}-count`)!;
+    const minus = document.getElementById(`${id}-minus`) as HTMLButtonElement;
+    const plus  = document.getElementById(`${id}-plus`) as HTMLButtonElement;
+    let idx = steps.indexOf(start);
+    const render = () => {
+      count.textContent = steps[idx];
+      value.value = steps[idx];
+      minus.disabled = idx === 0;
+      plus.disabled  = idx === steps.length - 1;
+    };
+    minus.addEventListener('click', () => { if (idx > 0) { idx--; render(); } });
+    plus.addEventListener('click',  () => { if (idx < steps.length - 1) { idx++; render(); } });
+    render();
   }
-  bedsMinus.addEventListener('click', () => { if (bedIdx > 0) { bedIdx--; renderBeds(); } });
-  bedsPlus.addEventListener('click',  () => { if (bedIdx < BED_STEPS.length - 1) { bedIdx++; renderBeds(); } });
-  renderBeds();
+  wireStepper('beds',  ['1', '2', '3', '4', '5+'], '3');
+  wireStepper('baths', ['1', '2', '3', '4+'], '2');
+  wireStepper('cars',  ['0', '1', '2', '3', '4+'], '2');
 
   // Search + dropdown
   const searchInput = document.getElementById('suburb-search') as HTMLInputElement;
@@ -1235,8 +1233,8 @@ const buyerSchema = {
   };
 
   const stepContent: Record<StepNum, { h: string; s: string }> = {
-    1: { h: 'What are you searching for?',     s: 'We have pre-filled the most common brief: a house, 3 bedrooms, $1.5m to $2m. Adjust anything that does not fit.' },
-    2: { h: 'Where are you looking?',          s: 'We have started you with the inner east. Add the suburbs you actually want, or keep it broad.' },
+    1: { h: 'What are you searching for?',     s: '' },
+    2: { h: 'Where are you looking?',          s: 'Select the suburbs you are searching in. Add as many as you like.' },
     3: { h: 'How should Daniel reach you?',    s: 'Daniel reviews every registration personally.' }
   };
 
@@ -1269,11 +1267,13 @@ const buyerSchema = {
     // Fade heading/subhead/counter
     wzHeading.style.opacity = '0';
     wzSubhead.style.opacity = '0';
-    const stepPct: Record<StepNum, number> = { 1: 40, 2: 70, 3: 90 };
+    const stepPct: Record<StepNum, number> = { 1: 33, 2: 66, 3: 99 };
     setTimeout(() => {
       wzCounter.textContent = `Step ${to} of 3 · ${stepPct[to]}% done`;
       wzHeading.textContent = stepContent[to].h;
       wzSubhead.textContent = stepContent[to].s;
+      wzSubhead.style.display = stepContent[to].s ? '' : 'none';
+      wzHeading.style.marginBottom = stepContent[to].s ? '0.4rem' : '1.25rem';
       wzHeading.style.opacity = '1';
       wzSubhead.style.opacity = '1';
     }, 180);
