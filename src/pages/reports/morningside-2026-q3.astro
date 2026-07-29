@@ -208,7 +208,8 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .caps { font-weight: 600; text-transform: uppercase; }
 
   /* ── Hero ── */
-  .hero { background: radial-gradient(118% 76% at 50% 32%, #DFCEAA 0%, #E4D6B7 44%, #E6D9BD 80%); }
+  /* A touch darker behind the title than the reference wash (Daniel, 30 Jul). */
+  .hero { background: radial-gradient(118% 76% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%); }
   .hero .wrap { padding-top: clamp(26px, 6vw, 64px); padding-bottom: clamp(30px, 5.5vw, 52px); text-align: center; }
   .prepared { display: none; flex-direction: column; align-items: center; gap: 3px; }
   .prepared.on { display: flex; }
@@ -222,7 +223,11 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .divider .line-l { height: 1px; width: clamp(40px, 18vw, 130px); background: linear-gradient(to left, rgba(181, 131, 28, 0), rgba(181, 131, 28, 0.4)); }
   .divider .diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
   .hero .period { font-size: 15px; line-height: 1.65; color: var(--ink-70); margin: 0 auto; max-width: 32em; }
-  .hero .agentline { font-size: 10.5px; letter-spacing: 0.16em; color: var(--ink-55); margin-top: 16px; }
+  .hero-agent { font-size: 10.5px; letter-spacing: 0.16em; color: var(--ink-55); text-align: left; margin-bottom: 18px; }
+  @media (min-width: 900px) {
+    .hero .wrap { position: relative; }
+    .hero-agent { position: absolute; top: 22px; left: clamp(18px, 5vw, 48px); margin-bottom: 0; }
+  }
 
   /* ── Season in numbers ── */
   .season .wrap { padding-top: clamp(24px, 5vw, 46px); padding-bottom: clamp(12px, 3vw, 22px); }
@@ -355,9 +360,23 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     .search { flex: 0 1 340px; }
   }
 
+  /* Print: portrait A4, white paper, no interactive chrome, nothing split
+     mid-card. Groups are expanded by the beforeprint handler. */
+  @page { size: A4 portrait; margin: 12mm; }
   @media print {
     [data-print-hide] { display: none !important; }
-    .report { background: #FFFFFF; }
+    .report, .hero { background: #FFFFFF; }
+    .map-section { display: none !important; }
+    .hero .wrap { padding-top: 8mm; }
+    .stat-card, .sale-card, .top-row, .comp-row, .panel, .comps-panel, .agent-card { background: #FFFFFF; border: 1px solid #D8D2C4; break-inside: avoid; }
+    .sec-head { break-after: avoid; }
+    .view-section, .season, .comps-section { break-inside: auto; }
+    .cta-panel { background: #FFFFFF; border: 1px solid #D8D2C4; }
+    .cta-panel h3 { color: var(--ink); }
+    .cta-panel .sub { color: var(--ink-70); }
+    .cta-row, .cta-fine { display: none !important; }
+    .prepared { box-shadow: none; }
+    .hero-agent { position: static !important; margin-bottom: 14px; }
   }
 </style>
 
@@ -365,6 +384,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
 
   <header class="hero">
     <div class="wrap wide-pad">
+      <div class="hero-agent caps">Daniel Gierach · Ray White Bulimba</div>
       <div class="prepared" id="prepared">
         <span class="who caps" id="prepared-who"></span>
         <span class="addr" id="prepared-addr"></span>
@@ -374,7 +394,6 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
       <div class="serif subtitle">Mid-Winter Report</div>
       <div class="divider" aria-hidden="true"><span class="line-r"></span><span class="diamond"></span><span class="line-l"></span></div>
       <p class="period">April to July 2026 · every recorded residential sale in {suburb} {postcode}, including the ones that never reached the portals.</p>
-      <div class="agentline caps">Daniel Gierach · 0412 523 821</div>
     </div>
   </header>
 
@@ -696,6 +715,25 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   }
 
   searchEl.addEventListener('input', () => { state.query = searchEl.value; render(); });
+
+  // Print: show the overview plus every group fully expanded, then restore.
+  let printSnapshot = null;
+  window.addEventListener('beforeprint', () => {
+    printSnapshot = { view: state.view, query: state.query, expanded: { ...state.expanded } };
+    state.query = '';
+    if (state.view === 'map') state.view = 'overview';
+    buildGroups(state.view).forEach((g) => { state.expanded[g.label] = true; });
+    render();
+  });
+  window.addEventListener('afterprint', () => {
+    if (!printSnapshot) return;
+    state.view = printSnapshot.view;
+    state.query = printSnapshot.query;
+    state.expanded = printSnapshot.expanded;
+    searchEl.value = state.query;
+    printSnapshot = null;
+    render();
+  });
 
   // ── Map: keyed path, circle markers scaled by price + reader home pin ──
   let mapLoading = false, mapDrawn = false;
