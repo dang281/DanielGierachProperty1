@@ -22,7 +22,7 @@ const suburb = 'Morningside';
 const postcode = '4170';
 const agencyLine = 'Ray White Bulimba · The Collective';
 const pulledDate = '29 July 2026';
-const walkthroughUrl = '/walkthrough';
+const walkthroughUrl = '/property-worth';
 
 // Residential only (industrial-precinct sheds parse as bedless Units), then
 // disclosed prices only. Deduped by address + price (Pricefinder repeats).
@@ -510,7 +510,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
           <input type="text" class="cta-input" id="cta-address" placeholder="Enter your property address" />
           <a href={walkthroughUrl} id="cta-link" class="cta-btn" data-cta="report_appraisal">What's your property worth? →</a>
         </div>
-        <div class="cta-fine"><span>Free. Daniel responds within one business day.</span></div>
+        <div class="cta-fine"><span>Free. Daniel responds within 48 hours.</span></div>
       </div>
 
       <div class="agent-card">
@@ -522,7 +522,6 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
           <div class="agent-links">
             <a href="tel:+61412523821" data-cta="report_call_daniel">0412 523 821</a>
             <a href="mailto:daniel.gierach@raywhite.com" data-cta="report_email_daniel">daniel.gierach@raywhite.com</a>
-            <a href="https://danielgierach.com" target="_blank" rel="noopener">danielgierach.com</a>
           </div>
         </div>
       </div>
@@ -599,6 +598,23 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   };
   ctaInput.addEventListener('input', syncCta);
   syncCta();
+  // Tell the dashboard the moment the button is pressed, with the address
+  // in the field (keepalive so navigation doesn't cancel it).
+  ctaLink.addEventListener('click', () => {
+    try {
+      fetch('https://dg-dashboard-ebon.vercel.app/api/report-click', {
+        method: 'POST', mode: 'no-cors', keepalive: true,
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          report: location.pathname.replace(/^\/reports\//, '').replace(/\/$/, ''),
+          h: params.get('h') || null,
+          n: forName || null,
+          event: 'cta',
+          address: ctaInput.value.trim() || null,
+        }),
+      }).catch(() => {});
+    } catch (e) { /* never block the click */ }
+  });
 
   // ── View tabs + search ──
   const VIEWS = [['overview', 'Overview'], ['map', 'Map'], ['recent', 'Most recent'], ['type', 'Houses and units'], ['price', 'Price band'], ['beds', 'Bedrooms']];
