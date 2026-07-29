@@ -223,11 +223,6 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .divider .line-l { height: 1px; width: clamp(40px, 18vw, 130px); background: linear-gradient(to left, rgba(181, 131, 28, 0), rgba(181, 131, 28, 0.4)); }
   .divider .diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
   .hero .period { font-size: 15px; line-height: 1.65; color: var(--ink-70); margin: 0 auto; max-width: 32em; }
-  .hero-agent { font-size: 10.5px; letter-spacing: 0.16em; color: var(--ink-55); text-align: left; margin-bottom: 18px; }
-  @media (min-width: 900px) {
-    .hero .wrap { position: relative; }
-    .hero-agent { position: absolute; top: 22px; left: clamp(18px, 5vw, 48px); margin-bottom: 0; }
-  }
 
   /* ── Season in numbers ── */
   .season .wrap { padding-top: clamp(24px, 5vw, 46px); padding-bottom: clamp(12px, 3vw, 22px); }
@@ -376,7 +371,6 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     .cta-panel .sub { color: var(--ink-70); }
     .cta-row, .cta-fine { display: none !important; }
     .prepared { box-shadow: none; }
-    .hero-agent { position: static !important; margin-bottom: 14px; }
   }
 </style>
 
@@ -384,12 +378,11 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
 
   <header class="hero">
     <div class="wrap wide-pad">
-      <div class="hero-agent caps">Daniel Gierach · Ray White Bulimba</div>
       <div class="prepared" id="prepared">
         <span class="who caps" id="prepared-who"></span>
         <span class="addr" id="prepared-addr"></span>
       </div>
-      <div class="eyebrow caps">{agencyLine}</div>
+      <div class="eyebrow caps">Daniel Gierach · {agencyLine}</div>
       <h1 class="serif">{suburb}</h1>
       <div class="serif subtitle">Mid-Winter Report</div>
       <div class="divider" aria-hidden="true"><span class="line-r"></span><span class="diamond"></span><span class="line-l"></span></div>
