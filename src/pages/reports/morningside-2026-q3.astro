@@ -100,6 +100,13 @@ const toIso = (dmy) => {
 };
 const streetOf = (address) => address.split(',')[0].trim().replace(/^[\dA-Za-z]+(?:\/[\dA-Za-z]+)?\s+/, '');
 
+// Top-five photos: Google Street View of each property (copyright-safe,
+// unlike reusing portal listing imagery). Requires "Street View Static API"
+// enabled on the Maps key in Google Cloud Console; until then the <img>
+// 403s and onerror reveals the placeholder slot, so this is safe to ship.
+const streetViewUrl = (address) =>
+  `https://maps.googleapis.com/maps/api/streetview?size=144x144&location=${encodeURIComponent(`${address}, ${suburb} QLD ${postcode}`)}&key=${googleMapsKey}`;
+
 const topSales = sales
   .slice()
   .sort((a, b) => b.price - a.price)
@@ -107,6 +114,7 @@ const topSales = sales
   .map((s) => ({
     address: s.address.split(',')[0],
     url: s.search,
+    photoUrl: streetViewUrl(s.address.split(',')[0]),
     summaryLine: `${s.type === 'House' ? 'House' : 'Unit'}${s.beds ? ` · ${s.beds} bed` : ''}${s.daysToSell != null ? ` · sold in ${s.daysToSell} days` : ''}`,
     priceText: money(s.price),
     dateText: fmtDay(toIso(s.saleDate)),
@@ -263,8 +271,9 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .top-list { display: grid; gap: 10px; }
   .top-row { background: var(--card-cream); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; color: inherit; }
   .top-row:hover { background: var(--white); color: inherit; }
-  .photo-slot { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 10px; overflow: hidden; background: repeating-linear-gradient(135deg, #E6D9BD 0 6px, #DFCEAA 6px 12px); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; }
+  .photo-slot { position: relative; flex: 0 0 auto; width: 72px; height: 72px; border-radius: 10px; overflow: hidden; background: repeating-linear-gradient(135deg, #E6D9BD 0 6px, #DFCEAA 6px 12px); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; }
   .photo-slot span { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); }
+  .photo-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .top-row .row-price { font-size: 21px; }
 
   .panel { background: var(--white); border-radius: 14px; padding: clamp(18px, 4vw, 26px); }
@@ -328,6 +337,19 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .src-footer { padding-top: 26px; }
   .src-footer p { font-size: 13px; line-height: 1.65; color: var(--ink-55); margin: 0; max-width: 52em; }
   .src-footer .agency { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-55); margin-top: 14px; }
+
+  /* Desktop: let the prose run the full content width instead of stacking
+     in a narrow column (Daniel, 30 Jul), and put the search field beside
+     the view tabs on one row instead of underneath. */
+  @media (min-width: 900px) {
+    .season .trend { max-width: none; }
+    .cta-panel .sub { max-width: 44em; }
+    .src-footer p { max-width: none; }
+    .chart-note { max-width: none; }
+    .comps-why { max-width: none; }
+    .tabs { flex: 1 1 auto; }
+    .search { flex: 0 1 340px; }
+  }
 
   @media print {
     [data-print-hide] { display: none !important; }
@@ -401,7 +423,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         <div class="top-list">
           {topSales.map((sale) => (
             <a href={sale.url} target="_blank" rel="noopener" class="top-row">
-              <span class="photo-slot"><span>Photo</span></span>
+              <span class="photo-slot"><img src={sale.photoUrl} alt={`Street view of ${sale.address}`} width="72" height="72" loading="lazy" onerror="this.remove()" /><span>Photo</span></span>
               <span class="row-main">
                 <span class="row-addr">{sale.address}</span>
                 <span class="row-sum">{sale.summaryLine}</span>
@@ -698,9 +720,11 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
       const pos = { lat: s.lat, lng: s.lng };
       bounds.extend(pos);
       const colour = s.u ? '#B5831C' : '#1F1D1B';
+      // Smaller, crisper dots than the reference (Daniel, 30 Jul): tighter
+      // price scaling, solid fill, cream outline so neighbours separate.
       const marker = new g.Marker({
         position: pos, map, title: s.a,
-        icon: { path: g.SymbolPath.CIRCLE, scale: 5 + Math.min(9, (s.p / 1000000) * 4), fillColor: colour, fillOpacity: 0.5, strokeColor: colour, strokeWeight: 1.5 },
+        icon: { path: g.SymbolPath.CIRCLE, scale: 3.5 + Math.min(4, (s.p / 1000000) * 1.6), fillColor: colour, fillOpacity: 0.85, strokeColor: '#F6F1E6', strokeWeight: 1 },
       });
       marker.addListener('click', () => {
         info.setContent('<div style="font-family:Manrope,sans-serif;font-size:13px;line-height:1.5"><strong>' + esc(s.a) + '</strong><br>' + money(s.p) + ' · ' + (s.u ? 'Unit' : 'House') + (s.b ? ' · ' + s.b + ' bed' : '') + '</div>');
