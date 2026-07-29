@@ -1,0 +1,882 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+
+// Morningside Mid-Winter Report, recreated from the Core Design handoff
+// (~/Documents/Core-Design: README.md + design-reference/*.dc.html, 29 Jul).
+// Fidelity is high: the colours, type, spacing and copy there are final.
+//
+// Adaptations agreed for this codebase (per README section 1):
+// - One page per suburb with query-param personalisation (?h=HOME-SLUG&n=NAME),
+//   never contact data in the repo. Recipient facts come from the homes map.
+// - Sales with withheld prices are excluded entirely (Daniel, 29 Jul).
+// - "Median by quarter" is NOT rendered: quarterly history medians are not
+//   real data yet (README known gap 1). Add `history` here when Daniel
+//   supplies prior-quarter medians, then port the chart from the reference.
+// - offMarket is unknown in the current Pricefinder parse, so the
+//   "Not on the portals" chip never renders (README: do not guess it).
+// - The keyed Google Map ships (PUBLIC_GOOGLE_MAPS_KEY), plus the reader's
+//   home as a teardrop pin when ?h resolves, carried over from v1.
+
+// One page renders every suburb report: any src/data/reports/*.json with a
+// meta block becomes /reports/meta.slug. The JSON is produced end to end
+// by scripts/build-quarterly-report.mjs (parse, photos, REA links, homes).
+export async function getStaticPaths() {
+  const mods = import.meta.glob('../../data/reports/*.json', { eager: true });
+  return Object.values(mods)
+    .map((m) => m.default ?? m)
+    .filter((r) => r?.meta?.slug)
+    .map((r) => ({ params: { slug: r.meta.slug }, props: { report: r } }));
+}
+const { report } = Astro.props;
+const meta = report.meta;
+
+const googleMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
+const suburb = meta.suburb;
+const postcode = meta.postcode;
+const seasonTitle = meta.seasonTitle;       // e.g. 'Mid-Winter Report'
+const periodLabel = meta.periodLabel;       // e.g. 'April to July 2026'
+const periodSentence = meta.periodSentence; // e.g. 'between 1 April and 26 July 2026'
+const pulledDate = meta.pulledDate;
+const reportSlug = meta.slug;
+const agencyLine = 'Ray White Bulimba · The Collective';
+const walkthroughUrl = '/property-worth';
+
+// Residential only (industrial-precinct sheds parse as bedless Units), then
+// disclosed prices only. Deduped by address + price (Pricefinder repeats).
+const seen = new Set();
+const sales = report.sales.filter((s) => {
+  if (s.type === 'Unit' && !s.beds) return false;
+  if (s.priceWithheld || !s.price) return false;
+  const key = `${s.address}|${s.price}`;
+  if (seen.has(key)) return false;
+  seen.add(key);
+  return true;
+});
+
+const money = (n) => {
+  if (!n) return 'n/a';
+  if (n >= 1000000) {
+    let v = (n / 1000000).toFixed(2);
+    while (v.endsWith('0')) v = v.slice(0, -1);
+    if (v.endsWith('.')) v = v.slice(0, -1);
+    return '$' + v + 'm';
+  }
+  return '$' + Math.round(n / 1000) + 'k';
+};
+const median = (a) => {
+  const s = a.slice().sort((x, y) => x - y);
+  return s.length ? s[Math.floor(s.length / 2)] : 0;
+};
+const words = (n) => {
+  const ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+  if (n < 20) return ones[n];
+  if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? '-' + ones[n % 10] : '');
+  if (n === 100) return 'one hundred';
+  return String(n);
+};
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const houses = sales.filter((s) => s.type === 'House');
+const units = sales.filter((s) => s.type !== 'House');
+const medianHouse = median(houses.map((s) => s.price));
+const medianUnit = median(units.map((s) => s.price));
+const domVals = sales.map((s) => s.daysToSell).filter((d) => d != null);
+const medianDom = median(domVals);
+
+const headlineA = cap(words(sales.length)) + ' sales.';
+const headlineB = cap(words(medianDom)) + ' days to sell.';
+// Factual stand-in for the reference trend sentence: the quarterly history
+// medians it quotes are not real data yet, and off-market counts are not in
+// the parse. Swap once `history` exists.
+const trendSentence = `Houses medianed ${money(medianHouse)} this season and units/townhouses ${money(medianUnit)}. Every figure below comes from PriceFinder sale records for ${suburb} ${postcode}.`;
+
+const stats = [
+  { value: money(medianHouse), label: 'Median house price', note: `${houses.length} houses changed hands this season.` },
+  { value: money(medianUnit), label: 'Median unit price', note: `${units.length} units and townhouses sold.` },
+  { value: `${medianDom} days`, label: 'Median days to sell', note: 'Typical time from listing to contract.' },
+  { value: `${houses.length} / ${units.length}`, label: 'Houses / units', note: `Across ${sales.length} recorded sales, portal and off-market.` },
+];
+
+// Price bands per the reference (not the old page's bands).
+const BANDS = [
+  [0, 800000, 'Under $800k'],
+  [800000, 1200000, '$800k to $1.2m'],
+  [1200000, 1600000, '$1.2m to $1.6m'],
+  [1600000, 2200000, '$1.6m to $2.2m'],
+  [2200000, Infinity, '$2.2m and above'],
+];
+const bandStats = BANDS.map(([min, max, label]) => {
+  const inBand = sales.filter((s) => s.price >= min && s.price < max);
+  const h = inBand.filter((s) => s.type === 'House').length;
+  return { label, h, u: inBand.length - h, n: inBand.length };
+});
+const maxBand = Math.max(...bandStats.map((b) => b.n)) || 1;
+const busiest = bandStats.slice().sort((a, b) => b.n - a.n)[0];
+const chartNote = `Houses and units/townhouses sit in clearly different brackets. The busiest band this season was ${busiest.label.toLowerCase()}, which is where most of the buyer competition landed.`;
+
+const fmtDay = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+const toIso = (dmy) => {
+  const [d, m, y] = dmy.split('/');
+  return `${y}-${m}-${d}`;
+};
+const LEAD_NUM_RE = new RegExp('^[\\dA-Za-z]+(?:/[\\dA-Za-z]+)?\\s+');
+const streetOf = (address) => address.split(',')[0].trim().replace(LEAD_NUM_RE, '');
+
+// Top-five photos come from the Pricefinder "Image Report" PDF itself
+// (extracted with pdfimages, one photo per sale entry; part of the quarterly
+// recipe). Files live at /img/reports/REPORT-SLUG/NUMBER-STREET.jpg and
+// a missing file falls back to the striped placeholder via onerror.
+const PHOTO_SLUG_RE = new RegExp('^([\\dA-Za-z]+(?:/[\\dA-Za-z]+)?)\\s+(\\S+)');
+const SLASH_RE = new RegExp('/', 'g');
+const NON_ALNUM_RE = new RegExp('[^a-z0-9]', 'g');
+const photoSlug = (address) => {
+  const m = address.split(',')[0].trim().match(PHOTO_SLUG_RE);
+  return m ? `${m[1].toLowerCase().replace(SLASH_RE, '-')}-${m[2].toLowerCase().replace(NON_ALNUM_RE, '')}` : 'none';
+};
+const photoUrl = (address) => `/img/reports/${reportSlug}/${photoSlug(address)}.jpg`;
+
+const topSales = sales
+  .slice()
+  .sort((a, b) => b.price - a.price)
+  .slice(0, 5)
+  .map((s) => ({
+    address: s.address.split(',')[0],
+    url: s.rea ?? s.search,
+    photoUrl: photoUrl(s.address),
+    summaryLine: `${s.type === 'House' ? 'House' : 'Unit'}${s.beds ? ` · ${s.beds} bed` : ''}${s.daysToSell != null ? ` · sold in ${s.daysToSell} days` : ''}`,
+    priceText: money(s.price),
+    dateText: fmtDay(toIso(s.saleDate)),
+  }));
+
+// Compact sales payload for the client (tabs, search, comparables, map).
+const clientSales = sales.map((s) => ({
+  a: s.address.split(',')[0],
+  st: streetOf(s.address),
+  u: s.type !== 'House',
+  b: s.beds ?? null,
+  ba: s.baths ?? null,
+  c: s.cars ?? null,
+  l: s.type === 'House' ? (s.area ?? 0) : 0,
+  p: s.price,
+  d: toIso(s.saleDate),
+  dm: s.daysToSell ?? null,
+  lat: s.lat ?? null,
+  lng: s.lng ?? null,
+  r: s.rea ?? s.search,
+  ph: photoUrl(s.address),
+}));
+
+// Personal links: ?h=SLUG resolves here, ?n=FIRSTNAME rides alongside.
+// The homes map (addresses + coords + type, never names) is generated from
+// the pipeline's Quarterly Update contacts by the build script.
+const homes = report.homes ?? {};
+
+const sourceStatement = `All sales data in this report is sourced from PriceFinder, covering ${sales.length} recorded residential sales with disclosed prices in ${suburb} ${postcode} ${periodSentence}, pulled on ${pulledDate}. Off-market and pre-market results are included where they were recorded; sales with withheld prices are excluded. Figures are medians, not averages, and are not a valuation of any individual property.`;
+---
+
+<LandingLayout
+  title={`${suburb} ${seasonTitle} | Daniel Gierach`}
+  description={`Every recorded residential sale in ${suburb} ${postcode}, ${periodLabel}: prices, days on market and an interactive sales map. Prepared by Daniel Gierach, Ray White Bulimba.`}
+  faviconSvg="/favicon-dc.svg?v=3"
+  appleTouchIcon="/apple-touch-icon-dc.png?v=2"
+  appleWebAppTitle={seasonTitle}
+>
+
+<style is:global>
+  /* Core Design tokens (README section 8). Three surfaces only.
+     is:global because half the page is client-rendered (tabs, groups,
+     comparables) and Astro-scoped selectors would miss those nodes;
+     everything is namespaced under .report. */
+  .report {
+    --cream: #E6D9BD;
+    --card-cream: #F2EAD4;
+    --white: #FFFFFF;
+    --hover-white: #FDFBF6;
+    --ink: #1F1D1B;
+    --ink-70: #5A554E;
+    --ink-55: #6B655C;
+    --muted: #8F8677;
+    --gold: #B5831C;
+    --gold-dark: #8F6712;
+    --gold-light: #D6A63A;
+    --gold-lighter: #E7BC5C;
+    --hairline: rgba(31, 29, 27, 0.16);
+    font-family: Manrope, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    min-height: 100vh;
+    line-height: 1.4;
+  }
+  .report a { color: var(--gold); text-decoration: none; }
+  .report a:hover { color: var(--gold-dark); }
+  /* Card links carry body ink; only their kind-line and hover arrows go gold
+     (per the reference, where cards set color: inherit). */
+  .report a.sale-card, .report a.comp-row, .report a.top-row { color: inherit; }
+  .report a.sale-card:hover, .report a.comp-row:hover, .report a.top-row:hover { color: inherit; }
+  .report a.cta-btn, .report a.cta-btn:hover { color: var(--ink); }
+  .wrap { max-width: 1060px; margin: 0 auto; padding-left: clamp(14px, 5vw, 48px); padding-right: clamp(14px, 5vw, 48px); }
+  .wrap.wide-pad { padding-left: clamp(18px, 5vw, 48px); padding-right: clamp(18px, 5vw, 48px); }
+  .serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; }
+  .caps { font-weight: 600; text-transform: uppercase; }
+
+  /* ── Hero ── */
+  /* A touch darker behind the title than the reference wash (Daniel, 30 Jul). */
+  .hero { background: radial-gradient(118% 76% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%); }
+  .hero .wrap { padding-top: clamp(26px, 6vw, 64px); padding-bottom: clamp(30px, 5.5vw, 52px); text-align: center; }
+  .prepared { display: none; flex-direction: column; align-items: center; gap: 3px; }
+  .prepared.on { display: flex; }
+  .prepared .who { font-size: 10px; letter-spacing: 0.18em; color: var(--muted); }
+  .prepared .addr { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 15.5px; line-height: 1.3; color: var(--ink-70); }
+  .hero .eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); margin-top: clamp(24px, 5.5vw, 40px); }
+  .hero h1 { font-size: clamp(44px, 13.5vw, 96px); line-height: 0.98; letter-spacing: -0.015em; margin: 14px 0 0; }
+  .hero .subtitle { font-style: italic; font-size: clamp(24px, 7vw, 44px); line-height: 1.1; color: var(--gold-dark); margin-top: 8px; }
+  .divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: clamp(20px, 4.5vw, 30px) 0; }
+  .divider .line-r { height: 1px; width: clamp(40px, 18vw, 130px); background: linear-gradient(to right, rgba(181, 131, 28, 0), rgba(181, 131, 28, 0.4)); }
+  .divider .line-l { height: 1px; width: clamp(40px, 18vw, 130px); background: linear-gradient(to left, rgba(181, 131, 28, 0), rgba(181, 131, 28, 0.4)); }
+  .divider .diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+  .hero .period { font-size: 15px; line-height: 1.65; color: var(--ink-70); margin: 0 auto; max-width: 32em; }
+
+  /* ── Season in numbers ── */
+  .season .wrap { padding-top: clamp(24px, 5vw, 46px); padding-bottom: clamp(12px, 3vw, 22px); }
+  .label-gold { font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); }
+  .season h2 { font-size: clamp(27px, 7vw, 44px); line-height: 1.14; letter-spacing: -0.01em; margin: 12px 0 10px; }
+  .season h2 em { font-style: italic; color: var(--gold-dark); }
+  .season .trend { font-size: 14px; line-height: 1.6; color: var(--ink-70); margin: 0 0 clamp(20px, 4vw, 28px); max-width: 40em; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); gap: 12px; }
+  .stat-card { background: var(--white); border-radius: 14px; padding: 20px 20px 22px; }
+  .stat-card .lbl { font-size: 10px; letter-spacing: 0.16em; color: var(--gold); }
+  .stat-card .val { font-weight: 700; font-size: clamp(30px, 6.5vw, 40px); line-height: 1.05; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin: 12px 0 8px; }
+  .stat-card .note { font-size: 13.5px; line-height: 1.55; color: var(--ink-70); }
+
+  /* ── Closest to your home ── */
+  .comps-section { display: none; }
+  .comps-section.on { display: block; }
+  .comps-section .wrap { padding-top: clamp(20px, 4vw, 34px); padding-bottom: clamp(8px, 2vw, 14px); }
+  .comps-panel { background: var(--card-cream); border-radius: 18px; padding: clamp(20px, 4.5vw, 30px); }
+  .comps-head { display: flex; align-items: baseline; gap: 10px 16px; flex-wrap: wrap; }
+  .comps-head h3 { font-size: clamp(23px, 5.6vw, 32px); line-height: 1.15; margin: 0; }
+  .meta-caps { font-size: 10px; letter-spacing: 0.14em; color: var(--gold); margin-left: auto; }
+  .comps-why { font-size: 13.5px; line-height: 1.6; color: var(--ink-70); margin: 10px 0 18px; max-width: 44em; }
+  .comps-list { display: grid; gap: 10px; }
+  .comp-row { background: var(--white); border-radius: 14px; padding: 15px 18px; display: flex; align-items: center; gap: 14px; color: inherit; }
+  .comp-row:hover { background: var(--hover-white); color: inherit; }
+  .row-main { flex: 1 1 auto; min-width: 0; display: block; }
+  .row-addr { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; line-height: 1.25; display: block; }
+  .row-sum { font-size: 12px; color: var(--ink-55); display: block; margin-top: 5px; }
+  .row-side { text-align: right; flex: 0 0 auto; }
+  .row-price { font-weight: 700; font-size: 20px; line-height: 1.1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; display: block; }
+  .row-date { font-size: 11.5px; color: var(--ink-55); display: block; margin-top: 4px; }
+  .comps-range { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 16px; font-size: 13.5px; color: var(--ink-70); }
+  .comps-range strong { font-weight: 600; color: var(--ink); }
+
+  /* ── Sticky control bar ── */
+  .control-bar { position: sticky; top: 0; z-index: 20; background: rgba(230, 217, 189, 0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(31, 29, 27, 0.08); }
+  .control-bar .wrap { padding-top: 14px; padding-bottom: 14px; display: flex; align-items: center; gap: 10px 16px; justify-content: space-between; flex-wrap: wrap; }
+  .tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin: -4px; padding: 4px; flex: 1 1 100%; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { font-family: Manrope, system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; white-space: nowrap; cursor: pointer; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--hairline); background: rgba(255, 255, 255, 0.55); color: var(--ink-70); }
+  .tab.on { border-color: var(--ink); background: var(--ink); color: #F6F1E6; }
+  .search { flex: 1 1 100%; max-width: 340px; min-width: 160px; min-height: 40px; padding: 0 15px; border-radius: 999px; border: 1px solid var(--hairline); background: var(--white); font-family: Manrope, system-ui, sans-serif; font-size: 13px; color: var(--ink); }
+
+  /* ── Main sections ── */
+  .main { padding-top: clamp(24px, 5vw, 40px); }
+  .view-section { margin-bottom: clamp(34px, 7vw, 56px); }
+  .sec-head { display: flex; align-items: baseline; gap: 12px 18px; padding-bottom: 14px; flex-wrap: wrap; }
+  .sec-head h3 { font-size: clamp(24px, 6vw, 34px); line-height: 1.15; margin: 0; }
+
+  .top-list { display: grid; gap: 10px; }
+  .top-row { background: var(--card-cream); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; color: inherit; }
+  .top-row:hover { background: var(--white); color: inherit; }
+  .photo-slot { position: relative; flex: 0 0 auto; width: 72px; height: 72px; border-radius: 10px; overflow: hidden; background: repeating-linear-gradient(135deg, #E6D9BD 0 6px, #DFCEAA 6px 12px); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; }
+  .photo-slot span { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); }
+  .photo-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .top-row .row-price { font-size: 21px; }
+
+  .panel { background: var(--white); border-radius: 14px; padding: clamp(18px, 4vw, 26px); }
+  .band-rows { display: grid; gap: 16px; }
+  .band-row { display: grid; grid-template-columns: minmax(96px, 132px) 1fr; align-items: center; gap: 14px; }
+  .band-label { font-size: 11.5px; font-weight: 500; color: var(--ink-70); line-height: 1.35; }
+  .band-track { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .band-bars { flex: 1 1 auto; display: flex; gap: 2px; height: 20px; min-width: 0; }
+  .band-bars .h { background: var(--ink); height: 100%; border-radius: 3px; }
+  .band-bars .u { background: var(--gold); height: 100%; border-radius: 3px; }
+  .band-count { font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); flex: 0 0 auto; width: 54px; text-align: right; }
+  .chart-note { font-size: 13.5px; line-height: 1.65; color: var(--ink-70); max-width: 46em; margin: 16px 0 0; }
+  .band-legend { display: flex; gap: 14px; margin-left: auto; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-70); }
+  .band-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .band-legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+  /* ── Map ── */
+  .map-section { display: none; margin-bottom: clamp(30px, 6vw, 52px); }
+  .map-section.on { display: block; }
+  .map-el { height: min(58vh, 460px); border-radius: 14px; overflow: hidden; background: var(--card-cream); }
+  .map-under { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 0 10px; }
+  .map-under .cap { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-55); }
+  .map-under a { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+
+  /* ── Grouped sale cards ── */
+  .group-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(296px, 1fr)); gap: 10px; }
+  .sale-card { background: var(--card-cream); border-radius: 14px; padding: 16px 18px 17px; display: flex; flex-direction: column; gap: 12px; color: inherit; }
+  .sale-card:hover { background: var(--white); color: inherit; }
+  .sale-top { display: flex; align-items: flex-start; gap: 14px; }
+  .kind-line { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: block; margin-top: 6px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 11px; font-weight: 500; color: var(--ink-70); background: var(--white); border-radius: 999px; padding: 4px 10px; }
+  .chip.off { font-weight: 600; color: var(--gold-dark); border: 1px solid rgba(181, 131, 28, 0.4); }
+  .show-toggle { margin-top: 12px; width: 100%; min-height: 46px; border-radius: 999px; border: 1px solid var(--hairline); background: transparent; font-family: Manrope, system-ui, sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-70); cursor: pointer; }
+  .no-results { font-size: 15px; line-height: 1.6; color: var(--ink-70); padding: 10px 0 30px; }
+
+  /* ── Share, CTA, agent, footer ── */
+  .tail .wrap { padding-top: clamp(16px, 4vw, 32px); padding-bottom: clamp(52px, 10vw, 92px); }
+  .share-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-bottom: 18px; }
+  .pill-btn { min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--hairline); background: var(--white); font-family: Manrope, system-ui, sans-serif; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .pill-btn.ghost { background: transparent; color: var(--ink-70); }
+  .share-msg { font-size: 12px; color: var(--ink-55); }
+
+  .cta-panel { background: var(--ink); border-radius: 18px; padding: clamp(26px, 6vw, 52px) clamp(22px, 6vw, 52px); }
+  .cta-panel h3 { font-size: clamp(30px, 7.6vw, 52px); line-height: 1.1; letter-spacing: -0.015em; margin: 0; max-width: 18em; color: #F6F1E6; }
+  .cta-panel .sub { font-size: 15.5px; line-height: 1.7; color: rgba(246, 241, 230, 0.7); max-width: 30em; margin: 14px 0 24px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+  .cta-input { flex: 1 1 260px; min-width: 0; min-height: 56px; padding: 0 20px; border-radius: 10px; border: 1px solid rgba(246, 241, 230, 0.16); background: var(--white); font-family: Manrope, system-ui, sans-serif; font-size: 15px; color: var(--ink); }
+  .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; flex: 0 1 auto; background: var(--gold-light); color: var(--ink); border-radius: 10px; padding: 16px 26px; min-height: 56px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  @media (max-width: 640px) { .cta-btn { min-height: 40px; padding: 8px 16px; font-size: 11px; letter-spacing: 0.07em; gap: 8px; } .cta-input { min-height: 44px; font-size: 14px; } }
+  .cta-btn:hover { background: var(--gold-lighter); color: var(--ink); }
+  .cta-fine { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-top: 14px; font-size: 13.5px; color: rgba(246, 241, 230, 0.65); }
+  .cta-print { display: none; }
+
+  .agent-card { display: flex; align-items: center; gap: clamp(16px, 4vw, 26px); flex-wrap: wrap; background: var(--card-cream); border-radius: 18px; padding: clamp(20px, 4.5vw, 28px); margin-top: 12px; }
+  .agent-card img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
+  .agent-body { flex: 1 1 220px; min-width: 0; }
+  .agent-name { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(22px, 5vw, 28px); line-height: 1.2; }
+  .agent-role { font-size: 13px; color: var(--ink-55); margin-top: 5px; }
+  .agent-blurb { font-size: 13.5px; line-height: 1.6; color: var(--ink-70); margin-top: 10px; max-width: 34em; }
+  .agent-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 13px; font-weight: 600; }
+  .agent-co { display: flex; align-items: center; gap: 14px; flex: 0 1 auto; margin-left: auto; padding-left: clamp(0px, 3vw, 20px); }
+  .agent-co img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
+  @media (max-width: 720px) { .agent-co { margin-left: 0; } }
+
+  .src-footer { padding-top: 26px; }
+  .src-footer p { font-size: 13px; line-height: 1.65; color: var(--ink-55); margin: 0; max-width: 52em; }
+  .src-footer .agency { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-55); margin-top: 14px; }
+
+  /* Desktop: let the prose run the full content width instead of stacking
+     in a narrow column (Daniel, 30 Jul), and put the search field beside
+     the view tabs on one row instead of underneath. */
+  @media (min-width: 900px) {
+    .season .trend { max-width: none; }
+    .cta-panel .sub { max-width: 44em; }
+    .src-footer p { max-width: none; }
+    .chart-note { max-width: none; }
+    .comps-why { max-width: none; }
+    .tabs { flex: 1 1 auto; }
+    .search { flex: 0 1 340px; }
+  }
+
+  /* Print: portrait A4, white paper, no interactive chrome, nothing split
+     mid-card. Groups are expanded by the beforeprint handler. */
+  @page { size: A4 portrait; margin: 12mm; }
+  @media print {
+    [data-print-hide] { display: none !important; }
+    .report, .hero { background: #FFFFFF; }
+    .map-section { display: none !important; }
+    .hero .wrap { padding-top: 8mm; }
+    .stat-card, .sale-card, .top-row, .comp-row, .panel, .comps-panel, .agent-card { background: #FFFFFF; border: 1px solid #D8D2C4; break-inside: avoid; }
+    .sec-head { break-after: avoid; }
+    .view-section, .season, .comps-section { break-inside: auto; }
+    .cta-panel { background: #FFFFFF; border: 1px solid #D8D2C4; break-inside: avoid; padding: 8mm; }
+    .cta-panel h3, .cta-panel .sub { display: none !important; }
+    .cta-row, .cta-fine { display: none !important; }
+    .cta-print { display: block; }
+    .cta-print-name { font-size: 24px; margin: 0 0 4px; color: var(--ink); }
+    .cta-print-details { font-size: 14px; font-weight: 600; color: var(--gold-dark); margin: 0; }
+    .agent-card { break-inside: avoid; }
+    .prepared { box-shadow: none; }
+    /* Chart bars are backgrounds; force them onto paper even when the
+       browser's "Background graphics" box is unticked. */
+    .band-bars .h, .band-bars .u, .band-legend i, .cta-btn {
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .band-bars .h { border: 1px solid #1F1D1B; }
+    .band-bars .u { border: 1px solid #B5831C; }
+    /* Tighter rhythm on paper: screen breathing room reads as gaps in a PDF. */
+    .hero .wrap { padding-top: 6mm; padding-bottom: 5mm; }
+    .season .wrap, .comps-section .wrap { padding-top: 4mm; padding-bottom: 3mm; }
+    .main { padding-top: 4mm; }
+    .view-section { margin-bottom: 7mm; }
+    .tail .wrap { padding-top: 3mm; padding-bottom: 8mm; }
+    .cover h1, .hero h1 { font-size: 44px; }
+  }
+</style>
+
+<div class="report">
+
+  <header class="hero">
+    <div class="wrap wide-pad">
+      <div class="prepared" id="prepared">
+        <span class="who caps" id="prepared-who"></span>
+        <span class="addr" id="prepared-addr"></span>
+      </div>
+      <div class="eyebrow caps">Daniel Gierach · {agencyLine}</div>
+      <h1 class="serif">{suburb}</h1>
+      <div class="serif subtitle">{seasonTitle}</div>
+      <div class="divider" aria-hidden="true"><span class="line-r"></span><span class="diamond"></span><span class="line-l"></span></div>
+      <p class="period">{periodLabel} · every recorded residential sale in {suburb} {postcode}, including the ones that never reached the portals.</p>
+    </div>
+  </header>
+
+  <section class="season">
+    <div class="wrap wide-pad">
+      <div class="label-gold caps">The season in numbers</div>
+      <h2 class="serif">{headlineA} <em>{headlineB}</em></h2>
+      <p class="trend">{trendSentence}</p>
+      <div class="stat-grid">
+        {stats.map((stat) => (
+          <div class="stat-card">
+            <div class="lbl caps">{stat.label}</div>
+            <div class="val">{stat.value}</div>
+            <div class="note">{stat.note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="comps-section" id="comps-section">
+    <div class="wrap wide-pad">
+      <div class="comps-panel">
+        <div class="comps-head">
+          <h3 class="serif">Closest to your home</h3>
+          <div class="meta-caps caps" id="comps-count"></div>
+        </div>
+        <p class="comps-why" id="comps-why"></p>
+        <div class="comps-list" id="comps-list"></div>
+        <div class="comps-range"><strong id="comps-range"></strong><span>is the range these comparables set. A walkthrough is what turns that into a number for your home.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="control-bar" data-print-hide="true">
+    <div class="wrap">
+      <div class="tabs" id="tabs"></div>
+      <input type="search" class="search" id="search" placeholder="Search street or address" />
+    </div>
+  </div>
+
+  <main class="main wrap">
+
+    <div id="overview">
+      <section class="view-section">
+        <div class="sec-head">
+          <h3 class="serif">The season's top sales</h3>
+          <div class="meta-caps caps">Highest five results</div>
+        </div>
+        <div class="top-list">
+          {topSales.map((sale) => (
+            <a href={sale.url} target="_blank" rel="noopener" class="top-row">
+              <span class="photo-slot"><img src={sale.photoUrl} alt={`Photo of ${sale.address}`} width="72" height="72" onerror="this.remove()" /><span>Photo</span></span>
+              <span class="row-main">
+                <span class="row-addr">{sale.address}</span>
+                <span class="row-sum">{sale.summaryLine}</span>
+              </span>
+              <span class="row-side">
+                <span class="row-price">{sale.priceText}</span>
+                <span class="row-date">{sale.dateText} ↗</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* "Median by quarter" intentionally not rendered: needs real
+          quarterly history medians first (Core Design README, known gap 1). */}
+
+      <section class="view-section">
+        <div class="sec-head">
+          <h3 class="serif">Where the market sat</h3>
+          <div class="band-legend"><span><i style="background: #1F1D1B"></i>Houses</span><span><i style="background: #B5831C"></i>Units</span></div>
+        </div>
+        <div class="panel band-rows">
+          {bandStats.map((b) => (
+            <div class="band-row">
+              <div class="band-label">{b.label}</div>
+              <div class="band-track">
+                <div class="band-bars">
+                  <div class="h" style={`width: ${(b.h / maxBand) * 100}%`}></div>
+                  <div class="u" style={`width: ${(b.u / maxBand) * 100}%`}></div>
+                </div>
+                <div class="band-count">{b.h} / {b.u}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="chart-note">{chartNote}</p>
+      </section>
+    </div>
+
+    <section class="map-section" id="map-section">
+      <div class="sec-head">
+        <h3 class="serif">Where the sales were</h3>
+        <div class="meta-caps caps">Google Maps</div>
+      </div>
+      <div class="map-el" id="report-map"></div>
+      <div class="map-under">
+        <div class="cap" id="map-caption">Every sale pinned. Dark is a house, gold is a unit.</div>
+        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${suburb} QLD ${postcode}`)}`} target="_blank" rel="noopener">Open in Google Maps ↗</a>
+      </div>
+    </section>
+
+    <div id="groups"></div>
+    <p class="no-results" id="no-results" style="display: none;"></p>
+  </main>
+
+  <section class="tail">
+    <div class="wrap">
+      <div class="share-row" data-print-hide="true">
+        <button type="button" class="pill-btn" id="share-btn">Share this report</button>
+        <button type="button" class="pill-btn ghost" id="print-btn">Print or save as PDF</button>
+        <span class="share-msg" id="share-msg"></span>
+      </div>
+
+      <div class="cta-panel">
+        <h3 class="serif">Find out what your property is worth.</h3>
+        <p class="sub">Based on what comparable homes in {suburb} are actually selling for.</p>
+        <div class="cta-print">
+          <p class="serif cta-print-name">Contact Daniel Gierach</p>
+          <p class="cta-print-details">0412 523 821 · daniel.gierach@raywhite.com</p>
+        </div>
+        <div class="cta-row">
+          <input type="text" class="cta-input" id="cta-address" placeholder="Enter your property address" />
+          <a href={walkthroughUrl} id="cta-link" class="cta-btn" data-cta="report_appraisal">What's your property worth? →</a>
+        </div>
+        <div class="cta-fine"><span>Free. Daniel responds within 48 hours.</span></div>
+      </div>
+
+      <div class="agent-card">
+        <img src="/img/daniel-headshot-tight.jpg" alt="Daniel Gierach" width="88" height="88" loading="lazy" />
+        <div class="agent-body">
+          <div class="agent-name">Daniel Gierach</div>
+          <div class="agent-role">Lead Agent · Ray White Bulimba</div>
+          <div class="agent-links">
+            <a href="tel:+61412523821" data-cta="report_call_daniel">0412 523 821</a>
+            <a href="mailto:daniel.gierach@raywhite.com" data-cta="report_email_daniel">daniel.gierach@raywhite.com</a>
+          </div>
+        </div>
+        <div class="agent-co">
+          <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann" width="88" height="88" loading="lazy" />
+          <div>
+            <div class="agent-name co">Conrad Leisemann</div>
+            <div class="agent-role">Lead Agent · Ray White Bulimba</div>
+            <div class="agent-links">
+              <a href="tel:+61403978813" data-cta="report_call_conrad">0403 978 813</a>
+              <a href="mailto:conrad.leisemann@raywhite.com" data-cta="report_email_conrad">conrad.leisemann@raywhite.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="src-footer">
+        <p>{sourceStatement}</p>
+        <div class="agency">Daniel Gierach · {agencyLine}</div>
+      </footer>
+    </div>
+  </section>
+</div>
+
+<script is:inline define:vars={{ clientSales, homes, googleMapsKey, suburb, postcode, walkthroughUrl, seasonTitle }}>
+  // Ported from the Core Design reference logic (renderVals + handlers),
+  // adapted to vanilla DOM. State: view, query, expanded, appraisalAddress.
+  const SALES = clientSales.map((s) => ({ ...s, date: new Date(s.d + 'T12:00:00') }));
+  const state = { view: 'overview', query: '', expanded: {} };
+
+  const money = (n) => {
+    if (!n) return 'n/a';
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(2).replace(/0$/, '').replace(/\.$/, '') + 'm';
+    return '$' + Math.round(n / 1000) + 'k';
+  };
+  const median = (a) => { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; };
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const fmtDate = (d) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+
+  // ── Personalisation from the URL (?h=<home slug>&n=<first name>) ──
+  const params = new URLSearchParams(location.search);
+  const home = homes[params.get('h')] ?? null;
+  const forName = (params.get('n') || '').trim().slice(0, 40);
+  const legacyFor = params.get('for');
+
+  if (home || forName || legacyFor) {
+    const el = document.getElementById('prepared');
+    document.getElementById('prepared-who').textContent = forName ? 'Prepared for ' + forName : 'Prepared for you';
+    document.getElementById('prepared-addr').textContent = home ? home.a + ', ' + suburb : (legacyFor || '');
+    el.classList.add('on');
+  }
+
+  // ── Comparables: same type, closest streets first (README section 4,
+  // street proximity weighted up as it asks; beds unknown for recipients) ──
+  if (home) {
+    const streetKey = home.a.replace(/^[\dA-Za-z]+(?:\/[\dA-Za-z]+)?\s+/, '').split(' ')[0].toLowerCase();
+    const dist2 = (s) => (s.lat == null ? 1 : (s.lat - home.lat) ** 2 + (s.lng - home.lng) ** 2);
+    const comps = SALES
+      .filter((s) => s.u === home.u)
+      .map((s) => ({ s, score: dist2(s) * 40000 + (s.st.toLowerCase().indexOf(streetKey) === 0 ? -3 : 0) + (s.dm ?? 40) / 200 }))
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 4)
+      .map((x) => x.s);
+    if (comps.length) {
+      document.getElementById('comps-count').textContent = comps.length + ' closest matches';
+      document.getElementById('comps-why').textContent = 'Matched to ' + home.a + ': ' + (home.u ? 'units and townhouses' : 'houses') + ' on the streets closest to yours, most comparable first.';
+      document.getElementById('comps-list').innerHTML = comps.map((s) => (
+        '<a href="' + s.r + '" target="_blank" rel="noopener" class="comp-row">' +
+        '<span class="row-main"><span class="row-addr">' + esc(s.a) + '</span>' +
+        '<span class="row-sum">' + (s.u ? 'Unit' : 'House') + (s.b ? ' · ' + s.b + ' bed' : '') + (s.dm != null ? ' · sold in ' + s.dm + ' days' : '') + '</span></span>' +
+        '<span class="row-side"><span class="row-price">' + money(s.p) + '</span>' +
+        '<span class="row-date">' + fmtDate(s.date) + ' ↗</span></span></a>'
+      )).join('');
+      const prices = comps.map((s) => s.p);
+      document.getElementById('comps-range').textContent = money(Math.min(...prices)) + ' to ' + money(Math.max(...prices));
+      document.getElementById('comps-section').classList.add('on');
+    }
+  }
+
+  // ── Appraisal CTA: pre-filled with the recipient's address ──
+  const ctaInput = document.getElementById('cta-address');
+  const ctaLink = document.getElementById('cta-link');
+  if (home) ctaInput.value = home.a + ', ' + suburb;
+  const syncCta = () => {
+    ctaLink.href = walkthroughUrl + (ctaInput.value.trim() ? '?address=' + encodeURIComponent(ctaInput.value.trim()) : '');
+  };
+  ctaInput.addEventListener('input', syncCta);
+  syncCta();
+  // Tell the dashboard the moment the button is pressed, with the address
+  // in the field (keepalive so navigation doesn't cancel it).
+  ctaLink.addEventListener('click', () => {
+    try {
+      fetch('https://dg-dashboard-ebon.vercel.app/api/report-click', {
+        method: 'POST', mode: 'no-cors', keepalive: true,
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          report: location.pathname.replace(/^\/reports\//, '').replace(/\/$/, ''),
+          h: params.get('h') || null,
+          n: forName || null,
+          event: 'cta',
+          address: ctaInput.value.trim() || null,
+        }),
+      }).catch(() => {});
+    } catch (e) { /* never block the click */ }
+  });
+
+  // ── View tabs + search ──
+  const VIEWS = [['overview', 'Overview'], ['map', 'Map'], ['recent', 'Most recent'], ['type', 'Houses/units/townhouses'], ['price', 'Price band'], ['beds', 'Bedrooms']];
+  const tabsEl = document.getElementById('tabs');
+  const searchEl = document.getElementById('search');
+
+  function decorate(s) {
+    const chips = [];
+    if (s.b) chips.push(s.b + ' bed');
+    if (s.ba) chips.push(s.ba + ' bath');
+    if (s.c) chips.push(s.c + ' car');
+    if (s.l) chips.push(s.l + 'm2 land');
+    if (s.dm != null) chips.push(s.dm + ' days on market');
+    return { url: s.r, address: s.a, kindLine: s.u ? 'Unit/Townhouse' : 'House', priceText: money(s.p), dateText: fmtDate(s.date), chips };
+  }
+
+  const BANDS = [[0, 800000, 'Under $800k'], [800000, 1200000, '$800k to $1.2m'], [1200000, 1600000, '$1.2m to $1.6m'], [1600000, 2200000, '$1.6m to $2.2m'], [2200000, Infinity, '$2.2m and above']];
+
+  function buildGroups(view) {
+    const wrap = (label, list) => ({
+      label,
+      count: list.length,
+      meta: list.length + (list.length === 1 ? ' sale · median ' : ' sales · median ') + money(median(list.map((x) => x.p))),
+      all: list,
+    });
+    if (view === 'type') return [wrap('Houses', SALES.filter((s) => !s.u)), wrap('Units and townhouses', SALES.filter((s) => s.u))].filter((g) => g.count);
+    if (view === 'price') return BANDS.map((b) => wrap(b[2], SALES.filter((s) => s.p >= b[0] && s.p < b[1]))).filter((g) => g.count);
+    if (view === 'beds') return [[1, 2, 'One and two bedrooms'], [3, 3, 'Three bedrooms'], [4, 4, 'Four bedrooms'], [5, 9, 'Five bedrooms or more']].map((b) => wrap(b[2], SALES.filter((s) => s.b != null && s.b >= b[0] && s.b <= b[1]))).filter((g) => g.count);
+    if (view === 'recent') {
+      const buckets = [];
+      SALES.slice().sort((a, b) => b.date - a.date).forEach((s) => {
+        const label = (s.date.getDate() <= 15 ? 'Early ' : 'Late ') + s.date.toLocaleDateString('en-AU', { month: 'long' });
+        let b = buckets.find((x) => x.label === label);
+        if (!b) { b = { label, list: [] }; buckets.push(b); }
+        b.list.push(s);
+      });
+      return buckets.map((b) => wrap(b.label, b.list));
+    }
+    return [];
+  }
+
+  function saleCardHtml(s) {
+    const d = decorate(s);
+    return '<a href="' + d.url + '" target="_blank" rel="noopener" class="sale-card">' +
+      '<span class="sale-top"><span class="row-main"><span class="row-addr">' + esc(d.address) + '</span>' +
+      '<span class="kind-line">' + d.kindLine + ' ↗</span></span>' +
+      '<span class="row-side"><span class="row-price">' + d.priceText + '</span>' +
+      '<span class="row-date">' + d.dateText + '</span></span></span>' +
+      '<span class="chip-row">' + d.chips.map((c) => '<span class="chip">' + c + '</span>').join('') + '</span></a>';
+  }
+
+  function render() {
+    const q = state.query.trim().toLowerCase();
+    // Tabs
+    tabsEl.innerHTML = '';
+    VIEWS.forEach(([id, label]) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tab' + (id === state.view && !q ? ' on' : '');
+      b.textContent = label;
+      b.addEventListener('click', () => { state.view = id; state.query = ''; searchEl.value = ''; render(); });
+      tabsEl.appendChild(b);
+    });
+
+    const showOverview = state.view === 'overview' && !q;
+    const showMap = state.view === 'map' && !q;
+    document.getElementById('overview').style.display = showOverview ? '' : 'none';
+    document.getElementById('map-section').classList.toggle('on', showMap);
+    if (showMap) loadMap();
+
+    // Groups
+    const groupsEl = document.getElementById('groups');
+    const noResEl = document.getElementById('no-results');
+    let groups = [];
+    if (q) {
+      const matches = SALES.filter((s) => s.a.toLowerCase().indexOf(q) >= 0);
+      if (!matches.length) {
+        groupsEl.innerHTML = '';
+        noResEl.textContent = 'No sales match "' + state.query + '". Try a street name such as Wynnum or Lawson.';
+        noResEl.style.display = '';
+        return;
+      }
+      groups = [{ label: 'Search results', meta: matches.length + ' matching ' + (matches.length === 1 ? 'sale' : 'sales'), all: matches }];
+    } else if (!showOverview && !showMap) {
+      groups = buildGroups(state.view);
+    }
+    noResEl.style.display = 'none';
+    const LIMIT = 6;
+    groupsEl.innerHTML = groups.map((g) => {
+      const open = !!state.expanded[g.label];
+      const shown = open ? g.all : g.all.slice(0, LIMIT);
+      return '<section class="view-section"><div class="sec-head"><h3 class="serif">' + esc(g.label) + '</h3>' +
+        '<div class="meta-caps caps">' + g.meta + '</div></div>' +
+        '<div class="group-grid">' + shown.map(saleCardHtml).join('') + '</div>' +
+        (g.all.length > LIMIT
+          ? '<button type="button" class="show-toggle" data-print-hide="true" data-group="' + esc(g.label) + '">' + (open ? 'Show fewer' : 'Show all ' + g.all.length + ' sales') + '</button>'
+          : '') +
+        '</section>';
+    }).join('');
+    groupsEl.querySelectorAll('.show-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const label = btn.getAttribute('data-group');
+        state.expanded[label] = !state.expanded[label];
+        render();
+      });
+    });
+  }
+
+  searchEl.addEventListener('input', () => { state.query = searchEl.value; render(); });
+
+  // Print: show the overview plus every group fully expanded, then restore.
+  let printSnapshot = null;
+  window.addEventListener('beforeprint', () => {
+    printSnapshot = { view: state.view, query: state.query, expanded: { ...state.expanded } };
+    state.query = '';
+    if (state.view === 'map') state.view = 'overview';
+    buildGroups(state.view).forEach((g) => { state.expanded[g.label] = true; });
+    render();
+  });
+  window.addEventListener('afterprint', () => {
+    if (!printSnapshot) return;
+    state.view = printSnapshot.view;
+    state.query = printSnapshot.query;
+    state.expanded = printSnapshot.expanded;
+    searchEl.value = state.query;
+    printSnapshot = null;
+    render();
+  });
+
+  // ── Map: keyed path, circle markers scaled by price + reader home pin ──
+  let mapLoading = false, mapDrawn = false;
+  function loadMap() {
+    if (mapDrawn) return;
+    if (window.google && window.google.maps) { drawMap(); return; }
+    if (mapLoading || !googleMapsKey) return;
+    mapLoading = true;
+    window.__initReportMap = drawMap;
+    const s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(googleMapsKey) + '&callback=__initReportMap';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  function drawMap() {
+    if (mapDrawn || !window.google || !window.google.maps) return;
+    mapDrawn = true;
+    const g = window.google.maps;
+    const map = new g.Map(document.getElementById('report-map'), {
+      center: { lat: -27.463, lng: 153.0715 }, zoom: 14, // fitBounds overrides below
+      mapTypeControl: false, streetViewControl: false,
+    });
+    const bounds = new g.LatLngBounds();
+    const info = new g.InfoWindow();
+    SALES.filter((s) => s.lat != null).forEach((s) => {
+      const pos = { lat: s.lat, lng: s.lng };
+      bounds.extend(pos);
+      const colour = s.u ? '#B5831C' : '#1F1D1B';
+      // Smaller, crisper dots than the reference (Daniel, 30 Jul): tighter
+      // price scaling, solid fill, cream outline so neighbours separate.
+      const marker = new g.Marker({
+        position: pos, map, title: s.a,
+        icon: { path: g.SymbolPath.CIRCLE, scale: 3.5 + Math.min(4, (s.p / 1000000) * 1.6), fillColor: colour, fillOpacity: 0.85, strokeColor: '#F6F1E6', strokeWeight: 1 },
+      });
+      marker.addListener('click', () => {
+        info.setContent('<div style="font-family:Manrope,sans-serif;font-size:13px;line-height:1.5;max-width:230px">' +
+          '<img src="' + s.ph + '" alt="" style="width:100%;height:130px;object-fit:cover;border-radius:8px;display:block;margin-bottom:8px" onerror="this.remove()">' +
+          '<strong>' + esc(s.a) + '</strong><br>' + money(s.p) + ' · ' + (s.u ? 'Unit/Townhouse' : 'House') + (s.b ? ' · ' + s.b + ' bed' : '') + '</div>');
+        info.open({ anchor: marker, map });
+      });
+    });
+    if (home) {
+      const pos = { lat: home.lat, lng: home.lng };
+      bounds.extend(pos);
+      // Classic drop pin in blue: unmistakable against the ink house dots
+      // and gold unit dots (red is off-brand). Cream ring for separation.
+      new g.Marker({
+        position: pos, map, title: home.a, zIndex: 999,
+        icon: {
+          path: 'M12 2C8.1 2 5 5.1 5 9c0 5.6 7 13 7 13s7-7.4 7-13c0-3.9-3.1-7-7-7zm0 9.8a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6z',
+          fillColor: '#1E64AB', fillOpacity: 1, strokeColor: '#F6F1E6', strokeWeight: 1.5,
+          scale: 1.7, anchor: new g.Point(12, 22),
+        },
+      });
+      document.getElementById('map-caption').textContent = 'Every sale pinned. Dark is a house, gold is a unit, the blue pin is your home.';
+    }
+    map.fitBounds(bounds, 40);
+  }
+
+  // ── Share and print ──
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+  document.getElementById('share-btn').addEventListener('click', () => {
+    const data = { title: suburb + ' ' + seasonTitle, text: 'Recent sales in ' + suburb + ' ' + postcode, url: window.location.href };
+    if (navigator.share) { navigator.share(data).catch(() => {}); return; }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => { document.getElementById('share-msg').textContent = 'Link copied'; })
+        .catch(() => { document.getElementById('share-msg').textContent = window.location.href; });
+    }
+  });
+
+  // ── View beacon: who opened their personal link (dashboard Report views) ──
+  try {
+    const beaconKey = 'qr-seen-' + location.pathname + location.search;
+    if (!sessionStorage.getItem(beaconKey)) {
+      sessionStorage.setItem(beaconKey, '1');
+      fetch('https://dg-dashboard-ebon.vercel.app/api/report-click', {
+        method: 'POST', mode: 'no-cors', keepalive: true,
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ report: location.pathname.replace(/^\/reports\//, '').replace(/\/$/, ''), h: params.get('h') || null, n: forName || null }),
+      }).catch(() => {});
+    }
+  } catch (e) { /* never break the page */ }
+
+  render();
+</script>
+
+</LandingLayout>
