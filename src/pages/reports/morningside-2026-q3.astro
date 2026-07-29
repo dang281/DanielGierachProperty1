@@ -116,7 +116,7 @@ const topSales = sales
   .slice(0, 5)
   .map((s) => ({
     address: s.address.split(',')[0],
-    url: s.search,
+    url: s.rea ?? s.search,
     photoUrl: photoUrl(s.address),
     summaryLine: `${s.type === 'House' ? 'House' : 'Unit'}${s.beds ? ` · ${s.beds} bed` : ''}${s.daysToSell != null ? ` · sold in ${s.daysToSell} days` : ''}`,
     priceText: money(s.price),
@@ -137,7 +137,7 @@ const clientSales = sales.map((s) => ({
   dm: s.daysToSell ?? null,
   lat: s.lat ?? null,
   lng: s.lng ?? null,
-  r: s.search,
+  r: s.rea ?? s.search,
   ph: photoUrl(s.address),
 }));
 
@@ -327,6 +327,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .cta-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
   .cta-input { flex: 1 1 260px; min-width: 0; min-height: 56px; padding: 0 20px; border-radius: 10px; border: 1px solid rgba(246, 241, 230, 0.16); background: var(--white); font-family: Manrope, system-ui, sans-serif; font-size: 15px; color: var(--ink); }
   .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; flex: 0 1 auto; background: var(--gold-light); color: var(--ink); border-radius: 10px; padding: 16px 26px; min-height: 56px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  @media (max-width: 640px) { .cta-btn { min-height: 48px; padding: 12px 18px; font-size: 11.5px; letter-spacing: 0.08em; } .cta-input { min-height: 48px; font-size: 14px; } }
   .cta-btn:hover { background: var(--gold-lighter); color: var(--ink); }
   .cta-fine { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-top: 14px; font-size: 13.5px; color: rgba(246, 241, 230, 0.65); }
 
@@ -337,6 +338,11 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .agent-role { font-size: 13px; color: var(--ink-55); margin-top: 5px; }
   .agent-blurb { font-size: 13.5px; line-height: 1.6; color: var(--ink-70); margin-top: 10px; max-width: 34em; }
   .agent-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 13px; font-weight: 600; }
+  .agent-co { display: flex; align-items: center; gap: 14px; flex: 0 1 auto; margin-left: auto; padding-left: clamp(0px, 3vw, 20px); }
+  .agent-co img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
+  .agent-name.co { font-size: clamp(19px, 4vw, 22px); }
+  .agent-co .agent-links { margin-top: 8px; }
+  @media (max-width: 720px) { .agent-co { margin-left: 0; } }
 
   .src-footer { padding-top: 26px; }
   .src-footer p { font-size: 13px; line-height: 1.65; color: var(--ink-55); margin: 0; max-width: 52em; }
@@ -522,6 +528,17 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
           <div class="agent-links">
             <a href="tel:+61412523821" data-cta="report_call_daniel">0412 523 821</a>
             <a href="mailto:daniel.gierach@raywhite.com" data-cta="report_email_daniel">daniel.gierach@raywhite.com</a>
+          </div>
+        </div>
+        <div class="agent-co">
+          <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann" width="72" height="72" loading="lazy" />
+          <div>
+            <div class="agent-name co">Conrad Leisemann</div>
+            <div class="agent-role">Agent · Ray White Bulimba</div>
+            <div class="agent-links">
+              <a href="tel:+61403978813" data-cta="report_call_conrad">0403 978 813</a>
+              <a href="mailto:conrad.leisemann@raywhite.com" data-cta="report_email_conrad">conrad.leisemann@raywhite.com</a>
+            </div>
           </div>
         </div>
       </div>
