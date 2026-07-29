@@ -138,6 +138,7 @@ const clientSales = sales.map((s) => ({
   lat: s.lat ?? null,
   lng: s.lng ?? null,
   r: s.search,
+  ph: photoUrl(s.address),
 }));
 
 // Personal links: ?h=<slug> resolves here, ?n=<FirstName> rides alongside.
@@ -599,7 +600,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     if (s.c) chips.push(s.c + ' car');
     if (s.l) chips.push(s.l + 'm2 land');
     if (s.dm != null) chips.push(s.dm + ' days on market');
-    return { url: s.r, address: s.a, kindLine: s.u ? 'Unit or townhouse' : 'House', priceText: money(s.p), dateText: fmtDate(s.date), chips };
+    return { url: s.r, address: s.a, kindLine: s.u ? 'Unit/Townhouse' : 'House', priceText: money(s.p), dateText: fmtDate(s.date), chips };
   }
 
   const BANDS = [[0, 800000, 'Under $800k'], [800000, 1200000, '$800k to $1.2m'], [1200000, 1600000, '$1.2m to $1.6m'], [1600000, 2200000, '$1.6m to $2.2m'], [2200000, Infinity, '$2.2m and above']];
@@ -730,7 +731,9 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         icon: { path: g.SymbolPath.CIRCLE, scale: 3.5 + Math.min(4, (s.p / 1000000) * 1.6), fillColor: colour, fillOpacity: 0.85, strokeColor: '#F6F1E6', strokeWeight: 1 },
       });
       marker.addListener('click', () => {
-        info.setContent('<div style="font-family:Manrope,sans-serif;font-size:13px;line-height:1.5"><strong>' + esc(s.a) + '</strong><br>' + money(s.p) + ' · ' + (s.u ? 'Unit' : 'House') + (s.b ? ' · ' + s.b + ' bed' : '') + '</div>');
+        info.setContent('<div style="font-family:Manrope,sans-serif;font-size:13px;line-height:1.5;max-width:230px">' +
+          '<img src="' + s.ph + '" alt="" style="width:100%;height:130px;object-fit:cover;border-radius:8px;display:block;margin-bottom:8px" onerror="this.remove()">' +
+          '<strong>' + esc(s.a) + '</strong><br>' + money(s.p) + ' · ' + (s.u ? 'Unit/Townhouse' : 'House') + (s.b ? ' · ' + s.b + ' bed' : '') + '</div>');
         info.open({ anchor: marker, map });
       });
     });
