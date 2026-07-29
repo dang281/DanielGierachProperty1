@@ -100,12 +100,15 @@ const toIso = (dmy) => {
 };
 const streetOf = (address) => address.split(',')[0].trim().replace(/^[\dA-Za-z]+(?:\/[\dA-Za-z]+)?\s+/, '');
 
-// Top-five photos: Google Street View of each property (copyright-safe,
-// unlike reusing portal listing imagery). Requires "Street View Static API"
-// enabled on the Maps key in Google Cloud Console; until then the <img>
-// 403s and onerror reveals the placeholder slot, so this is safe to ship.
-const streetViewUrl = (address) =>
-  `https://maps.googleapis.com/maps/api/streetview?size=144x144&location=${encodeURIComponent(`${address}, ${suburb} QLD ${postcode}`)}&key=${googleMapsKey}`;
+// Top-five photos come from the Pricefinder "Image Report" PDF itself
+// (extracted with pdfimages, one photo per sale entry; part of the quarterly
+// recipe). Files live at /img/reports/<report-slug>/<number-street>.jpg and
+// a missing file falls back to the striped placeholder via onerror.
+const photoSlug = (address) => {
+  const m = address.split(',')[0].trim().match(/^([\dA-Za-z]+(?:\/[\dA-Za-z]+)?)\s+(\S+)/);
+  return m ? `${m[1].toLowerCase().replace(/\//g, '-')}-${m[2].toLowerCase().replace(/[^a-z0-9]/g, '')}` : 'none';
+};
+const photoUrl = (address) => `/img/reports/morningside-2026-q3/${photoSlug(address)}.jpg`;
 
 const topSales = sales
   .slice()
@@ -114,7 +117,7 @@ const topSales = sales
   .map((s) => ({
     address: s.address.split(',')[0],
     url: s.search,
-    photoUrl: streetViewUrl(s.address.split(',')[0]),
+    photoUrl: photoUrl(s.address),
     summaryLine: `${s.type === 'House' ? 'House' : 'Unit'}${s.beds ? ` · ${s.beds} bed` : ''}${s.daysToSell != null ? ` · sold in ${s.daysToSell} days` : ''}`,
     priceText: money(s.price),
     dateText: fmtDay(toIso(s.saleDate)),
