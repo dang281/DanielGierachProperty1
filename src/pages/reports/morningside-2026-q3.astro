@@ -67,7 +67,7 @@ const headlineB = cap(words(medianDom)) + ' days to sell.';
 // Factual stand-in for the reference trend sentence: the quarterly history
 // medians it quotes are not real data yet, and off-market counts are not in
 // the parse. Swap once `history` exists.
-const trendSentence = `Houses medianed ${money(medianHouse)} this season and units ${money(medianUnit)}. Every figure below comes from PriceFinder sale records for ${suburb} ${postcode}.`;
+const trendSentence = `Houses medianed ${money(medianHouse)} this season and units/townhouses ${money(medianUnit)}. Every figure below comes from PriceFinder sale records for ${suburb} ${postcode}.`;
 
 const stats = [
   { value: money(medianHouse), label: 'Median house price', note: `${houses.length} houses changed hands this season.` },
