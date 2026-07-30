@@ -152,11 +152,10 @@ const legendGroups = [
   /* ── Mobile sticky search ──────────────────────────────────────────── */
   @media (max-width: 640px) {
     .pm-search-sticky {
-      position: sticky; top: 72px; z-index: 1010;
+      position: sticky; top: 72px; z-index: 1300; /* above the LAYERS bar */
       background: #f7f5f0;
-      padding: 0.6rem 0 0.5rem;
-      margin: 0 -0.75rem;
-      padding-left: 0.75rem; padding-right: 0.75rem;
+      padding: 0.6rem 0.75rem 0.5rem;
+      border-radius: 16px;
       border-bottom: 1px solid rgba(28,25,23,0.08);
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     }
@@ -565,7 +564,9 @@ const legendGroups = [
     body.tool-page .tool-content { padding-top: 72px !important; }
     /* Magazine mode: the fixed site header is hidden, so drop the 72px
        reserved for it and let the masthead sit near the top. */
-    :global(html.nav-off) body.tool-page .tool-content { padding-top: 0.5rem !important; }
+    html.nav-off body.tool-page .tool-content { padding-top: 0.5rem !important; }
+    /* Sticky search clears the (hidden) header too */
+    html.nav-off .pm-search-sticky { top: 0 !important; }
   }
 
   /* Search input stays white so it's clearly a text field */
