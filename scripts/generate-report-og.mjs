@@ -15,18 +15,20 @@ const html = (suburb, season) => `<!doctype html><html><head>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; box-sizing: border-box; }
+  /* The report hero itself: cream radial wash, ink Playfair, gold accents
+     (Daniel, 30 Jul: match the website scheme, keep the luxury). */
   body { width: 1200px; height: 630px; background:
-    radial-gradient(75% 90% at 50% 0%, #35301F 0%, #1F1D1B 55%, #171512 100%);
+    radial-gradient(118% 130% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%);
     display: flex; align-items: center; justify-content: center; }
   .inner { text-align: center; }
   .eyebrow { font: 600 20px Manrope, sans-serif; letter-spacing: 0.28em; color: #B5831C; text-transform: uppercase; margin-bottom: 34px; }
-  h1 { font: 400 104px 'Playfair Display', serif; color: #F6F1E6; letter-spacing: -0.01em; line-height: 1.02; }
-  .season { font: italic 400 54px 'Playfair Display', serif; color: #D6A63A; margin-top: 14px; }
+  h1 { font: 400 104px 'Playfair Display', serif; color: #1F1D1B; letter-spacing: -0.01em; line-height: 1.02; }
+  .season { font: italic 400 54px 'Playfair Display', serif; color: #8F6712; margin-top: 14px; }
   .rule { display: flex; align-items: center; gap: 18px; justify-content: center; margin: 44px auto 0; width: 420px; }
-  .rule i { flex: 1; height: 1px; background: linear-gradient(to right, rgba(214,166,58,0), rgba(214,166,58,0.55)); }
-  .rule i:last-child { background: linear-gradient(to left, rgba(214,166,58,0), rgba(214,166,58,0.55)); }
-  .rule b { width: 7px; height: 7px; background: #D6A63A; transform: rotate(45deg); }
-  .byline { font: 600 19px Manrope, sans-serif; letter-spacing: 0.2em; color: rgba(246,241,230,0.55); text-transform: uppercase; margin-top: 40px; }
+  .rule i { flex: 1; height: 1px; background: linear-gradient(to right, rgba(181,131,28,0), rgba(181,131,28,0.5)); }
+  .rule i:last-child { background: linear-gradient(to left, rgba(181,131,28,0), rgba(181,131,28,0.5)); }
+  .rule b { width: 7px; height: 7px; background: #B5831C; transform: rotate(45deg); }
+  .byline { font: 600 19px Manrope, sans-serif; letter-spacing: 0.2em; color: #6B655C; text-transform: uppercase; margin-top: 40px; }
 </style></head><body>
 <div class="inner">
   <div class="eyebrow">Every recorded sale · portal and off-market</div>
