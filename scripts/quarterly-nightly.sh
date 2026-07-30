@@ -18,6 +18,7 @@ trap 'rm -f "$LOCK"' EXIT
 
 cd "$REPO"
 node scripts/build-quarterly-report.mjs --all
+node scripts/generate-report-og.mjs
 
 if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain src/data/reports public/img/reports)" ]; then
   echo "no changes"
