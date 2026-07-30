@@ -239,7 +239,7 @@ const legendGroups = [
     .pm-control-tr {
       position: fixed !important;
       top: auto !important;
-      bottom: calc(78px + env(safe-area-inset-bottom)) !important;
+      bottom: env(safe-area-inset-bottom) !important;
       right: 0; left: 0; z-index: 1200;
       border-top: 1px solid rgba(28,25,23,0.12);
       box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
@@ -261,7 +261,7 @@ const legendGroups = [
     #pm-result {
       position: fixed !important;
       left: 12px; right: 12px;
-      bottom: calc(126px + env(safe-area-inset-bottom));
+      bottom: calc(60px + env(safe-area-inset-bottom));
       width: auto !important; max-width: none !important;
       max-height: 42vh; overflow-y: auto;
     }
@@ -629,7 +629,7 @@ const legendGroups = [
   /* On mobile push attribution above the fixed LAYERS bar */
   @media (max-width: 640px) {
     .leaflet-bottom.leaflet-right {
-      bottom: calc(78px + env(safe-area-inset-bottom) + 48px) !important;
+      bottom: calc(env(safe-area-inset-bottom) + 52px) !important;
     }
   }
 
