@@ -696,6 +696,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   // in the field (keepalive so navigation doesn't cancel it).
   ctaLink.addEventListener('click', () => {
     try {
+      if (localStorage.getItem('qr-owner')) return;
       fetch('https://dg-dashboard-ebon.vercel.app/api/report-click', {
         method: 'POST', mode: 'no-cors', keepalive: true,
         headers: { 'Content-Type': 'text/plain' },
