@@ -42,6 +42,37 @@ const legendGroups = [
 
 <style>
   .pm-shell { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+
+  /* Magazine mode (?nav=off): the hidden site header leaves dead space, so
+     the tool takes a proper masthead there (Daniel, 2026-07-31). */
+  .pm-masthead { display: none; }
+  :global(html.nav-off) .pm-masthead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0 1.1rem;
+    text-align: center;
+  }
+  .pm-masthead-name {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #191817;
+    letter-spacing: 0.005em;
+    line-height: 1.1;
+  }
+  .pm-masthead-by {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+  @media (max-width: 768px) {
+    .pm-masthead-name { font-size: 1.45rem; }
+  }
   @media (min-width: 1024px) { .pm-shell { padding: 1.5rem 2rem 4rem; } }
   @media (max-width: 768px) {
     .pm-shell { padding: 0.75rem 0.75rem 2rem; }
@@ -747,6 +778,10 @@ window.PM_ZONES = {
 </script>
 
 <div class="pm-shell">
+  <div class="pm-masthead">
+    <span class="pm-masthead-name">Property Map Tool</span>
+    <span class="pm-masthead-by">by Team Daniel and Conrad</span>
+  </div>
 
   <p class="pm-eduline">
     <strong>Educational use only</strong> BCC and QUU open data. Always verify zoning with Brisbane City Council and commission a Dial Before You Dig (1100) search before any excavation or development decision.
