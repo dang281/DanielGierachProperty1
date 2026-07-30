@@ -97,8 +97,8 @@ const headlineB = cap(words(medianDom)) + ' days to sell.';
 const trendSentence = `Houses medianed ${money(medianHouse)} this season and units/townhouses ${money(medianUnit)}. Every figure below comes from PriceFinder sale records for ${suburb} ${postcode}.`;
 
 const stats = [
-  { value: money(medianHouse), label: 'Median house price', note: `${houses.length} houses changed hands this season.` },
-  { value: money(medianUnit), label: 'Median unit price', note: `${units.length} units and townhouses sold.` },
+  { value: money(medianHouse), label: 'Median house sale', note: `The middle result of the ${houses.length} houses sold this season.` },
+  { value: money(medianUnit), label: 'Median unit sale', note: `The middle result of the ${units.length} units/townhouses sold.` },
   { value: `${medianDom} days`, label: 'Median days to sell', note: 'Typical time from listing to contract.' },
   { value: `${houses.length} / ${units.length}`, label: 'Houses / units', note: `Across ${sales.length} recorded sales, portal and off-market.` },
 ];
