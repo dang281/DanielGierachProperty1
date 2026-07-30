@@ -187,9 +187,13 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   appleTouchIcon="/apple-touch-icon-dc.png?v=2"
   appleWebAppTitle={seasonTitle}
   ogImage={`/img/reports/og/${reportSlug}.png`}
+  themeColor="#E0D1AD"
 >
 
 <style is:global>
+  /* The hero wash runs into the iOS status bar / notch area. */
+  html { background: #E0D1AD; }
+
   /* Core Design tokens (README section 8). Three surfaces only.
      is:global because half the page is client-rendered (tabs, groups,
      comparables) and Astro-scoped selectors would miss those nodes;
@@ -235,6 +239,11 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .prepared .who { font-size: 10px; letter-spacing: 0.18em; color: var(--muted); }
   .prepared .addr { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 15.5px; line-height: 1.3; color: var(--ink-70); }
   .hero .eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); margin-top: clamp(24px, 5.5vw, 40px); }
+  .hero .eyebrow .seg { white-space: nowrap; }
+  @media (max-width: 480px) {
+    .hero .eyebrow .seg { display: block; line-height: 2; }
+    .hero .eyebrow .dot { display: none; }
+  }
   .hero h1 { font-size: clamp(44px, 13.5vw, 96px); line-height: 0.98; letter-spacing: -0.015em; margin: 14px 0 0; }
   .hero .subtitle { font-style: italic; font-size: clamp(24px, 7vw, 44px); line-height: 1.1; color: var(--gold-dark); margin-top: 8px; }
   .divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: clamp(20px, 4.5vw, 30px) 0; }
@@ -351,8 +360,9 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .cta-fine { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-top: 14px; font-size: 13.5px; color: rgba(246, 241, 230, 0.65); }
   .cta-print { display: none; }
 
-  .agent-card { display: flex; align-items: center; gap: clamp(16px, 4vw, 26px); flex-wrap: wrap; background: var(--card-cream); border-radius: 18px; padding: clamp(20px, 4.5vw, 28px); margin-top: 12px; }
+  .agent-card { display: flex; align-items: center; gap: clamp(20px, 4vw, 26px); flex-wrap: wrap; background: var(--card-cream); border-radius: 18px; padding: clamp(20px, 4.5vw, 28px); margin-top: 12px; }
   .agent-card img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
+  .agent-main { display: flex; align-items: center; gap: clamp(16px, 4vw, 26px); flex: 1 1 300px; min-width: 0; }
   .agent-body { flex: 1 1 220px; min-width: 0; }
   .agent-name { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(22px, 5vw, 28px); line-height: 1.2; }
   .agent-role { font-size: 13px; color: var(--ink-55); margin-top: 5px; }
@@ -360,7 +370,14 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .agent-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 13px; font-weight: 600; }
   .agent-co { display: flex; align-items: center; gap: clamp(16px, 4vw, 26px); flex: 0 1 auto; margin-left: auto; padding-left: clamp(0px, 3vw, 20px); }
   .agent-co img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
-  @media (max-width: 720px) { .agent-co { margin-left: 0; padding-left: 0; } }
+  @media (max-width: 720px) {
+    .agent-co { margin-left: 0; padding-left: 0; }
+    .agent-main img, .agent-co img { width: 64px; height: 64px; }
+    .agent-main, .agent-co { gap: 16px; align-items: flex-start; }
+    .agent-body, .agent-co > div { min-width: 0; }
+    .agent-links { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .agent-links a { overflow-wrap: anywhere; }
+  }
 
   .src-footer { padding-top: 26px; }
   .src-footer p { font-size: 13px; line-height: 1.65; color: var(--ink-55); margin: 0; max-width: 52em; }
@@ -423,7 +440,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         <span class="who caps" id="prepared-who"></span>
         <span class="addr" id="prepared-addr"></span>
       </div>
-      <div class="eyebrow caps">Daniel Gierach · {agencyLine}</div>
+      <div class="eyebrow caps"><span class="seg">Daniel Gierach · Ray White Bulimba</span><span class="dot"> · </span><span class="seg">The Collective</span></div>
       <h1 class="serif">{suburb}</h1>
       <div class="serif subtitle">{seasonTitle}</div>
       <div class="divider" aria-hidden="true"><span class="line-r"></span><span class="diamond"></span><span class="line-l"></span></div>
@@ -559,6 +576,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
       </div>
 
       <div class="agent-card">
+        <div class="agent-main">
         <img src="/img/daniel-headshot-tight.jpg" alt="Daniel Gierach" width="88" height="88" loading="lazy" />
         <div class="agent-body">
           <div class="agent-name">Daniel Gierach</div>
@@ -567,6 +585,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
             <a href="tel:+61412523821" data-cta="report_call_daniel">0412 523 821</a>
             <a href="mailto:daniel.gierach@raywhite.com" data-cta="report_email_daniel">daniel.gierach@raywhite.com</a>
           </div>
+        </div>
         </div>
         <div class="agent-co">
           <img src="/img/conrad-headshot.jpg" alt="Conrad Leisemann" width="88" height="88" loading="lazy" />
