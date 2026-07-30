@@ -45,7 +45,12 @@ const walkthroughUrl = '/property-worth';
 // disclosed prices only. Deduped by address + price (Pricefinder repeats).
 const seen = new Set();
 const sales = report.sales.filter((s) => {
-  if (s.type === 'Unit' && !s.beds) return false;
+  // Residential only (Daniel, 30 Jul): commercial/industrial and vacant land
+  // must never appear. Pricefinder types them as non-House/Unit or as
+  // bedless entries, so anything without a House/Unit type AND a bedroom
+  // count is out, even at the cost of the odd data-gap residential sale.
+  if (s.type !== 'House' && s.type !== 'Unit') return false;
+  if (!s.beds) return false;
   if (s.priceWithheld || !s.price) return false;
   const key = `${s.address}|${s.price}`;
   if (seen.has(key)) return false;
