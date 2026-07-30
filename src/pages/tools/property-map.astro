@@ -103,7 +103,7 @@ const legendGroups = [
     width: 100%; font-family: var(--font-sans); font-size: 1rem;
     padding: 0.95rem 1.1rem;
     border: 1px solid rgba(28,25,23,0.18);
-    border-radius: 8px;
+    border-radius: 14px;
     background: #ffffff; color:#191817;
     outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -116,7 +116,7 @@ const legendGroups = [
     padding: 0 1.5rem; background: var(--color-gold); color:#191817;
     font-family: var(--font-sans); font-size: 0.7rem; font-weight: 800;
     letter-spacing: 0.1em; text-transform: uppercase;
-    border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+    border: none; border-radius: 14px; cursor: pointer; white-space: nowrap; transition: background 0.2s;
   }
   #pm-search-btn:hover { background: #a5721c; }
   #pm-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -124,7 +124,7 @@ const legendGroups = [
     flex-shrink: 0; width: 46px;
     background: #f5f2eb;
     border: 1px solid rgba(28,25,23,0.12);
-    border-radius: 8px;
+    border-radius: 14px;
     color: rgba(28,25,23,0.5); cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
     transition: color 0.2s, background 0.2s;
@@ -814,20 +814,6 @@ window.PM_ZONES = {
     <!-- Status pill (top-left) -->
     <div id="pm-status">Click any feature or search an address.</div>
 
-    <!-- On-map zoning Key (legend) -->
-    <button id="pm-key-btn" class="pm-key" type="button" aria-expanded="false" aria-controls="pm-keycard">
-      <span class="pm-key-swatches"><span style="background:#6a8f5a"></span><span style="background:#d4843c"></span><span style="background:#7a5acd"></span><span style="background:#2a8c9c"></span></span>
-      Key
-    </button>
-    <div id="pm-keycard" class="pm-keycard" hidden>
-      <div class="pm-keycard-head">
-        <span>Zoning key</span>
-        <button id="pm-key-close" class="pm-key-close" type="button" aria-label="Close key">&times;</button>
-      </div>
-      <p class="pm-keycard-hint">Tap any block on the map to see its exact zone.</p>
-      <div id="pm-legend-list"></div>
-    </div>
-
     <!-- Fullscreen map (mobile/tablet) -->
     <button id="pm-fs-btn" class="pm-fs-btn" type="button" aria-label="Fullscreen map" title="Fullscreen map">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
@@ -865,7 +851,8 @@ window.PM_ZONES = {
             <span class="pm-opacity-label">Opacity <span id="pm-opacity-val">65%</span></span>
             <input type="range" id="pm-opacity-slider" min="0" max="100" step="5" value="65" class="pm-opacity-slider" />
           </div>
-          <p class="pm-layer-hint" style="margin:0.15rem 0 0 0.1rem;">Colour key is on the map, tap <strong style="color:rgba(185,130,41,0.9);font-weight:800;">Key</strong>.</p>
+          <div id="pm-legend-list" style="margin:0.35rem 0 0 0.1rem;"></div>
+          <p class="pm-layer-hint" style="margin:0.3rem 0 0 0.1rem;">Tap any colour for what that zone allows.</p>
         </div>
 
         <!-- Cadastre -->
@@ -2233,20 +2220,9 @@ window.PM_ZONES = {
       });
     });
 
-    // On-map zoning Key (legend)
-    const keyBtn = document.getElementById('pm-key-btn');
-    const keyCard = document.getElementById('pm-keycard');
-    function setKeyOpen(open: boolean) {
-      if (!keyCard || !keyBtn) return;
-      keyCard.hidden = !open;
-      keyBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-    keyBtn?.addEventListener('click', () => setKeyOpen(!!keyCard?.hidden));
-    document.getElementById('pm-key-close')?.addEventListener('click', () => setKeyOpen(false));
-    function updateKeyVisibility() {
-      if (keyBtn) (keyBtn as HTMLElement).hidden = !active.zoning;
-      if (!active.zoning) setKeyOpen(false);
-    }
+    // Zoning key now lives inside the Layers panel (#pm-legend-list there);
+    // nothing floats on the map. Kept as a no-op for the zoning toggle hook.
+    function updateKeyVisibility() { /* legend is always in the panel */ }
     updateKeyVisibility();
 
     // Active-layer summary on the LAYERS button
