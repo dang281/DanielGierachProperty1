@@ -10,6 +10,7 @@ interface Props {
   appleTouchIcon?: string;
   faviconSvg?: string;
   appleWebAppTitle?: string;
+  ogImage?: string;
 }
 
 const {
@@ -21,7 +22,10 @@ const {
   appleTouchIcon = '/apple-touch-icon.png?v=5',
   faviconSvg = '/favicon.svg?v=5',
   appleWebAppTitle = 'Daniel Gierach',
+  ogImage,
 } = Astro.props;
+
+const _ogImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `https://danielgierach.com${ogImage}`) : null;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').href;
 ---
@@ -42,6 +46,19 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content={appleWebAppTitle} />
     <title>{title}</title>
+    {_ogImage && (
+      <>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:image" content={_ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={_ogImage} />
+      </>
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
