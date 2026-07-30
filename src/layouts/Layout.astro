@@ -262,6 +262,8 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
           else if (mode === 'on') sessionStorage.removeItem('navOff');
         } catch (e) {}
         var on = mode === 'off';
+        // Shared-map URL is permanently magazine mode, no query needed.
+        if (location.pathname.indexOf('/tools/property-map-shared') === 0) on = true;
         try { on = on || sessionStorage.getItem('navOff') === '1'; } catch (e) {}
         if (on) document.documentElement.classList.add('nav-off');
       })();
