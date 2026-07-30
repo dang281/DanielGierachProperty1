@@ -234,12 +234,13 @@ const legendGroups = [
   }
   .pm-layer-panel.open { display: block; }
 
-  /* Mobile: full-width bottom sheet */
+  /* Mobile: full-width sheet docked to the bottom edge of the map itself
+     (absolute inside .pm-map-wrap), so it stays put as the page scrolls. */
   @media (max-width: 640px) {
     .pm-control-tr {
-      position: fixed !important;
+      position: absolute !important;
       top: auto !important;
-      bottom: env(safe-area-inset-bottom) !important;
+      bottom: 0 !important;
       right: 0; left: 0; z-index: 1200;
       border-top: 1px solid rgba(28,25,23,0.12);
       box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
@@ -629,7 +630,7 @@ const legendGroups = [
   /* On mobile push attribution above the fixed LAYERS bar */
   @media (max-width: 640px) {
     .leaflet-bottom.leaflet-right {
-      bottom: calc(env(safe-area-inset-bottom) + 52px) !important;
+      bottom: 52px !important;
     }
   }
 
