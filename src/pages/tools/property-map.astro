@@ -563,6 +563,9 @@ const legendGroups = [
   @media (max-width: 640px) {
     body.tool-page .tool-header { display: none; }
     body.tool-page .tool-content { padding-top: 72px !important; }
+    /* Magazine mode: the fixed site header is hidden, so drop the 72px
+       reserved for it and let the masthead sit near the top. */
+    :global(html.nav-off) body.tool-page .tool-content { padding-top: 0.5rem !important; }
   }
 
   /* Search input stays white so it's clearly a text field */
