@@ -156,6 +156,21 @@ const serviceSchema = {
     <div class="reveal" data-delay="80" style="max-width:480px;width:100%;">
 
       <p style="font-family:var(--font-sans);font-size:0.62rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#b98229;margin-bottom:0.5rem;">Book a Walk Through</p>
+
+      <!-- Step progress indicator: two dots, so step 1 (property) reads as
+           already-done and locked in once step 2 (details) is active. -->
+      <div class="wt-indicator" id="wt-indicator" aria-hidden="true" style="margin-bottom:1.1rem;">
+        <div class="wt-dot-wrap active" id="wt-dot-1" data-step="1">
+          <div class="wt-dot"></div>
+          <span class="wt-dot-lbl">Property</span>
+        </div>
+        <div class="wt-connector" id="wt-connector-1"></div>
+        <div class="wt-dot-wrap" id="wt-dot-2" data-step="2">
+          <div class="wt-dot"></div>
+          <span class="wt-dot-lbl">Details</span>
+        </div>
+      </div>
+
       <h2 id="walk-heading" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#191817;line-height:1.2;margin-bottom:0.45rem;">
         First, what property?
       </h2>
@@ -275,13 +290,14 @@ const serviceSchema = {
             />
           </div>
 
-          <!-- Email: the form never captured one, so bookings had no
-               address for confirmations or follow-up (fixed 2026-07-19) -->
+          <!-- Email: optional (2026-07-30). Phone is the primary contact
+               method for a walkthrough booking; email is a nice-to-have for
+               confirmations but must not block a submission. -->
           <div style="margin-top:1rem;">
             <label for="walk-email" style="display:block;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#44403c;margin-bottom:0.35rem;">
-              Email <span style="color:#b98229;">*</span>
+              Email <span style="font-weight:400;opacity:0.6;">(optional)</span>
             </label>
-            <input type="email" id="walk-email" name="email" required placeholder="you@email.com"
+            <input type="email" id="walk-email" name="email" placeholder="you@email.com"
               class="obs-input form-field" autocomplete="email"
             />
           </div>
@@ -358,6 +374,93 @@ const serviceSchema = {
       margin-bottom: 1.25rem !important;
     }
   }
+  /* ── Step progress indicator (mirrors the buyers.astro wizard dots:
+       gold pulsing active dot, ticked "done" dot, filling gold connector) ── */
+  .wt-indicator {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .wt-dot-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .wt-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(185,130,41,0.12);
+    border: 2px solid rgba(185,130,41,0.22);
+    transition: all 0.25s;
+    position: relative;
+  }
+  @keyframes wt-pulse {
+    0%   { box-shadow: 0 0 0 3px rgba(185,130,41,0.25); }
+    70%  { box-shadow: 0 0 0 8px rgba(185,130,41,0); }
+    100% { box-shadow: 0 0 0 3px rgba(185,130,41,0); }
+  }
+  .wt-dot-wrap.active .wt-dot {
+    background: #b98229;
+    border-color: #b98229;
+    animation: wt-pulse 2s ease-out infinite;
+  }
+  .wt-dot-wrap.done .wt-dot {
+    background: #b98229;
+    border-color: #b98229;
+  }
+  /* Completed step earns a tick, same as the buyers wizard */
+  .wt-dot-wrap.done .wt-dot::after {
+    content: '\2713';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wt-dot-wrap.active .wt-dot { animation: none; box-shadow: 0 0 0 4px rgba(185,130,41,0.18); }
+  }
+  .wt-dot-lbl {
+    font-family: var(--font-sans);
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(28,25,23,0.32);
+    transition: color 0.25s;
+    white-space: nowrap;
+  }
+  .wt-dot-wrap.active .wt-dot-lbl { color: #b98229; }
+  .wt-dot-wrap.done .wt-dot-lbl   { color: rgba(185,130,41,0.65); }
+  .wt-connector {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(185,130,41,0.15);
+    margin: 5px 0.65rem 0;
+    max-width: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .wt-connector::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #b98229, #d9a54a);
+    transition: width 0.6s ease;
+  }
+  .wt-connector.done::after { width: 100%; }
+  .wt-connector.half::after { width: 50%; }
+
   input::placeholder { color: var(--color-text-muted); }
 
 
@@ -499,8 +602,25 @@ const serviceSchema = {
     font-style: italic;
   }
 
-  /* Today/tomorrow dot marker */
-  .cal-day--today::after {
+  /* ── TODAY, gold ring + underline. It's always outside the bookable
+       window (earliest bookable is two days out) so the number itself
+       stays muted via .cal-day--disabled, but the ring still marks it
+       as "today" for orientation. box-shadow (not border) so it survives
+       the disabled state's border-color reset. ── */
+  .cal-day--today {
+    box-shadow: inset 0 0 0 1.5px #b98229;
+  }
+  .cal-day--today::before {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 50%; transform: translateX(-50%);
+    width: 55%; height: 2px;
+    border-radius: 2px;
+    background: #b98229;
+  }
+
+  /* Tomorrow keeps the original subtle dot marker */
+  .cal-day--tomorrow::after {
     content: '';
     position: absolute;
     bottom: 3px; left: 50%; transform: translateX(-50%);
@@ -616,8 +736,21 @@ const serviceSchema = {
   // ── Calendar picker ──────────────────────────────────────────────
   (function() {
     const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    const today = new Date();
-    today.setHours(0,0,0,0);
+
+    // "Today" is always Australia/Brisbane's calendar date, not the
+    // visitor's own browser timezone, so the today-marker (and the
+    // bookable window it anchors) stays correct for anyone viewing the
+    // site from outside Australia.
+    function getBrisbaneToday(): Date {
+      const parts = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Brisbane', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(new Date());
+      const y = Number(parts.find(p => p.type === 'year')!.value);
+      const m = Number(parts.find(p => p.type === 'month')!.value) - 1;
+      const d = Number(parts.find(p => p.type === 'day')!.value);
+      return new Date(y, m, d);
+    }
+    const today = getBrisbaneToday();
     const minDate = new Date(today); minDate.setDate(today.getDate() + 2); // earliest = day after tomorrow
     const maxDate = new Date(today); maxDate.setDate(today.getDate() + 60);
 
@@ -674,10 +807,19 @@ const serviceSchema = {
         const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
 
         if (isPast || isFuture) btn.classList.add('cal-day--disabled');
-        if (isToday || isTomorrow) btn.classList.add('cal-day--today');
+        if (isToday)    btn.classList.add('cal-day--today');
+        if (isTomorrow) btn.classList.add('cal-day--tomorrow');
         if (isSunday)   btn.classList.add('cal-day--sunday');
         if (isSaturday) btn.classList.add('cal-day--saturday');
         if (isSelected) btn.classList.add('cal-day--selected');
+
+        // Accessible label: full date, flagged as today and/or unavailable,
+        // so screen-reader users get the same context the gold ring gives
+        // sighted users.
+        const fullDateLabel = date.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        const unavailable = isPast || isFuture || isSunday;
+        btn.setAttribute('aria-label', fullDateLabel + (isToday ? ', today' : '') + (unavailable ? ', unavailable' : ''));
+        if (unavailable) btn.setAttribute('aria-disabled', 'true');
 
         if (!isPast && !isFuture && !isSunday) {
           btn.addEventListener('click', () => {
@@ -808,6 +950,10 @@ const serviceSchema = {
     const heading = document.getElementById('walk-heading');
     const stepIndicator = document.getElementById('walk-step-indicator');
     const nameInput = document.getElementById('walk-name') as HTMLInputElement | null;
+    const phoneInput = document.getElementById('walk-phone') as HTMLInputElement | null;
+    const dot1 = document.getElementById('wt-dot-1');
+    const dot2 = document.getElementById('wt-dot-2');
+    const connector1 = document.getElementById('wt-connector-1');
     if (!step1 || !step2 || !continueBtn || !backBtn || !addrInput) return;
 
     let addressNotificationSent = false;
@@ -817,16 +963,37 @@ const serviceSchema = {
       step1!.style.display = '';
       if (heading) heading.textContent = 'First, what property?';
       if (stepIndicator) stepIndicator.textContent = 'Step 1 of 2';
+      dot1?.classList.add('active');
+      dot1?.classList.remove('done');
+      dot2?.classList.remove('active', 'done');
+      connector1?.classList.remove('done', 'half');
       try { addrInput!.focus(); } catch (_) {}
     }
     function showStep2() {
       step1!.style.display = 'none';
       step2!.style.display = '';
       if (heading) heading.textContent = 'Last step, your details.';
-      if (stepIndicator) stepIndicator.textContent = 'Step 2 of 2';
+      if (stepIndicator) stepIndicator.textContent = 'Step 2 of 2 · Almost there';
       if (addrPillText) addrPillText.textContent = addrInput!.value;
+      dot1?.classList.remove('active');
+      dot1?.classList.add('done');
+      dot2?.classList.add('active');
+      dot2?.classList.remove('done');
+      connector1?.classList.add('half');
       try { (window as any).gtag('event', 'walkthrough_step_2', { event_category: 'lead' }); } catch (_) {}
       try { nameInput?.focus(); } catch (_) {}
+    }
+
+    // Mark a prefilled field as valid (same tick treatment the blur
+    // handler below applies), since setting .value programmatically
+    // doesn't fire a blur event on its own.
+    function markPrefilled(input: HTMLInputElement | null) {
+      if (!input || !input.value.trim()) return;
+      const tick = input.parentElement?.querySelector('.field-tick');
+      if (input.checkValidity()) {
+        input.classList.add('valid');
+        tick?.classList.add('show');
+      }
     }
 
     // Early-capture: when user hits Continue, fire an address notification
@@ -862,8 +1029,24 @@ const serviceSchema = {
     });
     backBtn.addEventListener('click', () => { showStep1(); });
 
+    // Prefill from a personalised suburb report, carried through
+    // /property-worth: 'n' = first name (same param name reports/[slug].astro
+    // already uses for its own personalisation), 'p' = phone, for links that
+    // supply one. Visitor can still edit either field.
+    const urlParams = new URLSearchParams(window.location.search);
+    const preName = (urlParams.get('n') || '').trim().slice(0, 40);
+    const prePhone = (urlParams.get('p') || '').trim();
+    if (preName && nameInput) {
+      nameInput.value = preName;
+      markPrefilled(nameInput);
+    }
+    if (prePhone && phoneInput) {
+      phoneInput.value = prePhone;
+      markPrefilled(phoneInput);
+    }
+
     // If the URL carried ?address= (from /property-worth), prefill and skip step 1.
-    const preAddr = new URLSearchParams(window.location.search).get('address');
+    const preAddr = urlParams.get('address');
     if (preAddr && preAddr.trim().length >= 4) {
       addrInput.value = preAddr.trim();
       sendAddressNotification(preAddr.trim());

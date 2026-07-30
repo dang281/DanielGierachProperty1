@@ -80,7 +80,7 @@ const appraisalSchema = {
   .pw-title em { font-style: italic; color: #b98229; }
   .pw-subtitle {
     font-size: 0.9rem;
-    color: rgba(25,24,23,0.6);
+    color: rgba(25,24,23,0.8);
     text-align: center;
     max-width: 46ch;
     margin: 0 auto 2.5rem;
@@ -99,7 +99,7 @@ const appraisalSchema = {
     gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
     box-shadow: 0 4px 16px rgba(107,70,16,0.08);
   }
   .pw-testimonial blockquote {
@@ -169,8 +169,12 @@ const appraisalSchema = {
     top: 0; left: 0; right: 0;
     height: 3px;
     background: #b98229;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    /* Elliptical radius: horizontal component matches the card's own 16px
+       corner so the strip's curve lines up with the card underneath. A
+       plain 16px radius on a 3px-tall box gets scaled down to ~3px by the
+       browser (radius can't exceed half the box's own height), which is
+       why the bar used to look squared off against the rounded card. */
+    border-radius: 16px 16px 0 0 / 3px 3px 0 0;
   }
   .pw-badge-float {
     position: absolute;
@@ -365,7 +369,7 @@ const appraisalSchema = {
       style="width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.85);"
       loading="eager" decoding="async" width="1920" height="1080"
     />
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(230,217,189,0.55) 0%,rgba(230,217,189,0.75) 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(230,217,189,0.72) 0%,rgba(230,217,189,0.85) 100%);"></div>
   </div>
 
   <div class="pw-inner">
@@ -374,26 +378,11 @@ const appraisalSchema = {
     <div class="pw-heading" style="text-align:center;margin-bottom:2rem;">
       <span class="pw-eyebrow" id="pw-eyebrow">What's Your Property Worth?</span>
       <h1 class="pw-title" id="pw-title">
-        Find out in<br/><em>three ways.</em>
+        3 easy ways<br/><em>to find out.</em>
       </h1>
       <p class="pw-subtitle">
         Pick whichever option suits. A number now, an in-person walkthrough, or a phone call. Each one gets you closer to a decision.
       </p>
-    </div>
-
-    <!-- Testimonial (desktop only) -->
-    <div class="pw-testimonial">
-      <blockquote>
-        "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me."
-      </blockquote>
-      <div class="pw-stars">
-        <div style="display:flex;gap:0.2rem;">
-          {[1,2,3,4,5].map(() => (
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="#6b4610"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          ))}
-        </div>
-        <span class="pw-stars-label">5 Stars · Recent Review</span>
-      </div>
     </div>
 
     <!-- Three options -->
@@ -472,6 +461,23 @@ const appraisalSchema = {
       </a>
 
     </div>
+
+    <!-- Testimonial (desktop only) — sits below the three options so the
+         options themselves read first. -->
+    <div class="pw-testimonial">
+      <blockquote>
+        "Daniel was honestly fantastic to work with. He was always one step ahead and made the whole process feel easy. He took care of it all with zero stress for me."
+      </blockquote>
+      <div class="pw-stars">
+        <div style="display:flex;gap:0.2rem;">
+          {[1,2,3,4,5].map(() => (
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#6b4610"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ))}
+        </div>
+        <span class="pw-stars-label">5 Stars · Recent Review</span>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -480,12 +486,22 @@ const appraisalSchema = {
   const suburbs = JSON.parse(suburbsJson);
   const params  = new URLSearchParams(window.location.search);
   const addr    = params.get('address') || '';
+  // 'n' = first name, carried through from a personalised suburb report
+  // (reports/[slug].astro) so the walkthrough form can prefill it.
+  const name    = (params.get('n') || '').trim().slice(0, 40);
 
   if (addr) {
     const reportLink = document.getElementById('pw-card-report');
     if (reportLink) reportLink.href = '/property-report?address=' + encodeURIComponent(addr);
+  }
+  if (addr || name) {
     const walkLink = document.getElementById('pw-card-walkthrough');
-    if (walkLink) walkLink.href = '/walkthrough?address=' + encodeURIComponent(addr);
+    if (walkLink) {
+      const walkParams = new URLSearchParams();
+      if (addr) walkParams.set('address', addr);
+      if (name) walkParams.set('n', name);
+      walkLink.href = '/walkthrough?' + walkParams.toString();
+    }
   }
 
   function extractSuburb(address) {
@@ -500,9 +516,12 @@ const appraisalSchema = {
 
   const suburb = addr ? extractSuburb(addr) : null;
 
+  // Personalisation lives in the subtitle (suburb overview / raw suburb
+  // name), not the H1: the H1 sits directly under an eyebrow that already
+  // asks "What's Your Property Worth?", so re-asking the same question in
+  // the heading below it read as a doubled question. The heading stays a
+  // fixed "3 easy ways to find out." and the subtitle carries the suburb.
   if (suburb) {
-    const title = document.getElementById('pw-title');
-    if (title) title.innerHTML = 'What is your property worth<br/><em>in ' + suburb.name + '?</em>';
     const sub = document.querySelector('.pw-subtitle');
     if (sub) sub.textContent = suburb.overview;
   } else if (addr) {
@@ -510,8 +529,8 @@ const appraisalSchema = {
     if (parts.length >= 2) {
       const raw = parts[parts.length - 2].replace(/\s+(QLD|NSW|VIC|WA|SA|TAS|ACT|NT)\s+\d{4}$/i, '').trim();
       if (raw) {
-        const title = document.getElementById('pw-title');
-        if (title) title.innerHTML = 'What is your property worth<br/><em>in ' + raw + '?</em>';
+        const sub = document.querySelector('.pw-subtitle');
+        if (sub) sub.textContent = 'Pick whichever option suits for your ' + raw + ' property. A number now, an in-person walkthrough, or a phone call.';
       }
     }
   }

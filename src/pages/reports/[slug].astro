@@ -657,12 +657,18 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     }
   }
 
-  // ── Appraisal CTA: pre-filled with the recipient's address ──
+  // ── Appraisal CTA: pre-filled with the recipient's address, and the
+  //    recipient's first name (?n=) forwarded so /property-worth (and, in
+  //    turn, /walkthrough) can prefill it too ──
   const ctaInput = document.getElementById('cta-address');
   const ctaLink = document.getElementById('cta-link');
   if (home) ctaInput.value = home.a + ', ' + suburb;
   const syncCta = () => {
-    ctaLink.href = walkthroughUrl + (ctaInput.value.trim() ? '?address=' + encodeURIComponent(ctaInput.value.trim()) : '');
+    const ctaParams = new URLSearchParams();
+    if (ctaInput.value.trim()) ctaParams.set('address', ctaInput.value.trim());
+    if (forName) ctaParams.set('n', forName);
+    const qs = ctaParams.toString();
+    ctaLink.href = walkthroughUrl + (qs ? '?' + qs : '');
   };
   ctaInput.addEventListener('input', syncCta);
   syncCta();
