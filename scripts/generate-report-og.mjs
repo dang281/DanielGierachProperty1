@@ -22,7 +22,8 @@ const html = (suburb, season) => `<!doctype html><html><head>
     display: flex; align-items: center; justify-content: center; }
   .inner { text-align: center; }
   .eyebrow { font: 600 20px Manrope, sans-serif; letter-spacing: 0.28em; color: #B5831C; text-transform: uppercase; margin-bottom: 34px; }
-  h1 { font: 400 104px 'Playfair Display', serif; color: #1F1D1B; letter-spacing: -0.01em; line-height: 1.02; }
+  h1 { font: 400 96px 'Playfair Display', serif; color: #1F1D1B; letter-spacing: -0.01em; line-height: 1.02; }
+  h1.long { font-size: 76px; }
   .season { font: italic 400 54px 'Playfair Display', serif; color: #8F6712; margin-top: 14px; }
   .rule { display: flex; align-items: center; gap: 18px; justify-content: center; margin: 44px auto 0; width: 420px; }
   .rule i { flex: 1; height: 1px; background: linear-gradient(to right, rgba(181,131,28,0), rgba(181,131,28,0.5)); }
@@ -32,7 +33,7 @@ const html = (suburb, season) => `<!doctype html><html><head>
 </style></head><body>
 <div class="inner">
   <div class="eyebrow">Every recorded sale · portal and off-market</div>
-  <h1>${suburb}</h1>
+  <h1 class="${suburb.length > 13 ? 'long' : ''}">Your ${suburb}</h1>
   <div class="season">${season}</div>
   <div class="rule"><i></i><b></b><i></i></div>
   <div class="byline">Daniel Gierach · Ray White Bulimba</div>
