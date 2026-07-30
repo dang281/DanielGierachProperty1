@@ -32,6 +32,9 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
+        // Quarterly reports are 1:1 nurture pages: link-only, never
+        // advertised to crawlers (they also carry noindex,nofollow).
+        !page.includes('/reports/') &&
         !page.includes('/thank-you') &&
         !page.includes('/privacy') &&
         !page.includes('/terms') &&

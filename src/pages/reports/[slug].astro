@@ -605,20 +605,34 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
 
   // ── Personalisation from the URL (?h=<home slug>&n=<first name>) ──
   const params = new URLSearchParams(location.search);
-  const home = homes[params.get('h')] ?? null;
+  let home = homes[params.get('h')] ?? null;
   const forName = (params.get('n') || '').trim().slice(0, 40);
   const legacyFor = params.get('for');
+  // Long form: ?for=21 Lawson Street&lat=-27.46&lng=153.07&t=u carries the
+  // whole personalisation in the link, so contacts beyond the baked homes
+  // map (generated on the fly by the dashboard's Quarterly buttons) get the
+  // pin, comparables and pre-filled address too.
+  if (!home && legacyFor) {
+    const lat = parseFloat(params.get('lat'));
+    const lng = parseFloat(params.get('lng'));
+    home = {
+      a: legacyFor.slice(0, 80),
+      lat: isNaN(lat) ? null : lat,
+      lng: isNaN(lng) ? null : lng,
+      u: params.get('t') === 'u',
+    };
+  }
 
   if (home || forName || legacyFor) {
     const el = document.getElementById('prepared');
     document.getElementById('prepared-who').textContent = forName ? 'Prepared for ' + forName : 'Prepared for you';
-    document.getElementById('prepared-addr').textContent = home ? home.a + ', ' + suburb : (legacyFor || '');
+    document.getElementById('prepared-addr').textContent = home ? home.a + ', ' + suburb : '';
     el.classList.add('on');
   }
 
   // ── Comparables: same type, closest streets first (README section 4,
   // street proximity weighted up as it asks; beds unknown for recipients) ──
-  if (home) {
+  if (home && home.lat != null) {
     const streetKey = home.a.replace(/^[\dA-Za-z]+(?:\/[\dA-Za-z]+)?\s+/, '').split(' ')[0].toLowerCase();
     const dist2 = (s) => (s.lat == null ? 1 : (s.lat - home.lat) ** 2 + (s.lng - home.lng) ** 2);
     const comps = SALES
@@ -838,7 +852,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         info.open({ anchor: marker, map });
       });
     });
-    if (home) {
+    if (home && home.lat != null) {
       const pos = { lat: home.lat, lng: home.lng };
       bounds.extend(pos);
       // Classic drop pin in blue: unmistakable against the ink house dots
