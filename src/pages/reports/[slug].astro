@@ -357,9 +357,9 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .agent-role { font-size: 13px; color: var(--ink-55); margin-top: 5px; }
   .agent-blurb { font-size: 13.5px; line-height: 1.6; color: var(--ink-70); margin-top: 10px; max-width: 34em; }
   .agent-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 13px; font-weight: 600; }
-  .agent-co { display: flex; align-items: center; gap: 14px; flex: 0 1 auto; margin-left: auto; padding-left: clamp(0px, 3vw, 20px); }
+  .agent-co { display: flex; align-items: center; gap: clamp(16px, 4vw, 26px); flex: 0 1 auto; margin-left: auto; padding-left: clamp(0px, 3vw, 20px); }
   .agent-co img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; background: var(--cream); }
-  @media (max-width: 720px) { .agent-co { margin-left: 0; } }
+  @media (max-width: 720px) { .agent-co { margin-left: 0; padding-left: 0; } }
 
   .src-footer { padding-top: 26px; }
   .src-footer p { font-size: 13px; line-height: 1.65; color: var(--ink-55); margin: 0; max-width: 52em; }
