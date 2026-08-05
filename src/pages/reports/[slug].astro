@@ -238,6 +238,12 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   .prepared.on { display: flex; }
   .prepared .who { font-size: 10px; letter-spacing: 0.18em; color: var(--muted); }
   .prepared .addr { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 15.5px; line-height: 1.3; color: var(--ink-70); }
+  /* Property switcher: only rendered for multi-property portfolio links. */
+  .prop-switch { display: none; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .prop-switch.on { display: flex; }
+  .prop-switch .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 7px 16px; font-size: 12.5px; font-weight: 600; line-height: 1.2; background: var(--white); color: var(--ink-70); border: 1px solid var(--hairline); }
+  .prop-switch a.pill:hover { background: var(--hover-white); color: var(--ink); }
+  .prop-switch .pill.on { background: var(--gold); border-color: var(--gold); color: #fff; }
   .hero .eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); margin-top: clamp(24px, 5.5vw, 40px); }
   .hero .eyebrow .seg { white-space: nowrap; }
   @media (max-width: 480px) {
@@ -440,6 +446,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         <span class="who caps" id="prepared-who"></span>
         <span class="addr" id="prepared-addr"></span>
       </div>
+      <nav class="prop-switch" id="prop-switch" aria-label="Your properties" data-print-hide="true"></nav>
       <div class="eyebrow caps"><span class="seg">Daniel Gierach · Ray White Bulimba</span><span class="dot"> · </span><span class="seg">The Collective</span></div>
       <h1 class="serif">{suburb}</h1>
       <div class="serif subtitle">{seasonTitle}</div>
@@ -625,8 +632,39 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
 
   // ── Personalisation from the URL (?h=<home slug>&n=<first name>) ──
   const params = new URLSearchParams(location.search);
-  let home = homes[params.get('h')] ?? null;
   const forName = (params.get('n') || '').trim().slice(0, 40);
+
+  // ── Portfolio: owners with several properties get ONE link carrying every
+  // property as a repeated ?p= entry (slug~addr~suburb~homeslug~lat~lng~u)
+  // plus ?a=<index> marking the active one. Pills in the hero switch between
+  // them; a pill for another suburb is simply a link to that suburb's report
+  // page carrying the same params. Links without ?p= behave exactly as before.
+  const pageSlug = location.pathname.replace(/^\/reports\//, '').replace(/\/$/, '');
+  const portfolio = params.getAll('p').map((raw) => {
+    const f = raw.split('~');
+    return { slug: f[0] || '', addr: (f[1] || '').slice(0, 80), sub: (f[2] || '').slice(0, 40), hs: f[3] || '', lat: parseFloat(f[4]), lng: parseFloat(f[5]), u: f[6] === 'u' };
+  }).filter((e) => e.slug && e.addr);
+  let active = null;
+  if (portfolio.length) {
+    const ai = parseInt(params.get('a') ?? '', 10);
+    if (portfolio[ai] && portfolio[ai].slug === pageSlug) active = portfolio[ai];
+    else active = portfolio.find((e) => e.slug === pageSlug) ?? null;
+  }
+
+  let home = homes[params.get('h')] ?? null;
+  if (active) {
+    // Baked homes map wins (it can carry better coords); otherwise the entry
+    // itself has everything the long-form link would have carried.
+    home = (active.hs && homes[active.hs]) || {
+      a: active.addr,
+      lat: isNaN(active.lat) ? null : active.lat,
+      lng: isNaN(active.lng) ? null : active.lng,
+      u: active.u,
+    };
+  }
+  // The beacon reports the active property's baked slug so views stay
+  // per-property on the dashboard, matching single-property links.
+  const beaconH = (active ? active.hs : '') || params.get('h') || null;
   const legacyFor = params.get('for');
   // Long form: ?for=21 Lawson Street&lat=-27.46&lng=153.07&t=u carries the
   // whole personalisation in the link, so contacts beyond the baked homes
@@ -648,6 +686,20 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
     document.getElementById('prepared-who').textContent = forName ? 'Prepared for ' + forName : 'Prepared for you';
     document.getElementById('prepared-addr').textContent = home ? home.a + ', ' + suburb : '';
     el.classList.add('on');
+  }
+
+  // ── Property switcher pills: every pill is a plain link, so a tap is a
+  // fast static page load whether the property is in this suburb or another.
+  if (portfolio.length > 1) {
+    const bar = document.getElementById('prop-switch');
+    bar.innerHTML = portfolio.map((e, i) => {
+      const label = esc(e.addr) + (e.slug !== pageSlug && e.sub ? ', ' + esc(e.sub) : '');
+      if (e === active) return '<span class="pill on" aria-current="page">' + label + '</span>';
+      const q = new URLSearchParams(location.search);
+      q.set('a', String(i));
+      return '<a class="pill" href="/reports/' + e.slug + '/?' + q.toString() + '">' + label + '</a>';
+    }).join('');
+    bar.classList.add('on');
   }
 
   // ── Comparables: same type, closest streets first (README section 4,
@@ -701,8 +753,8 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         method: 'POST', mode: 'no-cors', keepalive: true,
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
-          report: location.pathname.replace(/^\/reports\//, '').replace(/\/$/, ''),
-          h: params.get('h') || null,
+          report: pageSlug,
+          h: beaconH,
           n: forName || null,
           event: 'cta',
           address: ctaInput.value.trim() || null,
@@ -917,7 +969,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
       fetch('https://dg-dashboard-ebon.vercel.app/api/report-click', {
         method: 'POST', mode: 'no-cors', keepalive: true,
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ report: location.pathname.replace(/^\/reports\//, '').replace(/\/$/, ''), h: params.get('h') || null, n: forName || null }),
+        body: JSON.stringify({ report: pageSlug, h: beaconH, n: forName || null }),
       }).catch(() => {});
     }
   } catch (e) { /* never break the page */ }
