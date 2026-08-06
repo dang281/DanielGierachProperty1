@@ -1339,12 +1339,12 @@ const faqSchema = {
 
     // Dropdown appended to body, position:fixed, escapes overflow:hidden on hero
     const drop = document.createElement('div');
-    drop.style.cssText = 'display:none;position:fixed;z-index:99999;background:#f2ead4;border:1px solid rgba(107,70,16,0.18);border-top:none;max-height:240px;overflow-y:auto;box-shadow:0 8px 32px rgba(107,70,16,0.18);';
+    drop.style.cssText = 'display:none;position:fixed;z-index:99999;background:#f2ead4;border:1px solid rgba(107,70,16,0.18);border-radius:12px;max-height:240px;overflow-y:auto;box-shadow:0 8px 32px rgba(107,70,16,0.18);';
     document.body.appendChild(drop);
 
     function positionDrop() {
       const r = input.getBoundingClientRect();
-      drop.style.top   = r.bottom + 'px';
+      drop.style.top   = (r.bottom + 4) + 'px';
       drop.style.left  = r.left   + 'px';
       drop.style.width = r.width  + 'px';
     }
