@@ -269,6 +269,32 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
       })();
     </script>
     <style is:global>
+      /* Google Places autocomplete dropdown: rounded, on-brand, everywhere.
+         Google injects .pac-container at the body level, so this must be a
+         global (not scoped) rule. Kept in sync with LandingLayout.astro,
+         which is standalone and does not inherit this head. */
+      .pac-container {
+        margin-top: 4px;
+        background: #f2ead4;
+        border: 1px solid rgba(185,130,41,0.20);
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(107,70,16,0.16);
+        font-family: var(--font-sans);
+        overflow: hidden;
+      }
+      .pac-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: rgba(25,24,23,0.8);
+        border-top: 1px solid rgba(185,130,41,0.12);
+        cursor: pointer;
+      }
+      .pac-item:first-child { border-top: none; }
+      .pac-item:hover, .pac-item-selected { background: rgba(185,130,41,0.12); }
+      .pac-item-query { color: #191817; font-weight: 600; }
+      .pac-matched { color: #b98229; }
+
       html.nav-off #site-header { display: none !important; }
       /* Funnel arrivals read like a clean magazine: no header, no breadcrumb.
          Covers both the standard breadcrumb and the tool-page breadcrumb. */

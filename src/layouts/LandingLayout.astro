@@ -91,6 +91,33 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
         src="https://www.facebook.com/tr?id=1493183205636761&ev=PageView&noscript=1"/>
     </noscript>
 
+    <!-- Google Places autocomplete dropdown: rounded, on-brand. Global rule
+         because Google injects .pac-container at the body level. LandingLayout
+         is standalone, so this mirrors the block in Layout.astro. -->
+    <style is:global>
+      .pac-container {
+        margin-top: 4px;
+        background: #f2ead4;
+        border: 1px solid rgba(185,130,41,0.20);
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(107,70,16,0.16);
+        font-family: var(--font-sans);
+        overflow: hidden;
+      }
+      .pac-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: rgba(25,24,23,0.8);
+        border-top: 1px solid rgba(185,130,41,0.12);
+        cursor: pointer;
+      }
+      .pac-item:first-child { border-top: none; }
+      .pac-item:hover, .pac-item-selected { background: rgba(185,130,41,0.12); }
+      .pac-item-query { color: #191817; font-weight: 600; }
+      .pac-matched { color: #b98229; }
+    </style>
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
