@@ -389,7 +389,7 @@ const appraisalSchema = {
     <div class="pw-cards">
 
       <!-- Card 1: Instant Report -->
-      <a id="pw-card-report" href="/property-report" class="pw-card">
+      <a id="pw-card-report" href="/property-report" class="pw-card" data-cta="worth_instant_report">
         <div class="pw-card-body">
           <div>
             <span class="pw-card-tag">Instant · Online</span>
@@ -412,7 +412,7 @@ const appraisalSchema = {
       </a>
 
       <!-- Card 2: Walkthrough (featured) -->
-      <a id="pw-card-walkthrough" href="/walkthrough" class="pw-card pw-card-featured" style="position:relative;">
+      <a id="pw-card-walkthrough" href="/walkthrough" class="pw-card pw-card-featured" style="position:relative;" data-cta="worth_walkthrough">
         <div class="pw-badge-float">Most Accurate</div>
         <div class="pw-card-top-bar"></div>
         <div class="pw-card-body">
@@ -438,7 +438,7 @@ const appraisalSchema = {
       </a>
 
       <!-- Card 3: Call -->
-      <a href="tel:+61412523821" class="pw-card">
+      <a href="tel:+61412523821" class="pw-card" data-cta="worth_call_daniel">
         <div class="pw-card-body">
           <div>
             <span class="pw-card-tag">0412 523 821 · 7 days</span>
@@ -490,11 +490,14 @@ const appraisalSchema = {
   // (reports/[slug].astro) so the walkthrough form can prefill it.
   const name    = (params.get('n') || '').trim().slice(0, 40);
 
-  if (addr) {
-    const reportLink = document.getElementById('pw-card-report');
-    if (reportLink) reportLink.href = '/property-report?address=' + encodeURIComponent(addr);
-  }
   if (addr || name) {
+    const reportLink = document.getElementById('pw-card-report');
+    if (reportLink) {
+      const reportParams = new URLSearchParams();
+      if (addr) reportParams.set('address', addr);
+      if (name) reportParams.set('n', name);
+      reportLink.href = '/property-report?' + reportParams.toString();
+    }
     const walkLink = document.getElementById('pw-card-walkthrough');
     if (walkLink) {
       const walkParams = new URLSearchParams();
