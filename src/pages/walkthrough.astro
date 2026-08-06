@@ -970,7 +970,7 @@ const serviceSchema = {
       connector1?.classList.remove('done', 'half');
       try { addrInput!.focus(); } catch (_) {}
     }
-    function showStep2() {
+    function showStep2(focusName = true) {
       step1!.style.display = 'none';
       step2!.style.display = '';
       if (heading) heading.textContent = 'Last step.';
@@ -982,7 +982,11 @@ const serviceSchema = {
       dot2?.classList.remove('done');
       connector1?.classList.add('half');
       try { (window as any).gtag('event', 'walkthrough_step_2', { event_category: 'lead' }); } catch (_) {}
-      try { nameInput?.focus(); } catch (_) {}
+      // Only pull focus into the name field when the visitor actively clicked
+      // Continue. On the prefilled-address skip (arriving from /property-worth)
+      // focusing here would auto-scroll the page down to step 2 mid-form; we
+      // want them to land at the top and scroll down naturally instead.
+      if (focusName) { try { nameInput?.focus(); } catch (_) {} }
     }
 
     // Mark a prefilled field as valid (same tick treatment the blur
@@ -1051,7 +1055,10 @@ const serviceSchema = {
     if (preAddr && preAddr.trim().length >= 4) {
       addrInput.value = preAddr.trim();
       sendAddressNotification(preAddr.trim());
-      showStep2();
+      showStep2(false);
+      // Guard against the browser restoring a scroll position from the prior
+      // page: keep the visitor at the very top of the hero on arrival.
+      try { window.scrollTo(0, 0); } catch (_) {}
     }
   }
 
