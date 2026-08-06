@@ -164,18 +164,10 @@ const appraisalSchema = {
     transform: translateY(-5px);
     border-color: rgba(185,130,41,0.75);
   }
-  .pw-card-top-bar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: #b98229;
-    /* Elliptical radius: horizontal component matches the card's own 16px
-       corner so the strip's curve lines up with the card underneath. A
-       plain 16px radius on a 3px-tall box gets scaled down to ~3px by the
-       browser (radius can't exceed half the box's own height), which is
-       why the bar used to look squared off against the rounded card. */
-    border-radius: 16px 16px 0 0 / 3px 3px 0 0;
-  }
+  /* The featured card's gold top accent is an inset box-shadow (see the
+     min-width:769px block below). An inset shadow is clipped to the tile's
+     border-radius, so the 3px gold line curves around the rounded corners
+     instead of squaring off the way the old absolutely-positioned strip did. */
   .pw-badge-float {
     position: absolute;
     top: -1px; left: 50%;
@@ -318,7 +310,6 @@ const appraisalSchema = {
     .pw-card-featured .pw-card-arrow {
       background: rgba(185,130,41,0.3);
     }
-    .pw-card-top-bar { display: none; }
 
     /* Featured: gold left border instead of floating badge */
     .pw-card-featured {
@@ -350,6 +341,15 @@ const appraisalSchema = {
   @media (min-width: 769px) {
     .pw-card-arrow { display: none; }
     .pw-featured-mobile-badge { display: none !important; }
+    /* Gold top accent on the featured card. Inset shadow is clipped to the
+       tile's 16px border-radius, so the 3px gold line rounds around the top
+       corners with the tile. Desktop only; mobile uses the left-border accent. */
+    .pw-card-featured {
+      box-shadow: inset 0 3px 0 #b98229, 0 4px 20px rgba(185,130,41,0.12);
+    }
+    .pw-card-featured:hover {
+      box-shadow: inset 0 3px 0 #b98229, 0 20px 48px rgba(107,70,16,0.14);
+    }
   }
 </style>
 
@@ -414,7 +414,6 @@ const appraisalSchema = {
       <!-- Card 2: Walkthrough (featured) -->
       <a id="pw-card-walkthrough" href="/walkthrough" class="pw-card pw-card-featured" style="position:relative;" data-cta="worth_walkthrough">
         <div class="pw-badge-float">Most Accurate</div>
-        <div class="pw-card-top-bar"></div>
         <div class="pw-card-body">
           <div>
             <span class="pw-featured-mobile-badge">Most Accurate</span>
