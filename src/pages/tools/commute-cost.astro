@@ -22,12 +22,14 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     padding: 0.9rem 1.1rem;
     line-height: 1.65;
     margin-bottom: 1.5rem;
+    border-radius: 0 12px 12px 0;
   }
 
   /* ─── Vehicle bar ───────────────────────────────────────── */
   .cc-vehicle-bar {
     background: #fff;
     border: 1px solid rgba(28,25,23,0.1);
+    border-radius: 16px;
     padding: 1.25rem 1.75rem;
     display: flex;
     flex-wrap: wrap;
@@ -56,6 +58,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     color: var(--color-text-primary);
     background: var(--color-surface-4);
     border: 1.5px solid rgba(28,25,23,0.14);
+    border-radius: 8px;
     text-align: right;
     -moz-appearance: textfield;
   }
@@ -70,6 +73,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     border: 1.5px solid rgba(28,25,23,0.2);
+    border-radius: 8px;
     background: transparent;
     color: var(--color-text-muted);
     cursor: pointer;
@@ -99,6 +103,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     background: #fff;
     border: 1px solid rgba(28,25,23,0.1);
     border-top: 3px solid rgba(28,25,23,0.12);
+    border-radius: 16px;
     padding: 1.1rem 1.25rem;
     cursor: pointer;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -145,6 +150,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     color: var(--color-text-primary);
     background: var(--color-surface-4);
     border: 1.5px solid rgba(28,25,23,0.12);
+    border-radius: 8px;
     box-sizing: border-box;
   }
   .cc-search-input:focus { outline: none; border-color: var(--color-gold); }
@@ -156,9 +162,9 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     z-index: 1000;
     background: #fff;
     border: 1px solid rgba(28,25,23,0.12);
-    border-top: none;
+    border-radius: 12px;
     list-style: none;
-    margin: 0;
+    margin: 4px 0 0;
     padding: 0;
     max-height: 200px;
     overflow-y: auto;
@@ -192,6 +198,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     background: rgba(28,25,23,0.03);
     border: 1px solid rgba(28,25,23,0.08);
     border-bottom: none;
+    border-radius: 12px 12px 0 0;
     letter-spacing: 0.04em;
   }
   .cc-map-hint strong { color: var(--color-gold); }
@@ -201,6 +208,8 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
     height: 500px;
     width: 100%;
     border: 1px solid rgba(28,25,23,0.12);
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
     margin-bottom: 1.5rem;
     z-index: 1;
   }
@@ -209,6 +218,7 @@ const GMAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
   .cc-results {
     background: #fff;
     border: 1px solid rgba(28,25,23,0.1);
+    border-radius: 16px;
     overflow: hidden;
   }
   .cc-results-header {
