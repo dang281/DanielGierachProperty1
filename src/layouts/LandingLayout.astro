@@ -73,8 +73,17 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     </noscript>
 
+    <!-- Analytics opt-out: a device that visited /optout carries dg_optout=1.
+         Set before the Pixel and before gtag('config') so it disables GA4 + Pixel,
+         keeping the team's own visits and clicks out of the numbers. -->
+    <script is:inline>
+      window.__DG_OPTOUT = /(?:^|;\s*)dg_optout=1(?:;|$)/.test(document.cookie);
+      if (window.__DG_OPTOUT) { window['ga-disable-G-K1P37GL73K'] = true; }
+    </script>
+
     <!-- Meta Pixel -->
     <script is:inline>
+      if (!window.__DG_OPTOUT) {
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -85,6 +94,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://danielgierach.com').hr
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1493183205636761');
       fbq('track', 'PageView');
+      }
 </script>
     <noscript>
       <img height="1" width="1" style="display:none" alt=""

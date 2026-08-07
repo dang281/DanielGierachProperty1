@@ -249,6 +249,12 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Analytics opt-out: a device that visited /optout carries dg_optout=1.
+      // Setting ga-disable before gtag('config') stops ALL GA4 hits (page views,
+      // events, web vitals); the Pixel is guarded separately below. Keeps the
+      // team's own visits and link clicks out of the numbers.
+      window.__DG_OPTOUT = /(?:^|;\s*)dg_optout=1(?:;|$)/.test(document.cookie);
+      if (window.__DG_OPTOUT) { window['ga-disable-G-K1P37GL73K'] = true; }
     </script>
     <!-- Funnel/magazine mode: ?nav=off hides the site header + breadcrumb, then
          persists for the whole session so clicking deeper stays chrome-free.
@@ -556,6 +562,7 @@ const _datePublished: string | null = _scheduleEntry?.publishDate ?? null;
     <!-- Meta Pixel · deferred to after load so it never blocks first paint -->
     <script>
       window.addEventListener('load', function() {
+        if (window.__DG_OPTOUT) return; // opted-out device: skip Pixel entirely
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};

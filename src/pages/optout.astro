@@ -1,0 +1,77 @@
+---
+// /optout: toggle whether THIS device/browser is excluded from site analytics.
+// Standalone page (no Layout import) so visiting it never loads GA4/Pixel and
+// never counts itself. Sets a first-party dg_optout cookie the layouts read.
+// /optout      -> exclude this device
+// /optout?off  -> count this device again
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Analytics opt-out</title>
+    <style>
+      :root{
+        --bg:#e6d9bd; --card:#f2ead4; --ink:#191817; --ink-dim:rgba(25,24,23,.66);
+        --gold:#b98229; --deep:#6b4610; --border:rgba(25,24,23,.12);
+      }
+      *{box-sizing:border-box}
+      html,body{margin:0;height:100%}
+      body{background:var(--bg);color:var(--ink);
+        font-family:Manrope,system-ui,-apple-system,Segoe UI,sans-serif;
+        display:grid;place-items:center;padding:24px}
+      .card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+        padding:34px 30px;max-width:440px;width:100%;
+        box-shadow:0 24px 60px rgba(107,70,16,.14)}
+      .mark{font-family:Georgia,serif;font-size:15px;font-weight:600;color:var(--deep);
+        letter-spacing:.01em;margin-bottom:18px}
+      .mark b{color:var(--gold);font-weight:600}
+      h1{font-family:Georgia,serif;font-weight:600;font-size:26px;margin:0 0 8px;letter-spacing:-.01em}
+      p{margin:0 0 14px;line-height:1.55;color:var(--ink-dim);font-size:14.5px}
+      .row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px}
+      .btn{display:inline-flex;align-items:center;background:var(--gold);color:#fff;
+        text-decoration:none;font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px}
+      .btn:hover{background:var(--deep)}
+      .link{color:var(--ink-dim);text-decoration:none;font-weight:600;font-size:13.5px}
+      .link:hover{color:var(--ink)}
+      .fine{font-size:12px;color:rgba(25,24,23,.5);margin:22px 0 0;line-height:1.5}
+      .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle}
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="mark">Gie<b>Mann</b></div>
+      <h1 id="title">One moment…</h1>
+      <p id="sub"></p>
+      <div class="row">
+        <a id="toggle" class="btn" href="#"></a>
+        <a class="link" href="/">Back to site</a>
+      </div>
+      <p class="fine">This only affects the device and browser you're on right now. Repeat it on your phone and any other browser you want excluded. It's stored as a cookie on your device, nothing more.</p>
+    </main>
+    <script is:inline>
+      (function () {
+        var off = new URLSearchParams(location.search).has('off');
+        if (off) {
+          document.cookie = 'dg_optout=; max-age=0; path=/';
+        } else {
+          // ~2 years
+          document.cookie = 'dg_optout=1; max-age=63072000; path=/; samesite=lax';
+        }
+        var excluded = !off;
+        var green = '#0a7d43', red = '#a04545';
+        document.getElementById('title').innerHTML =
+          '<span class="dot" style="background:' + (excluded ? green : red) + '"></span>' +
+          (excluded ? 'You’re excluded' : 'Tracking re-enabled');
+        document.getElementById('sub').textContent = excluded
+          ? 'This device is now ignored in danielgierach.com analytics. Your own visits and link clicks won’t be counted from here on.'
+          : 'This device will be counted again, like any normal visitor.';
+        var t = document.getElementById('toggle');
+        if (excluded) { t.textContent = 'Turn tracking back on'; t.setAttribute('href', '/optout?off'); }
+        else { t.textContent = 'Exclude this device'; t.setAttribute('href', '/optout'); }
+      })();
+    </script>
+  </body>
+</html>
