@@ -4,7 +4,11 @@
 # commits and pushes the generated data so Vercel publishes it. No AI in the
 # loop; uploading a PDF on /app/quarterly-reports is the whole trigger.
 set -euo pipefail
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+# node/npm are installed via nvm, whose bin dir is NOT in launchd's minimal
+# PATH. Without this the job failed nightly with "command not found: node"
+# (exit 127). Prepend the newest installed nvm node bin so node/npm resolve.
+NVM_NODE_BIN="$(ls -td "$HOME"/.nvm/versions/node/*/bin 2>/dev/null | head -1 || true)"
+export PATH="${NVM_NODE_BIN:+$NVM_NODE_BIN:}/opt/homebrew/bin:/usr/local/bin:$PATH"
 REPO="$HOME/DanielGierachProperty"
 LOG="$HOME/Library/Logs/quarterly-reports.log"
 LOCK="/tmp/quarterly-nightly.lock"
