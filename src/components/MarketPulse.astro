@@ -1,0 +1,28 @@
+---
+// Quarterly qualitative market notes for priority suburbs.
+// Renders nothing when the suburb has no entry in market-pulse.ts.
+// No prices, medians or percentages appear here by design.
+import { MARKET_PULSE } from '../data/market-pulse';
+
+interface Props {
+  slug: string;
+  name: string;
+}
+
+const { slug, name } = Astro.props;
+const pulse = MARKET_PULSE[slug];
+---
+{pulse && (
+  <section style="background:#fff; padding:64px 24px; border-top:1px solid rgba(28,25,23,0.08);">
+    <div style="max-width:800px; margin:0 auto;">
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Market Pulse &middot; Updated {pulse.updated}</p>
+      <h2 style="font-family:var(--font-serif); font-size:clamp(1.6rem, 3vw, 2.3rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">{pulse.heading}</h2>
+      <div style="display:flex; flex-direction:column; gap:1.1rem;">
+        {pulse.points.map((point) => (
+          <p style="font-family:var(--font-sans); font-size:0.97rem; font-weight:300; line-height:1.8; color:#4a4540; margin:0; padding-left:1.25rem; border-left:3px solid rgba(185,130,41,0.45);">{point}</p>
+        ))}
+      </div>
+      <p style="font-family:var(--font-sans); font-size:0.78rem; font-weight:300; color:#78716c; margin-top:1.75rem;">Notes from Daniel's current campaigns and buyer conversations in {name}. Updated each quarter.</p>
+    </div>
+  </section>
+)}

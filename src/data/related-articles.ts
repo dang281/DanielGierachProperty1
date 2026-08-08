@@ -271,24 +271,24 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "selling-in-camp-hill": [
+    { title: "Camp Hill vs Coorparoo: Which Suburb Fits You?", slug: "camp-hill-vs-coorparoo", label: "Comparison" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
-    { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "selling-in-cannon-hill": [
+    { title: "Morningside vs Cannon Hill: How to Choose", slug: "morningside-vs-cannon-hill", label: "Comparison" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
-    { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timeline" },
   ],
   "selling-in-carina": [
+    { title: "Carina vs Carina Heights: What Is the Difference?", slug: "carina-vs-carina-heights", label: "Comparison" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
-    { title: "Cost of Selling a House in Brisbane", slug: "cost-of-selling-house-brisbane", label: "Costs" },
   ],
   "selling-in-carina-heights": [
+    { title: "Carina vs Carina Heights: What Is the Difference?", slug: "carina-vs-carina-heights", label: "Comparison" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
-    { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timeline" },
   ],
   "selling-in-carindale": [
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
@@ -296,9 +296,9 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "selling-in-coorparoo": [
+    { title: "Camp Hill vs Coorparoo: Which Suburb Fits You?", slug: "camp-hill-vs-coorparoo", label: "Comparison" },
     { title: "Auction Strategy: How to Get the Best Result at Auction", slug: "auction-strategy", label: "Auction" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
-    { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
   ],
   "selling-in-dutton-park": [
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
@@ -366,9 +366,9 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "What Does a Real Estate Agent Actually Do for You?", slug: "what-does-a-real-estate-agent-do", label: "Agents" },
   ],
   "selling-in-morningside": [
+    { title: "Morningside vs Cannon Hill: How to Choose", slug: "morningside-vs-cannon-hill", label: "Comparison" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
-    { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "selling-in-mount-gravatt": [
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
@@ -396,9 +396,9 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "What Is Body Corporate and What Does It Actually Cost?", slug: "body-corporate", label: "Body Corporate" },
   ],
   "selling-in-norman-park": [
+    { title: "Seven Hills vs Norman Park: A Local Comparison", slug: "seven-hills-vs-norman-park", label: "Comparison" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
     { title: "Auction Strategy: How to Get the Best Result at Auction", slug: "auction-strategy", label: "Auction" },
-    { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "selling-in-paddington": [
     { title: "Auction Strategy: How to Get the Best Result at Auction", slug: "auction-strategy", label: "Auction" },
@@ -411,9 +411,9 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How to Choose a Real Estate Agent in Brisbane", slug: "how-to-choose-a-real-estate-agent-brisbane", label: "Agents" },
   ],
   "selling-in-seven-hills": [
+    { title: "Seven Hills vs Norman Park: A Local Comparison", slug: "seven-hills-vs-norman-park", label: "Comparison" },
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
-    { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timeline" },
   ],
   "selling-in-spring-hill": [
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
