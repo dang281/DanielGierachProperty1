@@ -60,12 +60,12 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "cooling-off-period-property-sale-queensland": [
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "understanding-the-contract": [
     { title: "Cooling Off Period When Selling Property in Queensland", slug: "cooling-off-period-property-sale-queensland", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "what-happens-on-settlement-day-queensland": [
@@ -74,18 +74,18 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Solicitor vs Conveyancer in QLD: Which Do You Need?", slug: "solicitor-vs-conveyancer-qld", label: "Legal" },
   ],
   "what-happens-at-settlement": [
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
     { title: "Solicitor vs Conveyancer in QLD: Which Do You Need?", slug: "solicitor-vs-conveyancer-qld", label: "Legal" },
   ],
   "seller-disclosure-obligations-queensland": [
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
     { title: "Cooling Off Period When Selling Property in Queensland", slug: "cooling-off-period-property-sale-queensland", label: "Contracts" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
   ],
   "solicitor-vs-conveyancer-qld": [
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "cost-of-selling-house-brisbane": [
@@ -156,7 +156,7 @@ const related: Record<string, RelatedArticle[]> = {
   "selling-rental-property-brisbane": [
     { title: "Land Tax in Queensland: What Property Investors Need to Know", slug: "land-tax-queensland-investment-property", label: "Land Tax" },
     { title: "Negative Gearing and Selling Your Investment Property", slug: "negative-gearing-selling-investment-property-brisbane", label: "Tax Strategy" },
-    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-property-queensland", label: "Tenancies" },
+    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-investment-property-queensland-guide", label: "Tenancies" },
   ],
   "selling-tenanted-property-queensland": [
     { title: "Selling a Rental Property in Brisbane", slug: "selling-rental-property-brisbane", label: "Investors" },
@@ -166,7 +166,7 @@ const related: Record<string, RelatedArticle[]> = {
   "land-tax-queensland-investment-property": [
     { title: "Negative Gearing and Selling Your Investment Property", slug: "negative-gearing-selling-investment-property-brisbane", label: "Tax Strategy" },
     { title: "Selling a Rental Property in Brisbane", slug: "selling-rental-property-brisbane", label: "Investors" },
-    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-property-queensland", label: "Tenancies" },
+    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-investment-property-queensland-guide", label: "Tenancies" },
   ],
   "negative-gearing-selling-investment-property-brisbane": [
     { title: "Land Tax in Queensland: What Property Investors Need to Know", slug: "land-tax-queensland-investment-property", label: "Land Tax" },
@@ -221,7 +221,7 @@ const related: Record<string, RelatedArticle[]> = {
   "building-pest-report": [
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
   ],
 
   // Selling-in suburb articles (46 entries) - only confirmed-live articles used as targets
@@ -465,7 +465,7 @@ const related: Record<string, RelatedArticle[]> = {
   "airbnb-vs-longterm": [
     { title: "Selling a Rental Property in Brisbane", slug: "selling-rental-property-brisbane", label: "Investors" },
     { title: "Land Tax in Queensland: What Property Investors Need to Know", slug: "land-tax-queensland-investment-property", label: "Land Tax" },
-    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-property-queensland", label: "Tenancies" },
+    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-investment-property-queensland-guide", label: "Tenancies" },
   ],
   "brisbane-house-styles": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
@@ -490,12 +490,12 @@ const related: Record<string, RelatedArticle[]> = {
   "building-materials-brisbane-homes": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
     { title: "Property Styling and Staging When Selling in Brisbane", slug: "property-styling-staging-brisbane", label: "Presentation" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
   ],
   "building-pest-report-seller-guide-brisbane": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
   ],
   "building-professionals-architect-designer-draftsperson-engineer": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
@@ -508,7 +508,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Stamp Duty in Queensland: What Buyers Need to Know", slug: "stamp-duty-queensland", label: "Costs" },
   ],
   "buying-with-tenant": [
-    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-property-queensland", label: "Tenancies" },
+    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-investment-property-queensland-guide", label: "Tenancies" },
     { title: "Selling a Rental Property in Brisbane", slug: "selling-rental-property-brisbane", label: "Investors" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
@@ -535,7 +535,7 @@ const related: Record<string, RelatedArticle[]> = {
   "easements-property-brisbane-qld": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
   ],
   "engage-right-builder": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
@@ -550,11 +550,11 @@ const related: Record<string, RelatedArticle[]> = {
   "fixtures-fittings-inclusions-property-sale-qld": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
   ],
   "flood-mapping": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "heritage-overlays-brisbane": [
@@ -564,7 +564,7 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "house-anatomy-eaves-soffits-slabs-fascia": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "mortgage-broker": [
@@ -574,18 +574,18 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "pool-safety-certificate-selling-brisbane-qld": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "pre-settlement-inspection-seller-guide-qld": [
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "prewar-homes-brisbane": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
     { title: "Property Styling and Staging When Selling in Brisbane", slug: "property-styling-staging-brisbane", label: "Presentation" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
   ],
   "property-passed-in-at-auction-brisbane": [
     { title: "Auction Strategy: How to Get the Best Result at Auction", slug: "auction-strategy", label: "Auction" },
@@ -604,7 +604,7 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "retaining-walls-brisbane-selling": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
   ],
   "school-catchments-property-brisbane-inner-east": [
@@ -620,16 +620,16 @@ const related: Record<string, RelatedArticle[]> = {
   "selling-house-with-mortgage-brisbane": [
     { title: "Cost of Selling a House in Brisbane", slug: "cost-of-selling-house-brisbane", label: "Costs" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
   ],
   "selling-tenanted-investment-property-queensland-guide": [
     { title: "Selling a Rental Property in Brisbane", slug: "selling-rental-property-brisbane", label: "Investors" },
-    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-property-queensland", label: "Tenancies" },
+    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-investment-property-queensland-guide", label: "Tenancies" },
     { title: "Land Tax in Queensland: What Property Investors Need to Know", slug: "land-tax-queensland-investment-property", label: "Land Tax" },
   ],
   "slab-design-types-brisbane": [
     { title: "Should I Renovate Before Selling My Home in Brisbane?", slug: "should-i-renovate-before-selling-brisbane", label: "Renovation" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "How to Prepare Your Home for Sale in Brisbane", slug: "how-to-prepare-your-home-for-sale-brisbane", label: "Preparation" },
   ],
   "smart-home-features-selling-brisbane-buyers-value-vs-noise": [
@@ -639,7 +639,7 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "smoke-alarm-compliance-selling-queensland": [
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "storage-built-in-wardrobes-walk-in-robes-brisbane-property-value": [
@@ -653,7 +653,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "termite-chemical-barriers-annual-pest-contracts-selling-brisbane": [
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
@@ -670,7 +670,7 @@ const related: Record<string, RelatedArticle[]> = {
   "unconditional-offer": [
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
     { title: "Cooling Off Period When Selling Property in Queensland", slug: "cooling-off-period-property-sale-queensland", label: "Contracts" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
   ],
   "upgrading-property-brisbane-inner-east": [
     { title: "When Is the Right Time to Sell?", slug: "when-to-sell", label: "Timing" },
@@ -684,7 +684,7 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "how-to-change-real-estate-agents-brisbane": [
     { title: "How to Choose a Real Estate Agent in Brisbane", slug: "how-to-choose-a-real-estate-agent-brisbane", label: "Agents" },
-    { title: "What Does a Real Estate Agent Actually Do for You?", slug: "how-to-choose-a-real-estate-agent", label: "Agents" },
+    { title: "What Does a Real Estate Agent Actually Do for You?", slug: "how-to-choose-a-real-estate-agent-brisbane", label: "Agents" },
     { title: "How Does a Marketing Campaign Work When Selling Your Home in Brisbane?", slug: "marketing-campaign-when-selling", label: "Marketing" },
   ],
   "free-property-tools-brisbane-sellers": [
@@ -720,7 +720,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How to Price Your Property for Sale in Brisbane", slug: "how-to-price-your-property-for-sale-brisbane", label: "Pricing" },
   ],
   "days-on-market-what-it-means-brisbane-sellers": [
-    { title: "When to Reduce Your Asking Price in Brisbane (And by How Much)", slug: "when-to-reduce-asking-price-brisbane", label: "Price Reductions" },
+    { title: "When to Reduce Your Asking Price in Brisbane (And by How Much)", slug: "when-to-reduce-asking-price-brisbane-seller", label: "Price Reductions" },
     { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timeline" },
     { title: "Auction vs Private Treaty vs EOI in Brisbane", slug: "auction-vs-private-treaty-eoi-brisbane", label: "Strategy" },
   ],
@@ -735,13 +735,13 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Multiple Offers on Your Property in Brisbane: How Sellers Navigate Them", slug: "multiple-offers-brisbane", label: "Multiple Offers" },
   ],
   "property-doesnt-sell-options-brisbane": [
-    { title: "When to Reduce Your Asking Price in Brisbane (And by How Much)", slug: "when-to-reduce-asking-price-brisbane", label: "Price" },
+    { title: "When to Reduce Your Asking Price in Brisbane (And by How Much)", slug: "when-to-reduce-asking-price-brisbane-seller", label: "Price" },
     { title: "Auction vs Private Treaty vs EOI in Brisbane", slug: "auction-vs-private-treaty-eoi-brisbane", label: "Strategy" },
     { title: "How to Change Real Estate Agents Mid-Campaign in Brisbane", slug: "how-to-change-real-estate-agents-brisbane", label: "Agents" },
   ],
   "how-to-choose-conveyancer-selling-brisbane": [
     { title: "Solicitor vs Conveyancer in QLD: Which Do You Need?", slug: "solicitor-vs-conveyancer-qld", label: "Legal" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "open-home-etiquette-sellers-guide-brisbane": [
@@ -810,7 +810,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Decluttering and Depersonalising Your Brisbane Home Before Selling", slug: "declutter-depersonalise-home-before-selling-brisbane", label: "Decluttering" },
   ],
   "tenanted-property-selling-queensland": [
-    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-property-queensland", label: "Tenancies" },
+    { title: "Selling a Tenanted Property in Queensland", slug: "selling-tenanted-investment-property-queensland-guide", label: "Tenancies" },
     { title: "Selling a Rental Property in Brisbane", slug: "selling-rental-property-brisbane", label: "Investors" },
     { title: "Land Tax in Queensland: What Property Investors Need to Know", slug: "land-tax-queensland-investment-property", label: "Land Tax" },
   ],
@@ -825,7 +825,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Street Appeal and First Impressions: How Your Brisbane Home's Exterior Affects Sale Price", slug: "street-appeal-exterior-presentation-brisbane-property-sale", label: "Curb Appeal" },
   ],
   "negotiating-price-after-inspection-brisbane": [
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "How to Handle Offers When Selling Your Home", slug: "how-to-handle-offers-when-selling", label: "Negotiation" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
@@ -845,7 +845,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timeline" },
   ],
   "simultaneous-settlement-brisbane": [
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Buying Before Selling in Brisbane: How to Manage the Risk", slug: "buying-before-selling-brisbane", label: "Finance" },
     { title: "Bridging Loans When Selling and Buying Property in Brisbane 2026", slug: "bridging-loan-selling-buying-brisbane", label: "Bridging Finance" },
   ],
@@ -870,8 +870,8 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Land Tax in Queensland: What Property Investors Need to Know", slug: "land-tax-queensland-investment-property", label: "Land Tax" },
   ],
   "preparing-for-settlement-brisbane": [
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
-    { title: "Settlement Day in Queensland: What Sellers Can Expect", slug: "settlement-day-queensland-seller-guide", label: "Checklist" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
+    { title: "Settlement Day in Queensland: What Sellers Can Expect", slug: "what-happens-at-settlement", label: "Checklist" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "buying-before-selling-brisbane": [
@@ -887,10 +887,10 @@ const related: Record<string, RelatedArticle[]> = {
   "days-on-market-brisbane": [
     { title: "Days on Market: What It Really Means for Brisbane Sellers 2026", slug: "days-on-market-what-it-means-brisbane-sellers", label: "Campaign" },
     { title: "How Long Does It Take to Sell a Home in Brisbane?", slug: "how-long-does-it-take-to-sell-a-home-in-brisbane", label: "Timeline" },
-    { title: "When to Reduce Your Asking Price in Brisbane (And by How Much)", slug: "when-to-reduce-asking-price-brisbane", label: "Price" },
+    { title: "When to Reduce Your Asking Price in Brisbane (And by How Much)", slug: "when-to-reduce-asking-price-brisbane-seller", label: "Price" },
   ],
   "choosing-settlement-date-brisbane": [
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
     { title: "Simultaneous Settlement in Queensland: Buying and Selling on the Same Day", slug: "simultaneous-settlement-brisbane", label: "Buying and Selling" },
   ],
@@ -925,7 +925,7 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Cooling Off Period When Selling Property in Queensland", slug: "cooling-off-period-property-sale-queensland", label: "Contracts" },
   ],
   "prepare-property-building-pest-inspection-brisbane": [
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Inspections" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Inspections" },
     { title: "Building and Pest Report: A Seller's Guide for Brisbane", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
@@ -935,17 +935,17 @@ const related: Record<string, RelatedArticle[]> = {
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "settlement-day-queensland-seller-guide": [
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Preparing for Settlement Day in Brisbane: A Seller's Checklist", slug: "preparing-for-settlement-brisbane", label: "Checklist" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "building-pest-inspection-brisbane-property-sale-seller": [
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Inspections" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Inspections" },
     { title: "Building and Pest Report: A Seller's Guide for Brisbane", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "Seller Disclosure Obligations in Queensland", slug: "seller-disclosure-obligations-queensland", label: "Legal" },
   ],
   "pre-sale-building-pest-inspection-brisbane-seller": [
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Inspections" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Inspections" },
     { title: "How to Prepare Your Brisbane Property for a Building and Pest Inspection", slug: "prepare-property-building-pest-inspection-brisbane", label: "Preparation" },
     { title: "How a Building and Pest Inspection Affects Your Brisbane Property Sale", slug: "building-pest-inspection-brisbane-property-sale-seller", label: "Due Diligence" },
   ],
@@ -956,7 +956,7 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "queensland-conveyancing-process-contract-to-settlement-seller": [
     { title: "Solicitor vs Conveyancer in QLD: Which Do You Need?", slug: "solicitor-vs-conveyancer-qld", label: "Conveyancing" },
-    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-on-settlement-day-queensland", label: "Settlement" },
+    { title: "What Happens on Settlement Day When Selling in Queensland", slug: "what-happens-at-settlement", label: "Settlement" },
     { title: "Understanding the Contract of Sale in Queensland", slug: "understanding-the-contract", label: "Contracts" },
   ],
   "first-time-sellers-brisbane-end-to-end-guide": [
@@ -966,7 +966,7 @@ const related: Record<string, RelatedArticle[]> = {
   ],
   "building-pest-inspection-finds-defects-brisbane-seller-response": [
     { title: "Negotiating Price After a Building and Pest Inspection in Brisbane", slug: "negotiating-price-after-inspection-brisbane", label: "Inspections" },
-    { title: "Building and Pest Reports When Selling", slug: "building-pest-report", label: "Due Diligence" },
+    { title: "Building and Pest Reports When Selling", slug: "building-pest-report-seller-guide-brisbane", label: "Due Diligence" },
     { title: "How to Handle Offers When Selling Your Home", slug: "how-to-handle-offers-when-selling", label: "Negotiation" },
   ],
   "professionals-you-need-when-selling-your-home-brisbane": [

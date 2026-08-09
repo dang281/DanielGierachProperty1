@@ -1,5 +1,6 @@
 ---
 import LandingLayout from '../../layouts/LandingLayout.astro';
+import { existsSync } from 'node:fs';
 
 // Morningside Mid-Winter Report, recreated from the Core Design handoff
 // (~/Documents/Core-Design: README.md + design-reference/*.dc.html, 29 Jul).
@@ -140,6 +141,10 @@ const photoSlug = (address) => {
   return m ? `${m[1].toLowerCase().replace(SLASH_RE, '-')}-${m[2].toLowerCase().replace(NON_ALNUM_RE, '')}` : 'none';
 };
 const photoUrl = (address) => `/img/reports/${reportSlug}/${photoSlug(address)}.jpg`;
+// A comp photo is only present if it was extracted into public/. Skip rendering
+// the <img> when the file is missing so the page does not fire a 404 request
+// (the .photo-slot still shows the striped "Photo" placeholder underneath).
+const photoExists = (address) => existsSync(`public/img/reports/${reportSlug}/${photoSlug(address)}.jpg`);
 
 const topSales = sales
   .slice()
@@ -149,6 +154,7 @@ const topSales = sales
     address: s.address.split(',')[0],
     url: s.rea ?? s.search,
     photoUrl: photoUrl(s.address),
+    photoExists: photoExists(s.address),
     summaryLine: `${s.type === 'House' ? 'House' : 'Unit'}${s.beds ? ` · ${s.beds} bed` : ''}${s.daysToSell != null ? ` · sold in ${s.daysToSell} days` : ''}`,
     priceText: money(s.price),
     dateText: fmtDay(toIso(s.saleDate)),
@@ -169,7 +175,7 @@ const clientSales = sales.map((s) => ({
   lat: s.lat ?? null,
   lng: s.lng ?? null,
   r: s.rea ?? s.search,
-  ph: photoUrl(s.address),
+  ph: photoExists(s.address) ? photoUrl(s.address) : null,
 }));
 
 // Personal links: ?h=SLUG resolves here, ?n=FIRSTNAME rides alongside.
@@ -504,7 +510,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
         <div class="top-list">
           {topSales.map((sale) => (
             <a href={sale.url} target="_blank" rel="noopener" class="top-row">
-              <span class="photo-slot"><img src={sale.photoUrl} alt={`Photo of ${sale.address}`} width="72" height="72" onerror="this.remove()" /><span>Photo</span></span>
+              <span class="photo-slot">{sale.photoExists && <img src={sale.photoUrl} alt={`Photo of ${sale.address}`} width="72" height="72" onerror="this.remove()" />}<span>Photo</span></span>
               <span class="row-main">
                 <span class="row-addr">{sale.address}</span>
                 <span class="row-sum">{sale.summaryLine}</span>
@@ -926,7 +932,7 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
       });
       marker.addListener('click', () => {
         info.setContent('<div style="font-family:Manrope,sans-serif;font-size:13px;line-height:1.5;max-width:230px">' +
-          '<img src="' + s.ph + '" alt="" style="width:100%;height:130px;object-fit:cover;border-radius:8px;display:block;margin-bottom:8px" onerror="this.remove()">' +
+          (s.ph ? '<img src="' + s.ph + '" alt="" style="width:100%;height:130px;object-fit:cover;border-radius:8px;display:block;margin-bottom:8px" onerror="this.remove()">' : '') +
           '<strong>' + esc(s.a) + '</strong><br>' + money(s.p) + ' · ' + (s.u ? 'Unit/Townhouse' : 'House') + (s.b ? ' · ' + s.b + ' bed' : '') + '</div>');
         info.open({ anchor: marker, map });
       });

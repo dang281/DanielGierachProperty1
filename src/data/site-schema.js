@@ -118,7 +118,7 @@ const globalSchema = {
         "worstRating": "1"
       },
       "sameAs": [
-        "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
+        "https://raywhitebulimba.com.au/agents/daniel-gierach/177117",
         "https://www.linkedin.com/in/danielgierach",
         "https://www.facebook.com/danielgierachproperty",
         "https://www.instagram.com/dgierach/",
@@ -260,7 +260,7 @@ const globalSchema = {
         "Yeronga real estate"
       ],
       "sameAs": [
-        "https://www.raywhite.com/agents/agent/daniel-gierach-88889915",
+        "https://raywhitebulimba.com.au/agents/daniel-gierach/177117",
         "https://raywhitebulimba.com.au/agents/daniel-gierach/177117",
         "https://www.linkedin.com/in/danielgierach",
         "https://www.facebook.com/danielgierachproperty",

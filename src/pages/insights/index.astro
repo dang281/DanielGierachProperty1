@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import scheduleData from '../../data/seo-schedule.json';
 
 // TECH-03 (2026-07-19): complete A to Z index of every LIVE article so none is
@@ -18,7 +18,7 @@ const allLiveArticles = readdirSync('src/pages/insights')
   })
   .sort((a, b) => a.title.localeCompare(b.title));
 
-const articles = [
+const _curatedArticles = [
   { slug: 'carina-vs-carina-heights', tag: 'Buyers & Sellers', title: 'Carina vs Carina Heights: What Is the Difference?', summary: "They share a name, a school corridor and a boundary, yet they suit noticeably different buyers. Topography, supply and daily-life orientation are where the two suburbs genuinely part ways, and the right choice depends on which of the three you are optimising for.", readTime: '5 min read' },
   { slug: 'camp-hill-vs-coorparoo', tag: 'Buyers & Sellers', title: 'Camp Hill vs Coorparoo: Which Suburb Fits You?', summary: "One offers ridgetop houses, big blocks and a village strip. The other offers two train stations, private colleges and precinct living. How the neighbours actually differ, and which buyers end up choosing which.", readTime: '5 min read' },
   { slug: 'morningside-vs-cannon-hill', tag: 'Buyers & Sellers', title: 'Morningside vs Cannon Hill: How to Choose', summary: "Two rail suburbs side by side with different centres of gravity: one leans toward the Oxford Street lifestyle strip, the other toward space, schools and the Gateway. The honest comparison for buyers shortlisting both.", readTime: '5 min read' },
@@ -425,6 +425,11 @@ const articles = [
   { slug: 'how-bank-valuation-works-brisbane-property-sale', tag: 'Sellers', title: 'How the Bank Valuation Actually Works in a Brisbane Property Sale', summary: "The buyer's bank valuation is one of the most misunderstood steps between contract and settlement. Who orders it, what the valuer does on site, how long it takes, and what it means for your sale.", readTime: '9 min read' },
   { slug: 'builders-caveats-contractor-liens-brisbane-property-sellers', tag: 'Sellers', title: 'Builders Caveats and Contractor Liens on Brisbane Property: What Sellers Need to Know', summary: "Queensland does not have a general contractors' lien against land, but caveats, subcontractors' charges under the BIF Act 2017, and writs of execution can still surface during a sale. The three instruments, when they appear, and how to clear them before settlement.", readTime: '10 min read' },
 ];
+
+// Only render curated cards whose article actually exists as a page. This drops
+// tiles for planned-but-unpublished slugs (which would 404); they auto-return
+// when the article ships. Prevents broken links on the insights index.
+const articles = _curatedArticles.filter((a: any) => existsSync(`src/pages/insights/${a.slug}.astro`));
 
 const filters = ['All', 'Buyers', 'Sellers', 'Suburbs', 'Buyers & Sellers', 'Owners'];
 

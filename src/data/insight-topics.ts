@@ -55,7 +55,7 @@ export const topics: Record<string, Topic> = {
     articles: [
       { slug: 'auction-strategy', title: 'Auction Strategy: How to Buy and Sell at Auction', label: 'Strategy' },
       { slug: 'auction-vs-private-treaty-eoi-brisbane', title: 'Auction vs Private Treaty vs EOI in Brisbane', label: 'Method of Sale' },
-      { slug: 'auction-reserve-price-brisbane-sellers', title: 'Setting Your Auction Reserve Price', label: 'Reserves' },
+      { slug: 'auction-reserve-price-queensland', title: 'Setting Your Auction Reserve Price', label: 'Reserves' },
       { slug: 'auction-clearance-rates-brisbane-sellers', title: 'Brisbane Auction Clearance Rates Explained', label: 'Market' },
       { slug: 'auction-bidding-strategy-brisbane-buyers', title: 'Auction Bidding Strategy for Brisbane Buyers', label: 'Buyers' },
       { slug: 'auction-authority-queensland-form-6-difference', title: 'Auction Authority and Form 6 in Queensland', label: 'Legal' },
@@ -72,7 +72,7 @@ export const topics: Record<string, Topic> = {
   inspections: {
     label: 'Inspections and reports',
     articles: [
-      { slug: 'building-pest-report', title: 'Building and Pest Reports When Selling', label: 'Due Diligence' },
+      { slug: 'building-pest-report-seller-guide-brisbane', title: 'Building and Pest Reports When Selling', label: 'Due Diligence' },
       { slug: 'seller-disclosure-obligations-queensland', title: 'Seller Disclosure Obligations in Queensland', label: 'Legal' },
       { slug: 'asbestos-disclosure-selling-queensland', title: 'Asbestos Disclosure When Selling in Queensland', label: 'Disclosure' },
       { slug: 'pre-sale-building-pest-inspection-brisbane-seller', title: 'Pre-Sale Building and Pest Inspections', label: 'Inspections' },
@@ -89,7 +89,7 @@ export const topics: Record<string, Topic> = {
   settlement: {
     label: 'Settlement and completion',
     articles: [
-      { slug: 'what-happens-on-settlement-day-queensland', title: 'What Happens on Settlement Day in Queensland', label: 'Settlement' },
+      { slug: 'what-happens-at-settlement', title: 'What Happens on Settlement Day in Queensland', label: 'Settlement' },
       { slug: 'understanding-the-contract', title: 'Understanding the Contract of Sale in Queensland', label: 'Contracts' },
       { slug: 'cooling-off-period-property-sale-queensland', title: 'Cooling Off Period in Queensland', label: 'Contracts' },
       { slug: 'solicitor-vs-conveyancer-qld', title: 'Solicitor vs Conveyancer in QLD', label: 'Legal' },
@@ -194,7 +194,7 @@ export const topics: Record<string, Topic> = {
     articles: [
       { slug: 'how-to-price-your-property-for-sale-brisbane', title: 'How to Price Your Property in Brisbane', label: 'Pricing' },
       { slug: 'property-appraisal-brisbane', title: 'What to Expect at a Property Appraisal', label: 'Appraisal' },
-      { slug: 'auction-reserve-price-brisbane-sellers', title: 'Setting Your Auction Reserve Price', label: 'Reserves' },
+      { slug: 'auction-reserve-price-queensland', title: 'Setting Your Auction Reserve Price', label: 'Reserves' },
       { slug: 'bank-valuation-lower-than-contract-price-brisbane-seller', title: 'When the Bank Valuation Is Lower', label: 'Valuation' },
     ],
     tools: [
@@ -347,7 +347,7 @@ export const topics: Record<string, Topic> = {
     articles: [
       { slug: 'auction-bidding-strategy-brisbane-buyers', title: 'Auction Bidding Strategy for Buyers', label: 'Auction' },
       { slug: 'first-home-buyer-help-history-and-current-options', title: 'First Home Buyer Help: What Is Available Now', label: 'First Home' },
-      { slug: 'building-pest-report', title: 'Building and Pest Reports', label: 'Due Diligence' },
+      { slug: 'building-pest-report-seller-guide-brisbane', title: 'Building and Pest Reports', label: 'Due Diligence' },
       { slug: 'stamp-duty-queensland', title: 'Stamp Duty in Queensland', label: 'Costs' },
     ],
     tools: [
