@@ -699,7 +699,11 @@ const sourceStatement = `All sales data in this report is sourced from PriceFind
   if (portfolio.length > 1) {
     const bar = document.getElementById('prop-switch');
     bar.innerHTML = portfolio.map((e, i) => {
-      const label = esc(e.addr) + (e.slug !== pageSlug && e.sub ? ', ' + esc(e.sub) : '');
+      // Street-only on every pill so the labels (and their widths) are the same
+      // on whichever property is active. Asymmetric labels used to wrap to a
+      // second row on some pages and one row on others, which shifted the whole
+      // report up and down when you tapped between properties.
+      const label = esc(e.addr);
       if (e === active) return '<span class="pill on" aria-current="page">' + label + '</span>';
       const q = new URLSearchParams(location.search);
       q.set('a', String(i));
