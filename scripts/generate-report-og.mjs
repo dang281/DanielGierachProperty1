@@ -2,9 +2,13 @@
 // Luxury share cards for the quarterly reports: dark ink ground, gold glow,
 // Playfair suburb + seasonal title. One 1200x630 PNG per report JSON, used
 // as og:image so texted links unfurl with a premium preview.
-//   node scripts/generate-report-og.mjs        (all reports)
+//   node scripts/generate-report-og.mjs            (missing cards only)
+//   node scripts/generate-report-og.mjs --force    (regenerate every card)
+// Skips the browser launch entirely when every card already exists, so the
+// nightly launchd run only pays the Puppeteer cost on a night that actually
+// published a new report.
 import puppeteer from 'puppeteer';
-import { readdirSync, readFileSync, mkdirSync } from 'node:fs';
+import { readdirSync, readFileSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
@@ -40,14 +44,31 @@ const html = (suburb, season) => `<!doctype html><html><head>
 </div>
 </body></html>`;
 
-const browser = await puppeteer.launch();
-const page = await browser.newPage();
-await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
+const force = process.argv.includes('--force');
 const dir = path.join(ROOT, 'src/data/reports');
+const pending = [];
 for (const f of readdirSync(dir)) {
   if (!f.endsWith('.json') || f === 'geocode-cache.json') continue;
   const meta = JSON.parse(readFileSync(path.join(dir, f), 'utf8')).meta;
   if (!meta?.slug) continue;
+  if (!force && existsSync(path.join(OUT, `${meta.slug}.png`))) continue;
+  pending.push(meta);
+}
+if (pending.length === 0) {
+  console.log('og: all cards up to date');
+  process.exit(0);
+}
+
+// launchd runs get no login-session niceties; the shell headless build plus
+// no-sandbox is the combination that launches reliably there.
+const browser = await puppeteer.launch({
+  headless: 'shell',
+  args: ['--no-sandbox', '--disable-gpu'],
+  timeout: 60000,
+});
+const page = await browser.newPage();
+await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
+for (const meta of pending) {
   await page.setContent(html(meta.suburb, meta.seasonTitle), { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
   await new Promise((r) => setTimeout(r, 250));

@@ -22,9 +22,14 @@ trap 'rm -f "$LOCK"' EXIT
 
 cd "$REPO"
 node scripts/build-quarterly-report.mjs --all
-node scripts/generate-report-og.mjs
+# OG cards are a nice-to-have; a Puppeteer hiccup must never block the
+# commit/push of freshly built report data below. The script only renders
+# cards that don't exist yet, so a failed night retries on the next run.
+node scripts/generate-report-og.mjs || echo "og generation failed (non-fatal, retries next run)"
 
-if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain src/data/reports public/img/reports)" ]; then
+# Gate on exactly the paths committed below; unrelated dirty files elsewhere
+# in the tree must neither trigger nor break a nightly publish.
+if [ -z "$(git status --porcelain src/data/reports public/img/reports)" ]; then
   echo "no changes"
   exit 0
 fi
