@@ -6,7 +6,14 @@ set -e
 
 LOG="/tmp/social-agent-$(date +%Y-%m-%d).log"
 REPO="/Users/danielgierach/DanielGierachProperty"
-CLAUDE="/Users/danielgierach/.local/bin/claude"
+
+# cron's PATH has no nvm node, and the native ~/.local/bin/claude install was
+# removed (Jul 2026), which silently killed every run with "No such file or
+# directory". Resolve claude from the newest nvm node install instead, and put
+# that bin dir on PATH so node itself resolves too.
+NVM_NODE_BIN="$(ls -td "$HOME"/.nvm/versions/node/*/bin 2>/dev/null | head -1 || true)"
+export PATH="${NVM_NODE_BIN:+$NVM_NODE_BIN:}/opt/homebrew/bin:/usr/local/bin:$PATH"
+CLAUDE="$(command -v claude || echo "$HOME/.local/bin/claude")"
 
 echo "=== Social agent run: $(date) ===" >> "$LOG"
 
