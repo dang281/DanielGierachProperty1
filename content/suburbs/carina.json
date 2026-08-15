@@ -4,21 +4,43 @@
   "postcode": "4152",
   "region": "East Brisbane",
   "distances": { "cbd_km": 8 },
+  "stock": { "value": "Post-war homes", "sub": "Brick and timber lowsets on full-sized blocks, with growing knock-down-rebuild activity" },
+  "green_space": { "value": "13 parks", "sub": "Bulimba Creek bikeway, a slice of Minnippi Parklands and two fenced dog parks" },
   "transport": {
     "trains": { "stations": [{ "name": "Closest stations are Cannon Hill and Coorparoo", "line": "Cleveland line (drive to station)", "walk_minutes_note": "No station within Carina." }], "live_timetable_url": "https://translink.com.au/plan-your-journey" },
-    "buses": { "note": "Bus routes serve Carina via Old Cleveland Road and Creek Road.", "search_url": "https://translink.com.au/plan-your-journey", "key_arterials": ["Old Cleveland Road", "Creek Road"], "verify": true },
+    "buses": { "note": "Routes 200 (Queen St), 204 (Fortitude Valley) and 222 (Roma St) confirmed at the Old Cleveland Rd Carina stops (TransLink stop 002556, 15 Aug 2026).", "search_url": "https://translink.com.au/plan-your-journey", "key_arterials": ["Old Cleveland Road", "Creek Road"], "verify": true },
     "driving": { "motorway_access": "M3 corridor for southern travel. Story Bridge for the CBD.", "approx_cbd_minutes_offpeak_note": "Approximately 13 to 17 minutes to Brisbane CBD off-peak." },
     "bike_walk": { "connections": ["Bulimba Creek bikeway and parkland"] }
   },
   "schools": {
-    "primary_state": [{ "name": "Carina State School", "verify_catchment": true }],
+    "primary_state": [{ "name": "Mayfield State School (in-suburb; Carina SS is physically in Carindale)", "verify_catchment": true }],
     "secondary_state": [{ "name": "Whites Hill State College", "verify_catchment": true }],
-    "private_nearby": [{ "name": "San Sisto College", "suburb": "Carina", "verify": true }, { "name": "Citipointe Christian College", "suburb": "Carindale", "verify": true }],
+    "private_nearby": [{ "name": "San Sisto College (in-suburb, since 1961)", "suburb": "Carina", "verify": true }, { "name": "St Martin's Catholic Primary (in-suburb, since 1954)", "suburb": "Carina", "verify": true }, { "name": "Citipointe Christian College", "suburb": "Carindale", "verify": true }],
     "catchment_lookup_url": "https://www.qgso.qld.gov.au/maps/edmap"
   },
-  "lifestyle": { "parks": ["Bulimba Creek parkland", "Whites Hill Reserve nearby"], "shops_dining_note": "Carina has the Pacific Golf Club precinct nearby. Westfield Carindale is a short drive for big-format retail and dining. Camp Hill Marketplace handles village dining within a 5 to 10 minute drive." },
-  "pockets": [{ "name": "Whites Hill catchment streets", "character": "Streets within the Whites Hill State College catchment. Premium family pocket." }, { "name": "Pacific Golf Club area", "character": "Established residential streets with character home stock." }, { "name": "Old Cleveland Road corridor", "character": "Closer to the arterial." }],
-  "buyer_profile": [{ "type": "Family upgraders", "note": "Buyers targeting the Whites Hill catchment and the family-suburb feel." }, { "type": "Inner-east-priced-out", "note": "Buyers priced out of Camp Hill or Coorparoo who want similar family-suburb access at a more accessible price." }, { "type": "Renovators", "note": "Character home stock attracts buyers looking for renovation projects." }],
+  "lifestyle": { "parks": ["Belmont Recreation Reserve (Old Cleveland Rd)", "Minnippi Parklands (northern slice inside Carina)", "Two fenced dog off-leash areas (Joe Bradfield Park, Meadowlands Rd)", "Thirteen BCC parks in total", "Whites Hill Reserve nearby (Camp Hill/Carina Heights)"], "shops_dining_note": "The Clem Jones Centre and Carina Leagues Club anchor the community. Westfield Carindale is a short drive for big-format retail and dining. Camp Hill Marketplace handles village dining within a 5 to 10 minute drive." },
+  "pockets": [{ "name": "Whites Hill catchment streets", "character": "Streets commonly cited as Whites Hill State College catchment. Premium family pocket, verify per address." }, { "name": "Zahel and Fursden sporting belt", "character": "The streets around the Clem Jones Centre and AC Carina's Fursden Road ground. Community-sport heart of the suburb." }, { "name": "Old Cleveland Road corridor", "character": "Closer to the arterial and the bus spine, with the heritage tram tracks in the median." }, { "name": "Lunga Street heritage pocket", "character": "The suburb's oldest subdivision, anchored by 1892 Flint's Cottage." }],
+  "buyer_profile": [{ "type": "Family upgraders", "note": "Buyers targeting the Whites Hill catchment and the family-suburb feel." }, { "type": "Inner-east redirect", "note": "Buyers who searched Camp Hill or Coorparoo and land here with a full block for the same money." }, { "type": "Renovators", "note": "Post-war stock attracts buyers looking for well-located projects with room to add value." }],
   "comparable_suburbs": ["camp-hill", "carina-heights", "carindale", "coorparoo"],
+  "map": {
+    "center": { "lat": -27.4895, "lng": 153.0945 },
+    "zoom": 14,
+    "pois": [
+      { "kind": "school", "name": "Mayfield State School", "lat": -27.48381, "lng": 153.09211, "note": "The in-suburb state primary, on Paget Street since 1956" },
+      { "kind": "school", "name": "San Sisto College", "lat": -27.49123, "lng": 153.09068, "note": "Girls 7 to 12 on Mayfield Road since 1961" },
+      { "kind": "school", "name": "St Martin's Catholic Primary", "lat": -27.49089, "lng": 153.08805, "note": "Catholic primary on Broadway Street since 1954" },
+      { "kind": "sport", "name": "Clem Jones Centre", "lat": -27.49125, "lng": 153.09874, "note": "Pools, gym, stadium and courts on Zahel Street" },
+      { "kind": "sport", "name": "Carina Leagues Club", "lat": -27.49185, "lng": 153.10111, "note": "The Creek Road community club" },
+      { "kind": "heritage", "name": "Flint's Cottage", "lat": -27.4856, "lng": 153.08794, "note": "1892, the last surviving 19th-century house in Carina" },
+      { "kind": "park", "name": "Belmont Recreation Reserve", "lat": -27.49694, "lng": 153.09978, "note": "Sportsgrounds on Old Cleveland Road" },
+      { "kind": "station", "name": "Cannon Hill station", "lat": -27.46532, "lng": 153.08861, "note": "Nearest train, Cleveland line, in Cannon Hill" }
+    ],
+    "pockets": [
+      { "name": "Catchment streets", "lat": -27.4952, "lng": 153.0895 },
+      { "name": "Sporting belt", "lat": -27.4922, "lng": 153.0972 },
+      { "name": "Old Cleveland corridor", "lat": -27.4918, "lng": 153.0928 },
+      { "name": "Lunga heritage pocket", "lat": -27.4846, "lng": 153.0866 }
+    ]
+  },
   "_meta": { "verify_flags": ["Carina catchments by street", "Whites Hill catchment exact boundary", "Bus routes"], "last_authored": "2026-05-10", "authored_by": "daniel-via-claude" }
 }

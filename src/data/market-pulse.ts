@@ -40,10 +40,10 @@ export const MARKET_PULSE: Record<string, MarketPulseEntry> = {
   },
   'norman-park': {
     updated: 'August 2026',
-    heading: 'Rail plus character is keeping open homes busy.',
+    heading: 'Demand is running ahead of the homes on offer.',
     points: [
       'The station remains the deciding factor for commuting households choosing Norman Park over its neighbours without rail.',
-      'Buyers outbid closer to the river keep arriving with finance arranged, which shortens the path from first inspection to offer.',
+      'Finance-arranged buyers are acting quickly, which shortens the path from first inspection to offer.',
       'Well-renovated Queenslanders are drawing early offers, and original-condition homes are attracting renovators who missed the last one.',
     ],
   },

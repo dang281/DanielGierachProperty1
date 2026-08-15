@@ -6,6 +6,8 @@
   "distances": {
     "cbd_km": 6
   },
+  "stock": { "value": "81% houses", "sub": "Overwhelmingly separate houses on generous elevated blocks (2021 Census)" },
+  "green_space": { "value": "7 parks", "sub": "With the 58-hectare Seven Hills Bushland Reserve and its circuit track on the doorstep" },
   "transport": {
     "trains": {
       "stations": [
@@ -24,9 +26,9 @@
       "approx_cbd_minutes_offpeak_note": "Approximately 12 to 18 minutes to Central station off-peak from either station. Verify on Translink."
     },
     "buses": {
-      "note": "Bus routes through Seven Hills run the Old Cleveland Road and Stanley Street East corridors. Routes change with Translink service updates.",
+      "note": "Route 212 (Carindale to City via Seven Hills) runs through the suburb with stops on Agnew St and Oateson Skyline Dr (TransLink, 15 Aug 2026). The 200/204 corridor runs the Old Cleveland Rd edge. Do NOT publish route 220 here.",
       "search_url": "https://translink.com.au/plan-your-journey",
-      "key_arterials": ["Old Cleveland Road", "Stanley Street East", "Cavendish Road"],
+      "key_arterials": ["D'Arcy Road", "Old Cleveland Road"],
       "verify": true
     },
     "driving": {
@@ -36,8 +38,8 @@
     },
     "bike_walk": {
       "connections": [
-        "Seven Hills Bushland Reserve walking and mountain bike trails",
-        "Norman Creek bikeway connecting to the riverside path system"
+        "Seven Hills Bushland Reserve walking trails (dogs on leash; gravel tracks suit mountain bikes)",
+        "Norman Creek bikeway nearby to the west (not in-suburb)"
       ],
       "note": "Topography is hilly. Casual cyclists often plan routes around the steeper grades."
     }
@@ -57,18 +59,22 @@
       }
     ],
     "private_nearby": [
+      { "name": "Villanova College", "suburb": "Coorparoo", "verify": true },
+      { "name": "Loreto College", "suburb": "Coorparoo", "verify": true },
       { "name": "Anglican Church Grammar School", "suburb": "East Brisbane", "verify": true },
-      { "name": "St Thomas Catholic Primary", "suburb": "Camp Hill", "verify": true }
+      { "name": "St Thomas' Catholic Primary", "suburb": "Camp Hill", "verify": true }
     ],
     "catchment_lookup_url": "https://www.qgso.qld.gov.au/maps/edmap"
   },
   "lifestyle": {
     "parks": [
-      "Seven Hills Bushland Reserve",
-      "Whites Hill Reserve (adjacent)",
-      "Norman Creek parkland"
+      "Seven Hills Bushland Reserve (58ha, Seven Hills Circuit track, on the doorstep)",
+      "Palatine Hill Park (the Roman-named high ground)",
+      "Oateson Skyline Drive Park",
+      "Seven BCC parks in total (no dog off-leash in-suburb)",
+      "Whites Hill Reserve (adjacent)"
     ],
-    "shops_dining_note": "Seven Hills itself is residential. Everyday dining and retail run through the Camp Hill Marketplace, the Coorparoo Square precinct, and the Morningside village strip on Wynnum Road. Bulimba and Hawthorne dining are within seven to ten minutes by car.",
+    "shops_dining_note": "The Corso is the suburb's own 1953 village corner: The Rabbit Hole Cafe, Pitari's pizzeria and the Golden Buddha Thai, plus medical rooms. Camp Hill Marketplace, Martha Street, Coorparoo Square and the Morningside strip are within five to seven minutes by car.",
     "topography_note": "Seven Hills is named for its elevated terrain. Many streets sit on ridges with western or northern aspects, and the views from those elevated blocks are part of what defines the suburb's character."
   },
   "pockets": [
@@ -100,6 +106,24 @@
     }
   ],
   "comparable_suburbs": ["camp-hill", "norman-park", "morningside", "coorparoo"],
+  "map": {
+    "center": { "lat": -27.48, "lng": 153.0755 },
+    "zoom": 15,
+    "pois": [
+      { "kind": "school", "name": "Seven Hills State School", "lat": -27.47988, "lng": 153.07669, "note": "The state primary on D'Arcy Road since 1960" },
+      { "kind": "heritage", "name": "Seven Hills Community Hub", "lat": -27.47728, "lng": 153.07354, "note": "The former art college, now home of the Ron Hurley Theatre" },
+      { "kind": "shops", "name": "The Corso", "lat": -27.47892, "lng": 153.07059, "note": "The Rabbit Hole, Pitari's and the Golden Buddha on the 1953 Skyline corner" },
+      { "kind": "park", "name": "Seven Hills Bushland Reserve", "lat": -27.47952, "lng": 153.08385, "note": "58 hectares of eucalypt forest and the Seven Hills Circuit" },
+      { "kind": "park", "name": "Palatine Hill Park", "lat": -27.47868, "lng": 153.06877, "note": "One of the Roman-named hills, on Aemilia Avenue" },
+      { "kind": "park", "name": "Oateson Skyline Drive Park", "lat": -27.48308, "lng": 153.07642, "note": "On the elevated Skyline ridge" },
+      { "kind": "station", "name": "Norman Park station", "lat": -27.48166, "lng": 153.06231, "note": "Nearest train, Cleveland line, in Norman Park" }
+    ],
+    "pockets": [
+      { "name": "Skyline ridge", "lat": -27.4822, "lng": 153.0733 },
+      { "name": "Bushland edge", "lat": -27.4828, "lng": 153.0808 },
+      { "name": "The Roman hills", "lat": -27.4776, "lng": 153.0679 }
+    ]
+  },
   "_meta": {
     "verify_flags": [
       "Exact primary and secondary school catchments",

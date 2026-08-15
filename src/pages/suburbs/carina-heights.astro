@@ -1,11 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import MarketPulse from '../../components/MarketPulse.astro';
 import SuburbMap from '../../components/SuburbMap.astro';
 import Method from '../../components/Method.astro';
 import BuyersCTA from '../../components/BuyersCTA.astro';
 import ResourceCTA from '../../components/ResourceCTA.astro';
 import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import SuburbStats from '../../components/SuburbStats.astro';
+import SuburbPocketMap from '../../components/SuburbPocketMap.astro';
+import SuburbContentsNav from '../../components/SuburbContentsNav.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
 ---
 
 <Layout
@@ -95,7 +98,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
     {
       "@type": "Question",
       "name": "How long does it take to sell a home in Carina Heights?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Carina Heights properties typically sell within 20 to 35 days. The suburb's appeal to families and upsizers keeps demand consistent, particularly for homes on elevated blocks with views." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Carina Heights properties typically sell faster than the Brisbane average when priced correctly. The suburb's appeal to families and upsizers keeps demand consistent, particularly for homes on elevated blocks with views." }
     },
     {
       "@type": "Question",
@@ -113,35 +116,50 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO
 ════════════════════════════════════════════════ -->
-<section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">
+<section style="background:radial-gradient(118% 76% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%); color:#191817; padding:48px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1.25rem;">Carina Heights</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.25rem;">
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to left, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin:0;">Carina Heights</p>
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to right, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+    </div>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:400; line-height:1.15; margin-bottom:1.5rem; color:#191817;">
-      Selling in Carina Heights, Brisbane.
+      Selling in <em style="font-style:italic; color:#6b4610;">Carina Heights</em>, Brisbane.
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:rgba(25,24,23,0.72); max-width:580px; margin:0 auto 2.5rem;">
       Specialist property sales in Carina Heights and Brisbane's inner east.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">View Current Listings</a>
       <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">What's Your Property Worth?</a>
+      <a href="/insights/selling-in-carina-heights" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#6b4610; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229; border-radius:10px;">How I Sell in Carina Heights</a>
     </div>
   </div>
 </section>
 
-<MarketPulse slug="carina-heights" name="Carina Heights" />
+<SuburbContentsNav name="Carina Heights" />
+
+<SuburbStats slug="carina-heights" name="Carina Heights" />
+
+
 
 <!-- ═══════════════════════════════════════════════
      SECTION 2: WHY THIS AREA
 ════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:56px 24px 80px;">
   <div style="max-width:800px; margin:0 auto;">
+    <SectionDivider />
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Local Expertise</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Elevated living with established character.</h2>
+    <h2 data-toc="Local expertise" style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Elevated living with established character.</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Carina Heights sits above the surrounding suburbs, offering views, larger blocks and a quiet elevated lifestyle that buyers find difficult to replicate closer to the CBD. It attracts a discerning buyer who values space and outlook.
     </p>
-<!-- APPRAISAL FORM -->
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      I understand what makes Carina Heights properties stand out and how to communicate those qualities to the buyers most likely to act. That insight is the difference between a good result and a great one.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      The elevated position of Carina Heights puts it above the flat suburban grid, with many streets offering city views that buyers struggle to find at comparable price points closer in. Westfield Carindale is minutes away for everyday retail, and the South East Freeway provides quick CBD access that makes the suburb genuinely practical as well as scenic. The surrounding nature reserves along Whites Hill and Camp Hill give residents a green edge that buyers increasingly prioritise post-pandemic. Values here have firmed as buyers searching for the Camp Hill lifestyle at a more accessible entry point redirect attention to Carina Heights.
+    </p>
+    <!-- APPRAISAL FORM -->
 <div style="background:#fff; border-left:4px solid #b98229; padding:2rem 2rem 1.75rem; margin:2rem 0; border-radius:16px;">
   <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#b98229; margin-bottom:0.5rem;">Book a Walk Through</p>
   <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#191817; margin-bottom:1.25rem; line-height:1.25;">Find out what your Carina Heights home is worth.</h3>
@@ -151,16 +169,16 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
     <input type="hidden" name="_subject" value="Appraisal enquiry: Carina Heights" />
     <input type="hidden" name="_source" value="carina-heights" />
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
-      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+      <input type="text" name="name" required placeholder="Jane Smith" aria-label="Your name" autocomplete="name"
         style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
-      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+      <input type="email" name="email" required placeholder="jane.smith@mail.com" aria-label="Email address" autocomplete="email"
         style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     </div>
-    <input type="text" name="property_address" required placeholder="Your Carina Heights address (street + number)"
+    <input type="text" name="property_address" required placeholder="12 Sample Street, Carina Heights" aria-label="Your Carina Heights address"
       style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
       <button type="submit"
-        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#191817; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
         Book My Walk Through
       </button>
       <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
@@ -173,23 +191,6 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
   }
 </style>
 <!-- END APPRAISAL FORM -->
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      I understand what makes Carina Heights properties stand out and how to communicate those qualities to the buyers most likely to act. That insight is the difference between a good result and a great one.
-    </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      The elevated position of Carina Heights puts it above the flat suburban grid, with many streets offering city views that buyers struggle to find at comparable price points closer in. Westfield Carindale is minutes away for everyday retail, and the South East Freeway provides quick CBD access that makes the suburb genuinely practical as well as scenic. The surrounding nature reserves along Whites Hill and Camp Hill give residents a green edge that buyers increasingly prioritise post-pandemic. Values here have firmed as buyers searching for the Camp Hill lifestyle at a more accessible entry point redirect attention to Carina Heights.
-    </p>
-    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Carina Heights Specialist</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Inner-east Brisbane</p>
-      </div>
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Elevated Suburb</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Views and lifestyle</p>
-      </div>
-    </div>
-    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/camp-hill" style="color:#b98229;">Camp Hill</a>, <a href="/suburbs/carina" style="color:#b98229;">Carina</a>, <a href="/suburbs/carindale" style="color:#b98229;">Carindale</a>.</p>
   </div>
 </section>
 
@@ -215,7 +216,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
           How long does it take to sell a home in Carina Heights?
           <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
-        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Carina Heights properties typically sell within 30 to 45 days. The suburb's appeal to families and upsizers keeps demand consistent, particularly for homes on elevated blocks with views.</p>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Carina Heights properties typically sell faster than the Brisbane average when priced correctly. The suburb's appeal to families and upsizers keeps demand consistent, particularly for homes on elevated blocks with views.</p>
       </details>
 
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
@@ -238,41 +239,7 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 3: SUBURBS SERVED
-════════════════════════════════════════════════ -->
-<section style="background:#fff; padding:80px 24px;">
-  <div style="max-width:900px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Carina Heights</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated living with views and an established feel</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Carina</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Family-friendly suburb with quiet streets and great value</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Camp Hill</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated lifestyle living with strong buyer demand</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Seven Hills</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated streets and city views</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Tingalpa</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Affordable entry into Brisbane's inner east</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Cannon Hill</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Quiet streets and a strong sense of community</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ═══════════════════════════════════════════════
      SECTION 4: HOW I CAN HELP YOU SELL
@@ -333,10 +300,9 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
 
 
 <div class="max-w-[780px] mx-auto px-8 pb-12">
-  <ResourceCTA slug="first-home-buyer-brisbane-inner-east-guide" />
+  <ResourceCTA slug="preparing-your-house-to-sell" />
 </div>
 
-<BuyersCTA suburb="Carina Heights" />
 <!-- Nearby suburbs cross-links -->
 <section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -353,6 +319,8 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
 
 <!-- DEEP-DIVE: transport, schools, pockets, lifestyle, buyer profile, selling approach, comparables -->
 <SuburbDeepDive slug="carina-heights" name="Carina Heights" />
+
+<SuburbPocketMap slug="carina-heights" name="Carina Heights" />
 
 <Method suburb="Carina Heights" />
 
@@ -385,6 +353,44 @@ import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
     }
   }
 </style>
+
+<BuyersCTA suburb="Carina Heights" />
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 3: SUBURBS SERVED
+════════════════════════════════════════════════ -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Carina Heights</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated living with views and an established feel</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Carina</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Family-friendly suburb with quiet streets and great value</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Camp Hill</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated lifestyle living with strong buyer demand</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Seven Hills</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated streets and city views</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Tingalpa</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Affordable entry into Brisbane's inner east</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Cannon Hill</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Quiet streets and a strong sense of community</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <SuburbMap />
 

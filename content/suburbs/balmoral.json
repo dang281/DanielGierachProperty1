@@ -4,35 +4,37 @@
   "postcode": "4171",
   "region": "Inner East Brisbane",
   "distances": { "cbd_km": 5 },
+  "stock": { "value": "Houses on the ridge", "sub": "62% houses, character and contemporary mixed, with townhouses filling in (2021 Census)" },
+  "green_space": { "value": "6 parks", "sub": "Pocket parks along the ridge; Quinn's Street Park has the fenced dog off-leash" },
   "transport": {
     "trains": {
       "stations": [{ "name": "Morningside railway station", "line": "Cleveland line", "walk_minutes_note": "Closest station for southern Balmoral streets." }],
       "live_timetable_url": "https://translink.com.au/plan-your-journey"
     },
     "buses": {
-      "note": "Bus routes serve Balmoral via Riding Road, Bennetts Road, and the Hawthorne Road corridor.",
+      "note": "Route 230 (Balmoral to City via Riding Road) and route 235 (via Thynne Road) serve the suburb (TransLink, 15 Aug 2026; re-check stop lists before quoting).",
       "search_url": "https://translink.com.au/plan-your-journey",
-      "key_arterials": ["Riding Road", "Bennetts Road", "Hawthorne Road"],
+      "key_arterials": ["Riding Road", "Thynne Road"],
       "verify": true
     },
     "driving": {
       "motorway_access": "Story Bridge for the CBD. Gateway Motorway via the Cannon Hill interchange.",
       "approx_cbd_minutes_offpeak_note": "Approximately 9 to 13 minutes to Brisbane CBD off-peak."
     },
-    "bike_walk": { "connections": ["Brisbane Riverwalk for northern streets", "Walking access to Oxford Street Bulimba from many addresses"] }
+    "bike_walk": { "connections": ["Walk to the Bulimba and Hawthorne CityCat terminals from northern and western streets", "Walking access to Oxford Street Bulimba from many addresses"] }
   },
   "schools": {
-    "primary_state": [{ "name": "Balmoral State School (and overlap with Bulimba SS catchment)", "verify_catchment": true }],
+    "primary_state": [{ "name": "Bulimba State School (no state primary inside Balmoral; 'Balmoral State School' does not exist)", "verify_catchment": true }],
     "secondary_state": [{ "name": "Balmoral State High School", "verify_catchment": true, "note": "The state high school is located within the suburb and is the common catchment for many surrounding inner-east addresses." }],
-    "private_nearby": [{ "name": "Lourdes Hill College", "suburb": "Hawthorne", "verify": true }],
+    "private_nearby": [{ "name": "Lourdes Hill College", "suburb": "Hawthorne", "verify": true }, { "name": "Sts Peter and Paul's Catholic School", "suburb": "Bulimba", "verify": true }],
     "catchment_lookup_url": "https://www.qgso.qld.gov.au/maps/edmap"
   },
   "lifestyle": {
-    "parks": ["Bulimba Memorial Park", "Brisbane Riverwalk"],
-    "shops_dining_note": "Balmoral itself has limited in-suburb dining. The Oxford Street Bulimba strip and the Hawthorne Garage precinct are within walking distance for many streets. Daily groceries through Bulimba Plaza."
+    "parks": ["Six pocket parks (Fisherman's Bend, Andrew St, Kuranda St, Pollock St, Quinn's St, Suvla Bay)", "Quinn's Street Park fenced dog off-leash", "Bulimba Memorial Park (adjacent, in Bulimba)"],
+    "shops_dining_note": "The Riding Road strip is Balmoral's own corner: Little Hideout at 185, Willow Cafe and FRANKIE4 at 216. Oxford Street Bulimba and the Hawthorne Garage precinct are within walking distance for many streets. Daily groceries through Bulimba Plaza."
   },
   "pockets": [
-    { "name": "Riverside", "character": "Streets within walking distance of the river and the riverwalk. Character queenslanders, premium family-home market." },
+    { "name": "River-view ridge", "character": "The elevated spine with river and city outlooks (Balmoral does not touch the river itself). Character queenslanders, premium family-home market, ferry walk from the northern edge." },
     { "name": "Bulimba boundary", "character": "Streets along the boundary with Bulimba. Often debated as Bulimba or Balmoral by buyers depending on which side of the line." },
     { "name": "Hawthorne-adjacent", "character": "Southern Balmoral streets bordering Hawthorne. Similar character stock and lifestyle access." }
   ],
@@ -42,5 +44,26 @@
     { "type": "Downsizers staying local", "note": "Long-term inner-east owners moving to smaller character homes or townhouses to remain close to the strip and the river." }
   ],
   "comparable_suburbs": ["bulimba", "hawthorne", "morningside", "norman-park"],
+  "map": {
+    "center": { "lat": -27.4565, "lng": 153.0665 },
+    "zoom": 15,
+    "pois": [
+      { "kind": "school", "name": "Balmoral State High School", "lat": -27.4503, "lng": 153.0748, "note": "The in-suburb state high on the Thynne and Lytton corner, since 1958" },
+      { "kind": "heritage", "name": "276 Riding Road", "lat": -27.45689, "lng": 153.06323, "note": "c.1890 Queenslander on the local heritage list" },
+      { "kind": "sport", "name": "Bulimba Memorial Bowls Club", "lat": -27.45755, "lng": 153.07173, "note": "On Quinn Street, inside Balmoral despite the name" },
+      { "kind": "shops", "name": "Little Hideout", "lat": -27.46116, "lng": 153.06347, "note": "The 185 Riding Road cafe" },
+      { "kind": "shops", "name": "216 Riding Road strip", "lat": -27.46004, "lng": 153.06298, "note": "Willow Cafe and the FRANKIE4 flagship" },
+      { "kind": "park", "name": "Kuranda Street Park", "lat": -27.45838, "lng": 153.07015, "note": "One of the six ridge pocket parks" },
+      { "kind": "park", "name": "Quinn's Street Park", "lat": -27.45754, "lng": 153.07173, "note": "The fenced dog off-leash area" },
+      { "kind": "park", "name": "Suvla Bay Park", "lat": -27.45273, "lng": 153.07035, "note": "Northern pocket park" },
+      { "kind": "station", "name": "Bulimba ferry terminal", "lat": -27.45048, "lng": 153.05224, "note": "Nearest CityCat, in Bulimba" }
+    ],
+    "pockets": [
+      { "name": "River-view ridge", "lat": -27.4552, "lng": 153.0648 },
+      { "name": "Riding Road strip", "lat": -27.4618, "lng": 153.0643 },
+      { "name": "Balmoral Heights", "lat": -27.4589, "lng": 153.0727 },
+      { "name": "Bulimba boundary", "lat": -27.4532, "lng": 153.0612 }
+    ]
+  },
   "_meta": { "verify_flags": ["Catchment boundary by street", "Secondary catchment", "Bus routes"], "last_authored": "2026-05-10", "authored_by": "daniel-via-claude" }
 }

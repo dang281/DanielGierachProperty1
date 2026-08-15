@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import MarketPulse from '../../components/MarketPulse.astro';
 import SuburbMap from '../../components/SuburbMap.astro';
 import Method from '../../components/Method.astro';
 import BuyersCTA from '../../components/BuyersCTA.astro';
 import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import SuburbStats from '../../components/SuburbStats.astro';
+import SuburbPocketMap from '../../components/SuburbPocketMap.astro';
+import SuburbContentsNav from '../../components/SuburbContentsNav.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
 import ResourceCTA from '../../components/ResourceCTA.astro';
 ---
 
@@ -106,93 +109,47 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 })} />
 
 <!-- HERO -->
-<section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">
+<section style="background:radial-gradient(118% 76% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%); color:#191817; padding:48px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1.25rem;">Seven Hills · QLD 4170</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.25rem;">
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to left, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin:0;">Seven Hills · QLD 4170</p>
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to right, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+    </div>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:400; line-height:1.15; margin-bottom:1.5rem; color:#191817;">
-      Selling in Seven Hills, Brisbane.
+      Selling in <em style="font-style:italic; color:#6b4610;">Seven Hills</em>, Brisbane.
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:rgba(25,24,23,0.72); max-width:580px; margin:0 auto 2.5rem;">
       Specialist property sales in Seven Hills and Brisbane's elevated inner east. Ray White Bulimba.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">View Current Listings</a>
       <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">What's Your Property Worth?</a>
+      <a href="/insights/selling-in-seven-hills" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#6b4610; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229; border-radius:10px;">How I Sell in Seven Hills</a>
     </div>
   </div>
 </section>
 
-<!-- SUBURB STATS STRIP -->
-<section style="background:#fff; border-bottom:1px solid rgba(28,25,23,0.08);">
-  <div style="max-width:900px; margin:0 auto; padding:0 24px;">
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); text-align:center; border-left:1px solid rgba(28,25,23,0.08);">
-      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
-        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#191817; line-height:1;">~6 km</p>
-        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">To Brisbane CBD</p>
-      </div>
-      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
-        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#191817; line-height:1;">4170</p>
-        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Postcode</p>
-      </div>
-      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
-        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#191817; line-height:1;">Elevated</p>
-        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Ridge Position</p>
-      </div>
-      <div style="padding:1.75rem 1rem; border-right:1px solid rgba(28,25,23,0.08);">
-        <p style="font-family:var(--font-serif); font-size:1.6rem; font-weight:300; color:#191817; line-height:1;">Inner East</p>
-        <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#78716c; margin-top:0.4rem;">Brisbane Corridor</p>
-      </div>
-    </div>
-  </div>
-</section>
+<SuburbContentsNav name="Seven Hills" />
+
+<SuburbStats slug="seven-hills" name="Seven Hills" />
+
+
 
 <!-- WHY THIS AREA -->
-<MarketPulse slug="seven-hills" name="Seven Hills" />
 
-<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:56px 24px 80px;">
   <div style="max-width:800px; margin:0 auto;">
+    <SectionDivider />
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">About Seven Hills Brisbane</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Elevated living with strong buyer demand.</h2>
+    <h2 data-toc="Local expertise" style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Elevated living with strong buyer demand.</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Seven Hills is one of Brisbane's best-kept secrets. Elevated streets, city views and a quiet residential feel make it highly sought after by buyers who want space and lifestyle without leaving the inner city. The suburb sits just 6km from the CBD and shares a postcode with Norman Park and Morningside, placing it firmly within the premium inner-east corridor.
     </p>
-<!-- APPRAISAL FORM -->
-<div style="background:#fff; border-left:4px solid #b98229; padding:2rem 2rem 1.75rem; margin:2rem 0; border-radius:16px;">
-  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#b98229; margin-bottom:0.5rem;">Book a Walk Through</p>
-  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#191817; margin-bottom:1.25rem; line-height:1.25;">Find out what your Seven Hills home is worth.</h3>
-  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
-  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
-    <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
-    <input type="hidden" name="_subject" value="Appraisal enquiry: Seven Hills" />
-    <input type="hidden" name="_source" value="seven-hills" />
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
-      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
-        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
-      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
-        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
-    </div>
-    <input type="text" name="property_address" required placeholder="Your Seven Hills address (street + number)"
-      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
-    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
-      <button type="submit"
-        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#191817; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
-        Book My Walk Through
-      </button>
-      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
-    </div>
-  </form>
-</div>
-<style>
-  @media (max-width: 540px) {
-    .suburb-form-grid { grid-template-columns: 1fr !important; }
-  }
-</style>
-<!-- END APPRAISAL FORM -->
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Marshall Avenue and the streets running along the ridge are among Brisbane's best-kept address secrets, offering large allotments with city views that would cost significantly more in nearby Balmoral or Camp Hill. The Seven Hills Bushland Reserve borders the suburb on multiple sides, giving residents a genuine sense of seclusion within 6km of the CBD.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Buyers in Seven Hills tend to be deliberate and discerning. They are typically looking for larger blocks, privacy, green outlooks, and city views, and are often coming from Balmoral, Hawthorne, or Norman Park and being priced out. That relative value gap has driven consistent demand and price growth, particularly for well-positioned properties on the upper ridge streets.
+      Buyers in Seven Hills tend to be deliberate and discerning. They are typically looking for larger blocks, privacy, green outlooks, and city views, and are often coming across from Balmoral, Hawthorne, or Norman Park in search of more land for the money. That relative value gap has driven consistent demand and price growth, particularly for well-positioned properties on the upper ridge streets.
     </p>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Having sold in Seven Hills and the surrounding inner east, I understand what buyers look for here and how to position your property to attract the right people at the right price.
@@ -217,63 +174,54 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:2rem;">
       Seven Hills has largely retained its pre-war and mid-century allotment structure. Blocks of 600 to 900 square metres are common throughout the suburb, and ridge properties can exceed this. In an inner east context where newer subdivisions and townhouse development have compressed lot sizes across most suburbs, that scale is rare and commands a premium from buyers who need the space. Families looking for room to extend, renovate, or simply give children a proper outdoor area find the Seven Hills block size compelling at a price point that would not be available in Camp Hill or Balmoral. In many cases the land is as much the asset as the house sitting on it, and the campaign needs to reflect that.
     </p>
-    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Seven Hills Specialist</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Inner-east Brisbane · Ray White</p>
-      </div>
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Quiet Elevated Suburb</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">City views · Large allotments</p>
-      </div>
+    <!-- APPRAISAL FORM -->
+<div style="background:#fff; border-left:4px solid #b98229; padding:2rem 2rem 1.75rem; margin:2rem 0; border-radius:16px;">
+  <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#b98229; margin-bottom:0.5rem;">Book a Walk Through</p>
+  <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#191817; margin-bottom:1.25rem; line-height:1.25;">Find out what your Seven Hills home is worth.</h3>
+  <form method="POST" action="https://formspree.io/f/xnjgedwp" style="display:flex; flex-direction:column; gap:0.75rem;">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+    <input type="hidden" name="_next" value="https://danielgierach.com/thank-you?from=suburb-appraisal" />
+    <input type="hidden" name="_subject" value="Appraisal enquiry: Seven Hills" />
+    <input type="hidden" name="_source" value="seven-hills" />
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
+      <input type="text" name="name" required placeholder="Jane Smith" aria-label="Your name" autocomplete="name"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
+      <input type="email" name="email" required placeholder="jane.smith@mail.com" aria-label="Email address" autocomplete="email"
+        style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     </div>
-    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/balmoral" style="color:#b98229;">Balmoral</a>, <a href="/suburbs/camp-hill" style="color:#b98229;">Camp Hill</a>, <a href="/suburbs/norman-park" style="color:#b98229;">Norman Park</a>.</p>
+    <input type="text" name="property_address" required placeholder="12 Sample Street, Seven Hills" aria-label="Your Seven Hills address"
+      style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+      <button type="submit"
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
+        Book My Walk Through
+      </button>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
+    </div>
+  </form>
+</div>
+<style>
+  @media (max-width: 540px) {
+    .suburb-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<!-- END APPRAISAL FORM -->
   </div>
 </section>
 
 <!-- SUBURBS SERVED -->
-<section style="background:#fff; padding:80px 24px;">
-  <div style="max-width:900px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Seven Hills</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated streets and city views in a quiet residential setting</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Camp Hill</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated lifestyle living with strong buyer demand</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Norman Park</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character homes and family-friendly streets</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Hawthorne</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Riverside living with premium appeal</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Balmoral</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">One of Brisbane's most sought-after pockets</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Bulimba</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Village feel with strong community lifestyle</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- THE THREE-PHASE METHOD -->
 <!-- DEEP-DIVE: transport, schools, pockets, lifestyle, buyer profile, selling approach, comparables -->
 <SuburbDeepDive slug="seven-hills" name="Seven Hills" />
 
+<SuburbPocketMap slug="seven-hills" name="Seven Hills" />
+
 <div class="max-w-[780px] mx-auto px-8 pb-12">
-  <ResourceCTA slug="first-home-buyer-brisbane-inner-east-guide" />
+  <ResourceCTA slug="preparing-your-house-to-sell" />
 </div>
 
-<BuyersCTA suburb="Seven Hills" />
 <!-- Nearby suburbs cross-links -->
 <section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -394,6 +342,41 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   }
   details summary::-webkit-details-marker { display: none; }
 </style>
+
+<BuyersCTA suburb="Seven Hills" />
+
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Seven Hills</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated streets and city views in a quiet residential setting</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Camp Hill</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated lifestyle living with strong buyer demand</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Norman Park</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character homes and family-friendly streets</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Hawthorne</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Riverside living with premium appeal</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Balmoral</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">One of Brisbane's most sought-after pockets</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Bulimba</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Village feel with strong community lifestyle</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <SuburbMap />
 

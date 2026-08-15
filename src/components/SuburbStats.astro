@@ -1,0 +1,115 @@
+---
+// Glanceable "at a glance" stat strip for a suburb page.
+// Reads the structured data file at content/suburbs/{slug}.json and renders a
+// small set of fact tiles. Every tile is optional: if the underlying field is
+// missing the tile is skipped, and if no tiles can be built the component
+// renders nothing (so suburbs without a data file degrade silently).
+
+import fs from 'node:fs';
+import path from 'node:path';
+import SectionDivider from './SectionDivider.astro';
+
+interface Props {
+  slug: string;
+  name: string;
+}
+
+const { slug, name } = Astro.props;
+
+const dataPath = path.resolve(process.cwd(), 'content/suburbs', `${slug}.json`);
+
+interface Tile {
+  label: string;
+  value: string;
+  sub?: string;
+}
+
+let data: any = null;
+if (fs.existsSync(dataPath)) {
+  try {
+    data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  } catch {
+    data = null;
+  }
+}
+
+// Pull a "N to M minutes" style snippet out of a verbose note string.
+function minutes(note: unknown): string | null {
+  if (typeof note !== 'string') return null;
+  const m = note.match(/(\d+\s*to\s*\d+|\d+)\s*minutes?/i);
+  return m ? `${m[1].replace(/\s+/g, ' ')} min` : null;
+}
+
+function stationShort(name: unknown): string | null {
+  if (typeof name !== 'string') return null;
+  return name.replace(/\s*railway station/i, ' station').replace(/\s+station\s*$/i, ' station').trim();
+}
+
+const tiles: Tile[] = [];
+
+if (data) {
+  const cbdKm = data?.distances?.cbd_km;
+  if (typeof cbdKm === 'number') {
+    tiles.push({ label: 'To Brisbane CBD', value: `${cbdKm} km`, sub: data?.region });
+  }
+
+  if (typeof data?.stock?.value === 'string') {
+    tiles.push({ label: 'The homes', value: data.stock.value, sub: data.stock.sub });
+  }
+
+  const station = data?.transport?.trains?.stations?.[0];
+  const stationName = stationShort(station?.name);
+  if (stationName) {
+    tiles.push({ label: 'On the train', value: stationName, sub: station?.line });
+  }
+
+  const drive = minutes(data?.transport?.driving?.approx_cbd_minutes_offpeak_note);
+  if (drive) {
+    tiles.push({ label: 'Drive to the city', value: drive, sub: 'Off-peak' });
+  }
+
+  const primary = data?.schools?.primary_state?.[0]?.name;
+  if (typeof primary === 'string') {
+    tiles.push({ label: 'State primary', value: primary });
+  }
+
+  if (typeof data?.green_space?.value === 'string') {
+    tiles.push({ label: 'Green space', value: data.green_space.value, sub: data.green_space.sub });
+  }
+}
+
+---
+
+<style is:global>
+  .suburb-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 900px) {
+    .suburb-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .suburb-stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+{tiles.length > 0 && (
+  <section style="background:#E6D9BD;padding:8px 24px 64px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <SectionDivider />
+      <p style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#6b4610;margin-bottom:1.5rem;">{name} at a glance</p>
+      <div class="suburb-stats-grid">
+        {tiles.map((t) => (
+          <div style="background:#fff;padding:1.5rem;border-radius:16px;border:1px solid rgba(25,24,23,0.06);">
+            <p style="font-family:var(--font-sans);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b4610;margin:0 0 0.6rem;">{t.label}</p>
+            <p style="font-family:var(--font-serif);font-size:1.375rem;font-weight:400;line-height:1.25;color:#191817;margin:0;">{t.value}</p>
+            {t.sub && (
+              <p style="font-family:var(--font-sans);font-size:0.8rem;font-weight:300;line-height:1.5;color:#6b6560;margin:0.5rem 0 0;">{t.sub}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

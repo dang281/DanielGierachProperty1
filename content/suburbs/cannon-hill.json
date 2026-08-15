@@ -6,6 +6,8 @@
   "distances": {
     "cbd_km": 6
   },
+  "stock": { "value": "Post-war + character", "sub": "1910s to 1950s homes on elevated blocks, newer infill near the strips" },
+  "green_space": { "value": "11 parks", "sub": "Cannon Hill Bushland Reserve, the Bulimba Creek bikeway and the Minnippi golf course" },
   "transport": {
     "trains": {
       "stations": [
@@ -16,12 +18,12 @@
         }
       ],
       "live_timetable_url": "https://translink.com.au/plan-your-journey",
-      "approx_cbd_minutes_offpeak_note": "Approximately 14 to 18 minutes to Central station off-peak."
+      "approx_cbd_minutes_offpeak_note": "Around 20 minutes to the city off-peak (indicative, not timetable-verified)."
     },
     "buses": {
-      "note": "Bus routes serve Cannon Hill via Wynnum Road, Creek Road, and Stanley Street East.",
+      "note": "The Cannon Hill bus interchange (Wynnum/Creek Rd corner) carries routes 220 CityXpress and 215 (confirmed via TransLink stop page 15 Aug 2026; do not list others unverified).",
       "search_url": "https://translink.com.au/plan-your-journey",
-      "key_arterials": ["Wynnum Road", "Creek Road", "Stanley Street East"],
+      "key_arterials": ["Wynnum Road", "Creek Road"],
       "verify": true
     },
     "driving": {
@@ -31,8 +33,8 @@
     },
     "bike_walk": {
       "connections": [
-        "Norman Creek bikeway connecting toward the river system",
-        "Walking access to the K-Mart Plaza precinct from most streets"
+        "Bulimba Creek bikeway through the suburb toward Minnippi and Carindale",
+        "Walking access to the Kmart Plaza precinct from most streets"
       ]
     }
   },
@@ -45,24 +47,26 @@
     ],
     "secondary_state": [
       {
-        "name": "Balmoral State High School",
+        "name": "Balmoral SHS or Whites Hill State College (varies by address, neither EdMap-confirmed)",
         "verify_catchment": true,
-        "note": "Common catchment for many Cannon Hill streets."
+        "note": "No state high school inside Cannon Hill; verify every address on EdMap before naming a catchment."
       }
     ],
     "private_nearby": [
-      { "name": "St Oliver Plunkett School", "suburb": "Cannon Hill", "verify": true },
+      { "name": "Cannon Hill Anglican College (in-suburb)", "suburb": "Cannon Hill", "verify": true },
+      { "name": "St Oliver Plunkett School (in-suburb, since 1947)", "suburb": "Cannon Hill", "verify": true },
       { "name": "Lourdes Hill College", "suburb": "Hawthorne", "verify": true }
     ],
     "catchment_lookup_url": "https://www.qgso.qld.gov.au/maps/edmap"
   },
   "lifestyle": {
     "parks": [
-      "Bridges Reserve",
-      "Cannon Hill Park",
-      "Norman Creek parkland"
+      "Cannon Hill Bushland Reserve (10ha bushcare bushland on Bulimba Creek)",
+      "Minnippi Golf Links Park (the 2023 public course)",
+      "Bill Cash Memorial Park",
+      "Eleven BCC parks in total (no dog off-leash in-suburb)"
     ],
-    "shops_dining_note": "Cannon Hill K-Mart Plaza is the major retail centre with supermarket, big-format retail, cinema, and casual dining. Daily groceries and local cafes through the precinct. Bulimba and Hawthorne village strips are within seven to ten minutes by car for the broader inner-east dining range.",
+    "shops_dining_note": "Two separate centres: Cannon Hill Kmart Plaza (Kmart, Coles, ~50 specialty) and Cannon Central at 1145 Wynnum Rd (ALDI, Woolworths, TK Maxx), plus the Southgate Avenue cafe cluster. Bulimba and Hawthorne strips within seven to ten minutes by car.",
     "lifestyle_note": "Cannon Hill combines train station convenience, big-format retail on the doorstep, and established residential character. The combination is rare in inner east Brisbane."
   },
   "pockets": [
@@ -98,6 +102,27 @@
     }
   ],
   "comparable_suburbs": ["morningside", "murarrie", "tingalpa", "norman-park"],
+  "map": {
+    "center": { "lat": -27.4665, "lng": 153.093 },
+    "zoom": 15,
+    "pois": [
+      { "kind": "station", "name": "Cannon Hill station", "lat": -27.46532, "lng": 153.08861, "note": "Cleveland line since 1910; Queensland's first boom gates" },
+      { "kind": "school", "name": "Cannon Hill State School", "lat": -27.4697, "lng": 153.09714, "note": "State primary since 1915, heritage-listed building" },
+      { "kind": "school", "name": "Cannon Hill Anglican College", "lat": -27.46044, "lng": 153.08696, "note": "Prep to 12 on the Junction and Krupp corner" },
+      { "kind": "school", "name": "St Oliver Plunkett School", "lat": -27.47006, "lng": 153.08466, "note": "Catholic primary on Beauvardia Street since 1947" },
+      { "kind": "park", "name": "Cannon Hill Bushland Reserve", "lat": -27.47277, "lng": 153.10138, "note": "Ten hectares of bushcare bushland on Bulimba Creek" },
+      { "kind": "park", "name": "Minnippi Golf and Range", "lat": -27.4674, "lng": 153.09655, "note": "The 2023 public course, Cooee cafe on site" },
+      { "kind": "heritage", "name": "Cannon Hill School of Arts", "lat": -27.4681, "lng": 153.08968, "note": "1923, on the city's local heritage list" },
+      { "kind": "shops", "name": "Cannon Hill Kmart Plaza", "lat": -27.47131, "lng": 153.09802, "note": "Kmart, Coles and about fifty specialty stores" },
+      { "kind": "shops", "name": "Cannon Central", "lat": -27.47143, "lng": 153.09959, "note": "ALDI, Woolworths and TK Maxx" }
+    ],
+    "pockets": [
+      { "name": "Station-adjacent", "lat": -27.4643, "lng": 153.0856 },
+      { "name": "Family streets", "lat": -27.4737, "lng": 153.087 },
+      { "name": "Wynnum Road corridor", "lat": -27.4699, "lng": 153.0925 },
+      { "name": "Southgate precinct", "lat": -27.4656, "lng": 153.0937 }
+    ]
+  },
   "_meta": {
     "verify_flags": [
       "Cannon Hill State School catchment boundary",

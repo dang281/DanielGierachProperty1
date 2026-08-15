@@ -1,0 +1,11 @@
+---
+// The report-cover divider ornament: fading gold hairlines flanking a small
+// rotated diamond. Used at the top of major page sections instead of a hard
+// colour boundary. Matches .divider in src/pages/reports/[slug].astro.
+---
+
+<div aria-hidden="true" style="display:flex; align-items:center; justify-content:center; gap:14px; margin:0 0 2.75rem;">
+  <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to right, rgba(181,131,28,0), rgba(181,131,28,0.4));"></span>
+  <span style="width:5px; height:5px; background:#b98229; transform:rotate(45deg);"></span>
+  <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to left, rgba(181,131,28,0), rgba(181,131,28,0.4));"></span>
+</div>

@@ -4,14 +4,16 @@
   "postcode": "4170",
   "region": "Inner East Brisbane",
   "distances": { "cbd_km": 5 },
+  "stock": { "value": "Character + post-war", "sub": "Cottages, post-war weatherboards and new townhouses around the strip" },
+  "green_space": { "value": "15 parks", "sub": "Colmslie Recreation Reserve, dog off-leash and the aquatic centre" },
   "transport": {
     "trains": {
       "stations": [{ "name": "Morningside railway station", "line": "Cleveland line", "walk_minutes_note": "Within the suburb. Most streets are within a 10 to 15 minute walk." }],
       "live_timetable_url": "https://translink.com.au/plan-your-journey",
-      "approx_cbd_minutes_offpeak_note": "Approximately 12 to 16 minutes to Central station off-peak."
+      "approx_cbd_minutes_offpeak_note": "Around 20 minutes to Central station off-peak (indicative, not timetable-verified)."
     },
     "buses": {
-      "note": "Bus routes serve Morningside via Wynnum Road and Lytton Road.",
+      "note": "Route 221 runs the Wynnum Road corridor; routes 230, 235 and 236 run Lytton Road (confirmed via TransLink stop pages 15 Aug 2026).",
       "search_url": "https://translink.com.au/plan-your-journey",
       "key_arterials": ["Wynnum Road", "Lytton Road"],
       "verify": true
@@ -25,11 +27,11 @@
   "schools": {
     "primary_state": [{ "name": "Morningside State School", "verify_catchment": true }],
     "secondary_state": [{ "name": "Balmoral State High School", "verify_catchment": true }],
-    "private_nearby": [{ "name": "Lourdes Hill College", "suburb": "Hawthorne", "verify": true }],
+    "private_nearby": [{ "name": "Sts Peter and Paul's Catholic School", "suburb": "Bulimba", "verify": true }, { "name": "Lourdes Hill College", "suburb": "Hawthorne", "verify": true }, { "name": "Cannon Hill Anglican College", "suburb": "Cannon Hill", "verify": true }],
     "catchment_lookup_url": "https://www.qgso.qld.gov.au/maps/edmap"
   },
   "lifestyle": {
-    "parks": ["Colmslie Recreation Reserve", "Norman Creek parkland", "Bridges Reserve nearby"],
+    "parks": ["Colmslie Recreation Reserve (dog off-leash, boat ramp, aquatic centre)", "Keralgerie Park (the filled 1940s quarry pool)", "Balmoral Park (481 Wynnum Rd, in Morningside)", "Bennett's Bushland Park", "Fifteen BCC parks in total"],
     "shops_dining_note": "The Wynnum Road village strip runs through the suburb with cafes, restaurants, and casual dining. Daily-life retail at the Cannon Hill K-Mart Plaza and Bulimba Plaza, both within five to seven minutes."
   },
   "pockets": [
@@ -40,9 +42,29 @@
   "buyer_profile": [
     { "type": "Inner-east upgraders", "note": "Buyers moving from Cannon Hill, Murarrie, or further east who want the village strip and train station combination Morningside offers." },
     { "type": "Established families", "note": "Parents targeting the Morningside catchment and the family-suburb feel of the quieter residential streets." },
-    { "type": "Riverside-priced-out", "note": "Buyers priced out of Bulimba and Hawthorne who want the inner-east lifestyle at a more accessible entry point." },
+    { "type": "Riverside redirect", "note": "Buyers who have searched Bulimba and Hawthorne and redirect here for more house at the same money." },
     { "type": "Investors", "note": "Train station, village strip, and arterial access support rental demand." }
   ],
   "comparable_suburbs": ["cannon-hill", "norman-park", "bulimba", "hawthorne"],
+  "map": {
+    "center": { "lat": -27.468, "lng": 153.073 },
+    "zoom": 15,
+    "pois": [
+      { "kind": "station", "name": "Morningside station", "lat": -27.4709, "lng": 153.06947, "note": "Cleveland line, rebuilt and reopened late 2024" },
+      { "kind": "school", "name": "Morningside State School", "lat": -27.46446, "lng": 153.06587, "note": "State primary. The 1920s building is heritage-listed." },
+      { "kind": "shops", "name": "Morningside Central", "lat": -27.46627, "lng": 153.08011, "note": "Woolworths and the Junction Road retail" },
+      { "kind": "park", "name": "Colmslie Recreation Reserve", "lat": -27.45348, "lng": 153.08144, "note": "Dog off-leash, boat ramp and the aquatic centre" },
+      { "kind": "heritage", "name": "Morningside Air Raid Shelter", "lat": -27.46911, "lng": 153.07028, "note": "1942, Queensland Heritage Register" },
+      { "kind": "heritage", "name": "Balmoral Fire Station", "lat": -27.46492, "lng": 153.06899, "note": "1920s, heritage-listed, and yes, in Morningside" },
+      { "kind": "sport", "name": "Morningside Tennis Centre", "lat": -27.46141, "lng": 153.07904, "note": "Twelve lit courts on Beverley Street" },
+      { "kind": "shops", "name": "Flour and Chocolate", "lat": -27.46833, "lng": 153.07212, "note": "The destination bakery at 621 Wynnum Road" },
+      { "kind": "park", "name": "Keralgerie Park", "lat": -27.47352, "lng": 153.07917, "note": "The quarry that was once a public swimming pool" }
+    ],
+    "pockets": [
+      { "name": "Wynnum Road village", "lat": -27.469, "lng": 153.0755 },
+      { "name": "Station-adjacent", "lat": -27.4739, "lng": 153.0668 },
+      { "name": "Family streets", "lat": -27.4762, "lng": 153.0815 }
+    ]
+  },
   "_meta": { "verify_flags": ["Morningside State School catchment", "Secondary catchment by street", "Bus route numbers"], "last_authored": "2026-05-10", "authored_by": "daniel-via-claude" }
 }

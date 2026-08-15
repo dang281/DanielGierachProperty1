@@ -1,0 +1,135 @@
+---
+// Per-suburb pocket map: stations, schools, parks, heritage sites, shopping
+// strips and named-pocket labels, rendered from the "map" block of
+// content/suburbs/{slug}.json. If the block is missing the component renders
+// nothing, so suburbs without map data degrade silently.
+//
+// Uses the vendored Leaflet at public/lib/leaflet (same as the map tools) and
+// Carto Voyager tiles (same provider as /tools/school-catchment).
+
+import fs from 'node:fs';
+import path from 'node:path';
+import SectionDivider from './SectionDivider.astro';
+
+interface Props {
+  slug: string;
+  name: string;
+}
+
+const { slug, name } = Astro.props;
+
+const dataPath = path.resolve(process.cwd(), 'content/suburbs', `${slug}.json`);
+
+let map: any = null;
+if (fs.existsSync(dataPath)) {
+  try {
+    map = JSON.parse(fs.readFileSync(dataPath, 'utf8')).map ?? null;
+  } catch {
+    map = null;
+  }
+}
+
+// GieMann-compatible marker colours per POI kind (no red, chart blue + golds).
+const KIND_META: Record<string, { label: string; color: string }> = {
+  station: { label: 'Train station', color: '#1e64ab' },
+  school: { label: 'Schools', color: '#b98229' },
+  park: { label: 'Parks', color: '#55803d' },
+  heritage: { label: 'Heritage', color: '#191817' },
+  sport: { label: 'Sport & clubs', color: '#6b4610' },
+  shops: { label: 'Shops & cafes', color: '#a87718' },
+};
+
+const legend = map
+  ? Object.entries(KIND_META).filter(([kind]) => map.pois?.some((p: any) => p.kind === kind))
+  : [];
+---
+
+{map && (
+  <>
+  <section style="background:var(--color-base, #f2ead4); padding:56px 24px 80px;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <SectionDivider />
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#6b4610; margin-bottom:1rem;">The lay of the land</p>
+      <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.6rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1rem;">{name}, pocket by pocket.</h2>
+      <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; max-width:62ch; margin-bottom:1.75rem;">Tap a marker for the detail. The pocket names are the ones locals and buyers actually use.</p>
+
+      <div id="pocket-map" style="width:100%; height:clamp(380px, 52vw, 540px); border-radius:16px; overflow:hidden; box-shadow:0 14px 36px rgba(25,24,23,0.12); background:#e8e4da;"></div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem 1.25rem; margin-top:1rem;">
+        {legend.map(([kind, meta]) => (
+          <span style="display:inline-flex; align-items:center; gap:0.45rem; font-family:var(--font-sans); font-size:0.78rem; font-weight:600; color:#4a4540;">
+            <span style={`width:10px; height:10px; border-radius:999px; background:${meta.color}; display:inline-block;`}></span>
+            {meta.label}
+          </span>
+        ))}
+        <span style="display:inline-flex; align-items:center; gap:0.45rem; font-family:var(--font-sans); font-size:0.78rem; font-weight:600; color:#4a4540;">
+          <span style="font-family:var(--font-serif); font-style:italic; color:#6b4610;">Name</span>
+          Pocket
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <link rel="stylesheet" href="/lib/leaflet/leaflet.css" />
+  <script is:inline defer src="/lib/leaflet/leaflet.js"></script>
+  <script is:inline define:vars={{ POCKET_MAP: map, KIND_COLORS: Object.fromEntries(Object.entries(KIND_META).map(([k, v]) => [k, v.color])) }}>
+    (function () {
+      function init() {
+        if (!window.L) { setTimeout(init, 60); return; }
+        var el = document.getElementById('pocket-map');
+        if (!el || el.dataset.ready) return;
+        el.dataset.ready = '1';
+
+        var m = L.map('pocket-map', { scrollWheelZoom: false, zoomControl: true })
+          .setView([POCKET_MAP.center.lat, POCKET_MAP.center.lng], POCKET_MAP.zoom || 15);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          maxZoom: 19
+        }).addTo(m);
+
+        (POCKET_MAP.pois || []).forEach(function (p) {
+          var color = KIND_COLORS[p.kind] || '#b98229';
+          var marker = L.circleMarker([p.lat, p.lng], {
+            radius: 8, color: '#ffffff', weight: 2, fillColor: color, fillOpacity: 1
+          }).addTo(m);
+          marker.bindPopup(
+            '<strong style="font-family:Georgia,serif;font-weight:600;">' + p.name + '</strong>' +
+            (p.note ? '<br><span style="color:#57534e;">' + p.note + '</span>' : '')
+          );
+        });
+
+        (POCKET_MAP.pockets || []).forEach(function (p) {
+          L.marker([p.lat, p.lng], {
+            interactive: false,
+            icon: L.divIcon({
+              className: 'pocket-label',
+              html: '<span>' + p.name + '</span>',
+              iconSize: [160, 24],
+              iconAnchor: [80, 12]
+            })
+          }).addTo(m);
+        });
+      }
+      if (document.readyState === 'complete') { init(); }
+      else { window.addEventListener('load', init); }
+    })();
+  </script>
+  </>
+)}
+
+<style is:global>
+  .pocket-label span {
+    display: inline-block;
+    width: 160px;
+    text-align: center;
+    font-family: var(--font-serif, Georgia, serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6b4610;
+    text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 10px #ffffff;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+</style>

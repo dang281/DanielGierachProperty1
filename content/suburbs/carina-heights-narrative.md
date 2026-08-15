@@ -4,11 +4,25 @@ generated_at: 2026-08-08
 authored_by: daniel-via-claude
 ---
 
+## section: history
+
+Carina Heights is the youngest name in the inner east, and older than it looks. The suburb was only severed from Carina in 1975, but the name was in use long before that for the rise near Creek Road where Belmont Private Hospital opened in 1973. The Carina name itself traces to Ebenezer Thorne's 1850s estate, named for Kate Carina of his family.
+
+The build-out ran south from the tram. The Old Cleveland Road terminus sat at the suburb's north-west corner, the post office opened on Winstanley Street in 1957, houses spread through the 1960s, and the southern streets toward Whites Hill Reserve were the last subdivided, in the 1980s.
+
+The streets tell their own stories. One cluster in the east commemorates the First World War, with Anzac, Birdwood, Gallipoli, Mons, Salonica and Vickers on the signs; another cluster remembers former members of the Queensland parliament, Winstanley and Buckley and Macalister among them. And the "Heights" is literal twice over: the namesake hill rises 36 metres in the north-east corner, while Pine Mountain in the south reaches 106 metres beside the old quarry that once cut stone there.
+
+For a seller, the suburb's story is elevation, reserve and restraint: a 1960s and 70s suburb where half the land climbs, a 170 hectare bushland sits on the southern doorstep, and nothing passes through.
+
+⚠️ VERIFY: 1975 is the boundary gazettal, the place-name predates it. No confirmed heritage-register places inside the suburb (absence not exhaustively verified). Housing Commission stock inside the boundary is unconfirmed, do not claim it. Sources: en.wikipedia.org/wiki/Carina_Heights,_Queensland, queenslandplaces.com.au/carina-heights (re-fetch before quoting verbatim), brisbane.recollectcms.com (Pine Mountain Quarry).
+
 ## section: transport
 
-Carina Heights does not have its own railway station. The closest stations are Coorparoo and Cannon Hill on the Cleveland line. Live timetables at translink.com.au/plan-your-journey.
+Carina Heights does not have its own railway station, and no busway serves it yet; the Eastern Busway extension along Old Cleveland Road remains a proposal. The closest stations are Cannon Hill and Morningside on the Cleveland line, both a drive. Live timetables at translink.com.au/plan-your-journey.
 
-Bus routes serve Carina Heights via Old Cleveland Road and Creek Road, with the Carindale interchange nearby for cross-town connections.
+For buses, route 204 runs Winstanley Street through the middle of the suburb, and the Old Cleveland Road spine on the northern edge carries the 200, 204 and 222 into the city. The Carindale interchange sits nearby for cross-town connections.
+
+⚠️ VERIFY: Route 204 confirmed at the Winstanley St stops (TransLink stop 006235, 15 Aug 2026); 200/204/222 confirmed at the Old Cleveland Rd Carina stop on the suburb edge. Never describe the busway as existing here. Do not quote walk-times to stations (published figures unreliable).
 
 By car, the M3 corridor handles southern travel and the CBD sits around 14 to 18 minutes away off-peak. The Gateway Motorway is reachable through Carindale.
 
@@ -18,13 +32,13 @@ For full timetables, route maps, and live updates: [translink.com.au](https://tr
 
 ## section: schools
 
-Carina State School is the local primary state school for much of the suburb. Catchment boundaries should be confirmed through the Queensland Government's catchment lookup at [qgso.qld.gov.au/maps/edmap](https://www.qgso.qld.gov.au/maps/edmap).
+Carina Heights splits three ways on school catchments, and knowing which third a property sits in genuinely matters. For most of the suburb, the central, northern and western streets, Whites Hill State College covers both primary and secondary as the P-12 catchment school, which keeps the catchment conversation simple. The eastern strip toward Carindale flips to Carina State School for primary (a school that, despite its name, sits in Carindale) while staying Whites Hill for secondary. And the southernmost pocket near the reserve runs to Mount Gravatt East State School and Cavendish Road State High instead.
 
-For secondary state schooling, Whites Hill State College, the P-12 state school beside the reserve, is the common catchment, and the walk-to-school streets closest to the campus carry a clear premium with family buyers.
+The walk-to-school streets closest to the Whites Hill campus carry a clear premium with family buyers.
 
-For private schooling, San Sisto College in Carina and Citipointe Christian College in Carindale are within a short drive, and the Coorparoo colleges are accessible along Old Cleveland Road.
+For private schooling, San Sisto College in Carina and Citipointe Christian College in Carindale are both roughly a kilometre out, and the Coorparoo colleges are accessible along Old Cleveland Road.
 
-⚠️ VERIFY: Whites Hill catchment access varies by street. Use the QGSO lookup to confirm any specific address.
+⚠️ VERIFY: The three-way split was confirmed against the Department of Education's 2025 catchment dataset at seven sampled points (15 Aug 2026), but boundaries are address-specific and change; always confirm the exact address at [qgso.qld.gov.au/maps/edmap](https://www.qgso.qld.gov.au/maps/edmap) before any in-catchment claim.
 
 ## section: pockets
 
@@ -38,11 +52,13 @@ The catchment streets closest to Whites Hill State College carry a school-run pr
 
 ## section: lifestyle
 
-Whites Hill Reserve is the defining lifestyle asset: several hundred hectares of bushland with walking trails accessible from much of the suburb. It gives Carina Heights a green boundary and a quiet that flatter neighbours cannot replicate.
+Whites Hill Reserve is the defining lifestyle asset: roughly 170 hectares of bushland shared with Camp Hill on the suburb's southern edge, carrying 13 interconnected walking tracks, the fenced dog park, sports fields, and two lookouts, Whites Hill Summit for the city and Sankey's Mountain for the coast. It gives Carina Heights a green boundary and a quiet that flatter neighbours cannot replicate. Seven council parks sit inside the suburb itself, from Anzac Road Park in the memorial streets to the big Olivia Drive and Whatmore Street parks in the south.
 
-Westfield Carindale is a short drive for big-format retail and dining. Camp Hill Marketplace and Coorparoo Square are within reach for village dining and additional retail, and the Carina Leagues Club precinct sits just down the hill on Creek Road.
+The honest retail note: Carina Heights keeps no strip of its own beyond the small Winstanley Street node, which is being redeveloped with a small supermarket and services. Westfield Carindale is a short drive for big-format retail and dining, Camp Hill Marketplace and the Martha Street cafes handle village dining, and the Carina Leagues Club precinct sits just down the hill on Creek Road.
 
 The lifestyle here is family-suburb east Brisbane with topography: elevation, breezes, reserve access and streets that stay quiet because nothing passes through them.
+
+⚠️ VERIFY: Whites Hill Reserve is administratively addressed to Camp Hill; describe as shared. No cafes could be confirmed with Carina Heights addresses (Butter Cream Cafe and BackStreet Espresso are in Carina). Do not use the "10 parks / 36% parkland" stat circulating on portals; the BCC dataset says 7.
 
 ## section: buyer profile
 
@@ -50,7 +66,7 @@ Two buyer types drive the Carina Heights market.
 
 The largest is family upgraders targeting the combination of elevation, catchment and reserve. These buyers have usually watched the suburb for months, because listing volumes are modest and the best streets turn over slowly.
 
-The second group is buyers priced out of Camp Hill who discover the hill continues east. They want the same topography and family feel at a more accessible entry point, and they arrive at open homes already educated by the campaigns they missed.
+The second group is buyers who searched Camp Hill and discovered the hill continues east. They want the same topography and family feel at a more accessible entry point, and they arrive at open homes already educated by the campaigns they missed.
 
 A third, smaller group is builders and rebuilders drawn to elevated blocks where an original home understates what the site can do.
 

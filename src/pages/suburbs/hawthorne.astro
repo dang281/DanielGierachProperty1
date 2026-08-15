@@ -4,6 +4,10 @@ import SuburbMap from '../../components/SuburbMap.astro';
 import Method from '../../components/Method.astro';
 import BuyersCTA from '../../components/BuyersCTA.astro';
 import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import SuburbStats from '../../components/SuburbStats.astro';
+import SuburbPocketMap from '../../components/SuburbPocketMap.astro';
+import SuburbContentsNav from '../../components/SuburbContentsNav.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
 import ResourceCTA from '../../components/ResourceCTA.astro';
 ---
 
@@ -93,7 +97,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     {
       "@type": "Question",
       "name": "How long does it take to sell a home in Hawthorne?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Hawthorne homes typically sell within 20 to 35 days. The suburb's strong lifestyle credentials, limited listing volume and competitive buyer pool mean well-positioned properties frequently attract multiple offers." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Well-priced Hawthorne homes typically sell faster than the Brisbane average when priced correctly. The suburb's strong lifestyle credentials, limited listing volume and competitive buyer pool mean well-positioned properties frequently attract multiple offers." }
     },
     {
       "@type": "Question",
@@ -111,33 +115,49 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO
 ════════════════════════════════════════════════ -->
-<section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">
+<section style="background:radial-gradient(118% 76% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%); color:#191817; padding:48px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1.25rem;">Hawthorne</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.25rem;">
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to left, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin:0;">Hawthorne</p>
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to right, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+    </div>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:400; line-height:1.15; margin-bottom:1.5rem; color:#191817;">
-      Selling in Hawthorne, Brisbane.
+      Selling in <em style="font-style:italic; color:#6b4610;">Hawthorne</em>, Brisbane.
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:rgba(25,24,23,0.72); max-width:580px; margin:0 auto 2.5rem;">
       Specialist property sales in Hawthorne and Brisbane's premium inner east.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">View Current Listings</a>
       <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">What's Your Property Worth?</a>
+      <a href="/insights/selling-in-hawthorne" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#6b4610; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229; border-radius:10px;">How I Sell in Hawthorne</a>
     </div>
   </div>
 </section>
 
+<SuburbContentsNav name="Hawthorne" />
+
+<SuburbStats slug="hawthorne" name="Hawthorne" />
+
+
 <!-- ═══════════════════════════════════════════════
      SECTION 2: WHY THIS AREA
 ════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:56px 24px 80px;">
   <div style="max-width:800px; margin:0 auto;">
+    <SectionDivider />
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Local Expertise</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Riverside prestige in the heart of the inner east.</h2>
+    <h2 data-toc="Local expertise" style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Riverside prestige in the heart of the inner east.</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Hawthorne is one of Brisbane's most consistently sought-after riverside suburbs. Character Queenslanders, wide leafy streets, river access and proximity to Bulimba and the CBD make it a top priority for buyers in the inner east.
     </p>
-<!-- APPRAISAL FORM -->
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Properties in Hawthorne attract serious, motivated buyers willing to act at strong prices. I know how to position your home to maximise that demand and convert it into the best possible result.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Hawthorne Road's cafe strip anchored by the iconic Hawthorne Garage precinct gives the suburb a daily buzz that buyers coming from other parts of Brisbane immediately notice. The streets running down toward the river, including Hawthorne Road itself and Riding Road at its southern edge, consistently produce the suburb's strongest auction results. Direct river access via the Hawthorne ferry terminal and the availability of original character homes on full-size blocks have kept buyer competition intense even as the broader market has cooled. Demand from Bulimba and Norman Park spillover buyers continues to add depth to the Hawthorne pool.
+    </p>
+    <!-- APPRAISAL FORM -->
 <div style="background:#fff; border-left:4px solid #b98229; padding:2rem 2rem 1.75rem; margin:2rem 0; border-radius:16px;">
   <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#b98229; margin-bottom:0.5rem;">Book a Walk Through</p>
   <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#191817; margin-bottom:1.25rem; line-height:1.25;">Find out what your Hawthorne home is worth.</h3>
@@ -147,16 +167,16 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     <input type="hidden" name="_subject" value="Appraisal enquiry: Hawthorne" />
     <input type="hidden" name="_source" value="hawthorne" />
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
-      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+      <input type="text" name="name" required placeholder="Jane Smith" aria-label="Your name" autocomplete="name"
         style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
-      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+      <input type="email" name="email" required placeholder="jane.smith@mail.com" aria-label="Email address" autocomplete="email"
         style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     </div>
-    <input type="text" name="property_address" required placeholder="Your Hawthorne address (street + number)"
+    <input type="text" name="property_address" required placeholder="12 Sample Street, Hawthorne" aria-label="Your Hawthorne address"
       style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
       <button type="submit"
-        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#191817; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
         Book My Walk Through
       </button>
       <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
@@ -169,23 +189,6 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   }
 </style>
 <!-- END APPRAISAL FORM -->
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Properties in Hawthorne attract serious, motivated buyers willing to act at strong prices. I know how to position your home to maximise that demand and convert it into the best possible result.
-    </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Hawthorne Road's cafe strip anchored by the iconic Hawthorne Garage precinct gives the suburb a daily buzz that buyers coming from other parts of Brisbane immediately notice. The streets running down toward the river, including Hawthorne Road itself and Riding Road at its southern edge, consistently produce the suburb's strongest auction results. Direct river access via the Hawthorne ferry terminal and the availability of original character homes on full-size blocks have kept buyer competition intense even as the broader market has cooled. Demand from Bulimba and Norman Park spillover buyers continues to add depth to the Hawthorne pool.
-    </p>
-    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Hawthorne Specialist</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Premium Riverside</p>
-      </div>
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Character Homes</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Top buyer demand</p>
-      </div>
-    </div>
-    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/bulimba" style="color:#b98229;">Bulimba</a>, <a href="/suburbs/balmoral" style="color:#b98229;">Balmoral</a>, <a href="/suburbs/norman-park" style="color:#b98229;">Norman Park</a>.</p>
   </div>
 </section>
 
@@ -211,7 +214,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
           How long does it take to sell a home in Hawthorne?
           <span style="color:#b98229; font-size:1.4rem; flex-shrink:0;">+</span>
         </summary>
-        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Hawthorne homes typically sell within 28 to 42 days. The suburb's strong lifestyle credentials, limited listing volume and competitive buyer pool mean well-positioned properties frequently attract multiple offers.</p>
+        <p style="font-family:var(--font-sans); font-size:0.9rem; line-height:1.75; color:#4a4540; margin-top:0.75rem; padding-right:2rem;">Well-priced Hawthorne homes typically sell faster than the Brisbane average when priced correctly. The suburb's strong lifestyle credentials, limited listing volume and competitive buyer pool mean well-positioned properties frequently attract multiple offers.</p>
       </details>
 
       <details style="border-bottom:1px solid rgba(72,72,72,0.15); padding:1.25rem 0;">
@@ -234,41 +237,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SECTION 3: SUBURBS SERVED
-════════════════════════════════════════════════ -->
-<section style="background:#fff; padding:80px 24px;">
-  <div style="max-width:900px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Hawthorne</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Riverside living with premium appeal</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Bulimba</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Village feel with strong community lifestyle</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Balmoral</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">One of Brisbane's most sought-after pockets</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Morningside</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Growth suburb with great connectivity</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">East Brisbane</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Walkable inner-city living with character homes</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Norman Park</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character homes and family-friendly streets</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ═══════════════════════════════════════════════
      SECTION 4: HOW I CAN HELP YOU SELL
@@ -330,11 +299,12 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 <!-- DEEP-DIVE: transport, schools, pockets, lifestyle, buyer profile, selling approach, comparables -->
 <SuburbDeepDive slug="hawthorne" name="Hawthorne" />
 
+<SuburbPocketMap slug="hawthorne" name="Hawthorne" />
+
 <div class="max-w-[780px] mx-auto px-8 pb-12">
   <ResourceCTA slug="downsizing-brisbane-inner-east-guide" />
 </div>
 
-<BuyersCTA suburb="Hawthorne" />
 <!-- Nearby suburbs cross-links -->
 <section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -380,6 +350,44 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     }
   }
 </style>
+
+<BuyersCTA suburb="Hawthorne" />
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 3: SUBURBS SERVED
+════════════════════════════════════════════════ -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Hawthorne</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Riverside living with premium appeal</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Bulimba</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Village feel with strong community lifestyle</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Balmoral</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">One of Brisbane's most sought-after pockets</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Morningside</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Growth suburb with great connectivity</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">East Brisbane</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Walkable inner-city living with character homes</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Norman Park</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character homes and family-friendly streets</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <SuburbMap />
 

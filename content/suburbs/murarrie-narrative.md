@@ -4,13 +4,27 @@ generated_at: 2026-05-10
 authored_by: daniel-via-claude
 ---
 
+## section: history
+
+Murarrie's name came from Mooraree House, built around 1861 by Christopher Porter; the locality and station took the current spelling in 1907. A claim that the word derives from a Yuggera term is repeated online but has never been pinned to a documented source, so it stays a maybe.
+
+The river end made the suburb's history. At Queensport in 1881, the Queensland Freezing and Food Export Company shipped Queensland's first frozen meat exports, and the works passed through Borthwick's to Swift's, whose big 1914 abattoir ran under the public Abattoir Board from 1931. The industry wound down by the 1990s, and Queensport survives as a locality name inside Murarrie. The suburb's one heritage-listed building tells the workers' story from the other end: the little Murrarie Community Church at 111 Ives Street began life in 1873 as a teacher's residence at Waterford, was relocated here in 1929, and served the meatworks and brickworks families for decades.
+
+The newest chapter is the boldest. In November 2024, Brisbane opened the $35 million Brisbane International Cycle Park at Murarrie Recreation Reserve, a 2032 Olympics legacy facility with a criterium circuit and a 500 metre skating track, run by the Balmoral Cycling Club. A suburb that once moved frozen beef now trains Olympians.
+
+For a seller, Murarrie's story is transformation: working river flats becoming an accessible residential pocket with a train station, river parkland and world-class sport infrastructure that its glossier neighbours cannot claim.
+
+⚠️ VERIFY: The Aboriginal-word etymology is unverified, keep hedged or omit. The Queensport Hotel is in HEMMANT, never place it in Murarrie. Station opening date conflicts (1888 vs 1910), do not publish a year. Sources: en.wikipedia.org/wiki/Murarrie,_Queensland, mappingbrisbanehistory.com.au (Queensport), heritage.brisbane.qld.gov.au place 2206, morningsidenews.com.au (cycle park).
+
 ## section: transport
 
-Murarrie has its own railway station on the Cleveland line. For the western residential pockets, Cannon Hill station can also be a short walk depending on the street. Off-peak train travel to Central station typically runs around 18 to 22 minutes, though current schedules should be confirmed on Translink at translink.com.au/plan-your-journey before you commit to a routine.
+Murarrie has its own railway station on the Cleveland line, with 48 park-and-ride bays. For the western residential pockets, Cannon Hill station can also be a short walk depending on the street. Off-peak train travel to Central station typically runs around 18 to 22 minutes, though current schedules should be confirmed on Translink at translink.com.au/plan-your-journey before you commit to a routine.
 
-Bus routes through Murarrie connect via Wynnum Road and Creek Road, with Translink the authority for current routes, frequencies, and live arrival times. Routes change with service updates, so any specific number quoted here would risk being outdated by the time it matters. The honest answer for any address is to enter it into the Translink journey planner and see exactly what serves your street today.
+Bus routes through Murarrie connect via Wynnum Road and Creek Road, with Translink the authority for current routes, frequencies, and live arrival times. Routes change with service updates, so the honest answer for any address is to enter it into the Translink journey planner and see exactly what serves your street today.
 
-By car, Gateway Motorway access via the Wynnum Road and Lytton Road interchanges puts the CBD around 12 to 15 minutes away off-peak via Wynnum Road or the Story Bridge. Peak commute can extend to 25 to 35 minutes depending on conditions and route choice. Brisbane Airport sits roughly 10 to 12 minutes off-peak via the Gateway, which is one of the practical advantages residents often mention.
+By car, the Gateway Motorway is the suburb's signature advantage, with full access via the Wynnum Road interchange and partial ramps at Lytton Road. The CBD sits around 12 to 15 minutes away off-peak via Wynnum Road or the Story Bridge, extending to 25 to 35 minutes in the peak. Brisbane Airport sits roughly 10 to 12 minutes off-peak via the Gateway, which is one of the practical advantages residents mention most.
+
+⚠️ VERIFY: The Lytton Road/Murarrie interchange is PARTIAL (southbound exit, northbound entrance only), never imply full two-way ramps there (prior content softened accordingly). Bus route numbers at Murarrie stops conflicted between checks; do not publish specific numbers without a fresh TransLink pull.
 
 For active transport, the Bulimba Creek bikeway connects northward toward the Brisbane River, and the riverside path system through Cannon Hill and Hawthorne extends the option for confident riders. Casual cyclists can plan routes via Translink's cycle map.
 
@@ -22,7 +36,7 @@ The local primary state school is Murarrie State School. Catchment boundaries va
 
 Secondary state high school catchment in this part of the inner east depends on the specific Murarrie address. The QGSO catchment lookup tool is the only reliable way to confirm which secondary state school catchment applies to a given Murarrie street.
 
-For private schooling, the closest options sit in surrounding suburbs. Lourdes Hill College in Hawthorne is within a short drive, and St Oliver Plunkett School in Cannon Hill is a common primary option for Murarrie families. Brisbane's broader inner-east private school network, including the schools clustered in Camp Hill, Coorparoo, and East Brisbane, is accessible by car within 10 to 15 minutes.
+For private schooling, the closest options sit in surrounding suburbs. Cannon Hill Anglican College and St Oliver Plunkett School are both just over the boundary in Cannon Hill, Lourdes Hill College in Hawthorne is within a short drive, and Brisbane's broader inner-east private school network through Camp Hill, Coorparoo and East Brisbane is accessible by car within 10 to 15 minutes.
 
 ⚠️ VERIFY: Catchment boundaries should be checked individually for any given address using the QGSO tool. Private school enrolment availability changes year to year.
 
@@ -42,19 +56,19 @@ When buyers ask what Murarrie is like, the answer depends entirely on which of t
 
 ## section: lifestyle
 
-Murarrie does not have its own dining strip in the way Bulimba or Hawthorne do. What it has instead is short access to those strips, plus daily-life retail closer to home.
+Murarrie does not have a traditional dining strip, but it has something no neighbour does: BrewDog's DogTap at 77 Metroplex Avenue, a 420-seat brewery, taproom and bistro looking across the river to the Gateway Bridge, with a scatter of workday cafes through the Metroplex and Queensport Road precincts around it.
 
-For groceries and weekly shopping, Bulimba Plaza is around five minutes by car, and Cannon Hill K-Mart Plaza is five to seven minutes for big-format retail, supermarket, and chemist. Daily coffee and casual cafes run through the Hawthorne Garage precinct, which is a short drive across the railway.
+For groceries and weekly shopping, the Cannon Hill centres are five to seven minutes for supermarkets and big-format retail, and Bulimba Plaza is around five minutes by car. For restaurants and weekend dining, Oxford Street in Bulimba and the Hawthorne strips are within five to seven minutes and remain where most Murarrie residents end up on a Friday night.
 
-For restaurants and weekend dining, the Bulimba and Hawthorne village strips are the natural anchors. Both are within five to seven minutes by car and offer the full range of cafe, casual dining, and licensed bar options. Oxford Street in Bulimba and Riding Road in Hawthorne are where most Murarrie residents end up on a Friday night or Saturday brunch.
+Open space is the quiet overachiever: twenty-one council parks sit inside the suburb, the most of any suburb in the focus area. Colmslie Beach Reserve puts genuine river frontage, picnic lawns and the Octopus Garden playground at the end of Colmslie Road. Murarrie Recreation Reserve on Wynnum Road stacks sportsfields, a skate park, a kayak launch and the new Brisbane International Cycle Park, and the fenced Rosewood Place dog park, with its own small-dog yard, covers the daily dog run. The Bulimba Creek bikeway starts here and runs twenty kilometres south.
 
-Open space sits closer to home. Murarrie Recreation Reserve provides park access along the river boundary, and the Bulimba Creek parkland with its walking tracks runs through the suburb's western edge. For families with dogs or young kids, those two anchors do most of the daily work.
+⚠️ VERIFY: Venues checked 15 Aug 2026 (BrewDog 77 Metroplex Ave via its own site; other Metroplex cafes directory-sourced, kept generic). Park count 21 from a double-sourced BCC dataset pull, excluding "Murarrie Road" parks that are actually in Tingalpa. Colmslie BEACH Reserve is in Murarrie; Colmslie RECREATION Reserve is in Morningside, two different parks.
 
 ## section: buyer profile
 
 Four buyer types are active in Murarrie right now.
 
-The largest group is buyers who started their inner-east search in Cannon Hill, Morningside, or Hawthorne and redirected eastward when the entry point in those suburbs pushed beyond their budget. They arrive understanding the geography and looking for the same lifestyle access at a more accessible price point. They tend to know exactly what they want and move quickly when they find it.
+The largest group is buyers who started their inner-east search in Cannon Hill, Morningside, or Hawthorne and redirected eastward for more property at the same money. They arrive understanding the geography and looking for the same lifestyle access at a more accessible price point. They tend to know exactly what they want and move quickly when they find it.
 
 The second group is interstate relocators, particularly from Sydney and Melbourne, drawn by Brisbane's relative affordability and the airport proximity that makes frequent travel home practical. The Gateway Motorway access is something this group often mentions in inspections, because the alternative inner-east suburbs do not offer the same direct route to the airport.
 
@@ -82,6 +96,6 @@ Buyers considering Murarrie are typically also looking at Cannon Hill, Tingalpa,
 
 [Tingalpa](/suburbs/tingalpa) sits south of Murarrie and offers a similar value story at a similar price level, with its own residential character. For some buyers the choice between Tingalpa and Murarrie comes down to which streets feel right rather than a price difference.
 
-[Morningside](/suburbs/morningside) is the more established inner-east neighbour to the west. Larger village amenity, stronger character home stock, and a higher entry point. Buyers priced out of Morningside are often the single largest group looking at Murarrie.
+[Morningside](/suburbs/morningside) is the more established inner-east neighbour to the west. Larger village amenity, stronger character home stock, and a higher entry point. Buyers who start their search in Morningside are often the single largest group looking at Murarrie.
 
 [Hemmant](/suburbs/hemmant) is east of Murarrie along the Cleveland line, with a more relaxed riverside feel and an even more accessible entry point. Hemmant tends to attract buyers who want the same value story extended further along the corridor.

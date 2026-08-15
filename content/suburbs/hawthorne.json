@@ -6,6 +6,8 @@
   "distances": {
     "cbd_km": 4
   },
+  "stock": { "value": "Queenslanders + riverfront", "sub": "Character homes through to architect-built riverfront residences on streets like Virginia Avenue" },
+  "green_space": { "value": "3 parks", "sub": "Hardcastle Park on the river, Hawthorne Park's Livvi's Place and Jack Esplen Oval" },
   "transport": {
     "trains": {
       "stations": [
@@ -18,15 +20,15 @@
       "live_timetable_url": "https://translink.com.au/plan-your-journey"
     },
     "ferry": {
-      "terminal": "Hawthorne Ferry Terminal",
-      "service": "CityCat and CityFerry",
-      "note": "Direct CityCat service to the CBD, South Bank, and UQ. The Hawthorne ferry stop is one of the most-used in inner east Brisbane.",
+      "terminal": "Hawthorne ferry terminal (Gordon Street)",
+      "service": "CityCat",
+      "note": "Direct CityCat service to the CBD, South Bank, and UQ from the 1925 heritage-listed terminal (QHR 602212). Around 20 to 25 minutes to the city, indicative.",
       "live_timetable_url": "https://translink.com.au/plan-your-journey"
     },
     "buses": {
-      "note": "Bus routes serve Hawthorne via Hawthorne Road, Riding Road, and Lytton Road.",
+      "note": "Route 230 runs Riding Road through Hawthorne into the city; the 232 also serves the area (TransLink, 15 Aug 2026). Do not claim routes on Hawthorne Road itself.",
       "search_url": "https://translink.com.au/plan-your-journey",
-      "key_arterials": ["Hawthorne Road", "Riding Road", "Lytton Road"],
+      "key_arterials": ["Riding Road", "Lytton Road"],
       "verify": true
     },
     "driving": {
@@ -35,7 +37,7 @@
     },
     "bike_walk": {
       "connections": [
-        "Brisbane Riverwalk and the Hawthorne riverside path",
+        "Riverside path from Hardcastle Park through to the Bulimba parklands",
         "Hawthorne Road is walkable to the Garage precinct from most streets"
       ]
     }
@@ -43,9 +45,9 @@
   "schools": {
     "primary_state": [
       {
-        "name": "Hawthorne State School (Bulimba SS catchment overlap)",
+        "name": "Bulimba State School (no state school inside Hawthorne itself)",
         "verify_catchment": true,
-        "note": "Many Hawthorne addresses fall within the Bulimba State School catchment. Verify for any specific street."
+        "note": "Many Hawthorne addresses are commonly cited as Bulimba SS catchment, but streets may split between Bulimba, Morningside and Norman Park SS. Verify per address on EdMap."
       }
     ],
     "secondary_state": [
@@ -55,16 +57,18 @@
       }
     ],
     "private_nearby": [
-      { "name": "Lourdes Hill College", "suburb": "Hawthorne", "verify": true },
-      { "name": "St Peter and Paul's Primary", "suburb": "Bulimba", "verify": true }
+      { "name": "Lourdes Hill College (in-suburb, since 1916)", "suburb": "Hawthorne", "verify": true },
+      { "name": "Sts Peter and Paul's Catholic School", "suburb": "Bulimba", "verify": true },
+      { "name": "Villanova College", "suburb": "Coorparoo", "verify": true }
     ],
     "catchment_lookup_url": "https://www.qgso.qld.gov.au/maps/edmap"
   },
   "lifestyle": {
     "parks": [
-      "Hawthorne Park",
-      "Brisbane Riverwalk along the foreshore",
-      "Bulimba Memorial Park (adjacent)"
+      "Hardcastle Park (riverside playground beside the ferry)",
+      "Hawthorne Park, 140 Riding Road (Livvi's Place all-abilities playground, Jack Esplen Oval)",
+      "Barton Road Pocket Park",
+      "Bulimba Memorial Park (adjacent, in Bulimba)"
     ],
     "shops_dining_note": "The Hawthorne Garage precinct is the suburb's cafe and dining cluster. Oxford Street in Bulimba is a five to seven minute walk for the larger village strip experience. Daily groceries through Bulimba Plaza or the Cannon Hill K-Mart Plaza.",
     "river_access": "Brisbane River frontage and ferry access at Hawthorne Ferry Terminal."
@@ -98,6 +102,25 @@
     }
   ],
   "comparable_suburbs": ["bulimba", "balmoral", "morningside", "norman-park"],
+  "map": {
+    "center": { "lat": -27.4635, "lng": 153.0578 },
+    "zoom": 15,
+    "pois": [
+      { "kind": "station", "name": "Hawthorne ferry terminal", "lat": -27.46116, "lng": 153.05334, "note": "CityCat from a 1925 heritage-listed terminal" },
+      { "kind": "park", "name": "Hardcastle Park", "lat": -27.46086, "lng": 153.05382, "note": "Riverside playground beside the ferry" },
+      { "kind": "park", "name": "Hawthorne Park", "lat": -27.46368, "lng": 153.06204, "note": "Livvi's Place playground and Jack Esplen Oval, home of the Panthers" },
+      { "kind": "park", "name": "Barton Road Pocket Park", "lat": -27.45922, "lng": 153.06008, "note": "Pocket park for the northern streets" },
+      { "kind": "school", "name": "Lourdes Hill College", "lat": -27.46929, "lng": 153.05822, "note": "Girls 7 to 12, on the Galloways Hill ridge since 1916" },
+      { "kind": "shops", "name": "Hawthorne cinema", "lat": -27.4624, "lng": 153.06062, "note": "The 1940s theatre at 261 Hawthorne Road" },
+      { "kind": "shops", "name": "Hawthorne Garage", "lat": -27.46158, "lng": 153.06079, "note": "The all-day providore at 285 Hawthorne Road" },
+      { "kind": "heritage", "name": "25 Virginia Avenue", "lat": -27.46807, "lng": 153.05852, "note": "c.1890 Victorian residence, local heritage" }
+    ],
+    "pockets": [
+      { "name": "Riverfront", "lat": -27.4668, "lng": 153.0563 },
+      { "name": "Hawthorne Road spine", "lat": -27.4646, "lng": 153.0597 },
+      { "name": "Ferry precinct", "lat": -27.4598, "lng": 153.053 }
+    ]
+  },
   "_meta": {
     "verify_flags": [
       "Bulimba State School catchment boundary for any given Hawthorne street",

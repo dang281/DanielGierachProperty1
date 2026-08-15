@@ -1,0 +1,190 @@
+---
+// Sticky right-hand contents rail for suburb pages.
+// Builds itself at runtime from the page's h2 headings plus the h3 headings
+// inside the suburb deep-dive, so it needs no per-page configuration and
+// works on every suburb page it is dropped into.
+// Labels are shortened to a single line via suburb-aware rules (full heading
+// stays available as the tooltip); a heading can override its label with a
+// data-toc attribute. Desktop only: shown from 1480px up. Links jump; the
+// active section is highlighted.
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<nav id="suburb-toc" aria-label="On this page" hidden>
+  <p class="toc-eyebrow">On this page</p>
+  <ol class="toc-list"></ol>
+</nav>
+
+<style is:global>
+  #suburb-toc {
+    display: none;
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(180px, calc((100vw - 1150px) / 2 - 28px), 250px);
+    max-height: 72vh;
+    overflow-y: auto;
+    z-index: 40;
+    padding: 1.1rem 0.9rem 1.1rem 0.75rem;
+    background: #ffffff;
+    border: 1px solid rgba(25, 24, 23, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(25, 24, 23, 0.1);
+  }
+  @media (min-width: 1480px) {
+    #suburb-toc:not([hidden]) { display: block; }
+  }
+  #suburb-toc .toc-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b4610;
+    margin: 0 0 0.6rem 0.85rem;
+  }
+  #suburb-toc .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid rgba(25, 24, 23, 0.14);
+  }
+  #suburb-toc .toc-list a {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #4a4540;
+    text-decoration: none;
+    padding: 0.34rem 0.5rem 0.34rem 0.85rem;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #suburb-toc .toc-list li.toc-sub a { padding-left: 1.5rem; }
+  #suburb-toc .toc-list a:hover { color: #191817; }
+  #suburb-toc .toc-list li.is-active a {
+    color: #6b4610;
+    font-weight: 700;
+    border-left-color: #b98229;
+  }
+</style>
+
+<script is:inline define:vars={{ TOC_SUBURB: name }}>
+  (function () {
+    // Single-line label rules: full headings shorten to labels that fit the
+    // rail without wrapping or truncation. Suburb-aware so the same component
+    // works on every suburb page.
+    var esc = (TOC_SUBURB || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var LABEL_RULES = [
+      [new RegExp('^A practical guide to ' + esc + '$', 'i'), 'A practical guide'],
+      [new RegExp('^The story of ' + esc + '$', 'i'), 'The story'],
+      [new RegExp('^Selling in ' + esc + '$', 'i'), 'Selling here'],
+      [new RegExp('^' + esc + ', pocket by pocket$', 'i'), 'The pocket map'],
+      [new RegExp('^How a sale runs in ' + esc + '$', 'i'), 'How a sale runs'],
+      [new RegExp('^Common questions from ' + esc + ' sellers$', 'i'), 'Seller questions'],
+      [new RegExp('^Thinking of selling in ' + esc + '\\?$', 'i'), 'Thinking of selling?'],
+      [/^Compare with surrounding suburbs$/i, 'Comparisons'],
+      [/^Pockets and character$/i, 'The pockets'],
+      [/^Lifestyle and amenity$/i, 'Lifestyle'],
+      [/^Common questions/i, 'Common questions'],
+      [/^Who's buying here$/i, "Who's buying"],
+    ];
+    function shortLabel(text) {
+      for (var i = 0; i < LABEL_RULES.length; i++) {
+        if (LABEL_RULES[i][0].test(text)) return LABEL_RULES[i][1];
+      }
+      return text;
+    }
+    function init() {
+      var toc = document.getElementById('suburb-toc');
+      if (!toc || toc.dataset.ready) return;
+      toc.dataset.ready = '1';
+
+      // The deep-dive section is the one whose h2 starts with "A practical guide".
+      var deepDiveSection = null;
+      var h2s = Array.prototype.slice.call(document.querySelectorAll('section h2'));
+      h2s.forEach(function (h) {
+        if (/^A practical guide/i.test(h.textContent.trim())) {
+          deepDiveSection = h.closest('section');
+        }
+      });
+
+      var entries = [];
+      var seen = {};
+      var nodes = Array.prototype.slice.call(document.querySelectorAll('section h2, section h3'));
+      // Self-referential sections stay out so the list reads as a suburb guide.
+      var SKIP = [/^Suburbs I specialise/i, /^Brisbane, all of it/i];
+      nodes.forEach(function (h) {
+        var text = h.textContent.trim();
+        if (!text) return;
+        if (SKIP.some(function (re) { return re.test(text); })) return;
+        var isSub = h.tagName === 'H3';
+        // h3s only from inside the deep-dive; h2s from everywhere.
+        if (isSub && (!deepDiveSection || !deepDiveSection.contains(h))) return;
+
+        var id = h.id;
+        if (!id) {
+          id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
+          if (!id) return;
+          var base = id, n = 2;
+          while (seen[id] || document.getElementById(id)) { id = base + '-' + n; n++; }
+          h.id = id;
+        }
+        seen[id] = true;
+        h.style.scrollMarginTop = '96px';
+        var clean = text.replace(/\.$/, '');
+        entries.push({ id: id, text: h.dataset.toc || shortLabel(clean), full: clean, sub: isSub });
+      });
+
+      if (entries.length < 4) return;
+
+      var list = toc.querySelector('.toc-list');
+      entries.forEach(function (e) {
+        var li = document.createElement('li');
+        if (e.sub) li.className = 'toc-sub';
+        var a = document.createElement('a');
+        a.href = '#' + e.id;
+        a.textContent = e.text;
+        a.title = e.full;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+      toc.hidden = false;
+
+      // Active-section tracking.
+      var items = Array.prototype.slice.call(list.children);
+      var heads = entries.map(function (e) { return document.getElementById(e.id); });
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var line = window.innerHeight * 0.35;
+        var active = 0;
+        for (var i = 0; i < heads.length; i++) {
+          if (heads[i] && heads[i].getBoundingClientRect().top <= line) active = i;
+        }
+        items.forEach(function (li, i) {
+          li.classList.toggle('is-active', i === active);
+        });
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      update();
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>

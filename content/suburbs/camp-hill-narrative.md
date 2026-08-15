@@ -4,15 +4,29 @@ generated_at: 2026-05-10
 authored_by: daniel-via-claude
 ---
 
+## section: history
+
+Camp Hill began as Schick's Hill. Peter Schick and Kasper Klupfel bought the founding land in 1859, bordered by Old Cleveland Road, Bennetts Road and Lloyd and Pampling Streets, next to Four-Mile Camp, the rest stop where drovers and teamsters hauling to Cleveland spelled their teams at the permanent waterholes. Complaints about the steep climb led to public works on "the Four Mile Camp Hill", and the name shortened from there. By the 1890s, Schick's Hill had disappeared from use.
+
+The trams built the suburb. The steam-hauled Belmont Tramway ran through from 1912, the electric tram arrived from Coorparoo in January 1925, and services ran along Old Cleveland Road until April 1969. The suburb still carries the evidence: roughly 600 metres of 1948 concrete tram track survives in the Old Cleveland Road median between Camp Hill and Carina, on the Queensland Heritage Register since 2000 as one of Brisbane's first mass-concrete track builds. Most residents drive past a state heritage listing every day without knowing it.
+
+The schools and halls followed the tram. Mount Bruce State School opened in 1926 and took the name Camp Hill State School in 1931, St Thomas' opened its school in 1929, and the Camp Hill School of Arts opened in 1940, paid for by a Progress Association that fundraised through picture nights, chocolate wheels and an "ugly man" competition. The city's local heritage list also holds two of the area's oldest houses on Ashton Street, Isleworth and Forster's Dairy Cottage, both from the farm era of the late 1880s, and the Whites Hill lookout itself.
+
+For a seller, the through-line is that Camp Hill's inter-war streets, tram-era shops and hilltop reserve give it an established character that buyers read instantly, and the elevation the teamsters complained about is now the thing people pay a premium for.
+
+⚠️ VERIFY: The teamsters-waterhole naming variant is folk lore; the Schick's Hill account is the documented version. BCC's Whites Hill purchase price conflicts across sources, do not quote a figure. Sources: en.wikipedia.org/wiki/Camp_Hill,_Queensland, QHR 601839 (tramway tracks), heritage.brisbane.qld.gov.au places 459/460/462/470.
+
 ## section: transport
 
-Camp Hill does not have its own railway station. Coorparoo station on the Cleveland line is the closest option for southern Camp Hill streets. Off-peak travel from Coorparoo to Central runs around 10 to 14 minutes. Live timetables at translink.com.au/plan-your-journey.
+Camp Hill does not have its own railway station. Coorparoo station on the Cleveland line is the closest option for southern Camp Hill streets, and Norman Park station serves the northern side; which is closer depends on the specific address. Off-peak travel from Coorparoo to Central runs around 10 to 14 minutes. Live timetables at translink.com.au/plan-your-journey.
 
-Bus routes serve the suburb via Old Cleveland Road, Stanley Street East, and Cavendish Road. Routes change with Translink service updates, so the journey planner is the reliable source for any specific street.
+The bus spine is Old Cleveland Road. The 200 runs to Queen Street, the 204 to Fortitude Valley, and the 222 to Roma Street, all confirmed at the Camp Hill stops. Routes change with TransLink service updates, so the journey planner is the reliable source for any specific street.
 
-By car, the M3 corridor handles southern travel and the Story Bridge via Stanley Street puts the CBD around 10 to 14 minutes away off-peak.
+By car, the M3 corridor handles southern travel and the Story Bridge via Stanley Road puts the CBD around 10 to 14 minutes away off-peak.
 
-For active transport, the Norman Creek bikeway connects toward the river system, and Whites Hill Reserve has walking trails on the doorstep.
+For active transport, Whites Hill Reserve carries its 13 walking tracks and the 1.3 kilometre Boundary Road bikeway on the doorstep, and the Norman Creek bikeway network sits off the suburb's western edge.
+
+⚠️ VERIFY: Bus routes 200, 204, 222 confirmed on TransLink stop pages 15 Aug 2026 (209/217 unconfirmed, do not add). Old Cleveland Road and Stanley Road are the in-suburb arterials; Cavendish Road and "Stanley Street East" are NOT (prior content error, corrected). The Norman Creek bikeway does not run through central Camp Hill. The proposed Eastern Busway extension is unfunded, do not present as coming infrastructure.
 
 For full timetables, route maps, and live updates: [translink.com.au](https://translink.com.au)
 
@@ -40,13 +54,17 @@ When buyers ask which Camp Hill pocket to target, the answer typically starts wi
 
 ## section: lifestyle
 
-Camp Hill Marketplace is the suburb's village strip with cafes, casual dining, and daily-life retail. The Stones Corner precinct sits close by for additional dining and shopping. Coorparoo Square is a short drive for big-format retail and cinema.
+Martha Street is the pocket that made Camp Hill's name in the cafe pages. Picnic at 12 Martha Street and Florence at 54 run the daily trade, with Blackbird Espresso around the corner on Newman Avenue, and the precinct draws visitors from well outside the suburb. Camp Hill Marketplace on Samuel Street, the merger of the old Whites Hill and Samuel Street villages, carries the Woolworths and about forty specialty retailers, from Jocelyn's Provisions and Nodo to a craft butcher. The Bennetts Road corner adds the long-standing takeaway strip at number 82, and the Stones Corner precinct and Coorparoo Square sit close by for the bigger nights.
 
-For open space, Whites Hill Reserve provides walking trails and bushland access on the doorstep. Bridgewater Park and the Norman Creek parkland network add daily walking and weekend-park options.
+For clubs, the Camp Hill Bowls Club has run on Ferguson Road since 1944, with a city skyline over the greens and a Thai kitchen on site, and the Holland Park Hawks play their football at Whites Hill Reserve despite the name.
+
+For open space, ten council parks sit inside the suburb, with two fenced dog off-leash areas at Whites Hill Reserve and Perth Street Park. Whites Hill Reserve itself, roughly 170 hectares shared with Carina Heights, carries 13 interconnected walking tracks and two lookouts: Whites Hill Summit for the city and Sankey's Mountain for the coast.
 
 The topography is hilly enough that elevation matters in the pricing conversation. Many streets sit on hills with western or city outlooks.
 
 The lifestyle here is family-suburb inner-east. Catchment, parks, village strip, and residential character bundled together.
+
+⚠️ VERIFY: Venues checked 15 Aug 2026 (Picnic Shop 5/12 Martha St, Florence 54 Martha St, Blackbird 4 Newman Ave, Marketplace 25 Samuel St, Bowls Club 150 Ferguson Rd, 82 Bennetts Rd venues on the Camp Hill side of the boundary). "Bridgewater Park" does NOT exist in Camp Hill (prior content error, removed). Whites Hill Reserve is shared with Carina Heights, not wholly in Camp Hill.
 
 ## section: buyer profile
 
@@ -82,4 +100,4 @@ Buyers considering Camp Hill typically also look at Coorparoo, Norman Park, Ston
 
 [Stones Corner](/suburbs/stones-corner) is the inner alternative with the Logan Road village strip. Different price profile and different stock type.
 
-[Carina](/suburbs/carina) is the eastern alternative at a more accessible entry point. Buyers priced out of Camp Hill often redirect to Carina or Carina Heights.
+[Carina](/suburbs/carina) is the eastern alternative at a more accessible entry point. Buyers who start their search in Camp Hill often land in Carina or Carina Heights with more block for the money.

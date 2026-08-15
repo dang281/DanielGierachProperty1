@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import MarketPulse from '../../components/MarketPulse.astro';
 import SuburbMap from '../../components/SuburbMap.astro';
 import Method from '../../components/Method.astro';
 import BuyersCTA from '../../components/BuyersCTA.astro';
 import SuburbDeepDive from '../../components/SuburbDeepDive.astro';
+import SuburbStats from '../../components/SuburbStats.astro';
+import SuburbPocketMap from '../../components/SuburbPocketMap.astro';
+import SuburbContentsNav from '../../components/SuburbContentsNav.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
 import ResourceCTA from '../../components/ResourceCTA.astro';
 ---
 
@@ -85,35 +88,68 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 <!-- ═══════════════════════════════════════════════
      SECTION 1: HERO
 ════════════════════════════════════════════════ -->
-<section style="background:#f2ead4; color:#191817; padding:48px 24px 80px;">
+<section style="background:radial-gradient(118% 76% at 50% 32%, #D8C69C 0%, #E1D2AF 46%, #E6D9BD 82%); color:#191817; padding:48px 24px 80px;">
   <div style="max-width:800px; margin:0 auto; text-align:center;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1.25rem;">Norman Park</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.25rem;">
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to left, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+      <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin:0;">Norman Park</p>
+      <span style="height:1px; width:clamp(40px, 18vw, 130px); background:linear-gradient(to right, rgba(181,131,28,0.4), rgba(181,131,28,0));"></span>
+    </div>
     <h1 style="font-family:var(--font-serif); font-size:clamp(2.4rem, 5vw, 4rem); font-weight:400; line-height:1.15; margin-bottom:1.5rem; color:#191817;">
-      Selling in Norman Park, Brisbane.
+      Selling in <em style="font-style:italic; color:#6b4610;">Norman Park</em>, Brisbane.
     </h1>
     <p style="font-family:var(--font-sans); font-size:1.05rem; font-weight:300; line-height:1.7; color:rgba(25,24,23,0.72); max-width:580px; margin:0 auto 2.5rem;">
       Specialist property sales in Norman Park and Brisbane's inner east.
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="/listings" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">View Current Listings</a>
       <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">What's Your Property Worth?</a>
+      <a href="/insights/selling-in-norman-park" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#6b4610; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229; border-radius:10px;">How I Sell in Norman Park</a>
     </div>
   </div>
 </section>
 
-<MarketPulse slug="norman-park" name="Norman Park" />
+<SuburbContentsNav name="Norman Park" />
+
+<SuburbStats slug="norman-park" name="Norman Park" />
 
 <!-- ═══════════════════════════════════════════════
      SECTION 2: WHY THIS AREA
 ════════════════════════════════════════════════ -->
-<section style="background:var(--color-base, #f2ead4); padding:80px 24px;">
+<section style="background:var(--color-base, #f2ead4); padding:56px 24px 80px;">
   <div style="max-width:800px; margin:0 auto;">
+    <SectionDivider />
     <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Local Expertise</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Character homes and consistent family demand.</h2>
+    <h2 data-toc="Local expertise" style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:1.75rem;">Character homes and consistent family demand.</h2>
     <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
       Norman Park is a firm favourite with families seeking inner-east character living. Wide streets, heritage Queenslanders, good schools and easy access to the CBD and river create consistent, strong demand from buyers who know exactly what they want. I have sold extensively in Norman Park and understand the nuances that separate a good result from an exceptional one. The right preparation and buyer targeting makes a real difference in a suburb this low-turnover.
     </p>
-<!-- APPRAISAL FORM -->
+
+    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Queenslander character homes: what actually drives the premium</h3>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Norman Park has one of the highest concentrations of original and well-renovated Queenslanders in Brisbane's inner east. But not all Queenslanders are equal, and buyers in this suburb know the difference. The homes that draw the strongest competition are the ones that have kept their bones: VJ wall linings, pressed metal ceilings, wide wrap-around verandahs and elevated timber floors that still move with the seasons. These features are not cosmetic, they are structural signatures that cannot be replicated in a renovation without significant cost.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      A Queenslander with original features in good condition versus a poorly renovated one on the same street can differ in sale price by $200,000 or more. The poorly renovated home often sells for less than it cost to renovate, because buyers discount heavily for work they will need to undo. The original home, presented well and with its character intact, attracts genuine competition from buyers who have been looking for months. Knowing which category your property falls into shapes everything, the pricing strategy, the marketing, and the buyer pool you target.
+    </p>
+
+    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">School proximity belongs in the marketing</h3>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Several Norman Park streets sit within walking distance of Churchie, Villanova College and Lourdes Hill College. If your property is one of them, that fact belongs in the campaign: buyers filtering specifically for school proximity will pay a meaningful premium over a comparable home a few streets further away, and walking distance versus a ten minute drive is not a trivial distinction across five years of school runs. The overlap between character appeal and school access is what keeps Norman Park demand consistent even when the broader market softens.
+    </p>
+
+    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Two distinct buyer types: renovation seekers and turnkey buyers</h3>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Norman Park regularly attracts two very different buyer profiles, and understanding which your property appeals to shapes the campaign significantly. The first group wants a fully renovated character home, ready to live in from settlement day. They will pay a premium for quality work and are often competing in multiple suburbs simultaneously. The second group wants an original home to renovate themselves. They are typically builders, architects, or owner-occupiers with a clear vision, and they are willing to move quickly because original Norman Park homes are increasingly rare.
+    </p>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      These are different buyers with different financing, different timelines, and different emotional triggers. Positioning a property to attract both groups, and running a campaign that surfaces whoever will pay more, is not something you work out on the day of the first open. It requires knowing the current buyer pool before the campaign launches.
+    </p>
+
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
+      Character home demand in Norman Park remains robust. The suburb is low-turnover, which means listing supply stays low and well-run campaigns attract genuine competition from buyers searching across the inner east. Getting the preparation and positioning right matters more here than in suburbs where volume does the work.
+    </p>
+
+<!-- APPRAISAL FORM (after the value, not before it) -->
 <div style="background:#fff; border-left:4px solid #b98229; padding:2rem 2rem 1.75rem; margin:2rem 0; border-radius:16px;">
   <p style="font-family:var(--font-sans); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#b98229; margin-bottom:0.5rem;">Book a Walk Through</p>
   <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:300; color:#191817; margin-bottom:1.25rem; line-height:1.25;">Find out what your Norman Park home is worth.</h3>
@@ -123,16 +159,16 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     <input type="hidden" name="_subject" value="Appraisal enquiry: Norman Park" />
     <input type="hidden" name="_source" value="norman-park" />
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;" class="suburb-form-grid">
-      <input type="text" name="name" required placeholder="Your name" autocomplete="name"
+      <input type="text" name="name" required placeholder="Jane Smith" aria-label="Your name" autocomplete="name"
         style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
-      <input type="email" name="email" required placeholder="Email address" autocomplete="email"
+      <input type="email" name="email" required placeholder="jane.smith@mail.com" aria-label="Email address" autocomplete="email"
         style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     </div>
-    <input type="text" name="property_address" required placeholder="Your Norman Park address (street + number)"
+    <input type="text" name="property_address" required placeholder="24 Wordsworth Street, Norman Park" aria-label="Your Norman Park address"
       style="font-family:var(--font-sans); font-size:0.88rem; padding:0.7rem 0.9rem; border:1px solid rgba(28,25,23,0.18); background:#faf9f7; color:#191817; outline:none; width:100%; box-sizing:border-box;" />
     <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
       <button type="submit"
-        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#191817; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
+        style="font-family:var(--font-sans); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.75rem 1.75rem; border:none; cursor:pointer; white-space:nowrap;border-radius:8px;">
         Book My Walk Through
       </button>
       <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:300; color:#78716c; margin:0; line-height:1.5;">Daniel will be in touch promptly. No pressure.</p>
@@ -145,96 +181,6 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
   }
 </style>
 <!-- END APPRAISAL FORM -->
-
-    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Queenslander character homes: what actually drives the premium</h3>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park has one of the highest concentrations of original and well-renovated Queenslanders in Brisbane's inner east. But not all Queenslanders are equal, and buyers in this suburb know the difference. The homes that draw the strongest competition are the ones that have kept their bones: VJ wall linings, pressed metal ceilings, wide wrap-around verandahs and elevated timber floors that still move with the seasons. These features are not cosmetic, they are structural signatures that cannot be replicated in a renovation without significant cost.
-    </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      A Queenslander with original features in good condition versus a poorly renovated one on the same street can differ in sale price by $200,000 or more. The poorly renovated home often sells for less than it cost to renovate, because buyers discount heavily for work they will need to undo. The original home, presented well and with its character intact, attracts genuine competition from buyers who have been looking for months. Knowing which category your property falls into shapes everything, the pricing strategy, the marketing, and the buyer pool you target.
-    </p>
-
-    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">School catchments: walking distance is a meaningful distinction</h3>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Several Norman Park streets sit within walking distance of Churchie (Anglican Church Grammar School), Villanova College and Lourdes Hill College. That proximity matters to a specific and motivated group of buyers, particularly families with children already enrolled or approaching high school age. Walking distance versus a 10-minute drive is not a trivial distinction when you are doing the school run twice a day for five years.
-    </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      If your property sits in one of those streets, it belongs in the marketing. Buyers who are filtering specifically for school proximity will pay a meaningful premium over a comparable home a few streets further away. The overlap between character home appeal and strong school access is what keeps demand in Norman Park consistent even when the broader market softens.
-    </p>
-
-    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Train access: 12 minutes to Central</h3>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park station sits on the Beenleigh and Cleveland lines. The trip to Brisbane Central takes around 12 to 15 minutes. For buyers who work in the CBD and have no interest in driving, this is a genuine daily quality-of-life factor that distinguishes Norman Park from the suburbs directly west where train access means connecting services or longer walk times. Old Cleveland Road bus services add a second layer of CBD connectivity for buyers who live further from the station.
-    </p>
-
-    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Two distinct buyer types: renovation seekers and turnkey buyers</h3>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park regularly attracts two very different buyer profiles, and understanding which your property appeals to shapes the campaign significantly. The first group wants a fully renovated character home, ready to live in from settlement day. They will pay a premium for quality work and are often competing in multiple suburbs simultaneously. The second group wants an original home to renovate themselves. They are typically builders, architects, or owner-occupiers with a clear vision, and they are willing to move quickly because original Norman Park homes are increasingly rare.
-    </p>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      These are different buyers with different financing, different timelines, and different emotional triggers. Positioning a property to attract both groups, and running a campaign that surfaces whoever will pay more, is not something you work out on the day of the first open. It requires knowing the current buyer pool before the campaign launches.
-    </p>
-
-    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Seven Hills Bushland Reserve and Norman Creek: lifestyle value with land implications</h3>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park has direct trail access to the Seven Hills Bushland Reserve through several entry points along the suburb's southern edge. For families with children or dog owners, this is a genuine daily lifestyle asset, not a park that gets visited twice a year but actual bushland that is walkable from the front door. Norman Creek and the adjoining parkland along the western edge serve a similar function, with the added benefit that homes backing onto the reserve corridor consistently attract a premium from buyers who understand the land value of that green buffer.
-    </p>
-
-    <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:#191817; margin-bottom:0.75rem; margin-top:2rem;">Street-level price variation: the ridge matters</h3>
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Norman Park is not a flat suburb. The elevated streets along the ridge, particularly those with city or hinterland views, attract a meaningfully different buyer to the lower streets near the creek corridor. Homes on the ridge carry a view premium that compounds with character home appeal. Lower streets near the creek have their own value proposition, reserve access, established gardens, quieter settings, but the price ceiling differs. Sellers on elevated streets with views should understand their position relative to the suburb's median, and should be pushing to establish a new ceiling, not just meeting it.
-    </p>
-
-    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:1.25rem;">
-      Character home demand in Norman Park remains robust. Original Queenslanders continue to draw strong auction competition from buyers who have been outpriced in Hawthorne and Balmoral. The suburb is low-turnover, which means listing supply stays low and well-run campaigns attract genuine competition. Getting the preparation and positioning right matters more here than in suburbs where volume does the work.
-    </p>
-    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Norman Park Specialist</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Inner East Brisbane</p>
-      </div>
-      <div style="flex:1; min-width:200px; background:#fff; padding:1.75rem; border-left:3px solid #b98229; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.1rem; font-weight:400; color:#191817; margin-bottom:0.4rem;">Character Suburb</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560;">Strong family demand</p>
-      </div>
-    </div>
-    <p style="font-size:0.82rem;color:#78716c;margin-top:2rem;">Also selling in: <a href="/suburbs/hawthorne" style="color:#b98229;">Hawthorne</a>, <a href="/suburbs/camp-hill" style="color:#b98229;">Camp Hill</a>, <a href="/suburbs/east-brisbane" style="color:#b98229;">East Brisbane</a>.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     SECTION 3: SUBURBS SERVED
-════════════════════════════════════════════════ -->
-<section style="background:#fff; padding:80px 24px;">
-  <div style="max-width:900px; margin:0 auto;">
-    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
-    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Norman Park</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character homes and family-friendly streets</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Hawthorne</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Riverside living with premium appeal</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Balmoral</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">One of Brisbane's most sought-after pockets</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">East Brisbane</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Walkable inner-city living with character homes</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Woolloongabba</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Rapidly growing suburb with major infrastructure</p>
-      </div>
-      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
-        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Camp Hill</p>
-        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated lifestyle living with strong buyer demand</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -242,11 +188,11 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 <!-- DEEP-DIVE: transport, schools, pockets, lifestyle, buyer profile, selling approach, comparables -->
 <SuburbDeepDive slug="norman-park" name="Norman Park" />
 
-<div class="max-w-[780px] mx-auto px-8 pb-12">
-  <ResourceCTA slug="first-home-buyer-brisbane-inner-east-guide" />
-</div>
+<SuburbPocketMap slug="norman-park" name="Norman Park" />
 
-<BuyersCTA suburb="Norman Park" />
+<div class="max-w-[780px] mx-auto px-8 pb-12">
+  <ResourceCTA slug="preparing-your-house-to-sell" />
+</div>
 <!-- Nearby suburbs cross-links -->
 <section style="background:var(--color-surface-1);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
   <div class="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -262,6 +208,32 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 </section>
 
 <Method suburb="Norman Park" />
+
+<!-- ═══════════════════════════════════════════════
+     SELLER FAQ (visible twin of the FAQ schema)
+════════════════════════════════════════════════ -->
+<section style="background:#fff; padding:56px 24px 80px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <SectionDivider />
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Seller Questions</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.6rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2rem;">Common questions from Norman Park sellers.</h2>
+
+    <h3 style="font-family:var(--font-serif); font-size:1.3rem; font-weight:400; color:#191817; margin-bottom:0.65rem;">What drives property values in Norman Park?</h3>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:2rem;">
+      Block size, position and condition. Original Queenslanders on larger blocks and homes backing onto the Norman Creek parkland consistently attract premium results. Renovated character homes and properties within strong school catchments command the top of the market, and the ridge streets carry a view premium on top of that.
+    </p>
+
+    <h3 style="font-family:var(--font-serif); font-size:1.3rem; font-weight:400; color:#191817; margin-bottom:0.65rem;">How long does it take to sell a home in Norman Park?</h3>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:2rem;">
+      Well-priced character homes here typically sell faster than the Brisbane average. The suburb is low-turnover, so listing supply stays tight and a properly prepared campaign draws competition early. The preparation before launch matters more than the days on market.
+    </p>
+
+    <h3 style="font-family:var(--font-serif); font-size:1.3rem; font-weight:400; color:#191817; margin-bottom:0.65rem;">What makes Norman Park a strong suburb for sellers?</h3>
+    <p style="font-family:var(--font-sans); font-size:1rem; font-weight:300; line-height:1.8; color:#4a4540; margin-bottom:0;">
+      Consistent demand from families set on inner-east character living, limited listing supply, strong school catchments and the green corridor along Norman Creek. Those four forces together create the competitive conditions that support strong sale prices.
+    </p>
+  </div>
+</section>
 
 <!-- CROSS-LINK TO SELLING GUIDE -->
 <section style="background:var(--color-surface-0);padding:3rem 0;border-top:1px solid rgba(28,25,23,0.08);">
@@ -351,7 +323,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "name": "How long does it take to sell a home in Norman Park?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Well-priced Norman Park homes typically sell within 20 to 35 days. The suburb's low-turnover nature and consistent family demand create strong conditions for competitive campaigns. Daniel Gierach's median days on market is 20 days."
+        "text": "Well-priced character homes in Norman Park typically sell faster than the Brisbane average. The suburb is low-turnover, so listing supply stays tight and a properly prepared campaign draws competition early."
       }
     },
     {
@@ -359,11 +331,49 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
       "name": "What makes Norman Park a strong suburb for sellers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Norman Park benefits from consistent demand from families priced out of Balmoral and Hawthorne who still want inner-east character living. Limited listing supply, strong school catchments and the suburb's green credentials along Norman Creek create competitive conditions that support strong sale prices."
+        "text": "Norman Park benefits from consistent demand from families set on inner-east character living. Limited listing supply, strong school catchments and the green corridor along Norman Creek create competitive conditions that support strong sale prices."
       }
     }
   ]
 })} />
+<BuyersCTA suburb="Norman Park" />
+
+<!-- ═══════════════════════════════════════════════
+     SUBURBS SERVED (agent credentials, kept below the CTA)
+════════════════════════════════════════════════ -->
+<section style="background:#fff; padding:80px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-family:var(--font-sans); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#b98229; margin-bottom:1rem;">Areas Covered</p>
+    <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:400; font-variation-settings:'opsz' 32; line-height:1.2; color:#191817; margin-bottom:2.5rem;">Suburbs I specialise in.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Norman Park</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Character homes and family-friendly streets</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Hawthorne</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Riverside living with premium appeal</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Balmoral</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">One of Brisbane's most sought-after pockets</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">East Brisbane</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Walkable inner-city living with character homes</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Woolloongabba</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Rapidly growing suburb with major infrastructure</p>
+      </div>
+      <div style="background:var(--color-base, #f2ead4); padding:1.75rem; border-radius:16px;">
+        <p style="font-family:var(--font-serif); font-size:1.15rem; font-weight:400; color:#191817; margin-bottom:0.5rem;">Camp Hill</p>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; font-weight:300; color:#6b6560; line-height:1.6;">Elevated lifestyle living with strong buyer demand</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <SuburbMap />
 
 </Layout>
