@@ -69,11 +69,11 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
             </li>
           ))}
           <li id="suburb-list-empty" class="suburb-list-empty" hidden>
-            No suburb profiles yet in this region. Daniel still works here. <a href="/get-an-appraisal" style="color:var(--color-text-primary);text-decoration:underline;">Request an appraisal</a>.
+            No suburb profiles yet in this region. Daniel still works here. <a href="/get-an-appraisal" style="color:var(--color-text-primary);text-decoration:underline;">Request a Property Update</a>.
           </li>
         </ol>
         <p class="suburb-aside-foot">
-          Suburb not on the list? <a href="/get-an-appraisal" style="color:var(--color-text-primary);text-decoration:underline;">Request an appraisal</a> for any Brisbane address.
+          Suburb not on the list? <a href="/get-an-appraisal" style="color:var(--color-text-primary);text-decoration:underline;">Request a Property Update</a> for any Brisbane address.
         </p>
       </aside>
 
@@ -509,7 +509,7 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
         const sub = allSuburbs.find(s => s.slug === slug);
         if (readoutName && sub) readoutName.textContent = sub.name;
         if (readoutEyebrow) readoutEyebrow.textContent = sub?.featured ? 'Suburb profile' : 'Daniel works here';
-        if (readoutMeta) readoutMeta.textContent = sub?.featured ? 'Click to view profile →' : 'Click to request an appraisal →';
+        if (readoutMeta) readoutMeta.textContent = sub?.featured ? 'Click to view profile →' : 'Click to request a property update →';
       } else {
         clearLabel();
         if (readoutName) readoutName.textContent = defaultName;
@@ -558,7 +558,7 @@ const regions: { id: 'all' | 'east' | 'south' | 'north' | 'west'; label: string 
         .filter(s => s.name.toLowerCase().includes(q))
         .slice(0, 12);
       if (!matches.length) {
-        searchResults.innerHTML = '<li><a href="/get-an-appraisal" style="color:var(--color-text-muted);"><span>No match · request an appraisal</span><span class="result-tag">→</span></a></li>';
+        searchResults.innerHTML = '<li><a href="/get-an-appraisal" style="color:var(--color-text-muted);"><span>No match · request a property update</span><span class="result-tag">→</span></a></li>';
         searchResults.hidden = false;
         return;
       }
