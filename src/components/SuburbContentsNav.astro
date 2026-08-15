@@ -77,6 +77,24 @@ const { name } = Astro.props;
     font-weight: 700;
     border-left-color: #b98229;
   }
+
+  /* Mobile compaction: the suburb template's sections carry desktop-scale
+     padding that stacks into large empty bands on phones. Halve the vertical
+     rhythm under 640px. Selectors match the template's inline padding values. */
+  @media (max-width: 640px) {
+    section[style*="padding:80px 24px"] { padding: 40px 20px !important; }
+    section[style*="padding: 80px 24px"] { padding: 40px 20px !important; }
+    section[style*="padding:56px 24px 80px"] { padding: 30px 20px 44px !important; }
+    section[style*="padding:48px 24px 80px"] { padding: 28px 20px 40px !important; }
+    section[style*="padding:40px 24px 80px"] { padding: 26px 20px 40px !important; }
+    section[style*="padding:8px 24px 64px"] { padding: 8px 20px 36px !important; }
+    section[style*="padding:64px 24px"] { padding: 34px 20px !important; }
+    div[aria-hidden="true"][style*="2.75rem"] { margin-bottom: 1.4rem !important; }
+    h2[style*="margin-bottom:2.5rem"] { margin-bottom: 1.5rem !important; }
+    h2[style*="margin-bottom: 2.5rem"] { margin-bottom: 1.5rem !important; }
+    section.method-section[style*="padding:6rem 0"] { padding: 3rem 0 !important; }
+    section.suburb-map-wrap[style*="padding:5rem 0 6rem"] { padding: 2.75rem 0 3.25rem !important; }
+  }
 </style>
 
 <script is:inline define:vars={{ TOC_SUBURB: name }}>
