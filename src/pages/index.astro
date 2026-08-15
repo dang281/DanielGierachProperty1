@@ -27,15 +27,26 @@ const listings = [
     href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/morningside-4170/unit/3530740',
   },
   {
+    id: 12,
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/b835-H3558239-214119120__1786445871-127539-IMG8896.PNG',
+    suburb: 'Victoria Point',
+    address: '1/11 Boat Street',
+    street: 'Victoria Point QLD 4165',
+    price: 'Price by Negotiation',
+    beds: 3, baths: 2, cars: 2,
+    tag: 'For Sale',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/victoria-point-4165/townhouse/3558239',
+  },
+  {
     id: 10,
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/a63b-H3528786-206311856__1781747347-45821-imgi6494367d2b660e85aa62b2c804db58e593hd.jpg',
     suburb: 'West End',
     address: '10604/41 Tondara Lane',
     street: 'West End QLD 4101',
-    price: 'Price by Negotiation',
+    price: '$2,850,000',
     beds: 3, baths: 3, cars: 3,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/west-end-4101/unit/3528786',
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/west-end-4101/unit/3528786',
   },
   {
     id: 9,
@@ -43,10 +54,10 @@ const listings = [
     suburb: 'Carina',
     address: '34 Balmerino Drive',
     street: 'Carina QLD 4152',
-    price: 'Price by Negotiation',
+    price: '$2,047,000',
     beds: 4, baths: 3, cars: 2,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/carina-4152/house/3512351',
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/carina-4152/house/3512351',
   },
   {
     id: 7,
@@ -129,15 +140,6 @@ const listings = [
 
 const prestige = [
   {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg',
-    suburb: 'Cannon Hill',
-    address: '12/76 Minnippi Boulevard',
-    price: 'Under Contract',
-    beds: 4, baths: 2, cars: 2,
-    tag: 'Under Contract',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/cannon-hill-4170/townhouse/3505222',
-  },
-  {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/3f91-H3530740-206381089__1781777760-114994-6.png',
     suburb: 'Morningside',
     address: '1/10 Gary Street',
@@ -147,22 +149,13 @@ const prestige = [
     href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/morningside-4170/unit/3530740',
   },
   {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/a63b-H3528786-206311856__1781747347-45821-imgi6494367d2b660e85aa62b2c804db58e593hd.jpg',
-    suburb: 'West End',
-    address: '10604/41 Tondara Lane',
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/b835-H3558239-214119120__1786445871-127539-IMG8896.PNG',
+    suburb: 'Victoria Point',
+    address: '1/11 Boat Street',
     price: 'Price by Negotiation',
-    beds: 3, baths: 3, cars: 3,
+    beds: 3, baths: 2, cars: 2,
     tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/west-end-4101/unit/3528786',
-  },
-  {
-    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8319-H3512351-202426571__1779329423-64502-DJI202605201433570530DFRED.jpg',
-    suburb: 'Carina',
-    address: '34 Balmerino Drive',
-    price: 'Price by Negotiation',
-    beds: 4, baths: 3, cars: 2,
-    tag: 'For Sale',
-    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/carina-4152/house/3512351',
+    href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/victoria-point-4165/townhouse/3558239',
   },
   {
     image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/c6f3-H3502291-199952651__1777955761-77154-ab40593e-50dc-4a92-a6bc-5355e05faa1c.JPG',
@@ -181,6 +174,33 @@ const prestige = [
     beds: 2, baths: 1, cars: 1,
     tag: 'For Sale',
     href: 'https://raywhitebulimba.com.au/properties/residential-for-sale/qld/hawthorne-4171/house/3532103',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/1133-H3505222-191323748__1773117111-271580-02-171276MinnippiBoulevardCannonHill10.jpg',
+    suburb: 'Cannon Hill',
+    address: '12/76 Minnippi Boulevard',
+    price: 'Sold June 2026',
+    beds: 4, baths: 2, cars: 2,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/cannon-hill-4170/townhouse/3505222',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/a63b-H3528786-206311856__1781747347-45821-imgi6494367d2b660e85aa62b2c804db58e593hd.jpg',
+    suburb: 'West End',
+    address: '10604/41 Tondara Lane',
+    price: '$2,850,000',
+    beds: 3, baths: 3, cars: 3,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/west-end-4101/unit/3528786',
+  },
+  {
+    image: 'https://cdn6.ep.dynamics.net/s3/rw-propertyimages/8319-H3512351-202426571__1779329423-64502-DJI202605201433570530DFRED.jpg',
+    suburb: 'Carina',
+    address: '34 Balmerino Drive',
+    price: '$2,047,000',
+    beds: 4, baths: 3, cars: 2,
+    tag: 'Sold',
+    href: 'https://raywhitebulimba.com.au/properties/sold-residential/qld/carina-4152/house/3512351',
   },
 ];
 
@@ -426,8 +446,8 @@ const faqSchema = {
               srcset={vImgSrcset(p.image, [640, 800, 1080])}
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               alt={p.address} width="800" height="600" loading="lazy"
-              style="width:100%;height:100%;object-fit:cover;" />
-            <span style="position:absolute;top:0.85rem;left:0.85rem;display:inline-block;padding:0.35rem 0.7rem;background:#b98229;color:#ffffff;font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;">{p.tag}</span>
+              style={`width:100%;height:100%;object-fit:cover;${p.tag === 'Sold' ? 'filter:grayscale(30%);' : ''}`} />
+            <span style={`position:absolute;top:0.85rem;left:0.85rem;display:inline-block;padding:0.35rem 0.7rem;background:${p.tag === 'Sold' ? 'rgba(107,70,16,0.80)' : p.tag === 'Under Contract' ? '#f4a261' : '#b98229'};color:${p.tag === 'Sold' ? '#f2ead4' : p.tag === 'Under Contract' ? '#191817' : '#ffffff'};font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;`}>{p.tag}</span>
           </div>
           <div style="padding:1.25rem 1.35rem 1.35rem;display:flex;flex-direction:column;flex:1;">
             <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#6b4610;margin-bottom:0.4rem;">{p.suburb}</span>
