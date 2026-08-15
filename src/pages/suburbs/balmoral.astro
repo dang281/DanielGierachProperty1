@@ -14,6 +14,7 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
 <Layout
   title="Real Estate Agent Balmoral, Brisbane | Daniel Gierach"
   description="Thinking of selling in Balmoral? One of Brisbane's most prestigious inner-east suburbs. Free appraisal from Daniel Gierach, Ray White Bulimba."
+  ogImage="https://danielgierach.com/img/suburbs/balmoral-hero.jpg"
 >
 
 <script type="application/ld+json" set:html={JSON.stringify({
@@ -131,6 +132,14 @@ import ResourceCTA from '../../components/ResourceCTA.astro';
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
       <a href="/property-worth" class="btn-gold" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:#b98229; color:#ffffff; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border-radius:10px;">What's Your Property Worth?</a>
       <a href="/insights/selling-in-balmoral" style="font-family:var(--font-sans); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:#6b4610; padding:0.85rem 2rem; text-decoration:none; display:inline-block; border:1px solid #b98229; border-radius:10px;">How I Sell in Balmoral</a>
+    </div>
+
+    <!-- hero image: contained, rounded, slow Ken Burns; openly licensed with credit -->
+    <div style="max-width:1120px; margin:3.25rem auto 0;">
+      <div style="position:relative; width:100%; height:clamp(280px, 38vw, 460px); overflow:hidden; border-radius:16px; box-shadow:0 18px 44px rgba(25,24,23,0.14);">
+        <img class="suburb-hero-kb" src="/img/suburbs/balmoral-hero.jpg" alt="The Bulimba ferry terminal, the CityCat walk from Balmoral" loading="eager" width="1400" height="900" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      </div>
+      <p style="font-family:var(--font-sans); font-size:0.62rem; font-weight:400; color:#a89f8d; text-align:right; margin:0.45rem 0.25rem 0;">Photo: <a href="https://commons.wikimedia.org/wiki/File:Bulimba_Ferry_Terminal_Oxford_St_Bulimba_P1250095.jpg" rel="nofollow" style="color:#a89f8d;">John Robert McPherson</a> &middot; CC BY-SA 4.0</p>
     </div>
   </div>
 </section>

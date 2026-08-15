@@ -95,6 +95,20 @@ const { name } = Astro.props;
     section.method-section[style*="padding:6rem 0"] { padding: 3rem 0 !important; }
     section.suburb-map-wrap[style*="padding:5rem 0 6rem"] { padding: 2.75rem 0 3.25rem !important; }
   }
+
+  /* Suburb hero image: slow Ken Burns, honours reduced-motion. */
+  .suburb-hero-kb {
+    will-change: transform;
+    transform-origin: center;
+    animation: suburbKenBurns 28s ease-in-out infinite alternate;
+  }
+  @keyframes suburbKenBurns {
+    from { transform: scale(1.03); }
+    to { transform: scale(1.13); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .suburb-hero-kb { animation: none; transform: none; }
+  }
 </style>
 
 <script is:inline define:vars={{ TOC_SUBURB: name }}>
