@@ -9,7 +9,9 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
 const services = [
   {
-    href: '/tools/presale-checklist',
+    href: 'https://tinyurl.com/cpcv5xb6',
+    external: true,
+    cta: 'property_tools_prepare_home_for_sale',
     title: 'Prepare your home for sale',
     desc: 'A room-by-room checklist.',
     icon: 'home',
@@ -2648,7 +2650,7 @@ const supportTeam = [
   <section class="section fade-in-section">
     <span class="section-label">Tools &amp; services</span>
     {services.map(s => (
-      <a class="card" href={`${s.href}?nav=off`} data-cta={`property_tools_${s.href.replace(/\//g, '_')}`}>
+      <a class="card" href={s.external ? s.href : `${s.href}?nav=off`} data-cta={s.cta ?? `property_tools_${s.href.replace(/\//g, '_')}`}>
         <span class="card-icon">
           {s.icon === 'home' && (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v10h4v-6h6v6h4V10"/></svg>
